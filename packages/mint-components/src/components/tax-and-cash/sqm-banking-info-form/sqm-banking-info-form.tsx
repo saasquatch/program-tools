@@ -33,8 +33,7 @@ export class BankingInfoForm {
   @State() ignored = true;
 
   /**
-   * Subtext shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Form step text
+   * @uiName Setup progress
    */
   @Prop() formStep: string = "Step {step} of {count}";
 
@@ -282,62 +281,60 @@ export class BankingInfoForm {
   @Prop() searchForCountryText: string = "Search for country..";
 
   /**
-   * Header text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert header
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert title
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
 
   /**
-   * Description text for the alert when the user is identified as a partner
-   * @uiName Partner identification alert description
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert description
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
 
   /**
-   * Title text for a general form submission error
-   * @uiName General form submission error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
 
   /**
-   * Description text for a general form submission error
-   * @uiName General form submission error description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-
   /**
-   * Required error text shown at the bottom of field inputs
-   * @uiName Field inputs error text
+   * Displayed under a field that is missing required information.
+   * @uiName Empty form field error message
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
-   * Invalid error text shown at the bottom of field inputs
-   * @uiName Field inputs invalid error text
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
   /**
-   * Text for the save button in the form
-   * @uiName Save button text
+   * @uiName Continue button label
    */
   @Prop() continueButton: string = "Save";
   /**
    * Text for the back button in the form
-   * @uiName Back button text
+   * @uiName Back button label
    */
-  @Prop() backButton: string = "Save";
+  @Prop() backButton: string = "Back";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

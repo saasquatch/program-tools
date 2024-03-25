@@ -894,81 +894,76 @@ export class TaxAndCashMonolith {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
+   * @uiName Setup progress
    * @uiGroup General Form Properties
    */
   @Prop() formStep: string = "Step {step} of {count}";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    * @uiGroup General Form Properties
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
 
   /**
-   * Description text for a general form submission error
-   * @uiName General form submission error description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    * @uiGroup General Form Properties
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * Required error text shown at the bottom of field inputs
-   * @uiName Field inputs error text
+   * Displayed under a field that is missing required information.
+   * @uiName Empty form field error message
    * @uiGroup General Form Properties
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
-   * Invalid error text shown at the bottom of field inputs
-   * @uiName Field inputs invalid error text
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
    * @uiGroup General Form Properties
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
   /**
-   * Text for the continue button in the form
-   * @uiName Continue button text
+   * @uiName Continue button label
    * @uiGroup General Form Properties
    */
   @Prop() continueButton: string = "Continue";
   /**
-   * Text shown inside of back button
-   * @uiName Back button text
+   * @uiName Back button label
    * @uiGroup General Form Properties
    */
   @Prop() backButton: string = "Back";
   /**
-   * Text shown inside of cancel button
-   * @uiName Cancel button text
+   * @uiName Cancel button label
    * @uiGroup General Form Properties
    */
   @Prop() cancelButton: string = "Cancel";
   /**
-   * Alert header text shown in alert if user is already a registered partner
-   * @uiName Participant is partner title
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert title
    * @uiGroup General Form Properties
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
   /**
-   * Alert description text shown in alert if user is already a registered partner
-   * @uiName Participant is partner description
+   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+   * @uiName Participant is a partner alert description
    * @uiGroup General Form Properties
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    * @uiGroup General Form Properties
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    * @uiGroup General Form Properties
    */
   @Prop() loadingErrorAlertDescription: string =

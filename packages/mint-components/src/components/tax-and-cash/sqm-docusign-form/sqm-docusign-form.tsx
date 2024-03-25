@@ -26,8 +26,7 @@ export class DocusignForm {
   @Element() el;
   @State() ignored = true;
   /**
-   * Sub text shown at the top of the page, used to show the current step of the tax form.
-   * @uiName Tax form step text
+   * @uiName Setup progress
    */
   @Prop() formStep: string = "Step {step} of {count}";
   /**
@@ -119,38 +118,34 @@ export class DocusignForm {
    */
   @Prop() refreshButton: string = "Refresh Page";
   /**
-   * Text shown inside of back button
-   * @uiName Back button text
+   * @uiName Back button label
    */
   @Prop() backButton: string = "Back";
   /**
-   * Text shown inside of cancel button
-   * @uiName Cancel button text
+   * @uiName Cancel button label
    */
   @Prop() cancelButton: string = "Cancel";
   /**
-   * The title for error message shown at the top of the page in an error banner
-   *
-   * @uiName General error title
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message title
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
-   * The error message shown at the top of the page in an error banner
-   *
-   * @uiName General error text
+   * Part of the alert displayed at the top of the page.
+   * @uiName Form submission error message description
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * Alert header shown if there is a problem loading a form
-   * @uiName Loading error alert header
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message title
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
-   * Alert description shown if there is a problem loading a form
-   * @uiName Loading error alert description
+   * Part of the alert displayed at the top of the page.
+   * @uiName Page load error message description
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

@@ -74,7 +74,7 @@ export namespace Components {
         "agencyCodeLabel": string;
         /**
           * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
@@ -153,8 +153,7 @@ export namespace Components {
          */
         "classificationLabel": string;
         /**
-          * Text for the save button in the form
-          * @uiName Save button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -172,13 +171,13 @@ export namespace Components {
          */
         "eftWithdrawalLabel": string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
          */
         "fieldInvalidError": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
@@ -187,8 +186,7 @@ export namespace Components {
          */
         "foreignSelectItemLabel": string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
@@ -196,13 +194,13 @@ export namespace Components {
          */
         "fxWireProcessingFeeLabel": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -216,23 +214,23 @@ export namespace Components {
          */
         "individualSelectItemLabel": string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -562,8 +560,7 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
@@ -577,8 +574,7 @@ export namespace Components {
          */
         "businessEntity": string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
          */
         "cancelButton": string;
         /**
@@ -612,8 +608,7 @@ export namespace Components {
          */
         "docusignExpired": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
@@ -622,13 +617,13 @@ export namespace Components {
          */
         "formSubmissionError": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -637,13 +632,13 @@ export namespace Components {
          */
         "individualParticipant": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -981,8 +976,7 @@ export namespace Components {
     }
     interface SqmIndirectTaxForm {
         /**
-          * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton": string;
         /**
@@ -991,8 +985,7 @@ export namespace Components {
          */
         "cannotChangeInfoAlert": string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -1000,23 +993,22 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -1050,13 +1042,13 @@ export namespace Components {
          */
         "indirectTaxNumberError": string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
@@ -1070,13 +1062,13 @@ export namespace Components {
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -3768,20 +3760,17 @@ export namespace Components {
     }
     interface SqmTaxAndCash {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
           * @uiGroup General Form Properties
          */
         "backButton": string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
           * @uiGroup General Form Properties
          */
         "cancelButton": string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
           * @uiGroup General Form Properties
          */
         "continueButton": string;
@@ -3990,32 +3979,31 @@ export namespace Components {
          */
         "earningsColumnTitle": string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
           * @uiGroup General Form Properties
          */
         "fieldInvalidError": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
           * @uiGroup General Form Properties
          */
         "fieldRequiredError": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
           * @uiGroup General Form Properties
          */
         "formStep": string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
           * @uiGroup General Form Properties
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
           * @uiGroup General Form Properties
          */
         "generalErrorTitle": string;
@@ -4026,26 +4014,26 @@ export namespace Components {
          */
         "invoiceColumnTitle": string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
          */
         "isPartnerAlertDescription": string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertHeader": string;
@@ -4641,13 +4629,13 @@ export namespace Components {
          */
         "errorTitleText": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
@@ -4689,13 +4677,13 @@ export namespace Components {
          */
         "invoiceColumnTitle": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4865,8 +4853,7 @@ export namespace Components {
          */
         "allowBankingCollection": string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
+          * @uiName Continue button label
          */
         "continueButton": string;
         /**
@@ -4891,8 +4878,8 @@ export namespace Components {
          */
         "email": string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError": string;
         /**
@@ -4900,28 +4887,27 @@ export namespace Components {
          */
         "firstName": string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep": string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription": string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle": string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription": string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader": string;
         /**
@@ -4929,13 +4915,13 @@ export namespace Components {
          */
         "lastName": string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription": string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -5767,7 +5753,7 @@ declare namespace LocalJSX {
         "agencyCodeLabel"?: string;
         /**
           * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
@@ -5846,8 +5832,7 @@ declare namespace LocalJSX {
          */
         "classificationLabel"?: string;
         /**
-          * Text for the save button in the form
-          * @uiName Save button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -5865,13 +5850,13 @@ declare namespace LocalJSX {
          */
         "eftWithdrawalLabel"?: string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
          */
         "fieldInvalidError"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
@@ -5880,8 +5865,7 @@ declare namespace LocalJSX {
          */
         "foreignSelectItemLabel"?: string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
@@ -5889,13 +5873,13 @@ declare namespace LocalJSX {
          */
         "fxWireProcessingFeeLabel"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -5909,23 +5893,23 @@ declare namespace LocalJSX {
          */
         "individualSelectItemLabel"?: string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6256,8 +6240,7 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
@@ -6271,8 +6254,7 @@ declare namespace LocalJSX {
          */
         "businessEntity"?: string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
          */
         "cancelButton"?: string;
         /**
@@ -6306,8 +6288,7 @@ declare namespace LocalJSX {
          */
         "docusignExpired"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
@@ -6316,13 +6297,13 @@ declare namespace LocalJSX {
          */
         "formSubmissionError"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -6331,13 +6312,13 @@ declare namespace LocalJSX {
          */
         "individualParticipant"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6675,8 +6656,7 @@ declare namespace LocalJSX {
     }
     interface SqmIndirectTaxForm {
         /**
-          * Text for the back button in the form
-          * @uiName Back button text
+          * @uiName Back button label
          */
         "backButton"?: string;
         /**
@@ -6685,8 +6665,7 @@ declare namespace LocalJSX {
          */
         "cannotChangeInfoAlert"?: string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -6694,23 +6673,22 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseIndirectTaxFormResult>;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
-          * Subtext shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * Title text for a general form submission error
-          * @uiName General form submission error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -6744,13 +6722,13 @@ declare namespace LocalJSX {
          */
         "indirectTaxNumberError"?: string;
         /**
-          * Description text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Header text for the alert when the user is identified as a partner
-          * @uiName Partner identification alert header
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -6764,13 +6742,13 @@ declare namespace LocalJSX {
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -9432,20 +9410,17 @@ declare namespace LocalJSX {
     }
     interface SqmTaxAndCash {
         /**
-          * Text shown inside of back button
-          * @uiName Back button text
+          * @uiName Back button label
           * @uiGroup General Form Properties
          */
         "backButton"?: string;
         /**
-          * Text shown inside of cancel button
-          * @uiName Cancel button text
+          * @uiName Cancel button label
           * @uiGroup General Form Properties
          */
         "cancelButton"?: string;
         /**
-          * Text for the continue button in the form
-          * @uiName Continue button text
+          * @uiName Continue button label
           * @uiGroup General Form Properties
          */
         "continueButton"?: string;
@@ -9654,32 +9629,31 @@ declare namespace LocalJSX {
          */
         "earningsColumnTitle"?: string;
         /**
-          * Invalid error text shown at the bottom of field inputs
-          * @uiName Field inputs invalid error text
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
           * @uiGroup General Form Properties
          */
         "fieldInvalidError"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
           * @uiGroup General Form Properties
          */
         "fieldRequiredError"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
           * @uiGroup General Form Properties
          */
         "formStep"?: string;
         /**
-          * Description text for a general form submission error
-          * @uiName General form submission error description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
           * @uiGroup General Form Properties
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
           * @uiGroup General Form Properties
          */
         "generalErrorTitle"?: string;
@@ -9690,26 +9664,26 @@ declare namespace LocalJSX {
          */
         "invoiceColumnTitle"?: string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
          */
         "isPartnerAlertHeader"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
           * @uiGroup General Form Properties
          */
         "loadingErrorAlertHeader"?: string;
@@ -10305,13 +10279,13 @@ declare namespace LocalJSX {
          */
         "errorTitleText"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
@@ -10353,13 +10327,13 @@ declare namespace LocalJSX {
          */
         "invoiceColumnTitle"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10528,8 +10502,7 @@ declare namespace LocalJSX {
          */
         "allowBankingCollection"?: string;
         /**
-          * Text shown inside of submit button
-          * @uiName Submit button text
+          * @uiName Continue button label
          */
         "continueButton"?: string;
         /**
@@ -10554,8 +10527,8 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
-          * Required error text shown at the bottom of field inputs
-          * @uiName Field inputs error text
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
          */
         "fieldRequiredError"?: string;
         /**
@@ -10563,28 +10536,27 @@ declare namespace LocalJSX {
          */
         "firstName"?: string;
         /**
-          * Sub text shown at the top of the page, used to show the current step of the tax form.
-          * @uiName Tax form step text
+          * @uiName Setup progress
          */
         "formStep"?: string;
         /**
-          * The error message shown at the top of the page in an error banner
-          * @uiName General error text
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
          */
         "generalErrorDescription"?: string;
         /**
-          * The title for error message shown at the top of the page in an error banner
-          * @uiName General error title
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
          */
         "generalErrorTitle"?: string;
         /**
-          * Alert description text shown in alert if user is already a registered partner
-          * @uiName Participant is partner description
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Alert header text shown in alert if user is already a registered partner
-          * @uiName Participant is partner title
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -10592,13 +10564,13 @@ declare namespace LocalJSX {
          */
         "lastName"?: string;
         /**
-          * Alert description shown if there is a problem loading a form
-          * @uiName Loading error alert description
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
          */
         "loadingErrorAlertDescription"?: string;
         /**
-          * Alert header shown if there is a problem loading a form
-          * @uiName Loading error alert header
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
          */
         "loadingErrorAlertHeader"?: string;
         /**
