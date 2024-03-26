@@ -94,7 +94,12 @@ export class InvoiceTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot />;
+    const empty = (
+      <EmptySlot
+        emptyStateHeader={this.emptyStateHeader}
+        emptyStateText={this.emptyStateText}
+      />
+    );
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -116,13 +121,13 @@ export class InvoiceTable {
   }
 }
 
-function EmptySlot() {
+function EmptySlot(props) {
   return (
     <slot name="empty">
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png"
-        empty-state-header={this.emptyStateHeader}
-        empty-state-text={this.emptyStateText}
+        empty-state-header={props.emptyStateHeader}
+        empty-state-text={props.emptyStateText}
       ></sqm-empty>
     </slot>
   );
