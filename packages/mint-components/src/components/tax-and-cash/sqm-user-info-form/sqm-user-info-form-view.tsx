@@ -377,23 +377,19 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     callbacks.setCountrySearch(e.target.value);
                   }}
                 ></sl-input>
-                {data?.countries
-                  ?.sort((a, b) => a.displayName.localeCompare(b.displayName))
-                  .map((c) => (
-                    <sl-menu-item value={c.countryCode}>
-                      {c.displayName}
-                    </sl-menu-item>
-                  ))}
-                {data?.allCountries
-                  ?.sort((a, b) => a.displayName.localeCompare(b.displayName))
-                  .map((c) => (
-                    <sl-menu-item
-                      value={c.countryCode}
-                      style={{ display: "none" }}
-                    >
-                      {c.displayName}
-                    </sl-menu-item>
-                  ))}
+                {data?.countries?.map((c) => (
+                  <sl-menu-item value={c.countryCode}>
+                    {c.displayName}
+                  </sl-menu-item>
+                ))}
+                {data?.allCountries?.map((c) => (
+                  <sl-menu-item
+                    value={c.countryCode}
+                    style={{ display: "none" }}
+                  >
+                    {c.displayName}
+                  </sl-menu-item>
+                ))}
               </sl-select>
               <sl-select
                 id="currency"
@@ -427,23 +423,19 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     callbacks.setCurrencySearch(e.target.value);
                   }}
                 />
-                {data?.currencies
-                  ?.sort((a, b) => a.displayName.localeCompare(b.displayName))
-                  .map((c) => (
-                    <sl-menu-item value={c.currencyCode}>
-                      {c.currencyCode} - {c.displayName}
-                    </sl-menu-item>
-                  ))}
-                {data?.allCurrencies
-                  ?.sort((a, b) => a.displayName.localeCompare(b.displayName))
-                  .map((c) => (
-                    <sl-menu-item
-                      value={c.currencyCode}
-                      style={{ display: "none" }}
-                    >
-                      {c.currencyCode} - {c.displayName}
-                    </sl-menu-item>
-                  ))}
+                {data?.currencies?.map((c) => (
+                  <sl-menu-item value={c.currencyCode}>
+                    {c.currencyCode} - {c.displayName}
+                  </sl-menu-item>
+                ))}
+                {data?.allCurrencies?.map((c) => (
+                  <sl-menu-item
+                    value={c.currencyCode}
+                    style={{ display: "none" }}
+                  >
+                    {c.currencyCode} - {c.displayName}
+                  </sl-menu-item>
+                ))}
               </sl-select>
 
               <div class={classes.CheckboxWrapper}>

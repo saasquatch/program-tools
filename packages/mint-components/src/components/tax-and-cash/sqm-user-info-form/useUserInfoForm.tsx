@@ -67,9 +67,14 @@ export function useUserInfoForm(props: TaxForm) {
   const { data: countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
-  const currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+  const _currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+  const currencies = [...(_currencies || [])].sort((a, b) =>
+    a.displayName.localeCompare(b.displayName)
+  );
 
-  const countries = countriesRes?.impactPayoutCountries?.data;
+  const countries = [...(countriesRes?.impactPayoutCountries?.data || [])].sort(
+    (a, b) => a.displayName.localeCompare(b.displayName)
+  );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
