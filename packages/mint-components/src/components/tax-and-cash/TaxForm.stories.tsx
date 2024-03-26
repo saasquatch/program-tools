@@ -60,6 +60,18 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
         countryCode: "US",
         displayName: "United States",
       },
+      {
+        countryCode: "AR",
+        displayName: "Argentina",
+      },
+      {
+        countryCode: "AU",
+        displayName: "Australia",
+      },
+      {
+        countryCode: "ZW",
+        displayName: "Zimbabwe",
+      },
     ],
     currencies: [
       {
