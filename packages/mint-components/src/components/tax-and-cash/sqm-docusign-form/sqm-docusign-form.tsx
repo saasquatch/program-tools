@@ -98,14 +98,6 @@ export class DocusignForm {
    */
   @Prop() refreshButton: string = "Refresh Page";
   /**
-   * @uiName Back button label
-   */
-  @Prop() backButton: string = "Back";
-  /**
-   * @uiName Cancel button label
-   */
-  @Prop() cancelButton: string = "Cancel";
-  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
    * @uiWidget textArea
@@ -133,6 +125,14 @@ export class DocusignForm {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+
+  /**
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
+   */
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
+
   /**
    * @undocumented
    * @uiType object
@@ -216,7 +216,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
-        hideBackButton: false,
       },
       data: {
         taxForm: "W9",
@@ -225,9 +224,6 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
       callbacks: {
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
-        onBack: () => {
-          setStep("/2");
-        },
       },
     },
     props.demoData || {},

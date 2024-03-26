@@ -69,6 +69,7 @@ export interface TaxAndCashDashboardProps {
     taxedAmountColumnTitle: string;
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
+    taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -196,6 +197,10 @@ const style = {
     fontSize: "12px",
     marginBottom: "none",
     maxWidth: "492px",
+  },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
   },
 };
 
@@ -366,6 +371,9 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {states.status === "INACTIVE" && alertMap[states.status]}
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
+          <p class={sheet.classes.PageDescriptionText}>
+            {text.taxAndPayoutsDescription}
+          </p>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
             {!states.loading && (

@@ -160,10 +160,6 @@ export function useDocusignForm(props: DocusignForm) {
     }
   }, [docusignStatus, refetch]);
 
-  const onBack = () => {
-    setStep(context.overrideBackStep);
-  };
-
   const allLoading = userLoading || documentLoading || loading;
 
   return {
@@ -183,7 +179,6 @@ export function useDocusignForm(props: DocusignForm) {
       docusignStatus,
       documentType: actualDocumentType,
       documentTypeString: taxTypeToName(actualDocumentType),
-      hideBackButton: !context.overrideBackStep,
     },
     data: {
       taxForm: actualDocumentType,
@@ -192,7 +187,6 @@ export function useDocusignForm(props: DocusignForm) {
     callbacks: {
       setDocusignStatus,
       setParticipantType,
-      onBack,
     },
     text: props.getTextProps(),
   };

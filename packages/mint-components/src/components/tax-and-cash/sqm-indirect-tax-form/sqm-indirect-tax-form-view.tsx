@@ -43,6 +43,7 @@ export interface IndirectTaxFormViewProps {
     cannotChangeInfoAlert: string;
     continueButton: string;
     backButton: string;
+    taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -164,6 +165,11 @@ const style = {
     height: "26px",
     width: "26px",
   },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
+    marginBottom: "var(--sl-spacing-small)",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -224,6 +230,9 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             </p>
           )}
           <h3>{text.indirectTax}</h3>
+          <p class={classes.PageDescriptionText}>
+            {text.taxAndPayoutsDescription}
+          </p>
           <p class={classes.DescriptionText}>
             {text.indirectTaxDetailsDescription}
           </p>

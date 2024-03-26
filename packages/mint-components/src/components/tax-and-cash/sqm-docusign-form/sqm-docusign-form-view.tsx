@@ -23,7 +23,6 @@ export interface DocusignFormViewProps {
     };
     documentType: TaxDocumentType;
     documentTypeString: string;
-    hideBackButton: boolean;
   };
   slots: {
     docusignExpiredSlot?: VNode;
@@ -31,7 +30,6 @@ export interface DocusignFormViewProps {
   };
   callbacks: {
     setParticipantType: (p: ParticipantType) => void;
-    onBack: () => void;
   };
   text: {
     formStep: string;
@@ -41,11 +39,10 @@ export interface DocusignFormViewProps {
     taxFormDescriptionIndividualParticipant: string;
     taxFormDescriptionBusinessEntity?: string;
     banner: string;
-    backButton: string;
-    cancelButton: string;
     businessEntity: string;
     individualParticipant: string;
     participantType: string;
+    taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -167,6 +164,10 @@ const style = {
   RadioText: {
     fontSize: "var(--sl-font-size-small)",
   },
+  PageDescriptionText: {
+    color: "var(--sl-color-neutral-500)",
+    fontSize: "var(--sl-font-size-medium)",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -226,6 +227,9 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             </p>
           )}
           <h3>{text.taxForm}</h3>
+          <p class={classes.PageDescriptionText}>
+            {text.taxAndPayoutsDescription}
+          </p>
         </div>
       </div>
       {states.loadingError && (
@@ -344,15 +348,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               {text.banner}
             </sl-alert>
             {slots.docusignIframeSlot}
-            {!states.hideBackButton && (
-              <sl-button
-                class={classes.SecondaryBtn}
-                type="text"
-                onClick={callbacks.onBack}
-              >
-                {text.cancelButton}
-              </sl-button>
-            )}
           </div>
         </div>
       )}

@@ -277,6 +277,13 @@ export class TaxAndCashDashboard {
   @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
 
   /**
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
+   */
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
+
+  /**
    * @undocumented
    * @uiType object
    */

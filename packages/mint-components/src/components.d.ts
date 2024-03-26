@@ -562,10 +562,6 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * @uiName Back button label
-         */
-        "backButton": string;
-        /**
           * Text shown in the banner above the document
           * @uiName Banner text
          */
@@ -575,10 +571,6 @@ export namespace Components {
           * @uiName Business representative participant type label
          */
         "businessEntity": string;
-        /**
-          * @uiName Cancel button label
-         */
-        "cancelButton": string;
         /**
           * @undocumented 
           * @uiType object
@@ -637,6 +629,11 @@ export namespace Components {
           * @uiName Refresh page button label
          */
         "refreshButton": string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
         /**
           * @uiName Step 3 title
          */
@@ -1108,6 +1105,11 @@ export namespace Components {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel": string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
     }
     interface SqmInputField {
         /**
@@ -4502,11 +4504,6 @@ export namespace Components {
          */
         "step4_taxAndPayouts": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "step4_taxAndPayoutsDescription": string;
-        /**
           * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
          */
@@ -4521,6 +4518,11 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel": string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Taxed amount column title
@@ -4723,6 +4725,11 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -4916,6 +4923,11 @@ export namespace Components {
           * @uiName Currency field placeholder text
          */
         "searchForCurrencyText": string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
         /**
           * @uiName Terms and conditions checkbox
           * @uiWidget textArea
@@ -6221,10 +6233,6 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         /**
-          * @uiName Back button label
-         */
-        "backButton"?: string;
-        /**
           * Text shown in the banner above the document
           * @uiName Banner text
          */
@@ -6234,10 +6242,6 @@ declare namespace LocalJSX {
           * @uiName Business representative participant type label
          */
         "businessEntity"?: string;
-        /**
-          * @uiName Cancel button label
-         */
-        "cancelButton"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -6296,6 +6300,11 @@ declare namespace LocalJSX {
           * @uiName Refresh page button label
          */
         "refreshButton"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Step 3 title
          */
@@ -6767,6 +6776,11 @@ declare namespace LocalJSX {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
     }
     interface SqmInputField {
         /**
@@ -10131,11 +10145,6 @@ declare namespace LocalJSX {
          */
         "step4_taxAndPayouts"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "step4_taxAndPayoutsDescription"?: string;
-        /**
           * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
          */
@@ -10150,6 +10159,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_voCodeLabel"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Taxed amount column title
@@ -10352,6 +10366,11 @@ declare namespace LocalJSX {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader"?: string;
@@ -10544,6 +10563,11 @@ declare namespace LocalJSX {
           * @uiName Currency field placeholder text
          */
         "searchForCurrencyText"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Terms and conditions checkbox
           * @uiWidget textArea

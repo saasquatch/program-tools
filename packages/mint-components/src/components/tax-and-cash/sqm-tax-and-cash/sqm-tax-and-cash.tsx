@@ -299,12 +299,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_taxAndPayouts: string = "Payouts";
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
-   * @uiName Page description
-   */
-  @Prop() step4_taxAndPayoutsDescription: string =
-    "Submit your tax documents and add your banking information to receive your rewards.";
-  /**
    * Text for the option to receive payments directly to a bank account
    * @uiName Directly to bank account option text
    * @uiGroup Step 4 Properties
@@ -933,6 +927,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+  /**
+   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * @uiName Page description
+   */
+  @Prop() taxAndPayoutsDescription: string =
+    "Submit your tax documents and add your banking information to receive your rewards.";
 
   /**
    *
@@ -962,6 +962,7 @@ export class TaxAndCashMonolith {
       isPartnerAlertDescription: props.isPartnerAlertDescription,
       loadingErrorAlertHeader: props.loadingErrorAlertHeader,
       loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+      taxAndPayoutsDescription: props.taxAndPayoutsDescription,
       formStep: props.formStep,
     };
   }
