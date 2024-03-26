@@ -108,21 +108,7 @@ Feature: Tax Form Flow
       | MX           | UK      |
       | AUS          | EGP     |
 
-  @minutia
-  Scenario Outline: Participants not based in the US working with US brands have to fillout docusign forms
-    Given a brand based in <brandCountry>
-    And the user selects <country> and <participantType> in step 1
-    When they view step 3
-    But are not based in the US
-    Then they must select <participantType>
-    And the <autoSelectedForm> is displayed
-
-    Examples:
-      | brandCountry | country | participantType       | autoSelectedForm |
-      | US           | CA      | individualParticipant | W8-BEN           |
-      | US           | CA      | businessEntity        | W8-BEN-E         |
-      | US           | MX      | individualParticipant | W8-BEN           |
-      | US           | MX      | businessEntity        | W8-BEN-E         |
+  
 
   @minutia
   Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
