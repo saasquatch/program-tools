@@ -147,6 +147,8 @@ export const useTaxAndCashDashboard = (
       ),
       notRegistered: !publisher?.taxInformation?.indirectTaxId,
       noFormNeeded: !documentType,
+      // AL: TODO add modal open/close state
+      isNewForm: false,
       expiresSoon,
       disabled: loading,
       loading,

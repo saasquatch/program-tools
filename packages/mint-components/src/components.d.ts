@@ -4019,6 +4019,17 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "replaceTaxFormModalHeader": string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
@@ -4501,6 +4512,10 @@ export namespace Components {
          */
         "bankingInformationSectionHeader": string;
         /**
+          * @uiName Cancel button label
+         */
+        "cancelButton": string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
@@ -4625,6 +4640,14 @@ export namespace Components {
           * @uiName QST indirect tax details
          */
         "qstNumber": string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader": string;
         /**
           * @uiName Payout status badge
          */
@@ -9605,6 +9628,17 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "replaceTaxFormModalHeader"?: string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
@@ -10087,6 +10121,10 @@ declare namespace LocalJSX {
          */
         "bankingInformationSectionHeader"?: string;
         /**
+          * @uiName Cancel button label
+         */
+        "cancelButton"?: string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
@@ -10211,6 +10249,14 @@ declare namespace LocalJSX {
           * @uiName QST indirect tax details
          */
         "qstNumber"?: string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader"?: string;
         /**
           * @uiName Payout status badge
          */

@@ -22,7 +22,7 @@ Feature: Tax And Cash Dashboard
     Given they submitted a W9/W8-BEN/W8-BEN-E tax form
     Then the Tax Form header displays "<documentType> tax form"
 
-    Examples:
+    Examples: 
       | documentType |
       | W9           |
       | W8 BEN       |
@@ -36,7 +36,7 @@ Feature: Tax And Cash Dashboard
     Then they see a badge with <status> text and a respective <badgeVariant>
     Then they see the message "<taxStatusMessage> on <dateSubmitted>"
 
-    Examples:
+    Examples: 
       | status       | badgeVariant | taxStatusMessage                                           | dateSubmitted |
       | ACTIVE       | success      | Submitted                                                  | Jan 17, 2024  |
       | NOT_VERIFIED | neutral      | Awaiting Review. Submitted                                 | Jan 17, 2024  |
@@ -54,15 +54,15 @@ Feature: Tax And Cash Dashboard
     When the participant <isRegistered> for indirect tax in their <country> and region <region>
     Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
 
-    Examples:
+    Examples: 
       | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
-      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
-      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    | 345213            |
-      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    | 345213            |
-      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               | 345213, 12312     |
-      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    | 321413            |
-      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number | 345213, 12345     |
-      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number | 345213, 12345     |
+      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
+      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
+      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
+      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
+      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number |     345213, 12345 |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number |     345213, 12345 |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
@@ -74,7 +74,7 @@ Feature: Tax And Cash Dashboard
     And they <doHaveIncomeTaxNumber> from step 2
     Then the indirect tax section displays <indirectTaxNumbers>
 
-    Examples:
+    Examples: 
       | registeredDetails    | subRegion      | doHaveIncomeTaxNumber | indirectTaxNumbers            |
       | Registered in Spain, | Spain Proper   | true                  | VAT number, Income tax number |
       | Registered in Spain, | Canary Islands | false                 | VAT number, N/A               |
@@ -84,7 +84,7 @@ Feature: Tax And Cash Dashboard
     Given the document has status <status>
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
-    Examples:
+    Examples: 
       | status     | documentType | taxAlertHeader                                                             | taxAlertMessage                                                                                                                 |
       | NOT_ACTIVE | W9           | Your W9 tax form has personal information that doesn't match your profile. | Please resubmit a new W9 form.                                                                                                  |
       | NOT_ACTIVE | W8-BEN       | W8-BEN tax form is invalid.                                                | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.   |
@@ -104,7 +104,7 @@ Feature: Tax And Cash Dashboard
     And they are viewing the Payout section
     Then they <maySee> the "Edit Payout Information" button
 
-    Examples:
+    Examples: 
       | brandPartnerType          | maySee     |
       | an existing brand partner | do not see |
       | a new brand partner       | do see     |
@@ -126,4 +126,10 @@ Feature: Tax And Cash Dashboard
   Scenario: Submit New Tax Document Form
     Given the user is viewing the Tax Document Submission section
     When they click the "Submit New Form" button
-    Then they are redirected to the Docusign page to submit a new tax form
+    Then a modal opens
+    And they are prompted with the message:
+      | Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout. |
+    And two buttons Submit new form and Cancel appear
+    And if they press Submit new form
+    Then their current tax form is deleted
+    And they are redirected to the Docusign page to sign a new form
