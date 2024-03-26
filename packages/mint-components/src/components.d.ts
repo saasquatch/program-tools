@@ -68,8 +68,7 @@ export namespace Components {
     }
     interface SqmBankingInfoForm {
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
          */
         "agencyCodeLabel": string;
         /**
@@ -78,53 +77,43 @@ export namespace Components {
          */
         "backButton": string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
          */
         "bankAccountNumberLabel": string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
          */
         "bankAccountTypeLabel": string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
          */
         "bankAddressLabel": string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
          */
         "bankCityLabel": string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
          */
         "bankLocationLabel": string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
          */
         "bankNameLabel": string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
          */
         "bankStateLabel": string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel": string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
          */
         "branchCodeLabel": string;
         /**
@@ -133,23 +122,20 @@ export namespace Components {
          */
         "businessSelectItemLabel": string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
          */
         "checkingSelectItemLabel": string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
          */
         "classificationCPFLabel": string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
          */
         "classificationEntityLabel": string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
          */
         "classificationLabel": string;
         /**
@@ -162,12 +148,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
          */
         "directlyToBankAccount": string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
          */
         "eftWithdrawalLabel": string;
         /**
@@ -196,16 +182,17 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
          */
         "ibanLabel": string;
         /**
@@ -216,86 +203,82 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
          */
         "patronymicNameLabel": string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
          */
         "payPalInputLabel": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * @uiName Fifteenth of month payday option
          */
         "paymentDayFifteenthOfMonthLabelText": string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
          */
         "paymentDayFirstOfMonthLabelText": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
          */
         "paymentDaySelectLabel": string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
          */
         "paymentMethod": string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
          */
         "paymentMethodSubtext": string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
          */
         "paymentSchedule": string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
          */
         "paymentScheduleBalanceThreshold": string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
          */
         "paymentScheduleFixedDay": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel": string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
          */
         "routingCodeLabel": string;
         /**
-          * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
          */
         "savingsSelectItemLabel": string;
         /**
@@ -304,8 +287,7 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
         /**
@@ -573,11 +555,13 @@ export namespace Components {
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
+          * @uiWidget textArea
          */
         "docusignError": string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
+          * @uiWidget textArea
          */
         "docusignExpired": string;
         /**
@@ -587,11 +571,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -602,11 +588,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -629,16 +617,19 @@ export namespace Components {
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
+          * @uiWidget textArea
          */
         "taxFormDescription": string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionBusinessEntity": string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionIndividualParticipant": string;
         /**
@@ -947,6 +938,7 @@ export namespace Components {
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
+          * @uiWidget textArea
          */
         "cannotChangeInfoAlert": string;
         /**
@@ -969,11 +961,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -983,6 +977,7 @@ export namespace Components {
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
+          * @uiWidget textArea
          */
         "indirectTaxDescription": string;
         /**
@@ -992,7 +987,8 @@ export namespace Components {
         "indirectTaxDetails": string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
+          * @uiWidget textArea
          */
         "indirectTaxDetailsDescription": string;
         /**
@@ -1006,11 +1002,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
@@ -1021,20 +1019,24 @@ export namespace Components {
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
+          * @uiWidget textArea
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
          */
         "notRegistered": string;
         /**
@@ -1044,6 +1046,7 @@ export namespace Components {
         "notRegisteredSubtext": string;
         /**
           * @uiName Registered for indirect tax option
+          * @uiWidget textArea
          */
         "otherRegion": string;
         /**
@@ -3778,14 +3781,16 @@ export namespace Components {
         "dashboard_editPaymentInformationButton": string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
+          * @uiName Payout error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorDescriptionText": string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorTitleText": string;
         /**
@@ -3820,12 +3825,14 @@ export namespace Components {
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_indirectTaxTooltipSupport": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
         /**
@@ -3837,11 +3844,13 @@ export namespace Components {
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_noFormNeededSubtext": string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax": string;
         /**
@@ -3886,12 +3895,14 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -3904,6 +3915,7 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
@@ -3961,12 +3973,14 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -3979,24 +3993,28 @@ export namespace Components {
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4053,12 +4071,14 @@ export namespace Components {
         /**
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
+          * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel": string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_cannotChangeInfoAlert": string;
         /**
@@ -4070,6 +4090,7 @@ export namespace Components {
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDescription": string;
         /**
@@ -4080,8 +4101,9 @@ export namespace Components {
         "step2_indirectTaxDetails": string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDetailsDescription": string;
         /**
@@ -4104,11 +4126,13 @@ export namespace Components {
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_isRegisteredSubRegionIncomeTax": string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_notRegistered": string;
         /**
@@ -4120,6 +4144,7 @@ export namespace Components {
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_otherRegion": string;
         /**
@@ -4169,14 +4194,16 @@ export namespace Components {
         "step3_businessEntity": string;
         /**
           * This appears inside the Docusign frame.
-          * @uiName Docusign form error message *
+          * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignError": string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignExpired": string;
         /**
@@ -4204,18 +4231,21 @@ export namespace Components {
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescription": string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionBusinessEntity": string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionIndividualParticipant": string;
         /**
@@ -4225,68 +4255,57 @@ export namespace Components {
          */
         "step3_taxFormLabel": string;
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
           * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel": string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel": string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel": string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel": string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel": string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel": string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel": string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel": string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel": string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
           * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel": string;
@@ -4303,37 +4322,34 @@ export namespace Components {
          */
         "step4_cannotChangeInfoAlert": string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel": string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel": string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel": string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel": string;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount": string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
          */
         "step4_eftWithdrawalLabel": string;
@@ -4349,8 +4365,7 @@ export namespace Components {
          */
         "step4_fxWireProcessingFeeLabel": string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
           * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel": string;
@@ -4361,86 +4376,78 @@ export namespace Components {
          */
         "step4_individualSelectItemLabel": string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel": string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel": string;
         /**
-          * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText": string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel": string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod": string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext": string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule": string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold": string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel": string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
           * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel": string;
         /**
           * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
           * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel": string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel": string;
@@ -4526,22 +4533,27 @@ export namespace Components {
          */
         "editPaymentInformationButton": string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
+          * @uiWidget textArea
          */
         "errorDescriptionText": string;
         /**
-          * Payout error message title
-          * @uiName Error banner title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
          */
         "errorTitleText": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -4570,11 +4582,13 @@ export namespace Components {
         "indirectTaxInfoSpain": string;
         /**
           * @uiName Indirect tax tooltip
+          * @uiWidget textArea
          */
         "indirectTaxTooltipSupport": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
+          * @uiWidget textArea
          */
         "invalidForm"?: string;
         /**
@@ -4585,11 +4599,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4599,10 +4615,12 @@ export namespace Components {
         /**
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
+          * @uiWidget textArea
          */
         "noFormNeededSubtext": string;
         /**
           * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
          */
         "notRegisteredForTax": string;
         /**
@@ -4639,11 +4657,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -4654,6 +4674,7 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
@@ -4804,21 +4825,25 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
@@ -4828,11 +4853,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4856,6 +4883,7 @@ export namespace Components {
         "taxAndPayoutsDescription": string;
         /**
           * @uiName Terms and conditions checkbox
+          * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
     }
@@ -5663,8 +5691,7 @@ declare namespace LocalJSX {
     }
     interface SqmBankingInfoForm {
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
          */
         "agencyCodeLabel"?: string;
         /**
@@ -5673,53 +5700,43 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
          */
         "bankAccountNumberLabel"?: string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
          */
         "bankAccountTypeLabel"?: string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
          */
         "bankAddressLabel"?: string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
          */
         "bankCityLabel"?: string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
          */
         "bankLocationLabel"?: string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
          */
         "bankNameLabel"?: string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
          */
         "bankStateLabel"?: string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel"?: string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
          */
         "branchCodeLabel"?: string;
         /**
@@ -5728,23 +5745,20 @@ declare namespace LocalJSX {
          */
         "businessSelectItemLabel"?: string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
          */
         "checkingSelectItemLabel"?: string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
          */
         "classificationCPFLabel"?: string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
          */
         "classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
          */
         "classificationLabel"?: string;
         /**
@@ -5757,12 +5771,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
          */
         "directlyToBankAccount"?: string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
          */
         "eftWithdrawalLabel"?: string;
         /**
@@ -5791,16 +5805,17 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
          */
         "ibanLabel"?: string;
         /**
@@ -5811,86 +5826,82 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
          */
         "patronymicNameLabel"?: string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
          */
         "payPalInputLabel"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * @uiName Fifteenth of month payday option
          */
         "paymentDayFifteenthOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
          */
         "paymentDayFirstOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
          */
         "paymentDaySelectLabel"?: string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
          */
         "paymentMethod"?: string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
          */
         "paymentMethodSubtext"?: string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
          */
         "paymentSchedule"?: string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
          */
         "paymentScheduleBalanceThreshold"?: string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
          */
         "paymentScheduleFixedDay"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel"?: string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
          */
         "routingCodeLabel"?: string;
         /**
-          * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
          */
         "savingsSelectItemLabel"?: string;
         /**
@@ -5899,8 +5910,7 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
         /**
@@ -6169,11 +6179,13 @@ declare namespace LocalJSX {
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
+          * @uiWidget textArea
          */
         "docusignError"?: string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
+          * @uiWidget textArea
          */
         "docusignExpired"?: string;
         /**
@@ -6183,11 +6195,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -6198,11 +6212,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6225,16 +6241,19 @@ declare namespace LocalJSX {
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
+          * @uiWidget textArea
          */
         "taxFormDescription"?: string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionBusinessEntity"?: string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionIndividualParticipant"?: string;
         /**
@@ -6543,6 +6562,7 @@ declare namespace LocalJSX {
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
+          * @uiWidget textArea
          */
         "cannotChangeInfoAlert"?: string;
         /**
@@ -6565,11 +6585,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -6579,6 +6601,7 @@ declare namespace LocalJSX {
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
+          * @uiWidget textArea
          */
         "indirectTaxDescription"?: string;
         /**
@@ -6588,7 +6611,8 @@ declare namespace LocalJSX {
         "indirectTaxDetails"?: string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
+          * @uiWidget textArea
          */
         "indirectTaxDetailsDescription"?: string;
         /**
@@ -6602,11 +6626,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -6617,20 +6643,24 @@ declare namespace LocalJSX {
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
+          * @uiWidget textArea
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
          */
         "notRegistered"?: string;
         /**
@@ -6640,6 +6670,7 @@ declare namespace LocalJSX {
         "notRegisteredSubtext"?: string;
         /**
           * @uiName Registered for indirect tax option
+          * @uiWidget textArea
          */
         "otherRegion"?: string;
         /**
@@ -9344,14 +9375,16 @@ declare namespace LocalJSX {
         "dashboard_editPaymentInformationButton"?: string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
+          * @uiName Payout error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorDescriptionText"?: string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorTitleText"?: string;
         /**
@@ -9386,12 +9419,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_indirectTaxTooltipSupport"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
         /**
@@ -9403,11 +9438,13 @@ declare namespace LocalJSX {
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax"?: string;
         /**
@@ -9452,12 +9489,14 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -9470,6 +9509,7 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
@@ -9527,12 +9567,14 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -9545,24 +9587,28 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -9619,12 +9665,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
+          * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_cannotChangeInfoAlert"?: string;
         /**
@@ -9636,6 +9684,7 @@ declare namespace LocalJSX {
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDescription"?: string;
         /**
@@ -9646,8 +9695,9 @@ declare namespace LocalJSX {
         "step2_indirectTaxDetails"?: string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDetailsDescription"?: string;
         /**
@@ -9670,11 +9720,13 @@ declare namespace LocalJSX {
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_isRegisteredSubRegionIncomeTax"?: string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_notRegistered"?: string;
         /**
@@ -9686,6 +9738,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_otherRegion"?: string;
         /**
@@ -9735,14 +9788,16 @@ declare namespace LocalJSX {
         "step3_businessEntity"?: string;
         /**
           * This appears inside the Docusign frame.
-          * @uiName Docusign form error message *
+          * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignError"?: string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignExpired"?: string;
         /**
@@ -9770,18 +9825,21 @@ declare namespace LocalJSX {
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescription"?: string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionBusinessEntity"?: string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionIndividualParticipant"?: string;
         /**
@@ -9791,68 +9849,57 @@ declare namespace LocalJSX {
          */
         "step3_taxFormLabel"?: string;
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
           * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel"?: string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel"?: string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel"?: string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel"?: string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel"?: string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel"?: string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel"?: string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel"?: string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel"?: string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
           * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel"?: string;
@@ -9869,37 +9916,34 @@ declare namespace LocalJSX {
          */
         "step4_cannotChangeInfoAlert"?: string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel"?: string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel"?: string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel"?: string;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount"?: string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
          */
         "step4_eftWithdrawalLabel"?: string;
@@ -9915,8 +9959,7 @@ declare namespace LocalJSX {
          */
         "step4_fxWireProcessingFeeLabel"?: string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
           * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel"?: string;
@@ -9927,86 +9970,78 @@ declare namespace LocalJSX {
          */
         "step4_individualSelectItemLabel"?: string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel"?: string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel"?: string;
         /**
-          * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel"?: string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod"?: string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext"?: string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule"?: string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold"?: string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel"?: string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
           * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel"?: string;
         /**
           * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
           * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel"?: string;
@@ -10092,22 +10127,27 @@ declare namespace LocalJSX {
          */
         "editPaymentInformationButton"?: string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
+          * @uiWidget textArea
          */
         "errorDescriptionText"?: string;
         /**
-          * Payout error message title
-          * @uiName Error banner title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
          */
         "errorTitleText"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -10136,11 +10176,13 @@ declare namespace LocalJSX {
         "indirectTaxInfoSpain"?: string;
         /**
           * @uiName Indirect tax tooltip
+          * @uiWidget textArea
          */
         "indirectTaxTooltipSupport"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
+          * @uiWidget textArea
          */
         "invalidForm"?: string;
         /**
@@ -10151,11 +10193,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10165,10 +10209,12 @@ declare namespace LocalJSX {
         /**
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
+          * @uiWidget textArea
          */
         "noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
          */
         "notRegisteredForTax"?: string;
         /**
@@ -10205,11 +10251,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -10220,6 +10268,7 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
@@ -10369,21 +10418,25 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -10393,11 +10446,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10421,6 +10476,7 @@ declare namespace LocalJSX {
         "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Terms and conditions checkbox
+          * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
     }

@@ -75,6 +75,7 @@ export class TaxAndCashMonolith {
   /**
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
+   * @uiWidget textArea
    */
   @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
   /**
@@ -96,6 +97,7 @@ export class TaxAndCashMonolith {
    * Displayed under the title of this step.
    * @uiName Step 2 description
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
    */
   @Prop() step2_indirectTaxDescription: string =
     "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
@@ -107,14 +109,17 @@ export class TaxAndCashMonolith {
   @Prop() step2_indirectTaxDetails: string = "Indirect tax details";
   /**
    * Displayed under the indirect tax details title.
-   * @uiName Indirect tax details section  description
+   * @uiName Indirect tax details section description
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
    */
   @Prop() step2_indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
   /**
    * @uiName Registered for indirect tax option
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
+   *
    */
   @Prop() step2_otherRegion: string = "Registered for indirect tax";
   /**
@@ -127,6 +132,7 @@ export class TaxAndCashMonolith {
   /**
    * @uiName Not registered for indirect tax option
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
    */
   @Prop() step2_notRegistered: string = "Not registered for indirect tax";
   /**
@@ -169,6 +175,7 @@ export class TaxAndCashMonolith {
    * Displayed to participants registered for indirect tax in Spain.
    * @uiName Spain income tax checkbox
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
    */
   @Prop() step2_isRegisteredSubRegionIncomeTax: string =
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
@@ -187,6 +194,7 @@ export class TaxAndCashMonolith {
    * Communicate that after this step, only Support can change personal and indirect tax information.
    * @uiName Submission confirmation alert
    * @uiGroup Step 2 Properties
+   * @uiWidget textArea
    */
   @Prop() step2_cannotChangeInfoAlert: string =
     "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
@@ -233,6 +241,7 @@ export class TaxAndCashMonolith {
    * Displayed at the top of the page to participants based in the US.
    * @uiName W-9 tax form description
    * @uiGroup Step 3 Properties
+   * @uiWidget textArea
    */
   @Prop() step3_taxFormDescription: string =
     "Participants based in the US need to submit a {documentType} form.";
@@ -240,6 +249,7 @@ export class TaxAndCashMonolith {
    * Displayed at the top of the page to individuals joining a US program who reside outside the country.
    * @uiName W-8 BEN tax form description
    *  @uiGroup Step 3 Properties
+   * @uiWidget textArea
    */
   @Prop() step3_taxFormDescriptionIndividualParticipant: string =
     "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
@@ -247,6 +257,7 @@ export class TaxAndCashMonolith {
    * Displayed at the top of the page to participants representing a business.
    * @uiName W-8 BEN-E tax form description
    *  @uiGroup Step 3 Properties
+   * @uiWidget textArea
    */
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
@@ -261,13 +272,15 @@ export class TaxAndCashMonolith {
    * Remind participants their session will time out after 20 minutes of inactivity.
    * @uiName Docusign timed session message
    * @uiGroup Step 3 Properties
+   * @uiWidget textArea
    */
   @Prop() step3_docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign form error message
-   * * @uiGroup Step 3 Properties
+   * @uiGroup Step 3 Properties
+   * @uiWidget textArea
    */
   @Prop() step3_docusignError: string =
     "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
@@ -286,8 +299,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_taxAndPayouts: string = "Payouts";
   /**
-   * Text for the option to receive payments directly to a bank account
-   * @uiName Directly to bank account option text
+   * @uiName Direct to bank payout option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
@@ -298,144 +310,129 @@ export class TaxAndCashMonolith {
   @Prop() step4_toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
-   * Text for the option to receive payments at a specific balance threshold
-   * @uiName Payment schedule balance threshold text
+   * @uiName Threshold balance payment schedule option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleBalanceThreshold: string =
     "Pay me when my balance reaches a threshold";
   /**
-   * Text for the option to receive payments on a specific day of the month
-   * @uiName Payment schedule fixed day text
+   * @uiName Fixed day payment schedule option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Let the participant choose what day of the month they’ll get paid
+   * @uiName Payment day field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDaySelectLabel: string = "Payment Day";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Participant use this field to select the balance at which they want to be paid
+   * @uiName Payment threshold field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentThresholdSelectLabel: string = "Payment threshold";
   /**
-   * Label text for the payment day select option for the first of the month
-   * @uiName First of month label text
+   * One of two payment day options
+   * @uiName First of month payday option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
-   * Label text for the payment day select option for the fifteenth of the month
-   * @uiName Fifteenth of month label text
+   * One of two payment day options
+   * @uiName Fifteenth of month payday option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFifteenthOfMonthLabelText: string =
     "15th of the month";
   /**
-   * Heading text for the payment method section
-   * @uiName Payment method heading text
+   * @uiName Payment method section header
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethod: string = "Payment method";
   /**
-   * Heading text for the payment schedule section
-   * @uiName Payment schedule heading text
+   * @uiName Payment schedule section header
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentSchedule: string = "Payment schedule";
   /**
-   * Subtext for the payment method section
-   * @uiName Payment method subtext
+   * @uiName Payment method section description
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethodSubtext: string =
-    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+    "Payouts will be sent from our referral program provider, impact.com.";
   /**
-   * Label text for the PayPal email input field
-   * @uiName PayPal email input label
+   * Displayed to participants who choose PayPal as their payout method
+   * @uiName PayPal email field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_payPalInputLabel: string = "PayPal email";
   /**
-   * Label text for the bank country location input field
-   * @uiName Bank country location input label
+   * @uiName Bank country field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankLocationLabel: string = "Bank country location";
   /**
-   * Label text for the beneficiary account name input field
-   * @uiName Beneficiary account name input label
+   * @uiName Beneficiary account field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_beneficiaryAccountNameLabel: string =
     "Beneficiary account name";
 
   /**
-   * Label text for the bank account type input field
-   * @uiName Bank account type input label
+   * @uiName Bank account type field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountTypeLabel: string = "Bank account type";
 
   /**
-   * Label text for the checking account type select item
-   * @uiName Checking select item label
+   * @uiName Checking account option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_checkingSelectItemLabel: string = "Checking";
 
   /**
    * Label text for the savings account type select item
-   * @uiName Savings select item label
+   * @uiName Savings account options
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_savingsSelectItemLabel: string = "Savings";
 
   /**
-   * Label text for the bank account number input field
-   * @uiName Bank account number input label
+   * @uiName Bank account number field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountNumberLabel: string = "Bank account number";
 
   /**
-   * Label text for the IBAN input field
-   * @uiName IBAN input label
+   * @uiName IBAN field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_ibanLabel: string = "IBAN";
 
   /**
-   * Label text for the SWIFT code input field
-   * @uiName SWIFT code input label
+   * @uiName SWIFT code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_swiftCodeLabel: string = "SWIFT code";
 
   /**
-   * Label text for the routing code input field
-   * @uiName Routing code input label
+   * @uiName Routing code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_routingCodeLabel: string =
     "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
-   * Label text for the bank name input field
-   * @uiName Bank name input label
+   * @uiName Bank name field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankNameLabel: string = "Bank name";
 
   /**
-   * Label text for the classification entity input field
-   * @uiName Classification entity input label
+   * @uiName Classification entity field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationEntityLabel: string = "Classification entity";
@@ -462,15 +459,13 @@ export class TaxAndCashMonolith {
   @Prop() step4_foreignSelectItemLabel: string = "Foreign";
 
   /**
-   * Label text for the classification CPF input field
-   * @uiName Classification CPF input label
+   * @uiName Classification CPF field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationCPFLabel: string = "Classification CPF";
 
   /**
-   * Label text for the patronymic name input field
-   * @uiName Patronymic name input label
+   * @uiName Patronymic name field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_patronymicNameLabel: string = "Patronymic name";
@@ -482,22 +477,20 @@ export class TaxAndCashMonolith {
   @Prop() step4_voCodeLabel: string = "VO code";
 
   /**
-   * Label text for the agency code input field
-   * @uiName Agency code input label
+   * @uiName Agency code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_agencyCodeLabel: string = "Agency code";
 
   /**
-   * Label text for the branch code input field
-   * @uiName Branch code input label
+   * @uiName Branch code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_branchCodeLabel: string = "Branch code";
 
   /**
    * Label text for the classification input field
-   * @uiName Classification input label
+   * @uiName Classification field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationLabel: string = "Classification";
@@ -509,26 +502,22 @@ export class TaxAndCashMonolith {
   @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
-   * Label text for the Bank Address input
-   * @uiName Bank Address input item label
+   * @uiName Bank address field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAddressLabel: string = "Bank address";
   /**
-   * Label text for the Bank City input
-   * @uiName Bank City Label input label
+   * @uiName Bank city field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankCityLabel: string = "Bank city";
   /**
-   * Label text for the Bank Province / State input
-   * @uiName Bank Province / State input label
+   * @uiName Bank province/state field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankStateLabel: string = "Bank Province / State";
   /**
-   * Label text for the Bank Postal Code
-   * @uiName  Bank Postal Code input label
+   * @uiName  Bank postal code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankPostalCodeLabel: string = "Bank postal code";
@@ -541,7 +530,8 @@ export class TaxAndCashMonolith {
     "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
 
   /**
-   * @uiName EFT Withdrawal label text
+   * Default payment method to the participants’ bank account.
+   * @uiName EFT withdrawal payment method
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_eftWithdrawalLabel: string = "EFT Withdrawal (free)";
@@ -607,6 +597,7 @@ export class TaxAndCashMonolith {
    *
    * @uiName Inactive W-9 error message title
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_taxAlertHeaderNotActiveW9?: string =
     "Your W9 tax form has personal information that doesn’t match your profile";
@@ -615,6 +606,7 @@ export class TaxAndCashMonolith {
    *
    * @uiName Inactive W-8 error message title
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_taxAlertHeaderNotActiveW8?: string =
     "{documentType} tax form is invalid";
@@ -623,6 +615,7 @@ export class TaxAndCashMonolith {
    *
    * @uiName Inactive W-9 error message description
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_taxAlertNotActiveMessageW9?: string =
     "Please resubmit a new {documentType} form.";
@@ -639,6 +632,7 @@ export class TaxAndCashMonolith {
    *
    * @uiName Invalid tax form description
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_invalidForm?: string =
     "Make sure your information is correct and submit new form.";
@@ -666,6 +660,7 @@ export class TaxAndCashMonolith {
    *
    * @uiName Tax form not required text
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_noFormNeededSubtext: string =
     "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
@@ -702,6 +697,7 @@ export class TaxAndCashMonolith {
   /**
    * @uiName Indirect tax tooltip
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
@@ -727,6 +723,7 @@ export class TaxAndCashMonolith {
   /**
    * @uiName Not registered for indirect tax text
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
@@ -800,16 +797,18 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_earningsAfterTaxColumnTitle: string = "Earnings after tax";
   /**
-   * Error alert header shown above payout details card
-   * @uiName Error title text
+   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+   * @uiName Payout error message title
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop()
   dashboard_errorTitleText: string = "Your payout is on hold ";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-   * @uiName Payout error message title
+   * @uiName Payout error message description
    * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop()
   dashboard_errorDescriptionText: string =
@@ -828,6 +827,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
@@ -836,6 +836,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
@@ -870,6 +871,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert title
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
@@ -877,6 +879,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert description
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
@@ -889,6 +892,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
@@ -896,6 +900,7 @@ export class TaxAndCashMonolith {
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
    * @uiGroup General Form Properties
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

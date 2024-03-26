@@ -41,18 +41,21 @@ export class DocusignForm {
   /**
    * Displayed at the top of the page to participants based in the US.
    * @uiName W-9 tax form description
+   * @uiWidget textArea
    */
   @Prop() taxFormDescription: string =
     "Participants based in the US need to submit a {documentType} form.";
   /**
    * Displayed at the top of the page to individuals joining a US program who reside outside the country.
    * @uiName W-8 BEN tax form description
+   * @uiWidget textArea
    */
   @Prop() taxFormDescriptionIndividualParticipant: string =
     "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form.";
   /**
    * Displayed at the top of the page to participants representing a business.
    * @uiName W-8 BEN-E tax form description
+   * @uiWidget textArea
    */
   @Prop() taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
@@ -65,6 +68,7 @@ export class DocusignForm {
   /**
    * Remind participants their session will time out after 20 minutes of inactivity.
    * @uiName Docusign timed session message
+   * @uiWidget textArea
    */
   @Prop() docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
@@ -85,6 +89,7 @@ export class DocusignForm {
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign form error message
+   * @uiWidget textArea
    */
   @Prop() docusignError: string =
     "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
@@ -95,24 +100,28 @@ export class DocusignForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

@@ -50,8 +50,7 @@ export class BankingInfoForm {
     "Submit your tax documents and add your banking information to receive your rewards.";
 
   /**
-   * Text for the option to receive payments directly to a bank account
-   * @uiName Directly to bank account option text
+   * @uiName Direct to bank payout option
    */
   @Prop() directlyToBankAccount: string = "Directly to my bank account";
 
@@ -61,122 +60,106 @@ export class BankingInfoForm {
   @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
-   * Text for the option to receive payments at a specific balance threshold
-   * @uiName Payment schedule balance threshold text
+   * @uiName Threshold balance payment schedule option
    */
   @Prop() paymentScheduleBalanceThreshold: string =
     "Pay me when my balance reaches a threshold";
   /**
-   * Text for the option to receive payments on a specific day of the month
-   * @uiName Payment schedule fixed day text
+   * @uiName Fixed day payment schedule option
    */
   @Prop() paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Let the participant choose what day of the month they’ll get paid
+   * @uiName Payment day field label
    */
   @Prop() paymentDaySelectLabel: string = "Payment Day";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Participant use this field to select the balance at which they want to be paid
+   * @uiName Payment threshold field label
    */
   @Prop() paymentThresholdSelectLabel: string = "Payment Threshold";
   /**
-   * Label text for the payment day select option for the first of the month
-   * @uiName First of month label text
+   * One of two payment day options
+   * @uiName First of month payday option
    */
   @Prop() paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
    * Label text for the payment day select option for the fifteenth of the month
-   * @uiName Fifteenth of month label text
+   * @uiName Fifteenth of month payday option
    */
   @Prop() paymentDayFifteenthOfMonthLabelText: string = "15th of the month";
   /**
-   * Heading text for the payment method section
-   * @uiName Payment method heading text
+   * @uiName Payment method section header
    */
   @Prop() paymentMethod: string = "Payment method";
   /**
-   * Heading text for the payment schedule section
-   * @uiName Payment schedule heading text
+   * @uiName Payment schedule section header
    */
   @Prop() paymentSchedule: string = "Payment schedule";
   /**
-   * Subtext for the payment method section
-   * @uiName Payment method subtext
+   * @uiName Payment method section description
    */
   @Prop() paymentMethodSubtext: string =
-    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+    "Payouts will be sent from our referral program provider, impact.com.";
   /**
-   * Label text for the PayPal email input field
-   * @uiName PayPal email input label
+   * Displayed to participants who choose PayPal as their payout method
+   * @uiName PayPal email field label
    */
   @Prop() payPalInputLabel: string = "PayPal email";
   /**
-   * Label text for the bank country location input field
-   * @uiName Bank country location input label
+   * @uiName Bank country field label
    */
   @Prop() bankLocationLabel: string = "Bank country location";
   /**
-   * Label text for the beneficiary account name input field
-   * @uiName Beneficiary account name input label
+   * @uiName Beneficiary account field label
    */
   @Prop() beneficiaryAccountNameLabel: string = "Beneficiary account name";
 
   /**
-   * Label text for the bank account type input field
-   * @uiName Bank account type input label
+   * @uiName Bank account type field label
    */
   @Prop() bankAccountTypeLabel: string = "Bank account type";
 
   /**
-   * Label text for the checking account type select item
-   * @uiName Checking select item label
+   * @uiName Checking account option
    */
   @Prop() checkingSelectItemLabel: string = "Checking";
 
   /**
-   * Label text for the savings account type select item
-   * @uiName Savings select item label
+   * @uiName Savings account options
    */
   @Prop() savingsSelectItemLabel: string = "Savings";
 
   /**
-   * Label text for the bank account number input field
-   * @uiName Bank account number input label
+   * @uiName Bank account number field label
    */
   @Prop() bankAccountNumberLabel: string = "Bank account number";
   /**
-   * Label text for the IBAN input field
-   * @uiName IBAN input label
+   * @uiName IBAN field label
    */
   @Prop() ibanLabel: string = "IBAN";
 
   /**
-   * Label text for the SWIFT code input field
-   * @uiName SWIFT code input label
+   * @uiName SWIFT code field label
    */
   @Prop() swiftCodeLabel: string = "SWIFT code";
 
   /**
-   * Label text for the routing code input field
-   * @uiName Routing code input label
+   * @uiName Routing code field label
    */
   @Prop() routingCodeLabel: string =
     "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
-   * Label text for the bank name input field
-   * @uiName Bank name input label
+   * @uiName Bank name field label
    */
   @Prop() bankNameLabel: string = "Bank Name";
 
   /**
-   * Label text for the classification entity input field
-   * @uiName Classification entity input label
+   * @uiName Classification entity field label
    */
   @Prop() classificationEntityLabel: string = "Classification Entity";
 
@@ -199,14 +182,12 @@ export class BankingInfoForm {
   @Prop() foreignSelectItemLabel: string = "Foreign";
 
   /**
-   * Label text for the classification CPF input field
-   * @uiName Classification CPF input label
+   * @uiName Classification CPF field label
    */
   @Prop() classificationCPFLabel: string = "Classification CPF";
 
   /**
-   * Label text for the patronymic name input field
-   * @uiName Patronymic name input label
+   * @uiName Patronymic name field label
    */
   @Prop() patronymicNameLabel: string = "Patronymic name";
 
@@ -216,20 +197,18 @@ export class BankingInfoForm {
   @Prop() voCodeLabel: string = "VO code";
 
   /**
-   * Label text for the agency code input field
-   * @uiName Agency code input label
+   * @uiName Agency code field label
    */
   @Prop() agencyCodeLabel: string = "Agency code";
 
   /**
-   * Label text for the branch code input field
-   * @uiName Branch code input label
+   * @uiName Branch code field label
    */
   @Prop() branchCodeLabel: string = "Branch code";
 
   /**
    * Label text for the classification input field
-   * @uiName Classification input label
+   * @uiName Classification field label
    */
   @Prop() classificationLabel: string = "Classification";
 
@@ -240,27 +219,24 @@ export class BankingInfoForm {
     "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }";
 
   /**
-   * Label text for the Bank Address input
-   * @uiName Bank Address input item label
+   * @uiName Bank address field label
    */
   @Prop() bankAddressLabel: string = "Bank address";
   /**
-   * Label text for the Bank City input
-   * @uiName Bank City Label input label
+   * @uiName Bank city field label
    */
   @Prop() bankCityLabel: string = "Bank city";
   /**
-   * Label text for the Bank Province / State input
-   * @uiName Bank Province / State input label
+   * @uiName Bank province/state field label
    */
   @Prop() bankStateLabel: string = "Bank province/state";
   /**
-   * Label text for the Bank Postal Code
-   * @uiName Bank Postal Code input label
+   * @uiName Bank postal code field label
    */
   @Prop() bankPostalCodeLabel: string = "Bank postal code";
   /**
-   * @uiName EFT Withdrawal label text
+   * Default payment method to the participants’ bank account.
+   * @uiName EFT withdrawal payment method
    */
   @Prop() eftWithdrawalLabel: string = "EFT withdrawal (free)";
 
@@ -279,6 +255,7 @@ export class BankingInfoForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert title
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
@@ -286,6 +263,7 @@ export class BankingInfoForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert description
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
@@ -293,6 +271,7 @@ export class BankingInfoForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
@@ -300,6 +279,7 @@ export class BankingInfoForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
@@ -325,12 +305,14 @@ export class BankingInfoForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

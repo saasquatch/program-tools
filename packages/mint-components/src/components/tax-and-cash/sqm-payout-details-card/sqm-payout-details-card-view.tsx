@@ -67,6 +67,32 @@ const style = {
   PaypalEmail: {
     borderRight: "1px solid var(--sl-color-gray-200)",
     paddingRight: "var(--sl-spacing-small)",
+    "@media (max-width: 499px)": {
+      borderRight: "none",
+      paddingRight: "none",
+    },
+  },
+  PaypalDetailsContainer: {
+    color: "var(--sl-color-gray-500)",
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    "@media (max-width: 499px)": {
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: "var(--sl-spacing-x-small)",
+
+      "& span": {
+        padding: "0px",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+      },
+    },
   },
   AccountDetailsContainer: {
     color: "var(--sl-color-gray-500)",
@@ -226,7 +252,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           <h1 class={classes.MainCurrency}>{states.balance}</h1>
 
           {states.payoutType === "PAYPAL" ? (
-            <div class={classes.AccountDetailsContainer}>
+            <div class={classes.PaypalDetailsContainer}>
               <span class={classes.PaypalEmail}>
                 {states.paypalEmailAddress}
               </span>

@@ -61,6 +61,7 @@ export class TaxAndCashDashboard {
    * Part of the alert displayed at the top of the page.
    *
    * @uiName Inactive W-9 error message title
+   * @uiWidget textArea
    */
   @Prop() taxAlertHeaderNotActiveW9?: string =
     "Your W9 tax form has personal information that doesn’t match your profile";
@@ -68,6 +69,7 @@ export class TaxAndCashDashboard {
    * Part of the alert displayed at the top of the page.
    *
    * @uiName Inactive W-8 error message title
+   * @uiWidget textArea
    */
   @Prop() taxAlertHeaderNotActiveW8?: string =
     "{documentType} tax form is invalid";
@@ -75,6 +77,7 @@ export class TaxAndCashDashboard {
    * Part of the alert displayed at the top of the page.
    *
    * @uiName Inactive W-9 error message description
+   * @uiWidget textArea
    */
   @Prop() taxAlertNotActiveMessageW9?: string =
     "Please resubmit a new {documentType} form.";
@@ -89,6 +92,7 @@ export class TaxAndCashDashboard {
    * Additional text displayed next to the tax form's status badge.
    *
    * @uiName Invalid tax form description
+   * @uiWidget textArea
    */
   @Prop() invalidForm?: string =
     "Make sure your information is correct and submit new form.";
@@ -110,6 +114,7 @@ export class TaxAndCashDashboard {
    * No other statuses or badges will be displayed in the tax form section in this case.
    *
    * @uiName Tax form not required text
+   * @uiWidget textArea
    */
   @Prop() noFormNeededSubtext: string =
     "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
@@ -139,6 +144,7 @@ export class TaxAndCashDashboard {
   @Prop() indirectTaxInfoSpain: string = "Registered in {country}, {subRegion}";
   /**
    * @uiName Indirect tax tooltip
+   * @uiWidget textArea
    */
   @Prop() indirectTaxTooltipSupport: string =
     "To make changes to your indirect tax information, please contact Support.";
@@ -160,6 +166,7 @@ export class TaxAndCashDashboard {
   @Prop() editPaymentInformationButton: string = "Edit Payout Information";
   /**
    * @uiName Not registered for indirect tax text
+   * @uiWidget textArea
    */
   @Prop() notRegisteredForTax: string =
     "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
@@ -193,12 +200,15 @@ export class TaxAndCashDashboard {
    */
   @Prop() accountText: string = "Account";
   /**
-   * Payout error message title
-   * @uiName Error banner title text
+   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+   * @uiName Payout error message title
+   * @uiWidget textArea
    */
   @Prop() errorTitleText: string = "Your payout is on hold ";
   /**
+   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message description
+   * @uiWidget textArea
    */
   @Prop()
   errorDescriptionText: string =
@@ -207,12 +217,14 @@ export class TaxAndCashDashboard {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
@@ -226,12 +238,14 @@ export class TaxAndCashDashboard {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
