@@ -162,10 +162,10 @@ export type CountriesQuery = {
 };
 
 export const GET_CURRENCIES = gql`
-  query currencies {
+  query currencies($locale: RSLocale) {
     currencies(limit: 300) {
       data {
-        displayName
+        displayName(locale: $locale)
         currencyCode
       }
     }

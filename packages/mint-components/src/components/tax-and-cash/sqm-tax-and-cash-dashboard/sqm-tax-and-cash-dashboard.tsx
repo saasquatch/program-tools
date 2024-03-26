@@ -276,6 +276,25 @@ export class TaxAndCashDashboard {
    */
   @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
 
+  /** @uiName Table description text  */
+  @Prop() invoiceDescription: string =
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /** @uiName Previous button text  */
+  @Prop() invoicePrevLabel: string = "Prev";
+
+  /** @uiName View More button text  */
+  @Prop() invoiceMoreLabel: string = "Next";
+
+  /** @uiName Table header text */
+  @Prop() invoiceHeader: string = "Invoices";
+
+  /** @uiName Table empty state header  */
+  @Prop() invoiceEmptyStateHeader: string = "View your invoice details";
+
+  /** @uiName Table empty state text  */
+  @Prop() invoiceEmptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
   /**
    * Displayed at the top of the page on all set up steps and on the dashboard.
    * @uiName Page description

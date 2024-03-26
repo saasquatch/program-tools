@@ -66,12 +66,19 @@ export class InvoiceTable {
   /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
-  /** @uiName Tablet breakpoint  */
+  /** @uiName Table header text */
   @Prop() header?: string = "Invoices";
 
-  /** @uiName Tablet breakpoint  */
+  /** @uiName Table description text  */
   @Prop() description?: string =
-    "View and download your invoices to report your earnings and stay tax compliant. ";
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /** @uiName Table empty state header  */
+  @Prop() emptyStateHeader: string = "View your invoice details";
+
+  /** @uiName Table empty state text  */
+  @Prop() emptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
 
   /**
    * @undocumented
@@ -114,8 +121,8 @@ function EmptySlot() {
     <slot name="empty">
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png"
-        empty-state-header="View your invoice details"
-        empty-state-text="Refer a friend to view the status of your invoices and rewards earned"
+        empty-state-header={this.emptyStateHeader}
+        empty-state-text={this.emptyStateText}
       ></sqm-empty>
     </slot>
   );

@@ -808,6 +808,45 @@ export class TaxAndCashMonolith {
   dashboard_errorDescriptionText: string =
     "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
 
+  /**
+   * @uiName Table description text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceDescription: string =
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /**
+   * @uiName Previous button text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoicePrevLabel: string = "Prev";
+
+  /**
+   * @uiName View More button text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceMoreLabel: string = "Next";
+
+  /**
+   * @uiName Table header text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceHeader: string = "Invoices";
+
+  /**
+   * @uiName Table empty state header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceEmptyStateHeader: string =
+    "View your invoice details";
+
+  /**
+   * @uiName Table empty state text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceEmptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
