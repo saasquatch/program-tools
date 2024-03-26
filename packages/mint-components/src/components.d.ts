@@ -192,8 +192,7 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
          */
         "ibanLabel": string;
         /**
@@ -226,68 +225,60 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
          */
         "patronymicNameLabel": string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
          */
         "payPalInputLabel": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * @uiName Fifteenth of month payday option
          */
         "paymentDayFifteenthOfMonthLabelText": string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
          */
         "paymentDayFirstOfMonthLabelText": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
          */
         "paymentDaySelectLabel": string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
          */
         "paymentMethod": string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
          */
         "paymentMethodSubtext": string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
          */
         "paymentSchedule": string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
          */
         "paymentScheduleBalanceThreshold": string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
          */
         "paymentScheduleFixedDay": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel": string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
          */
         "routingCodeLabel": string;
         /**
-          * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
          */
         "savingsSelectItemLabel": string;
         /**
@@ -296,8 +287,7 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
         /**
@@ -4375,8 +4365,7 @@ export namespace Components {
          */
         "step4_fxWireProcessingFeeLabel": string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
           * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel": string;
@@ -4387,86 +4376,78 @@ export namespace Components {
          */
         "step4_individualSelectItemLabel": string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel": string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel": string;
         /**
-          * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText": string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel": string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod": string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext": string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule": string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold": string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay": string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel": string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
           * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel": string;
         /**
           * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
           * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel": string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel": string;
@@ -5834,8 +5815,7 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
          */
         "ibanLabel"?: string;
         /**
@@ -5868,68 +5848,60 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
          */
         "patronymicNameLabel"?: string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
          */
         "payPalInputLabel"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * @uiName Fifteenth of month payday option
          */
         "paymentDayFifteenthOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
          */
         "paymentDayFirstOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
          */
         "paymentDaySelectLabel"?: string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
          */
         "paymentMethod"?: string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
          */
         "paymentMethodSubtext"?: string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
          */
         "paymentSchedule"?: string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
          */
         "paymentScheduleBalanceThreshold"?: string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
          */
         "paymentScheduleFixedDay"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel"?: string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
          */
         "routingCodeLabel"?: string;
         /**
-          * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
          */
         "savingsSelectItemLabel"?: string;
         /**
@@ -5938,8 +5910,7 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
         /**
@@ -9988,8 +9959,7 @@ declare namespace LocalJSX {
          */
         "step4_fxWireProcessingFeeLabel"?: string;
         /**
-          * Label text for the IBAN input field
-          * @uiName IBAN input label
+          * @uiName IBAN field label
           * @uiGroup Step 4 Properties
          */
         "step4_ibanLabel"?: string;
@@ -10000,86 +9970,78 @@ declare namespace LocalJSX {
          */
         "step4_individualSelectItemLabel"?: string;
         /**
-          * Label text for the patronymic name input field
-          * @uiName Patronymic name input label
+          * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
          */
         "step4_patronymicNameLabel"?: string;
         /**
-          * Label text for the PayPal email input field
-          * @uiName PayPal email input label
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
          */
         "step4_payPalInputLabel"?: string;
         /**
-          * Label text for the payment day select option for the fifteenth of the month
-          * @uiName Fifteenth of month label text
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFifteenthOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select option for the first of the month
-          * @uiName First of month label text
+          * One of two payment day options
+          * @uiName First of month payday option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDayFirstOfMonthLabelText"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentDaySelectLabel"?: string;
         /**
-          * Heading text for the payment method section
-          * @uiName Payment method heading text
+          * @uiName Payment method section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethod"?: string;
         /**
-          * Subtext for the payment method section
-          * @uiName Payment method subtext
+          * @uiName Payment method section description
           * @uiGroup Step 4 Properties
          */
         "step4_paymentMethodSubtext"?: string;
         /**
-          * Heading text for the payment schedule section
-          * @uiName Payment schedule heading text
+          * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
          */
         "step4_paymentSchedule"?: string;
         /**
-          * Text for the option to receive payments at a specific balance threshold
-          * @uiName Payment schedule balance threshold text
+          * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleBalanceThreshold"?: string;
         /**
-          * Text for the option to receive payments on a specific day of the month
-          * @uiName Payment schedule fixed day text
+          * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
          */
         "step4_paymentScheduleFixedDay"?: string;
         /**
-          * Label text for the payment day select
-          * @uiName Payment day select label
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
          */
         "step4_paymentThresholdSelectLabel"?: string;
         /**
-          * Label text for the routing code input field
-          * @uiName Routing code input label
+          * @uiName Routing code field label
           * @uiGroup Step 4 Properties
          */
         "step4_routingCodeLabel"?: string;
         /**
           * Label text for the savings account type select item
-          * @uiName Savings select item label
+          * @uiName Savings account options
           * @uiGroup Step 4 Properties
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
-          * Label text for the SWIFT code input field
-          * @uiName SWIFT code input label
+          * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
          */
         "step4_swiftCodeLabel"?: string;

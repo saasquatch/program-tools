@@ -310,67 +310,62 @@ export class TaxAndCashMonolith {
   @Prop() step4_toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
-   * Text for the option to receive payments at a specific balance threshold
-   * @uiName Payment schedule balance threshold text
+   * @uiName Threshold balance payment schedule option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleBalanceThreshold: string =
     "Pay me when my balance reaches a threshold";
   /**
-   * Text for the option to receive payments on a specific day of the month
-   * @uiName Payment schedule fixed day text
+   * @uiName Fixed day payment schedule option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Let the participant choose what day of the month they’ll get paid
+   * @uiName Payment day field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDaySelectLabel: string = "Payment Day";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Participant use this field to select the balance at which they want to be paid
+   * @uiName Payment threshold field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentThresholdSelectLabel: string = "Payment threshold";
   /**
-   * Label text for the payment day select option for the first of the month
-   * @uiName First of month label text
+   * One of two payment day options
+   * @uiName First of month payday option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
-   * Label text for the payment day select option for the fifteenth of the month
-   * @uiName Fifteenth of month label text
+   * One of two payment day options
+   * @uiName Fifteenth of month payday option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentDayFifteenthOfMonthLabelText: string =
     "15th of the month";
   /**
-   * Heading text for the payment method section
-   * @uiName Payment method heading text
+   * @uiName Payment method section header
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethod: string = "Payment method";
   /**
-   * Heading text for the payment schedule section
-   * @uiName Payment schedule heading text
+   * @uiName Payment schedule section header
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentSchedule: string = "Payment schedule";
   /**
-   * Subtext for the payment method section
-   * @uiName Payment method subtext
+   * @uiName Payment method section description
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_paymentMethodSubtext: string =
-    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+    "Payouts will be sent from our referral program provider, impact.com.";
   /**
-   * Label text for the PayPal email input field
-   * @uiName PayPal email input label
+   * Displayed to participants who choose PayPal as their payout method
+   * @uiName PayPal email field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_payPalInputLabel: string = "PayPal email";
@@ -400,7 +395,7 @@ export class TaxAndCashMonolith {
 
   /**
    * Label text for the savings account type select item
-   * @uiName Savings select item label
+   * @uiName Savings account options
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_savingsSelectItemLabel: string = "Savings";
@@ -412,22 +407,19 @@ export class TaxAndCashMonolith {
   @Prop() step4_bankAccountNumberLabel: string = "Bank account number";
 
   /**
-   * Label text for the IBAN input field
-   * @uiName IBAN input label
+   * @uiName IBAN field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_ibanLabel: string = "IBAN";
 
   /**
-   * Label text for the SWIFT code input field
-   * @uiName SWIFT code input label
+   * @uiName SWIFT code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_swiftCodeLabel: string = "SWIFT code";
 
   /**
-   * Label text for the routing code input field
-   * @uiName Routing code input label
+   * @uiName Routing code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_routingCodeLabel: string =
@@ -473,8 +465,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_classificationCPFLabel: string = "Classification CPF";
 
   /**
-   * Label text for the patronymic name input field
-   * @uiName Patronymic name input label
+   * @uiName Patronymic name field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_patronymicNameLabel: string = "Patronymic name";

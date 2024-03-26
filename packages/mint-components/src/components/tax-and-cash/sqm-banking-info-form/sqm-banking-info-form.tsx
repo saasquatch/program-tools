@@ -60,58 +60,53 @@ export class BankingInfoForm {
   @Prop() toPayPalAccount: string =
     "PayPal (2% processing fee capped to {feeCap})";
   /**
-   * Text for the option to receive payments at a specific balance threshold
-   * @uiName Payment schedule balance threshold text
+   * @uiName Threshold balance payment schedule option
    */
   @Prop() paymentScheduleBalanceThreshold: string =
     "Pay me when my balance reaches a threshold";
   /**
-   * Text for the option to receive payments on a specific day of the month
-   * @uiName Payment schedule fixed day text
+   * @uiName Fixed day payment schedule option
    */
   @Prop() paymentScheduleFixedDay: string =
     "Pay me on a fixed day of the month";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Let the participant choose what day of the month they’ll get paid
+   * @uiName Payment day field label
    */
   @Prop() paymentDaySelectLabel: string = "Payment Day";
 
   /**
-   * Label text for the payment day select
-   * @uiName Payment day select label
+   * Participant use this field to select the balance at which they want to be paid
+   * @uiName Payment threshold field label
    */
   @Prop() paymentThresholdSelectLabel: string = "Payment Threshold";
   /**
-   * Label text for the payment day select option for the first of the month
-   * @uiName First of month label text
+   * One of two payment day options
+   * @uiName First of month payday option
    */
   @Prop() paymentDayFirstOfMonthLabelText: string = "1st of the month";
   /**
    * Label text for the payment day select option for the fifteenth of the month
-   * @uiName Fifteenth of month label text
+   * @uiName Fifteenth of month payday option
    */
   @Prop() paymentDayFifteenthOfMonthLabelText: string = "15th of the month";
   /**
-   * Heading text for the payment method section
-   * @uiName Payment method heading text
+   * @uiName Payment method section header
    */
   @Prop() paymentMethod: string = "Payment method";
   /**
-   * Heading text for the payment schedule section
-   * @uiName Payment schedule heading text
+   * @uiName Payment schedule section header
    */
   @Prop() paymentSchedule: string = "Payment schedule";
   /**
-   * Subtext for the payment method section
-   * @uiName Payment method subtext
+   * @uiName Payment method section description
    */
   @Prop() paymentMethodSubtext: string =
-    "Payouts will be sent on the first day of each month from our referral program provider, impact.com.";
+    "Payouts will be sent from our referral program provider, impact.com.";
   /**
-   * Label text for the PayPal email input field
-   * @uiName PayPal email input label
+   * Displayed to participants who choose PayPal as their payout method
+   * @uiName PayPal email field label
    */
   @Prop() payPalInputLabel: string = "PayPal email";
   /**
@@ -134,8 +129,7 @@ export class BankingInfoForm {
   @Prop() checkingSelectItemLabel: string = "Checking";
 
   /**
-   * Label text for the savings account type select item
-   * @uiName Savings select item label
+   * @uiName Savings account options
    */
   @Prop() savingsSelectItemLabel: string = "Savings";
 
@@ -144,20 +138,17 @@ export class BankingInfoForm {
    */
   @Prop() bankAccountNumberLabel: string = "Bank account number";
   /**
-   * Label text for the IBAN input field
-   * @uiName IBAN input label
+   * @uiName IBAN field label
    */
   @Prop() ibanLabel: string = "IBAN";
 
   /**
-   * Label text for the SWIFT code input field
-   * @uiName SWIFT code input label
+   * @uiName SWIFT code field label
    */
   @Prop() swiftCodeLabel: string = "SWIFT code";
 
   /**
-   * Label text for the routing code input field
-   * @uiName Routing code input label
+   * @uiName Routing code field label
    */
   @Prop() routingCodeLabel: string =
     "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
@@ -196,8 +187,7 @@ export class BankingInfoForm {
   @Prop() classificationCPFLabel: string = "Classification CPF";
 
   /**
-   * Label text for the patronymic name input field
-   * @uiName Patronymic name input label
+   * @uiName Patronymic name field label
    */
   @Prop() patronymicNameLabel: string = "Patronymic name";
 
