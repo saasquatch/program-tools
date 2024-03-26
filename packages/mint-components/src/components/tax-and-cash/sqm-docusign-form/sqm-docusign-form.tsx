@@ -60,12 +60,6 @@ export class DocusignForm {
   @Prop() taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
   /**
-   * Text shown in the banner above the document
-   * @uiName Banner text
-   */
-  @Prop() banner: string =
-    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
-  /**
    * Remind participants their session will time out after 20 minutes of inactivity.
    * @uiName Docusign timed session message
    * @uiWidget textArea

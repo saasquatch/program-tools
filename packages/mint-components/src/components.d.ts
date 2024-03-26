@@ -538,11 +538,6 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "banner": string;
-        /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
          */
@@ -4189,12 +4184,6 @@ export namespace Components {
          */
         "step2_subRegionTaxNumberLabel": string;
         /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_banner": string;
-        /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
           * @uiGroup Step 3 Properties
@@ -6164,11 +6153,6 @@ declare namespace LocalJSX {
         "url"?: string;
     }
     interface SqmDocusignForm {
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "banner"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
@@ -9785,12 +9769,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_banner"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
