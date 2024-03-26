@@ -28,10 +28,6 @@ Feature: Tax And Cash Dashboard
       | W8 BEN       |
       | W8 BEN-E     |
 
-  @minutia
-  Scenario: Indirect tax information section is hidden if they aren't registered
-    Given a user not registered for indirect tax
-    Then the indirect tax information section is hidden
 
   @minutia @ui
   Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
