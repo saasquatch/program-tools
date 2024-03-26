@@ -227,12 +227,10 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
       errors: {},
       taxFormExpired: false,
     },
-    hideBackButton: false,
   },
   callbacks: {
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
-    onBack: () => console.log("Back"),
   },
 };
 
