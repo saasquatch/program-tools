@@ -66,6 +66,7 @@ export class TaxForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert title
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
@@ -73,23 +74,27 @@ export class TaxForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert description
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
    * @uiName Terms and conditions checkbox
+   * @uiWidget textArea
    */
   @Prop() termsAndConditionsLabel: string = "terms and conditions";
   /**
@@ -110,12 +115,14 @@ export class TaxForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

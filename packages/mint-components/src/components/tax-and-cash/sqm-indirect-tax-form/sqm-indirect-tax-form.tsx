@@ -40,6 +40,7 @@ export class IndirectTaxForm {
   /**
    * Displayed under the title of this step.
    * @uiName Step 2 description
+   * @uiWidget textArea
    */
   @Prop() indirectTaxDescription: string =
     "Indirect taxes (e.g. VAT, HST, GST) are transactional based taxes collected by business and retailers on behalf of governments. Any rewards you receive may be subject to indirect taxes based on your country.";
@@ -52,13 +53,15 @@ export class IndirectTaxForm {
 
   /**
    * Displayed under the indirect tax details title.
-   * @uiName Indirect tax details section  description
+   * @uiName Indirect tax details section description
+   * @uiWidget textArea
    */
   @Prop() indirectTaxDetailsDescription: string =
     "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
 
   /**
    * @uiName Registered for indirect tax option
+   * @uiWidget textArea
    */
   @Prop() otherRegion: string = "Registered for indirect tax";
 
@@ -71,6 +74,7 @@ export class IndirectTaxForm {
 
   /**
    * @uiName Not registered for indirect tax option
+   * @uiWidget textArea
    */
   @Prop() notRegistered: string = "Not registered for indirect tax";
   /**
@@ -109,6 +113,7 @@ export class IndirectTaxForm {
   /**
    * Displayed to participants registered for indirect tax in Spain.
    * @uiName Spain income tax checkbox
+   * @uiWidget textArea
    */
   @Prop() isRegisteredSubRegionIncomeTax: string =
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
@@ -129,6 +134,7 @@ export class IndirectTaxForm {
   /**
    * Communicate that after this step, only Support can change personal and indirect tax information.
    * @uiName Submission confirmation alert
+   * @uiWidget textArea
    */
   @Prop() cannotChangeInfoAlert: string =
     "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
@@ -152,6 +158,7 @@ export class IndirectTaxForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert title
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertHeader: string =
     "An account with this email already exists with our referral program provider, impact.com";
@@ -159,6 +166,7 @@ export class IndirectTaxForm {
   /**
    * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
    * @uiName Participant is a partner alert description
+   * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
@@ -171,6 +179,7 @@ export class IndirectTaxForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
+   * @uiWidget textArea
    */
   @Prop() generalErrorTitle: string =
     "There was a problem submitting your information";
@@ -178,18 +187,21 @@ export class IndirectTaxForm {
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message description
+   * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertHeader: string =
     "There was a problem loading your form";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message description
+   * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";

@@ -196,11 +196,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -216,21 +218,25 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -581,11 +587,13 @@ export namespace Components {
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
+          * @uiWidget textArea
          */
         "docusignError": string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
+          * @uiWidget textArea
          */
         "docusignExpired": string;
         /**
@@ -595,11 +603,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -610,11 +620,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -632,16 +644,19 @@ export namespace Components {
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
+          * @uiWidget textArea
          */
         "taxFormDescription": string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionBusinessEntity": string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionIndividualParticipant": string;
         /**
@@ -950,6 +965,7 @@ export namespace Components {
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
+          * @uiWidget textArea
          */
         "cannotChangeInfoAlert": string;
         /**
@@ -972,11 +988,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -986,6 +1004,7 @@ export namespace Components {
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
+          * @uiWidget textArea
          */
         "indirectTaxDescription": string;
         /**
@@ -995,7 +1014,8 @@ export namespace Components {
         "indirectTaxDetails": string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
+          * @uiWidget textArea
          */
         "indirectTaxDetailsDescription": string;
         /**
@@ -1009,11 +1029,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
@@ -1024,20 +1046,24 @@ export namespace Components {
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
+          * @uiWidget textArea
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
          */
         "notRegistered": string;
         /**
@@ -1047,6 +1073,7 @@ export namespace Components {
         "notRegisteredSubtext": string;
         /**
           * @uiName Registered for indirect tax option
+          * @uiWidget textArea
          */
         "otherRegion": string;
         /**
@@ -3776,14 +3803,16 @@ export namespace Components {
         "dashboard_editPaymentInformationButton": string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
+          * @uiName Payout error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorDescriptionText": string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorTitleText": string;
         /**
@@ -3818,12 +3847,14 @@ export namespace Components {
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_indirectTaxTooltipSupport": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
         /**
@@ -3835,11 +3866,13 @@ export namespace Components {
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_noFormNeededSubtext": string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax": string;
         /**
@@ -3884,12 +3917,14 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -3902,6 +3937,7 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
@@ -3959,12 +3995,14 @@ export namespace Components {
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -3977,24 +4015,28 @@ export namespace Components {
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4051,12 +4093,14 @@ export namespace Components {
         /**
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
+          * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel": string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_cannotChangeInfoAlert": string;
         /**
@@ -4068,6 +4112,7 @@ export namespace Components {
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDescription": string;
         /**
@@ -4078,8 +4123,9 @@ export namespace Components {
         "step2_indirectTaxDetails": string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDetailsDescription": string;
         /**
@@ -4102,11 +4148,13 @@ export namespace Components {
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_isRegisteredSubRegionIncomeTax": string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_notRegistered": string;
         /**
@@ -4118,6 +4166,7 @@ export namespace Components {
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_otherRegion": string;
         /**
@@ -4167,14 +4216,16 @@ export namespace Components {
         "step3_businessEntity": string;
         /**
           * This appears inside the Docusign frame.
-          * @uiName Docusign form error message *
+          * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignError": string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignExpired": string;
         /**
@@ -4202,18 +4253,21 @@ export namespace Components {
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescription": string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionBusinessEntity": string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionIndividualParticipant": string;
         /**
@@ -4524,22 +4578,27 @@ export namespace Components {
          */
         "editPaymentInformationButton": string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
+          * @uiWidget textArea
          */
         "errorDescriptionText": string;
         /**
-          * Payout error message title
-          * @uiName Error banner title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
          */
         "errorTitleText": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
@@ -4568,11 +4627,13 @@ export namespace Components {
         "indirectTaxInfoSpain": string;
         /**
           * @uiName Indirect tax tooltip
+          * @uiWidget textArea
          */
         "indirectTaxTooltipSupport": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
+          * @uiWidget textArea
          */
         "invalidForm"?: string;
         /**
@@ -4583,11 +4644,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4597,10 +4660,12 @@ export namespace Components {
         /**
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
+          * @uiWidget textArea
          */
         "noFormNeededSubtext": string;
         /**
           * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
          */
         "notRegisteredForTax": string;
         /**
@@ -4637,11 +4702,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -4652,6 +4719,7 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
@@ -4797,21 +4865,25 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
         /**
@@ -4821,11 +4893,13 @@ export namespace Components {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
         /**
@@ -4844,6 +4918,7 @@ export namespace Components {
         "searchForCurrencyText": string;
         /**
           * @uiName Terms and conditions checkbox
+          * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
     }
@@ -5779,11 +5854,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -5799,21 +5876,25 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6165,11 +6246,13 @@ declare namespace LocalJSX {
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
+          * @uiWidget textArea
          */
         "docusignError"?: string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
+          * @uiWidget textArea
          */
         "docusignExpired"?: string;
         /**
@@ -6179,11 +6262,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -6194,11 +6279,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -6216,16 +6303,19 @@ declare namespace LocalJSX {
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
+          * @uiWidget textArea
          */
         "taxFormDescription"?: string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionBusinessEntity"?: string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
          */
         "taxFormDescriptionIndividualParticipant"?: string;
         /**
@@ -6534,6 +6624,7 @@ declare namespace LocalJSX {
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
+          * @uiWidget textArea
          */
         "cannotChangeInfoAlert"?: string;
         /**
@@ -6556,11 +6647,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -6570,6 +6663,7 @@ declare namespace LocalJSX {
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
+          * @uiWidget textArea
          */
         "indirectTaxDescription"?: string;
         /**
@@ -6579,7 +6673,8 @@ declare namespace LocalJSX {
         "indirectTaxDetails"?: string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
+          * @uiWidget textArea
          */
         "indirectTaxDetailsDescription"?: string;
         /**
@@ -6593,11 +6688,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -6608,20 +6705,24 @@ declare namespace LocalJSX {
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
+          * @uiWidget textArea
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
          */
         "notRegistered"?: string;
         /**
@@ -6631,6 +6732,7 @@ declare namespace LocalJSX {
         "notRegisteredSubtext"?: string;
         /**
           * @uiName Registered for indirect tax option
+          * @uiWidget textArea
          */
         "otherRegion"?: string;
         /**
@@ -9330,14 +9432,16 @@ declare namespace LocalJSX {
         "dashboard_editPaymentInformationButton"?: string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
+          * @uiName Payout error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorDescriptionText"?: string;
         /**
-          * Error alert header shown above payout details card
-          * @uiName Error title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_errorTitleText"?: string;
         /**
@@ -9372,12 +9476,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_indirectTaxTooltipSupport"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
         /**
@@ -9389,11 +9495,13 @@ declare namespace LocalJSX {
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax"?: string;
         /**
@@ -9438,12 +9546,14 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -9456,6 +9566,7 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
@@ -9513,12 +9624,14 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -9531,24 +9644,28 @@ declare namespace LocalJSX {
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiGroup General Form Properties
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -9605,12 +9722,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
+          * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_cannotChangeInfoAlert"?: string;
         /**
@@ -9622,6 +9741,7 @@ declare namespace LocalJSX {
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDescription"?: string;
         /**
@@ -9632,8 +9752,9 @@ declare namespace LocalJSX {
         "step2_indirectTaxDetails"?: string;
         /**
           * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section  description
+          * @uiName Indirect tax details section description
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_indirectTaxDetailsDescription"?: string;
         /**
@@ -9656,11 +9777,13 @@ declare namespace LocalJSX {
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_isRegisteredSubRegionIncomeTax"?: string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_notRegistered"?: string;
         /**
@@ -9672,6 +9795,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
+          * @uiWidget textArea
          */
         "step2_otherRegion"?: string;
         /**
@@ -9721,14 +9845,16 @@ declare namespace LocalJSX {
         "step3_businessEntity"?: string;
         /**
           * This appears inside the Docusign frame.
-          * @uiName Docusign form error message *
+          * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignError"?: string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_docusignExpired"?: string;
         /**
@@ -9756,18 +9882,21 @@ declare namespace LocalJSX {
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescription"?: string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionBusinessEntity"?: string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
+          * @uiWidget textArea
          */
         "step3_taxFormDescriptionIndividualParticipant"?: string;
         /**
@@ -10078,22 +10207,27 @@ declare namespace LocalJSX {
          */
         "editPaymentInformationButton"?: string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
+          * @uiWidget textArea
          */
         "errorDescriptionText"?: string;
         /**
-          * Payout error message title
-          * @uiName Error banner title text
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
          */
         "errorTitleText"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
@@ -10122,11 +10256,13 @@ declare namespace LocalJSX {
         "indirectTaxInfoSpain"?: string;
         /**
           * @uiName Indirect tax tooltip
+          * @uiWidget textArea
          */
         "indirectTaxTooltipSupport"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
+          * @uiWidget textArea
          */
         "invalidForm"?: string;
         /**
@@ -10137,11 +10273,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10151,10 +10289,12 @@ declare namespace LocalJSX {
         /**
           * No other statuses or badges will be displayed in the tax form section in this case.
           * @uiName Tax form not required text
+          * @uiWidget textArea
          */
         "noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
          */
         "notRegisteredForTax"?: string;
         /**
@@ -10191,11 +10331,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
@@ -10206,6 +10348,7 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
@@ -10350,21 +10493,25 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
+          * @uiWidget textArea
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
+          * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
+          * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
+          * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -10374,11 +10521,13 @@ declare namespace LocalJSX {
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
+          * @uiWidget textArea
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
+          * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
         /**
@@ -10397,6 +10546,7 @@ declare namespace LocalJSX {
         "searchForCurrencyText"?: string;
         /**
           * @uiName Terms and conditions checkbox
+          * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
     }
