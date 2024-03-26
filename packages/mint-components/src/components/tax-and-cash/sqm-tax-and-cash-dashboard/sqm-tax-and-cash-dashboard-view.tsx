@@ -2,6 +2,7 @@ import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { P } from "../../../global/mixins";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -23,6 +24,7 @@ export interface TaxAndCashDashboardProps {
     country?: string;
     notRegistered?: boolean;
     isBusinessEntity?: boolean;
+    isNewForm?: boolean;
     loading?: boolean;
     loadingError?: boolean;
     errors?: {
@@ -70,6 +72,9 @@ export interface TaxAndCashDashboardProps {
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
     taxAndPayoutsDescription: string;
+    replaceTaxFormModalHeader: string;
+    replaceTaxFormModalBodyText: string;
+    cancelButton: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -202,6 +207,34 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+    "&::part(close-button)": {
+      marginBottom: "var(--sl-spacing-xx-large)",
+    },
+    "&::part(title)": {
+      fontSize: "24px",
+      fontWeight: "600",
+      marginTop: "var(--sl-spacing-xxx-large)",
+      padding:
+        "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -368,6 +401,31 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
+        <sl-dialog
+          label={text.replaceTaxFormModalHeader}
+          class={sheet.classes.Dialog}
+          // AL: TODO add open/close state
+          open={states.isNewForm}
+          onSl-hide={!states.isNewForm}
+        >
+          <p>{text.replaceTaxFormModalBodyText}</p>
+          <sl-button
+            slot="footer"
+            type="primary"
+            class={sheet.classes.DialogButton}
+            onClick={() => console.log("AL: TODO ADD CALLBACK")}
+          >
+            {text.newFormButton}
+          </sl-button>
+          <sl-button
+            slot="footer"
+            type="default"
+            class={sheet.classes.DialogButton}
+            onClick={() => console.log("AL: TODO ADD CALLBACK")}
+          >
+            {text.cancelButton}
+          </sl-button>
+        </sl-dialog>
         {states.status === "INACTIVE" && alertMap[states.status]}
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>

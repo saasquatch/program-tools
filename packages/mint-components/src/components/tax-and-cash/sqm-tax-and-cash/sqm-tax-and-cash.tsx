@@ -713,7 +713,7 @@ export class TaxAndCashMonolith {
    * @uiName Submit new tax form button label
    * @uiGroup Dashboard Properties
    */
-  @Prop() dashboard_newFormButton: string = "Submit New Form";
+  @Prop() dashboard_newFormButton: string = "Submit new form";
   /**
    * @uiName Edit payment info button label
    * @uiGroup Dashboard Properties
@@ -796,6 +796,18 @@ export class TaxAndCashMonolith {
    *  @uiGroup Dashboard Properties
    */
   @Prop() dashboard_earningsAfterTaxColumnTitle: string = "Earnings after tax";
+  /**
+   * @uiName Replace tax form modal header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message title

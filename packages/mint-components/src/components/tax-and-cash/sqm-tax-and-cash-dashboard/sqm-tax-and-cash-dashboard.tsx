@@ -158,7 +158,7 @@ export class TaxAndCashDashboard {
   /**
    * @uiName Submit new tax form button label
    */
-  @Prop() newFormButton: string = "Submit New Form";
+  @Prop() newFormButton: string = "Submit new form";
   /**
    *
    * @uiName Edit payment info button label
@@ -282,6 +282,20 @@ export class TaxAndCashDashboard {
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+
+  /**
+   * @uiName Replace tax form modal header
+   */
+  @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   */
+  @Prop() replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
+  /**
+   * @uiName Cancel button label
+   */
+  @Prop() cancelButton: string = "Cancel";
 
   /**
    * @undocumented
