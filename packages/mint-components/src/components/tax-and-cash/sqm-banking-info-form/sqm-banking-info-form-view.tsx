@@ -298,8 +298,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
     inputNumber?: number
   ) => {
-    // if (!inputNumber) return [];
-
     let skeletons = [];
 
     const flexBoxStyle = {
