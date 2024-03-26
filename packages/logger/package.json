@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/logger",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "express": "4",
-    "winston": "3"
+    "winston": ">=3.0.0 <3.12"
   },
   "peerDependenciesMeta": {
     "express": {

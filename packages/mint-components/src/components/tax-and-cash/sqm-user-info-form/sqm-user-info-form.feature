@@ -82,16 +82,19 @@ Feature: Tax Form Step One
     When they load the form
     Then the "Country" input defaults to "US"
 
-  @motivating
-  Scenario: A user is filling out the form and selects their currency
+@motivating
+  Scenario Outline: A user is filling out the form and selects their currency
     Given a user with countryCode <countryCode>
     When they open the currency dropdown
-    Then only currencies supported in that country are shown
-    But the following currencies are always shown
-      | USD |
-      | AUD |
-      | EUR |
-      | GBP |
+    Then only <currencies> are displayed
+    And USD, AUD, EUR, GBP are displayed regardless of country code
+    
+    Examples:
+    |countryCode   |currencies               |
+    | USA          | USD, AUD, EUR, GBP      |
+    | CAN          | USD, AUD, EUR, GBP, CAN |
+    | IND          | USD, AUD, EUR, GBP, INR |
+
 
   @minutia
   Scenario: Currency select is searchable

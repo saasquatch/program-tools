@@ -3,14 +3,11 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
-  Column,
   ErrorStyles,
   gap,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
-import { BottomTabs } from "../sqm-tabs/Tabs.stories";
 
 export interface EmailRegistrationViewProps {
   states: {

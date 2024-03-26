@@ -1,5 +1,10 @@
-import { useUserIdentity } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { useLocale, useUserIdentity } from "@saasquatch/component-boilerplate";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
@@ -48,7 +53,7 @@ export type InitialData = {
 
 export function useUserInfoForm(props: TaxForm) {
   const user = useUserIdentity();
-
+  const locale = useLocale();
   const currencyRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -67,9 +72,35 @@ export function useUserInfoForm(props: TaxForm) {
   const { data: countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
-  const currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+  const _currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
+  const currencies = useMemo(
+    () =>
+      [...(_currencies || [])].sort((a, b) =>
+        a.displayName.localeCompare(b.displayName)
+      ),
+    [_currencies]
+  );
 
-  const countries = countriesRes?.impactPayoutCountries?.data;
+  const intlLocale = locale?.replace("_", "-") || "en";
+  const getCountryObj = (countryCode: string) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const displayName = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(countryCode);
+
+    return {
+      countryCode,
+      displayName,
+    };
+  };
+
+  const countries = useMemo(
+    () =>
+      [...(countriesRes?.impactPayoutCountries?.data || [])]
+        .sort((a, b) => a.displayName.localeCompare(b.displayName))
+        .map((country) => getCountryObj(country.countryCode)),
+    [countriesRes?.impactPayoutCountries?.data]
+  );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
