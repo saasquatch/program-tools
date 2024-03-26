@@ -1607,7 +1607,7 @@ export namespace Components {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered with SaaSquatch by Impact.com link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy": boolean;
@@ -1812,7 +1812,7 @@ export namespace Components {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy": boolean;
         /**
@@ -7228,7 +7228,7 @@ declare namespace LocalJSX {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered with SaaSquatch by Impact.com link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy"?: boolean;
@@ -7433,7 +7433,7 @@ declare namespace LocalJSX {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy"?: boolean;
         /**

@@ -1,0 +1,15 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.json"],
+  "compilerOptions": {
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "target": "ES6",
+    "inlineSourceMap": true,
+    "strict": true
+  }
+}
