@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.6] - 2024-03-05
+
+### Changed
+
+- Updated \<sqm-portal-footer> branding to algn with advocate launch.
+
 ## [1.7.5] - 2024-02-14
 
 ### Fixed
@@ -854,7 +860,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.6...HEAD
+[1.7.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.6
 [1.7.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.5
 [1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.4
 [1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.3

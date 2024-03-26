@@ -39,6 +39,12 @@ export function httpLogMiddleware(
         return;
       }
 
+      // a 503 from a health check endpoint is not an error condition,
+      // it just means the service isn't ready for whatever reason.
+      if (isHealthcheck && status === 503) {
+        return;
+      }
+
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const { method, url } = req;

@@ -35,7 +35,7 @@ export class GlobalContainer {
    */
   @Prop() maxwidth: string;
   /**
-   * Show the Powered by SaaSquatch link. This can only be disabled on Pro plans.
+   * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
    *
    * @uiName Show Powered By
    */
@@ -86,10 +86,10 @@ export class GlobalContainer {
         {this.poweredby ? (
           <a
             class="sqh-attribution"
-            href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget"
+            href="https://impact.com/advocate/"
             target="_blank"
           >
-            Powered With Saasquatch By Impact.com
+            Powered By Impact.com/Advocate
           </a>
         ) : (
           ""

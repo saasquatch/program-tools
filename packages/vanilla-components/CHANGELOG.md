@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.8] - 2023-03-05
+
+### Changed
+
+- Updated powered by link for advocate launch
+
 ## [1.2.7] - 2023-09-12
 
 ### Changed
