@@ -33,6 +33,7 @@ Feature: Tax Form Flow
       | UK          | MX           | 4     |
       | EG          | US           | 3     |
       | EG          | MX           | 4     |
+      | US          | US           | 3     |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
