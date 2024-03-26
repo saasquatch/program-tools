@@ -57,9 +57,9 @@ export function useTaxAndCash() {
   function setupDemo() {
     // coleton
     const id =
-      "bd5a0bc8f8c82faa4f37f882ca5839910d6e4524597f3c3398d41d920bed8fc9";
+      "7fb4efdc1d86f2c0d5d9c82fb4c70cee46a3dfaa29618e32b35ad4a1263d6f97";
     const accountId =
-      "bd5a0bc8f8c82faa4f37f882ca5839910d6e4524597f3c3398d41d920bed8fc9";
+      "7fb4efdc1d86f2c0d5d9c82fb4c70cee46a3dfaa29618e32b35ad4a1263d6f97";
 
     // andy3
     // const id =
@@ -82,13 +82,13 @@ export function useTaxAndCash() {
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
     // const accountId =
     //   "3e0fab4f3e7c7cd3ee971b0c0e9a4ece4061349c837f24c71582330842fc8462";
-    // const programId = "22514";
-    const programId = "22999";
+    const programId = "22514";
+    // const programId = "22999";
 
     //@ts-ignore
     window.widgetIdent = {
       // tenantAlias: "aprh0cfq6y8tk",
-      tenantAlias: "aswi7zpxl6rjp",
+      tenantAlias: "aprh0cfq6y8tk",
       appDomain: "https://staging.referralsaasquatch.com",
       programId,
     };
@@ -98,7 +98,7 @@ export function useTaxAndCash() {
       setUserIdentity({
         accountId,
         id,
-        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSZkFUVEdOZXRqUDUwNzYxMDNERjVub0d0TDRnQ0hjYjEifQ.eyJ1c2VyIjp7ImlkIjoiYmQ1YTBiYzhmOGM4MmZhYTRmMzdmODgyY2E1ODM5OTEwZDZlNDUyNDU5N2YzYzMzOThkNDFkOTIwYmVkOGZjOSIsImFjY291bnRJZCI6ImJkNWEwYmM4ZjhjODJmYWE0ZjM3Zjg4MmNhNTgzOTkxMGQ2ZTQ1MjQ1OTdmM2MzMzk4ZDQxZDkyMGJlZDhmYzkiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3Rlc3RwYXlvdXRAaW1wYWN0LmNvbSJ9fQ.pUJqd22SSowAvOLFF_2U13qsMGW3eOGxKmohWh0Bs4I",
+        jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiN2ZiNGVmZGMxZDg2ZjJjMGQ1ZDljODJmYjRjNzBjZWU0NmEzZGZhYTI5NjE4ZTMyYjM1YWQ0YTEyNjNkNmY5NyIsImFjY291bnRJZCI6IjdmYjRlZmRjMWQ4NmYyYzBkNWQ5YzgyZmI0YzcwY2VlNDZhM2RmYWEyOTYxOGUzMmIzNWFkNGExMjYzZDZmOTciLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K25ldzNAaW1wYWN0LmNvbSJ9fQ.zt5nCgZ84asLm-xZImOwmJ00vBfvce8aOvsx9J_bp-A",
       });
     }, []);
 
