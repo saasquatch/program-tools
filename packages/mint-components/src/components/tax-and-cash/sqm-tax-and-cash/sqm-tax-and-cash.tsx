@@ -299,8 +299,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_taxAndPayouts: string = "Payouts";
   /**
-   * Text for the option to receive payments directly to a bank account
-   * @uiName Directly to bank account option text
+   * @uiName Direct to bank payout option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_directlyToBankAccount: string = "Directly to my bank account";
@@ -376,29 +375,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_payPalInputLabel: string = "PayPal email";
   /**
-   * Label text for the bank country location input field
-   * @uiName Bank country location input label
+   * @uiName Bank country field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankLocationLabel: string = "Bank country location";
   /**
-   * Label text for the beneficiary account name input field
-   * @uiName Beneficiary account name input label
+   * @uiName Beneficiary account field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_beneficiaryAccountNameLabel: string =
     "Beneficiary account name";
 
   /**
-   * Label text for the bank account type input field
-   * @uiName Bank account type input label
+   * @uiName Bank account type field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountTypeLabel: string = "Bank account type";
 
   /**
-   * Label text for the checking account type select item
-   * @uiName Checking select item label
+   * @uiName Checking account option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_checkingSelectItemLabel: string = "Checking";
@@ -411,8 +406,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_savingsSelectItemLabel: string = "Savings";
 
   /**
-   * Label text for the bank account number input field
-   * @uiName Bank account number input label
+   * @uiName Bank account number field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAccountNumberLabel: string = "Bank account number";
@@ -440,15 +434,13 @@ export class TaxAndCashMonolith {
     "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }";
 
   /**
-   * Label text for the bank name input field
-   * @uiName Bank name input label
+   * @uiName Bank name field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankNameLabel: string = "Bank name";
 
   /**
-   * Label text for the classification entity input field
-   * @uiName Classification entity input label
+   * @uiName Classification entity field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationEntityLabel: string = "Classification entity";
@@ -475,8 +467,7 @@ export class TaxAndCashMonolith {
   @Prop() step4_foreignSelectItemLabel: string = "Foreign";
 
   /**
-   * Label text for the classification CPF input field
-   * @uiName Classification CPF input label
+   * @uiName Classification CPF field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationCPFLabel: string = "Classification CPF";
@@ -495,22 +486,20 @@ export class TaxAndCashMonolith {
   @Prop() step4_voCodeLabel: string = "VO code";
 
   /**
-   * Label text for the agency code input field
-   * @uiName Agency code input label
+   * @uiName Agency code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_agencyCodeLabel: string = "Agency code";
 
   /**
-   * Label text for the branch code input field
-   * @uiName Branch code input label
+   * @uiName Branch code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_branchCodeLabel: string = "Branch code";
 
   /**
    * Label text for the classification input field
-   * @uiName Classification input label
+   * @uiName Classification field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationLabel: string = "Classification";
@@ -522,26 +511,22 @@ export class TaxAndCashMonolith {
   @Prop() step4_taxPayerIdLabel: string = "Beneficiary INN";
 
   /**
-   * Label text for the Bank Address input
-   * @uiName Bank Address input item label
+   * @uiName Bank address field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankAddressLabel: string = "Bank address";
   /**
-   * Label text for the Bank City input
-   * @uiName Bank City Label input label
+   * @uiName Bank city field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankCityLabel: string = "Bank city";
   /**
-   * Label text for the Bank Province / State input
-   * @uiName Bank Province / State input label
+   * @uiName Bank province/state field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankStateLabel: string = "Bank Province / State";
   /**
-   * Label text for the Bank Postal Code
-   * @uiName  Bank Postal Code input label
+   * @uiName  Bank postal code field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_bankPostalCodeLabel: string = "Bank postal code";
@@ -554,7 +539,8 @@ export class TaxAndCashMonolith {
     "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
 
   /**
-   * @uiName EFT Withdrawal label text
+   * Default payment method to the participants’ bank account.
+   * @uiName EFT withdrawal payment method
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_eftWithdrawalLabel: string = "EFT Withdrawal (free)";

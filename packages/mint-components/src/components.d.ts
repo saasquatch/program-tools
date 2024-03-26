@@ -68,8 +68,7 @@ export namespace Components {
     }
     interface SqmBankingInfoForm {
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
          */
         "agencyCodeLabel": string;
         /**
@@ -78,53 +77,43 @@ export namespace Components {
          */
         "backButton": string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
          */
         "bankAccountNumberLabel": string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
          */
         "bankAccountTypeLabel": string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
          */
         "bankAddressLabel": string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
          */
         "bankCityLabel": string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
          */
         "bankLocationLabel": string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
          */
         "bankNameLabel": string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
          */
         "bankStateLabel": string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel": string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
          */
         "branchCodeLabel": string;
         /**
@@ -133,23 +122,20 @@ export namespace Components {
          */
         "businessSelectItemLabel": string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
          */
         "checkingSelectItemLabel": string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
          */
         "classificationCPFLabel": string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
          */
         "classificationEntityLabel": string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
          */
         "classificationLabel": string;
         /**
@@ -162,12 +148,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
          */
         "directlyToBankAccount": string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
          */
         "eftWithdrawalLabel": string;
         /**
@@ -4279,68 +4265,57 @@ export namespace Components {
          */
         "step3_taxFormLabel": string;
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
           * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel": string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel": string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel": string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel": string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel": string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel": string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel": string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel": string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel": string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel": string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
           * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel": string;
@@ -4357,37 +4332,34 @@ export namespace Components {
          */
         "step4_cannotChangeInfoAlert": string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel": string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel": string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel": string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel": string;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount": string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
          */
         "step4_eftWithdrawalLabel": string;
@@ -5738,8 +5710,7 @@ declare namespace LocalJSX {
     }
     interface SqmBankingInfoForm {
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
          */
         "agencyCodeLabel"?: string;
         /**
@@ -5748,53 +5719,43 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
          */
         "bankAccountNumberLabel"?: string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
          */
         "bankAccountTypeLabel"?: string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
          */
         "bankAddressLabel"?: string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
          */
         "bankCityLabel"?: string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
          */
         "bankLocationLabel"?: string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
          */
         "bankNameLabel"?: string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
          */
         "bankStateLabel"?: string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel"?: string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
          */
         "branchCodeLabel"?: string;
         /**
@@ -5803,23 +5764,20 @@ declare namespace LocalJSX {
          */
         "businessSelectItemLabel"?: string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
          */
         "checkingSelectItemLabel"?: string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
          */
         "classificationCPFLabel"?: string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
          */
         "classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
          */
         "classificationLabel"?: string;
         /**
@@ -5832,12 +5790,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
          */
         "directlyToBankAccount"?: string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
          */
         "eftWithdrawalLabel"?: string;
         /**
@@ -9920,68 +9878,57 @@ declare namespace LocalJSX {
          */
         "step3_taxFormLabel"?: string;
         /**
-          * Label text for the agency code input field
-          * @uiName Agency code input label
+          * @uiName Agency code field label
           * @uiGroup Step 4 Properties
          */
         "step4_agencyCodeLabel"?: string;
         /**
-          * Label text for the bank account number input field
-          * @uiName Bank account number input label
+          * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountNumberLabel"?: string;
         /**
-          * Label text for the bank account type input field
-          * @uiName Bank account type input label
+          * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAccountTypeLabel"?: string;
         /**
-          * Label text for the Bank Address input
-          * @uiName Bank Address input item label
+          * @uiName Bank address field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankAddressLabel"?: string;
         /**
-          * Label text for the Bank City input
-          * @uiName Bank City Label input label
+          * @uiName Bank city field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankCityLabel"?: string;
         /**
-          * Label text for the bank country location input field
-          * @uiName Bank country location input label
+          * @uiName Bank country field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankLocationLabel"?: string;
         /**
-          * Label text for the bank name input field
-          * @uiName Bank name input label
+          * @uiName Bank name field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankNameLabel"?: string;
         /**
-          * Label text for the Bank Postal Code
-          * @uiName Bank Postal Code input label
+          * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankPostalCodeLabel"?: string;
         /**
-          * Label text for the Bank Province / State input
-          * @uiName Bank Province / State input label
+          * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
          */
         "step4_bankStateLabel"?: string;
         /**
-          * Label text for the beneficiary account name input field
-          * @uiName Beneficiary account name input label
+          * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
         "step4_beneficiaryAccountNameLabel"?: string;
         /**
-          * Label text for the branch code input field
-          * @uiName Branch code input label
+          * @uiName Branch code field label
           * @uiGroup Step 4 Properties
          */
         "step4_branchCodeLabel"?: string;
@@ -9998,37 +9945,34 @@ declare namespace LocalJSX {
          */
         "step4_cannotChangeInfoAlert"?: string;
         /**
-          * Label text for the checking account type select item
-          * @uiName Checking select item label
+          * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
         "step4_checkingSelectItemLabel"?: string;
         /**
-          * Label text for the classification CPF input field
-          * @uiName Classification CPF input label
+          * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel"?: string;
         /**
-          * Label text for the classification entity input field
-          * @uiName Classification entity input label
+          * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
-          * @uiName Classification input label
+          * @uiName Classification field label
           * @uiGroup Step 4 Properties
          */
         "step4_classificationLabel"?: string;
         /**
-          * Text for the option to receive payments directly to a bank account
-          * @uiName Directly to bank account option text
+          * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
          */
         "step4_directlyToBankAccount"?: string;
         /**
-          * @uiName EFT Withdrawal label text
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
          */
         "step4_eftWithdrawalLabel"?: string;
