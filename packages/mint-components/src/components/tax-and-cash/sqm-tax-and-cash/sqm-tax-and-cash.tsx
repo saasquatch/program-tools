@@ -81,6 +81,7 @@ export class TaxAndCashMonolith {
   /**
    * Placeholder text displayed in the currency search dropdown
    * @uiName Currency field placeholder text
+   * @uiGroup Step 1 Properties
    */
   @Prop() step1_searchForCurrencyText: string = "Search for currency..";
 
@@ -764,25 +765,25 @@ export class TaxAndCashMonolith {
    * @uiName Invoice number column title
    *  @uiGroup Dashboard Properties
    */
-  @Prop() invoiceColumnTitle: string = "Invoice";
+  @Prop() dashboard_invoiceColumnTitle: string = "Invoice";
   /**
    * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Date column title
    *  @uiGroup Dashboard Properties
    */
-  @Prop() dateColumnTitle: string = "Date";
+  @Prop() dashboard_dateColumnTitle: string = "Date";
   /**
    * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Earnings column title
    *  @uiGroup Dashboard Properties
    */
-  @Prop() earningsColumnTitle: string = "Earnings";
+  @Prop() dashboard_earningsColumnTitle: string = "Earnings";
   /**
    * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Taxed amount column title
    *  @uiGroup Dashboard Properties
    */
-  @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
+  @Prop() dashboard_taxedAmountColumnTitle: string = "Taxed Amount";
   /**
    * Sub text describing how payouts are provided from impact.com
    * @uiName Payout from impact text
@@ -886,6 +887,7 @@ export class TaxAndCashMonolith {
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text
+   * @uiGroup General Form Properties
    */
   @Prop() searchForCountryText: string = "Search for country..";
   /**
@@ -907,6 +909,7 @@ export class TaxAndCashMonolith {
   /**
    * Displayed at the top of the page on all set up steps and on the dashboard.
    * @uiName Page description
+   * @uiGroup General Form Properties
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
