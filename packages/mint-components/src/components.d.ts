@@ -3770,10 +3770,22 @@ export namespace Components {
         "dashboard_bankingInformationSectionHeader": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_dateColumnTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
          */
         "dashboard_earningsAfterTaxColumnTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsColumnTitle": string;
         /**
           * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
@@ -3835,6 +3847,12 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceColumnTitle": string;
         /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
@@ -3930,28 +3948,22 @@ export namespace Components {
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxedAmountColumnTitle": string;
+        /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText": string;
         /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Date column title
-          * @uiGroup Dashboard Properties
-         */
-        "dateColumnTitle": string;
-        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Earnings column title
-          * @uiGroup Dashboard Properties
-         */
-        "earningsColumnTitle": string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -3984,12 +3996,6 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Invoice number column title
-          * @uiGroup Dashboard Properties
-         */
-        "invoiceColumnTitle": string;
-        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -4020,6 +4026,7 @@ export namespace Components {
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
+          * @uiGroup General Form Properties
          */
         "searchForCountryText": string;
         /**
@@ -4066,6 +4073,7 @@ export namespace Components {
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
+          * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText": string;
         /**
@@ -4474,14 +4482,9 @@ export namespace Components {
         /**
           * Displayed at the top of the page on all set up steps and on the dashboard.
           * @uiName Page description
+          * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-          * @uiGroup Dashboard Properties
-         */
-        "taxedAmountColumnTitle": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -9364,10 +9367,22 @@ declare namespace LocalJSX {
         "dashboard_bankingInformationSectionHeader"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_dateColumnTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
          */
         "dashboard_earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsColumnTitle"?: string;
         /**
           * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
@@ -9429,6 +9444,12 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceColumnTitle"?: string;
         /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
@@ -9524,28 +9545,22 @@ declare namespace LocalJSX {
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Taxed amount column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxedAmountColumnTitle"?: string;
+        /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText"?: string;
         /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Date column title
-          * @uiGroup Dashboard Properties
-         */
-        "dateColumnTitle"?: string;
-        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Earnings column title
-          * @uiGroup Dashboard Properties
-         */
-        "earningsColumnTitle"?: string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -9578,12 +9593,6 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Invoice number column title
-          * @uiGroup Dashboard Properties
-         */
-        "invoiceColumnTitle"?: string;
-        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -9614,6 +9623,7 @@ declare namespace LocalJSX {
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
+          * @uiGroup General Form Properties
          */
         "searchForCountryText"?: string;
         /**
@@ -9660,6 +9670,7 @@ declare namespace LocalJSX {
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
+          * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText"?: string;
         /**
@@ -10068,14 +10079,9 @@ declare namespace LocalJSX {
         /**
           * Displayed at the top of the page on all set up steps and on the dashboard.
           * @uiName Page description
+          * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-          * @uiGroup Dashboard Properties
-         */
-        "taxedAmountColumnTitle"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
