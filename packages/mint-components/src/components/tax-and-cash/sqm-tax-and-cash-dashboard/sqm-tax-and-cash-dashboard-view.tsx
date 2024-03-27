@@ -2,6 +2,7 @@ import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { P } from "../../../global/mixins";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -23,6 +24,7 @@ export interface TaxAndCashDashboardProps {
     country?: string;
     notRegistered?: boolean;
     isBusinessEntity?: boolean;
+    openNewForm?: boolean;
     loading?: boolean;
     loadingError?: boolean;
     errors?: {
@@ -70,6 +72,15 @@ export interface TaxAndCashDashboardProps {
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
     taxAndPayoutsDescription: string;
+    invoiceDescription: string;
+    invoicePrevLabel: string;
+    invoiceMoreLabel: string;
+    invoiceHeader: string;
+    invoiceEmptyStateHeader: string;
+    invoiceEmptyStateText: string;
+    replaceTaxFormModalHeader: string;
+    replaceTaxFormModalBodyText: string;
+    cancelButton: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -152,7 +163,7 @@ const style = {
   },
   NewFormButton: {
     marginTop: "var(--sl-spacing-large)",
-    maxWidth: "179px",
+    maxWidth: "300px",
   },
   EditBankDetailsButton: {
     marginTop: "var(--sl-spacing-large)",
@@ -202,6 +213,34 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+    "&::part(close-button)": {
+      marginBottom: "var(--sl-spacing-xx-large)",
+    },
+    "&::part(title)": {
+      fontSize: "24px",
+      fontWeight: "600",
+      marginTop: "var(--sl-spacing-xxx-large)",
+      padding:
+        "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -368,6 +407,29 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
+        <sl-dialog
+          label={text.replaceTaxFormModalHeader}
+          class={sheet.classes.Dialog}
+          // AL: TODO add open/close state
+          open={false}
+          onSl-hide={false}
+        >
+          <p>{text.replaceTaxFormModalBodyText}</p>
+          <sl-button
+            slot="footer"
+            type="primary"
+            class={sheet.classes.DialogButton}
+          >
+            {text.newFormButton}
+          </sl-button>
+          <sl-button
+            slot="footer"
+            type="default"
+            class={sheet.classes.DialogButton}
+          >
+            {text.cancelButton}
+          </sl-button>
+        </sl-dialog>
         {states.status === "INACTIVE" && alertMap[states.status]}
         <div>
           <h3>{text.bankingInformationSectionHeader}</h3>
@@ -518,7 +580,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 )}
                 {!states.notRegistered && (
                   <div class={sheet.classes.InvoiceTableContainer}>
-                    <sqm-invoice-table>
+                    <sqm-invoice-table
+                      description={text.invoiceDescription}
+                      prev-label={text.invoicePrevLabel}
+                      more-label={text.invoiceMoreLabel}
+                      header={text.invoiceHeader}
+                      empty-state-header={text.invoiceEmptyStateHeader}
+                      empty-state-text={text.invoiceEmptyStateText}
+                    >
                       <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
                       <sqm-invoice-table-date-column
                         column-title={text.dateColumnTitle}

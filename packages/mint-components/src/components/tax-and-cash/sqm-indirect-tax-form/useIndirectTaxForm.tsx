@@ -1,8 +1,14 @@
 import {
+  useLocale,
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
@@ -82,6 +88,7 @@ function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
 
 export function useIndirectTaxForm(props: IndirectTaxForm) {
   const user = useUserIdentity();
+  const locale = useLocale();
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -98,16 +105,35 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     refetch,
     errors: userError,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-  const { data: _countries, loading: countriesLoading } =
+  const { data: _countriesRes, loading: countriesLoading } =
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
+
+  const intlLocale = locale?.replace("_", "-") || "en";
+  const getCountryObj = (countryCode: string) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const displayName = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(countryCode);
+
+    return {
+      countryCode,
+      displayName,
+    };
+  };
+
+  const _countries = useMemo(
+    () =>
+      _countriesRes?.impactPayoutCountries?.data?.map((country) =>
+        getCountryObj(country.countryCode)
+      ),
+    [_countriesRes?.impactPayoutCountries?.data]
+  );
 
   const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState({});
   const [countrySearch, setCountrySearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState(
-    _countries?.impactPayoutCountries?.data || []
-  );
+  const [filteredCountries, setFilteredCountries] = useState(_countries || []);
 
   const [option, setOption] = useState<
     "hstCanada" | "otherRegion" | "notRegistered"
@@ -119,7 +145,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     if (!publisher?.taxInformation?.indirectTaxCountryCode) return;
 
     const _option = getOption(
-      _countries?.impactPayoutCountries?.data,
+      _countries,
       publisher.taxInformation.indirectTaxCountryCode
     );
     setOption(_option);
@@ -127,15 +153,15 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
   useEffect(() => {
     if (countrySearch.trim() === "") {
-      setFilteredCountries(_countries?.impactPayoutCountries?.data || []);
+      setFilteredCountries(_countries || []);
     } else {
       setFilteredCountries(
-        _countries?.impactPayoutCountries?.data.filter((c) =>
+        _countries?.filter((c) =>
           c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
         ) || []
       );
     }
-  }, [countrySearch, _countries?.impactPayoutCountries?.data]);
+  }, [countrySearch, _countries]);
 
   useEffect(() => {
     const user = userData?.user;
@@ -277,7 +303,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     data: {
       esRegions: INDIRECT_TAX_SPAIN_REGIONS,
       countries: filteredCountries,
-      allCountries: _countries?.impactPayoutCountries?.data,
+      allCountries: _countries,
       provinces: INDIRECT_TAX_PROVINCES,
     },
     text: props.getTextProps(),

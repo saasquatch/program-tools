@@ -158,7 +158,7 @@ export class TaxAndCashDashboard {
   /**
    * @uiName Submit new tax form button label
    */
-  @Prop() newFormButton: string = "Submit New Form";
+  @Prop() newFormButton: string = "Submit new form";
   /**
    *
    * @uiName Edit payment info button label
@@ -230,8 +230,9 @@ export class TaxAndCashDashboard {
     "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
-   * Sub text describing how payouts are provided from impact.com
+   * Displayed under the payout details card.
    * @uiName Payout from impact text
+   * @uiWidget textArea
    */
   @Prop() payoutFromImpact: string =
     "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
@@ -276,12 +277,45 @@ export class TaxAndCashDashboard {
    */
   @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
 
+  /** @uiName Invoice table description  */
+  @Prop() invoiceDescription: string =
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /** @uiName Invoice table previous page button label  */
+  @Prop() invoicePrevLabel: string = "Prev";
+
+  /** @uiName Invoice table next page button label  */
+  @Prop() invoiceMoreLabel: string = "Next";
+
+  /** @uiName Invoice table title */
+  @Prop() invoiceHeader: string = "Invoices";
+
+  /** @uiName Empty invoice table header  */
+  @Prop() invoiceEmptyStateHeader: string = "View your invoice details";
+
+  /** @uiName Empty invoice table description  */
+  @Prop() invoiceEmptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
   /**
    * Displayed at the top of the page on all set up steps and on the dashboard.
    * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+
+  /**
+   * @uiName Replace tax form modal header
+   */
+  @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   */
+  @Prop() replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
+  /**
+   * @uiName Cancel button label
+   */
+  @Prop() cancelButton: string = "Cancel";
 
   /**
    * @undocumented
@@ -348,6 +382,7 @@ function useDemoTaxAndCashDashboard(
         expiresSoon: false,
         disabled: false,
         loading: false,
+        openNewForm: false,
       },
       callbacks: {
         onClick: () => console.debug("check step"),

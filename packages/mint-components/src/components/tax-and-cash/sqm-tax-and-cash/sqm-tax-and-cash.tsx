@@ -62,7 +62,7 @@ export class TaxAndCashMonolith {
     "Choose your preferred payout currency";
   /**
    * Label text for tax and banking collection checkbox
-   * @uiName Tax and banking label
+   * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_allowBankingCollection: string =
@@ -73,7 +73,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * @uiName Terms and conditions checkbox
+   * @uiName Terms and conditions text
    * @uiGroup Step 1 Properties
    * @uiWidget textArea
    */
@@ -262,13 +262,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
-  /**
-   * Text shown in the banner above the document
-   * @uiName Banner text
-   * @uiGroup Step 3 Properties
-   */
-  @Prop() step3_banner: string =
-    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
    * Remind participants their session will time out after 20 minutes of inactivity.
    * @uiName Docusign timed session message
@@ -714,7 +707,7 @@ export class TaxAndCashMonolith {
    * @uiName Submit new tax form button label
    * @uiGroup Dashboard Properties
    */
-  @Prop() dashboard_newFormButton: string = "Submit New Form";
+  @Prop() dashboard_newFormButton: string = "Submit new form";
   /**
    * @uiName Edit payment info button label
    * @uiGroup Dashboard Properties
@@ -785,9 +778,9 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_taxedAmountColumnTitle: string = "Taxed Amount";
   /**
-   * Sub text describing how payouts are provided from impact.com
+   * Displayed under the payout details card.
    * @uiName Payout from impact text
-   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
    */
   @Prop() dashboard_payoutFromImpact: string =
     "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
@@ -797,6 +790,18 @@ export class TaxAndCashMonolith {
    *  @uiGroup Dashboard Properties
    */
   @Prop() dashboard_earningsAfterTaxColumnTitle: string = "Earnings after tax";
+  /**
+   * @uiName Replace tax form modal header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message title
@@ -814,6 +819,45 @@ export class TaxAndCashMonolith {
   @Prop()
   dashboard_errorDescriptionText: string =
     "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+
+  /**
+   * @uiName Invoice table description
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceDescription: string =
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /**
+   * @uiName Invoice table previous page button label
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoicePrevLabel: string = "Prev";
+
+  /**
+   * @uiName Invoice table next page button label
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceMoreLabel: string = "Next";
+
+  /**
+   * @uiName Invoice table title
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceHeader: string = "Invoices";
+
+  /**
+   * @uiName Empty invoice table header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceEmptyStateHeader: string =
+    "View your invoice details";
+
+  /**
+   * @uiName Empty invoice table description
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_invoiceEmptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
@@ -943,6 +987,7 @@ export class TaxAndCashMonolith {
       loadingErrorAlertHeader: props.loadingErrorAlertHeader,
       loadingErrorAlertDescription: props.loadingErrorAlertDescription,
       taxAndPayoutsDescription: props.taxAndPayoutsDescription,
+      searchForCountryText: props.searchForCountryText,
       formStep: props.formStep,
     };
   }

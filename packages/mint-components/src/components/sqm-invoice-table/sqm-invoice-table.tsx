@@ -47,10 +47,10 @@ export class InvoiceTable {
   /** @uiName Hide column labels */
   @Prop() hideLabels?: boolean = false;
 
-  /** @uiName Previous button text  */
+  /** @uiName Invoice table previous page button label  */
   @Prop() prevLabel?: string = "Prev";
 
-  /** @uiName View More button text  */
+  /** @uiName Invoice table next page button label */
   @Prop() moreLabel?: string = "Next";
 
   /**
@@ -66,12 +66,19 @@ export class InvoiceTable {
   /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
-  /** @uiName Tablet breakpoint  */
+  /** @uiName Invoice table title */
   @Prop() header?: string = "Invoices";
 
-  /** @uiName Tablet breakpoint  */
+  /** @uiName Invoice table description  */
   @Prop() description?: string =
-    "View and download your invoices to report your earnings and stay tax compliant. ";
+    "View and download your invoices to report your earnings and stay tax compliant.";
+
+  /** @uiName Empty invoice table header  */
+  @Prop() emptyStateHeader: string = "View your invoice details";
+
+  /** @uiName Empty invoice table description */
+  @Prop() emptyStateText: string =
+    "Refer a friend to view the status of your invoices and rewards earned";
 
   /**
    * @undocumented
@@ -87,7 +94,12 @@ export class InvoiceTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot />;
+    const empty = (
+      <EmptySlot
+        emptyStateHeader={this.emptyStateHeader}
+        emptyStateText={this.emptyStateText}
+      />
+    );
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -109,13 +121,13 @@ export class InvoiceTable {
   }
 }
 
-function EmptySlot() {
+function EmptySlot(props) {
   return (
     <slot name="empty">
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png"
-        empty-state-header="View your invoice details"
-        empty-state-text="Refer a friend to view the status of your invoices and rewards earned"
+        empty-state-header={props.emptyStateHeader}
+        empty-state-text={props.emptyStateText}
       ></sqm-empty>
     </slot>
   );

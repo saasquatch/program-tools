@@ -47,7 +47,7 @@ export class TaxForm {
   @Prop() currencyHelpText: string = "Choose your preferred payout currency";
   /**
    * Label text for tax and banking collection checkbox
-   * @uiName Tax and banking label
+   * @uiName Terms and conditions checkbox
    */
   @Prop() allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
@@ -93,7 +93,7 @@ export class TaxForm {
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * @uiName Terms and conditions checkbox
+   * @uiName Terms and conditions text
    * @uiWidget textArea
    */
   @Prop() termsAndConditionsLabel: string = "terms and conditions";

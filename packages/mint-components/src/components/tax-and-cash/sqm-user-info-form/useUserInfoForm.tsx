@@ -1,4 +1,4 @@
-import { useUserIdentity } from "@saasquatch/component-boilerplate";
+import { useLocale, useUserIdentity } from "@saasquatch/component-boilerplate";
 import {
   useEffect,
   useMemo,
@@ -53,7 +53,7 @@ export type InitialData = {
 
 export function useUserInfoForm(props: TaxForm) {
   const user = useUserIdentity();
-
+  const locale = useLocale();
   const currencyRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -81,11 +81,24 @@ export function useUserInfoForm(props: TaxForm) {
     [_currencies]
   );
 
+  const intlLocale = locale?.replace("_", "-") || "en";
+  const getCountryObj = (countryCode: string) => {
+    // @ts-ignore DisplayNames not in Intl type
+    const displayName = new Intl.DisplayNames([intlLocale], {
+      type: "region",
+    }).of(countryCode);
+
+    return {
+      countryCode,
+      displayName,
+    };
+  };
+
   const countries = useMemo(
     () =>
-      [...(countriesRes?.impactPayoutCountries?.data || [])].sort((a, b) =>
-        a.displayName.localeCompare(b.displayName)
-      ),
+      [...(countriesRes?.impactPayoutCountries?.data || [])]
+        .sort((a, b) => a.displayName.localeCompare(b.displayName))
+        .map((country) => getCountryObj(country.countryCode)),
     [countriesRes?.impactPayoutCountries?.data]
   );
 

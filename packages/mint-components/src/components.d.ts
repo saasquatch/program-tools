@@ -538,11 +538,6 @@ export namespace Components {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "banner": string;
-        /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
          */
@@ -1223,11 +1218,19 @@ export namespace Components {
     mockData?: { data: Invoice[] };
   };
         /**
-          * @uiName Tablet breakpoint
+          * @uiName Invoice table description
          */
         "description"?: string;
         /**
-          * @uiName Tablet breakpoint
+          * @uiName Empty invoice table header
+         */
+        "emptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "emptyStateText": string;
+        /**
+          * @uiName Invoice table title
          */
         "header"?: string;
         /**
@@ -1244,7 +1247,7 @@ export namespace Components {
          */
         "mdBreakpoint"?: number;
         /**
-          * @uiName View More button text
+          * @uiName Invoice table next page button label
          */
         "moreLabel"?: string;
         /**
@@ -1253,7 +1256,7 @@ export namespace Components {
          */
         "perPage": number;
         /**
-          * @uiName Previous button text
+          * @uiName Invoice table previous page button label
          */
         "prevLabel"?: string;
         /**
@@ -3854,6 +3857,36 @@ export namespace Components {
          */
         "dashboard_invoiceColumnTitle": string;
         /**
+          * @uiName Invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceDescription": string;
+        /**
+          * @uiName Empty invoice table header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateText": string;
+        /**
+          * @uiName Invoice table title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceHeader": string;
+        /**
+          * @uiName Invoice table next page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceMoreLabel": string;
+        /**
+          * @uiName Invoice table previous page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoicePrevLabel": string;
+        /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
          */
@@ -3872,9 +3905,9 @@ export namespace Components {
          */
         "dashboard_notRegisteredForTax": string;
         /**
-          * Sub text describing how payouts are provided from impact.com
+          * Displayed under the payout details card.
           * @uiName Payout from impact text
-          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_payoutFromImpact": string;
         /**
@@ -4024,6 +4057,17 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "replaceTaxFormModalHeader": string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
@@ -4031,7 +4075,7 @@ export namespace Components {
         "searchForCountryText": string;
         /**
           * Label text for tax and banking collection checkbox
-          * @uiName Tax and banking label
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection": string;
@@ -4077,7 +4121,7 @@ export namespace Components {
          */
         "step1_searchForCurrencyText": string;
         /**
-          * @uiName Terms and conditions checkbox
+          * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
@@ -4188,12 +4232,6 @@ export namespace Components {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel": string;
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_banner": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
@@ -4512,6 +4550,10 @@ export namespace Components {
          */
         "bankingInformationSectionHeader": string;
         /**
+          * @uiName Cancel button label
+         */
+        "cancelButton": string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
@@ -4600,6 +4642,30 @@ export namespace Components {
          */
         "invoiceColumnTitle": string;
         /**
+          * @uiName Invoice table description
+         */
+        "invoiceDescription": string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "invoiceEmptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "invoiceEmptyStateText": string;
+        /**
+          * @uiName Invoice table title
+         */
+        "invoiceHeader": string;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "invoiceMoreLabel": string;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "invoicePrevLabel": string;
+        /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
@@ -4627,8 +4693,9 @@ export namespace Components {
          */
         "notRegisteredForTax": string;
         /**
-          * Sub text describing how payouts are provided from impact.com
+          * Displayed under the payout details card.
           * @uiName Payout from impact text
+          * @uiWidget textArea
          */
         "payoutFromImpact": string;
         /**
@@ -4636,6 +4703,14 @@ export namespace Components {
           * @uiName QST indirect tax details
          */
         "qstNumber": string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader": string;
         /**
           * @uiName Payout status badge
          */
@@ -4784,7 +4859,7 @@ export namespace Components {
     interface SqmUserInfoForm {
         /**
           * Label text for tax and banking collection checkbox
-          * @uiName Tax and banking label
+          * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
         /**
@@ -4885,7 +4960,7 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
-          * @uiName Terms and conditions checkbox
+          * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
@@ -6165,11 +6240,6 @@ declare namespace LocalJSX {
     }
     interface SqmDocusignForm {
         /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-         */
-        "banner"?: string;
-        /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
          */
@@ -6850,11 +6920,19 @@ declare namespace LocalJSX {
     mockData?: { data: Invoice[] };
   };
         /**
-          * @uiName Tablet breakpoint
+          * @uiName Invoice table description
          */
         "description"?: string;
         /**
-          * @uiName Tablet breakpoint
+          * @uiName Empty invoice table header
+         */
+        "emptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "emptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
          */
         "header"?: string;
         /**
@@ -6871,7 +6949,7 @@ declare namespace LocalJSX {
          */
         "mdBreakpoint"?: number;
         /**
-          * @uiName View More button text
+          * @uiName Invoice table next page button label
          */
         "moreLabel"?: string;
         /**
@@ -6880,7 +6958,7 @@ declare namespace LocalJSX {
          */
         "perPage"?: number;
         /**
-          * @uiName Previous button text
+          * @uiName Invoice table previous page button label
          */
         "prevLabel"?: string;
         /**
@@ -9451,6 +9529,36 @@ declare namespace LocalJSX {
          */
         "dashboard_invoiceColumnTitle"?: string;
         /**
+          * @uiName Invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceDescription"?: string;
+        /**
+          * @uiName Empty invoice table header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceHeader"?: string;
+        /**
+          * @uiName Invoice table next page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceMoreLabel"?: string;
+        /**
+          * @uiName Invoice table previous page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoicePrevLabel"?: string;
+        /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
          */
@@ -9469,9 +9577,9 @@ declare namespace LocalJSX {
          */
         "dashboard_notRegisteredForTax"?: string;
         /**
-          * Sub text describing how payouts are provided from impact.com
+          * Displayed under the payout details card.
           * @uiName Payout from impact text
-          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
         "dashboard_payoutFromImpact"?: string;
         /**
@@ -9621,6 +9729,17 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "replaceTaxFormModalHeader"?: string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
@@ -9628,7 +9747,7 @@ declare namespace LocalJSX {
         "searchForCountryText"?: string;
         /**
           * Label text for tax and banking collection checkbox
-          * @uiName Tax and banking label
+          * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection"?: string;
@@ -9674,7 +9793,7 @@ declare namespace LocalJSX {
          */
         "step1_searchForCurrencyText"?: string;
         /**
-          * @uiName Terms and conditions checkbox
+          * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
@@ -9785,12 +9904,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_subRegionTaxNumberLabel"?: string;
-        /**
-          * Text shown in the banner above the document
-          * @uiName Banner text
-          * @uiGroup Step 3 Properties
-         */
-        "step3_banner"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
@@ -10109,6 +10222,10 @@ declare namespace LocalJSX {
          */
         "bankingInformationSectionHeader"?: string;
         /**
+          * @uiName Cancel button label
+         */
+        "cancelButton"?: string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
          */
@@ -10197,6 +10314,30 @@ declare namespace LocalJSX {
          */
         "invoiceColumnTitle"?: string;
         /**
+          * @uiName Invoice table description
+         */
+        "invoiceDescription"?: string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "invoiceEmptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "invoiceEmptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
+         */
+        "invoiceHeader"?: string;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "invoiceMoreLabel"?: string;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "invoicePrevLabel"?: string;
+        /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
@@ -10224,8 +10365,9 @@ declare namespace LocalJSX {
          */
         "notRegisteredForTax"?: string;
         /**
-          * Sub text describing how payouts are provided from impact.com
+          * Displayed under the payout details card.
           * @uiName Payout from impact text
+          * @uiWidget textArea
          */
         "payoutFromImpact"?: string;
         /**
@@ -10233,6 +10375,14 @@ declare namespace LocalJSX {
           * @uiName QST indirect tax details
          */
         "qstNumber"?: string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader"?: string;
         /**
           * @uiName Payout status badge
          */
@@ -10380,7 +10530,7 @@ declare namespace LocalJSX {
     interface SqmUserInfoForm {
         /**
           * Label text for tax and banking collection checkbox
-          * @uiName Tax and banking label
+          * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
         /**
@@ -10481,7 +10631,7 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
         /**
-          * @uiName Terms and conditions checkbox
+          * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;

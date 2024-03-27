@@ -1,6 +1,7 @@
 import {
   setUserIdentity,
   useHost,
+  useLocale,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
@@ -144,6 +145,7 @@ export function useTaxAndCash() {
   /** END DEMO DATA */
 
   const user = useUserIdentity();
+  const locale = useLocale();
 
   // State for current step of form
   const [step, setStep] = useParentState<string>({
@@ -215,6 +217,9 @@ export function useTaxAndCash() {
     namespace: CURRENCIES_QUERY_NAMESPACE,
     query: GET_CURRENCIES,
     skip: !user,
+    variables: {
+      locale,
+    },
   });
 
   const supportedCurrencies = useMemo(() => {
