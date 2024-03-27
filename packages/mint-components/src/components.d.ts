@@ -554,11 +554,17 @@ export namespace Components {
          */
         "docusignError": string;
         /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired messag
+          * @uiWidget textArea
+         */
+        "docusignExpired": string;
+        /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiWidget textArea
          */
-        "docusignExpired": string;
+        "docusignSessionWarning": string;
         /**
           * @uiName Setup progress
          */
@@ -4009,6 +4015,20 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "docusignExpired": string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "docusignSessionWarning": string;
+        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -4245,13 +4265,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "step3_docusignError": string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "step3_docusignExpired": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
@@ -6256,11 +6269,17 @@ declare namespace LocalJSX {
          */
         "docusignError"?: string;
         /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired messag
+          * @uiWidget textArea
+         */
+        "docusignExpired"?: string;
+        /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiWidget textArea
          */
-        "docusignExpired"?: string;
+        "docusignSessionWarning"?: string;
         /**
           * @uiName Setup progress
          */
@@ -9681,6 +9700,20 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "docusignExpired"?: string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "docusignSessionWarning"?: string;
+        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -9917,13 +9950,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "step3_docusignError"?: string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "step3_docusignExpired"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label

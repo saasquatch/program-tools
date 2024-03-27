@@ -60,12 +60,19 @@ export class DocusignForm {
   @Prop() taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
   /**
-   * Remind participants their session will time out after 20 minutes of inactivity.
-   * @uiName Docusign timed session message
+   * This appears inside the Docusign frame.
+   * @uiName Docusign session expired messag
    * @uiWidget textArea
    */
   @Prop() docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
+  /**
+   * Remind participants their session will time out after 20 minutes of inactivity.
+   * @uiName Docusign timed session message
+   * @uiWidget textArea
+   */
+  @Prop() docusignSessionWarning: string =
+    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
    * @uiName Participant type field label
    */

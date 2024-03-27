@@ -39,6 +39,7 @@ export interface DocusignFormViewProps {
     taxFormDescriptionIndividualParticipant: string;
     taxFormDescriptionBusinessEntity?: string;
     docusignExpired: string;
+    docusignSessionWarning: string;
     businessEntity: string;
     individualParticipant: string;
     participantType: string;
@@ -345,7 +346,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 slot="icon"
                 name="info-circle"
               ></sl-icon>
-              {text.docusignExpired}
+              {text.docusignSessionWarning}
             </sl-alert>
             {slots.docusignIframeSlot}
           </div>
