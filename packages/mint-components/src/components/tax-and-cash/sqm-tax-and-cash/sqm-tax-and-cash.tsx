@@ -794,13 +794,14 @@ export class TaxAndCashMonolith {
    * @uiName Replace tax form modal header
    * @uiGroup Dashboard Properties
    */
-  @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
+  @Prop() dashboard_replaceTaxFormModalHeader: string =
+    "Replace existing tax form";
   /**
    * @uiName Replace tax form modal body text
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() replaceTaxFormModalBodyText: string =
+  @Prop() dashboard_replaceTaxFormModalBodyText: string =
     "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.

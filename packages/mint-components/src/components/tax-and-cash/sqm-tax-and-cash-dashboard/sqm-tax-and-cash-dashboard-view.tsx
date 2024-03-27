@@ -24,9 +24,9 @@ export interface TaxAndCashDashboardProps {
     country?: string;
     notRegistered?: boolean;
     isBusinessEntity?: boolean;
-    openNewForm?: boolean;
     loading?: boolean;
     loadingError?: boolean;
+    showNewFormDialog: boolean;
     errors?: {
       general?: boolean;
     };
@@ -34,7 +34,12 @@ export interface TaxAndCashDashboardProps {
   slots: {
     payoutDetailsCardSlot: VNode;
   };
-  callbacks: { onClick: (props: any) => void; onEditPayoutInfo: () => void };
+  callbacks: {
+    onClick: (props: any) => void;
+    onEditPayoutInfo: () => void;
+    onNewFormCancel: () => void;
+    onNewFormClick: () => void;
+  };
   text: {
     statusTextActive?: string;
     statusTextNotActive?: string;
@@ -410,15 +415,15 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
           class={sheet.classes.Dialog}
-          // AL: TODO add open/close state
-          open={false}
-          onSl-hide={false}
+          open={states.showNewFormDialog}
+          onSl-hide={callbacks.onNewFormCancel}
         >
           <p>{text.replaceTaxFormModalBodyText}</p>
           <sl-button
             slot="footer"
             type="primary"
             class={sheet.classes.DialogButton}
+            onClick={callbacks.onNewFormClick}
           >
             {text.newFormButton}
           </sl-button>
@@ -426,6 +431,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             slot="footer"
             type="default"
             class={sheet.classes.DialogButton}
+            onClick={callbacks.onNewFormCancel}
           >
             {text.cancelButton}
           </sl-button>

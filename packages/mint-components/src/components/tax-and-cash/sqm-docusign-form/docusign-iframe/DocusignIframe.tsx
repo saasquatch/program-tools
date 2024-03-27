@@ -131,7 +131,7 @@ export const DocusignIframe = ({
   if (states.urlLoading) return <DocusignLoadingView />;
 
   const callback = useCallback((e) => {
-    if (e.origin?.includes("referralsaasquatch.com")) return;
+    if (!e.origin?.includes("referralsaasquatch.com")) return;
     if (!e.data) return;
 
     callbacks.onStatusChange(e.data.eventStatus);

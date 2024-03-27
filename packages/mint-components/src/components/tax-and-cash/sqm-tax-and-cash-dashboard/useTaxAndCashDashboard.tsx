@@ -1,5 +1,5 @@
 import { useLocale } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useSetParent } from "../../../utils/useParentState";
@@ -75,6 +75,7 @@ export const useTaxAndCashDashboard = (
 ): Omit<TaxAndCashDashboardProps, "slots"> => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const [showDialog, setShowDialog] = useState(false);
 
   const locale = useLocale();
 
@@ -102,16 +103,6 @@ export const useTaxAndCashDashboard = (
 
   const expiresSoon = getExpiresSoon(expiryDate, submissionDate);
 
-  const onNewDocumentClick = () => {
-    setContext({
-      overrideNextStep: "/dashboard",
-      overrideBackStep: "/dashboard",
-      hideSteps: true,
-    });
-
-    setStep(`/3`);
-  };
-
   const onEditPayoutInfo = () => {
     setContext({
       overrideNextStep: "/dashboard",
@@ -120,6 +111,17 @@ export const useTaxAndCashDashboard = (
     });
 
     setStep("/4");
+  };
+
+  const onNewFormClick = () => {
+    setShowDialog(false);
+
+    setContext({
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
+      hideSteps: true,
+    });
+    setStep("/3");
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
@@ -147,16 +149,17 @@ export const useTaxAndCashDashboard = (
       ),
       notRegistered: !publisher?.taxInformation?.indirectTaxId,
       noFormNeeded: !documentType,
-      // AL: TODO add modal open/close state
-      openNewForm: null,
       expiresSoon,
       disabled: loading,
       loading,
       loadingError: !!userError?.message,
+      showNewFormDialog: showDialog,
     },
     callbacks: {
-      onClick: onNewDocumentClick,
+      onClick: () => setShowDialog(true),
       onEditPayoutInfo,
+      onNewFormCancel: () => setShowDialog(false),
+      onNewFormClick,
     },
     text: props.getTextProps(),
   };

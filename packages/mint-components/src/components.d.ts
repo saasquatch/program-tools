@@ -3917,6 +3917,17 @@ export namespace Components {
          */
         "dashboard_qstNumber": string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_replaceTaxFormModalHeader": string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -4056,17 +4067,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
-        /**
-          * @uiName Replace tax form modal body text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "replaceTaxFormModalBodyText": string;
-        /**
-          * @uiName Replace tax form modal header
-          * @uiGroup Dashboard Properties
-         */
-        "replaceTaxFormModalHeader": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -9589,6 +9589,17 @@ declare namespace LocalJSX {
          */
         "dashboard_qstNumber"?: string;
         /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_replaceTaxFormModalHeader"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -9728,17 +9739,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
-        /**
-          * @uiName Replace tax form modal body text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "replaceTaxFormModalBodyText"?: string;
-        /**
-          * @uiName Replace tax form modal header
-          * @uiGroup Dashboard Properties
-         */
-        "replaceTaxFormModalHeader"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
