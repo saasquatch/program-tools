@@ -268,7 +268,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    * @uiWidget textArea
    */
-  @Prop() docusignExpired: string =
+  @Prop() step3_docusignExpired: string =
     "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
   /**
    * Remind participants their session will time out after 20 minutes of inactivity.
@@ -276,7 +276,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    * @uiWidget textArea
    */
-  @Prop() docusignSessionWarning: string =
+  @Prop() step3_docusignSessionWarning: string =
     "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
    * This appears inside the Docusign frame.
