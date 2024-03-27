@@ -533,9 +533,6 @@ export namespace Components {
          */
         "dividerStyle": string;
     }
-    interface SqmDocusignEmbed {
-        "url": string;
-    }
     interface SqmDocusignForm {
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
@@ -4015,20 +4012,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * This appears inside the Docusign frame.
-          * @uiName Docusign session expired message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignExpired": string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignSessionWarning": string;
-        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -4265,6 +4248,20 @@ export namespace Components {
           * @uiWidget textArea
          */
         "step3_docusignError": string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired": string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
@@ -5062,12 +5059,6 @@ declare global {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
-    interface HTMLSqmDocusignEmbedElement extends Components.SqmDocusignEmbed, HTMLStencilElement {
-    }
-    var HTMLSqmDocusignEmbedElement: {
-        prototype: HTMLSqmDocusignEmbedElement;
-        new (): HTMLSqmDocusignEmbedElement;
-    };
     interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
     }
     var HTMLSqmDocusignFormElement: {
@@ -5662,7 +5653,6 @@ declare global {
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
-        "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
@@ -6246,10 +6236,6 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
-    }
-    interface SqmDocusignEmbed {
-        "onDocusignEvent"?: (event: CustomEvent<{ status: string }>) => void;
-        "url"?: string;
     }
     interface SqmDocusignForm {
         /**
@@ -9700,20 +9686,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * This appears inside the Docusign frame.
-          * @uiName Docusign session expired message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignExpired"?: string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignSessionWarning"?: string;
-        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -9950,6 +9922,20 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "step3_docusignError"?: string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired"?: string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
@@ -10690,7 +10676,6 @@ declare namespace LocalJSX {
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
-        "sqm-docusign-embed": SqmDocusignEmbed;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
@@ -10805,7 +10790,6 @@ declare module "@stencil/core" {
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
