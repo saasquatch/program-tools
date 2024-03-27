@@ -43,7 +43,7 @@ export class IndirectTaxForm {
    * @uiWidget textArea
    */
   @Prop() indirectTaxDescription: string =
-    "Indirect taxes (e.g. VAT, HST, GST) are transactional based taxes collected by business and retailers on behalf of governments. Any rewards you receive may be subject to indirect taxes based on your country.";
+    "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments.";
 
   /**
    * Displayed with indirect tax registration options.
@@ -70,7 +70,7 @@ export class IndirectTaxForm {
    * @uiName Registered for indirect tax option description
    */
   @Prop() otherRegionSubtext: string =
-    "If you represent a business based outside of the US you may be registered. If you’re not sure, contact our Support team to find out more.";
+    "If you’ve registered with your tax authority, add your information to stay tax compliant.";
 
   /**
    * @uiName Not registered for indirect tax option
@@ -82,7 +82,7 @@ export class IndirectTaxForm {
    * @uiName Not registered for indirect tax option description
    */
   @Prop() notRegisteredSubtext: string =
-    "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
+    "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered.";
   /**
    * @uiName Region of indirect tax field label
    */

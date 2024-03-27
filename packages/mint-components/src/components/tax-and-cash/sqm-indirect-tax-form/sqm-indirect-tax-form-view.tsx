@@ -233,9 +233,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           <p class={classes.PageDescriptionText}>
             {text.taxAndPayoutsDescription}
           </p>
-          <p class={classes.DescriptionText}>
-            {text.indirectTaxDetailsDescription}
-          </p>
+          <p class={classes.DescriptionText}>{text.indirectTaxDescription}</p>
         </div>
         {states.loadingError && (
           <div>

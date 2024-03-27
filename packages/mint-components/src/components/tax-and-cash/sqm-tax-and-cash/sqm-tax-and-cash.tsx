@@ -61,17 +61,17 @@ export class TaxAndCashMonolith {
   @Prop() step1_currencyHelpText: string =
     "Choose your preferred payout currency";
   /**
+   * @uiName Step 1 title
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_personalInformation: string = "Personal Information";
+  /**
    * Label text for tax and banking collection checkbox
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
-  /**
-   * @uiName Step 1 title
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_personalInformation: string = "Personal Information";
   /**
    * @uiName Terms and conditions text
    * @uiGroup Step 1 Properties
@@ -101,7 +101,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step2_indirectTaxDescription: string =
-    "Indirect Taxes (e.g. VAT, HST, GST) are transactional based taxes that are required to be levied by service providers by most tax authorities.";
+    "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments.";
   /**
    * Displayed with indirect tax registration options.
    * @uiName Indirect tax details section title
@@ -129,7 +129,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_otherRegionSubtext: string =
-    "If you represent a business based outside of the US you may be registered. If you’re not sure, contact our Support team to find out more.";
+    "If you’ve registered with your tax authority, add your information to stay tax compliant.";
   /**
    * @uiName Not registered for indirect tax option
    * @uiGroup Step 2 Properties
@@ -142,7 +142,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_notRegisteredSubtext: string =
-    "If you’re joining this referral program as an individual or you’re based in the US, then you’re not registered.";
+    "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered.";
   /**
    * @uiName Region of indirect tax field label
    * @uiGroup Step 2 Properties
@@ -263,13 +263,21 @@ export class TaxAndCashMonolith {
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
     "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
   /**
+   * This appears inside the Docusign frame.
+   * @uiName Docusign session expired message
+   * @uiGroup Step 3 Properties
+   * @uiWidget textArea
+   */
+  @Prop() docusignExpired: string =
+    "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
+  /**
    * Remind participants their session will time out after 20 minutes of inactivity.
    * @uiName Docusign timed session message
    * @uiGroup Step 3 Properties
    * @uiWidget textArea
    */
-  @Prop() step3_docusignExpired: string =
-    "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue.";
+  @Prop() docusignSessionWarning: string =
+    "For your security, we automatically end your session when you have not interacted with the form after 20 minutes.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign form error message
