@@ -164,20 +164,20 @@ export class BankingInfoForm {
   @Prop() classificationEntityLabel: string = "Classification Entity";
 
   /**
-   * Label text for the business select item
-   * @uiName Business select item label
+   * One of three options listed for the classification field
+   * @uiName Business classification option
    */
   @Prop() businessSelectItemLabel: string = "Business";
 
   /**
-   * Label text for the individual select item
-   * @uiName Individual select item label
+   * One of three options listed for the classification field
+   * @uiName Individual classification option
    */
   @Prop() individualSelectItemLabel: string = "Individual";
 
   /**
-   * Label text for the foreign select item
-   * @uiName Foreign select item label
+   * One of three options listed for the classification field
+   * @uiName Foreign classification option
    */
   @Prop() foreignSelectItemLabel: string = "Foreign";
 

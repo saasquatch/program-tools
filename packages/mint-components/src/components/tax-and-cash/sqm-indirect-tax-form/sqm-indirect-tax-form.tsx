@@ -119,7 +119,7 @@ export class IndirectTaxForm {
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
   /**
    * Displayed to participants registered in Spain.
-   * @uiName Sub-region input label
+   * @uiName Sub-region of indirect tax field label
    */
   @Prop() subRegion: string = "Sub-region";
   /**
