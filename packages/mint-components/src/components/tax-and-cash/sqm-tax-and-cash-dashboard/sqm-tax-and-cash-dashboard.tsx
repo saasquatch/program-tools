@@ -230,8 +230,9 @@ export class TaxAndCashDashboard {
     "Please review your information and try again. If this problem continues, contact Support.";
 
   /**
-   * Sub text describing how payouts are provided from impact.com
+   * Displayed under the payout details card.
    * @uiName Payout from impact text
+   * @uiWidget textArea
    */
   @Prop() payoutFromImpact: string =
     "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com.";
@@ -276,23 +277,23 @@ export class TaxAndCashDashboard {
    */
   @Prop() earningsAfterTaxColumnTitle: string = "Earnings after tax";
 
-  /** @uiName Table description text  */
+  /** @uiName Invoice table description  */
   @Prop() invoiceDescription: string =
     "View and download your invoices to report your earnings and stay tax compliant.";
 
-  /** @uiName Previous button text  */
+  /** @uiName Invoice table previous page button label  */
   @Prop() invoicePrevLabel: string = "Prev";
 
-  /** @uiName View More button text  */
+  /** @uiName Invoice table next page button label  */
   @Prop() invoiceMoreLabel: string = "Next";
 
-  /** @uiName Table header text */
+  /** @uiName Invoice table title */
   @Prop() invoiceHeader: string = "Invoices";
 
-  /** @uiName Table empty state header  */
+  /** @uiName Empty invoice table header  */
   @Prop() invoiceEmptyStateHeader: string = "View your invoice details";
 
-  /** @uiName Table empty state text  */
+  /** @uiName Empty invoice table description  */
   @Prop() invoiceEmptyStateText: string =
     "Refer a friend to view the status of your invoices and rewards earned";
   /**

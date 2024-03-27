@@ -47,10 +47,10 @@ export class InvoiceTable {
   /** @uiName Hide column labels */
   @Prop() hideLabels?: boolean = false;
 
-  /** @uiName Previous button text  */
+  /** @uiName Invoice table previous page button label  */
   @Prop() prevLabel?: string = "Prev";
 
-  /** @uiName View More button text  */
+  /** @uiName Invoice table next page button label */
   @Prop() moreLabel?: string = "Next";
 
   /**
@@ -66,17 +66,17 @@ export class InvoiceTable {
   /** @uiName Tablet breakpoint  */
   @Prop() mdBreakpoint?: number = 799;
 
-  /** @uiName Table header text */
+  /** @uiName Invoice table title */
   @Prop() header?: string = "Invoices";
 
-  /** @uiName Table description text  */
+  /** @uiName Invoice table description  */
   @Prop() description?: string =
     "View and download your invoices to report your earnings and stay tax compliant.";
 
-  /** @uiName Table empty state header  */
+  /** @uiName Empty invoice table header  */
   @Prop() emptyStateHeader: string = "View your invoice details";
 
-  /** @uiName Table empty state text  */
+  /** @uiName Empty invoice table description */
   @Prop() emptyStateText: string =
     "Refer a friend to view the status of your invoices and rewards earned";
 
