@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added the following components for new tax and cash functionality
+  - \<sqm-user-info-form>
   - \<sqm-banking-info-form>
   - \<sqm-docusign-form>
   - \<sqm-indirect-tax-form>
