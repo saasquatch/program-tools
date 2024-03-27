@@ -72,6 +72,12 @@ export interface TaxAndCashDashboardProps {
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
     taxAndPayoutsDescription: string;
+    invoiceDescription: string;
+    invoicePrevLabel: string;
+    invoiceMoreLabel: string;
+    invoiceHeader: string;
+    invoiceEmptyStateHeader: string;
+    invoiceEmptyStateText: string;
     replaceTaxFormModalHeader: string;
     replaceTaxFormModalBodyText: string;
     cancelButton: string;
@@ -574,7 +580,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 )}
                 {!states.notRegistered && (
                   <div class={sheet.classes.InvoiceTableContainer}>
-                    <sqm-invoice-table>
+                    <sqm-invoice-table
+                      description={text.invoiceDescription}
+                      prev-label={text.invoicePrevLabel}
+                      more-label={text.invoiceMoreLabel}
+                      header={text.invoiceHeader}
+                      empty-state-header={text.invoiceEmptyStateHeader}
+                      empty-state-text={text.invoiceEmptyStateText}
+                    >
                       <sqm-invoice-table-download-column></sqm-invoice-table-download-column>
                       <sqm-invoice-table-date-column
                         column-title={text.dateColumnTitle}
