@@ -24,7 +24,7 @@ export interface TaxAndCashDashboardProps {
     country?: string;
     notRegistered?: boolean;
     isBusinessEntity?: boolean;
-    isNewForm?: boolean;
+    openNewForm?: boolean;
     loading?: boolean;
     loadingError?: boolean;
     errors?: {
@@ -157,7 +157,7 @@ const style = {
   },
   NewFormButton: {
     marginTop: "var(--sl-spacing-large)",
-    maxWidth: "179px",
+    maxWidth: "300px",
   },
   EditBankDetailsButton: {
     marginTop: "var(--sl-spacing-large)",
@@ -405,15 +405,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           label={text.replaceTaxFormModalHeader}
           class={sheet.classes.Dialog}
           // AL: TODO add open/close state
-          open={states.isNewForm}
-          onSl-hide={!states.isNewForm}
+          open={false}
+          onSl-hide={false}
         >
           <p>{text.replaceTaxFormModalBodyText}</p>
           <sl-button
             slot="footer"
             type="primary"
             class={sheet.classes.DialogButton}
-            onClick={() => console.log("AL: TODO ADD CALLBACK")}
           >
             {text.newFormButton}
           </sl-button>
@@ -421,7 +420,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             slot="footer"
             type="default"
             class={sheet.classes.DialogButton}
-            onClick={() => console.log("AL: TODO ADD CALLBACK")}
           >
             {text.cancelButton}
           </sl-button>

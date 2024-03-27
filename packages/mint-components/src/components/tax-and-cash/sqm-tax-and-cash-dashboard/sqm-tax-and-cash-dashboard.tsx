@@ -362,6 +362,7 @@ function useDemoTaxAndCashDashboard(
         expiresSoon: false,
         disabled: false,
         loading: false,
+        openNewForm: false,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
