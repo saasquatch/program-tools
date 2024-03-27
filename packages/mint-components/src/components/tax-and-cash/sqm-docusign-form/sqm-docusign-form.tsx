@@ -216,6 +216,11 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         documentUrl: "https://example.com",
       },
       callbacks: {
+        // @ts-expect-error: Demo only props
+        demo: {
+          onSubmit: () => setStep("/4"),
+          onBack: () => setStep("/3"),
+        },
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
       },
@@ -251,7 +256,7 @@ const DemoDocusignIframe = ({ callbacks }) => {
             type="primary"
             submit
             exportparts="base: primarybutton-base"
-            onClick={callbacks.onBack}
+            onClick={callbacks.demo.onBack}
           >
             Back to Step 2
           </sl-button>
@@ -259,7 +264,7 @@ const DemoDocusignIframe = ({ callbacks }) => {
             type="primary"
             submit
             exportparts="base: primarybutton-base"
-            onClick={callbacks.onSubmit}
+            onClick={callbacks.demo.onSubmit}
           >
             Continue to Step 4
           </sl-button>
