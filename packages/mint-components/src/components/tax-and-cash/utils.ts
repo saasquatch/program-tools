@@ -18,16 +18,17 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
   }
 };
 
-export const getIsRequiredErrorMessage = (fieldName: string, errorMessage: string) => {
-    return intl.formatMessage(
-      {
-        id: fieldName,
-        defaultMessage: errorMessage,
-      },
-      {
-        fieldName,
-      }
-    );
-  };
-
-  //TODO: AL Add utils function for handling mapping of badge statuses to actual badge text in tax-and-cash-dashboard
+export const getIsRequiredErrorMessage = (
+  fieldName: string,
+  errorMessage: string
+) => {
+  return intl.formatMessage(
+    {
+      id: fieldName,
+      defaultMessage: errorMessage,
+    },
+    {
+      fieldName,
+    }
+  );
+};

@@ -10,7 +10,6 @@ export interface IndirectTaxFormViewProps {
     disabled: boolean;
     isPartner: boolean;
     hideSteps: boolean;
-    // AL TODO: loadingError
     loadingError: boolean;
     formState: {
       checked?: "hstCanada" | "otherRegion" | "notRegistered";
