@@ -195,8 +195,6 @@ function useInvoiceTableDemo(
         component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
 
-    console.log({ componentData, columnComponents });
-
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(
       async (c: any, idx: number) => {

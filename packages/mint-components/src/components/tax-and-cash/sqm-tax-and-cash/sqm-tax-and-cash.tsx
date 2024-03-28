@@ -66,13 +66,14 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * Label text for tax and banking collection checkbox
+   Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
+   * The text link that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiGroup Step 1 Properties
    * @uiWidget textArea
@@ -182,7 +183,7 @@ export class TaxAndCashMonolith {
     "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me.";
   /**
    * Displayed to participants registered in Spain.
-   * @uiName Sub-region input label
+   * @uiName Sub-region of indirect tax field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_subRegion: string = "Sub-region";
@@ -440,22 +441,22 @@ export class TaxAndCashMonolith {
   @Prop() step4_classificationEntityLabel: string = "Classification entity";
 
   /**
-   * Label text for the business select item
-   * @uiName Business select item label
+   * One of three options listed for the classification field
+   * @uiName Business classification option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_businessSelectItemLabel: string = "Business";
 
   /**
-   * Label text for the individual select item
-   * @uiName Individual select item label
+   * One of three options listed for the classification field
+   * @uiName Individual classification option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_individualSelectItemLabel: string = "Individual";
 
   /**
-   * Label text for the foreign select item
-   * @uiName Foreign select item label
+   * One of three options listed for the classification field
+   * @uiName Foreign classification option
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_foreignSelectItemLabel: string = "Foreign";

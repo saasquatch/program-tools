@@ -23,17 +23,18 @@ Feature: Tax Form Flow
     When they complete filling out their indirect tax information
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
-    Examples:
+
+    Examples: 
       | countryCode | brandCountry | stepX |
-      | CA          | US           | 3     |
-      | CA          | MX           | 4     |
-      | US          | CA           | 3     |
-      | US          | MX           | 3     |
-      | UK          | US           | 3     |
-      | UK          | MX           | 4     |
-      | EG          | US           | 3     |
-      | EG          | MX           | 4     |
-      | US          | US           | 3     |
+      | CA          | US           |     3 |
+      | CA          | MX           |     4 |
+      | US          | CA           |     3 |
+      | US          | MX           |     3 |
+      | GB          | US           |     3 |
+      | GB          | MX           |     4 |
+      | EG          | US           |     3 |
+      | EG          | MX           |     4 |
+      | US          | US           |     3 |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
@@ -46,7 +47,7 @@ Feature: Tax Form Flow
     And participant <hasWithdrawalSettings>
     Then they proceed to <stepX>
 
-    Examples:
+    Examples: 
       | hasTax                 | isConnected      | hasRequiredDoc             | hasCurrentTaxDoc          | status   | hasWithdrawalSettings             | stepX     |
       | does not have tax info | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
       | does not have tax info | is connected     | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
@@ -86,16 +87,16 @@ Feature: Tax Form Flow
     When they press "Continue"
     Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
 
-    Examples:
+    Examples: 
       | countryCode | brandCountry | stepX |
-      | CA          | US           | 3     |
-      | CA          | MX           | 4     |
-      | US          | CA           | 3     |
-      | US          | MX           | 3     |
-      | UK          | US           | 3     |
-      | UK          | US           | 3     |
-      | ES          | US           | 3     |
-      | EG          | MX           | 4     |
+      | CA          | US           |     3 |
+      | CA          | MX           |     4 |
+      | US          | CA           |     3 |
+      | US          | MX           |     3 |
+      | GB          | US           |     3 |
+      | GB          | US           |     3 |
+      | ES          | US           |     3 |
+      | EG          | MX           |     4 |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
@@ -104,12 +105,10 @@ Feature: Tax Form Flow
     And the user selects a <country> not in the US
     Then they skip to step 4 Payout Details
 
-    Examples:
+    Examples: 
       | brandCountry | country |
-      | MX           | UK      |
+      | MX           | GB      |
       | AUS          | EGP     |
-
-  
 
   @minutia
   Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
@@ -118,10 +117,10 @@ Feature: Tax Form Flow
     When they view step 3
     Then the <autoSelectedForm> is displayed
 
-    Examples:
+    Examples: 
       | brandCountry | country | autoSelectedForm |
       | MX           | US      | W9               |
-      | UK           | US      | W9               |
+      | GB           | US      | W9               |
       | AUS          | US      | W9               |
 
   @minutia

@@ -117,8 +117,8 @@ export namespace Components {
          */
         "branchCodeLabel": string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
          */
         "businessSelectItemLabel": string;
         /**
@@ -167,8 +167,8 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
          */
         "foreignSelectItemLabel": string;
         /**
@@ -196,8 +196,8 @@ export namespace Components {
          */
         "ibanLabel": string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
          */
         "individualSelectItemLabel": string;
         /**
@@ -532,9 +532,6 @@ export namespace Components {
           * @uiName Border style
          */
         "dividerStyle": string;
-    }
-    interface SqmDocusignEmbed {
-        "url": string;
     }
     interface SqmDocusignForm {
         /**
@@ -1075,7 +1072,7 @@ export namespace Components {
         "selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
          */
         "subRegion": string;
         /**
@@ -4015,20 +4012,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * This appears inside the Docusign frame.
-          * @uiName Docusign session expired message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignExpired": string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignSessionWarning": string;
-        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -4094,7 +4077,7 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
@@ -4141,6 +4124,7 @@ export namespace Components {
          */
         "step1_searchForCurrencyText": string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
@@ -4243,7 +4227,7 @@ export namespace Components {
         "step2_selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion": string;
@@ -4265,6 +4249,20 @@ export namespace Components {
           * @uiWidget textArea
          */
         "step3_docusignError": string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired": string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
@@ -4369,8 +4367,8 @@ export namespace Components {
          */
         "step4_branchCodeLabel": string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel": string;
@@ -4413,8 +4411,8 @@ export namespace Components {
          */
         "step4_eftWithdrawalLabel": string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel": string;
@@ -4429,8 +4427,8 @@ export namespace Components {
          */
         "step4_ibanLabel": string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel": string;
@@ -4871,7 +4869,7 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
@@ -4973,6 +4971,7 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
@@ -5061,12 +5060,6 @@ declare global {
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
-    };
-    interface HTMLSqmDocusignEmbedElement extends Components.SqmDocusignEmbed, HTMLStencilElement {
-    }
-    var HTMLSqmDocusignEmbedElement: {
-        prototype: HTMLSqmDocusignEmbedElement;
-        new (): HTMLSqmDocusignEmbedElement;
     };
     interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
     }
@@ -5662,7 +5655,6 @@ declare global {
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
-        "sqm-docusign-embed": HTMLSqmDocusignEmbedElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
@@ -5831,8 +5823,8 @@ declare namespace LocalJSX {
          */
         "branchCodeLabel"?: string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
          */
         "businessSelectItemLabel"?: string;
         /**
@@ -5881,8 +5873,8 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
          */
         "foreignSelectItemLabel"?: string;
         /**
@@ -5910,8 +5902,8 @@ declare namespace LocalJSX {
          */
         "ibanLabel"?: string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
          */
         "individualSelectItemLabel"?: string;
         /**
@@ -6246,10 +6238,6 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
-    }
-    interface SqmDocusignEmbed {
-        "onDocusignEvent"?: (event: CustomEvent<{ status: string }>) => void;
-        "url"?: string;
     }
     interface SqmDocusignForm {
         /**
@@ -6790,7 +6778,7 @@ declare namespace LocalJSX {
         "selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
          */
         "subRegion"?: string;
         /**
@@ -9700,20 +9688,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UseTaxAndCashResultType>;
         /**
-          * This appears inside the Docusign frame.
-          * @uiName Docusign session expired message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignExpired"?: string;
-        /**
-          * Remind participants their session will time out after 20 minutes of inactivity.
-          * @uiName Docusign timed session message
-          * @uiGroup Step 3 Properties
-          * @uiWidget textArea
-         */
-        "docusignSessionWarning"?: string;
-        /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
@@ -9779,7 +9753,7 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
@@ -9826,6 +9800,7 @@ declare namespace LocalJSX {
          */
         "step1_searchForCurrencyText"?: string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
@@ -9928,7 +9903,7 @@ declare namespace LocalJSX {
         "step2_selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion"?: string;
@@ -9950,6 +9925,20 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "step3_docusignError"?: string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired"?: string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
@@ -10054,8 +10043,8 @@ declare namespace LocalJSX {
          */
         "step4_branchCodeLabel"?: string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel"?: string;
@@ -10098,8 +10087,8 @@ declare namespace LocalJSX {
          */
         "step4_eftWithdrawalLabel"?: string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel"?: string;
@@ -10114,8 +10103,8 @@ declare namespace LocalJSX {
          */
         "step4_ibanLabel"?: string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel"?: string;
@@ -10555,7 +10544,7 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
@@ -10657,6 +10646,7 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
@@ -10690,7 +10680,6 @@ declare namespace LocalJSX {
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
-        "sqm-docusign-embed": SqmDocusignEmbed;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
@@ -10805,7 +10794,6 @@ declare module "@stencil/core" {
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            "sqm-docusign-embed": LocalJSX.SqmDocusignEmbed & JSXBase.HTMLAttributes<HTMLSqmDocusignEmbedElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;

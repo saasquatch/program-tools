@@ -89,8 +89,6 @@ export function useInvoiceTable(
     !user?.jwt
   );
 
-  console.log({ invoicesData });
-
   const tick = useRerenderListener();
   const components = useChildElements<Element>();
 

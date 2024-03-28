@@ -46,14 +46,11 @@ export function usePayoutDetailsCard(
     }
   }
 
-  // TODO: need to which timezone payouts are processed in
   const paymentDay = getPayoutDetailedStatusText(
     publisher?.withdrawalSettings?.paymentDay
   );
 
   const isPayoutToday = DateTime.now().toFormat("LLL dd, yyyy") === paymentDay;
-
-  console.log({ threshold: publisher?.withdrawalSettings?.paymentThreshold });
 
   return {
     states: {
