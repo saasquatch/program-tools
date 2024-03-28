@@ -155,14 +155,14 @@ export function useTaxAndCash() {
   });
 
   // State for when to hide steps, or override certain actions
-  const [context, setContext] = useParentState<TaxContext>({
+  const [context, _setContext] = useParentState<TaxContext>({
     namespace: TAX_FORM_CONTEXT_NAMESPACE,
     initialValue: {} as TaxContext,
   });
 
   // State to carry user form information into step 2
-  const [userFormContext, setUserFormContext] = useParentState<UserFormContext>(
-    {
+  const [userFormContext, _setUserFormContext] =
+    useParentState<UserFormContext>({
       namespace: USER_FORM_CONTEXT_NAMESPACE,
       initialValue: {
         firstName: undefined,
@@ -171,8 +171,7 @@ export function useTaxAndCash() {
         countryCode: undefined,
         currency: undefined,
       } as UserFormContext,
-    }
-  );
+    });
 
   const [_currenciesContext, setCurrenciesContext] = useParentState<Currencies>(
     {
@@ -181,12 +180,12 @@ export function useTaxAndCash() {
     }
   );
 
-  const [_countriesContext, setCountriesContext] = useParentState<TaxCountry[]>(
-    {
-      namespace: COUNTRIES_NAMESPACE,
-      initialValue: [],
-    }
-  );
+  const [_countriesContext, _setCountriesContext] = useParentState<
+    TaxCountry[]
+  >({
+    namespace: COUNTRIES_NAMESPACE,
+    initialValue: [],
+  });
 
   const [_sortedCountriesContext, setSortedCountriesContext] = useParentState<
     TaxCountry[]
