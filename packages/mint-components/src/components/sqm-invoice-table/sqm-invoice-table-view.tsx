@@ -9,7 +9,8 @@ interface InvoiceTableViewProps {
 const style = {
   Description: {
     fontSize: "var(--sl-font-size-small)",
-    margin: "0 0 var(--sl-spacing-xx-large)",
+    marginTop: "var(--sl-spacing-small)",
+    margin: "0 0 var(--sl-spacing-large)",
     color: "var(--sl-color-gray-500)",
   },
   Header: {
