@@ -146,7 +146,7 @@ function LoadingSlot() {
 function LoadingRow() {
   return (
     <sqm-table-row>
-      <sqm-table-cell colspan={5}>
+      <sqm-table-cell colspan={6}>
         <sl-skeleton></sl-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
