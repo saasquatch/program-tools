@@ -17,7 +17,6 @@ export class InvoiceTableDataCell {
   disconnectedCallback() {}
 
   render() {
-    console.log(this.data);
     return this.data;
   }
 }

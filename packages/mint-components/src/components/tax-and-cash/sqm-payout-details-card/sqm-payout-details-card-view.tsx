@@ -188,7 +188,6 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   };
 
   const renderStatusBadge = (status: string, statusBadgeText: string) => {
-    console.log(status, statusBadgeText, "debug status text");
     const badgeType = status === "nextPayout" ? "success" : "primary";
     const statusText = intl.formatMessage(
       {

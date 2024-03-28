@@ -255,8 +255,6 @@ export function useTaxAndCash() {
     if (supportedCurrencies) setCurrenciesContext(supportedCurrencies);
   }, [supportedCurrencies]);
 
-  // console.log({ errors });
-
   useEffect(() => {
     if (errors) {
       setStep("/error");
