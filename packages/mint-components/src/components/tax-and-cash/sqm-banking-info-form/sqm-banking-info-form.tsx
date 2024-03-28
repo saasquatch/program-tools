@@ -4,7 +4,11 @@ import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { intl } from "../../../global/global";
+import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
+import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { getFormMap } from "./formDefinitions";
 import { mockPaymentOptions } from "./mockData";
 import {
   BankingInfoFormView,
@@ -12,13 +16,9 @@ import {
 } from "./sqm-banking-info-form-view";
 import {
   getFormInputs,
-  getFormMap,
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
-import { intl } from "../../../global/global";
-import { useParent } from "../../../utils/useParentState";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 
 /**
  * @uiName Banking Information Form
