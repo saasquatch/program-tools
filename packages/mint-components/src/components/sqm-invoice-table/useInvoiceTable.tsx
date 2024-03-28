@@ -108,13 +108,17 @@ export function useInvoiceTable(
     const cellsPromise = data?.map(async (invoice: Invoice) => {
       // TODO: probably going to pass in values as named by graphql
       const invoiceData = {
-        earnings: `${invoice.currency}${invoice.totalAmount?.toFixed(2)}`,
-        taxedAmount: `${invoice.currency}${invoice.totalVatAmount?.toFixed(2)}`,
+        earnings: `${invoice.currency}${
+          invoice.totalAmount?.toFixed(2) || "0.00"
+        }`,
+        taxedAmount: `${invoice.currency}${
+          invoice.totalVatAmount?.toFixed(2) || "0.00"
+        }`,
         dateCreated: invoice.dateCreated,
         invoiceId: invoice.id,
-        netEarnings: `${invoice.currency}${(
-          invoice.totalAmount - invoice.totalVatAmount
-        )?.toFixed(2)}`,
+        netEarnings: `${invoice.currency}${
+          (invoice.totalAmount - invoice.totalVatAmount)?.toFixed(2) || "0.00"
+        }`,
         downloadUrl: invoice.downloadUrl,
       };
 
