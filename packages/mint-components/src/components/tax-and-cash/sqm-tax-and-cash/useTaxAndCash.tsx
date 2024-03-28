@@ -1,4 +1,5 @@
 import {
+  getContextValueName,
   setUserIdentity,
   useHost,
   useLocale,
@@ -31,7 +32,6 @@ import {
   UserFormContext,
   UserQuery,
 } from "./data";
-import { getContextValueName } from "@saasquatch/component-boilerplate/dist/hooks/useParentState";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected) {
