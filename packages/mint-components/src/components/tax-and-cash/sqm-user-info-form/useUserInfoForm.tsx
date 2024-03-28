@@ -1,4 +1,3 @@
-import { useLocale, useUserIdentity } from "@saasquatch/component-boilerplate";
 import {
   useEffect,
   useMemo,
@@ -9,9 +8,7 @@ import jsonpointer from "jsonpointer";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
-  COUNTRIES_QUERY_NAMESPACE,
   CURRENCIES_NAMESPACE,
-  CountriesQuery,
   Currencies,
   SORTED_COUNTRIES_NAMESPACE,
   TAX_CONTEXT_NAMESPACE,
@@ -25,7 +22,6 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { objectIsFull } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
-import { getCountryObj } from "../sqm-tax-and-cash/useTaxAndCash";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
