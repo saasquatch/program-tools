@@ -128,7 +128,7 @@ export class TaxForm {
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * Displayed at the top of the page on all set up steps.
    * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =

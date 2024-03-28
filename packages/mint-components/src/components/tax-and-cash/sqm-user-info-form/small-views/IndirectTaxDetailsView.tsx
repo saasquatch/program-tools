@@ -11,6 +11,7 @@ export interface IndirectDetailsSlotViewProps {
     disabled: boolean;
     loading: boolean;
     hide: boolean;
+    isPartner: boolean;
     formState: {
       selectedRegion?: string;
       subRegion?: string;
@@ -219,7 +220,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           exportparts="label: input-label"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
-          disabled={states.disabled}
+          disabled={states.disabled || states.isPartner}
         >
           {text.isRegisteredSubRegionIncomeTax}
         </sl-checkbox>
@@ -298,6 +299,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               exportparts="label: input-label"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
+              disabled={states.isPartner || states.disabled}
             >
               {text.isRegisteredQST}
             </sl-checkbox>

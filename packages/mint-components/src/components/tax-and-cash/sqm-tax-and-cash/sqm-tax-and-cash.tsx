@@ -66,7 +66,7 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+   * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
@@ -525,14 +525,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_bankPostalCodeLabel: string = "Bank postal code";
   /**
-   * Alert text indicating participant cannot change info after it has been submitted
-   * @uiName Cannot change info Alert text
-   * @uiGroup Step 4 Properties
-   */
-  @Prop() step4_cannotChangeInfoAlert: string =
-    "Your payout information can only be changed through our Support team after you complete this step. Make sure your payout method and schedule are correct before submitting.";
-
-  /**
    * Default payment method to the participants’ bank account.
    * @uiName EFT withdrawal payment method
    * @uiGroup Step 4 Properties
@@ -961,7 +953,7 @@ export class TaxAndCashMonolith {
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * Displayed at the top of the page on all set up steps.
    * @uiName Page description
    * @uiGroup General Form Properties
    */
