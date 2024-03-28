@@ -1,9 +1,6 @@
 import {
   useLocale,
   useMutation,
-  useParent,
-  useParentQueryValue,
-  useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import {
@@ -14,6 +11,8 @@ import {
 } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { useParentQueryValue } from "../../../utils/useParentQuery";
+import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   COUNTRIES_QUERY_NAMESPACE,
   CountriesQuery,
