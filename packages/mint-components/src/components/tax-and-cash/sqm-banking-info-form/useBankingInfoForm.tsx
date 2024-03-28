@@ -3,12 +3,7 @@ import {
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
@@ -19,9 +14,11 @@ import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
   FinanceNetworkSettingsQuery,
+  SORTED_COUNTRIES_NAMESPACE,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  TaxCountry,
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
@@ -594,6 +591,7 @@ export function useBankingInfoForm(
 
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const countries = useParentValue<TaxCountry[]>(SORTED_COUNTRIES_NAMESPACE);
 
   const {
     data: paymentOptionsData,
@@ -647,51 +645,6 @@ export function useBankingInfoForm(
   };
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
-
-  const intlLocale = locale?.replace("_", "-") || "en";
-
-  // filter out any duplicate countries and null countryCode
-  const availableCountries = useMemo(
-    () =>
-      new Set(
-        paymentOptions
-          ?.map((option) => option.countryCode)
-          .filter((value) => value)
-      ),
-    [paymentOptions]
-  );
-
-  const getCountryObj = (country: string) => {
-    // @ts-ignore DisplayNames not in Intl type
-    const name = new Intl.DisplayNames([intlLocale], {
-      type: "region",
-    }).of(country);
-
-    return {
-      code: country,
-      name,
-    };
-  };
-
-  type CountryObj = { name: string; code: string };
-
-  const sortByName = (a: CountryObj, b: CountryObj) =>
-    a.name < b.name ? -1 : 1;
-
-  const _topCountries = ["CA", "GB", "US"];
-
-  const countries = useMemo(
-    () =>
-      Array.from(availableCountries)
-        .map((c) => getCountryObj(c))
-        .sort(sortByName)
-        .reduce((prev, countryObj) => {
-          if (_topCountries.includes(countryObj.code))
-            return [countryObj, ...prev];
-          return [...prev, countryObj];
-        }, []),
-    [availableCountries]
-  );
 
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
 
@@ -761,7 +714,7 @@ export function useBankingInfoForm(
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.name.toLowerCase().includes(countrySearch.toLowerCase())
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
         ) || []
       );
     }

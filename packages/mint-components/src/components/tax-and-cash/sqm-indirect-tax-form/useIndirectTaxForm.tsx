@@ -26,6 +26,7 @@ import {
   UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
+import { getCountryObj } from "../sqm-tax-and-cash/useTaxAndCash";
 import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -109,22 +110,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
   const intlLocale = locale?.replace("_", "-") || "en";
-  const getCountryObj = (countryCode: string) => {
-    // @ts-ignore DisplayNames not in Intl type
-    const displayName = new Intl.DisplayNames([intlLocale], {
-      type: "region",
-    }).of(countryCode);
-
-    return {
-      countryCode,
-      displayName,
-    };
-  };
 
   const _countries = useMemo(
     () =>
       _countriesRes?.impactPayoutCountries?.data?.map((country) =>
-        getCountryObj(country.countryCode)
+        getCountryObj({ countryCode: country.countryCode, locale: intlLocale })
       ),
     [_countriesRes?.impactPayoutCountries?.data]
   );

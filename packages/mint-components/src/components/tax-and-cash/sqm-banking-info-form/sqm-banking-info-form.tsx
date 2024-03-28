@@ -442,14 +442,17 @@ export class BankingInfoForm {
                 ></sl-input>
                 {props.states.countries?.map((country) => {
                   return (
-                    <sl-menu-item value={country.code}>
-                      {country.name}
+                    <sl-menu-item value={country.countryCode}>
+                      {country.displayName}
                     </sl-menu-item>
                   );
                 })}
                 {props.states?.allCountries?.map((c) => (
-                  <sl-menu-item value={c.code} style={{ display: "none" }}>
-                    {c.name}
+                  <sl-menu-item
+                    value={c.countryCode}
+                    style={{ display: "none" }}
+                  >
+                    {c.displayName}
                   </sl-menu-item>
                 ))}
               </sl-select>

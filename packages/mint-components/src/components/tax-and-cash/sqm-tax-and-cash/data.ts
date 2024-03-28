@@ -12,6 +12,8 @@ export const FINANCE_NETWORK_SETTINGS_NAMESPACE = "sq:finance-network-settings";
 
 export const COUNTRIES_NAMESPACE = "sq:countries:list";
 
+export const SORTED_COUNTRIES_NAMESPACE = "sq:countries:sorted";
+
 export const COUNTRIES_QUERY_NAMESPACE = "sq:countries:query";
 
 export const CURRENCIES_NAMESPACE = "sq:currencies:list";

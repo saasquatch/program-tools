@@ -38,8 +38,8 @@ export interface BankingInfoFormViewProps {
     bitset?: number;
     currency?: string;
     thresholds: string[];
-    countries?: { code: string; name: string }[];
-    allCountries?: { code: string; name: string }[];
+    countries?: { countryCode: string; displayName: string }[];
+    allCountries?: { countryCode: string; displayName: string }[];
     currentPaymentOption?: any;
     showInputs?: boolean;
     bankCountry?: string;

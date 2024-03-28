@@ -13,9 +13,11 @@ import {
   CURRENCIES_NAMESPACE,
   CountriesQuery,
   Currencies,
+  SORTED_COUNTRIES_NAMESPACE,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
+  TaxCountry,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
   UserFormContext,
@@ -23,6 +25,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { objectIsFull } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
+import { getCountryObj } from "../sqm-tax-and-cash/useTaxAndCash";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -52,13 +55,12 @@ export type InitialData = {
 };
 
 export function useUserInfoForm(props: TaxForm) {
-  const user = useUserIdentity();
-  const locale = useLocale();
   const currencyRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
 
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
 
+  const countries = useParentValue<TaxCountry[]>(SORTED_COUNTRIES_NAMESPACE);
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
     USER_FORM_CONTEXT_NAMESPACE
@@ -69,8 +71,6 @@ export function useUserInfoForm(props: TaxForm) {
     loading,
     errors: userError,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
-  const { data: countriesRes, loading: countriesLoading } =
-    useParentQueryValue<CountriesQuery>(COUNTRIES_QUERY_NAMESPACE);
 
   const _currencies = useParentValue<Currencies>(CURRENCIES_NAMESPACE);
   const currencies = useMemo(
@@ -81,30 +81,8 @@ export function useUserInfoForm(props: TaxForm) {
     [_currencies]
   );
 
-  const intlLocale = locale?.replace("_", "-") || "en";
-  const getCountryObj = (countryCode: string) => {
-    // @ts-ignore DisplayNames not in Intl type
-    const displayName = new Intl.DisplayNames([intlLocale], {
-      type: "region",
-    }).of(countryCode);
-
-    return {
-      countryCode,
-      displayName,
-    };
-  };
-
-  const countries = useMemo(
-    () =>
-      [...(countriesRes?.impactPayoutCountries?.data || [])]
-        .sort((a, b) => a.displayName.localeCompare(b.displayName))
-        .map((country) => getCountryObj(country.countryCode)),
-    [countriesRes?.impactPayoutCountries?.data]
-  );
-
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
-
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCurrencies, setFilteredCurrencies] = useState(
     currencies || []

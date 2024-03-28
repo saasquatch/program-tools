@@ -24,6 +24,7 @@ import {
   GET_CURRENCIES,
   GET_FINANCE_NETWORK_SETTINGS,
   GET_USER,
+  SORTED_COUNTRIES_NAMESPACE,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
@@ -187,6 +188,13 @@ export function useTaxAndCash() {
     }
   );
 
+  const [_sortedCountriesContext, setSortedCountriesContext] = useParentState<
+    TaxCountry[]
+  >({
+    namespace: SORTED_COUNTRIES_NAMESPACE,
+    initialValue: [],
+  });
+
   const { data, errors } = useParentQuery<UserQuery>({
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
@@ -251,6 +259,45 @@ export function useTaxAndCash() {
     return allValidCurrencies;
   }, [financeNetworkData, countryCode]);
 
+  const intlLocale = locale?.replace("_", "-") || "en";
+
+  const sortByName = (a: TaxCountry, b: TaxCountry) =>
+    a.displayName < b.displayName ? -1 : 1;
+
+  const paymentOptions = financeNetworkData?.impactFinanceNetworkSettings?.data;
+
+  // filter out any duplicate countries and null countryCode
+  const availableCountries = useMemo(
+    () =>
+      new Set(
+        paymentOptions
+          ?.map((option) => option.countryCode)
+          .filter((value) => value)
+      ),
+    [paymentOptions]
+  );
+
+  const _topCountries = ["CA", "GB", "US"];
+
+  const sortedCountries = useMemo(
+    () =>
+      Array.from(availableCountries)
+        .map((countryCode) =>
+          getCountryObj({ countryCode, locale: intlLocale })
+        )
+        .sort(sortByName)
+        .reduce((prev, countryObj) => {
+          if (_topCountries.includes(countryObj.countryCode))
+            return [countryObj, ...prev];
+          return [...prev, countryObj];
+        }, []),
+    [availableCountries]
+  );
+
+  useEffect(() => {
+    if (sortedCountries) setSortedCountriesContext(sortedCountries);
+  }, [sortedCountries]);
+
   useEffect(() => {
     if (supportedCurrencies) setCurrenciesContext(supportedCurrencies);
   }, [supportedCurrencies]);
@@ -273,6 +320,7 @@ export function useTaxAndCash() {
   }, [host, user, data?.user?.email, errors]);
 
   function getFinanceNetworkFilter() {
+    if (step === "/1") return {};
     if (step === "/4")
       return { currency_eq: data?.user?.impactConnection?.publisher?.currency };
 
@@ -293,3 +341,21 @@ export function useTaxAndCash() {
 }
 
 export type UseTaxAndCashResultType = ReturnType<typeof useTaxAndCash>;
+
+export function getCountryObj({
+  countryCode,
+  locale,
+}: {
+  countryCode: string;
+  locale: string;
+}) {
+  // @ts-ignore DisplayNames not in Intl type
+  const displayName = new Intl.DisplayNames([locale], {
+    type: "region",
+  }).of(countryCode);
+
+  return {
+    countryCode,
+    displayName,
+  };
+}
