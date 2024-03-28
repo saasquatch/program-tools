@@ -1,14 +1,15 @@
 import {
   useLocale,
   useMutation,
+  useParent,
+  useParentQueryValue,
+  useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { intl } from "../../../global/global";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,

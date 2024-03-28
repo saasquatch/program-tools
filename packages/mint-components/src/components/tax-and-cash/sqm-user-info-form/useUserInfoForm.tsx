@@ -5,8 +5,6 @@ import {
   useState,
 } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   CURRENCIES_NAMESPACE,
   Currencies,
@@ -22,6 +20,11 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { objectIsFull } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
+import {
+  useParent,
+  useParentQueryValue,
+  useParentValue,
+} from "@saasquatch/component-boilerplate";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {

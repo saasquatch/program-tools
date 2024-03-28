@@ -2,13 +2,12 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { useParentState } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
 import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { ErrorView } from "./ErrorView";
 
 /**

@@ -1,7 +1,6 @@
-import { useLocale } from "@saasquatch/component-boilerplate";
+import { useParentQueryValue } from "@saasquatch/component-boilerplate";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { USER_QUERY_NAMESPACE, UserQuery } from "../sqm-tax-and-cash/data";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
 import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";

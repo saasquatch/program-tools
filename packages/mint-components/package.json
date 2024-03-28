@@ -69,7 +69,8 @@
   },
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.0.0",
-    "@saasquatch/component-boilerplate": "^1.6.2",
+    "@saasquatch/component-boilerplate": "^1.6.3-1",
+    "@saasquatch/mint-components": "^1.8.0-131",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.1.0",
@@ -78,7 +79,6 @@
     "canvas-confetti": "^1.4.0",
     "color2k": "^1.2.4",
     "deepmerge": "^4.2.2",
-    "fast-equals": "^4.0.3",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "highlight.js": "^10.6.0",
