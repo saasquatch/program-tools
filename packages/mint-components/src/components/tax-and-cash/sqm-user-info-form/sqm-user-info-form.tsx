@@ -87,12 +87,13 @@ export class TaxForm {
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
   /**
-   * Label text for tax and banking collection checkbox
+   * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    */
   @Prop() allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
+   * The text link that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiWidget textArea
    */

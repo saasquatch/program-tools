@@ -117,8 +117,8 @@ export namespace Components {
          */
         "branchCodeLabel": string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
          */
         "businessSelectItemLabel": string;
         /**
@@ -167,8 +167,8 @@ export namespace Components {
          */
         "fieldRequiredError": string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
          */
         "foreignSelectItemLabel": string;
         /**
@@ -196,8 +196,8 @@ export namespace Components {
          */
         "ibanLabel": string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
          */
         "individualSelectItemLabel": string;
         /**
@@ -1072,7 +1072,7 @@ export namespace Components {
         "selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
          */
         "subRegion": string;
         /**
@@ -4077,7 +4077,7 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
@@ -4124,6 +4124,7 @@ export namespace Components {
          */
         "step1_searchForCurrencyText": string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
@@ -4226,7 +4227,7 @@ export namespace Components {
         "step2_selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion": string;
@@ -4366,8 +4367,8 @@ export namespace Components {
          */
         "step4_branchCodeLabel": string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel": string;
@@ -4410,8 +4411,8 @@ export namespace Components {
          */
         "step4_eftWithdrawalLabel": string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel": string;
@@ -4426,8 +4427,8 @@ export namespace Components {
          */
         "step4_ibanLabel": string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel": string;
@@ -4868,7 +4869,7 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
@@ -4970,6 +4971,7 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
@@ -5821,8 +5823,8 @@ declare namespace LocalJSX {
          */
         "branchCodeLabel"?: string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
          */
         "businessSelectItemLabel"?: string;
         /**
@@ -5871,8 +5873,8 @@ declare namespace LocalJSX {
          */
         "fieldRequiredError"?: string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
          */
         "foreignSelectItemLabel"?: string;
         /**
@@ -5900,8 +5902,8 @@ declare namespace LocalJSX {
          */
         "ibanLabel"?: string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
          */
         "individualSelectItemLabel"?: string;
         /**
@@ -6776,7 +6778,7 @@ declare namespace LocalJSX {
         "selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
          */
         "subRegion"?: string;
         /**
@@ -9751,7 +9753,7 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
@@ -9798,6 +9800,7 @@ declare namespace LocalJSX {
          */
         "step1_searchForCurrencyText"?: string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
@@ -9900,7 +9903,7 @@ declare namespace LocalJSX {
         "step2_selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
-          * @uiName Sub-region input label
+          * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
          */
         "step2_subRegion"?: string;
@@ -10040,8 +10043,8 @@ declare namespace LocalJSX {
          */
         "step4_branchCodeLabel"?: string;
         /**
-          * Label text for the business select item
-          * @uiName Business select item label
+          * One of three options listed for the classification field
+          * @uiName Business classification option
           * @uiGroup Step 4 Properties
          */
         "step4_businessSelectItemLabel"?: string;
@@ -10084,8 +10087,8 @@ declare namespace LocalJSX {
          */
         "step4_eftWithdrawalLabel"?: string;
         /**
-          * Label text for the foreign select item
-          * @uiName Foreign select item label
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
          */
         "step4_foreignSelectItemLabel"?: string;
@@ -10100,8 +10103,8 @@ declare namespace LocalJSX {
          */
         "step4_ibanLabel"?: string;
         /**
-          * Label text for the individual select item
-          * @uiName Individual select item label
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel"?: string;
@@ -10541,7 +10544,7 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
-          * Label text for tax and banking collection checkbox
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
@@ -10643,6 +10646,7 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
         /**
+          * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
