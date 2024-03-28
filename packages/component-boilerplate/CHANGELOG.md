@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   - Allows a parent component to share graphQL query data with child component(s)
 
-- `useParentState`, `useParentState`, `useParent`, `useParentValue`, `useSetParent` hooks
+- `useParentState`, `useParentState`, `useParent`, `useParentValue`, `useSetParent`, `getContextName`, `getContextValueName` hooks
   - Allows a parent component to share state with child component(s)
 
 ## [1.6.2] - 2024-02-13

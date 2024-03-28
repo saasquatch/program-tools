@@ -58,6 +58,8 @@ export {
   useParent,
   useParentValue,
   useSetParent,
+  getContextName,
+  getContextValueName,
 } from "./hooks/useParentState";
 
 //
