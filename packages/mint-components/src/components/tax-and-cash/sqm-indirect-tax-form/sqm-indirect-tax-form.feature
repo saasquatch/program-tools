@@ -95,7 +95,7 @@ Feature: Indirect Tax Form
     Given the user selects the "registered" option
     And they select one of the following <countries> with <typeTax> is the indirect tax country
       | countries      | typeTax |
-      | UK             | VAT     |
+      | United Kingdom | VAT     |
       | Australia      | GST     |
       | New Zealand    | GST     |
       | Austria        | VAT     |
@@ -196,7 +196,7 @@ Feature: Indirect Tax Form
       | option        | indirectCountryCode | indirectTaxId | indirectTaxRegion | additionalTaxId | withholdingTaxId | taxFields                                                               |
       | notRegistered | n/a                 | n/a           | n/a               | n/a             | n/a              | ""                                                                      |
       | registered    | US (United States)  |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
-      | registered    | UK (United Kingdom) |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
+      | registered    | GB (United Kingdom) |        123123 | n/a               | n/a             | n/a              | indirectCountryCode, indirectTaxId                                      |
       | registered    | CA (Canada)         |        123123 | BC                | n/a             | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion                   |
       | registered    | CA (Canada)         |        123123 | QU                |             333 | n/a              | indirectCountryCode, indirectTaxId, indirectTaxRegion, additionalTaxId  |
       | registered    | ES (Spain)          |        123123 | SPAINPROPER       | n/a             |              333 | indirectCountryCode, indirectTaxId, indirectTaxRegion, withholdingTaxId |
