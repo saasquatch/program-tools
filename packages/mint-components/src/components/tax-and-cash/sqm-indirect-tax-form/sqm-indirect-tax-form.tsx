@@ -265,6 +265,7 @@ export class IndirectTaxForm {
           disabled: props.states.disabled || props.states.isPartner,
           formState: props.slotProps.formState,
           loading: props.states.loading,
+          isPartner: props.states.isPartner,
         }}
         callbacks={props.callbacks}
         data={{
