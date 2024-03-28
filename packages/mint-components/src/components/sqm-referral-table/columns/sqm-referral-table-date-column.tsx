@@ -47,13 +47,13 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral, locale: string) {
+  async renderCell(data: Referral, options?: { locale: string }) {
     // TODO - Validate `dateShown` against a set of known values
 
     return (
       <sqm-referral-table-date-cell
         date={data[this.dateShown]}
-        locale={locale}
+        locale={options?.locale}
       ></sqm-referral-table-date-cell>
     );
   }

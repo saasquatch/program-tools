@@ -3,6 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 interface DividedLayoutViewProps {
   direction: "row" | "column";
+  contentAreaWidth?: string | null;
   dividerStyle: string;
 }
 
@@ -41,6 +42,11 @@ export function DividedLayoutView(
     ${
       props.direction === "column"
         ? "width: 100%; max-width: var(--sqm-portal-main-width);"
+        : ""
+    }
+    ${
+      props.contentAreaWidth !== null
+        ? `max-width: ${props.contentAreaWidth} !important;`
         : ""
     }
   `;

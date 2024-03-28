@@ -6,7 +6,7 @@ import {
 import scenario from "./sqm-portal-email-verification.feature";
 
 export default {
-  title: "Components/Portal Email Verification",
+  title: "Components/Microsite Email Verification",
   parameters: {
     scenario,
   },

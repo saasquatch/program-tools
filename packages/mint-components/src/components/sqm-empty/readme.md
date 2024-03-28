@@ -18,6 +18,7 @@
 
 ### Used by
 
+ - [sqm-invoice-table](../sqm-invoice-table)
  - [sqm-leaderboard](../sqm-leaderboard)
  - [sqm-referral-table](../sqm-referral-table)
  - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
@@ -27,7 +28,6 @@
 ### Depends on
 
 - [sqm-portal-container](../sqm-portal-container)
-- [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-text](../sqm-text)
 
@@ -35,9 +35,9 @@
 ```mermaid
 graph TD;
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
+  sqm-invoice-table --> sqm-empty
   sqm-leaderboard --> sqm-empty
   sqm-referral-table --> sqm-empty
   sqm-reward-exchange-list --> sqm-empty

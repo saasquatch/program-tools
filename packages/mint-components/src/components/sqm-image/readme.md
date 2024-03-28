@@ -19,13 +19,11 @@
 
 ### Used by
 
- - [sqm-empty](../sqm-empty)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-empty --> sqm-image
   sqm-stencilbook --> sqm-image
   style sqm-image fill:#f9f,stroke:#333,stroke-width:4px
 ```

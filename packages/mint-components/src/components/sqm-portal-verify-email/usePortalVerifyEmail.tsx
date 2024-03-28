@@ -1,10 +1,17 @@
-import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
+
+const SUBMITTED_CONTEXT = "sq:verify-submitted";
+
+function setSubmitted(submitted: boolean) {
+  // using window due to dom-context getting reset on re-render
+  window[SUBMITTED_CONTEXT] = submitted;
+}
 
 export function usePortalVerifyEmail({
   nextPage,
@@ -13,7 +20,9 @@ export function usePortalVerifyEmail({
   verifyEmailText,
   verifyInvalidText,
   networkErrorMessage,
+  continueText,
 }) {
+  const submitted = window[SUBMITTED_CONTEXT];
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -44,6 +53,8 @@ export function usePortalVerifyEmail({
   };
 
   const submit = async () => {
+    setSubmitted(true);
+
     if (oobCode) {
       const result = await request({ oobCode });
       if (
@@ -56,6 +67,7 @@ export function usePortalVerifyEmail({
       }
       setTimeout(() => {
         gotoNextPage();
+        setSubmitted(false);
       }, 3000);
     }
   };
@@ -65,10 +77,13 @@ export function usePortalVerifyEmail({
     if (verified) {
       setTimeout(() => {
         gotoNextPage();
+        setSubmitted(false);
       }, 3000);
+      return;
     }
-    !data && submit();
-  }, [verified]);
+
+    if (userIdent && !data && !submitted) submit();
+  }, [verified, submitted, data, userIdent, submitted]);
 
   return {
     states: {
@@ -90,6 +105,7 @@ export function usePortalVerifyEmail({
       verifySuccessText,
       verifyEmailText,
       verifyInvalidText,
+      continueText,
     },
   };
 }

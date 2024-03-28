@@ -11,6 +11,7 @@ import { luxonLocale } from "../../../utils/utils";
 })
 export class ReferralTableRewardsCell {
   @Prop() rewards: Reward[];
+  @Prop() taxConnection: ImpactConnection;
   @Prop() hideDetails: boolean;
   @Prop() statusText: string;
   @Prop() statusLongText: string;
@@ -88,7 +89,10 @@ export class ReferralTableRewardsCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getState = (reward: Reward): string => {
+    const getState = (
+      reward: Reward,
+      taxConnection: ImpactConnection
+    ): string => {
       const possibleStates = [
         "REDEEMED",
         "CANCELLED",
@@ -97,6 +101,13 @@ export class ReferralTableRewardsCell {
         "AVAILABLE",
         "PENDING_REVIEW",
         "DENIED",
+        "PAYOUT_APPROVED",
+        "PAYOUT_CANCELLED",
+        "PAYOUT_FAILED",
+        "PENDING_TAX_REVIEW",
+        "PENDING_NEW_TAX_FORM",
+        "PENDING_TAX_SUBMISSION",
+        "PENDING_PARTNER_CREATION",
       ];
 
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
@@ -104,6 +115,33 @@ export class ReferralTableRewardsCell {
           return "PENDING_REVIEW";
         if (reward.referral?.fraudData?.moderationStatus === "DENIED")
           return "DENIED";
+      }
+
+      const partnerFundsStatus = reward.partnerFundsTransfer?.status;
+      if (
+        partnerFundsStatus === "NOT_YET_DUE" ||
+        partnerFundsStatus === "TRANSFERRED"
+      ) {
+        return "PAYOUT_APPROVED";
+      } else if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
+      else if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
+
+      if (reward?.pendingReasons?.includes("US_TAX")) {
+        if (!taxConnection?.taxHandlingEnabled) return "PENDING";
+        if (!taxConnection?.connected) return "PENDING_PARTNER_CREATION";
+        if (taxConnection?.publisher?.requiredTaxDocumentType) {
+          if (!taxConnection?.publisher?.currentTaxDocument)
+            return "PENDING_TAX_SUBMISSION";
+
+          const status = taxConnection.publisher.currentTaxDocument.status;
+          if (status === "INACTIVE") return "PENDING_NEW_TAX_FORM";
+          if (status === "NOT_VERIFIED") return "PENDING_TAX_REVIEW";
+        }
+        if (!taxConnection?.publisher?.withdrawalSettings)
+          return "PENDING_PARTNER_CREATION";
+      }
+      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+        return "PENDING_PARTNER_CREATION";
       }
 
       if (reward.statuses.length === 1) return reward.statuses[0];
@@ -116,13 +154,20 @@ export class ReferralTableRewardsCell {
     const getSLBadgeType = (state: string): string => {
       switch (state) {
         case "REDEEMED":
+        case "PAYOUT_APPROVED":
           return "primary";
         case "DENIED":
         case "EXPIRED":
         case "CANCELLED":
+        case "PAYOUT_FAILED":
+        case "PAYOUT_CANCELLED":
           return "danger";
         case "PENDING":
         case "PENDING_REVIEW":
+        case "PENDING_TAX_REVIEW":
+        case "PENDING_NEW_TAX_FORM":
+        case "PENDING_TAX_SUBMISSION":
+        case "PENDING_PARTNER_CREATION":
           return "warning";
         case "AVAILABLE":
           return "success";
@@ -139,7 +184,7 @@ export class ReferralTableRewardsCell {
     };
 
     return this.rewards?.map((reward) => {
-      const state = getState(reward);
+      const state = getState(reward, this.taxConnection);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = intl.formatMessage(
         { id: "statusShortMessage", defaultMessage: this.statusText },
@@ -166,7 +211,9 @@ export class ReferralTableRewardsCell {
                 {reward.prettyValue}
               </span>
             </TextSpanView>
-            {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
+            {/* If state is pending and reward has expiry date, 
+            display the relative time inside badge. 
+            Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
@@ -230,6 +277,41 @@ export class ReferralTableRewardsCell {
                       .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_APPROVED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_FAILED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PAYOUT_CANCELLED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_TAX_REVIEW" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_NEW_TAX_FORM" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_TAX_SUBMISSION" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PENDING_PARTNER_CREATION" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
               </div>
             )}
             {state === "DENIED" && reward.referral?.dateModerated && (

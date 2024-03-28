@@ -11,12 +11,18 @@ export function EmptyStateView(props: EmptyStateViewProps) {
 
   return (
     <sqm-portal-container padding="large" gap="medium" part="sqm-base">
-      <sqm-image image-url={emptyStateImage}></sqm-image>
-      <sqm-titled-section label-margin="xxx-small" text-align="center">
+      <img style={{ height: "100px", margin: "auto" }} src={emptyStateImage} />
+      <sqm-titled-section
+        style={{ maxHeight: "400px" }}
+        label-margin="xxx-small"
+        text-align="center"
+      >
         <sqm-text slot="label">
-          <h4>{emptyStateHeader}</h4>
+          <p>{emptyStateHeader}</p>
         </sqm-text>
-        <sqm-text slot="content">{emptyStateText}</sqm-text>
+        <sqm-text slot="content">
+          <p style={{ color: "var(--sl-color-gray-500)" }}>{emptyStateText}</p>
+        </sqm-text>
       </sqm-titled-section>
     </sqm-portal-container>
   );

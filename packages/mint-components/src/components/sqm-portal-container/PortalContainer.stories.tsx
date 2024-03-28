@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import scenario from "./sqm-portal-container.feature";
 
 export default {
-  title: "Components/Portal Container",
+  title: "Components/Microsite Container",
   parameters: {
     scenario,
   },

@@ -3,7 +3,7 @@ import { PortalFooterView } from "./sqm-portal-footer-view";
 import scenario from "../sqm-portal-footer/sqm-portal-footer.feature";
 
 export default {
-  title: "Components/Portal Footer",
+  title: "Components/Microsite Footer",
   parameters: {
     scenario,
   },

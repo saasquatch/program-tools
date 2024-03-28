@@ -24,7 +24,7 @@ export interface GenericTableViewProps {
     nextPage: () => void;
   };
   elements: {
-    columns: string[];
+    columns: Array<VNode | string>;
     rows: VNode[][];
     loading?: boolean;
     emptyElement?: VNode;
@@ -55,8 +55,8 @@ export function GenericTableView(props: GenericTableViewProps) {
       "& tbody tr": {
         borderBottom: "1px solid var(--sl-color-neutral-200)",
         "&:first-child": {
-          borderTop: "1px solid var(--sl-color-neutral-200)"
-        }
+          borderTop: "1px solid var(--sl-color-neutral-200)",
+        },
       },
       "& th": {
         paddingBottom: "var(--sl-spacing-small)",
@@ -141,7 +141,7 @@ export function GenericTableView(props: GenericTableViewProps) {
         {data.textOverrides.showLabels && (
           <thead>
             <tr>
-              {columns?.map((column) => {
+              {columns?.map((column: string | VNode) => {
                 if (typeof column === "string") return <th>{column}</th>;
                 return <th style={{ width: "30px" }}>{column}</th>;
               })}
@@ -175,7 +175,7 @@ export function GenericTableView(props: GenericTableViewProps) {
                         {cell}
                       </td>
                     ) : (
-                      <td></td>
+                      <td>{cell}</td>
                     );
                   })}
                 </tr>

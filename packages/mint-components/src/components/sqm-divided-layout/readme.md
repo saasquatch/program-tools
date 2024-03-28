@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                 | Type                | Default               |
-| -------------- | --------------- | ------------------------------------------------------------------------------------------- | ------------------- | --------------------- |
-| `direction`    | `direction`     |                                                                                             | `"column" \| "row"` | `undefined`           |
-| `dividerStyle` | `divider-style` | Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color. | `string`            | `"1px solid #EAEAEA"` |
+| Property           | Attribute            | Description                                                                                 | Type                | Default               |
+| ------------------ | -------------------- | ------------------------------------------------------------------------------------------- | ------------------- | --------------------- |
+| `contentAreaWidth` | `content-area-width` | Overrides max-width of content area                                                         | `string`            | `undefined`           |
+| `direction`        | `direction`          |                                                                                             | `"column" \| "row"` | `undefined`           |
+| `dividerStyle`     | `divider-style`      | Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color. | `string`            | `"1px solid #EAEAEA"` |
 
 
 ## Dependencies

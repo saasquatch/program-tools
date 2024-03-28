@@ -331,3 +331,7 @@ export const GeneratedRevenue = createHookStory(() =>
 export const ReferredRevenue = createHookStory(() =>
   View("/userStats/referredRevenue", "/(userStat)/:statId", "Referred Revenue")
 );
+
+export const PayoutBalance = createHookStory(() =>
+  View("/payoutBalance", "/(payoutBalance)")
+);

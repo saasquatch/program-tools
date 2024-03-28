@@ -1,0 +1,7 @@
+sqm-router {
+  /** 
+    Acts like a slot, doesn't provide it's own box 
+    see: https://developer.mozilla.org/en-US/docs/Web/CSS/display#box
+  **/
+  display: contents;
+}

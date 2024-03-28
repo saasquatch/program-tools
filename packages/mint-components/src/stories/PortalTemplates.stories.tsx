@@ -3,6 +3,7 @@ import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import portalTemplate from "../templates/Portal.html";
 import portalLeadSubmitTemplate from "../templates/PortalLeadSubmit.html";
+import taxAndCashTemplate from "../templates/TaxAndCash.html";
 import portalLeadSubmitTemplateWithDashboard from "../templates/PortalLeadSubmitWithDashboard.html";
 import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
 import multiProgramTemplate from "../templates/MultiProgramPortal.html";
@@ -13,6 +14,7 @@ import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
 import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
 import verifyEmailTemplate from "../templates/VerifyEmail.html";
+import taxPayoutReminderEmailTemplate from "../templates/taxPayoutReminderEmail.html";
 import loginTemplate from "../templates/Login.html";
 import registerTemplate from "../templates/Register.html";
 import forgotPasswordTemplate from "../templates/ForgotPassword.html";
@@ -33,7 +35,7 @@ import { DefaultTemplateView } from "../utils/DefaultTemplateView";
 import { TemplateView } from "../utils/TemplateView";
 
 export default {
-  title: "Templates / Portal",
+  title: "Templates / Microsite",
 };
 
 function useTemplate(templateString: string) {
@@ -45,7 +47,7 @@ function useTemplate(templateString: string) {
   };
 }
 
-export const DefaultPortal = createHookStory(() => {
+export const DefaultMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalTemplate);
   return (
     <DefaultTemplateView
@@ -56,7 +58,7 @@ export const DefaultPortal = createHookStory(() => {
   );
 });
 
-export const MultiProgramPortal = createHookStory(() => {
+export const MultiProgramMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(multiProgramTemplate);
   return (
     <DefaultTemplateView
@@ -67,7 +69,7 @@ export const MultiProgramPortal = createHookStory(() => {
   );
 });
 
-export const LeadSubmitPortal = createHookStory(() => {
+export const LeadSubmitMicrosite = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalLeadSubmitTemplate);
   return (
     <DefaultTemplateView
@@ -75,6 +77,17 @@ export const LeadSubmitPortal = createHookStory(() => {
       callbacks={callbacks}
       template={portalLeadSubmitTemplateWithDashboard}
       leadSubmit={true}
+    />
+  );
+});
+
+export const TaxAndCash = createHookStory(() => {
+  const { states, callbacks } = useTemplate(taxAndCashTemplate);
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={taxAndCashTemplate}
     />
   );
 });
@@ -193,5 +206,10 @@ export const ResetPasswordEmail = createHookStory(() => {
 
 export const VerifyEmail = createHookStory(() => {
   const { states, callbacks } = useTemplate(verifyEmailTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const taxPayoutReminderEmail = createHookStory(() => {
+  const { states, callbacks } = useTemplate(taxPayoutReminderEmailTemplate);
   return <TemplateView states={states} callbacks={callbacks} />;
 });

@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 
 export default {
-  title: "Components/Portal Password Field",
+  title: "Components/Microsite Password Field",
 };
 
 export const Start = () => {

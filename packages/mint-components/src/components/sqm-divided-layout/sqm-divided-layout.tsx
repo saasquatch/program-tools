@@ -24,6 +24,13 @@ export class DividedLayout {
   @Prop() direction: "row" | "column";
 
   /**
+   * Overrides max-width of content area
+   * @uiName Content Area Width
+   * @uiType string
+   */
+  @Prop() contentAreaWidth: string | null;
+
+  /**
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border style
    */

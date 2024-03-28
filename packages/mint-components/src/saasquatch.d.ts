@@ -40,6 +40,27 @@ interface Referrer {
   rewards: Reward[];
 }
 
+interface ImpactConnection {
+  connected: boolean;
+  taxHandlingEnabled: boolean;
+  publisher: null | {
+    requiredTaxDocumentType: null | "W9" | "W8BEN" | "W8BENE";
+    currentTaxDocument: null | {
+      status: "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
+      type: "W9" | "W8BEN" | "W8BENE";
+      dateCreated: number;
+    };
+    withdrawalSettings: null | {
+      paymentMethod: "PAYPAL" | "BANK_TRANSFER";
+    };
+    payoutsAccount: null | {
+      hold: boolean;
+      holdReasons: string[];
+      balance: string;
+    };
+  };
+}
+
 type FraudStatus = "PENDING" | "DENIED" | "APPROVED";
 
 interface Reward {
@@ -48,11 +69,14 @@ interface Reward {
   value: number;
   unit: string;
   name: string;
-  dateGiven: number;
+  dateGiven?: number;
   meta?: { message?: string };
   dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;
+  datePayoutExpected?: number;
+  datePayoutStarted?: number;
+  datePayoutRetried?: number;
   dateRedeemed: number;
   fuelTankCode: string;
   fuelTankType: string;
@@ -91,6 +115,13 @@ interface Reward {
   referral?: Referral;
   pendingReasons?: string[];
   cancelledReason?: "UNKNOWN" | "PROGRAM_GRAPH_MODERATION" | "SUSPECTED_FRAUD";
+  partnerFundsTransfer?: {
+    id: string;
+    status: "NOT_YET_DUE" | "OVERDUE" | "TRANSFERRED" | "REVERSED" | null;
+    dateCreated: number | null;
+    dateScheduled: number | null;
+    dateTransferred: number | null;
+  };
   rewardRedemptionTransactions: {
     data: [
       {
@@ -139,3 +170,13 @@ interface RewardBalance {
 }
 declare module "*.md";
 declare module "react";
+
+interface Invoice {
+  downloadURL: string;
+  dateCreated: number;
+  invoiceId: string;
+  program: string;
+  earnings: string;
+  taxedAmount: string;
+  netEarnings: string;
+}

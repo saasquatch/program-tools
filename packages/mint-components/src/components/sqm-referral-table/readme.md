@@ -40,7 +40,6 @@ graph TD;
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-referral-table
