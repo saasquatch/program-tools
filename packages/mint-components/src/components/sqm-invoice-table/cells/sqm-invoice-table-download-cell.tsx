@@ -8,7 +8,7 @@ import { Component, h, Host, Prop, State } from "@stencil/core";
 export class InvoiceTableDownloadCell {
   @State()
   ignored = true;
-  @Prop() downloadURL: string;
+  @Prop() downloadUrl: string;
   constructor() {
     withHooks(this);
   }
@@ -18,10 +18,11 @@ export class InvoiceTableDownloadCell {
     const vanillaStyle = `svg:hover, svg:hover * {
       cursor: pointer;
     }`;
+
     return (
       <Host>
         <style>{vanillaStyle}</style>
-        <a href={this.downloadURL}>
+        <a href={this.downloadUrl} target="_blank">
           <svg
             width="20"
             height="20"

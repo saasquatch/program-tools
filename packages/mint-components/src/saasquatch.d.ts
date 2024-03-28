@@ -172,7 +172,7 @@ declare module "*.md";
 declare module "react";
 
 interface Invoice {
-  downloadURL: string;
+  downloadUrl: string;
   dateCreated: number;
   invoiceId: string;
   program: string;
