@@ -15,7 +15,7 @@ const getMockData = (): Invoice => {
   const taxedAmount = Math.round(earnings * 0.2);
 
   return {
-    downloadURL: "https://example.com",
+    downloadUrl: "https://example.com",
     dateCreated: today.toMillis(),
     invoiceId,
     program: "my-program",

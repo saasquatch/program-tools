@@ -18,9 +18,10 @@ export class InvoiceTableGenericColumn implements InvoiceTableColumn {
 
   @Method()
   async renderCell(data: Invoice) {
+    console.log({ data });
     return (
       <sqm-invoice-table-download-cell
-        downloadURL={data.downloadURL}
+        downloadUrl={data.downloadUrl}
       ></sqm-invoice-table-download-cell>
     );
   }

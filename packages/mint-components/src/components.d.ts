@@ -1301,7 +1301,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDownloadCell {
-        "downloadURL": string;
+        "downloadUrl": string;
     }
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
@@ -6997,7 +6997,7 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
     }
     interface SqmInvoiceTableDownloadCell {
-        "downloadURL"?: string;
+        "downloadUrl"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
     }

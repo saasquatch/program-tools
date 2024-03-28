@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute        | Description | Type     | Default     |
-| ------------- | ---------------- | ----------- | -------- | ----------- |
-| `downloadURL` | `download-u-r-l` |             | `string` | `undefined` |
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `downloadUrl` | `download-url` |             | `string` | `undefined` |
 
 
 ## Dependencies

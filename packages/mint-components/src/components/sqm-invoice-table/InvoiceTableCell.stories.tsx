@@ -37,7 +37,7 @@ export const TaxedAmountCell = () => {
 
 export const DownloadCell = () => {
   return (
-    <sqm-invoice-table-download-cell downloadURL="https://www.example.com"></sqm-invoice-table-download-cell>
+    <sqm-invoice-table-download-cell downloadUrl="https://www.example.com"></sqm-invoice-table-download-cell>
   );
 };
 
