@@ -687,12 +687,12 @@ export function useBankingInfoForm(
     }
 
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-      if (paymentOption.countryCode !== initialData.bankCountry) return false;
       if (
         initialData.paymentMethod === "PAYPAL" &&
-        paymentOption.defaultFinancePaymentMethodId !== 7
+        paymentOption.defaultFinancePaymentMethodId === 7
       )
-        return false;
+        return true;
+      if (paymentOption.countryCode !== initialData.bankCountry) return false;
       return true;
     });
 
