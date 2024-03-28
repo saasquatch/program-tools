@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-boilerplate",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
@@ -47,6 +47,7 @@
     "@wry/equality": "^0.5.2",
     "debounce": "^1.2.0",
     "dom-context": "^1.2.0",
+    "fast-equals": "^5.0.1",
     "fast-memoize": "^2.5.2",
     "graphql": "^15.5.0",
     "graphql-combine-query": "^1.2.3",
