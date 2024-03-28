@@ -70,7 +70,6 @@
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.0.0",
     "@saasquatch/component-boilerplate": "^1.6.3-2",
-    "@saasquatch/mint-components": "^1.8.0-131",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.1.0",
