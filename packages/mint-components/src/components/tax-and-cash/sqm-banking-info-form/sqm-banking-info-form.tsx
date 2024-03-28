@@ -43,7 +43,7 @@ export class BankingInfoForm {
   @Prop() taxAndPayouts: string = "Payouts";
 
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
+   * Displayed at the top of the page on all set up steps.
    * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =

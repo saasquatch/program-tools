@@ -295,7 +295,7 @@ export namespace Components {
          */
         "taxAndPayouts": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
@@ -604,7 +604,7 @@ export namespace Components {
          */
         "refreshButton": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
@@ -1080,7 +1080,7 @@ export namespace Components {
          */
         "subRegionTaxNumberLabel": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
@@ -4373,12 +4373,6 @@ export namespace Components {
          */
         "step4_businessSelectItemLabel": string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_cannotChangeInfoAlert": string;
-        /**
           * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
@@ -4529,7 +4523,7 @@ export namespace Components {
          */
         "step4_voCodeLabel": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
          */
@@ -4966,7 +4960,7 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
@@ -6001,7 +5995,7 @@ declare namespace LocalJSX {
          */
         "taxAndPayouts"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
@@ -6310,7 +6304,7 @@ declare namespace LocalJSX {
          */
         "refreshButton"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
@@ -6786,7 +6780,7 @@ declare namespace LocalJSX {
          */
         "subRegionTaxNumberLabel"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
@@ -10049,12 +10043,6 @@ declare namespace LocalJSX {
          */
         "step4_businessSelectItemLabel"?: string;
         /**
-          * Alert text indicating participant cannot change info after it has been submitted
-          * @uiName Cannot change info Alert text
-          * @uiGroup Step 4 Properties
-         */
-        "step4_cannotChangeInfoAlert"?: string;
-        /**
           * @uiName Checking account option
           * @uiGroup Step 4 Properties
          */
@@ -10205,7 +10193,7 @@ declare namespace LocalJSX {
          */
         "step4_voCodeLabel"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
          */
@@ -10641,7 +10629,7 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
