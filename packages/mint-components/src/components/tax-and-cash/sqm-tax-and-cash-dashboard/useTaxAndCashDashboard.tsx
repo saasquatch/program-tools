@@ -34,7 +34,7 @@ function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
 
   // @ts-ignore: DisplayNames exists on Intl
-  return new Intl.DisplayNames([locale.replace("_", "-")], {
+  return new Intl.DisplayNames([locale?.replace("_", "-") || "en-US"], {
     type: "region",
     // @ts-ignore: Bad DisplayNames type (has to be array)
   }).of([countryCode]);
