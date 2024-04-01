@@ -298,7 +298,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
     checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
     inputNumber?: number
   ) => {
-    let skeletons = [];
+    let inputNumArray = Array(inputNumber).fill(0);
 
     const flexBoxStyle = {
       display: "flex",
@@ -330,14 +330,12 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
       );
     }
 
-    for (let i = 0; i < inputNumber; i++) {
-      skeletons.push(
-        <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={i}>
-          <div class={classes.SmallSkeleton} />
-          <div class={classes.LargeSkeleton} />
-        </div>
-      );
-    }
+    const skeletons = inputNumArray.map((_, idx) => (
+      <div style={{ ...flexBoxStyle, flexDirection: "column" }} key={idx}>
+        <div class={classes.SmallSkeleton} />
+        <div class={classes.LargeSkeleton} />
+      </div>
+    ));
 
     return skeletons;
   };
