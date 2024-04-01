@@ -110,11 +110,13 @@ const style = {
     maxWidth: "700px",
   },
   IndirectTaxPreviewContainer: {
-    marginTop: "var(--sl-spacing-xx-large)",
+    marginTop: "var(--sl-spacing-x-large)",
     borderTop: "1px solid var(--sl-color-neutral-200)",
   },
   IndirectTaxPreviewHeaderContainer: {
-    marginTop: "var(--sl-spacing-x-large)",
+    marginTop: "var(--sl-spacing-large)",
+    marginBottom: "var(--sl-spacing-xx-small)",
+    margin: "0",
     display: "flex",
     gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {

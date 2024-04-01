@@ -9,7 +9,6 @@ export default {
 const defaultProps: ProgressBarProps = {
   progress: 2,
   goal: 4,
-  //   progressBarUnit: string,
   steps: true,
 };
 
