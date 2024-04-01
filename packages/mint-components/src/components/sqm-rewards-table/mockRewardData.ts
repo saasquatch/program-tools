@@ -99,12 +99,12 @@ const getMockData = (status?: string): Reward => {
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires = today.minus({ days: 1 }).toMillis();
   } else if (randomStatus === "PENDING") {
-    pendingReason = ["PAYOUT_CONFIGURATION_MISSING"];
-    // const reason = pendingReasons[Math.floor(Math.random() * 3)];
-    // pendingReason = [reason];
-    // if (reason === "SCHEDULED") {
-    //   dateScheduledFor = today.plus({ days: 6 }).toMillis();
-    // }
+    // pendingReason = ["PAYOUT_CONFIGURATION_MISSING"];
+    const reason = pendingReasons[Math.floor(Math.random() * 3)];
+    pendingReason = [reason];
+    if (reason === "SCHEDULED") {
+      dateScheduledFor = today.plus({ days: 6 }).toMillis();
+    }
   } else if (randomStatus === "REDEEMED") {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;

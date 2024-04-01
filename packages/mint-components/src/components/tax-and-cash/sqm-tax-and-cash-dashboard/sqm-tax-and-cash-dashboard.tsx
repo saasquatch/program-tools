@@ -1,18 +1,14 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Host, Prop, h } from "@stencil/core";
+import { Component, h, Host, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
+import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
 import {
-  TaxAndCashDashboardProps,
-  TaxAndCashDashboardView,
-} from "./sqm-tax-and-cash-dashboard-view";
-import {
-  UseTaxAndCashDashboardResult,
   useTaxAndCashDashboard,
+  UseTaxAndCashDashboardResult,
 } from "./useTaxAndCashDashboard";
-import { NextPayout } from "../sqm-payout-details-card/PayoutDetailsCard.stories";
 
 /**
  * @uiName Tax and Cash Status Dashboard
@@ -379,7 +375,6 @@ function useDemoTaxAndCashDashboard(
         indirectTaxNumber: 55555555,
         indirectTaxType: "Indirect Tax",
         noFormNeeded: true,
-        expiresSoon: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,

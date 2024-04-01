@@ -20,16 +20,6 @@ import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 
-function getExpiresSoon(submissionDate: number, expiryDate: number) {
-  if (!submissionDate || !expiryDate) return false;
-  return (
-    DateTime.fromMillis(expiryDate).diff(
-      DateTime.fromMillis(submissionDate),
-      "days"
-    )?.days <= 30
-  );
-}
-
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
 
@@ -98,11 +88,6 @@ export const useTaxAndCashDashboard = (
     ? DateTime.fromMillis(submissionDate).toFormat("LLL dd, yyyy")
     : undefined;
 
-  const expiryDate = DateTime.now().plus({ days: 30 }).toMillis();
-  const dateExpired = DateTime.fromMillis(expiryDate).toFormat("LLL dd, yyyy");
-
-  const expiresSoon = getExpiresSoon(expiryDate, submissionDate);
-
   const onEditPayoutInfo = () => {
     setContext({
       overrideNextStep: "/dashboard",
@@ -131,7 +116,6 @@ export const useTaxAndCashDashboard = (
   return {
     states: {
       dateSubmitted,
-      dateExpired,
       documentType,
       canEditPayoutInfo: publisher?.brandedSignup,
       documentTypeString: taxTypeToName(documentType),
@@ -149,7 +133,6 @@ export const useTaxAndCashDashboard = (
       ),
       notRegistered: !publisher?.taxInformation?.indirectTaxId,
       noFormNeeded: !documentType,
-      expiresSoon,
       disabled: loading,
       loading,
       loadingError: !!userError?.message,

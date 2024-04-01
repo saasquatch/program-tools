@@ -161,7 +161,6 @@ export class TaxForm {
   }
 
   render() {
-    console.debug("Rendering user info form");
     const props = isDemo() ? useDemoUserInfoForm(this) : useUserInfoForm(this);
 
     return (

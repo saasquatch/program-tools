@@ -647,7 +647,7 @@ function useDemoBankingInfoForm(
         setPaymentMethodChecked,
         setPaymentScheduleChecked,
         setCountrySearch: () => {},
-        onBack: async () => console.log("back"),
+        onBack: async () => setStep("/dashboard"),
       },
       text: props.getTextProps(),
       refs: {

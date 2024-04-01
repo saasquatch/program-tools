@@ -337,8 +337,6 @@ export function useReferralTable(
   );
 
   const taxConnection = taxResponse?.viewer?.impactConnection;
-  // const taxConnection = mockTaxData();
-  // const { data } = mockReferralData();
 
   const {
     envelope: referralData,

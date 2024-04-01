@@ -12,8 +12,6 @@ export interface TaxAndCashDashboardProps {
     canEditPayoutInfo: boolean;
     disabled?: boolean;
     dateSubmitted?: string;
-    dateExpired?: string;
-    expiresSoon?: boolean;
     noFormNeeded?: boolean;
     indirectTaxType?: string;
     qstNumber?: string;
