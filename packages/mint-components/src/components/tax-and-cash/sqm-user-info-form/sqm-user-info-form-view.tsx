@@ -215,7 +215,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
     },
     {
       termsAndConditionsLink: (
-        <a href="https://example.com/" target="_blank">
+        <a href="https://app.impact.com/" target="_blank">
           {text.termsAndConditionsLabel}
         </a>
       ),
