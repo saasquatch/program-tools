@@ -140,8 +140,11 @@ export function useDocusignForm(props: DocusignForm) {
         await refetch();
 
         // Skip banking info form if it already is saved
+        // or if brandedSignup is false
         setStep(
-          context.overrideNextStep || !!publisher?.withdrawalSettings
+          context.overrideNextStep ||
+            !!publisher?.withdrawalSettings ||
+            !publisher?.brandedSignup
             ? "/dashboard"
             : "/4"
         );

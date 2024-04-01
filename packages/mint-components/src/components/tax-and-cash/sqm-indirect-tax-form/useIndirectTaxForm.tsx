@@ -250,8 +250,13 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         // Go to docusign form
         setStep("/3");
       } else {
-        // Go to banking information form
-        setStep("/4");
+        if (publisher?.brandedSignup) {
+          // Go to banking information form
+          setStep("/4");
+        } else {
+          // Go right to the dashboard
+          setStep("/dashboard");
+        }
       }
     } catch (e) {
       setErrors({ general: true });

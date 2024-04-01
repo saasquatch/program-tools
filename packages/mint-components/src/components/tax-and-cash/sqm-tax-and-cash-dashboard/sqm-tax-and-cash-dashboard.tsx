@@ -209,6 +209,12 @@ export class TaxAndCashDashboard {
   @Prop()
   errorDescriptionText: string =
     "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  /**
+   * Text displayed for existing publishers that do not have saved banking information.
+   * @uiName Payout missing information subtext
+   */
+  @Prop() payoutMissingInformationText: string =
+    "Go to Impact.com to add your banking information.";
 
   /**
    * Part of the alert displayed at the top of the page.

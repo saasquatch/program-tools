@@ -23,6 +23,7 @@ export interface PayoutDetailsCardViewProps {
     thresholdPayoutText: string;
     statusBadgeText: string;
     accountText: string;
+    payoutMissingInformationText: string;
     error: {
       errorTitleText: string;
       errorDescriptionText: string;
@@ -260,7 +261,9 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           ) : (
             <div class={classes.AccountDetailsContainer}>
               <span>
-                {text.accountText} {states.cardNumberPreview}
+                {states.cardNumberPreview
+                  ? `${text.accountText} ${states.cardNumberPreview}`
+                  : text.payoutMissingInformationText}
               </span>
             </div>
           )}

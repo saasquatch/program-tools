@@ -40,15 +40,19 @@ function getCurrentStep(user: UserQuery["user"]) {
     return "/1";
   }
 
-  const { requiredTaxDocumentType, currentTaxDocument, withdrawalSettings } =
-    user.impactConnection.publisher;
+  const {
+    requiredTaxDocumentType,
+    currentTaxDocument,
+    withdrawalSettings,
+    brandedSignup,
+  } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
   if (requiredTaxDocumentType && !currentTaxDocument) {
     return "/3";
   }
 
-  if (!withdrawalSettings) return "/4";
+  if (!withdrawalSettings && brandedSignup) return "/4";
 
   return "/dashboard";
 }
