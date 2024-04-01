@@ -7,14 +7,12 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
-import { gql } from "graphql-request";
-import { useRerenderListener } from "../../tables/re-render";
-import { ReferralTable } from "./sqm-referral-table";
-import { GenericTableViewProps } from "../../tables/GenericTableView";
-import { useChildElements } from "../../tables/useChildElements";
 import debugFn from "debug";
-import mockTaxData from "../sqm-rewards-table/mockTaxData";
-import mockReferralData from "./mockReferralData";
+import { gql } from "graphql-request";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
+import { useRerenderListener } from "../../tables/re-render";
+import { useChildElements } from "../../tables/useChildElements";
+import { ReferralTable } from "./sqm-referral-table";
 const debug = debugFn("sq:useReferralTable");
 
 export const CSS_NAMESPACE = "sqm-referral-table";
