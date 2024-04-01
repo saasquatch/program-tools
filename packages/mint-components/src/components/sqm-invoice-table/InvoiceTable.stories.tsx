@@ -6,7 +6,7 @@ import {
   EarningsAfterTaxCell,
   EarningsCell,
   InvoiceNumberCell,
-  TaxedAmountCell,
+  IndirectTaxCell,
 } from "./InvoiceTableCell.stories";
 import { InvoiceTableView } from "./sqm-invoice-table-view";
 
@@ -82,7 +82,7 @@ const simpleInvoiceTableProps = {
       "Date created",
       "Invoice",
       "Earnings",
-      "Taxed Amount",
+      "Indirect tax",
       "Earnings after tax",
     ],
     rows: [
@@ -91,7 +91,7 @@ const simpleInvoiceTableProps = {
         <DateCell />,
         <InvoiceNumberCell />,
         <EarningsCell />,
-        <TaxedAmountCell />,
+        <IndirectTaxCell />,
         <EarningsAfterTaxCell />,
       ],
       [
@@ -99,7 +99,7 @@ const simpleInvoiceTableProps = {
         <DateCell />,
         <InvoiceNumberCell />,
         <EarningsCell />,
-        <TaxedAmountCell />,
+        <IndirectTaxCell />,
         <EarningsAfterTaxCell />,
       ],
       [
@@ -107,7 +107,7 @@ const simpleInvoiceTableProps = {
         <DateCell />,
         <InvoiceNumberCell />,
         <EarningsCell />,
-        <TaxedAmountCell />,
+        <IndirectTaxCell />,
         <EarningsAfterTaxCell />,
       ],
     ],
@@ -184,7 +184,7 @@ export const LoadingTable = () => {
             "Date created",
             "Invoice",
             "Earnings",
-            "Taxed Amount",
+            "Indirect tax",
             "Earnings after tax",
           ],
           rows: [],

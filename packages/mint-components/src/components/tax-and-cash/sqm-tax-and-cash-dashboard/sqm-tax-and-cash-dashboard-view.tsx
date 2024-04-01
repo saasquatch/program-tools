@@ -73,7 +73,7 @@ export interface TaxAndCashDashboardProps {
     subRegionTaxNumber: string;
     invoiceColumnTitle: string;
     earningsColumnTitle: string;
-    taxedAmountColumnTitle: string;
+    indirectTaxColumnTitle: string;
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
     taxAndPayoutsDescription: string;
@@ -607,8 +607,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         property="earnings"
                       ></sqm-invoice-table-data-column>
                       <sqm-invoice-table-data-column
-                        column-title={text.taxedAmountColumnTitle}
-                        property="taxedAmount"
+                        column-title={text.indirectTaxColumnTitle}
+                        property="indirectTax"
                       ></sqm-invoice-table-data-column>
                       <sqm-invoice-table-data-column
                         column-title={text.earningsAfterTaxColumnTitle}

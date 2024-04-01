@@ -177,6 +177,6 @@ interface Invoice {
   invoiceId: string;
   program: string;
   earnings: string;
-  taxedAmount: string;
+  indirectTax: string;
   netEarnings: string;
 }

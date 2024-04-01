@@ -3812,6 +3812,12 @@ export namespace Components {
          */
         "dashboard_errorTitleText": string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxColumnTitle": string;
+        /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
@@ -3994,12 +4000,6 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_taxedAmountColumnTitle": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -4607,6 +4607,11 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+         */
+        "indirectTaxColumnTitle": string;
+        /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
          */
@@ -4774,11 +4779,6 @@ export namespace Components {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-         */
-        "taxedAmountColumnTitle": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -9482,6 +9482,12 @@ declare namespace LocalJSX {
          */
         "dashboard_errorTitleText"?: string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxColumnTitle"?: string;
+        /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
@@ -9664,12 +9670,6 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-          * @uiGroup Dashboard Properties
-         */
-        "dashboard_taxedAmountColumnTitle"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -10277,6 +10277,11 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+         */
+        "indirectTaxColumnTitle"?: string;
+        /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
          */
@@ -10444,11 +10449,6 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
-        /**
-          * Part of the Invoice table displayed at the bottom of the page.
-          * @uiName Taxed amount column title
-         */
-        "taxedAmountColumnTitle"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text

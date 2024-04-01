@@ -12,7 +12,7 @@ const getMockData = (): Invoice => {
 
   const earnings = Math.floor(Math.random() * 100) + 1;
 
-  const taxedAmount = Math.round(earnings * 0.2);
+  const indirectTax = Math.round(earnings * 0.2);
 
   return {
     downloadUrl: "https://example.com",
@@ -20,7 +20,7 @@ const getMockData = (): Invoice => {
     invoiceId,
     program: "my-program",
     earnings: `$${earnings}.00`,
-    taxedAmount: `$${taxedAmount}.00`,
-    netEarnings: `$${earnings - taxedAmount}.00`,
+    indirectTax: `$${indirectTax}.00`,
+    netEarnings: `$${earnings - indirectTax}.00`,
   };
 };
