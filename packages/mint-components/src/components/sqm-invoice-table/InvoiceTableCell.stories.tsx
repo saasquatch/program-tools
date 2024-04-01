@@ -29,7 +29,7 @@ export const EarningsAfterTaxCell = () => {
   );
 };
 
-export const TaxedAmountCell = () => {
+export const IndirectTaxCell = () => {
   return (
     <sqm-invoice-table-cell innerTemplate="US$5.00"></sqm-invoice-table-cell>
   );

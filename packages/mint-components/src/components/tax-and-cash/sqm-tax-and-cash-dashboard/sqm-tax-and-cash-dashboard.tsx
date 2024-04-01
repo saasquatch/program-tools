@@ -268,9 +268,9 @@ export class TaxAndCashDashboard {
   @Prop() earningsColumnTitle: string = "Earnings";
   /**
    * Part of the Invoice table displayed at the bottom of the page.
-   * @uiName Taxed amount column title
+   * @uiName Indirect tax column title
    */
-  @Prop() taxedAmountColumnTitle: string = "Taxed Amount";
+  @Prop() indirectTaxColumnTitle: string = "Indirect tax";
   /**
    * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Earnings after tax column title

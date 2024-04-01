@@ -61,8 +61,8 @@ export const InvoiceTable = createHookStory(() => {
         property="earnings"
       ></sqm-invoice-table-data-column>
       <sqm-invoice-table-data-column
-        column-title="Taxed Amount"
-        property="taxedAmount"
+        column-title="Indirect tax"
+        property="indirectTax"
       ></sqm-invoice-table-data-column>
       <sqm-invoice-table-data-column
         column-title="Earnings after tax"
@@ -86,8 +86,8 @@ export const InvoiceTableDemoHook = createHookStory(() => {
         property="earnings"
       ></sqm-invoice-table-data-column>
       <sqm-invoice-table-data-column
-        column-title="Taxed Amount"
-        property="taxedAmount"
+        column-title="Indirect tax"
+        property="indirectTax"
       ></sqm-invoice-table-data-column>
       <sqm-invoice-table-data-column
         column-title="Earnings after tax"

@@ -111,7 +111,7 @@ export function useInvoiceTable(
         earnings: `${invoice.currency}${
           invoice.totalAmount?.toFixed(2) || "0.00"
         }`,
-        taxedAmount: `${invoice.currency}${
+        indirectTax: `${invoice.currency}${
           invoice.totalVatAmount?.toFixed(2) || "0.00"
         }`,
         dateCreated: invoice.dateCreated,
