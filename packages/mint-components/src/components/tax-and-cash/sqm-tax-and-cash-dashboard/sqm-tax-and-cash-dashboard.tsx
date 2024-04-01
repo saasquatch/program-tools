@@ -214,7 +214,7 @@ export class TaxAndCashDashboard {
    * @uiName Payout missing information subtext
    */
   @Prop() payoutMissingInformationText: string =
-    "Go to Impact.com to add your banking information.";
+    "Missing banking information, go to Impact.com to resolve.";
 
   /**
    * Part of the alert displayed at the top of the page.

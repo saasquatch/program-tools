@@ -828,7 +828,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_payoutMissingInformationText: string =
-    "Go to Impact.com to add your banking information.";
+    "Missing banking information, go to Impact.com to resolve.";
 
   /**
    * @uiName Invoice table description
