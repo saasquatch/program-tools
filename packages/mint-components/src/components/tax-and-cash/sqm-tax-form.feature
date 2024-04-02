@@ -190,6 +190,22 @@ Feature: Tax Form Flow
     Then they are sent to the Dashboard step
     And they skip the banking info form step
 
+@motivating
+Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings											
+	Given 	a pre-existing impact partner is signing up to be an Advocate			
+	And 	they are on Step 2			
+	And 	tax document is <taxDoc>			
+	And 	withdrawal settings is <saved>			
+	Then 	the user skips <steps>			
+	And 	the user lands on <lands>			
+	And 	the Payout details card displays <displays>			
+ Examples:					
+		|taxDoc	        |saved	               |lands	      |displays                                                   |
+		|required 	    |saved in impact	     |Dashboard 	|their withdrawal settings                                  |
+		|required 	    |not saved in impact   |Dashboard 	|“Missing banking information, go to impact.com to resolve” |
+		|not required   |saved in impact       |Dashboard	  |their withdrawal settings                                  | 
+		|not required   |not saved in impact   |Dashboard	  |“Missing banking information, go to impact.com to resolve” |
+
   @minutia
   Scenario: "Submit New Form" button redirects to Docusign step and shows "Back" button
     Given a user is on the Dashboard step
