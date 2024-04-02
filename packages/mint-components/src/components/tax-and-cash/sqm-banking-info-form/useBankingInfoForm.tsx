@@ -141,7 +141,6 @@ function getPaymentMethod(paymentOption: FinanceNetworkSetting | undefined) {
 
 function parseImpactThreshold(threshold: string) {
   // Impact returns a "10.00" decimal string for threshold
-
   const parsed = Number.parseInt(threshold);
   if (isNaN(parsed)) return undefined;
 
@@ -151,7 +150,6 @@ function parseImpactThreshold(threshold: string) {
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
-
   const locale = useLocale();
   const user = useUserIdentity();
 
@@ -450,3 +448,5 @@ export function useBankingInfoForm(
     },
   };
 }
+
+export type UseBankingInfoFormResult = ReturnType<typeof useBankingInfoForm>;

@@ -32,3 +32,21 @@ export const getIsRequiredErrorMessage = (
     }
   );
 };
+
+export function getCountryObj({
+  countryCode,
+  locale,
+}: {
+  countryCode: string;
+  locale: string;
+}) {
+  // @ts-ignore DisplayNames not in Intl type
+  const displayName = new Intl.DisplayNames([locale], {
+    type: "region",
+  }).of(countryCode);
+
+  return {
+    countryCode,
+    displayName,
+  };
+}

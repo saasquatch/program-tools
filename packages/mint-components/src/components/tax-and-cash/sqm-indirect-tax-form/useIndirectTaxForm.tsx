@@ -27,13 +27,13 @@ import {
   UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { getCountryObj } from "../sqm-tax-and-cash/useTaxAndCash";
 import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
+import { getCountryObj } from "../utils";
 
 type ConnectPartnerResult = {
   createImpactConnection: {

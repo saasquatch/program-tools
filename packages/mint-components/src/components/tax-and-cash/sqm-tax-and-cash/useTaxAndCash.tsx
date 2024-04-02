@@ -32,6 +32,7 @@ import {
   UserFormContext,
   UserQuery,
 } from "./data";
+import { getCountryObj } from "../utils";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected) {
@@ -252,21 +253,3 @@ export function useTaxAndCash() {
 }
 
 export type UseTaxAndCashResultType = ReturnType<typeof useTaxAndCash>;
-
-export function getCountryObj({
-  countryCode,
-  locale,
-}: {
-  countryCode: string;
-  locale: string;
-}) {
-  // @ts-ignore DisplayNames not in Intl type
-  const displayName = new Intl.DisplayNames([locale], {
-    type: "region",
-  }).of(countryCode);
-
-  return {
-    countryCode,
-    displayName,
-  };
-}
