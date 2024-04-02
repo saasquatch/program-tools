@@ -165,7 +165,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() notRegisteredForTax: string =
-    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
+    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact Support to add your information to stay tax compliant.";
   /**
    * Displayed to participants registered in Quebec, Canada.
    * @uiName QST indirect tax details

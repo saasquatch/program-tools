@@ -984,12 +984,6 @@ export namespace Components {
          */
         "indirectTaxDetails": string;
         /**
-          * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section description
-          * @uiWidget textArea
-         */
-        "indirectTaxDetailsDescription": string;
-        /**
           * @uiName Indirect tax number field label
          */
         "indirectTaxNumber": string;
@@ -4167,13 +4161,6 @@ export namespace Components {
          */
         "step2_indirectTaxDetails": string;
         /**
-          * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section description
-          * @uiGroup Step 2 Properties
-          * @uiWidget textArea
-         */
-        "step2_indirectTaxDetailsDescription": string;
-        /**
           * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
          */
@@ -6699,12 +6686,6 @@ declare namespace LocalJSX {
           * @uiName Indirect tax details section title
          */
         "indirectTaxDetails"?: string;
-        /**
-          * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section description
-          * @uiWidget textArea
-         */
-        "indirectTaxDetailsDescription"?: string;
         /**
           * @uiName Indirect tax number field label
          */
@@ -9852,13 +9833,6 @@ declare namespace LocalJSX {
           * @uiGroup Step 2 Properties
          */
         "step2_indirectTaxDetails"?: string;
-        /**
-          * Displayed under the indirect tax details title.
-          * @uiName Indirect tax details section description
-          * @uiGroup Step 2 Properties
-          * @uiWidget textArea
-         */
-        "step2_indirectTaxDetailsDescription"?: string;
         /**
           * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties

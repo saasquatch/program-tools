@@ -110,14 +110,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_indirectTaxDetails: string = "Indirect tax details";
   /**
-   * Displayed under the indirect tax details title.
-   * @uiName Indirect tax details section description
-   * @uiGroup Step 2 Properties
-   * @uiWidget textArea
-   */
-  @Prop() step2_indirectTaxDetailsDescription: string =
-    "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
-  /**
    * @uiName Registered for indirect tax option
    * @uiGroup Step 2 Properties
    * @uiWidget textArea
@@ -721,7 +713,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_notRegisteredForTax: string =
-    "Not registered. Participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information.";
+    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact Support to add your information to stay tax compliant.";
   /**
    * Displayed to participants registered in Quebec, Canada.
    * @uiName QST indirect tax details

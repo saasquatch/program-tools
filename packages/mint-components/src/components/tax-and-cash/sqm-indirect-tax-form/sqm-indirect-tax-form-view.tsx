@@ -32,7 +32,6 @@ export interface IndirectTaxFormViewProps {
     indirectTax: string;
     indirectTaxDescription: string;
     indirectTaxDetails: string;
-    indirectTaxDetailsDescription: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     otherRegion: string;

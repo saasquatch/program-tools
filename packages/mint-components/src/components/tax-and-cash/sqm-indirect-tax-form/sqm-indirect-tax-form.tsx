@@ -50,15 +50,6 @@ export class IndirectTaxForm {
    * @uiName Indirect tax details section title
    */
   @Prop() indirectTaxDetails: string = "Indirect tax details";
-
-  /**
-   * Displayed under the indirect tax details title.
-   * @uiName Indirect tax details section description
-   * @uiWidget textArea
-   */
-  @Prop() indirectTaxDetailsDescription: string =
-    "Participants representing businesses based in countries that enforce indirect taxes (e.g. VAT, HST, GST) must add their indirect tax details to stay tax compliant.";
-
   /**
    * @uiName Registered for indirect tax option
    * @uiWidget textArea
