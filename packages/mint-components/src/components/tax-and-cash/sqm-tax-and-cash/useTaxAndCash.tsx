@@ -1,15 +1,13 @@
 import {
+  getContextValueName,
   setUserIdentity,
   useHost,
   useLocale,
+  useParentQuery,
+  useParentState,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { useParentQuery } from "../../../utils/useParentQuery";
-import {
-  getContextValueName,
-  useParentState,
-} from "../../../utils/useParentState";
 import {
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
