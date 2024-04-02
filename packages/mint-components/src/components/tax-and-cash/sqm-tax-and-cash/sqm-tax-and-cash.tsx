@@ -767,12 +767,13 @@ export class TaxAndCashMonolith {
   /**
    * Part of the Invoice table displayed at the bottom of the page.
    * @uiName Indirect tax column title
-   *  @uiGroup Dashboard Properties
+   * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_indirectTaxColumnTitle: string = "Indirect tax";
   /**
    * Displayed under the payout details card.
    * @uiName Payout from impact text
+   * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
   @Prop() dashboard_payoutFromImpact: string =
