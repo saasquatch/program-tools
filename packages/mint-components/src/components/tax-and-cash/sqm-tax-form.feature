@@ -200,11 +200,11 @@ Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings
 	And 	the user lands on <lands>			
 	And 	the Payout details card displays <displays>			
  Examples:					
-		|taxDoc	        |saved	               |lands	      |displays                                                   |
-		|required 	    |saved in impact	     |Dashboard 	|their withdrawal settings                                  |
-		|required 	    |not saved in impact   |Dashboard 	|“Missing banking information, go to impact.com to resolve” |
-		|not required   |saved in impact       |Dashboard	  |their withdrawal settings                                  | 
-		|not required   |not saved in impact   |Dashboard	  |“Missing banking information, go to impact.com to resolve” |
+		|taxDoc	        |saved	               |steps        |lands	      |displays                                                   |
+		|required 	    |saved in impact	     |Step 4       |Dashboard 	|their withdrawal settings                                  |
+		|required 	    |not saved in impact   |Step 4       |Dashboard 	|“Missing banking information, go to impact.com to resolve” |
+		|not required   |saved in impact       |Step 3 and 4 | Dashboard	  |their withdrawal settings                                  | 
+		|not required   |not saved in impact   |Step 3 and 4 |Dashboard	  |“Missing banking information, go to impact.com to resolve” |
 
   @minutia
   Scenario: "Submit New Form" button redirects to Docusign step and shows "Back" button
