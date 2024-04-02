@@ -30,7 +30,6 @@ export const DocusignExpiredView = (props: DocusignExpiredViewProps) => {
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      {/* ZH: Need to figure out how to propify this text */}
       <div class={classes.Container}>
         <sl-icon
           style={{

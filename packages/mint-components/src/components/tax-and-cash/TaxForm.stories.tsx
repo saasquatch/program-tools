@@ -14,12 +14,8 @@ import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIfra
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
 import LoadingView from "./sqm-tax-and-cash/LoadingView";
-// import sqmUserInfoSpecs from "./sqm-tax-document-step-1.feature";
-// import sqmIndirectTaxFormSpecs from "../sqm-indirect-tax-form/sqm-indirect-tax-form.feature";
 import { taxTypeToName } from "./utils";
 import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
-import { NextPayout } from "./sqm-payout-details-card/PayoutDetailsCard.stories";
-import { NoFragmentCyclesRule } from "graphql";
 
 export default {
   title: "Components/Tax Form",
