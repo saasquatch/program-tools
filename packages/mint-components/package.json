@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.0.0",
-    "@saasquatch/component-boilerplate": "^1.6.3-5",
+    "@saasquatch/component-boilerplate": "^1.6.3",
     "@saasquatch/dom-context-hooks": "^1.0.3",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
