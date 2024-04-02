@@ -5,11 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.3] - 2024-04-01
+
+### Added
+
+- `useParentQuery`, `useParentQuery` hooks
+
+  - Allows a parent component to share graphQL query data with child component(s)
+
+- `useParentState`, `useParentState`, `useParent`, `useParentValue`, `useSetParent`, `getContextName`, `getContextValueName` hooks
+  - Allows a parent component to share state with child component(s)
+
 ## [1.6.2] - 2024-02-13
 
 ### Added
 
-- useLoadEvent hook
+- `useLoadEvent` hook
   - Returns a function to send a `USER_REFERRAL_PROGRAM_LOADED_EVENT` analytics event
 
 ## [1.6.1] - 2023-02-06
@@ -167,6 +178,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       useForm
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.2...HEAD
+[1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.2
 [1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.1
 [1.6.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.0
