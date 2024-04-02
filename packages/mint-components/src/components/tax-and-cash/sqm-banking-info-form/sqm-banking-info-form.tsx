@@ -1,4 +1,4 @@
-import { isDemo, useParent } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
@@ -546,7 +546,7 @@ function useDemoBankingInfoForm(
   const defaultCurrency = props.demoData?.states?.currency;
   const defaultCountry = props.demoData?.states?.formState?.bankCountry;
 
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);

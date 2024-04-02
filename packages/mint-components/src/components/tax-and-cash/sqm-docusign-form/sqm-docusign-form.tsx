@@ -1,6 +1,6 @@
-import { isDemo, useParent } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Element, h, Host, Prop, State } from "@stencil/core";
+import { Component, Element, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
@@ -10,7 +10,7 @@ import {
   DocusignStatus,
 } from "./docusign-iframe/DocusignIframe";
 import { DocusignFormView } from "./sqm-docusign-form-view";
-import { useDocusignForm, UseDocusignFormResult } from "./useDocusignForm";
+import { UseDocusignFormResult, useDocusignForm } from "./useDocusignForm";
 
 /**
  * @uiName DocuSign Document Submission
@@ -197,7 +197,7 @@ export class DocusignForm {
 }
 
 function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
   return deepmerge(
     {

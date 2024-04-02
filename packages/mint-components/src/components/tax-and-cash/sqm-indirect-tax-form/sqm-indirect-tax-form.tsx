@@ -1,4 +1,4 @@
-import { isDemo, useParent } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
@@ -287,7 +287,7 @@ export class IndirectTaxForm {
 function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState(null);
   const [demoFormState, setDemoFormState] = useState<any>({});
 
