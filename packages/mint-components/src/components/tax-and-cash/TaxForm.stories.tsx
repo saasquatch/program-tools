@@ -1324,7 +1324,7 @@ export const TaxAndCashDashboardDisabled = () => {
         states: {
           canEditPayoutInfo: true,
           disabled: true,
-          status: "NOT_ACTIVE",
+          status: "ACTIVE",
           documentType: "W8BEN",
           documentTypeString: taxTypeToName("W8BEN"),
           dateSubmitted: "Jan 18th, 2025",
