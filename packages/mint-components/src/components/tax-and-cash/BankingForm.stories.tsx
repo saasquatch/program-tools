@@ -204,6 +204,7 @@ export const BankingInfoFormCountryUSCurrencyGBP = () => {
         states: {
           ...bankingFormProps.states,
           formState: {
+            ...bankingFormProps.states.formState,
             bankCountry: "US",
           },
           currency: "GBP",
@@ -220,7 +221,10 @@ export const BankingInfoFormCountryCanadaCurrencyCAD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          formState: { bankCountry: "CA" },
+          formState: {
+            ...bankingFormProps.states.formState,
+            bankCountry: "CA",
+          },
           currency: "CAD",
         },
       }}
@@ -235,7 +239,10 @@ export const BankingInfoFormCountryCanadaCurrencyUSD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          formState: { bankCountry: "CA" },
+          formState: {
+            ...bankingFormProps.states.formState,
+            bankCountry: "CA",
+          },
           currency: "USD",
         },
       }}
@@ -250,7 +257,10 @@ export const BankingInfoFormCountrySpainCurrencyUSD = () => {
         ...bankingFormProps,
         states: {
           ...bankingFormProps.states,
-          formState: { bankCountry: "ES" },
+          formState: {
+            ...bankingFormProps.states.formState,
+            bankCountry: "ES",
+          },
           currency: "USD",
         },
       }}

@@ -360,12 +360,12 @@ function useDemoIndirectTaxForm(
         formState: {
           ...demoFormState,
           errors: {
-            selectedRegion: true,
-            province: true,
-            subRegion: true,
-            qstNumber: true,
-            subRegionTaxNumber: true,
-            indirectTaxNumber: true,
+            selectedRegion: false,
+            province: false,
+            subRegion: false,
+            qstNumber: false,
+            subRegionTaxNumber: false,
+            indirectTaxNumber: false,
           },
         },
       },

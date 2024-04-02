@@ -216,11 +216,11 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         loadingError: false,
         formState: {
           errors: {
-            email: true,
-            firstName: true,
-            lastName: true,
-            countryCode: true,
-            currency: true,
+            email: false,
+            firstName: false,
+            lastName: false,
+            countryCode: false,
+            currency: false,
           },
         },
       },
