@@ -1575,6 +1575,11 @@ export namespace Components {
          */
         "errorTitleText": string;
         /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText": string;
+        /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
          */
@@ -3920,6 +3925,12 @@ export namespace Components {
          */
         "dashboard_payoutFromImpact": string;
         /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutMissingInformationText": string;
+        /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
@@ -4708,6 +4719,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "payoutFromImpact": string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText": string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
@@ -7269,6 +7285,11 @@ declare namespace LocalJSX {
          */
         "errorTitleText"?: string;
         /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText"?: string;
+        /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
          */
@@ -9590,6 +9611,12 @@ declare namespace LocalJSX {
          */
         "dashboard_payoutFromImpact"?: string;
         /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutMissingInformationText"?: string;
+        /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
@@ -10378,6 +10405,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "payoutFromImpact"?: string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText"?: string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details

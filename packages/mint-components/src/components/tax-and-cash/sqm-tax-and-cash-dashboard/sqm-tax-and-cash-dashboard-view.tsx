@@ -192,6 +192,8 @@ const style = {
     margin: "0",
     color: "var(--sl-color-neutral-500)",
     lineHeight: "var(--sl-spacing-medium)",
+    fontSize: "var(--sl-font-size-small)",
+    marginLeft: "1px",
   },
   TooltipContainer: {
     display: "flex",
@@ -210,7 +212,7 @@ const style = {
   },
   DescriptionText: {
     color: "var(--sl-color-gray-500)",
-    fontSize: "12px",
+    fontSize: "var(--sl-font-size-x-small)",
     marginBottom: "none",
     maxWidth: "492px",
   },
@@ -226,7 +228,7 @@ const style = {
       marginBottom: "var(--sl-spacing-xx-large)",
     },
     "&::part(title)": {
-      fontSize: "24px",
+      fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "600",
       marginTop: "var(--sl-spacing-xxx-large)",
       padding:
