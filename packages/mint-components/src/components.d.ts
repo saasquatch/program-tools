@@ -3915,6 +3915,7 @@ export namespace Components {
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_payoutFromImpact": string;
@@ -9588,6 +9589,7 @@ declare namespace LocalJSX {
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_payoutFromImpact"?: string;
