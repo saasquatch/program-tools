@@ -60,17 +60,17 @@ export class TaxAndCashMonolith {
   @Prop() step1_currencyHelpText: string =
     "Choose your preferred payout currency";
   /**
-   * @uiName Step 1 title
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_personalInformation: string = "Personal Information";
-  /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
+  /**
+   * @uiName Step 1 title
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_personalInformation: string = "Personal Information";
   /**
    * The text link that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
@@ -141,17 +141,23 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_selectedRegion: string = "Country / region of indirect tax";
   /**
-   * @uiName Province field label
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_province: string = "Province";
-
-  /**
    * @uiName Indirect tax number field label
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumber: string =
     "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
+  /**
+   * @uiName Province field label
+   * @uiGroup Step 2 Properties
+   */
+  @Prop() step2_province: string = "Province";
+  /**
+   * @uiName Missing indirect tax number error message
+   * @uiGroup Step 2 Properties
+   */
+  @Prop() step2_indirectTaxNumberError: string =
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
+
   /**
    * Displayed to participants registered for QST.
    * @uiName QST number field label
@@ -191,12 +197,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step2_cannotChangeInfoAlert: string =
     "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
-  /**
-   * @uiName Missing indirect tax number error message
-   * @uiGroup Step 2 Properties
-   */
-  @Prop() step2_indirectTaxNumberError: string =
-    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
@@ -784,19 +784,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_earningsAfterTaxColumnTitle: string = "Earnings after tax";
   /**
-   * @uiName Replace tax form modal header
-   * @uiGroup Dashboard Properties
-   */
-  @Prop() dashboard_replaceTaxFormModalHeader: string =
-    "Replace existing tax form";
-  /**
-   * @uiName Replace tax form modal body text
-   * @uiGroup Dashboard Properties
-   * @uiWidget textArea
-   */
-  @Prop() dashboard_replaceTaxFormModalBodyText: string =
-    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
-  /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message title
    * @uiGroup Dashboard Properties
@@ -813,7 +800,6 @@ export class TaxAndCashMonolith {
   @Prop()
   dashboard_errorDescriptionText: string =
     "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
-
   /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
@@ -821,6 +807,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
+  /**
+   * @uiName Replace tax form modal header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_replaceTaxFormModalHeader: string =
+    "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
 
   /**
    * @uiName Invoice table description
