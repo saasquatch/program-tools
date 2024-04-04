@@ -1,6 +1,9 @@
 import {
   useLocale,
   useMutation,
+  useParent,
+  useParentQueryValue,
+  useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import {
@@ -12,28 +15,25 @@ import {
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { CurrentTaxDocument } from "../../../saasquatch";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
-  COUNTRIES_QUERY_NAMESPACE,
   CountriesQuery,
-  TAX_CONTEXT_NAMESPACE,
-  TAX_FORM_CONTEXT_NAMESPACE,
+  COUNTRIES_QUERY_NAMESPACE,
   TaxContext,
   TaxCountry,
   TaxDocumentType,
-  USER_FORM_CONTEXT_NAMESPACE,
-  USER_QUERY_NAMESPACE,
+  TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
   UserFormContext,
   UserQuery,
+  USER_FORM_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
 } from "../sqm-tax-and-cash/data";
-import { getCountryObj } from "../sqm-tax-and-cash/useTaxAndCash";
 import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
-import { validTaxDocument } from "../utils";
+import { getCountryObj, validTaxDocument } from "../utils";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 type ConnectPartnerResult = {

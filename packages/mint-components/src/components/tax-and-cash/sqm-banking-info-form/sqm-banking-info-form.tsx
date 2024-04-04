@@ -1,11 +1,10 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
-import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { getFormMap } from "./formDefinitions";
@@ -547,7 +546,7 @@ function useDemoBankingInfoForm(
   const defaultCurrency = props.demoData?.states?.currency;
   const defaultCountry = props.demoData?.states?.formState?.bankCountry;
 
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [paymentMethodChecked, setPaymentMethodChecked] = useState<
     "toBankAccount" | "toPayPalAccount" | undefined
   >(undefined);

@@ -1,14 +1,15 @@
 import {
   useLocale,
   useMutation,
+  useParent,
+  useParentQueryValue,
+  useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { intl } from "../../../global/global";
-import { useParentQueryValue } from "../../../utils/useParentQuery";
-import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
@@ -140,7 +141,6 @@ function getPaymentMethod(paymentOption: FinanceNetworkSetting | undefined) {
 
 function parseImpactThreshold(threshold: string) {
   // Impact returns a "10.00" decimal string for threshold
-
   const parsed = Number.parseInt(threshold);
   if (isNaN(parsed)) return undefined;
 
@@ -153,11 +153,11 @@ export function useBankingInfoForm(
   const locale = useLocale();
   const user = useUserIdentity();
 
-  const formRef = useRef<HTMLFormElement>(null);
-
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const countries = useParentValue<TaxCountry[]>(SORTED_COUNTRIES_NAMESPACE);
+
+  const formRef = useRef<HTMLFormElement>(null);
 
   const {
     data: paymentOptionsData,
@@ -448,3 +448,5 @@ export function useBankingInfoForm(
     },
   };
 }
+
+export type UseBankingInfoFormResult = ReturnType<typeof useBankingInfoForm>;

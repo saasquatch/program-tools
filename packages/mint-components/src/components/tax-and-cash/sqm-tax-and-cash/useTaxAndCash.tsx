@@ -1,39 +1,36 @@
 import {
-  setUserIdentity,
+  getContextValueName,
   useHost,
   useLocale,
+  useParentQuery,
+  useParentState,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { useParentQuery } from "../../../utils/useParentQuery";
+import { getCountryObj, validTaxDocument } from "../utils";
 import {
-  getContextValueName,
-  useParentState,
-} from "../../../utils/useParentState";
-import { validTaxDocument } from "../utils";
-import {
+  CountriesQuery,
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
-  CURRENCIES_NAMESPACE,
-  CURRENCIES_QUERY_NAMESPACE,
-  CountriesQuery,
   Currencies,
   CurrenciesQuery,
-  FINANCE_NETWORK_SETTINGS_NAMESPACE,
+  CURRENCIES_NAMESPACE,
+  CURRENCIES_QUERY_NAMESPACE,
   FinanceNetworkSettingsQuery,
+  FINANCE_NETWORK_SETTINGS_NAMESPACE,
   GET_COUNTRIES,
   GET_CURRENCIES,
   GET_FINANCE_NETWORK_SETTINGS,
   GET_USER,
   SORTED_COUNTRIES_NAMESPACE,
-  TAX_CONTEXT_NAMESPACE,
-  TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
   TaxCountry,
-  USER_FORM_CONTEXT_NAMESPACE,
-  USER_QUERY_NAMESPACE,
+  TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
   UserFormContext,
   UserQuery,
+  USER_FORM_CONTEXT_NAMESPACE,
+  USER_QUERY_NAMESPACE,
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
@@ -257,21 +254,3 @@ export function useTaxAndCash() {
 }
 
 export type UseTaxAndCashResultType = ReturnType<typeof useTaxAndCash>;
-
-export function getCountryObj({
-  countryCode,
-  locale,
-}: {
-  countryCode: string;
-  locale: string;
-}) {
-  // @ts-ignore DisplayNames not in Intl type
-  const displayName = new Intl.DisplayNames([locale], {
-    type: "region",
-  }).of(countryCode);
-
-  return {
-    countryCode,
-    displayName,
-  };
-}

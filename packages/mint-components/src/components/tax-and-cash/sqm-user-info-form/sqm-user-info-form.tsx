@@ -1,14 +1,12 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useState } from "@saasquatch/universal-hooks";
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
-import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
+import { UseUserInfoFormResult, useUserInfoForm } from "./useUserInfoForm";
 
 /**
  * @uiName User Information Form
@@ -182,7 +180,7 @@ export class TaxForm {
 }
 
 function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
   return deepmerge(
     {

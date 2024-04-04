@@ -1,10 +1,9 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { useParent } from "../../../utils/useParentState";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { OtherRegionSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
@@ -288,7 +287,7 @@ export class IndirectTaxForm {
 function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
-  const [step, setStep] = useParent(TAX_CONTEXT_NAMESPACE);
+  const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState(null);
   const [demoFormState, setDemoFormState] = useState<any>({});
 

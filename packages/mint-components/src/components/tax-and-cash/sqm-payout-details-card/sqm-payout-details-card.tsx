@@ -57,6 +57,7 @@ export class PayoutDetailsCard {
    * @undocumented
    */
   @Prop() demoData?: DemoData<any>;
+  
   constructor() {
     withHooks(this);
   }
