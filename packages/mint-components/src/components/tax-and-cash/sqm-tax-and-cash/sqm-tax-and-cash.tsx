@@ -807,19 +807,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
-  /**
-   * @uiName Replace tax form modal header
-   * @uiGroup Dashboard Properties
-   */
-  @Prop() dashboard_replaceTaxFormModalHeader: string =
-    "Replace existing tax form";
-  /**
-   * @uiName Replace tax form modal body text
-   * @uiGroup Dashboard Properties
-   * @uiWidget textArea
-   */
-  @Prop() dashboard_replaceTaxFormModalBodyText: string =
-    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
 
   /**
    * @uiName Invoice table description
@@ -859,6 +846,19 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_invoiceEmptyStateText: string =
     "Refer a friend to view the status of your invoices and rewards earned";
+  /**
+   * @uiName Replace tax form modal header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_replaceTaxFormModalHeader: string =
+    "Replace existing tax form";
+  /**
+   * @uiName Replace tax form modal body text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_replaceTaxFormModalBodyText: string =
+    "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
