@@ -11,6 +11,7 @@ import {
 } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
+import { CurrentTaxDocument } from "../../../saasquatch";
 import { useParentQueryValue } from "../../../utils/useParentQuery";
 import { useParent, useParentValue } from "../../../utils/useParentState";
 import {
@@ -32,6 +33,7 @@ import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
+import { validTaxDocument } from "../utils";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 type ConnectPartnerResult = {
@@ -42,6 +44,7 @@ type ConnectPartnerResult = {
       connected: boolean;
       publisher: {
         requiredTaxDocumentType: TaxDocumentType | null;
+        currentTaxDocument: null | CurrentTaxDocument;
       };
     } | null;
   };
@@ -71,6 +74,10 @@ const CONNECT_PARTNER = gql`
         connected
         publisher {
           requiredTaxDocumentType
+          currentTaxDocument {
+            type
+            status
+          }
         }
       }
     }
@@ -243,9 +250,17 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
       await refetch();
 
+      const resultPublisher = (result as ConnectPartnerResult)
+        .createImpactConnection?.impactConnection?.publisher;
+
+      const hasValidCurrentDocument = validTaxDocument(
+        resultPublisher?.requiredTaxDocumentType,
+        resultPublisher?.currentTaxDocument?.type
+      );
+
       if (
-        (result as ConnectPartnerResult).createImpactConnection
-          ?.impactConnection?.publisher?.requiredTaxDocumentType
+        resultPublisher?.requiredTaxDocumentType &&
+        !hasValidCurrentDocument
       ) {
         // Go to docusign form
         setStep("/3");

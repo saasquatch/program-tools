@@ -1,6 +1,19 @@
 import { intl } from "../../global/global";
 import { TaxDocumentType } from "./sqm-tax-and-cash/data";
 
+export function validTaxDocument(
+  requiredType: TaxDocumentType | undefined,
+  currentType: TaxDocumentType | undefined
+) {
+  if (requiredType === "W9" && currentType === "W9") return true;
+  if (
+    (requiredType === "W8BEN" || requiredType === "W8BENE") &&
+    (currentType === "W8BEN" || currentType === "W8BENE")
+  )
+    return true;
+  return false;
+}
+
 export const objectIsFull = (obj: Record<string, unknown>) => {
   return !Object.keys(obj).find((k) => obj[k] == undefined);
 };

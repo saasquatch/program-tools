@@ -1,3 +1,5 @@
+import { Currencies } from "./components/tax-and-cash/sqm-tax-and-cash/data";
+
 interface Referral {
   id: string;
   dateConverted: number;
@@ -40,16 +42,17 @@ interface Referrer {
   rewards: Reward[];
 }
 
+interface CurrentTaxDocument {
+  status: "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
+  type: "W9" | "W8BEN" | "W8BENE";
+  dateCreated: number;
+}
 interface ImpactConnection {
   connected: boolean;
   taxHandlingEnabled: boolean;
   publisher: null | {
     requiredTaxDocumentType: null | "W9" | "W8BEN" | "W8BENE";
-    currentTaxDocument: null | {
-      status: "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
-      type: "W9" | "W8BEN" | "W8BENE";
-      dateCreated: number;
-    };
+    currentTaxDocument: null | CurrentTaxDocument;
     withdrawalSettings: null | {
       paymentMethod: "PAYPAL" | "BANK_TRANSFER";
     };

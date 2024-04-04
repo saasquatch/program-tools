@@ -10,6 +10,7 @@ import {
   getContextValueName,
   useParentState,
 } from "../../../utils/useParentState";
+import { validTaxDocument } from "../utils";
 import {
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
@@ -48,9 +49,11 @@ function getCurrentStep(user: UserQuery["user"]) {
   } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (requiredTaxDocumentType && !currentTaxDocument) {
+  if (
+    requiredTaxDocumentType &&
+    !validTaxDocument(requiredTaxDocumentType, currentTaxDocument?.type)
+  )
     return "/3";
-  }
 
   if (!withdrawalSettings && brandedSignup) return "/4";
 
