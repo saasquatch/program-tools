@@ -1,5 +1,3 @@
-import { Currencies } from "./components/tax-and-cash/sqm-tax-and-cash/data";
-
 interface Referral {
   id: string;
   dateConverted: number;
