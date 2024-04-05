@@ -191,20 +191,24 @@ Feature: Tax Form Flow
     And they skip the banking info form step
 
 @motivating
-Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings											
-	Given 	a pre-existing impact partner is signing up to be an Advocate			
-	And 	they are on Step 2			
-	And 	tax document is <taxDoc>			
-	And 	withdrawal settings is <saved>			
-	Then 	the user skips <steps>			
-	And 	the user lands on <lands>			
-	And 	the Payout details card displays <displays>			
- Examples:					
-		|taxDoc	        |saved	               |steps        |lands	      |displays                                                   |
-		|required 	    |saved in impact	     |Step 4       |Dashboard 	|their withdrawal settings                                  |
-		|required 	    |not saved in impact   |Step 4       |Dashboard 	|“Missing banking information, go to impact.com to resolve” |
-		|not required   |saved in impact       |Step 3 and 4 | Dashboard	  |their withdrawal settings                                  | 
-		|not required   |not saved in impact   |Step 3 and 4 |Dashboard	  |“Missing banking information, go to impact.com to resolve” |
+ Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings											
+    Given a pre-existing impact partner is signing up to be an Advocate			
+    When they are on Step 2			
+    And tax document is <taxDocMatches> in Advocate and impact
+    And withdrawal settings is <saved>		
+    Then the user lands on <lands>		
+    And the user skips <skipSteps>			
+    And the Payout details card displays <displays>	
+
+  Examples:					
+      |taxDocMatches	|saved	               |lands	      |skipSteps         |displays                                                   |
+      |same 	        |saved in impact	     |Dashboard 	|Step 3 and 4      |their withdrawal settings                                  |
+      |same 	        |not saved in impact   |Dashboard 	|Step 3 and 4      |“Missing banking information, go to impact.com to resolve” |
+      |not required   |saved in impact       |Dashboard   |Step 3 and 4      |their withdrawal settings                                  | 
+      |not required   |not saved in impact   |Dashboard   |Step 3 and 4      |“Missing banking information, go to impact.com to resolve” |
+      |not same       |saved in impact       |Step 3      |Step 4            |their withdrawal settings                                  |
+      |not same       |not saved in impact   |Step 3      |step 4            |“Missing banking information, go to impact.com to resolve” |
+
 
   @minutia
   Scenario: "Submit New Form" button redirects to Docusign step and shows "Back" button
