@@ -54,7 +54,9 @@ export function usePayoutDetailsCard(
   return {
     states: {
       loading,
-      thresholdBalance: `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`,
+      thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold
+        ? `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`
+        : undefined,
       balance: publisher?.payoutsAccount?.balance,
       badgeStatus:
         publisher?.withdrawalSettings?.paymentSchedulingType !== "FIXED_DAY"

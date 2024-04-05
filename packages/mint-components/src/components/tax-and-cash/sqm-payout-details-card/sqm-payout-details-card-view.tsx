@@ -241,7 +241,9 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>
               {states.badgeStatus === "thresholdPayout"
-                ? thresholdText
+                ? states.thresholdBalance
+                  ? thresholdText
+                  : ""
                 : states.nextPayoutDate}
             </p>
             {states.badgeStatus === "thresholdPayout"

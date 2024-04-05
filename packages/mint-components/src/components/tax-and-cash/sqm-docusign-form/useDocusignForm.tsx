@@ -14,7 +14,7 @@ import {
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { taxTypeToName } from "../utils";
+import { taxTypeToName, validTaxDocument } from "../utils";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
 
@@ -80,7 +80,12 @@ export function useDocusignForm(props: DocusignForm) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const existingDocumentType = publisher?.currentTaxDocument?.type;
+  // Only look at current document if it's valid (same as required type)
+  const existingDocumentType =
+    validTaxDocument(
+      publisher?.requiredTaxDocumentType,
+      publisher?.currentTaxDocument?.type
+    ) && publisher?.currentTaxDocument?.type;
 
   const actualDocumentType =
     existingDocumentType ||
