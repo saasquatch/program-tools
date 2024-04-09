@@ -81,11 +81,12 @@ export function useDocusignForm(props: DocusignForm) {
   const [loading, setLoading] = useState(false);
 
   // Only look at current document if it's valid (same as required type)
-  const existingDocumentType =
-    validTaxDocument(
-      publisher?.requiredTaxDocumentType,
-      publisher?.currentTaxDocument?.type
-    ) && publisher?.currentTaxDocument?.type;
+  const existingDocumentType = validTaxDocument(
+    publisher?.requiredTaxDocumentType,
+    publisher?.currentTaxDocument?.type
+  )
+    ? publisher?.currentTaxDocument?.type
+    : undefined;
 
   const actualDocumentType =
     existingDocumentType ||
@@ -93,15 +94,14 @@ export function useDocusignForm(props: DocusignForm) {
     publisher?.requiredTaxDocumentType;
 
   useEffect(() => {
-    if (!publisher?.currentTaxDocument?.type) return;
+    if (!existingDocumentType) return;
 
-    const type = publisher.currentTaxDocument.type;
-    if (type === "W8BEN") {
+    if (existingDocumentType === "W8BEN") {
       setParticipantType("individualParticipant");
-    } else if (type === "W8BENE") {
+    } else if (existingDocumentType === "W8BENE") {
       setParticipantType("businessEntity");
     }
-  }, [publisher]);
+  }, [existingDocumentType]);
 
   useEffect(() => {
     // Skip if no publisher info
