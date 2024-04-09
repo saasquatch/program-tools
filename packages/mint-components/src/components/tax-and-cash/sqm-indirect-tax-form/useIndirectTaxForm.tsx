@@ -14,7 +14,6 @@ import {
 } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
-import { CurrentTaxDocument } from "../../../saasquatch";
 import {
   CountriesQuery,
   COUNTRIES_QUERY_NAMESPACE,
