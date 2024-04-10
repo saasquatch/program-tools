@@ -7,12 +7,12 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
-import { gql } from "graphql-request";
-import { useRerenderListener } from "../../tables/re-render";
-import { ReferralTable } from "./sqm-referral-table";
-import { GenericTableViewProps } from "../../tables/GenericTableView";
-import { useChildElements } from "../../tables/useChildElements";
 import debugFn from "debug";
+import { gql } from "graphql-request";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
+import { useRerenderListener } from "../../tables/re-render";
+import { useChildElements } from "../../tables/useChildElements";
+import { ReferralTable } from "./sqm-referral-table";
 const debug = debugFn("sq:useReferralTable");
 
 export const CSS_NAMESPACE = "sqm-referral-table";
@@ -56,6 +56,10 @@ const GET_REFERRER_DATA = gql`
             statuses
             globalRewardKey
             programRewardKey
+            partnerFundsTransfer {
+              id
+              status
+            }
             meta {
               status
               integration {
@@ -160,6 +164,10 @@ const GET_REFERRAL_DATA = gql`
               statuses
               globalRewardKey
               programRewardKey
+              partnerFundsTransfer {
+                id
+                status
+              }
               referral {
                 dateModerated
                 fraudData {
@@ -209,6 +217,42 @@ const GET_REFERRAL_DATA = gql`
                 }
                 depth
               }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+type GetImpactTax = {
+  viewer: {
+    id: string;
+    impactConnection: ImpactConnection;
+  };
+};
+const GET_IMPACT_TAX = gql`
+  query getImpactTax {
+    viewer {
+      ... on User {
+        id
+        impactConnection {
+          connected
+          taxHandlingEnabled
+          publisher {
+            requiredTaxDocumentType
+            currentTaxDocument {
+              status
+              type
+              dateCreated
+            }
+            withdrawalSettings {
+              paymentMethod
+            }
+            payoutsAccount {
+              hold
+              holdReasons
+              balance
             }
           }
         }
@@ -284,6 +328,14 @@ export function useReferralTable(
   const showReferrerRow =
     props.showReferrer && !!referrerData?.dateReferralStarted;
 
+  const { data: taxResponse, loading: taxLoading } = useQuery<GetImpactTax>(
+    GET_IMPACT_TAX,
+    {},
+    !user?.jwt
+  );
+
+  const taxConnection = taxResponse?.viewer?.impactConnection;
+
   const {
     envelope: referralData,
     states,
@@ -346,7 +398,7 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, locale, h))
+        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
@@ -374,7 +426,7 @@ export function useReferralTable(
 
   const show =
     // 1 - Loading if loading
-    states.loading || content.loading
+    states.loading || content.loading || taxLoading
       ? "loading"
       : // 2 - Empty if empty
       isEmpty

@@ -892,6 +892,34 @@ const userStatsQuery = (_programId, _locale, statId) => {
   );
 };
 
+const payoutBalanceQuery = () => {
+  return debugQuery(
+    gql`
+      query payoutBalance {
+        viewer: viewer {
+          ... on User {
+            publisher {
+              payoutsAccount {
+                balance
+              }
+            }
+          }
+        }
+      }
+    `,
+    {},
+    (res) => {
+      const fallback = 0;
+      const balance = res.data?.viewer?.publisher?.payoutsAccount?.balance;
+
+      const balanceText = `${balance || fallback}`;
+      return {
+        value: balance || fallback,
+        statvalue: balanceText,
+      };
+    }
+  );
+};
 // functions are of the form (programId: string, ...args: string) => string
 export const queries: {
   [key: string]: {
@@ -978,6 +1006,10 @@ export const queries: {
     label: "User Stat",
     query: userStatsQuery,
   },
+  payoutBalance: {
+    label: "Payout Balance",
+    query: payoutBalanceQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
@@ -1036,6 +1068,10 @@ export const StatPaths = [
   {
     name: "userStats",
     route: "/(userStats)/:statId",
+  },
+  {
+    name: "payoutBalance",
+    route: "/(payoutBalance)",
   },
 ];
 

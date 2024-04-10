@@ -37,7 +37,7 @@ function setupLoggedOut() {
 }
 
 export default {
-  title: "Components/Portal Frame",
+  title: "Components/Microsite Frame",
 };
 
 const defaultProps = {
@@ -51,10 +51,10 @@ const defaultProps = {
             fontWeight: "bold",
           }}
         >
-          Portal Header
+          Microsite Header
         </span>
         <span style={{ fontSize: "var(--sl-font-size-small)" }}>
-          A description for the portal
+          A description for the microsite
         </span>
       </div>
     ),

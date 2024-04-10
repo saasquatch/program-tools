@@ -75,6 +75,15 @@ import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 import * as CloseButton from "../sqm-close-button/CloseButton.stories";
+import * as TaxForm from "../tax-and-cash/TaxForm.stories";
+import * as TaxFormSlots from "../tax-and-cash/sqm-user-info-form/small-views/SlotViews.stories";
+import * as RadioCard from "../sqm-radio-card/RadioCard.stories";
+import * as ProgressBar from "../sqm-task-card/progress-bar/ProgressBar.stories";
+import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/PayoutDetailsCard.stories";
+import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
+import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
+import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
+import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -83,6 +92,9 @@ import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { ResizerStylesheet } from "./Resizer";
 
 const stories = [
+  InvoiceTable,
+  InvoiceTableCells,
+  UseInvoiceTableCells,
   ShareButton,
   ShareLink,
   BigStat,
@@ -156,6 +168,12 @@ const stories = [
   LinkButton,
   EmailRegistration,
   CloseButton,
+  TaxForm,
+  RadioCard,
+  ProgressBar,
+  TaxFormSlots,
+  PayoutDetailsCard,
+  BankingInfoForm,
 ];
 
 /**
