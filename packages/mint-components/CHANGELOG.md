@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] - 2024-04-10
+
+### Fixed
+
+- \<sqm-tax-and-cash>
+  - Fix issue where a non-US user in a non-US brand would skip step 4 of the Tax and Cash form.
+
 ## [1.8.0] - 2024-04-10
 
 ### Changed
