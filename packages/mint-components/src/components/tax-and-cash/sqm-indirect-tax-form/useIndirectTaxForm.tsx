@@ -42,6 +42,7 @@ type ConnectPartnerResult = {
     impactConnection: {
       connected: boolean;
       publisher: {
+        brandedSignup: boolean;
         requiredTaxDocumentType: TaxDocumentType | null;
         currentTaxDocument: null | CurrentTaxDocument;
       };
@@ -72,6 +73,7 @@ const CONNECT_PARTNER = gql`
       impactConnection {
         connected
         publisher {
+          brandedSignup
           requiredTaxDocumentType
           currentTaxDocument {
             type
@@ -264,7 +266,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         // Go to docusign form
         setStep("/3");
       } else {
-        if (publisher?.brandedSignup) {
+        if (resultPublisher?.brandedSignup) {
           // Go to banking information form
           setStep("/4");
         } else {

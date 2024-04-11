@@ -14,7 +14,7 @@ import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
 import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
 import verifyEmailTemplate from "../templates/VerifyEmail.html";
-import taxPayoutReminderEmailTemplate from "../templates/taxPayoutReminderEmail.html";
+import taxPayoutReminderEmailTemplate from "../templates/TaxPayoutReminderEmail.html";
 import loginTemplate from "../templates/Login.html";
 import registerTemplate from "../templates/Register.html";
 import forgotPasswordTemplate from "../templates/ForgotPassword.html";
