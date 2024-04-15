@@ -1,6 +1,7 @@
 import { asyncHandlerWrapper } from "./async-wrapper";
 import type { GenericError } from "./error";
 import { formatGenericError } from "./error";
+import type { HealthCheckResult } from "./healthcheck";
 import { healthCheck } from "./healthcheck";
 import { requestIdAndLogger } from "./middleware";
 import { nanoid } from "./nanoid";
@@ -19,4 +20,4 @@ export {
   requestIdAndLogger,
   shutdownManagerConfigFromEnv,
 };
-export type { GenericError, ShutdownManagerConfig };
+export type { GenericError, HealthCheckResult, ShutdownManagerConfig };
