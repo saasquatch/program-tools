@@ -1818,10 +1818,12 @@ export namespace Components {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["pro"]
          */
         "hidePoweredBy": boolean;
         /**
           * @uiName Hide support message
+          * @requiredFeatures ["pro"]
          */
         "hideSupportText": boolean;
         /**
@@ -7516,10 +7518,12 @@ declare namespace LocalJSX {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["pro"]
          */
         "hidePoweredBy"?: boolean;
         /**
           * @uiName Hide support message
+          * @requiredFeatures ["pro"]
          */
         "hideSupportText"?: boolean;
         /**
