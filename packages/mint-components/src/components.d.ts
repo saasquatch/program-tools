@@ -4867,10 +4867,18 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Country field label
+         */
+        "address": string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
+        /**
+          * @uiName Country field label
+         */
+        "city": string;
         /**
           * @uiName Continue button label
          */
@@ -4964,6 +4972,10 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
+          * @uiName Country field label
+         */
+        "state": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -4974,6 +4986,10 @@ export namespace Components {
           * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
+        /**
+          * @uiName Country field label
+         */
+        "zipCode": string;
     }
     interface SqmUserName {
         /**
@@ -10540,10 +10556,18 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Country field label
+         */
+        "address"?: string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
+        /**
+          * @uiName Country field label
+         */
+        "city"?: string;
         /**
           * @uiName Continue button label
          */
@@ -10637,6 +10661,10 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
+          * @uiName Country field label
+         */
+        "state"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -10647,6 +10675,10 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
+        /**
+          * @uiName Country field label
+         */
+        "zipCode"?: string;
     }
     interface SqmUserName {
         /**

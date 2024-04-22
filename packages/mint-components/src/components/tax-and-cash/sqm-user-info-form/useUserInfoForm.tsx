@@ -20,7 +20,11 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { objectIsFull } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
-import { useParent, useParentQueryValue, useParentValue } from "@saasquatch/component-boilerplate";
+import {
+  useParent,
+  useParentQueryValue,
+  useParentValue,
+} from "@saasquatch/component-boilerplate";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -99,6 +103,16 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
+
+        // TODO: Confirm where these fields are
+        // @ts-ignore
+        address: user.impactConnection.publisher.address,
+        // @ts-ignore
+        city: user.impactConnection.publisher.city,
+        // @ts-ignore
+        state: user.impactConnection.publisher.state,
+        // @ts-ignore
+        zipCode: user.impactConnection.publisher.zipCode,
       });
     } else if (!userFormContext?.email) {
       // Initialise with user information
@@ -108,6 +122,10 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.lastName,
         countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
+        address: user.customFields?.address,
+        city: user.customFields?.city,
+        state: user.customFields?.state,
+        zipCode: user.customFields?.zipCode,
       });
     }
   }, [data, step, userFormContext]);

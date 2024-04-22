@@ -27,6 +27,10 @@ export interface UserInfoFormViewProps {
         lastName?: boolean;
         countryCode?: boolean;
         currency?: boolean;
+        address?: boolean;
+        city?: boolean;
+        state?: boolean;
+        zipCode?: boolean;
         allowBankingCollection?: boolean;
       };
       error?: string;
@@ -62,6 +66,10 @@ export interface UserInfoFormViewProps {
     lastName: string;
     email: string;
     country: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
     currency: string;
     currencyHelpText: string;
     allowBankingCollection: string;
@@ -391,6 +399,79 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
+              <sl-input
+                exportparts="label: input-label"
+                label="Address"
+                id="address"
+                name="/address"
+                validationError={(props) => {
+                  console.log({ props });
+                }}
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.address
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.address,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                label="City"
+                id="city"
+                name="/city"
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.city
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.city,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
+              <sl-select
+                label="State/Province"
+                exportparts="label: input-label"
+                id="state"
+                name="/state"
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.state
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.state,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+              >
+                <sl-menu-item value="TODO:">TODO:</sl-menu-item>
+              </sl-select>
+              <sl-input
+                label="Zip/Postal Code"
+                exportparts="label: input-label"
+                id="zipcode"
+                name="/zipCode"
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.zipCode
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: getIsRequiredErrorMessage(
+                        text.zipCode,
+                        text.error.fieldRequiredError
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
               <sl-select
                 id="currency"
                 exportparts="label: input-label"

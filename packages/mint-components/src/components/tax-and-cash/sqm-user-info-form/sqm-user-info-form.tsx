@@ -35,6 +35,22 @@ export class TaxForm {
    */
   @Prop() country: string = "Country";
   /**
+   * @uiName Country field label
+   */
+  @Prop() address: string = "Address";
+  /**
+   * @uiName Country field label
+   */
+  @Prop() city: string = "City";
+  /**
+   * @uiName Country field label
+   */
+  @Prop() state: string = "State";
+  /**
+   * @uiName Country field label
+   */
+  @Prop() zipCode: string = "Zip Code";
+  /**
    * @uiName Currency field label
    */
   @Prop() currency: string = "Currency";

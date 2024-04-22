@@ -28,6 +28,10 @@ export type UserFormContext = {
   email: string;
   countryCode: string;
   currency: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
 };
 
 export type TaxContext = {
