@@ -31,10 +31,7 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
   }
 };
 
-export const getIsRequiredErrorMessage = (
-  fieldName: string,
-  errorMessage: string
-) => {
+export const formatErrorMessage = (fieldName: string, errorMessage: string) => {
   return intl.formatMessage(
     {
       id: fieldName,

@@ -994,7 +994,9 @@ export class TaxAndCashMonolith {
   }
 
   render() {
-    const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
+    // TODO: REMOVE THIS
+    const props = useTaxAndCash();
+    // const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     // @ts-ignore
     if (this.demoData?.showTextProps) {

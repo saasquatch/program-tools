@@ -3,7 +3,7 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
 import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { getIsRequiredErrorMessage } from "../utils";
+import { formatErrorMessage } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -22,16 +22,17 @@ export interface UserInfoFormViewProps {
       currency?: string;
       allowBankingCollection?: boolean;
       errors?: {
-        general?: boolean;
-        firstName?: boolean;
-        lastName?: boolean;
-        countryCode?: boolean;
-        currency?: boolean;
-        address?: boolean;
-        city?: boolean;
-        state?: boolean;
-        zipCode?: boolean;
-        allowBankingCollection?: boolean;
+        general?: string;
+        firstName?: string;
+        lastName?: string;
+        countryCode?: string;
+        currency?: string;
+        address?: string;
+        city?: string;
+        state?: string;
+        zipCode?: string;
+        phoneNumber?: string;
+        allowBankingCollection?: string;
       };
       error?: string;
     };
@@ -66,6 +67,7 @@ export interface UserInfoFormViewProps {
     lastName: string;
     email: string;
     country: string;
+    phoneNumber: string;
     address: string;
     city: string;
     state: string;
@@ -82,6 +84,8 @@ export interface UserInfoFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
+      addressInvalidCharacterError: string;
+      phoneNumberInvalidError: string;
       fieldRequiredError: string;
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;
@@ -317,9 +321,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.firstName
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.firstName,
-                        text.error.fieldRequiredError
+                        formState.errors.firstName
                       ),
                     }
                   : {})}
@@ -335,9 +339,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.lastName
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.lastName,
-                        text.error.fieldRequiredError
+                        formState.errors.lastName
                       ),
                     }
                   : {})}
@@ -365,9 +369,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.countryCode
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.country,
-                        text.error.fieldRequiredError
+                        formState.errors.countryCode
                       ),
                     }
                   : {})}
@@ -401,19 +405,21 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </sl-select>
               <sl-input
                 exportparts="label: input-label"
-                label="Address"
-                id="address"
-                name="/address"
-                validationError={(props) => {
-                  console.log({ props });
-                }}
+                label={text.phoneNumber}
+                id="phoneNumber"
+                name="/phoneNumber"
+                validationError={({ value }) =>
+                  // Naive phone number validation
+                  !/^[^A-Z]+$/i.test(value) &&
+                  text.error.phoneNumberInvalidError
+                }
                 disabled={states.disabled || states.isUser || states.isPartner}
-                {...(formState.errors?.address
+                {...(formState.errors?.phoneNumber
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
-                        text.address,
-                        text.error.fieldRequiredError
+                      helpText: formatErrorMessage(
+                        text.phoneNumber,
+                        formState.errors.phoneNumber
                       ),
                     }
                   : {})}
@@ -421,14 +427,36 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ></sl-input>
               <sl-input
                 exportparts="label: input-label"
-                label="City"
+                label={text.address}
+                id="address"
+                name="/address"
+                validationError={({ value }) =>
+                  // Checks for non-ASCII characters
+                  !/^[\x32-\xFF]+$/.test(value) &&
+                  text.error.addressInvalidCharacterError
+                }
+                disabled={states.disabled || states.isUser || states.isPartner}
+                {...(formState.errors?.address
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: formatErrorMessage(
+                        text.address,
+                        formState.errors.address
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                label={text.city}
                 id="city"
                 name="/city"
                 disabled={states.disabled || states.isUser || states.isPartner}
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.city,
                         text.error.fieldRequiredError
                       ),
@@ -437,7 +465,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               ></sl-input>
               <sl-select
-                label="State/Province"
+                label={text.state}
                 exportparts="label: input-label"
                 id="state"
                 name="/state"
@@ -445,9 +473,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.state
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.state,
-                        text.error.fieldRequiredError
+                        formState.errors.state
                       ),
                     }
                   : {})}
@@ -456,7 +484,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 <sl-menu-item value="TODO:">TODO:</sl-menu-item>
               </sl-select>
               <sl-input
-                label="Zip/Postal Code"
+                label={text.zipCode}
                 exportparts="label: input-label"
                 id="zipcode"
                 name="/zipCode"
@@ -464,9 +492,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.zipCode
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.zipCode,
-                        text.error.fieldRequiredError
+                        formState.errors.zipCode
                       ),
                     }
                   : {})}
@@ -484,9 +512,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.currency
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.currency,
-                        text.error.fieldRequiredError
+                        formState.errors.currency
                       ),
                     }
                   : {})}
@@ -536,9 +564,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 </sl-checkbox>
                 {formState.errors?.allowBankingCollection && (
                   <p class={classes.ErrorText}>
-                    {getIsRequiredErrorMessage(
+                    {formatErrorMessage(
                       text.termsAndConditionsLabel,
-                      text.error.fieldRequiredError
+                      formState.errors.allowBankingCollection
                     )}
                   </p>
                 )}

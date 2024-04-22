@@ -4867,16 +4867,21 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
-          * @uiName Country field label
+          * @uiName Address field label
          */
         "address": string;
+        /**
+          * Displayed under Address field that includes invalid characters (non-ASCII).
+          * @uiName Address invalid charatcer error message
+         */
+        "addressInvalidCharacterError": string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
         /**
-          * @uiName Country field label
+          * @uiName City field label
          */
         "city": string;
         /**
@@ -4962,6 +4967,15 @@ export namespace Components {
          */
         "personalInformation": string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber": string;
+        /**
+          * Displayed under Phone Number field when it is not a valid phone number.
+          * @uiName Phone number invalid error message
+         */
+        "phoneNumberInvalidError": string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -4972,7 +4986,7 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
-          * @uiName Country field label
+          * @uiName State field label
          */
         "state": string;
         /**
@@ -4987,7 +5001,7 @@ export namespace Components {
          */
         "termsAndConditionsLabel": string;
         /**
-          * @uiName Country field label
+          * @uiName Zip code field label
          */
         "zipCode": string;
     }
@@ -10556,16 +10570,21 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
-          * @uiName Country field label
+          * @uiName Address field label
          */
         "address"?: string;
+        /**
+          * Displayed under Address field that includes invalid characters (non-ASCII).
+          * @uiName Address invalid charatcer error message
+         */
+        "addressInvalidCharacterError"?: string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
         /**
-          * @uiName Country field label
+          * @uiName City field label
          */
         "city"?: string;
         /**
@@ -10651,6 +10670,15 @@ declare namespace LocalJSX {
          */
         "personalInformation"?: string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber"?: string;
+        /**
+          * Displayed under Phone Number field when it is not a valid phone number.
+          * @uiName Phone number invalid error message
+         */
+        "phoneNumberInvalidError"?: string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -10661,7 +10689,7 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
-          * @uiName Country field label
+          * @uiName State field label
          */
         "state"?: string;
         /**
@@ -10676,7 +10704,7 @@ declare namespace LocalJSX {
          */
         "termsAndConditionsLabel"?: string;
         /**
-          * @uiName Country field label
+          * @uiName Zip code field label
          */
         "zipCode"?: string;
     }

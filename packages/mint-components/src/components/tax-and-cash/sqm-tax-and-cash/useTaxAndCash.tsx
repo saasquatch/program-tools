@@ -1,5 +1,6 @@
 import {
   getContextValueName,
+  setUserIdentity,
   useHost,
   useLocale,
   useParentQuery,
@@ -59,6 +60,36 @@ function getCurrentStep(user: UserQuery["user"]) {
 
 export function useTaxAndCash() {
   const host = useHost();
+
+  /*************************/
+  // TODO: REMOVE THIS
+  function DEMO_SETUP() {
+    const idAndAccountId =
+      "2d6babdbf8aa12f8117a8caef1ebb2ed691ead60ef60c460ad81fa0a6cfe203e";
+    const jwt =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMmQ2YmFiZGJmOGFhMTJmODExN2E4Y2FlZjFlYmIyZWQ2OTFlYWQ2MGVmNjBjNDYwYWQ4MWZhMGE2Y2ZlMjAzZSIsImFjY291bnRJZCI6IjJkNmJhYmRiZjhhYTEyZjgxMTdhOGNhZWYxZWJiMmVkNjkxZWFkNjBlZjYwYzQ2MGFkODFmYTBhNmNmZTIwM2UiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3Rlc3RmaWVsZHNAaW1wYWN0LmNvbSJ9fQ.vZuGR7BC5GYSn2F-l0pqeDRavRCz3J60ZNo7z7x2z-A";
+    const programId = "24474";
+    const tenantAlias = "aprh0cfq6y8tk";
+    const appDomain = "https://staging.referralsaasquatch.com";
+
+    // @ts-ignore
+    window.widgetIdent = {
+      tenantAlias,
+      appDomain,
+      programId,
+    };
+
+    useEffect(() => {
+      setUserIdentity({
+        accountId: idAndAccountId,
+        id: idAndAccountId,
+        jwt,
+      });
+    }, []);
+  }
+  DEMO_SETUP();
+  /********************/
+
   const user = useUserIdentity();
   const locale = useLocale();
 

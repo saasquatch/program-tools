@@ -179,11 +179,6 @@ export function useUserInfoForm(props: TaxForm) {
       const key = control.name;
       const value = control.value;
 
-      // required validation
-      if (control.required && !value) {
-        jsonpointer.set(errors, key, props.fieldRequiredError);
-      }
-
       // custom validation
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
@@ -191,10 +186,16 @@ export function useUserInfoForm(props: TaxForm) {
         if (validationError) jsonpointer.set(errors, key, validationError);
       }
 
+      // required validation
+      if (control.required && !value) {
+        jsonpointer.set(errors, key, props.fieldRequiredError);
+      }
+
       jsonpointer.set(formData, key, value);
     });
 
     if (Object.keys(errors).length) {
+      console.log({ errors });
       setErrors(errors);
       // early return for validation errors
       return;

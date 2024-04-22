@@ -35,19 +35,23 @@ export class TaxForm {
    */
   @Prop() country: string = "Country";
   /**
-   * @uiName Country field label
+   * @uiName Phone number field label
+   */
+  @Prop() phoneNumber: string = "Phone number";
+  /**
+   * @uiName Address field label
    */
   @Prop() address: string = "Address";
   /**
-   * @uiName Country field label
+   * @uiName City field label
    */
   @Prop() city: string = "City";
   /**
-   * @uiName Country field label
+   * @uiName State field label
    */
   @Prop() state: string = "State";
   /**
-   * @uiName Country field label
+   * @uiName Zip code field label
    */
   @Prop() zipCode: string = "Zip Code";
   /**
@@ -128,6 +132,17 @@ export class TaxForm {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Displayed under Address field that includes invalid characters (non-ASCII).
+   * @uiName Address invalid charatcer error message
+   */
+  @Prop() addressInvalidCharacterError: string =
+    "Address includes characters that aren't supported.";
+  /**
+   * Displayed under Phone Number field when it is not a valid phone number.
+   * @uiName Phone number invalid error message
+   */
+  @Prop() phoneNumberInvalidError: string = "Not a valid phone number.";
+  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
    * @uiWidget textArea
@@ -170,6 +185,8 @@ export class TaxForm {
         generalDescription: props.generalErrorDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+        addressInvalidCharacterError: props.addressInvalidCharacterError,
+        phoneNumberInvalidError: props.phoneNumberInvalidError,
       },
     };
   }
