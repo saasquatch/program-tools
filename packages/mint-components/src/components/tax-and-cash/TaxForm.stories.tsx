@@ -25,6 +25,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   states: {
     step: "1",
     hideSteps: false,
+    hideState: false,
     loading: false,
     disabled: false,
     isPartner: false,
@@ -39,11 +40,12 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
       address: "2/1337 Johnson Street",
       city: "Vancouver",
       state: "BC",
-      zipCode: "555 555",
+      postalCode: "555 555",
       errors: {},
     },
   },
   data: {
+    regions: [],
     countries: [
       {
         countryCode: "CA",

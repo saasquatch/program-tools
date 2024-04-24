@@ -13,6 +13,7 @@ export interface UserInfoFormViewProps {
     isPartner: boolean;
     isUser: boolean;
     hideSteps: boolean;
+    hideState: boolean;
     loadingError?: boolean;
     formState: {
       firstName?: string;
@@ -38,6 +39,7 @@ export interface UserInfoFormViewProps {
     };
   };
   data: {
+    regions: { label: string; value: string }[];
     countries: {
       countryCode: string;
       displayName: string;
@@ -413,7 +415,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !/^[^A-Z]+$/i.test(value) &&
                   text.error.phoneNumberInvalidError
                 }
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.phoneNumber
                   ? {
                       class: classes.ErrorInput,
@@ -435,7 +437,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !/^[\x32-\xFF]+$/.test(value) &&
                   text.error.addressInvalidCharacterError
                 }
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.address
                   ? {
                       class: classes.ErrorInput,
@@ -452,7 +454,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.city}
                 id="city"
                 name="/city"
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
@@ -464,31 +466,35 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   : {})}
                 required
               ></sl-input>
-              <sl-select
-                label={text.state}
-                exportparts="label: input-label"
-                id="state"
-                name="/state"
-                disabled={states.disabled || states.isUser || states.isPartner}
-                {...(formState.errors?.state
-                  ? {
-                      class: classes.ErrorInput,
-                      helpText: formatErrorMessage(
-                        text.state,
-                        formState.errors.state
-                      ),
-                    }
-                  : {})}
-                required
-              >
-                <sl-menu-item value="TODO:">TODO:</sl-menu-item>
-              </sl-select>
+              {!states.hideState && (
+                <sl-select
+                  label={text.state}
+                  exportparts="label: input-label"
+                  id="state"
+                  name="/state"
+                  disabled={states.disabled || states.isPartner}
+                  {...(formState.errors?.state
+                    ? {
+                        class: classes.ErrorInput,
+                        helpText: formatErrorMessage(
+                          text.state,
+                          formState.errors.state
+                        ),
+                      }
+                    : {})}
+                  required
+                >
+                  {data.regions.map((r) => (
+                    <sl-menu-item value={r.value}>{r.label}</sl-menu-item>
+                  ))}
+                </sl-select>
+              )}
               <sl-input
                 label={text.zipCode}
                 exportparts="label: input-label"
-                id="zipcode"
-                name="/zipCode"
-                disabled={states.disabled || states.isUser || states.isPartner}
+                id="postalCode"
+                name="/postalCode"
+                disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.zipCode
                   ? {
                       class: classes.ErrorInput,

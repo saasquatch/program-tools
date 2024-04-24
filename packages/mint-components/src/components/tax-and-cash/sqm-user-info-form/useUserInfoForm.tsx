@@ -25,6 +25,7 @@ import {
   useParentQueryValue,
   useParentValue,
 } from "@saasquatch/component-boilerplate";
+import { ADDRESS_REGIONS } from "../subregions";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -104,15 +105,10 @@ export function useUserInfoForm(props: TaxForm) {
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
 
-        // TODO: Confirm where these fields are
-        // @ts-ignore
         address: user.impactConnection.publisher.address,
-        // @ts-ignore
         city: user.impactConnection.publisher.city,
-        // @ts-ignore
         state: user.impactConnection.publisher.state,
-        // @ts-ignore
-        zipCode: user.impactConnection.publisher.zipCode,
+        postalCode: user.impactConnection.publisher.postalCode,
       });
     } else if (!userFormContext?.email) {
       // Initialise with user information
@@ -125,7 +121,7 @@ export function useUserInfoForm(props: TaxForm) {
         address: user.customFields?.address,
         city: user.customFields?.city,
         state: user.customFields?.state,
-        zipCode: user.customFields?.zipCode,
+        postalCode: user.customFields?.postalCode,
       });
     }
   }, [data, step, userFormContext]);
@@ -206,12 +202,23 @@ export function useUserInfoForm(props: TaxForm) {
     setUserFormContext({
       ...userFormContext,
       countryCode: userData.countryCode,
+      address: userData.address,
+      city: userData.city,
+      state: userData.state,
+      postalCode: userData.postalCode,
       currency: userData.currency,
     });
 
     const nextStep = context.overrideNextStep || "/2";
     setStep(nextStep);
   }
+
+  const hasStates = ["ES", "AU", "US", "CA"].includes(
+    userFormContext.countryCode
+  );
+  const regions = hasStates
+    ? ADDRESS_REGIONS[userFormContext?.countryCode]
+    : [];
 
   return {
     setStep: setStep,
@@ -231,9 +238,11 @@ export function useUserInfoForm(props: TaxForm) {
       countries: filteredCountries,
       allCurrencies: currencies,
       allCountries: countries,
+      regions,
     },
     states: {
       step: step?.replace("/", ""),
+      hideState: !hasStates,
       hideSteps: !!context.hideSteps,
       disabled: loading,
       loadingError: !!userError?.message,

@@ -31,7 +31,7 @@ export type UserFormContext = {
   address: string;
   city: string;
   state: string;
-  zipCode: string;
+  postalCode: string;
 };
 
 export type TaxContext = {
@@ -58,6 +58,10 @@ export const GET_USER = gql`
           publisher {
             countryCode
             currency
+            address
+            city
+            state
+            postalCode
             requiredTaxDocumentType
             brandedSignup
             taxInformation {
@@ -99,6 +103,10 @@ export type ImpactPublisher = {
   currency: string;
   requiredTaxDocumentType: TaxDocumentType | null;
   brandedSignup: boolean;
+  address: string | null;
+  city: string | null;
+  state: string | null;
+  postalCode: string | null;
   currentTaxDocument: null | {
     status: TaxDocumentStatus;
     type: TaxDocumentType;
