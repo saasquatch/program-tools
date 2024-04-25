@@ -12,7 +12,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @exampleGroup Leaderboard
  * @example Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @requiredFeatures ["pro"]
+ * @requiredFeatures ["LEADERBOARDS"]
  */
 @Component({
   tag: "sqm-leaderboard",
