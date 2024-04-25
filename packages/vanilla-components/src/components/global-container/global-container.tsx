@@ -38,6 +38,7 @@ export class GlobalContainer {
    * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
    *
    * @uiName Show Powered By
+   * @requiredFeatures ["CUSTOM_BRANDING"]
    */
   @Prop() poweredby: boolean;
 
