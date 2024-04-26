@@ -207,7 +207,7 @@ Feature: Tax Form Step One
       | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
       | 0123456789                                           | will not |
       | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
-      | æùíöêø                                               | will     |
+      | æùíöêø                                               | will not |
       | ぁ ㍿ ・                                             | will     |
       | NUL                                                  | will     |
 
