@@ -4,6 +4,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
 import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 import { formatErrorMessage } from "../utils";
+import { PHONE_EXTENSIONS } from "../phoneExtensions";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -475,11 +476,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       style={{ width: "500px" }}
                       value={c.countryCode}
                     >
-                      <div
-                        slot="prefix"
-                        style={{ marginRight: "8px" }}
-                      >{`${c.displayName} `}</div>
-                      +111
+                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
+                        PHONE_EXTENSIONS[c.countryCode]?.name
+                      } `}</div>
+                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
                     </sl-menu-item>
                   ))}
                   {data?.allCountries?.map((c) => (
@@ -487,11 +487,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       value={c.countryCode}
                       style={{ display: "none" }}
                     >
-                      <div
-                        slot="prefix"
-                        style={{ marginRight: "8px" }}
-                      >{`${c.displayName} `}</div>
-                      +1
+                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
+                        PHONE_EXTENSIONS[c.countryCode]?.name
+                      } `}</div>
+                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
                     </sl-menu-item>
                   ))}
                 </sl-select>
