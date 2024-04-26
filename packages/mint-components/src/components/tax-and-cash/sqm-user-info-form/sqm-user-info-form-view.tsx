@@ -441,7 +441,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="phoneNumberCountryCode"
                   exportparts="label: input-label"
                   name="/phoneNumberCountryCode"
-                  label={text.phoneExtension}
+                  label={text.phoneNumber}
+                  style={{ minWidth: "140px" }}
                   value={formState.phoneNumberCountryCode}
                   disabled={states.disabled || states.isPartner}
                   ref={(el: HTMLFormElement) =>
@@ -496,10 +497,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 </sl-select>
                 <sl-input
                   exportparts="label: input-label"
-                  label={text.phoneNumber}
+                  label={" "}
                   id="phoneNumber"
                   name="/phoneNumber"
-                  style={{ width: "362px" }}
+                  style={{ marginTop: "2px", width: "362px" }}
                   validationError={({ value }) =>
                     // Naive phone number validation
                     !/^[^A-Z]+$/i.test(value) &&
