@@ -20,14 +20,14 @@ Feature: Tax Form Step One
       | Last name                  | text      |
       | Email                      | text      |
       | Country                    | select    |
+      | Extension                  | text      |
       | Phone number               | text      |
       | Address                    | text      |
       | City                       | text      |
-      | State                      | text      |
-      | Zip code                   | text      |
+      | State                      | select    |
+      | Postal code                | text      |
       | Tax and banking collection | checkbox  |
 
-  # TODO: Confirm where the new fields are
   @motivating
   Scenario: The Participant is an Impact partner and form fields are disabled
     Given they have the following Impact user fields
@@ -35,14 +35,16 @@ Feature: Tax Form Step One
       | lastName  |
       | email     |
     And they have the following Impact publisher fields
-      | countryCode |
-      | phoneNumber |
-      | address     |
-      | city        |
-      | state       |
-      | zipCode     |
-      | currency    |
-    Then the firstName, lastName, email, countryCode, and currency fields cannot be changed
+      | countryCode            |
+      | billingAddress         |
+      | billingCity            |
+      | billingState           |
+      | billingCountryCode     |
+      | billingPostalCode      |
+      | phoneNumberCountryCode |
+      | phoneNumber            |
+      | currency               |
+    And the firstName, lastName, email, countryCode, phoneNumberCountryCode, phoneNumber, billingAddress, billingState, billingCity, and currency fields cannot be changed
     And the corresponding input fields have been autofilled with the Impact values
     And the corresponding input fields are disabled
 
@@ -63,16 +65,18 @@ Feature: Tax Form Step One
     Given they have no Impact user information
     And they have no Impact publisher information
     But they have the following fields saved on their participant
-      | firstName   |
-      | lastName    |
-      | email       |
-      | countryCode |
-      | currency    |
-      | phoneNumber |
-      | address     |
-      | city        |
-      | state       |
-      | zipCode     |
+      | firstName              |
+      | lastName               |
+      | email                  |
+      | countryCode            |
+      | billingAddress         |
+      | billingCity            |
+      | billingState           |
+      | billingCountryCode     |
+      | billingPostalCode      |
+      | phoneNumberCountryCode |
+      | phoneNumber            |
+      | currency               |
     Then the user's email cannot be changed
     And the corresponding input fields are autofilled with the participant values
     And the email field is disabled
@@ -143,10 +147,11 @@ Feature: Tax Form Step One
       | Last Name                  | <lastName>               |
       | Country Code               | <countryCode>            |
       | Phone number               | <phoneNumber>            |
+      | Extension                  | <extension>              |
       | Address                    | <address>                |
       | City                       | <city>                   |
       | State                      | <state>                  |
-      | Zip Code                   | <zipCode>                |
+      | Postal code                | <postalCode>             |
       | Tax and Banking Collection | <allowBankingCollection> |
     And they click "Continue"
     Then the form displays the respective errors for each field:
@@ -154,10 +159,11 @@ Feature: Tax Form Step One
       | <lastName>               | Lastname is required             |
       | <countryCode>            | Country is required              |
       | <phoneNumber>            | Phone number is required         |
+      | <extension>              |                                  |
       | <address>                | Address is required              |
       | <city>                   | City is required                 |
       | <state>                  | State is required                |
-      | <zipCode>                | Zip code is required             |
+      | <postalCode>             | Postal code is required          |
       | <currency>               | Currency is required             |
       | <allowBankingCollection> | Terms and Conditions is required |
     And no save request is sent to the backend
@@ -175,6 +181,14 @@ Feature: Tax Form Step One
     And the "Country" field has a value selected
     When the "Country" field is changed
     Then the "Currency" field has nothing selected
+
+  @minutia
+  Scenario: Selecting a country selects the same country option in the "Extension" field
+    Given the "Currency" field has a value selected
+    And the "Country" field has a value selected
+    When the "Country" field is changed
+    Then the "Extension" field has the same country's value selected
+    But changing the "Extension" field does not change the "Country" field's value
 
   @minutia
   Scenario Outline: "Address" field does not allow non-ASCII characters
@@ -214,17 +228,25 @@ Feature: Tax Form Step One
       | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
 
   @minutia
-  Scenario: "State" field select changes based on country selected
+  Scenario Outline: "State" field changes based on country selected
     Given the "Country" field
-    When a new country is selected via the dropdown
+    When <country> is selected via the dropdown
     Then the "State" select menu updates to the valid states of that country
+    And the "State" field's label changes to <label>
+
+    Examples:
+      | country       | label    |
+      | Austria       | Region   |
+      | Canada        | Province |
+      | Australia     | State    |
+      | United States | State    |
+      | Spain         | Region   |
 
   @minutia
   Scenario Outline: "State" field is hidden if there are no states for the selected country
     Given the "Country" field has value <country>
     Then the "State" select <isHidden>
 
-    # TODO: Fill in country examples
     Examples:
       | country       | isHidden      |
       | Austria       | is hidden     |

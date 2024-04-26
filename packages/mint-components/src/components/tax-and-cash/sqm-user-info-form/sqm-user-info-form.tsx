@@ -8,6 +8,8 @@ import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
 import { UseUserInfoFormResult, useUserInfoForm } from "./useUserInfoForm";
 
+// TODO: Add new props to sqm-tax-and-cash once finalised
+
 /**
  * @uiName User Information Form
  * @exampleGroup Tax and Cash Components

@@ -263,7 +263,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.region;
       break;
     default:
-      regionLabel = undefined;
+      regionLabel = text.state;
   }
 
   return (
