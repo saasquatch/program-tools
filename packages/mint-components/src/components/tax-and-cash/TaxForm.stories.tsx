@@ -35,6 +35,8 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
       firstName: "Bob",
       lastName: "Testerson",
       email: "bobtesterson@example.com",
+      phoneNumberCountryCode: "US",
+      phoneNumber: "555 555 5555",
       countryCode: "US",
       currency: "CAD",
       address: "2/1337 Johnson Street",
@@ -45,7 +47,14 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     },
   },
   data: {
+    regionLabelEnum: "STATE",
     regions: [],
+    phoneCountries: [
+      {
+        countryCode: "CA",
+        displayName: "Canada",
+      },
+    ],
     countries: [
       {
         countryCode: "CA",
@@ -126,6 +135,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
   refs: {
     formRef: { current: null },
     currencyRef: { current: null },
+    phoneCountryRef: { current: null },
   },
 };
 

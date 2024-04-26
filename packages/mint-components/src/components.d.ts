@@ -4967,6 +4967,10 @@ export namespace Components {
          */
         "personalInformation": string;
         /**
+          * @uiName Phone extension field label
+         */
+        "phoneExtension": string;
+        /**
           * @uiName Phone number field label
          */
         "phoneNumber": string;
@@ -4975,6 +4979,18 @@ export namespace Components {
           * @uiName Phone number invalid error message
          */
         "phoneNumberInvalidError": string;
+        /**
+          * @uiName Zip code field label
+         */
+        "postalCode": string;
+        /**
+          * @uiName State field label
+         */
+        "province": string;
+        /**
+          * @uiName State field label
+         */
+        "region": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -5000,10 +5016,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
-        /**
-          * @uiName Zip code field label
-         */
-        "zipCode": string;
     }
     interface SqmUserName {
         /**
@@ -10670,6 +10682,10 @@ declare namespace LocalJSX {
          */
         "personalInformation"?: string;
         /**
+          * @uiName Phone extension field label
+         */
+        "phoneExtension"?: string;
+        /**
           * @uiName Phone number field label
          */
         "phoneNumber"?: string;
@@ -10678,6 +10694,18 @@ declare namespace LocalJSX {
           * @uiName Phone number invalid error message
          */
         "phoneNumberInvalidError"?: string;
+        /**
+          * @uiName Zip code field label
+         */
+        "postalCode"?: string;
+        /**
+          * @uiName State field label
+         */
+        "province"?: string;
+        /**
+          * @uiName State field label
+         */
+        "region"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -10703,10 +10731,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
-        /**
-          * @uiName Zip code field label
-         */
-        "zipCode"?: string;
     }
     interface SqmUserName {
         /**

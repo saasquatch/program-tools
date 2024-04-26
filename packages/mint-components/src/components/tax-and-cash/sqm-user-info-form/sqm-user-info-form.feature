@@ -226,7 +226,10 @@ Feature: Tax Form Step One
 
     # TODO: Fill in country examples
     Examples:
-      | country   | isHidden      |
-      | Example A | is hidden     |
-      | Example B | is not hidden |
+      | country       | isHidden      |
+      | Austria       | is hidden     |
+      | Canada        | is not hidden |
+      | Australia     | is not hidden |
+      | United States | is not hidden |
+      | Spain         | is not hidden |
 

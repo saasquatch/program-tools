@@ -25,7 +25,7 @@ import {
   useParentQueryValue,
   useParentValue,
 } from "@saasquatch/component-boilerplate";
-import { ADDRESS_REGIONS } from "../subregions";
+import { AddressRegions, ADDRESS_REGIONS } from "../subregions";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -38,6 +38,7 @@ export type FormState = {
   firstName?: string;
   lastName?: string;
   email?: string;
+  phoneCountry?: string;
   countryCode?: string;
   currency?: string;
   participantType?: string;
@@ -56,6 +57,7 @@ export type InitialData = {
 
 export function useUserInfoForm(props: TaxForm) {
   const currencyRef = useRef<HTMLSelectElement>(undefined);
+  const phoneCountryRef = useRef<HTMLSelectElement>(undefined);
   const formRef = useRef<HTMLFormElement>(null);
 
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
@@ -82,7 +84,11 @@ export function useUserInfoForm(props: TaxForm) {
   );
 
   const [countrySearch, setCountrySearch] = useState("");
+  const [phoneCountrySearch, setPhoneCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
+  const [filteredPhoneCountries, setFilteredPhoneCountries] = useState(
+    countries || []
+  );
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCurrencies, setFilteredCurrencies] = useState(
     currencies || []
@@ -104,11 +110,13 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
-
-        address: user.impactConnection.publisher.address,
-        city: user.impactConnection.publisher.city,
-        state: user.impactConnection.publisher.state,
-        postalCode: user.impactConnection.publisher.postalCode,
+        phoneNumberCountryCode:
+          user.impactConnection.publisher.phoneNumberCountryCode,
+        phoneNumber: user.impactConnection.publisher.phoneNumber,
+        address: user.impactConnection.publisher.billingAddress,
+        city: user.impactConnection.publisher.billingCity,
+        state: user.impactConnection.publisher.billingState,
+        postalCode: user.impactConnection.publisher.billingPostalCode,
       });
     } else if (!userFormContext?.email) {
       // Initialise with user information
@@ -118,6 +126,9 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.lastName,
         countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
+        phoneNumberCountryCode:
+          user.customFields?.phoneNumberCountryCode || "US",
+        phoneNumber: user.customFields?.phoneNumber,
         address: user.customFields?.address,
         city: user.customFields?.city,
         state: user.customFields?.state,
@@ -134,7 +145,10 @@ export function useUserInfoForm(props: TaxForm) {
       ...userFormContext,
       [field]: value,
     });
-    if (field === "countryCode") currencyRef.current.value = "";
+    if (field === "countryCode") {
+      phoneCountryRef.current.value = value;
+      currencyRef.current.value = "";
+    }
   };
 
   useEffect(() => {
@@ -149,6 +163,19 @@ export function useUserInfoForm(props: TaxForm) {
       );
     }
   }, [countrySearch, countries]);
+
+  useEffect(() => {
+    if (!countries?.length) return;
+    if (phoneCountrySearch.trim() === "") {
+      setFilteredPhoneCountries(countries || []);
+    } else {
+      setFilteredPhoneCountries(
+        countries.filter((c) =>
+          c.displayName.toLowerCase().includes(phoneCountrySearch.toLowerCase())
+        ) || []
+      );
+    }
+  }, [phoneCountrySearch, countries]);
 
   useEffect(() => {
     if (!currencies?.length) return;
@@ -191,7 +218,6 @@ export function useUserInfoForm(props: TaxForm) {
     });
 
     if (Object.keys(errors).length) {
-      console.log({ errors });
       setErrors(errors);
       // early return for validation errors
       return;
@@ -201,6 +227,8 @@ export function useUserInfoForm(props: TaxForm) {
 
     setUserFormContext({
       ...userFormContext,
+      phoneNumberCountryCode: userData.phoneNumberCountryCode,
+      phoneNumber: userData.phoneNumber,
       countryCode: userData.countryCode,
       address: userData.address,
       city: userData.city,
@@ -216,9 +244,9 @@ export function useUserInfoForm(props: TaxForm) {
   const hasStates = ["ES", "AU", "US", "CA"].includes(
     userFormContext.countryCode
   );
-  const regions = hasStates
+  const regionObj = hasStates
     ? ADDRESS_REGIONS[userFormContext?.countryCode]
-    : [];
+    : ({} as AddressRegions[string]);
 
   return {
     setStep: setStep,
@@ -227,18 +255,22 @@ export function useUserInfoForm(props: TaxForm) {
     callbacks: {
       setCurrencySearch,
       setCountrySearch,
+      setPhoneCountrySearch,
       onFormChange,
     },
     refs: {
       formRef,
       currencyRef,
+      phoneCountryRef,
     },
     data: {
       currencies: filteredCurrencies,
       countries: filteredCountries,
+      phoneCountries: filteredPhoneCountries,
       allCurrencies: currencies,
       allCountries: countries,
-      regions,
+      regionLabelEnum: regionObj?.labelEnum,
+      regions: regionObj?.regions || [],
     },
     states: {
       step: step?.replace("/", ""),

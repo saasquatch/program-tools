@@ -62,6 +62,12 @@ type ImpactConnectionInput = {
   lastName: string;
   countryCode: string;
   currency: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  phoneNumber?: string;
+  phoneNumberCountryCode?: string;
   indirectTaxCountryCode?: string;
   indirectTaxRegion?: string;
   indirectTaxId?: string;
@@ -73,7 +79,10 @@ const CONNECT_PARTNER = gql`
   mutation createImpactConnection($vars: ImpactConnectionInput!) {
     createImpactConnection(impactConnectionInput: $vars) {
       success
-      validationErrors
+      validationErrors {
+        field
+        message
+      }
       user {
         id
         accountId

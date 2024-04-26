@@ -39,6 +39,10 @@ export class TaxForm {
    */
   @Prop() phoneNumber: string = "Phone number";
   /**
+   * @uiName Phone extension field label
+   */
+  @Prop() phoneExtension: string = "Extension";
+  /**
    * @uiName Address field label
    */
   @Prop() address: string = "Address";
@@ -51,9 +55,17 @@ export class TaxForm {
    */
   @Prop() state: string = "State";
   /**
+   * @uiName State field label
+   */
+  @Prop() province: string = "Province";
+  /**
+   * @uiName State field label
+   */
+  @Prop() region: string = "Region";
+  /**
    * @uiName Zip code field label
    */
-  @Prop() zipCode: string = "Zip Code";
+  @Prop() postalCode: string = "Postal code";
   /**
    * @uiName Currency field label
    */
@@ -231,11 +243,13 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         allCurrencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+        phoneCountries: [{ countryCode: "CA", displayName: "Canada" }],
         allCountries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       callbacks: {
         setCurrencySearch: (c) => console.log(c),
         setCountrySearch: (c) => console.log(c),
+        setPhoneCountrySearch: (c) => console.log(c),
         onFormChange: () => {},
       },
       states: {

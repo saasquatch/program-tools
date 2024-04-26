@@ -19,6 +19,7 @@ export interface UserInfoFormViewProps {
       firstName?: string;
       lastName?: string;
       email?: string;
+      phoneNumberCountryCode?: string;
       countryCode?: string;
       currency?: string;
       allowBankingCollection?: boolean;
@@ -31,7 +32,8 @@ export interface UserInfoFormViewProps {
         address?: string;
         city?: string;
         state?: string;
-        zipCode?: string;
+        postalCode?: string;
+        phoneNumberCountryCode?: string;
         phoneNumber?: string;
         allowBankingCollection?: string;
       };
@@ -39,8 +41,13 @@ export interface UserInfoFormViewProps {
     };
   };
   data: {
+    regionLabelEnum: "STATE" | "REGION" | "PROVINCE" | undefined;
     regions: { label: string; value: string }[];
     countries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+    phoneCountries: {
       countryCode: string;
       displayName: string;
     }[];
@@ -60,6 +67,7 @@ export interface UserInfoFormViewProps {
   callbacks: {
     setCurrencySearch: (c: any) => void;
     setCountrySearch: (c: any) => void;
+    setPhoneCountrySearch: (c: any) => void;
     onSubmit: (props: any) => void;
     onFormChange: (field: string, e: CustomEvent) => void;
   };
@@ -70,10 +78,13 @@ export interface UserInfoFormViewProps {
     email: string;
     country: string;
     phoneNumber: string;
+    phoneExtension: string;
     address: string;
     city: string;
     state: string;
-    zipCode: string;
+    province: string;
+    region: string;
+    postalCode: string;
     currency: string;
     currencyHelpText: string;
     allowBankingCollection: string;
@@ -98,6 +109,7 @@ export interface UserInfoFormViewProps {
   refs: {
     formRef: any;
     currencyRef: any;
+    phoneCountryRef: any;
   };
 }
 
@@ -209,6 +221,9 @@ const vanillaStyle = `
       flex-direction: column;
     }
 
+    sl-select#phoneNumberCountryCode::part(menu) {
+      width: 450px;
+    }
   `;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {
@@ -235,6 +250,21 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       ),
     }
   );
+
+  let regionLabel = undefined;
+  switch (data.regionLabelEnum) {
+    case "STATE":
+      regionLabel = text.state;
+      break;
+    case "PROVINCE":
+      regionLabel = text.province;
+      break;
+    case "REGION":
+      regionLabel = text.region;
+      break;
+    default:
+      regionLabel = undefined;
+  }
 
   return (
     <sl-form
@@ -405,28 +435,90 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
-              <sl-input
-                exportparts="label: input-label"
-                label={text.phoneNumber}
-                id="phoneNumber"
-                name="/phoneNumber"
-                validationError={({ value }) =>
-                  // Naive phone number validation
-                  !/^[^A-Z]+$/i.test(value) &&
-                  text.error.phoneNumberInvalidError
-                }
-                disabled={states.disabled || states.isPartner}
-                {...(formState.errors?.phoneNumber
-                  ? {
-                      class: classes.ErrorInput,
-                      helpText: formatErrorMessage(
-                        text.phoneNumber,
-                        formState.errors.phoneNumber
-                      ),
-                    }
-                  : {})}
-                required
-              ></sl-input>
+              <div style={{ display: "flex", gap: "4px" }}>
+                <sl-select
+                  id="phoneNumberCountryCode"
+                  exportparts="label: input-label"
+                  name="/phoneNumberCountryCode"
+                  label={text.phoneExtension}
+                  value={formState.phoneNumberCountryCode}
+                  disabled={states.disabled || states.isPartner}
+                  ref={(el: HTMLFormElement) =>
+                    (refs.phoneCountryRef.current = el)
+                  }
+                  // Hide error text since input is too small
+                  {...(formState.errors?.phoneNumberCountryCode
+                    ? {
+                        class: classes.ErrorInput,
+                        // helpText: formatErrorMessage(
+                        //   text.phoneExtension,
+                        //   formState.errors.phoneCountry
+                        // ),
+                      }
+                    : {})}
+                  required
+                  onSl-select={(e) => callbacks.onFormChange("phoneCountry", e)}
+                >
+                  <sl-input
+                    class={classes.SearchInput}
+                    placeholder={text.searchForCountryText}
+                    onKeyDown={(e) => {
+                      // Stop shoelace intercepting key presses
+                      e.stopPropagation();
+                    }}
+                    onSl-input={(e) => {
+                      callbacks.setPhoneCountrySearch(e.target.value);
+                    }}
+                  ></sl-input>
+                  {data?.phoneCountries?.map((c) => (
+                    <sl-menu-item
+                      style={{ width: "500px" }}
+                      value={c.countryCode}
+                    >
+                      <div
+                        slot="prefix"
+                        style={{ marginRight: "8px" }}
+                      >{`${c.displayName} `}</div>
+                      +111
+                    </sl-menu-item>
+                  ))}
+                  {data?.allCountries?.map((c) => (
+                    <sl-menu-item
+                      value={c.countryCode}
+                      style={{ display: "none" }}
+                    >
+                      <div
+                        slot="prefix"
+                        style={{ marginRight: "8px" }}
+                      >{`${c.displayName} `}</div>
+                      +1
+                    </sl-menu-item>
+                  ))}
+                </sl-select>
+                <sl-input
+                  exportparts="label: input-label"
+                  label={text.phoneNumber}
+                  id="phoneNumber"
+                  name="/phoneNumber"
+                  style={{ width: "362px" }}
+                  validationError={({ value }) =>
+                    // Naive phone number validation
+                    !/^[^A-Z]+$/i.test(value) &&
+                    text.error.phoneNumberInvalidError
+                  }
+                  disabled={states.disabled || states.isPartner}
+                  {...(formState.errors?.phoneNumber
+                    ? {
+                        class: classes.ErrorInput,
+                        helpText: formatErrorMessage(
+                          text.phoneNumber,
+                          formState.errors.phoneNumber
+                        ),
+                      }
+                    : {})}
+                  required
+                ></sl-input>
+              </div>
               <sl-input
                 exportparts="label: input-label"
                 label={text.address}
@@ -434,7 +526,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 name="/address"
                 validationError={({ value }) =>
                   // Checks for non-ASCII characters
-                  !/^[\x32-\xFF]+$/.test(value) &&
+                  !/^[\x20-\xFF]+$/.test(value) &&
                   text.error.addressInvalidCharacterError
                 }
                 disabled={states.disabled || states.isPartner}
@@ -468,7 +560,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ></sl-input>
               {!states.hideState && (
                 <sl-select
-                  label={text.state}
+                  label={regionLabel}
                   exportparts="label: input-label"
                   id="state"
                   name="/state"
@@ -484,23 +576,23 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     : {})}
                   required
                 >
-                  {data.regions.map((r) => (
+                  {data.regions?.map((r) => (
                     <sl-menu-item value={r.value}>{r.label}</sl-menu-item>
                   ))}
                 </sl-select>
               )}
               <sl-input
-                label={text.zipCode}
+                label={text.postalCode}
                 exportparts="label: input-label"
                 id="postalCode"
                 name="/postalCode"
                 disabled={states.disabled || states.isPartner}
-                {...(formState.errors?.zipCode
+                {...(formState.errors?.postalCode
                   ? {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
-                        text.zipCode,
-                        formState.errors.zipCode
+                        text.postalCode,
+                        formState.errors.postalCode
                       ),
                     }
                   : {})}

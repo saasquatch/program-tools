@@ -26,6 +26,8 @@ export type UserFormContext = {
   firstName: string;
   lastName: string;
   email: string;
+  phoneNumberCountryCode: string;
+  phoneNumber: string;
   countryCode: string;
   currency: string;
   address: string;
@@ -56,14 +58,17 @@ export const GET_USER = gql`
             lastName
           }
           publisher {
+            id
+            brandedSignup
             countryCode
             currency
-            address
-            city
-            state
-            postalCode
-            requiredTaxDocumentType
-            brandedSignup
+            billingAddress
+            billingCity
+            billingState
+            billingCountryCode
+            billingPostalCode
+            phoneNumberCountryCode
+            phoneNumber
             taxInformation {
               indirectTaxId
               indirectTaxCountryCode
@@ -72,6 +77,7 @@ export const GET_USER = gql`
               withholdingTaxId
               withholdingTaxCountryCode
             }
+            requiredTaxDocumentType
             currentTaxDocument {
               status
               type
@@ -99,14 +105,17 @@ export const GET_USER = gql`
 
 type TaxDocumentStatus = "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
 export type ImpactPublisher = {
+  id: string;
+  brandedSignup: boolean;
   countryCode: string;
   currency: string;
-  requiredTaxDocumentType: TaxDocumentType | null;
-  brandedSignup: boolean;
-  address: string | null;
-  city: string | null;
-  state: string | null;
-  postalCode: string | null;
+  billingAddress: string | null;
+  billingCity: string | null;
+  billingState: string | null;
+  billingCountryCode: string | null;
+  billingPostalCode: string | null;
+  phoneNumberCountryCode: string | null;
+  phoneNumber: string | null;
   currentTaxDocument: null | {
     status: TaxDocumentStatus;
     type: TaxDocumentType;
@@ -120,6 +129,7 @@ export type ImpactPublisher = {
     withholdingTaxId: string | null;
     withholdingTaxCountryCode: string | null;
   };
+  requiredTaxDocumentType: TaxDocumentType | null;
   withdrawalSettings: {
     paymentMethod: "PAYPAL" | "BANK_TRANSFER";
     paypalEmailAddress: string | null;
