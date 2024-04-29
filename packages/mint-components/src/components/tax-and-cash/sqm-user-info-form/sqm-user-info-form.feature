@@ -15,18 +15,19 @@ Feature: Tax Form Step One
     And they see a "Continue" button
 
     Examples:
-      | label                      | inputType |
-      | First name                 | text      |
-      | Last name                  | text      |
-      | Email                      | text      |
-      | Country                    | select    |
-      | Extension                  | text      |
-      | Phone number               | text      |
-      | Address                    | text      |
-      | City                       | text      |
-      | State                      | select    |
-      | Postal code                | text      |
-      | Tax and banking collection | checkbox  |
+      | label                        | inputType |
+      | First name                   | text      |
+      | Last name                    | text      |
+      | Email                        | text      |
+      | Country                      | select    |
+      | (Phone extension - no label) | text      |
+      | Phone number                 | text      |
+      | Address                      | text      |
+      | City                         | text      |
+      | State                        | select    |
+      | Postal code                  | text      |
+      | Currency                     | select    |
+      | Tax and banking collection   | checkbox  |
 
   @motivating
   Scenario: The Participant is an Impact partner and form fields are disabled
@@ -213,7 +214,7 @@ Feature: Tax Form Step One
 
   @minutia
   Scenario: "Phone number" field does not allow alphabetical characters
-    Given the "Phone nummber" field is not empty
+    Given the "Phone number" field is not empty
     And the value includes <string>
     When the "Continue" button is clicked
     Then the following error message <may> be displayed
@@ -236,7 +237,6 @@ Feature: Tax Form Step One
 
     Examples:
       | country       | label    |
-      | Austria       | Region   |
       | Canada        | Province |
       | Australia     | State    |
       | United States | State    |

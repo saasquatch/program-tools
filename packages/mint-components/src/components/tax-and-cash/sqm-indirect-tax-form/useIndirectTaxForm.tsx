@@ -258,6 +258,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         city: userForm.city,
         state: userForm.state,
         postalCode: userForm.postalCode,
+        phoneNumber: userForm.phoneNumber,
+        phoneNumberCountryCode: userForm.phoneNumberCountryCode,
         indirectTaxCountryCode: formData.selectedRegion,
         indirectTaxRegion: formData.province || formData.subRegion,
         indirectTaxId: formData.indirectTaxNumber,
