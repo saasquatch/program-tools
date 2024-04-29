@@ -143,6 +143,7 @@ Feature: Tax Form Step One
 
   @minutia @ui
   Scenario Outline: A user fills out Tax Form Step One with invalid values
+    # Invalid values are an empty string, or only spaces
     Given invalid values for the following fields:
       | First Name                 | <firstName>              |
       | Last Name                  | <lastName>               |
@@ -192,25 +193,32 @@ Feature: Tax Form Step One
     But changing the "Extension" field does not change the "Country" field's value
 
   @minutia
-  Scenario Outline: "Address" field does not allow non-ASCII characters
-    Given the "Address" field is not empty
+  Scenario Outline: "Address" and "City" fields do not allow non-ASCII characters
+    Given the <fieldName> field is not empty
     And the value includes <string>
     When the "Continue" button is clicked
     Then the following error message <may> be displayed
       """
-      Address contains invalid characters.
+      {fieldName} contains invalid characters.
       """
 
-    # Note: SPACE and NUL mean the characters. NUL is for documentation purposes.
+    # Note: SPACE and NUL mean the characters. Both are for documentation purposes.
     Examples:
-      | string                                               | may      |
-      | SPACE                                                | will not |
-      | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
-      | 0123456789                                           | will not |
-      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
-      | æùíöêø                                               | will not |
-      | ぁ ㍿ ・                                             | will     |
-      | NUL                                                  | will     |
+      | fieldName | string                                               | may      |
+      | Address   | SPACE                                                | will not |
+      | Address   | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
+      | Address   | 0123456789                                           | will not |
+      | Address   | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | Address   | æùíöêø                                               | will not |
+      | Address   | ぁ ㍿ ・                                             | will     |
+      | Address   | NUL                                                  | will     |
+      | City      | SPACE                                                | will not |
+      | City      | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
+      | City      | 0123456789                                           | will not |
+      | City      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | City      | æùíöêø                                               | will not |
+      | City      | ぁ ㍿ ・                                             | will     |
+      | City      | NUL                                                  | will     |
 
   @minutia
   Scenario: "Phone number" field does not allow alphabetical characters
