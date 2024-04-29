@@ -20,6 +20,11 @@ export interface UserInfoFormViewProps {
       firstName?: string;
       lastName?: string;
       email?: string;
+      address?: string;
+      city?: string;
+      state?: string;
+      postalCode?: string;
+      phoneNumber?: string;
       phoneNumberCountryCode?: string;
       countryCode?: string;
       currency?: string;
@@ -452,10 +457,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   {...(formState.errors?.phoneNumberCountryCode
                     ? {
                         class: classes.ErrorInput,
-                        // helpText: formatErrorMessage(
-                        //   text.phoneExtension,
-                        //   formState.errors.phoneCountry
-                        // ),
                       }
                     : {})}
                   required
@@ -500,6 +501,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   label={" "}
                   id="phoneNumber"
                   name="/phoneNumber"
+                  value={formState.phoneNumber}
                   style={{ marginTop: "2px", width: "362px" }}
                   validationError={({ value }) =>
                     // Naive phone number validation
@@ -524,6 +526,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.address}
                 id="address"
                 name="/address"
+                value={formState.address}
                 validationError={({ value }) =>
                   // Checks for non-ASCII characters
                   !/^[\x20-\xFF]+$/.test(value) &&
@@ -546,6 +549,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.city}
                 id="city"
                 name="/city"
+                value={formState.city}
                 disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.city
                   ? {
@@ -564,6 +568,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   exportparts="label: input-label"
                   id="state"
                   name="/state"
+                  value={formState.state}
                   disabled={states.disabled || states.isPartner}
                   {...(formState.errors?.state
                     ? {
@@ -586,6 +591,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label"
                 id="postalCode"
                 name="/postalCode"
+                value={formState.postalCode}
                 disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.postalCode
                   ? {
