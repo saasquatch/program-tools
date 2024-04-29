@@ -84,7 +84,6 @@ export interface UserInfoFormViewProps {
     email: string;
     country: string;
     phoneNumber: string;
-    phoneExtension: string;
     address: string;
     city: string;
     state: string;
@@ -104,8 +103,8 @@ export interface UserInfoFormViewProps {
       generalTitle: string;
       generalDescription: string;
       invalidCharacterError: string;
-      phoneNumberInvalidError: string;
       fieldRequiredError: string;
+      fieldInvalidError: string;
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;
     };
@@ -506,7 +505,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   validationError={({ value }) =>
                     // Naive phone number validation
                     validateBillingField(/[a-zA-Z]+/, value) &&
-                    text.error.phoneNumberInvalidError
+                    formatErrorMessage(
+                      text.phoneNumber,
+                      text.error.fieldInvalidError
+                    )
                   }
                   disabled={states.disabled || states.isPartner}
                   {...(formState.errors?.phoneNumber

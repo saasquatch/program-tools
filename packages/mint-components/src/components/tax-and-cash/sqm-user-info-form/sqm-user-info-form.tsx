@@ -8,8 +8,6 @@ import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
 import { UseUserInfoFormResult, useUserInfoForm } from "./useUserInfoForm";
 
-// TODO: Add new props to sqm-tax-and-cash once finalised
-
 /**
  * @uiName User Information Form
  * @exampleGroup Tax and Cash Components
@@ -41,10 +39,6 @@ export class TaxForm {
    */
   @Prop() phoneNumber: string = "Phone number";
   /**
-   * @uiName Phone extension field label
-   */
-  @Prop() phoneExtension: string = "Extension";
-  /**
    * @uiName Address field label
    */
   @Prop() address: string = "Address";
@@ -65,7 +59,7 @@ export class TaxForm {
    */
   @Prop() region: string = "Region";
   /**
-   * @uiName Zip code field label
+   * @uiName Postal code field label
    */
   @Prop() postalCode: string = "Postal code";
   /**
@@ -146,16 +140,16 @@ export class TaxForm {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
    * Displayed under Address or City fields that includes invalid characters (non-ASCII).
    * @uiName Invalid character error message
    */
   @Prop() invalidCharacterError: string =
     "{fieldName} includes characters that aren't supported.";
-  /**
-   * Displayed under Phone Number field when it is not a valid phone number.
-   * @uiName Phone number invalid error message
-   */
-  @Prop() phoneNumberInvalidError: string = "Not a valid phone number.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
@@ -195,12 +189,12 @@ export class TaxForm {
       ...props,
       error: {
         fieldRequiredError: props.fieldRequiredError,
+        fieldInvalidError: props.fieldInvalidError,
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
         invalidCharacterError: props.invalidCharacterError,
-        phoneNumberInvalidError: props.phoneNumberInvalidError,
       },
     };
   }
