@@ -87,7 +87,7 @@ export function useTaxAndCash() {
       });
     }, []);
   }
-  // DEMO_SETUP();
+  DEMO_SETUP();
   /********************/
 
   const user = useUserIdentity();

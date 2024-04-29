@@ -146,11 +146,11 @@ export class TaxForm {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
-   * Displayed under Address field that includes invalid characters (non-ASCII).
-   * @uiName Address invalid charatcer error message
+   * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+   * @uiName Invalid character error message
    */
-  @Prop() addressInvalidCharacterError: string =
-    "Address includes characters that aren't supported.";
+  @Prop() invalidCharacterError: string =
+    "{fieldName} includes characters that aren't supported.";
   /**
    * Displayed under Phone Number field when it is not a valid phone number.
    * @uiName Phone number invalid error message
@@ -199,7 +199,7 @@ export class TaxForm {
         generalDescription: props.generalErrorDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
-        addressInvalidCharacterError: props.addressInvalidCharacterError,
+        invalidCharacterError: props.invalidCharacterError,
         phoneNumberInvalidError: props.phoneNumberInvalidError,
       },
     };

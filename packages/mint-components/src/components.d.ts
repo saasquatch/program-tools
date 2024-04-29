@@ -4871,11 +4871,6 @@ export namespace Components {
          */
         "address": string;
         /**
-          * Displayed under Address field that includes invalid characters (non-ASCII).
-          * @uiName Address invalid charatcer error message
-         */
-        "addressInvalidCharacterError": string;
-        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
@@ -4934,6 +4929,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "generalErrorTitle": string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
@@ -10586,11 +10586,6 @@ declare namespace LocalJSX {
          */
         "address"?: string;
         /**
-          * Displayed under Address field that includes invalid characters (non-ASCII).
-          * @uiName Address invalid charatcer error message
-         */
-        "addressInvalidCharacterError"?: string;
-        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
@@ -10649,6 +10644,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description

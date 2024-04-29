@@ -3,7 +3,7 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
 import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { formatErrorMessage } from "../utils";
+import { formatErrorMessage, validateBillingField } from "../utils";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 
 export interface UserInfoFormViewProps {
@@ -103,7 +103,7 @@ export interface UserInfoFormViewProps {
     error: {
       generalTitle: string;
       generalDescription: string;
-      addressInvalidCharacterError: string;
+      invalidCharacterError: string;
       phoneNumberInvalidError: string;
       fieldRequiredError: string;
       loadingErrorAlertHeader: string;
@@ -505,7 +505,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   style={{ marginTop: "2px", width: "362px" }}
                   validationError={({ value }) =>
                     // Naive phone number validation
-                    !/^[^A-Z]+$/i.test(value) &&
+                    validateBillingField(/[a-zA-Z]+/, value) &&
                     text.error.phoneNumberInvalidError
                   }
                   disabled={states.disabled || states.isPartner}
@@ -529,8 +529,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 value={formState.address}
                 validationError={({ value }) =>
                   // Checks for non-ASCII characters
-                  !/^[\x20-\xFF]+$/.test(value) &&
-                  text.error.addressInvalidCharacterError
+                  !validateBillingField(/^[\x20-\xFF]+$/, value) &&
+                  formatErrorMessage(
+                    text.address,
+                    text.error.invalidCharacterError
+                  )
                 }
                 disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.address
@@ -550,13 +553,21 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 id="city"
                 name="/city"
                 value={formState.city}
+                validationError={({ value }) =>
+                  // Checks for non-ASCII characters
+                  !validateBillingField(/^[\x20-\xFF]+$/, value) &&
+                  formatErrorMessage(
+                    text.city,
+                    text.error.invalidCharacterError
+                  )
+                }
                 disabled={states.disabled || states.isPartner}
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.city,
-                        text.error.fieldRequiredError
+                        formState.errors.city
                       ),
                     }
                   : {})}

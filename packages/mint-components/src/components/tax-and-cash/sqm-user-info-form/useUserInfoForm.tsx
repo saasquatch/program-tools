@@ -210,7 +210,7 @@ export function useUserInfoForm(props: TaxForm) {
       }
 
       // required validation
-      if (control.required && !value) {
+      if (control.required && !(value as string)?.trim()) {
         jsonpointer.set(errors, key, props.fieldRequiredError);
       }
 
