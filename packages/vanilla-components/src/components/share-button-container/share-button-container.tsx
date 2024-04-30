@@ -5,7 +5,7 @@ import { API } from "../../services/WidgetHost";
  * @uiName Share Button Container
  * @canvasRenderer always-replace
  * @exampleGroup Sharing
- * @example Share Button Group - <sqh-share-button-container ishidden="false" emaildisplayrule="mobile-and-desktop" emailtext="Email" emailtextcolor="#ffffff" emailbackgroundcolor="#4b4d50" facebookdisplayrule="mobile-and-desktop" facebooktext="Facebook" facebooktextcolor="#ffffff" facebookbackgroundcolor="#234079" twitterdisplayrule="mobile-and-desktop" twittertext="Twitter" twittertextcolor="#ffffff" twitterbackgroundcolor="#4797d2" smsdisplayrule="mobile-only" smstext="SMS" smstextcolor="#ffffff" smsbackgroundcolor="#7bbf38" whatsappdisplayrule="mobile-only" whatsapptext="WhatsApp" whatsapptextcolor="#ffffff" whatsappbackgroundcolor="#25D366" linkedindisplayrule="hidden" linkedintext="LinkedIn" linkedintextcolor="#ffffff" linkedinbackgroundcolor="#0084b9" pinterestdisplayrule="hidden" pinteresttext="Pinterest" pinteresttextcolor="#ffffff" pinterestbackgroundcolor="#cb2027" messengerdisplayrule="hidden" messengertext="Messenger" messengertextcolor="#ffffff" messengerbackgroundcolor="#0084ff" linedisplayrule="mobile-only" linetext="Line Messenger" linetextcolor="#ffffff" linebackgroundcolor="#00c300"></sqh-share-button-container>
+ * @example Share Button Group - <sqh-share-button-container ishidden="false" emaildisplayrule="mobile-and-desktop" emailtext="Email" emailtextcolor="#ffffff" emailbackgroundcolor="#4b4d50" facebookdisplayrule="mobile-and-desktop" facebooktext="Facebook" facebooktextcolor="#ffffff" facebookbackgroundcolor="#234079" twitterdisplayrule="mobile-and-desktop" twittertext="X" twittertextcolor="#ffffff" twitterbackgroundcolor="#000000" smsdisplayrule="mobile-only" smstext="SMS" smstextcolor="#ffffff" smsbackgroundcolor="#7bbf38" whatsappdisplayrule="mobile-only" whatsapptext="WhatsApp" whatsapptextcolor="#ffffff" whatsappbackgroundcolor="#25D366" linkedindisplayrule="hidden" linkedintext="LinkedIn" linkedintextcolor="#ffffff" linkedinbackgroundcolor="#0084b9" pinterestdisplayrule="hidden" pinteresttext="Pinterest" pinteresttextcolor="#ffffff" pinterestbackgroundcolor="#cb2027" messengerdisplayrule="hidden" messengertext="Messenger" messengertextcolor="#ffffff" messengerbackgroundcolor="#0084ff" linedisplayrule="mobile-only" linetext="Line Messenger" linetextcolor="#ffffff" linebackgroundcolor="#00c300"></sqh-share-button-container>
  */
 @Component({
   tag: "sqh-share-button-container",
@@ -151,64 +151,64 @@ export class ShareButtonContainer {
   /**
    * Show and hide button depending on what type of device the user is on
    *
-   * @uiName Twitter Display Rule
-   * @uiGroup Twitter
+   * @uiName X Display Rule
+   * @uiGroup X
    * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
    * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
    * @default mobile-and-desktop
    */
   @Prop() twitterdisplayrule: string;
   /**
-   * @uiName Twitter Text
-   * @uiGroup Twitter
-   * @default Twitter
+   * @uiName X Text
+   * @uiGroup X
+   * @default X
    */
   @Prop() twittertext: string;
   /**
-   * Background color of the twitter button
+   * Background color of the X button
    *
-   * @uiName Twitter Background Color
-   * @uiGroup Twitter
+   * @uiName X Background Color
+   * @uiGroup X
    * @uiWidget color
-   * @default #4797d2
+   * @default #000000
    */
   @Prop() twitterbackgroundcolor: string;
   /**
-   * @uiName Twitter Text Color
-   * @uiGroup Twitter
+   * @uiName X Text Color
+   * @uiGroup X
    * @uiWidget color
    * @default #ffffff
    */
   @Prop() twittertextcolor: string;
   /**
-   * @uiName Twitter Icon
-   * @uiGroup Twitter
+   * @uiName X Icon
+   * @uiGroup X
    */
   @Prop() twittericon: string = "twitter";
   /**
    * CSS class name for additional styling.
    *
-   * @uiName Twitter Class Name
-   * @uiGroup Twitter
+   * @uiName X Class Name
+   * @uiGroup X
    */
   @Prop() twitterclassName: string;
   /**
-   * Number to horizontally align the twitter button icon
+   * Number to horizontally align the X button icon
    *
-   * @uiName Twitter Icon Horizontal
-   * @uiGroup Twitter
+   * @uiName X Icon Horizontal
+   * @uiGroup X
    */
   @Prop() twittericonhorizontal: number = 9;
   /**
-   * Number to vertically align the twitter button icon
+   * Number to vertically align the X button icon
    *
-   * @uiName Twitter Icon Vertical
-   * @uiGroup Twitter
+   * @uiName X Icon Vertical
+   * @uiGroup X
    */
   @Prop() twittericonvertical: number;
   /**
-   * @uiName Twitter Icon Size
-   * @uiGroup Twitter
+   * @uiName X Icon Size
+   * @uiGroup X
    */
   @Prop() twittericonsize: number = 1.2;
 

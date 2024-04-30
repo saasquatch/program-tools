@@ -459,7 +459,7 @@ export default (editor, config = {}) => {
               'title': 'Select Button to Edit',
               'default': 'email',
               'enum': ['email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest', 'line'],
-              'enumNames': ['Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger']
+              'enumNames': ['Email', 'Facebook', 'Messenger', 'X', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger']
             },
           },
           'dependencies': {
