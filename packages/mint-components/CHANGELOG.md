@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.2] - 2024-04-30
+
+- \<sqm-user-info-form>
+  - Added support for billing fields in the user information form
+- \<sqm-tax-and-cash>
+  - Added support for billing fields
+
 ## [1.8.1] - 2024-04-10
 
 ### Fixed
