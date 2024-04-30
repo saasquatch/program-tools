@@ -19,6 +19,12 @@ export interface PortalChangePasswordViewProps {
       successMessage: string;
       portalChangePasswordHeader: string;
       portalChangePasswordButtonText: string;
+      meetsRequirementsText?: string;
+      doesNotMeetRequirementsText?: string;
+      minErrorText?: string;
+      uppercaseErrorText?: string;
+      lowercaseErrorText?: string;
+      hasErrorText?: string;
     };
   };
   callbacks: {
@@ -123,6 +129,16 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                       exportparts="input-label: input-label"
                       class={sheet.classes.PasswordField}
                       fieldLabel={states.content.passwordFieldLabel}
+                      meetsRequirementsText={
+                        states.content.meetsRequirementsText
+                      }
+                      doesNotMeetRequirementsText={
+                        states.content.doesNotMeetRequirementsText
+                      }
+                      minErrorText={states.content.minErrorText}
+                      uppercaseErrorText={states.content.uppercaseErrorText}
+                      lowercaseErrorText={states.content.lowercaseErrorText}
+                      hasErrorText={states.content.hasErrorText}
                     ></sqm-password-field>
                     <sl-input
                       exportparts="label: input-label"

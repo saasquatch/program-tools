@@ -75,6 +75,19 @@
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-coupon-code](../sqm-coupon-code)
 - [sqm-link-button](../sqm-link-button)
+- [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
+- [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
+- [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
+- [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
+- [sqm-banking-info-form](../tax-and-cash/sqm-banking-info-form)
+- [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
+- [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
+- [sqm-invoice-table](../sqm-invoice-table)
+- [sqm-invoice-table-download-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-date-cell](../sqm-invoice-table/cells)
+- [sqm-invoice-table-download-column](../sqm-invoice-table/columns)
+- [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
+- [sqm-invoice-table-data-column](../sqm-invoice-table/columns)
 
 ### Graph
 ```mermaid
@@ -145,8 +158,20 @@ graph TD;
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-coupon-code
   sqm-stencilbook --> sqm-link-button
+  sqm-stencilbook --> sqm-payout-details-card
+  sqm-stencilbook --> sqm-user-info-form
+  sqm-stencilbook --> sqm-indirect-tax-form
+  sqm-stencilbook --> sqm-docusign-form
+  sqm-stencilbook --> sqm-banking-info-form
+  sqm-stencilbook --> sqm-tax-and-cash-dashboard
+  sqm-stencilbook --> sqm-tax-and-cash
+  sqm-stencilbook --> sqm-invoice-table
+  sqm-stencilbook --> sqm-invoice-table-download-cell
+  sqm-stencilbook --> sqm-invoice-table-date-cell
+  sqm-stencilbook --> sqm-invoice-table-download-column
+  sqm-stencilbook --> sqm-invoice-table-date-column
+  sqm-stencilbook --> sqm-invoice-table-data-column
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-edit-profile --> sqm-form-message
@@ -172,6 +197,29 @@ graph TD;
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   sqm-coupon-code --> sqm-form-message
+  sqm-user-info-form --> sqm-payout-details-card
+  sqm-user-info-form --> sqm-user-info-form
+  sqm-user-info-form --> sqm-indirect-tax-form
+  sqm-user-info-form --> sqm-docusign-form
+  sqm-user-info-form --> sqm-banking-info-form
+  sqm-user-info-form --> sqm-tax-and-cash-dashboard
+  sqm-user-info-form --> sqm-tax-and-cash
+  sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
+  sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
+  sqm-invoice-table --> sqm-empty
+  sqm-invoice-table --> sqm-table-row
+  sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
+  sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
+  sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
+  sqm-tax-and-cash --> sqm-user-info-form
+  sqm-tax-and-cash --> sqm-indirect-tax-form
+  sqm-tax-and-cash --> sqm-docusign-form
+  sqm-tax-and-cash --> sqm-banking-info-form
+  sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

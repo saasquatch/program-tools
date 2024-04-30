@@ -6,7 +6,7 @@ import {
 import scenario from "./sqm-portal-verify-email.feature";
 
 export default {
-  title: "Components/Portal Verify Email",
+  title: "Components/Microsite Verify Email",
   parameters: {
     scenario,
   },
@@ -25,6 +25,13 @@ const errorProps: PortalVerifyEmailViewProps = {
     gotoNextPage: () => console.log("next page"),
     failed: () => console.log("failed"),
   },
+  content: {
+    verifyEmailText: "Verify your email",
+    verifySuccessText:
+      "Your email has been verified and you are being redirected. If you are not redirected, please click Continue.",
+    verifyInvalidText:
+      "The email verification code is invalid or has expired, please try again.",
+  },
 };
 
 const verifiedProps: PortalVerifyEmailViewProps = {
@@ -40,6 +47,7 @@ const verifiedProps: PortalVerifyEmailViewProps = {
     gotoNextPage: () => console.log("next page"),
     failed: () => console.log("failed"),
   },
+  content: {},
 };
 
 export const EmailVerificationWithError = () => (

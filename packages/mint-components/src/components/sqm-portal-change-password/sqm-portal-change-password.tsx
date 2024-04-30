@@ -76,6 +76,49 @@ export class PortalChangePassword {
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 
   /**
+   * @uiName Password requirement met
+   */
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  /**
+   * @uiName Password requirement failed
+   */
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  /**
+   * @uiName Minimum length text
+   */
+  @Prop() minErrorText: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
+  @Prop() uppercaseErrorText: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
+  @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Passwords don’t match error message
+   */
+  @Prop() nonMatchingPasswordErrorText: string =
+    "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Invalid user session error message
+   */
+  @Prop() invalidSessionErrorText: string =
+    "Please log in again to change your password.";
+
+  /**
+   * @uiName Missing number or symbol text
+   */
+  @Prop() hasErrorText: string = "contain at least 1 number or symbol";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -111,6 +154,12 @@ function usePortalChangePasswordDemo(props: PortalChangePassword) {
           successMessage: props.successMessage,
           portalChangePasswordHeader: props.portalChangePasswordHeader,
           portalChangePasswordButtonText: props.portalChangePasswordButtonText,
+          meetsRequirementsText: props.meetsRequirementsText,
+          doesNotMeetRequirementsText: props.doesNotMeetRequirementsText,
+          minErrorText: props.minErrorText,
+          uppercaseErrorText: props.uppercaseErrorText,
+          lowercaseErrorText: props.lowercaseErrorText,
+          hasErrorText: props.hasErrorText,
         },
       },
       callbacks: {

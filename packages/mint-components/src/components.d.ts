@@ -7,15 +7,19 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
+import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
+import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
+import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
+import { GenericTableViewProps } from "./tables/GenericTableView";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -34,11 +38,13 @@ import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registr
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
-import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
+import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
+import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
+import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface RaisinsPlopTarget {
@@ -59,6 +65,252 @@ export namespace Components {
           * @uiName Banner title
          */
         "titleText": string;
+    }
+    interface SqmBankingInfoForm {
+        /**
+          * @uiName Agency code field label
+         */
+        "agencyCodeLabel": string;
+        /**
+          * Text for the back button in the form
+          * @uiName Back button label
+         */
+        "backButton": string;
+        /**
+          * @uiName Bank account number field label
+         */
+        "bankAccountNumberLabel": string;
+        /**
+          * @uiName Bank account type field label
+         */
+        "bankAccountTypeLabel": string;
+        /**
+          * @uiName Bank address field label
+         */
+        "bankAddressLabel": string;
+        /**
+          * @uiName Bank city field label
+         */
+        "bankCityLabel": string;
+        /**
+          * @uiName Bank country field label
+         */
+        "bankLocationLabel": string;
+        /**
+          * @uiName Bank name field label
+         */
+        "bankNameLabel": string;
+        /**
+          * @uiName Bank postal code field label
+         */
+        "bankPostalCodeLabel": string;
+        /**
+          * @uiName Bank province/state field label
+         */
+        "bankStateLabel": string;
+        /**
+          * @uiName Beneficiary account field label
+         */
+        "beneficiaryAccountNameLabel": string;
+        /**
+          * @uiName Branch code field label
+         */
+        "branchCodeLabel": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Business classification option
+         */
+        "businessSelectItemLabel": string;
+        /**
+          * @uiName Checking account option
+         */
+        "checkingSelectItemLabel": string;
+        /**
+          * @uiName Classification CPF field label
+         */
+        "classificationCPFLabel": string;
+        /**
+          * @uiName Classification entity field label
+         */
+        "classificationEntityLabel": string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification field label
+         */
+        "classificationLabel": string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<BankingInfoFormViewProps>;
+        /**
+          * @uiName Direct to bank payout option
+         */
+        "directlyToBankAccount": string;
+        /**
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
+         */
+        "eftWithdrawalLabel": string;
+        /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError": string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
+         */
+        "foreignSelectItemLabel": string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep": string;
+        /**
+          * @uiName FX Wire Processing fee text
+         */
+        "fxWireProcessingFeeLabel": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * @uiName IBAN field label
+         */
+        "ibanLabel": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
+         */
+        "individualSelectItemLabel": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Patronymic name field label
+         */
+        "patronymicNameLabel": string;
+        /**
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
+         */
+        "payPalInputLabel": string;
+        /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month payday option
+         */
+        "paymentDayFifteenthOfMonthLabelText": string;
+        /**
+          * One of two payment day options
+          * @uiName First of month payday option
+         */
+        "paymentDayFirstOfMonthLabelText": string;
+        /**
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
+         */
+        "paymentDaySelectLabel": string;
+        /**
+          * @uiName Payment method section header
+         */
+        "paymentMethod": string;
+        /**
+          * @uiName Payment method section description
+         */
+        "paymentMethodSubtext": string;
+        /**
+          * @uiName Payment schedule section header
+         */
+        "paymentSchedule": string;
+        /**
+          * @uiName Threshold balance payment schedule option
+         */
+        "paymentScheduleBalanceThreshold": string;
+        /**
+          * @uiName Fixed day payment schedule option
+         */
+        "paymentScheduleFixedDay": string;
+        /**
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
+         */
+        "paymentThresholdSelectLabel": string;
+        /**
+          * @uiName Routing code field label
+         */
+        "routingCodeLabel": string;
+        /**
+          * @uiName Savings account options
+         */
+        "savingsSelectItemLabel": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText": string;
+        /**
+          * @uiName SWIFT code field label
+         */
+        "swiftCodeLabel": string;
+        /**
+          * @uiName Step 4 title
+         */
+        "taxAndPayouts": string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+        /**
+          * @uiName Taxpayer ID field label
+         */
+        "taxPayerIdLabel": string;
+        /**
+          * @uiName PayPal payout option
+         */
+        "toPayPalAccount": string;
+        /**
+          * @uiName VO code field label
+         */
+        "voCodeLabel": string;
     }
     interface SqmBigStat {
         /**
@@ -164,6 +416,9 @@ export namespace Components {
          */
         "color": string;
     }
+    interface SqmContextRouter {
+        "contextName": string;
+    }
     interface SqmCouponCode {
         /**
           * Set the copy button style and placement.
@@ -260,6 +515,12 @@ export namespace Components {
     }
     interface SqmDividedLayout {
         /**
+          * Overrides max-width of content area
+          * @uiName Content Area Width
+          * @uiType string
+         */
+        "contentAreaWidth": string | null;
+        /**
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
@@ -271,6 +532,109 @@ export namespace Components {
           * @uiName Border style
          */
         "dividerStyle": string;
+    }
+    interface SqmDocusignForm {
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
+         */
+        "businessEntity": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseDocusignFormResult>;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
+          * @uiWidget textArea
+         */
+        "docusignError": string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired messag
+          * @uiWidget textArea
+         */
+        "docusignExpired": string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiWidget textArea
+         */
+        "docusignSessionWarning": string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
+         */
+        "individualParticipant": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Participant type field label
+         */
+        "participantType": string;
+        /**
+          * @uiName Refresh page button label
+         */
+        "refreshButton": string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+        /**
+          * @uiName Step 3 title
+         */
+        "taxForm": string;
+        /**
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescription": string;
+        /**
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescriptionBusinessEntity": string;
+        /**
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescriptionIndividualParticipant": string;
+        /**
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
+         */
+        "taxFormLabel": string;
     }
     interface SqmDropdownField {
         /**
@@ -322,13 +686,25 @@ export namespace Components {
          */
         "editprofiletext": string;
         /**
+          * @uiName Empty field error message
+         */
+        "fieldEmptyText": string;
+        /**
           * @uiName First name label
          */
         "firstnametext": string;
         /**
+          * @uiName Form error message
+         */
+        "formErrorText": string;
+        /**
           * @uiName Last name label
          */
         "lastnametext": string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
         /**
           * Show or hide current region
           * @uiName Show region
@@ -552,6 +928,157 @@ export namespace Components {
          */
         "minHeight"?: string;
     }
+    interface SqmIndirectTaxForm {
+        /**
+          * @uiName Back button label
+         */
+        "backButton": string;
+        /**
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
+          * @uiWidget textArea
+         */
+        "cannotChangeInfoAlert": string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<UseIndirectTaxFormResult>;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError": string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * @uiName Step 2 title
+         */
+        "indirectTax": string;
+        /**
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
+          * @uiWidget textArea
+         */
+        "indirectTaxDescription": string;
+        /**
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
+         */
+        "indirectTaxDetails": string;
+        /**
+          * @uiName Indirect tax number field label
+         */
+        "indirectTaxNumber": string;
+        /**
+          * @uiName Missing indirect tax number error message
+         */
+        "indirectTaxNumberError": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader": string;
+        /**
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
+         */
+        "isRegisteredQST": string;
+        /**
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
+          * @uiWidget textArea
+         */
+        "isRegisteredSubRegionIncomeTax": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
+         */
+        "notRegistered": string;
+        /**
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
+         */
+        "notRegisteredSubtext": string;
+        /**
+          * @uiName Registered for indirect tax option
+          * @uiWidget textArea
+         */
+        "otherRegion": string;
+        /**
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
+         */
+        "otherRegionSubtext": string;
+        /**
+          * @uiName Province field label
+         */
+        "province": string;
+        /**
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
+         */
+        "qstNumber": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText": string;
+        /**
+          * @uiName Region of indirect tax field label
+         */
+        "selectedRegion": string;
+        /**
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region of indirect tax field label
+         */
+        "subRegion": string;
+        /**
+          * @uiName Income tax field label
+         */
+        "subRegionTaxNumberLabel": string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+    }
     interface SqmInputField {
         /**
           * @undocumented 
@@ -678,6 +1205,101 @@ export namespace Components {
           * @uiGroup Error messages
          */
         "requiredFieldErrorMessage": string;
+    }
+    interface SqmInvoiceTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData?: { data: Invoice[] };
+  };
+        /**
+          * @uiName Invoice table description
+         */
+        "description"?: string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "emptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "emptyStateText": string;
+        /**
+          * @uiName Invoice table title
+         */
+        "header"?: string;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Hidden mobile columns
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide column labels
+         */
+        "hideLabels"?: boolean;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "mdBreakpoint"?: number;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "moreLabel"?: string;
+        /**
+          * Number of invoices displayed per page
+          * @uiName Invoices per page
+         */
+        "perPage": number;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show invoices in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all invoices from all programs. If program ID is "classic", shows classic-only invoices
+          * @uiName Program
+          * @uiWidget programSelector
+         */
+        "programId": string;
+        /**
+          * @uiName Mobile breakpoint
+         */
+        "smBreakpoint"?: number;
+    }
+    interface SqmInvoiceTableDataCell {
+        "data": string;
+    }
+    interface SqmInvoiceTableDataColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        /**
+          * @uiName Property name
+         */
+        "property": string;
+        "renderCell": (data: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmInvoiceTableDateCell {
+        "date": number;
+        "locale": string;
+    }
+    interface SqmInvoiceTableDateColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle": string;
+        "renderCell": (data: Invoice, options?: { locale: string; }) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmInvoiceTableDownloadCell {
+        "downloadUrl": string;
+    }
+    interface SqmInvoiceTableDownloadColumn {
+        "renderCell": (data: Invoice) => Promise<any>;
+        "renderLabel": () => Promise<any>;
     }
     interface SqmLeaderboard {
         /**
@@ -817,6 +1439,11 @@ export namespace Components {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
+          * @uiName Error text
+         */
+        "emailErrorText": string;
+        /**
+          * @required 
           * @uiName Switch user button label
          */
         "switchUserText": string;
@@ -892,10 +1519,70 @@ export namespace Components {
          */
         "disableValidation": boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * Label for password field
           * @uiName Password label
          */
         "fieldLabel": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
+    }
+    interface SqmPayoutDetailsCard {
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+         */
+        "accountText": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+         */
+        "errorDescriptionText": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+         */
+        "errorTitleText": string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText": string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
+        "statusBadgeText": string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+         */
+        "thresholdPayoutText": string;
     }
     interface SqmPopupContainer {
         /**
@@ -925,10 +1612,15 @@ export namespace Components {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered with SaaSquatch by Impact.com link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy": boolean;
+        /**
+          * Text at the bottom of the popup
+          * @uiName "Powered by" text
+         */
+        "poweredByText": string;
     }
     interface SqmPortalChangePassword {
         /**
@@ -952,9 +1644,37 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
+        /**
+          * @uiName Invalid user session error message
+         */
+        "invalidSessionErrorText": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
+        /**
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader": string;
+        /**
+          * @uiName Passwords don’t match error message
+         */
+        "nonMatchingPasswordErrorText": string;
         /**
           * Found in modal
           * @uiName New password field label
@@ -975,6 +1695,10 @@ export namespace Components {
           * @uiWidget textArea
          */
         "successMessage": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalContainer {
         /**
@@ -1049,6 +1773,10 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
+          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
           * @uiWidget pageSelect
@@ -1063,6 +1791,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "verificationLoadingMessage": string;
+        /**
+          * @uiName Email verification resent text
+          * @uiWidget textArea
+         */
+        "verificationResentMessage": string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
@@ -1084,7 +1817,7 @@ export namespace Components {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy": boolean;
         /**
@@ -1162,9 +1895,13 @@ export namespace Components {
          */
         "loginPath": string;
         /**
-          * Sign in link text
+          * @uiName Sign in link text
          */
         "loginText": string;
+        /**
+          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
@@ -1175,6 +1912,10 @@ export namespace Components {
           * @uiName Password reset button text
          */
         "submitLabel": string;
+        /**
+          * @uiName Email verification sent text
+         */
+        "successAlertText": string;
     }
     interface SqmPortalFrame {
         /**
@@ -1207,6 +1948,10 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "forgotPasswordPath": string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
@@ -1268,9 +2013,17 @@ export namespace Components {
          */
         "emailtext": string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText": string;
+        /**
           * @uiName First name label
          */
         "firstnametext": string;
+        /**
+          * @uiName Form error message
+         */
+        "formErrorText": string;
         /**
           * @uiName Hide country field
          */
@@ -1279,6 +2032,14 @@ export namespace Components {
           * @uiName Last name field label
          */
         "lastnametext": string;
+        /**
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+         */
+        "networkRequestMessage": string;
+        /**
+          * @uiName Submission success text
+         */
+        "submissionSuccessText": string;
         /**
           * @uiName Submit changes button text
          */
@@ -1319,9 +2080,17 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * @uiName Email field label
          */
         "emailLabel": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -1343,6 +2112,18 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -1385,6 +2166,10 @@ export namespace Components {
           * @uiName Submit button text
          */
         "submitLabel": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalRegistrationForm {
         /**
@@ -1405,6 +2190,10 @@ export namespace Components {
          */
         "disablePasswordValidation": boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * @uiName Email field label
          */
         "emailLabel": string;
@@ -1420,6 +2209,10 @@ export namespace Components {
           * @required
          */
         "formKey": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -1441,6 +2234,18 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "loginPath": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -1483,8 +2288,16 @@ export namespace Components {
           * @uiName Submit button text
          */
         "submitLabel": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalResetPassword {
+        /**
+          * @uiName Reset code invalid error message
+         */
+        "codeInvalidText": string;
         /**
           * @uiName Show confirm password field
          */
@@ -1504,11 +2317,35 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
          */
         "failedPage": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
+        /**
+          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
@@ -1519,6 +2356,10 @@ export namespace Components {
           * @uiName Password field label
          */
         "passwordFieldLabel": string;
+        /**
+          * @uiName Passwords don’t match error message Please make sure your passwords match
+         */
+        "passwordMismatchText": string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
@@ -1533,8 +2374,20 @@ export namespace Components {
           * @uiName Reset password header text
          */
         "resetPasswordHeader": string;
+        /**
+          * @uiName Reset success text
+         */
+        "resetSuccessText": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @uiName Continue text
+         */
+        "continueText": string;
         /**
           * @undocumented 
           * @uiType object
@@ -1547,11 +2400,30 @@ export namespace Components {
          */
         "failedPage": string;
         /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
           * @uiWidget pageSelect
          */
         "nextPage": string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyEmailText": string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
+        "verifyInvalidText": string;
+        /**
+          * @uiName Email verification success text
+          * @uiWidget textArea
+         */
+        "verifySuccessText": string;
     }
     interface SqmProgramExplainer {
         /**
@@ -1762,7 +2634,7 @@ export namespace Components {
           * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
          */
         "dateShown": ReferralDates;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
+        "renderCell": (data: Referral, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
@@ -1777,6 +2649,7 @@ export namespace Components {
         "rewards": Reward[];
         "statusLongText": string;
         "statusText": string;
+        "taxConnection": ImpactConnection;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -1808,7 +2681,7 @@ export namespace Components {
           * @uiName Reward pending text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral, locale: string) => Promise<any>;
+        "renderCell": (data: Referral, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
@@ -2177,7 +3050,7 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableDateCell {
@@ -2196,7 +3069,7 @@ export namespace Components {
           * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -2223,7 +3096,7 @@ export namespace Components {
           * @uiName Redeemed amount text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
@@ -2256,7 +3129,7 @@ export namespace Components {
           * @uiWidget textArea
          */
         "referralText": string;
-        "renderCell": (data: Reward, locale: any) => Promise<any>;
+        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward exchange label
@@ -2273,12 +3146,20 @@ export namespace Components {
         "deniedText": string;
         "expiryText": string;
         "locale": string;
+        "payoutApproved": string;
+        "payoutCancelled": string;
+        "payoutFailed": string;
+        "pendingNewTaxForm": string;
+        "pendingPartnerCreation": string;
         "pendingReviewText": string;
         "pendingScheduled": string;
+        "pendingTaxReview": string;
+        "pendingTaxSubmission": string;
         "pendingUnhandled": string;
         "pendingUsTax": string;
         "reward": Reward;
         "statusText": string;
+        "taxConnection": ImpactConnection;
     }
     interface SqmRewardsTableStatusColumn {
         /**
@@ -2296,6 +3177,31 @@ export namespace Components {
          */
         "expiryText": string;
         /**
+          * Displayed when reward payout is approved (based on Impact cash payout configuration).
+          * @uiName Payout approved text
+         */
+        "payoutApproved": string;
+        /**
+          * Displayed when reward payout was reversed (based on Impact cash payout configuration).
+          * @uiName Payout cancelled text
+         */
+        "payoutCancelled": string;
+        /**
+          * Displayed when reward payout has failed (based on Impact cash payout configuration).
+          * @uiName Payout failed text
+         */
+        "payoutFailed": string;
+        /**
+          * Displayed when pending due to requiring a new tax document
+          * @uiName Pending new tax form text
+         */
+        "pendingNewTaxForm": string;
+        /**
+          * Displayed when pending due to need to connect to an Impact partner
+          * @uiName Pending partner creation text
+         */
+        "pendingPartnerCreation": string;
+        /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
          */
@@ -2306,6 +3212,16 @@ export namespace Components {
          */
         "pendingScheduled": string;
         /**
+          * Displayed when pending due to tax document review.
+          * @uiName Pending tax review text
+         */
+        "pendingTaxReview": string;
+        /**
+          * Displayed when pending due to lack of tax document submission.
+          * @uiName Pending tax submission text
+         */
+        "pendingTaxSubmission": string;
+        /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text
          */
@@ -2315,7 +3231,7 @@ export namespace Components {
           * @uiName W9 pending text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, locale: string) => Promise<any>;
+        "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward status text
@@ -2516,6 +3432,16 @@ export namespace Components {
     | "danger"
     | "default"
     | "text";
+        /**
+          * Alert text shown if the share link is undefined
+          * @uiName Undefined link text
+         */
+        "undefinedLinkText"?: string;
+        /**
+          * Alert text shown if the user's device does not support native sharing
+          * @uiName Unsupported platform text
+         */
+        "unsupportedPlatformText"?: string;
     }
     interface SqmShareCode {
         /**
@@ -2802,6 +3728,1067 @@ export namespace Components {
          */
         "steps": boolean;
     }
+    interface SqmTaxAndCash {
+        /**
+          * @uiName Back button label
+          * @uiGroup General Form Properties
+         */
+        "backButton": string;
+        /**
+          * @uiName Cancel button label
+          * @uiGroup General Form Properties
+         */
+        "cancelButton": string;
+        /**
+          * @uiName Continue button label
+          * @uiGroup General Form Properties
+         */
+        "continueButton": string;
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_accountText": string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextAwaitingReview"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOn"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Payout information section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_bankingInformationSectionHeader": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_dateColumnTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsAfterTaxColumnTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsColumnTitle": string;
+        /**
+          * @uiName Edit payment info button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_editPaymentInformationButton": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_errorDescriptionText": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_errorTitleText": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxColumnTitle": string;
+        /**
+          * Displayed to participants who have submitted their indirect tax information.
+          * @uiName Indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxDetails": string;
+        /**
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoCanada": string;
+        /**
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoOtherCountry": string;
+        /**
+          * @uiName Indirect tax section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSectionHeader": string;
+        /**
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSpain": string;
+        /**
+          * @uiName Indirect tax tooltip
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_indirectTaxTooltipSupport": string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceColumnTitle": string;
+        /**
+          * @uiName Invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceDescription": string;
+        /**
+          * @uiName Empty invoice table header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateText": string;
+        /**
+          * @uiName Invoice table title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceHeader": string;
+        /**
+          * @uiName Invoice table next page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceMoreLabel": string;
+        /**
+          * @uiName Invoice table previous page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoicePrevLabel": string;
+        /**
+          * @uiName Submit new tax form button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_newFormButton": string;
+        /**
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_noFormNeededSubtext": string;
+        /**
+          * @uiName Not registered for indirect tax text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_notRegisteredForTax": string;
+        /**
+          * Displayed under the payout details card.
+          * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutFromImpact": string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutMissingInformationText": string;
+        /**
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_qstNumber": string;
+        /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_replaceTaxFormModalHeader": string;
+        /**
+          * @uiName Payout status badge
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusBadgeText": string;
+        /**
+          * @uiName Active tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextActive"?: string;
+        /**
+          * @uiName Invalid tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotActive"?: string;
+        /**
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotVerified"?: string;
+        /**
+          * @uiName Spain sub-region indirect tax number
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_subRegionTaxNumber": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertNotActiveMessageW9"?: string;
+        /**
+          * @uiName Tax document section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionHeader": string;
+        /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionSubHeader": string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_thresholdPayoutText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError": string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError": string;
+        /**
+          * @uiName Setup progress
+          * @uiGroup General Form Properties
+         */
+        "formStep": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+          * @uiGroup General Form Properties
+         */
+        "searchForCountryText": string;
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+          * @uiGroup Step 1 Properties
+         */
+        "step1_allowBankingCollection": string;
+        /**
+          * @uiName Country field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_country": string;
+        /**
+          * @uiName Currency field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currency": string;
+        /**
+          * @uiName Currency field help text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currencyHelpText": string;
+        /**
+          * @uiName Email field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_email": string;
+        /**
+          * @uiName First name field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_firstName": string;
+        /**
+          * @uiName Last name field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_lastName": string;
+        /**
+          * @uiName Step 1 title
+          * @uiGroup Step 1 Properties
+         */
+        "step1_personalInformation": string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Currency field placeholder text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_searchForCurrencyText": string;
+        /**
+          * The text link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiGroup Step 1 Properties
+          * @uiWidget textArea
+         */
+        "step1_termsAndConditionsLabel": string;
+        /**
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_cannotChangeInfoAlert": string;
+        /**
+          * @uiName Step 2 title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTax": string;
+        /**
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_indirectTaxDescription": string;
+        /**
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetails": string;
+        /**
+          * @uiName Indirect tax number field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumber": string;
+        /**
+          * @uiName Missing indirect tax number error message
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumberError": string;
+        /**
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredQST": string;
+        /**
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_isRegisteredSubRegionIncomeTax": string;
+        /**
+          * @uiName Not registered for indirect tax option
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_notRegistered": string;
+        /**
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegisteredSubtext": string;
+        /**
+          * @uiName Registered for indirect tax option
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_otherRegion": string;
+        /**
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegionSubtext": string;
+        /**
+          * @uiName Province field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_province": string;
+        /**
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstNumber": string;
+        /**
+          * @uiName Region of indirect tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegion": string;
+        /**
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region of indirect tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegion": string;
+        /**
+          * @uiName Income tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberLabel": string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_businessEntity": string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignError": string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired": string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning": string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_individualParticipant": string;
+        /**
+          * @uiName Participant type field label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_participantType": string;
+        /**
+          * @uiName Refresh page button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_refreshButton": string;
+        /**
+          * @uiName Step 3 title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxForm": string;
+        /**
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescription": string;
+        /**
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescriptionBusinessEntity": string;
+        /**
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescriptionIndividualParticipant": string;
+        /**
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormLabel": string;
+        /**
+          * @uiName Agency code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_agencyCodeLabel": string;
+        /**
+          * @uiName Bank account number field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAccountNumberLabel": string;
+        /**
+          * @uiName Bank account type field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAccountTypeLabel": string;
+        /**
+          * @uiName Bank address field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAddressLabel": string;
+        /**
+          * @uiName Bank city field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankCityLabel": string;
+        /**
+          * @uiName Bank country field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankLocationLabel": string;
+        /**
+          * @uiName Bank name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankNameLabel": string;
+        /**
+          * @uiName Bank postal code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankPostalCodeLabel": string;
+        /**
+          * @uiName Bank province/state field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankStateLabel": string;
+        /**
+          * @uiName Beneficiary account field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameLabel": string;
+        /**
+          * @uiName Branch code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchCodeLabel": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Business classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_businessSelectItemLabel": string;
+        /**
+          * @uiName Checking account option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_checkingSelectItemLabel": string;
+        /**
+          * @uiName Classification CPF field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCPFLabel": string;
+        /**
+          * @uiName Classification entity field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationEntityLabel": string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationLabel": string;
+        /**
+          * @uiName Direct to bank payout option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_directlyToBankAccount": string;
+        /**
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
+          * @uiGroup Step 4 Properties
+         */
+        "step4_eftWithdrawalLabel": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_foreignSelectItemLabel": string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_fxWireProcessingFeeLabel": string;
+        /**
+          * @uiName IBAN field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_ibanLabel": string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_individualSelectItemLabel": string;
+        /**
+          * @uiName Patronymic name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_patronymicNameLabel": string;
+        /**
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_payPalInputLabel": string;
+        /**
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDayFifteenthOfMonthLabelText": string;
+        /**
+          * One of two payment day options
+          * @uiName First of month payday option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDayFirstOfMonthLabelText": string;
+        /**
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDaySelectLabel": string;
+        /**
+          * @uiName Payment method section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentMethod": string;
+        /**
+          * @uiName Payment method section description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentMethodSubtext": string;
+        /**
+          * @uiName Payment schedule section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentSchedule": string;
+        /**
+          * @uiName Threshold balance payment schedule option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentScheduleBalanceThreshold": string;
+        /**
+          * @uiName Fixed day payment schedule option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentScheduleFixedDay": string;
+        /**
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentThresholdSelectLabel": string;
+        /**
+          * @uiName Routing code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_routingCodeLabel": string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings account options
+          * @uiGroup Step 4 Properties
+         */
+        "step4_savingsSelectItemLabel": string;
+        /**
+          * @uiName SWIFT code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_swiftCodeLabel": string;
+        /**
+          * @uiName Step 4 title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAndPayouts": string;
+        /**
+          * @uiName Taxpayer ID field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxPayerIdLabel": string;
+        /**
+          * @uiName PayPal payout option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_toPayPalAccount": string;
+        /**
+          * @uiName VO code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_voCodeLabel": string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+          * @uiGroup General Form Properties
+         */
+        "taxAndPayoutsDescription": string;
+    }
+    interface SqmTaxAndCashDashboard {
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+         */
+        "accountText": string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
+         */
+        "badgeTextAwaitingReview"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
+         */
+        "badgeTextSubmittedOn"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
+         */
+        "badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Payout information section header
+         */
+        "bankingInformationSectionHeader": string;
+        /**
+          * @uiName Cancel button label
+         */
+        "cancelButton": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+         */
+        "dateColumnTitle": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle": string;
+        /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "errorDescriptionText": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "errorTitleText": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+         */
+        "indirectTaxColumnTitle": string;
+        /**
+          * Displayed to participants who have submitted their indirect tax information.
+          * @uiName Indirect tax details
+         */
+        "indirectTaxDetails": string;
+        /**
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
+         */
+        "indirectTaxInfoCanada": string;
+        /**
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
+         */
+        "indirectTaxInfoOtherCountry": string;
+        /**
+          * @uiName Indirect tax section header
+         */
+        "indirectTaxInfoSectionHeader": string;
+        /**
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
+         */
+        "indirectTaxInfoSpain": string;
+        /**
+          * @uiName Indirect tax tooltip
+          * @uiWidget textArea
+         */
+        "indirectTaxTooltipSupport": string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
+          * @uiWidget textArea
+         */
+        "invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+         */
+        "invoiceColumnTitle": string;
+        /**
+          * @uiName Invoice table description
+         */
+        "invoiceDescription": string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "invoiceEmptyStateHeader": string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "invoiceEmptyStateText": string;
+        /**
+          * @uiName Invoice table title
+         */
+        "invoiceHeader": string;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "invoiceMoreLabel": string;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "invoicePrevLabel": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton": string;
+        /**
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
+          * @uiWidget textArea
+         */
+        "noFormNeededSubtext": string;
+        /**
+          * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
+         */
+        "notRegisteredForTax": string;
+        /**
+          * Displayed under the payout details card.
+          * @uiName Payout from impact text
+          * @uiWidget textArea
+         */
+        "payoutFromImpact": string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText": string;
+        /**
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
+         */
+        "qstNumber": string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText": string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader": string;
+        /**
+          * @uiName Payout status badge
+         */
+        "statusBadgeText": string;
+        /**
+          * @uiName Active tax form badge label
+         */
+        "statusTextActive"?: string;
+        /**
+          * @uiName Invalid tax form badge label
+         */
+        "statusTextNotActive"?: string;
+        /**
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
+         */
+        "statusTextNotVerified"?: string;
+        /**
+          * @uiName Spain sub-region indirect tax number
+         */
+        "subRegionTaxNumber": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
+         */
+        "taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
+         */
+        "taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
+         */
+        "taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
+         */
+        "taxAlertNotActiveMessageW9"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+        /**
+          * @uiName Tax document section header
+         */
+        "taxDocumentSectionHeader": string;
+        /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeader": string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+         */
+        "thresholdPayoutText": string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -2878,6 +4865,116 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
+    interface SqmUserInfoForm {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection": string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton": string;
+        /**
+          * @uiName Country field label
+         */
+        "country": string;
+        /**
+          * @uiName Currency field label
+         */
+        "currency": string;
+        /**
+          * @uiName Currency field help text
+         */
+        "currencyHelpText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseUserInfoFormResult>;
+        /**
+          * @uiName Email field label
+         */
+        "email": string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError": string;
+        /**
+          * @uiName First name field label
+         */
+        "firstName": string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader": string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastName": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Step 1 title
+         */
+        "personalInformation": string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText": string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Currency field placeholder text
+         */
+        "searchForCurrencyText": string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription": string;
+        /**
+          * The text link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel": string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -2907,6 +5004,12 @@ declare global {
     var HTMLSqmAssetCardElement: {
         prototype: HTMLSqmAssetCardElement;
         new (): HTMLSqmAssetCardElement;
+    };
+    interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
+    }
+    var HTMLSqmBankingInfoFormElement: {
+        prototype: HTMLSqmBankingInfoFormElement;
+        new (): HTMLSqmBankingInfoFormElement;
     };
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
@@ -2938,6 +5041,12 @@ declare global {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
+    interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
+    }
+    var HTMLSqmContextRouterElement: {
+        prototype: HTMLSqmContextRouterElement;
+        new (): HTMLSqmContextRouterElement;
+    };
     interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
     }
     var HTMLSqmCouponCodeElement: {
@@ -2949,6 +5058,12 @@ declare global {
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
+    };
+    interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
+    }
+    var HTMLSqmDocusignFormElement: {
+        prototype: HTMLSqmDocusignFormElement;
+        new (): HTMLSqmDocusignFormElement;
     };
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
@@ -3010,6 +5125,12 @@ declare global {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
     };
+    interface HTMLSqmIndirectTaxFormElement extends Components.SqmIndirectTaxForm, HTMLStencilElement {
+    }
+    var HTMLSqmIndirectTaxFormElement: {
+        prototype: HTMLSqmIndirectTaxFormElement;
+        new (): HTMLSqmIndirectTaxFormElement;
+    };
     interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
     }
     var HTMLSqmInputFieldElement: {
@@ -3021,6 +5142,48 @@ declare global {
     var HTMLSqmInstantAccessRegistrationElement: {
         prototype: HTMLSqmInstantAccessRegistrationElement;
         new (): HTMLSqmInstantAccessRegistrationElement;
+    };
+    interface HTMLSqmInvoiceTableElement extends Components.SqmInvoiceTable, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableElement: {
+        prototype: HTMLSqmInvoiceTableElement;
+        new (): HTMLSqmInvoiceTableElement;
+    };
+    interface HTMLSqmInvoiceTableDataCellElement extends Components.SqmInvoiceTableDataCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDataCellElement: {
+        prototype: HTMLSqmInvoiceTableDataCellElement;
+        new (): HTMLSqmInvoiceTableDataCellElement;
+    };
+    interface HTMLSqmInvoiceTableDataColumnElement extends Components.SqmInvoiceTableDataColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDataColumnElement: {
+        prototype: HTMLSqmInvoiceTableDataColumnElement;
+        new (): HTMLSqmInvoiceTableDataColumnElement;
+    };
+    interface HTMLSqmInvoiceTableDateCellElement extends Components.SqmInvoiceTableDateCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDateCellElement: {
+        prototype: HTMLSqmInvoiceTableDateCellElement;
+        new (): HTMLSqmInvoiceTableDateCellElement;
+    };
+    interface HTMLSqmInvoiceTableDateColumnElement extends Components.SqmInvoiceTableDateColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDateColumnElement: {
+        prototype: HTMLSqmInvoiceTableDateColumnElement;
+        new (): HTMLSqmInvoiceTableDateColumnElement;
+    };
+    interface HTMLSqmInvoiceTableDownloadCellElement extends Components.SqmInvoiceTableDownloadCell, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDownloadCellElement: {
+        prototype: HTMLSqmInvoiceTableDownloadCellElement;
+        new (): HTMLSqmInvoiceTableDownloadCellElement;
+    };
+    interface HTMLSqmInvoiceTableDownloadColumnElement extends Components.SqmInvoiceTableDownloadColumn, HTMLStencilElement {
+    }
+    var HTMLSqmInvoiceTableDownloadColumnElement: {
+        prototype: HTMLSqmInvoiceTableDownloadColumnElement;
+        new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
@@ -3075,6 +5238,12 @@ declare global {
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
+    };
+    interface HTMLSqmPayoutDetailsCardElement extends Components.SqmPayoutDetailsCard, HTMLStencilElement {
+    }
+    var HTMLSqmPayoutDetailsCardElement: {
+        prototype: HTMLSqmPayoutDetailsCardElement;
+        new (): HTMLSqmPayoutDetailsCardElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -3418,6 +5587,18 @@ declare global {
         prototype: HTMLSqmTaskCardElement;
         new (): HTMLSqmTaskCardElement;
     };
+    interface HTMLSqmTaxAndCashElement extends Components.SqmTaxAndCash, HTMLStencilElement {
+    }
+    var HTMLSqmTaxAndCashElement: {
+        prototype: HTMLSqmTaxAndCashElement;
+        new (): HTMLSqmTaxAndCashElement;
+    };
+    interface HTMLSqmTaxAndCashDashboardElement extends Components.SqmTaxAndCashDashboard, HTMLStencilElement {
+    }
+    var HTMLSqmTaxAndCashDashboardElement: {
+        prototype: HTMLSqmTaxAndCashDashboardElement;
+        new (): HTMLSqmTaxAndCashDashboardElement;
+    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -3448,6 +5629,12 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    interface HTMLSqmUserInfoFormElement extends Components.SqmUserInfoForm, HTMLStencilElement {
+    }
+    var HTMLSqmUserInfoFormElement: {
+        prototype: HTMLSqmUserInfoFormElement;
+        new (): HTMLSqmUserInfoFormElement;
+    };
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
@@ -3457,13 +5644,16 @@ declare global {
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
+        "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
+        "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
+        "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
@@ -3474,8 +5664,16 @@ declare global {
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
+        "sqm-indirect-tax-form": HTMLSqmIndirectTaxFormElement;
         "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-instant-access-registration": HTMLSqmInstantAccessRegistrationElement;
+        "sqm-invoice-table": HTMLSqmInvoiceTableElement;
+        "sqm-invoice-table-data-cell": HTMLSqmInvoiceTableDataCellElement;
+        "sqm-invoice-table-data-column": HTMLSqmInvoiceTableDataColumnElement;
+        "sqm-invoice-table-date-cell": HTMLSqmInvoiceTableDateCellElement;
+        "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
+        "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
+        "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -3485,6 +5683,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
+        "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -3542,11 +5741,14 @@ declare global {
         "sqm-table-row": HTMLSqmTableRowElement;
         "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
+        "sqm-tax-and-cash": HTMLSqmTaxAndCashElement;
+        "sqm-tax-and-cash-dashboard": HTMLSqmTaxAndCashDashboardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
@@ -3567,6 +5769,252 @@ declare namespace LocalJSX {
           * @uiName Banner title
          */
         "titleText"?: string;
+    }
+    interface SqmBankingInfoForm {
+        /**
+          * @uiName Agency code field label
+         */
+        "agencyCodeLabel"?: string;
+        /**
+          * Text for the back button in the form
+          * @uiName Back button label
+         */
+        "backButton"?: string;
+        /**
+          * @uiName Bank account number field label
+         */
+        "bankAccountNumberLabel"?: string;
+        /**
+          * @uiName Bank account type field label
+         */
+        "bankAccountTypeLabel"?: string;
+        /**
+          * @uiName Bank address field label
+         */
+        "bankAddressLabel"?: string;
+        /**
+          * @uiName Bank city field label
+         */
+        "bankCityLabel"?: string;
+        /**
+          * @uiName Bank country field label
+         */
+        "bankLocationLabel"?: string;
+        /**
+          * @uiName Bank name field label
+         */
+        "bankNameLabel"?: string;
+        /**
+          * @uiName Bank postal code field label
+         */
+        "bankPostalCodeLabel"?: string;
+        /**
+          * @uiName Bank province/state field label
+         */
+        "bankStateLabel"?: string;
+        /**
+          * @uiName Beneficiary account field label
+         */
+        "beneficiaryAccountNameLabel"?: string;
+        /**
+          * @uiName Branch code field label
+         */
+        "branchCodeLabel"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Business classification option
+         */
+        "businessSelectItemLabel"?: string;
+        /**
+          * @uiName Checking account option
+         */
+        "checkingSelectItemLabel"?: string;
+        /**
+          * @uiName Classification CPF field label
+         */
+        "classificationCPFLabel"?: string;
+        /**
+          * @uiName Classification entity field label
+         */
+        "classificationEntityLabel"?: string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification field label
+         */
+        "classificationLabel"?: string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<BankingInfoFormViewProps>;
+        /**
+          * @uiName Direct to bank payout option
+         */
+        "directlyToBankAccount"?: string;
+        /**
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
+         */
+        "eftWithdrawalLabel"?: string;
+        /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError"?: string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
+         */
+        "foreignSelectItemLabel"?: string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+         */
+        "fxWireProcessingFeeLabel"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * @uiName IBAN field label
+         */
+        "ibanLabel"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
+         */
+        "individualSelectItemLabel"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Patronymic name field label
+         */
+        "patronymicNameLabel"?: string;
+        /**
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
+         */
+        "payPalInputLabel"?: string;
+        /**
+          * Label text for the payment day select option for the fifteenth of the month
+          * @uiName Fifteenth of month payday option
+         */
+        "paymentDayFifteenthOfMonthLabelText"?: string;
+        /**
+          * One of two payment day options
+          * @uiName First of month payday option
+         */
+        "paymentDayFirstOfMonthLabelText"?: string;
+        /**
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
+         */
+        "paymentDaySelectLabel"?: string;
+        /**
+          * @uiName Payment method section header
+         */
+        "paymentMethod"?: string;
+        /**
+          * @uiName Payment method section description
+         */
+        "paymentMethodSubtext"?: string;
+        /**
+          * @uiName Payment schedule section header
+         */
+        "paymentSchedule"?: string;
+        /**
+          * @uiName Threshold balance payment schedule option
+         */
+        "paymentScheduleBalanceThreshold"?: string;
+        /**
+          * @uiName Fixed day payment schedule option
+         */
+        "paymentScheduleFixedDay"?: string;
+        /**
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
+         */
+        "paymentThresholdSelectLabel"?: string;
+        /**
+          * @uiName Routing code field label
+         */
+        "routingCodeLabel"?: string;
+        /**
+          * @uiName Savings account options
+         */
+        "savingsSelectItemLabel"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText"?: string;
+        /**
+          * @uiName SWIFT code field label
+         */
+        "swiftCodeLabel"?: string;
+        /**
+          * @uiName Step 4 title
+         */
+        "taxAndPayouts"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+        /**
+          * @uiName Taxpayer ID field label
+         */
+        "taxPayerIdLabel"?: string;
+        /**
+          * @uiName PayPal payout option
+         */
+        "toPayPalAccount"?: string;
+        /**
+          * @uiName VO code field label
+         */
+        "voCodeLabel"?: string;
     }
     interface SqmBigStat {
         /**
@@ -3672,6 +6120,9 @@ declare namespace LocalJSX {
          */
         "color"?: string;
     }
+    interface SqmContextRouter {
+        "contextName"?: string;
+    }
     interface SqmCouponCode {
         /**
           * Set the copy button style and placement.
@@ -3768,6 +6219,12 @@ declare namespace LocalJSX {
     }
     interface SqmDividedLayout {
         /**
+          * Overrides max-width of content area
+          * @uiName Content Area Width
+          * @uiType string
+         */
+        "contentAreaWidth"?: string | null;
+        /**
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
@@ -3779,6 +6236,109 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
+    }
+    interface SqmDocusignForm {
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
+         */
+        "businessEntity"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseDocusignFormResult>;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
+          * @uiWidget textArea
+         */
+        "docusignError"?: string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired messag
+          * @uiWidget textArea
+         */
+        "docusignExpired"?: string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiWidget textArea
+         */
+        "docusignSessionWarning"?: string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
+         */
+        "individualParticipant"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Participant type field label
+         */
+        "participantType"?: string;
+        /**
+          * @uiName Refresh page button label
+         */
+        "refreshButton"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+        /**
+          * @uiName Step 3 title
+         */
+        "taxForm"?: string;
+        /**
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescription"?: string;
+        /**
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
+          * @uiWidget textArea
+         */
+        "taxFormDescriptionIndividualParticipant"?: string;
+        /**
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
+         */
+        "taxFormLabel"?: string;
     }
     interface SqmDropdownField {
         /**
@@ -3830,13 +6390,25 @@ declare namespace LocalJSX {
          */
         "editprofiletext"?: string;
         /**
+          * @uiName Empty field error message
+         */
+        "fieldEmptyText"?: string;
+        /**
           * @uiName First name label
          */
         "firstnametext"?: string;
         /**
+          * @uiName Form error message
+         */
+        "formErrorText"?: string;
+        /**
           * @uiName Last name label
          */
         "lastnametext"?: string;
+        /**
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
         /**
           * Show or hide current region
           * @uiName Show region
@@ -4060,6 +6632,157 @@ declare namespace LocalJSX {
          */
         "minHeight"?: string;
     }
+    interface SqmIndirectTaxForm {
+        /**
+          * @uiName Back button label
+         */
+        "backButton"?: string;
+        /**
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
+          * @uiWidget textArea
+         */
+        "cannotChangeInfoAlert"?: string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<UseIndirectTaxFormResult>;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError"?: string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * @uiName Step 2 title
+         */
+        "indirectTax"?: string;
+        /**
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
+          * @uiWidget textArea
+         */
+        "indirectTaxDescription"?: string;
+        /**
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
+         */
+        "indirectTaxDetails"?: string;
+        /**
+          * @uiName Indirect tax number field label
+         */
+        "indirectTaxNumber"?: string;
+        /**
+          * @uiName Missing indirect tax number error message
+         */
+        "indirectTaxNumberError"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader"?: string;
+        /**
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
+         */
+        "isRegisteredQST"?: string;
+        /**
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
+          * @uiWidget textArea
+         */
+        "isRegisteredSubRegionIncomeTax"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Not registered for indirect tax option
+          * @uiWidget textArea
+         */
+        "notRegistered"?: string;
+        /**
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
+         */
+        "notRegisteredSubtext"?: string;
+        /**
+          * @uiName Registered for indirect tax option
+          * @uiWidget textArea
+         */
+        "otherRegion"?: string;
+        /**
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
+         */
+        "otherRegionSubtext"?: string;
+        /**
+          * @uiName Province field label
+         */
+        "province"?: string;
+        /**
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
+         */
+        "qstNumber"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText"?: string;
+        /**
+          * @uiName Region of indirect tax field label
+         */
+        "selectedRegion"?: string;
+        /**
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region of indirect tax field label
+         */
+        "subRegion"?: string;
+        /**
+          * @uiName Income tax field label
+         */
+        "subRegionTaxNumberLabel"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+    }
     interface SqmInputField {
         /**
           * @undocumented 
@@ -4186,6 +6909,95 @@ declare namespace LocalJSX {
           * @uiGroup Error messages
          */
         "requiredFieldErrorMessage"?: string;
+    }
+    interface SqmInvoiceTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps> & {
+    mockData?: { data: Invoice[] };
+  };
+        /**
+          * @uiName Invoice table description
+         */
+        "description"?: string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "emptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "emptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
+         */
+        "header"?: string;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Hidden mobile columns
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide column labels
+         */
+        "hideLabels"?: boolean;
+        /**
+          * @uiName Tablet breakpoint
+         */
+        "mdBreakpoint"?: number;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "moreLabel"?: string;
+        /**
+          * Number of invoices displayed per page
+          * @uiName Invoices per page
+         */
+        "perPage"?: number;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show invoices in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all invoices from all programs. If program ID is "classic", shows classic-only invoices
+          * @uiName Program
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * @uiName Mobile breakpoint
+         */
+        "smBreakpoint"?: number;
+    }
+    interface SqmInvoiceTableDataCell {
+        "data"?: string;
+    }
+    interface SqmInvoiceTableDataColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
+        /**
+          * @uiName Property name
+         */
+        "property"?: string;
+    }
+    interface SqmInvoiceTableDateCell {
+        "date"?: number;
+        "locale"?: string;
+    }
+    interface SqmInvoiceTableDateColumn {
+        /**
+          * @uiName Column title
+         */
+        "columnTitle"?: string;
+    }
+    interface SqmInvoiceTableDownloadCell {
+        "downloadUrl"?: string;
+    }
+    interface SqmInvoiceTableDownloadColumn {
     }
     interface SqmLeaderboard {
         /**
@@ -4325,6 +7137,11 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
           * @required 
+          * @uiName Error text
+         */
+        "emailErrorText"?: string;
+        /**
+          * @required 
           * @uiName Switch user button label
          */
         "switchUserText"?: string;
@@ -4400,10 +7217,70 @@ declare namespace LocalJSX {
          */
         "disableValidation"?: boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * Label for password field
           * @uiName Password label
          */
         "fieldLabel"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
+    }
+    interface SqmPayoutDetailsCard {
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+         */
+        "accountText"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<any>;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+         */
+        "errorDescriptionText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+         */
+        "errorTitleText"?: string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText"?: string;
+        /**
+          * Badge text indicating payout status
+          * @uiName Payout badge status text
+         */
+        "statusBadgeText"?: string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+         */
+        "thresholdPayoutText"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -4433,10 +7310,15 @@ declare namespace LocalJSX {
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
-          * Show Powered with SaaSquatch by Impact.com link
+          * Show Powered by Impact.com link
           * @uiName Show powered by
          */
         "poweredBy"?: boolean;
+        /**
+          * Text at the bottom of the popup
+          * @uiName "Powered by" text
+         */
+        "poweredByText"?: string;
     }
     interface SqmPortalChangePassword {
         /**
@@ -4460,9 +7342,37 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
+        /**
+          * @uiName Invalid user session error message
+         */
+        "invalidSessionErrorText"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
+        /**
           * @uiName Change password modal header
          */
         "modalChangePasswordHeader"?: string;
+        /**
+          * @uiName Passwords don’t match error message
+         */
+        "nonMatchingPasswordErrorText"?: string;
         /**
           * Found in modal
           * @uiName New password field label
@@ -4483,6 +7393,10 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "successMessage"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalContainer {
         /**
@@ -4557,6 +7471,10 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
+          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
           * @uiWidget pageSelect
@@ -4571,6 +7489,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "verificationLoadingMessage"?: string;
+        /**
+          * @uiName Email verification resent text
+          * @uiWidget textArea
+         */
+        "verificationResentMessage"?: string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
@@ -4592,7 +7515,7 @@ declare namespace LocalJSX {
          */
         "faqText"?: string;
         /**
-          * @uiName Hide powered with SaaSquatch by Impact.com
+          * @uiName Hide powered by Impact.com
          */
         "hidePoweredBy"?: boolean;
         /**
@@ -4670,9 +7593,13 @@ declare namespace LocalJSX {
          */
         "loginPath"?: string;
         /**
-          * Sign in link text
+          * @uiName Sign in link text
          */
         "loginText"?: string;
+        /**
+          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
@@ -4683,6 +7610,10 @@ declare namespace LocalJSX {
           * @uiName Password reset button text
          */
         "submitLabel"?: string;
+        /**
+          * @uiName Email verification sent text
+         */
+        "successAlertText"?: string;
     }
     interface SqmPortalFrame {
         /**
@@ -4715,6 +7646,10 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "forgotPasswordPath"?: string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
@@ -4776,9 +7711,17 @@ declare namespace LocalJSX {
          */
         "emailtext"?: string;
         /**
+          * @uiName Field empty text
+         */
+        "fieldEmptyText"?: string;
+        /**
           * @uiName First name label
          */
         "firstnametext"?: string;
+        /**
+          * @uiName Form error message
+         */
+        "formErrorText"?: string;
         /**
           * @uiName Hide country field
          */
@@ -4787,6 +7730,14 @@ declare namespace LocalJSX {
           * @uiName Last name field label
          */
         "lastnametext"?: string;
+        /**
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+         */
+        "networkRequestMessage"?: string;
+        /**
+          * @uiName Submission success text
+         */
+        "submissionSuccessText"?: string;
         /**
           * @uiName Submit changes button text
          */
@@ -4827,9 +7778,17 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * @uiName Email field label
          */
         "emailLabel"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -4851,6 +7810,18 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -4893,6 +7864,10 @@ declare namespace LocalJSX {
           * @uiName Submit button text
          */
         "submitLabel"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalRegistrationForm {
         /**
@@ -4913,6 +7888,10 @@ declare namespace LocalJSX {
          */
         "disablePasswordValidation"?: boolean;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * @uiName Email field label
          */
         "emailLabel"?: string;
@@ -4928,6 +7907,10 @@ declare namespace LocalJSX {
           * @required
          */
         "formKey"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
@@ -4949,6 +7932,18 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "loginPath"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
@@ -4991,8 +7986,16 @@ declare namespace LocalJSX {
           * @uiName Submit button text
          */
         "submitLabel"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalResetPassword {
+        /**
+          * @uiName Reset code invalid error message
+         */
+        "codeInvalidText"?: string;
         /**
           * @uiName Show confirm password field
          */
@@ -5012,11 +8015,35 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
          */
         "failedPage"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
+        /**
+          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
@@ -5027,6 +8054,10 @@ declare namespace LocalJSX {
           * @uiName Password field label
          */
         "passwordFieldLabel"?: string;
+        /**
+          * @uiName Passwords don’t match error message Please make sure your passwords match
+         */
+        "passwordMismatchText"?: string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
@@ -5041,8 +8072,20 @@ declare namespace LocalJSX {
           * @uiName Reset password header text
          */
         "resetPasswordHeader"?: string;
+        /**
+          * @uiName Reset success text
+         */
+        "resetSuccessText"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @uiName Continue text
+         */
+        "continueText"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -5055,11 +8098,30 @@ declare namespace LocalJSX {
          */
         "failedPage"?: string;
         /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
           * @uiWidget pageSelect
          */
         "nextPage"?: string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyEmailText"?: string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
+        "verifyInvalidText"?: string;
+        /**
+          * @uiName Email verification success text
+          * @uiWidget textArea
+         */
+        "verifySuccessText"?: string;
     }
     interface SqmProgramExplainer {
         /**
@@ -5280,6 +8342,7 @@ declare namespace LocalJSX {
         "rewards"?: Reward[];
         "statusLongText"?: string;
         "statusText"?: string;
+        "taxConnection"?: ImpactConnection;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -5759,12 +8822,20 @@ declare namespace LocalJSX {
         "deniedText"?: string;
         "expiryText"?: string;
         "locale"?: string;
+        "payoutApproved"?: string;
+        "payoutCancelled"?: string;
+        "payoutFailed"?: string;
+        "pendingNewTaxForm"?: string;
+        "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;
         "pendingScheduled"?: string;
+        "pendingTaxReview"?: string;
+        "pendingTaxSubmission"?: string;
         "pendingUnhandled"?: string;
         "pendingUsTax"?: string;
         "reward"?: Reward;
         "statusText"?: string;
+        "taxConnection"?: ImpactConnection;
     }
     interface SqmRewardsTableStatusColumn {
         /**
@@ -5782,6 +8853,31 @@ declare namespace LocalJSX {
          */
         "expiryText"?: string;
         /**
+          * Displayed when reward payout is approved (based on Impact cash payout configuration).
+          * @uiName Payout approved text
+         */
+        "payoutApproved"?: string;
+        /**
+          * Displayed when reward payout was reversed (based on Impact cash payout configuration).
+          * @uiName Payout cancelled text
+         */
+        "payoutCancelled"?: string;
+        /**
+          * Displayed when reward payout has failed (based on Impact cash payout configuration).
+          * @uiName Payout failed text
+         */
+        "payoutFailed"?: string;
+        /**
+          * Displayed when pending due to requiring a new tax document
+          * @uiName Pending new tax form text
+         */
+        "pendingNewTaxForm"?: string;
+        /**
+          * Displayed when pending due to need to connect to an Impact partner
+          * @uiName Pending partner creation text
+         */
+        "pendingPartnerCreation"?: string;
+        /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
          */
@@ -5791,6 +8887,16 @@ declare namespace LocalJSX {
           * @uiName Pending date prefix
          */
         "pendingScheduled"?: string;
+        /**
+          * Displayed when pending due to tax document review.
+          * @uiName Pending tax review text
+         */
+        "pendingTaxReview"?: string;
+        /**
+          * Displayed when pending due to lack of tax document submission.
+          * @uiName Pending tax submission text
+         */
+        "pendingTaxSubmission"?: string;
         /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text
@@ -6000,6 +9106,16 @@ declare namespace LocalJSX {
     | "danger"
     | "default"
     | "text";
+        /**
+          * Alert text shown if the share link is undefined
+          * @uiName Undefined link text
+         */
+        "undefinedLinkText"?: string;
+        /**
+          * Alert text shown if the user's device does not support native sharing
+          * @uiName Unsupported platform text
+         */
+        "unsupportedPlatformText"?: string;
     }
     interface SqmShareCode {
         /**
@@ -6286,6 +9402,1067 @@ declare namespace LocalJSX {
          */
         "steps"?: boolean;
     }
+    interface SqmTaxAndCash {
+        /**
+          * @uiName Back button label
+          * @uiGroup General Form Properties
+         */
+        "backButton"?: string;
+        /**
+          * @uiName Cancel button label
+          * @uiGroup General Form Properties
+         */
+        "cancelButton"?: string;
+        /**
+          * @uiName Continue button label
+          * @uiGroup General Form Properties
+         */
+        "continueButton"?: string;
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_accountText"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextAwaitingReview"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOn"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Payout information section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_bankingInformationSectionHeader"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_dateColumnTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings after tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_earningsColumnTitle"?: string;
+        /**
+          * @uiName Edit payment info button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_editPaymentInformationButton"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_errorDescriptionText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_errorTitleText"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxColumnTitle"?: string;
+        /**
+          * Displayed to participants who have submitted their indirect tax information.
+          * @uiName Indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxDetails"?: string;
+        /**
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoCanada"?: string;
+        /**
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoOtherCountry"?: string;
+        /**
+          * @uiName Indirect tax section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSectionHeader"?: string;
+        /**
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_indirectTaxInfoSpain"?: string;
+        /**
+          * @uiName Indirect tax tooltip
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_indirectTaxTooltipSupport"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceColumnTitle"?: string;
+        /**
+          * @uiName Invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceDescription"?: string;
+        /**
+          * @uiName Empty invoice table header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceEmptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceHeader"?: string;
+        /**
+          * @uiName Invoice table next page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoiceMoreLabel"?: string;
+        /**
+          * @uiName Invoice table previous page button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_invoicePrevLabel"?: string;
+        /**
+          * @uiName Submit new tax form button label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_newFormButton"?: string;
+        /**
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_noFormNeededSubtext"?: string;
+        /**
+          * @uiName Not registered for indirect tax text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_notRegisteredForTax"?: string;
+        /**
+          * Displayed under the payout details card.
+          * @uiName Payout from impact text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutFromImpact"?: string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_payoutMissingInformationText"?: string;
+        /**
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_qstNumber"?: string;
+        /**
+          * @uiName Replace tax form modal body text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_replaceTaxFormModalHeader"?: string;
+        /**
+          * @uiName Payout status badge
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusBadgeText"?: string;
+        /**
+          * @uiName Active tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextActive"?: string;
+        /**
+          * @uiName Invalid tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotActive"?: string;
+        /**
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_statusTextNotVerified"?: string;
+        /**
+          * @uiName Spain sub-region indirect tax number
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_subRegionTaxNumber"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_taxAlertNotActiveMessageW9"?: string;
+        /**
+          * @uiName Tax document section header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionHeader"?: string;
+        /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_thresholdPayoutText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+          * @uiGroup General Form Properties
+         */
+        "fieldInvalidError"?: string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+          * @uiGroup General Form Properties
+         */
+        "fieldRequiredError"?: string;
+        /**
+          * @uiName Setup progress
+          * @uiGroup General Form Properties
+         */
+        "formStep"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiGroup General Form Properties
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+          * @uiGroup General Form Properties
+         */
+        "searchForCountryText"?: string;
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+          * @uiGroup Step 1 Properties
+         */
+        "step1_allowBankingCollection"?: string;
+        /**
+          * @uiName Country field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_country"?: string;
+        /**
+          * @uiName Currency field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currency"?: string;
+        /**
+          * @uiName Currency field help text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_currencyHelpText"?: string;
+        /**
+          * @uiName Email field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_email"?: string;
+        /**
+          * @uiName First name field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_firstName"?: string;
+        /**
+          * @uiName Last name field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_lastName"?: string;
+        /**
+          * @uiName Step 1 title
+          * @uiGroup Step 1 Properties
+         */
+        "step1_personalInformation"?: string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Currency field placeholder text
+          * @uiGroup Step 1 Properties
+         */
+        "step1_searchForCurrencyText"?: string;
+        /**
+          * The text link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiGroup Step 1 Properties
+          * @uiWidget textArea
+         */
+        "step1_termsAndConditionsLabel"?: string;
+        /**
+          * Communicate that after this step, only Support can change personal and indirect tax information.
+          * @uiName Submission confirmation alert
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_cannotChangeInfoAlert"?: string;
+        /**
+          * @uiName Step 2 title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTax"?: string;
+        /**
+          * Displayed under the title of this step.
+          * @uiName Step 2 description
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_indirectTaxDescription"?: string;
+        /**
+          * Displayed with indirect tax registration options.
+          * @uiName Indirect tax details section title
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxDetails"?: string;
+        /**
+          * @uiName Indirect tax number field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumber"?: string;
+        /**
+          * @uiName Missing indirect tax number error message
+          * @uiGroup Step 2 Properties
+         */
+        "step2_indirectTaxNumberError"?: string;
+        /**
+          * Displayed to participants registered for indirect tax in Quebec, Canada.
+          * @uiName QST tax checkbox
+          * @uiGroup Step 2 Properties
+         */
+        "step2_isRegisteredQST"?: string;
+        /**
+          * Displayed to participants registered for indirect tax in Spain.
+          * @uiName Spain income tax checkbox
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_isRegisteredSubRegionIncomeTax"?: string;
+        /**
+          * @uiName Not registered for indirect tax option
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_notRegistered"?: string;
+        /**
+          * Participants based in the US are  considered not registered.
+          * @uiName Not registered for indirect tax option description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_notRegisteredSubtext"?: string;
+        /**
+          * @uiName Registered for indirect tax option
+          * @uiGroup Step 2 Properties
+          * @uiWidget textArea
+         */
+        "step2_otherRegion"?: string;
+        /**
+          * Selecting this option will display fields to enter indirect tax details.
+          * @uiName Registered for indirect tax option description
+          * @uiGroup Step 2 Properties
+         */
+        "step2_otherRegionSubtext"?: string;
+        /**
+          * @uiName Province field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_province"?: string;
+        /**
+          * Displayed to participants registered for QST.
+          * @uiName QST number field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_qstNumber"?: string;
+        /**
+          * @uiName Region of indirect tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_selectedRegion"?: string;
+        /**
+          * Displayed to participants registered in Spain.
+          * @uiName Sub-region of indirect tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegion"?: string;
+        /**
+          * @uiName Income tax field label
+          * @uiGroup Step 2 Properties
+         */
+        "step2_subRegionTaxNumberLabel"?: string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Business representative participant type label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_businessEntity"?: string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign form error message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignError"?: string;
+        /**
+          * This appears inside the Docusign frame.
+          * @uiName Docusign session expired message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignExpired"?: string;
+        /**
+          * Remind participants their session will time out after 20 minutes of inactivity.
+          * @uiName Docusign timed session message
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_docusignSessionWarning"?: string;
+        /**
+          * An option for the participant type field. Used to determine which W-8 form is required.
+          * @uiName Individual participant type label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_individualParticipant"?: string;
+        /**
+          * @uiName Participant type field label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_participantType"?: string;
+        /**
+          * @uiName Refresh page button label
+          * @uiGroup Step 3 Properties
+         */
+        "step3_refreshButton"?: string;
+        /**
+          * @uiName Step 3 title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxForm"?: string;
+        /**
+          * Displayed at the top of the page to participants based in the US.
+          * @uiName W-9 tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescription"?: string;
+        /**
+          * Displayed at the top of the page to participants representing a business.
+          * @uiName W-8 BEN-E tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescriptionBusinessEntity"?: string;
+        /**
+          * Displayed at the top of the page to individuals joining a US program who reside outside the country.
+          * @uiName W-8 BEN tax form description
+          * @uiGroup Step 3 Properties
+          * @uiWidget textArea
+         */
+        "step3_taxFormDescriptionIndividualParticipant"?: string;
+        /**
+          * Display the type of tax form that the participant must submit.
+          * @uiName Tax form name
+          * @uiGroup Step 3 Properties
+         */
+        "step3_taxFormLabel"?: string;
+        /**
+          * @uiName Agency code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_agencyCodeLabel"?: string;
+        /**
+          * @uiName Bank account number field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAccountNumberLabel"?: string;
+        /**
+          * @uiName Bank account type field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAccountTypeLabel"?: string;
+        /**
+          * @uiName Bank address field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankAddressLabel"?: string;
+        /**
+          * @uiName Bank city field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankCityLabel"?: string;
+        /**
+          * @uiName Bank country field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankLocationLabel"?: string;
+        /**
+          * @uiName Bank name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankNameLabel"?: string;
+        /**
+          * @uiName Bank postal code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankPostalCodeLabel"?: string;
+        /**
+          * @uiName Bank province/state field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_bankStateLabel"?: string;
+        /**
+          * @uiName Beneficiary account field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameLabel"?: string;
+        /**
+          * @uiName Branch code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchCodeLabel"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Business classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_businessSelectItemLabel"?: string;
+        /**
+          * @uiName Checking account option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_checkingSelectItemLabel"?: string;
+        /**
+          * @uiName Classification CPF field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCPFLabel"?: string;
+        /**
+          * @uiName Classification entity field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationEntityLabel"?: string;
+        /**
+          * Label text for the classification input field
+          * @uiName Classification field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationLabel"?: string;
+        /**
+          * @uiName Direct to bank payout option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_directlyToBankAccount"?: string;
+        /**
+          * Default payment method to the participants’ bank account.
+          * @uiName EFT withdrawal payment method
+          * @uiGroup Step 4 Properties
+         */
+        "step4_eftWithdrawalLabel"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Foreign classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_foreignSelectItemLabel"?: string;
+        /**
+          * @uiName FX Wire Processing fee text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_fxWireProcessingFeeLabel"?: string;
+        /**
+          * @uiName IBAN field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_ibanLabel"?: string;
+        /**
+          * One of three options listed for the classification field
+          * @uiName Individual classification option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_individualSelectItemLabel"?: string;
+        /**
+          * @uiName Patronymic name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_patronymicNameLabel"?: string;
+        /**
+          * Displayed to participants who choose PayPal as their payout method
+          * @uiName PayPal email field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_payPalInputLabel"?: string;
+        /**
+          * One of two payment day options
+          * @uiName Fifteenth of month payday option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDayFifteenthOfMonthLabelText"?: string;
+        /**
+          * One of two payment day options
+          * @uiName First of month payday option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDayFirstOfMonthLabelText"?: string;
+        /**
+          * Let the participant choose what day of the month they’ll get paid
+          * @uiName Payment day field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentDaySelectLabel"?: string;
+        /**
+          * @uiName Payment method section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentMethod"?: string;
+        /**
+          * @uiName Payment method section description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentMethodSubtext"?: string;
+        /**
+          * @uiName Payment schedule section header
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentSchedule"?: string;
+        /**
+          * @uiName Threshold balance payment schedule option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentScheduleBalanceThreshold"?: string;
+        /**
+          * @uiName Fixed day payment schedule option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentScheduleFixedDay"?: string;
+        /**
+          * Participant use this field to select the balance at which they want to be paid
+          * @uiName Payment threshold field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_paymentThresholdSelectLabel"?: string;
+        /**
+          * @uiName Routing code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_routingCodeLabel"?: string;
+        /**
+          * Label text for the savings account type select item
+          * @uiName Savings account options
+          * @uiGroup Step 4 Properties
+         */
+        "step4_savingsSelectItemLabel"?: string;
+        /**
+          * @uiName SWIFT code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_swiftCodeLabel"?: string;
+        /**
+          * @uiName Step 4 title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxAndPayouts"?: string;
+        /**
+          * @uiName Taxpayer ID field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_taxPayerIdLabel"?: string;
+        /**
+          * @uiName PayPal payout option
+          * @uiGroup Step 4 Properties
+         */
+        "step4_toPayPalAccount"?: string;
+        /**
+          * @uiName VO code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_voCodeLabel"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+          * @uiGroup General Form Properties
+         */
+        "taxAndPayoutsDescription"?: string;
+    }
+    interface SqmTaxAndCashDashboard {
+        /**
+          * Shown before the participant’s bank account information.
+          * @uiName Bank account field label
+         */
+        "accountText"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Tax form in review description
+         */
+        "badgeTextAwaitingReview"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Active W-9 description
+         */
+        "badgeTextSubmittedOn"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Active W-8 description
+         */
+        "badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Payout information section header
+         */
+        "bankingInformationSectionHeader"?: string;
+        /**
+          * @uiName Cancel button label
+         */
+        "cancelButton"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Date column title
+         */
+        "dateColumnTitle"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseTaxAndCashDashboardResult>;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings after tax column title
+         */
+        "earningsAfterTaxColumnTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Earnings column title
+         */
+        "earningsColumnTitle"?: string;
+        /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "errorDescriptionText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "errorTitleText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Indirect tax column title
+         */
+        "indirectTaxColumnTitle"?: string;
+        /**
+          * Displayed to participants who have submitted their indirect tax information.
+          * @uiName Indirect tax details
+         */
+        "indirectTaxDetails"?: string;
+        /**
+          * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
+          * @uiName Canadian province of indirect tax
+         */
+        "indirectTaxInfoCanada"?: string;
+        /**
+          * If the participant is registered for indirect tax, display the country they’re registered in.
+          * @uiName Indirect tax country
+         */
+        "indirectTaxInfoOtherCountry"?: string;
+        /**
+          * @uiName Indirect tax section header
+         */
+        "indirectTaxInfoSectionHeader"?: string;
+        /**
+          * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
+          * @uiName Spanish region of indirect tax
+         */
+        "indirectTaxInfoSpain"?: string;
+        /**
+          * @uiName Indirect tax tooltip
+          * @uiWidget textArea
+         */
+        "indirectTaxTooltipSupport"?: string;
+        /**
+          * Additional text displayed next to the tax form's status badge.
+          * @uiName Invalid tax form description
+          * @uiWidget textArea
+         */
+        "invalidForm"?: string;
+        /**
+          * Part of the Invoice table displayed at the bottom of the page.
+          * @uiName Invoice number column title
+         */
+        "invoiceColumnTitle"?: string;
+        /**
+          * @uiName Invoice table description
+         */
+        "invoiceDescription"?: string;
+        /**
+          * @uiName Empty invoice table header
+         */
+        "invoiceEmptyStateHeader"?: string;
+        /**
+          * @uiName Empty invoice table description
+         */
+        "invoiceEmptyStateText"?: string;
+        /**
+          * @uiName Invoice table title
+         */
+        "invoiceHeader"?: string;
+        /**
+          * @uiName Invoice table next page button label
+         */
+        "invoiceMoreLabel"?: string;
+        /**
+          * @uiName Invoice table previous page button label
+         */
+        "invoicePrevLabel"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton"?: string;
+        /**
+          * No other statuses or badges will be displayed in the tax form section in this case.
+          * @uiName Tax form not required text
+          * @uiWidget textArea
+         */
+        "noFormNeededSubtext"?: string;
+        /**
+          * @uiName Not registered for indirect tax text
+          * @uiWidget textArea
+         */
+        "notRegisteredForTax"?: string;
+        /**
+          * Displayed under the payout details card.
+          * @uiName Payout from impact text
+          * @uiWidget textArea
+         */
+        "payoutFromImpact"?: string;
+        /**
+          * Text displayed for existing publishers that do not have saved banking information.
+          * @uiName Payout missing information subtext
+         */
+        "payoutMissingInformationText"?: string;
+        /**
+          * Displayed to participants registered in Quebec, Canada.
+          * @uiName QST indirect tax details
+         */
+        "qstNumber"?: string;
+        /**
+          * @uiName Replace tax form modal body text
+         */
+        "replaceTaxFormModalBodyText"?: string;
+        /**
+          * @uiName Replace tax form modal header
+         */
+        "replaceTaxFormModalHeader"?: string;
+        /**
+          * @uiName Payout status badge
+         */
+        "statusBadgeText"?: string;
+        /**
+          * @uiName Active tax form badge label
+         */
+        "statusTextActive"?: string;
+        /**
+          * @uiName Invalid tax form badge label
+         */
+        "statusTextNotActive"?: string;
+        /**
+          * Displayed when the participant submitted their form but it is awaiting review.
+          * @uiName Not verified tax form badge label
+         */
+        "statusTextNotVerified"?: string;
+        /**
+          * @uiName Spain sub-region indirect tax number
+         */
+        "subRegionTaxNumber"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message title
+          * @uiWidget textArea
+         */
+        "taxAlertHeaderNotActiveW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message title
+          * @uiWidget textArea
+         */
+        "taxAlertHeaderNotActiveW9"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-8 error message description
+         */
+        "taxAlertNotActiveMessageW8"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Inactive W-9 error message description
+          * @uiWidget textArea
+         */
+        "taxAlertNotActiveMessageW9"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps and on the dashboard.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+        /**
+          * @uiName Tax document section header
+         */
+        "taxDocumentSectionHeader"?: string;
+        /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeader"?: string;
+        /**
+          * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
+          * @uiName Payout schedule by threshold text
+         */
+        "thresholdPayoutText"?: string;
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -6361,6 +10538,116 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    interface SqmUserInfoForm {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection"?: string;
+        /**
+          * @uiName Continue button label
+         */
+        "continueButton"?: string;
+        /**
+          * @uiName Country field label
+         */
+        "country"?: string;
+        /**
+          * @uiName Currency field label
+         */
+        "currency"?: string;
+        /**
+          * @uiName Currency field help text
+         */
+        "currencyHelpText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UseUserInfoFormResult>;
+        /**
+          * @uiName Email field label
+         */
+        "email"?: string;
+        /**
+          * Displayed under a field that is missing required information.
+          * @uiName Empty form field error message
+         */
+        "fieldRequiredError"?: string;
+        /**
+          * @uiName First name field label
+         */
+        "firstName"?: string;
+        /**
+          * @uiName Setup progress
+         */
+        "formStep"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message description
+          * @uiWidget textArea
+         */
+        "generalErrorDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Form submission error message title
+          * @uiWidget textArea
+         */
+        "generalErrorTitle"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert description
+          * @uiWidget textArea
+         */
+        "isPartnerAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
+          * @uiName Participant is a partner alert title
+          * @uiWidget textArea
+         */
+        "isPartnerAlertHeader"?: string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastName"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message description
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Page load error message title
+          * @uiWidget textArea
+         */
+        "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Step 1 title
+         */
+        "personalInformation"?: string;
+        /**
+          * Placeholder text displayed in the country search dropdown
+          * @uiName Country field placeholder text
+         */
+        "searchForCountryText"?: string;
+        /**
+          * Placeholder text displayed in the currency search dropdown
+          * @uiName Currency field placeholder text
+         */
+        "searchForCurrencyText"?: string;
+        /**
+          * Displayed at the top of the page on all set up steps.
+          * @uiName Page description
+         */
+        "taxAndPayoutsDescription"?: string;
+        /**
+          * The text link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel"?: string;
+    }
     interface SqmUserName {
         /**
           * @undocumented 
@@ -6380,13 +10667,16 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
+        "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
+        "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
+        "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
@@ -6397,8 +10687,16 @@ declare namespace LocalJSX {
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
+        "sqm-indirect-tax-form": SqmIndirectTaxForm;
         "sqm-input-field": SqmInputField;
         "sqm-instant-access-registration": SqmInstantAccessRegistration;
+        "sqm-invoice-table": SqmInvoiceTable;
+        "sqm-invoice-table-data-cell": SqmInvoiceTableDataCell;
+        "sqm-invoice-table-data-column": SqmInvoiceTableDataColumn;
+        "sqm-invoice-table-date-cell": SqmInvoiceTableDateCell;
+        "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
+        "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
+        "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -6408,6 +10706,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
+        "sqm-payout-details-card": SqmPayoutDetailsCard;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -6465,11 +10764,14 @@ declare namespace LocalJSX {
         "sqm-table-row": SqmTableRow;
         "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
+        "sqm-tax-and-cash": SqmTaxAndCash;
+        "sqm-tax-and-cash-dashboard": SqmTaxAndCashDashboard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
     }
 }
@@ -6479,13 +10781,16 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
+            "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+            "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
@@ -6496,8 +10801,16 @@ declare module "@stencil/core" {
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            "sqm-indirect-tax-form": LocalJSX.SqmIndirectTaxForm & JSXBase.HTMLAttributes<HTMLSqmIndirectTaxFormElement>;
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
+            "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
+            "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
+            "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
+            "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
+            "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
+            "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
+            "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
@@ -6507,6 +10820,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
@@ -6564,11 +10878,14 @@ declare module "@stencil/core" {
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
+            "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
+            "sqm-tax-and-cash-dashboard": LocalJSX.SqmTaxAndCashDashboard & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashDashboardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }

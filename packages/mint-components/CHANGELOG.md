@@ -7,6 +7,98 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] - 2024-04-10
+
+### Fixed
+
+- \<sqm-tax-and-cash>
+  - Fix issue where a non-US user in a non-US brand would skip step 4 of the Tax and Cash form.
+
+## [1.8.0] - 2024-04-10
+
+### Changed
+
+- \<sqm-big-stat>
+  - Added new query to get a users payout balance
+- \<sqm-divided-layout>
+  - Added optional `contentAreaWidth` prop to override max with of content area
+- \<sqm-edit-profile>
+  - Added a cancel button
+- \<sqm-referral-table>
+  - Added new query to get a users impact tax details
+  - Updated default template to use new ICU string and text props
+- \<sqm-referral-table-rewards-cell>
+  - New reward statuses for tax and cash
+- \<sqm-referral-table-rewards-column>
+  - Updated ICU strings to work with new reward statuses
+- \<sqm-rewards-table-status-cell>
+  - Added new reward statuses for tax and cash
+- \<sqm-rewards-table>
+  - Added new query to get a users impact tax details
+  - Updated default template to use new ICU string and text props
+- Added options prop to the following reward table columns
+  - \<sqm-rewards-table-date-column>
+  - \<sqm-rewards-table-note-column>
+  - \<sqm-rewards-table-reward-column>
+  - \<sqm-rewards-table-source-column>
+  - \<sqm-rewards-table-status-column>
+
+### Added
+
+- Added the following components for new tax and cash functionality
+  - \<sqm-user-info-form>
+  - \<sqm-banking-info-form>
+  - \<sqm-docusign-form>
+  - \<sqm-indirect-tax-form>
+  - \<sqm-payout-details-card>
+  - \<sqm-tax-and-cash-dashboard>
+  - \<sqm-tax-and-cash>
+
+## [1.7.6] - 2024-03-05
+
+### Changed
+
+- Updated \<sqm-portal-footer> branding to algn with advocate launch.
+
+## [1.7.5] - 2024-02-14
+
+### Fixed
+
+- Fixed bugs with error text not being shown in \<sqm-edit-profile> and \<sqm-portal-profile>
+
+### Added
+
+- Added new text prop(s) to the following components which previously contained hardcoded text:
+  - \<sqm-edit-profile>
+  - \<sqm-password-field>
+  - \<sqm-popup-container>
+  - \<sqm-portal-change-password>
+  - \<sqm-email-verification>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-login>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-protal-reset-password>
+  - \<sqm-portal-verify-email>
+  - \<sqm-share-button>
+
+## [1.7.4] - 2024-02-09
+
+### Fixed
+
+- Added string trunctation to `sqm-logout-current-user` email to avoid overflow on long emails
+
+### Updated
+
+- `sqm-logout-current-user` updated to explicitly fetch the user's email
+
+## [1.7.3] - 2024-02-06
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
 ## [1.7.2] - 2023-01-12
 
 ### Fixed
@@ -814,7 +906,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.7.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.8.1...HEAD
+[1.8.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.1
+[1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.0
+[1.7.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.6
+[1.7.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.5
+[1.7.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.4
+[1.7.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.3
 [1.7.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.2
 [1.7.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.1
 [1.7.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.0

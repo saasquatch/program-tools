@@ -10,6 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+
     strategy:
       matrix:
         package:
@@ -18,13 +23,28 @@ jobs:
           - stencil-grapes-plugin
           - mint-components
           - integration-boilerplate-node
+          - express-boilerplate
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 15.x
-      - run: cd packages/${{ matrix.package }} && npm install
+          node-version: 18.x
+
+      # Run each of the test suites
+      - name: Setup private NPM registries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
+        run: |
+          cd packages/${{ matrix.package }}
+          echo "//npm.pkg.github.com/saasquatch/:_authToken=$GITHUB_TOKEN" >> ./.npmrc
+          echo "//npm.pkg.github.com/impactinc/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
+          echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch/" >> ./.npmrc
+          echo "@impactinc:registry=https://npm.pkg.github.com/impactinc/" >> ./.npmrc
+
+      - run: cd packages/${{ matrix.package }} && npm ci
       - run: cd packages/${{ matrix.package }} && npm run build --if-present
       - run: cd packages/${{ matrix.package }} && npm test

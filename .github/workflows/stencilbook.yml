@@ -15,8 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: read
+      id-token: write
+      packages: write
 
     strategy:
       fail-fast: false
@@ -28,15 +29,26 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Node Setup
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 18.x
+
+      - name: Setup private NPM registries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
+        run: |
+          cd packages/${{ matrix.package }}
+          echo "//npm.pkg.github.com/saasquatch/:_authToken=$GITHUB_TOKEN" >> ./.npmrc
+          echo "//npm.pkg.github.com/impactinc/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
+          echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch/" >> ./.npmrc
+          echo "@impactinc:registry=https://npm.pkg.github.com/impactinc/" >> ./.npmrc
 
       - name: Install npm dependencies
-        run: cd packages/${{ matrix.package }} && npm install
+        run: cd packages/${{ matrix.package }} && npm ci
 
       - name: Build
         run: cd packages/${{ matrix.package }} && NODE_ENV=dev npm run build

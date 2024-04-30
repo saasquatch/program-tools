@@ -1,4 +1,3 @@
-import { useHost } from "@saasquatch/stencil-hooks";
 import { FunctionalComponent, h, Host } from "@stencil/core";
 import { TabElement } from "./useTabs";
 
@@ -24,7 +23,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
       padding: ${padding};
     }
   `;
-  const host = useHost();
+
   return (
     <Host>
       <style type="text/css">{vanillaStyle}</style>

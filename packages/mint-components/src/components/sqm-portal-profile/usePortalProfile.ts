@@ -6,6 +6,8 @@ import {
 import { gql } from "graphql-request";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { PortalProfileViewProps } from "./sqm-portal-profile-view";
+import { isEmpty } from "../../utilities";
+import { PortalProfile } from "./sqm-portal-profile";
 
 export interface PortalProfileProps {
   firstnametext: string;
@@ -64,9 +66,7 @@ const defaultFormState = {
   error: "",
 };
 
-export function usePortalProfile(
-  props: PortalProfileProps
-): PortalProfileViewProps {
+export function usePortalProfile(props: PortalProfile): PortalProfileViewProps {
   const userIdent = useUserIdentity();
 
   const [success, setSuccess] = useState(false);
@@ -123,7 +123,7 @@ export function usePortalProfile(
     if (upsertUserResponse?.errors?.message) {
       setFormState({
         ...userDataResponse.data?.viewer,
-        error: "Network request failed.",
+        error: props.networkRequestMessage,
       });
     }
   }, [upsertUserResponse?.errors]);
@@ -143,15 +143,15 @@ export function usePortalProfile(
 
     const errors = {};
     if (!formState.firstName) {
-      errors["firstName"] = { message: "Field can't be empty" };
+      errors["firstName"] = { message: props.fieldEmptyText };
     }
     if (!formState.lastName) {
-      errors["lastName"] = { message: "Field can't be empty" };
+      errors["lastName"] = { message: props.fieldEmptyText };
     }
-    if (errors !== {}) {
+    if (!isEmpty(errors)) {
       setFormState((e) => ({
         ...e,
-        error: "Please correct the errors below to update your profile.",
+        error: props.formErrorText,
       }));
     }
     setFormState((e) => ({ ...e, errors }));
