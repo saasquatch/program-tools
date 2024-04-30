@@ -2,13 +2,21 @@ import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface LogoutCurrentUserViewProps {
+  loading: boolean;
+  emailErrorText: string;
   filledInEmailText: string;
   onSwitchClick: () => void;
   switchUserText: string;
 }
 
 const style = {
-  Container: { color: "var(--sl-color-neutral-600)" },
+  Container: { display: "flex", color: "var(--sl-color-neutral-600)" },
+  Text: {
+    maxWidth: "400px",
+    display: "inline-block",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
   Link: {
     textDecoration: "none",
     color: "var(--sl-color-primary-700)",
@@ -30,7 +38,13 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
-  const { filledInEmailText, onSwitchClick, switchUserText } = props;
+  const {
+    loading,
+    filledInEmailText,
+    onSwitchClick,
+    switchUserText,
+    emailErrorText,
+  } = props;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -38,10 +52,13 @@ export function LogoutCurrentUserView(props: LogoutCurrentUserViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      {filledInEmailText} (
-      <a class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
+      <span class={sheet.classes.Text}>
+        {loading ? "..." : filledInEmailText || emailErrorText}
+      </span>{" "}
+      (
+      <span class={sheet.classes.Link} onClick={onSwitchClick} part="sqm-link">
         {switchUserText}
-      </a>
+      </span>
       )
     </span>
   );

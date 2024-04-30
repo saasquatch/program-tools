@@ -142,7 +142,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
           <sl-icon
             slot={props.iconslot || "prefix"}
             name={props.icon ? props.icon : medium[props.medium].icon}
-            exportparts="icon"
+            exportparts="base: icon"
           ></sl-icon>
         )}
         {!props.hidetext && children}

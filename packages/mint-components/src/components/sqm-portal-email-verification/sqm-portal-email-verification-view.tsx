@@ -23,6 +23,7 @@ export interface PortalEmailVerificationViewProps {
     resendEmailButtonText: string;
     verificationStatusMessage?: string;
     verificationLoadingMessage?: string;
+    verificationResentMessage?: string;
   };
 }
 
@@ -75,6 +76,7 @@ export function PortalEmailVerificationView(
       resendEmailButtonText,
       verificationStatusMessage,
       verificationLoadingMessage,
+      verificationResentMessage,
     },
   } = props;
   return (
@@ -92,9 +94,7 @@ export function PortalEmailVerificationView(
         )}
         {props.states.success && (
           <sqm-form-message type="success" exportparts="successalert-icon">
-            <div part="successalert-text">
-              Your verification email has been resent successfully
-            </div>
+            <div part="successalert-text">{verificationResentMessage}</div>
           </sqm-form-message>
         )}
 

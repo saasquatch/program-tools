@@ -3,7 +3,7 @@ import { PortalFooterView } from "./sqm-portal-footer-view";
 import scenario from "../sqm-portal-footer/sqm-portal-footer.feature";
 
 export default {
-  title: "Components/Portal Footer",
+  title: "Components/Microsite Footer",
   parameters: {
     scenario,
   },
@@ -13,7 +13,7 @@ const defaultProps = {
   supportEmail: "support@example.com",
   supportText: "For program support, contact {email}",
   hidePoweredBy: false,
-  poweredByLink: "https://saasquatch.com",
+  poweredByLink: "https://impact.com/advocate/",
   paddingTop: "large",
   paddingRight: "large",
   paddingBottom: "large",

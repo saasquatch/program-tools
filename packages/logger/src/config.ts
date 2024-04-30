@@ -28,7 +28,7 @@ export const LOG_LEVELS = [
   "debug",
 ] as const;
 
-export type LogLevel = typeof LOG_LEVELS[number];
+export type LogLevel = (typeof LOG_LEVELS)[number];
 
 export type ConsoleTransport = {
   type: "console";
@@ -93,7 +93,7 @@ export function defaultConfig(): LoggerConfig {
       }
 
       throw new Error(
-        "Failed to parse log transports from environment variable"
+        "Failed to parse log transports from environment variable",
       );
     }
   }

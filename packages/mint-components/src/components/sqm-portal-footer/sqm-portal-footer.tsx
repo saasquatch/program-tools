@@ -45,14 +45,13 @@ export class PortalFooter {
    */
   @Prop() faqText?: string;
   /**
-   * @uiName Hide powered with SaaSquatch by Impact.com
+   * @uiName Hide powered by Impact.com
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
    * @uiName Powered By link
    */
-  @Prop() poweredByLink: string =
-    "https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget";
+  @Prop() poweredByLink: string = "https://impact.com/advocate/";
   /**
    * @uiName Top padding
    * @uiGroup Padding

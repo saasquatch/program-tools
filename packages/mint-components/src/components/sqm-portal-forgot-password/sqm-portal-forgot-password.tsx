@@ -55,9 +55,22 @@ export class PortalForgotPassword {
     "Enter your email below to receive a password reset link.";
 
   /**
-   * Sign in link text
+   * @uiName Sign in link text
    */
   @Prop() loginText: string = "Sign In";
+
+  /**
+   * @uiName Network error message
+   * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+   */
+  @Prop() networkErrorMessage: string =
+    "An error occurred while loading this page. Please refresh the page.";
+
+  /**
+   * @uiName Email verification sent text
+   */
+  @Prop() successAlertText: string =
+    "If an account with that email exists, a password reset email will be sent.";
 
   /**
    * @undocumented
@@ -84,17 +97,14 @@ export class PortalForgotPassword {
             disabled={states.loading}
             onClick={() => navigation.push(states.loginPath)}
           >
-            Sign In
+            {this.loginText}
           </sl-button>
         </slot>
       ),
-      messageSlot: (
-        <slot name="messageSlot">
-          Enter your email below to receive a password reset link.
-        </slot>
-      ),
+      messageSlot: <slot name="messageSlot">{this.headerText}</slot>,
       emailLabel: this.emailLabel,
       submitLabel: this.submitLabel,
+      successAlertText: this.successAlertText,
     };
     return (
       <PortalForgotPasswordView

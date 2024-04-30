@@ -80,6 +80,62 @@ export class PortalResetPassword {
   @Prop() passwordFieldLabel: string = "New Password";
 
   /**
+   * @uiName Password requirement met
+   */
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  /**
+   * @uiName Password requirement failed
+   */
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  /**
+   * @uiName Minimum length text
+   */
+  @Prop() minErrorText: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
+  @Prop() uppercaseErrorText: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
+  @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Missing number or symbol text
+   */
+  @Prop() hasErrorText: string = "contain at least 1 number or symbol";
+
+  /**
+   * @uiName Passwords don’t match error message
+   * Please make sure your passwords match
+   */
+  @Prop() passwordMismatchText: string = "Passwords do not match.";
+
+  /**
+   * @uiName Reset code invalid error message
+   */
+  @Prop() codeInvalidText: string =
+    "The password reset code is invalid or has expired, please try again.";
+
+  /**
+   * @uiName Reset success text
+   */
+  @Prop() resetSuccessText: string =
+    "Your password has been reset and you are being redirected. If you are not redirected, please click Continue.";
+
+  /**
+   * @uiName Network error message
+   * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+   */
+  @Prop() networkErrorMessage: string =
+    "An error occurred while resetting your password. Please refresh the page and try again.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -117,6 +173,15 @@ function usePortalResetPasswordDemo(
           resetPasswordButtonText: props.resetPasswordButtonText,
           confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
           passwordFieldLabel: props.passwordFieldLabel,
+          meetsRequirementsText: props.meetsRequirementsText,
+          doesNotMeetRequirementsText: props.doesNotMeetRequirementsText,
+          minErrorText: props.minErrorText,
+          uppercaseErrorText: props.uppercaseErrorText,
+          lowercaseErrorText: props.lowercaseErrorText,
+          hasErrorText: props.hasErrorText,
+          passwordMismatchText: props.passwordMismatchText,
+          codeInvalidText: props.codeInvalidText,
+          resetSuccessText: props.resetSuccessText,
         },
       },
       callbacks: {

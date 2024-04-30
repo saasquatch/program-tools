@@ -15,7 +15,7 @@ import { getProps } from "../../utils/utils";
 })
 export class PopupContainer {
   /**
-   * Show Powered with SaaSquatch by Impact.com link
+   * Show Powered by Impact.com link
    *
    * @uiName Show powered by
    */
@@ -32,6 +32,12 @@ export class PopupContainer {
    * @uiName Close button text
    */
   @Prop() closeButtonText: string;
+  /**
+   * Text at the bottom of the popup
+   *
+   * @uiName "Powered by" text
+   */
+  @Prop() poweredByText: string = "Powered By";
   /**
    * Specify padding on the popup contents when in embedded mode
    *

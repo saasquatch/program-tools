@@ -77,6 +77,13 @@ export class PortalLogin {
   @Prop() pageLabel: string = "Sign in to your account";
 
   /**
+   * @uiName Network error message
+   * Displayed when the login fails due to a network error. The participant can try refreshing the page.
+   */
+  @Prop() networkErrorMessage: string =
+    "An error occurred while logging you in. Please refresh the page and try again.";
+
+  /**
    * @undocumented
    * @uiType object
    */
