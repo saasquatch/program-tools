@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.3] - 2024-04-25
+
+### Changed
+
+- \<sqm-leaderboard>
+  - Added required feature flag
+- \<sqm-portal-footer>
+  - Added required feature flag
+
 ## [1.8.1] - 2024-04-10
 
 ### Fixed
@@ -906,7 +915,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.8.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.8.3...HEAD
+[1.8.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.3
 [1.8.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.1
 [1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.0
 [1.7.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.6
