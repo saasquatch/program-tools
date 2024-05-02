@@ -1,6 +1,5 @@
 import {
   getContextValueName,
-  setUserIdentity,
   useHost,
   useLocale,
   useParentQuery,
