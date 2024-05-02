@@ -17,7 +17,6 @@ export class PortalFooter {
 
   /**
    * @uiName Hide support message
-   * @requiredFeatures ["pro"]
    */
   @Prop() hideSupportText: boolean = false;
   /**
@@ -47,7 +46,8 @@ export class PortalFooter {
   @Prop() faqText?: string;
   /**
    * @uiName Hide powered by Impact.com
-   * @requiredFeatures ["pro"]
+   * @requiredFeatures ["CUSTOM_BRANDING"]
+   * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
    */
   @Prop() hidePoweredBy: boolean = false;
   /**
