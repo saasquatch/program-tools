@@ -1037,8 +1037,6 @@ export class TaxAndCashMonolith {
   }
 
   render() {
-    // TODO: REMOVE THIS
-    // const props = useTaxAndCash();
     const props = isDemo() ? useDemoTaxAndCash(this) : useTaxAndCash();
 
     // @ts-ignore

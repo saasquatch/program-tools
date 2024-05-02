@@ -60,36 +60,6 @@ function getCurrentStep(user: UserQuery["user"]) {
 
 export function useTaxAndCash() {
   const host = useHost();
-
-  /*************************/
-  // TODO: REMOVE THIS
-  function DEMO_SETUP() {
-    const idAndAccountId =
-      "f495da636037dee400675585a0937f7d2a2499b1e1a9265f74389f1c5cfcbac7";
-    const jwt =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiZjQ5NWRhNjM2MDM3ZGVlNDAwNjc1NTg1YTA5MzdmN2QyYTI0OTliMWUxYTkyNjVmNzQzODlmMWM1Y2ZjYmFjNyIsImFjY291bnRJZCI6ImY0OTVkYTYzNjAzN2RlZTQwMDY3NTU4NWEwOTM3ZjdkMmEyNDk5YjFlMWE5MjY1Zjc0Mzg5ZjFjNWNmY2JhYzciLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3FhNXRlc3RAaW1wYWN0LmNvbSJ9fQ.UIzWZTVoP09nYf8aQnGV0nPglt2Onbi2nJFPa2olGiM";
-    const programId = "24474";
-    const tenantAlias = "aprh0cfq6y8tk";
-    const appDomain = "https://staging.referralsaasquatch.com";
-
-    // @ts-ignore
-    window.widgetIdent = {
-      tenantAlias,
-      appDomain,
-      programId,
-    };
-
-    useEffect(() => {
-      setUserIdentity({
-        accountId: idAndAccountId,
-        id: idAndAccountId,
-        jwt,
-      });
-    }, []);
-  }
-  // DEMO_SETUP();
-  /********************/
-
   const user = useUserIdentity();
   const locale = useLocale();
 
