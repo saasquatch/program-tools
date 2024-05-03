@@ -4,7 +4,7 @@ import { createStyleSheet } from "../../../../styling/JSS";
 import { vatLabels } from "../../countries";
 import { TaxCountry } from "../../sqm-tax-and-cash/data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
-import { getIsRequiredErrorMessage } from "../../utils";
+import { formatErrorMessage } from "../../utils";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -198,7 +198,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           disabled={states.loading || states.disabled}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
-            helpText: getIsRequiredErrorMessage(
+            helpText: formatErrorMessage(
               text.subRegion,
               text.error.fieldRequiredError
             ),
@@ -234,7 +234,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             value={formState.subRegionTaxNumber}
             {...(formState.errors?.subRegionTaxNumber && {
               class: classes.ErrorInput,
-              helpText: getIsRequiredErrorMessage(
+              helpText: formatErrorMessage(
                 text.subRegionTaxNumberLabel,
                 text.error.fieldRequiredError
               ),
@@ -266,7 +266,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           onSl-select={(e) => callbacks.onFormChange("province", e)}
           {...(formState.errors?.province && {
             class: classes.ErrorInput,
-            helpText: getIsRequiredErrorMessage(
+            helpText: formatErrorMessage(
               text.province,
               text.error.fieldRequiredError
             ),
@@ -307,7 +307,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               <IndirectTaxNumberInput
                 name={"qstNumber"}
                 label={text.qstNumber}
-                error={getIsRequiredErrorMessage(
+                error={formatErrorMessage(
                   text.qstNumber,
                   text.error.fieldRequiredError
                 )}
@@ -368,7 +368,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             onSl-select={(e) => callbacks.onFormChange("selectedRegion", e)}
             {...(formState.errors?.selectedRegion && {
               class: classes.ErrorInput,
-              helpText: getIsRequiredErrorMessage(
+              helpText: formatErrorMessage(
                 text.selectedRegion,
                 text.error.fieldRequiredError
               ),

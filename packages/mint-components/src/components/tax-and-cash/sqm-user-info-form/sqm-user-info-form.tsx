@@ -35,6 +35,34 @@ export class TaxForm {
    */
   @Prop() country: string = "Country";
   /**
+   * @uiName Phone number field label
+   */
+  @Prop() phoneNumber: string = "Phone number";
+  /**
+   * @uiName Address field label
+   */
+  @Prop() address: string = "Address";
+  /**
+   * @uiName City field label
+   */
+  @Prop() city: string = "City";
+  /**
+   * @uiName State field label
+   */
+  @Prop() state: string = "State";
+  /**
+   * @uiName State field label
+   */
+  @Prop() province: string = "Province";
+  /**
+   * @uiName State field label
+   */
+  @Prop() region: string = "Region";
+  /**
+   * @uiName Postal code field label
+   */
+  @Prop() postalCode: string = "Postal code";
+  /**
    * @uiName Currency field label
    */
   @Prop() currency: string = "Currency";
@@ -112,6 +140,17 @@ export class TaxForm {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
+   * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+   * @uiName Invalid character error message
+   */
+  @Prop() invalidCharacterError: string =
+    "{fieldName} includes characters that aren't supported.";
+  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
    * @uiWidget textArea
@@ -150,10 +189,12 @@ export class TaxForm {
       ...props,
       error: {
         fieldRequiredError: props.fieldRequiredError,
+        fieldInvalidError: props.fieldInvalidError,
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+        invalidCharacterError: props.invalidCharacterError,
       },
     };
   }
@@ -198,11 +239,13 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         allCurrencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+        phoneCountries: [{ countryCode: "CA", displayName: "Canada" }],
         allCountries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       callbacks: {
         setCurrencySearch: (c) => console.log(c),
         setCountrySearch: (c) => console.log(c),
+        setPhoneCountrySearch: (c) => console.log(c),
         onFormChange: () => {},
       },
       states: {

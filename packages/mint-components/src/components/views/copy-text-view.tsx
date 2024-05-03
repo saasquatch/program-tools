@@ -95,12 +95,14 @@ export function CopyTextView(props: CopyTextViewProps) {
     >
       {buttonStyle === "icon" ? (
         <sl-icon-button
+          exportparts="base: icon-button-base"
           onClick={() => props.onClick?.()}
           name="files"
           disabled={disabled}
         />
       ) : (
         <sl-button
+          exportparts="base: copy-button-base"
           onClick={() => props.onClick?.()}
           size={"medium"}
           style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
@@ -132,7 +134,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          exportparts="label: input-label"
+          exportparts="base: input-base, input: input-label"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}

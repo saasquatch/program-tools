@@ -4049,6 +4049,12 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Displayed under a field that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+          * @uiGroup General Form Properties
+         */
+        "invalidCharacterError": string;
+        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -4083,11 +4089,21 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
+          * @uiName Address field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_address": string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection": string;
+        /**
+          * @uiName City field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_city": string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
@@ -4124,11 +4140,36 @@ export namespace Components {
          */
         "step1_personalInformation": string;
         /**
+          * @uiName Phone number field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_phoneNumber": string;
+        /**
+          * @uiName Postal code field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_postalCode": string;
+        /**
+          * @uiName State field label for provinces
+          * @uiGroup Step 1 Properties
+         */
+        "step1_province": string;
+        /**
+          * @uiName State field label for regions
+          * @uiGroup Step 1 Properties
+         */
+        "step1_region": string;
+        /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText": string;
+        /**
+          * @uiName State field label for states
+          * @uiGroup Step 1 Properties
+         */
+        "step1_state": string;
         /**
           * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
@@ -4867,10 +4908,18 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Address field label
+         */
+        "address": string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
+        /**
+          * @uiName City field label
+         */
+        "city": string;
         /**
           * @uiName Continue button label
          */
@@ -4897,6 +4946,11 @@ export namespace Components {
          */
         "email": string;
         /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError": string;
+        /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
          */
@@ -4921,6 +4975,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "generalErrorTitle": string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
@@ -4954,6 +5013,22 @@ export namespace Components {
          */
         "personalInformation": string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber": string;
+        /**
+          * @uiName Postal code field label
+         */
+        "postalCode": string;
+        /**
+          * @uiName State field label
+         */
+        "province": string;
+        /**
+          * @uiName State field label
+         */
+        "region": string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -4963,6 +5038,10 @@ export namespace Components {
           * @uiName Currency field placeholder text
          */
         "searchForCurrencyText": string;
+        /**
+          * @uiName State field label
+         */
+        "state": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -9723,6 +9802,12 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Displayed under a field that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+          * @uiGroup General Form Properties
+         */
+        "invalidCharacterError"?: string;
+        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -9757,11 +9842,21 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
+          * @uiName Address field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_address"?: string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection"?: string;
+        /**
+          * @uiName City field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_city"?: string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
@@ -9798,11 +9893,36 @@ declare namespace LocalJSX {
          */
         "step1_personalInformation"?: string;
         /**
+          * @uiName Phone number field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_phoneNumber"?: string;
+        /**
+          * @uiName Postal code field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_postalCode"?: string;
+        /**
+          * @uiName State field label for provinces
+          * @uiGroup Step 1 Properties
+         */
+        "step1_province"?: string;
+        /**
+          * @uiName State field label for regions
+          * @uiGroup Step 1 Properties
+         */
+        "step1_region"?: string;
+        /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText"?: string;
+        /**
+          * @uiName State field label for states
+          * @uiGroup Step 1 Properties
+         */
+        "step1_state"?: string;
         /**
           * The text link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
@@ -10540,10 +10660,18 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Address field label
+         */
+        "address"?: string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
+        /**
+          * @uiName City field label
+         */
+        "city"?: string;
         /**
           * @uiName Continue button label
          */
@@ -10570,6 +10698,11 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError"?: string;
+        /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
          */
@@ -10594,6 +10727,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
@@ -10627,6 +10765,22 @@ declare namespace LocalJSX {
          */
         "personalInformation"?: string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber"?: string;
+        /**
+          * @uiName Postal code field label
+         */
+        "postalCode"?: string;
+        /**
+          * @uiName State field label
+         */
+        "province"?: string;
+        /**
+          * @uiName State field label
+         */
+        "region"?: string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -10636,6 +10790,10 @@ declare namespace LocalJSX {
           * @uiName Currency field placeholder text
          */
         "searchForCurrencyText"?: string;
+        /**
+          * @uiName State field label
+         */
+        "state"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description

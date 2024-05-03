@@ -536,6 +536,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </sl-button>
           {!states.hideBackButton && (
             <sl-button
+              exportparts="base: secondarybutton-base"
               class={classes.SecondaryBtn}
               type="text"
               onClick={callbacks.onBack}
