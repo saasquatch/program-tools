@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-boilerplate",
-  "version": "1.6.4-2",
+  "version": "1.6.4-3",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
-    "@saasquatch/component-environment": "^1.0.6-2",
+    "@saasquatch/component-environment": "^1.0.6-3",
     "@saasquatch/dom-context-hooks": "^1.0.3",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/universal-hooks": "^1.0.0",
