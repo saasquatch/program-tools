@@ -5,10 +5,6 @@ import { debug as _debug } from "../debug";
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 
 export function validateLocale(locale?: string) {
-  debug("validateLocale", {
-    locale,
-    isValid: /^[a-z]{2}(_(?:[A-Z]{2}|[0-9]{3}))?$/.test(locale || ""),
-  });
   if (locale && /^[a-z]{2}(_(?:[A-Z]{2}|[0-9]{3}))?$/.test(locale)) {
     return locale;
   }
