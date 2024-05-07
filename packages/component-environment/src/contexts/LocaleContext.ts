@@ -26,6 +26,8 @@ export function lazilyStartLocaleContext() {
       window.widgetIdent?.locale ??
       validateLocale(navigator.language.replaceAll("-", "_"));
 
+    debug("initializing with locale:", locale);
+
     globalProvider = new ContextProvider<string | undefined>({
       element: document.documentElement,
       initialState: locale,
