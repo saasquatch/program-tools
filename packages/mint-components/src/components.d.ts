@@ -1819,11 +1819,11 @@ export namespace Components {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
          */
         "hidePoweredBy": boolean;
         /**
           * @uiName Hide support message
-          * @requiredFeatures ["CUSTOM_BRANDING"]
          */
         "hideSupportText": boolean;
         /**
@@ -7519,11 +7519,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
          */
         "hidePoweredBy"?: boolean;
         /**
           * @uiName Hide support message
-          * @requiredFeatures ["CUSTOM_BRANDING"]
          */
         "hideSupportText"?: boolean;
         /**
