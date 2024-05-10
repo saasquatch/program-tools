@@ -10,10 +10,6 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 /**
  * @uiName Leaderboard
  * @slots [{"name":"empty", "title":"Empty State"}]
- * @exampleGroup Leaderboard
- * @example Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @requiredFeatures ["LEADERBOARDS"]
- * @featureTooltip Add an element of gamification and extra incentive for your participants to take action. Contact sales to learn more about upgrading your plan to add a leaderboard.
  */
 @Component({
   tag: "sqm-leaderboard",
@@ -53,6 +49,14 @@ export class Leaderboard {
    * @default
    */
   @Prop() hideViewer: boolean = false;
+
+  /**
+   * Hides the leaderboard if user is on Essentials plan
+   *
+   * @uiName Hide viewing user
+   * @default
+   */
+  @Prop() isEssentials?: boolean = false;
 
   /**
    * @uiName Rank type
@@ -112,6 +116,7 @@ export class Leaderboard {
   render() {
     const props = {
       empty: <EmptySlot />,
+      essentials: <EssentialsSlot />,
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -124,6 +129,7 @@ export class Leaderboard {
       interval: this.interval,
       hideViewer: this.hideViewer,
       showRank: this.showRank,
+      isEssentials: this.isEssentials,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -140,6 +146,18 @@ function EmptySlot() {
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
+    </slot>
+  );
+}
+
+function EssentialsSlot() {
+  return (
+    <slot name="essentials">
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+        empty-state-header="Leaderboards aren’t available on your plan"
+        empty-state-text={`Contact Support to upgrade your plan and start leveraging gamification in your program.`}
       ></sqm-empty>
     </slot>
   );
@@ -207,6 +225,7 @@ function useLeaderboardDemo(
       states: {
         loading: false,
         hasLeaders: true,
+        isEssentials: false,
         styles: {
           usersheading: props.usersheading
             ? props.usersheading
@@ -228,6 +247,7 @@ function useLeaderboardDemo(
       },
       elements: {
         empty: <EmptySlot />,
+        essentials: <EssentialsSlot />,
         loadingstate: <LoadingSlot />,
       },
     },

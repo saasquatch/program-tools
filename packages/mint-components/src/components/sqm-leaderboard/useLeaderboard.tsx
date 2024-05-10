@@ -24,6 +24,7 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
+  essentials: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
 }
@@ -165,6 +166,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   return {
     states: {
       loading: loadingLeaderboard,
+      //AL: TODO ISESSENTIALS PROP
+      isEssentials: false,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
@@ -175,6 +178,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
+      essentials: props.essentials,
       loadingstate: props.loadingstate,
     },
   };

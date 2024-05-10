@@ -171,6 +171,13 @@ const defaultElements = {
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
     ></sqm-empty>
   ),
+  essentials: (
+    <sqm-empty
+      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+      empty-state-header="Leaderboards aren’t available on your plan"
+      empty-state-text={`Contact Support to upgrade your plan and start leveraging gamification in your program.`}
+    ></sqm-empty>
+  ),
   loadingstate: (
     <slot name="loading">
       <table>
@@ -192,6 +199,35 @@ export const Empty = () => {
   const props = {
     states: {
       loading: false,
+      hasLeaders: false,
+      styles: {
+        ...defaultStyles,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [],
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        textValue: "8",
+        rowNumber: 11,
+        rank: 23,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const Essentials = () => {
+  const props = {
+    states: {
+      loading: false,
+      isEssentials: true,
       hasLeaders: false,
       styles: {
         ...defaultStyles,

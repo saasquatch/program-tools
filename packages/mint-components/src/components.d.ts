@@ -1325,6 +1325,12 @@ export namespace Components {
          */
         "interval": string;
         /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
+        /**
           * @uiName Leaderboard type
           * @uiType string
           * @required 
@@ -7024,6 +7030,12 @@ declare namespace LocalJSX {
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
+        /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
         /**
           * @uiName Leaderboard type
           * @uiType string
