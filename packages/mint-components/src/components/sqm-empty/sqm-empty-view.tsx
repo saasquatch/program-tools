@@ -1,13 +1,16 @@
 import { h } from "@stencil/core";
+import { intl } from "../../global/global";
 
 export interface EmptyStateViewProps {
   emptyStateImage: string;
   emptyStateHeader: string;
   emptyStateText: string;
+  supportText?: string;
 }
 
 export function EmptyStateView(props: EmptyStateViewProps) {
-  const { emptyStateHeader, emptyStateImage, emptyStateText } = props;
+  const { emptyStateHeader, emptyStateImage, emptyStateText, supportText } =
+    props;
 
   return (
     <sqm-portal-container padding="large" gap="medium" part="sqm-base">
@@ -21,10 +24,21 @@ export function EmptyStateView(props: EmptyStateViewProps) {
           <p>{emptyStateHeader}</p>
         </sqm-text>
         <sqm-text slot="content">
-          <p
-            innerHTML={emptyStateText}
-            style={{ color: "var(--sl-color-gray-500)" }}
-          ></p>
+          <p innerHTML="" style={{ color: "var(--sl-color-gray-500)" }}>
+            {intl.formatMessage(
+              {
+                id: "emptyStateText",
+                defaultMessage: emptyStateText,
+              },
+              {
+                supportText: (
+                  <a target="_blank" href={`example.com`}>
+                    {supportText}
+                  </a>
+                ),
+              }
+            )}
+          </p>
         </sqm-text>
       </sqm-titled-section>
     </sqm-portal-container>

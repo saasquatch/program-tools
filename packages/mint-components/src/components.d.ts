@@ -731,6 +731,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "emptyStateText": string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
@@ -6443,6 +6448,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
