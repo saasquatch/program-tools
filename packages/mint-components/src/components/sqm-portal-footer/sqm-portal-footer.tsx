@@ -47,7 +47,7 @@ export class PortalFooter {
   /**
    * @uiName Hide powered by Impact.com
    * @requiredFeatures ["CUSTOM_BRANDING"]
-   * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
+   * @featureTooltip Integrate your brand identity further by removing impact.com’s branding from your widget. Contact Support to upgrade your plan.
    */
   @Prop() hidePoweredBy: boolean = false;
   /**

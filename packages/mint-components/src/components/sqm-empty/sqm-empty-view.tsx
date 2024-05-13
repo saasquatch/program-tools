@@ -21,7 +21,10 @@ export function EmptyStateView(props: EmptyStateViewProps) {
           <p>{emptyStateHeader}</p>
         </sqm-text>
         <sqm-text slot="content">
-          <p style={{ color: "var(--sl-color-gray-500)" }}>{emptyStateText}</p>
+          <p
+            innerHTML={emptyStateText}
+            style={{ color: "var(--sl-color-gray-500)" }}
+          ></p>
         </sqm-text>
       </sqm-titled-section>
     </sqm-portal-container>

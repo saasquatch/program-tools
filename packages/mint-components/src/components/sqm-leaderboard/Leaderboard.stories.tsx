@@ -163,6 +163,10 @@ const defaultStyles = {
   anonymousUser: "Anonymous User",
 };
 
+const link = <a>Support</a>;
+
+const tag = "Contact" + link + "about upgrading your plan";
+
 const defaultElements = {
   empty: (
     <sqm-empty
@@ -175,7 +179,7 @@ const defaultElements = {
     <sqm-empty
       empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
       empty-state-header="Leaderboards aren’t available on your plan"
-      empty-state-text={`Contact Support to upgrade your plan and start leveraging gamification in your program.`}
+      empty-state-text={`Contact <a href="" style="text-decoration:none">Support</a> to upgrade your plan and start leveraging gamification in your program.`}
     ></sqm-empty>
   ),
   loadingstate: (

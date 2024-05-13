@@ -15,7 +15,7 @@ import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-fo
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
-import { FunctionalComponent } from "@stencil/core";
+import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
@@ -1825,7 +1825,7 @@ export namespace Components {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
+          * @featureTooltip Integrate your brand identity further by removing impact.com’s branding from your widget. Contact Support to upgrade your plan.
          */
         "hidePoweredBy": boolean;
         /**
@@ -4848,7 +4848,7 @@ export namespace Components {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label": string;
+        "label": string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin
@@ -7531,7 +7531,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip Upgrade your plan to hide the powered by impact.com message. Contact Sales to learn more.
+          * @featureTooltip Integrate your brand identity further by removing impact.com’s branding from your widget. Contact Support to upgrade your plan.
          */
         "hidePoweredBy"?: boolean;
         /**
@@ -10529,7 +10529,7 @@ declare namespace LocalJSX {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label"?: string;
+        "label"?: string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin
