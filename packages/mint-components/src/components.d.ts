@@ -3114,6 +3114,7 @@ export namespace Components {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText": string;
+        "deletedReferralText": string;
         "deletedUserText": string;
         "locale": string;
         "referralText": string;
@@ -8805,6 +8806,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText"?: string;
+        "deletedReferralText"?: string;
         "deletedUserText"?: string;
         "locale"?: string;
         "referralText"?: string;
