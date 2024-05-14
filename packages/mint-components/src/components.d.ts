@@ -1830,7 +1830,7 @@ export namespace Components {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip Integrate your brand identity further by removing impact.com’s branding from your widget. Contact Support to upgrade your plan.
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="example.com">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy": boolean;
         /**
@@ -7541,7 +7541,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip Integrate your brand identity further by removing impact.com’s branding from your widget. Contact Support to upgrade your plan.
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="example.com">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy"?: boolean;
         /**
