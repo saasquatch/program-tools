@@ -75,9 +75,18 @@ export class RewardTableSourceCell {
     const getFullName = (user: { firstName: string; lastName: string }) => {
       if (!user) return this.deletedUserText;
 
-      // AL: TODO Replace with state that handles deleted referral
-      if (this.referralText === "testDelete") {
-        return (
+      if (!user.firstName && !user.lastName) return this.anonymousUserText;
+
+      if (!user.firstName) return `${user.lastName}`;
+      if (!user.lastName) return `${user.firstName}`;
+
+      return `${user.firstName} ${user.lastName}`;
+    };
+
+    const Source = () =>
+      this.reward.rewardSource === "FRIEND_SIGNUP" ||
+      this.reward.rewardSource === "REFERRED" ? (
+        this.reward.referral === null ? (
           <div
             style={{
               alignItems: "center",
@@ -97,65 +106,31 @@ export class RewardTableSourceCell {
             ></sl-icon>
             {this.deletedReferralText}
           </div>
-        );
-      }
-
-      if (!user.firstName && !user.lastName) return this.anonymousUserText;
-
-      if (!user.firstName) return `${user.lastName}`;
-      if (!user.lastName) return `${user.firstName}`;
-
-      return `${user.firstName} ${user.lastName}`;
-    };
-
-    const Source = () =>
-      this.reward.rewardSource === "FRIEND_SIGNUP" ||
-      this.reward.rewardSource === "REFERRED" ? (
-        <div>
-          <div
-            style={{
-              fontSize: "var(--sl-font-size-small)",
-              color: "var(--sl-color-neutral-500)",
-            }}
-          >
-            {intl.formatMessage(
-              {
-                id: "referralText",
-                defaultMessage: this.referralText,
-              },
-              {
-                rewardSource: this.reward.rewardSource,
-              }
-            )}
-          </div>
+        ) : (
           <div>
-            {this.reward.rewardSource == "FRIEND_SIGNUP"
-              ? getFullName(this.reward.referral.referredUser)
-              : getFullName(this.reward.referral.referrerUser)}
+            <div
+              style={{
+                fontSize: "var(--sl-font-size-small)",
+                color: "var(--sl-color-neutral-500)",
+              }}
+            >
+              {intl.formatMessage(
+                {
+                  id: "referralText",
+                  defaultMessage: this.referralText,
+                },
+                {
+                  rewardSource: this.reward.rewardSource,
+                }
+              )}
+            </div>
+            <div>
+              {this.reward.rewardSource == "FRIEND_SIGNUP"
+                ? getFullName(this.reward.referral.referredUser)
+                : getFullName(this.reward.referral.referrerUser)}
+            </div>
           </div>
-        </div>
-      ) : // AL: TODO Add real deleted status to handle deleted referral for rewardsource?
-      //@ts-ignore
-      this.reward.rewardSource == "DELETED" ? (
-        <div
-          style={{
-            alignItems: "center",
-            display: "flex",
-            gap: "var(--sl-spacing-xx-small)",
-          }}
-        >
-          <sl-icon
-            style={{
-              color: "white",
-              backgroundColor: "var(--sl-color-warning-500)",
-              borderRadius: "25px",
-              marginBottom: "var(--sl-spacing-xxx-small)",
-            }}
-            slot="icon"
-            name="exclamation-circle"
-          ></sl-icon>
-          {this.deletedReferralText}
-        </div>
+        )
       ) : this.reward.exchangedRewardRedemptionTransaction ? (
         <RewardExchangeBadge reward={this.reward} />
       ) : (
