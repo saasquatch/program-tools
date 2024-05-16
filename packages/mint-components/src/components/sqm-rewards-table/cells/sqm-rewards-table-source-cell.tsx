@@ -87,22 +87,14 @@ export class RewardTableSourceCell {
       this.reward.rewardSource === "FRIEND_SIGNUP" ||
       this.reward.rewardSource === "REFERRED" ? (
         this.reward.referral === null ? (
-          <div
+          <p
             style={{
-              display: "flex",
-              gap: "var(--sl-spacing-xx-small)",
+              color: "var(--sl-color-gray-400)",
+              fontStyle: "italic",
             }}
           >
-            <sl-icon
-              style={{
-                color: "var(--sl-color-warning-500)",
-                marginTop: "var(--sl-spacing-xx-small)",
-              }}
-              slot="icon"
-              name="exclamation-circle"
-            ></sl-icon>
             {this.deletedReferralText}
-          </div>
+          </p>
         ) : (
           <div>
             <div
