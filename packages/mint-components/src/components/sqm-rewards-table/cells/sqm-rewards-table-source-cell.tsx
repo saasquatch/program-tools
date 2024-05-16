@@ -89,17 +89,14 @@ export class RewardTableSourceCell {
         this.reward.referral === null ? (
           <div
             style={{
-              alignItems: "center",
               display: "flex",
               gap: "var(--sl-spacing-xx-small)",
             }}
           >
             <sl-icon
               style={{
-                color: "white",
-                backgroundColor: "var(--sl-color-warning-500)",
-                borderRadius: "25px",
-                marginBottom: "var(--sl-spacing-xxx-small)",
+                color: "var(--sl-color-warning-500)",
+                marginTop: "var(--sl-spacing-xx-small)",
               }}
               slot="icon"
               name="exclamation-circle"
