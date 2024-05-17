@@ -90,7 +90,6 @@ export class RewardTableSourceCell {
           <p
             style={{
               color: "var(--sl-color-gray-400)",
-              fontStyle: "italic",
             }}
           >
             {this.deletedReferralText}
