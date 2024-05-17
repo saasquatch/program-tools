@@ -1,5 +1,6 @@
 import {
   navigation,
+  setUserIdentity,
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
@@ -52,29 +53,25 @@ export function usePortalVerifyEmail({
     navigation.push(url.href);
   };
 
-  const submit = async () => {
+  const submit = () => {
     setSubmitted(true);
-
-    if (oobCode) {
-      const result = await request({ oobCode });
-      if (
-        (result instanceof Error ||
-          !result.verifyManagedIdentityEmail.success) &&
-        !userIdent?.managedIdentity?.emailVerified
-      ) {
-        // pause on error if logged out/unverified
-        return;
-      }
-      setTimeout(() => {
-        gotoNextPage();
-        setSubmitted(false);
-      }, 3000);
-    }
+    request({ oobCode });
   };
 
   useEffect(() => {
-    // Already verified, begin redirect
-    if (verified) {
+    // verification successful but user in context is not verified
+    if (
+      data?.verifyManagedIdentityEmail.success &&
+      !userIdent?.managedIdentity?.emailVerified
+    ) {
+      setTimeout(() => {
+        gotoNextPage();
+        setUserIdentity(undefined);
+        setSubmitted(false);
+      }, 3000);
+      return;
+      // Already verified, begin redirect
+    } else if (verified) {
       setTimeout(() => {
         gotoNextPage();
         setSubmitted(false);
@@ -82,8 +79,8 @@ export function usePortalVerifyEmail({
       return;
     }
 
-    if (userIdent && !data && !submitted) submit();
-  }, [verified, submitted, data, userIdent, submitted]);
+    if (userIdent && !data && !submitted && oobCode) submit();
+  }, [verified, submitted, data, userIdent]);
 
   return {
     states: {
