@@ -123,7 +123,7 @@ export function PortalRegistrationFormView(
         {content.formData}
         {!states.hideInputs && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
@@ -168,7 +168,7 @@ export function PortalRegistrationFormView(
         {content.passwordField}
         {!states.hideInputs && states.confirmPassword && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="password"
             name="/confirmPassword"
             label={content.confirmPasswordLabel}
