@@ -25,9 +25,11 @@ export function usePortalVerifyEmail({
 }) {
   const submitted = window[SUBMITTED_CONTEXT];
   const userIdent = useUserIdentity();
+  const email = userIdent?.managedIdentity?.email;
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
+  const oobEmail = urlParams.get("email");
   const nextPageOverride = urlParams.get("nextPage");
 
   // derived from useMutation in component boilerplate initialState
@@ -60,9 +62,10 @@ export function usePortalVerifyEmail({
 
   useEffect(() => {
     // verification successful but user in context is not verified
+    // or mismatch between logged in user and user associated with oobCode
     if (
       data?.verifyManagedIdentityEmail.success &&
-      !userIdent?.managedIdentity?.emailVerified
+      (!userIdent?.managedIdentity?.emailVerified || email !== oobEmail)
     ) {
       setTimeout(() => {
         gotoNextPage();
