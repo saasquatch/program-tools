@@ -109,7 +109,7 @@ Feature: Verify Email
 
 
     @minutia
-    Scenario Outline: Users may not be logged in or logged out depending on the verified status and logged in email
+    Scenario Outline: Users may be logged in or logged out depending on the verified status and logged in email
         Given an oobCode with email <oobCodeEmail> as a url query parameter
         And the user is logged in as <loggedInEmail>
         And the logged in user <isVerified>
