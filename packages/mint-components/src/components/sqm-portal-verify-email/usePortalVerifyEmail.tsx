@@ -6,6 +6,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
+import { UserInfoFormView } from "../tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
 
 const SUBMITTED_CONTEXT = "sq:verify-submitted";
 
@@ -55,23 +56,28 @@ export function usePortalVerifyEmail({
     navigation.push(url.href);
   };
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitted(true);
-    request({ oobCode });
+    await request({ oobCode });
   };
 
+  console.log({ userIdent, data, submitted, verified });
+
   useEffect(() => {
-    // verification successful but user in context is not verified
-    // or mismatch between logged in user and user associated with oobCode
-    if (
-      data?.verifyManagedIdentityEmail.success &&
-      (!userIdent?.managedIdentity?.emailVerified || email !== oobEmail)
-    ) {
+    const logout = async () => {
+      if (!userIdent?.managedIdentity?.emailVerified && !submitted) {
+        await submit();
+      }
       setTimeout(() => {
         gotoNextPage();
         setUserIdentity(undefined);
         setSubmitted(false);
       }, 3000);
+    };
+    // verification successful but user in context is not verified
+    // or mismatch between logged in user and user associated with oobCode
+    if (email && email !== oobEmail) {
+      logout();
       return;
       // Already verified, begin redirect
     } else if (verified) {
@@ -82,7 +88,7 @@ export function usePortalVerifyEmail({
       return;
     }
 
-    if (userIdent && !data && !submitted && oobCode) submit();
+    if (!data && !submitted && oobCode) submit();
   }, [verified, submitted, data, userIdent]);
 
   return {
