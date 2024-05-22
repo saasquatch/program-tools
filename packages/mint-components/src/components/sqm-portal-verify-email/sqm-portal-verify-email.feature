@@ -106,3 +106,26 @@ Feature: Verify Email
         Examples:
             | currentUrl                                              | url                                  |
             | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |
+
+
+    @minutia
+    Scenario Outline: Users may not be logged in or logged out depending on the verified status and logged in email
+        Given an oobCode with email <oobCodeEmail> as a url query parameter
+        And the user is logged in as <loggedInEmail>
+        And the logged in user <isVerified>
+        When the oobCode is submitted
+        And the oobCode <isValid>
+        Then the <submitState> screen is shown
+        And after 3 seconds pass
+        Then the user is redirected to <redirect>
+        Examples:
+            | oobCodeEmail      | loggedInEmail     | isVerified | isValid      | submitState | redirect  |
+            | user1@example.com | N/A               | false      | is valid     | success     | /login    |
+            | user1@example.com | N/A               | false      | is not valid | error       | /login    |
+            | user1@example.com | user1@example.com | false      | is valid     | success     | /activity |
+            | user1@example.com | user1@example.com | false      | is not valid | error       | N/A       |
+            | user1@example.com | user2@example.com | false      | is valid     | success     | /login    |
+            | user1@example.com | user2@example.com | false      | is not valid | error       | /login    |
+            | user1@example.com | user1@example.com | true       | is valid     | success     | /activity |
+            | user1@example.com | user1@example.com | true       | is not valid | success     | /activity |
+            | user1@example.com | user2@example.com | true       | is not valid | error       | /login    |
