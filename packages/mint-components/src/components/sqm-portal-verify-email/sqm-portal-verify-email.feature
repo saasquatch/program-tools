@@ -129,3 +129,4 @@ Feature: Verify Email
             | user1@example.com | user1@example.com | true       | is valid     | success     | /activity |
             | user1@example.com | user1@example.com | true       | is not valid | success     | /activity |
             | user1@example.com | user2@example.com | true       | is not valid | error       | /login    |
+            | N/A               | N/A               | false      | is not valid | error       | N/A       |
