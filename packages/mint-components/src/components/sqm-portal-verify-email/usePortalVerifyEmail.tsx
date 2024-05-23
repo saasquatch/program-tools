@@ -4,9 +4,10 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
 import { UserInfoFormView } from "../tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
+import { P } from "../../global/mixins";
 
 const SUBMITTED_CONTEXT = "sq:verify-submitted";
 
@@ -26,6 +27,8 @@ export function usePortalVerifyEmail({
 }) {
   const submitted = window[SUBMITTED_CONTEXT];
   const userIdent = useUserIdentity();
+  const [verificationError, setVerificationError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const email = userIdent?.managedIdentity?.email;
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -38,6 +41,7 @@ export function usePortalVerifyEmail({
     data === undefined && errors === undefined && !!oobCode;
 
   // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
+  const hasContext = localStorage.getItem("sq:user-identity");
   const verified = !!(
     userIdent?.managedIdentity?.emailVerified ||
     data?.verifyManagedIdentityEmail.success
@@ -56,48 +60,66 @@ export function usePortalVerifyEmail({
     navigation.push(url.href);
   };
 
-  const submit = async () => {
-    setSubmitted(true);
-    await request({ oobCode });
+  const logout = () => {
+    console.debug("LOGOUT");
+    setTimeout(() => {
+      gotoNextPage();
+      setUserIdentity(undefined);
+      setSubmitted(false);
+    }, 3000);
   };
 
-  console.log({ userIdent, data, submitted, verified });
+  const submit = async () => {
+    setSubmitted(true);
+    const response = await request({ oobCode });
+    if (
+      response instanceof Error ||
+      !response?.verifyManagedIdentityEmail?.success
+    ) {
+      setVerificationError({ message: true });
+    }
+    console.debug("SUBMITTED", response);
+  };
+
+  console.log({ hasContext, userIdent, data, submitted, verified, errors });
 
   useEffect(() => {
-    const logout = async () => {
-      if (!userIdent?.managedIdentity?.emailVerified && !submitted) {
-        await submit();
-      }
-      setTimeout(() => {
-        gotoNextPage();
-        setUserIdentity(undefined);
-        setSubmitted(false);
-      }, 3000);
-    };
+    if (errors && !verified) setVerificationError(errors);
+  }, [errors, verified]);
+
+  useEffect(() => {
+    if (!data && !submitted && oobCode) submit();
+
     // verification successful but user in context is not verified
     // or mismatch between logged in user and user associated with oobCode
-    if (email && email !== oobEmail) {
-      logout();
-      return;
-      // Already verified, begin redirect
-    } else if (verified) {
-      setTimeout(() => {
-        gotoNextPage();
-        setSubmitted(false);
-      }, 3000);
-      return;
+    if (submitted) {
+      console.debug("in submit condition");
+      if (email && email !== oobEmail) {
+        console.debug("email mismatch");
+        logout();
+        return;
+        // Already verified, begin redirect
+      }
+      if (verified) {
+        if (!verificationError) setSuccess(true);
+        console.debug("verified");
+        setTimeout(() => {
+          gotoNextPage();
+          setSubmitted(false);
+        }, 3000);
+        return;
+      }
     }
-
-    if (!data && !submitted && oobCode) submit();
-  }, [verified, submitted, data, userIdent]);
+  }, [submitted, verificationError, data, email, oobCode, oobEmail, submit]);
 
   return {
     states: {
       loading: loading || disableContinue,
+      success,
       error:
-        errors?.response?.errors?.[0]?.extensions?.message ||
-        errors?.response?.errors?.[0]?.message ||
-        (errors?.message && networkErrorMessage),
+        verificationError?.response?.errors?.[0]?.extensions?.message ||
+        verificationError?.response?.errors?.[0]?.message ||
+        (verificationError?.message && networkErrorMessage),
       verified,
     },
     data: {
