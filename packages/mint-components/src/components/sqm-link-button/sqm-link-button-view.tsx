@@ -32,8 +32,8 @@ export function LinkButtonView(props: LinkButtonViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <sl-button type={"primary"} exportparts={"base: primarybutton-base"}>
-        <a onClick={onClick} class={sheet.classes.Link} part="sqm-link">
+      <sl-button onClick={onClick} type={"primary"} exportparts={"base: primarybutton-base"}>
+        <a class={sheet.classes.Link} part="sqm-link">
           {buttonText}
         </a>
       </sl-button>
