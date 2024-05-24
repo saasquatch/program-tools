@@ -300,7 +300,7 @@ const referred = (user = null) => {
   };
 };
 
-const deletedReferral = (user = null) => {
+const deletedReferral = () => {
   return {
     rewardSource: "REFERRED" as const,
     referral: null,
