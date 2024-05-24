@@ -7,7 +7,6 @@ export interface PortalVerifyEmailViewProps {
   states: {
     error: string;
     loading: boolean;
-    success: boolean;
     verified: boolean;
   };
   data: {
@@ -50,7 +49,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (states.loading) return;
 
-  if (states.success) {
+  if (states.verified) {
     return (
       <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">
