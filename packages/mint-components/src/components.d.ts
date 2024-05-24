@@ -1830,7 +1830,8 @@ export namespace Components {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="example.com">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support
+          * @impact .com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy": boolean;
         /**
@@ -7542,7 +7543,8 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="example.com">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support
+          * @impact .com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy"?: boolean;
         /**
