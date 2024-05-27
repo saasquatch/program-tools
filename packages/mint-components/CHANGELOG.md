@@ -127,7 +127,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-profile>
   - \<sqm-portal-register>
   - \<sqm-portal-registration-form>
-  - \<sqm-protal-reset-password>
+  - \<sqm-portal-reset-password>
   - \<sqm-portal-verify-email>
   - \<sqm-share-button>
 
