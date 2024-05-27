@@ -171,7 +171,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     return (
       <sl-input
         required
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         class={classes.Input}
         label={label}
         disabled={states.loading || states.disabled}
@@ -191,7 +191,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           class={classes.Input}
           value={formState.subRegion}
           label={text.subRegion}
@@ -217,7 +217,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         />
         <sl-checkbox
           class={classes.Checkbox}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
           disabled={states.disabled || states.isPartner}
@@ -227,7 +227,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         {formState.hasSubRegionTaxNumber && (
           <sl-input
             required
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             class={classes.Input}
             label={text.subRegionTaxNumberLabel}
             disabled={states.loading || states.disabled}
@@ -259,7 +259,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         <sl-select
           required
           value={formState.province}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           class={classes.Input}
           label={text.province}
           disabled={states.loading || states.disabled}
@@ -296,7 +296,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
               class={classes.Checkbox}
-              exportparts="label: input-label"
+              exportparts="label: input-label, base: input-base"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
               disabled={states.isPartner || states.disabled}
@@ -329,7 +329,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         return (
           <sl-input
             required
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             class={classes.Input}
             value={formState.indirectTaxNumber}
             label={getTaxFieldLabel(vatLabels[selectedRegion] || "GENERAL")}
@@ -362,7 +362,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             required
             class={classes.Input}
             value={formState.selectedRegion}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             label={text.selectedRegion}
             disabled={states.loading || states.disabled}
             onSl-select={(e) => callbacks.onFormChange("selectedRegion", e)}

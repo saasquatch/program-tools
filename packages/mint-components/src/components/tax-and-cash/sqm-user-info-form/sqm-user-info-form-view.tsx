@@ -351,7 +351,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <div>
             <div class={classes.InputContainer}>
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
                 disabled={states.disabled || states.isUser || states.isPartner}
@@ -369,7 +369,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               />
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.lastName}
                 label={text.lastName}
                 disabled={states.disabled || states.isUser || states.isPartner}
@@ -387,7 +387,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               />
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.email}
                 label={text.email}
                 disabled={true}
@@ -398,7 +398,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <sl-select
                 id="countryCode"
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
@@ -443,7 +443,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <div style={{ display: "flex", gap: "4px" }}>
                 <sl-select
                   id="phoneNumberCountryCode"
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   name="/phoneNumberCountryCode"
                   label={text.phoneNumber}
                   style={{ minWidth: "140px" }}
@@ -496,7 +496,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   ))}
                 </sl-select>
                 <sl-input
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   label={" "}
                   id="phoneNumber"
                   name="/phoneNumber"
@@ -524,7 +524,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 ></sl-input>
               </div>
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 label={text.address}
                 id="address"
                 name="/address"
@@ -550,7 +550,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               ></sl-input>
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 label={text.city}
                 id="city"
                 name="/city"
@@ -578,7 +578,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               {!states.hideState && (
                 <sl-select
                   label={regionLabel}
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   id="state"
                   name="/state"
                   value={formState.state}
@@ -601,7 +601,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               )}
               <sl-input
                 label={text.postalCode}
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 id="postalCode"
                 name="/postalCode"
                 value={formState.postalCode}
@@ -619,7 +619,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ></sl-input>
               <sl-select
                 id="currency"
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 name="/currency"
                 label={text.currency}
                 menu
@@ -666,7 +666,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <div class={classes.CheckboxWrapper}>
                 <sl-checkbox
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;

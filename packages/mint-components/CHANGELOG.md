@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2024-05-27
+
+### Added
+
+- Added `input-base` css parts to inputs to the following components:
+
+  - \<sqm-checkbox-field>
+  - \<sqm-dropdown-field>
+  - \<sqm-edit-profile>
+  - \<sqm-input-field>
+  - \<sqm-name-fields>
+  - \<sqm-portal-change-password>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-login>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-portal-reset-password>
+  - \<sqm-banking-info-form>
+  - \<sqm-user-info-form>
+  - \<sqm-password-field>
+
+- Added the following css parts to the `sqm-empty` component:
+  - header-text
+  - description-text
+
 ## [1.8.4] - 2024-05-07
 
 ### Updated
@@ -101,7 +127,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-profile>
   - \<sqm-portal-register>
   - \<sqm-portal-registration-form>
-  - \<sqm-protal-reset-password>
+  - \<sqm-portal-reset-password>
   - \<sqm-portal-verify-email>
   - \<sqm-share-button>
 

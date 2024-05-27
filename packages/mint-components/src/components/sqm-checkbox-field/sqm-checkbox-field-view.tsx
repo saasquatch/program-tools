@@ -78,7 +78,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
         {styleString}
       </style>
       <sl-checkbox
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         name={`/${content.checkboxName}`}
         checked={states.checked}
         onSl-change={(e) => {

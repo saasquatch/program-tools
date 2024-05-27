@@ -133,7 +133,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         <div class={sheet.classes.NameInputContainer}>
           <sl-input
             class={sheet.classes.NameInputStyle}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             value={states.user?.firstName}
             onInput={callbacks.onChange}
             label={text.firstnametext}
@@ -151,7 +151,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           ></sl-input>
           <sl-input
             class={sheet.classes.NameInputStyle}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             value={states.user?.lastName}
             onInput={callbacks.onChange}
             label={text.lastnametext}
@@ -171,14 +171,14 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         <sl-input
           label={text.emailtext}
           value={states.user?.email}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           disabled
         ></sl-input>
         {states.showCountry && (
           <sl-input
             label={text.countrytext}
             value={country}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             disabled
           ></sl-input>
         )}
