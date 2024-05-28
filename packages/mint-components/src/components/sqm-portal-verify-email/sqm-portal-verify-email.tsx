@@ -10,7 +10,6 @@ import {
 import { usePortalVerifyEmail } from "./usePortalVerifyEmail";
 import { getProps } from "../../utils/utils";
 
-let global = 0;
 /**
  * @uiName Microsite Verify Email
  */
@@ -80,22 +79,16 @@ export class PortalVerifyEmail {
    */
   @Prop() demoData?: DemoData<PortalVerifyEmailViewProps>;
 
-  id: number;
-
   constructor() {
-    this.id = ++global;
-    console.log("GLOBAL ID:", this.id);
     withHooks(this);
   }
 
-  disconnectedCallback() {
-    console.log("===DISCONNECTED===");
-  }
+  disconnectedCallback() {}
 
   render() {
     const { states, data, callbacks, content } = isDemo()
       ? usePortalVerifyEmailDemo(getProps(this))
-      : usePortalVerifyEmail({ ...getProps(this), id: this.id });
+      : usePortalVerifyEmail(getProps(this));
     return (
       <PortalVerifyEmailView
         states={states}

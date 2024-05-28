@@ -4,18 +4,8 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
+import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
-import { UserInfoFormView } from "../tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
-import { P } from "../../global/mixins";
-import { validate } from "graphql";
-import { useEffect, useMemo, useState } from "@saasquatch/stencil-hooks";
-
-const SUBMITTED_CONTEXT = "sq:verify-submitted";
-const COMPLETED_CONTEXT = "sq:verify-completed";
-
-function syncContext(context: string, value: boolean) {
-  window[context] = value;
-}
 
 export function usePortalVerifyEmail({
   nextPage,
@@ -25,11 +15,7 @@ export function usePortalVerifyEmail({
   verifyInvalidText,
   networkErrorMessage,
   continueText,
-  id,
 }) {
-  // const submitted = window[SUBMITTED_CONTEXT];
-  // const [id, setId] = useState(undefined);
-  const [submitted, setSubmitted] = useState(false);
   const [completed, setCompleted] = useState(false);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
@@ -62,7 +48,6 @@ export function usePortalVerifyEmail({
   };
 
   const logout = () => {
-    console.debug("LOGGING OUT");
     setTimeout(() => {
       setUserIdentity(undefined);
       gotoNextPage();
@@ -70,7 +55,6 @@ export function usePortalVerifyEmail({
   };
 
   const login = () => {
-    console.debug("LOGGING IN");
     setTimeout(gotoNextPage, 3000);
   };
 
