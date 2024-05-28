@@ -4,11 +4,11 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
 import { UserInfoFormView } from "../tax-and-cash/sqm-user-info-form/sqm-user-info-form-view";
 import { P } from "../../global/mixins";
 import { validate } from "graphql";
+import { useEffect, useMemo, useState } from "@saasquatch/stencil-hooks";
 
 const SUBMITTED_CONTEXT = "sq:verify-submitted";
 const COMPLETED_CONTEXT = "sq:verify-completed";
@@ -25,9 +25,12 @@ export function usePortalVerifyEmail({
   verifyInvalidText,
   networkErrorMessage,
   continueText,
+  id,
 }) {
-  const [submitted, setSubmitted] = useState(window[SUBMITTED_CONTEXT]);
-  const [completed, setCompleted] = useState(window[COMPLETED_CONTEXT]);
+  // const submitted = window[SUBMITTED_CONTEXT];
+  // const [id, setId] = useState(undefined);
+  const [submitted, setSubmitted] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -35,29 +38,14 @@ export function usePortalVerifyEmail({
   const oobEmail = urlParams.get("email");
   const nextPageOverride = urlParams.get("nextPage");
 
-  const syncSubmitted = (submitted: boolean) => {
-    setSubmitted(submitted);
-    syncContext(SUBMITTED_CONTEXT, submitted);
-  };
-  const syncCompleted = (completed: boolean) => {
-    setCompleted(completed);
-    syncContext(COMPLETED_CONTEXT, completed);
-  };
-  const syncSuccess = (completed: boolean) => {
-    setCompleted(completed);
-    syncContext(COMPLETED_CONTEXT, completed);
-  };
-  const syncError = (completed: boolean) => {
-    setCompleted(completed);
-    syncContext(COMPLETED_CONTEXT, completed);
-  };
-
   // derived from useMutation in component boilerplate initialState
   const disableContinue =
     data === undefined && errors === undefined && !!oobCode;
 
   // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
-  const verified = !!userIdent?.managedIdentity?.emailVerified;
+  const verified =
+    !!userIdent?.managedIdentity?.emailVerified ||
+    data?.verifyManagedIdentityEmail?.success;
   const validEmail = userIdent?.managedIdentity?.email === oobEmail;
 
   const failed = () => {
@@ -86,46 +74,31 @@ export function usePortalVerifyEmail({
     setTimeout(gotoNextPage, 3000);
   };
 
-  const submit = async () => {
-    // If a user is already in context, clear context
-    // Otherwise verification won't see a new user identity
-    if (userIdent) setUserIdentity(undefined);
+  useEffect(() => {
+    const verify = async () => {
+      await request({ oobCode });
+      setCompleted(true);
+    };
 
-    syncSubmitted(true);
-    const response = await request({ oobCode });
-    syncCompleted(true);
-
-    if (
-      response instanceof Error ||
-      !response?.verifyManagedIdentityEmail?.success
-    ) {
-      logout();
-      return;
-    }
-  };
+    verify();
+  }, []);
 
   useEffect(() => {
-    if (!submitted) submit();
-  }, [submitted]);
+    if (!completed) return;
 
-  useEffect(() => {
-    if (completed) {
-      if (verified && validEmail) login();
-
-      // TODO: Add check here for userIdent to avoid multiple log outs
-      if (!validEmail) logout();
-    }
-  }, [completed, verified, validEmail]);
+    if (verified && validEmail) login();
+    else logout();
+  }, [completed, verified]);
 
   return {
     states: {
       loading: loading || !completed,
       disableContinue,
-      success: completed && (verified || validEmail),
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
         ((errors?.message || !validEmail) && networkErrorMessage),
+      success: completed && (verified || validEmail),
       verified,
     },
     data: {
