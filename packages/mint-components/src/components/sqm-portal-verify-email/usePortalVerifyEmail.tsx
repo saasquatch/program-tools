@@ -11,10 +11,10 @@ import { P } from "../../global/mixins";
 import { validate } from "graphql";
 
 const SUBMITTED_CONTEXT = "sq:verify-submitted";
+const COMPLETED_CONTEXT = "sq:verify-completed";
 
-function setWindowSubmitted(submitted: boolean) {
-  // using window due to dom-context getting reset on re-render
-  window[SUBMITTED_CONTEXT] = submitted;
+function syncContext(context: string, value: boolean) {
+  window[context] = value;
 }
 
 export function usePortalVerifyEmail({
@@ -27,6 +27,7 @@ export function usePortalVerifyEmail({
   continueText,
 }) {
   const [submitted, setSubmitted] = useState(window[SUBMITTED_CONTEXT]);
+  const [completed, setCompleted] = useState(window[COMPLETED_CONTEXT]);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -36,7 +37,19 @@ export function usePortalVerifyEmail({
 
   const syncSubmitted = (submitted: boolean) => {
     setSubmitted(submitted);
-    setWindowSubmitted(submitted);
+    syncContext(SUBMITTED_CONTEXT, submitted);
+  };
+  const syncCompleted = (completed: boolean) => {
+    setCompleted(completed);
+    syncContext(COMPLETED_CONTEXT, completed);
+  };
+  const syncSuccess = (completed: boolean) => {
+    setCompleted(completed);
+    syncContext(COMPLETED_CONTEXT, completed);
+  };
+  const syncError = (completed: boolean) => {
+    setCompleted(completed);
+    syncContext(COMPLETED_CONTEXT, completed);
   };
 
   // derived from useMutation in component boilerplate initialState
@@ -61,6 +74,7 @@ export function usePortalVerifyEmail({
   };
 
   const logout = () => {
+    console.debug("LOGGING OUT");
     setTimeout(() => {
       setUserIdentity(undefined);
       gotoNextPage();
@@ -68,12 +82,18 @@ export function usePortalVerifyEmail({
   };
 
   const login = () => {
+    console.debug("LOGGING IN");
     setTimeout(gotoNextPage, 3000);
   };
 
   const submit = async () => {
+    // If a user is already in context, clear context
+    // Otherwise verification won't see a new user identity
+    if (userIdent) setUserIdentity(undefined);
+
     syncSubmitted(true);
     const response = await request({ oobCode });
+    syncCompleted(true);
 
     if (
       response instanceof Error ||
@@ -85,19 +105,27 @@ export function usePortalVerifyEmail({
   };
 
   useEffect(() => {
-    if (verified && validEmail) login();
-    if (!validEmail) logout();
-
     if (!submitted) submit();
-  }, [submitted, verified, validEmail]);
+  }, [submitted]);
+
+  useEffect(() => {
+    if (completed) {
+      if (verified && validEmail) login();
+
+      // TODO: Add check here for userIdent to avoid multiple log outs
+      if (!validEmail) logout();
+    }
+  }, [completed, verified, validEmail]);
 
   return {
     states: {
-      loading: loading || disableContinue,
+      loading: loading || !completed,
+      disableContinue,
+      success: completed && (verified || validEmail),
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
-        (errors?.message && networkErrorMessage),
+        ((errors?.message || !validEmail) && networkErrorMessage),
       verified,
     },
     data: {

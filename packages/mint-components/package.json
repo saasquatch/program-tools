@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
+    "watch": "cross-env NODE_ENV=dev stencil build --dev --watch",
     "build:dev": "cross-env BUILD=dev stencil build --docs",
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
     "serve:grapes": "npx http-server . --cors -c-1 -p 8080",
