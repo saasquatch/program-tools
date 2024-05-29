@@ -51,6 +51,12 @@ export type ProgramTriggerBody = {
   ids: string[];
 };
 
+type TenantInfo = {
+  tenantAlias: string;
+  featureFlags?: string[] | null;
+  isLiveMode: boolean;
+};
+
 /**
  * A JSON request body for the PROGRAM_INTROSPECTION case
  */
@@ -59,10 +65,7 @@ export type ProgramIntrospectionBody = {
   template: any;
   rules: any;
   program: any;
-  tenant: {
-    tenantAlias: string;
-    isLiveMode: boolean;
-  };
+  tenant: TenantInfo;
 };
 
 /**
@@ -115,17 +118,24 @@ export type ProgramVariableSchemaRequestBody = {
 export type ProgramTriggerHandler = (transaction: Transaction) => void;
 
 /**
+ * Output of program introspection
+ */
+export type ProgramIntrospectionResponse<T> =
+  | T
+  | {
+      template: T;
+      errors?: { key: string; jsonPointer: string; description: string }[];
+    };
+
+/**
  * Introspection handler
  */
-export type ProgramIntrospectionHandler = (
-  template: any,
+export type ProgramIntrospectionHandler = <T>(
+  template: T,
   rules: any,
   program?: any,
-  tenant?: {
-    tenantAlias: string;
-    isLiveMode: boolean;
-  }
-) => any;
+  tenant?: TenantInfo
+) => ProgramIntrospectionResponse<T>;
 
 /**
  * Handler for an individual program requirement validation.
