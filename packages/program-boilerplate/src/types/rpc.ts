@@ -1,3 +1,4 @@
+import { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate";
 import Transaction from "../transaction";
 
 /********************************************************/
@@ -120,22 +121,22 @@ export type ProgramTriggerHandler = (transaction: Transaction) => void;
 /**
  * Output of program introspection
  */
-export type ProgramIntrospectionResponse<T> =
-  | T
+export type ProgramIntrospectionResponse =
+  | ProgramTemplateBuilder
   | {
-      template: T;
+      template: ProgramTemplateBuilder;
       errors?: { key: string; jsonPointer: string; description: string }[];
     };
 
 /**
  * Introspection handler
  */
-export type ProgramIntrospectionHandler = <T>(
-  template: T,
+export type ProgramIntrospectionHandler = (
+  template: ProgramTemplateBuilder,
   rules: any,
   program?: any,
   tenant?: TenantInfo
-) => ProgramIntrospectionResponse<T>;
+) => ProgramIntrospectionResponse;
 
 /**
  * Handler for an individual program requirement validation.
