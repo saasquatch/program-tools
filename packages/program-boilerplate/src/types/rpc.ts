@@ -134,8 +134,8 @@ export type ProgramIntrospectionResponse =
 export type ProgramIntrospectionHandler = (
   template: ProgramTemplateBuilder,
   rules: any,
-  program?: any,
-  tenant?: TenantInfo
+  program: any,
+  tenant: TenantInfo
 ) => ProgramIntrospectionResponse;
 
 /**
