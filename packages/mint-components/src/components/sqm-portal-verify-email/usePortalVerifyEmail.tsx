@@ -19,7 +19,7 @@ export function usePortalVerifyEmail({
   continueText,
 }) {
   const [completed, setCompleted] = useState(false);
-  const [successful, setSuccessful] = useState(true);
+  const [successful, setSuccessful] = useState(false);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -53,17 +53,14 @@ export function usePortalVerifyEmail({
   };
 
   const logout = () => {
-    setUserIdentity(undefined);
-    console.log("LOGOUT");
-    // setTimeout(() => {
-    //   setUserIdentity(undefined);
-    //   gotoNextPage();
-    // }, 3000);
+    setTimeout(() => {
+      setUserIdentity(undefined);
+      gotoNextPage();
+    }, 3000);
   };
 
   const login = () => {
-    console.log("LOGIN");
-    // setTimeout(gotoNextPage, 3000);
+    setTimeout(gotoNextPage, 3000);
   };
 
   useEffect(() => {
