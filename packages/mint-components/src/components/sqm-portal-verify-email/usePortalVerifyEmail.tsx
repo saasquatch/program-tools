@@ -7,6 +7,8 @@ import {
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
 
+let globalPromise: null | Promise<any | Error> = null;
+
 export function usePortalVerifyEmail({
   nextPage,
   failedPage,
@@ -17,6 +19,7 @@ export function usePortalVerifyEmail({
   continueText,
 }) {
   const [completed, setCompleted] = useState(false);
+  const [successful, setSuccessful] = useState(true);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
@@ -29,9 +32,11 @@ export function usePortalVerifyEmail({
     data === undefined && errors === undefined && !!oobCode;
 
   // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
-  const verified =
-    !!userIdent?.managedIdentity?.emailVerified ||
-    data?.verifyManagedIdentityEmail?.success;
+  const verified = !!(
+    userIdent?.managedIdentity?.emailVerified ||
+    data?.verifyManagedIdentityEmail?.success ||
+    successful
+  );
   const validEmail = userIdent?.managedIdentity?.email === oobEmail;
 
   const failed = () => {
@@ -48,19 +53,32 @@ export function usePortalVerifyEmail({
   };
 
   const logout = () => {
-    setTimeout(() => {
-      setUserIdentity(undefined);
-      gotoNextPage();
-    }, 3000);
+    setUserIdentity(undefined);
+    console.log("LOGOUT");
+    // setTimeout(() => {
+    //   setUserIdentity(undefined);
+    //   gotoNextPage();
+    // }, 3000);
   };
 
   const login = () => {
-    setTimeout(gotoNextPage, 3000);
+    console.log("LOGIN");
+    // setTimeout(gotoNextPage, 3000);
   };
 
   useEffect(() => {
     const verify = async () => {
-      await request({ oobCode });
+      if (!globalPromise) globalPromise = request({ oobCode });
+      const result = await globalPromise;
+
+      if (
+        !(result instanceof Error) &&
+        result.verifyManagedIdentityEmail.success
+      ) {
+        // Needs to be explicitly updated if multiple renders have occured
+        setSuccessful(true);
+      }
+
       setCompleted(true);
     };
 
