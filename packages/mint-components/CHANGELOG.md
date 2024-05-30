@@ -13,6 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-portal-verify-email>
   - Logs out user if the verified user does not match the user in context
+  - Protections to avoid oobCode verification entering a race-condition if multiple instances are rendered at the same time.
+
+### Changed
+
+- `@saasquatch/component-boilerplate` package bump
+- `dom-context` package bump
+- `dom-context-hooks` package bump
 
 ## [1.8.4] - 2024-05-07
 
