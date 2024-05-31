@@ -60,7 +60,7 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
         {styleString}
       </style>
       <sl-select
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         label={content.dropdownLabel}
         name={`/${content.dropdownName}`}
         {...(!content.dropdownOptional ? { required: true } : [])}

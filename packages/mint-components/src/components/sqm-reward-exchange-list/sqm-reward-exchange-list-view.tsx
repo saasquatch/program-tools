@@ -540,6 +540,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               return (
                 <div key={item.key} style={style}>
                   <sl-card
+                    exportparts="base: exchange-card-container"
                     class={sheet.classes.Card}
                     style={{
                       cursor: item.unavailableReasonCode
@@ -656,6 +657,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         )}
         <div class={sheet.classes.Button}>
           <sl-button
+            exportparts="base: primarybutton-base"
             class="continue right"
             size="large"
             onClick={() => callbacks.setStage("chooseAmount")}
@@ -703,6 +705,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           </div>
           <div class={sheet.classes.Button}>
             <sl-button
+              exportparts="base: secondarybutton-base"
               class="cancel"
               size="large"
               type="text"
@@ -711,6 +714,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               {states.content.text.cancelText}
             </sl-button>
             <sl-button
+              exportparts="base: primarybutton-base"
               class="continue"
               size="large"
               onClick={() => callbacks.setStage("confirmation")}

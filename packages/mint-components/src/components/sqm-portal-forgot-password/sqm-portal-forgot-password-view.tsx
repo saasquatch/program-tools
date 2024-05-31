@@ -70,7 +70,7 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
           </sqm-form-message>
         )}
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}
