@@ -35,9 +35,9 @@ export class GlobalContainer {
    */
   @Prop() maxwidth: string;
   /**
-   * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
+   * Hide the Powered by Impact.com link. This can only be disabled on Pro plans.
    *
-   * @uiName Show Powered By
+   * @uiName Hide Powered By Impact.com
    */
   @Prop() poweredby: boolean;
 

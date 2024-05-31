@@ -15,9 +15,9 @@ import { getProps } from "../../utils/utils";
 })
 export class PopupContainer {
   /**
-   * Show Powered by Impact.com link
+   * Hide Powered by Impact.com link
    *
-   * @uiName Show powered by
+   * @uiName Hide powered by
    */
   @Prop() poweredBy: boolean;
   /**
