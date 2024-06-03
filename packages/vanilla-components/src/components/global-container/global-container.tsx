@@ -37,7 +37,7 @@ export class GlobalContainer {
   /**
    * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
    *
-   * @uiName Show Powered By Impact.com
+   * @uiName Show Powered By
    */
   @Prop() poweredby: boolean;
 
