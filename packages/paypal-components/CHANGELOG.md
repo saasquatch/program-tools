@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2024-05-30
+
+### Changed
+
+- `@saasquatch/component-boilerplate` package bump
+- `dom-context` package bump
+- `dom-context-hooks` package bump
+
 ## [1.0.3] - 2023-06-14
 
 ### Changed
@@ -39,7 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Used with \<sqm-rewards-table> from `@saasquatch/mint-components`
     - displays SaaSquatch reward statuses and additional reward statuses based on meta from PayPal transactions
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/paypal-components%401.0.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/paypal-components%401.0.4...HEAD
+[1.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.4
 [1.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.3
 [1.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.2
 [1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fpaypal-components%401.0.1
