@@ -144,7 +144,7 @@ export namespace Components {
         "maxwidth": string;
         /**
           * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
-          * @uiName Show Powered By Impact.com
+          * @uiName Show Powered By
          */
         "poweredby": boolean;
     }
@@ -1398,7 +1398,7 @@ declare namespace LocalJSX {
         "maxwidth"?: string;
         /**
           * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
-          * @uiName Show Powered By Impact.com
+          * @uiName Show Powered By
          */
         "poweredby"?: boolean;
     }
