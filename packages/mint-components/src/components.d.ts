@@ -1625,6 +1625,8 @@ export namespace Components {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy": boolean;
         /**
@@ -1830,7 +1832,7 @@ export namespace Components {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy": boolean;
         /**
@@ -7337,6 +7339,8 @@ declare namespace LocalJSX {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy"?: boolean;
         /**
@@ -7542,7 +7546,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy"?: boolean;
         /**
