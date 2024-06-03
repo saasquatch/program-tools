@@ -143,10 +143,10 @@ export namespace Components {
          */
         "maxwidth": string;
         /**
-          * Hide the Powered by Impact.com link. This can only be disabled on Pro plans.
-          * @uiName Hide Powered By
+          * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
+          * @uiName Show Powered By
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%%0D%0A%0D%0A Thank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredby": boolean;
     }
@@ -1399,10 +1399,10 @@ declare namespace LocalJSX {
          */
         "maxwidth"?: string;
         /**
-          * Hide the Powered by Impact.com link. This can only be disabled on Pro plans.
-          * @uiName Hide Powered By
+          * Show the Powered by Impact.com link. This can only be disabled on Pro plans.
+          * @uiName Show Powered By
           * @requiredFeatures ["CUSTOM_BRANDING"]
-          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested to learn more about the Leaderboards feature. Please let me know the next steps to access this feature, including any necessary plan upgrades.%0D%0A%0D%0A - Feature Interested In: Custom Branding%0D%0A - Company Name: [Please fill out your company name here]%0D%0A%0D%0AThank you">Support</a> to upgrade your plan</div>
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%%0D%0A%0D%0A Thank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredby"?: boolean;
     }
