@@ -203,6 +203,10 @@ export class IntegrationService<
     return this.getUserScopedGraphQL(tenantAlias, userJwt);
   }
 
+  public flushIntegrationConfigCache(tenantAlias: types.TenantAlias): void {
+    this.tenantIntegrationConfigCache.del(tenantAlias);
+  }
+
   async getIntegrationConfig(
     tenantAlias: types.TenantAlias,
   ): Promise<IntegrationConfig> {
