@@ -4,7 +4,7 @@ import { createStyleSheet } from "../../../../styling/JSS";
 import { vatLabels } from "../../countries";
 import { TaxCountry } from "../../sqm-tax-and-cash/data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
-import { getIsRequiredErrorMessage } from "../../utils";
+import { formatErrorMessage } from "../../utils";
 
 export interface IndirectDetailsSlotViewProps {
   states: {
@@ -171,7 +171,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     return (
       <sl-input
         required
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         class={classes.Input}
         label={label}
         disabled={states.loading || states.disabled}
@@ -191,14 +191,14 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           class={classes.Input}
           value={formState.subRegion}
           label={text.subRegion}
           disabled={states.loading || states.disabled}
           {...(formState.errors?.indirectTaxNumber && {
             class: classes.ErrorInput,
-            helpText: getIsRequiredErrorMessage(
+            helpText: formatErrorMessage(
               text.subRegion,
               text.error.fieldRequiredError
             ),
@@ -217,7 +217,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         />
         <sl-checkbox
           class={classes.Checkbox}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
           disabled={states.disabled || states.isPartner}
@@ -227,14 +227,14 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         {formState.hasSubRegionTaxNumber && (
           <sl-input
             required
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             class={classes.Input}
             label={text.subRegionTaxNumberLabel}
             disabled={states.loading || states.disabled}
             value={formState.subRegionTaxNumber}
             {...(formState.errors?.subRegionTaxNumber && {
               class: classes.ErrorInput,
-              helpText: getIsRequiredErrorMessage(
+              helpText: formatErrorMessage(
                 text.subRegionTaxNumberLabel,
                 text.error.fieldRequiredError
               ),
@@ -259,14 +259,14 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         <sl-select
           required
           value={formState.province}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           class={classes.Input}
           label={text.province}
           disabled={states.loading || states.disabled}
           onSl-select={(e) => callbacks.onFormChange("province", e)}
           {...(formState.errors?.province && {
             class: classes.ErrorInput,
-            helpText: getIsRequiredErrorMessage(
+            helpText: formatErrorMessage(
               text.province,
               text.error.fieldRequiredError
             ),
@@ -296,7 +296,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
               class={classes.Checkbox}
-              exportparts="label: input-label"
+              exportparts="label: input-label, base: input-base"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
               disabled={states.isPartner || states.disabled}
@@ -307,7 +307,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               <IndirectTaxNumberInput
                 name={"qstNumber"}
                 label={text.qstNumber}
-                error={getIsRequiredErrorMessage(
+                error={formatErrorMessage(
                   text.qstNumber,
                   text.error.fieldRequiredError
                 )}
@@ -329,7 +329,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         return (
           <sl-input
             required
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             class={classes.Input}
             value={formState.indirectTaxNumber}
             label={getTaxFieldLabel(vatLabels[selectedRegion] || "GENERAL")}
@@ -362,13 +362,13 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             required
             class={classes.Input}
             value={formState.selectedRegion}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             label={text.selectedRegion}
             disabled={states.loading || states.disabled}
             onSl-select={(e) => callbacks.onFormChange("selectedRegion", e)}
             {...(formState.errors?.selectedRegion && {
               class: classes.ErrorInput,
-              helpText: getIsRequiredErrorMessage(
+              helpText: formatErrorMessage(
                 text.selectedRegion,
                 text.error.fieldRequiredError
               ),

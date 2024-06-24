@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
     "node": ">=14"
@@ -9,6 +9,10 @@
     "dist/"
   ],
   "prettier": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",

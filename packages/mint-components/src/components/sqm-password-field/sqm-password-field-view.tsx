@@ -50,7 +50,7 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
         {styleString}
       </style>
       <sl-input
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         type="password"
         name="/password"
         label={states.content.fieldLabel || "Password"}

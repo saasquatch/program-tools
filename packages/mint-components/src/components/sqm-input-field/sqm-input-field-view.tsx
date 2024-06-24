@@ -48,7 +48,7 @@ export function InputFieldView(props: InputFieldViewProps) {
         {styleString}
       </style>
       <sl-input
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         name={`/${content.fieldName}`}
         type={content.fieldType}
         label={content.fieldLabel}

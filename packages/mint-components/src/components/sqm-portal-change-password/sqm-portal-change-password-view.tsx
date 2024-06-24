@@ -141,7 +141,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                       hasErrorText={states.content.hasErrorText}
                     ></sqm-password-field>
                     <sl-input
-                      exportparts="label: input-label"
+                      exportparts="label: input-label, base: input-base"
                       name="/confirmPassword"
                       label={states.content.confirmPasswordFieldLabel}
                       required
