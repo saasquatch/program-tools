@@ -32,6 +32,14 @@ const defaultElements = {
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
     ></sqm-empty>
   ),
+  essentials: (
+    <sqm-empty
+      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+      empty-state-header="Leaderboards aren’t available on your plan"
+      empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
+      support-text="Support"
+    ></sqm-empty>
+  ),
   loadingstate: (
     <slot name="loading">
       <table>
@@ -54,6 +62,7 @@ export const SlottedIntoComponent = () => {
     states: {
       loading: false,
       hasLeaders: false,
+      isEssentials: false,
       styles: {
         ...defaultStyles,
       },

@@ -163,12 +163,24 @@ const defaultStyles = {
   anonymousUser: "Anonymous User",
 };
 
+const link = <a>Support</a>;
+
+const tag = "Contact" + link + "about upgrading your plan";
+
 const defaultElements = {
   empty: (
     <sqm-empty
       empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
       empty-state-header="View your rank in the leaderboard"
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+    ></sqm-empty>
+  ),
+  essentials: (
+    <sqm-empty
+      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+      empty-state-header="Leaderboards aren’t available on your plan"
+      empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
+      support-text="Support"
     ></sqm-empty>
   ),
   loadingstate: (
@@ -192,6 +204,35 @@ export const Empty = () => {
   const props = {
     states: {
       loading: false,
+      hasLeaders: false,
+      styles: {
+        ...defaultStyles,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [],
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        textValue: "8",
+        rowNumber: 11,
+        rank: 23,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const Essentials = () => {
+  const props = {
+    states: {
+      loading: false,
+      isEssentials: true,
       hasLeaders: false,
       styles: {
         ...defaultStyles,

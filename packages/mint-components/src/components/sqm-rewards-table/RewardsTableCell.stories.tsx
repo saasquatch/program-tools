@@ -300,6 +300,13 @@ const referred = (user = null) => {
   };
 };
 
+const deletedReferral = () => {
+  return {
+    rewardSource: "REFERRED" as const,
+    referral: null,
+  };
+};
+
 export const SourceCellReferral = () => {
   return (
     <sqm-rewards-table-source-cell
@@ -342,6 +349,18 @@ export const SourceCellDeletedUser = () => {
       reward={{ ...rewardsData, ...referral(null) }}
       referralText="Referral to"
       deletedUserText="Deleted User"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
+export const SourceCellDeletedReferral = () => {
+  return (
+    // AL: TODO
+    <sqm-rewards-table-source-cell
+      //@ts-ignore
+      reward={{ ...rewardsData, ...deletedReferral(null) }}
+      referralText={"Referral to"}
+      deletedReferralText="Deleted Referral"
     ></sqm-rewards-table-source-cell>
   );
 };

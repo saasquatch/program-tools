@@ -10,6 +10,7 @@ import {
   RewardsCellFueltank,
   RewardsCellFueltankLong,
   SourceCellDeletedUser,
+  SourceCellDeletedReferral,
   SourceCellManual,
   SourceCellReferral,
   SourceCellReferred,
@@ -130,6 +131,13 @@ const r_expired = [
   <DateCell />,
 ];
 
+const r_deleted = [
+  <RewardsCellCreditCancelled />,
+  <StatusCellCancelled />,
+  <SourceCellDeletedReferral />,
+  <DateCell />,
+];
+
 const r_cancelled = [
   <RewardsCellCreditCancelled />,
   <StatusCellCancelled />,
@@ -224,6 +232,7 @@ export const RewardsTable = () => {
         r_available,
         r_redeemed,
         r_cancelled,
+        r_deleted,
         r_expired,
         r_denied,
         r_pending_review,
