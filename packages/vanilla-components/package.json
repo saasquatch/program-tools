@@ -79,7 +79,7 @@
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
     "@formatjs/intl-pluralrules": "^1.5.8",
-    "@raisins/stencil-docs-target": "^1.0.0"
+    "@raisins/stencil-docs-target": "^1.1.0"
   },
   "jest": {
     "transform": {

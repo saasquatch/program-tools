@@ -35,7 +35,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@raisins/stencil-docs-target": "^1.0.0",
+    "@raisins/stencil-docs-target": "^1.1.0",
     "@saasquatch/component-boilerplate": "^1.6.5",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/stencil-hooks": "^2.0.2",
