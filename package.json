@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/mint-components",
+    "packages/bedrock-components",
+    "packages/component-boilerplate",
+    "packages/component-environment"
+  ],
+  "scripts": {
+    "build:mint": "cd ./packages/mint-components && npm ci && npm run build",
+    "build:bedrock": "cd ./packages/bedrock-components && npm ci && npm run build",
+    "build:boilerplate": "cd ./packages/component-boilerplate && npm ci && npm run build",
+    "build:environment": "cd ./packages/component-environment && npm ci && npm run build",
+    "build:components": "npm run build:environment && npm run build:boilerplate && npm run build:mint && npm run build:bedrock"
+  },
+  "packageManager": "^npm@10.5.0",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.6"
+  }
+}
