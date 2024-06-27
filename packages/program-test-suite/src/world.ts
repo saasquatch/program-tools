@@ -18,6 +18,7 @@ interface State {
     programRewards: any[];
     rules: any;
     template: any;
+    featureFlags: string[] | null | undefined;
   }>;
 }
 

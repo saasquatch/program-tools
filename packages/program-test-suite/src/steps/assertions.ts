@@ -15,7 +15,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^the output template will include a "?([^"]+)"? requirement$/,
     (key: string) => {
-      const reqs = getWorld().state.programTriggerResult.requirements;
+      const output =
+        "template" in getWorld().state.programTriggerResult
+          ? getWorld().state.programTriggerResult.template
+          : getWorld().state.programTriggerResult;
+
+      const reqs = output.requirements;
       const reqFound = reqs.find((r: any) => r.key === key);
       getWorld().setState({ assertionResults: { foundRequirement: reqFound } });
       assert(
@@ -254,7 +259,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^the output will include a "?([^"]+)"? event key trigger$/,
     (key: string) => {
-      const trigger = getWorld().state.programTriggerResult.trigger;
+      const output =
+        "template" in getWorld().state.programTriggerResult
+          ? getWorld().state.programTriggerResult.template
+          : getWorld().state.programTriggerResult;
+
+      const trigger = output.trigger;
       assert(
         trigger.eventKeys.includes(key),
         `Output didn't include a "${key}" event key trigger`
@@ -263,9 +273,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then(/^the output will not include a "?([^"]+)"? email$/, (key: string) => {
-    const relevantEmails = getWorld().state.programTriggerResult.emails.filter(
-      (e: any) => e.key === key
-    );
+    const output =
+      "template" in getWorld().state.programTriggerResult
+        ? getWorld().state.programTriggerResult.template
+        : getWorld().state.programTriggerResult;
+
+    const relevantEmails = output.emails.filter((e: any) => e.key === key);
 
     assert.deepStrictEqual(
       relevantEmails.length,
@@ -275,9 +288,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(/^the output will include a "?([^"]+)"? email$/, (key: string) => {
-    const relevantEmails = getWorld().state.programTriggerResult.emails.filter(
-      (e: any) => e.key === key
-    );
+    const output =
+      "template" in getWorld().state.programTriggerResult
+        ? getWorld().state.programTriggerResult.template
+        : getWorld().state.programTriggerResult;
+
+    const relevantEmails = output.emails.filter((e: any) => e.key === key);
     assert(
       relevantEmails.length > 0,
       `Expected to find "${key}" email but found none`
@@ -285,10 +301,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(/^the output will include a "?([^"]+)"? reward key$/, (key: string) => {
-    const relevantRewards =
-      getWorld().state.programTriggerResult.rewards.filter(
-        (e: any) => e.key === key
-      );
+    const output =
+      "template" in getWorld().state.programTriggerResult
+        ? getWorld().state.programTriggerResult.template
+        : getWorld().state.programTriggerResult;
+
+    const relevantRewards = output.rewards.filter((e: any) => e.key === key);
     assert(
       relevantRewards.length > 0,
       `Expected to find "${key}" reward but found none`
@@ -298,10 +316,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     /^the output will not include a "?([^"]+)"? reward key$/,
     (key: string) => {
-      const relevantRewards =
-        getWorld().state.programTriggerResult.rewards.filter(
-          (e: any) => e.key === key
-        );
+      const output =
+        "template" in getWorld().state.programTriggerResult
+          ? getWorld().state.programTriggerResult.template
+          : getWorld().state.programTriggerResult;
+
+      const relevantRewards = output.rewards.filter((e: any) => e.key === key);
 
       assert.deepStrictEqual(
         relevantRewards.length,
@@ -314,8 +334,13 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   then(
     "the output will include the following rewards and emails:",
     (data: IntrospectionRow[]) => {
-      const emails = getWorld().state.programTriggerResult.emails;
-      const rewards = getWorld().state.programTriggerResult.rewards;
+      const output =
+        "template" in getWorld().state.programTriggerResult
+          ? getWorld().state.programTriggerResult.template
+          : getWorld().state.programTriggerResult;
+
+      const emails = output.emails;
+      const rewards = output.rewards;
       data.forEach((row) => {
         if (row.type === "reward")
           assert(rewards.some((e: any) => e.key === row.key));
@@ -354,10 +379,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then("the output template will be unchanged", () => {
-    assert.deepStrictEqual(
-      getWorld().state.programTriggerResult,
-      getWorld().getDefaultTemplate()
-    );
+    const output =
+      "template" in getWorld().state.programTriggerResult
+        ? getWorld().state.programTriggerResult.template
+        : getWorld().state.programTriggerResult;
+
+    assert.deepStrictEqual(output, getWorld().getDefaultTemplate());
   });
 
   then(

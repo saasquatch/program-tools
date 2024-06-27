@@ -25,7 +25,8 @@ export function getValidationJson(
 export function getIntrospectionJson(
   template?: any,
   rules?: any,
-  rewards?: any[]
+  rewards?: any[],
+  featureFlags?: string[] | null | undefined
 ): ProgramIntrospectionBody {
   return {
     messageType: "PROGRAM_INTROSPECTION",
@@ -39,6 +40,7 @@ export function getIntrospectionJson(
     tenant: {
       tenantAlias: "test_UNITTESTTENANT",
       isLiveMode: false,
+      featureFlags,
     },
   };
 }

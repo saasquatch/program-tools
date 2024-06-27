@@ -1,3 +1,4 @@
+import { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate";
 import Transaction from "../transaction";
 
 /********************************************************/
@@ -51,6 +52,12 @@ export type ProgramTriggerBody = {
   ids: string[];
 };
 
+type TenantInfo = {
+  tenantAlias: string;
+  featureFlags?: string[] | null;
+  isLiveMode: boolean;
+};
+
 /**
  * A JSON request body for the PROGRAM_INTROSPECTION case
  */
@@ -59,10 +66,7 @@ export type ProgramIntrospectionBody = {
   template: any;
   rules: any;
   program: any;
-  tenant: {
-    tenantAlias: string;
-    isLiveMode: boolean;
-  };
+  tenant: TenantInfo;
 };
 
 /**
@@ -115,17 +119,24 @@ export type ProgramVariableSchemaRequestBody = {
 export type ProgramTriggerHandler = (transaction: Transaction) => void;
 
 /**
+ * Output of program introspection
+ */
+export type ProgramIntrospectionResponse =
+  | ProgramTemplateBuilder
+  | {
+      template: ProgramTemplateBuilder;
+      errors?: { key: string; jsonPointer: string; description: string }[];
+    };
+
+/**
  * Introspection handler
  */
 export type ProgramIntrospectionHandler = (
-  template: any,
+  template: ProgramTemplateBuilder,
   rules: any,
-  program?: any,
-  tenant?: {
-    tenantAlias: string;
-    isLiveMode: boolean;
-  }
-) => any;
+  program: any,
+  tenant: TenantInfo
+) => ProgramIntrospectionResponse;
 
 /**
  * Handler for an individual program requirement validation.

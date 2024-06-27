@@ -129,8 +129,7 @@ function handleProgramIntrospection(
   try {
     const newTemplate =
       (handleIntrospection &&
-        (handleIntrospection(template, rules, bodyProgram, tenant) ||
-          handleIntrospection(template, rules))) ||
+        handleIntrospection(template, rules, bodyProgram, tenant)) ||
       template;
 
     return {
