@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
 
 - \<sqm-user-info-form>
+
   - Added missing prop for terms and conditions link
 
 ## [1.9.1] - 2024-05-17
