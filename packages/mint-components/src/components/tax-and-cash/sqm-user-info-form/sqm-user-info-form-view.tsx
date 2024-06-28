@@ -98,6 +98,7 @@ export interface UserInfoFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     termsAndConditionsLabel: string;
+    termsAndConditionsLink: string;
     taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
@@ -249,7 +250,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
     },
     {
       termsAndConditionsLink: (
-        <a href="https://app.impact.com/" target="_blank">
+        <a href={text.termsAndConditionsLink} target="_blank">
           {text.termsAndConditionsLabel}
         </a>
       ),
