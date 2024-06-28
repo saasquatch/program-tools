@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \<sqm-banking-info-form>
+
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
+
+- \<sqm-user-info-form>
+  - Added missing prop for terms and conditions link
 
 ## [1.9.1] - 2024-05-17
 
@@ -976,7 +980,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-stencilbook>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.9.2...HEAD
-[1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2 
+[1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2
 [1.9.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.1
 [1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.0
 [1.8.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.5

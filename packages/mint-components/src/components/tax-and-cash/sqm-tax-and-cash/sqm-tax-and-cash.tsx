@@ -107,12 +107,18 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * The text link that appears in the terms and conditions checkbox
+   * The link text that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiGroup Step 1 Properties
    * @uiWidget textArea
    */
   @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
+  /**
+   * The link that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions link
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_termsAndConditionsLink: string = "/payout-terms-and-conditions";
   /**
    * Placeholder text displayed in the currency search dropdown
    * @uiName Currency field placeholder text
