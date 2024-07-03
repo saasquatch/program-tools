@@ -33,7 +33,12 @@ const triggerSteps: StepDefinitions = ({ when }) => {
 
     switch (type) {
       case "PROGRAM_INTROSPECTION":
-        body = getIntrospectionJson(template, rules, programRewards);
+        body = getIntrospectionJson(
+          template,
+          rules,
+          programRewards,
+          currentState.featureFlags
+        );
         break;
 
       case "PROGRAM_VALIDATION":
