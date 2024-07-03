@@ -15,7 +15,7 @@ import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-fo
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
-import { FunctionalComponent } from "@stencil/core";
+import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
@@ -731,6 +731,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "emptyStateText": string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
@@ -1325,6 +1330,12 @@ export namespace Components {
          */
         "interval": string;
         /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
+        /**
           * @uiName Leaderboard type
           * @uiType string
           * @required 
@@ -1614,6 +1625,8 @@ export namespace Components {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy": boolean;
         /**
@@ -1818,6 +1831,8 @@ export namespace Components {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy": boolean;
         /**
@@ -3101,6 +3116,7 @@ export namespace Components {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText": string;
+        "deletedReferralText": string;
         "deletedUserText": string;
         "locale": string;
         "referralText": string;
@@ -4887,7 +4903,7 @@ export namespace Components {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label": string;
+        "label": string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin
@@ -6525,6 +6541,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
@@ -7113,6 +7134,12 @@ declare namespace LocalJSX {
          */
         "interval"?: string;
         /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
+        /**
           * @uiName Leaderboard type
           * @uiType string
           * @required 
@@ -7402,6 +7429,8 @@ declare namespace LocalJSX {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy"?: boolean;
         /**
@@ -7606,6 +7635,8 @@ declare namespace LocalJSX {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy"?: boolean;
         /**
@@ -8869,6 +8900,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText"?: string;
+        "deletedReferralText"?: string;
         "deletedUserText"?: string;
         "locale"?: string;
         "referralText"?: string;
@@ -10650,7 +10682,7 @@ declare namespace LocalJSX {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label"?: string;
+        "label"?: string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin

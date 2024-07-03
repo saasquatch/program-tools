@@ -24,6 +24,7 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
+  essentials: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
 }
@@ -123,11 +124,11 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     variables["limit"] = props.maxRows;
   }
 
-  const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    GET_LEADERBOARD,
-    variables,
-    !user?.jwt
-  );
+  const {
+    data: leaderboardData,
+    loading: loadingLeaderboard,
+    errors: leaderboardErrors,
+  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt);
 
   const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
 
@@ -165,6 +166,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   return {
     states: {
       loading: loadingLeaderboard,
+      // Show feature enforcement if request was forbidden
+      isEssentials: leaderboardErrors?.response?.status === 403,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
@@ -175,6 +178,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
+      essentials: props.essentials,
       loadingstate: props.loadingstate,
     },
   };

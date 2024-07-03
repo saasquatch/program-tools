@@ -9,6 +9,7 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 export class RewardTableSourceCell {
   @Prop() reward: Reward;
   @Prop() deletedUserText: string;
+  @Prop() deletedReferralText: string;
   @Prop() anonymousUserText: string;
   @Prop() rewardExchangeText: string;
   @Prop() referralText: string;
@@ -73,6 +74,7 @@ export class RewardTableSourceCell {
 
     const getFullName = (user: { firstName: string; lastName: string }) => {
       if (!user) return this.deletedUserText;
+
       if (!user.firstName && !user.lastName) return this.anonymousUserText;
 
       if (!user.firstName) return `${user.lastName}`;
@@ -84,29 +86,39 @@ export class RewardTableSourceCell {
     const Source = () =>
       this.reward.rewardSource === "FRIEND_SIGNUP" ||
       this.reward.rewardSource === "REFERRED" ? (
-        <div>
-          <div
+        this.reward.referral === null ? (
+          <p
             style={{
-              fontSize: "var(--sl-font-size-small)",
-              color: "var(--sl-color-neutral-500)",
+              color: "var(--sl-color-gray-400)",
             }}
           >
-            {intl.formatMessage(
-              {
-                id: "referralText",
-                defaultMessage: this.referralText,
-              },
-              {
-                rewardSource: this.reward.rewardSource,
-              }
-            )}
-          </div>
+            {this.deletedReferralText}
+          </p>
+        ) : (
           <div>
-            {this.reward.rewardSource == "FRIEND_SIGNUP"
-              ? getFullName(this.reward.referral.referredUser)
-              : getFullName(this.reward.referral.referrerUser)}
+            <div
+              style={{
+                fontSize: "var(--sl-font-size-small)",
+                color: "var(--sl-color-neutral-500)",
+              }}
+            >
+              {intl.formatMessage(
+                {
+                  id: "referralText",
+                  defaultMessage: this.referralText,
+                },
+                {
+                  rewardSource: this.reward.rewardSource,
+                }
+              )}
+            </div>
+            <div>
+              {this.reward.rewardSource == "FRIEND_SIGNUP"
+                ? getFullName(this.reward.referral.referredUser)
+                : getFullName(this.reward.referral.referrerUser)}
+            </div>
           </div>
-        </div>
+        )
       ) : this.reward.exchangedRewardRedemptionTransaction ? (
         <RewardExchangeBadge reward={this.reward} />
       ) : (

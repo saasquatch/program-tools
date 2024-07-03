@@ -12,6 +12,7 @@
 | `emptyStateHeader` | `empty-state-header` |             | `string` | `undefined` |
 | `emptyStateImage`  | `empty-state-image`  |             | `string` | `undefined` |
 | `emptyStateText`   | `empty-state-text`   |             | `string` | `undefined` |
+| `supportText`      | `support-text`       |             | `string` | `undefined` |
 
 
 ## Dependencies
