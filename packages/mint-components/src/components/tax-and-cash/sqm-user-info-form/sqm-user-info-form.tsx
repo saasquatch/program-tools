@@ -119,11 +119,16 @@ export class TaxForm {
   @Prop() allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
-   * The text link that appears in the terms and conditions checkbox
+   * The link text that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiWidget textArea
    */
   @Prop() termsAndConditionsLabel: string = "terms and conditions";
+  /**
+   * The link that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions link
+   */
+  @Prop() termsAndConditionsLink: string = "/payout-terms-and-conditions";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text

@@ -4187,12 +4187,18 @@ export namespace Components {
          */
         "step1_state": string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLink": string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
@@ -5064,11 +5070,16 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmUserName {
         /**
@@ -9956,12 +9967,18 @@ declare namespace LocalJSX {
          */
         "step1_state"?: string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLink"?: string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
@@ -10832,11 +10849,16 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmUserName {
         /**

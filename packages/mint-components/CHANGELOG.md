@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.9.2] - 2024-07-03
+## [1.9.3] - 2024-07-03
 
 ### Changed
 
@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added required feature flag
 - \<sqm-portal-footer>
   - Added required feature flag
+  
+## [1.9.2] - 2024-06-28
+
+### Fixed
+
+- \<sqm-banking-info-form>
+
+  - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
+
+- \<sqm-user-info-form>
+
+  - Added missing prop for terms and conditions link
 
 ## [1.9.1] - 2024-05-17
 
