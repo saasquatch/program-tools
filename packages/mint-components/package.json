@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
   "title": "Mint Components",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
   "raisins": "docs/raisins.json",
@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.1.0",
-    "@saasquatch/component-boilerplate": "^1.6.6",
+    "@saasquatch/component-boilerplate": "^1.6.7",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",

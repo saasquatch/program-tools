@@ -158,7 +158,7 @@ interface QueryAddedEvent {
   variables: { [key: string]: unknown };
   id: string; // nanoid with '-'s removed
   options: {
-    merge: boolean;
+    batch: boolean;
   };
   resolve: (data: any) => void;
   reject: (err: any) => void;
@@ -200,7 +200,7 @@ const mergeQueryAddedEvents = (
       curr: QueryAddedEvent
     ): NewCombinedQueryBuilder | CombinedQueryBuilder => {
       const { query, variables, id, options } = curr;
-      if (!options?.merge) {
+      if (!options?.batch) {
         unmergedQueryAddedEvents.push(curr);
         return acc;
       }
