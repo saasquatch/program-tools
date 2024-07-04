@@ -129,7 +129,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: leaderboardData,
     loading: loadingLeaderboard,
     errors: leaderboardErrors,
-  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt);
+  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt, { merge: false });
 
   const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
 
