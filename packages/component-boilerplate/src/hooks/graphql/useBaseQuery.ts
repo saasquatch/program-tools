@@ -80,7 +80,7 @@ function reducer<T>(
 export function useBaseQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>,
-  options = { merge: true }
+  options = { batch: true }
 ): [
   BaseQueryData<T>,
   (variables: unknown, skipLoading?: boolean) => Promise<T | Error>
