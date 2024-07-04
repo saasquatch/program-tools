@@ -7,6 +7,7 @@ import {
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./sqm-leaderboard-view";
+import { useMemo } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardProps {
   usersheading: string;
@@ -128,7 +129,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: leaderboardData,
     loading: loadingLeaderboard,
     errors: leaderboardErrors,
-  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt);
+  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt, { merge: false });
 
   const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
 
@@ -163,11 +164,19 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
   };
 
+  // Show feature enforcement if request was forbidden
+  const isEssentials = useMemo(
+    () =>
+      !!leaderboardErrors?.response?.errors?.find(
+        (error) => error?.extensions?.apiError?.statusCode === 403
+      ),
+    [leaderboardErrors]
+  );
+
   return {
     states: {
       loading: loadingLeaderboard,
-      // Show feature enforcement if request was forbidden
-      isEssentials: leaderboardErrors?.response?.status === 403,
+      isEssentials,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },

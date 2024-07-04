@@ -1,12 +1,6 @@
-import {
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-} from "@saasquatch/universal-hooks";
-import useGraphQLClient from "./useGraphQLClient";
+import { useCallback, useReducer } from "@saasquatch/universal-hooks";
 import { RequestDocument } from "graphql-request/dist/types";
-import { GraphQLClient } from "graphql-request";
+import useGraphQLClient from "./useGraphQLClient";
 
 export type GqlType = RequestDocument;
 
@@ -85,12 +79,13 @@ function reducer<T>(
 
 export function useBaseQuery<T = any>(
   query: GqlType,
-  initialState: BaseQueryData<T>
+  initialState: BaseQueryData<T>,
+  options = { merge: true }
 ): [
   BaseQueryData<T>,
   (variables: unknown, skipLoading?: boolean) => Promise<T | Error>
 ] {
-  const client: GraphQLClient = useGraphQLClient();
+  const client = useGraphQLClient();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState
@@ -110,7 +105,8 @@ export function useBaseQuery<T = any>(
       try {
         // Skips showing a "loading" state before the data appears
         if (!skipLoading) dispatch({ type: "loading" });
-        const res = await client.request<T>(query, variables);
+
+        const res = await client.request<T>(query, variables, options);
         dispatch({ type: "data", payload: res });
         return res;
       } catch (error) {
