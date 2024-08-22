@@ -4902,6 +4902,7 @@ export namespace Components {
         /**
           * Text value shown when there is no label slot declared.
           * @uiName Label
+          * @uiType string
          */
         "label": string | VNode;
         /**
@@ -10681,6 +10682,7 @@ declare namespace LocalJSX {
         /**
           * Text value shown when there is no label slot declared.
           * @uiName Label
+          * @uiType string
          */
         "label"?: string | VNode;
         /**
