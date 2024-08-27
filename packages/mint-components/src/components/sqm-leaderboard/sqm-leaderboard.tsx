@@ -10,6 +10,12 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 /**
  * @uiName Leaderboard
  * @slots [{"name":"empty", "title":"Empty State"}]
+ * @requiredFeatures ["LEADERBOARDS"]
+ * @exampleGroup Leaderboard
+ * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Points Earned Leaderboard - <sqm-leaderboard usersheading="Name" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
  */
 @Component({
   tag: "sqm-leaderboard",
@@ -49,6 +55,14 @@ export class Leaderboard {
    * @default
    */
   @Prop() hideViewer: boolean = false;
+
+  /**
+   * Hides the leaderboard if user is on Essentials plan
+   *
+   * @uiName Hide viewing user
+   * @default
+   */
+  @Prop() isEssentials?: boolean = false;
 
   /**
    * @uiName Rank type
@@ -108,6 +122,7 @@ export class Leaderboard {
   render() {
     const props = {
       empty: <EmptySlot />,
+      essentials: <EssentialsSlot />,
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -120,6 +135,7 @@ export class Leaderboard {
       interval: this.interval,
       hideViewer: this.hideViewer,
       showRank: this.showRank,
+      isEssentials: this.isEssentials,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -136,6 +152,20 @@ function EmptySlot() {
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
+    </slot>
+  );
+}
+
+function EssentialsSlot() {
+  return (
+    <slot name="essentials">
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+        empty-state-header="Leaderboards aren’t available on your plan"
+        empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
+        support-text="Support"
+        missing-feature="Leaderboards"
       ></sqm-empty>
     </slot>
   );
@@ -203,6 +233,7 @@ function useLeaderboardDemo(
       states: {
         loading: false,
         hasLeaders: true,
+        isEssentials: false,
         styles: {
           usersheading: props.usersheading
             ? props.usersheading
@@ -224,6 +255,7 @@ function useLeaderboardDemo(
       },
       elements: {
         empty: <EmptySlot />,
+        essentials: <EssentialsSlot />,
         loadingstate: <LoadingSlot />,
       },
     },

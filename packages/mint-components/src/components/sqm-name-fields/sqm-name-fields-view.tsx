@@ -48,7 +48,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         {styleString}
       </style>
       <sl-input
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         name="/firstName"
         type="text"
         label={states.content.firstNameLabel}
@@ -70,7 +70,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
           : [])}
       ></sl-input>
       <sl-input
-        exportparts="label: input-label"
+        exportparts="label: input-label, base: input-base"
         name="/lastName"
         type="text"
         label={states.content.lastNameLabel}

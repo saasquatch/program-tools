@@ -37,15 +37,19 @@ import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 
 type ConnectPartnerResult = {
   createImpactConnection: {
-    id: string;
-    accountId: string;
-    impactConnection: {
-      connected: boolean;
-      publisher: {
-        brandedSignup: boolean;
-        requiredTaxDocumentType: TaxDocumentType | null;
-        currentTaxDocument: null | CurrentTaxDocument;
-      };
+    success: boolean;
+    validationErrors: { field: string; message: string }[];
+    user: {
+      id: string;
+      accountId: string;
+      impactConnection: {
+        connected: boolean;
+        publisher: {
+          brandedSignup: boolean;
+          requiredTaxDocumentType: TaxDocumentType | null;
+          currentTaxDocument: null | CurrentTaxDocument;
+        };
+      } | null;
     } | null;
   };
 };
@@ -58,6 +62,12 @@ type ImpactConnectionInput = {
   lastName: string;
   countryCode: string;
   currency: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  phoneNumber?: string;
+  phoneNumberCountryCode?: string;
   indirectTaxCountryCode?: string;
   indirectTaxRegion?: string;
   indirectTaxId?: string;
@@ -68,16 +78,23 @@ type ImpactConnectionInput = {
 const CONNECT_PARTNER = gql`
   mutation createImpactConnection($vars: ImpactConnectionInput!) {
     createImpactConnection(impactConnectionInput: $vars) {
-      id
-      accountId
-      impactConnection {
-        connected
-        publisher {
-          brandedSignup
-          requiredTaxDocumentType
-          currentTaxDocument {
-            type
-            status
+      success
+      validationErrors {
+        field
+        message
+      }
+      user {
+        id
+        accountId
+        impactConnection {
+          connected
+          publisher {
+            brandedSignup
+            requiredTaxDocumentType
+            currentTaxDocument {
+              type
+              status
+            }
           }
         }
       }
@@ -237,6 +254,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
         lastName: userForm.lastName,
         countryCode: userForm.countryCode,
         currency: userForm.currency,
+        address: userForm.address,
+        city: userForm.city,
+        state: userForm.state,
+        postalCode: userForm.postalCode,
+        phoneNumber: userForm.phoneNumber,
+        phoneNumberCountryCode: userForm.phoneNumberCountryCode,
         indirectTaxCountryCode: formData.selectedRegion,
         indirectTaxRegion: formData.province || formData.subRegion,
         indirectTaxId: formData.indirectTaxNumber,
@@ -247,12 +270,23 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const result = await connectImpactPartner({
         vars,
       });
+
       if (!result || (result as Error)?.message) throw new Error();
+      if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
+        // Output backend errors to console for now
+        console.error(
+          "Failed to create Impact connection: ",
+          (result as ConnectPartnerResult).createImpactConnection
+            .validationErrors
+        );
+
+        throw new Error();
+      }
 
       await refetch();
 
       const resultPublisher = (result as ConnectPartnerResult)
-        .createImpactConnection?.impactConnection?.publisher;
+        .createImpactConnection?.user?.impactConnection?.publisher;
 
       const hasValidCurrentDocument = validTaxDocument(
         resultPublisher?.requiredTaxDocumentType,

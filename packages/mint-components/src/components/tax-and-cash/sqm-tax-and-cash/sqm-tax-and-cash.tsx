@@ -49,6 +49,41 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_country: string = "Country";
   /**
+   * @uiName Phone number field label
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_phoneNumber: string = "Phone number";
+  /**
+   * @uiName Address field label
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_address: string = "Address";
+  /**
+   * @uiName City field label
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_city: string = "City";
+  /**
+   * @uiName State field label for states
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_state: string = "State";
+  /**
+   * @uiName State field label for provinces
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_province: string = "Province";
+  /**
+   * @uiName State field label for regions
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_region: string = "Region";
+  /**
+   * @uiName Postal code field label
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_postalCode: string = "Postal code";
+  /**
    * @uiName Currency field label
    * @uiGroup Step 1 Properties
    */
@@ -72,12 +107,18 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_personalInformation: string = "Personal Information";
   /**
-   * The text link that appears in the terms and conditions checkbox
+   * The link text that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiGroup Step 1 Properties
    * @uiWidget textArea
    */
   @Prop() step1_termsAndConditionsLabel: string = "terms and conditions";
+  /**
+   * The link that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions link
+   * @uiGroup Step 1 Properties
+   */
+  @Prop() step1_termsAndConditionsLink: string = "/payout-terms-and-conditions";
   /**
    * Placeholder text displayed in the currency search dropdown
    * @uiName Currency field placeholder text
@@ -893,6 +934,13 @@ export class TaxAndCashMonolith {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Displayed under a field that includes invalid characters (non-ASCII).
+   * @uiName Invalid character error message
+   * @uiGroup General Form Properties
+   */
+  @Prop() invalidCharacterError: string =
+    "{fieldName} includes characters that aren't supported.";
+  /**
    * Displayed under a field when it has an invalid entry.
    * @uiName Form field error message
    * @uiGroup General Form Properties
@@ -979,6 +1027,7 @@ export class TaxAndCashMonolith {
       generalErrorTitle: props.generalErrorTitle,
       generalErrorDescription: props.generalErrorDescription,
       fieldRequiredError: props.fieldRequiredError,
+      invalidCharacterError: props.invalidCharacterError,
       fieldInvalidError: props.fieldInvalidError,
       continueButton: props.continueButton,
       backButton: props.backButton,

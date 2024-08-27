@@ -69,7 +69,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           </sqm-form-message>
         )}
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}
@@ -78,7 +78,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
         ></sl-input>
         <div>
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="password"
             name="/password"
             label={content.passwordLabel || "Password"}

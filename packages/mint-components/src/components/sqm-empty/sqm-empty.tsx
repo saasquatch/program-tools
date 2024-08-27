@@ -25,6 +25,12 @@ export class Empty {
    */
   @Prop() emptyStateText: string;
 
+  /**
+   * @uiName Description
+   * @uiWidget textArea
+   */
+  @Prop() supportText?: string;
+
   render() {
     return (
       <Host slot="empty">
@@ -32,6 +38,7 @@ export class Empty {
           emptyStateImage={this.emptyStateImage}
           emptyStateHeader={this.emptyStateHeader}
           emptyStateText={this.emptyStateText}
+          supportText={this.supportText}
         />
       </Host>
     );

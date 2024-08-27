@@ -66,7 +66,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               </sqm-form-message>
             )}
             <sl-input
-              exportparts="label: input-label"
+              exportparts="label: input-label, base: input-base"
               value={states.formState.firstName}
               onInput={callbacks.onChange}
               label={text.firstnametext}
@@ -83,7 +83,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               }
             />
             <sl-input
-              exportparts="label: input-label"
+              exportparts="label: input-label, base: input-base"
               value={states.formState.lastName}
               onInput={callbacks.onChange}
               label={text.lastnametext}
@@ -102,7 +102,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           </div>
           {text.showregion && states.formState.currentRegion && (
             <sl-input
-              exportparts="label: input-label"
+              exportparts="label: input-label, base: input-base"
               disabled
               value={states.formState.currentRegion}
               label={text.currentregiontext}

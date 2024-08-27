@@ -508,7 +508,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       onClick={callbacks.onClick}
                       type="default"
                       class={sheet.classes.NewFormButton}
-                      exportparts="base: secondarybutton-base"
+                      exportparts="base: primarybutton-base"
                     >
                       {text.newFormButton}
                     </sl-button>

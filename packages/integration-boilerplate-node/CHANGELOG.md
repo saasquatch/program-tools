@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2024-07-16
+
+### Added
+
+- add `impactBrandId` from integration token claims to request object in auth middleware
+
 ## [2.1.1] - 2023-04-20
 
 ### Changed
+
 - Updated license copyright to be in line with SaaSquatch open-source policy.
 
 ## [2.1.0] - 2023-03-20

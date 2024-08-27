@@ -251,16 +251,19 @@ export function useBankingInfoForm(
     }
 
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-      if (
-        initialData.paymentMethod === "PAYPAL" &&
-        paymentOption.defaultFinancePaymentMethodId === 7
-      )
-        return true;
-      if (paymentOption.countryCode !== initialData.bankCountry) return false;
-      return true;
+      if (initialData.paymentMethod === "PAYPAL") {
+        if (paymentOption.defaultFinancePaymentMethodId === 7) {
+          return true;
+        }
+      } else {
+        if (paymentOption.countryCode === initialData.bankCountry) return true;
+      }
+      return false;
     });
 
-    updateBankCountry(currentPaymentOption?.countryCode);
+    if (initialData.paymentMethod !== "PAYPAL")
+      updateBankCountry(currentPaymentOption?.countryCode);
+
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"

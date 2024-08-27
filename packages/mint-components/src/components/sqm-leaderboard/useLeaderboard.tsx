@@ -7,6 +7,7 @@ import {
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./sqm-leaderboard-view";
+import { useMemo } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardProps {
   usersheading: string;
@@ -24,6 +25,7 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
+  essentials: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
 }
@@ -123,11 +125,11 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     variables["limit"] = props.maxRows;
   }
 
-  const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    GET_LEADERBOARD,
-    variables,
-    !user?.jwt
-  );
+  const {
+    data: leaderboardData,
+    loading: loadingLeaderboard,
+    errors: leaderboardErrors,
+  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt, { batch: false });
 
   const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
 
@@ -162,9 +164,19 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
   };
 
+  // Show feature enforcement if request was forbidden
+  const isEssentials = useMemo(
+    () =>
+      !!leaderboardErrors?.response?.errors?.find(
+        (error) => error?.extensions?.apiError?.statusCode === 403
+      ),
+    [leaderboardErrors]
+  );
+
   return {
     states: {
       loading: loadingLeaderboard,
+      isEssentials,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
@@ -175,6 +187,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
+      essentials: props.essentials,
       loadingstate: props.loadingstate,
     },
   };
