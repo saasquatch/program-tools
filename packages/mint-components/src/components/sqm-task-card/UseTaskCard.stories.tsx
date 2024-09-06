@@ -90,8 +90,8 @@ export const TaskCardFeed = createHookStory(() => {
       <sqb-program-section program-id="klip-loyalty">
         <sqm-task-card
           reward-amount="50"
-          card-title="Follow Us on Twitter"
-          description="Earn 50 points when you follow us on Twitter!"
+          card-title="Follow Us on X"
+          description="Earn 50 points when you Follow Us on X!"
           button-text="Follow"
           button-link="https://twitter.com/"
           goal={1}
