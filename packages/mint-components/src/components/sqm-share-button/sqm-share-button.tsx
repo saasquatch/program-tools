@@ -6,6 +6,7 @@ import { useShareButton } from "./useShareButton";
 import { getProps } from "../../utils/utils";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+// ZH TODO: What is the correct copy for share buttons here ? There are some differences in our widget templates
 
 /**
  * @uiName Share Button
@@ -14,7 +15,7 @@ import deepmerge from "deepmerge";
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
  * @exampleGroup Sharing
  * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
- * @example Twitter Share Button - <sqm-share-button medium="twitter">Share via Tweet</sqm-share-button>
+ * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
  * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
  * @example Web Share Sheet Share Button - <sqm-share-button medium="direct">Share</sqm-share-button>
  * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
@@ -38,7 +39,7 @@ export class ShareButton {
    * @uiType string
    * @required
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
-   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
+   * @uiEnumNames ["Facebook", "X", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
   @Prop() medium:
     | "facebook"
