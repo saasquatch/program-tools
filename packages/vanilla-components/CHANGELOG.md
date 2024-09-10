@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-09-10
+
+### Changed
+
+- Updated components & widget templates to use new X icon, color, and text copy.
+
+- Changed component:
+  -\<sqh-share-button-container>
+
 ## [1.2.8] - 2023-03-05
 
 ### Changed
@@ -59,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.7...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.4.0...HEAD
+[1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.0
 [1.2.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.7
 [1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6
 [1.2.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.5
