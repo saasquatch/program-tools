@@ -6,7 +6,6 @@ import { useShareButton } from "./useShareButton";
 import { getProps } from "../../utils/utils";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
-// ZH TODO: What is the correct copy for share buttons here ? There are some differences in our widget templates
 
 /**
  * @uiName Share Button
