@@ -35,11 +35,16 @@ export const initialQueryState: BaseQueryData = {
 export function useQuery<T = any>(
   query: GqlType,
   variables: unknown,
-  skip?: boolean
+  skip?: boolean,
+  options?: { batch?: boolean }
 ): QueryData<T> {
   const [state, update] = useBaseQuery<T>(
     query,
-    initialQueryState as BaseQueryData<T>
+    initialQueryState as BaseQueryData<T>,
+    {
+      batch: true,
+      ...(options || {}),
+    }
   );
 
   const [tick, forceUpdate] = useTick();

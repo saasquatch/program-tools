@@ -3,7 +3,8 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
 import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { getIsRequiredErrorMessage } from "../utils";
+import { formatErrorMessage, validateBillingField } from "../utils";
+import { PHONE_EXTENSIONS } from "../phoneExtensions";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -13,27 +14,46 @@ export interface UserInfoFormViewProps {
     isPartner: boolean;
     isUser: boolean;
     hideSteps: boolean;
+    hideState: boolean;
     loadingError?: boolean;
     formState: {
       firstName?: string;
       lastName?: string;
       email?: string;
+      address?: string;
+      city?: string;
+      state?: string;
+      postalCode?: string;
+      phoneNumber?: string;
+      phoneNumberCountryCode?: string;
       countryCode?: string;
       currency?: string;
       allowBankingCollection?: boolean;
       errors?: {
-        general?: boolean;
-        firstName?: boolean;
-        lastName?: boolean;
-        countryCode?: boolean;
-        currency?: boolean;
-        allowBankingCollection?: boolean;
+        general?: string;
+        firstName?: string;
+        lastName?: string;
+        countryCode?: string;
+        currency?: string;
+        address?: string;
+        city?: string;
+        state?: string;
+        postalCode?: string;
+        phoneNumberCountryCode?: string;
+        phoneNumber?: string;
+        allowBankingCollection?: string;
       };
       error?: string;
     };
   };
   data: {
+    regionLabelEnum: "STATE" | "REGION" | "PROVINCE" | undefined;
+    regions: { label: string; value: string }[];
     countries: {
+      countryCode: string;
+      displayName: string;
+    }[];
+    phoneCountries: {
       countryCode: string;
       displayName: string;
     }[];
@@ -53,6 +73,7 @@ export interface UserInfoFormViewProps {
   callbacks: {
     setCurrencySearch: (c: any) => void;
     setCountrySearch: (c: any) => void;
+    setPhoneCountrySearch: (c: any) => void;
     onSubmit: (props: any) => void;
     onFormChange: (field: string, e: CustomEvent) => void;
   };
@@ -62,6 +83,13 @@ export interface UserInfoFormViewProps {
     lastName: string;
     email: string;
     country: string;
+    phoneNumber: string;
+    address: string;
+    city: string;
+    state: string;
+    province: string;
+    region: string;
+    postalCode: string;
     currency: string;
     currencyHelpText: string;
     allowBankingCollection: string;
@@ -70,11 +98,14 @@ export interface UserInfoFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     termsAndConditionsLabel: string;
+    termsAndConditionsLink: string;
     taxAndPayoutsDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
+      invalidCharacterError: string;
       fieldRequiredError: string;
+      fieldInvalidError: string;
       loadingErrorAlertHeader: string;
       loadingErrorAlertDescription: string;
     };
@@ -84,6 +115,7 @@ export interface UserInfoFormViewProps {
   refs: {
     formRef: any;
     currencyRef: any;
+    phoneCountryRef: any;
   };
 }
 
@@ -195,6 +227,9 @@ const vanillaStyle = `
       flex-direction: column;
     }
 
+    sl-select#phoneNumberCountryCode::part(menu) {
+      width: 450px;
+    }
   `;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {
@@ -215,12 +250,27 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
     },
     {
       termsAndConditionsLink: (
-        <a href="https://app.impact.com/" target="_blank">
+        <a href={text.termsAndConditionsLink} target="_blank">
           {text.termsAndConditionsLabel}
         </a>
       ),
     }
   );
+
+  let regionLabel = undefined;
+  switch (data.regionLabelEnum) {
+    case "STATE":
+      regionLabel = text.state;
+      break;
+    case "PROVINCE":
+      regionLabel = text.province;
+      break;
+    case "REGION":
+      regionLabel = text.region;
+      break;
+    default:
+      regionLabel = text.state;
+  }
 
   return (
     <sl-form
@@ -302,16 +352,16 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <div>
             <div class={classes.InputContainer}>
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
                 disabled={states.disabled || states.isUser || states.isPartner}
                 {...(formState.errors?.firstName
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.firstName,
-                        text.error.fieldRequiredError
+                        formState.errors.firstName
                       ),
                     }
                   : {})}
@@ -320,16 +370,16 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               />
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.lastName}
                 label={text.lastName}
                 disabled={states.disabled || states.isUser || states.isPartner}
                 {...(formState.errors?.lastName
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.lastName,
-                        text.error.fieldRequiredError
+                        formState.errors.lastName
                       ),
                     }
                   : {})}
@@ -338,7 +388,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 required
               />
               <sl-input
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 value={formState.email}
                 label={text.email}
                 disabled={true}
@@ -349,7 +399,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <sl-select
                 id="countryCode"
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
@@ -357,9 +407,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.countryCode
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.country,
-                        text.error.fieldRequiredError
+                        formState.errors.countryCode
                       ),
                     }
                   : {})}
@@ -391,9 +441,186 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
+              <div style={{ display: "flex", gap: "4px" }}>
+                <sl-select
+                  id="phoneNumberCountryCode"
+                  exportparts="label: input-label, base: input-base"
+                  name="/phoneNumberCountryCode"
+                  label={text.phoneNumber}
+                  style={{ minWidth: "140px" }}
+                  value={formState.phoneNumberCountryCode}
+                  disabled={states.disabled || states.isPartner}
+                  ref={(el: HTMLFormElement) =>
+                    (refs.phoneCountryRef.current = el)
+                  }
+                  // Hide error text since input is too small
+                  {...(formState.errors?.phoneNumberCountryCode
+                    ? {
+                        class: classes.ErrorInput,
+                      }
+                    : {})}
+                  required
+                  onSl-select={(e) => callbacks.onFormChange("phoneCountry", e)}
+                >
+                  <sl-input
+                    class={classes.SearchInput}
+                    placeholder={text.searchForCountryText}
+                    onKeyDown={(e) => {
+                      // Stop shoelace intercepting key presses
+                      e.stopPropagation();
+                    }}
+                    onSl-input={(e) => {
+                      callbacks.setPhoneCountrySearch(e.target.value);
+                    }}
+                  ></sl-input>
+                  {data?.phoneCountries?.map((c) => (
+                    <sl-menu-item
+                      style={{ width: "500px" }}
+                      value={c.countryCode}
+                    >
+                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
+                        PHONE_EXTENSIONS[c.countryCode]?.name
+                      } `}</div>
+                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
+                    </sl-menu-item>
+                  ))}
+                  {data?.allCountries?.map((c) => (
+                    <sl-menu-item
+                      value={c.countryCode}
+                      style={{ display: "none" }}
+                    >
+                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
+                        PHONE_EXTENSIONS[c.countryCode]?.name
+                      } `}</div>
+                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
+                    </sl-menu-item>
+                  ))}
+                </sl-select>
+                <sl-input
+                  exportparts="label: input-label, base: input-base"
+                  label={" "}
+                  id="phoneNumber"
+                  name="/phoneNumber"
+                  value={formState.phoneNumber}
+                  style={{ marginTop: "2px", width: "362px" }}
+                  validationError={({ value }) =>
+                    // Naive phone number validation
+                    validateBillingField(/[a-zA-Z]+/, value) &&
+                    formatErrorMessage(
+                      text.phoneNumber,
+                      text.error.fieldInvalidError
+                    )
+                  }
+                  disabled={states.disabled || states.isPartner}
+                  {...(formState.errors?.phoneNumber
+                    ? {
+                        class: classes.ErrorInput,
+                        helpText: formatErrorMessage(
+                          text.phoneNumber,
+                          formState.errors.phoneNumber
+                        ),
+                      }
+                    : {})}
+                  required
+                ></sl-input>
+              </div>
+              <sl-input
+                exportparts="label: input-label, base: input-base"
+                label={text.address}
+                id="address"
+                name="/address"
+                value={formState.address}
+                validationError={({ value }) =>
+                  // Checks for non-ASCII characters
+                  !validateBillingField(/^[\x20-\xFF]+$/, value) &&
+                  formatErrorMessage(
+                    text.address,
+                    text.error.invalidCharacterError
+                  )
+                }
+                disabled={states.disabled || states.isPartner}
+                {...(formState.errors?.address
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: formatErrorMessage(
+                        text.address,
+                        formState.errors.address
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label, base: input-base"
+                label={text.city}
+                id="city"
+                name="/city"
+                value={formState.city}
+                validationError={({ value }) =>
+                  // Checks for non-ASCII characters
+                  !validateBillingField(/^[\x20-\xFF]+$/, value) &&
+                  formatErrorMessage(
+                    text.city,
+                    text.error.invalidCharacterError
+                  )
+                }
+                disabled={states.disabled || states.isPartner}
+                {...(formState.errors?.city
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: formatErrorMessage(
+                        text.city,
+                        formState.errors.city
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
+              {!states.hideState && (
+                <sl-select
+                  label={regionLabel}
+                  exportparts="label: input-label, base: input-base"
+                  id="state"
+                  name="/state"
+                  value={formState.state}
+                  disabled={states.disabled || states.isPartner}
+                  {...(formState.errors?.state
+                    ? {
+                        class: classes.ErrorInput,
+                        helpText: formatErrorMessage(
+                          text.state,
+                          formState.errors.state
+                        ),
+                      }
+                    : {})}
+                  required
+                >
+                  {data.regions?.map((r) => (
+                    <sl-menu-item value={r.value}>{r.label}</sl-menu-item>
+                  ))}
+                </sl-select>
+              )}
+              <sl-input
+                label={text.postalCode}
+                exportparts="label: input-label, base: input-base"
+                id="postalCode"
+                name="/postalCode"
+                value={formState.postalCode}
+                disabled={states.disabled || states.isPartner}
+                {...(formState.errors?.postalCode
+                  ? {
+                      class: classes.ErrorInput,
+                      helpText: formatErrorMessage(
+                        text.postalCode,
+                        formState.errors.postalCode
+                      ),
+                    }
+                  : {})}
+                required
+              ></sl-input>
               <sl-select
                 id="currency"
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 name="/currency"
                 label={text.currency}
                 menu
@@ -403,9 +630,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 {...(formState.errors?.currency
                   ? {
                       class: classes.ErrorInput,
-                      helpText: getIsRequiredErrorMessage(
+                      helpText: formatErrorMessage(
                         text.currency,
-                        text.error.fieldRequiredError
+                        formState.errors.currency
                       ),
                     }
                   : {})}
@@ -440,7 +667,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <div class={classes.CheckboxWrapper}>
                 <sl-checkbox
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;
@@ -455,9 +682,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 </sl-checkbox>
                 {formState.errors?.allowBankingCollection && (
                   <p class={classes.ErrorText}>
-                    {getIsRequiredErrorMessage(
+                    {formatErrorMessage(
                       text.termsAndConditionsLabel,
-                      text.error.fieldRequiredError
+                      formState.errors.allowBankingCollection
                     )}
                   </p>
                 )}

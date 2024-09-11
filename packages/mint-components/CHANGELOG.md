@@ -7,6 +7,103 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.5] - 2024-07-04
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
+## [1.9.4] - 2024-07-04
+
+### Changed
+
+- `@saasquatch/component-boilerplate` package bump
+- \<sqm-leaderboard>
+  - No longer batches leaderboard query to avoid the batch from failing when permissions are not set
+
+## [1.9.3] - 2024-07-03
+
+### Changed
+
+- \<sqm-leaderboard>
+  - Added required feature flag
+- \<sqm-portal-footer>
+  - Added required feature flag
+
+## [1.9.2] - 2024-06-28
+
+### Fixed
+
+- \<sqm-banking-info-form>
+
+  - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
+
+- \<sqm-user-info-form>
+
+  - Added missing prop for terms and conditions link
+
+## [1.9.1] - 2024-05-17
+
+### Fixed
+
+- \<sqm-portal-verify-email>
+  - Logs out user if the verified user does not match the user in context
+  - Protections to avoid oobCode verification entering a race-condition if multiple instances are rendered at the same time.
+
+### Changed
+
+- `@saasquatch/component-boilerplate` package bump
+- `dom-context` package bump
+- `dom-context-hooks` package bump
+
+## [1.9.0] - 2024-05-27
+
+### Added
+
+- Added `input-base` css parts to inputs to the following components:
+
+  - \<sqm-checkbox-field>
+  - \<sqm-dropdown-field>
+  - \<sqm-edit-profile>
+  - \<sqm-input-field>
+  - \<sqm-name-fields>
+  - \<sqm-portal-change-password>
+  - \<sqm-portal-forgot-password>
+  - \<sqm-portal-login>
+  - \<sqm-portal-profile>
+  - \<sqm-portal-register>
+  - \<sqm-portal-registration-form>
+  - \<sqm-portal-reset-password>
+  - \<sqm-banking-info-form>
+  - \<sqm-user-info-form>
+  - \<sqm-password-field>
+
+- Added the following css parts to the `sqm-empty` component:
+  - header-text
+  - description-text
+
+## [1.8.4] - 2024-05-07
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
+## [1.8.3] - 2024-05-03
+
+### Fixed
+
+- \<sqm-user-info-form>
+  - Fixed demo props for sqm-user-info-form when in a demo environment.
+
+## [1.8.2] - 2024-05-02
+
+### Added
+
+- \<sqm-user-info-form>
+  - Added support for billing fields in the user information form
+- \<sqm-tax-and-cash>
+  - Added support for billing fields
+
 ## [1.8.1] - 2024-04-10
 
 ### Fixed
@@ -79,7 +176,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-profile>
   - \<sqm-portal-register>
   - \<sqm-portal-registration-form>
-  - \<sqm-protal-reset-password>
+  - \<sqm-portal-reset-password>
   - \<sqm-portal-verify-email>
   - \<sqm-share-button>
 
@@ -906,7 +1003,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.8.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.9.5...HEAD
+[1.9.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.5
+[1.9.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.4
+[1.9.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.3
+[1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2
+[1.9.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.1
+[1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.0
+[1.8.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.5
+[1.8.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.4
+[1.8.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.3
+[1.8.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.2
 [1.8.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.1
 [1.8.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.0
 [1.7.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.7.6

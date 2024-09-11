@@ -31,10 +31,14 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
   }
 };
 
-export const getIsRequiredErrorMessage = (
-  fieldName: string,
-  errorMessage: string
-) => {
+export function validateBillingField(regex: RegExp, value: string) {
+  const trimmed = value.trim();
+  const idx = trimmed.search(regex);
+
+  return idx > -1;
+}
+
+export const formatErrorMessage = (fieldName: string, errorMessage: string) => {
   return intl.formatMessage(
     {
       id: fieldName,

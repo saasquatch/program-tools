@@ -15,7 +15,7 @@ import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-fo
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
-import { FunctionalComponent } from "@stencil/core";
+import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
@@ -731,6 +731,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "emptyStateText": string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
@@ -1325,6 +1330,12 @@ export namespace Components {
          */
         "interval": string;
         /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
+        /**
           * @uiName Leaderboard type
           * @uiType string
           * @required 
@@ -1614,6 +1625,8 @@ export namespace Components {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy": boolean;
         /**
@@ -1818,6 +1831,8 @@ export namespace Components {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy": boolean;
         /**
@@ -3101,6 +3116,7 @@ export namespace Components {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText": string;
+        "deletedReferralText": string;
         "deletedUserText": string;
         "locale": string;
         "referralText": string;
@@ -4049,6 +4065,12 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Displayed under a field that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+          * @uiGroup General Form Properties
+         */
+        "invalidCharacterError": string;
+        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -4083,11 +4105,21 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
+          * @uiName Address field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_address": string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection": string;
+        /**
+          * @uiName City field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_city": string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
@@ -4124,18 +4156,49 @@ export namespace Components {
          */
         "step1_personalInformation": string;
         /**
+          * @uiName Phone number field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_phoneNumber": string;
+        /**
+          * @uiName Postal code field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_postalCode": string;
+        /**
+          * @uiName State field label for provinces
+          * @uiGroup Step 1 Properties
+         */
+        "step1_province": string;
+        /**
+          * @uiName State field label for regions
+          * @uiGroup Step 1 Properties
+         */
+        "step1_region": string;
+        /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText": string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * @uiName State field label for states
+          * @uiGroup Step 1 Properties
+         */
+        "step1_state": string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLink": string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
@@ -4840,7 +4903,7 @@ export namespace Components {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label": string;
+        "label": string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin
@@ -4867,10 +4930,18 @@ export namespace Components {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Address field label
+         */
+        "address": string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection": string;
+        /**
+          * @uiName City field label
+         */
+        "city": string;
         /**
           * @uiName Continue button label
          */
@@ -4897,6 +4968,11 @@ export namespace Components {
          */
         "email": string;
         /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError": string;
+        /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
          */
@@ -4921,6 +4997,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "generalErrorTitle": string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
@@ -4954,6 +5035,22 @@ export namespace Components {
          */
         "personalInformation": string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber": string;
+        /**
+          * @uiName Postal code field label
+         */
+        "postalCode": string;
+        /**
+          * @uiName State field label
+         */
+        "province": string;
+        /**
+          * @uiName State field label
+         */
+        "region": string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -4964,16 +5061,25 @@ export namespace Components {
          */
         "searchForCurrencyText": string;
         /**
+          * @uiName State field label
+         */
+        "state": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmUserName {
         /**
@@ -6435,6 +6541,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Description
+          * @uiWidget textArea
+         */
+        "supportText"?: string;
     }
     interface SqmFormMessage {
         /**
@@ -7023,6 +7134,12 @@ declare namespace LocalJSX {
          */
         "interval"?: string;
         /**
+          * Hides the leaderboard if user is on Essentials plan
+          * @uiName Hide viewing user
+          * @default
+         */
+        "isEssentials"?: boolean;
+        /**
           * @uiName Leaderboard type
           * @uiType string
           * @required 
@@ -7312,6 +7429,8 @@ declare namespace LocalJSX {
         /**
           * Show Powered by Impact.com link
           * @uiName Show powered by
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "poweredBy"?: boolean;
         /**
@@ -7516,6 +7635,8 @@ declare namespace LocalJSX {
         "faqText"?: string;
         /**
           * @uiName Hide powered by Impact.com
+          * @requiredFeatures ["CUSTOM_BRANDING"]
+          * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
          */
         "hidePoweredBy"?: boolean;
         /**
@@ -8779,6 +8900,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText"?: string;
+        "deletedReferralText"?: string;
         "deletedUserText"?: string;
         "locale"?: string;
         "referralText"?: string;
@@ -9723,6 +9845,12 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Displayed under a field that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+          * @uiGroup General Form Properties
+         */
+        "invalidCharacterError"?: string;
+        /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
@@ -9757,11 +9885,21 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
+          * @uiName Address field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_address"?: string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
          */
         "step1_allowBankingCollection"?: string;
+        /**
+          * @uiName City field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_city"?: string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
@@ -9798,18 +9936,49 @@ declare namespace LocalJSX {
          */
         "step1_personalInformation"?: string;
         /**
+          * @uiName Phone number field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_phoneNumber"?: string;
+        /**
+          * @uiName Postal code field label
+          * @uiGroup Step 1 Properties
+         */
+        "step1_postalCode"?: string;
+        /**
+          * @uiName State field label for provinces
+          * @uiGroup Step 1 Properties
+         */
+        "step1_province"?: string;
+        /**
+          * @uiName State field label for regions
+          * @uiGroup Step 1 Properties
+         */
+        "step1_region"?: string;
+        /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
          */
         "step1_searchForCurrencyText"?: string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * @uiName State field label for states
+          * @uiGroup Step 1 Properties
+         */
+        "step1_state"?: string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
          */
         "step1_termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+          * @uiGroup Step 1 Properties
+         */
+        "step1_termsAndConditionsLink"?: string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
@@ -10513,7 +10682,7 @@ declare namespace LocalJSX {
           * Text value shown when there is no label slot declared.
           * @uiName Label
          */
-        "label"?: string;
+        "label"?: string | VNode;
         /**
           * Margin applied to the bottom of the label slot
           * @uiName Label bottom margin
@@ -10540,10 +10709,18 @@ declare namespace LocalJSX {
     }
     interface SqmUserInfoForm {
         /**
+          * @uiName Address field label
+         */
+        "address"?: string;
+        /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
+        /**
+          * @uiName City field label
+         */
+        "city"?: string;
         /**
           * @uiName Continue button label
          */
@@ -10570,6 +10747,11 @@ declare namespace LocalJSX {
          */
         "email"?: string;
         /**
+          * Displayed under a field when it has an invalid entry.
+          * @uiName Form field error message
+         */
+        "fieldInvalidError"?: string;
+        /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
          */
@@ -10594,6 +10776,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "generalErrorTitle"?: string;
+        /**
+          * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+          * @uiName Invalid character error message
+         */
+        "invalidCharacterError"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
@@ -10627,6 +10814,22 @@ declare namespace LocalJSX {
          */
         "personalInformation"?: string;
         /**
+          * @uiName Phone number field label
+         */
+        "phoneNumber"?: string;
+        /**
+          * @uiName Postal code field label
+         */
+        "postalCode"?: string;
+        /**
+          * @uiName State field label
+         */
+        "province"?: string;
+        /**
+          * @uiName State field label
+         */
+        "region"?: string;
+        /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
          */
@@ -10637,16 +10840,25 @@ declare namespace LocalJSX {
          */
         "searchForCurrencyText"?: string;
         /**
+          * @uiName State field label
+         */
+        "state"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
         /**
-          * The text link that appears in the terms and conditions checkbox
+          * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
          */
         "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmUserName {
         /**

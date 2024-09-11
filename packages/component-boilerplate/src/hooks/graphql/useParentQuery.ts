@@ -12,11 +12,15 @@ type ParentQueryProps = {
   query?: string;
   variables?: { [key: string]: unknown };
   skip?: boolean;
+  options?: { batch?: boolean };
 };
 
 export function useParentQuery<T>(props: ParentQueryProps): QueryData<T> {
   const host = useHost();
-  const query = useQuery(props.query, props.variables || {}, props.skip);
+  const query = useQuery(props.query, props.variables || {}, props.skip, {
+    batch: true,
+    ...(props.options || {}),
+  });
 
   const [value, setValue] = useDomContextState<QueryData<any>>(
     host,

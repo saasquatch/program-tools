@@ -6,6 +6,7 @@ export interface LeaderboardViewProps {
   states: {
     loading: boolean;
     hasLeaders: boolean;
+    isEssentials?: boolean;
     styles: {
       usersheading: string;
       statsheading: string;
@@ -34,6 +35,7 @@ export interface LeaderboardViewProps {
   };
   elements: {
     empty: VNode;
+    essentials: VNode;
     loadingstate: VNode;
   };
 }
@@ -84,9 +86,9 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
-	:host{
-		display: block;
-	}
+  :host{
+    display: block;
+  }
 `;
 
 export function LeaderboardView(props: LeaderboardViewProps) {
@@ -104,6 +106,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       </div>
     );
 
+  if (states.isEssentials) return elements.essentials;
+
   if (!states.hasLeaders) return elements.empty;
 
   let userSeenFlag = false;
@@ -114,6 +118,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
+      <div>Leaderboards</div>
       <table part="sqm-table">
         <tr>
           {styles.showRank && <th class="Rank">{styles.rankheading}</th>}

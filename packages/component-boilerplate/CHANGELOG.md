@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.7] - 2024-07-04
+
+### Changed
+
+- Added options object to `useParentQuery`
+  - `merge` option renamed to `batch`
+
+## [1.6.6] - 2024-07-04
+
+### Changed
+
+- Added options object to `useQuery`
+  - merge option added prevent specific queries from being batched
+
+## [1.6.5] - 2024-05-30
+
+### Changed
+
+- `@saasquatch/component-environment` package bump
+- `dom-context` package bump
+- `dom-context-hooks` package bump
+
+## [1.6.4] - 2024-05-07
+
+### Changed
+
+- `@saasquatch/component-environment` package bump
+
 ## [1.6.3] - 2024-04-01
 
 ### Added
@@ -177,7 +205,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - useShareEvent
       useForm
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.7...HEAD
+[1.6.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.7
+[1.6.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.6
+[1.6.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.5
+[1.6.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.4
 [1.6.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.3
 [1.6.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.2
 [1.6.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.1

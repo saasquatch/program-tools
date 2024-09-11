@@ -1,14 +1,13 @@
-import { Subject } from "rxjs";
-import { bufferTime } from "rxjs/operators";
-import { nanoid } from "nanoid";
-import { ClientError, RequestDocument } from "graphql-request/dist/types";
-import { GraphQLClient } from "graphql-request";
-import { print, parse, DocumentNode } from "graphql";
-
+import { DocumentNode, parse, print } from "graphql";
 import combineQuery, {
   CombinedQueryBuilder,
   NewCombinedQueryBuilder,
 } from "graphql-combine-query";
+import { GraphQLClient } from "graphql-request";
+import { ClientError, RequestDocument } from "graphql-request/dist/types";
+import { nanoid } from "nanoid";
+import { Subject } from "rxjs";
+import { bufferTime } from "rxjs/operators";
 
 /*************
  * constants *
@@ -135,12 +134,13 @@ export class BatchedGraphQLClient extends GraphQLClient {
     return super.request<T>(query, variables);
   }
 
-  request<T>(query, variables) {
+  request<T>(query, variables, options) {
     return new Promise<T>((resolve, reject) => {
       const queryAddedEvent: QueryAddedEvent = {
         query,
         variables,
         id: generateQueryAddedEventId(),
+        options,
         resolve,
         reject,
       };
@@ -157,6 +157,9 @@ interface QueryAddedEvent {
   query: RequestDocument;
   variables: { [key: string]: unknown };
   id: string; // nanoid with '-'s removed
+  options: {
+    batch: boolean;
+  };
   resolve: (data: any) => void;
   reject: (err: any) => void;
 }
@@ -196,7 +199,11 @@ const mergeQueryAddedEvents = (
       acc: NewCombinedQueryBuilder | CombinedQueryBuilder,
       curr: QueryAddedEvent
     ): NewCombinedQueryBuilder | CombinedQueryBuilder => {
-      const { query, variables, id } = curr;
+      const { query, variables, id, options } = curr;
+      if (!options?.batch) {
+        unmergedQueryAddedEvents.push(curr);
+        return acc;
+      }
       try {
         const parsedQuery: DocumentNode =
           typeof query === "string" ? parse(query) : query;

@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed component:
   -\<sqh-share-button-container>
 
+## [1.2.9] - 2024-07-03
+
+### Changed
+
+- Feature enforcement docs added to poweredby prop
+
 ## [1.2.8] - 2023-03-05
 
 ### Changed
@@ -70,6 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.4.0...HEAD
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.0
+[1.2.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.9
+[1.2.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.8
 [1.2.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.7
 [1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6
 [1.2.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.5
