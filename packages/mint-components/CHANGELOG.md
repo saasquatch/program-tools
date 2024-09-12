@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-09-10
+
+### Changed
+
+- Added twitter-x icon
+- Updated templates using `Tweet about us` copy to `Post about us on X`
+- Updated stories using `Tweet about us` copy to `Post about us on X`
+- Changed components:
+  - \<sqm-share-button>
+    - Updated medium value 'twitter' to use `twitter-x` icon and color to `#000000`
+
 ## [1.9.5] - 2024-07-04
 
 ### Updated
@@ -1003,14 +1014,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.9.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.10.0...HEAD
+[1.10.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.0
 [1.9.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.5
 [1.9.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.4
 [1.9.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.3
 [1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2
 [1.9.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.1
 [1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.0
-[1.8.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.5
 [1.8.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.4
 [1.8.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.3
 [1.8.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.2
