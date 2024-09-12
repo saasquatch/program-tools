@@ -16,6 +16,7 @@ jobs:
       packages: write
 
     strategy:
+      fail-fast: false
       matrix:
         package:
           - program-boilerplate
