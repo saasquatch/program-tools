@@ -8,7 +8,7 @@ import { LogoutCurrentUserViewProps } from "./sqm-logout-current-user-view";
 import { gql } from "graphql-request";
 
 type GetUserDetails = {
-  user: {
+  viewer: {
     id: string;
     accountId: string;
     email?: string;
@@ -16,11 +16,13 @@ type GetUserDetails = {
 };
 
 const GET_USER_DETAILS = gql`
-  query getUserDetails($id: String!, $accountId: String!) {
-    user(id: $id, accountId: $accountId) {
-      id
-      accountId
-      email
+  query getUserDetails {
+    viewer {
+      ... on User {
+        id
+        accountId
+        email
+      }
     }
   }
 `;
@@ -32,10 +34,7 @@ export function useLogoutCurrentUser(
 
   const { loading, data } = useQuery<GetUserDetails>(
     GET_USER_DETAILS,
-    {
-      id: user?.id,
-      accountId: user?.accountId,
-    },
+    {},
     !user
   );
 
@@ -45,7 +44,7 @@ export function useLogoutCurrentUser(
 
   const filledInEmailText = props.userIdentificationText?.replace(
     "{email}",
-    data?.user?.email
+    data?.viewer?.email
   );
 
   return {
