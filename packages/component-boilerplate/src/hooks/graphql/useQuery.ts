@@ -7,6 +7,7 @@ import {
   QueryData,
   useBaseQuery,
 } from "./useBaseQuery";
+import { setUserIdentity } from "@saasquatch/component-environment";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 function deepFreeze(object) {
@@ -54,6 +55,11 @@ export function useQuery<T = any>(
   }, [query, variables, update, tick, skip]);
 
   useRefreshListener({ skip, update, variables });
+
+  if (state.errors) {
+    const e = state.errors?.[0]?.extensions?.apiError;
+    e?.statusCode === 401 && setUserIdentity(undefined);
+  }
 
   return deepFreeze({
     ...state,
