@@ -1,7 +1,7 @@
 import decode from "jwt-decode";
 import { ContextProvider } from "dom-context";
 import { equal } from "@wry/equality";
-import { getEnvironmentSDK } from "../environment";
+import { getEnvironmentSDK, getTenantAlias } from "../environment";
 import {
   USER_CONTEXT_NAME,
   UserIdentity,
@@ -62,13 +62,16 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
 
     let userId: string | undefined = undefined;
     let accountId: string | undefined = undefined;
+    let tenantAlias: string | undefined = undefined;
 
     if (isDecodedWidgetAPIJWT(decoded)) {
       // Pull the accountId and userId from the subject and Base64-decode them
+      // This also applies to JWTs generated for microsite sessions
       // NOTE: This is to support classic theme engine widget token generation
       const matches = decoded.sub.match(/(.*):(.*)@(.*):users/);
       if (matches?.[1]) accountId = atob(matches[1]);
       if (matches?.[2]) userId = atob(matches[2]);
+      if (matches?.[3]) tenantAlias = matches[3];
     } else if (isDecodedSquatchJWT(decoded)) {
       accountId = decoded.user.accountId;
       userId = decoded.user.id;
@@ -76,6 +79,11 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
 
     if (!userId || !accountId) {
       debug("No user information");
+      return undefined;
+    }
+
+    if (tenantAlias && getTenantAlias() && tenantAlias !== getTenantAlias()) {
+      debug("tenantAlias in JWT doesn't match environment");
       return undefined;
     }
 
