@@ -142,6 +142,7 @@ export class Leaderboard {
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,
+      hideNames: this.hideNames,
       showRank: this.showRank,
       isEssentials: this.isEssentials,
     };
@@ -256,6 +257,7 @@ function useLeaderboardDemo(
             : "Anonymous User",
           showRank: props.showRank,
           hideViewer: props.hideViewer,
+          hideNames: props.hideNames,
         },
       },
       data: {
