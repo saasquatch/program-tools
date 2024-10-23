@@ -553,3 +553,34 @@ export const HideViewer = () => {
   };
   return <LeaderboardView {...props} />;
 };
+
+export const HideNames = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      rowNumber: 10,
+      styles: {
+        ...defaultStyles,
+        showRank: true,
+        hideNames: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        textValue: "82",
+        rowNumber: 1,
+        rank: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};

@@ -16,6 +16,7 @@ export interface LeaderboardProps {
   anonymousUser?: string;
   showRank?: boolean;
   hideViewer?: boolean;
+  hideNames?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType:
     | "topStartedReferrers"
@@ -53,6 +54,27 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+const GET_LEADERBOARD_WITHOUT_NAMES = gql`
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+    $limit: Int!
+  ) {
+    userLeaderboard(type: $type, filter: $filter) {
+      dateModified
+      rows(limit: $limit) {
+        textValue(locale: $locale)
+        rank {
+          rank
+          denseRank
+          rowNumber
+        }
+      }
+    }
+  }
+`;
+
 const GET_RANK = gql`
   query (
     $type: String!
@@ -63,6 +85,25 @@ const GET_RANK = gql`
       ... on User {
         firstName
         lastInitial
+        leaderboardRank(type: $type, filter: $filter) {
+          textValue(locale: $locale)
+          rank
+          denseRank
+          rowNumber
+        }
+      }
+    }
+  }
+`;
+
+const GET_RANK_WITHOUT_NAMES = gql`
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+  ) {
+    viewer {
+      ... on User {
         leaderboardRank(type: $type, filter: $filter) {
           textValue(locale: $locale)
           rank
@@ -129,9 +170,18 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: leaderboardData,
     loading: loadingLeaderboard,
     errors: leaderboardErrors,
-  } = useQuery(GET_LEADERBOARD, variables, !user?.jwt, { batch: false });
+  } = useQuery(
+    props.hideNames ? GET_LEADERBOARD_WITHOUT_NAMES : GET_LEADERBOARD,
+    variables,
+    !user?.jwt,
+    { batch: false }
+  );
 
-  const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
+  const { data: rankData } = useQuery(
+    props.hideNames ? GET_RANK_WITHOUT_NAMES : GET_RANK,
+    variables,
+    !user?.jwt
+  );
 
   const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 

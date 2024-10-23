@@ -1318,6 +1318,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Hide the Names of users to protect personal identifiable information
+          * @uiName Hide users' names
+          * @default
+         */
+        "hideNames": boolean;
+        /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide viewing user
           * @default
@@ -1331,7 +1337,7 @@ export namespace Components {
         "interval": string;
         /**
           * Hides the leaderboard if user is on Essentials plan
-          * @uiName Hide viewing user
+          * @uiName Hide leaderboard for essentials user
           * @default
          */
         "isEssentials"?: boolean;
@@ -7122,6 +7128,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Hide the Names of users to protect personal identifiable information
+          * @uiName Hide users' names
+          * @default
+         */
+        "hideNames"?: boolean;
+        /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide viewing user
           * @default
@@ -7135,7 +7147,7 @@ declare namespace LocalJSX {
         "interval"?: string;
         /**
           * Hides the leaderboard if user is on Essentials plan
-          * @uiName Hide viewing user
+          * @uiName Hide leaderboard for essentials user
           * @default
          */
         "isEssentials"?: boolean;

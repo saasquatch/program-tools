@@ -13,6 +13,7 @@ export interface LeaderboardViewProps {
       rankheading?: string;
       showRank?: boolean;
       hideViewer?: boolean;
+      hideNames?: boolean;
       anonymousUser?: string;
     };
   };
@@ -79,6 +80,9 @@ const style = {
       width: "auto",
       whiteSpace: "nowrap",
     },
+    "& .fullWidth": {
+      width: "100%",
+    },
   },
 };
 
@@ -121,8 +125,12 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       <div>Leaderboards</div>
       <table part="sqm-table">
         <tr>
-          {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
-          <th class="User">{styles.usersheading}</th>
+          {styles.showRank && (
+            <th class={`Rank ${styles.hideNames ? "fullWidth" : ""}`}>
+              {styles.rankheading}
+            </th>
+          )}
+          {!styles.hideNames && <th class="User">{styles.usersheading}</th>}
           <th class="Score">{styles.statsheading}</th>
         </tr>
         {data.leaderboard?.map((user) => {
@@ -138,13 +146,15 @@ export function LeaderboardView(props: LeaderboardViewProps) {
               }
             >
               {styles.showRank && <td class="Rank">{user.rank}</td>}
-              <td class="User">
-                {user.firstName && user.lastInitial
-                  ? user.firstName + " " + user.lastInitial
-                  : user.firstName || user.lastInitial
-                  ? user.firstName || user.lastInitial
-                  : styles.anonymousUser}
-              </td>
+              {!styles.hideNames && (
+                <td class="User">
+                  {user.firstName && user.lastInitial
+                    ? user.firstName + " " + user.lastInitial
+                    : user.firstName || user.lastInitial
+                    ? user.firstName || user.lastInitial
+                    : styles.anonymousUser}
+                </td>
+              )}
               <td class="Score">{user.textValue}</td>
             </tr>
           );

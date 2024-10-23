@@ -57,9 +57,17 @@ export class Leaderboard {
   @Prop() hideViewer: boolean = false;
 
   /**
+   * Hide the Names of users to protect personal identifiable information
+   *
+   * @uiName Hide users' names
+   * @default
+   */
+  @Prop() hideNames: boolean = false;
+
+  /**
    * Hides the leaderboard if user is on Essentials plan
    *
-   * @uiName Hide viewing user
+   * @uiName Hide leaderboard for essentials user
    * @default
    */
   @Prop() isEssentials?: boolean = false;
@@ -141,6 +149,7 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
+    console.log("viewProps are ", viewprops);
     return <LeaderboardView {...viewprops} />;
   }
 }
