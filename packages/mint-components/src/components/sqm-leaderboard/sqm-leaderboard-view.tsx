@@ -174,15 +174,17 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             {styles.showRank && (
               <td class="Rank">{data.viewerRank?.rank || "-"}</td>
             )}
-            <td class="User">
-              {data.viewerRank?.firstName && data.viewerRank?.lastInitial
-                ? data.viewerRank?.firstName +
-                  " " +
-                  data.viewerRank?.lastInitial
-                : data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                : styles.anonymousUser}
-            </td>
+            {!styles.hideNames && (
+              <td class="User">
+                {data.viewerRank?.firstName && data.viewerRank?.lastInitial
+                  ? data.viewerRank?.firstName +
+                    " " +
+                    data.viewerRank?.lastInitial
+                  : data.viewerRank?.firstName || data.viewerRank?.lastInitial
+                  ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
+                  : styles.anonymousUser}
+              </td>
+            )}
             <td class="Score">{data.viewerRank?.textValue || "0"}</td>
           </tr>
         )}

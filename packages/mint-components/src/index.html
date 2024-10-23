@@ -27,13 +27,32 @@
     <script> 
   window.squatchTenant = "test_al060of14s918";
   window.squatchToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaCIsImFjY291bnRJZCI6InphY2giLCJlbWFpbCI6InphY2guaGFycmlzb25AZXhhbXBsZS5jb20ifX0.fuw0lzjBUr0NxiLO7uR0Ye3BjaKWi2IbIdHtQxdtadg";
+    window.widgetIdent={"programId":"x-share-button-qa","userId":"zach","accountId":"zach","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaCIsImFjY291bnRJZCI6InphY2giLCJlbWFpbCI6InphY2guaGFycmlzb25AZXhhbXBsZS5jb20ifX0.fuw0lzjBUr0NxiLO7uR0Ye3BjaKWi2IbIdHtQxdtadg","tenantAlias":"test_al060of14s918","engagementMedium":"EMBED","appDomain":"https://app.referralsaasquatch.com"};
 </script> 
 
   </head>
 
   <body>
     <!-- <sqm-stencilbook></sqm-stencilbook> -->
-     <squatch-embed widget="p/x-share-button-qa/w/referrerWidget"><div>Loading...</div></squatch-embed>
+     <!-- <squatch-embed widget="p/x-share-button-qa/w/referrerWidget"><div>Loading...</div></squatch-embed> -->
+       <sqm-leaderboard
+                usersheading="Referrer"
+                statsheading="Referrals"
+                rank-type="rank"
+                leaderboard-type="topStartedReferrers"
+                rankheading="Rank"
+                show-rank="true"
+                slot
+                program-id="x-share-button-qa"
+                interval="2024-10-22T07:00:00.000Z/2024-12-01T07:59:59.999Z"
+                hide-names="true"
+            >
+                <sqm-empty
+                    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
+                    empty-state-header="View your rank in the leaderboard"
+                    empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+                ></sqm-empty>
+            </sqm-leaderboard>
      <!-- <sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
     <sqm-portal-container
         direction="column"
