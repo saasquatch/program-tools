@@ -5,7 +5,7 @@ import {
   useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
   TAX_CONTEXT_NAMESPACE,
@@ -81,7 +81,6 @@ export function useDocusignForm(props: DocusignForm) {
     useState<ParticipantType>(undefined);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [iframeUrl, setIframeUrl] = useState(undefined);
 
   // Only look at current document if it's valid (same as required type)
   const existingDocumentType = validTaxDocument(
@@ -105,13 +104,6 @@ export function useDocusignForm(props: DocusignForm) {
       setParticipantType("businessEntity");
     }
   }, [existingDocumentType]);
-
-  useEffect(() => {
-    const url = document?.createImpactPublisherTaxDocument?.documentUrl;
-    if (iframeUrl || !url) return;
-
-    setIframeUrl(url);
-  }, [document?.createImpactPublisherTaxDocument?.documentUrl]);
 
   useEffect(() => {
     // Skip if no publisher info
@@ -171,21 +163,10 @@ export function useDocusignForm(props: DocusignForm) {
     }
   }, [docusignStatus, refetch]);
 
-  console.log({
-    returnUrl: document?.createImpactPublisherTaxDocument?.returnUrl,
-  });
-  const setUrlToReturn = () => {
-    const returnUrl = document?.createImpactPublisherTaxDocument?.returnUrl;
-    console.log({ returnUrl });
-    if (returnUrl) setIframeUrl(returnUrl);
-  };
-
   const allLoading = userLoading || documentLoading || loading;
 
-  console.log({ iframeUrl });
   return {
     states: {
-      url: iframeUrl,
       step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
       disabled: allLoading,
@@ -208,7 +189,6 @@ export function useDocusignForm(props: DocusignForm) {
       returnUrl: document?.createImpactPublisherTaxDocument?.returnUrl,
     },
     callbacks: {
-      setUrlToReturn,
       setDocusignStatus,
       setParticipantType,
     },

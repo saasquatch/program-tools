@@ -24,14 +24,16 @@ export type DocusignStatus =
 
 export interface DocusignIframeProps {
   states: {
-    url: string;
     status: DocusignStatus;
     loading: boolean;
     urlLoading: boolean;
   };
+  data: {
+    documentUrl: string | undefined;
+    returnUrl: string | undefined;
+  };
   callbacks: {
     onStatusChange: (status: DocusignStatus) => void;
-    setUrlToReturn: () => void;
   };
   text: {
     docusignExpired: string;
@@ -133,9 +135,11 @@ export const DocusignLoadingView = () => {
 
 export const DocusignIframe = ({
   states,
+  data,
   callbacks,
   text,
 }: DocusignIframeProps) => {
+  const [done, setDone] = useState(false);
   if (states.urlLoading) return <DocusignLoadingView />;
 
   // TODO: Confirm impact domain before launch
@@ -144,21 +148,19 @@ export const DocusignIframe = ({
     "impacttech.complysandbox.com",
   ];
 
-  const callback = useCallback((e) => {
-    const allowed = allowedDomains.some((d) => e.origin?.includes(d));
-    if (!allowed) return;
+  const callback = useCallback(
+    (e) => {
+      const allowed = allowedDomains.some((d) => e.origin?.includes(d));
+      if (!allowed) return;
 
-    console.log({ e });
-    if (e.data === "Complyexchange Thank you page Exit") {
-      console.log("*******CAUGHT**********");
-      callbacks.setUrlToReturn();
-      return;
-    }
-
-    if (e.data.eventStatus) callbacks.onStatusChange(e.data.eventStatus);
-  }, []);
-
-  console.log("URL", states.url);
+      if (e.data === "Complyexchange Thank you page Exit") {
+        setDone(true);
+      } else if (e.data.eventStatus) {
+        callbacks.onStatusChange(e.data.eventStatus);
+      }
+    },
+    [data.returnUrl]
+  );
 
   useEffect(() => {
     window.addEventListener("message", callback, false);
@@ -177,7 +179,7 @@ export const DocusignIframe = ({
   return (
     <iframe
       frameBorder="0"
-      src={states.url}
+      src={done ? data.returnUrl : data.documentUrl}
       width="100%"
       height="1000px"
     ></iframe>
