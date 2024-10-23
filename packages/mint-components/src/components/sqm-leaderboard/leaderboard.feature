@@ -184,6 +184,18 @@ Feature: Leaderboard
       | false     | don't see |
       |           | don't see |
 
+    Scenario Outline: Users names can be hidden or shown
+    Given a leaderboard
+    And it has prop "hide-names" with <propValue>
+    When the user views the leaderboard
+    Then they <maySee> the referrer column
+
+    Examples:
+      | propValue | maySee    |
+      | true      | don't see |
+      | false     | see       |
+      |           | see       |
+
   @motivating @ui
   Scenario: Users in the top 10 of the leaderboard results see their leaderboard row highlighted
     Given a user in the top 10 of the leaderboard results
