@@ -1,10 +1,16 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
-import { useCallback, useEffect } from "@saasquatch/universal-hooks";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import {
   DOCUSIGN_EXPIRED_STATES,
   DOCUSIGN_ERROR_STATES,
 } from "../useDocusignForm";
+import { MinHeight } from "../../../sqm-hero/Hero.stories";
 
 export type DocusignStatus =
   | "ttl_expired"
@@ -25,6 +31,7 @@ export interface DocusignIframeProps {
   };
   callbacks: {
     onStatusChange: (status: DocusignStatus) => void;
+    setUrlToReturn: () => void;
   };
   text: {
     docusignExpired: string;
@@ -36,7 +43,8 @@ export interface DocusignIframeProps {
 const style = {
   DocusignStatusContainer: {
     width: "100%",
-    height: "600px",
+    minHeight: "600px",
+    height: "900px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -130,17 +138,32 @@ export const DocusignIframe = ({
 }: DocusignIframeProps) => {
   if (states.urlLoading) return <DocusignLoadingView />;
 
-  const callback = useCallback((e) => {
-    if (!e.origin?.includes("referralsaasquatch.com")) return;
-    if (!e.data) return;
+  // TODO: Confirm impact domain before launch
+  const allowedDomains = [
+    "referralsaasquatch.com",
+    "impacttech.complysandbox.com",
+  ];
 
-    callbacks.onStatusChange(e.data.eventStatus);
+  const callback = useCallback((e) => {
+    const allowed = allowedDomains.some((d) => e.origin?.includes(d));
+    if (!allowed) return;
+
+    console.log({ e });
+    if (e.data === "Complyexchange Thank you page Exit") {
+      console.log("*******CAUGHT**********");
+      callbacks.setUrlToReturn();
+      return;
+    }
+
+    if (e.data.eventStatus) callbacks.onStatusChange(e.data.eventStatus);
   }, []);
 
+  console.log("URL", states.url);
+
   useEffect(() => {
-    window.addEventListener("message", callback);
+    window.addEventListener("message", callback, false);
     return () => {
-      window.removeEventListener("message", callback);
+      window.removeEventListener("message", callback, false);
     };
   }, []);
 
@@ -156,7 +179,8 @@ export const DocusignIframe = ({
       frameBorder="0"
       src={states.url}
       width="100%"
-      height="600px"
+      height="1000px"
     ></iframe>
   );
 };
+// NWH4QF

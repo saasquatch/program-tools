@@ -21,6 +21,7 @@ import { DocusignForm } from "./sqm-docusign-form";
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
     documentUrl: string;
+    returnUrl: string;
   };
 };
 type CreateImpactPublisherTaxDocumentInput = {
@@ -43,6 +44,7 @@ const GET_TAX_DOCUMENT = gql`
       createImpactPublisherTaxDocumentInput: $vars
     ) {
       documentUrl
+      returnUrl
     }
   }
 `;
@@ -79,6 +81,7 @@ export function useDocusignForm(props: DocusignForm) {
     useState<ParticipantType>(undefined);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [iframeUrl, setIframeUrl] = useState(undefined);
 
   // Only look at current document if it's valid (same as required type)
   const existingDocumentType = validTaxDocument(
@@ -104,16 +107,15 @@ export function useDocusignForm(props: DocusignForm) {
   }, [existingDocumentType]);
 
   useEffect(() => {
+    const url = document?.createImpactPublisherTaxDocument?.documentUrl;
+    if (iframeUrl || !url) return;
+
+    setIframeUrl(url);
+  }, [document?.createImpactPublisherTaxDocument?.documentUrl]);
+
+  useEffect(() => {
     // Skip if no publisher info
     if (!user || !publisher) return;
-
-    // Skip on initial load of W8 case
-    if (
-      publisher.requiredTaxDocumentType?.startsWith("W8") &&
-      !publisher.currentTaxDocument &&
-      !participantType
-    )
-      return;
 
     const fetchDocument = async () => {
       try {
@@ -169,10 +171,21 @@ export function useDocusignForm(props: DocusignForm) {
     }
   }, [docusignStatus, refetch]);
 
+  console.log({
+    returnUrl: document?.createImpactPublisherTaxDocument?.returnUrl,
+  });
+  const setUrlToReturn = () => {
+    const returnUrl = document?.createImpactPublisherTaxDocument?.returnUrl;
+    console.log({ returnUrl });
+    if (returnUrl) setIframeUrl(returnUrl);
+  };
+
   const allLoading = userLoading || documentLoading || loading;
 
+  console.log({ iframeUrl });
   return {
     states: {
+      url: iframeUrl,
       step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
       disabled: allLoading,
@@ -192,8 +205,10 @@ export function useDocusignForm(props: DocusignForm) {
     data: {
       taxForm: actualDocumentType,
       documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
+      returnUrl: document?.createImpactPublisherTaxDocument?.returnUrl,
     },
     callbacks: {
+      setUrlToReturn,
       setDocusignStatus,
       setParticipantType,
     },

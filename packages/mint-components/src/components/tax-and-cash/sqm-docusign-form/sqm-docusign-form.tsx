@@ -167,13 +167,14 @@ export class DocusignForm {
     const docusignIframeSlot = (
       <DocusignIframe
         states={{
-          url: props.data.documentUrl,
+          url: props.states.url,
           status: props.states.docusignStatus,
           loading: props.states.loading,
           urlLoading: props.states.urlLoading,
         }}
         callbacks={{
           onStatusChange: props.callbacks.setDocusignStatus,
+          setUrlToReturn: props.callbacks.setUrlToReturn,
         }}
         text={props.text}
       />

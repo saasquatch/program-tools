@@ -263,95 +263,47 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       )}
       {/* 
       // @ts-ignore */}
-      {states.documentType !== "W9" && (
-        <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}>{text.participantType}</p>
 
-          {states.loading ? (
-            <sl-spinner
-              style={{ fontSize: "50px", margin: "40px" }}
-            ></sl-spinner>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <sl-radio
-                exportparts="base: radio-base"
-                value="individualParticipant"
-                name="/participantType"
-                checked={formState.participantType === "individualParticipant"}
-                disabled={states.disabled || states.participantTypeDisabled}
-                onClick={() => {
-                  if (states.disabled || states.participantTypeDisabled) return;
-                  callbacks.setParticipantType("individualParticipant");
-                }}
-              >
-                <span class={classes.RadioText}>
-                  {text.individualParticipant}
-                </span>
-              </sl-radio>
-              <sl-radio
-                exportparts="base: radio-base"
-                value="businessEntity"
-                name="/participantType"
-                checked={formState.participantType === "businessEntity"}
-                disabled={states.disabled || states.participantTypeDisabled}
-                onClick={() => {
-                  if (states.disabled || states.participantTypeDisabled) return;
-                  callbacks.setParticipantType("businessEntity");
-                }}
-              >
-                <span class={classes.RadioText}>{text.businessEntity}</span>
-              </sl-radio>
-            </div>
-          )}
-
-          {formState.errors?.participantType && (
-            <p class={classes.ErrorText}>{text.error.participantType}</p>
-          )}
-        </div>
-      )}
-
-      {(states.documentType === "W9" || formState.participantType) && (
+      <div>
         <div>
-          <div>
-            <h5 class={classes.BoldText}>
-              {intl.formatMessage(
-                { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                { documentType: documentTypeString }
-              )}
-            </h5>
-            <p>
-              {intl.formatMessage(
-                {
-                  id: "tax-form-description",
-                  defaultMessage:
-                    states.documentType === "W9"
-                      ? text.taxFormDescription
-                      : formState.participantType === "individualParticipant"
-                      ? text.taxFormDescriptionIndividualParticipant
-                      : text.taxFormDescriptionBusinessEntity,
-                },
-                { documentType: documentTypeString }
-              )}
-            </p>
-          </div>
-          <div>
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="primary"
-              open
-              class={classes.InfoAlert}
-            >
-              <sl-icon
-                class={classes.InfoIcon}
-                slot="icon"
-                name="info-circle"
-              ></sl-icon>
-              {text.docusignSessionWarning}
-            </sl-alert>
-            {slots.docusignIframeSlot}
-          </div>
+          <h5 class={classes.BoldText}>
+            {intl.formatMessage(
+              { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+              { documentType: documentTypeString }
+            )}
+          </h5>
+          <p>
+            {intl.formatMessage(
+              {
+                id: "tax-form-description",
+                defaultMessage:
+                  states.documentType === "W9"
+                    ? text.taxFormDescription
+                    : formState.participantType === "individualParticipant"
+                    ? text.taxFormDescriptionIndividualParticipant
+                    : text.taxFormDescriptionBusinessEntity,
+              },
+              { documentType: documentTypeString }
+            )}
+          </p>
         </div>
-      )}
+        <div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="primary"
+            open
+            class={classes.InfoAlert}
+          >
+            <sl-icon
+              class={classes.InfoIcon}
+              slot="icon"
+              name="info-circle"
+            ></sl-icon>
+            {text.docusignSessionWarning}
+          </sl-alert>
+          {slots.docusignIframeSlot}
+        </div>
+      </div>
     </div>
   );
 };
