@@ -2,6 +2,7 @@ import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { loading } from "../sqm-reward-exchange-list/RewardExchangeListData";
+import { intl } from "../../global/global";
 export interface LeaderboardViewProps {
   states: {
     loading: boolean;
@@ -15,6 +16,8 @@ export interface LeaderboardViewProps {
       hideViewer?: boolean;
       hideNames?: boolean;
       anonymousUser?: string;
+      rankSuffix?: string;
+      maxWidth?: string;
     };
   };
   data: {
@@ -117,12 +120,16 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   let userSeenFlag = false;
 
   return (
-    <div class={sheet.classes.Leaderboard} part="sqm-base">
+    <div
+      class={sheet.classes.Leaderboard}
+      part="sqm-base"
+      style={{ maxWidth: styles.maxWidth || "100%" }}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div>Leaderboards</div>
+
       <table part="sqm-table">
         <tr>
           {styles.showRank && (
@@ -145,7 +152,17 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                   : ""
               }
             >
-              {styles.showRank && <td class="Rank">{user.rank}</td>}
+              {styles.showRank && (
+                <td class="Rank">
+                  {intl.formatMessage(
+                    {
+                      id: "formStep",
+                      defaultMessage: styles.rankSuffix,
+                    },
+                    { rank: user.rank }
+                  )}
+                </td>
+              )}
               {!styles.hideNames && (
                 <td class="User">
                   {user.firstName && user.lastInitial

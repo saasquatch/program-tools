@@ -1319,7 +1319,7 @@ export namespace Components {
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
           * Hide the Names of users to protect personal identifiable information
-          * @uiName Hide users' names
+          * @uiName Hide users names
           * @default
          */
         "hideNames": boolean;
@@ -1357,11 +1357,19 @@ export namespace Components {
          */
         "maxRows": number;
         /**
+          * @uiName Place text
+         */
+        "maxWidth": string;
+        /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Rank Suffix
+         */
+        "rankSuffix": string;
         /**
           * @uiName Rank type
           * @uiType string
@@ -7129,7 +7137,7 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
           * Hide the Names of users to protect personal identifiable information
-          * @uiName Hide users' names
+          * @uiName Hide users names
           * @default
          */
         "hideNames"?: boolean;
@@ -7167,11 +7175,19 @@ declare namespace LocalJSX {
          */
         "maxRows"?: number;
         /**
+          * @uiName Place text
+         */
+        "maxWidth"?: string;
+        /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Rank Suffix
+         */
+        "rankSuffix"?: string;
         /**
           * @uiName Rank type
           * @uiType string
