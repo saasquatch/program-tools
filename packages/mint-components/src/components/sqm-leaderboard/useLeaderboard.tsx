@@ -17,7 +17,8 @@ export interface LeaderboardProps {
   showRank?: boolean;
   hideViewer?: boolean;
   hideNames?: boolean;
-  maxWidth?: string;
+  width?: string;
+  rankSuffix?: string;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType:
     | "topStartedReferrers"

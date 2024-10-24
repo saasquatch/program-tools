@@ -8,6 +8,7 @@ export interface ImageViewProps {
   alignment?: "left" | "center" | "right";
   backgroundColor?: string;
   minHeight?: string; // helps with constraining minimum size
+  width?: string;
 }
 
 export function ImageView(props: ImageViewProps) {
@@ -15,13 +16,14 @@ export function ImageView(props: ImageViewProps) {
   const style = {
     Container: {
       display: "flex",
+      // width: props.width || "100%",
       width: "100%",
       justifyContent: props.alignment || "center",
       background: props.backgroundColor || "",
     },
     Image: {
       minHeight: props.minHeight || "100%",
-      width: "100%",
+      width: props.width || "100%",
       maxWidth: "max-content",
       objectFit: "cover",
     },

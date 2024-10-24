@@ -17,7 +17,7 @@ export interface LeaderboardViewProps {
       hideNames?: boolean;
       anonymousUser?: string;
       rankSuffix?: string;
-      maxWidth?: string;
+      width?: string;
     };
   };
   data: {
@@ -119,11 +119,14 @@ export function LeaderboardView(props: LeaderboardViewProps) {
 
   let userSeenFlag = false;
 
+  console.log("The rank is: ", data.viewerRank?.rank);
+  console.log("The rank suffix  is: ", styles.width);
+
   return (
     <div
       class={sheet.classes.Leaderboard}
       part="sqm-base"
-      style={{ maxWidth: styles.maxWidth || "100%" }}
+      style={{ width: styles.width || "100%" }}
     >
       <style type="text/css">
         {styleString}
@@ -156,7 +159,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                 <td class="Rank">
                   {intl.formatMessage(
                     {
-                      id: "formStep",
+                      id: "rank",
                       defaultMessage: styles.rankSuffix,
                     },
                     { rank: user.rank }

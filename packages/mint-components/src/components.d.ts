@@ -932,6 +932,11 @@ export namespace Components {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+        /**
+          * (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Width
+         */
+        "width"?: string;
     }
     interface SqmIndirectTaxForm {
         /**
@@ -1357,10 +1362,6 @@ export namespace Components {
          */
         "maxRows": number;
         /**
-          * @uiName Place text
-         */
-        "maxWidth": string;
-        /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
           * @uiWidget programSelector
@@ -1393,6 +1394,10 @@ export namespace Components {
           * @uiName User column heading
          */
         "usersheading": string;
+        /**
+          * @uiName Place text
+         */
+        "width": string;
     }
     interface SqmLeaderboardRank {
         /**
@@ -6756,6 +6761,11 @@ declare namespace LocalJSX {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+        /**
+          * (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Width
+         */
+        "width"?: string;
     }
     interface SqmIndirectTaxForm {
         /**
@@ -7175,10 +7185,6 @@ declare namespace LocalJSX {
          */
         "maxRows"?: number;
         /**
-          * @uiName Place text
-         */
-        "maxWidth"?: string;
-        /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
           * @uiWidget programSelector
@@ -7211,6 +7217,10 @@ declare namespace LocalJSX {
           * @uiName User column heading
          */
         "usersheading"?: string;
+        /**
+          * @uiName Place text
+         */
+        "width"?: string;
     }
     interface SqmLeaderboardRank {
         /**

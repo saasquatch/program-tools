@@ -15,7 +15,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
  * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
  * @example Points Earned Leaderboard - <sqm-leaderboard usersheading="Name" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Anonymous Leaderboard - <sqm-portal-container direction="row" display="flex" gap="large"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png" empty-state-header="Top Performers" empty-state-text="The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!"></sqm-empty><sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></sqm-portal-container>
+ * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" imageUrl="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
  * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
  */
 @Component({
@@ -51,7 +51,7 @@ export class Leaderboard {
   /**
    * @uiName Place text
    */
-  @Prop() maxWidth: string = "100%";
+  @Prop() width: string = "100%";
   /**
    * @uiName Rank Suffix
    */
@@ -156,7 +156,7 @@ export class Leaderboard {
       showRank: this.showRank,
       isEssentials: this.isEssentials,
       rankSuffix: this.rankSuffix,
-      maxWidth: this.maxWidth,
+      width: this.width,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -269,7 +269,8 @@ function useLeaderboardDemo(
           showRank: props.showRank,
           hideViewer: props.hideViewer,
           hideNames: props.hideNames,
-          maxWidth: props.maxWidth,
+          rankSuffix: props.rankSuffix,
+          width: props.width,
         },
       },
       data: {

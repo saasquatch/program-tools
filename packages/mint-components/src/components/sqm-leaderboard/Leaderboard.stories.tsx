@@ -85,8 +85,8 @@ const users = [
 
 const pointsUsers = [
   {
-    firstName: "",
-    lastInitial: "",
+    firstName: "Tom",
+    lastInitial: "Smith",
     textValue: "82 Points",
     rank: 1,
     rowNumber: 1,
@@ -161,6 +161,8 @@ const defaultStyles = {
   statsheading: "Referrals",
   rankheading: "Rank",
   anonymousUser: "Anonymous User",
+  rankSuffix:
+    "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}",
 };
 
 const link = <a>Support</a>;
@@ -616,4 +618,57 @@ export const HideNames = () => {
     },
   };
   return <LeaderboardView {...props} />;
+};
+
+export const LeaderboardWithNoNamesAndGraphic = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        width: "100%",
+        gap: "50px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          maxWidth: "30%",
+        }}
+      >
+        <sqm-image
+          width="70%"
+          alignment="center"
+          imageUrl="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"
+        ></sqm-image>
+        <h2 style={{ margin: "auto" }}> Top Performers</h2>
+        <p style={{ margin: "0" }}>
+          The leaderboard highlights the top performers in real-time. Stay
+          motivated, stay competitive!
+        </p>
+      </div>
+      <sqm-leaderboard
+        width="300px"
+        usersheading="Referrer"
+        statsheading="Referrals"
+        rank-type="rank"
+        leaderboard-type="topStartedReferrers"
+        rankheading="Rank"
+        show-rank="true"
+        hide-names="true"
+        hide-viewer="true"
+      >
+        <sqm-empty
+          empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
+          empty-state-header="View your rank in the leaderboard"
+          empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+        ></sqm-empty>
+      </sqm-leaderboard>
+    </div>
+  );
 };
