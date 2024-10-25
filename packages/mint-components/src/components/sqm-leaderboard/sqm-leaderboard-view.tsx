@@ -1,7 +1,6 @@
 import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { loading } from "../sqm-reward-exchange-list/RewardExchangeListData";
 import { intl } from "../../global/global";
 export interface LeaderboardViewProps {
   states: {
@@ -118,9 +117,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   if (!states.hasLeaders) return elements.empty;
 
   let userSeenFlag = false;
-
-  console.log("The rank is: ", data.viewerRank?.rank);
-  console.log("The rank suffix  is: ", styles.width);
 
   return (
     <div

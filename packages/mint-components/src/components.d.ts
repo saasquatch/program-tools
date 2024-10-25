@@ -1395,7 +1395,8 @@ export namespace Components {
          */
         "usersheading": string;
         /**
-          * @uiName Place text
+          * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
+          * @uiName Width
          */
         "width": string;
     }
@@ -7218,7 +7219,8 @@ declare namespace LocalJSX {
          */
         "usersheading"?: string;
         /**
-          * @uiName Place text
+          * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
+          * @uiName Width
          */
         "width"?: string;
     }
