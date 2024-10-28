@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \<sqm-user-info-form>
+
+  - Removed hard coded widths and inline styling to ensure the view is responsive
+
 - \<sqm-portal-container>
 
   - Added new `flexWrap` prop to optionally apply the flex-wrap css property
