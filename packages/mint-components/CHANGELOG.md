@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- \<sqm-portal-container>
+
+  - Added new `flexWrap` prop to optionally apply the flex-wrap css property
+
 - \<sqm-leaderboard>
 
   - Added the following props:
