@@ -310,6 +310,50 @@ export const SpaceEvenly = () => {
   );
 };
 
+export const ResponsiveBox = () => {
+  return (
+    <div
+      style={{ width: "100%", maxWidth: "1000px", border: "1px dashed grey" }}
+    >
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="space-between"
+        flex-wrap="nowrap"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
 export const Start = () => {
   return (
     <div style={{ width: "1000px", border: "1px dashed grey" }}>

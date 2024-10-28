@@ -1760,6 +1760,13 @@ export namespace Components {
          */
         "display": "grid" | "flex";
         /**
+          * @uiName Flex wrap behavior
+          * @uiType string
+          * @uiEnum ["wrap", "nowrap"]
+          * @uiEnumNames ["Wrap", "No Wrap"]
+         */
+        "flexWrap"?: string;
+        /**
           * @uiName Gap
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -7583,6 +7590,13 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
+        /**
+          * @uiName Flex wrap behavior
+          * @uiType string
+          * @uiEnum ["wrap", "nowrap"]
+          * @uiEnumNames ["Wrap", "No Wrap"]
+         */
+        "flexWrap"?: string;
         /**
           * @uiName Gap
           * @uiType string
