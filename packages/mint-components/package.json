@@ -70,7 +70,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@raisins/stencil-docs-target": "^1.1.1-0",
+    "@raisins/stencil-docs-target": "^1.1.1",
     "@saasquatch/component-boilerplate": "^1.6.7",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
