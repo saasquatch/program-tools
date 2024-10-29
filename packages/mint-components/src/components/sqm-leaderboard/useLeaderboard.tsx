@@ -16,6 +16,7 @@ export interface LeaderboardProps {
   anonymousUser?: string;
   showRank?: boolean;
   hideViewer?: boolean;
+  viewingUserText?: string;
   hideNames?: boolean;
   width?: string;
   rankSuffix?: string;

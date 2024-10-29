@@ -70,6 +70,11 @@ export class Leaderboard {
   @Prop() hideViewer: boolean = false;
 
   /**
+   * @uiName Viewing user text
+   */
+  @Prop() viewingUserText: string = "You";
+
+  /**
    * Hide the Names of users to protect personal identifiable information
    *
    * @uiName Hide users names
@@ -154,6 +159,7 @@ export class Leaderboard {
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,
+      viewingUserText: this.viewingUserText,
       hideNames: this.hideNames,
       showRank: this.showRank,
       isEssentials: this.isEssentials,
@@ -252,6 +258,7 @@ function useLeaderboardDemo(
             : "Anonymous User",
           showRank: props.showRank,
           hideViewer: props.hideViewer,
+          viewingUserText: props.viewingUserText,
           hideNames: props.hideNames,
           rankSuffix: props.rankSuffix,
           width: props.width,

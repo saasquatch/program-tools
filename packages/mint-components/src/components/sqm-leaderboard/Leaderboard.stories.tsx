@@ -161,6 +161,7 @@ const defaultStyles = {
   statsheading: "Referrals",
   rankheading: "Rank",
   anonymousUser: "Anonymous User",
+  viewingUserText: "You",
   rankSuffix:
     "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}",
 };
@@ -510,7 +511,7 @@ export const ViewerOutside = () => {
         lastInitial: "C",
         textValue: "8",
         rowNumber: 11,
-        rank: 23,
+        rank: 24,
       },
     },
     elements: {
@@ -535,6 +536,34 @@ export const ViewerAnonymous = () => {
       leaderboard: users,
       rowNumber: 10,
       viewerRank: null,
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const HideNamesWithViewerOutside = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        ...defaultStyles,
+        showRank: true,
+        hideNames: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        textValue: "8",
+        rowNumber: 11,
+        rank: 42,
+      },
     },
     elements: {
       ...defaultElements,

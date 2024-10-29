@@ -13,6 +13,7 @@ export interface LeaderboardViewProps {
       rankheading?: string;
       showRank?: boolean;
       hideViewer?: boolean;
+      viewingUserText?: string;
       hideNames?: boolean;
       anonymousUser?: string;
       rankSuffix?: string;
@@ -31,8 +32,8 @@ export interface LeaderboardViewProps {
     viewerRank?: {
       textValue: string;
       rank: number;
-      firstName: string;
-      lastInitial: string;
+      firstName?: string;
+      lastInitial?: string;
       rowNumber: number;
     };
   };
@@ -63,9 +64,10 @@ const style = {
       fontWeight: "var(--sl-font-weight-normal)",
     },
     "& .ellipses": {
-      textAlign: "center",
+      textAlign: "left",
       padding: "0",
       color: "var(--sl-color-neutral-500)",
+      paddingLeft: "25%",
     },
     "& .highlight": {
       background: "var(--sl-color-primary-50)",
@@ -79,6 +81,10 @@ const style = {
     },
     "& .Score": {
       width: "auto",
+      whiteSpace: "nowrap",
+    },
+
+    "& .Rank": {
       whiteSpace: "nowrap",
     },
     "& .fullWidth": {
@@ -99,6 +105,8 @@ const vanillaStyle = `
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
+
+  console.log("viewing user text ", styles.viewingUserText);
   if (states.loading)
     return (
       <div
@@ -138,6 +146,27 @@ export function LeaderboardView(props: LeaderboardViewProps) {
     return styles.anonymousUser;
   };
 
+  const getRankCellText = (userRank, isViewingUsersRow) => {
+    if (!userRank) {
+      return styles.hideNames ? `${styles.viewingUserText}` : "-";
+    }
+    const viewingUserText = ` - ${styles.viewingUserText}`;
+    return styles.rankSuffix
+      ? intl.formatMessage(
+          {
+            id: "rank",
+            defaultMessage: styles.rankSuffix,
+          },
+          {
+            rank: userRank,
+          }
+        ) + `${isViewingUsersRow && styles.hideNames ? viewingUserText : ""}`
+      : `${userRank} ${
+          isViewingUsersRow && styles.hideNames ? viewingUserText : ""
+        }`;
+  };
+
+  const showViewingUserText = "";
   return (
     <div
       class={sheet.classes.Leaderboard}
@@ -162,26 +191,14 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         {data.leaderboard?.map((user) => {
           if (user.rowNumber === data.viewerRank?.rowNumber)
             userSeenFlag = true;
+
+          const isViewingUsersRow =
+            !styles.hideViewer && user.rowNumber === data.viewerRank?.rowNumber;
           return (
-            <tr
-              class={
-                !styles.hideViewer &&
-                user.rowNumber === data.viewerRank?.rowNumber
-                  ? "highlight"
-                  : ""
-              }
-            >
+            <tr class={isViewingUsersRow ? "highlight" : ""}>
               {styles.showRank && (
                 <td class="Rank">
-                  {styles.rankSuffix
-                    ? intl.formatMessage(
-                        {
-                          id: "rank",
-                          defaultMessage: styles.rankSuffix,
-                        },
-                        { rank: user.rank }
-                      )
-                    : user.rank}
+                  {getRankCellText(user.rank, isViewingUsersRow)}
                 </td>
               )}
               {!styles.hideNames && <td class="User">{getUsersName(user)}</td>}
@@ -202,7 +219,9 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         {!userSeenFlag && !styles.hideViewer && (
           <tr class="highlight">
             {styles.showRank && (
-              <td class="Rank">{data.viewerRank?.rank || "-"}</td>
+              <td class="Rank">
+                {getRankCellText(data.viewerRank?.rank, true)}
+              </td>
             )}
             {!styles.hideNames && (
               <td class="User">{getUsersName(data.viewerRank || {})}</td>
