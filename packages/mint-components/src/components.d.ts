@@ -1368,6 +1368,7 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * A JSONata string that formats the rank with the appropriate ordinal suffix (e.g., "st" for 1st, "nd" for 2nd, "rd" for 3rd, and "th" for all others).
           * @uiName Rank Suffix
          */
         "rankSuffix": string;
@@ -7199,6 +7200,7 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * A JSONata string that formats the rank with the appropriate ordinal suffix (e.g., "st" for 1st, "nd" for 2nd, "rd" for 3rd, and "th" for all others).
           * @uiName Rank Suffix
          */
         "rankSuffix"?: string;

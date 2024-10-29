@@ -29,7 +29,6 @@ export interface LeaderboardProps {
   interval: string;
   empty: VNode;
   essentials: VNode;
-  loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
 }
 
@@ -240,7 +239,6 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     elements: {
       empty: props.empty,
       essentials: props.essentials,
-      loadingstate: props.loadingstate,
     },
   };
 }

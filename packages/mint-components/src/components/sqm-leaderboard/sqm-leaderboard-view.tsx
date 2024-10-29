@@ -39,7 +39,6 @@ export interface LeaderboardViewProps {
   elements: {
     empty: VNode;
     essentials: VNode;
-    loadingstate: VNode;
   };
 }
 
@@ -100,15 +99,27 @@ const vanillaStyle = `
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
-
   if (states.loading)
     return (
-      <div class={sheet.classes.Leaderboard}>
+      <div
+        class={sheet.classes.Leaderboard}
+        style={{ width: styles.width || "100%" }}
+      >
         <style type="text/css">
           {styleString}
           {vanillaStyle}
         </style>
-        {elements.loadingstate}
+        <table>
+          {[...Array(10)].map(() => {
+            return (
+              <tr>
+                <td>
+                  <sl-skeleton></sl-skeleton>
+                </td>
+              </tr>
+            );
+          })}
+        </table>
       </div>
     );
 
@@ -117,6 +128,15 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   if (!states.hasLeaders) return elements.empty;
 
   let userSeenFlag = false;
+
+  const getUsersName = (user) => {
+    if (!user.firstName && !user.lastInitial) return styles.anonymousUser;
+
+    const { firstName, lastInitial } = user;
+    if (firstName && lastInitial) return `${firstName} ${lastInitial}`;
+    if (firstName || lastInitial) return firstName || lastInitial;
+    return styles.anonymousUser;
+  };
 
   return (
     <div
@@ -153,24 +173,18 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             >
               {styles.showRank && (
                 <td class="Rank">
-                  {intl.formatMessage(
-                    {
-                      id: "rank",
-                      defaultMessage: styles.rankSuffix,
-                    },
-                    { rank: user.rank }
-                  )}
+                  {styles.rankSuffix
+                    ? intl.formatMessage(
+                        {
+                          id: "rank",
+                          defaultMessage: styles.rankSuffix,
+                        },
+                        { rank: user.rank }
+                      )
+                    : user.rank}
                 </td>
               )}
-              {!styles.hideNames && (
-                <td class="User">
-                  {user.firstName && user.lastInitial
-                    ? user.firstName + " " + user.lastInitial
-                    : user.firstName || user.lastInitial
-                    ? user.firstName || user.lastInitial
-                    : styles.anonymousUser}
-                </td>
-              )}
+              {!styles.hideNames && <td class="User">{getUsersName(user)}</td>}
               <td class="Score">{user.textValue}</td>
             </tr>
           );
@@ -191,15 +205,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
               <td class="Rank">{data.viewerRank?.rank || "-"}</td>
             )}
             {!styles.hideNames && (
-              <td class="User">
-                {data.viewerRank?.firstName && data.viewerRank?.lastInitial
-                  ? data.viewerRank?.firstName +
-                    " " +
-                    data.viewerRank?.lastInitial
-                  : data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                  ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                  : styles.anonymousUser}
-              </td>
+              <td class="User">{getUsersName(data.viewerRank || {})}</td>
             )}
             <td class="Score">{data.viewerRank?.textValue || "0"}</td>
           </tr>

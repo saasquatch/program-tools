@@ -185,21 +185,6 @@ const defaultElements = {
       support-text="Support"
     ></sqm-empty>
   ),
-  loadingstate: (
-    <slot name="loading">
-      <table>
-        {[...Array(10)].map(() => {
-          return (
-            <tr>
-              <td>
-                <sl-skeleton></sl-skeleton>
-              </td>
-            </tr>
-          );
-        })}
-      </table>
-    </slot>
-  ),
 };
 
 export const Empty = () => {
