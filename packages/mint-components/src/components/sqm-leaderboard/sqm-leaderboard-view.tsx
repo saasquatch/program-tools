@@ -1,7 +1,7 @@
 import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { loading } from "../sqm-reward-exchange-list/RewardExchangeListData";
+import { intl } from "../../global/global";
 export interface LeaderboardViewProps {
   states: {
     loading: boolean;
@@ -13,7 +13,11 @@ export interface LeaderboardViewProps {
       rankheading?: string;
       showRank?: boolean;
       hideViewer?: boolean;
+      viewingUserText?: string;
+      hideNames?: boolean;
       anonymousUser?: string;
+      rankSuffix?: string;
+      width?: string;
     };
   };
   data: {
@@ -28,15 +32,14 @@ export interface LeaderboardViewProps {
     viewerRank?: {
       textValue: string;
       rank: number;
-      firstName: string;
-      lastInitial: string;
+      firstName?: string;
+      lastInitial?: string;
       rowNumber: number;
     };
   };
   elements: {
     empty: VNode;
     essentials: VNode;
-    loadingstate: VNode;
   };
 }
 
@@ -61,9 +64,10 @@ const style = {
       fontWeight: "var(--sl-font-weight-normal)",
     },
     "& .ellipses": {
-      textAlign: "center",
+      textAlign: "left",
       padding: "0",
       color: "var(--sl-color-neutral-500)",
+      paddingLeft: "25%",
     },
     "& .highlight": {
       background: "var(--sl-color-primary-50)",
@@ -78,6 +82,13 @@ const style = {
     "& .Score": {
       width: "auto",
       whiteSpace: "nowrap",
+    },
+
+    "& .Rank": {
+      whiteSpace: "nowrap",
+    },
+    "& .fullWidth": {
+      width: "100%",
     },
   },
 };
@@ -97,12 +108,25 @@ export function LeaderboardView(props: LeaderboardViewProps) {
 
   if (states.loading)
     return (
-      <div class={sheet.classes.Leaderboard}>
+      <div
+        class={sheet.classes.Leaderboard}
+        style={{ width: styles.width || "100%" }}
+      >
         <style type="text/css">
           {styleString}
           {vanillaStyle}
         </style>
-        {elements.loadingstate}
+        <table>
+          {[...Array(10)].map(() => {
+            return (
+              <tr>
+                <td>
+                  <sl-skeleton></sl-skeleton>
+                </td>
+              </tr>
+            );
+          })}
+        </table>
       </div>
     );
 
@@ -112,39 +136,71 @@ export function LeaderboardView(props: LeaderboardViewProps) {
 
   let userSeenFlag = false;
 
+  const getUsersName = (user) => {
+    if (!user.firstName && !user.lastInitial) return styles.anonymousUser;
+
+    const { firstName, lastInitial } = user;
+    if (firstName && lastInitial) return `${firstName} ${lastInitial}`;
+    if (firstName || lastInitial) return firstName || lastInitial;
+    return styles.anonymousUser;
+  };
+
+  const getRankCellText = (userRank, isViewingUsersRow) => {
+    if (!userRank) {
+      return styles.hideNames ? `${styles.viewingUserText}` : "-";
+    }
+    const viewingUserText = ` - ${styles.viewingUserText}`;
+    return styles.rankSuffix
+      ? intl.formatMessage(
+          {
+            id: "rank",
+            defaultMessage: styles.rankSuffix,
+          },
+          {
+            rank: userRank,
+          }
+        ) + `${isViewingUsersRow && styles.hideNames ? viewingUserText : ""}`
+      : `${userRank} ${
+          isViewingUsersRow && styles.hideNames ? viewingUserText : ""
+        }`;
+  };
+
+  const showViewingUserText = "";
   return (
-    <div class={sheet.classes.Leaderboard} part="sqm-base">
+    <div
+      class={sheet.classes.Leaderboard}
+      part="sqm-base"
+      style={{ width: styles.width || "100%" }}
+    >
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div>Leaderboards</div>
+
       <table part="sqm-table">
         <tr>
-          {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
-          <th class="User">{styles.usersheading}</th>
+          {styles.showRank && (
+            <th class={`Rank ${styles.hideNames ? "fullWidth" : ""}`}>
+              {styles.rankheading}
+            </th>
+          )}
+          {!styles.hideNames && <th class="User">{styles.usersheading}</th>}
           <th class="Score">{styles.statsheading}</th>
         </tr>
         {data.leaderboard?.map((user) => {
           if (user.rowNumber === data.viewerRank?.rowNumber)
             userSeenFlag = true;
+
+          const isViewingUsersRow =
+            !styles.hideViewer && user.rowNumber === data.viewerRank?.rowNumber;
           return (
-            <tr
-              class={
-                !styles.hideViewer &&
-                user.rowNumber === data.viewerRank?.rowNumber
-                  ? "highlight"
-                  : ""
-              }
-            >
-              {styles.showRank && <td class="Rank">{user.rank}</td>}
-              <td class="User">
-                {user.firstName && user.lastInitial
-                  ? user.firstName + " " + user.lastInitial
-                  : user.firstName || user.lastInitial
-                  ? user.firstName || user.lastInitial
-                  : styles.anonymousUser}
-              </td>
+            <tr class={isViewingUsersRow ? "highlight" : ""}>
+              {styles.showRank && (
+                <td class="Rank">
+                  {getRankCellText(user.rank, isViewingUsersRow)}
+                </td>
+              )}
+              {!styles.hideNames && <td class="User">{getUsersName(user)}</td>}
               <td class="Score">{user.textValue}</td>
             </tr>
           );
@@ -162,17 +218,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         {!userSeenFlag && !styles.hideViewer && (
           <tr class="highlight">
             {styles.showRank && (
-              <td class="Rank">{data.viewerRank?.rank || "-"}</td>
+              <td class="Rank">
+                {getRankCellText(data.viewerRank?.rank, true)}
+              </td>
             )}
-            <td class="User">
-              {data.viewerRank?.firstName && data.viewerRank?.lastInitial
-                ? data.viewerRank?.firstName +
-                  " " +
-                  data.viewerRank?.lastInitial
-                : data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                : styles.anonymousUser}
-            </td>
+            {!styles.hideNames && (
+              <td class="User">{getUsersName(data.viewerRank || {})}</td>
+            )}
             <td class="Score">{data.viewerRank?.textValue || "0"}</td>
           </tr>
         )}

@@ -932,6 +932,11 @@ export namespace Components {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+        /**
+          * (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Width
+         */
+        "width"?: string;
     }
     interface SqmIndirectTaxForm {
         /**
@@ -1318,6 +1323,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Hide the Names of users to protect personal identifiable information
+          * @uiName Hide users names
+          * @default
+         */
+        "hideNames": boolean;
+        /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide viewing user
           * @default
@@ -1331,7 +1342,7 @@ export namespace Components {
         "interval": string;
         /**
           * Hides the leaderboard if user is on Essentials plan
-          * @uiName Hide viewing user
+          * @uiName Hide leaderboard for essentials user
           * @default
          */
         "isEssentials"?: boolean;
@@ -1357,6 +1368,11 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * A JSONata string that formats the rank with the appropriate ordinal suffix (e.g., "st" for 1st, "nd" for 2nd, "rd" for 3rd, and "th" for all others).
+          * @uiName Rank Suffix
+         */
+        "rankSuffix": string;
+        /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -1379,6 +1395,15 @@ export namespace Components {
           * @uiName User column heading
          */
         "usersheading": string;
+        /**
+          * @uiName Viewing user text
+         */
+        "viewingUserText": string;
+        /**
+          * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
+          * @uiName Width
+         */
+        "width": string;
     }
     interface SqmLeaderboardRank {
         /**
@@ -1739,6 +1764,13 @@ export namespace Components {
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
+        /**
+          * @uiName Flex wrap behavior
+          * @uiType string
+          * @uiEnum ["wrap", "nowrap"]
+          * @uiEnumNames ["Wrap", "No Wrap"]
+         */
+        "flexWrap"?: string;
         /**
           * @uiName Gap
           * @uiType string
@@ -6742,6 +6774,11 @@ declare namespace LocalJSX {
           * @uiName Minimum height
          */
         "minHeight"?: string;
+        /**
+          * (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+          * @uiName Width
+         */
+        "width"?: string;
     }
     interface SqmIndirectTaxForm {
         /**
@@ -7122,6 +7159,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Hide the Names of users to protect personal identifiable information
+          * @uiName Hide users names
+          * @default
+         */
+        "hideNames"?: boolean;
+        /**
           * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide viewing user
           * @default
@@ -7135,7 +7178,7 @@ declare namespace LocalJSX {
         "interval"?: string;
         /**
           * Hides the leaderboard if user is on Essentials plan
-          * @uiName Hide viewing user
+          * @uiName Hide leaderboard for essentials user
           * @default
          */
         "isEssentials"?: boolean;
@@ -7161,6 +7204,11 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * A JSONata string that formats the rank with the appropriate ordinal suffix (e.g., "st" for 1st, "nd" for 2nd, "rd" for 3rd, and "th" for all others).
+          * @uiName Rank Suffix
+         */
+        "rankSuffix"?: string;
+        /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -7183,6 +7231,15 @@ declare namespace LocalJSX {
           * @uiName User column heading
          */
         "usersheading"?: string;
+        /**
+          * @uiName Viewing user text
+         */
+        "viewingUserText"?: string;
+        /**
+          * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
+          * @uiName Width
+         */
+        "width"?: string;
     }
     interface SqmLeaderboardRank {
         /**
@@ -7543,6 +7600,13 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
+        /**
+          * @uiName Flex wrap behavior
+          * @uiType string
+          * @uiEnum ["wrap", "nowrap"]
+          * @uiEnumNames ["Wrap", "No Wrap"]
+         */
+        "flexWrap"?: string;
         /**
           * @uiName Gap
           * @uiType string

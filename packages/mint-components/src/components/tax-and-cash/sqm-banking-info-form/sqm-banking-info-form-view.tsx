@@ -216,7 +216,8 @@ const style = {
     background: "var(--sl-color-gray-200)",
   },
   LargeSkeleton: {
-    width: "320px",
+    width: "100%",
+    maxWidth: "320px",
     height: "40px",
     borderRadius: "50px",
     background: "var(--sl-color-gray-200)",
