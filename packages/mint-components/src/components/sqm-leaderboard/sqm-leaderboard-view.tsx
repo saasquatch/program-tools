@@ -106,7 +106,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  console.log("viewing user text ", styles.viewingUserText);
   if (states.loading)
     return (
       <div
