@@ -7,7 +7,7 @@ import {
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./sqm-leaderboard-view";
-import { useMemo } from "@saasquatch/stencil-hooks";
+import { useMemo } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardProps {
   usersheading: string;
@@ -215,6 +215,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
   };
 
+  // Show feature enforcement if request was forbidden
   const isEssentials = useMemo(
     () =>
       !!leaderboardErrors?.response?.errors?.find(
