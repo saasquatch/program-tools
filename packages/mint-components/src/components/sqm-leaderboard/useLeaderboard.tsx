@@ -7,7 +7,6 @@ import {
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./sqm-leaderboard-view";
-import { useMemo } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardProps {
   usersheading: string;
@@ -29,7 +28,6 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
-  essentials: VNode;
   demoProps?: LeaderboardViewProps;
 }
 
@@ -216,19 +214,9 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
   };
 
-  // Show feature enforcement if request was forbidden
-  const isEssentials = useMemo(
-    () =>
-      !!leaderboardErrors?.response?.errors?.find(
-        (error) => error?.extensions?.apiError?.statusCode === 403
-      ),
-    [leaderboardErrors]
-  );
-
   return {
     states: {
       loading: loadingLeaderboard,
-      isEssentials,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
@@ -239,7 +227,6 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
-      essentials: props.essentials,
     },
   };
 }

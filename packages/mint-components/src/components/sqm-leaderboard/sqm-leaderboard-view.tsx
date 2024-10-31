@@ -6,7 +6,6 @@ export interface LeaderboardViewProps {
   states: {
     loading: boolean;
     hasLeaders: boolean;
-    isEssentials?: boolean;
     styles: {
       usersheading: string;
       statsheading: string;
@@ -39,7 +38,6 @@ export interface LeaderboardViewProps {
   };
   elements: {
     empty: VNode;
-    essentials: VNode;
   };
 }
 
@@ -129,8 +127,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         </table>
       </div>
     );
-
-  if (states.isEssentials) return elements.essentials;
 
   if (!states.hasLeaders) return elements.empty;
 
