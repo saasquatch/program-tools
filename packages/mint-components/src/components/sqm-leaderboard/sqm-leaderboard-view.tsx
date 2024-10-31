@@ -6,6 +6,7 @@ export interface LeaderboardViewProps {
   states: {
     loading: boolean;
     hasLeaders: boolean;
+    isEssentials?: boolean;
     styles: {
       usersheading: string;
       statsheading: string;
@@ -104,7 +105,18 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  if (states.loading)
+  if (states.isEssentials) {
+    return (
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
+        empty-state-header="Leaderboards aren’t available on your plan"
+        empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
+        support-text="Support"
+      ></sqm-empty>
+    );
+  }
+
+  if (states.loading) {
     return (
       <div
         class={sheet.classes.Leaderboard}
@@ -127,6 +139,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         </table>
       </div>
     );
+  }
 
   if (!states.hasLeaders) return elements.empty;
 
@@ -161,7 +174,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         }`;
   };
 
-  const showViewingUserText = "";
   return (
     <div
       class={sheet.classes.Leaderboard}

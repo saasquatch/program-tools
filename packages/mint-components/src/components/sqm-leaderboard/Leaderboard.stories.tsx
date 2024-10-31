@@ -229,6 +229,35 @@ export const Loading = () => {
   return <LeaderboardView {...props} />;
 };
 
+export const Essentials = () => {
+  const props = {
+    states: {
+      loading: false,
+      isEssentials: true,
+      hasLeaders: false,
+      styles: {
+        ...defaultStyles,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [],
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        textValue: "8",
+        rowNumber: 11,
+        rank: 23,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
 export const One = () => {
   const props = {
     states: {

@@ -220,6 +220,7 @@ function useLeaderboardDemo(
       states: {
         loading: false,
         hasLeaders: true,
+        isEssentials: false,
         styles: {
           usersheading: props.usersheading
             ? props.usersheading
