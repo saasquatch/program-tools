@@ -83,14 +83,6 @@ export class Leaderboard {
   @Prop() hideNames: boolean = false;
 
   /**
-   * Hides the leaderboard if user is on Essentials plan
-   *
-   * @uiName Hide leaderboard for essentials user
-   * @default
-   */
-  @Prop() isEssentials?: boolean = false;
-
-  /**
    * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -162,7 +154,6 @@ export class Leaderboard {
       viewingUserText: this.viewingUserText,
       hideNames: this.hideNames,
       showRank: this.showRank,
-      isEssentials: this.isEssentials,
       rankSuffix: this.rankSuffix,
       width: this.width,
     };
