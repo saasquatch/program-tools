@@ -237,7 +237,6 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
-    url: "https://example.com",
     step: "3",
     urlLoading: false,
     docusignStatus: undefined,
@@ -255,7 +254,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     },
   },
   callbacks: {
-    setUrlToReturn: () => void 0,
+    progressStep: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
   },

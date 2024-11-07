@@ -132,36 +132,60 @@ export function useDocusignForm(props: DocusignForm) {
     fetchDocument();
   }, [user, publisher, participantType]);
 
-  useEffect(() => {
-    const onSubmit = async () => {
-      try {
-        setLoading(true);
+  const progressStep = async () => {
+    // TODO: Needs graphql call to determine status of document
 
-        await refetch();
+    try {
+      setLoading(true);
 
-        // Skip banking info form if it already is saved
-        // or if brandedSignup is false
-        setStep(
-          context.overrideNextStep ||
-            !!publisher?.withdrawalSettings ||
-            !publisher?.brandedSignup
-            ? "/dashboard"
-            : "/4"
-        );
-      } catch (e) {
-        setErrors({ general: true });
-      } finally {
-        setLoading(false);
-      }
-    };
+      await refetch();
 
-    // Handled in view
-    if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
-
-    if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      onSubmit();
+      // Skip banking info form if it already is saved
+      // or if brandedSignup is false
+      setStep(
+        context.overrideNextStep ||
+          !!publisher?.withdrawalSettings ||
+          !publisher?.brandedSignup
+          ? "/dashboard"
+          : "/4"
+      );
+    } catch (e) {
+      setErrors({ general: true });
+    } finally {
+      setLoading(false);
     }
-  }, [docusignStatus, refetch]);
+  };
+
+  // useEffect(() => {
+  //   const onSubmit = async () => {
+  //     try {
+  //       setLoading(true);
+
+  //       await refetch();
+
+  //       // Skip banking info form if it already is saved
+  //       // or if brandedSignup is false
+  //       setStep(
+  //         context.overrideNextStep ||
+  //           !!publisher?.withdrawalSettings ||
+  //           !publisher?.brandedSignup
+  //           ? "/dashboard"
+  //           : "/4"
+  //       );
+  //     } catch (e) {
+  //       setErrors({ general: true });
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   // Handled in view
+  //   if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
+
+  //   if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
+  //     onSubmit();
+  //   }
+  // }, [docusignStatus, refetch]);
 
   const allLoading = userLoading || documentLoading || loading;
 
@@ -190,6 +214,7 @@ export function useDocusignForm(props: DocusignForm) {
     },
     callbacks: {
       setDocusignStatus,
+      progressStep,
       setParticipantType,
     },
     text: props.getTextProps(),

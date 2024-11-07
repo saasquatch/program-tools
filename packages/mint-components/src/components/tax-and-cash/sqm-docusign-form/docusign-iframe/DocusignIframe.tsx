@@ -33,7 +33,7 @@ export interface DocusignIframeProps {
     returnUrl: string | undefined;
   };
   callbacks: {
-    onStatusChange: (status: DocusignStatus) => void;
+    progressStep: () => void;
   };
   text: {
     docusignExpired: string;
@@ -139,7 +139,6 @@ export const DocusignIframe = ({
   callbacks,
   text,
 }: DocusignIframeProps) => {
-  const [done, setDone] = useState(false);
   if (states.urlLoading) return <DocusignLoadingView />;
 
   // TODO: Confirm impact domain before launch
@@ -148,19 +147,14 @@ export const DocusignIframe = ({
     "impacttech.complysandbox.com",
   ];
 
-  const callback = useCallback(
-    (e) => {
-      const allowed = allowedDomains.some((d) => e.origin?.includes(d));
-      if (!allowed) return;
+  const callback = useCallback((e) => {
+    const allowed = allowedDomains.some((d) => e.origin?.includes(d));
+    if (!allowed) return;
 
-      if (e.data === "Complyexchange Thank you page Exit") {
-        setDone(true);
-      } else if (e.data.eventStatus) {
-        callbacks.onStatusChange(e.data.eventStatus);
-      }
-    },
-    [data.returnUrl]
-  );
+    if (e.data === "Complyexchange Thank you page Exit") {
+      callbacks.progressStep();
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener("message", callback, false);
@@ -179,7 +173,7 @@ export const DocusignIframe = ({
   return (
     <iframe
       frameBorder="0"
-      src={done ? data.returnUrl : data.documentUrl}
+      src={data.documentUrl}
       width="100%"
       height="1000px"
     ></iframe>
