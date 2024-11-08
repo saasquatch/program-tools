@@ -83,14 +83,6 @@ export class Leaderboard {
   @Prop() hideNames: boolean = false;
 
   /**
-   * Hides the leaderboard if user is on Essentials plan
-   *
-   * @uiName Hide leaderboard for essentials user
-   * @default
-   */
-  @Prop() isEssentials?: boolean = false;
-
-  /**
    * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -148,7 +140,6 @@ export class Leaderboard {
   render() {
     const props = {
       empty: <EmptySlot />,
-      essentials: <EssentialsSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankheading: this.rankheading,
@@ -162,7 +153,6 @@ export class Leaderboard {
       viewingUserText: this.viewingUserText,
       hideNames: this.hideNames,
       showRank: this.showRank,
-      isEssentials: this.isEssentials,
       rankSuffix: this.rankSuffix,
       width: this.width,
     };
@@ -181,20 +171,6 @@ function EmptySlot() {
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-      ></sqm-empty>
-    </slot>
-  );
-}
-
-function EssentialsSlot() {
-  return (
-    <slot name="essentials">
-      <sqm-empty
-        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
-        empty-state-header="Leaderboards aren’t available on your plan"
-        empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
-        support-text="Support"
-        missing-feature="Leaderboards"
       ></sqm-empty>
     </slot>
   );
@@ -270,7 +246,6 @@ function useLeaderboardDemo(
       },
       elements: {
         empty: <EmptySlot />,
-        essentials: <EssentialsSlot />,
       },
     },
     props.demoData || {},

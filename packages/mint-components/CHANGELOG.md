@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.3] - 2024-11-08
+
+### Changed
+
+- \<sqm-leaderboard>
+
+  - Removed unused isEssentials prop
+
 ## [1.10.2] - 2024-10-29
 
 ### Changed
@@ -1047,7 +1055,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.10.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.10.3...HEAD
+[1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
 [1.10.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.2
 [1.10.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.1
 [1.10.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.0

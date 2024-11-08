@@ -29,7 +29,6 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
-  essentials: VNode;
   demoProps?: LeaderboardViewProps;
 }
 
@@ -239,7 +238,6 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
-      essentials: props.essentials,
     },
   };
 }
