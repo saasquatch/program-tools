@@ -104,12 +104,11 @@ export function useDocusignForm(props: DocusignForm) {
   const [loading, setLoading] = useState(false);
 
   // Only look at current document if it's valid (same as required type)
-  const existingDocumentType = validTaxDocument(
-    publisher?.requiredTaxDocumentType,
-    publisher?.currentTaxDocument?.type
-  )
-    ? publisher?.currentTaxDocument?.type
-    : undefined;
+  const existingDocumentType =
+    validTaxDocument(publisher?.requiredTaxDocumentType) &&
+    publisher?.currentTaxDocument
+      ? publisher?.requiredTaxDocumentType
+      : undefined;
 
   const actualDocumentType =
     existingDocumentType ||

@@ -46,10 +46,7 @@ function getCurrentStep(user: UserQuery["user"]) {
   } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (
-    requiredTaxDocumentType &&
-    !validTaxDocument(requiredTaxDocumentType, currentTaxDocument?.type)
-  )
+  if (requiredTaxDocumentType && currentTaxDocument.status === "NEW")
     return "/3";
 
   if (!withdrawalSettings && brandedSignup) return "/4";
