@@ -56,12 +56,18 @@ Feature: Comply Exchange Form
       | W8-BEN-E    | businessEntity        |
 
   @minutia
-  Scenario: Participant successfully completes Docusign document and is directed to document summary page
-    When they successfully fillout and submit the Docusign document within the iframe
-    Then the Docusign iframe session completes with one of the following success statuses:
-      | signing_complete |
-      | viewing_complete |
-    And they are redirected to step 4
+  Scenario Outline: Participant completes Comply Exchange document and is directed to document summary page
+    When they successfully fill out the Comply Exchange forms within the iframe
+    And they get to the "Thank you" page in the iframe
+    Then the Comply Exchange iframe session completes with the event "Complyexchange Thank you page Exit"
+    And a request is sent to mark the document as completed
+    When the request <status>
+    Then they <may> be redirected to step 4
+
+    Examples:
+      | status   | may      |
+      | fails    | will not |
+      | succeeds | will     |
 
   @minutia @ui
   Scenario: Comply Exchange iframe is loading
@@ -95,4 +101,20 @@ Feature: Comply Exchange Form
     And the banner has description
       """
       Please refresh the page and try again. If this problem continues, contact Support.
+      """
+
+  @minutia
+  Scenario: Error banner on form submit failure
+    Given a participant loads the Comply Exchange form
+    And they correctly fill out all forms in the iframe
+    And the "Complyexchange Thank you page Exit" event is fired
+    When the document fails to complete
+    Then a general error banner is shown
+    And the banner has title
+      """
+      There was a problem submitting your information
+      """
+    And the banner has description
+      """
+      Please review your information and try again. If this problem continues, contact Support.
       """

@@ -168,6 +168,8 @@ export function useDocusignForm(props: DocusignForm) {
 
       console.log({ result });
       if (!result || (result as Error).message) throw new Error();
+      // @ts-expect-error: no data type for result
+      if (!result.completeImpactPublisherTaxDocument.success) throw new Error();
 
       setStep(
         context.overrideNextStep ||
