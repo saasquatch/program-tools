@@ -30,10 +30,9 @@ export interface DocusignIframeProps {
   };
   data: {
     documentUrl: string | undefined;
-    returnUrl: string | undefined;
   };
   callbacks: {
-    progressStep: () => void;
+    completeDocument: () => Promise<void>;
   };
   text: {
     docusignExpired: string;
@@ -152,7 +151,7 @@ export const DocusignIframe = ({
     if (!allowed) return;
 
     if (e.data === "Complyexchange Thank you page Exit") {
-      callbacks.progressStep();
+      callbacks.completeDocument();
     }
   }, []);
 

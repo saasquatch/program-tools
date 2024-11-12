@@ -21,10 +21,10 @@ import { DocusignForm } from "./sqm-docusign-form";
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
     documentUrl: string;
-    returnUrl: string;
   };
 };
 type CreateImpactPublisherTaxDocumentInput = {
+  provider?: "DOCUSIGN" | "COMPLY_EXCHANGE";
   isBusinessEntity?: boolean;
   user: {
     id: string;
@@ -44,7 +44,19 @@ const GET_TAX_DOCUMENT = gql`
       createImpactPublisherTaxDocumentInput: $vars
     ) {
       documentUrl
-      returnUrl
+    }
+  }
+`;
+
+type CompleteTaxDocumentMutation = {
+  completeImpactPublisherTaxDocument: {
+    success: boolean;
+  };
+};
+const COMPLETE_TAX_DOCUMENT = gql`
+  mutation completeImpactPublisherTaxDocument($vars: UserIdInput!) {
+    completeImpactPublisherTaxDocument(user: $vars) {
+      success
     }
   }
 `;
@@ -74,6 +86,15 @@ export function useDocusignForm(props: DocusignForm) {
     createTaxDocument,
     { loading: documentLoading, data: document, errors: documentErrors },
   ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
+
+  const [
+    completeTaxDocument,
+    {
+      loading: completeDocumentLoading,
+      data: completeData,
+      errors: completeErrors,
+    },
+  ] = useMutation<CompleteTaxDocumentMutation>(COMPLETE_TAX_DOCUMENT);
 
   const [docusignStatus, setDocusignStatus] =
     useState<DocusignStatus>(undefined);
@@ -113,6 +134,7 @@ export function useDocusignForm(props: DocusignForm) {
       try {
         const result = await createTaxDocument({
           vars: {
+            provider: "COMPLY_EXCHANGE",
             user: {
               id: user.id,
               accountId: user.accountId,
@@ -132,16 +154,22 @@ export function useDocusignForm(props: DocusignForm) {
     fetchDocument();
   }, [user, publisher, participantType]);
 
-  const progressStep = async () => {
-    // TODO: Needs graphql call to determine status of document
+  const completeDocument = async () => {
+    if (!user) return;
 
     try {
       setLoading(true);
 
-      await refetch();
+      const result = await completeTaxDocument({
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+      });
 
-      // Skip banking info form if it already is saved
-      // or if brandedSignup is false
+      console.log({ result });
+      if (!result || (result as Error).message) throw new Error();
+
       setStep(
         context.overrideNextStep ||
           !!publisher?.withdrawalSettings ||
@@ -156,37 +184,6 @@ export function useDocusignForm(props: DocusignForm) {
     }
   };
 
-  // useEffect(() => {
-  //   const onSubmit = async () => {
-  //     try {
-  //       setLoading(true);
-
-  //       await refetch();
-
-  //       // Skip banking info form if it already is saved
-  //       // or if brandedSignup is false
-  //       setStep(
-  //         context.overrideNextStep ||
-  //           !!publisher?.withdrawalSettings ||
-  //           !publisher?.brandedSignup
-  //           ? "/dashboard"
-  //           : "/4"
-  //       );
-  //     } catch (e) {
-  //       setErrors({ general: true });
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   // Handled in view
-  //   if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
-
-  //   if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-  //     onSubmit();
-  //   }
-  // }, [docusignStatus, refetch]);
-
   const allLoading = userLoading || documentLoading || loading;
 
   return {
@@ -195,7 +192,7 @@ export function useDocusignForm(props: DocusignForm) {
       hideSteps: context.hideSteps,
       disabled: allLoading,
       participantTypeDisabled: allLoading || !!existingDocumentType,
-      loading: userLoading || loading,
+      loading: userLoading || loading || completeDocumentLoading,
       urlLoading: documentLoading,
       loadingError: !!documentErrors?.message,
       formState: {
@@ -210,11 +207,10 @@ export function useDocusignForm(props: DocusignForm) {
     data: {
       taxForm: actualDocumentType,
       documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
-      returnUrl: document?.createImpactPublisherTaxDocument?.returnUrl,
     },
     callbacks: {
       setDocusignStatus,
-      progressStep,
+      completeDocument,
       setParticipantType,
     },
     text: props.getTextProps(),

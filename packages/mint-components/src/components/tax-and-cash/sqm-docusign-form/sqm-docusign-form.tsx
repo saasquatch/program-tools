@@ -173,10 +173,9 @@ export class DocusignForm {
         }}
         data={{
           documentUrl: props.data.documentUrl,
-          returnUrl: props.data.returnUrl,
         }}
         callbacks={{
-          progressStep: props.callbacks.progressStep,
+          completeDocument: props.callbacks.completeDocument,
         }}
         text={props.text}
       />

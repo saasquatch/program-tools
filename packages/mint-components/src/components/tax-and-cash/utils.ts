@@ -23,9 +23,8 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
     case "W9":
       return "W-9";
     case "W8BEN":
-      return "W-8 BEN";
     case "W8BENE":
-      return "W-8 BEN-E";
+      return "W-8";
     default:
       return "";
   }
