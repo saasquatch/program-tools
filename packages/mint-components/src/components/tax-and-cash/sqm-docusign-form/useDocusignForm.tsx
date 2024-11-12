@@ -160,7 +160,7 @@ export function useDocusignForm(props: DocusignForm) {
       setLoading(true);
 
       const result = await completeTaxDocument({
-        user: {
+        vars: {
           id: user.id,
           accountId: user.accountId,
         },
