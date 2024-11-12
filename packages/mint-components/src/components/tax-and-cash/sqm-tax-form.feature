@@ -99,7 +99,7 @@ Feature: Tax Form Flow
       | EG          | MX           | 4     |
 
   @minutia
-  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
+  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout Comply Exchange forms
     Given a brand based in <brandCountry>
     And the brand is not in the US
     And the user selects a <country> not in the US
@@ -111,7 +111,7 @@ Feature: Tax Form Flow
       | AUS          | EGP     |
 
   @minutia
-  Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
+  Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 Comply Exchange form
     Given a brand based in <brandCountry>
     And the user selects <country>
     When they view step 3
