@@ -254,6 +254,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     },
   },
   callbacks: {
+    progressStep: () => {},
     completeDocument: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),

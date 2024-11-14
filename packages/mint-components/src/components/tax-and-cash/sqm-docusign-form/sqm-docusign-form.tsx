@@ -175,6 +175,7 @@ export class DocusignForm {
           documentUrl: props.data.documentUrl,
         }}
         callbacks={{
+          progressStep: props.callbacks.progressStep,
           completeDocument: props.callbacks.completeDocument,
         }}
         text={props.text}

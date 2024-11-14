@@ -32,6 +32,7 @@ export interface DocusignIframeProps {
     documentUrl: string | undefined;
   };
   callbacks: {
+    progressStep: () => void;
     completeDocument: () => Promise<void>;
   };
   text: {
@@ -150,8 +151,12 @@ export const DocusignIframe = ({
     const allowed = allowedDomains.some((d) => e.origin?.includes(d));
     if (!allowed) return;
 
-    if (e.data === "Complyexchange Thank you page Exit") {
+    if (e.data === "Complyexchange Thank you page Load") {
       callbacks.completeDocument();
+    }
+
+    if (e.data == "Complyexchange Thank you page Exit") {
+      callbacks.progressStep();
     }
   }, []);
 

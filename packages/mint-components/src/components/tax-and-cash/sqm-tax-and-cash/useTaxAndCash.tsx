@@ -108,6 +108,9 @@ export function useTaxAndCash() {
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
     skip: !user,
+    options: {
+      batch: false,
+    },
   });
 
   const countryCode =

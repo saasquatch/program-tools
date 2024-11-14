@@ -166,23 +166,24 @@ export function useDocusignForm(props: DocusignForm) {
         },
       });
 
-      console.log({ result });
       if (!result || (result as Error).message) throw new Error();
       // @ts-expect-error: no data type for result
       if (!result.completeImpactPublisherTaxDocument.success) throw new Error();
-
-      setStep(
-        context.overrideNextStep ||
-          !!publisher?.withdrawalSettings ||
-          !publisher?.brandedSignup
-          ? "/dashboard"
-          : "/4"
-      );
     } catch (e) {
       setErrors({ general: true });
     } finally {
       setLoading(false);
     }
+  };
+
+  const progressStep = () => {
+    setStep(
+      context.overrideNextStep ||
+        !!publisher?.withdrawalSettings ||
+        !publisher?.brandedSignup
+        ? "/dashboard"
+        : "/4"
+    );
   };
 
   const allLoading = userLoading || documentLoading || loading;
@@ -212,6 +213,7 @@ export function useDocusignForm(props: DocusignForm) {
     callbacks: {
       setDocusignStatus,
       completeDocument,
+      progressStep,
       setParticipantType,
     },
     text: props.getTextProps(),

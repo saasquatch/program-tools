@@ -288,7 +288,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           </p>
         </div>
         <div>
-          <sl-alert
+          {/* <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
             type="primary"
             open
@@ -300,7 +300,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               name="info-circle"
             ></sl-icon>
             {text.docusignSessionWarning}
-          </sl-alert>
+          </sl-alert> */}
           {slots.docusignIframeSlot}
         </div>
       </div>
