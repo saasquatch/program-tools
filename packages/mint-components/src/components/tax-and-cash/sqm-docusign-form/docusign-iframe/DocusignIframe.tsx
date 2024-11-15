@@ -174,13 +174,25 @@ export const DocusignIframe = ({
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
 
+  const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
+
+  function handleMessage(e) {
+    if (typeof e.data === "number") {
+      setiFrameHeight(e.data + "px");
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("message", handleMessage, false);
+  }, [data]);
+
   return (
     <iframe
+      scrolling="yes"
       frameBorder="0"
       src={data.documentUrl}
       width="100%"
-      height="1000px"
+      height={iFrameHeight}
     ></iframe>
   );
 };
-// NWH4QF
