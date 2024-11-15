@@ -83,6 +83,7 @@ export const GET_USER = gql`
               type
               dateCreated
             }
+            # !!!!! UNCOMMENT ME !!!!!!!!
             # withdrawalSettings {
             #   paymentMethod
             #   paypalEmailAddress

@@ -40,20 +40,14 @@ Feature: Comply Exchange Form
   Scenario Outline: Text copies change based on tax form participant fills out
     When they are required to fill out <typeTaxForm>
     And are <participantType>
-    Then the page header is
-      """
-      Complete tax form
-      """
-    And the description is
-      """
-      Participants are required to complete and submit their tax information to continue.
-      """
+    Then the page header is <header>
+    And the description is <description>
 
     Examples:
-      | typeTaxForm | participantType       |
-      | W9          | N/A                   |
-      | W8-BEN      | individualParticipant |
-      | W8-BEN-E    | businessEntity        |
+      | typeTaxForm | participantType       | header       | description                                                                                                             |
+      | W9          | N/A                   | W-9 Tax Form | Participants based in the US need to submit a W-9 form.                                                                 |
+      | W8-BEN      | individualParticipant | W-8 Tax Form | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W-8 form. |
+      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US who represent a business entity need to submit a W-8 form.                      |
 
   @minutia
   Scenario Outline: Participant completes Comply Exchange document and is directed to document summary page
