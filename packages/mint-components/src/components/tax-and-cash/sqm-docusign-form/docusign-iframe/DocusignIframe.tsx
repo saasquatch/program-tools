@@ -139,7 +139,7 @@ export const DocusignIframe = ({
   callbacks,
   text,
 }: DocusignIframeProps) => {
-  if (states.urlLoading) return <DocusignLoadingView />;
+  const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
 
   // TODO: Confirm impact domain before launch
   const allowedDomains = [
@@ -150,6 +150,10 @@ export const DocusignIframe = ({
   const callback = useCallback((e) => {
     const allowed = allowedDomains.some((d) => e.origin?.includes(d));
     if (!allowed) return;
+
+    if (typeof e.data === "number") {
+      setiFrameHeight(e.data + "px");
+    }
 
     if (e.data === "Complyexchange Thank you page Load") {
       callbacks.completeDocument();
@@ -167,24 +171,14 @@ export const DocusignIframe = ({
     };
   }, []);
 
+  if (states.urlLoading) return <DocusignLoadingView />;
+
   if (DOCUSIGN_ERROR_STATES.includes(states.status)) {
     return <DocusignErrorView text={text} />;
   }
 
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
-
-  const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
-
-  function handleMessage(e) {
-    if (typeof e.data === "number") {
-      setiFrameHeight(e.data + "px");
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("message", handleMessage, false);
-  }, [data]);
 
   return (
     <iframe
