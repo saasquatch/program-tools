@@ -441,13 +441,15 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
-              <div style={{ display: "flex", gap: "4px" }}>
+              <div
+                style={{ display: "flex", gap: "4px", alignItems: "flex-end" }}
+              >
                 <sl-select
                   id="phoneNumberCountryCode"
                   exportparts="label: input-label, base: input-base"
                   name="/phoneNumberCountryCode"
                   label={text.phoneNumber}
-                  style={{ minWidth: "140px" }}
+                  style={{ minWidth: "120px" }}
                   value={formState.phoneNumberCountryCode}
                   disabled={states.disabled || states.isPartner}
                   ref={(el: HTMLFormElement) =>
