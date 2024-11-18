@@ -70,6 +70,7 @@ import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as ShareCode from "../sqm-share-code/ShareCode.stories";
+import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as EmailRegistration from "../views/EmailRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
@@ -164,6 +165,7 @@ const stories = [
   Tabs,
   ShareCode,
   CouponCode,
+  ReferralCode,
   LogoutCurrentUser,
   LinkButton,
   EmailRegistration,
