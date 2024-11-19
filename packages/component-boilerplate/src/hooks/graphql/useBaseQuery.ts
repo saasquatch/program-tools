@@ -80,12 +80,12 @@ function reducer<T>(
 export function useBaseQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>,
-  options = { batch: true }
+  options = { batch: true, protected: false }
 ): [
   BaseQueryData<T>,
   (variables: unknown, skipLoading?: boolean) => Promise<T | Error>
 ] {
-  const client = useGraphQLClient();
+  const client = useGraphQLClient({ protected: options.protected });
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState

@@ -7,17 +7,25 @@ declare global {
     squatchUserIdentity?: ContextProvider<UserIdentity | undefined>;
     squatchLocale?: ContextProvider<string | undefined>;
     squatchProgramId?: ContextProvider<string | undefined>;
+    squatchVerification?: ContextProvider<VerificationContext | undefined>;
   }
 }
 
 export type UserContextName = "sq:user-identity";
 export type LocaleContextName = "sq:locale";
 export type ProgramContextName = "sq:program-id";
+export type VerificationContextName = "sq:verification";
 
 export const USER_CONTEXT_NAME: UserContextName = "sq:user-identity" as const;
 export const LOCALE_CONTEXT_NAME: LocaleContextName = "sq:locale" as const;
 export const PROGRAM_CONTEXT_NAME: ProgramContextName =
   "sq:program-id" as const;
+export const VERIFICATION_CONTEXT_NAME: VerificationContextName =
+  "sq:verification" as const;
+
+export type VerificationContext = {
+  token: string;
+};
 
 /**
  * The value stored in the UserContext

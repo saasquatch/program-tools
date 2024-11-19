@@ -715,6 +715,8 @@ export namespace Components {
          */
         "updatetext": string;
     }
+    interface SqmEmailCheck {
+    }
     interface SqmEmpty {
         /**
           * @uiName Title
@@ -5123,6 +5125,8 @@ export namespace Components {
          */
         "loadingText": string;
     }
+    interface SqmWidgetVerification {
+    }
 }
 declare global {
     interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
@@ -5208,6 +5212,12 @@ declare global {
     var HTMLSqmEditProfileElement: {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
+    };
+    interface HTMLSqmEmailCheckElement extends Components.SqmEmailCheck, HTMLStencilElement {
+    }
+    var HTMLSqmEmailCheckElement: {
+        prototype: HTMLSqmEmailCheckElement;
+        new (): HTMLSqmEmailCheckElement;
     };
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
@@ -5773,6 +5783,12 @@ declare global {
         prototype: HTMLSqmUserNameElement;
         new (): HTMLSqmUserNameElement;
     };
+    interface HTMLSqmWidgetVerificationElement extends Components.SqmWidgetVerification, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationElement: {
+        prototype: HTMLSqmWidgetVerificationElement;
+        new (): HTMLSqmWidgetVerificationElement;
+    };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
@@ -5788,6 +5804,7 @@ declare global {
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-email-check": HTMLSqmEmailCheckElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
@@ -5882,6 +5899,7 @@ declare global {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
+        "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
     }
 }
 declare namespace LocalJSX {
@@ -6550,6 +6568,8 @@ declare namespace LocalJSX {
           * @uiName Info button text
          */
         "updatetext"?: string;
+    }
+    interface SqmEmailCheck {
     }
     interface SqmEmpty {
         /**
@@ -10928,6 +10948,8 @@ declare namespace LocalJSX {
          */
         "loadingText"?: string;
     }
+    interface SqmWidgetVerification {
+    }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
@@ -10943,6 +10965,7 @@ declare namespace LocalJSX {
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-email-check": SqmEmailCheck;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
@@ -11037,6 +11060,7 @@ declare namespace LocalJSX {
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
+        "sqm-widget-verification": SqmWidgetVerification;
     }
 }
 export { LocalJSX as JSX };
@@ -11057,6 +11081,7 @@ declare module "@stencil/core" {
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-email-check": LocalJSX.SqmEmailCheck & JSXBase.HTMLAttributes<HTMLSqmEmailCheckElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
@@ -11151,6 +11176,7 @@ declare module "@stencil/core" {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
+            "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
         }
     }
 }

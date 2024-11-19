@@ -13,6 +13,17 @@
   </head>
 
   <body>
-    <sqm-stencilbook></sqm-stencilbook>
+    <!-- <sqm-widget-verification>
+      <template slot="verified"><h1>VERIFIED</h1></template>
+    </sqm-widget-verification> -->
+
+    <sqb-auth-template-switch verified>
+      <template slot="logged-out">
+        <sqm-widget-verification></sqm-widget-verification>
+      </template>
+      <template slot="logged-in">
+        <h1>VERIFIED</h1>
+      </template>
+    </sqb-auth-template-switch>
   </body>
 </html>

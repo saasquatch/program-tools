@@ -1,11 +1,14 @@
-import { useToken } from '@saasquatch/component-boilerplate';
+import { useToken, useVerificationContext } from '@saasquatch/component-boilerplate';
 import { useCallback, useEffect, useState } from '@saasquatch/universal-hooks';
 import debugFn from 'debug';
 import { useTemplateChildren } from '../../utils/useTemplateChildren';
 const debug = debugFn('sq:useAuthTemplateSwitch');
 
-export function useAuthTemplateSwitch() {
-  const authToken = useToken();
+type Options = { verification?: boolean };
+export function useAuthTemplateSwitch(options?: Options) {
+  const token = useToken();
+  const verificationToken = useVerificationContext()?.token;
+  const authToken = options.verification ? verificationToken : token;
 
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
   const [slot, setSlot] = useState<HTMLDivElement>(undefined);

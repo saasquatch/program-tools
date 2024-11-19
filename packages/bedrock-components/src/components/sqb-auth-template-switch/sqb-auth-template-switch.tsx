@@ -1,5 +1,5 @@
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, h, Host } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
 
 /**
@@ -13,6 +13,8 @@ import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
   tag: 'sqb-auth-template-switch',
 })
 export class SqbAuthTemplateSwitch {
+  @Prop() verification: boolean = false;
+
   constructor() {
     withHooks(this);
   }
@@ -20,7 +22,7 @@ export class SqbAuthTemplateSwitch {
   disconnectedCallback() {}
 
   render() {
-    const { setContainer, setSlot } = useAuthTemplateSwitch();
+    const { setContainer, setSlot } = useAuthTemplateSwitch({ verification: this.verification });
 
     return (
       <Host>
