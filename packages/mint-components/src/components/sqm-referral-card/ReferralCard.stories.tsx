@@ -49,7 +49,14 @@ const shareButtonsWithPromoCodes = (slot) => {
         <sqm-share-button medium="email">Share via email</sqm-share-button>
         <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
         <sqm-share-button medium="twitter">Post about us on X</sqm-share-button>
-        <sqm-pagination></sqm-pagination>
+        <sqm-portal-container gap="x-small">
+          <span
+            style={{ textAlign: "center", color: "var(--sl-color-gray-500)" }}
+          >
+            You have copied this code before
+          </span>
+          <sqm-pagination></sqm-pagination>
+        </sqm-portal-container>
       </sqm-portal-container>
     </sqm-portal-container>
   );

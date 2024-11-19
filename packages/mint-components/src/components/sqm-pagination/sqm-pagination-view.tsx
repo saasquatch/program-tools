@@ -10,9 +10,10 @@ export interface PaginationViewProps {
 const style = {
   Container: {
     display: "flex",
+    justifyContent: "flex-end",
     alignItems: "center",
-    justifyContent: "center",
     gap: "var(--sl-spacing-small)",
+    width: "100%",
   },
 };
 
@@ -25,17 +26,9 @@ export function PaginationView(props: PaginationViewProps) {
   return (
     <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <sl-icon-button
-        onClick={onPrev}
-        name="chevron-left"
-        exportparts={"base: primarybutton-base"}
-      ></sl-icon-button>
+      <sl-icon-button onClick={onPrev} name="chevron-left"></sl-icon-button>
       <span>{pageNumber}</span>
-      <sl-icon-button
-        onClick={onNext}
-        name="chevron-right"
-        exportparts={"base: primarybutton-base"}
-      ></sl-icon-button>
+      <sl-icon-button onClick={onNext} name="chevron-right"></sl-icon-button>
     </span>
   );
 }
