@@ -85,6 +85,19 @@ export class TaxAndCashDashboard {
   @Prop() taxAlertNotActiveMessageW8?: string =
     "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form.";
   /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Payout on hold warning message header
+   */
+  @Prop() payoutOnHoldAlertHeader?: string = "Your payout is on hold";
+  /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Payout on hold warning warning message description
+   */
+  @Prop() payoutOnHoldAlertMessage?: string =
+    "If you've recently added your payout information, please wait while we verify your information. If it's still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  /**
    * Additional text displayed next to the tax form's status badge.
    *
    * @uiName Invalid tax form description

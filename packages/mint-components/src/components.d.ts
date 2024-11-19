@@ -4802,6 +4802,16 @@ export namespace Components {
          */
         "payoutMissingInformationText": string;
         /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Payout on hold warning message header
+         */
+        "payoutOnHoldAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Payout on hold warning warning message description
+         */
+        "payoutOnHoldAlertMessage"?: string;
+        /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
          */
@@ -10607,6 +10617,16 @@ declare namespace LocalJSX {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Payout on hold warning message header
+         */
+        "payoutOnHoldAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Payout on hold warning warning message description
+         */
+        "payoutOnHoldAlertMessage"?: string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details

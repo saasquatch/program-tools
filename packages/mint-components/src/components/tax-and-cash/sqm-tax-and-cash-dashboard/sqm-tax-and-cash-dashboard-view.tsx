@@ -25,6 +25,7 @@ export interface TaxAndCashDashboardProps {
     loading?: boolean;
     loadingError?: boolean;
     showNewFormDialog: boolean;
+    payoutOnHold?: boolean;
     errors?: {
       general?: boolean;
     };
@@ -51,6 +52,8 @@ export interface TaxAndCashDashboardProps {
     taxAlertHeaderNotActiveW8?: string;
     taxAlertNotActiveMessageW9?: string;
     taxAlertNotActiveMessageW8?: string;
+    payoutOnHoldAlertHeader?: string;
+    payoutOnHoldAlertMessage?: string;
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
@@ -386,6 +389,21 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     <div>
       <div>
         <style type="text/css">{styleString}</style>
+        {states.payoutOnHold && (
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="warning"
+              open
+              class={sheet.classes.ExpiringSoonAlertContainer}
+            >
+              <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+              <strong>{text.payoutOnHoldAlertHeader}</strong>
+              <br />
+              {text.payoutOnHoldAlertMessage}
+            </sl-alert>
+          </div>
+        )}
         {states.loadingError && (
           <div>
             <sl-alert
