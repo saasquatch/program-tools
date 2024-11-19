@@ -4695,6 +4695,16 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Identity verification warning message header
+         */
+        "identityRequiredAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Identity verificationwarning message description
+         */
+        "identityRequiredAlertMessage"?: string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
          */
@@ -4808,7 +4818,7 @@ export namespace Components {
         "payoutOnHoldAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
-          * @uiName Payout on hold warning warning message description
+          * @uiName Payout on hold warning message description
          */
         "payoutOnHoldAlertMessage"?: string;
         /**
@@ -4887,6 +4897,10 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
+        /**
+          * @uiName Verify button label
+         */
+        "verifyButton": string;
     }
     interface SqmText {
     }
@@ -10511,6 +10525,16 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Identity verification warning message header
+         */
+        "identityRequiredAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Identity verificationwarning message description
+         */
+        "identityRequiredAlertMessage"?: string;
+        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
          */
@@ -10624,7 +10648,7 @@ declare namespace LocalJSX {
         "payoutOnHoldAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
-          * @uiName Payout on hold warning warning message description
+          * @uiName Payout on hold warning message description
          */
         "payoutOnHoldAlertMessage"?: string;
         /**
@@ -10703,6 +10727,10 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+        /**
+          * @uiName Verify button label
+         */
+        "verifyButton"?: string;
     }
     interface SqmText {
     }

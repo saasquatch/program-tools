@@ -93,10 +93,24 @@ export class TaxAndCashDashboard {
   /**
    * Part of the alert displayed at the top of the page.
    *
-   * @uiName Payout on hold warning warning message description
+   * @uiName Payout on hold warning message description
    */
   @Prop() payoutOnHoldAlertMessage?: string =
     "If you've recently added your payout information, please wait while we verify your information. If it's still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Identity verification warning message header
+   */
+  @Prop() identityRequiredAlertHeader?: string =
+    "Identity verification required";
+  /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Identity verificationwarning message description
+   */
+  @Prop() identityRequiredAlertMessage?: string =
+    "Please verify your identity to receive your cash rewards. Once submited it should only take a couple minutes for the verification process to complete.";
   /**
    * Additional text displayed next to the tax form's status badge.
    *
@@ -331,6 +345,10 @@ export class TaxAndCashDashboard {
    * @uiName Cancel button label
    */
   @Prop() cancelButton: string = "Cancel";
+  /**
+   * @uiName Verify button label
+   */
+  @Prop() verifyButton: string = "Verify";
 
   /**
    * @undocumented
