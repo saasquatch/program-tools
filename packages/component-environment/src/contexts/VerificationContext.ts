@@ -7,6 +7,9 @@ import {
   VerificationContext,
 } from "../types";
 import { getUserIdentity } from "./UserIdentityContext";
+import { debug as _debug } from "../debug";
+
+const debug = (...args: any[]) => _debug(VERIFICATION_CONTEXT_NAME, ...args);
 
 export function lazilyStartVerificationContext() {
   let globalProvider = window.squatchVerification;
@@ -49,6 +52,7 @@ export function setVerificationContext(context: VerificationContext) {
   const globalProvider = lazilyStartVerificationContext();
 
   if (!equal(globalProvider.context, context)) {
+    debug(`Setting verification context to [${JSON.stringify(context)}]`);
     globalProvider.context = context;
   }
 }

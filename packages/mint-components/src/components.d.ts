@@ -416,6 +416,8 @@ export namespace Components {
          */
         "color": string;
     }
+    interface SqmCodeCheck {
+    }
     interface SqmContextRouter {
         "contextName": string;
     }
@@ -5177,6 +5179,12 @@ declare global {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
+    interface HTMLSqmCodeCheckElement extends Components.SqmCodeCheck, HTMLStencilElement {
+    }
+    var HTMLSqmCodeCheckElement: {
+        prototype: HTMLSqmCodeCheckElement;
+        new (): HTMLSqmCodeCheckElement;
+    };
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
     var HTMLSqmContextRouterElement: {
@@ -5798,6 +5806,7 @@ declare global {
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
+        "sqm-code-check": HTMLSqmCodeCheckElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
@@ -6269,6 +6278,8 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "color"?: string;
+    }
+    interface SqmCodeCheck {
     }
     interface SqmContextRouter {
         "contextName"?: string;
@@ -10959,6 +10970,7 @@ declare namespace LocalJSX {
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
+        "sqm-code-check": SqmCodeCheck;
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
@@ -11075,6 +11087,7 @@ declare module "@stencil/core" {
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            "sqm-code-check": LocalJSX.SqmCodeCheck & JSXBase.HTMLAttributes<HTMLSqmCodeCheckElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
