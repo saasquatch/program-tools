@@ -17,6 +17,19 @@ import { useReferralCodes } from "./useReferralCodes";
   shadow: true,
 })
 export class ReferralCodes {
+  @Prop() titleText: string = "Share with your friends:";
+
+  // referral code props
+
+  // share link props
+
+  // email button props
+  @Prop() email_buttonText: string = "Share via email";
+  // facebook messenger props
+  @Prop() fbmessenger_buttonText: string = "Message on Facebook";
+  // whatsapp props
+  @Prop() whatsapp_buttonText: string = "Text on WhatsApp";
+
   /**
    * @undocumented
    * @uiType object
@@ -35,17 +48,33 @@ export class ReferralCodes {
       : useReferralCodes(thisProps);
     return (
       <div>
-        referral codes here
+        {this.titleText}
+        <sqm-referral-code codeOverride="OVERRIDE"></sqm-referral-code>
+        <sqm-share-link linkOverride="example.com"></sqm-share-link>
+        <sqm-share-button medium="email" messageLinkOverride="example.com">
+          {this.email_buttonText}
+        </sqm-share-button>
+        <sqm-share-button
+          medium="fbmessenger"
+          messageLinkOverride="example.com"
+          shareLinkOverride="example.com"
+        >
+          {this.fbmessenger_buttonText}
+        </sqm-share-button>
+        <sqm-share-button medium="whatsapp" messageLinkOverride="example.com">
+          {this.whatsapp_buttonText}
+        </sqm-share-button>
         <div>
-          <sl-button>prev</sl-button>
-          <sl-button>next</sl-button>
+          <sl-button>{"<"}</sl-button>
+          {props.states.currentPage + 1}
+          <sl-button>{">"}</sl-button>
         </div>
       </div>
     );
   }
 }
 
-function useDemoReferralCodes(props: ReferralCodes): CopyTextViewProps {
+function useDemoReferralCodes(props: ReferralCodes) {
   const [currentPage, setCurrentPage] = useState(0);
 
   return deepmerge(

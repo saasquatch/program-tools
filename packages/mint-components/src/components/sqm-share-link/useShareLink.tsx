@@ -13,6 +13,7 @@ interface ShareLinkProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
+  linkOverride?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -43,12 +44,12 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   const { data } = useQuery(
     MessageLinkQuery,
     { programId, engagementMedium },
-    !user?.jwt
+    !user?.jwt || !!props.linkOverride
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
-    data?.user?.shareLink ??
+    (props.linkOverride || data?.user?.shareLink) ??
     // Shown during loading
     "...";
 

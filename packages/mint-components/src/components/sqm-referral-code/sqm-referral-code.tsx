@@ -82,6 +82,12 @@ export class ReferralCode {
    */
   @Prop() demoData?: DemoData<CopyTextViewProps>;
 
+  /**
+   * @undocumented
+   * @uiType string
+   */
+  @Prop() codeOverride?: string;
+
   constructor() {
     withHooks(this);
   }
@@ -98,7 +104,7 @@ export class ReferralCode {
 
 function useDemoReferralCode(props: ReferralCode): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const copyString = "REFERRALCODE001";
+  const copyString = props.codeOverride || "REFERRALCODE001";
   return deepmerge(
     {
       copyString: copyString,

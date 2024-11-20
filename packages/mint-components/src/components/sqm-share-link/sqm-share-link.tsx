@@ -81,6 +81,11 @@ export class ShareLink {
 
   /**
    * @undocumented
+   */
+  @Prop() linkOverride?: string;
+
+  /**
+   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<CopyTextViewProps>;

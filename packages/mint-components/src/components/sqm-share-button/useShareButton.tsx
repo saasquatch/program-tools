@@ -19,6 +19,8 @@ interface ShareButtonProps extends ShareButtonViewProps {
   sharetext?: string;
   errorText?: string;
   unsupportedPlatformText?: string;
+  messageLinkOverride?: string;
+  shareLinkOverride?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -66,28 +68,24 @@ function NativeShare(
   }
 }
 
-function FacebookShare(directLink: string, res: any, errorText: string) {
-  if (
-    res.data?.viewer?.messageLink === "undefined" ||
-    directLink === "undefined"
-  ) {
+function FacebookShare(
+  directLink: string,
+  messageLink: string,
+  errorText: string
+) {
+  if (messageLink === "undefined" || directLink === "undefined") {
     return alert(errorText);
   }
 
   if (typeof SquatchAndroid.shareOnFacebook !== "undefined") {
-    return SquatchAndroid.shareOnFacebook(
-      directLink,
-      res.data.viewer.messageLink
-    );
+    return SquatchAndroid.shareOnFacebook(directLink, messageLink);
   } else {
-    return GenericShare(res, errorText);
+    return GenericShare(messageLink, errorText);
   }
 }
 
-function GenericShare(res: any, errorText: string) {
-  return res.data?.viewer?.messageLink
-    ? window.open(res.data.viewer.messageLink)
-    : alert(errorText);
+function GenericShare(messageLink: string, errorText: string) {
+  return messageLink ? window.open(messageLink) : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -104,7 +102,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
   // only queries if a programId is available
   const res = useQuery(MessageLinkQuery, variables, !user?.jwt || !programId);
 
-  const directLink = res?.data?.viewer?.shareLink;
+  const directLink = props.shareLinkOverride || res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 
@@ -118,11 +116,23 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
-      FacebookShare(directLink, res, props.errorText);
+      FacebookShare(
+        directLink,
+        props.messageLinkOverride || res.data?.viewer?.messageLink,
+        props.errorText
+      );
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
-      NativeShare({ sharetitle, sharetext }, directLink, props.errorText, props.unsupportedPlatformText);
+      NativeShare(
+        { sharetitle, sharetext },
+        directLink,
+        props.errorText,
+        props.unsupportedPlatformText
+      );
     } else {
-      GenericShare(res, props.errorText);
+      GenericShare(
+        props.messageLinkOverride || res.data?.viewer?.messageLink,
+        props.errorText
+      );
     }
   }
 

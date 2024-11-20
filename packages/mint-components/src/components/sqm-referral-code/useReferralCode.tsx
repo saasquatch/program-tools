@@ -13,6 +13,7 @@ interface ReferralCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
+  codeOverride?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -36,7 +37,11 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
-  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
+  const { data } = useQuery(
+    MessageLinkQuery,
+    { programId },
+    !user?.jwt || !!props.codeOverride
+  );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
