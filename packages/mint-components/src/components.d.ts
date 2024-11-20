@@ -2630,9 +2630,18 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @uiGroup Email
+         */
         "email_buttonText": string;
+        /**
+          * @uiGroup Facebook Messenger
+         */
         "fbmessenger_buttonText": string;
         "titleText": string;
+        /**
+          * @uiGroup WhatsApp
+         */
         "whatsapp_buttonText": string;
     }
     interface SqmReferralIframe {
@@ -8554,9 +8563,18 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * @uiGroup Email
+         */
         "email_buttonText"?: string;
+        /**
+          * @uiGroup Facebook Messenger
+         */
         "fbmessenger_buttonText"?: string;
         "titleText"?: string;
+        /**
+          * @uiGroup WhatsApp
+         */
         "whatsapp_buttonText"?: string;
     }
     interface SqmReferralIframe {

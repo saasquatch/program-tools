@@ -24,10 +24,21 @@ export class ReferralCodes {
   // share link props
 
   // email button props
+  /**
+   * @uiGroup Email
+   */
   @Prop() email_buttonText: string = "Share via email";
+
   // facebook messenger props
+  /**
+   * @uiGroup Facebook Messenger
+   */
   @Prop() fbmessenger_buttonText: string = "Message on Facebook";
+
   // whatsapp props
+  /**
+   * @uiGroup WhatsApp
+   */
   @Prop() whatsapp_buttonText: string = "Text on WhatsApp";
 
   /**
