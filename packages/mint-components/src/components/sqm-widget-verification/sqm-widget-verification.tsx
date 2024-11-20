@@ -1,13 +1,15 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h } from "@stencil/core";
 import { useWidgetVerification } from "./useWidgetVerification";
-import { useParentState } from "@saasquatch/component-boilerplate";
+import {
+  useParentState,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "./keys";
 import { WidgetEmailVerification } from "./sqm-email-check/sqm-email-check";
 
 /**
  * @uiName Widget Verification Gate
- * @slots [{ "name": "verified", "title": "Verified Content" }]
  */
 @Component({
   tag: "sqm-widget-verification",
@@ -20,13 +22,14 @@ export class WidgetVerification {
   disconnectedCallback() {}
 
   render() {
+    const userIdentity = useUserIdentity();
     const [showCode, setShowCode] = useParentState<boolean>({
       namespace: SHOW_CODE_NAMESPACE,
-      initialValue: false,
+      initialValue: !!userIdentity?.managedIdentity?.email,
     });
-    const [email, setEmail] = useParentState<boolean>({
+    const [email, setEmail] = useParentState<string | undefined>({
       namespace: VERIFICATION_EMAIL_NAMESPACE,
-      initialValue: false,
+      initialValue: userIdentity?.managedIdentity?.email,
     });
 
     const verificationStep = () => {
