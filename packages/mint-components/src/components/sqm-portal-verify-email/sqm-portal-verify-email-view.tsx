@@ -8,7 +8,6 @@ export interface PortalVerifyEmailViewProps {
     error: string;
     loading: boolean;
     success: boolean;
-    verified: boolean;
   };
   data: {
     oobCode: string;
