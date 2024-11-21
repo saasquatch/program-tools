@@ -83,20 +83,19 @@ export const GET_USER = gql`
               type
               dateCreated
             }
-            # !!!!! UNCOMMENT ME !!!!!!!!
-            # withdrawalSettings {
-            #   paymentMethod
-            #   paypalEmailAddress
-            #   bankCountry
-            #   bankAccountNumber
-            #   paymentSchedulingType
-            #   paymentThreshold
-            #   paymentDay
-            # }
-            # payoutsAccount {
-            #   hold
-            #   balance
-            # }
+            withdrawalSettings {
+              paymentMethod
+              paypalEmailAddress
+              bankCountry
+              bankAccountNumber
+              paymentSchedulingType
+              paymentThreshold
+              paymentDay
+            }
+            payoutsAccount {
+              hold
+              balance
+            }
           }
         }
       }
