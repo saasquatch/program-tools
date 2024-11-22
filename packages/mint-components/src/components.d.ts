@@ -2635,14 +2635,30 @@ export namespace Components {
          */
         "email_buttonText": string;
         /**
+          * @uiGroup Email
+         */
+        "email_hideEmail": boolean;
+        /**
           * @uiGroup Facebook Messenger
          */
         "fbmessenger_buttonText": string;
+        /**
+          * @uiGroup Facebook Messenger
+         */
+        "fbmessenger_hideFbMessenger": boolean;
+        /**
+          * @uiGroup Sharelink
+         */
+        "sharelink_hideSharelink": boolean;
         "titleText": string;
         /**
           * @uiGroup WhatsApp
          */
         "whatsapp_buttonText": string;
+        /**
+          * @uiGroup WhatsApp
+         */
+        "whatsapp_hideWhatsApp": boolean;
     }
     interface SqmReferralIframe {
         /**
@@ -8568,14 +8584,30 @@ declare namespace LocalJSX {
          */
         "email_buttonText"?: string;
         /**
+          * @uiGroup Email
+         */
+        "email_hideEmail"?: boolean;
+        /**
           * @uiGroup Facebook Messenger
          */
         "fbmessenger_buttonText"?: string;
+        /**
+          * @uiGroup Facebook Messenger
+         */
+        "fbmessenger_hideFbMessenger"?: boolean;
+        /**
+          * @uiGroup Sharelink
+         */
+        "sharelink_hideSharelink"?: boolean;
         "titleText"?: string;
         /**
           * @uiGroup WhatsApp
          */
         "whatsapp_buttonText"?: string;
+        /**
+          * @uiGroup WhatsApp
+         */
+        "whatsapp_hideWhatsApp"?: boolean;
     }
     interface SqmReferralIframe {
         /**
