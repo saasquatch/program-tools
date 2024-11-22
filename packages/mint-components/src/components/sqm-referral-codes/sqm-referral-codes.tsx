@@ -4,9 +4,8 @@ import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
-import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
+import { CopyTextViewProps } from "../views/copy-text-view";
 import { useReferralCodes } from "./useReferralCodes";
-import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
 
 /**
  * @uiName Referral Codes
