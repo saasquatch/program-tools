@@ -1,8 +1,8 @@
-@author:johan
-@owner:johan
-Feature: Share Code
+@author:sam
+@owner:sam
+Feature: Referral Code
 
-  The share code component is a box that allows users to see and copy their referral code for a given program
+  The referral code component is a box that allows users to see and copy their referral promo code for a given program
 
   Background: Environment
     Given there is a valid program ID in the environment
@@ -12,7 +12,7 @@ Feature: Share Code
   Scenario: A Users referral code can be copied to their clipboard
     Given tooltiptext is "hello tooltip"
     When the component renders
-    Then there is a textbox with the user's share code
+    Then there is a textbox with the user's referral code
     When the clipboard icon is clicked
     Then the code is copied to clipboard
     And a tooltip will appear for ~1 second
@@ -48,7 +48,7 @@ Feature: Share Code
 
   @minutia
   Scenario: An analytic event is fired when a user copies their code
-    Given a user viewing the share code component
+    Given a user viewing the referral code component
     And the component is rendered for "program-a"
     When they click to copy their code
     Then an "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic event is fired
@@ -58,7 +58,7 @@ Feature: Share Code
 
   @ui
   Scenario Outline: user can edit the alignment of the share code text
-    Given a user is editing the share code component
+    Given a user is editing the referral code component
     Then they see "Align text" props
     And the default value is "left"
     When they change the option to <option>
@@ -71,7 +71,7 @@ Feature: Share Code
 
   @ui
   Scenario Outline: The position of the copy button can be changed
-    Given a user is editing the share code component
+    Given a user is editing the referral code component
     Then they see "Style" props
     And the default value is "icon"
     When they change the option to <option>
