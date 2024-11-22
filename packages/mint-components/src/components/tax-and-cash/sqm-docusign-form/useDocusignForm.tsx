@@ -102,6 +102,7 @@ export function useDocusignForm(props: DocusignForm) {
     useState<ParticipantType>(undefined);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showExitButton, setShowExitButton] = useState(false);
 
   // Only look at current document if it's valid (same as required type)
   const existingDocumentType =
@@ -205,15 +206,17 @@ export function useDocusignForm(props: DocusignForm) {
       docusignStatus,
       documentType: actualDocumentType,
       documentTypeString: taxTypeToName(actualDocumentType),
+      showExitButton,
     },
     data: {
       taxForm: actualDocumentType,
       documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
     },
     callbacks: {
+      showExitButton: () => setShowExitButton(true),
       setDocusignStatus,
       completeDocument,
-      progressStep,
+      onExit: progressStep,
       setParticipantType,
     },
     text: props.getTextProps(),

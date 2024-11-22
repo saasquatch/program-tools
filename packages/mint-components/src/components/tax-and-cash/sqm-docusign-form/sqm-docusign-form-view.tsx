@@ -13,6 +13,7 @@ export interface DocusignFormViewProps {
     hideSteps: boolean;
     participantTypeDisabled: boolean;
     loadingError?: boolean;
+    showExitButton: boolean;
     formState: {
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
@@ -29,9 +30,11 @@ export interface DocusignFormViewProps {
     docusignIframeSlot: VNode;
   };
   callbacks: {
+    onExit: () => void;
     setParticipantType: (p: ParticipantType) => void;
   };
   text: {
+    exitButton: string;
     formStep: string;
     taxForm: string;
     taxFormLabel: string;
@@ -287,21 +290,17 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             )}
           </p>
         </div>
-        <div>
-          {/* <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={classes.InfoAlert}
-          >
-            <sl-icon
-              class={classes.InfoIcon}
-              slot="icon"
-              name="info-circle"
-            ></sl-icon>
-            {text.docusignSessionWarning}
-          </sl-alert> */}
-          {slots.docusignIframeSlot}
+        <div>{slots.docusignIframeSlot}</div>
+        <div class={classes.BtnContainer}>
+          {states.showExitButton && (
+            <sl-button
+              type="primary"
+              exportparts="base: primarybutton-base"
+              onClick={callbacks.onExit}
+            >
+              {text.exitButton}
+            </sl-button>
+          )}
         </div>
       </div>
     </div>

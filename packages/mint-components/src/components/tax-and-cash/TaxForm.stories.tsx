@@ -237,6 +237,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
 
 const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   states: {
+    showExitButton: true,
     step: "3",
     urlLoading: false,
     docusignStatus: undefined,
@@ -254,7 +255,8 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
     },
   },
   callbacks: {
-    progressStep: () => {},
+    onExit: () => {},
+    showExitButton: () => {},
     completeDocument: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),

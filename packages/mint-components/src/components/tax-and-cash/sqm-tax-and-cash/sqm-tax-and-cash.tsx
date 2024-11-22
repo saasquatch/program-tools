@@ -325,6 +325,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_refreshButton: string = "Refresh Page";
 
+  /**
+   * @uiName Exit button text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_exitButton: string = "Exit";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
