@@ -29,7 +29,6 @@ Feature: Tax And Cash Dashboard
       | W8BEN                | W-8          |
       | W8BENE               | W-8          |
 
-
   @minutia @ui
   Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
     Given the Tax Document is currently <status>
@@ -57,13 +56,13 @@ Feature: Tax And Cash Dashboard
 
     Examples:
       | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
-      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
-      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    | 345213            |
-      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    | 345213            |
-      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               | 345213, 12312     |
-      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    | 321413            |
-      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number | 345213, 12345     |
-      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number | 345213, 12345     |
+      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
+      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
+      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
+      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
+      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number |     345213, 12345 |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number |     345213, 12345 |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
@@ -86,10 +85,10 @@ Feature: Tax And Cash Dashboard
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
 
     Examples:
-      | status     | documentType | taxAlertHeader                                                              | taxAlertMessage                                                                                                                 |
-      | NOT_ACTIVE | W9           | Your W-9 tax form has personal information that doesn't match your profile. | Please resubmit a new W-9 form.                                                                                                 |
-      | NOT_ACTIVE | W8-BEN       | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN form.   |
-      | NOT_ACTIVE | W8-BEN-E     | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 BEN-E form. |
+      | status     | documentType | taxAlertHeader                                                              | taxAlertMessage                                                                                                           |
+      | NOT_ACTIVE | W9           | Your W-9 tax form has personal information that doesn't match your profile. | Please resubmit a new W-9 form.                                                                                           |
+      | NOT_ACTIVE | W8-BEN       | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 form. |
+      | NOT_ACTIVE | W8-BEN-E     | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 form. |
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax
