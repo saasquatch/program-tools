@@ -18,7 +18,7 @@ Feature: Referral Codes Component
             | DIRECT      |
             | EMAIL       |
             | FBMESSENGER |
-            | TWITTER     |
+            | WHATSAPP    |
 
     @minutia
     Scenario: User is notified if the currently viewed promo code has been used already
@@ -41,7 +41,7 @@ Feature: Referral Codes Component
             | hideSharelink   | DIRECT      |
             | hideEmail       | EMAIL       |
             | hideFbMessenger | FBMESSENGER |
-            | hideX           | TWITTER     |
+            | hideWhatsApp    | WHATSAPP    |
 
     @minutia
     Scenario Outline: Number of codes is displayed in the pagination component
