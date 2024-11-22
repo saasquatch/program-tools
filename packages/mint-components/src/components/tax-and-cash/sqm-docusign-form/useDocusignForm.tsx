@@ -170,6 +170,8 @@ export function useDocusignForm(props: DocusignForm) {
       if (!result || (result as Error).message) throw new Error();
       // @ts-expect-error: no data type for result
       if (!result.completeImpactPublisherTaxDocument.success) throw new Error();
+
+      setShowExitButton(true);
     } catch (e) {
       setErrors({ general: true });
     } finally {
@@ -213,7 +215,6 @@ export function useDocusignForm(props: DocusignForm) {
       documentUrl: document?.createImpactPublisherTaxDocument?.documentUrl,
     },
     callbacks: {
-      showExitButton: () => setShowExitButton(true),
       setDocusignStatus,
       completeDocument,
       onExit: progressStep,
