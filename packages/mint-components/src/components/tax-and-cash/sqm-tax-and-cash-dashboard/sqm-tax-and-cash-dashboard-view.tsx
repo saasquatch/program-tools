@@ -503,15 +503,17 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         </span>
                       </div>
                     </span>
-                    <sl-button
-                      disabled={states.disabled || states.loading}
-                      onClick={callbacks.onClick}
-                      type="default"
-                      class={sheet.classes.NewFormButton}
-                      exportparts="base: primarybutton-base"
-                    >
-                      {text.newFormButton}
-                    </sl-button>
+                    {states.status !== "NOT_VERIFIED" && (
+                      <sl-button
+                        disabled={states.disabled || states.loading}
+                        onClick={callbacks.onClick}
+                        type="default"
+                        class={sheet.classes.NewFormButton}
+                        exportparts="base: primarybutton-base"
+                      >
+                        {text.newFormButton}
+                      </sl-button>
+                    )}
                   </div>
                 )}
               </div>

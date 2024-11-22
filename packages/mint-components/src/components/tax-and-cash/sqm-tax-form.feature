@@ -26,15 +26,15 @@ Feature: Tax Form Flow
 
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           | 3     |
-      | CA          | MX           | 4     |
-      | US          | CA           | 3     |
-      | US          | MX           | 3     |
-      | GB          | US           | 3     |
-      | GB          | MX           | 4     |
-      | EG          | US           | 3     |
-      | EG          | MX           | 4     |
-      | US          | US           | 3     |
+      | CA          | US           |     3 |
+      | CA          | MX           |     4 |
+      | US          | CA           |     3 |
+      | US          | MX           |     3 |
+      | GB          | US           |     3 |
+      | GB          | MX           |     4 |
+      | EG          | US           |     3 |
+      | EG          | MX           |     4 |
+      | US          | US           |     3 |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
@@ -89,14 +89,14 @@ Feature: Tax Form Flow
 
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           | 3     |
-      | CA          | MX           | 4     |
-      | US          | CA           | 3     |
-      | US          | MX           | 3     |
-      | GB          | US           | 3     |
-      | GB          | US           | 3     |
-      | ES          | US           | 3     |
-      | EG          | MX           | 4     |
+      | CA          | US           |     3 |
+      | CA          | MX           |     4 |
+      | US          | CA           |     3 |
+      | US          | MX           |     3 |
+      | GB          | US           |     3 |
+      | GB          | US           |     3 |
+      | ES          | US           |     3 |
+      | EG          | MX           |     4 |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout Comply Exchange forms
@@ -209,15 +209,6 @@ Feature: Tax Form Flow
       | not required  | not saved in impact | Dashboard | Step 3 and 4 | “Missing banking information, go to impact.com to resolve” |
       | not same      | saved in impact     | Step 3    | Step 4       | their withdrawal settings                                  |
       | not same      | not saved in impact | Step 3    | step 4       | “Missing banking information, go to impact.com to resolve” |
-
-
-  @minutia
-  Scenario: "Submit New Form" button redirects to Docusign step and shows "Back" button
-    Given a user is on the Dashboard step
-    When they click the "Submit New Form" button if they can
-    And they are redirected to the Docusign step
-    Then they will see a "Back" button
-    And they may click the "Back" button to return to the Dashboard step
 
   @minutia
   Scenario: Error banner is shown if impact user graphql request has an error
