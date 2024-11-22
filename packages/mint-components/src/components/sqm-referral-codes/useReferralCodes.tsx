@@ -26,7 +26,7 @@ export function useReferralCodes(props: ReferralCodes) {
     !user?.jwt
   );
 
-  console.log({ referralData });
+  console.log({ referralData, states });
 
   return {
     states: {

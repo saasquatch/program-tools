@@ -17,7 +17,7 @@ import { useReferralCodes } from "./useReferralCodes";
   shadow: true,
 })
 export class ReferralCodes {
-  @Prop() titleText: string = "Share with your friends:";
+  @Prop() titleText: string = "Your referral code";
 
   // referral code props
 
@@ -57,9 +57,17 @@ export class ReferralCodes {
     const props = isDemo()
       ? useDemoReferralCodes(thisProps)
       : useReferralCodes(thisProps);
+
+    console.log(props);
+
     return (
       <div>
-        {this.titleText}
+        <div>
+          {this.titleText}
+          <sl-button>{"<"}</sl-button>
+          {props.states.currentPage + 1} of {props.states.pageCount}
+          <sl-button>{">"}</sl-button>
+        </div>
         <sqm-referral-code codeOverride="OVERRIDE"></sqm-referral-code>
         <sqm-share-link linkOverride="example.com"></sqm-share-link>
         <sqm-share-button medium="email" messageLinkOverride="example.com">
@@ -75,11 +83,6 @@ export class ReferralCodes {
         <sqm-share-button medium="whatsapp" messageLinkOverride="example.com">
           {this.whatsapp_buttonText}
         </sqm-share-button>
-        <div>
-          <sl-button>{"<"}</sl-button>
-          {props.states.currentPage + 1}
-          <sl-button>{">"}</sl-button>
-        </div>
       </div>
     );
   }
@@ -96,6 +99,7 @@ function useDemoReferralCodes(props: ReferralCodes) {
       states: {
         loading: false,
         currentPage,
+        pageCount: 1,
       },
       callbacks: {
         onPrev: () => setCurrentPage(currentPage - 1),
