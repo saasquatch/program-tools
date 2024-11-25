@@ -256,7 +256,6 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
   },
   callbacks: {
     onExit: () => {},
-    showExitButton: () => {},
     completeDocument: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),

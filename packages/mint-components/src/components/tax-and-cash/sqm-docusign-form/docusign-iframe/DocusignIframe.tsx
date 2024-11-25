@@ -32,7 +32,6 @@ export interface DocusignIframeProps {
     documentUrl: string | undefined;
   };
   callbacks: {
-    showExitButton: () => void;
     completeDocument: () => Promise<void>;
   };
   text: {
