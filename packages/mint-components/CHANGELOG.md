@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] - 2024-11-25
+
+### Changed
+
+- \<sqm-tax-and-cash>
+  - Replaced the DocuSign iframe with Comply Exchange.
+  - Added property `step-3_exit-button`, which controls the text of the Exit button shown at the end of the Comply exchange form.
+
 ## [1.10.4] - 2024-11-20
 
 ### Fixed
