@@ -142,8 +142,9 @@ export const DocusignIframe = ({
 
   // TODO: Confirm impact domain before launch
   const allowedDomains = [
-    "referralsaasquatch.com",
-    "impacttech.complysandbox.com",
+    "referralsaasquatch.com", // legacy docusign
+    "impacttech.complysandbox.com", // staging env domain
+    "impacttech.complytaxforms.com", // prod env domain
   ];
 
   const callback = useCallback((e) => {
