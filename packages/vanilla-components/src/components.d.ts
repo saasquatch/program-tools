@@ -926,59 +926,59 @@ export namespace Components {
          */
         "smstextcolor": string;
         /**
-          * Background color of the twitter button
-          * @uiName Twitter Background Color
-          * @uiGroup Twitter
+          * Background color of the X button
+          * @uiName X Background Color
+          * @uiGroup X
           * @uiWidget color
-          * @default #4797d2
+          * @default #000000
          */
         "twitterbackgroundcolor": string;
         /**
           * CSS class name for additional styling.
-          * @uiName Twitter Class Name
-          * @uiGroup Twitter
+          * @uiName X Class Name
+          * @uiGroup X
          */
         "twitterclassName": string;
         /**
           * Show and hide button depending on what type of device the user is on
-          * @uiName Twitter Display Rule
-          * @uiGroup Twitter
+          * @uiName X Display Rule
+          * @uiGroup X
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
           * @default mobile-and-desktop
          */
         "twitterdisplayrule": string;
         /**
-          * @uiName Twitter Icon
-          * @uiGroup Twitter
+          * @uiName X Icon
+          * @uiGroup X
          */
         "twittericon": string;
         /**
-          * Number to horizontally align the twitter button icon
-          * @uiName Twitter Icon Horizontal
-          * @uiGroup Twitter
+          * Number to horizontally align the X button icon
+          * @uiName X Icon Horizontal
+          * @uiGroup X
          */
         "twittericonhorizontal": number;
         /**
-          * @uiName Twitter Icon Size
-          * @uiGroup Twitter
+          * @uiName X Icon Size
+          * @uiGroup X
          */
         "twittericonsize": number;
         /**
-          * Number to vertically align the twitter button icon
-          * @uiName Twitter Icon Vertical
-          * @uiGroup Twitter
+          * Number to vertically align the X button icon
+          * @uiName X Icon Vertical
+          * @uiGroup X
          */
         "twittericonvertical": number;
         /**
-          * @uiName Twitter Text
-          * @uiGroup Twitter
-          * @default Twitter
+          * @uiName X Text
+          * @uiGroup X
+          * @default X
          */
         "twittertext": string;
         /**
-          * @uiName Twitter Text Color
-          * @uiGroup Twitter
+          * @uiName X Text Color
+          * @uiGroup X
           * @uiWidget color
           * @default #ffffff
          */
@@ -2184,59 +2184,59 @@ declare namespace LocalJSX {
          */
         "smstextcolor"?: string;
         /**
-          * Background color of the twitter button
-          * @uiName Twitter Background Color
-          * @uiGroup Twitter
+          * Background color of the X button
+          * @uiName X Background Color
+          * @uiGroup X
           * @uiWidget color
-          * @default #4797d2
+          * @default #000000
          */
         "twitterbackgroundcolor"?: string;
         /**
           * CSS class name for additional styling.
-          * @uiName Twitter Class Name
-          * @uiGroup Twitter
+          * @uiName X Class Name
+          * @uiGroup X
          */
         "twitterclassName"?: string;
         /**
           * Show and hide button depending on what type of device the user is on
-          * @uiName Twitter Display Rule
-          * @uiGroup Twitter
+          * @uiName X Display Rule
+          * @uiGroup X
           * @uiEnum ["mobile-and-desktop","mobile-only","desktop-only","hidden"]
           * @uiEnumNames ["Mobile and Desktop","Mobile Only","Desktop Only","Hide"]
           * @default mobile-and-desktop
          */
         "twitterdisplayrule"?: string;
         /**
-          * @uiName Twitter Icon
-          * @uiGroup Twitter
+          * @uiName X Icon
+          * @uiGroup X
          */
         "twittericon"?: string;
         /**
-          * Number to horizontally align the twitter button icon
-          * @uiName Twitter Icon Horizontal
-          * @uiGroup Twitter
+          * Number to horizontally align the X button icon
+          * @uiName X Icon Horizontal
+          * @uiGroup X
          */
         "twittericonhorizontal"?: number;
         /**
-          * @uiName Twitter Icon Size
-          * @uiGroup Twitter
+          * @uiName X Icon Size
+          * @uiGroup X
          */
         "twittericonsize"?: number;
         /**
-          * Number to vertically align the twitter button icon
-          * @uiName Twitter Icon Vertical
-          * @uiGroup Twitter
+          * Number to vertically align the X button icon
+          * @uiName X Icon Vertical
+          * @uiGroup X
          */
         "twittericonvertical"?: number;
         /**
-          * @uiName Twitter Text
-          * @uiGroup Twitter
-          * @default Twitter
+          * @uiName X Text
+          * @uiGroup X
+          * @default X
          */
         "twittertext"?: string;
         /**
-          * @uiName Twitter Text Color
-          * @uiGroup Twitter
+          * @uiName X Text Color
+          * @uiGroup X
           * @uiWidget color
           * @default #ffffff
          */

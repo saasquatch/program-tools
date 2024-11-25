@@ -15,6 +15,8 @@
 - [sqm-stat-container](../sqm-stat-container)
 - [sqm-big-stat](../sqm-big-stat)
 - [sqm-text](../sqm-text)
+- [sqm-image](../sqm-image)
+- [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
@@ -22,7 +24,6 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
-- [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-rewards-table](../sqm-rewards-table)
 - [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
@@ -71,7 +72,6 @@
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
 - [sqm-portal-footer](../sqm-portal-footer)
-- [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-coupon-code](../sqm-coupon-code)
 - [sqm-link-button](../sqm-link-button)
@@ -98,6 +98,8 @@ graph TD;
   sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-big-stat
   sqm-stencilbook --> sqm-text
+  sqm-stencilbook --> sqm-image
+  sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
@@ -105,7 +107,6 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
-  sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-rewards-table
   sqm-stencilbook --> sqm-rewards-table-reward-column
@@ -154,7 +155,6 @@ graph TD;
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-portal-footer
-  sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-coupon-code
   sqm-stencilbook --> sqm-link-button
@@ -174,8 +174,8 @@ graph TD;
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
-  sqm-edit-profile --> sqm-form-message
   sqm-leaderboard --> sqm-empty
+  sqm-edit-profile --> sqm-form-message
   sqm-reward-exchange-list --> sqm-empty
   sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-table-row

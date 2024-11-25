@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
     "node": ">=14"
@@ -56,7 +56,7 @@
     "@opentelemetry/sdk-metrics": "^1.8.0",
     "@opentelemetry/sdk-trace-base": "^1.8.0",
     "@opentelemetry/semantic-conventions": "^1.8.0",
-    "@saasquatch/express-boilerplate": "^1.0.1",
+    "@saasquatch/express-boilerplate": "^1.1.0",
     "@saasquatch/logger": "^1.4.2",
     "@saasquatch/schema": "^1.23.1-3",
     "ajv": "^8.11.2",

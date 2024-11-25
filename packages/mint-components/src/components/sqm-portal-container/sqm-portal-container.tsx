@@ -73,6 +73,14 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
+   * @uiName Flex wrap behavior
+   * @uiType string
+   * @uiEnum ["wrap", "nowrap"]
+   * @uiEnumNames ["Wrap", "No Wrap"]
+   */
+  @Prop() flexWrap?: string = "wrap";
+
+  /**
    * @uiName Center content
    */
   @Prop() center?: boolean;

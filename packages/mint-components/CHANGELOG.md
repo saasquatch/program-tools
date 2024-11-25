@@ -7,6 +7,66 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.4] - 2024-11-20
+
+### Fixed
+
+- \<sqm-portal-verify-email>
+  - Removed unused `verified` prop being passed to the view.
+  - Updated demo props so component renders properly in the content editor.
+
+## [1.10.3] - 2024-11-08
+
+### Changed
+
+- \<sqm-leaderboard>
+
+  - Removed unused isEssentials prop
+
+## [1.10.2] - 2024-10-29
+
+### Changed
+
+- \<sqm-user-info-form>
+
+  - Removed hard coded widths and inline styling to ensure the view is responsive
+
+- \<sqm-portal-container>
+
+  - Added new `flexWrap` prop to optionally apply the flex-wrap css property
+
+- \<sqm-leaderboard>
+
+  - Added the following props:
+
+    - width
+    - rankSuffix
+    - hideNames
+
+  - New graphql queries that do not include the users names if `hideNames` is set to true
+  - New anonymouse leaderboard code example to display in raisins widget editor.
+
+- \<sqm-image>
+  - added new `width` prop
+
+## [1.10.1] - 2024-09-23
+
+### Fixed
+
+- \<sqm-logout-current-user>
+  - Updated query to use `viewer` instead to prevent permission errors
+
+## [1.10.0] - 2024-09-10
+
+### Changed
+
+- Added twitter-x icon
+- Updated templates using `Tweet about us` copy to `Post about us on X`
+- Updated stories using `Tweet about us` copy to `Post about us on X`
+- Changed components:
+  - \<sqm-share-button>
+    - Updated medium value 'twitter' to use `twitter-x` icon and color to `#000000`
+
 ## [1.9.5] - 2024-07-04
 
 ### Updated
@@ -1003,14 +1063,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.9.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.10.4...HEAD
+[1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
+[1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
+[1.10.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.2
+[1.10.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.1
+[1.10.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.0
 [1.9.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.5
 [1.9.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.4
 [1.9.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.3
 [1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2
 [1.9.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.1
 [1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.0
-[1.8.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.5
 [1.8.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.4
 [1.8.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.3
 [1.8.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.2

@@ -70,8 +70,8 @@ export const SlottedIntoComponent = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [],
-      showUser: true,
       rowNumber: 10,
+      showUser: true,
       userRank: {
         firstName: "Kutay",
         lastInitial: "C",
