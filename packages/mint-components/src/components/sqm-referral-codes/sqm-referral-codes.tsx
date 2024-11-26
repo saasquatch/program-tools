@@ -4,8 +4,11 @@ import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
-import { CopyTextViewProps } from "../views/copy-text-view";
 import { useReferralCodes } from "./useReferralCodes";
+import {
+  ReferralCodesView,
+  ReferralCodesViewProps,
+} from "./sqm-referral-codes-view";
 
 /**
  * @uiName Referral Codes
@@ -17,51 +20,13 @@ import { useReferralCodes } from "./useReferralCodes";
   shadow: true,
 })
 export class ReferralCodes {
-  @Prop() titleText: string = "Your referral code";
-
-  // referral code props
-
-  // share link props
-  /**
-   * @uiGroup Sharelink
-   */
-  @Prop() sharelink_hideSharelink: boolean = false;
-
-  // email button props
-  /**
-   * @uiGroup Email
-   */
-  @Prop() email_buttonText: string = "Share via email";
-  /**
-   * @uiGroup Email
-   */
-  @Prop() email_hideEmail: boolean = false;
-
-  // facebook messenger props
-  /**
-   * @uiGroup Facebook Messenger
-   */
-  @Prop() fbmessenger_buttonText: string = "Message on Facebook";
-  /**
-   * @uiGroup Facebook Messenger
-   */
-  @Prop() fbmessenger_hideFbMessenger: boolean = false;
-
-  // whatsapp props
-  /**
-   * @uiGroup WhatsApp
-   */
-  @Prop() whatsapp_buttonText: string = "Text on WhatsApp";
-  /**
-   * @uiGroup WhatsApp
-   */
-  @Prop() whatsapp_hideWhatsApp: boolean = false;
+  @Prop() titleText?: string = "Your referral code";
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<CopyTextViewProps>;
+  @Prop() demoData?: DemoData<ReferralCodesViewProps>;
 
   constructor() {
     withHooks(this);
@@ -76,59 +41,25 @@ export class ReferralCodes {
 
     console.log(props);
 
-    return (
-      <div>
-        <div>
-          {this.titleText}
-          <sl-button>{"<"}</sl-button>
-          {props.states.currentPage + 1} of {props.states.pageCount}
-          <sl-button>{">"}</sl-button>
-        </div>
-        <sqm-referral-code codeOverride="OVERRIDE"></sqm-referral-code>
-        {!this.sharelink_hideSharelink && (
-          <sqm-share-link linkOverride="example.com"></sqm-share-link>
-        )}
-        {!this.email_hideEmail && (
-          <sqm-share-button medium="email" messageLinkOverride="example.com">
-            {this.email_buttonText}
-          </sqm-share-button>
-        )}
-        {!this.fbmessenger_hideFbMessenger && (
-          <sqm-share-button
-            medium="fbmessenger"
-            messageLinkOverride="example.com"
-            shareLinkOverride="example.com"
-          >
-            {this.fbmessenger_buttonText}
-          </sqm-share-button>
-        )}
-        {!this.whatsapp_buttonText && (
-          <sqm-share-button medium="whatsapp" messageLinkOverride="example.com">
-            {this.whatsapp_buttonText}
-          </sqm-share-button>
-        )}
-      </div>
-    );
+    const slots = {
+      shareButtons: <slot name="shareButtons" />,
+      shareCodes: <slot name="shareCodes" />,
+      pagination: <slot name="pagination" />,
+    };
+
+    const viewProps = {
+      slots,
+      ...props,
+    };
+
+    return <ReferralCodesView {...viewProps} />;
   }
 }
 
 function useDemoReferralCodes(props: ReferralCodes) {
-  const [currentPage, setCurrentPage] = useState(0);
-
   return deepmerge(
     {
-      data: {
-        referralData: [],
-      },
-      states: {
-        loading: false,
-        currentPage,
-        pageCount: 1,
-      },
-      callbacks: {
-        onPrev: () => setCurrentPage(currentPage - 1),
-        onNext: () => setCurrentPage(currentPage + 1),
-      },
+      titleText: props.titleText,
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

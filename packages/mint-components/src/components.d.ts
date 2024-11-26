@@ -37,6 +37,7 @@ import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-po
 import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
@@ -2629,36 +2630,8 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @uiGroup Email
-         */
-        "email_buttonText": string;
-        /**
-          * @uiGroup Email
-         */
-        "email_hideEmail": boolean;
-        /**
-          * @uiGroup Facebook Messenger
-         */
-        "fbmessenger_buttonText": string;
-        /**
-          * @uiGroup Facebook Messenger
-         */
-        "fbmessenger_hideFbMessenger": boolean;
-        /**
-          * @uiGroup Sharelink
-         */
-        "sharelink_hideSharelink": boolean;
-        "titleText": string;
-        /**
-          * @uiGroup WhatsApp
-         */
-        "whatsapp_buttonText": string;
-        /**
-          * @uiGroup WhatsApp
-         */
-        "whatsapp_hideWhatsApp": boolean;
+        "demoData"?: DemoData<ReferralCodesViewProps>;
+        "titleText"?: string;
     }
     interface SqmReferralIframe {
         /**
@@ -8578,36 +8551,8 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @uiGroup Email
-         */
-        "email_buttonText"?: string;
-        /**
-          * @uiGroup Email
-         */
-        "email_hideEmail"?: boolean;
-        /**
-          * @uiGroup Facebook Messenger
-         */
-        "fbmessenger_buttonText"?: string;
-        /**
-          * @uiGroup Facebook Messenger
-         */
-        "fbmessenger_hideFbMessenger"?: boolean;
-        /**
-          * @uiGroup Sharelink
-         */
-        "sharelink_hideSharelink"?: boolean;
+        "demoData"?: DemoData<ReferralCodesViewProps>;
         "titleText"?: string;
-        /**
-          * @uiGroup WhatsApp
-         */
-        "whatsapp_buttonText"?: string;
-        /**
-          * @uiGroup WhatsApp
-         */
-        "whatsapp_hideWhatsApp"?: boolean;
     }
     interface SqmReferralIframe {
         /**
