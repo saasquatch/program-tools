@@ -264,8 +264,6 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           {text.error.generalDescription}
         </sl-alert>
       )}
-      {/* 
-      // @ts-ignore */}
 
       <div>
         <div>

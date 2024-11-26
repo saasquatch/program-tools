@@ -10,7 +10,6 @@ import {
   DOCUSIGN_EXPIRED_STATES,
   DOCUSIGN_ERROR_STATES,
 } from "../useDocusignForm";
-import { MinHeight } from "../../../sqm-hero/Hero.stories";
 
 export type DocusignStatus =
   | "ttl_expired"
