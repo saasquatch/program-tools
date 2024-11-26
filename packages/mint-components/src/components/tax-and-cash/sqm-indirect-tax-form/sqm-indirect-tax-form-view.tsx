@@ -76,6 +76,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
+    width: "100%",
   },
   RadioContent: {
     display: "flex",
