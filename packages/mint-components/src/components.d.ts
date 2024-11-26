@@ -563,6 +563,11 @@ export namespace Components {
          */
         "docusignSessionWarning": string;
         /**
+          * Exit button text displayed at the end of the Comply Exchange form flow
+          * @uiName Exit button text
+         */
+        "exitButton": string;
+        /**
           * @uiName Setup progress
          */
         "formStep": string;
@@ -4352,6 +4357,11 @@ export namespace Components {
          */
         "step3_docusignSessionWarning": string;
         /**
+          * @uiName Exit button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_exitButton": string;
+        /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
           * @uiGroup Step 3 Properties
@@ -6398,6 +6408,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "docusignSessionWarning"?: string;
+        /**
+          * Exit button text displayed at the end of the Comply Exchange form flow
+          * @uiName Exit button text
+         */
+        "exitButton"?: string;
         /**
           * @uiName Setup progress
          */
@@ -10157,6 +10172,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "step3_docusignSessionWarning"?: string;
+        /**
+          * @uiName Exit button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_exitButton"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label

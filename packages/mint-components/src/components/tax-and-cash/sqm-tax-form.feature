@@ -24,7 +24,7 @@ Feature: Tax Form Flow
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
 
-    Examples: 
+    Examples:
       | countryCode | brandCountry | stepX |
       | CA          | US           |     3 |
       | CA          | MX           |     4 |
@@ -47,7 +47,7 @@ Feature: Tax Form Flow
     And participant <hasWithdrawalSettings>
     Then they proceed to <stepX>
 
-    Examples: 
+    Examples:
       | hasTax                 | isConnected      | hasRequiredDoc             | hasCurrentTaxDoc          | status   | hasWithdrawalSettings             | stepX     |
       | does not have tax info | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
       | does not have tax info | is connected     | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
@@ -87,7 +87,7 @@ Feature: Tax Form Flow
     When they press "Continue"
     Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
 
-    Examples: 
+    Examples:
       | countryCode | brandCountry | stepX |
       | CA          | US           |     3 |
       | CA          | MX           |     4 |
@@ -99,32 +99,33 @@ Feature: Tax Form Flow
       | EG          | MX           |     4 |
 
   @minutia
-  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout docusign forms
+  Scenario Outline: Participants based in another country working with non-US brands do not have to fillout Comply Exchange forms
     Given a brand based in <brandCountry>
     And the brand is not in the US
     And the user selects a <country> not in the US
     Then they skip to step 4 Payout Details
 
-    Examples: 
+    Examples:
       | brandCountry | country |
       | MX           | GB      |
       | AUS          | EGP     |
 
   @minutia
-  Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 docusign form
+  Scenario Outline: Participants based in the US working with non-US brands have to fillout the W9 Comply Exchange form
     Given a brand based in <brandCountry>
     And the user selects <country>
     When they view step 3
-    Then the <autoSelectedForm> is displayed
+    Then the Comply Exchange iframe is displayed
+    But no form is auto selected
 
-    Examples: 
-      | brandCountry | country | autoSelectedForm |
-      | MX           | US      | W9               |
-      | GB           | US      | W9               |
-      | AUS          | US      | W9               |
+    Examples:
+      | brandCountry | country |
+      | MX           | US      |
+      | GB           | US      |
+      | AUS          | US      |
 
   @minutia
-  Scenario: Participant finishes tax form flow and skipped Docusign form
+  Scenario: Participant finishes tax form flow and skipped Comply Exchange form
     Given they are on step 2
     And they were not required to fillout a tax form
     And they press Continue
@@ -136,7 +137,7 @@ Feature: Tax Form Flow
   @minutia
   Scenario: Participant finishes tax form flow and sees status of their tax form submission
     Given they are on step 3
-    And finishes filling out the Docusign form
+    And finishes filling out the Comply Exchange form
     And they press Continue
     Then they proceed to step 4
     And complete their payout details
@@ -179,44 +180,35 @@ Feature: Tax Form Flow
     Given a user has successfully submitted a tax document
     And they are on the Dashboard step
     When they click the "Submit New Form" button
-    Then they are brought to the Docusign form submission step
-    And refreshing the page keeps them on the Docusign form submission step
+    Then they are brought to the Comply Exchange form submission step
+    And refreshing the page keeps them on the Comply form submission step
 
   @minutia
   Scenario: Submitting a tax document with withdrawalSettings saved skips the banking info form step
-    Given a user on the Docusign form submission step
+    Given a user on the Comply Exchange form submission step
     And they have previously saved withdrawal/banking information
     When they successfully submit a tax document
     Then they are sent to the Dashboard step
     And they skip the banking info form step
 
-@motivating
- Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings											
-    Given a pre-existing impact partner is signing up to be an Advocate			
-    When they are on Step 2			
+  @motivating
+  Scenario Outline: Pre-existing impact partner cannot setup withdrawal settings
+    Given a pre-existing impact partner is signing up to be an Advocate
+    When they are on Step 2
     And tax document is <taxDocMatches> in Advocate and impact
-    And withdrawal settings is <saved>		
-    Then the user lands on <lands>		
-    And the user skips <skipSteps>			
-    And the Payout details card displays <displays>	
+    And withdrawal settings is <saved>
+    Then the user lands on <lands>
+    And the user skips <skipSteps>
+    And the Payout details card displays <displays>
 
-  Examples:					
-      |taxDocMatches	|saved	               |lands	      |skipSteps         |displays                                                   |
-      |same 	        |saved in impact	     |Dashboard 	|Step 3 and 4      |their withdrawal settings                                  |
-      |same 	        |not saved in impact   |Dashboard 	|Step 3 and 4      |“Missing banking information, go to impact.com to resolve” |
-      |not required   |saved in impact       |Dashboard   |Step 3 and 4      |their withdrawal settings                                  | 
-      |not required   |not saved in impact   |Dashboard   |Step 3 and 4      |“Missing banking information, go to impact.com to resolve” |
-      |not same       |saved in impact       |Step 3      |Step 4            |their withdrawal settings                                  |
-      |not same       |not saved in impact   |Step 3      |step 4            |“Missing banking information, go to impact.com to resolve” |
-
-
-  @minutia
-  Scenario: "Submit New Form" button redirects to Docusign step and shows "Back" button
-    Given a user is on the Dashboard step
-    When they click the "Submit New Form" button if they can
-    And they are redirected to the Docusign step
-    Then they will see a "Back" button
-    And they may click the "Back" button to return to the Dashboard step
+    Examples:
+      | taxDocMatches | saved               | lands     | skipSteps    | displays                                                   |
+      | same          | saved in impact     | Dashboard | Step 3 and 4 | their withdrawal settings                                  |
+      | same          | not saved in impact | Dashboard | Step 3 and 4 | “Missing banking information, go to impact.com to resolve” |
+      | not required  | saved in impact     | Dashboard | Step 3 and 4 | their withdrawal settings                                  |
+      | not required  | not saved in impact | Dashboard | Step 3 and 4 | “Missing banking information, go to impact.com to resolve” |
+      | not same      | saved in impact     | Step 3    | Step 4       | their withdrawal settings                                  |
+      | not same      | not saved in impact | Step 3    | step 4       | “Missing banking information, go to impact.com to resolve” |
 
   @minutia
   Scenario: Error banner is shown if impact user graphql request has an error

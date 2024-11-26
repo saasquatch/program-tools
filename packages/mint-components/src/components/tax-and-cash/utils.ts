@@ -1,16 +1,9 @@
 import { intl } from "../../global/global";
 import { TaxDocumentType } from "./sqm-tax-and-cash/data";
 
-export function validTaxDocument(
-  requiredType: TaxDocumentType | undefined,
-  currentType: TaxDocumentType | undefined
-) {
-  if (requiredType === "W9" && currentType === "W9") return true;
-  if (
-    (requiredType === "W8BEN" || requiredType === "W8BENE") &&
-    (currentType === "W8BEN" || currentType === "W8BENE")
-  )
-    return true;
+export function validTaxDocument(requiredType: TaxDocumentType | undefined) {
+  const validTypes = ["W9", "W8BENE", "W8BEN"];
+  if (validTypes.includes(requiredType)) return true;
   return false;
 }
 
@@ -23,9 +16,8 @@ export const taxTypeToName = (taxType: TaxDocumentType) => {
     case "W9":
       return "W-9";
     case "W8BEN":
-      return "W-8 BEN";
     case "W8BENE":
-      return "W-8 BEN-E";
+      return "W-8";
     default:
       return "";
   }

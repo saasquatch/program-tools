@@ -288,10 +288,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const resultPublisher = (result as ConnectPartnerResult)
         .createImpactConnection?.user?.impactConnection?.publisher;
 
-      const hasValidCurrentDocument = validTaxDocument(
-        resultPublisher?.requiredTaxDocumentType,
-        resultPublisher?.currentTaxDocument?.type
-      );
+      const hasValidCurrentDocument =
+        validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+        resultPublisher?.currentTaxDocument;
 
       if (
         resultPublisher?.requiredTaxDocumentType &&

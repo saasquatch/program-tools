@@ -107,7 +107,6 @@ const style = {
     alignItems: "flex-start",
     justifyContent: "flex-start",
     gap: "var(--sl-spacing-xx-small)",
-    maxWidth: "797px",
   },
   TitleContainer: {
     display: "flex",
@@ -422,6 +421,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   {text.directlyToBankAccount}
                 </sl-radio>
               )}
+
               {formState.paymentMethodChecked === "toBankAccount" && (
                 <div
                   class={classes.InputContainer}
