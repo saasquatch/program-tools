@@ -139,7 +139,6 @@ export const DocusignIframe = ({
 }: DocusignIframeProps) => {
   const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
 
-  // TODO: Confirm impact domain before launch
   const allowedDomains = [
     "referralsaasquatch.com", // legacy docusign
     "impacttech.complysandbox.com", // staging env domain
