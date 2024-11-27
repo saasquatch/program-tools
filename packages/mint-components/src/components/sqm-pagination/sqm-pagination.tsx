@@ -15,9 +15,13 @@ export class Pagination {
   render() {
     // const props = getProps(this);
     const props = {
-      pageNumber: 1,
+      currentPage: 1,
+      totalPages: 5,
       onNext: () => {},
       onPrev: () => {},
+      text: {
+        ofText: "of",
+      },
     };
 
     return <PaginationView {...props}></PaginationView>;

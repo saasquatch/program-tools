@@ -42,6 +42,12 @@ const style = {
     justifyContent: "center",
     flexDirection: "column",
   },
+
+  TitleText: {
+    color: "var(--sl-color-neutral-700)",
+    fontSize: "var(--sl-font-size-large)",
+    margin: "0",
+  },
 };
 
 const vanillaStyle = `
@@ -66,7 +72,7 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
         {styleString}
       </style>
       <div class={sheet.classes.HeaderContainer}>
-        <h2>{titleText}</h2>
+        <h2 class={sheet.classes.TitleText}>{titleText}</h2>
         {slots.pagination}
       </div>
       <div class={sheet.classes.ShareCodeContainer}>{slots.shareCodes}</div>

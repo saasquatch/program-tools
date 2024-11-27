@@ -59,7 +59,7 @@ export class ReferralCodes {
 function useDemoReferralCodes(props: ReferralCodes) {
   return deepmerge(
     {
-      titleText: props.titleText,
+      titleText: "Your referral code",
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
