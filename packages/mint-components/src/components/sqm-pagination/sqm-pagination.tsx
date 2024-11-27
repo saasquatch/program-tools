@@ -66,7 +66,7 @@ function useDemoPagination(props: Pagination) {
       onNext: () => setCurrentPage(currentPage + 1),
       onPrev: () => setCurrentPage(currentPage - 1),
       text: {
-        ofText: "of",
+        ofText: `${currentPage} of 5`,
       },
     },
     props.demoData || {},
