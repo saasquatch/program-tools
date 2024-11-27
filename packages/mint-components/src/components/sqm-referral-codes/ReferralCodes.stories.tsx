@@ -23,14 +23,34 @@ const shareButtons = (slot) => {
 };
 
 const shareCodes = (slot) => {
-  return <sqm-share-code slot={slot}></sqm-share-code>;
+  return <sqm-referral-code slot={slot}></sqm-referral-code>;
+};
+
+const shareCodeWithPreviouslyCopied = (slot) => {
+  return (
+    <sqm-referral-code
+      slot={slot}
+      showNotificationText={true}
+      notificationText="You’ve copied this before."
+    ></sqm-referral-code>
+  );
 };
 
 export const ReferralCodes = () => {
   return (
-    <sqm-referral-codes titleText="">
+    <sqm-referral-codes>
       {pagination("pagination")}
       {shareCodes("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+export const WithPreviouslyCopiedCode = () => {
+  return (
+    <sqm-referral-codes>
+      {pagination("pagination")}
+      {shareCodeWithPreviouslyCopied("shareCodes")}
       {shareButtons("shareButtons")}
     </sqm-referral-codes>
   );
