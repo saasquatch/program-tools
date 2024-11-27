@@ -12,6 +12,7 @@ export interface CashVerifyEmailViewProps {
     verified: boolean;
     email: string;
     codeSent: boolean;
+    verifyFailed?: boolean;
   };
   data: {
     oobCode: string;
@@ -87,6 +88,13 @@ export function CashVerifyEmailView(props: CashVerifyEmailViewProps) {
         {vanillaStyle}
         {styleString}
       </style>
+      {states.verifyFailed && (
+        <sl-alert type="danger" open>
+          {" "}
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          The code you have entered is invalid.
+        </sl-alert>
+      )}
       <div class={sheet.classes.HeaderContainer}>
         {" "}
         <TextSpanView type="h2">{text.cashVerifyHeaderText}</TextSpanView>
@@ -141,7 +149,9 @@ export function CashVerifyEmailView(props: CashVerifyEmailViewProps) {
       )}
       {states.codeSent && (
         <div class={sheet.classes.FooterContainer}>
-          <TextSpanView type="p">{text.resendVerifyCodeText}</TextSpanView>
+          {!states.verifyFailed && (
+            <TextSpanView type="p">{text.resendVerifyCodeText}</TextSpanView>
+          )}
           <TextSpanView type="p">
             <a href="/" style={{ textDecoration: "none" }}>
               {text.useDifferentEmailText}

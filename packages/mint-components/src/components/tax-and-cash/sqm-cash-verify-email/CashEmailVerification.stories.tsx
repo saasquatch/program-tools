@@ -19,6 +19,7 @@ const defaultStates = {
   verified: false,
   email: "text@example.com",
   codeSent: false,
+  verifyFailed: false,
 };
 
 export const Default = () => (
@@ -50,6 +51,23 @@ export const Verified = () => (
       states: {
         ...defaultStates,
         verified: true,
+      },
+    }}
+  >
+    {/* <div style={{ width: "300px", height: "300px", border: "1px dotted gray" }}>
+      I HAVE ACCESS!!!!!
+    </div> */}
+    <sqm-tax-and-cash></sqm-tax-and-cash>
+  </sqm-cash-verify-email>
+);
+
+export const VerificationFailed = () => (
+  <sqm-cash-verify-email
+    demoData={{
+      states: {
+        ...defaultStates,
+        codeSent: true,
+        verifyFailed: true,
       },
     }}
   >

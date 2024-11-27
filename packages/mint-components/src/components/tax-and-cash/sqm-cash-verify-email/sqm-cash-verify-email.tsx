@@ -110,6 +110,7 @@ function useCashVerifyEmailDemo(
         verified: false,
         email: "",
         codeSent: false,
+        veriffyFailed: false,
       },
       data: {
         oobCode: "code",
