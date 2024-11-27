@@ -33,8 +33,7 @@ export class CashVerifyEmail {
   reverifyCodeSubHeaderText: string =
     "Enter the code sent to {email} from our referral provider, impact.com.";
   @Prop()
-  resendVerifyCodeText: string =
-    "Didn't receive your code? <link>Resend Code</link>";
+  resendVerifyCodeText: string = "Didn't receive your code? Resend Code";
   @Prop()
   useDifferentEmailText: string = "Use a different email";
   /**

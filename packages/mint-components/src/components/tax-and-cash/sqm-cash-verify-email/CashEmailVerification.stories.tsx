@@ -39,7 +39,7 @@ export const CodeSentToEmail = () => (
     }}
   >
     <div style={{ width: "300px", height: "300px", border: "1px dotted gray" }}>
-      No Acess
+      No Access
     </div>
   </sqm-cash-verify-email>
 );
@@ -53,8 +53,9 @@ export const Verified = () => (
       },
     }}
   >
-    <div style={{ width: "300px", height: "300px", border: "1px dotted gray" }}>
+    {/* <div style={{ width: "300px", height: "300px", border: "1px dotted gray" }}>
       I HAVE ACCESS!!!!!
-    </div>
+    </div> */}
+    <sqm-tax-and-cash></sqm-tax-and-cash>
   </sqm-cash-verify-email>
 );
