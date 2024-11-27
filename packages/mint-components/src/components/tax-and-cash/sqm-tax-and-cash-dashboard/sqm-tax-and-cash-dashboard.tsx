@@ -87,17 +87,16 @@ export class TaxAndCashDashboard {
   /**
    * Part of the alert displayed at the top of the page.
    *
-   * @uiName Identity verification warning message header
+   * @uiName Verify identity warning message header
    */
-  @Prop() identityRequiredAlertHeader?: string =
-    "Identity verification required";
+  @Prop() verifyIdentityAlertHeader?: string = "Verify your identity";
   /**
    * Part of the alert displayed at the top of the page.
    *
-   * @uiName Identity verificationwarning message description
+   * @uiName Verify identity warning message description
    */
-  @Prop() identityRequiredAlertMessage?: string =
-    "Please verify your identity to receive your cash rewards. Once submited it should only take a couple minutes for the verification process to complete.";
+  @Prop() verifyIdentityAlertMessage?: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
   /**
    * Additional text displayed next to the tax form's status badge.
    *
@@ -335,7 +334,7 @@ export class TaxAndCashDashboard {
   /**
    * @uiName Verify button label
    */
-  @Prop() verifyButton: string = "Verify";
+  @Prop() verifyIdentityButton: string = "Start Verification";
 
   /**
    * @undocumented

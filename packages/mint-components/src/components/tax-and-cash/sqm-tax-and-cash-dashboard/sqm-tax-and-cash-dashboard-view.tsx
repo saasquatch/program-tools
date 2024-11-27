@@ -54,8 +54,8 @@ export interface TaxAndCashDashboardProps {
     taxAlertNotActiveMessageW9?: string;
     taxAlertNotActiveMessageW8?: string;
 
-    identityRequiredAlertHeader?: string;
-    identityRequiredAlertMessage?: string;
+    verifyIdentityAlertHeader?: string;
+    verifyIdentityAlertMessage?: string;
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
@@ -89,7 +89,7 @@ export interface TaxAndCashDashboardProps {
     replaceTaxFormModalHeader: string;
     replaceTaxFormModalBodyText: string;
     cancelButton: string;
-    verifyButton: string;
+    verifyIdentityButton: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -429,12 +429,12 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               class={sheet.classes.ExpiringSoonAlertContainer}
             >
               <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-              <strong>{text.identityRequiredAlertHeader}</strong>
+              <strong>{text.verifyIdentityAlertHeader}</strong>
               <br />
-              {text.identityRequiredAlertMessage}
+              {text.verifyIdentityAlertMessage}
               <br />
               {/* AL: TODO add onClick for button to open modal */}
-              <sl-button>{text.verifyButton}</sl-button>
+              <sl-button>{text.verifyIdentityButton}</sl-button>
             </sl-alert>
           </div>
         )}

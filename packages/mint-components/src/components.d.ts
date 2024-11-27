@@ -9,6 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
+import { CashVerifyEmailViewProps } from "./components/tax-and-cash/sqm-cash-verify-email/sqm-cash-verify-email-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
@@ -372,6 +373,41 @@ export namespace Components {
           * @uiName Card width
          */
         "width": number;
+    }
+    interface SqmCashVerifyEmail {
+        "cashVerifyHeaderText": string;
+        "cashVerifySubHeaderText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CashVerifyEmailViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email": string;
+        /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        "resendVerifyCodeText": string;
+        "reverifyCodeSubHeaderText": string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText": string;
+        "useDifferentEmailText": string;
+        "verifyCodeSubHeaderText": string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
+        "verifyInvalidText": string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyText": string;
     }
     interface SqmCheckboxField {
         /**
@@ -4695,16 +4731,6 @@ export namespace Components {
          */
         "generalErrorTitle": string;
         /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Identity verification warning message header
-         */
-        "identityRequiredAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Identity verificationwarning message description
-         */
-        "identityRequiredAlertMessage"?: string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
          */
@@ -4888,9 +4914,19 @@ export namespace Components {
          */
         "thresholdPayoutText": string;
         /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message header
+         */
+        "verifyIdentityAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message description
+         */
+        "verifyIdentityAlertMessage"?: string;
+        /**
           * @uiName Verify button label
          */
-        "verifyButton": string;
+        "verifyIdentityButton": string;
     }
     interface SqmText {
     }
@@ -5174,6 +5210,12 @@ declare global {
     var HTMLSqmCardFeedElement: {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
+    };
+    interface HTMLSqmCashVerifyEmailElement extends Components.SqmCashVerifyEmail, HTMLStencilElement {
+    }
+    var HTMLSqmCashVerifyEmailElement: {
+        prototype: HTMLSqmCashVerifyEmailElement;
+        new (): HTMLSqmCashVerifyEmailElement;
     };
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
@@ -5794,6 +5836,7 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
+        "sqm-cash-verify-email": HTMLSqmCashVerifyEmailElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
@@ -6222,6 +6265,41 @@ declare namespace LocalJSX {
           * @uiName Card width
          */
         "width"?: number;
+    }
+    interface SqmCashVerifyEmail {
+        "cashVerifyHeaderText"?: string;
+        "cashVerifySubHeaderText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CashVerifyEmailViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email"?: string;
+        /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        "resendVerifyCodeText"?: string;
+        "reverifyCodeSubHeaderText"?: string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText"?: string;
+        "useDifferentEmailText"?: string;
+        "verifyCodeSubHeaderText"?: string;
+        /**
+          * @uiName Email verification invalid text
+          * @uiWidget textArea
+         */
+        "verifyInvalidText"?: string;
+        /**
+          * @uiName Verify email text
+          * @uiWidget textArea
+         */
+        "verifyText"?: string;
     }
     interface SqmCheckboxField {
         /**
@@ -10515,16 +10593,6 @@ declare namespace LocalJSX {
          */
         "generalErrorTitle"?: string;
         /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Identity verification warning message header
-         */
-        "identityRequiredAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Identity verificationwarning message description
-         */
-        "identityRequiredAlertMessage"?: string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
          */
@@ -10708,9 +10776,19 @@ declare namespace LocalJSX {
          */
         "thresholdPayoutText"?: string;
         /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message header
+         */
+        "verifyIdentityAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message description
+         */
+        "verifyIdentityAlertMessage"?: string;
+        /**
           * @uiName Verify button label
          */
-        "verifyButton"?: string;
+        "verifyIdentityButton"?: string;
     }
     interface SqmText {
     }
@@ -10963,6 +11041,7 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
+        "sqm-cash-verify-email": SqmCashVerifyEmail;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
         "sqm-context-router": SqmContextRouter;
@@ -11077,6 +11156,7 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
+            "sqm-cash-verify-email": LocalJSX.SqmCashVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmCashVerifyEmailElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;

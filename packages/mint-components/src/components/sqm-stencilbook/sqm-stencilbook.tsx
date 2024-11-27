@@ -84,6 +84,7 @@ import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
 import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
+import * as CashEmailVerification from "../tax-and-cash/sqm-cash-verify-email/CashEmailVerification.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -174,6 +175,7 @@ const stories = [
   TaxFormSlots,
   PayoutDetailsCard,
   BankingInfoForm,
+  CashEmailVerification,
 ];
 
 /**
