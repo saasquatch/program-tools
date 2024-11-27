@@ -35,7 +35,12 @@ export function PaginationView(props: PaginationViewProps) {
   return (
     <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <sl-button onClick={onPrev} part="sqm-pagination-button" circle>
+      <sl-button
+        onClick={onPrev}
+        part="sqm-pagination-button"
+        circle
+        disabled={currentPage === 1}
+      >
         <sl-icon name="chevron-left" label="Previous Page"></sl-icon>
       </sl-button>
       <div class={sheet.classes.TextContainer}>
@@ -44,7 +49,12 @@ export function PaginationView(props: PaginationViewProps) {
         <span>of</span>
         <span>{totalPages}</span>
       </div>
-      <sl-button onClick={onNext} part="sqm-pagination-button" circle>
+      <sl-button
+        onClick={onNext}
+        part="sqm-pagination-button"
+        circle
+        disabled={currentPage === totalPages}
+      >
         <sl-icon name="chevron-right" label="Previous Page"></sl-icon>
       </sl-button>
     </span>

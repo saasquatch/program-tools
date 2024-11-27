@@ -61,10 +61,13 @@ function useDemoPagination(props: Pagination) {
 
   return deepmerge(
     {
-      currentPage: currentPage,
-      totalPages: 5,
-      onNext: () => setCurrentPage(currentPage + 1),
-      onPrev: () => setCurrentPage(currentPage - 1),
+      states: {
+        currentPage: currentPage,
+        pageCount: 5,
+      },
+      callbacks: {
+        setCurrentPage,
+      },
       text: {
         ofText: `${currentPage} of 5`,
       },
