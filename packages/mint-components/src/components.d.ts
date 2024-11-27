@@ -1539,6 +1539,11 @@ export namespace Components {
         "path": string;
     }
     interface SqmPagination {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPasswordField {
         /**
@@ -7453,6 +7458,11 @@ declare namespace LocalJSX {
         "path"?: string;
     }
     interface SqmPagination {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<any>;
     }
     interface SqmPasswordField {
         /**
