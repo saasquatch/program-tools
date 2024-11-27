@@ -2601,11 +2601,21 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Shown underneath the referral code when the user has already copied the code
+          * @uiName Notification text
+         */
+        "notificationText": string;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Boolean used to show notification text below input
+          * @uiName Show notification text
+         */
+        "showNotificationText": boolean;
         /**
           * Change the text alignment
           * @uiName referral code alignment
@@ -8522,11 +8532,21 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
+          * Shown underneath the referral code when the user has already copied the code
+          * @uiName Notification text
+         */
+        "notificationText"?: string;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Boolean used to show notification text below input
+          * @uiName Show notification text
+         */
+        "showNotificationText"?: boolean;
         /**
           * Change the text alignment
           * @uiName referral code alignment

@@ -12,6 +12,8 @@ export interface CopyTextViewProps {
   buttonStyle?: "button-outside" | "button-below" | "icon";
   error?: boolean;
   errorText?: string;
+  notificationText?: string;
+  showNotificationText?: boolean;
   inputPlaceholderText?: string;
   dateAvailable?: string;
   loading?: boolean;
@@ -31,6 +33,14 @@ const style = {
       border: "2px solid red",
     },
   },
+  ContainerDiv: {
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: "var(--sl-spacing-x-small)",
+    width: "100%",
+  },
   containerStyle: {
     display: "flex",
     alignItems: "center",
@@ -40,6 +50,10 @@ const style = {
   errorTextStyle: {
     margin: "0",
     color: "var(--sl-color-danger-500)",
+  },
+  notificationTextStyle: {
+    margin: "0",
+    color: "var(--sl-color-neutral-500)",
   },
 };
 
@@ -72,6 +86,8 @@ const styleString = sheet.toString();
 
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
+
+  console.log("notification text is", props.notificationText);
 
   const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
@@ -116,7 +132,7 @@ export function CopyTextView(props: CopyTextViewProps) {
   );
 
   return (
-    <div>
+    <div class={sheet.classes.ContainerDiv}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -149,6 +165,11 @@ export function CopyTextView(props: CopyTextViewProps) {
         {(buttonStyle === "button-outside" || buttonStyle === "button-below") &&
           copyButton}
       </div>
+      {props.showNotificationText && props.notificationText && (
+        <p class={sheet.classes.notificationTextStyle}>
+          {props.notificationText}
+        </p>
+      )}
     </div>
   );
 }

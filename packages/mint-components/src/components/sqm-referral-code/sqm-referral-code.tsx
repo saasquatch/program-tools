@@ -34,6 +34,24 @@ export class ReferralCode {
   })
   tooltiptext: string = "Copied to Clipboard";
   /**
+   * Boolean used to show notification text below input
+   *
+   * @uiName Show notification text
+   */
+  @Prop({
+    attribute: "show-notification-text",
+  })
+  showNotificationText: boolean = false;
+  /**
+   * Shown underneath the referral code when the user has already copied the code
+   *
+   * @uiName Notification text
+   */
+  @Prop({
+    attribute: "notification-text",
+  })
+  notificationText: string = "You've copied this code before";
+  /**
    * The number of milliseconds that the tooltip appears for
    *
    * @uiName Tooltip lifespan
@@ -112,6 +130,8 @@ function useDemoReferralCode(props: ReferralCode): CopyTextViewProps {
       textAlign: props.textAlign,
       copyButtonLabel: props.copyButtonLabel,
       buttonStyle: props.buttonStyle,
+      notificationText: props.notificationText,
+      showNotificationText: props.showNotificationText,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
