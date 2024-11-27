@@ -166,7 +166,10 @@ export function CopyTextView(props: CopyTextViewProps) {
           copyButton}
       </div>
       {props.showNotificationText && props.notificationText && (
-        <p class={sheet.classes.notificationTextStyle}>
+        <p
+          part="sqm-notification-text"
+          class={sheet.classes.notificationTextStyle}
+        >
           {props.notificationText}
         </p>
       )}
