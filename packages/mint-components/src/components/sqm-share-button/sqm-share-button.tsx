@@ -159,16 +159,6 @@ export class ShareButton {
 
   /**
    * @undocumented
-   */
-  @Prop() shareLinkOverride?: string;
-
-  /**
-   * @undocumented
-   */
-  @Prop() messageLinkOverride?: string;
-
-  /**
-   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<ShareButtonViewProps>;

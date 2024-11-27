@@ -4,9 +4,9 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface PaginationViewProps {
   currentPage?: number;
   totalPages?: number;
-  text: {
-    ofText: string;
-  };
+  // text: {
+  //   ofText: string;
+  // };
   onNext: (e: Event) => void;
   onPrev: (e: Event) => void;
 }
@@ -40,6 +40,7 @@ export function PaginationView(props: PaginationViewProps) {
       </sl-button>
       <div class={sheet.classes.TextContainer}>
         <span>{currentPage}</span>
+        {/* TODO: this "of" won't be translatable */}
         <span>of</span>
         <span>{totalPages}</span>
       </div>

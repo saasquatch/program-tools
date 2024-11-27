@@ -81,11 +81,6 @@ export class ShareLink {
 
   /**
    * @undocumented
-   */
-  @Prop() linkOverride?: string;
-
-  /**
-   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<CopyTextViewProps>;
@@ -106,8 +101,7 @@ export class ShareLink {
 
 function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
-  const copyString =
-    props.linkOverride || "https://www.example.com/sharelink/abc";
+  const copyString = "https://www.example.com/sharelink/abc";
   return deepmerge(
     {
       copyString: copyString,

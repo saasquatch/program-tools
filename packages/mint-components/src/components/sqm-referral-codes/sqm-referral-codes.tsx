@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Prop, h } from "@stencil/core";
+import { Component, Fragment, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
@@ -9,11 +9,12 @@ import {
   ReferralCodesView,
   ReferralCodesViewProps,
 } from "./sqm-referral-codes-view";
+import { PaginationView } from "../sqm-pagination/sqm-pagination-view";
 
 /**
  * @uiName Referral Codes
  * @exampleGroup Sharing
- * @example Referral Code - <sqm-referral-codes></sqm-referral-code>
+ * @example Referral Codes - <sqm-referral-codes></sqm-referral-codes>
  */
 @Component({
   tag: "sqm-referral-codes",

@@ -1,6 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import { PaginationView } from "./sqm-pagination-view";
+import { usePagination } from "./usePagination";
 
 /**
  * @uiName Pagination
@@ -14,6 +15,9 @@ import { PaginationView } from "./sqm-pagination-view";
 export class Pagination {
   render() {
     // const props = getProps(this);
+
+    const hookProps = usePagination();
+
     const props = {
       currentPage: 1,
       totalPages: 5,

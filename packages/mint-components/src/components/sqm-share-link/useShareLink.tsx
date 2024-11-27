@@ -1,6 +1,7 @@
 import {
   useEngagementMedium,
   useMutation,
+  useParentValue,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -8,6 +9,10 @@ import {
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
+import {
+  ReferralCodeContext,
+  REFERRAL_CODES_NAMESPACE,
+} from "../sqm-referral-codes/useReferralCodes";
 
 interface ShareLinkProps {
   programId?: string;
@@ -41,15 +46,19 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
+  const contextData = useParentValue<ReferralCodeContext>(
+    REFERRAL_CODES_NAMESPACE
+  );
+
   const { data } = useQuery(
     MessageLinkQuery,
     { programId, engagementMedium },
-    !user?.jwt || !!props.linkOverride
+    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
-    (props.linkOverride || data?.user?.shareLink) ??
+    (contextData?.shareLink || data?.user?.shareLink) ??
     // Shown during loading
     "...";
 

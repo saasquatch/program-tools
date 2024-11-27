@@ -2587,11 +2587,6 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * @undocumented 
-          * @uiType string
-         */
-        "codeOverride"?: string;
-        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -3498,10 +3493,6 @@ export namespace Components {
     | "reminder"
     | "unknown";
         /**
-          * @undocumented
-         */
-        "messageLinkOverride"?: string;
-        /**
           * @uiName Display pill
          */
         "pill"?: boolean;
@@ -3511,10 +3502,6 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * @undocumented
-         */
-        "shareLinkOverride"?: string;
         /**
           * Text used for native sharing (mobile only)
           * @uiName Share text
@@ -3623,10 +3610,6 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @undocumented
-         */
-        "linkOverride"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -8518,11 +8501,6 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * @undocumented 
-          * @uiType string
-         */
-        "codeOverride"?: string;
-        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -9405,10 +9383,6 @@ declare namespace LocalJSX {
     | "reminder"
     | "unknown";
         /**
-          * @undocumented
-         */
-        "messageLinkOverride"?: string;
-        /**
           * @uiName Display pill
          */
         "pill"?: boolean;
@@ -9418,10 +9392,6 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * @undocumented
-         */
-        "shareLinkOverride"?: string;
         /**
           * Text used for native sharing (mobile only)
           * @uiName Share text
@@ -9530,10 +9500,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<CopyTextViewProps>;
-        /**
-          * @undocumented
-         */
-        "linkOverride"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID

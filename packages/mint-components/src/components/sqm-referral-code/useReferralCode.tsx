@@ -1,6 +1,7 @@
 import {
   useEngagementMedium,
   useMutation,
+  useParentValue,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -8,6 +9,10 @@ import {
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { CopyTextViewProps } from "../views/copy-text-view";
+import {
+  ReferralCodeContext,
+  REFERRAL_CODES_NAMESPACE,
+} from "../sqm-referral-codes/useReferralCodes";
 
 interface ReferralCodeProps {
   programId?: string;
@@ -37,15 +42,19 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
+  const contextData = useParentValue<ReferralCodeContext>(
+    REFERRAL_CODES_NAMESPACE
+  );
+
   const { data } = useQuery(
     MessageLinkQuery,
     { programId },
-    !user?.jwt || !!props.codeOverride
+    !user?.jwt || contextData?.referralCode !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
-    data?.user?.referralCode ??
+    (contextData?.referralCode || data?.user?.referralCode) ??
     // Shown during loading
     "...";
 

@@ -2,6 +2,7 @@ import {
   useEngagementMedium,
   useUserIdentity,
   useQuery,
+  useParentValue,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { ShareButtonViewProps } from "./sqm-share-button-view";
@@ -10,6 +11,10 @@ import {
   useProgramId,
   getEnvironmentSDK,
 } from "@saasquatch/component-boilerplate";
+import {
+  REFERRAL_CODES_NAMESPACE,
+  ReferralCodeContext,
+} from "../sqm-referral-codes/useReferralCodes";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -19,8 +24,6 @@ interface ShareButtonProps extends ShareButtonViewProps {
   sharetext?: string;
   errorText?: string;
   unsupportedPlatformText?: string;
-  messageLinkOverride?: string;
-  shareLinkOverride?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -99,10 +102,16 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     shareMedium: medium.toUpperCase(),
   };
 
-  // only queries if a programId is available
-  const res = useQuery(MessageLinkQuery, variables, !user?.jwt || !programId);
+  const data = useParentValue<ReferralCodeContext>(REFERRAL_CODES_NAMESPACE);
 
-  const directLink = props.shareLinkOverride || res?.data?.viewer?.shareLink;
+  // only queries if a programId is available
+  const res = useQuery(
+    MessageLinkQuery,
+    variables,
+    !user?.jwt || !programId || data?.[medium] !== undefined
+  );
+
+  const directLink = data?.[medium]?.shareLink || res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 
@@ -118,7 +127,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     ) {
       FacebookShare(
         directLink,
-        props.messageLinkOverride || res.data?.viewer?.messageLink,
+        data?.[medium]?.messageLink || res.data?.viewer?.messageLink,
         props.errorText
       );
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
@@ -130,7 +139,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       );
     } else {
       GenericShare(
-        props.messageLinkOverride || res.data?.viewer?.messageLink,
+        data?.[medium]?.messageLink || res.data?.viewer?.messageLink,
         props.errorText
       );
     }
