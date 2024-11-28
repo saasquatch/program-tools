@@ -85,6 +85,19 @@ export class TaxAndCashDashboard {
   @Prop() taxAlertNotActiveMessageW8?: string =
     "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form.";
   /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Verify identity warning message header
+   */
+  @Prop() verifyIdentityAlertHeader?: string = "Verify your identity";
+  /**
+   * Part of the alert displayed at the top of the page.
+   *
+   * @uiName Verify identity warning message description
+   */
+  @Prop() verifyIdentityAlertMessage?: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
+  /**
    * Additional text displayed next to the tax form's status badge.
    *
    * @uiName Invalid tax form description
@@ -318,6 +331,10 @@ export class TaxAndCashDashboard {
    * @uiName Cancel button label
    */
   @Prop() cancelButton: string = "Cancel";
+  /**
+   * @uiName Verify button label
+   */
+  @Prop() verifyIdentityButton: string = "Start Verification";
 
   /**
    * @undocumented
