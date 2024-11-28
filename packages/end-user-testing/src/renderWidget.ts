@@ -1,4 +1,5 @@
 import { sync } from "./main";
+import { decodeUserJwt } from "./utils";
 import html from "./widgetTemplate.html?raw";
 
 export type WidgetConfig = {
@@ -47,13 +48,18 @@ export function renderWidget(config: WidgetConfig) {
     "iframe#squatchFrame"
   ) as HTMLIFrameElement | null;
   console.log(frame);
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNzEyYmI2YmE3MTk1MTA4MWQwYzliMWQ2NDA2MDI3N2JlMjZjY2VlMDFjOGU4ZTk0ZDRiNTA2OWYwNmIyNDlmZCIsImFjY291bnRJZCI6IjcxMmJiNmJhNzE5NTEwODFkMGM5YjFkNjQwNjAyNzdiZTI2Y2NlZTAxYzhlOGU5NGQ0YjUwNjlmMDZiMjQ5ZmQiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3RheDA4OTcyMzQyM0BpbXBhY3QuY29tIn19.xIfifcCGdmrbeJpw8lQz2vnA2QDkcskCLr9w4hB9vFA";
+  const userObj = decodeUserJwt(token);
+
   frame!.contentWindow!.widgetIdent = {
     programId: config.programId,
     appDomain: "https://staging.referralsaasquatch.com",
     tenantAlias,
-    // userId: "testuser",
-    // accountId: "testuser",
-    // token:
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU",
+    userId: userObj?.id,
+    accountId: userObj?.accountId,
+    email: userObj?.email,
+    token,
   };
 }
