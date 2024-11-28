@@ -11,6 +11,7 @@ import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CashVerifyEmailViewProps } from "./components/tax-and-cash/sqm-cash-verify-email/sqm-cash-verify-email-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { CodeCheckViewProps } from "./components/sqm-widget-verification/sqm-code-check/sqm-code-check-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
@@ -453,6 +454,29 @@ export namespace Components {
         "color": string;
     }
     interface SqmCodeCheck {
+        "cashVerifyHeaderText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CodeCheckViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email": string;
+        /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        "resendVerifyCodeText": string;
+        "reverifyCodeSubHeaderText": string;
+        "useDifferentEmailText": string;
+        "verifyCodeSubHeaderText": string;
+        /**
+          * @uiName Verify code text
+          * @uiWidget textArea
+         */
+        "verifyText": string;
     }
     interface SqmContextRouter {
         "contextName": string;
@@ -6372,6 +6396,29 @@ declare namespace LocalJSX {
         "color"?: string;
     }
     interface SqmCodeCheck {
+        "cashVerifyHeaderText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CodeCheckViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email"?: string;
+        /**
+          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        "resendVerifyCodeText"?: string;
+        "reverifyCodeSubHeaderText"?: string;
+        "useDifferentEmailText"?: string;
+        "verifyCodeSubHeaderText"?: string;
+        /**
+          * @uiName Verify code text
+          * @uiWidget textArea
+         */
+        "verifyText"?: string;
     }
     interface SqmContextRouter {
         "contextName"?: string;

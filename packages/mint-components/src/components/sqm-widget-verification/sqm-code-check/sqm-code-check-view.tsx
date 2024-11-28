@@ -1,0 +1,126 @@
+import { h } from "@stencil/core";
+import { createStyleSheet } from "../../../styling/JSS";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+
+export interface CodeCheckViewProps {
+  states: {
+    loading: boolean;
+    email: string;
+    verifyFailed?: boolean;
+  };
+  refs: {
+    codeWrapperRef: any;
+  };
+  callbacks: {
+    submitCode: () => Promise<void>;
+  };
+  text: {
+    cashVerifyHeaderText: string;
+    verifyCodeSubHeaderText: string;
+    reverifyCodeSubHeaderText: string;
+    resendVerifyCodeText: string;
+    useDifferentEmailText: string;
+    verifyText: string;
+  };
+}
+
+const style = {
+  Wrapper: {
+    maxWidth: "320px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-medium)",
+  },
+  HeaderContainer: {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+  },
+  InputsContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    position: "relative",
+    flexDirection: "column",
+  },
+  ContinueButton: {
+    width: "100%",
+  },
+  FooterContainer: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
+};
+
+const vanillaStyle = `
+:host {
+  display: block;
+}
+:host([hidden]): {
+  display: none;
+}
+`;
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
+export function CodeCheckView(props: CodeCheckViewProps) {
+  const { states, refs, callbacks, text } = props;
+
+  if (states.loading) return;
+
+  return (
+    <div class={sheet.classes.Wrapper} part="sqm-base">
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
+      {states.verifyFailed && (
+        <sl-alert type="danger" open>
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          The code you have entered is invalid.
+        </sl-alert>
+      )}
+      <div class={sheet.classes.HeaderContainer}>
+        <TextSpanView type="h2">{text.cashVerifyHeaderText}</TextSpanView>
+        <TextSpanView type="p">{text.verifyCodeSubHeaderText}</TextSpanView>
+      </div>
+      <div class={sheet.classes.InputsContainer}>
+        <div
+          ref={refs.codeWrapperRef}
+          style={{ display: "flex", gap: "var(--sl-spacing-medium)" }}
+        >
+          <sl-input
+            style={{ maxWidth: "40px" }}
+            maxLength={1}
+            name="code"
+          ></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+        </div>
+        <sl-button
+          class={sheet.classes.ContinueButton}
+          onClick={callbacks.submitCode}
+          loading={states.loading}
+          exportparts="base: primarybutton-base"
+          type="primary"
+        >
+          {text.verifyText}
+        </sl-button>
+      </div>
+      <div class={sheet.classes.FooterContainer}>
+        {!states.verifyFailed && (
+          <TextSpanView type="p">{text.resendVerifyCodeText}</TextSpanView>
+        )}
+        <TextSpanView type="p">
+          <a href="/" style={{ textDecoration: "none" }}>
+            {text.useDifferentEmailText}
+          </a>
+        </TextSpanView>
+      </div>
+    </div>
+  );
+}

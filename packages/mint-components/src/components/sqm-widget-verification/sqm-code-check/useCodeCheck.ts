@@ -1,18 +1,16 @@
 import {
   setVerificationContext,
-  useMutation,
   useParent,
   useParentValue,
+  useToken,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
-import {
-  useVerificationEmailMutation,
-  VerificationEmailMutation,
-} from "../sqm-email-check/useEmailCheck";
-import { VERIFICATION_CONTEXT_NAME } from "../../../../../component-environment/dist";
+import { useVerificationEmailMutation } from "../sqm-email-check/useEmailCheck";
+import { CodeCheck } from "./sqm-code-check";
 
-export function useCodeCheck() {
+export function useCodeCheck(props: CodeCheck) {
+  const token = useToken();
   const [showCode, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const email = useParentValue<string | undefined>(
     VERIFICATION_EMAIL_NAMESPACE
@@ -20,17 +18,19 @@ export function useCodeCheck() {
 
   const [codeRef, setCodeRef] = useState<HTMLDivElement>(null);
   const [validationError, setValidationError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [request, { loading: resendLoading, data, errors: resendErrors }] =
     useVerificationEmailMutation();
 
   useEffect(() => {
     if (!codeRef) return;
 
-    const codeElements = Array.from(
-      codeRef.querySelectorAll(`input[name="code"]`)
-    ) as HTMLInputElement[];
+    const slInputs = codeRef.querySelectorAll("sl-input");
+    const codeElements = Array.from(slInputs).map(
+      (node) =>
+        node.shadowRoot.querySelector(`input[name="code"]`) as HTMLInputElement
+    );
 
-    console.log({ codeElements });
     codeElements.forEach((element, idx) => {
       element.addEventListener("focus", (e) => {
         console.log("focussed");
@@ -66,7 +66,6 @@ export function useCodeCheck() {
   };
 
   const resendEmail = async () => {
-    console.log({ email });
     if (!email) {
       console.error("No email to send a repeat email to");
       return;
@@ -74,12 +73,12 @@ export function useCodeCheck() {
     await request(email);
   };
 
-  console.log({ data });
-
-  const onCheckCode = () => {
-    const codeElements = Array.from(
-      codeRef.querySelectorAll(`input[name="code"]`)
-    ) as HTMLInputElement[];
+  const submitCode = async () => {
+    const slInputs = codeRef.querySelectorAll("sl-input");
+    const codeElements = Array.from(slInputs).map(
+      (node) =>
+        node.shadowRoot.querySelector(`input[name="code"]`) as HTMLInputElement
+    );
 
     if (codeElements.find((el) => !el.value)) {
       setValidationError(true);
@@ -91,14 +90,11 @@ export function useCodeCheck() {
       code = `${code}${element.value}`;
     });
 
-    console.log({ code });
-
     // Async check here
-    if (code === "12345") {
+    if (code === "123456") {
       // Hardcoded jwt for my testing. Needs to match user identity id and accountId
       setVerificationContext({
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.3d3_4i9IeCeFDXMi-oXeSyyH2Yk_9xyVEtVJ0iJc_SA",
+        token: token, // Replace with elevated permissions token
       });
       reset();
     } else {
@@ -107,11 +103,20 @@ export function useCodeCheck() {
   };
 
   return {
-    setCodeRef,
-    onCheckCode,
-    resendEmail,
-    validationError,
-    resendLoading,
-    resendErrors,
+    refs: {
+      codeWrapperRef: setCodeRef,
+    },
+    states: {
+      email,
+      loading: loading,
+      verifyFailed: !!validationError,
+    },
+    callbacks: {
+      resendEmail,
+      submitCode,
+    },
+    text: props.getTextProps(),
+    // resendLoading,
+    // resendErrors,
   };
 }
