@@ -2646,6 +2646,9 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<ReferralCodesViewProps>;
+        /**
+          * @uiName Title Text
+         */
         "titleText"?: string;
     }
     interface SqmReferralIframe {
@@ -8575,6 +8578,9 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<ReferralCodesViewProps>;
+        /**
+          * @uiName Title Text
+         */
         "titleText"?: string;
     }
     interface SqmReferralIframe {

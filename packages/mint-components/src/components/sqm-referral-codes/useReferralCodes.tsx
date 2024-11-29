@@ -55,6 +55,8 @@ export type PaginationContext = {
 export function useReferralCodes(props: ReferralCodes) {
   const user = useUserIdentity();
 
+  console.log({ props });
+
   const {
     envelope: referralData,
     states,

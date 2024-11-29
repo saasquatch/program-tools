@@ -21,6 +21,9 @@ import { PaginationView } from "../sqm-pagination/sqm-pagination-view";
   shadow: true,
 })
 export class ReferralCodes {
+  /**
+   * @uiName Title Text
+   */
   @Prop() titleText?: string = "Your referral code";
 
   /**
@@ -60,7 +63,7 @@ export class ReferralCodes {
 function useDemoReferralCodes(props: ReferralCodes) {
   return deepmerge(
     {
-      titleText: "Your referral code",
+      titleText: props.titleText,
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
