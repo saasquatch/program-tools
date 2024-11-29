@@ -39,11 +39,6 @@ export class WidgetVerification {
       }
     };
 
-    return (
-      <div>
-        <h3>Cash Payouts</h3>
-        {verificationStep()}
-      </div>
-    );
+    return <div>{verificationStep()}</div>;
   }
 }
