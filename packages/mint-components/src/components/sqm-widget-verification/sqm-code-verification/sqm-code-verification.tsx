@@ -1,12 +1,14 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
+import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import {
   WidgetCodeVerificationView,
   WidgetCodeVerificationViewProps,
 } from "./sqm-code-verification-view";
-import { useCodeCheck } from "./useCodeVerification";
+import { useWidgetCodeVerification } from "./useCodeVerification";
 
 @Component({
   tag: "sqm-code-verification",
@@ -58,29 +60,33 @@ export class WidgetCodeVerification {
   }
 
   render() {
-    const props = useCodeCheck(this);
+    const props = isDemo()
+      ? useDemoWidgetCodeVerification(this)
+      : useWidgetCodeVerification(this);
 
-    return (
-      <WidgetCodeVerificationView {...props} />
-      // <div ref={props.setCodeRef}>
-      //   <input width={"24px"} name="code" />
-      //   <input width={"24px"} name="code" />
-      //   <input width={"24px"} name="code" />
-      //   <input width={"24px"} name="code" />
-      //   <input width={"24px"} name="code" />
-      //   <hr />
-      //   <button onClick={props.onCheckCode}>Check code</button>
-      //   {props.validationError && (
-      //     <span color="red">INVALID CODE AHHHHHHHHh</span>
-      //   )}
-      //   <hr />
-      //   <div>
-      //     <span>Didn't get an email?</span>
-      //     <button onClick={props.resendEmail}>
-      //       {props.resendLoading ? "Loading" : "Resend email"}
-      //     </button>
-      //   </div>
-      // </div>
-    );
+    return <WidgetCodeVerificationView {...props} />;
   }
+}
+
+function useDemoWidgetCodeVerification(
+  props: WidgetCodeVerification
+): WidgetCodeVerificationViewProps {
+  return deepmerge(
+    {
+      states: {
+        loading: false,
+        email: "",
+        verifyFailed: false,
+      },
+      refs: {
+        codeWrapperRef: () => {},
+      },
+      callbacks: {
+        submitCode: async () => {},
+      },
+      text: props.getTextProps(),
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

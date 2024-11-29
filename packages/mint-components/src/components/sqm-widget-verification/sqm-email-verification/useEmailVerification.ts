@@ -3,6 +3,7 @@ import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
 import { WidgetEmailVerification } from "./sqm-email-verification";
+import { WidgetEmailVerificationViewProps } from "./sqm-email-verification-view";
 
 export const VerificationEmailMutation = gql`
   mutation sendVerificationEmail($key: String!, $toAddress: String!) {
@@ -43,7 +44,9 @@ export function useVerificationEmailMutation() {
   ] as const;
 }
 
-export function useWidgetEmailVerification(props: WidgetEmailVerification) {
+export function useWidgetEmailVerification(
+  props: WidgetEmailVerification
+): WidgetEmailVerificationViewProps {
   const [_, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const [__, setEmail] = useParent(VERIFICATION_EMAIL_NAMESPACE);
 

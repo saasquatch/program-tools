@@ -9,7 +9,7 @@ import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
 import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
 import { WidgetCodeVerification } from "./sqm-code-verification";
 
-export function useCodeCheck(props: WidgetCodeVerification) {
+export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const token = useToken();
   const [showCode, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const email = useParentValue<string | undefined>(

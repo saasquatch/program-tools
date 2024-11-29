@@ -7,6 +7,8 @@ import {
   WidgetEmailVerificationViewProps,
 } from "./sqm-email-verification-view";
 import { getProps } from "../../../utils/utils";
+import { isDemo } from "@saasquatch/component-boilerplate";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Widget Verification Gate
@@ -46,16 +48,29 @@ export class WidgetEmailVerification {
   }
 
   render() {
-    const props = useWidgetEmailVerification(this);
+    const props = isDemo()
+      ? useDemoWidgetEmailVerification(this)
+      : useWidgetEmailVerification(this);
 
     return <WidgetEmailVerificationView {...props} />;
-    // return (
-    //   <div>
-    //     <form onSubmit={props.submitEmail}>
-    //       <input type="email" name="email" required />
-    //       <button type="submit">{props.loading ? "Loading" : "Verify"}</button>
-    //     </form>
-    //   </div>
-    // );
   }
+}
+
+function useDemoWidgetEmailVerification(
+  props: WidgetEmailVerification
+): WidgetEmailVerificationViewProps {
+  return deepmerge(
+    {
+      states: {
+        error: "",
+        loading: false,
+      },
+      callbacks: {
+        submitEmail: async () => {},
+      },
+      text: props.getTextProps(),
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
