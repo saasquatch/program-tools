@@ -9,7 +9,6 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
-import { CashVerifyEmailViewProps } from "./components/sqm-widget-verification/sqm-cash-verify-email/sqm-cash-verify-email-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { WidgetCodeVerificationViewProps } from "./components/sqm-widget-verification/sqm-code-verification/sqm-code-verification-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
@@ -375,41 +374,6 @@ export namespace Components {
           * @uiName Card width
          */
         "width": number;
-    }
-    interface SqmCashVerifyEmail {
-        "cashVerifyHeaderText": string;
-        "cashVerifySubHeaderText": string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CashVerifyEmailViewProps>;
-        /**
-          * @uiName Email input label
-         */
-        "email": string;
-        /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
-         */
-        "networkErrorMessage": string;
-        "resendVerifyCodeText": string;
-        "reverifyCodeSubHeaderText": string;
-        /**
-          * @uiName Send code button text
-         */
-        "sendCodeText": string;
-        "useDifferentEmailText": string;
-        "verifyCodeSubHeaderText": string;
-        /**
-          * @uiName Email verification invalid text
-          * @uiWidget textArea
-         */
-        "verifyInvalidText": string;
-        /**
-          * @uiName Verify email text
-          * @uiWidget textArea
-         */
-        "verifyText": string;
     }
     interface SqmCheckboxField {
         /**
@@ -5257,12 +5221,6 @@ declare global {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
-    interface HTMLSqmCashVerifyEmailElement extends Components.SqmCashVerifyEmail, HTMLStencilElement {
-    }
-    var HTMLSqmCashVerifyEmailElement: {
-        prototype: HTMLSqmCashVerifyEmailElement;
-        new (): HTMLSqmCashVerifyEmailElement;
-    };
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmCheckboxFieldElement: {
@@ -5900,7 +5858,6 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
-        "sqm-cash-verify-email": HTMLSqmCashVerifyEmailElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
         "sqm-code-verification": HTMLSqmCodeVerificationElement;
@@ -6332,41 +6289,6 @@ declare namespace LocalJSX {
           * @uiName Card width
          */
         "width"?: number;
-    }
-    interface SqmCashVerifyEmail {
-        "cashVerifyHeaderText"?: string;
-        "cashVerifySubHeaderText"?: string;
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<CashVerifyEmailViewProps>;
-        /**
-          * @uiName Email input label
-         */
-        "email"?: string;
-        /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
-         */
-        "networkErrorMessage"?: string;
-        "resendVerifyCodeText"?: string;
-        "reverifyCodeSubHeaderText"?: string;
-        /**
-          * @uiName Send code button text
-         */
-        "sendCodeText"?: string;
-        "useDifferentEmailText"?: string;
-        "verifyCodeSubHeaderText"?: string;
-        /**
-          * @uiName Email verification invalid text
-          * @uiWidget textArea
-         */
-        "verifyInvalidText"?: string;
-        /**
-          * @uiName Verify email text
-          * @uiWidget textArea
-         */
-        "verifyText"?: string;
     }
     interface SqmCheckboxField {
         /**
@@ -11152,7 +11074,6 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
-        "sqm-cash-verify-email": SqmCashVerifyEmail;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
         "sqm-code-verification": SqmCodeVerification;
@@ -11270,7 +11191,6 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
-            "sqm-cash-verify-email": LocalJSX.SqmCashVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmCashVerifyEmailElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
