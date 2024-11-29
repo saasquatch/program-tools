@@ -6,10 +6,10 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
-import { useVerificationEmailMutation } from "../sqm-email-check/useEmailCheck";
-import { CodeCheck } from "./sqm-code-check";
+import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
+import { WidgetCodeVerification } from "./sqm-code-verification";
 
-export function useCodeCheck(props: CodeCheck) {
+export function useCodeCheck(props: WidgetCodeVerification) {
   const token = useToken();
   const [showCode, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const email = useParentValue<string | undefined>(

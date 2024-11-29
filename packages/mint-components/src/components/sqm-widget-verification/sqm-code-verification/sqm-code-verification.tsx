@@ -2,14 +2,17 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { CodeCheckView, CodeCheckViewProps } from "./sqm-code-check-view";
-import { useCodeCheck } from "./useCodeCheck";
+import {
+  WidgetCodeVerificationView,
+  WidgetCodeVerificationViewProps,
+} from "./sqm-code-verification-view";
+import { useCodeCheck } from "./useCodeVerification";
 
 @Component({
-  tag: "sqm-code-check",
+  tag: "sqm-code-verification",
   shadow: true,
 })
-export class CodeCheck {
+export class WidgetCodeVerification {
   @Prop() cashVerifyHeaderText: string = "Cash Payouts";
   @Prop() verifyCodeSubHeaderText: string = "Enter the code sent to {email}.";
   @Prop() reverifyCodeSubHeaderText: string =
@@ -42,7 +45,7 @@ export class CodeCheck {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<CodeCheckViewProps>;
+  @Prop() demoData?: DemoData<WidgetCodeVerificationViewProps>;
 
   constructor() {
     withHooks(this);
@@ -58,7 +61,7 @@ export class CodeCheck {
     const props = useCodeCheck(this);
 
     return (
-      <CodeCheckView {...props} />
+      <WidgetCodeVerificationView {...props} />
       // <div ref={props.setCodeRef}>
       //   <input width={"24px"} name="code" />
       //   <input width={"24px"} name="code" />

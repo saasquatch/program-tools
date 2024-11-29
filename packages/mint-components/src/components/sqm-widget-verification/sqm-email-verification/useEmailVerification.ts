@@ -1,11 +1,8 @@
-import {
-  useMutation,
-  useParent,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
+import { useMutation, useParent } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
+import { WidgetEmailVerification } from "./sqm-email-verification";
 
 export const VerificationEmailMutation = gql`
   mutation sendVerificationEmail($key: String!, $toAddress: String!) {
@@ -46,7 +43,7 @@ export function useVerificationEmailMutation() {
   ] as const;
 }
 
-export function useEmailCheck() {
+export function useWidgetEmailVerification(props: WidgetEmailVerification) {
   const [_, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const [__, setEmail] = useParent(VERIFICATION_EMAIL_NAMESPACE);
 
@@ -56,7 +53,7 @@ export function useEmailCheck() {
 
   const submitEmail = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
+    const formData = e.detail.formData;
     const toAddress = formData.get("email").toString();
     console.log({ toAddress });
 
@@ -69,8 +66,13 @@ export function useEmailCheck() {
   };
 
   return {
-    submitEmail,
-    loading,
-    error: error ? "Something happened" : errors?.message,
+    callbacks: {
+      submitEmail,
+    },
+    states: {
+      loading,
+      error: error ? "Something happened" : errors?.message,
+    },
+    text: props.getTextProps(),
   };
 }

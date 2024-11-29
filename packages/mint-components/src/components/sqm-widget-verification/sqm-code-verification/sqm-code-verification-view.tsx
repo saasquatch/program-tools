@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
-export interface CodeCheckViewProps {
+export interface WidgetCodeVerificationViewProps {
   states: {
     loading: boolean;
     email: string;
@@ -64,7 +64,9 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function CodeCheckView(props: CodeCheckViewProps) {
+export function WidgetCodeVerificationView(
+  props: WidgetCodeVerificationViewProps
+) {
   const { states, refs, callbacks, text } = props;
 
   if (states.loading) return;
@@ -90,11 +92,7 @@ export function CodeCheckView(props: CodeCheckViewProps) {
           ref={refs.codeWrapperRef}
           style={{ display: "flex", gap: "var(--sl-spacing-medium)" }}
         >
-          <sl-input
-            style={{ maxWidth: "40px" }}
-            maxLength={1}
-            name="code"
-          ></sl-input>
+          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
           <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
           <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
           <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>

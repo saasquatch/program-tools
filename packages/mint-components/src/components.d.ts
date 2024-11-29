@@ -11,11 +11,12 @@ import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CashVerifyEmailViewProps } from "./components/tax-and-cash/sqm-cash-verify-email/sqm-cash-verify-email-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
-import { CodeCheckViewProps } from "./components/sqm-widget-verification/sqm-code-check/sqm-code-check-view";
+import { WidgetCodeVerificationViewProps } from "./components/sqm-widget-verification/sqm-code-verification/sqm-code-verification-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
+import { WidgetEmailVerificationViewProps } from "./components/sqm-widget-verification/sqm-email-verification/sqm-email-verification-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
@@ -453,13 +454,13 @@ export namespace Components {
          */
         "color": string;
     }
-    interface SqmCodeCheck {
+    interface SqmCodeVerification {
         "cashVerifyHeaderText": string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CodeCheckViewProps>;
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
         /**
           * @uiName Email input label
          */
@@ -777,7 +778,22 @@ export namespace Components {
          */
         "updatetext": string;
     }
-    interface SqmEmailCheck {
+    interface SqmEmailVerification {
+        "cashVerifyHeaderText": string;
+        "cashVerifySubHeaderText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email": string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText": string;
     }
     interface SqmEmpty {
         /**
@@ -5259,11 +5275,11 @@ declare global {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
-    interface HTMLSqmCodeCheckElement extends Components.SqmCodeCheck, HTMLStencilElement {
+    interface HTMLSqmCodeVerificationElement extends Components.SqmCodeVerification, HTMLStencilElement {
     }
-    var HTMLSqmCodeCheckElement: {
-        prototype: HTMLSqmCodeCheckElement;
-        new (): HTMLSqmCodeCheckElement;
+    var HTMLSqmCodeVerificationElement: {
+        prototype: HTMLSqmCodeVerificationElement;
+        new (): HTMLSqmCodeVerificationElement;
     };
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
@@ -5301,11 +5317,11 @@ declare global {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
-    interface HTMLSqmEmailCheckElement extends Components.SqmEmailCheck, HTMLStencilElement {
+    interface HTMLSqmEmailVerificationElement extends Components.SqmEmailVerification, HTMLStencilElement {
     }
-    var HTMLSqmEmailCheckElement: {
-        prototype: HTMLSqmEmailCheckElement;
-        new (): HTMLSqmEmailCheckElement;
+    var HTMLSqmEmailVerificationElement: {
+        prototype: HTMLSqmEmailVerificationElement;
+        new (): HTMLSqmEmailVerificationElement;
     };
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
@@ -5887,14 +5903,14 @@ declare global {
         "sqm-cash-verify-email": HTMLSqmCashVerifyEmailElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
-        "sqm-code-check": HTMLSqmCodeCheckElement;
+        "sqm-code-verification": HTMLSqmCodeVerificationElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
-        "sqm-email-check": HTMLSqmEmailCheckElement;
+        "sqm-email-verification": HTMLSqmEmailVerificationElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
@@ -6395,13 +6411,13 @@ declare namespace LocalJSX {
          */
         "color"?: string;
     }
-    interface SqmCodeCheck {
+    interface SqmCodeVerification {
         "cashVerifyHeaderText"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CodeCheckViewProps>;
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
         /**
           * @uiName Email input label
          */
@@ -6719,7 +6735,22 @@ declare namespace LocalJSX {
          */
         "updatetext"?: string;
     }
-    interface SqmEmailCheck {
+    interface SqmEmailVerification {
+        "cashVerifyHeaderText"?: string;
+        "cashVerifySubHeaderText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "email"?: string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText"?: string;
     }
     interface SqmEmpty {
         /**
@@ -11124,14 +11155,14 @@ declare namespace LocalJSX {
         "sqm-cash-verify-email": SqmCashVerifyEmail;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
-        "sqm-code-check": SqmCodeCheck;
+        "sqm-code-verification": SqmCodeVerification;
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
-        "sqm-email-check": SqmEmailCheck;
+        "sqm-email-verification": SqmEmailVerification;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
@@ -11242,14 +11273,14 @@ declare module "@stencil/core" {
             "sqm-cash-verify-email": LocalJSX.SqmCashVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmCashVerifyEmailElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
-            "sqm-code-check": LocalJSX.SqmCodeCheck & JSXBase.HTMLAttributes<HTMLSqmCodeCheckElement>;
+            "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
-            "sqm-email-check": LocalJSX.SqmEmailCheck & JSXBase.HTMLAttributes<HTMLSqmEmailCheckElement>;
+            "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
