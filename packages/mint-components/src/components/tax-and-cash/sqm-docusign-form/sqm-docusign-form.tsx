@@ -134,6 +134,12 @@ export class DocusignForm {
     "Submit your tax documents and add your banking information to receive your rewards.";
 
   /**
+   * Exit button text displayed at the end of the Comply Exchange form flow
+   * @uiName Exit button text
+   */
+  @Prop() exitButton: string = "Exit";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -167,13 +173,15 @@ export class DocusignForm {
     const docusignIframeSlot = (
       <DocusignIframe
         states={{
-          url: props.data.documentUrl,
           status: props.states.docusignStatus,
           loading: props.states.loading,
           urlLoading: props.states.urlLoading,
         }}
+        data={{
+          documentUrl: props.data.documentUrl,
+        }}
         callbacks={{
-          onStatusChange: props.callbacks.setDocusignStatus,
+          completeDocument: props.callbacks.completeDocument,
         }}
         text={props.text}
       />

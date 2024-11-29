@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] - 2024-11-25
+
+### Changed
+
+- \<sqm-tax-and-cash>
+  - Replaced the DocuSign iframe with Comply Exchange.
+  - Added property `step-3_exit-button`, which controls the text of the Exit button shown at the end of the Comply exchange form.
+
+## [1.10.4] - 2024-11-20
+
+### Fixed
+
+- \<sqm-portal-verify-email>
+  - Removed unused `verified` prop being passed to the view.
+  - Updated demo props so component renders properly in the content editor.
+
 ## [1.10.3] - 2024-11-08
 
 ### Changed
@@ -1055,7 +1071,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.10.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.0...HEAD
+[1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
+[1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
 [1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
 [1.10.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.2
 [1.10.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.1

@@ -98,7 +98,6 @@ export function usePortalVerifyEmail({
         errors?.response?.errors?.[0]?.message ||
         ((errors?.message || !validEmail) && networkErrorMessage),
       success: completed && (verified || validEmail),
-      verified,
     },
     data: {
       oobCode,
