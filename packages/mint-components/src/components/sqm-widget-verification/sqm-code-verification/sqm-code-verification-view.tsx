@@ -21,6 +21,7 @@ export interface WidgetCodeVerificationViewProps {
     resendVerifyCodeText: string;
     useDifferentEmailText: string;
     verifyText: string;
+    invalidCodeText: string;
   };
 }
 
@@ -42,6 +43,17 @@ const style = {
     position: "relative",
     flexDirection: "column",
   },
+  CodeInputContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+  },
+  CodeInput: {
+    maxWidth: "40px",
+    "&::part(input)": {
+      margin: "0",
+      padding: "0 var(--sl-input-spacing-small)",
+    },
+  },
   ContinueButton: {
     width: "100%",
   },
@@ -59,6 +71,8 @@ const vanillaStyle = `
 :host([hidden]): {
   display: none;
 }
+
+
 `;
 
 const sheet = createStyleSheet(style);
@@ -80,7 +94,7 @@ export function WidgetCodeVerificationView(
       {states.verifyFailed && (
         <sl-alert type="danger" open>
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          The code you have entered is invalid.
+          {text.invalidCodeText}
         </sl-alert>
       )}
       <div class={sheet.classes.HeaderContainer}>
@@ -88,16 +102,13 @@ export function WidgetCodeVerificationView(
         <TextSpanView type="p">{text.verifyCodeSubHeaderText}</TextSpanView>
       </div>
       <div class={sheet.classes.InputsContainer}>
-        <div
-          ref={refs.codeWrapperRef}
-          style={{ display: "flex", gap: "var(--sl-spacing-medium)" }}
-        >
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
-          <sl-input style={{ maxWidth: "40px" }} name="code"></sl-input>
+        <div ref={refs.codeWrapperRef} class={sheet.classes.CodeInputContainer}>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
+          <sl-input class={sheet.classes.CodeInput} name="code"></sl-input>
         </div>
         <sl-button
           class={sheet.classes.ContinueButton}
