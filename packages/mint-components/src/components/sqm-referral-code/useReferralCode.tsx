@@ -14,22 +14,18 @@ import {
   REFERRAL_CODES_NAMESPACE,
 } from "../sqm-referral-codes/useReferralCodes";
 
-interface ShareLinkProps {
+interface ReferralCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
-  linkOverride?: string;
+  codeOverride?: string;
 }
 
 const MessageLinkQuery = gql`
-  query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
+  query ($programId: ID) {
     user: viewer {
       ... on User {
-        shareLink(
-          programId: $programId
-          engagementMedium: $engagementMedium
-          shareMedium: DIRECT
-        )
+        referralCode(programId: $programId)
       }
     }
   }
@@ -41,7 +37,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
+export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -52,13 +48,13 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
 
   const { data } = useQuery(
     MessageLinkQuery,
-    { programId, engagementMedium },
-    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
+    { programId },
+    !user?.jwt || contextData?.referralCode !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString =
-    (contextData?.shareLink || data?.user?.shareLink) ??
+    (contextData?.referralCode || data?.user?.referralCode) ??
     // Shown during loading
     "...";
 
