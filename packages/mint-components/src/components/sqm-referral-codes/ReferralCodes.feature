@@ -31,17 +31,18 @@ Feature: Referral Codes Component
         Then the notification text is displayed
 
     @minutia
-    Scenario Outline: Share mediums can be optionally displayed
+    Scenario Outline: Share buttons slots use the link from referral codes instead of the default query
         Given an authenticated user
         And the program has promo codes configured
-        And <propName> is true
-        Then the <shareMedium> is hidden
+        And a <shareMedium> button is a child of `<sqm-referral-codes>`
+        Then the <shareMedium> button is shown
+        And the link is <promoCode>
         Examples:
-            | propName        | shareMedium |
-            | hideSharelink   | DIRECT      |
-            | hideEmail       | EMAIL       |
-            | hideFbMessenger | FBMESSENGER |
-            | hideWhatsApp    | WHATSAPP    |
+            | propName        | shareMedium | promoCode  |
+            | hideSharelink   | DIRECT      | PROMOCODE1 |
+            | hideEmail       | EMAIL       | PROMOCODE1 |
+            | hideFbMessenger | FBMESSENGER | PROMOCODE1 |
+            | hideWhatsApp    | WHATSAPP    | PROMOCODE1 |
 
     @minutia
     Scenario Outline: Number of codes is displayed in the pagination component
