@@ -48,6 +48,16 @@ const style = {
     width: "15%",
     height: "24px",
   },
+  ErrorInput: {
+    "&::part(base)": {
+      border: "1px solid var(--sl-color-danger-500)",
+      borderRadius: "var(--sl-input-border-radius-medium)",
+    },
+
+    "&::part(help-text)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -101,6 +111,16 @@ export function WidgetEmailVerificationView(
                 id="email"
                 name="email"
                 required
+                //AL: TODO hooks email state and errors
+                {...(states.error
+                  ? {
+                      class: sheet.classes.ErrorInput,
+                      // helpText: formatErrorMessage(
+                      //   text.firstName,
+                      //   formState.errors.firstName
+                      // ),
+                    }
+                  : {})}
               />
               <sl-button
                 submit
