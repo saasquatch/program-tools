@@ -204,7 +204,7 @@ const style = {
 
   PhoneInputsSection: {
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
     flexDirection: "column",
     gap: "4px",
 
@@ -217,7 +217,7 @@ const style = {
 
   PhoneInputsContainer: {
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
     gap: "4px",
     width: "100%",
 

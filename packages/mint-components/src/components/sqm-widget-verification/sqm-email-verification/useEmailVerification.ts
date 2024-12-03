@@ -18,7 +18,9 @@ export function useVerificationEmailMutation() {
   );
 
   const sendVerificationEmailMutation = async (toAddress: string) => {
+        console.log(toAddress);
     return true;
+
 
     // TODO: Needs new mutation
     // try {

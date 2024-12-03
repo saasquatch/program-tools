@@ -419,6 +419,9 @@ export namespace Components {
         "color": string;
     }
     interface SqmCodeVerification {
+        /**
+          * @uiName Verify widget header text
+         */
         "cashVerifyHeaderText": string;
         /**
           * @undocumented 
@@ -429,6 +432,7 @@ export namespace Components {
           * @uiName Email input label
          */
         "email": string;
+        "invalidCodeText": string;
         /**
           * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */
@@ -6344,6 +6348,9 @@ declare namespace LocalJSX {
         "color"?: string;
     }
     interface SqmCodeVerification {
+        /**
+          * @uiName Verify widget header text
+         */
         "cashVerifyHeaderText"?: string;
         /**
           * @undocumented 
@@ -6354,6 +6361,7 @@ declare namespace LocalJSX {
           * @uiName Email input label
          */
         "email"?: string;
+        "invalidCodeText"?: string;
         /**
           * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */

@@ -15,13 +15,17 @@ import { useWidgetCodeVerification } from "./useCodeVerification";
   shadow: true,
 })
 export class WidgetCodeVerification {
-  @Prop() cashVerifyHeaderText: string = "Cash Payouts";
+  /**
+   * @uiName Verify widget header text
+   */
+  @Prop() cashVerifyHeaderText: string = "Cash Payout and Tax Settings";
   @Prop() verifyCodeSubHeaderText: string = "Enter the code sent to {email}.";
   @Prop() reverifyCodeSubHeaderText: string =
     "Enter the code sent to {email} from our referral provider, impact.com.";
   @Prop() resendVerifyCodeText: string =
     "Didn't receive your code? Resend Code";
   @Prop() useDifferentEmailText: string = "Use a different email";
+  @Prop() invalidCodeText: string = "The code you have entered is invalid.";
 
   /**
    * @uiName Email input label
