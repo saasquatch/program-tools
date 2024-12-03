@@ -1,6 +1,11 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../../styling/JSS";
-import { useCallback, useEffect } from "@saasquatch/universal-hooks";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import {
   DOCUSIGN_EXPIRED_STATES,
   DOCUSIGN_ERROR_STATES,
@@ -18,13 +23,15 @@ export type DocusignStatus =
 
 export interface DocusignIframeProps {
   states: {
-    url: string;
     status: DocusignStatus;
     loading: boolean;
     urlLoading: boolean;
   };
+  data: {
+    documentUrl: string | undefined;
+  };
   callbacks: {
-    onStatusChange: (status: DocusignStatus) => void;
+    completeDocument: () => Promise<void>;
   };
   text: {
     docusignExpired: string;
@@ -36,7 +43,8 @@ export interface DocusignIframeProps {
 const style = {
   DocusignStatusContainer: {
     width: "100%",
-    height: "600px",
+    minHeight: "600px",
+    height: "900px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -125,24 +133,39 @@ export const DocusignLoadingView = () => {
 
 export const DocusignIframe = ({
   states,
+  data,
   callbacks,
   text,
 }: DocusignIframeProps) => {
-  if (states.urlLoading) return <DocusignLoadingView />;
+  const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
+
+  const allowedDomains = [
+    "referralsaasquatch.com", // legacy docusign
+    "impacttech.complysandbox.com", // staging env domain
+    "impacttech.complytaxforms.com", // prod env domain
+  ];
 
   const callback = useCallback((e) => {
-    if (!e.origin?.includes("referralsaasquatch.com")) return;
-    if (!e.data) return;
+    const allowed = allowedDomains.some((d) => e.origin?.includes(d));
+    if (!allowed) return;
 
-    callbacks.onStatusChange(e.data.eventStatus);
+    if (typeof e.data === "number") {
+      setiFrameHeight(e.data + "px");
+    }
+
+    if (e.data === "Complyexchange Thank you page Load") {
+      callbacks.completeDocument();
+    }
   }, []);
 
   useEffect(() => {
-    window.addEventListener("message", callback);
+    window.addEventListener("message", callback, false);
     return () => {
-      window.removeEventListener("message", callback);
+      window.removeEventListener("message", callback, false);
     };
   }, []);
+
+  if (states.urlLoading) return <DocusignLoadingView />;
 
   if (DOCUSIGN_ERROR_STATES.includes(states.status)) {
     return <DocusignErrorView text={text} />;
@@ -153,10 +176,11 @@ export const DocusignIframe = ({
 
   return (
     <iframe
+      scrolling="yes"
       frameBorder="0"
-      src={states.url}
+      src={data.documentUrl}
       width="100%"
-      height="600px"
+      height={iFrameHeight}
     ></iframe>
   );
 };
