@@ -1,4 +1,8 @@
-import { useLocale, useParentQueryValue, useSetParent } from "@saasquatch/component-boilerplate";
+import {
+  useLocale,
+  useParentQueryValue,
+  useSetParent,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { vatLabels } from "../countries";
@@ -79,7 +83,7 @@ export const useTaxAndCashDashboard = (
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   const publisher = data?.user?.impactConnection?.publisher;
-  const documentType = publisher?.currentTaxDocument?.type;
+  const documentType = publisher?.requiredTaxDocumentType;
   const submissionDate = publisher?.currentTaxDocument?.dateCreated;
 
   const dateSubmitted = submissionDate
