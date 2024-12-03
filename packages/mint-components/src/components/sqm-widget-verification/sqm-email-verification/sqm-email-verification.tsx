@@ -19,15 +19,13 @@ import deepmerge from "deepmerge";
 })
 export class WidgetEmailVerification {
   @Prop()
-  cashVerifyHeaderText: string = "Cash Payouts";
-  @Prop()
-  cashVerifySubHeaderText: string =
-    "To receive your cash payouts, we’ll send a code to your email through our referral provider, impact.com.";
+  cashEmailVerifyHeaderText: string =
+    "Start by verifying your email. We’ll send you a code through our referral provider, impact.com.";
   /**
    * @uiName Email input label
    */
   @Prop()
-  email: string = "Email";
+  emailHeader: string = "Email";
   /**
    * @uiName Send code button text
    */
@@ -64,6 +62,7 @@ function useDemoWidgetEmailVerification(
       states: {
         error: "",
         loading: false,
+        email: "",
       },
       callbacks: {
         submitEmail: async () => {},

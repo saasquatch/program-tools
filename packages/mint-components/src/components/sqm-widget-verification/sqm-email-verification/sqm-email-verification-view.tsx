@@ -6,38 +6,47 @@ export interface WidgetEmailVerificationViewProps {
   states: {
     error: string;
     loading: boolean;
+    email: string;
   };
   callbacks: {
     submitEmail: (e: any) => Promise<void>;
   };
   text: {
-    cashVerifyHeaderText: string;
-    cashVerifySubHeaderText: string;
+    cashEmailVerifyHeaderText: string;
     sendCodeText: string;
-    email: string;
+    emailHeader: string;
   };
 }
 
 const style = {
   Wrapper: {
-    maxWidth: "320px",
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
-  },
-  HeaderContainer: {
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
+    marginTop: "var(--sl-spacing-medium)",
   },
   InputsContainer: {
     display: "flex",
     gap: "var(--sl-spacing-medium)",
     position: "relative",
     flexDirection: "column",
+    maxWidth: "320px",
   },
   ContinueButton: {
     width: "100%",
+    maxWidth: "100px",
+  },
+  SkeletonOne: {
+    width: "50%",
+    height: "16px",
+  },
+  SkeletonTwo: {
+    width: "30%",
+    height: "34px",
+  },
+  SkeletonThree: {
+    width: "15%",
+    height: "24px",
   },
 };
 
@@ -58,10 +67,18 @@ export function WidgetEmailVerificationView(
 ) {
   const { states, callbacks, text } = props;
 
-  if (states.loading) return;
+  const renderLoadingSkeleton = () => {
+    return (
+      <div class={sheet.classes.Wrapper}>
+        <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+        <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+        <sl-skeleton class={sheet.classes.SkeletonThree}></sl-skeleton>
+      </div>
+    );
+  };
 
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-base">
+    <div part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -69,32 +86,35 @@ export function WidgetEmailVerificationView(
       {
         // TODO: Error state for when sending the email fails
       }
-      <div class={sheet.classes.HeaderContainer}>
-        <TextSpanView type="h2">{text.cashVerifyHeaderText}</TextSpanView>
-        <TextSpanView type="p">{text.cashVerifySubHeaderText}</TextSpanView>
-      </div>
-
-      <sl-form onSl-submit={callbacks.submitEmail}>
-        <div class={sheet.classes.InputsContainer}>
-          <sl-input
-            exportparts="label: input-label, base: input-base"
-            label={text.email}
-            type="email"
-            id="email"
-            name="email"
-            required
-          />
-          <sl-button
-            submit
-            class={sheet.classes.ContinueButton}
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            {text.sendCodeText}
-          </sl-button>
+      {states.loading ? (
+        renderLoadingSkeleton()
+      ) : (
+        <div class={sheet.classes.Wrapper}>
+          {" "}
+          <TextSpanView type="p">{text.cashEmailVerifyHeaderText}</TextSpanView>
+          <sl-form onSl-submit={callbacks.submitEmail}>
+            <div class={sheet.classes.InputsContainer}>
+              <sl-input
+                exportparts="label: input-label, base: input-base"
+                label={text.emailHeader}
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
+              <sl-button
+                submit
+                class={sheet.classes.ContinueButton}
+                loading={states.loading}
+                exportparts="base: primarybutton-base"
+                type="primary"
+              >
+                {text.sendCodeText}
+              </sl-button>
+            </div>
+          </sl-form>
         </div>
-      </sl-form>
+      )}
     </div>
   );
 
