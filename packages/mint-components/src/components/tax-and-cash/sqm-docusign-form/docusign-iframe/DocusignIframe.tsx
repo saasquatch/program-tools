@@ -58,24 +58,13 @@ const style = {
   MessageContainer: {
     maxWidth: "400px",
   },
-  GridContainer: {
-    // display: "grid",
-    // gridTemplateRows: "auto 1fr",
-    border: "1px solid red",
-    // position: "relative",
-    // display: "inline-block",
-  },
   IFrameContainer: {
     "@media screen and (max-width: 440px)": {
-      // gridArea: "1 / 1 / 2 / 2",
       position: "absolute",
       width: "100vw",
-      left: "0",
+      left: "-30px",
       zIndex: "9999",
     },
-  },
-  content: {
-    // gridArea: "1 / 1 / 2 / 2",
   },
 };
 
