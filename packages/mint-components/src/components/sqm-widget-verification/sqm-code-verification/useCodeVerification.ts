@@ -1,17 +1,23 @@
 import {
-  setVerificationContext,
   useParent,
   useParentValue,
   useToken,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/stencil-hooks";
-import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
+import { useEffect, useHost, useState } from "@saasquatch/stencil-hooks";
+import {
+  SHOW_CODE_NAMESPACE,
+  VERIFICATION_EMAIL_NAMESPACE,
+  VERIFICATION_EVENT_KEY,
+  VERIFICATION_PARENT_NAMESPACE,
+} from "../keys";
 import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
 import { WidgetCodeVerification } from "./sqm-code-verification";
 
 export function useWidgetCodeVerification(props: WidgetCodeVerification) {
+  const host = useHost();
   const token = useToken();
   const [showCode, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
+  const [_, setVerificationToken] = useParent(VERIFICATION_PARENT_NAMESPACE);
   const email = useParentValue<string | undefined>(
     VERIFICATION_EMAIL_NAMESPACE
   );
@@ -33,7 +39,6 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
 
     codeElements.forEach((element, idx) => {
       element.addEventListener("focus", (e) => {
-        console.log("focussed");
         (e.target as HTMLInputElement).select();
       });
       element.addEventListener("keydown", (e: any) => {
@@ -92,10 +97,12 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
 
     // Async check here
     if (code === "123456") {
-      // Hardcoded jwt for my testing. Needs to match user identity id and accountId
-      setVerificationContext({
-        token: token, // Replace with elevated permissions token
+      const event = new CustomEvent(VERIFICATION_EVENT_KEY, {
+        detail: { token },
+        composed: true,
+        bubbles: true,
       });
+      host.dispatchEvent(event);
       reset();
     } else {
       setValidationError(true);

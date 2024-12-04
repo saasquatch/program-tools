@@ -6,6 +6,7 @@ import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface BankingInfoFormViewProps {
   states: {
+    showVerification: boolean;
     step?: string;
     locale?: string;
     loading: boolean;

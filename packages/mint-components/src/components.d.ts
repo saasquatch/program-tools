@@ -5197,6 +5197,8 @@ export namespace Components {
     }
     interface SqmWidgetVerification {
     }
+    interface SqmWidgetVerificationInternal {
+    }
 }
 declare global {
     interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
@@ -5865,6 +5867,12 @@ declare global {
         prototype: HTMLSqmWidgetVerificationElement;
         new (): HTMLSqmWidgetVerificationElement;
     };
+    interface HTMLSqmWidgetVerificationInternalElement extends Components.SqmWidgetVerificationInternal, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationInternalElement: {
+        prototype: HTMLSqmWidgetVerificationInternalElement;
+        new (): HTMLSqmWidgetVerificationInternalElement;
+    };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
@@ -5977,6 +5985,7 @@ declare global {
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
         "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
+        "sqm-widget-verification-internal": HTMLSqmWidgetVerificationInternalElement;
     }
 }
 declare namespace LocalJSX {
@@ -11095,6 +11104,8 @@ declare namespace LocalJSX {
     }
     interface SqmWidgetVerification {
     }
+    interface SqmWidgetVerificationInternal {
+    }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
@@ -11207,6 +11218,7 @@ declare namespace LocalJSX {
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
         "sqm-widget-verification": SqmWidgetVerification;
+        "sqm-widget-verification-internal": SqmWidgetVerificationInternal;
     }
 }
 export { LocalJSX as JSX };
@@ -11324,6 +11336,7 @@ declare module "@stencil/core" {
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
             "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
+            "sqm-widget-verification-internal": LocalJSX.SqmWidgetVerificationInternal & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationInternalElement>;
         }
     }
 }

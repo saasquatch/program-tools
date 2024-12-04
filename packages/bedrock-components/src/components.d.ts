@@ -9,7 +9,6 @@ import { FunctionalComponent } from "@stencil/core";
 import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbAuthTemplateSwitch {
-        "verification": boolean;
     }
     interface SqbConditionalSection {
         /**
@@ -128,7 +127,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface SqbAuthTemplateSwitch {
-        "verification"?: boolean;
     }
     interface SqbConditionalSection {
         /**

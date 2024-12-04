@@ -211,6 +211,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     step: "4",
     hideSteps: false,
     disabled: false,
