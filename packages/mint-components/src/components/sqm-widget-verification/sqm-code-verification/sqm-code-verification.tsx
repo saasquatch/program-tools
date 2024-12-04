@@ -18,14 +18,13 @@ export class WidgetCodeVerification {
   /**
    * @uiName Verify widget header text
    */
-  @Prop() cashVerifyHeaderText: string = "Cash Payout and Tax Settings";
-  @Prop() verifyCodeSubHeaderText: string = "Enter the code sent to {email}.";
-  @Prop() reverifyCodeSubHeaderText: string =
+  @Prop() verifyCodeHeaderText: string = "Enter the code sent to {email}.";
+  @Prop() reverifyCodeHeaderText: string =
     "Enter the code sent to {email} from our referral provider, impact.com.";
-  @Prop() resendVerifyCodeText: string =
-    "Didn't receive your code? Resend Code";
+  @Prop() resendCodeText: string = "Didn't receive your code? Resend Code";
   @Prop() useDifferentEmailText: string = "Use a different email";
-  @Prop() invalidCodeText: string = "The code you have entered is invalid.";
+  @Prop() invalidCodeText: string =
+    " Please check your code and try again. If you’re still having trouble, try resending your code.";
 
   /**
    * @uiName Email input label

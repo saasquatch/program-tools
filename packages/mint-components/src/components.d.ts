@@ -420,10 +420,6 @@ export namespace Components {
     }
     interface SqmCodeVerification {
         /**
-          * @uiName Verify widget header text
-         */
-        "cashVerifyHeaderText": string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -437,10 +433,13 @@ export namespace Components {
           * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
-        "resendVerifyCodeText": string;
-        "reverifyCodeSubHeaderText": string;
+        "resendCodeText": string;
+        "reverifyCodeHeaderText": string;
         "useDifferentEmailText": string;
-        "verifyCodeSubHeaderText": string;
+        /**
+          * @uiName Verify widget header text
+         */
+        "verifyCodeHeaderText": string;
         /**
           * @uiName Verify code text
           * @uiWidget textArea
@@ -752,8 +751,7 @@ export namespace Components {
         "updatetext": string;
     }
     interface SqmEmailVerification {
-        "cashVerifyHeaderText": string;
-        "cashVerifySubHeaderText": string;
+        "cashEmailVerifyHeaderText": string;
         /**
           * @undocumented 
           * @uiType object
@@ -762,7 +760,7 @@ export namespace Components {
         /**
           * @uiName Email input label
          */
-        "email": string;
+        "emailHeader": string;
         /**
           * @uiName Send code button text
          */
@@ -6358,10 +6356,6 @@ declare namespace LocalJSX {
     }
     interface SqmCodeVerification {
         /**
-          * @uiName Verify widget header text
-         */
-        "cashVerifyHeaderText"?: string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -6375,10 +6369,13 @@ declare namespace LocalJSX {
           * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
-        "resendVerifyCodeText"?: string;
-        "reverifyCodeSubHeaderText"?: string;
+        "resendCodeText"?: string;
+        "reverifyCodeHeaderText"?: string;
         "useDifferentEmailText"?: string;
-        "verifyCodeSubHeaderText"?: string;
+        /**
+          * @uiName Verify widget header text
+         */
+        "verifyCodeHeaderText"?: string;
         /**
           * @uiName Verify code text
           * @uiWidget textArea
@@ -6690,8 +6687,7 @@ declare namespace LocalJSX {
         "updatetext"?: string;
     }
     interface SqmEmailVerification {
-        "cashVerifyHeaderText"?: string;
-        "cashVerifySubHeaderText"?: string;
+        "cashEmailVerifyHeaderText"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -6700,7 +6696,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Email input label
          */
-        "email"?: string;
+        "emailHeader"?: string;
         /**
           * @uiName Send code button text
          */

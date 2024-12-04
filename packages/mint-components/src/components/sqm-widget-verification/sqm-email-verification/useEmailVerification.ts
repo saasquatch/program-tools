@@ -77,6 +77,8 @@ export function useWidgetEmailVerification(
     states: {
       loading,
       error: error ? "Something happened" : errors?.message,
+      //AL: TODO hooks email state
+      email: ""
     },
     text: props.getTextProps(),
   };
