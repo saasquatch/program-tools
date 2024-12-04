@@ -1,22 +1,19 @@
-import { useToken, useVerificationContext } from '@saasquatch/component-boilerplate';
+import { useToken } from '@saasquatch/component-boilerplate';
 import { useCallback, useEffect, useState } from '@saasquatch/universal-hooks';
 import debugFn from 'debug';
 import { useTemplateChildren } from '../../utils/useTemplateChildren';
 const debug = debugFn('sq:useAuthTemplateSwitch');
 
-type Options = { verification?: boolean };
-export function useAuthTemplateSwitch(options?: Options) {
+export function useAuthTemplateSwitch() {
   const token = useToken();
-  const verificationToken = useVerificationContext()?.token;
-  const authToken = options.verification ? verificationToken : token;
 
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
   const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
-  if (!authToken) debug('No user identity available');
+  if (!token) debug('No user identity available');
 
   const updateTemplates = useCallback(() => {
-    const isAuth = !!authToken;
+    const isAuth = !!token;
     const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
     const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
 
@@ -72,7 +69,7 @@ export function useAuthTemplateSwitch(options?: Options) {
         target.style.height = '25px';
       });
     }
-  }, [container, slot, authToken]);
+  }, [container, slot, token]);
 
   useEffect(() => {
     if (!container || !slot) {
@@ -84,7 +81,7 @@ export function useAuthTemplateSwitch(options?: Options) {
     updateTemplates();
 
     return useTemplateChildren({ parent: slot, callback: updateTemplates });
-  }, [slot, container, authToken]);
+  }, [slot, container, token]);
 
   return {
     setSlot,

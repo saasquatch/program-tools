@@ -13,8 +13,6 @@ import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
   tag: 'sqb-auth-template-switch',
 })
 export class SqbAuthTemplateSwitch {
-  @Prop() verification: boolean = false;
-
   constructor() {
     withHooks(this);
   }
@@ -22,7 +20,7 @@ export class SqbAuthTemplateSwitch {
   disconnectedCallback() {}
 
   render() {
-    const { setContainer, setSlot } = useAuthTemplateSwitch({ verification: this.verification });
+    const { setContainer, setSlot } = useAuthTemplateSwitch();
 
     return (
       <Host>
