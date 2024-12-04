@@ -12,9 +12,9 @@ export interface WidgetEmailVerificationViewProps {
     submitEmail: (e: any) => Promise<void>;
   };
   text: {
-    cashEmailVerifyHeaderText: string;
+    verifyEmailHeaderText: string;
     sendCodeText: string;
-    emailHeader: string;
+    emailLabel: string;
   };
 }
 
@@ -101,12 +101,12 @@ export function WidgetEmailVerificationView(
       ) : (
         <div class={sheet.classes.Wrapper}>
           {" "}
-          <TextSpanView type="p">{text.cashEmailVerifyHeaderText}</TextSpanView>
+          <TextSpanView type="p">{text.verifyEmailHeaderText}</TextSpanView>
           <sl-form onSl-submit={callbacks.submitEmail}>
             <div class={sheet.classes.InputsContainer}>
               <sl-input
                 exportparts="label: input-label, base: input-base"
-                label={text.emailHeader}
+                label={text.emailLabel}
                 type="email"
                 id="email"
                 name="email"
@@ -137,8 +137,4 @@ export function WidgetEmailVerificationView(
       )}
     </div>
   );
-
-  // if (states.error || !data.oobCode) {
-  //   return <div></div>;
-  // }
 }

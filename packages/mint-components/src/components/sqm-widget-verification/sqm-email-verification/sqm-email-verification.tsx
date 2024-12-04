@@ -18,14 +18,17 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class WidgetEmailVerification {
+  /**
+   * @uiName Verify email widget header text
+   */
   @Prop()
-  cashEmailVerifyHeaderText: string =
+  verifyEmailHeaderText: string =
     "Start by verifying your email. We’ll send you a code through our referral provider, impact.com.";
   /**
    * @uiName Email input label
    */
   @Prop()
-  emailHeader: string = "Email";
+  emailLabel: string = "Email";
   /**
    * @uiName Send code button text
    */

@@ -183,6 +183,7 @@ export const DocusignIframe = ({
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
 
+  // Wrap iFrame with container that shares the same height to push other elements down when absolute positioned
   return (
     <div style={{ height: iFrameHeight }}>
       <style type="text/css">{styleString}</style>
