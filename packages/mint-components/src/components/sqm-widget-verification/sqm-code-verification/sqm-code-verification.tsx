@@ -16,32 +16,39 @@ import { useWidgetCodeVerification } from "./useCodeVerification";
 })
 export class WidgetCodeVerification {
   /**
-   * @uiName Verify widget header text
+   * @uiName Verify code widget header text
    */
-  @Prop() verifyCodeHeaderText: string = "Enter the code sent to {email}.";
+  @Prop() verifyCodeHeaderText: string =
+    "Enter the code sent to email@example.com from our referral provider, impact.com.";
+  /**
+   * @uiName Reverify code widget header text
+   */
   @Prop() reverifyCodeHeaderText: string =
     "Enter the code sent to {email} from our referral provider, impact.com.";
+  /**
+   * Link text displayed under verify button
+   * @uiName Resend code text
+   */
   @Prop() resendCodeText: string = "Didn't receive your code? Resend Code";
+  /**
+   * Link text displayed under the verify button
+   * @uiName Use different email text
+   */
   @Prop() useDifferentEmailText: string = "Use a different email";
+  /**
+   * Error text displayed under verification input
+   * @uiName Invalid code text
+   */
   @Prop() invalidCodeText: string =
     " Please check your code and try again. If you’re still having trouble, try resending your code.";
-
   /**
-   * @uiName Email input label
-   */
-  @Prop()
-  email: string = "Email";
-
-  /**
-   * @uiName Verify code text
-   * @uiWidget textArea
+   * @uiName Verify code button text
    */
   @Prop()
   verifyText: string = "Verify";
-
   /**
-   * @uiName Network error message
    * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
    */
   @Prop() networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";

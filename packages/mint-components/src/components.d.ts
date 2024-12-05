@@ -425,24 +425,35 @@ export namespace Components {
          */
         "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
         /**
-          * @uiName Email input label
+          * Error text displayed under verification input
+          * @uiName Invalid code text
          */
-        "email": string;
         "invalidCodeText": string;
         /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
         "resendCodeText": string;
+        /**
+          * @uiName Reverify code widget header text
+         */
         "reverifyCodeHeaderText": string;
+        /**
+          * Link text displayed under the verify button
+          * @uiName Use different email text
+         */
         "useDifferentEmailText": string;
         /**
-          * @uiName Verify widget header text
+          * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText": string;
         /**
-          * @uiName Verify code text
-          * @uiWidget textArea
+          * @uiName Verify code button text
          */
         "verifyText": string;
     }
@@ -751,7 +762,6 @@ export namespace Components {
         "updatetext": string;
     }
     interface SqmEmailVerification {
-        "cashEmailVerifyHeaderText": string;
         /**
           * @undocumented 
           * @uiType object
@@ -760,11 +770,15 @@ export namespace Components {
         /**
           * @uiName Email input label
          */
-        "emailHeader": string;
+        "emailLabel": string;
         /**
           * @uiName Send code button text
          */
         "sendCodeText": string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText": string;
     }
     interface SqmEmpty {
         /**
@@ -6361,24 +6375,35 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
         /**
-          * @uiName Email input label
+          * Error text displayed under verification input
+          * @uiName Invalid code text
          */
-        "email"?: string;
         "invalidCodeText"?: string;
         /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
         "resendCodeText"?: string;
+        /**
+          * @uiName Reverify code widget header text
+         */
         "reverifyCodeHeaderText"?: string;
+        /**
+          * Link text displayed under the verify button
+          * @uiName Use different email text
+         */
         "useDifferentEmailText"?: string;
         /**
-          * @uiName Verify widget header text
+          * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText"?: string;
         /**
-          * @uiName Verify code text
-          * @uiWidget textArea
+          * @uiName Verify code button text
          */
         "verifyText"?: string;
     }
@@ -6687,7 +6712,6 @@ declare namespace LocalJSX {
         "updatetext"?: string;
     }
     interface SqmEmailVerification {
-        "cashEmailVerifyHeaderText"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -6696,11 +6720,15 @@ declare namespace LocalJSX {
         /**
           * @uiName Email input label
          */
-        "emailHeader"?: string;
+        "emailLabel"?: string;
         /**
           * @uiName Send code button text
          */
         "sendCodeText"?: string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText"?: string;
     }
     interface SqmEmpty {
         /**
