@@ -3,6 +3,16 @@ Feature: Tax Form Flow
 
   Background: A user submits their Tax information
 
+  @motivating
+  Scenario: Users must complete a 2FA flow to view the tax form
+    Given the tax form has just loaded
+    When a user views the tax form
+    Then they see a 2FA flow
+    And they are required to verify their email
+    When they verify their email
+    Then the `sqm-tax-and-cash` component is loaded
+    And they can now go through the tax form
+
   @minutia
   Scenario Outline: Participants can register as branded partners, provide indirect tax information and submit their tax forms
     Given they are on step 1
@@ -26,15 +36,15 @@ Feature: Tax Form Flow
 
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           |     3 |
-      | CA          | MX           |     4 |
-      | US          | CA           |     3 |
-      | US          | MX           |     3 |
-      | GB          | US           |     3 |
-      | GB          | MX           |     4 |
-      | EG          | US           |     3 |
-      | EG          | MX           |     4 |
-      | US          | US           |     3 |
+      | CA          | US           | 3     |
+      | CA          | MX           | 4     |
+      | US          | CA           | 3     |
+      | US          | MX           | 3     |
+      | GB          | US           | 3     |
+      | GB          | MX           | 4     |
+      | EG          | US           | 3     |
+      | EG          | MX           | 4     |
+      | US          | US           | 3     |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
@@ -89,14 +99,14 @@ Feature: Tax Form Flow
 
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           |     3 |
-      | CA          | MX           |     4 |
-      | US          | CA           |     3 |
-      | US          | MX           |     3 |
-      | GB          | US           |     3 |
-      | GB          | US           |     3 |
-      | ES          | US           |     3 |
-      | EG          | MX           |     4 |
+      | CA          | US           | 3     |
+      | CA          | MX           | 4     |
+      | US          | CA           | 3     |
+      | US          | MX           | 3     |
+      | GB          | US           | 3     |
+      | GB          | US           | 3     |
+      | ES          | US           | 3     |
+      | EG          | MX           | 4     |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout Comply Exchange forms

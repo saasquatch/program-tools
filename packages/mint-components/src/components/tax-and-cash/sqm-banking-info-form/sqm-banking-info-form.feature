@@ -110,3 +110,13 @@ Feature: Banking Information Form
     Then a request is made to fetch the form data
     But the request fails
     Then a loading error banner appears
+
+  @motivating
+  Scenario: Editting withdrawal settings requires a 2FA code
+    Given a user already has withdrawal settings
+    And the user has a verified email
+    When they submit the form
+    Then a 2FA email is sent to their verified publisher email
+    And they are shown the `sqm-code-verification` component
+    When they verify their 2FA code
+    Then the withdrawal settings form tries to save their changes
