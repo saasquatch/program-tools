@@ -88,6 +88,8 @@
 - [sqm-invoice-table-download-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-data-column](../sqm-invoice-table/columns)
+- [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
+- [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
 
 ### Graph
 ```mermaid
@@ -171,6 +173,8 @@ graph TD;
   sqm-stencilbook --> sqm-invoice-table-download-column
   sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-stencilbook --> sqm-invoice-table-data-column
+  sqm-stencilbook --> sqm-email-verification
+  sqm-stencilbook --> sqm-code-verification
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

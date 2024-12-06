@@ -10,10 +10,12 @@ import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-v
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { WidgetCodeVerificationViewProps } from "./components/sqm-widget-verification/sqm-code-verification/sqm-code-verification-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
+import { WidgetEmailVerificationViewProps } from "./components/sqm-widget-verification/sqm-email-verification/sqm-email-verification-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
@@ -416,6 +418,45 @@ export namespace Components {
          */
         "color": string;
     }
+    interface SqmCodeVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+         */
+        "invalidCodeText": string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "resendCodeText": string;
+        /**
+          * @uiName Reverify code widget header text
+         */
+        "reverifyCodeHeaderText": string;
+        /**
+          * Link text displayed under the verify button
+          * @uiName Use different email text
+         */
+        "useDifferentEmailText": string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code button text
+         */
+        "verifyText": string;
+    }
     interface SqmContextRouter {
         "contextName": string;
     }
@@ -719,6 +760,25 @@ export namespace Components {
           * @uiName Info button text
          */
         "updatetext": string;
+    }
+    interface SqmEmailVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText": string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText": string;
     }
     interface SqmEmpty {
         /**
@@ -4887,6 +4947,20 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message header
+         */
+        "verifyIdentityAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message description
+         */
+        "verifyIdentityAlertMessage"?: string;
+        /**
+          * @uiName Verify button label
+         */
+        "verifyIdentityButton": string;
     }
     interface SqmText {
     }
@@ -5133,6 +5207,10 @@ export namespace Components {
          */
         "loadingText": string;
     }
+    interface SqmWidgetVerification {
+    }
+    interface SqmWidgetVerificationInternal {
+    }
 }
 declare global {
     interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
@@ -5183,6 +5261,12 @@ declare global {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
+    interface HTMLSqmCodeVerificationElement extends Components.SqmCodeVerification, HTMLStencilElement {
+    }
+    var HTMLSqmCodeVerificationElement: {
+        prototype: HTMLSqmCodeVerificationElement;
+        new (): HTMLSqmCodeVerificationElement;
+    };
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
     var HTMLSqmContextRouterElement: {
@@ -5218,6 +5302,12 @@ declare global {
     var HTMLSqmEditProfileElement: {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
+    };
+    interface HTMLSqmEmailVerificationElement extends Components.SqmEmailVerification, HTMLStencilElement {
+    }
+    var HTMLSqmEmailVerificationElement: {
+        prototype: HTMLSqmEmailVerificationElement;
+        new (): HTMLSqmEmailVerificationElement;
     };
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
@@ -5783,6 +5873,18 @@ declare global {
         prototype: HTMLSqmUserNameElement;
         new (): HTMLSqmUserNameElement;
     };
+    interface HTMLSqmWidgetVerificationElement extends Components.SqmWidgetVerification, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationElement: {
+        prototype: HTMLSqmWidgetVerificationElement;
+        new (): HTMLSqmWidgetVerificationElement;
+    };
+    interface HTMLSqmWidgetVerificationInternalElement extends Components.SqmWidgetVerificationInternal, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationInternalElement: {
+        prototype: HTMLSqmWidgetVerificationInternalElement;
+        new (): HTMLSqmWidgetVerificationInternalElement;
+    };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
@@ -5792,12 +5894,14 @@ declare global {
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
+        "sqm-code-verification": HTMLSqmCodeVerificationElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-email-verification": HTMLSqmEmailVerificationElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
@@ -5892,6 +5996,8 @@ declare global {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
+        "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
+        "sqm-widget-verification-internal": HTMLSqmWidgetVerificationInternalElement;
     }
 }
 declare namespace LocalJSX {
@@ -6262,6 +6368,45 @@ declare namespace LocalJSX {
          */
         "color"?: string;
     }
+    interface SqmCodeVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+         */
+        "invalidCodeText"?: string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "resendCodeText"?: string;
+        /**
+          * @uiName Reverify code widget header text
+         */
+        "reverifyCodeHeaderText"?: string;
+        /**
+          * Link text displayed under the verify button
+          * @uiName Use different email text
+         */
+        "useDifferentEmailText"?: string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code button text
+         */
+        "verifyText"?: string;
+    }
     interface SqmContextRouter {
         "contextName"?: string;
     }
@@ -6565,6 +6710,25 @@ declare namespace LocalJSX {
           * @uiName Info button text
          */
         "updatetext"?: string;
+    }
+    interface SqmEmailVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText"?: string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText"?: string;
     }
     interface SqmEmpty {
         /**
@@ -10703,6 +10867,20 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message header
+         */
+        "verifyIdentityAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page.
+          * @uiName Verify identity warning message description
+         */
+        "verifyIdentityAlertMessage"?: string;
+        /**
+          * @uiName Verify button label
+         */
+        "verifyIdentityButton"?: string;
     }
     interface SqmText {
     }
@@ -10948,6 +11126,10 @@ declare namespace LocalJSX {
          */
         "loadingText"?: string;
     }
+    interface SqmWidgetVerification {
+    }
+    interface SqmWidgetVerificationInternal {
+    }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
@@ -10957,12 +11139,14 @@ declare namespace LocalJSX {
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
+        "sqm-code-verification": SqmCodeVerification;
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-email-verification": SqmEmailVerification;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
@@ -11057,6 +11241,8 @@ declare namespace LocalJSX {
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
+        "sqm-widget-verification": SqmWidgetVerification;
+        "sqm-widget-verification-internal": SqmWidgetVerificationInternal;
     }
 }
 export { LocalJSX as JSX };
@@ -11071,12 +11257,14 @@ declare module "@stencil/core" {
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
@@ -11171,6 +11359,8 @@ declare module "@stencil/core" {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
+            "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
+            "sqm-widget-verification-internal": LocalJSX.SqmWidgetVerificationInternal & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationInternalElement>;
         }
     }
 }
