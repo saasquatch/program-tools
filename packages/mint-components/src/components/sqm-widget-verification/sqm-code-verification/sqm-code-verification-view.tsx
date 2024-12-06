@@ -108,6 +108,7 @@ export function WidgetCodeVerificationView(
 ) {
   const { states, refs, callbacks, text } = props;
 
+  // CA: There is no initial loading state so this can prob be safely removed
   const renderLoadingSkeleton = () => {
     return (
       <div class={sheet.classes.Wrapper}>
@@ -127,53 +128,48 @@ export function WidgetCodeVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
-      {states.loading ? (
-        renderLoadingSkeleton()
-      ) : (
-        <div class={sheet.classes.Wrapper}>
-          {" "}
-          <div class={sheet.classes.HeaderContainer}>
-            <TextSpanView type="p">
-              {states.verifyFailed
-                ? text.reverifyCodeHeaderText
-                : text.verifyCodeHeaderText}
-            </TextSpanView>
-          </div>
-          <div class={sheet.classes.InputsContainer}>
-            <div
-              ref={refs.codeWrapperRef}
-              class={sheet.classes.CodeInputContainer}
-            >
-              <sl-input class={inputClass} name="code"></sl-input>
-              <sl-input class={inputClass} name="code"></sl-input>
-              <sl-input class={inputClass} name="code"></sl-input>
-              <sl-input class={inputClass} name="code"></sl-input>
-              <sl-input class={inputClass} name="code"></sl-input>
-              <sl-input class={inputClass} name="code"></sl-input>
-            </div>
-            {states.verifyFailed && (
-              <p class={sheet.classes.ErrorText}>{text.invalidCodeText}</p>
-            )}
-            <sl-button
-              class={sheet.classes.ContinueButton}
-              onClick={callbacks.submitCode}
-              loading={states.loading}
-              exportparts="base: primarybutton-base"
-              type="primary"
-            >
-              {text.verifyText}
-            </sl-button>
-          </div>
-          <div class={sheet.classes.FooterContainer}>
-            <TextSpanView type="p">{text.resendCodeText}</TextSpanView>
-            <TextSpanView type="p">
-              <a href="/" style={{ textDecoration: "none" }}>
-                {text.useDifferentEmailText}
-              </a>
-            </TextSpanView>
-          </div>
+      <div class={sheet.classes.Wrapper}>
+        <div class={sheet.classes.HeaderContainer}>
+          <TextSpanView type="p">
+            {states.verifyFailed
+              ? text.reverifyCodeHeaderText
+              : text.verifyCodeHeaderText}
+          </TextSpanView>
         </div>
-      )}
+        <div class={sheet.classes.InputsContainer}>
+          <div
+            ref={refs.codeWrapperRef}
+            class={sheet.classes.CodeInputContainer}
+          >
+            <sl-input class={inputClass} name="code"></sl-input>
+            <sl-input class={inputClass} name="code"></sl-input>
+            <sl-input class={inputClass} name="code"></sl-input>
+            <sl-input class={inputClass} name="code"></sl-input>
+            <sl-input class={inputClass} name="code"></sl-input>
+            <sl-input class={inputClass} name="code"></sl-input>
+          </div>
+          {states.verifyFailed && (
+            <p class={sheet.classes.ErrorText}>{text.invalidCodeText}</p>
+          )}
+          <sl-button
+            class={sheet.classes.ContinueButton}
+            onClick={callbacks.submitCode}
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            {text.verifyText}
+          </sl-button>
+        </div>
+        <div class={sheet.classes.FooterContainer}>
+          <TextSpanView type="p">{text.resendCodeText}</TextSpanView>
+          <TextSpanView type="p">
+            <a href="/" style={{ textDecoration: "none" }}>
+              {text.useDifferentEmailText}
+            </a>
+          </TextSpanView>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import {
+  useMutation,
   useParent,
   useParentValue,
   useToken,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useHost, useState } from "@saasquatch/stencil-hooks";
 import {
@@ -12,19 +14,58 @@ import {
 } from "../keys";
 import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
 import { WidgetCodeVerification } from "./sqm-code-verification";
+import { gql } from "graphql-request";
+
+// TODO: Move to component-boilerplate
+export const VerifyEmailWithCodeMutation = gql`
+  mutation verifyUserEmail($user: UserIdInput!, $code: String!) {
+    verifyUserEmail(user: $user, code: $code) {
+      verifiedEmail
+      accessKey
+    }
+  }
+`;
+
+export function useCodeVerificationMutation() {
+  const user = useUserIdentity();
+  const [request, { loading, data, errors }] = useMutation(
+    VerifyEmailWithCodeMutation
+  );
+
+  const verifyUserWithCodeMutation = async (code: string) => {
+    try {
+      const result = await request({
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        code,
+      });
+      if (result instanceof Error || !result) throw new Error();
+
+      return result;
+    } catch (e) {
+      console.error("Failed to verify user", e);
+      return null;
+    }
+  };
+
+  return [verifyUserWithCodeMutation, { loading, data, errors }] as const;
+}
 
 export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const host = useHost();
-  const token = useToken();
-  const [showCode, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
-  const [_, setVerificationToken] = useParent(VERIFICATION_PARENT_NAMESPACE);
+  const [_, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
   const email = useParentValue<string | undefined>(
     VERIFICATION_EMAIL_NAMESPACE
   );
 
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailResent, setEmailResent] = useState(false);
   const [codeRef, setCodeRef] = useState<HTMLDivElement>(null);
   const [validationError, setValidationError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
+    useCodeVerificationMutation();
   const [request, { loading: resendLoading, data, errors: resendErrors }] =
     useVerificationEmailMutation();
 
@@ -75,7 +116,16 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       console.error("No email to send a repeat email to");
       return;
     }
+
+    // TODO: Error checks, depends on what mutation is set up as
     await request(email);
+    if (emailSent) {
+      setEmailResent(true);
+      setTimeout(() => {
+        setEmailResent(false);
+      }, 500);
+    }
+    setEmailSent(true);
   };
 
   const submitCode = async () => {
@@ -95,10 +145,12 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       code = `${code}${element.value}`;
     });
 
-    // Async check here
-    if (code === "123456") {
+    setValidationError(false);
+    // Only 123456 passes for a valid code rn
+    const res = await verifyUser(code);
+    if (res) {
       const event = new CustomEvent(VERIFICATION_EVENT_KEY, {
-        detail: { token },
+        detail: { token: res.verifyUserEmail.accessKey },
         composed: true,
         bubbles: true,
       });
@@ -109,13 +161,18 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     }
   };
 
+  useEffect(() => {
+    resendEmail();
+  }, []);
+
   return {
     refs: {
       codeWrapperRef: setCodeRef,
     },
     states: {
       email,
-      loading: loading,
+      emailResent,
+      loading: verifyLoading,
       verifyFailed: !!validationError,
     },
     callbacks: {

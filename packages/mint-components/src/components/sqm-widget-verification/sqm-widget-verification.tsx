@@ -146,7 +146,6 @@ export class WidgetVerification {
       const host = useHost();
       const callback = (e: CustomEvent) => {
         e.stopPropagation();
-        console.log({ e });
         setContext({ token: e.detail.token });
       };
       host.addEventListener(VERIFICATION_EVENT_KEY, callback);

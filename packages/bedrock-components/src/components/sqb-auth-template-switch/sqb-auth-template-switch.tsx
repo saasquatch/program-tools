@@ -1,5 +1,5 @@
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host } from '@stencil/core';
 import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
 
 /**
