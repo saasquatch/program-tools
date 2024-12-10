@@ -1,39 +1,45 @@
-import { useMutation, useParent } from "@saasquatch/component-boilerplate";
+import {
+  useMutation,
+  useParent,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
 import { WidgetEmailVerification } from "./sqm-email-verification";
 import { WidgetEmailVerificationViewProps } from "./sqm-email-verification-view";
+import { Accessibility } from "puppeteer";
 
 export const VerificationEmailMutation = gql`
-  mutation sendVerificationEmail($key: String!, $toAddress: String!) {
-    sendPreviewEmail(emailKey: $key, toAddress: $toAddress)
+  mutation requestUserEmailVerification($user: UserIdInput!) {
+    requestUserEmailVerification(user: $user) {
+      success
+    }
   }
 `;
 
 // TODO: Move to component-boilerplate
 export function useVerificationEmailMutation() {
+  const user = useUserIdentity();
   const [request, { loading, data, errors }] = useMutation(
     VerificationEmailMutation
   );
 
-  const sendVerificationEmailMutation = async (toAddress: string) => {
-        console.log(toAddress);
-    return true;
+  const sendVerificationEmailMutation = async () => {
+    try {
+      const result = await request({
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+      });
+      if (result instanceof Error || !result) throw new Error();
 
-
-    // TODO: Needs new mutation
-    // try {
-    //   const result = await request({
-    //     toAddress,
-    //     key: "verification-code-email",
-    //   });
-    //   if (result instanceof Error || !result) throw new Error();
-
-    //   return result;
-    // } catch (e) {
-    //   return undefined;
-    // }
+      return result;
+    } catch (e) {
+      console.error("Could not send verification email", e);
+      return undefined;
+    }
   };
 
   return [
@@ -50,7 +56,7 @@ export function useWidgetEmailVerification(
   props: WidgetEmailVerification
 ): WidgetEmailVerificationViewProps {
   const [_, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
-  const [__, setEmail] = useParent(VERIFICATION_EMAIL_NAMESPACE);
+  const [email, setEmail] = useParent<string>(VERIFICATION_EMAIL_NAMESPACE);
 
   const [error, setError] = useState(false);
   const [sendVerificationEmailMutation, { loading, data, errors }] =
@@ -60,10 +66,10 @@ export function useWidgetEmailVerification(
     e.preventDefault();
     const formData = e.detail.formData;
     const toAddress = formData.get("email").toString();
-    console.log({ toAddress });
 
-    const result = await sendVerificationEmailMutation(toAddress);
-    if (!result) setError(true);
+    const result = await sendVerificationEmailMutation();
+    console.log({ result });
+    if (!result || !result.requestUserEmailVerification.success) setError(true);
     else {
       setEmail(toAddress);
       setShowCode(true);
@@ -78,7 +84,7 @@ export function useWidgetEmailVerification(
       loading,
       error: error ? "Something happened" : errors?.message,
       //AL: TODO hooks email state
-      email: ""
+      email,
     },
     text: props.getTextProps(),
   };

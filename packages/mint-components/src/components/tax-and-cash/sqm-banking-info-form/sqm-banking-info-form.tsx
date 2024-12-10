@@ -402,9 +402,7 @@ export class BankingInfoForm {
     };
 
     if (props.states.isPartner && props.states.showVerification) {
-      return (
-        <sqm-widget-verification-internal></sqm-widget-verification-internal>
-      );
+      return <sqm-code-verification></sqm-code-verification>;
     }
 
     return (

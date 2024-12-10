@@ -46,6 +46,7 @@ export const GET_USER = gql`
   query getUserTaxInfo {
     user: viewer {
       ... on User {
+        id
         firstName
         lastName
         email
