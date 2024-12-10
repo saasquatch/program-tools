@@ -1694,6 +1694,16 @@ export namespace Components {
          */
         "thresholdPayoutText": string;
     }
+    interface SqmPayoutStatusAlert {
+        "holdDescription": string;
+        "holdHeader": string;
+        "informationRequiredButtonText": string;
+        "informationRequiredDescription": string;
+        "informationRequiredHeader": string;
+        "verificationRequiredButtonText": string;
+        "verificationRequiredDescription": string;
+        "verificationRequiredHeader": string;
+    }
     interface SqmPopupContainer {
         /**
           * Display a close button on the popup
@@ -5492,6 +5502,12 @@ declare global {
         prototype: HTMLSqmPayoutDetailsCardElement;
         new (): HTMLSqmPayoutDetailsCardElement;
     };
+    interface HTMLSqmPayoutStatusAlertElement extends Components.SqmPayoutStatusAlert, HTMLStencilElement {
+    }
+    var HTMLSqmPayoutStatusAlertElement: {
+        prototype: HTMLSqmPayoutStatusAlertElement;
+        new (): HTMLSqmPayoutStatusAlertElement;
+    };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
     var HTMLSqmPopupContainerElement: {
@@ -5945,6 +5961,7 @@ declare global {
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
+        "sqm-payout-status-alert": HTMLSqmPayoutStatusAlertElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -7652,6 +7669,16 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+    }
+    interface SqmPayoutStatusAlert {
+        "holdDescription"?: string;
+        "holdHeader"?: string;
+        "informationRequiredButtonText"?: string;
+        "informationRequiredDescription"?: string;
+        "informationRequiredHeader"?: string;
+        "verificationRequiredButtonText"?: string;
+        "verificationRequiredDescription"?: string;
+        "verificationRequiredHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -11205,6 +11232,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
+        "sqm-payout-status-alert": SqmPayoutStatusAlert;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -11323,6 +11351,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
+            "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;

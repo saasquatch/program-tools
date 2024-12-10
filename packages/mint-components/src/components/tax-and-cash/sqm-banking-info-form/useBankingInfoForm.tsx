@@ -334,7 +334,6 @@ export function useBankingInfoForm(
   };
 
   const runMutation = async (formData: any, token: string) => {
-    // TODO: Use token in mutation
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
