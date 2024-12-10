@@ -420,6 +420,11 @@ export namespace Components {
     }
     interface SqmCodeVerification {
         /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "codeResentSuccessfullyText": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -6369,6 +6374,11 @@ declare namespace LocalJSX {
         "color"?: string;
     }
     interface SqmCodeVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "codeResentSuccessfullyText"?: string;
         /**
           * @undocumented 
           * @uiType object

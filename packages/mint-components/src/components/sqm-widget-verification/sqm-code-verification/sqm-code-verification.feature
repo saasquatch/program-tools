@@ -13,7 +13,7 @@ Feature: Cash payout code verification widget
 
     Examples:
       | code    | result |
-      | 123456  | 123456 |
+      |  123456 | 123456 |
       | 1234567 | 123456 |
 
   @minutia
@@ -80,7 +80,11 @@ Feature: Cash payout code verification widget
       Resend Code
       """
     When they press the link text
-    Then a new verification code is generated is sent to their email
+    Then a success alert appears with text:
+      """
+       Another code has been sent to email@example.com.
+      """
+    And a new verification code is generated is sent to their email
 
   @minutia
   Scenario: User changes email for verification

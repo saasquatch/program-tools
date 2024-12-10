@@ -31,6 +31,12 @@ export class WidgetCodeVerification {
    */
   @Prop() resendCodeText: string = "Didn't receive your code? Resend Code";
   /**
+   * Link text displayed under verify button
+   * @uiName Resend code text
+   */
+  @Prop() codeResentSuccessfullyText: string =
+    "Another code has been sent to {email}";
+  /**
    * Link text displayed under the verify button
    * @uiName Use different email text
    */

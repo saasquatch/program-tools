@@ -8,6 +8,7 @@ export interface WidgetCodeVerificationViewProps {
     loading: boolean;
     email: string;
     verifyFailed?: boolean;
+    codeResent?: boolean;
   };
   refs: {
     codeWrapperRef: any;
@@ -22,6 +23,7 @@ export interface WidgetCodeVerificationViewProps {
     useDifferentEmailText: string;
     verifyText: string;
     invalidCodeText: string;
+    codeResentSuccessfullyText: string;
   };
 }
 
@@ -30,6 +32,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
+    maxWidth: "515px",
   },
   HeaderContainer: {
     display: "flex",
@@ -136,6 +139,11 @@ export function WidgetCodeVerificationView(
               : text.verifyCodeHeaderText}
           </TextSpanView>
         </div>
+        {states.codeResent && (
+          <sqm-form-message type="success" exportparts="successalert-icon">
+            <b>{text.codeResentSuccessfullyText}</b>
+          </sqm-form-message>
+        )}
         <div class={sheet.classes.InputsContainer}>
           <div
             ref={refs.codeWrapperRef}
