@@ -2,6 +2,7 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 import { ErrorStyles } from "../../../global/mixins";
+import { intl } from "../../../global/global";
 
 export interface WidgetCodeVerificationViewProps {
   states: {
@@ -24,6 +25,8 @@ export interface WidgetCodeVerificationViewProps {
     verifyText: string;
     invalidCodeText: string;
     codeResentSuccessfullyText: string;
+    resendCodeLink: string;
+    resendCodeLabel: string;
   };
 }
 
@@ -111,16 +114,24 @@ export function WidgetCodeVerificationView(
 ) {
   const { states, refs, callbacks, text } = props;
 
-  // CA: There is no initial loading state so this can prob be safely removed
-  const renderLoadingSkeleton = () => {
-    return (
-      <div class={sheet.classes.Wrapper}>
-        <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonThree}></sl-skeleton>
-      </div>
-    );
-  };
+  const resendCodeText = intl.formatMessage(
+    {
+      id: "resendCodeText",
+      defaultMessage: text.resendCodeText,
+    },
+    {
+      resendCodeLink: (
+        <a
+          href={text.resendCodeLink}
+          target="_blank"
+          style={{ textDecoration: "none" }}
+        >
+          {text.resendCodeLabel}
+        </a>
+      ),
+    }
+  );
+
   const inputClass = states.verifyFailed
     ? sheet.classes.CodeInputError
     : sheet.classes.CodeInput;
@@ -170,7 +181,7 @@ export function WidgetCodeVerificationView(
           </sl-button>
         </div>
         <div class={sheet.classes.FooterContainer}>
-          <TextSpanView type="p">{text.resendCodeText}</TextSpanView>
+          <TextSpanView type="p">{resendCodeText}</TextSpanView>
           <TextSpanView type="p">
             <a href="/" style={{ textDecoration: "none" }}>
               {text.useDifferentEmailText}

@@ -440,7 +440,17 @@ export namespace Components {
          */
         "networkErrorMessage": string;
         /**
-          * Link text displayed under verify button
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+         */
+        "resendCodeLabel": string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code link
+         */
+        "resendCodeLink": string;
+        /**
+          * Text displayed under verify button
           * @uiName Resend code text
          */
         "resendCodeText": string;
@@ -6395,7 +6405,17 @@ declare namespace LocalJSX {
          */
         "networkErrorMessage"?: string;
         /**
-          * Link text displayed under verify button
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+         */
+        "resendCodeLabel"?: string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code link
+         */
+        "resendCodeLink"?: string;
+        /**
+          * Text displayed under verify button
           * @uiName Resend code text
          */
         "resendCodeText"?: string;

@@ -26,10 +26,21 @@ export class WidgetCodeVerification {
   @Prop() reverifyCodeHeaderText: string =
     "Enter the code sent to {email} from our referral provider, impact.com.";
   /**
-   * Link text displayed under verify button
+   * Text displayed under verify button
    * @uiName Resend code text
    */
-  @Prop() resendCodeText: string = "Didn't receive your code? Resend Code";
+  @Prop() resendCodeText: string = "Didn't receive your code? {resendCodeLink}";
+  /**
+   * The link that appears in the resend code link
+   * @uiName Resend code label
+   */
+  @Prop() resendCodeLabel: string = "Resend code";
+  /**
+   * The link that appears in the resend code link
+   * @uiName Resend code link
+   */
+  // AL: TODO connect route to resend verification code
+  @Prop() resendCodeLink: string = "/resend-code";
   /**
    * Link text displayed under verify button
    * @uiName Resend code text
