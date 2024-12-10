@@ -28,19 +28,19 @@ const styleString = sheet.toString();
 
 export function PayoutButtonScrollView(props: PayoutButtonScrollViewProps) {
   const { text, states } = props;
+
+  if (!states.payoutSettingsComplete) return <div></div>;
   return (
     <div part="sqm-base" class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
       <sqm-scroll
-        scroll-tag-name="sqm-tax-and-cash"
+        scroll-tag-name="sqm-tabs"
         button-text={text.payoutButtonText}
         scroll-animation="smooth"
       ></sqm-scroll>
-      {states.payoutSettingsComplete && (
-        <p class={sheet.classes.PayoutButtonDescription}>
-          {text.payoutButtonDescription}
-        </p>
-      )}
+      <p class={sheet.classes.PayoutButtonDescription}>
+        {text.payoutButtonDescription}
+      </p>
     </div>
   );
 }
