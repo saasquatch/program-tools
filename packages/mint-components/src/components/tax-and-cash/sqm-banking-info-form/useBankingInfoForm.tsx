@@ -339,50 +339,50 @@ export function useBankingInfoForm(
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
 
-      const buildMutation = () => {
-        const input = {
-          setImpactPublisherWithdrawalSettingsInput: {
-            user: {
-              id: user.id,
-              accountId: user.accountId,
-            },
-            ...formData,
-            paymentMethod: getPaymentMethod(currentPaymentOption),
-            paymentSchedulingType: paymentScheduleChecked,
-          } as SetImpactPublisherWithdrawalSettingsInput,
-        };
-
-        if (isPartner && token) {
-          return {
-            variables: {
-              updateImpactPublisherWithdrawalSettingsInput: {
-                ...input.setImpactPublisherWithdrawalSettingsInput,
-                accessKey: token,
-              },
-            },
-            mutation: updateWithdrawalSettings,
-          };
-        }
-
-        return { variables: input, mutation: saveWithdrawalSettings };
+      const body = {
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        ...formData,
+        paymentMethod: getPaymentMethod(currentPaymentOption),
+        paymentSchedulingType: paymentScheduleChecked,
       };
 
-      const { variables, mutation } = buildMutation();
-      const response = await mutation(variables);
+      let response: any = null;
+      let success: any = null;
+      let validationErrors: any = null;
+
+      // Call difference mutations based on whether the user is updating
+      // the info for setting it for the first time
+      if (isPartner) {
+        response = await updateWithdrawalSettings({
+          updateImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+            accessKey: token,
+          } as UpdateImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as UpdateImpactPublisherWithdrawalSettingsResult)
+          ?.updateImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as UpdateImpactPublisherWithdrawalSettingsResult
+        )?.updateImpactPublisherWithdrawalSettings?.validationErrors;
+      } else {
+        response = await saveWithdrawalSettings({
+          setImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+          } as SetImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as SetImpactPublisherWithdrawalSettingsResult)
+          ?.setImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as SetImpactPublisherWithdrawalSettingsResult
+        )?.setImpactPublisherWithdrawalSettings?.validationErrors;
+      }
+
       if (!response || (response as Error)?.message) {
         throw new Error();
-      } else if (
-        !(response as SetImpactPublisherWithdrawalSettingsResult)
-          .setImpactPublisherWithdrawalSettings?.success ||
-        !(response as UpdateImpactPublisherWithdrawalSettingsResult)
-          .updateImpactPublisherWithdrawalSettings?.success
-      ) {
-        const validationErrors =
-          (response as SetImpactPublisherWithdrawalSettingsResult)
-            .setImpactPublisherWithdrawalSettings?.validationErrors ||
-          (response as UpdateImpactPublisherWithdrawalSettingsResult)
-            .updateImpactPublisherWithdrawalSettings?.validationErrors;
-
+      } else if (!success) {
         console.error("Validation failed: ", validationErrors);
 
         const mappedValidationErrors = validationErrors?.reduce(
