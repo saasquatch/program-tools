@@ -24,7 +24,7 @@ export class WidgetVerificationInternal {
     });
     const [email, setEmail] = useParentState<string | undefined>({
       namespace: VERIFICATION_EMAIL_NAMESPACE,
-      initialValue: userIdentity?.managedIdentity?.email,
+      initialValue: userIdentity?.email,
     });
 
     if (showCode) {

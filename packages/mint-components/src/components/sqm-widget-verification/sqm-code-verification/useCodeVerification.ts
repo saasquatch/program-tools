@@ -112,13 +112,9 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   };
 
   const resendEmail = async () => {
-    if (!email) {
-      console.error("No email to send a repeat email to");
-      return;
-    }
-
     // TODO: Error checks, depends on what mutation is set up as
-    await request(email);
+
+    const result = await request();
     if (emailSent) {
       setEmailResent(true);
       setTimeout(() => {
@@ -162,7 +158,8 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   };
 
   useEffect(() => {
-    resendEmail();
+    // email should already exist if user has completed email-verification
+    if (!email) resendEmail();
   }, []);
 
   return {
@@ -172,7 +169,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     states: {
       email,
       emailResent,
-      loading: verifyLoading,
+      loading: verifyLoading || resendLoading,
       verifyFailed: !!validationError,
     },
     callbacks: {

@@ -114,12 +114,31 @@ type SetImpactPublisherWithdrawalSettingsInput = {
   paymentDay?: string;
 } & BankingInfoFormData;
 
+type UpdateImpactPublisherWithdrawalSettingsInput =
+  SetImpactPublisherWithdrawalSettingsInput & { accessKey: string };
+
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
     $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
   ) {
     setImpactPublisherWithdrawalSettings(
       setImpactPublisherWithdrawalSettingsInput: $setImpactPublisherWithdrawalSettingsInput
+    ) {
+      success
+      validationErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const UPDATE_WITHDRAWAL_SETTINGS = gql`
+  mutation updateImpactPublisherWithdrawalSettings(
+    $updateImpactPublisherWithdrawalSettingsInput: UpdateImpactPublisherWithdrawalSettingsInput!
+  ) {
+    updateImpactPublisherWithdrawalSettings(
+      updateImpactPublisherWithdrawalSettingsInput: $updateImpactPublisherWithdrawalSettingsInput
     ) {
       success
       validationErrors {
@@ -178,6 +197,10 @@ export function useBankingInfoForm(
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
     );
+  const [updateWithdrawalSettings] =
+    useMutation<SetImpactPublisherWithdrawalSettingsResult>(
+      UPDATE_WITHDRAWAL_SETTINGS
+    );
 
   const [showVerification, setShowVerification] = useState(false);
   const [currentFormData, setCurrentFormData] = useState(null);
@@ -196,6 +219,8 @@ export function useBankingInfoForm(
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
+  const isPartner =
+    !!userData?.user?.impactConnection?.publisher?.withdrawalSettings;
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -307,19 +332,37 @@ export function useBankingInfoForm(
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
-      const input = {
-        setImpactPublisherWithdrawalSettingsInput: {
-          user: {
-            id: user.id,
-            accountId: user.accountId,
-          },
-          ...formData,
-          paymentMethod: getPaymentMethod(currentPaymentOption),
-          paymentSchedulingType: paymentScheduleChecked,
-        } as SetImpactPublisherWithdrawalSettingsInput,
+
+      const buildMutation = () => {
+        const input = {
+          setImpactPublisherWithdrawalSettingsInput: {
+            user: {
+              id: user.id,
+              accountId: user.accountId,
+            },
+            ...formData,
+            paymentMethod: getPaymentMethod(currentPaymentOption),
+            paymentSchedulingType: paymentScheduleChecked,
+          } as SetImpactPublisherWithdrawalSettingsInput,
+        };
+
+        if (isPartner && token) {
+          return {
+            variables: {
+              updateImpactPublisherWithdrawalSettingsInput: {
+                ...input.setImpactPublisherWithdrawalSettingsInput,
+                accessKey: token,
+              },
+            },
+            mutation: updateWithdrawalSettings,
+          };
+        }
+
+        return { variables: input, mutation: saveWithdrawalSettings };
       };
 
-      const response = await saveWithdrawalSettings(input);
+      const { variables, mutation } = buildMutation();
+      const response = await mutation(variables);
       if (!response || (response as Error)?.message) {
         throw new Error();
       } else if (
@@ -390,17 +433,19 @@ export function useBankingInfoForm(
       return;
     }
 
-    setShowVerification(true);
-    const token = await new Promise((res: (arg: string) => void) => {
-      const cb = (e: CustomEvent) => {
-        e.stopPropagation();
-        host.removeEventListener(VERIFICATION_EVENT_KEY, cb);
-        res(e.detail.token);
-      };
-      host.addEventListener(VERIFICATION_EVENT_KEY, cb);
-    });
-    setShowVerification(false);
-
+    let token = undefined;
+    if (isPartner) {
+      setShowVerification(true);
+      token = await new Promise((res: (arg: string) => void) => {
+        const cb = (e: CustomEvent) => {
+          e.stopPropagation();
+          host.removeEventListener(VERIFICATION_EVENT_KEY, cb);
+          res(e.detail.token);
+        };
+        host.addEventListener(VERIFICATION_EVENT_KEY, cb);
+      });
+      setShowVerification(false);
+    }
     await runMutation(formData, token);
   };
 
@@ -439,8 +484,7 @@ export function useBankingInfoForm(
       hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
-      isPartner:
-        !!userData?.user?.impactConnection?.publisher?.withdrawalSettings,
+      isPartner,
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
