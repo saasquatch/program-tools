@@ -64,6 +64,8 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const [emailResent, setEmailResent] = useState(false);
   const [codeRef, setCodeRef] = useState<HTMLDivElement>(null);
   const [validationError, setValidationError] = useState(false);
+
+  // TODO: Need to handle error states for these errors
   const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
     useCodeVerificationMutation();
   const [request, { loading: resendLoading, data, errors: resendErrors }] =

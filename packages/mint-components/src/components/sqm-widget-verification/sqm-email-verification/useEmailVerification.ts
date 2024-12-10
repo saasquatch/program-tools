@@ -68,7 +68,6 @@ export function useWidgetEmailVerification(
     const toAddress = formData.get("email").toString();
 
     const result = await sendVerificationEmailMutation();
-    console.log({ result });
     if (!result || !result.requestUserEmailVerification.success) setError(true);
     else {
       setEmail(toAddress);
@@ -82,8 +81,7 @@ export function useWidgetEmailVerification(
     },
     states: {
       loading,
-      error: error ? "Something happened" : errors?.message,
-      //AL: TODO hooks email state
+      error: error && props.errorText,
       email,
     },
     text: props.getTextProps(),

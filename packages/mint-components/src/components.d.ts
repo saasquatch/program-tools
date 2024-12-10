@@ -787,6 +787,10 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
+          * @uiName Verify email error text
+         */
+        "errorText": string;
+        /**
           * @uiName Send code button text
          */
         "sendCodeText": string;
@@ -6768,6 +6772,10 @@ declare namespace LocalJSX {
           * @uiName Email input label
          */
         "emailLabel"?: string;
+        /**
+          * @uiName Verify email error text
+         */
+        "errorText"?: string;
         /**
           * @uiName Send code button text
          */

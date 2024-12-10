@@ -25,6 +25,12 @@ export class WidgetEmailVerification {
   verifyEmailHeaderText: string =
     "Start by verifying your email. We’ll send you a code through our referral provider, impact.com.";
   /**
+   * @uiName Verify email error text
+   */
+  @Prop()
+  errorText: string =
+    "Failed to send an email. If this continues, contact Support with impact.com";
+  /**
    * @uiName Email input label
    */
   @Prop()
