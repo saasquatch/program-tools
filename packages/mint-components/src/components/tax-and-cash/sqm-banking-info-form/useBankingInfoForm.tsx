@@ -116,6 +116,12 @@ type SetImpactPublisherWithdrawalSettingsInput = {
 
 type UpdateImpactPublisherWithdrawalSettingsInput =
   SetImpactPublisherWithdrawalSettingsInput & { accessKey: string };
+type UpdateImpactPublisherWithdrawalSettingsResult = {
+  updateImpactPublisherWithdrawalSettings: {
+    success: boolean;
+    validationErrors: { field: string; message: string }[];
+  };
+};
 
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
@@ -198,7 +204,7 @@ export function useBankingInfoForm(
       SAVE_WITHDRAWAL_SETTINGS
     );
   const [updateWithdrawalSettings] =
-    useMutation<SetImpactPublisherWithdrawalSettingsResult>(
+    useMutation<UpdateImpactPublisherWithdrawalSettingsResult>(
       UPDATE_WITHDRAWAL_SETTINGS
     );
 
@@ -367,17 +373,17 @@ export function useBankingInfoForm(
         throw new Error();
       } else if (
         !(response as SetImpactPublisherWithdrawalSettingsResult)
-          .setImpactPublisherWithdrawalSettings?.success
+          .setImpactPublisherWithdrawalSettings?.success ||
+        !(response as UpdateImpactPublisherWithdrawalSettingsResult)
+          .updateImpactPublisherWithdrawalSettings?.success
       ) {
-        console.error(
-          "Validation failed: ",
+        const validationErrors =
           (response as SetImpactPublisherWithdrawalSettingsResult)
-            .setImpactPublisherWithdrawalSettings?.validationErrors
-        );
+            .setImpactPublisherWithdrawalSettings?.validationErrors ||
+          (response as UpdateImpactPublisherWithdrawalSettingsResult)
+            .updateImpactPublisherWithdrawalSettings?.validationErrors;
 
-        const validationErrors = (
-          response as SetImpactPublisherWithdrawalSettingsResult
-        ).setImpactPublisherWithdrawalSettings?.validationErrors;
+        console.error("Validation failed: ", validationErrors);
 
         const mappedValidationErrors = validationErrors?.reduce(
           (agg, error) => {
