@@ -211,6 +211,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     step: "4",
     hideSteps: false,
     disabled: false,
@@ -1232,6 +1233,28 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          showIdentityVerificationDialog: true,
+          identiyRequired: true,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",

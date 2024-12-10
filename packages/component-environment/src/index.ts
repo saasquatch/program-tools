@@ -5,3 +5,4 @@ export * from "./history";
 export * from "./contexts/UserIdentityContext";
 export * from "./contexts/LocaleContext";
 export * from "./contexts/ProgramContext";
+export * from "./contexts/VerificationContext";

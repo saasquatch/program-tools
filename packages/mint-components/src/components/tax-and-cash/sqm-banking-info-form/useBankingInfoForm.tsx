@@ -1,4 +1,5 @@
 import {
+  useHost,
   useLocale,
   useMutation,
   useParent,
@@ -24,6 +25,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -150,6 +152,7 @@ function parseImpactThreshold(threshold: string) {
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
+  const host = useHost();
   const locale = useLocale();
   const user = useUserIdentity();
 
@@ -176,6 +179,8 @@ export function useBankingInfoForm(
       SAVE_WITHDRAWAL_SETTINGS
     );
 
+  const [showVerification, setShowVerification] = useState(false);
+  const [currentFormData, setCurrentFormData] = useState(null);
   const [formState, setFormState] = useState<BankingInfoFormData>({});
   const [currentPaymentOption, setCurrentPaymentOption] =
     useState<null | FinanceNetworkSetting>(null);
@@ -297,29 +302,8 @@ export function useBankingInfoForm(
     setCurrentPaymentOption(currentPaymentOption);
   };
 
-  const onSubmit = async (event: any) => {
-    let formData: BankingInfoFormData = {};
-    let validationErrors: Record<string, string> = {};
-
-    const controls = event.target.getFormControls();
-
-    controls.forEach((control) => {
-      if (!control.name || !control.id) return;
-
-      const key = control.name;
-      const value = control.value;
-      JSONPointer.set(formData, key, value);
-
-      if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, { type: "required" });
-      }
-    });
-
-    setErrors({ inputErrors: validationErrors });
-    if (Object.keys(validationErrors).length) {
-      return;
-    }
-
+  const runMutation = async (formData: any, token: string) => {
+    // TODO: Use token in mutation
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
@@ -383,6 +367,43 @@ export function useBankingInfoForm(
     }
   };
 
+  const onSubmit = async (event: any) => {
+    let formData: BankingInfoFormData = {};
+    let validationErrors: Record<string, string> = {};
+
+    const controls = event.target.getFormControls();
+
+    controls.forEach((control) => {
+      if (!control.name || !control.id) return;
+
+      const key = control.name;
+      const value = control.value;
+      JSONPointer.set(formData, key, value);
+
+      if (control.required && !value) {
+        JSONPointer.set(validationErrors, key, { type: "required" });
+      }
+    });
+
+    setErrors({ inputErrors: validationErrors });
+    if (Object.keys(validationErrors).length) {
+      return;
+    }
+
+    setShowVerification(true);
+    const token = await new Promise((res: (arg: string) => void) => {
+      const cb = (e: CustomEvent) => {
+        e.stopPropagation();
+        host.removeEventListener(VERIFICATION_EVENT_KEY, cb);
+        res(e.detail.token);
+      };
+      host.addEventListener(VERIFICATION_EVENT_KEY, cb);
+    });
+    setShowVerification(false);
+
+    await runMutation(formData, token);
+  };
+
   function setPaymentMethodChecked(
     paymentMethod: "toBankAccount" | "toPayPalAccount"
   ) {
@@ -413,6 +434,7 @@ export function useBankingInfoForm(
       setCountrySearch,
     },
     states: {
+      showVerification,
       step: step?.replace("/", ""),
       hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,

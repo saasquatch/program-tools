@@ -8,6 +8,7 @@ export default {
 
 const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     hideSteps: false,
     disabled: false,
     loading: false,
