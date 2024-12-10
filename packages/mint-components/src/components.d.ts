@@ -29,6 +29,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -1661,6 +1662,15 @@ export namespace Components {
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText": string;
+    }
+    interface SqmPayoutButtonScroll {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        "payoutButtonDescription": string;
+        "payoutButtonText": string;
     }
     interface SqmPayoutDetailsCard {
         /**
@@ -5500,6 +5510,12 @@ declare global {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
     };
+    interface HTMLSqmPayoutButtonScrollElement extends Components.SqmPayoutButtonScroll, HTMLStencilElement {
+    }
+    var HTMLSqmPayoutButtonScrollElement: {
+        prototype: HTMLSqmPayoutButtonScrollElement;
+        new (): HTMLSqmPayoutButtonScrollElement;
+    };
     interface HTMLSqmPayoutDetailsCardElement extends Components.SqmPayoutDetailsCard, HTMLStencilElement {
     }
     var HTMLSqmPayoutDetailsCardElement: {
@@ -5964,6 +5980,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
+        "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
         "sqm-payout-status-alert": HTMLSqmPayoutStatusAlertElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
@@ -7641,6 +7658,15 @@ declare namespace LocalJSX {
           * @uiName Missing uppercase text
          */
         "uppercaseErrorText"?: string;
+    }
+    interface SqmPayoutButtonScroll {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        "payoutButtonDescription"?: string;
+        "payoutButtonText"?: string;
     }
     interface SqmPayoutDetailsCard {
         /**
@@ -11239,6 +11265,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-password-field": SqmPasswordField;
+        "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
         "sqm-payout-status-alert": SqmPayoutStatusAlert;
         "sqm-popup-container": SqmPopupContainer;
@@ -11358,6 +11385,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
             "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
