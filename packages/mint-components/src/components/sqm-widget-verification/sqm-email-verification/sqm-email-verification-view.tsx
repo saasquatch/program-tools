@@ -116,6 +116,7 @@ export function WidgetEmailVerificationView(
                 {...(states.error
                   ? {
                       class: sheet.classes.ErrorInput,
+                      helpText: "Please enter a valid email",
                       // helpText: formatErrorMessage(
                       //   text.firstName,
                       //   formState.errors.firstName
