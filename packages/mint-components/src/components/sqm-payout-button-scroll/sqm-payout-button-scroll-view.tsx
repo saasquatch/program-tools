@@ -32,10 +32,9 @@ export function PayoutButtonScrollView(props: PayoutButtonScrollViewProps) {
     <div part="sqm-base" class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
       <sqm-scroll
-        scroll-tag-name="sqm-text"
+        scroll-tag-name="sqm-tax-and-cash"
         button-text={text.payoutButtonText}
         scroll-animation="smooth"
-        //AL: TODO scroll to payout settings form
       ></sqm-scroll>
       {states.payoutSettingsComplete && (
         <p class={sheet.classes.PayoutButtonDescription}>

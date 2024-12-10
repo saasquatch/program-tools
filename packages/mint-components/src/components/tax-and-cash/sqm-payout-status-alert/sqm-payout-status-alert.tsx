@@ -66,6 +66,7 @@ export class PayoutStatusAlert {
 
     const props = usePayoutStatus();
 
+    // TODO: Make buttons scroll to sqm-tax-and-cash
     function informationRequiredAlert() {
       return (
         <sl-alert
