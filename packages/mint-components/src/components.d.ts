@@ -1665,7 +1665,14 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
         "payoutButtonDescription": string;
+        /**
+          * @uiName Payout button text
+         */
         "payoutButtonText": string;
     }
     interface SqmPayoutDetailsCard {
@@ -1710,13 +1717,37 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Payout on hold alert description
+         */
         "holdDescription": string;
+        /**
+          * @uiName Payout on hold alert header
+         */
         "holdHeader": string;
+        /**
+          * @uiName Info required alert button text
+         */
         "informationRequiredButtonText": string;
+        /**
+          * @uiName Info required alert description
+         */
         "informationRequiredDescription": string;
+        /**
+          * @uiName Info required alert header
+         */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Verification required alert button text
+         */
         "verificationRequiredButtonText": string;
+        /**
+          * @uiName Verification required alert description
+         */
         "verificationRequiredDescription": string;
+        /**
+          * @uiName Verification required alert header
+         */
         "verificationRequiredHeader": string;
     }
     interface SqmPopupContainer {
@@ -7647,7 +7678,14 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
         "payoutButtonDescription"?: string;
+        /**
+          * @uiName Payout button text
+         */
         "payoutButtonText"?: string;
     }
     interface SqmPayoutDetailsCard {
@@ -7692,13 +7730,37 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Payout on hold alert description
+         */
         "holdDescription"?: string;
+        /**
+          * @uiName Payout on hold alert header
+         */
         "holdHeader"?: string;
+        /**
+          * @uiName Info required alert button text
+         */
         "informationRequiredButtonText"?: string;
+        /**
+          * @uiName Info required alert description
+         */
         "informationRequiredDescription"?: string;
+        /**
+          * @uiName Info required alert header
+         */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required alert button text
+         */
         "verificationRequiredButtonText"?: string;
+        /**
+          * @uiName Verification required alert description
+         */
         "verificationRequiredDescription"?: string;
+        /**
+          * @uiName Verification required alert header
+         */
         "verificationRequiredHeader"?: string;
     }
     interface SqmPopupContainer {

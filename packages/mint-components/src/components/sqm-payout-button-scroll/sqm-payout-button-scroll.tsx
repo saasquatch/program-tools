@@ -17,7 +17,14 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class PayoutButtonScroll {
+  /**
+   * @uiName Payout button text
+   */
   @Prop() payoutButtonText: string = "Payouts & Tax Settings";
+  /**
+   * Description text under payout button
+   * @uiName Payout button description text
+   */
   @Prop() payoutButtonDescription: string =
     "Check your payout settings to see when you’ll get paid out next";
 

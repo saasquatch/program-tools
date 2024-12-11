@@ -15,18 +15,42 @@ import { isDemo } from "@saasquatch/component-boilerplate";
   shadow: true,
 })
 export class PayoutStatusAlert {
+  /**
+   * @uiName Info required alert header
+   */
   @Prop() informationRequiredHeader: string =
     "Payout and tax information required";
+  /**
+   * @uiName Info required alert description
+   */
   @Prop() informationRequiredDescription: string =
     "Submit your banking details and tax documents to receive your rewards.";
+  /**
+   * @uiName Info required alert button text
+   */
   @Prop() informationRequiredButtonText: string = "Payouts & Tax Settings";
 
+  /**
+   * @uiName Verification required alert header
+   */
   @Prop() verificationRequiredHeader: string = "Verify your identity";
+  /**
+   * @uiName Verification required alert description
+   */
   @Prop() verificationRequiredDescription: string =
     "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
+  /**
+   * @uiName Verification required alert button text
+   */
   @Prop() verificationRequiredButtonText: string = "Start Verification";
 
+  /**
+   * @uiName Payout on hold alert header
+   */
   @Prop() holdHeader: string = "Your payouts and account are on hold";
+  /**
+   * @uiName Payout on hold alert description
+   */
   @Prop() holdDescription: string =
     "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.";
 
