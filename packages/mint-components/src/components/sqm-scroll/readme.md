@@ -25,11 +25,13 @@
 
 ### Used by
 
+ - [sqm-payout-button-scroll](../sqm-payout-button-scroll)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-payout-button-scroll --> sqm-scroll
   sqm-stencilbook --> sqm-scroll
   style sqm-scroll fill:#f9f,stroke:#333,stroke-width:4px
 ```

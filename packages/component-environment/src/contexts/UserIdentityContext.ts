@@ -62,6 +62,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
 
     let userId: string | undefined = undefined;
     let accountId: string | undefined = undefined;
+    let email: string | undefined = undefined;
 
     if (isDecodedWidgetAPIJWT(decoded)) {
       // Pull the accountId and userId from the subject and Base64-decode them
@@ -72,6 +73,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     } else if (isDecodedSquatchJWT(decoded)) {
       accountId = decoded.user.accountId;
       userId = decoded.user.id;
+      email = decoded.user.email;
     }
 
     if (!userId || !accountId) {
@@ -88,6 +90,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     return {
       id: userId,
       accountId: accountId,
+      email,
       jwt,
     };
   } catch (e) {
@@ -112,6 +115,7 @@ function _getInitialValue(): UserIdentity | undefined {
       return {
         id: sdk.widgetIdent.userId,
         accountId: sdk.widgetIdent.accountId,
+        email: sdk.widgetIdent.email,
         jwt: sdk.widgetIdent.token,
       };
     case "SquatchPortal":

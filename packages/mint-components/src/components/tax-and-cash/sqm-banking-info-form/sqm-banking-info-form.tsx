@@ -401,6 +401,10 @@ export class BankingInfoForm {
       },
     };
 
+    if (props.states.isPartner && props.states.showVerification) {
+      return <sqm-code-verification></sqm-code-verification>;
+    }
+
     return (
       <Host>
         <BankingInfoFormView

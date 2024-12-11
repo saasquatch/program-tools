@@ -1,4 +1,5 @@
 import {
+  useHost,
   useLocale,
   useMutation,
   useParent,
@@ -24,6 +25,7 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -112,12 +114,37 @@ type SetImpactPublisherWithdrawalSettingsInput = {
   paymentDay?: string;
 } & BankingInfoFormData;
 
+type UpdateImpactPublisherWithdrawalSettingsInput =
+  SetImpactPublisherWithdrawalSettingsInput & { accessKey: string };
+type UpdateImpactPublisherWithdrawalSettingsResult = {
+  updateImpactPublisherWithdrawalSettings: {
+    success: boolean;
+    validationErrors: { field: string; message: string }[];
+  };
+};
+
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
     $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
   ) {
     setImpactPublisherWithdrawalSettings(
       setImpactPublisherWithdrawalSettingsInput: $setImpactPublisherWithdrawalSettingsInput
+    ) {
+      success
+      validationErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const UPDATE_WITHDRAWAL_SETTINGS = gql`
+  mutation updateImpactPublisherWithdrawalSettings(
+    $updateImpactPublisherWithdrawalSettingsInput: UpdateImpactPublisherWithdrawalSettingsInput!
+  ) {
+    updateImpactPublisherWithdrawalSettings(
+      updateImpactPublisherWithdrawalSettingsInput: $updateImpactPublisherWithdrawalSettingsInput
     ) {
       success
       validationErrors {
@@ -150,6 +177,7 @@ function parseImpactThreshold(threshold: string) {
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
+  const host = useHost();
   const locale = useLocale();
   const user = useUserIdentity();
 
@@ -175,7 +203,13 @@ export function useBankingInfoForm(
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
     );
+  const [updateWithdrawalSettings] =
+    useMutation<UpdateImpactPublisherWithdrawalSettingsResult>(
+      UPDATE_WITHDRAWAL_SETTINGS
+    );
 
+  const [showVerification, setShowVerification] = useState(false);
+  const [currentFormData, setCurrentFormData] = useState(null);
   const [formState, setFormState] = useState<BankingInfoFormData>({});
   const [currentPaymentOption, setCurrentPaymentOption] =
     useState<null | FinanceNetworkSetting>(null);
@@ -191,6 +225,8 @@ export function useBankingInfoForm(
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
+  const isPartner =
+    !!userData?.user?.impactConnection?.publisher?.withdrawalSettings;
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -297,60 +333,56 @@ export function useBankingInfoForm(
     setCurrentPaymentOption(currentPaymentOption);
   };
 
-  const onSubmit = async (event: any) => {
-    let formData: BankingInfoFormData = {};
-    let validationErrors: Record<string, string> = {};
-
-    const controls = event.target.getFormControls();
-
-    controls.forEach((control) => {
-      if (!control.name || !control.id) return;
-
-      const key = control.name;
-      const value = control.value;
-      JSONPointer.set(formData, key, value);
-
-      if (control.required && !value) {
-        JSONPointer.set(validationErrors, key, { type: "required" });
-      }
-    });
-
-    setErrors({ inputErrors: validationErrors });
-    if (Object.keys(validationErrors).length) {
-      return;
-    }
-
+  const runMutation = async (formData: any, token: string) => {
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
-      const input = {
-        setImpactPublisherWithdrawalSettingsInput: {
-          user: {
-            id: user.id,
-            accountId: user.accountId,
-          },
-          ...formData,
-          paymentMethod: getPaymentMethod(currentPaymentOption),
-          paymentSchedulingType: paymentScheduleChecked,
-        } as SetImpactPublisherWithdrawalSettingsInput,
+
+      const body = {
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        ...formData,
+        paymentMethod: getPaymentMethod(currentPaymentOption),
+        paymentSchedulingType: paymentScheduleChecked,
       };
 
-      const response = await saveWithdrawalSettings(input);
+      let response: any = null;
+      let success: any = null;
+      let validationErrors: any = null;
+
+      // Call difference mutations based on whether the user is updating
+      // the info for setting it for the first time
+      if (isPartner) {
+        response = await updateWithdrawalSettings({
+          updateImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+            accessKey: token,
+          } as UpdateImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as UpdateImpactPublisherWithdrawalSettingsResult)
+          ?.updateImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as UpdateImpactPublisherWithdrawalSettingsResult
+        )?.updateImpactPublisherWithdrawalSettings?.validationErrors;
+      } else {
+        response = await saveWithdrawalSettings({
+          setImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+          } as SetImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as SetImpactPublisherWithdrawalSettingsResult)
+          ?.setImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as SetImpactPublisherWithdrawalSettingsResult
+        )?.setImpactPublisherWithdrawalSettings?.validationErrors;
+      }
+
       if (!response || (response as Error)?.message) {
         throw new Error();
-      } else if (
-        !(response as SetImpactPublisherWithdrawalSettingsResult)
-          .setImpactPublisherWithdrawalSettings?.success
-      ) {
-        console.error(
-          "Validation failed: ",
-          (response as SetImpactPublisherWithdrawalSettingsResult)
-            .setImpactPublisherWithdrawalSettings?.validationErrors
-        );
-
-        const validationErrors = (
-          response as SetImpactPublisherWithdrawalSettingsResult
-        ).setImpactPublisherWithdrawalSettings?.validationErrors;
+      } else if (!success) {
+        console.error("Validation failed: ", validationErrors);
 
         const mappedValidationErrors = validationErrors?.reduce(
           (agg, error) => {
@@ -383,6 +415,45 @@ export function useBankingInfoForm(
     }
   };
 
+  const onSubmit = async (event: any) => {
+    let formData: BankingInfoFormData = {};
+    let validationErrors: Record<string, string> = {};
+
+    const controls = event.target.getFormControls();
+
+    controls.forEach((control) => {
+      if (!control.name || !control.id) return;
+
+      const key = control.name;
+      const value = control.value;
+      JSONPointer.set(formData, key, value);
+
+      if (control.required && !value) {
+        JSONPointer.set(validationErrors, key, { type: "required" });
+      }
+    });
+
+    setErrors({ inputErrors: validationErrors });
+    if (Object.keys(validationErrors).length) {
+      return;
+    }
+
+    let token = undefined;
+    if (isPartner) {
+      setShowVerification(true);
+      token = await new Promise((res: (arg: string) => void) => {
+        const cb = (e: CustomEvent) => {
+          e.stopPropagation();
+          host.removeEventListener(VERIFICATION_EVENT_KEY, cb);
+          res(e.detail.token);
+        };
+        host.addEventListener(VERIFICATION_EVENT_KEY, cb);
+      });
+      setShowVerification(false);
+    }
+    await runMutation(formData, token);
+  };
+
   function setPaymentMethodChecked(
     paymentMethod: "toBankAccount" | "toPayPalAccount"
   ) {
@@ -413,12 +484,12 @@ export function useBankingInfoForm(
       setCountrySearch,
     },
     states: {
+      showVerification,
       step: step?.replace("/", ""),
       hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
-      isPartner:
-        !!userData?.user?.impactConnection?.publisher?.withdrawalSettings,
+      isPartner,
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
