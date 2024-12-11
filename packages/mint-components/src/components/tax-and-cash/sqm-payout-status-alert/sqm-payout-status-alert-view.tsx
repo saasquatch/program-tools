@@ -1,6 +1,6 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
-import { PayoutStatus } from "./sqm-payout-status-alert";
+import { PayoutStatus } from "./usePayoutStatus";
 export interface PayoutStatusAlertViewProps {
   states: {
     loading: boolean;
@@ -101,7 +101,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "INFORMATION_REQUIRED":
         return (
           <sqm-scroll
-            scroll-tag-name="sqm-text"
+            scroll-tag-name="sqm-tabs"
             button-text="Payout and tax settings"
             scroll-animation="smooth"
           ></sqm-scroll>
@@ -132,10 +132,10 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         class={getAlert(states.status).class}
         open
       >
-        <sl-icon slot="icon" name={getAlert(states.status).icon}></sl-icon>
-        <strong>{getAlert(states.status).header}</strong>
+        <sl-icon slot="icon" name={getAlert(states.status)?.icon}></sl-icon>
+        <strong>{getAlert(states.status)?.header}</strong>
         <p class={sheet.classes.AlertDescriptionText}>
-          {getAlert(states.status).description}
+          {getAlert(states.status)?.description}
         </p>
         {getButton(states.status)}
       </sl-alert>
