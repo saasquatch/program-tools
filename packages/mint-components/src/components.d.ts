@@ -4992,20 +4992,6 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message header
-         */
-        "verifyIdentityAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message description
-         */
-        "verifyIdentityAlertMessage"?: string;
-        /**
-          * @uiName Verify button label
-         */
-        "verifyIdentityButton": string;
     }
     interface SqmText {
     }
@@ -10969,20 +10955,6 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message header
-         */
-        "verifyIdentityAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message description
-         */
-        "verifyIdentityAlertMessage"?: string;
-        /**
-          * @uiName Verify button label
-         */
-        "verifyIdentityButton"?: string;
     }
     interface SqmText {
     }
