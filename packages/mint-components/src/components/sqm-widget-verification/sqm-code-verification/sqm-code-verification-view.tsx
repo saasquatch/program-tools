@@ -21,7 +21,6 @@ export interface WidgetCodeVerificationViewProps {
     verifyCodeHeaderText: string;
     reverifyCodeHeaderText: string;
     resendCodeText: string;
-    useDifferentEmailText: string;
     verifyText: string;
     invalidCodeText: string;
     codeResentSuccessfullyText: string;
@@ -182,11 +181,6 @@ export function WidgetCodeVerificationView(
         </div>
         <div class={sheet.classes.FooterContainer}>
           <TextSpanView type="p">{resendCodeText}</TextSpanView>
-          <TextSpanView type="p">
-            <a href="/" style={{ textDecoration: "none" }}>
-              {text.useDifferentEmailText}
-            </a>
-          </TextSpanView>
         </div>
       </div>
     </div>

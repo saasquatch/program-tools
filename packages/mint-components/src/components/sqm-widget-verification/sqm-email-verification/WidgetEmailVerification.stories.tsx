@@ -8,10 +8,23 @@ const defaultProps = {
   email: "",
   error: "",
   loading: false,
+  isEmailPrefilled: false,
 };
 
 export const Default = () => (
   <sqm-email-verification demoData={{}}></sqm-email-verification>
+);
+
+export const EmailIsPrefilled = () => (
+  <sqm-email-verification
+    demoData={{
+      states: {
+        ...defaultProps,
+        isEmailPrefilled: true,
+        email: "test@example.com",
+      },
+    }}
+  ></sqm-email-verification>
 );
 
 export const Loading = () => (

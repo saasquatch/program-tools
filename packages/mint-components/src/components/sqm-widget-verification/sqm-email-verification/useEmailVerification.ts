@@ -83,6 +83,8 @@ export function useWidgetEmailVerification(
       loading,
       error: error && props.errorText,
       email,
+      //AL: TODO handle email exists
+      isEmailPrefilled: false,
     },
     text: props.getTextProps(),
   };

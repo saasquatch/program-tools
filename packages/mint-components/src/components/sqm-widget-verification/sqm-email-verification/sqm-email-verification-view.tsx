@@ -7,6 +7,7 @@ export interface WidgetEmailVerificationViewProps {
     error: string;
     loading: boolean;
     email: string;
+    isEmailPrefilled: boolean;
   };
   callbacks: {
     submitEmail: (e: any) => Promise<void>;
@@ -112,6 +113,7 @@ export function WidgetEmailVerificationView(
                 id="email"
                 name="email"
                 required
+                disabled={states.isEmailPrefilled}
                 //AL: TODO hooks email state and errors
                 {...(states.error
                   ? {

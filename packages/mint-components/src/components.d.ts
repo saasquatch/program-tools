@@ -461,11 +461,6 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
-          * Link text displayed under the verify button
-          * @uiName Use different email text
-         */
-        "useDifferentEmailText": string;
-        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText": string;
@@ -6453,11 +6448,6 @@ declare namespace LocalJSX {
           * @uiName Reverify code widget header text
          */
         "reverifyCodeHeaderText"?: string;
-        /**
-          * Link text displayed under the verify button
-          * @uiName Use different email text
-         */
-        "useDifferentEmailText"?: string;
         /**
           * @uiName Verify code widget header text
          */
