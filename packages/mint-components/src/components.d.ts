@@ -30,6 +30,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
+import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -1705,6 +1706,11 @@ export namespace Components {
         "thresholdPayoutText": string;
     }
     interface SqmPayoutStatusAlert {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         "holdDescription": string;
         "holdHeader": string;
         "informationRequiredButtonText": string;
@@ -7697,6 +7703,11 @@ declare namespace LocalJSX {
         "thresholdPayoutText"?: string;
     }
     interface SqmPayoutStatusAlert {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         "holdDescription"?: string;
         "holdHeader"?: string;
         "informationRequiredButtonText"?: string;

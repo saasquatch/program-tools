@@ -87,6 +87,7 @@ import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stor
 import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
 import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
 import * as PayoutButtonScroll from "../sqm-payout-button-scroll/PayoutButtonScroll.stories";
+import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -180,6 +181,7 @@ const stories = [
   WidgetEmailVerification,
   WidgetCodeVerification,
   PayoutButtonScroll,
+  PayoutStatusAlert,
 ];
 
 /**

@@ -7,13 +7,12 @@
 
 ## Properties
 
-| Property                  | Attribute                     | Description | Type                                                 | Default                                                                                                      |
-| ------------------------- | ----------------------------- | ----------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `cashVerifyHeaderText`    | `cash-verify-header-text`     |             | `string`                                             | `"Cash Payouts"`                                                                                             |
-| `cashVerifySubHeaderText` | `cash-verify-sub-header-text` |             | `string`                                             | `"To receive your cash payouts, we’ll send a code to your email through our referral provider, impact.com."` |
-| `demoData`                | --                            |             | `{ states?: { error: string; loading: boolean; }; }` | `undefined`                                                                                                  |
-| `email`                   | `email`                       |             | `string`                                             | `"Email"`                                                                                                    |
-| `sendCodeText`            | `send-code-text`              |             | `string`                                             | `"Send code"`                                                                                                |
+| Property                | Attribute                  | Description | Type                                                                | Default                                                                                             |
+| ----------------------- | -------------------------- | ----------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `demoData`              | --                         |             | `{ states?: { error: string; loading: boolean; email: string; }; }` | `undefined`                                                                                         |
+| `emailLabel`            | `email-label`              |             | `string`                                                            | `"Email"`                                                                                           |
+| `sendCodeText`          | `send-code-text`           |             | `string`                                                            | `"Send code"`                                                                                       |
+| `verifyEmailHeaderText` | `verify-email-header-text` |             | `string`                                                            | `"Start by verifying your email. We’ll send you a code through our referral provider, impact.com."` |
 
 
 ## Dependencies
@@ -21,13 +20,13 @@
 ### Used by
 
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-widget-verification](..)
+ - [sqm-widget-verification-internal](..)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-email-verification
-  sqm-widget-verification --> sqm-email-verification
+  sqm-widget-verification-internal --> sqm-email-verification
   style sqm-email-verification fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

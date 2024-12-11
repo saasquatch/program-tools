@@ -7,32 +7,40 @@
 
 ## Properties
 
-| Property                    | Attribute                       | Description | Type                                                                                                          | Default                                                                                  |
-| --------------------------- | ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `cashVerifyHeaderText`      | `cash-verify-header-text`       |             | `string`                                                                                                      | `"Cash Payouts"`                                                                         |
-| `demoData`                  | --                              |             | `{ states?: { loading: boolean; email: string; verifyFailed?: boolean; }; refs?: { codeWrapperRef: any; }; }` | `undefined`                                                                              |
-| `email`                     | `email`                         |             | `string`                                                                                                      | `"Email"`                                                                                |
-| `invalidCodeText`           | `invalid-code-text`             |             | `string`                                                                                                      | `"The code you have entered is invalid."`                                                |
-| `networkErrorMessage`       | `network-error-message`         |             | `string`                                                                                                      | `"An error occurred while verifying your email. Please refresh the page and try again."` |
-| `resendVerifyCodeText`      | `resend-verify-code-text`       |             | `string`                                                                                                      | `"Didn't receive your code? Resend Code"`                                                |
-| `reverifyCodeSubHeaderText` | `reverify-code-sub-header-text` |             | `string`                                                                                                      | `"Enter the code sent to {email} from our referral provider, impact.com."`               |
-| `useDifferentEmailText`     | `use-different-email-text`      |             | `string`                                                                                                      | `"Use a different email"`                                                                |
-| `verifyCodeSubHeaderText`   | `verify-code-sub-header-text`   |             | `string`                                                                                                      | `"Enter the code sent to {email}."`                                                      |
-| `verifyText`                | `verify-text`                   |             | `string`                                                                                                      | `"Verify"`                                                                               |
+| Property                     | Attribute                       | Description                                                                                                      | Type                                                                                                                                | Default                                                                                             |
+| ---------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `codeResentSuccessfullyText` | `code-resent-successfully-text` | Link text displayed under verify button                                                                          | `string`                                                                                                                            | `"Another code has been sent to {email}"`                                                           |
+| `demoData`                   | --                              |                                                                                                                  | `{ states?: { loading: boolean; email: string; verifyFailed?: boolean; codeResent?: boolean; }; refs?: { codeWrapperRef: any; }; }` | `undefined`                                                                                         |
+| `invalidCodeText`            | `invalid-code-text`             | Error text displayed under verification input                                                                    | `string`                                                                                                                            | `" Please check your code and try again. If you’re still having trouble, try resending your code."` |
+| `networkErrorMessage`        | `network-error-message`         | Displayed when the email verification fails due to a network error. The participant can try refreshing the page. | `string`                                                                                                                            | `"An error occurred while verifying your email. Please refresh the page and try again."`            |
+| `resendCodeLabel`            | `resend-code-label`             | The link that appears in the resend code link                                                                    | `string`                                                                                                                            | `"Resend code"`                                                                                     |
+| `resendCodeLink`             | `resend-code-link`              | The link that appears in the resend code link                                                                    | `string`                                                                                                                            | `"/resend-code"`                                                                                    |
+| `resendCodeText`             | `resend-code-text`              | Text displayed under verify button                                                                               | `string`                                                                                                                            | `"Didn't receive your code? {resendCodeLink}"`                                                      |
+| `reverifyCodeHeaderText`     | `reverify-code-header-text`     |                                                                                                                  | `string`                                                                                                                            | `"Enter the code sent to {email} from our referral provider, impact.com."`                          |
+| `useDifferentEmailText`      | `use-different-email-text`      | Link text displayed under the verify button                                                                      | `string`                                                                                                                            | `"Use a different email"`                                                                           |
+| `verifyCodeHeaderText`       | `verify-code-header-text`       |                                                                                                                  | `string`                                                                                                                            | `"Enter the code sent to email@example.com from our referral provider, impact.com."`                |
+| `verifyText`                 | `verify-text`                   |                                                                                                                  | `string`                                                                                                                            | `"Verify"`                                                                                          |
 
 
 ## Dependencies
 
 ### Used by
 
+ - [sqm-banking-info-form](../../tax-and-cash/sqm-banking-info-form)
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-widget-verification](..)
+ - [sqm-widget-verification-internal](..)
+
+### Depends on
+
+- [sqm-form-message](../../sqm-form-message)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-code-verification --> sqm-form-message
+  sqm-banking-info-form --> sqm-code-verification
   sqm-stencilbook --> sqm-code-verification
-  sqm-widget-verification --> sqm-code-verification
+  sqm-widget-verification-internal --> sqm-code-verification
   style sqm-code-verification fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

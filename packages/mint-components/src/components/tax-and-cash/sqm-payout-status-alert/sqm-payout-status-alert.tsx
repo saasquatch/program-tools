@@ -3,8 +3,16 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import { GET_USER, UserQuery } from "../sqm-tax-and-cash/data";
 import { useEffect } from "@saasquatch/universal-hooks";
+import { isDemo } from "../../../utils/isDemo";
+import {
+  PayoutStatusAlertView,
+  PayoutStatusAlertViewProps,
+} from "./sqm-payout-status-alert-view";
+import { getProps } from "../../../utils/utils";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
 
-type PayoutStatus =
+export type PayoutStatus =
   | "INFORMATION_REQUIRED"
   | "VERIFICATION_NEEDED"
   | "HOLD"
@@ -14,21 +22,34 @@ type PayoutStatus =
   shadow: true,
 })
 export class PayoutStatusAlert {
-  @Prop() informationRequiredHeader: string;
-  @Prop() informationRequiredDescription: string;
-  @Prop() informationRequiredButtonText: string;
+  @Prop() informationRequiredHeader: string =
+    "Payout and tax information required";
+  @Prop() informationRequiredDescription: string =
+    "Submit your banking details and tax documents to receive your rewards.";
+  @Prop() informationRequiredButtonText: string = "Payouts & Tax Settings";
 
-  @Prop() verificationRequiredHeader: string;
-  @Prop() verificationRequiredDescription: string;
-  @Prop() verificationRequiredButtonText: string;
+  @Prop() verificationRequiredHeader: string = "Verify your identity";
+  @Prop() verificationRequiredDescription: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
+  @Prop() verificationRequiredButtonText: string = "Start Verification";
 
-  @Prop() holdHeader: string;
-  @Prop() holdDescription: string;
+  @Prop() holdHeader: string = "Your payouts and account are on hold";
+  @Prop() holdDescription: string =
+    "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.";
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<PayoutStatusAlertViewProps>;
 
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
+  getTextProps() {
+    return getProps(this);
+  }
 
   render() {
     function usePayoutStatus() {
@@ -64,68 +85,25 @@ export class PayoutStatusAlert {
       return { loading, status };
     }
 
-    const props = usePayoutStatus();
+    // const props = isDemo() ? useDemoPayoutStatusAlert(this) : usePayoutStatus();
 
-    function informationRequiredAlert() {
-      return (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="info"
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{this.informationRequiredHeader}</strong>
-          <br />
-          {this.informationRequiredDescription}
-          <sl-button>{this.informationRequiredButtonText}</sl-button>
-        </sl-alert>
-      );
-    }
-
-    function verificationRequiredAlert() {
-      return (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="info"
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{this.verificationRequiredHeader}</strong>
-          <br />
-          {this.verificationRequiredDescription}
-          <sl-button>{this.verificationRequiredButtonText}</sl-button>
-        </sl-alert>
-      );
-    }
-
-    function holdAlert() {
-      return (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="info"
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{this.holdHeader}</strong>
-          <br />
-          {this.holdDescription}
-        </sl-alert>
-      );
-    }
-
-    function getAlert(status: PayoutStatus) {
-      switch (status) {
-        case "INFORMATION_REQUIRED":
-          return informationRequiredAlert();
-        case "VERIFICATION_NEEDED":
-          return verificationRequiredAlert();
-        case "HOLD":
-          return holdAlert();
-        case "DONE":
-          return <div></div>;
-      }
-    }
-
-    return getAlert(props.status);
+    const props = useDemoPayoutStatusAlert(this);
+    return <PayoutStatusAlertView {...props} />;
   }
+}
+
+function useDemoPayoutStatusAlert(
+  props: PayoutStatusAlert
+): PayoutStatusAlertViewProps {
+  return deepmerge(
+    {
+      states: {
+        status: "INFORMATION_REQUIRED",
+        loading: false,
+      },
+      text: props.getTextProps(),
+    },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
