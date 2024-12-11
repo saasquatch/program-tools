@@ -1,22 +1,15 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
-import { useState, withHooks } from "@saasquatch/stencil-hooks";
+import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import { GET_USER, UserQuery } from "../sqm-tax-and-cash/data";
-import { useEffect } from "@saasquatch/universal-hooks";
-import { isDemo } from "../../../utils/isDemo";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../../global/demo";
+import { getProps } from "../../../utils/utils";
 import {
   PayoutStatusAlertView,
   PayoutStatusAlertViewProps,
 } from "./sqm-payout-status-alert-view";
-import { getProps } from "../../../utils/utils";
-import deepmerge from "deepmerge";
-import { DemoData } from "../../../global/demo";
+import { usePayoutStatus } from "./usePayoutStatus";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
-export type PayoutStatus =
-  | "INFORMATION_REQUIRED"
-  | "VERIFICATION_NEEDED"
-  | "HOLD"
-  | "DONE";
 @Component({
   tag: "sqm-payout-status-alert",
   shadow: true,
@@ -52,42 +45,10 @@ export class PayoutStatusAlert {
   }
 
   render() {
-    function usePayoutStatus() {
-      const { loading, data, errors, refetch } = useQuery<UserQuery>(
-        GET_USER,
-        {}
-      );
-      const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
+    const props = isDemo()
+      ? useDemoPayoutStatusAlert(this)
+      : usePayoutStatus(this);
 
-      useEffect(() => {
-        if (!data) return;
-
-        function getStatus(data: UserQuery): PayoutStatus {
-          const account = data.user.impactConnection?.publisher?.payoutsAccount;
-
-          if (!account) return "INFORMATION_REQUIRED";
-          if (account.hold) return "HOLD";
-          // @ts-ignore, TODO: add check for account verification
-          if (!account.verified) return "VERIFICATION_NEEDED";
-          return "DONE";
-        }
-
-        const s = getStatus(data);
-        setStatus(s);
-      }, [data]);
-
-      useEffect(() => {
-        const cb = () => refetch();
-        window.addEventListener("sqm:tax-form-updated", cb);
-        return () => window.removeEventListener("sqm:tax-form-updated", cb);
-      }, []);
-
-      return { loading, status };
-    }
-
-    // const props = isDemo() ? useDemoPayoutStatusAlert(this) : usePayoutStatus();
-
-    const props = useDemoPayoutStatusAlert(this);
     return <PayoutStatusAlertView {...props} />;
   }
 }
