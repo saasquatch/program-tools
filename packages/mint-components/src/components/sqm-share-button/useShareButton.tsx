@@ -3,6 +3,7 @@ import {
   useUserIdentity,
   useQuery,
   useParentValue,
+  useMutation,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { ShareButtonViewProps } from "./sqm-share-button-view";
@@ -14,6 +15,7 @@ import {
 import {
   REFERRAL_CODES_NAMESPACE,
   ReferralCodeContext,
+  SET_CODE_USED,
 } from "../sqm-referral-codes/useReferralCodes";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
@@ -104,14 +106,18 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const data = useParentValue<ReferralCodeContext>(REFERRAL_CODES_NAMESPACE);
 
+  const overrideData = data?.[medium];
+
   // only queries if a programId is available
   const res = useQuery(
     MessageLinkQuery,
     variables,
-    !user?.jwt || !programId || data?.[medium] !== undefined
+    !user?.jwt || !programId || overrideData !== undefined
   );
 
-  const directLink = data?.[medium]?.shareLink || res?.data?.viewer?.shareLink;
+  const [setUsed, usedRes] = useMutation(SET_CODE_USED);
+
+  const directLink = overrideData?.shareLink || res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 
@@ -121,13 +127,17 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
   function onClick() {
+    if (overrideData) {
+      setUsed(true);
+    }
+
     if (
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
       FacebookShare(
         directLink,
-        data?.[medium]?.messageLink || res.data?.viewer?.messageLink,
+        overrideData?.messageLink || res.data?.viewer?.messageLink,
         props.errorText
       );
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
@@ -139,7 +149,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       );
     } else {
       GenericShare(
-        data?.[medium]?.messageLink || res.data?.viewer?.messageLink,
+        overrideData?.messageLink || res.data?.viewer?.messageLink,
         props.errorText
       );
     }
