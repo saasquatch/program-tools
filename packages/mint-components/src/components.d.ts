@@ -788,6 +788,14 @@ export namespace Components {
          */
         "errorText": string;
         /**
+          * @uiName Send code to email alert description
+         */
+        "sendCodeErrorDescription": string;
+        /**
+          * @uiName Send code to email alert header
+         */
+        "sendCodeErrorHeader": string;
+        /**
           * @uiName Send code button text
          */
         "sendCodeText": string;
@@ -6806,6 +6814,14 @@ declare namespace LocalJSX {
           * @uiName Verify email error text
          */
         "errorText"?: string;
+        /**
+          * @uiName Send code to email alert description
+         */
+        "sendCodeErrorDescription"?: string;
+        /**
+          * @uiName Send code to email alert header
+         */
+        "sendCodeErrorHeader"?: string;
         /**
           * @uiName Send code button text
          */

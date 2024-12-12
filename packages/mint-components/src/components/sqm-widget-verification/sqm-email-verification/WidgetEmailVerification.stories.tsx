@@ -9,6 +9,7 @@ const defaultProps = {
   error: "",
   loading: false,
   initialLoading: false,
+  sendCodeError: false,
 };
 
 export const Default = () => (
@@ -48,12 +49,23 @@ export const SaveLoading = () => (
   ></sqm-email-verification>
 );
 
-export const Error = () => (
+export const InvalidEmail = () => (
   <sqm-email-verification
     demoData={{
       states: {
         ...defaultProps,
         error: "Email is invalid",
+      },
+    }}
+  ></sqm-email-verification>
+);
+
+export const SendCodeError = () => (
+  <sqm-email-verification
+    demoData={{
+      states: {
+        ...defaultProps,
+        sendCodeError: true,
       },
     }}
   ></sqm-email-verification>

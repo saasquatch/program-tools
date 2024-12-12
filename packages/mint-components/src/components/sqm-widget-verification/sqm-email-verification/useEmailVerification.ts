@@ -168,6 +168,8 @@ export function useWidgetEmailVerification(
       initialLoading,
       error: error && props.errorText,
       email: data?.viewer.email,
+      //AL: TODO hook handle when code is not successfuly sent
+      sendCodeError: false,
     },
     text: props.getTextProps(),
   };

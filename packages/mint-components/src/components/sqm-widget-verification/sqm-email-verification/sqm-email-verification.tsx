@@ -31,6 +31,17 @@ export class WidgetEmailVerification {
   errorText: string =
     "Failed to send an email. If this continues, contact Support with impact.com";
   /**
+   * @uiName Send code to email alert header
+   */
+  @Prop()
+  sendCodeErrorHeader: string = "There was an error sending your code.";
+  /**
+   * @uiName Send code to email alert description
+   */
+  @Prop()
+  sendCodeErrorDescription: string =
+    " Please try again. If this problem continues, contact our program support team.";
+  /**
    * @uiName Email input label
    */
   @Prop()
@@ -73,6 +84,7 @@ function useDemoWidgetEmailVerification(
         loading: false,
         email: "",
         isEmailPrefilled: false,
+        sendCodeError: false,
       },
       callbacks: {
         submitEmail: async () => {},
