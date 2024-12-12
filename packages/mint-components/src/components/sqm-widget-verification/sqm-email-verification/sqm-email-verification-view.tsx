@@ -5,9 +5,9 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 export interface WidgetEmailVerificationViewProps {
   states: {
     error: string;
+    initialLoading: boolean;
     loading: boolean;
     email: string;
-    isEmailPrefilled: boolean;
   };
   callbacks: {
     submitEmail: (e: any) => Promise<void>;
@@ -97,11 +97,10 @@ export function WidgetEmailVerificationView(
       {
         // TODO: Error state for when sending the email fails
       }
-      {states.loading ? (
+      {states.initialLoading ? (
         renderLoadingSkeleton()
       ) : (
         <div class={sheet.classes.Wrapper}>
-          {" "}
           <TextSpanView type="p">{text.verifyEmailHeaderText}</TextSpanView>
           <sl-form onSl-submit={callbacks.submitEmail}>
             <div class={sheet.classes.InputsContainer}>
@@ -113,7 +112,7 @@ export function WidgetEmailVerificationView(
                 id="email"
                 name="email"
                 required
-                disabled={states.isEmailPrefilled}
+                disabled={!!states.email || states.loading}
                 //AL: TODO hooks email state and errors
                 {...(states.error
                   ? {
