@@ -53,9 +53,6 @@ export interface TaxAndCashDashboardProps {
     taxAlertHeaderNotActiveW8?: string;
     taxAlertNotActiveMessageW9?: string;
     taxAlertNotActiveMessageW8?: string;
-
-    verifyIdentityAlertHeader?: string;
-    verifyIdentityAlertMessage?: string;
     bankingInformationSectionHeader: string;
     indirectTaxInfoSectionHeader: string;
     indirectTaxInfoCanada?: string;
@@ -89,7 +86,6 @@ export interface TaxAndCashDashboardProps {
     replaceTaxFormModalHeader: string;
     replaceTaxFormModalBodyText: string;
     cancelButton: string;
-    verifyIdentityButton: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -420,39 +416,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.identiyRequired && (
-          <div>
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="warning"
-              open
-              class={sheet.classes.ExpiringSoonAlertContainer}
-            >
-              <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-              <strong>{text.verifyIdentityAlertHeader}</strong>
-              <br />
-              {text.verifyIdentityAlertMessage}
-              <br />
-              {/* AL: TODO add onClick for button to open modal */}
-              <sl-button>{text.verifyIdentityButton}</sl-button>
-            </sl-alert>
-          </div>
-        )}
-        <sl-dialog
-          // AL: todo plugin open dialog
-          label={" verify Identity iframe"}
-          class={sheet.classes.Dialog}
-          open={states.showIdentityVerificationDialog}
-          // onSl-hide={callbacks.onIdentityVerificationCancel}
-        >
-          <div
-            style={{
-              width: "420px",
-              height: "420px",
-              border: "1px dotted black",
-            }}
-          ></div>
-        </sl-dialog>
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
           class={sheet.classes.Dialog}

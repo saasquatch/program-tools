@@ -461,11 +461,6 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
-          * Link text displayed under the verify button
-          * @uiName Use different email text
-         */
-        "useDifferentEmailText": string;
-        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText": string;
@@ -1670,7 +1665,14 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
         "payoutButtonDescription": string;
+        /**
+          * @uiName Payout button text
+         */
         "payoutButtonText": string;
     }
     interface SqmPayoutDetailsCard {
@@ -1715,13 +1717,37 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Payout on hold alert description
+         */
         "holdDescription": string;
+        /**
+          * @uiName Payout on hold alert header
+         */
         "holdHeader": string;
+        /**
+          * @uiName Info required alert button text
+         */
         "informationRequiredButtonText": string;
+        /**
+          * @uiName Info required alert description
+         */
         "informationRequiredDescription": string;
+        /**
+          * @uiName Info required alert header
+         */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Verification required alert button text
+         */
         "verificationRequiredButtonText": string;
+        /**
+          * @uiName Verification required alert description
+         */
         "verificationRequiredDescription": string;
+        /**
+          * @uiName Verification required alert header
+         */
         "verificationRequiredHeader": string;
     }
     interface SqmPopupContainer {
@@ -4992,20 +5018,6 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message header
-         */
-        "verifyIdentityAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message description
-         */
-        "verifyIdentityAlertMessage"?: string;
-        /**
-          * @uiName Verify button label
-         */
-        "verifyIdentityButton": string;
     }
     interface SqmText {
     }
@@ -6468,11 +6480,6 @@ declare namespace LocalJSX {
          */
         "reverifyCodeHeaderText"?: string;
         /**
-          * Link text displayed under the verify button
-          * @uiName Use different email text
-         */
-        "useDifferentEmailText"?: string;
-        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText"?: string;
@@ -7671,7 +7678,14 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
         "payoutButtonDescription"?: string;
+        /**
+          * @uiName Payout button text
+         */
         "payoutButtonText"?: string;
     }
     interface SqmPayoutDetailsCard {
@@ -7716,13 +7730,37 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Payout on hold alert description
+         */
         "holdDescription"?: string;
+        /**
+          * @uiName Payout on hold alert header
+         */
         "holdHeader"?: string;
+        /**
+          * @uiName Info required alert button text
+         */
         "informationRequiredButtonText"?: string;
+        /**
+          * @uiName Info required alert description
+         */
         "informationRequiredDescription"?: string;
+        /**
+          * @uiName Info required alert header
+         */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required alert button text
+         */
         "verificationRequiredButtonText"?: string;
+        /**
+          * @uiName Verification required alert description
+         */
         "verificationRequiredDescription"?: string;
+        /**
+          * @uiName Verification required alert header
+         */
         "verificationRequiredHeader"?: string;
     }
     interface SqmPopupContainer {
@@ -10969,20 +11007,6 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message header
-         */
-        "verifyIdentityAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page.
-          * @uiName Verify identity warning message description
-         */
-        "verifyIdentityAlertMessage"?: string;
-        /**
-          * @uiName Verify button label
-         */
-        "verifyIdentityButton"?: string;
     }
     interface SqmText {
     }

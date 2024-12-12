@@ -48,11 +48,6 @@ export class WidgetCodeVerification {
   @Prop() codeResentSuccessfullyText: string =
     "Another code has been sent to {email}";
   /**
-   * Link text displayed under the verify button
-   * @uiName Use different email text
-   */
-  @Prop() useDifferentEmailText: string = "Use a different email";
-  /**
    * Error text displayed under verification input
    * @uiName Invalid code text
    */

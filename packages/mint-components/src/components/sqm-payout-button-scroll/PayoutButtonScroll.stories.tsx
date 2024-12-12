@@ -5,14 +5,8 @@ export default {
 };
 
 const defaultProps = {
-  payoutSettingsComplete: false,
+  payoutSettingsComplete: true,
 };
-
-export const Default = () => (
-  <sqm-payout-button-scroll
-    demoData={{ states: defaultProps }}
-  ></sqm-payout-button-scroll>
-);
 
 export const CompletedTaxForm = () => (
   <sqm-payout-button-scroll

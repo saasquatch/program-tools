@@ -72,6 +72,7 @@ function useDemoWidgetEmailVerification(
         error: "",
         loading: false,
         email: "",
+        isEmailPrefilled: false,
       },
       callbacks: {
         submitEmail: async () => {},

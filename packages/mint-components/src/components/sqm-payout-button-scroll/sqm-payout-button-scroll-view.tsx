@@ -20,6 +20,7 @@ const style = {
   PayoutButtonDescription: {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-small)",
+    margin: "0",
   },
 };
 

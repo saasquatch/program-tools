@@ -27,6 +27,25 @@ const style = {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
   },
+  WarningAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-yellow-100)",
+      borderTop: "none",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
+  InfoAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-sky-100)",
+      borderTop: "none",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-blue-500)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -51,7 +70,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           description: text.informationRequiredDescription,
           buttonText: text.verificationRequiredButtonText,
           alertType: "info",
-          icon: "exclamation-octagon",
+          icon: "info-circle",
+          class: sheet.classes.InfoAlertContainer,
         };
       case "VERIFICATION_NEEDED":
         return {
@@ -59,7 +79,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           description: text.verificationRequiredDescription,
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
-          icon: "exclamation-octagon",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
         };
       case "HOLD":
         return {
@@ -67,7 +88,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           description: text.holdDescription,
           buttonText: null,
           alertType: "warning",
-          icon: "exclamation-octagon",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
         };
       default:
         return;
@@ -104,10 +126,11 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <sqm-form-message
-        style={{ display: "flex", gap: "2px" }}
+      <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
-        type={getAlert(states.status)?.alertType}
+        type={getAlert(states.status).alertType}
+        class={getAlert(states.status).class}
+        open
       >
         <sl-icon slot="icon" name={getAlert(states.status)?.icon}></sl-icon>
         <strong>{getAlert(states.status)?.header}</strong>
@@ -115,7 +138,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           {getAlert(states.status)?.description}
         </p>
         {getButton(states.status)}
-      </sqm-form-message>
+      </sl-alert>
     </div>
   );
 }
