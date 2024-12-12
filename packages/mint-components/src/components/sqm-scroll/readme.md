@@ -26,12 +26,14 @@
 ### Used by
 
  - [sqm-payout-button-scroll](../sqm-payout-button-scroll)
+ - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-payout-button-scroll --> sqm-scroll
+  sqm-payout-status-alert --> sqm-scroll
   sqm-stencilbook --> sqm-scroll
   style sqm-scroll fill:#f9f,stroke:#333,stroke-width:4px
 ```

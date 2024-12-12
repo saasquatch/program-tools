@@ -91,6 +91,7 @@
 - [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
 - [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
 - [sqm-payout-button-scroll](../sqm-payout-button-scroll)
+- [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
 
 ### Graph
 ```mermaid
@@ -177,6 +178,7 @@ graph TD;
   sqm-stencilbook --> sqm-email-verification
   sqm-stencilbook --> sqm-code-verification
   sqm-stencilbook --> sqm-payout-button-scroll
+  sqm-stencilbook --> sqm-payout-status-alert
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
@@ -229,6 +231,8 @@ graph TD;
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   sqm-payout-button-scroll --> sqm-scroll
+  sqm-payout-status-alert --> sqm-scroll
+  sqm-payout-status-alert --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
