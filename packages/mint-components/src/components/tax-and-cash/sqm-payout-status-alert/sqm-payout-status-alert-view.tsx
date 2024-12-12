@@ -128,8 +128,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       <style type="text/css">{styleString}</style>
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
-        type={getAlert(states.status).alertType}
-        class={getAlert(states.status).class}
+        type={getAlert(states.status)?.alertType}
+        class={getAlert(states.status)?.class}
         open
       >
         <sl-icon slot="icon" name={getAlert(states.status)?.icon}></sl-icon>
