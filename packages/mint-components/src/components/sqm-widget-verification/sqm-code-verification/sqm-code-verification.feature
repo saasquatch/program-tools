@@ -80,7 +80,7 @@ Feature: Cash payout code verification widget
       Resend Code
       """
     When they press the link text
-    Then a success alert appears with text:
+    Then a success alert appears with text
       """
        Another code has been sent to email@example.com.
       """

@@ -42,6 +42,7 @@ const style = {
       borderTop: "none",
     },
     "&::part(message)": {
+      display: "flex",
       flexDirection: "column",
     },
   },

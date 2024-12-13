@@ -131,6 +131,16 @@ export function WidgetCodeVerificationView(
     }
   );
 
+  const codeResentSuccessfully = intl.formatMessage(
+    {
+      id: "codeResentSuccessfully",
+      defaultMessage: text.codeResentSuccessfullyText,
+    },
+    {
+      email: states.email,
+    }
+  );
+
   const inputClass = states.verifyFailed
     ? sheet.classes.CodeInputError
     : sheet.classes.CodeInput;
@@ -151,7 +161,7 @@ export function WidgetCodeVerificationView(
         </div>
         {states.codeResent && (
           <sqm-form-message type="success" exportparts="successalert-icon">
-            <b>{text.codeResentSuccessfullyText}</b>
+            <b>{codeResentSuccessfully}</b>
           </sqm-form-message>
         )}
         <div class={sheet.classes.InputsContainer}>
