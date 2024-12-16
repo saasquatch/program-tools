@@ -20,6 +20,16 @@ Feature: Cash payout status widget alert
     Then the page will scroll to the payouts and tax form
 
   @motivating
+  Scenario: User completes form and payout information required alert dissapears
+    Given they are viewing the widget
+    And they have completed the payout and tax form flow
+    Then the "Payout and tax information required" alert dissapears
+    And a button appears in the big stat with text:
+      """
+      Payout & Tax Settings
+      """
+
+  @motivating
   Scenario: User has not verified their identity
     Given they are viewing the widget
     And they have completed the payout and tax form flow

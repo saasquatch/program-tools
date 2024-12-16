@@ -22,6 +22,17 @@ Feature: Cash payout email verification widget
       """
 
   @minutia @ui
+  Scenario: Verification code fails to send
+    Given the user has a valid email in the input
+    And they press "Send Code"
+    And the code is unsuccessfully sent
+    Then the following error alert appears above the input
+      """
+      There Was an error sending your code.
+      Please try again. If this problem continues, contact our program support team.
+      """
+
+  @minutia @ui
   Scenario: Email verification widget is loading
     When the widget is loading
     Then skeleton loaders will display

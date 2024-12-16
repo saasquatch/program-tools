@@ -80,22 +80,11 @@ Feature: Cash payout code verification widget
       Resend Code
       """
     When they press the link text
-    Then a success alert appears with text:
+    Then a success alert appears with text
       """
       Another code has been sent to email@example.com.
       """
     And a new verification code is generated is sent to their email
-
-  @minutia
-  Scenario: User changes email for verification
-    Given they are viewing the code verification widget
-    And they see the link text
-      """
-      Use a different email
-      """
-    When they press the link text
-    Then they are brought back to the first step
-    And the code sent to their first email is now invalid
 
   @minutia @ui
   Scenario: User enters invalid verification code

@@ -8,6 +8,7 @@ export interface WidgetEmailVerificationViewProps {
     initialLoading: boolean;
     loading: boolean;
     email: string;
+    sendCodeError: boolean;
   };
   callbacks: {
     submitEmail: (e: any) => Promise<void>;
@@ -16,6 +17,8 @@ export interface WidgetEmailVerificationViewProps {
     verifyEmailHeaderText: string;
     sendCodeText: string;
     emailLabel: string;
+    sendCodeErrorHeader: string;
+    sendCodeErrorDescription: string;
   };
 }
 
@@ -32,6 +35,16 @@ const style = {
     position: "relative",
     flexDirection: "column",
     maxWidth: "320px",
+  },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+    },
+    "&::part(message)": {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   ContinueButton: {
     width: "100%",
@@ -94,9 +107,18 @@ export function WidgetEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
-      {
-        // TODO: Error state for when sending the email fails
-      }
+      {states.sendCodeError && (
+        <sl-alert
+          exportparts="base: alert-base, icon:alert-icon"
+          type="danger"
+          class={sheet.classes.ErrorAlertContainer}
+          open
+        >
+          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+          <b>{text.sendCodeErrorHeader}</b>
+          {text.sendCodeErrorDescription}
+        </sl-alert>
+      )}
       {states.initialLoading ? (
         renderLoadingSkeleton()
       ) : (
