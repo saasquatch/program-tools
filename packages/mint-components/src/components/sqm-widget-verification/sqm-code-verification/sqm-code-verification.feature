@@ -13,7 +13,7 @@ Feature: Cash payout code verification widget
 
     Examples:
       | code    | result |
-      |  123456 | 123456 |
+      | 123456  | 123456 |
       | 1234567 | 123456 |
 
   @minutia
@@ -82,7 +82,7 @@ Feature: Cash payout code verification widget
     When they press the link text
     Then a success alert appears with text:
       """
-       Another code has been sent to email@example.com.
+      Another code has been sent to email@example.com.
       """
     And a new verification code is generated is sent to their email
 
@@ -107,3 +107,10 @@ Feature: Cash payout code verification widget
       Please check your code and try again. If you’re still having trouble, try resending your code.
       """
     And they will not gain access to the Cash payout settings form
+
+  @motivating
+  Scenario: code-verification sends a 2FA email on first load if it's rendered by itself
+    Given `sqm-code-verification` is included in the page's html
+    But it is not a child element of `sqm-widget-verification`
+    When `sqm-code-verification` loads
+    Then it sends a 2FA email to the user's saved publisher email

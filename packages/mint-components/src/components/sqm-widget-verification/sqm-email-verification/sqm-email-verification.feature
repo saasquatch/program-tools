@@ -6,7 +6,8 @@ Feature: Cash payout email verification widget
 
   @motivating
   Scenario: User enters an email and a code is sent to that email
-    Given they enter a valid email in the input
+    Given no email is saved
+    And they enter a valid email in the input
     When they press "Send Code"
     Then a verification code is sent to the specified email
     And they are directed to the code verification step
@@ -24,3 +25,12 @@ Feature: Cash payout email verification widget
   Scenario: Email verification widget is loading
     When the widget is loading
     Then skeleton loaders will display
+
+  @minutia
+  Scenario: User's cannot edit their email
+    Given a user with email "test@example.com"
+    When they load `sqm-email-verification`
+    Then the email input is disabled
+    And the email input is prefilled with "test@example.com"
+    When they click the "Send Code" button
+    Then a 2FA email is sent to "test@example.com"
