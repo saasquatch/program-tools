@@ -65,7 +65,9 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function ReferralCodesView(props: ReferralCodesViewProps) {
-  const { slots, titleText } = props;
+  const { slots, titleText, loading, noCodes } = props;
+
+  // TODO: loading state, empty state
 
   return (
     <div class={sheet.classes.Wrapper} part="sqm-base">
