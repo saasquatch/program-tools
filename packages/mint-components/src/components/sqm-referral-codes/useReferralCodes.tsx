@@ -1,4 +1,5 @@
 import {
+  useEngagementMedium,
   usePaginatedQuery,
   useParentState,
   useUserIdentity,
@@ -9,7 +10,11 @@ import { GraphQlRequestError } from "@saasquatch/component-boilerplate/dist/hook
 import { useEffect } from "@saasquatch/universal-hooks";
 
 const GET_REFERRAL_CODES = gql`
-  query getCodes($limit: Int!, $offset: Int!) {
+  query getCodes(
+    $limit: Int!
+    $offset: Int!
+    $engagementMedium: UserEngagementMedium!
+  ) {
     viewer {
       ... on User {
         referralCodeList(
@@ -24,7 +29,22 @@ const GET_REFERRAL_CODES = gql`
             shareLinkCodes(limit: $limit, offset: $offset) {
               data {
                 linkCode
-                shortUrl
+                shareLink: shortUrl(
+                  shareMedium: DIRECT
+                  engagementMedium: EMBED
+                )
+                email: shortUrl(
+                  shareMedium: EMAIL
+                  engagementMedium: $engagementMedium
+                )
+                whatsApp: shortUrl(
+                  shareMedium: WHATSAPP
+                  engagementMedium: $engagementMedium
+                )
+                fbMessenger: shortUrl(
+                  shareMedium: FBMESSENGER
+                  engagementMedium: $engagementMedium
+                )
               }
             }
           }
@@ -47,7 +67,10 @@ mutation test {}
 type ReferralCode = {
   code: string | null;
   shareLinkCodes: {
-    shortUrl: string | null;
+    direct: string | null;
+    email: string | null;
+    fbMessenger: string | null;
+    whatsApp: string | null;
   }[];
 };
 
@@ -83,6 +106,7 @@ export type PaginationContext = {
 
 export function useReferralCodes(props: ReferralCodes) {
   const user = useUserIdentity();
+  const engagementMedium = useEngagementMedium();
 
   console.log({ props });
 
@@ -100,7 +124,7 @@ export function useReferralCodes(props: ReferralCodes) {
       limit: 1,
       offset: 0,
     },
-    {},
+    { engagementMedium },
     !user?.jwt
   );
 
@@ -133,15 +157,15 @@ export function useReferralCodes(props: ReferralCodes) {
       const data = referralData.data[0];
       setReferralCodesContext({
         referralCode: data.code,
-        shareLink: data.shareLinkCodes?.[0]?.shortUrl,
+        shareLink: data.shareLinkCodes?.[0]?.direct,
         email: {
-          messageLink: data.shareLinkCodes?.[0]?.shortUrl,
+          messageLink: data.shareLinkCodes?.[0]?.email,
         },
         fbMessenger: {
-          messageLink: data.shareLinkCodes?.[0]?.shortUrl,
-          shareLink: data.shareLinkCodes?.[0]?.shortUrl,
+          messageLink: data.shareLinkCodes?.[0]?.fbMessenger,
+          shareLink: data.shareLinkCodes?.[0]?.fbMessenger,
         },
-        whatsApp: { messageLink: data.shareLinkCodes?.[0]?.shortUrl },
+        whatsApp: { messageLink: data.shareLinkCodes?.[0]?.whatsApp },
       });
     }
   }, [referralData]);
