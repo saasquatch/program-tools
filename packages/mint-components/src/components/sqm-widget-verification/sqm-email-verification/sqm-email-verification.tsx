@@ -25,12 +25,6 @@ export class WidgetEmailVerification {
   verifyEmailHeaderText: string =
     "Start by verifying your email. We’ll send you a code through our referral provider, impact.com.";
   /**
-   * @uiName Verify email error text
-   */
-  @Prop()
-  errorText: string =
-    "Failed to send an email. If this continues, contact Support with impact.com";
-  /**
    * @uiName Send code to email alert header
    */
   @Prop()
@@ -40,7 +34,7 @@ export class WidgetEmailVerification {
    */
   @Prop()
   sendCodeErrorDescription: string =
-    " Please try again. If this problem continues, contact our program support team.";
+    "Please try again. If this problem continues, contact our program support team.";
   /**
    * @uiName Email input label
    */
@@ -51,6 +45,11 @@ export class WidgetEmailVerification {
    */
   @Prop()
   sendCodeText: string = "Send code";
+  /**
+   * @uiName Send code button text
+   */
+  @Prop()
+  emailValidationErrorText: string = "Please enter a valid email";
   /**
    * @undocumented
    * @uiType object

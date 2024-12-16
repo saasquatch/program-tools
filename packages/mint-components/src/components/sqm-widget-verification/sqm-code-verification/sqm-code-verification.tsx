@@ -19,7 +19,7 @@ export class WidgetCodeVerification {
    * @uiName Verify code widget header text
    */
   @Prop() verifyCodeHeaderText: string =
-    "Enter the code sent to email@example.com from our referral provider, impact.com.";
+    "Enter the code sent to {email} from our referral provider, impact.com.";
   /**
    * @uiName Reverify code widget header text
    */
@@ -36,12 +36,6 @@ export class WidgetCodeVerification {
    */
   @Prop() resendCodeLabel: string = "Resend code";
   /**
-   * The link that appears in the resend code link
-   * @uiName Resend code link
-   */
-  // AL: TODO connect route to resend verification code
-  @Prop() resendCodeLink: string = "/resend-code";
-  /**
    * Link text displayed under verify button
    * @uiName Resend code text
    */
@@ -52,7 +46,7 @@ export class WidgetCodeVerification {
    * @uiName Invalid code text
    */
   @Prop() invalidCodeText: string =
-    " Please check your code and try again. If you’re still having trouble, try resending your code.";
+    "Please check your code and try again. If you’re still having trouble, try resending your code.";
   /**
    * @uiName Verify code button text
    */
@@ -104,6 +98,7 @@ function useDemoWidgetCodeVerification(
         codeWrapperRef: () => {},
       },
       callbacks: {
+        resendEmail: async () => {},
         submitCode: async () => {},
       },
       text: props.getTextProps(),

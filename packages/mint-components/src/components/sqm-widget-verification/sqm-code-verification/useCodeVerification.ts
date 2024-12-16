@@ -2,19 +2,17 @@ import {
   useMutation,
   useParent,
   useParentValue,
-  useToken,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useHost, useState } from "@saasquatch/stencil-hooks";
+import { gql } from "graphql-request";
 import {
   SHOW_CODE_NAMESPACE,
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_EVENT_KEY,
-  VERIFICATION_PARENT_NAMESPACE,
 } from "../keys";
 import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
 import { WidgetCodeVerification } from "./sqm-code-verification";
-import { gql } from "graphql-request";
 
 // TODO: Move to component-boilerplate
 export const VerifyEmailWithCodeMutation = gql`
@@ -64,6 +62,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const [emailResent, setEmailResent] = useState(false);
   const [codeRef, setCodeRef] = useState<HTMLDivElement>(null);
   const [validationError, setValidationError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   // TODO: Need to handle error states for these errors
   const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
@@ -114,15 +113,13 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   };
 
   const resendEmail = async () => {
-    // TODO: Error checks, depends on what mutation is set up as
-
     const result = await request();
-    if (emailSent) {
-      setEmailResent(true);
-      setTimeout(() => {
-        setEmailResent(false);
-      }, 500);
+    if (!result) {
+      setEmailError(true);
+      return;
     }
+
+    if (emailSent) setEmailResent(true);
     setEmailSent(true);
   };
 
@@ -162,6 +159,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   useEffect(() => {
     // email should already exist if user has completed email-verification
     if (!email) resendEmail();
+    else setEmailSent(true);
   }, []);
 
   return {
@@ -171,6 +169,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     states: {
       email,
       emailResent,
+      resendError: !!resendErrors?.message || emailError,
       loading: verifyLoading || resendLoading,
       verifyFailed: !!validationError,
     },
@@ -179,7 +178,5 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       submitCode,
     },
     text: props.getTextProps(),
-    // resendLoading,
-    // resendErrors,
   };
 }

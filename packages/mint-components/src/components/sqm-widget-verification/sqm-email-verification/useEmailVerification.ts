@@ -121,12 +121,16 @@ export function useWidgetEmailVerification(
   const [emailExists, setEmailExists] = useState(false);
 
   const [error, setError] = useState(false);
+  const [mutationError, setMutationError] = useState(false);
   const [sendVerificationEmailMutation] = useVerificationEmailMutation();
   const [upsertUserEmail] = useUpsertUserEmail();
   const [loading, setLoading] = useState(false);
   const { data, loading: initialLoading } = useQuery<
     { viewer: User } | undefined
   >(UserLookupQuery, {});
+
+  const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   useEffect(() => {
     if (!data?.viewer) return;
@@ -145,12 +149,18 @@ export function useWidgetEmailVerification(
       const formData = e.detail.formData;
       const newEmail = formData.get("email").toString();
 
+      if (!emailRegex.test(newEmail)) {
+        setError(true);
+        return;
+      }
+
       const result = await upsertUserEmail(newEmail);
       if (!result || !result.user.email) setError(true);
     }
 
     const result = await sendVerificationEmailMutation();
-    if (!result || !result.requestUserEmailVerification.success) setError(true);
+    if (!result || !result.requestUserEmailVerification.success)
+      setMutationError(true);
     else {
       // This is used to let the code verification widget know an email was already sent
       setEmail(toAddress);
@@ -166,10 +176,9 @@ export function useWidgetEmailVerification(
     states: {
       loading,
       initialLoading,
-      error: error && props.errorText,
+      error,
       email: data?.viewer.email,
-      //AL: TODO hook handle when code is not successfuly sent
-      sendCodeError: false,
+      sendCodeError: mutationError,
     },
     text: props.getTextProps(),
   };

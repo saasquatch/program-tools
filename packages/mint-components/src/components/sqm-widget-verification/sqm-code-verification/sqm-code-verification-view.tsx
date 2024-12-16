@@ -9,13 +9,14 @@ export interface WidgetCodeVerificationViewProps {
     loading: boolean;
     email: string;
     verifyFailed?: boolean;
-    codeResent?: boolean;
+    emailResent: boolean;
   };
   refs: {
     codeWrapperRef: any;
   };
   callbacks: {
     submitCode: () => Promise<void>;
+    resendEmail: () => Promise<void>;
   };
   text: {
     verifyCodeHeaderText: string;
@@ -24,7 +25,6 @@ export interface WidgetCodeVerificationViewProps {
     verifyText: string;
     invalidCodeText: string;
     codeResentSuccessfullyText: string;
-    resendCodeLink: string;
     resendCodeLabel: string;
   };
 }
@@ -121,9 +121,12 @@ export function WidgetCodeVerificationView(
     {
       resendCodeLink: (
         <a
-          href={text.resendCodeLink}
-          target="_blank"
+          href={""}
           style={{ textDecoration: "none" }}
+          onClick={(e) => {
+            e.preventDefault();
+            callbacks.resendEmail();
+          }}
         >
           {text.resendCodeLabel}
         </a>
@@ -154,12 +157,18 @@ export function WidgetCodeVerificationView(
       <div class={sheet.classes.Wrapper}>
         <div class={sheet.classes.HeaderContainer}>
           <TextSpanView type="p">
-            {states.verifyFailed
-              ? text.reverifyCodeHeaderText
-              : text.verifyCodeHeaderText}
+            {intl.formatMessage(
+              {
+                id: `emailHeaderText`,
+                defaultMessage: states.verifyFailed
+                  ? text.reverifyCodeHeaderText
+                  : text.verifyCodeHeaderText,
+              },
+              { email: states.email }
+            )}
           </TextSpanView>
         </div>
-        {states.codeResent && (
+        {states.emailResent && (
           <sqm-form-message type="success" exportparts="successalert-icon">
             <b>{codeResentSuccessfully}</b>
           </sqm-form-message>

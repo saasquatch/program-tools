@@ -6,7 +6,7 @@ export default {
 
 const defaultProps = {
   email: "",
-  error: "",
+  error: false,
   loading: false,
   initialLoading: false,
   sendCodeError: false,
@@ -54,7 +54,7 @@ export const InvalidEmail = () => (
     demoData={{
       states: {
         ...defaultProps,
-        error: "Email is invalid",
+        error: true,
       },
     }}
   ></sqm-email-verification>

@@ -4,7 +4,7 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 export interface WidgetEmailVerificationViewProps {
   states: {
-    error: string;
+    error: boolean;
     initialLoading: boolean;
     loading: boolean;
     email: string;
@@ -19,6 +19,7 @@ export interface WidgetEmailVerificationViewProps {
     emailLabel: string;
     sendCodeErrorHeader: string;
     sendCodeErrorDescription: string;
+    emailValidationErrorText: string;
   };
 }
 
@@ -133,17 +134,11 @@ export function WidgetEmailVerificationView(
                 type="email"
                 id="email"
                 name="email"
-                required
                 disabled={!!states.email || states.loading}
-                //AL: TODO hooks email state and errors
                 {...(states.error
                   ? {
                       class: sheet.classes.ErrorInput,
-                      helpText: "Please enter a valid email",
-                      // helpText: formatErrorMessage(
-                      //   text.firstName,
-                      //   formState.errors.firstName
-                      // ),
+                      helpText: text.emailValidationErrorText,
                     }
                   : {})}
               />

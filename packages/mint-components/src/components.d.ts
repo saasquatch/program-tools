@@ -447,11 +447,6 @@ export namespace Components {
          */
         "resendCodeLabel": string;
         /**
-          * The link that appears in the resend code link
-          * @uiName Resend code link
-         */
-        "resendCodeLink": string;
-        /**
           * Text displayed under verify button
           * @uiName Resend code text
          */
@@ -784,9 +779,9 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
-          * @uiName Verify email error text
+          * @uiName Send code button text
          */
-        "errorText": string;
+        "emailValidationErrorText": string;
         /**
           * @uiName Send code to email alert description
          */
@@ -6474,11 +6469,6 @@ declare namespace LocalJSX {
          */
         "resendCodeLabel"?: string;
         /**
-          * The link that appears in the resend code link
-          * @uiName Resend code link
-         */
-        "resendCodeLink"?: string;
-        /**
           * Text displayed under verify button
           * @uiName Resend code text
          */
@@ -6811,9 +6801,9 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
-          * @uiName Verify email error text
+          * @uiName Send code button text
          */
-        "errorText"?: string;
+        "emailValidationErrorText"?: string;
         /**
           * @uiName Send code to email alert description
          */
