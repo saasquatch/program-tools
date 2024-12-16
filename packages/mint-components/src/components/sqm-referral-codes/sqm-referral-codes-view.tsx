@@ -1,7 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import { AuthColumn, AuthWrapper } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface ReferralCodesViewProps {
   slots: {
