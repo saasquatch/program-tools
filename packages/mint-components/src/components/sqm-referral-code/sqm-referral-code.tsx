@@ -126,6 +126,8 @@ function useDemoReferralCode(props: ReferralCode): CopyTextViewProps {
       buttonStyle: props.buttonStyle,
       notificationText: props.notificationText,
       showNotificationText: props.showNotificationText,
+      isCopied: props.showNotificationText,
+      isUsed: false,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {

@@ -155,5 +155,10 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     }
   }
 
-  return { ...props, loading: res.loading, onClick, hide };
+  return {
+    ...props,
+    loading: res.loading && !overrideData?.messageLink,
+    onClick,
+    hide,
+  };
 }

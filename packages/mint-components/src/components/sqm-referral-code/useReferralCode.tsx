@@ -85,5 +85,11 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
     });
   }
 
-  return { ...props, onClick, open, copyString: copyString };
+  return {
+    ...props,
+    onClick,
+    open,
+    copyString: copyString,
+    isCopied: contextData?.isCopied,
+  };
 }

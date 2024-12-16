@@ -4,10 +4,10 @@ import {
   useParentState,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { gql } from "graphql-request";
-import { ReferralCodes } from "./sqm-referral-codes";
 import { GraphQlRequestError } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import { useEffect } from "@saasquatch/universal-hooks";
+import { gql } from "graphql-request";
+import { ReferralCodes } from "./sqm-referral-codes";
 
 const GET_REFERRAL_CODES = gql`
   query getCodes(
@@ -65,18 +65,24 @@ mutation test {}
 `;
 
 type ReferralCode = {
+  dateUsed: number | null;
+  dateCopied: number | null;
   code: string | null;
   shareLinkCodes: {
-    direct: string | null;
-    email: string | null;
-    fbMessenger: string | null;
-    whatsApp: string | null;
-  }[];
+    data: {
+      direct: string | null;
+      email: string | null;
+      fbMessenger: string | null;
+      whatsApp: string | null;
+    }[];
+  };
 };
 
 export type ReferralCodeContext = {
   loading?: boolean;
   referralCode: string;
+  isUsed: boolean;
+  isCopied: boolean;
   shareLink: string;
   email: {
     messageLink: string;
@@ -141,6 +147,8 @@ export function useReferralCodes(props: ReferralCodes) {
         loading: true,
         referralCode: "",
         shareLink: "",
+        isCopied: false,
+        isUsed: false,
         email: {
           messageLink: "",
         },
@@ -157,15 +165,17 @@ export function useReferralCodes(props: ReferralCodes) {
       const data = referralData.data[0];
       setReferralCodesContext({
         referralCode: data.code,
-        shareLink: data.shareLinkCodes?.[0]?.direct,
+        isCopied: !!data.dateCopied,
+        isUsed: !!data.dateUsed,
+        shareLink: data.shareLinkCodes?.data?.[0]?.direct,
         email: {
-          messageLink: data.shareLinkCodes?.[0]?.email,
+          messageLink: data.shareLinkCodes?.data?.[0]?.email,
         },
         fbMessenger: {
-          messageLink: data.shareLinkCodes?.[0]?.fbMessenger,
-          shareLink: data.shareLinkCodes?.[0]?.fbMessenger,
+          messageLink: data.shareLinkCodes?.data?.[0]?.fbMessenger,
+          shareLink: data.shareLinkCodes?.data?.[0]?.fbMessenger,
         },
-        whatsApp: { messageLink: data.shareLinkCodes?.[0]?.whatsApp },
+        whatsApp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
       });
     }
   }, [referralData]);
@@ -179,7 +189,7 @@ export function useReferralCodes(props: ReferralCodes) {
   return {
     states: {
       ...states,
-      noCodes: referralData.totalCount === 0,
+      noCodes: referralData?.totalCount === 0,
     },
     data: referralCodesContext,
     callbacks: {

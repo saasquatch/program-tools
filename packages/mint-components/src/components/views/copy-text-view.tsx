@@ -1,6 +1,6 @@
-import { Host, h } from "@stencil/core";
+import { h } from "@stencil/core";
+import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { HostBlock, P } from "../../global/mixins";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -17,7 +17,7 @@ export interface CopyTextViewProps {
   inputPlaceholderText?: string;
   dateAvailable?: string;
   loading?: boolean;
-
+  isCopied?: boolean;
   onClick?: () => void;
 }
 
@@ -165,14 +165,16 @@ export function CopyTextView(props: CopyTextViewProps) {
         {(buttonStyle === "button-outside" || buttonStyle === "button-below") &&
           copyButton}
       </div>
-      {props.showNotificationText && props.notificationText && (
-        <p
-          part="sqm-notification-text"
-          class={sheet.classes.notificationTextStyle}
-        >
-          {props.notificationText}
-        </p>
-      )}
+      {props.isCopied &&
+        props.showNotificationText &&
+        props.notificationText && (
+          <p
+            part="sqm-notification-text"
+            class={sheet.classes.notificationTextStyle}
+          >
+            {props.notificationText}
+          </p>
+        )}
     </div>
   );
 }

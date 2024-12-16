@@ -43,7 +43,7 @@ export class Pagination {
     console.log("pagination", { hookProps });
 
     const props = {
-      currentPage: hookProps.states?.currentPage,
+      currentPage: hookProps.states?.currentPage + 1,
       totalPages: hookProps.states?.pageCount,
       onNext: () =>
         hookProps.callbacks?.setCurrentPage(hookProps.states?.currentPage + 1),
