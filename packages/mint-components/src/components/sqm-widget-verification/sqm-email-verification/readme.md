@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property                | Attribute                  | Description | Type                                                                | Default                                                                                             |
-| ----------------------- | -------------------------- | ----------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `demoData`              | --                         |             | `{ states?: { error: string; loading: boolean; email: string; }; }` | `undefined`                                                                                         |
-| `emailLabel`            | `email-label`              |             | `string`                                                            | `"Email"`                                                                                           |
-| `errorText`             | `error-text`               |             | `string`                                                            | `"Failed to send an email. If this continues, contact Support with impact.com"`                     |
-| `sendCodeText`          | `send-code-text`           |             | `string`                                                            | `"Send code"`                                                                                       |
-| `verifyEmailHeaderText` | `verify-email-header-text` |             | `string`                                                            | `"Start by verifying your email. We’ll send you a code through our referral provider, impact.com."` |
+| Property                   | Attribute                     | Description | Type                                                                                                                  | Default                                                                                             |
+| -------------------------- | ----------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `demoData`                 | --                            |             | `{ states?: { error: boolean; initialLoading: boolean; loading: boolean; email: string; sendCodeError: boolean; }; }` | `undefined`                                                                                         |
+| `emailLabel`               | `email-label`                 |             | `string`                                                                                                              | `"Email"`                                                                                           |
+| `emailValidationErrorText` | `email-validation-error-text` |             | `string`                                                                                                              | `"Please enter a valid email"`                                                                      |
+| `sendCodeErrorDescription` | `send-code-error-description` |             | `string`                                                                                                              | `"Please try again. If this problem continues, contact our program support team."`                  |
+| `sendCodeErrorHeader`      | `send-code-error-header`      |             | `string`                                                                                                              | `"There was an error sending your code."`                                                           |
+| `sendCodeText`             | `send-code-text`              |             | `string`                                                                                                              | `"Send code"`                                                                                       |
+| `verifyEmailHeaderText`    | `verify-email-header-text`    |             | `string`                                                                                                              | `"Start by verifying your email. We’ll send you a code through our referral provider, impact.com."` |
 
 
 ## Dependencies

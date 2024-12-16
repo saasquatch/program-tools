@@ -8,7 +8,7 @@ const defaultProps = {
   email: "testemail@example.com",
   loading: false,
   verifyFailed: false,
-  codeResent: false,
+  emailResent: false,
 };
 
 export const Default = () => (
@@ -33,7 +33,7 @@ export const CodeResent = () => (
     demoData={{
       states: {
         ...defaultProps,
-        codeResent: true,
+        emailResent: true,
       },
     }}
   ></sqm-code-verification>

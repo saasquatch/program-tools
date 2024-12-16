@@ -232,7 +232,6 @@ graph TD;
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   sqm-payout-button-scroll --> sqm-scroll
   sqm-payout-status-alert --> sqm-scroll
-  sqm-payout-status-alert --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

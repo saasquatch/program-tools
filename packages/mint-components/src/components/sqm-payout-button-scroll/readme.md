@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property                  | Attribute                   | Description | Type                                                 | Default                                                             |
-| ------------------------- | --------------------------- | ----------- | ---------------------------------------------------- | ------------------------------------------------------------------- |
-| `demoData`                | --                          |             | `{ states?: { payoutSettingsComplete: boolean; }; }` | `undefined`                                                         |
-| `payoutButtonDescription` | `payout-button-description` |             | `string`                                             | `"Check your payout settings to see when you’ll get paid out next"` |
-| `payoutButtonText`        | `payout-button-text`        |             | `string`                                             | `"Payouts & Tax Settings"`                                          |
+| Property                  | Attribute                   | Description                          | Type                                                 | Default                                                             |
+| ------------------------- | --------------------------- | ------------------------------------ | ---------------------------------------------------- | ------------------------------------------------------------------- |
+| `demoData`                | --                          |                                      | `{ states?: { payoutSettingsComplete: boolean; }; }` | `undefined`                                                         |
+| `payoutButtonDescription` | `payout-button-description` | Description text under payout button | `string`                                             | `"Check your payout settings to see when you’ll get paid out next"` |
+| `payoutButtonText`        | `payout-button-text`        |                                      | `string`                                             | `"Payouts & Tax Settings"`                                          |
 
 
 ## Dependencies
