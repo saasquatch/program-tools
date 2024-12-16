@@ -54,6 +54,8 @@ export class ReferralCodes {
     const viewProps = {
       slots,
       ...props,
+      loading: props.states.loading,
+      noCodes: props.states.noCodes,
     };
 
     return <ReferralCodesView {...viewProps} />;
@@ -64,6 +66,10 @@ function useDemoReferralCodes(props: ReferralCodes) {
   return deepmerge(
     {
       titleText: props.titleText,
+      states: {
+        noCodes: false,
+        loading: false,
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

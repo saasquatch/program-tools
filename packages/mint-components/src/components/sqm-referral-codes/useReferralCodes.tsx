@@ -8,18 +8,47 @@ import { ReferralCodes } from "./sqm-referral-codes";
 import { GraphQlRequestError } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import { useEffect } from "@saasquatch/universal-hooks";
 
-const GET_REFERRAL_CODES = gql`query getReferralCodes {
-}`;
+const GET_REFERRAL_CODES = gql`
+  query getCodes($limit: Int!, $offset: Int!) {
+    viewer {
+      ... on User {
+        referralCodeList(
+          limit: $limit
+          offset: $offset
+          filter: { fuelTank_eq: true }
+        ) {
+          data {
+            code
+            dateUsed
+            dateCopied
+            shareLinkCodes(limit: $limit, offset: $offset) {
+              data {
+                linkCode
+                shortUrl
+              }
+            }
+          }
+          count
+          totalCount
+        }
+      }
+    }
+  }
+`;
 
 export const REFERRAL_CODES_NAMESPACE = "sq:referral-codes";
 
 export const REFERRAL_CODES_PAGINATION_CONTEXT = "sq:referral-codes-pagination";
 
-type ReferralCodesQuery = {
-  viewer: {
-    // TODO: not known yet
-    referralCodes: any[];
-  };
+export const SET_CODE_USED = gql`
+mutation test {}
+`;
+
+type ReferralCode = {
+  code: string | null;
+  shareLinkCodes: {
+    shortUrl: string | null;
+  }[];
 };
 
 export type ReferralCodeContext = {
@@ -61,9 +90,12 @@ export function useReferralCodes(props: ReferralCodes) {
     envelope: referralData,
     states,
     callbacks,
-  } = usePaginatedQuery<Referral>(
+  } = usePaginatedQuery<ReferralCode>(
     GET_REFERRAL_CODES,
-    (data) => data?.viewer?.referralCodes,
+    (data) => {
+      console.log({ queryData: data });
+      return data?.viewer?.referralCodeList;
+    },
     {
       limit: 1,
       offset: 0,
@@ -97,43 +129,35 @@ export function useReferralCodes(props: ReferralCodes) {
     });
 
   useEffect(() => {
-    if (referralData?.data)
+    if (referralData?.data?.length) {
+      const data = referralData.data[0];
       setReferralCodesContext({
-        referralCode: "EXAMPLECODE",
-        shareLink: "https://example.com",
+        referralCode: data.code,
+        shareLink: data.shareLinkCodes?.[0]?.shortUrl,
         email: {
-          messageLink: "https://example.com",
+          messageLink: data.shareLinkCodes?.[0]?.shortUrl,
         },
         fbMessenger: {
-          messageLink: "https://example.com",
-          shareLink: "https://example.com",
+          messageLink: data.shareLinkCodes?.[0]?.shortUrl,
+          shareLink: data.shareLinkCodes?.[0]?.shortUrl,
         },
-        whatsApp: { messageLink: "https://example.com" },
+        whatsApp: { messageLink: data.shareLinkCodes?.[0]?.shortUrl },
       });
+    }
   }, [referralData]);
 
   useEffect(() => {
     setPaginationContext({ states, callbacks });
-  }, [states]);
+  }, [states.loading]);
 
   console.log({ referralData, states });
 
   return {
     states: {
       ...states,
+      noCodes: referralData.totalCount === 0,
     },
-    data: {
-      referralCode: "EXAMPLECODE",
-      shareLink: "https://example.com",
-      email: {
-        messageLink: "https://example.com",
-      },
-      fbMessenger: {
-        messageLink: "https://example.com",
-        shareLink: "https://example.com",
-      },
-      whatsApp: { messageLink: "https://example.com" },
-    },
+    data: referralCodesContext,
     callbacks: {
       // onPrev: () => callbacks.setCurrentPage(states.currentPage - 1),
       // onNext: () => callbacks.setCurrentPage(states.currentPage + 1),

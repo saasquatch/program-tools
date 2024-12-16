@@ -40,6 +40,8 @@ export class Pagination {
       ? useDemoPagination(getProps(this))
       : usePagination();
 
+    console.log("pagination", { hookProps });
+
     const props = {
       currentPage: hookProps.states?.currentPage,
       totalPages: hookProps.states?.pageCount,

@@ -10,6 +10,8 @@ export interface ReferralCodesViewProps {
     pagination: VNode;
   };
   titleText?: string;
+  noCodes: boolean;
+  loading: boolean;
 }
 
 const style = {
