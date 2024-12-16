@@ -37,6 +37,8 @@ function useTemplateChildren({ parent, callback }) {
 
 /**
  * @uiName Widget Verification Gate
+ * @slots [{"name":"not-verified","title":"Not verified template"},{"name":"verified","title":"Verified template"}]
+ * @canvasRenderer always-replace
  */
 @Component({
   tag: "sqm-widget-verification",
