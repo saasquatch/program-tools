@@ -9,7 +9,7 @@ import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "./keys";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
 
-function useWidgetVerificationInternal(props: WidgetVerificationInternal) {
+function useWidgetVerificationInternal() {
   const userIdentity = useUserIdentity();
   const [showCode, setShowCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
@@ -55,8 +55,8 @@ export class WidgetVerificationInternal {
 
   render() {
     const { showCode } = isDemo()
-      ? useDemoWidgetVerificationInternal(this)
-      : useWidgetVerificationInternal(this);
+      ? useDemoWidgetVerificationInternal()
+      : useWidgetVerificationInternal();
 
     if (showCode) {
       return (
@@ -74,7 +74,7 @@ export class WidgetVerificationInternal {
   }
 }
 
-function useDemoWidgetVerificationInternal(props: WidgetVerificationInternal) {
+function useDemoWidgetVerificationInternal() {
   const [showCode, setShowCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,

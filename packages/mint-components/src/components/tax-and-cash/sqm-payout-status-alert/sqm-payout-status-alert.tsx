@@ -10,6 +10,11 @@ import {
 import { usePayoutStatus } from "./usePayoutStatus";
 import { isDemo } from "@saasquatch/component-boilerplate";
 
+/**
+ * @uiName Payout Status Alert
+ * @exampleGroup Tax and Cash
+ * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+ */
 @Component({
   tag: "sqm-payout-status-alert",
   shadow: true,
