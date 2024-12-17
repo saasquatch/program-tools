@@ -139,6 +139,8 @@ export const useTaxAndCashDashboard = (
       loading,
       loadingError: !!userError?.message,
       showNewFormDialog: showDialog,
+      //AL: hooks todo add hold reason
+      hasHold: false,
     },
     callbacks: {
       onClick: () => setShowDialog(true),

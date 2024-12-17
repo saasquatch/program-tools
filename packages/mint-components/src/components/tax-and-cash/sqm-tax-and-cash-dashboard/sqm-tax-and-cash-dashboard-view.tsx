@@ -27,6 +27,7 @@ export interface TaxAndCashDashboardProps {
     showNewFormDialog: boolean;
     showIdentityVerificationDialog?: boolean;
     identiyRequired?: boolean;
+    hasHold: boolean;
     errors?: {
       general?: boolean;
     };
@@ -85,6 +86,8 @@ export interface TaxAndCashDashboardProps {
     invoiceEmptyStateText: string;
     replaceTaxFormModalHeader: string;
     replaceTaxFormModalBodyText: string;
+    payoutHoldAlertHeader: string;
+    payoutHoldAlertDescription: string;
     cancelButton: string;
     error: {
       generalTitle: string;
@@ -100,6 +103,12 @@ const style = {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
+    },
+  },
+  HoldAlertContainer: {
+    "&::part(base)": {
+      border: "none",
+      backgroundColor: "transparent",
     },
   },
   ExpiringSoonAlertContainer: {
@@ -414,6 +423,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <strong>{text.error.generalTitle}</strong>
             <br />
             {text.error.generalDescription}
+          </sl-alert>
+        )}
+        {states.hasHold && (
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="warning"
+            open
+            class={sheet.classes.HoldAlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+            <strong>{text.payoutHoldAlertHeader}</strong>
+            <br />
+            {text.payoutHoldAlertDescription}
           </sl-alert>
         )}
         <sl-dialog
