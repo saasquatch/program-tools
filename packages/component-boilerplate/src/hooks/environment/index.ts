@@ -12,6 +12,7 @@ export const useEngagementMedium = getEngagementMedium;
 export {
   getEnvironmentSDK,
   setUserIdentity,
+  setVerificationContext,
   setProgramId,
   isDemo,
   DecodedSquatchJWT,
@@ -20,3 +21,4 @@ export {
 export * from "./useLocale";
 export * from "./useProgramId";
 export * from "./useUserIdentity";
+export * from "./useVerificationContext";

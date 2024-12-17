@@ -139,6 +139,7 @@ export const useTaxAndCashDashboard = (
       loading,
       loadingError: !!userError?.message,
       showNewFormDialog: showDialog,
+      hasHold: !!publisher?.payoutsAccount?.hold,
     },
     callbacks: {
       onClick: () => setShowDialog(true),

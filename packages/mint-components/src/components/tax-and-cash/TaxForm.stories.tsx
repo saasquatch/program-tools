@@ -211,6 +211,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     step: "4",
     hideSteps: false,
     disabled: false,
@@ -275,6 +276,7 @@ const dashboardProps: StoryDemoData<TaxAndCashDashboardProps> = {
     indirectTaxNumber: "123456",
     indirectTaxType: "VAT",
     showNewFormDialog: false,
+    hasHold: false,
   },
   slots: {
     payoutDetailsCardSlot: (
@@ -992,6 +994,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1012,6 +1015,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1033,6 +1037,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1054,6 +1059,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1077,6 +1083,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1100,6 +1107,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1123,6 +1131,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
           indirectTaxType: "VAT",
           country: "United Kingdom",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1146,6 +1155,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
           indirectTaxNumber: "123456",
           indirectTaxType: "GST",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1170,6 +1180,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
           indirectTaxType: "GST",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1195,6 +1206,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           indirectTaxNumber: "123456",
           qstNumber: "44212",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1220,6 +1232,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           indirectTaxNumber: "123456",
           subRegionTaxNumber: "44212",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1240,6 +1253,30 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
           noFormNeeded: false,
           notRegistered: true,
           showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          showIdentityVerificationDialog: true,
+          identiyRequired: true,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1260,6 +1297,30 @@ export const TaxAndCashDashboardNewTaxForm = () => {
           noFormNeeded: false,
           notRegistered: true,
           showNewFormDialog: true,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardPayoutsOnHold = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          canEditPayoutInfo: true,
+          disabled: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
+          country: "Slovania",
+          showNewFormDialog: false,
+          hasHold: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1281,6 +1342,7 @@ export const TaxAndCashDashboardLoading = () => {
           noFormNeeded: false,
           loading: true,
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1303,6 +1365,7 @@ export const TaxAndCashDashboardWithLoadingError = () => {
           loading: true,
           loadingError: true,
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1326,6 +1389,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           indirectTaxType: "VAT",
           country: "Slovania",
           showNewFormDialog: false,
+          hasHold: false,
           errors: {
             general: true,
           },
@@ -1351,6 +1415,7 @@ export const TaxAndCashDashboardDisabled = () => {
           indirectTaxNumber: "123456",
           country: "Slovania",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
