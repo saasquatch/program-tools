@@ -7,8 +7,9 @@ import {
   WidgetEmailVerificationViewProps,
 } from "./sqm-email-verification-view";
 import { getProps } from "../../../utils/utils";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
+import { SHOW_CODE_NAMESPACE } from "../keys";
 
 /**
  * @uiName Widget Verification Gate
@@ -76,17 +77,19 @@ export class WidgetEmailVerification {
 function useDemoWidgetEmailVerification(
   props: WidgetEmailVerification
 ): WidgetEmailVerificationViewProps {
+  const setShowCode = useSetParent(SHOW_CODE_NAMESPACE);
+
   return deepmerge(
     {
       states: {
-        error: "",
+        error: true,
+        initialLoading: false,
         loading: false,
-        email: "",
-        isEmailPrefilled: false,
-        sendCodeError: false,
+        email: "test@example.com",
+        sendCodeError: true,
       },
       callbacks: {
-        submitEmail: async () => {},
+        submitEmail: async () => setShowCode(true),
       },
       text: props.getTextProps(),
     },

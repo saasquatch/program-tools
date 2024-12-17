@@ -1,9 +1,10 @@
 import { useParentState } from "@saasquatch/component-boilerplate";
 import { useHost, withHooks } from "@saasquatch/stencil-hooks";
 import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
-import { Component, h, Host } from "@stencil/core";
+import { Component, h, Host, Prop } from "@stencil/core";
 import debugFn from "debug";
 import { VERIFICATION_EVENT_KEY, VERIFICATION_PARENT_NAMESPACE } from "./keys";
+import { getProps } from "../../utils/utils";
 const debug = debugFn("sq:widget-verification");
 
 function useTemplateChildren({ parent, callback }) {
@@ -39,11 +40,116 @@ function useTemplateChildren({ parent, callback }) {
  * @uiName Widget Verification Gate
  * @slots [{"name":"not-verified","title":"Not verified template"},{"name":"verified","title":"Verified template"}]
  * @canvasRenderer always-replace
+ * @exampleGroup Widget Verification
+ * @example Widget Verification Gate - <sqm-widget-verification><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification>
  */
 @Component({
   tag: "sqm-widget-verification",
 })
 export class WidgetVerification {
+  // ! Any updated must be reflected in sqm-widget-verification-internal AND sqm-email-verification AND sqm-code-verification
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                EMAIL STEP PROPS
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  /**
+   * @uiName Verify email widget header text
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_verifyEmailHeaderText: string =
+    "Start by verifying your email. We’ll send you a code through our referral provider, impact.com.";
+  /**
+   * @uiName Send code to email alert header
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_sendCodeErrorHeader: string =
+    "There was an error sending your code.";
+  /**
+   * @uiName Send code to email alert description
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_sendCodeErrorDescription: string =
+    "Please try again. If this problem continues, contact our program support team.";
+  /**
+   * @uiName Email input label
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_emailLabel: string = "Email";
+  /**
+   * @uiName Send code button text
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_sendCodeText: string = "Send code";
+  /**
+   * @uiName Send code button text
+   * @uiGroup Email Verification Step
+   */
+  @Prop()
+  emailStep_emailValidationErrorText: string = "Please enter a valid email";
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                EMAIL STEP PROPS
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  /**
+   * @uiName Verify code widget header text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_verifyCodeHeaderText: string =
+    "Enter the code sent to {email} from our referral provider, impact.com.";
+  /**
+   * @uiName Reverify code widget header text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_reverifyCodeHeaderText: string =
+    "Enter the code sent to {email} from our referral provider, impact.com.";
+  /**
+   * Text displayed under verify button
+   * @uiName Resend code text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_resendCodeText: string =
+    "Didn't receive your code? {resendCodeLink}";
+  /**
+   * The link that appears in the resend code link
+   * @uiName Resend code label
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_resendCodeLabel: string = "Resend code";
+  /**
+   * Link text displayed under verify button
+   * @uiName Resend code text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_codeResentSuccessfullyText: string =
+    "Another code has been sent to {email}";
+  /**
+   * Error text displayed under verification input
+   * @uiName Invalid code text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_invalidCodeText: string =
+    "Please check your code and try again. If you’re still having trouble, try resending your code.";
+  /**
+   * @uiName Verify code button text
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_verifyText: string = "Verify";
+  /**
+   * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
+   * @uiGroup Code Verification Step
+   */
+  @Prop() codeStep_networkErrorMessage: string =
+    "An error occurred while verifying your email. Please refresh the page and try again.";
+
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                CODE STEP PROPS
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
   constructor() {
     withHooks(this);
   }
@@ -161,7 +267,9 @@ export class WidgetVerification {
       <Host>
         <div ref={setSlot} style={{ display: "contents" }}>
           <template slot="not-verified">
-            <sqm-widget-verification-internal></sqm-widget-verification-internal>
+            <sqm-widget-verification-internal
+              {...getProps(this)}
+            ></sqm-widget-verification-internal>
           </template>
           <slot name="not-verified"></slot>
           <slot name="verified" />

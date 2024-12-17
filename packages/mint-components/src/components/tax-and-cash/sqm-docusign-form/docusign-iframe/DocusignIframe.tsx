@@ -157,7 +157,6 @@ export const DocusignIframe = ({
   const callback = useCallback((e) => {
     const allowed = allowedDomains.some((d) => e.origin?.includes(d));
     if (!allowed) return;
-    console.log(e);
     if (typeof e.data === "number") {
       setiFrameHeight(e.data + "px");
     }

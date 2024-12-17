@@ -5268,8 +5268,97 @@ export namespace Components {
         "loadingText": string;
     }
     interface SqmWidgetVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_codeResentSuccessfullyText": string;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_invalidCodeText": string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_networkErrorMessage": string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeLabel": string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeText": string;
+        /**
+          * @uiName Reverify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_reverifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code button text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyText": string;
+        /**
+          * @uiName Email input label
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailLabel": string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailValidationErrorText": string;
+        /**
+          * @uiName Send code to email alert description
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorDescription": string;
+        /**
+          * @uiName Send code to email alert header
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorHeader": string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeText": string;
+        /**
+          * @uiName Verify email widget header text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_verifyEmailHeaderText": string;
     }
     interface SqmWidgetVerificationInternal {
+        "codeStep_codeResentSuccessfullyText": string;
+        "codeStep_invalidCodeText": string;
+        "codeStep_networkErrorMessage": string;
+        "codeStep_resendCodeLabel": string;
+        "codeStep_resendCodeText": string;
+        "codeStep_reverifyCodeHeaderText": string;
+        "codeStep_verifyCodeHeaderText": string;
+        "codeStep_verifyText": string;
+        "emailStep_emailLabel": string;
+        "emailStep_emailValidationErrorText": string;
+        "emailStep_sendCodeErrorDescription": string;
+        "emailStep_sendCodeErrorHeader": string;
+        "emailStep_sendCodeText": string;
+        "emailStep_verifyEmailHeaderText": string;
     }
 }
 declare global {
@@ -11259,8 +11348,97 @@ declare namespace LocalJSX {
         "loadingText"?: string;
     }
     interface SqmWidgetVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_codeResentSuccessfullyText"?: string;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_invalidCodeText"?: string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_networkErrorMessage"?: string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeLabel"?: string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeText"?: string;
+        /**
+          * @uiName Reverify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_reverifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code button text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyText"?: string;
+        /**
+          * @uiName Email input label
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailLabel"?: string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailValidationErrorText"?: string;
+        /**
+          * @uiName Send code to email alert description
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorDescription"?: string;
+        /**
+          * @uiName Send code to email alert header
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorHeader"?: string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeText"?: string;
+        /**
+          * @uiName Verify email widget header text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_verifyEmailHeaderText"?: string;
     }
     interface SqmWidgetVerificationInternal {
+        "codeStep_codeResentSuccessfullyText"?: string;
+        "codeStep_invalidCodeText"?: string;
+        "codeStep_networkErrorMessage"?: string;
+        "codeStep_resendCodeLabel"?: string;
+        "codeStep_resendCodeText"?: string;
+        "codeStep_reverifyCodeHeaderText"?: string;
+        "codeStep_verifyCodeHeaderText"?: string;
+        "codeStep_verifyText"?: string;
+        "emailStep_emailLabel"?: string;
+        "emailStep_emailValidationErrorText"?: string;
+        "emailStep_sendCodeErrorDescription"?: string;
+        "emailStep_sendCodeErrorHeader"?: string;
+        "emailStep_sendCodeText"?: string;
+        "emailStep_verifyEmailHeaderText"?: string;
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;

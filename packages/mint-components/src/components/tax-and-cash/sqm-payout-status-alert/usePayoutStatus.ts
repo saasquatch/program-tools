@@ -59,7 +59,5 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     return () => window.removeEventListener("sqm:tax-form-updated", cb);
   }, []);
 
-  console.log({ data });
-
   return { states: { loading, status }, text: props.getTextProps() };
 }

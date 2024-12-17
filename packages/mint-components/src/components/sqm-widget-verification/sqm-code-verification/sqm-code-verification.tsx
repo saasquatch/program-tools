@@ -1,5 +1,5 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
@@ -9,6 +9,7 @@ import {
   WidgetCodeVerificationViewProps,
 } from "./sqm-code-verification-view";
 import { useWidgetCodeVerification } from "./useCodeVerification";
+import { SHOW_CODE_NAMESPACE, VERIFICATION_PARENT_NAMESPACE } from "../keys";
 
 @Component({
   tag: "sqm-code-verification",
@@ -87,19 +88,24 @@ export class WidgetCodeVerification {
 function useDemoWidgetCodeVerification(
   props: WidgetCodeVerification
 ): WidgetCodeVerificationViewProps {
+  const [emailResent, setEmailResent] = useState(false);
+  const setVerifiedContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+
   return deepmerge(
     {
       states: {
         loading: false,
-        email: "",
-        verifyFailed: false,
+        email: "test@example.com",
+        emailResent,
+        resendError: true,
+        verifyFailed: true,
       },
       refs: {
         codeWrapperRef: () => {},
       },
       callbacks: {
-        resendEmail: async () => {},
-        submitCode: async () => {},
+        resendEmail: async () => setEmailResent(true),
+        submitCode: async () => setVerifiedContext({ token: "TOKEN" }),
       },
       text: props.getTextProps(),
     },
