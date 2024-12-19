@@ -15,22 +15,18 @@ import {
   SET_CODE_USED,
 } from "../sqm-referral-codes/useReferralCodes";
 
-interface ShareLinkProps {
+interface ReferralCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
-  linkOverride?: string;
+  codeOverride?: string;
 }
 
 const MessageLinkQuery = gql`
-  query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
+  query ($programId: ID) {
     user: viewer {
       ... on User {
-        shareLink(
-          programId: $programId
-          engagementMedium: $engagementMedium
-          shareMedium: DIRECT
-        )
+        referralCode(programId: $programId)
       }
     }
   }
@@ -42,7 +38,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
+export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -53,15 +49,14 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
 
   const { data } = useQuery(
     MessageLinkQuery,
-    { programId, engagementMedium },
-    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
+    { programId },
+    !user?.jwt || contextData?.referralCode !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
-
   const [setUsed, usedRes] = useMutation(SET_CODE_USED);
 
   const copyString =
-    (contextData?.shareLink || data?.user?.shareLink) ??
+    (contextData?.referralCode || data?.user?.referralCode) ??
     // Shown during loading
     "...";
 
@@ -71,7 +66,6 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
     if (contextData) {
       setUsed(true);
     }
-
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
     navigator.clipboard.writeText(copyString);
@@ -91,5 +85,11 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
     });
   }
 
-  return { ...props, onClick, open, copyString: copyString };
+  return {
+    ...props,
+    onClick,
+    open,
+    copyString: copyString,
+    isCopied: contextData?.isCopied,
+  };
 }
