@@ -731,7 +731,7 @@ export namespace Components {
           * @format url
           * @uiName Image
          */
-        "emptyStateImage": string;
+        "emptyStateImage"?: string;
         /**
           * @uiName Description
           * @uiWidget textArea

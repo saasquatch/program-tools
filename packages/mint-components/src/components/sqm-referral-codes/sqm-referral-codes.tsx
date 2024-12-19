@@ -49,6 +49,8 @@ export class ReferralCodes {
       shareButtons: <slot name="shareButtons" />,
       shareCodes: <slot name="shareCodes" />,
       pagination: <slot name="pagination" />,
+      empty: <EmptySlot />,
+      loading: <LoadingSlot />,
     };
 
     const viewProps = {
@@ -60,6 +62,31 @@ export class ReferralCodes {
 
     return <ReferralCodesView {...viewProps} />;
   }
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-empty
+        emptyStateHeader="Your new codes and links aren’t ready yet"
+        emptyStateText="Please contact our program support team to let them know you’re out of codes."
+      ></sqm-empty>
+    </slot>
+  );
+}
+
+function LoadingSlot() {
+  return (
+    <slot name="loading">
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+    </slot>
+  );
+}
+function LoadingRow() {
+  return <sl-skeleton style={{ width: "100%" }}></sl-skeleton>;
 }
 
 function useDemoReferralCodes(props: ReferralCodes) {

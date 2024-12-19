@@ -8,6 +8,13 @@ export default {
   },
 };
 
+const demoData = {
+  states: {
+    noCodes: false,
+    loading: false,
+  },
+};
+
 const pagination = (slot) => {
   return <sqm-pagination slot={slot}></sqm-pagination>;
 };
@@ -51,6 +58,30 @@ export const WithPreviouslyCopiedCode = () => {
     <sqm-referral-codes>
       {pagination("pagination")}
       {shareCodeWithPreviouslyCopied("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+export const Empty = () => {
+  return (
+    <sqm-referral-codes
+      demoData={{ states: { ...demoData.states, noCodes: true } }}
+    >
+      {pagination("pagination")}
+      {shareCodes("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+export const Loading = () => {
+  return (
+    <sqm-referral-codes
+      demoData={{ states: { ...demoData.states, loading: true } }}
+    >
+      {pagination("pagination")}
+      {shareCodes("shareCodes")}
       {shareButtons("shareButtons")}
     </sqm-referral-codes>
   );

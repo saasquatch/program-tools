@@ -1,15 +1,20 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
+import { EmptyStateView } from "../sqm-empty/sqm-empty-view";
 
 export interface ReferralCodesViewProps {
   slots: {
     shareButtons: VNode;
     shareCodes: VNode;
     pagination: VNode;
+    empty: VNode;
+    loading: VNode;
+  };
+  states: {
+    noCodes: boolean;
+    loading: boolean;
   };
   titleText?: string;
-  noCodes: boolean;
-  loading: boolean;
 }
 
 const style = {
@@ -63,9 +68,26 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function ReferralCodesView(props: ReferralCodesViewProps) {
-  const { slots, titleText, loading, noCodes } = props;
+  const { slots, titleText, states } = props;
 
-  // TODO: loading state, empty state
+  const getSlotContent = (states: ReferralCodesViewProps["states"]) => {
+    if (states.noCodes) {
+      return slots.empty;
+    }
+
+    if (states.loading) {
+      return slots.loading;
+    }
+
+    return (
+      <div class={sheet.classes.Wrapper}>
+        <div class={sheet.classes.ShareCodeContainer}>{slots.shareCodes}</div>
+        <div class={sheet.classes.ShareButtonContainer}>
+          {slots.shareButtons}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div class={sheet.classes.Wrapper} part="sqm-base">
@@ -77,8 +99,7 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
         <h2 class={sheet.classes.TitleText}>{titleText}</h2>
         {slots.pagination}
       </div>
-      <div class={sheet.classes.ShareCodeContainer}>{slots.shareCodes}</div>
-      <div class={sheet.classes.ShareButtonContainer}>{slots.shareButtons}</div>
+      {getSlotContent(states)}
     </div>
   );
 }
