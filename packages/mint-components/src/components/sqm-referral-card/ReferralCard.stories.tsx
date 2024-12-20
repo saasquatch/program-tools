@@ -36,6 +36,32 @@ const sharebutton = (slot) => {
   );
 };
 
+const shareButtonsWithPromoCodes = (slot) => {
+  return (
+    <sqm-portal-container gap="large" slot={slot}>
+      <sqm-text>Choose how you want to share:</sqm-text>
+      <sqm-text>
+        <sub>Share with your friends:</sub>
+        <sqm-share-code />
+        <sqm-share-link />
+      </sqm-text>
+      <sqm-portal-container gap="x-small">
+        <sqm-share-button medium="email">Share via email</sqm-share-button>
+        <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+        <sqm-share-button medium="twitter">Post about us on X</sqm-share-button>
+        <sqm-portal-container gap="x-small">
+          <span
+            style={{ textAlign: "center", color: "var(--sl-color-gray-500)" }}
+          >
+            You have copied this code before
+          </span>
+          <sqm-pagination></sqm-pagination>
+        </sqm-portal-container>
+      </sqm-portal-container>
+    </sqm-portal-container>
+  );
+};
+
 const timeline = (slot, count) => {
   return (
     <sqm-timeline slot={slot} icon="circle">
@@ -94,6 +120,15 @@ export const TimelineAndShareButtons = () => {
     <sqm-referral-card>
       {timeline("left", 3)}
       {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const OneTimeUsePromoCodes = () => {
+  return (
+    <sqm-referral-card>
+      {timeline("left", 4)}
+      {shareButtonsWithPromoCodes("right")}
     </sqm-referral-card>
   );
 };
