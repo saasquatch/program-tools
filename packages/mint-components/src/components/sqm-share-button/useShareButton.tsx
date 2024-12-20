@@ -98,8 +98,9 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const programId = props.programId ? props.programId : useProgramId();
   const user = useUserIdentity();
+  const engagementMedium = useEngagementMedium();
   const variables = {
-    engagementMedium: useEngagementMedium(),
+    engagementMedium,
     programId: programId,
     shareMedium: medium.toUpperCase(),
   };
@@ -128,8 +129,8 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   async function onClick() {
     if (overrideData) {
-      await setCopied(overrideData?.referralCode);
-      await overrideData.refetch();
+      await setCopied({ referralCode: overrideData.referralCode });
+      await overrideData.refetch({ engagementMedium }, true);
     }
 
     if (

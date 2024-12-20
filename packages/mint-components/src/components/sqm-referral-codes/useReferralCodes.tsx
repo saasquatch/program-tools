@@ -85,7 +85,14 @@ type ReferralCode = {
 };
 
 export type ReferralCodeContext = {
-  refetch: () => Promise<void>;
+  refetch: (
+    {
+      engagementMedium,
+    }: {
+      engagementMedium: string;
+    },
+    skipLoading: boolean
+  ) => Promise<void>;
   loading?: boolean;
   referralCode: string;
   isUsed: boolean;
@@ -111,7 +118,7 @@ export type PaginationContext = {
     pageProgress: string;
   };
   callbacks: {
-    refetch: (variables?: unknown) => Promise<any>;
+    refetch: (variables: unknown, skipLoading: boolean) => Promise<any>;
     setLimit: (newLimit: number) => void;
     setCurrentPage: (newPage: number) => void;
   };
