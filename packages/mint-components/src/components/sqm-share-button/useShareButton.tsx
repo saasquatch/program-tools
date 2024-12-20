@@ -130,7 +130,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
   async function onClick() {
     if (overrideData) {
       await setCopied({ referralCode: overrideData.referralCode });
-      await overrideData.refetch({ engagementMedium }, true);
+      overrideData.refresh();
     }
 
     if (

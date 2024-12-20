@@ -2,6 +2,7 @@ import {
   useEngagementMedium,
   usePaginatedQuery,
   useParentState,
+  useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { GraphQlRequestError } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
@@ -85,14 +86,7 @@ type ReferralCode = {
 };
 
 export type ReferralCodeContext = {
-  refetch: (
-    {
-      engagementMedium,
-    }: {
-      engagementMedium: string;
-    },
-    skipLoading: boolean
-  ) => Promise<void>;
+  refresh: () => void;
   loading?: boolean;
   referralCode: string;
   isUsed: boolean;
@@ -118,7 +112,7 @@ export type PaginationContext = {
     pageProgress: string;
   };
   callbacks: {
-    refetch: (variables: unknown, skipLoading: boolean) => Promise<any>;
+    refetch: (variables: unknown) => Promise<any>;
     setLimit: (newLimit: number) => void;
     setCurrentPage: (newPage: number) => void;
   };
@@ -129,6 +123,8 @@ export function useReferralCodes(props: ReferralCodes) {
   const engagementMedium = useEngagementMedium();
 
   console.log({ props });
+
+  const { refresh } = useRefreshDispatcher();
 
   const {
     envelope: referralData,
@@ -158,7 +154,7 @@ export function useReferralCodes(props: ReferralCodes) {
     useParentState<ReferralCodeContext>({
       namespace: REFERRAL_CODES_NAMESPACE,
       initialValue: {
-        refetch: callbacks.refetch,
+        refresh,
         loading: true,
         referralCode: "",
         shareLink: "",
@@ -179,7 +175,7 @@ export function useReferralCodes(props: ReferralCodes) {
     if (referralData?.data?.length) {
       const data = referralData.data[0];
       setReferralCodesContext({
-        refetch: callbacks.refetch,
+        refresh,
         referralCode: data.code,
         isCopied: !!data.dateCopied,
         isUsed: !!data.dateUsed,

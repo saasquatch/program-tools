@@ -70,7 +70,7 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   async function onClick() {
     if (contextData) {
       await setCopied({ referralCode: contextData.referralCode });
-      await contextData.refetch({ engagementMedium }, true);
+      contextData.refresh();
     }
 
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
