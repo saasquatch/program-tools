@@ -189,12 +189,9 @@ export function useReferralCodes(props: ReferralCodes) {
         },
         whatsApp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
       });
+      setPaginationContext({ states, callbacks });
     }
   }, [referralData]);
-
-  useEffect(() => {
-    setPaginationContext({ states, callbacks });
-  }, [states.loading]);
 
   console.log({ referralData, states });
 

@@ -105,9 +105,11 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     shareMedium: medium.toUpperCase(),
   };
 
-  const data = useParentValue<ReferralCodeContext>(REFERRAL_CODES_NAMESPACE);
+  const contextData = useParentValue<ReferralCodeContext>(
+    REFERRAL_CODES_NAMESPACE
+  );
 
-  const overrideData = data?.[medium];
+  const overrideData = contextData?.[medium];
 
   // only queries if a programId is available
   const res = useQuery(
@@ -129,8 +131,8 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   async function onClick() {
     if (overrideData) {
-      await setCopied({ referralCode: overrideData.referralCode });
-      overrideData.refresh();
+      await setCopied({ referralCode: contextData.referralCode });
+      contextData.refresh();
     }
 
     if (

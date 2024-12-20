@@ -52,6 +52,7 @@ export class Pagination {
       text: {
         ofText: "of",
       },
+      loading: hookProps.states.loading,
     };
 
     return <PaginationView {...props}></PaginationView>;
