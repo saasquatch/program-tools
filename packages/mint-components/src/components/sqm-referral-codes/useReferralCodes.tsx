@@ -63,7 +63,9 @@ export const REFERRAL_CODES_PAGINATION_CONTEXT = "sq:referral-codes-pagination";
 export const SET_CODE_COPIED = gql`
   mutation markReferralCodeCopied($referralCode: String!) {
     markReferralCodeCopied(referralCode: $referralCode) {
-      referralCode
+      referralCode {
+        dateCopied
+      }
     }
   }
 `;
@@ -83,6 +85,7 @@ type ReferralCode = {
 };
 
 export type ReferralCodeContext = {
+  refetch: () => Promise<void>;
   loading?: boolean;
   referralCode: string;
   isUsed: boolean;
@@ -148,6 +151,7 @@ export function useReferralCodes(props: ReferralCodes) {
     useParentState<ReferralCodeContext>({
       namespace: REFERRAL_CODES_NAMESPACE,
       initialValue: {
+        refetch: callbacks.refetch,
         loading: true,
         referralCode: "",
         shareLink: "",
@@ -168,6 +172,7 @@ export function useReferralCodes(props: ReferralCodes) {
     if (referralData?.data?.length) {
       const data = referralData.data[0];
       setReferralCodesContext({
+        refetch: callbacks.refetch,
         referralCode: data.code,
         isCopied: !!data.dateCopied,
         isUsed: !!data.dateUsed,

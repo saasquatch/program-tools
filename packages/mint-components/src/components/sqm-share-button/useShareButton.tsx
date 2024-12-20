@@ -126,9 +126,10 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
-  function onClick() {
+  async function onClick() {
     if (overrideData) {
-      setCopied(overrideData?.referralCode);
+      await setCopied(overrideData?.referralCode);
+      await overrideData.refetch();
     }
 
     if (

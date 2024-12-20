@@ -62,9 +62,10 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
 
   const [open, setOpen] = useState(false);
 
-  function onClick() {
+  async function onClick() {
     if (contextData) {
-      setCopied(contextData.referralCode);
+      await setCopied(contextData.referralCode);
+      await contextData.refetch();
     }
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
