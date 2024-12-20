@@ -60,8 +60,12 @@ export const REFERRAL_CODES_NAMESPACE = "sq:referral-codes";
 
 export const REFERRAL_CODES_PAGINATION_CONTEXT = "sq:referral-codes-pagination";
 
-export const SET_CODE_USED = gql`
-mutation test {}
+export const SET_CODE_COPIED = gql`
+  mutation markReferralCodeCopied($referralCode: String!) {
+    markReferralCodeCopied(referralCode: $referralCode) {
+      referralCode
+    }
+  }
 `;
 
 type ReferralCode = {

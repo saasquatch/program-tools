@@ -12,7 +12,7 @@ import { CopyTextViewProps } from "../views/copy-text-view";
 import {
   ReferralCodeContext,
   REFERRAL_CODES_NAMESPACE,
-  SET_CODE_USED,
+  SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
 
 interface ReferralCodeProps {
@@ -53,7 +53,7 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
     !user?.jwt || contextData?.referralCode !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
-  const [setUsed, usedRes] = useMutation(SET_CODE_USED);
+  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
 
   const copyString =
     (contextData?.referralCode || data?.user?.referralCode) ??
@@ -64,7 +64,7 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
 
   function onClick() {
     if (contextData) {
-      setUsed(true);
+      setCopied(contextData.referralCode);
     }
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event

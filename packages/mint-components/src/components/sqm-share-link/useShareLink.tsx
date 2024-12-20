@@ -12,7 +12,7 @@ import { CopyTextViewProps } from "../views/copy-text-view";
 import {
   ReferralCodeContext,
   REFERRAL_CODES_NAMESPACE,
-  SET_CODE_USED,
+  SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
 
 interface ShareLinkProps {
@@ -58,7 +58,7 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
-  const [setUsed, usedRes] = useMutation(SET_CODE_USED);
+  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
 
   const copyString =
     (contextData?.shareLink || data?.user?.shareLink) ??
@@ -69,7 +69,7 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
 
   function onClick() {
     if (contextData) {
-      setUsed(true);
+      setCopied(contextData.referralCode);
     }
 
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

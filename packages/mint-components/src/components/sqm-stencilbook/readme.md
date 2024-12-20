@@ -226,6 +226,7 @@ graph TD;
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-referral-codes --> sqm-empty
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

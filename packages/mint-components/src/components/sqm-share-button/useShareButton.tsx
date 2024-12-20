@@ -15,7 +15,7 @@ import {
 import {
   REFERRAL_CODES_NAMESPACE,
   ReferralCodeContext,
-  SET_CODE_USED,
+  SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
@@ -115,7 +115,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     !user?.jwt || !programId || overrideData !== undefined
   );
 
-  const [setUsed, usedRes] = useMutation(SET_CODE_USED);
+  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
 
   const directLink = overrideData?.shareLink || res?.data?.viewer?.shareLink;
 
@@ -128,7 +128,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   function onClick() {
     if (overrideData) {
-      setUsed(true);
+      setCopied(overrideData?.referralCode);
     }
 
     if (

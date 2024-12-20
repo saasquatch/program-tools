@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                                                                                                                    | Default                |
-| ----------- | ------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `demoData`  | --           |             | `{ slots?: { shareButtons: VNode; shareCodes: VNode; pagination: VNode; }; loading?: boolean; titleText?: string; noCodes?: boolean; }` | `undefined`            |
-| `titleText` | `title-text` |             | `string`                                                                                                                                | `"Your referral code"` |
+| Property    | Attribute    | Description | Type                                                                                                                                                                              | Default                |
+| ----------- | ------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `demoData`  | --           |             | `{ states?: { noCodes: boolean; loading: boolean; }; slots?: { shareButtons: VNode; shareCodes: VNode; pagination: VNode; empty: VNode; loading: VNode; }; titleText?: string; }` | `undefined`            |
+| `titleText` | `title-text` |             | `string`                                                                                                                                                                          | `"Your referral code"` |
 
 
 ## Dependencies
@@ -19,9 +19,17 @@
 
  - [sqm-stencilbook](../sqm-stencilbook)
 
+### Depends on
+
+- [sqm-empty](../sqm-empty)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-referral-codes --> sqm-empty
+  sqm-empty --> sqm-portal-container
+  sqm-empty --> sqm-titled-section
+  sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-referral-codes
   style sqm-referral-codes fill:#f9f,stroke:#333,stroke-width:4px
 ```
