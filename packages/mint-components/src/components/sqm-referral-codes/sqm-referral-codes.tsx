@@ -24,7 +24,7 @@ export class ReferralCodes {
   /**
    * @uiName Title Text
    */
-  @Prop() titleText?: string = "Your referral code";
+  @Prop() titleText?: string = "Start sharing";
 
   /**
    * @undocumented
