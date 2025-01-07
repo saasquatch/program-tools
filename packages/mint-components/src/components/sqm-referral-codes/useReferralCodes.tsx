@@ -95,11 +95,11 @@ export type ReferralCodeContext = {
   email: {
     messageLink: string;
   };
-  fbMessenger: {
+  fbmessenger: {
     messageLink: string;
     shareLink: string;
   };
-  whatsApp: { messageLink: string };
+  whatsapp: { messageLink: string };
 };
 
 export type PaginationContext = {
@@ -163,11 +163,11 @@ export function useReferralCodes(props: ReferralCodes) {
         email: {
           messageLink: "",
         },
-        fbMessenger: {
+        fbmessenger: {
           messageLink: "",
           shareLink: "",
         },
-        whatsApp: { messageLink: "" },
+        whatsapp: { messageLink: "" },
       },
     });
 
@@ -183,11 +183,11 @@ export function useReferralCodes(props: ReferralCodes) {
         email: {
           messageLink: data.shareLinkCodes?.data?.[0]?.email,
         },
-        fbMessenger: {
+        fbmessenger: {
           messageLink: data.shareLinkCodes?.data?.[0]?.fbMessenger,
           shareLink: data.shareLinkCodes?.data?.[0]?.fbMessenger,
         },
-        whatsApp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
+        whatsapp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
       });
       setPaginationContext({ states, callbacks });
     }
