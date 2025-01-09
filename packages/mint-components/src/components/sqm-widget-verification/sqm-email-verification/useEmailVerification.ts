@@ -11,8 +11,8 @@ import { WidgetEmailVerification } from "./sqm-email-verification";
 import { WidgetEmailVerificationViewProps } from "./sqm-email-verification-view";
 
 export const VerificationEmailMutation = gql`
-  mutation requestUserEmailVerification($user: UserIdInput!) {
-    requestUserEmailVerification(user: $user) {
+  mutation requestImpactPublisherEmail2FA($user: UserIdInput!) {
+    requestImpactPublisherEmail2FA(user: $user) {
       success
     }
   }
@@ -159,7 +159,7 @@ export function useWidgetEmailVerification(
     }
 
     const result = await sendVerificationEmailMutation();
-    if (!result || !result.requestUserEmailVerification.success)
+    if (!result || !result.requestImpactPublisherEmail2FA.success)
       setMutationError(true);
     else {
       // This is used to let the code verification widget know an email was already sent

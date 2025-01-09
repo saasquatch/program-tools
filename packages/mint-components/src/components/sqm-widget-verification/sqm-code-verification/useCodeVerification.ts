@@ -16,8 +16,11 @@ import { WidgetCodeVerification } from "./sqm-code-verification";
 
 // TODO: Move to component-boilerplate
 export const VerifyEmailWithCodeMutation = gql`
-  mutation verifyUserEmail($user: UserIdInput!, $code: String!) {
-    verifyUserEmail(user: $user, code: $code) {
+  mutation submitImpactPublisherEmail2FACode(
+    $user: UserIdInput!
+    $code: String!
+  ) {
+    submitImpactPublisherEmail2FACode(user: $user, code: $code) {
       verifiedEmail
       accessKey
     }
@@ -79,6 +82,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         node.shadowRoot.querySelector(`input[name="code"]`) as HTMLInputElement
     );
 
+    console.log({ codeElements });
     codeElements.forEach((element, idx) => {
       element.addEventListener("focus", (e) => {
         (e.target as HTMLInputElement).select();
@@ -89,7 +93,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         }
       });
       element.addEventListener("input", (e: any) => {
-        const input = e.target.value;
+        const input = e.data;
         if (!input) return;
         if (idx === codeElements.length - 1) {
           e.target.value = input.slice(-1);
@@ -99,8 +103,12 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         if (input.length > 1) {
           const rest = input.slice(1);
           e.target.value = input.slice(0, 1);
-          codeElements[idx + 1].value = rest;
-          codeElements[idx + 1].dispatchEvent(new Event("input"));
+          codeElements[idx + 1].dispatchEvent(
+            new InputEvent("input", {
+              inputType: "insertFromPaste",
+              data: rest,
+            })
+          );
         }
         codeElements[idx + 1].focus();
       });
@@ -145,7 +153,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     const res = await verifyUser(code);
     if (res) {
       const event = new CustomEvent(VERIFICATION_EVENT_KEY, {
-        detail: { token: res.verifyUserEmail.accessKey },
+        detail: { token: res.submitImpactPublisherEmail2FACode.accessKey },
         composed: true,
         bubbles: true,
       });
