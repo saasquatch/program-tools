@@ -27,7 +27,7 @@ const GET_REFERRAL_CODES = gql`
             code
             dateUsed
             dateCopied
-            shareLinkCodes(limit: $limit, offset: $offset) {
+            shareLinkCodes(limit: $limit) {
               data {
                 linkCode
                 shareLink: shortUrl(

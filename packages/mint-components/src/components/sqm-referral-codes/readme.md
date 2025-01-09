@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                                                                                                                                                              | Default                |
-| ----------- | ------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `demoData`  | --           |             | `{ states?: { noCodes: boolean; loading: boolean; }; slots?: { shareButtons: VNode; shareCodes: VNode; pagination: VNode; empty: VNode; loading: VNode; }; titleText?: string; }` | `undefined`            |
-| `titleText` | `title-text` |             | `string`                                                                                                                                                                          | `"Your referral code"` |
+| Property    | Attribute    | Description | Type                                                                                                                                                                              | Default           |
+| ----------- | ------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| `demoData`  | --           |             | `{ states?: { noCodes: boolean; loading: boolean; }; slots?: { shareButtons: VNode; shareCodes: VNode; pagination: VNode; empty: VNode; loading: VNode; }; titleText?: string; }` | `undefined`       |
+| `titleText` | `title-text` |             | `string`                                                                                                                                                                          | `"Start sharing"` |
 
 
 ## Dependencies
