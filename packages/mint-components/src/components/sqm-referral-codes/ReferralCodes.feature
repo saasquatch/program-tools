@@ -12,7 +12,6 @@ Feature: Referral Codes Component
         When the promo code section is loaded
         Then the promo code can be copied directly
         And the promo code can be shared using <shareMedium>
-
         Examples:
             | shareMedium |
             | DIRECT      |
@@ -21,13 +20,28 @@ Feature: Referral Codes Component
             | WHATSAPP    |
 
     @minutia
-    Scenario: User is notified if the currently viewed promo code has been used already
+    Scenario: Clicking any of the share mediums sets the code as copied
         Given an authenticated user
         And the program has promo codes configured
         When the promo code section is loaded
-        And the code has not been used already
+        When clicking <shareMedium> button
+        Then the code is marked as copied
+        And the copied notification text is shown
+        Examples:
+            | shareMedium |
+            | DIRECT      |
+            | EMAIL       |
+            | FBMESSENGER |
+            | WHATSAPP    |
+
+    @minutia
+    Scenario: User is notified if the currently viewed promo code has been copied already
+        Given an authenticated user
+        And the program has promo codes configured
+        When the promo code section is loaded
+        And the code has not been copied already
         Then no notification text is displayed
-        When the code is changed to one that has been used
+        When the code is changed to one that has been copied
         Then the notification text is displayed
 
     @minutia
@@ -36,7 +50,7 @@ Feature: Referral Codes Component
         And the program has promo codes configured
         And a <shareMedium> button is a child of `<sqm-referral-codes>`
         Then the <shareMedium> button is shown
-        And the link is <promoCode>
+        And the link uses <promoCode>
         Examples:
             | propName        | shareMedium | promoCode  |
             | hideSharelink   | DIRECT      | PROMOCODE1 |
@@ -61,4 +75,14 @@ Feature: Referral Codes Component
             | 5        | 5           | 5 of 5         |
             | 1        | 1           | 1 of 1         |
             | 0        | 0           | 0 of 0         |
+
+    @minutia
+    Scenario: Loading state is shown when changing code page
+        Given an authenticated user
+        And the program has promo codes configured
+        When the promo code section is loaded
+        And the user has more than 1 available
+        When the next button is clicked
+        Then a loading state is shown
+
 
