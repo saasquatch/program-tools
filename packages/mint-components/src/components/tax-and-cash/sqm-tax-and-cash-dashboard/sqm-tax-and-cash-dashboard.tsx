@@ -200,15 +200,14 @@ export class TaxAndCashDashboard {
    * @uiName Payout error message title
    * @uiWidget textArea
    */
-  @Prop() errorTitleText: string = "Your payout is on hold ";
+  @Prop() payoutHoldAlertHeader: string = "Your payout is on hold";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message description
    * @uiWidget textArea
    */
-  @Prop()
-  errorDescriptionText: string =
-    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  @Prop() payoutHoldAlertDescription: string =
+    "Please contact Support or check your inbox for an email from our referral program provider, impact.com.";
   /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
@@ -384,6 +383,7 @@ function useDemoTaxAndCashDashboard(
         disabled: false,
         loading: false,
         showNewFormDialog: false,
+        hasHold: false,
       },
       callbacks: {
         onClick: () => console.debug("check step"),

@@ -3978,20 +3978,6 @@ export namespace Components {
          */
         "dashboard_editPaymentInformationButton": string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorTitleText": string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
@@ -4263,6 +4249,20 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -4815,18 +4815,6 @@ export namespace Components {
          */
         "editPaymentInformationButton": string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiWidget textArea
-         */
-        "errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiWidget textArea
-         */
-        "errorTitleText": string;
-        /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
@@ -4940,6 +4928,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "payoutFromImpact": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader": string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
@@ -10059,20 +10059,6 @@ declare namespace LocalJSX {
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorTitleText"?: string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
@@ -10344,6 +10330,20 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -10896,18 +10896,6 @@ declare namespace LocalJSX {
          */
         "editPaymentInformationButton"?: string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiWidget textArea
-         */
-        "errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiWidget textArea
-         */
-        "errorTitleText"?: string;
-        /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
@@ -11021,6 +11009,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "payoutFromImpact"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader"?: string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
