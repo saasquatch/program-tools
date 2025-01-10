@@ -1,15 +1,14 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Fragment, Prop, h } from "@stencil/core";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
-import { useReferralCodes } from "./useReferralCodes";
 import {
   ReferralCodesView,
   ReferralCodesViewProps,
 } from "./sqm-referral-codes-view";
-import { PaginationView } from "../sqm-pagination/sqm-pagination-view";
+import { useReferralCodes } from "./useReferralCodes";
 
 /**
  * @uiName Referral Codes
