@@ -26,6 +26,11 @@ export class ReferralCodes {
   @Prop() titleText?: string = "Start sharing";
 
   /**
+   * @uiName Program ID
+   */
+  @Prop() programId?: string;
+
+  /**
    * @undocumented
    * @uiType object
    */

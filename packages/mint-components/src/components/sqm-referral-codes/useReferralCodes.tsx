@@ -2,6 +2,7 @@ import {
   useEngagementMedium,
   usePaginatedQuery,
   useParentState,
+  useProgramId,
   useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
@@ -15,13 +16,14 @@ const GET_REFERRAL_CODES = gql`
     $limit: Int!
     $offset: Int!
     $engagementMedium: UserEngagementMedium!
+    $programId: ID
   ) {
     viewer {
       ... on User {
         referralCodeList(
           limit: $limit
           offset: $offset
-          filter: { fuelTank_eq: true }
+          filter: { fuelTank_eq: true, programId_eq: $programId }
         ) {
           data {
             code
@@ -121,6 +123,7 @@ export type PaginationContext = {
 export function useReferralCodes(props: ReferralCodes) {
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
+  const programId = props.programId || useProgramId();
 
   console.log({ props });
 
@@ -140,7 +143,7 @@ export function useReferralCodes(props: ReferralCodes) {
       limit: 1,
       offset: 0,
     },
-    { engagementMedium },
+    { engagementMedium, programId },
     !user?.jwt
   );
 

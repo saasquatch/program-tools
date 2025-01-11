@@ -10,6 +10,7 @@
 | Property    | Attribute    | Description | Type                                                                                                                                                                              | Default           |
 | ----------- | ------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | `demoData`  | --           |             | `{ states?: { noCodes: boolean; loading: boolean; }; slots?: { shareButtons: VNode; shareCodes: VNode; pagination: VNode; empty: VNode; loading: VNode; }; titleText?: string; }` | `undefined`       |
+| `programId` | `program-id` |             | `string`                                                                                                                                                                          | `undefined`       |
 | `titleText` | `title-text` |             | `string`                                                                                                                                                                          | `"Start sharing"` |
 
 
