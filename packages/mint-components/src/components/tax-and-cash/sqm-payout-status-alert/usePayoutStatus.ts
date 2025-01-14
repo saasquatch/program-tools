@@ -59,5 +59,5 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     return () => window.removeEventListener("sqm:tax-form-updated", cb);
   }, []);
 
-  return { states: { loading, status }, text: props.getTextProps() };
+  return { states: { loading, status, showVerifyIdentity: false }, text: props.getTextProps(), callbacks: { verifyIdentityCancel: () => console.log("AL: TODO")} };
 }
