@@ -35,6 +35,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     {}
   );
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     if (!data) return;
@@ -59,5 +60,12 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     return () => window.removeEventListener("sqm:tax-form-updated", cb);
   }, []);
 
-  return { states: { loading, status, showVerifyIdentity: false }, text: props.getTextProps(), callbacks: { verifyIdentityCancel: () => console.log("AL: TODO")} };
+  return {
+    states: { loading, status, showVerifyIdentity: showDialog },
+    text: props.getTextProps(),
+    callbacks: {
+      onClick: () => setShowDialog(true),
+      onCancel: () => setShowDialog(false)
+    }
+  }
 }

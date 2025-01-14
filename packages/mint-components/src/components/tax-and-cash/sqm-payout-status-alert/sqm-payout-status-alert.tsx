@@ -94,7 +94,8 @@ function useDemoPayoutStatusAlert(
       },
       text: props.getTextProps(),
       callbacks: {
-        verifyIdentityCancel: () => console.log(""),
+        onClick: () => console.log("show"),
+        onCancel: () => console.log("hide"),
       },
     },
     props.demoData || {},

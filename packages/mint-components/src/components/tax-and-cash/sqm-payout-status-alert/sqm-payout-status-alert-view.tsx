@@ -8,7 +8,8 @@ export interface PayoutStatusAlertViewProps {
     showVerifyIdentity: boolean;
   };
   callbacks: {
-    verifyIdentityCancel: () => void;
+    onClick: () => void;
+    onCancel: () => void;
   };
   text: {
     informationRequiredHeader: string;
@@ -116,9 +117,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             type="default"
             loading={states.loading}
             //AL: TODO callback to open verification form
-            // onClick={(e) => {
-            //   callbacks.onSubmit(e);
-            // }}
+            onClick={() => callbacks.onClick}
           >
             {text.verificationRequiredButtonText}
           </sl-button>
@@ -146,7 +145,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       <sl-dialog
         // class={sheet.classes.Dialog}
         open={states.showVerifyIdentity}
-        onSl-hide={callbacks.verifyIdentityCancel}
+        onSl-hide={callbacks.onCancel}
       >
         AL: TODO add IFRAME URL
       </sl-dialog>
