@@ -27,6 +27,7 @@ export class ReferralCodes {
 
   /**
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 

@@ -2648,6 +2648,7 @@ export namespace Components {
         "demoData"?: DemoData<ReferralCodesViewProps>;
         /**
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -8584,6 +8585,7 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<ReferralCodesViewProps>;
         /**
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
