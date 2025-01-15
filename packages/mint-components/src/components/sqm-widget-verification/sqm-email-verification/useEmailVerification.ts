@@ -9,14 +9,7 @@ import { gql } from "graphql-request";
 import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "../keys";
 import { WidgetEmailVerification } from "./sqm-email-verification";
 import { WidgetEmailVerificationViewProps } from "./sqm-email-verification-view";
-
-export const VerificationEmailMutation = gql`
-  mutation requestImpactPublisherEmail2FA($user: UserIdInput!) {
-    requestImpactPublisherEmail2FA(user: $user) {
-      success
-    }
-  }
-`;
+import { useVerificationEmail } from "../useVerificationEmail";
 
 export const UpsertUserEmailMutation = gql`
   mutation upsertUser($userInput: UserInput!) {
@@ -32,6 +25,12 @@ type User = {
   id: string;
   accountId: string;
   email: string | null;
+  impactConnection: {
+    user: {
+      id: string;
+      email: string | null;
+    } | null;
+  } | null;
 };
 export const UserLookupQuery = gql`
   query user {
@@ -40,44 +39,16 @@ export const UserLookupQuery = gql`
         id
         accountId
         email
+        impactConnection {
+          user {
+            id
+            email
+          }
+        }
       }
     }
   }
 `;
-
-// TODO: Move to component-boilerplate
-export function useVerificationEmailMutation() {
-  const user = useUserIdentity();
-  const [request, { loading: loading, data, errors }] = useMutation(
-    VerificationEmailMutation
-  );
-
-  const sendVerificationEmailMutation = async () => {
-    try {
-      const result = await request({
-        user: {
-          id: user.id,
-          accountId: user.accountId,
-        },
-      });
-      if (result instanceof Error || !result) throw new Error();
-
-      return result;
-    } catch (e) {
-      console.error("Could not send verification email", e);
-      return undefined;
-    }
-  };
-
-  return [
-    sendVerificationEmailMutation,
-    {
-      loading,
-      data,
-      errors,
-    },
-  ] as const;
-}
 
 export function useUpsertUserEmail() {
   const user = useUserIdentity();
@@ -122,7 +93,7 @@ export function useWidgetEmailVerification(
 
   const [error, setError] = useState(false);
   const [mutationError, setMutationError] = useState(false);
-  const [sendVerificationEmailMutation] = useVerificationEmailMutation();
+  const [sendVerificationEmailMutation] = useVerificationEmail();
   const [upsertUserEmail] = useUpsertUserEmail();
   const [loading, setLoading] = useState(false);
   const { data, loading: initialLoading } = useQuery<
@@ -159,8 +130,7 @@ export function useWidgetEmailVerification(
     }
 
     const result = await sendVerificationEmailMutation();
-    if (!result || !result.requestImpactPublisherEmail2FA.success)
-      setMutationError(true);
+    if (!result || !result.success) setMutationError(true);
     else {
       // This is used to let the code verification widget know an email was already sent
       setEmail(toAddress);

@@ -11,10 +11,9 @@ import {
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_EVENT_KEY,
 } from "../keys";
-import { useVerificationEmailMutation } from "../sqm-email-verification/useEmailVerification";
 import { WidgetCodeVerification } from "./sqm-code-verification";
+import { useVerificationEmail } from "../useVerificationEmail";
 
-// TODO: Move to component-boilerplate
 export const VerifyEmailWithCodeMutation = gql`
   mutation submitImpactPublisherEmail2FACode(
     $user: UserIdInput!
@@ -70,8 +69,8 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   // TODO: Need to handle error states for these errors
   const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
     useCodeVerificationMutation();
-  const [request, { loading: resendLoading, data, errors: resendErrors }] =
-    useVerificationEmailMutation();
+  const [request, { loading: resendLoading, errors: resendErrors }] =
+    useVerificationEmail();
 
   useEffect(() => {
     if (!codeRef) return;
