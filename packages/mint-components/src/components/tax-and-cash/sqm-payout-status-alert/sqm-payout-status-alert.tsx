@@ -90,8 +90,13 @@ function useDemoPayoutStatusAlert(
       states: {
         status: "INFORMATION_REQUIRED",
         loading: false,
+        showVerifyIdentity: false,
       },
       text: props.getTextProps(),
+      callbacks: {
+        onClick: () => console.log("show"),
+        onCancel: () => console.log("hide"),
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

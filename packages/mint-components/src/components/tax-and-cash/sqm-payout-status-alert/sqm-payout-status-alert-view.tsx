@@ -5,6 +5,11 @@ export interface PayoutStatusAlertViewProps {
   states: {
     loading: boolean;
     status: PayoutStatus;
+    showVerifyIdentity: boolean;
+  };
+  callbacks: {
+    onClick: () => void;
+    onCancel: () => void;
   };
   text: {
     informationRequiredHeader: string;
@@ -52,7 +57,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
-  const { text, states } = props;
+  const { text, states, callbacks } = props;
 
   if (states.loading) {
     return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
@@ -112,9 +117,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             type="default"
             loading={states.loading}
             //AL: TODO callback to open verification form
-            // onClick={(e) => {
-            //   callbacks.onSubmit(e);
-            // }}
+            onClick={() => callbacks.onClick}
           >
             {text.verificationRequiredButtonText}
           </sl-button>
@@ -139,6 +142,13 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         </p>
         {getButton(states.status)}
       </sl-alert>
+      <sl-dialog
+        // class={sheet.classes.Dialog}
+        open={states.showVerifyIdentity}
+        onSl-hide={callbacks.onCancel}
+      >
+        AL: TODO add IFRAME URL
+      </sl-dialog>
     </div>
   );
 }
