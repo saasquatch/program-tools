@@ -35,14 +35,19 @@ Feature: Referral Codes Component
             | WHATSAPP    |
 
     @minutia
-    Scenario: User is notified if the currently viewed promo code has been copied already
+    Scenario Outline: User is notified if the currently viewed promo code has been copied already
         Given an authenticated user
         And the program has promo codes configured
         When the promo code section is loaded
         And the code has not been copied already
         Then no notification text is displayed
         When the code is changed to one that has been copied
-        Then the notification text is displayed
+        Then the <notificationText> is displayed
+        Examples:
+            | notificationText               |
+            | You've copied this code before |
+            | Previously Copied              |
+            | foo                            |
 
     @minutia
     Scenario Outline: Share buttons slots use the link from referral codes instead of the default query
