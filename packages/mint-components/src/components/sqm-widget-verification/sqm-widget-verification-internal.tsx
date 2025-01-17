@@ -46,7 +46,6 @@ function useWidgetVerificationInternal() {
 
   useEffect(() => {
     const checkUser = async () => {
-      let result = null;
       try {
         const res = await fetch({});
         if (!res || res instanceof Error) throw new Error();
@@ -105,8 +104,7 @@ export class WidgetVerificationInternal {
       : useWidgetVerificationInternal();
 
     if (loading) {
-      // TODO: Proper loading state
-      return <div>Loading</div>;
+      return <sl-spinner style="font-size: 2rem;"></sl-spinner>;
     }
 
     if (showCode) {
