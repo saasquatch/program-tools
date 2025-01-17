@@ -113,7 +113,6 @@ export function useVerificationEmail() {
   const [initialized, setInitialized] = useState(false);
 
   const initialise = async () => {
-    console.debug("initialising");
     try {
       const lookup = await fetch({});
       if (!lookup || lookup instanceof Error) throw new Error();

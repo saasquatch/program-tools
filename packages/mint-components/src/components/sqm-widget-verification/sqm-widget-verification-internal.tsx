@@ -1,10 +1,11 @@
 import {
   isDemo,
+  useLazyQuery,
   useParentState,
   useSetParent,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import {
   SHOW_CODE_NAMESPACE,
@@ -13,6 +14,21 @@ import {
 } from "./keys";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
+import { gql } from "graphql-request";
+import { useEffect } from "@saasquatch/universal-hooks";
+
+const USER_LOOKUP = gql`
+  query viewer {
+    viewer {
+      ... on User {
+        id
+        accountId
+        email
+        emailVerified
+      }
+    }
+  }
+`;
 
 function useWidgetVerificationInternal() {
   const userIdentity = useUserIdentity();
@@ -25,12 +41,32 @@ function useWidgetVerificationInternal() {
     initialValue: userIdentity?.email,
   });
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+  const [loading, setLoading] = useState(true);
+  const [fetch] = useLazyQuery(USER_LOOKUP);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      let result = null;
+      try {
+        const res = await fetch({});
+        if (!res || res instanceof Error) throw new Error();
+
+        if (res?.viewer?.emailVerified) setContext(true);
+      } catch (e) {
+        console.error("Could not fetch user information", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, []);
 
   const onVerification = () => {
     setContext(true);
   };
 
-  return { showCode, onVerification };
+  return { showCode, onVerification, loading };
 }
 
 @Component({
@@ -64,9 +100,14 @@ export class WidgetVerificationInternal {
   }
 
   render() {
-    const { showCode, onVerification } = isDemo()
+    const { showCode, onVerification, loading } = isDemo()
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerificationInternal();
+
+    if (loading) {
+      // TODO: Proper loading state
+      return <div>Loading</div>;
+    }
 
     if (showCode) {
       return (
@@ -100,5 +141,5 @@ function useDemoWidgetVerificationInternal() {
     setContext(true);
   };
 
-  return { showCode, onVerification };
+  return { showCode, onVerification, loading: false };
 }
