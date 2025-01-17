@@ -1,5 +1,5 @@
-@author: sam
-@owner: sam
+@author:sam
+@owner:sam
 
 Feature: Referral Codes Component
 
