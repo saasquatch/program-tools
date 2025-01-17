@@ -117,3 +117,17 @@ Feature: Cash payout code verification widget
       | null                    | null                                   | N/A                            | N/A                     |
       | participant@example.com | null                                   | requestUserEmailVerification   | participant@example.com |
       | participantEmail        | { user: { email: impact@example.com }} | requestImpactPublisherEmail2FA | impact@example.com      |
+
+  @motivating
+  Scenario Outline: Code verification uses different mutations depending on if the user has an impactConnection
+    Given a user with participant email <participantEmail>
+    And impactConnection <impactConnection>
+    And an email was sent with code "123456"
+    When the code is submitted
+    Then <mutation> is called
+
+    Examples:
+      | participantEmail        | impactConnection                       | mutation                          |
+      | null                    | null                                   | N/A                               |
+      | participant@example.com | null                                   | verifyUserEmail                   |
+      | participantEmail        | { user: { email: impact@example.com }} | submitImpactPublisherEmail2FACode |
