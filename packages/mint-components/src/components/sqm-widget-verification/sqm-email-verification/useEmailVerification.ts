@@ -93,9 +93,12 @@ export function useWidgetEmailVerification(
 
   const [error, setError] = useState(false);
   const [mutationError, setMutationError] = useState(false);
-  const [sendVerificationEmailMutation] = useVerificationEmail();
+  const {
+    initialized,
+    send: [sendEmail, { loading: sendLoading, errors }],
+  } = useVerificationEmail();
   const [upsertUserEmail] = useUpsertUserEmail();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { data, loading: initialLoading } = useQuery<
     { viewer: User } | undefined
   >(UserLookupQuery, {});
@@ -108,6 +111,10 @@ export function useWidgetEmailVerification(
 
     setEmailExists(!!data.viewer.email);
   }, [data]);
+
+  useEffect(() => {
+    if (initialized) setLoading(false);
+  }, [initialized]);
 
   const submitEmail = async (e: any) => {
     e.preventDefault();
@@ -129,7 +136,10 @@ export function useWidgetEmailVerification(
       if (!result || !result.user.email) setError(true);
     }
 
-    const result = await sendVerificationEmailMutation();
+    // UI should not allow this call til initialisation is done
+    if (!initialized) return;
+
+    const result = await sendEmail();
     if (!result || !result.success) setMutationError(true);
     else {
       // This is used to let the code verification widget know an email was already sent
@@ -145,7 +155,7 @@ export function useWidgetEmailVerification(
     },
     states: {
       loading,
-      initialLoading,
+      initialLoading: initialLoading && !initialized,
       error,
       email: data?.viewer.email,
       sendCodeError: mutationError,

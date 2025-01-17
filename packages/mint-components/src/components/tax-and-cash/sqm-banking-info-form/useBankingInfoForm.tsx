@@ -454,6 +454,15 @@ export function useBankingInfoForm(
     await runMutation(formData, token);
   };
 
+  const onVerification = async (token: string) => {
+    host.dispatchEvent(
+      new CustomEvent(VERIFICATION_EVENT_KEY, {
+        detail: { token },
+        bubbles: false,
+      })
+    );
+  };
+
   function setPaymentMethodChecked(
     paymentMethod: "toBankAccount" | "toPayPalAccount"
   ) {
@@ -482,6 +491,7 @@ export function useBankingInfoForm(
       setPaymentScheduleChecked,
       onBack: () => setStep("/dashboard"),
       setCountrySearch,
+      onVerification,
     },
     states: {
       showVerification,

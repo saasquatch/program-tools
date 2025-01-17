@@ -5,6 +5,7 @@ export default {
 };
 
 const defaultProps = {
+  initialiseLoading: false,
   email: "testemail@example.com",
   loading: false,
   verifyFailed: false,
@@ -14,6 +15,17 @@ const defaultProps = {
 export const Default = () => (
   <sqm-code-verification
     demoData={{ states: defaultProps }}
+  ></sqm-code-verification>
+);
+
+export const InitialLoading = () => (
+  <sqm-code-verification
+    demoData={{
+      states: {
+        ...defaultProps,
+        initialiseLoading: true,
+      },
+    }}
   ></sqm-code-verification>
 );
 

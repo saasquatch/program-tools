@@ -442,6 +442,10 @@ export namespace Components {
          */
         "networkErrorMessage": string;
         /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
+        /**
           * The link that appears in the resend code link
           * @uiName Resend code label
          */
@@ -6552,6 +6556,10 @@ declare namespace LocalJSX {
           * @uiName Network error message
          */
         "networkErrorMessage"?: string;
+        /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
         /**
           * The link that appears in the resend code link
           * @uiName Resend code label

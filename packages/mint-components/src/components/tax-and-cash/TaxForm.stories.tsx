@@ -227,6 +227,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     },
   },
   callbacks: {
+    onVerification: () => {},
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},

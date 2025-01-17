@@ -66,11 +66,14 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const [validationError, setValidationError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
-  // TODO: Need to handle error states for these errors
-  const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
-    useCodeVerificationMutation();
-  const [request, { loading: resendLoading, errors: resendErrors }] =
-    useVerificationEmail();
+  // // TODO: Need to handle error states for these errors
+  // const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
+  //   useCodeVerificationMutation();
+  const {
+    initialized,
+    send: [sendEmail, { loading: sendLoading, errors: sendErrors }],
+    verify: [verifyEmail, { loading: verifyLoading, errors: verifyErrors }],
+  } = useVerificationEmail();
 
   useEffect(() => {
     if (!codeRef) return;
@@ -81,7 +84,6 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         node.shadowRoot.querySelector(`input[name="code"]`) as HTMLInputElement
     );
 
-    console.log({ codeElements });
     codeElements.forEach((element, idx) => {
       element.addEventListener("focus", (e) => {
         (e.target as HTMLInputElement).select();
@@ -120,7 +122,10 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   };
 
   const resendEmail = async () => {
-    const result = await request();
+    // UI should only allow this to be called if initialized, but checking just in case
+    if (!initialized) return;
+
+    const result = await sendEmail();
     if (!result) {
       setEmailError(true);
       return;
@@ -147,16 +152,14 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       code = `${code}${element.value}`;
     });
 
+    // UI should only allow this to be called if initialized, but checking just in case
+    if (!initialized) return;
+
     setValidationError(false);
-    // Only 123456 passes for a valid code rn
-    const res = await verifyUser(code);
-    if (res) {
-      const event = new CustomEvent(VERIFICATION_EVENT_KEY, {
-        detail: { token: res.submitImpactPublisherEmail2FACode.accessKey },
-        composed: true,
-        bubbles: true,
-      });
-      host.dispatchEvent(event);
+    const res = await verifyEmail(code);
+
+    if (res?.success) {
+      props.onVerification(res.accessKey);
       reset();
     } else {
       setValidationError(true);
@@ -164,10 +167,13 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   };
 
   useEffect(() => {
+    // Wait for mutations to be determined from user lookup
+    if (!initialized) return;
+
     // email should already exist if user has completed email-verification
     if (!email) resendEmail();
     else setEmailSent(true);
-  }, []);
+  }, [initialized]);
 
   return {
     refs: {
@@ -176,8 +182,9 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     states: {
       email,
       emailResent,
-      resendError: !!resendErrors?.message || emailError,
-      loading: verifyLoading || resendLoading,
+      resendError: sendErrors || verifyErrors,
+      initialiseLoading: !initialized,
+      loading: sendLoading || verifyLoading,
       verifyFailed: !!validationError,
     },
     callbacks: {

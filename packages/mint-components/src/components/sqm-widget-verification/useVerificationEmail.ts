@@ -52,33 +52,89 @@ const ImpactVerificationEmailMutation = gql`
   }
 `;
 
+const VerifyUserEmailMutation = gql`
+  mutation verifyUserEmail($user: UserIdInput!, $code: String!) {
+    verifyUserEmail(user: $user, code: $code) {
+      id
+      accountId
+      email
+      emailVerified
+    }
+  }
+`;
+
+const SubmitImpactCodeMutation = gql`
+  mutation submitImpactPublisherEmail2FACode(
+    $user: UserIdInput!
+    $code: String!
+  ) {
+    submitImpactPublisherEmail2FACode(user: $user, code: $code) {
+      verifiedEmail
+      accessKey
+    }
+  }
+`;
+
+// ! It's important when using this hook to ensure initialisation
+// ! is done before calling any mutations
 export function useVerificationEmail() {
   const userIdentity = useUserIdentity();
+  const [hasEmails, setHasEmails] = useState({
+    participant: false,
+    impact: false,
+  });
 
-  const [fetch, { data }] = useLazyQuery<{ viewer: User } | undefined>(
-    UserLookupQuery
-  );
-  const [sendParticipantEmail, { errors: participantEmailErrors }] =
-    useMutation(ParticipantVerificationEmailMutation);
-  const [sendImpactEmail, { errors: impactEmailErrors }] = useMutation(
-    ImpactVerificationEmailMutation
-  );
+  const [fetch] = useLazyQuery<{ viewer: User } | undefined>(UserLookupQuery);
 
-  const [loading, setLoading] = useState(false);
+  // Send mutations
+  const [
+    sendParticipantEmail,
+    { loading: participantEmailLoading, errors: participantEmailErrors },
+  ] = useMutation(ParticipantVerificationEmailMutation);
+  const [
+    sendImpactEmail,
+    { loading: impactEmailLoading, errors: impactEmailErrors },
+  ] = useMutation(ImpactVerificationEmailMutation);
+  const sendLoading = participantEmailLoading || impactEmailLoading;
+  const sendErrors = participantEmailErrors || impactEmailErrors;
 
-  const sendVerificationEmailMutation = async () => {
-    setLoading(true);
-    let result = undefined;
+  // Verification mutations
+  const [
+    verifyUserEmail,
+    { loading: verifyMutationLoading, errors: verifyMutationErrors },
+  ] = useMutation(VerifyUserEmailMutation);
+  const [
+    submitImpactCode,
+    { loading: submitImpactCodeLoading, errors: submitImpactCodeErrors },
+  ] = useMutation(SubmitImpactCodeMutation);
+  const verifyLoading = verifyMutationLoading || submitImpactCodeLoading;
+  const verifyErrors = verifyMutationErrors || submitImpactCodeErrors;
+
+  const [initialized, setInitialized] = useState(false);
+
+  const initialise = async () => {
+    console.debug("initialising");
     try {
       const lookup = await fetch({});
       if (!lookup || lookup instanceof Error) throw new Error();
 
-      const hasParticipantEmail = lookup.viewer?.email;
-      const hasImpactEmail = lookup.viewer?.impactConnection?.user?.email;
+      setHasEmails({
+        participant: !!lookup?.viewer?.email,
+        impact: !!lookup?.viewer?.impactConnection?.user?.email,
+      });
+      setInitialized(true);
+    } catch (e) {
+      console.error("Could not initialise verification", e);
+    }
+  };
 
-      if (!hasParticipantEmail && !hasImpactEmail) throw new Error();
+  const sendVerificationEmail = async () => {
+    let result = null;
 
-      const request = hasImpactEmail ? sendImpactEmail : sendParticipantEmail;
+    if (!initialized) return result;
+    if (!hasEmails.participant && !hasEmails.impact) return result;
+    try {
+      const request = hasEmails.impact ? sendImpactEmail : sendParticipantEmail;
       const res = await request({
         user: {
           id: userIdentity.id,
@@ -86,22 +142,61 @@ export function useVerificationEmail() {
         },
       });
       if (res instanceof Error || !res) throw new Error();
-      result = hasImpactEmail
+      result = hasEmails.impact
         ? res.requestImpactPublisherEmail2FA
         : res.requestUserEmailVerification;
     } catch (e) {
       console.error("Could not send verification email", e);
     } finally {
-      setLoading(false);
       return result;
     }
   };
 
-  return [
-    sendVerificationEmailMutation,
-    {
-      loading,
-      errors: participantEmailErrors || impactEmailErrors,
-    },
-  ] as const;
+  const verifyVerificationEmail = async (
+    code: string
+  ): Promise<{ success: boolean; accessKey: string | undefined }> => {
+    let result = null;
+
+    if (!initialized) return result;
+    if (!hasEmails.participant && !hasEmails.impact) return result;
+
+    try {
+      const request = hasEmails.impact ? submitImpactCode : verifyUserEmail;
+      const res = await request({
+        user: {
+          id: userIdentity.id,
+          accountId: userIdentity.accountId,
+        },
+        code,
+      });
+      if (res instanceof Error || !res) throw new Error();
+
+      result = {
+        success: true,
+        accessKey: hasEmails.impact
+          ? res.submitImpactPublisherEmail2FACode?.accessKey
+          : undefined,
+      };
+    } catch (e) {
+      console.error("Could not verify email", e);
+    } finally {
+      return result;
+    }
+  };
+
+  useEffect(() => {
+    if (!initialized) initialise();
+  }, []);
+
+  return {
+    initialized,
+    send: [
+      sendVerificationEmail,
+      { loading: sendLoading, errors: sendErrors },
+    ] as const,
+    verify: [
+      verifyVerificationEmail,
+      { loading: verifyLoading, errors: verifyErrors },
+    ] as const,
+  };
 }

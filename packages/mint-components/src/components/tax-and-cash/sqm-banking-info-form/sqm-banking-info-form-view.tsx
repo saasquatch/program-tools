@@ -66,6 +66,7 @@ export interface BankingInfoFormViewProps {
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
     setCountrySearch: (c: any) => void;
+    onVerification: (token: string) => void;
   };
   text: {
     formStep: string;

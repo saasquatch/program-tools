@@ -66,6 +66,11 @@ export class WidgetCodeVerification {
    */
   @Prop() demoData?: DemoData<WidgetCodeVerificationViewProps>;
 
+  /**
+   * @undocumented
+   */
+  @Prop() onVerification?: (token: string) => any;
+
   constructor() {
     withHooks(this);
   }
@@ -105,7 +110,7 @@ function useDemoWidgetCodeVerification(
       },
       callbacks: {
         resendEmail: async () => setEmailResent(true),
-        submitCode: async () => setVerifiedContext({ token: "TOKEN" }),
+        submitCode: async () => setVerifiedContext(true),
       },
       text: props.getTextProps(),
     },

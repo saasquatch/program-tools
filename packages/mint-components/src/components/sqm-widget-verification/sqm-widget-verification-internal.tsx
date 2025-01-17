@@ -1,11 +1,16 @@
 import {
   isDemo,
   useParentState,
+  useSetParent,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "./keys";
+import {
+  SHOW_CODE_NAMESPACE,
+  VERIFICATION_EMAIL_NAMESPACE,
+  VERIFICATION_PARENT_NAMESPACE,
+} from "./keys";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
 
@@ -19,8 +24,13 @@ function useWidgetVerificationInternal() {
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: userIdentity?.email,
   });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
-  return { showCode };
+  const onVerification = () => {
+    setContext(true);
+  };
+
+  return { showCode, onVerification };
 }
 
 @Component({
@@ -54,13 +64,14 @@ export class WidgetVerificationInternal {
   }
 
   render() {
-    const { showCode } = isDemo()
+    const { showCode, onVerification } = isDemo()
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerificationInternal();
 
     if (showCode) {
       return (
         <sqm-code-verification
+          onVerification={onVerification}
           {...this.getStepTextProps("codeStep_")}
         ></sqm-code-verification>
       );
@@ -83,6 +94,11 @@ function useDemoWidgetVerificationInternal() {
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: undefined,
   });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
-  return { showCode };
+  const onVerification = () => {
+    setContext(true);
+  };
+
+  return { showCode, onVerification };
 }
