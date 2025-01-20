@@ -7,8 +7,18 @@ export interface PayoutStatusAlertViewProps {
     status: PayoutStatus;
     showVerifyIdentity: boolean;
   };
+  data: {
+    type:
+      | "SquatchJS2"
+      | "SquatchAndroid"
+      | "SquatchIOS"
+      | "SquatchPortal"
+      | "SquatchAdmin"
+      | "None";
+  };
   callbacks: {
     onClick: () => void;
+    onTermsClick: () => void;
     onCancel: () => void;
   };
   text: {
@@ -57,7 +67,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
-  const { text, states, callbacks } = props;
+  const { text, states, data, callbacks } = props;
 
   if (states.loading) {
     return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
@@ -73,7 +83,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         return {
           header: text.informationRequiredHeader,
           description: text.informationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          buttonText: text.informationRequiredButtonText,
           alertType: "info",
           icon: "info-circle",
           class: sheet.classes.InfoAlertContainer,
@@ -104,12 +114,20 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   function getButton(status: PayoutStatus) {
     switch (status) {
       case "INFORMATION_REQUIRED":
-        return (
+        return data.type === "SquatchJS2" ? (
           <sqm-scroll
             scroll-tag-name="sqm-tabs"
-            button-text="Payout and tax settings"
+            button-text={text.informationRequiredButtonText}
             scroll-animation="smooth"
           ></sqm-scroll>
+        ) : data.type === "SquatchPortal" ? (
+          <sl-button type="default" onClick={callbacks.onTermsClick}>
+            {text.informationRequiredButtonText}
+          </sl-button>
+        ) : (
+          <sl-button type="default">
+            {text.informationRequiredButtonText}
+          </sl-button>
         );
       case "VERIFICATION_NEEDED":
         return (

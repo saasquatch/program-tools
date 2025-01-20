@@ -58,6 +58,11 @@ export class PayoutStatusAlert {
    */
   @Prop() holdDescription: string =
     "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.";
+  /**
+   * @uiName Cash & Payouts Terms and Conditions url
+   */
+  @Prop() termsUrl: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
 
   /**
    * @undocumented
@@ -92,8 +97,10 @@ function useDemoPayoutStatusAlert(
         loading: false,
         showVerifyIdentity: false,
       },
+      data: { type: "SquatchAdmin" },
       text: props.getTextProps(),
       callbacks: {
+        onTermsClick: () => {},
         onClick: () => console.log("show"),
         onCancel: () => console.log("hide"),
       },

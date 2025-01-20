@@ -1,4 +1,4 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useState, useEffect } from "@saasquatch/stencil-hooks";
 import { UserQuery, GET_USER } from "../sqm-tax-and-cash/data";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
@@ -30,6 +30,7 @@ const GET_USER_STATUS = gql`
 `;
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
+  const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
     {}
@@ -62,10 +63,12 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
 
   return {
     states: { loading, status, showVerifyIdentity: showDialog },
+    data: { type },
     text: props.getTextProps(),
     callbacks: {
+      onTermsClick: () => window.open(props.termsUrl, "_blank").focus(),
       onClick: () => setShowDialog(true),
-      onCancel: () => setShowDialog(false)
-    }
-  }
+      onCancel: () => setShowDialog(false),
+    },
+  };
 }

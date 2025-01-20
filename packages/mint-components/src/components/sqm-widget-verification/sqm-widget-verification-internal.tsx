@@ -103,9 +103,11 @@ export class WidgetVerificationInternal {
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerificationInternal();
 
-    if (loading) {
-      return <sl-spinner style="font-size: 2rem;"></sl-spinner>;
-    }
+    // TODO: Shoelace spinner is throwing errors
+    if (loading) return <div></div>;
+    // if (loading) {
+    //   return <sl-spinner style="font-size: 2rem;"></sl-spinner>;
+    // }
 
     if (showCode) {
       return (

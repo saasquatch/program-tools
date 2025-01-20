@@ -1745,6 +1745,10 @@ export namespace Components {
          */
         "informationRequiredHeader": string;
         /**
+          * @uiName Cash & Payouts Terms and Conditions url
+         */
+        "termsUrl": string;
+        /**
           * @uiName Verification required alert button text
          */
         "verificationRequiredButtonText": string;
@@ -7853,6 +7857,10 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Cash & Payouts Terms and Conditions url
+         */
+        "termsUrl"?: string;
         /**
           * @uiName Verification required alert button text
          */
