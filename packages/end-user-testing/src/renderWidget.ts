@@ -47,7 +47,6 @@ export function renderWidget(config: WidgetConfig) {
   const frame = app!.querySelector(
     "iframe#squatchFrame"
   ) as HTMLIFrameElement | null;
-  console.log(frame);
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiNzZmMzRjNDdhN2JmNzYwMzgyMGYwZDQ5MGYwZThhNzAyMWM3YTM1OGNhNTU5YTZhM2Q3OGU5Y2UyMWQ5ZTA4ZCIsImFjY291bnRJZCI6Ijc2ZjM0YzQ3YTdiZjc2MDM4MjBmMGQ0OTBmMGU4YTcwMjFjN2EzNThjYTU1OWE2YTNkNzhlOWNlMjFkOWUwOGQiLCJlbWFpbCI6ImNvbGV0b24uYW5uZXR0K3Rlc3Q4MjM0MjM0QGltcGFjdC5jb20ifX0.GHwg1f2yveU8fnMIkCvzony77LOMVbjK4EWVA-cP1dE";
