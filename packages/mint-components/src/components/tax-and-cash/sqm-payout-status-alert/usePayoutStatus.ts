@@ -44,10 +44,11 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     function getStatus(data: UserQuery): PayoutStatus {
       const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
-      if (!account) return "INFORMATION_REQUIRED";
-      if (account.hold) return "HOLD";
+      if (!data.user?.impactConnection?.connected || !account)
+        return "INFORMATION_REQUIRED";
       // @ts-ignore, TODO: add check for account verification
       if (!account.verified) return "VERIFICATION_NEEDED";
+      if (account.hold) return "HOLD";
       return "DONE";
     }
 
