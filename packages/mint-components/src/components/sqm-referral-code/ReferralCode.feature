@@ -18,7 +18,7 @@ Feature: Referral Code
     And a tooltip will appear for ~1 second
 
   @minutia
-  Scenario: Tooltip lifespan defaults to 2000
+  Scenario: Tooltip lifespan can be customized
     Given the tooltip's lifespan is set to 2000
     And there is tooltip text
     When the component renders
@@ -54,7 +54,6 @@ Feature: Referral Code
     Then an "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic event is fired
     And it is for "program-a"
     And it has share medium "DIRECT"
-
 
   @ui
   Scenario Outline: user can edit the alignment of the share code text
