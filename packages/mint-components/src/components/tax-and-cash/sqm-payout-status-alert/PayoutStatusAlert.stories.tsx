@@ -5,6 +5,7 @@ export default {
 };
 
 const defaultProps = {
+  error: false,
   status: "INFORMATION_REQUIRED" as const,
   loading: false,
   showVerifyIdentity: false,
@@ -43,5 +44,11 @@ export const Hold = () => (
 export const Loading = () => (
   <sqm-payout-status-alert
     demoData={{ states: { ...defaultProps, loading: true } }}
+  ></sqm-payout-status-alert>
+);
+
+export const Error = () => (
+  <sqm-payout-status-alert
+    demoData={{ states: { ...defaultProps, error: true } }}
   ></sqm-payout-status-alert>
 );

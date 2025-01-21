@@ -27,7 +27,7 @@ Feature: Cash payout code verification widget
     And they click "Backspace"
     Then the cursor focusses on the input <previous>
 
-  Example:
+    Examples:
       | number | next |
       | 1      | 2    |
       | 2      | 3    |
@@ -103,3 +103,31 @@ Feature: Cash payout code verification widget
     But it is not a child element of `sqm-widget-verification`
     When `sqm-code-verification` loads
     Then it sends a 2FA email to the user's saved publisher email
+
+  @motivating
+  Scenario Outline: Email verification prioritises sending to the connected Impact email
+    Given a user with participant email <participantEmail>
+    And impactConnection <impactConnection>
+    When the verification email is sent
+    Then <mutation> is called
+    And the email is sent to <finalEmail>
+
+    Examples:
+      | participantEmail        | impactConnection                       | mutation                       | finalEmail              |
+      | null                    | null                                   | N/A                            | N/A                     |
+      | participant@example.com | null                                   | requestUserEmailVerification   | participant@example.com |
+      | participantEmail        | { user: { email: impact@example.com }} | requestImpactPublisherEmail2FA | impact@example.com      |
+
+  @motivating
+  Scenario Outline: Code verification uses different mutations depending on if the user has an impactConnection
+    Given a user with participant email <participantEmail>
+    And impactConnection <impactConnection>
+    And an email was sent with code "123456"
+    When the code is submitted
+    Then <mutation> is called
+
+    Examples:
+      | participantEmail        | impactConnection                       | mutation                          |
+      | null                    | null                                   | N/A                               |
+      | participant@example.com | null                                   | verifyUserEmail                   |
+      | participantEmail        | { user: { email: impact@example.com }} | submitImpactPublisherEmail2FACode |

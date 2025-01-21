@@ -156,22 +156,16 @@ export class WidgetVerification {
   disconnectedCallback() {}
 
   render() {
-    const [context, setContext] = useParentState<{ token: string } | undefined>(
-      {
-        namespace: VERIFICATION_PARENT_NAMESPACE,
-        initialValue: undefined,
-      }
-    );
-
-    const authToken = context?.token;
+    const [context, setContext] = useParentState<boolean>({
+      namespace: VERIFICATION_PARENT_NAMESPACE,
+      initialValue: false,
+    });
 
     const [container, setContainer] = useState<HTMLDivElement>(undefined);
     const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
-    if (!authToken) debug("No user identity available");
-
     const updateTemplates = useCallback(() => {
-      const isAuth = !!authToken;
+      const isAuth = context;
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
       const template = Array.from(templates).find(
         (t) => t.slot === (isAuth ? "verified" : "not-verified")
@@ -236,7 +230,7 @@ export class WidgetVerification {
           target.style.height = "25px";
         });
       }
-    }, [container, slot, authToken]);
+    }, [container, slot, context]);
 
     useEffect(() => {
       if (!container || !slot) {
@@ -248,20 +242,20 @@ export class WidgetVerification {
       updateTemplates();
 
       return useTemplateChildren({ parent: slot, callback: updateTemplates });
-    }, [slot, container, authToken]);
+    }, [slot, container, context]);
 
-    useEffect(() => {
-      const host = useHost();
-      const callback = (e: CustomEvent) => {
-        e.stopPropagation();
-        setContext({ token: e.detail.token });
-      };
-      host.addEventListener(VERIFICATION_EVENT_KEY, callback);
+    // useEffect(() => {
+    //   const host = useHost();
+    //   const callback = (e: CustomEvent) => {
+    //     e.stopPropagation();
+    //     setContext({ token: e.detail.token });
+    //   };
+    //   host.addEventListener(VERIFICATION_EVENT_KEY, callback);
 
-      return () => {
-        host.removeEventListener(VERIFICATION_EVENT_KEY, callback);
-      };
-    }, []);
+    //   return () => {
+    //     host.removeEventListener(VERIFICATION_EVENT_KEY, callback);
+    //   };
+    // }, []);
 
     return (
       <Host>

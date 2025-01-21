@@ -3,12 +3,23 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "./usePayoutStatus";
 export interface PayoutStatusAlertViewProps {
   states: {
+    error: boolean;
     loading: boolean;
     status: PayoutStatus;
     showVerifyIdentity: boolean;
   };
+  data: {
+    type:
+      | "SquatchJS2"
+      | "SquatchAndroid"
+      | "SquatchIOS"
+      | "SquatchPortal"
+      | "SquatchAdmin"
+      | "None";
+  };
   callbacks: {
     onClick: () => void;
+    onTermsClick: () => void;
     onCancel: () => void;
   };
   text: {
@@ -20,6 +31,8 @@ export interface PayoutStatusAlertViewProps {
     verificationRequiredButtonText: string;
     holdHeader: string;
     holdDescription: string;
+    errorHeader: string;
+    errorDescription: string;
   };
 }
 
@@ -31,6 +44,16 @@ const style = {
   AlertDescriptionText: {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
+  },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
   },
   WarningAlertContainer: {
     "&::part(base)": {
@@ -71,7 +94,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
-  const { text, states, callbacks } = props;
+  const { text, states, data, callbacks } = props;
 
   if (states.loading) {
     return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
@@ -82,12 +105,22 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   function getAlert(status: PayoutStatus) {
+    if (states.error)
+      return {
+        header: text.errorHeader,
+        description: text.errorDescription,
+        buttonText: null,
+        alertType: "critical",
+        icon: "exclamation-triangle",
+        class: sheet.classes.ErrorAlertContainer,
+      };
+
     switch (status) {
       case "INFORMATION_REQUIRED":
         return {
           header: text.informationRequiredHeader,
           description: text.informationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          buttonText: text.informationRequiredButtonText,
           alertType: "info",
           icon: "info-circle",
           class: sheet.classes.InfoAlertContainer,
@@ -118,12 +151,20 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   function getButton(status: PayoutStatus) {
     switch (status) {
       case "INFORMATION_REQUIRED":
-        return (
+        return data.type === "SquatchJS2" ? (
           <sqm-scroll
             scroll-tag-name="sqm-tabs"
-            button-text="Payout and tax settings"
+            button-text={text.informationRequiredButtonText}
             scroll-animation="smooth"
           ></sqm-scroll>
+        ) : data.type === "SquatchPortal" ? (
+          <sl-button type="default" onClick={callbacks.onTermsClick}>
+            {text.informationRequiredButtonText}
+          </sl-button>
+        ) : (
+          <sl-button type="default">
+            {text.informationRequiredButtonText}
+          </sl-button>
         );
       case "VERIFICATION_NEEDED":
         return (
@@ -140,6 +181,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         return;
     }
   }
+
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>

@@ -6,6 +6,7 @@ import { intl } from "../../../global/global";
 
 export interface WidgetCodeVerificationViewProps {
   states: {
+    initialiseLoading: boolean;
     loading: boolean;
     email: string;
     verifyFailed?: boolean;
@@ -191,7 +192,8 @@ export function WidgetCodeVerificationView(
           <sl-button
             class={sheet.classes.ContinueButton}
             onClick={callbacks.submitCode}
-            loading={states.loading}
+            disabled={states.loading || states.initialiseLoading}
+            loading={states.loading || states.initialiseLoading}
             exportparts="base: primarybutton-base"
             type="primary"
           >

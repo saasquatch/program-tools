@@ -402,7 +402,11 @@ export class BankingInfoForm {
     };
 
     if (props.states.isPartner && props.states.showVerification) {
-      return <sqm-code-verification></sqm-code-verification>;
+      return (
+        <sqm-code-verification
+          onVerification={props.callbacks.onVerification}
+        ></sqm-code-verification>
+      );
     }
 
     return (
@@ -651,6 +655,7 @@ function useDemoBankingInfoForm(
         setPaymentScheduleChecked,
         setCountrySearch: () => {},
         onBack: async () => setStep("/dashboard"),
+        onVerification: () => {},
       },
       text: props.getTextProps(),
       refs: {

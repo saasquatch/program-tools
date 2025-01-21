@@ -1,13 +1,34 @@
 import {
   isDemo,
+  useLazyQuery,
   useParentState,
+  useSetParent,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import { SHOW_CODE_NAMESPACE, VERIFICATION_EMAIL_NAMESPACE } from "./keys";
+import {
+  SHOW_CODE_NAMESPACE,
+  VERIFICATION_EMAIL_NAMESPACE,
+  VERIFICATION_PARENT_NAMESPACE,
+} from "./keys";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
+import { gql } from "graphql-request";
+import { useEffect } from "@saasquatch/universal-hooks";
+
+const USER_LOOKUP = gql`
+  query checkUserVerification {
+    viewer {
+      ... on User {
+        id
+        accountId
+        email
+        emailVerified
+      }
+    }
+  }
+`;
 
 function useWidgetVerificationInternal() {
   const userIdentity = useUserIdentity();
@@ -19,8 +40,32 @@ function useWidgetVerificationInternal() {
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: userIdentity?.email,
   });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+  const [loading, setLoading] = useState(true);
+  const [fetch] = useLazyQuery(USER_LOOKUP);
 
-  return { showCode };
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await fetch({});
+        if (!res || res instanceof Error) throw new Error();
+
+        if (res?.viewer?.emailVerified) setContext(true);
+      } catch (e) {
+        console.error("Could not fetch user information:", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, []);
+
+  const onVerification = () => {
+    setContext(true);
+  };
+
+  return { showCode, onVerification, loading };
 }
 
 @Component({
@@ -54,13 +99,20 @@ export class WidgetVerificationInternal {
   }
 
   render() {
-    const { showCode } = isDemo()
+    const { showCode, onVerification, loading } = isDemo()
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerificationInternal();
+
+    // TODO: Shoelace spinner is throwing errors
+    if (loading) return <div></div>;
+    // if (loading) {
+    //   return <sl-spinner style="font-size: 2rem;"></sl-spinner>;
+    // }
 
     if (showCode) {
       return (
         <sqm-code-verification
+          onVerification={onVerification}
           {...this.getStepTextProps("codeStep_")}
         ></sqm-code-verification>
       );
@@ -83,6 +135,11 @@ function useDemoWidgetVerificationInternal() {
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: undefined,
   });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
-  return { showCode };
+  const onVerification = () => {
+    setContext(true);
+  };
+
+  return { showCode, onVerification, loading: false };
 }

@@ -58,6 +58,21 @@ export class PayoutStatusAlert {
    */
   @Prop() holdDescription: string =
     "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.";
+  /**
+   * @uiName Cash & Payouts Terms and Conditions url
+   */
+  @Prop() termsUrl: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
+
+  /**
+   * @uiName Error header
+   */
+  @Prop() errorHeader: string = "Could not determine payout status.";
+  /**
+   * @uiName Error description
+   */
+  @Prop() errorDescription: string =
+    "There was an error with determining your payout status.";
 
   /**
    * @undocumented
@@ -78,6 +93,8 @@ export class PayoutStatusAlert {
       ? useDemoPayoutStatusAlert(this)
       : usePayoutStatus(this);
 
+    console.log({ props });
+
     return <PayoutStatusAlertView {...props} />;
   }
 }
@@ -88,12 +105,15 @@ function useDemoPayoutStatusAlert(
   return deepmerge(
     {
       states: {
+        error: false,
         status: "INFORMATION_REQUIRED",
         loading: false,
         showVerifyIdentity: false,
       },
+      data: { type: "SquatchAdmin" },
       text: props.getTextProps(),
       callbacks: {
+        onTermsClick: () => {},
         onClick: () => console.log("show"),
         onCancel: () => console.log("hide"),
       },

@@ -442,6 +442,10 @@ export namespace Components {
          */
         "networkErrorMessage": string;
         /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
+        /**
           * The link that appears in the resend code link
           * @uiName Resend code label
          */
@@ -1721,6 +1725,14 @@ export namespace Components {
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
+          * @uiName Error description
+         */
+        "errorDescription": string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader": string;
+        /**
           * @uiName Payout on hold alert description
          */
         "holdDescription": string;
@@ -1740,6 +1752,10 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Cash & Payouts Terms and Conditions url
+         */
+        "termsUrl": string;
         /**
           * @uiName Verification required alert button text
          */
@@ -6553,6 +6569,10 @@ declare namespace LocalJSX {
          */
         "networkErrorMessage"?: string;
         /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
+        /**
           * The link that appears in the resend code link
           * @uiName Resend code label
          */
@@ -7826,6 +7846,14 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
+          * @uiName Error description
+         */
+        "errorDescription"?: string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader"?: string;
+        /**
           * @uiName Payout on hold alert description
          */
         "holdDescription"?: string;
@@ -7845,6 +7873,10 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Cash & Payouts Terms and Conditions url
+         */
+        "termsUrl"?: string;
         /**
           * @uiName Verification required alert button text
          */

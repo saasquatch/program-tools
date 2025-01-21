@@ -1,4 +1,4 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useState, useEffect } from "@saasquatch/stencil-hooks";
 import { UserQuery, GET_USER } from "../sqm-tax-and-cash/data";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
@@ -30,6 +30,7 @@ const GET_USER_STATUS = gql`
 `;
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
+  const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
     {}
@@ -43,10 +44,11 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     function getStatus(data: UserQuery): PayoutStatus {
       const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
-      if (!account) return "INFORMATION_REQUIRED";
-      if (account.hold) return "HOLD";
+      if (!data.user?.impactConnection?.connected || !account)
+        return "INFORMATION_REQUIRED";
       // @ts-ignore, TODO: add check for account verification
       if (!account.verified) return "VERIFICATION_NEEDED";
+      if (account.hold) return "HOLD";
       return "DONE";
     }
 
@@ -61,11 +63,18 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   }, []);
 
   return {
-    states: { loading, status, showVerifyIdentity: showDialog },
+    states: {
+      loading,
+      status,
+      showVerifyIdentity: showDialog,
+      error: !!errors,
+    },
+    data: { type },
     text: props.getTextProps(),
     callbacks: {
+      onTermsClick: () => window.open(props.termsUrl, "_blank").focus(),
       onClick: () => setShowDialog(true),
-      onCancel: () => setShowDialog(false)
-    }
-  }
+      onCancel: () => setShowDialog(false),
+    },
+  };
 }

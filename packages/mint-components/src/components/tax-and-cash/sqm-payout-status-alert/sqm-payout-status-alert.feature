@@ -6,8 +6,13 @@ Feature: Cash payout status widget alert
 
   @motivating
   Scenario: User has not completed payout and tax form
-    Given they are viewing the widget
-    And they have not completed the payout and tax form flow
+    Given they have impactConnection as one of the following
+      | impactConnection                         |
+      | null                                     |
+      | { publisher: null }                      |
+      | { connected: false, publisher: null }    |
+      | { connected: false, publisher: { ... } } |
+      | { publisher: { payoutsAccount: null }}   |
     Then a blue info banner appears with a header:
       """
       Payout and tax information required
@@ -21,7 +26,9 @@ Feature: Cash payout status widget alert
 
   @motivating
   Scenario: User completes form and payout information required alert dissapears
-    Given they are viewing the widget
+    Given they have impactConnection as one of the following
+      | impactConnection                                                                    |
+      | { connected: true, publisher: { payoutsAccount: { hold: false, verified: true } } } |
     And they have completed the payout and tax form flow
     Then the "Payout and tax information required" alert dissapears
     And a button appears in the big stat with text:
@@ -31,7 +38,10 @@ Feature: Cash payout status widget alert
 
   @motivating
   Scenario: User has not verified their identity
-    Given they are viewing the widget
+    Given they have impactConnection as one of the following
+      | impactConnection                                                                     |
+      | { connected: true, publisher: { payoutsAccount: { hold: false, verified: false } } } |
+      | { connected: true, publisher: { payoutsAccount: { hold: true, verified: false } } }  |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
@@ -46,7 +56,9 @@ Feature: Cash payout status widget alert
 
   @motivating
   Scenario: User has hold reasons
-    Given they are viewing the widget
+    Given they have impactConnection as one of the following
+      | impactConnection                                                                   |
+      | { connected: true, publisher: { payoutsAccount: { hold: true, verified: true } } } |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
@@ -58,3 +70,12 @@ Feature: Cash payout status widget alert
       """
     When they click the button
     Then a modal opens with an iframe to verify their identity
+
+  @minutia
+  Scenario: The banner refreshes it's state as the user goes through the tax form
+    Given a user filling out the tax form
+    When they fill in a form
+    And click to submit
+    Then a "sqm:tax-form-updated" custom event is fired
+    And the banner refreshes
+

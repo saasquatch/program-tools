@@ -52,6 +52,11 @@ export const GET_USER = gql`
         email
         countryCode
         customFields
+        managedIdentity {
+          uid
+          email
+          emailVerified
+        }
         impactConnection {
           connected
           user {
@@ -154,6 +159,11 @@ export type UserQuery = {
     customFields?: {
       [key: string]: any;
     };
+    managedIdentity?: {
+      uid: string;
+      email: string;
+      emailVerified: boolean;
+    } | null;
     impactConnection: null | {
       connected: boolean;
       user: {

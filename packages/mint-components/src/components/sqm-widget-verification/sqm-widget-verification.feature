@@ -112,4 +112,21 @@ Feature: Widget verification flow
     Then a 2FA email is sent to "test2@example.com"
     And any 2FA codes associated with "test@example.com" are now invalid
 
+  @minutia
+  Scenario: `sqm-widget-verification` displays a loading state initially
+    Given "sqm-widget-verification" is included in the page's html
+    When the component loads
+    Then a spinner loading state is shown
+
+  @motivating
+  Scenario Outline: Email verification is only required if they have not already verified their email
+    Given a user with participant email "asdf@example.com"
+    And their email <mayBeVerified>
+    When the "sqm-widget-verification" component loads
+    Then the <UI> is shown
+
+    Examples:
+      | mayBeVerified   | UI                      |
+      | is verified     | enabled slot            |
+      | is not verified | email verification flow |
 

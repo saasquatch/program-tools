@@ -45,3 +45,25 @@ Feature: Cash payout email verification widget
     And the email input is prefilled with "test@example.com"
     When they click the "Send Code" button
     Then a 2FA email is sent to "test@example.com"
+
+  @motivating
+  Scenario: Manually entered emails are set on the user if they don't have an email saved
+    Given a user with no email
+    Then the email input is not disabled
+    When they enter email "manual@example.com"
+    Then the upsertUser mutation is called before the verification email is sent
+    And the user has email "manual@example.com" saved as their participant email
+
+  @motivating
+  Scenario Outline: Email verification prioritises sending to the connected Impact email
+    Given a user with participant email <participantEmail>
+    And impactConnection <impactConnection>
+    When they click the "Send Code" button
+    Then <mutation> is called
+    And the email is sent to <finalEmail>
+
+    Examples:
+      | participantEmail        | impactConnection                       | mutation                       | finalEmail              |
+      | null                    | null                                   | N/A                            | N/A                     |
+      | participant@example.com | null                                   | requestUserEmailVerification   | participant@example.com |
+      | participantEmail        | { user: { email: impact@example.com }} | requestImpactPublisherEmail2FA | impact@example.com      |
