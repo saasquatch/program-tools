@@ -1725,6 +1725,14 @@ export namespace Components {
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
+          * @uiName Error description
+         */
+        "errorDescription": string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader": string;
+        /**
           * @uiName Payout on hold alert description
          */
         "holdDescription": string;
@@ -7837,6 +7845,14 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Error description
+         */
+        "errorDescription"?: string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader"?: string;
         /**
           * @uiName Payout on hold alert description
          */
