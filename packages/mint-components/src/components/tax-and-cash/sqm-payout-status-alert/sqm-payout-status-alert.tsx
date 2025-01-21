@@ -65,6 +65,16 @@ export class PayoutStatusAlert {
     "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
 
   /**
+   * @uiName Error header
+   */
+  @Prop() errorHeader: string = "Could not determine payout status.";
+  /**
+   * @uiName Error description
+   */
+  @Prop() errorDescription: string =
+    "There was an error with determining your payout status.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -83,6 +93,8 @@ export class PayoutStatusAlert {
       ? useDemoPayoutStatusAlert(this)
       : usePayoutStatus(this);
 
+    console.log({ props });
+
     return <PayoutStatusAlertView {...props} />;
   }
 }
@@ -93,6 +105,7 @@ function useDemoPayoutStatusAlert(
   return deepmerge(
     {
       states: {
+        error: false,
         status: "INFORMATION_REQUIRED",
         loading: false,
         showVerifyIdentity: false,

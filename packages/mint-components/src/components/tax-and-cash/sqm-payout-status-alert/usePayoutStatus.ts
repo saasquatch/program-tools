@@ -62,7 +62,12 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   }, []);
 
   return {
-    states: { loading, status, showVerifyIdentity: showDialog },
+    states: {
+      loading,
+      status,
+      showVerifyIdentity: showDialog,
+      error: !!errors,
+    },
     data: { type },
     text: props.getTextProps(),
     callbacks: {

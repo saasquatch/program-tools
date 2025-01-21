@@ -18,7 +18,7 @@ import { gql } from "graphql-request";
 import { useEffect } from "@saasquatch/universal-hooks";
 
 const USER_LOOKUP = gql`
-  query viewer {
+  query checkUserVerification {
     viewer {
       ... on User {
         id
@@ -52,7 +52,7 @@ function useWidgetVerificationInternal() {
 
         if (res?.viewer?.emailVerified) setContext(true);
       } catch (e) {
-        console.error("Could not fetch user information", e);
+        console.error("Could not fetch user information:", e);
       } finally {
         setLoading(false);
       }

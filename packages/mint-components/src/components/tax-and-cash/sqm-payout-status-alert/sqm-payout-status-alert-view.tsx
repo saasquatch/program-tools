@@ -3,6 +3,7 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "./usePayoutStatus";
 export interface PayoutStatusAlertViewProps {
   states: {
+    error: boolean;
     loading: boolean;
     status: PayoutStatus;
     showVerifyIdentity: boolean;
@@ -30,6 +31,8 @@ export interface PayoutStatusAlertViewProps {
     verificationRequiredButtonText: string;
     holdHeader: string;
     holdDescription: string;
+    errorHeader: string;
+    errorDescription: string;
   };
 }
 
@@ -41,6 +44,16 @@ const style = {
   AlertDescriptionText: {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
+  },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+    },
+
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
   },
   WarningAlertContainer: {
     "&::part(base)": {
@@ -78,6 +91,16 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   function getAlert(status: PayoutStatus) {
+    if (states.error)
+      return {
+        header: text.errorHeader,
+        description: text.errorDescription,
+        buttonText: null,
+        alertType: "critical",
+        icon: "exclamation-triangle",
+        class: sheet.classes.ErrorAlertContainer,
+      };
+
     switch (status) {
       case "INFORMATION_REQUIRED":
         return {
@@ -144,6 +167,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         return;
     }
   }
+
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
