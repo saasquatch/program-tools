@@ -140,12 +140,17 @@ export const useTaxAndCashDashboard = (
       loadingError: !!userError?.message,
       showNewFormDialog: showDialog,
       hasHold: !!publisher?.payoutsAccount?.hold,
+      // AL: TODO hooks
+      payoutStatus: "DONE",
+      showVerifyIdentity: false,
     },
     callbacks: {
       onClick: () => setShowDialog(true),
       onEditPayoutInfo,
       onNewFormCancel: () => setShowDialog(false),
       onNewFormClick,
+      // AL: TODO hooks
+      onVerifyIdentityCancel: () => console.log("close verify identity modal"),
     },
     text: props.getTextProps(),
   };

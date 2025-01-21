@@ -5037,6 +5037,23 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiWidget textArea
+         */
+        "verificationRequiredDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiWidget textArea
+         */
+        "verificationRequiredHeader": string;
     }
     interface SqmText {
     }
@@ -11134,6 +11151,23 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiWidget textArea
+         */
+        "verificationRequiredDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiWidget textArea
+         */
+        "verificationRequiredHeader"?: string;
     }
     interface SqmText {
     }

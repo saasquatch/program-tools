@@ -214,7 +214,24 @@ export class TaxAndCashDashboard {
    */
   @Prop() payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
-
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert message title
+   * @uiWidget textArea
+   */
+  @Prop() verificationRequiredHeader: string = "Verify your identity";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity
+   * @uiName Verification required alert message description
+   * @uiWidget textArea
+   */
+  @Prop() verificationRequiredDescription: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert button text
+   */
+  @Prop() verificationRequiredButtonText: string = "Start Verification";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -229,7 +246,6 @@ export class TaxAndCashDashboard {
    */
   @Prop() generalErrorDescription: string =
     "Please review your information and try again. If this problem continues, contact Support.";
-
   /**
    * Displayed under the payout details card.
    * @uiName Payout from impact text
@@ -384,12 +400,15 @@ function useDemoTaxAndCashDashboard(
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
+        showVerifyIdentity: false,
+        payoutStatus: "DONE",
       },
       callbacks: {
         onClick: () => console.debug("check step"),
         onEditPayoutInfo: () => console.debug("payout info"),
         onNewFormCancel: () => console.log("hide"),
         onNewFormClick: () => console.log("show"),
+        onVerifyIdentityCancel: () => console.log("hide"),
       },
       text: props.getTextProps(),
     },

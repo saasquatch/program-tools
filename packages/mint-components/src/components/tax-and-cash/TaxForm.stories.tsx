@@ -266,6 +266,8 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
 
 const dashboardProps: StoryDemoData<TaxAndCashDashboardProps> = {
   states: {
+    showVerifyIdentity: false,
+    payoutStatus: "DONE",
     canEditPayoutInfo: true,
     disabled: false,
     status: "ACTIVE",
@@ -987,6 +989,8 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BEN",
@@ -1008,6 +1012,8 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BENE",
@@ -1029,6 +1035,8 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           status: "INACTIVE",
@@ -1050,6 +1058,8 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1073,6 +1083,8 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1097,6 +1109,8 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1121,6 +1135,8 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_ACTIVE",
@@ -1145,6 +1161,8 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           documentType: "W9",
@@ -1169,6 +1187,8 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1194,6 +1214,8 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1220,6 +1242,8 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1246,6 +1270,8 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1267,6 +1293,8 @@ export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "VERIFICATION_NEEDED",
+          showVerifyIdentity: true,
           showIdentityVerificationDialog: true,
           identiyRequired: true,
           canEditPayoutInfo: true,
@@ -1290,6 +1318,8 @@ export const TaxAndCashDashboardNewTaxForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1311,6 +1341,8 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: true,
           status: "ACTIVE",
@@ -1334,6 +1366,8 @@ export const TaxAndCashDashboardLoading = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1356,6 +1390,8 @@ export const TaxAndCashDashboardWithLoadingError = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           disabled: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
@@ -1379,6 +1415,8 @@ export const TaxAndCashDashboardWithGeneralError = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1406,6 +1444,8 @@ export const TaxAndCashDashboardDisabled = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: true,
           status: "ACTIVE",

@@ -3,6 +3,8 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 import { P } from "../../../global/mixins";
+import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -28,6 +30,9 @@ export interface TaxAndCashDashboardProps {
     showIdentityVerificationDialog?: boolean;
     identiyRequired?: boolean;
     hasHold: boolean;
+    // AL: TODO showVerifyIdentity & payoutStatus
+    payoutStatus: PayoutStatus;
+    showVerifyIdentity: boolean;
     errors?: {
       general?: boolean;
     };
@@ -40,6 +45,8 @@ export interface TaxAndCashDashboardProps {
     onEditPayoutInfo: () => void;
     onNewFormCancel: () => void;
     onNewFormClick: () => void;
+    //AL :TODO onVerifyIdetityCancel
+    onVerifyIdentityCancel: () => void;
   };
   text: {
     statusTextActive?: string;
@@ -88,6 +95,9 @@ export interface TaxAndCashDashboardProps {
     replaceTaxFormModalBodyText: string;
     payoutHoldAlertHeader: string;
     payoutHoldAlertDescription: string;
+    verificationRequiredHeader: string;
+    verificationRequiredDescription: string;
+    verificationRequiredButtonText: string;
     cancelButton: string;
     error: {
       generalTitle: string;
@@ -438,6 +448,44 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.payoutHoldAlertDescription}
           </sl-alert>
         )}
+        {states.payoutStatus === "VERIFICATION_NEEDED" && (
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="warning"
+            open
+            class={sheet.classes.HoldAlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+            <strong>{text.verificationRequiredHeader}</strong>
+            <p style={{ margin: "0" }}>
+              {text.verificationRequiredDescription}
+            </p>
+            <sl-button
+              style={{ marginTop: "var(--sl-spacing-x-small)" }}
+              type="default"
+              loading={states.loading}
+              //AL: TODO hooks
+              onClick={() => callbacks.onClick}
+            >
+              {text.verificationRequiredButtonText}
+            </sl-button>
+          </sl-alert>
+        )}
+        <sl-dialog
+          noDismiss
+          class={sheet.classes.Dialog}
+          open={states.showVerifyIdentity}
+          onSl-hide={callbacks.onVerifyIdentityCancel}
+        >
+          <iframe
+            // AL: TODO replace iframe URL with verification url when available
+            scrolling="yes"
+            frameBorder="0"
+            width={"100%"}
+            height={"100%"}
+            src="https://impacttech.complytaxforms.com/ServiceRedirect.aspx?Language=eng&Param1=UxBORV4bOIrqNb4gbpNmtvW3wjdZJyx4gPElIGMJNR8=&UUID=B576EA3E-80FD-4D85-AA59-653D23A7CCE8"
+          ></iframe>
+        </sl-dialog>
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
           class={sheet.classes.Dialog}
