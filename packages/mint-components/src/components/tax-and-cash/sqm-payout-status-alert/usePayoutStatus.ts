@@ -21,6 +21,7 @@ const GET_USER_STATUS = gql`
             id
             payoutsAccount {
               hold
+              holdReasons
             }
           }
         }
@@ -46,8 +47,8 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
 
       if (!data.user?.impactConnection?.connected || !account)
         return "INFORMATION_REQUIRED";
-      // @ts-ignore, TODO: add check for account verification
-      if (!account.verified) return "VERIFICATION_NEEDED";
+      if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
+        return "VERIFICATION_NEEDED";
       if (account.hold) return "HOLD";
       return "DONE";
     }

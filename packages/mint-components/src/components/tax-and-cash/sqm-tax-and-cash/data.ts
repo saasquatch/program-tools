@@ -147,6 +147,7 @@ export type ImpactPublisher = {
   };
   payoutsAccount: {
     hold: boolean;
+    holdReasons: string[];
     balance: string;
   };
 };
