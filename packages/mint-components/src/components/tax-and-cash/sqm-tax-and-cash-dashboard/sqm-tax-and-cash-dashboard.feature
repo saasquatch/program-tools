@@ -91,12 +91,23 @@ Feature: Tax And Cash Dashboard
       | NOT_ACTIVE | W8-BEN-E     | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 form. |
 
   @minutia @ui
-  Scenario Outline: A Warning Alert is displayed if the user has a payout on hold
+  Scenario: A Warning Alert is displayed if the user has a payout on hold
     Given the user has a hold reason
     Then a warning alert indicating appears with description text:
       """
       Please contact Support or check your inbox for an email from our referral program provider, impact.com.
       """
+
+  @minutia @ui
+  Scenario: A Warning Alert is displayed if the user must verify their identity
+    Given the user is required to verify their identity
+    Then a warning alert indicating appears with description text:
+      """
+      Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.
+      """
+    And a Start Verification button is present
+    When they press the button
+    Then a modal will appear with steps to verify their identity
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax
