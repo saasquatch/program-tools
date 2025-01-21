@@ -51,6 +51,20 @@ const style = {
       color: "var(--sl-color-blue-500)",
     },
   },
+  Dialog: {
+    "&::part(panel)": {
+      height: "600px",
+    },
+    "&::part(close-button)": {
+      marginBottom: "var(--sl-spacing-xx-large)",
+    },
+    "&::part(title)": {
+      display: "none",
+    },
+    "&::part(header)": {},
+    "&::part(body)": { padding: "0" },
+    "&::part(footer)": {},
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -143,11 +157,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         {getButton(states.status)}
       </sl-alert>
       <sl-dialog
-        // class={sheet.classes.Dialog}
+        noDismiss
+        class={sheet.classes.Dialog}
         open={states.showVerifyIdentity}
         onSl-hide={callbacks.onCancel}
       >
-        AL: TODO add IFRAME URL
+        <iframe
+          // AL: TODO replace iframe URL with verification url when available
+          scrolling="yes"
+          frameBorder="0"
+          width={"100%"}
+          height={"100%"}
+          src="https://impacttech.complytaxforms.com/ServiceRedirect.aspx?Language=eng&Param1=UxBORV4bOIrqNb4gbpNmtvW3wjdZJyx4gPElIGMJNR8=&UUID=B576EA3E-80FD-4D85-AA59-653D23A7CCE8"
+        ></iframe>
       </sl-dialog>
     </div>
   );
