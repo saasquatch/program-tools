@@ -21,6 +21,7 @@ import {
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
+import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
@@ -68,6 +69,7 @@ export const useTaxAndCashDashboard = (
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const [showDialog, setShowDialog] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
 
   const locale = useLocale();
 
@@ -115,6 +117,8 @@ export const useTaxAndCashDashboard = (
     (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion
   )?.displayName;
 
+  const payoutStatus = getStatus(data);
+
   return {
     states: {
       dateSubmitted,
@@ -140,17 +144,15 @@ export const useTaxAndCashDashboard = (
       loadingError: !!userError?.message,
       showNewFormDialog: showDialog,
       hasHold: !!publisher?.payoutsAccount?.hold,
-      // AL: TODO hooks
-      payoutStatus: "DONE",
-      showVerifyIdentity: false,
+      payoutStatus,
+      showVerifyIdentity: showVerification,
     },
     callbacks: {
       onClick: () => setShowDialog(true),
       onEditPayoutInfo,
       onNewFormCancel: () => setShowDialog(false),
       onNewFormClick,
-      // AL: TODO hooks
-      onVerifyIdentityCancel: () => console.log("close verify identity modal"),
+      onVerifyIdentityCancel: () => setShowVerification(false),
     },
     text: props.getTextProps(),
   };

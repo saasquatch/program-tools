@@ -30,7 +30,6 @@ export interface TaxAndCashDashboardProps {
     showIdentityVerificationDialog?: boolean;
     identiyRequired?: boolean;
     hasHold: boolean;
-    // AL: TODO showVerifyIdentity & payoutStatus
     payoutStatus: PayoutStatus;
     showVerifyIdentity: boolean;
     errors?: {
@@ -45,7 +44,6 @@ export interface TaxAndCashDashboardProps {
     onEditPayoutInfo: () => void;
     onNewFormCancel: () => void;
     onNewFormClick: () => void;
-    //AL :TODO onVerifyIdetityCancel
     onVerifyIdentityCancel: () => void;
   };
   text: {

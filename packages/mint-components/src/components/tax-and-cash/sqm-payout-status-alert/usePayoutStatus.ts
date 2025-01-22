@@ -30,6 +30,17 @@ const GET_USER_STATUS = gql`
   }
 `;
 
+export function getStatus(data: UserQuery): PayoutStatus {
+  const account = data.user.impactConnection?.publisher?.payoutsAccount;
+
+  if (!data.user?.impactConnection?.connected || !account)
+    return "INFORMATION_REQUIRED";
+  if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
+    return "VERIFICATION_NEEDED";
+  if (account.hold) return "HOLD";
+  return "DONE";
+}
+
 export function usePayoutStatus(props: PayoutStatusAlert) {
   const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
@@ -41,17 +52,6 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
 
   useEffect(() => {
     if (!data) return;
-
-    function getStatus(data: UserQuery): PayoutStatus {
-      const account = data.user.impactConnection?.publisher?.payoutsAccount;
-
-      if (!data.user?.impactConnection?.connected || !account)
-        return "INFORMATION_REQUIRED";
-      if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
-        return "VERIFICATION_NEEDED";
-      if (account.hold) return "HOLD";
-      return "DONE";
-    }
 
     const s = getStatus(data);
     setStatus(s);

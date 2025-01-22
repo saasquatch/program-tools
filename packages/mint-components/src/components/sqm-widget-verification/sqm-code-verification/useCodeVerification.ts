@@ -66,9 +66,6 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const [validationError, setValidationError] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
-  // // TODO: Need to handle error states for these errors
-  // const [verifyUser, { loading: verifyLoading, errors: verifyErrors }] =
-  //   useCodeVerificationMutation();
   const {
     initialized,
     send: [sendEmail, { loading: sendLoading, errors: sendErrors }],

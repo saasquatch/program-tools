@@ -100,6 +100,7 @@ export const GET_USER = gql`
             }
             payoutsAccount {
               hold
+              holdReasons
               balance
             }
           }
