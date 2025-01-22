@@ -233,6 +233,8 @@ export function useUserInfoForm(props: TaxForm) {
 
     setUserFormContext({
       ...userFormContext,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       phoneNumberCountryCode: userData.phoneNumberCountryCode,
       phoneNumber: userData.phoneNumber,
       countryCode: userData.countryCode,
