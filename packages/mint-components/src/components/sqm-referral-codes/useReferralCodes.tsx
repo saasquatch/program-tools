@@ -124,11 +124,13 @@ export function useReferralCodes(props: ReferralCodes) {
   const engagementMedium = useEngagementMedium();
   const programId = props.programId || useProgramId();
 
-  console.log({ props });
-
   const { refresh } = useRefreshDispatcher();
 
-  const singleUseReferralCodes = usePaginatedQuery<ReferralCode>(
+  const {
+    envelope: referralData,
+    states,
+    callbacks,
+  } = usePaginatedQuery<ReferralCode>(
     GET_REFERRAL_CODES,
     (data) => data?.viewer?.referralCodeList,
     {
@@ -137,48 +139,20 @@ export function useReferralCodes(props: ReferralCodes) {
     },
     {
       engagementMedium,
+      programId,
       filter: {
         fuelTank_eq: true,
         programId_eq: programId,
         dateUsed_exists: false,
-        singleUse_eq: true,
       },
     },
     !user?.jwt
   );
-
-  const multiUseReferralCodes = usePaginatedQuery<ReferralCode>(
-    GET_REFERRAL_CODES,
-    (data) => data?.viewer?.referralCodeList,
-    {
-      limit: 1,
-      offset: 0,
-    },
-    {
-      engagementMedium,
-      filter: {
-        fuelTank_eq: true,
-        programId_eq: programId,
-        singleUse_eq: false,
-      },
-    },
-    !user?.jwt
-  );
-
-  const referralCodes =
-    singleUseReferralCodes?.envelope?.totalCount > 0
-      ? singleUseReferralCodes
-      : multiUseReferralCodes;
-
-  const referralData = referralCodes.envelope;
 
   const [paginationContext, setPaginationContext] =
     useParentState<PaginationContext>({
       namespace: REFERRAL_CODES_PAGINATION_CONTEXT,
-      initialValue: {
-        states: referralCodes.states,
-        callbacks: referralCodes.callbacks,
-      },
+      initialValue: { states, callbacks },
     });
 
   const [referralCodesContext, setReferralCodesContext] =
@@ -220,18 +194,15 @@ export function useReferralCodes(props: ReferralCodes) {
         },
         whatsapp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
       });
-      setPaginationContext({
-        states: referralCodes.states,
-        callbacks: referralCodes.callbacks,
-      });
+      setPaginationContext({ states, callbacks });
     }
   }, [referralData]);
 
-  console.log({ referralData, states: referralCodes.states });
+  console.log({ referralData, states });
 
   return {
     states: {
-      ...referralCodes.states,
+      ...states,
       noCodes: referralData?.totalCount === 0,
     },
     data: referralCodesContext,
