@@ -3,6 +3,7 @@ import {
   usePaginatedQuery,
   useParentState,
   useProgramId,
+  useQuery,
   useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
@@ -13,22 +14,19 @@ import { ReferralCodes } from "./sqm-referral-codes";
 
 const GET_REFERRAL_CODES = gql`
   query getCodes(
+    $engagementMedium: UserEngagementMedium!
     $limit: Int!
     $offset: Int!
-    $engagementMedium: UserEngagementMedium!
-    $programId: ID
+    $filter: ReferralCodeFilterInput
   ) {
     viewer {
       ... on User {
-        referralCodeList(
-          limit: $limit
-          offset: $offset
-          filter: { fuelTank_eq: true, programId_eq: $programId }
-        ) {
+        referralCodeList(limit: $limit, offset: $offset, filter: $filter) {
           data {
             code
             dateUsed
             dateCopied
+            singleUse
             shareLinkCodes(limit: $limit) {
               data {
                 linkCode
@@ -77,6 +75,7 @@ type ReferralCode = {
   dateUsed: number | null;
   dateCopied: number | null;
   code: string | null;
+  singleUse: boolean;
   shareLinkCodes: {
     data: {
       direct: string | null;
@@ -129,28 +128,57 @@ export function useReferralCodes(props: ReferralCodes) {
 
   const { refresh } = useRefreshDispatcher();
 
-  const {
-    envelope: referralData,
-    states,
-    callbacks,
-  } = usePaginatedQuery<ReferralCode>(
+  const singleUseReferralCodes = usePaginatedQuery<ReferralCode>(
     GET_REFERRAL_CODES,
-    (data) => {
-      console.log({ queryData: data });
-      return data?.viewer?.referralCodeList;
-    },
+    (data) => data?.viewer?.referralCodeList,
     {
       limit: 1,
       offset: 0,
     },
-    { engagementMedium, programId },
+    {
+      engagementMedium,
+      filter: {
+        fuelTank_eq: true,
+        programId_eq: programId,
+        dateUsed_exists: false,
+        singleUse_eq: true,
+      },
+    },
     !user?.jwt
   );
+
+  const multiUseReferralCodes = usePaginatedQuery<ReferralCode>(
+    GET_REFERRAL_CODES,
+    (data) => data?.viewer?.referralCodeList,
+    {
+      limit: 1,
+      offset: 0,
+    },
+    {
+      engagementMedium,
+      filter: {
+        fuelTank_eq: true,
+        programId_eq: programId,
+        singleUse_eq: false,
+      },
+    },
+    !user?.jwt
+  );
+
+  const referralCodes =
+    singleUseReferralCodes?.envelope?.totalCount > 0
+      ? singleUseReferralCodes
+      : multiUseReferralCodes;
+
+  const referralData = referralCodes.envelope;
 
   const [paginationContext, setPaginationContext] =
     useParentState<PaginationContext>({
       namespace: REFERRAL_CODES_PAGINATION_CONTEXT,
-      initialValue: { states, callbacks },
+      initialValue: {
+        states: referralCodes.states,
+        callbacks: referralCodes.callbacks,
+      },
     });
 
   const [referralCodesContext, setReferralCodesContext] =
@@ -192,15 +220,18 @@ export function useReferralCodes(props: ReferralCodes) {
         },
         whatsapp: { messageLink: data.shareLinkCodes?.data?.[0]?.whatsApp },
       });
-      setPaginationContext({ states, callbacks });
+      setPaginationContext({
+        states: referralCodes.states,
+        callbacks: referralCodes.callbacks,
+      });
     }
   }, [referralData]);
 
-  console.log({ referralData, states });
+  console.log({ referralData, states: referralCodes.states });
 
   return {
     states: {
-      ...states,
+      ...referralCodes.states,
       noCodes: referralData?.totalCount === 0,
     },
     data: referralCodesContext,
