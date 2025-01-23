@@ -63,7 +63,7 @@ export class ReferralCode {
   /**
    * Change the text alignment
    *
-   * @uiName referral code alignment
+   * @uiName Referral code alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]

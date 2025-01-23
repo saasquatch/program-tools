@@ -2623,7 +2623,7 @@ export namespace Components {
         "showNotificationText": boolean;
         /**
           * Change the text alignment
-          * @uiName referral code alignment
+          * @uiName Referral code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
@@ -8560,7 +8560,7 @@ declare namespace LocalJSX {
         "showNotificationText"?: boolean;
         /**
           * Change the text alignment
-          * @uiName referral code alignment
+          * @uiName Referral code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
