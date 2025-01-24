@@ -204,10 +204,8 @@ const style = {
 
   PhoneInputsSection: {
     display: "flex",
-    alignItems: "flex-end",
     flexDirection: "column",
     gap: "4px",
-
     "& p": {
       fontSize: "var(--sl-font-size-small)",
       color: "var(--sl-input-label-color)",
@@ -217,7 +215,6 @@ const style = {
 
   PhoneInputsContainer: {
     display: "flex",
-    alignItems: "flex-end",
     gap: "4px",
     width: "100%",
 
@@ -525,14 +522,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     id="phoneNumber"
                     name="/phoneNumber"
                     value={formState.phoneNumber}
-                    validationError={({ value }) =>
-                      // Naive phone number validation
-                      validateBillingField(/[a-zA-Z]+/, value) &&
-                      formatErrorMessage(
-                        text.phoneNumber,
-                        text.error.fieldInvalidError
-                      )
-                    }
+                    validationError={true}
                     disabled={states.disabled || states.isPartner}
                     {...(formState.errors?.phoneNumber
                       ? {
