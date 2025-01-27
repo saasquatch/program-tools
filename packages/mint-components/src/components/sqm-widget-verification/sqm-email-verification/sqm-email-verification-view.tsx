@@ -130,7 +130,7 @@ export function WidgetEmailVerificationView(
               <sl-input
                 exportparts="label: input-label, base: input-base"
                 label={text.emailLabel}
-                value={states.email}
+                value={states.email || ""}
                 type="email"
                 id="email"
                 name="email"

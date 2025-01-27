@@ -13,7 +13,7 @@ import { useVerificationEmail } from "../useVerificationEmail";
 
 export const UpsertUserEmailMutation = gql`
   mutation upsertUser($userInput: UserInput!) {
-    user(userInput: $userInput) {
+    upsertUser(userInput: $userInput) {
       id
       accountId
       email
@@ -59,7 +59,7 @@ export function useUpsertUserEmail() {
   const upsertUserEmail = async (email: string) => {
     try {
       const result = await request({
-        user: {
+        userInput: {
           id: user.id,
           accountId: user.accountId,
           email,
