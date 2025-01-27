@@ -2,14 +2,18 @@ import { Fragment, h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface PaginationViewProps {
-  currentPage?: number;
-  totalPages?: number;
-  // text: {
-  //   ofText: string;
-  // };
-  onNext: (e: Event) => void;
-  onPrev: (e: Event) => void;
-  loading: boolean;
+  states: {
+    currentPage?: number;
+    totalPages?: number;
+    loading: boolean;
+  };
+  text: {
+    paginationText: string;
+  };
+  callbacks: {
+    onNext: (e: Event) => void;
+    onPrev: (e: Event) => void;
+  };
 }
 
 const style = {
@@ -31,7 +35,9 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PaginationView(props: PaginationViewProps) {
-  const { onNext, onPrev, currentPage, totalPages, loading } = props;
+  const { states, callbacks, text } = props;
+  const { onNext, onPrev } = callbacks;
+  const { currentPage, totalPages, loading } = states;
 
   return (
     <span class={sheet.classes.Container} part="sqm-base">
@@ -46,12 +52,7 @@ export function PaginationView(props: PaginationViewProps) {
           >
             <sl-icon name="chevron-left" label="Previous Page"></sl-icon>
           </sl-button>
-          <div class={sheet.classes.TextContainer}>
-            <span>{currentPage}</span>
-            {/* TODO: this "of" won't be translatable */}
-            <span>of</span>
-            <span>{totalPages}</span>
-          </div>
+          <div class={sheet.classes.TextContainer}>{text.paginationText}</div>
         </Fragment>
       )}
       <sl-button

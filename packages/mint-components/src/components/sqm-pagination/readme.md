@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                      | Default     |
-| ---------- | --------- | ----------- | ----------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ [x: string]: any; [x: number]: any; }` | `undefined` |
+| Property         | Attribute         | Description | Type                                      | Default                           |
+| ---------------- | ----------------- | ----------- | ----------------------------------------- | --------------------------------- |
+| `demoData`       | --                |             | `{ [x: string]: any; [x: number]: any; }` | `undefined`                       |
+| `paginationText` | `pagination-text` |             | `string`                                  | `"{currentPage} of {totalPages}"` |
 
 
 ## Dependencies

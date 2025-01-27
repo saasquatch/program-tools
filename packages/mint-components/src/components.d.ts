@@ -1549,6 +1549,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<any>;
+        /**
+          * @uiName Pagination text
+         */
+        "paginationText": string;
     }
     interface SqmPasswordField {
         /**
@@ -7486,6 +7490,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<any>;
+        /**
+          * @uiName Pagination text
+         */
+        "paginationText"?: string;
     }
     interface SqmPasswordField {
         /**

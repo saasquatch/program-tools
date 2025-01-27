@@ -7,6 +7,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { DemoData } from "../../global/demo";
 import { useState } from "@saasquatch/universal-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { intl } from "../../global/global";
 
 /**
  * @uiName Pagination
@@ -22,6 +23,11 @@ export class Pagination {
   ignored = true;
 
   /**
+   * @uiName Pagination text
+   */
+  @Prop() paginationText: string = "{currentPage} of {totalPages}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -34,48 +40,45 @@ export class Pagination {
   disconnectedCallback() {}
 
   render() {
-    // const props = getProps(this);
-
     const hookProps = isDemo()
       ? useDemoPagination(getProps(this))
       : usePagination();
 
-    console.log("pagination", { hookProps });
-
-    const props = {
-      currentPage: hookProps.states?.currentPage + 1,
-      totalPages: hookProps.states?.pageCount,
-      onNext: () =>
-        hookProps.callbacks?.setCurrentPage(hookProps.states?.currentPage + 1),
-      onPrev: () =>
-        hookProps.callbacks?.setCurrentPage(hookProps.states?.currentPage - 1),
-      text: {
-        ofText: "of",
-      },
-      loading: hookProps.states.loading,
-    };
-
-    return <PaginationView {...props}></PaginationView>;
+    return <PaginationView {...hookProps}></PaginationView>;
   }
 }
 
-function useDemoPagination(props: Pagination) {
+function useDemoPagination(
+  props: Pagination
+): ReturnType<typeof usePagination> {
   const [currentPage, setCurrentPage] = useState(1);
 
   return deepmerge(
     {
       states: {
-        currentPage: currentPage,
-        pageCount: 5,
+        currentPage,
+        totalPages: 5,
+        loading: false,
       },
       callbacks: {
-        setCurrentPage,
+        onNext: () => setCurrentPage(currentPage + 1),
+        onPrev: () => setCurrentPage(currentPage - 1),
       },
       text: {
-        ofText: `${currentPage} of 5`,
+        paginationText: intl.formatMessage(
+          {
+            id: `paginationText`,
+            defaultMessage:
+              props.paginationText || "{currentPage} of {totalPages}",
+          },
+          {
+            currentPage: currentPage,
+            totalPages: 5,
+          }
+        ),
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
-  );
+  ) as ReturnType<typeof usePagination>;
 }
