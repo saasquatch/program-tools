@@ -42,7 +42,7 @@ export class Pagination {
   render() {
     const hookProps = isDemo()
       ? useDemoPagination(getProps(this))
-      : usePagination();
+      : usePagination(getProps(this));
 
     return <PaginationView {...hookProps}></PaginationView>;
   }

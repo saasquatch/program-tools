@@ -4,8 +4,9 @@ import {
   REFERRAL_CODES_PAGINATION_CONTEXT,
 } from "../sqm-referral-codes/useReferralCodes";
 import { intl } from "../../global/global";
+import { Pagination } from "./sqm-pagination";
 
-export function usePagination() {
+export function usePagination(props: Pagination) {
   const context = useParentValue<PaginationContext>(
     REFERRAL_CODES_PAGINATION_CONTEXT
   );
@@ -29,7 +30,7 @@ export function usePagination() {
       paginationText: intl.formatMessage(
         {
           id: `paginationText`,
-          defaultMessage: this.paginationText,
+          defaultMessage: props.paginationText,
         },
         {
           currentPage,
