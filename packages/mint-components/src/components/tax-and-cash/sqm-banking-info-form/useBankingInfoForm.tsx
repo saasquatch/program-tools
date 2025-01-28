@@ -26,6 +26,7 @@ import {
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -404,8 +405,10 @@ export function useBankingInfoForm(
         return;
       }
 
-      await refetch();
+      // Fire form change event
+      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
 
+      await refetch();
       setStep("/dashboard");
     } catch (e) {
       console.error(e);
