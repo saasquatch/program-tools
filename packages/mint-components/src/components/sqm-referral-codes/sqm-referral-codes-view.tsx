@@ -97,7 +97,7 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       </style>
       <div class={sheet.classes.HeaderContainer}>
         <h2 class={sheet.classes.TitleText}>{titleText}</h2>
-        {slots.pagination}
+        {!states.noCodes && !states.loading && slots.pagination}
       </div>
       {getSlotContent(states)}
     </div>
