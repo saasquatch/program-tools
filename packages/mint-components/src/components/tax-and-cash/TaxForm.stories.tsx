@@ -266,7 +266,7 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
 
 const dashboardProps: StoryDemoData<TaxAndCashDashboardProps> = {
   states: {
-    showVerifyIdentity: false,
+    veriffLoading: false,
     payoutStatus: "DONE",
     canEditPayoutInfo: true,
     disabled: false,
@@ -990,7 +990,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BEN",
@@ -1013,7 +1013,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BENE",
@@ -1036,7 +1036,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           status: "INACTIVE",
@@ -1059,7 +1059,6 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1071,6 +1070,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
           hasHold: false,
+          veriffLoading: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1084,7 +1084,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1110,7 +1110,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1136,7 +1136,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_ACTIVE",
@@ -1162,7 +1162,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           documentType: "W9",
@@ -1188,7 +1188,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1215,7 +1215,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1243,7 +1243,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1271,7 +1271,7 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1293,8 +1293,8 @@ export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "VERIFICATION_NEEDED",
-          showVerifyIdentity: true,
+          payoutStatus: "VERIFICATION:REQUIRED",
+          veriffLoading: false,
           showIdentityVerificationDialog: true,
           identiyRequired: true,
           canEditPayoutInfo: true,
@@ -1319,7 +1319,7 @@ export const TaxAndCashDashboardNewTaxForm = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1342,7 +1342,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
           status: "ACTIVE",
@@ -1367,7 +1367,7 @@ export const TaxAndCashDashboardLoading = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1391,7 +1391,7 @@ export const TaxAndCashDashboardWithLoadingError = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           disabled: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
@@ -1416,7 +1416,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1445,7 +1445,7 @@ export const TaxAndCashDashboardDisabled = () => {
         ...dashboardProps,
         states: {
           payoutStatus: "DONE",
-          showVerifyIdentity: false,
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
           status: "ACTIVE",

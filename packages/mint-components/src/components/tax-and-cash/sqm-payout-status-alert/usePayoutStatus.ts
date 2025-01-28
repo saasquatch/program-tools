@@ -1,15 +1,10 @@
-import {
-  getEnvironmentSDK,
-  useMutation,
-  useQuery,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
-import { useState, useEffect } from "@saasquatch/stencil-hooks";
-import { UserQuery, GET_USER } from "../sqm-tax-and-cash/data";
-import { PayoutStatusAlert } from "./sqm-payout-status-alert";
+import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
+import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { createVeriffFrame, MESSAGES } from "@veriff/incontext-sdk";
-import { useVeriffApp } from "../useVeriffApp";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
+import { UserQuery } from "../sqm-tax-and-cash/data";
+import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
+import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type PayoutStatus =
   | "INFORMATION_REQUIRED"
@@ -67,7 +62,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     render,
     loading: veriffLoading,
     errors: veriffErrors,
-  } = useVeriffApp({ onComplete: refetch });
+  } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
 
   useEffect(() => {
@@ -79,8 +74,12 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
 
   useEffect(() => {
     const cb = () => refetch();
-    window.addEventListener("sqm:tax-form-updated", cb);
-    return () => window.removeEventListener("sqm:tax-form-updated", cb);
+    window.addEventListener(TAX_FORM_UPDATED_EVENT_KEY, cb);
+    window.addEventListener(VERIFF_COMPLETE_EVENT_KEY, cb);
+    return () => {
+      window.removeEventListener(TAX_FORM_UPDATED_EVENT_KEY, cb);
+      window.removeEventListener(VERIFF_COMPLETE_EVENT_KEY, cb);
+    };
   }, []);
 
   return {

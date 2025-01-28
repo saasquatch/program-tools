@@ -93,8 +93,6 @@ export class PayoutStatusAlert {
       ? useDemoPayoutStatusAlert(this)
       : usePayoutStatus(this);
 
-    console.log({ props });
-
     return <PayoutStatusAlertView {...props} />;
   }
 }
@@ -115,7 +113,6 @@ function useDemoPayoutStatusAlert(
       callbacks: {
         onTermsClick: () => {},
         onClick: () => console.log("show"),
-        onCancel: () => console.log("hide"),
       },
     },
     props.demoData || {},
