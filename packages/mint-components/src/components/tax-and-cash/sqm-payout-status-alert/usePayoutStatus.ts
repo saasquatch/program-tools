@@ -1,12 +1,22 @@
-import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  getEnvironmentSDK,
+  useMutation,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useState, useEffect } from "@saasquatch/stencil-hooks";
 import { UserQuery, GET_USER } from "../sqm-tax-and-cash/data";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 import { gql } from "graphql-request";
+import { createVeriffFrame, MESSAGES } from "@veriff/incontext-sdk";
+import { useVeriffApp } from "../useVeriffApp";
 
 export type PayoutStatus =
   | "INFORMATION_REQUIRED"
-  | "VERIFICATION_NEEDED"
+  | "VERIFICATION:REQUIRED"
+  | "VERIFICATION:INTERNAL"
+  | "VERIFICATION:REVIEW"
+  | "VERIFICATION:FAILED"
   | "HOLD"
   | "DONE";
 
@@ -36,19 +46,31 @@ export function getStatus(data: UserQuery): PayoutStatus {
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
-    return "VERIFICATION_NEEDED";
+    return "VERIFICATION:REQUIRED";
+  if (account.holdReasons?.includes("IDV_CHECK_REQUIRED_INTERNAL"))
+    return "VERIFICATION:INTERNAL";
+  if (account.holdReasons?.includes("IDV_CHECK_REVIEW_INTERNAL"))
+    return "VERIFICATION:REVIEW";
+  if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
+    return "VERIFICATION:FAILED";
   if (account.hold) return "HOLD";
   return "DONE";
 }
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
+  const { id, accountId } = useUserIdentity();
   const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
     {}
   );
+  const {
+    render,
+    loading: veriffLoading,
+    errors: veriffErrors,
+  } = useVeriffApp({ onComplete: refetch });
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
-  const [showDialog, setShowDialog] = useState(false);
+  const [dialog, setDialog] = useState({ open: false, sessionUrl: null });
 
   useEffect(() => {
     if (!data) return;
@@ -66,16 +88,18 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   return {
     states: {
       loading,
+      veriffLoading,
       status,
-      showVerifyIdentity: showDialog,
+      showVerifyIdentity: dialog.open,
+      sessionUrl: dialog.sessionUrl,
       error: !!errors,
     },
     data: { type },
     text: props.getTextProps(),
     callbacks: {
       onTermsClick: () => window.open(props.termsUrl, "_blank").focus(),
-      onClick: () => setShowDialog(true),
-      onCancel: () => setShowDialog(false),
+      onClick: render,
+      onCancel: () => setDialog({ open: false, sessionUrl: null }),
     },
   };
 }

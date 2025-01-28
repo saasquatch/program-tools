@@ -7,6 +7,8 @@ export interface PayoutStatusAlertViewProps {
     loading: boolean;
     status: PayoutStatus;
     showVerifyIdentity: boolean;
+    veriffLoading: boolean;
+    sessionUrl: string | null;
   };
   data: {
     type:
@@ -125,7 +127,34 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           icon: "info-circle",
           class: sheet.classes.InfoAlertContainer,
         };
-      case "VERIFICATION_NEEDED":
+      case "VERIFICATION:REQUIRED":
+        return {
+          header: text.verificationRequiredHeader,
+          description: text.verificationRequiredDescription,
+          buttonText: text.verificationRequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:INTERNAL": // TODO
+        return {
+          header: text.verificationRequiredHeader,
+          description: text.verificationRequiredDescription,
+          buttonText: text.verificationRequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:REVIEW": // TODO
+        return {
+          header: text.verificationRequiredHeader,
+          description: text.verificationRequiredDescription,
+          buttonText: text.verificationRequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:FAILED": // TODO
         return {
           header: text.verificationRequiredHeader,
           description: text.verificationRequiredDescription,
@@ -147,7 +176,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         return;
     }
   }
-  //AL: TODO hookup ID
+
   function getButton(status: PayoutStatus) {
     switch (status) {
       case "INFORMATION_REQUIRED":
@@ -166,13 +195,12 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             {text.informationRequiredButtonText}
           </sl-button>
         );
-      case "VERIFICATION_NEEDED":
+      case "VERIFICATION:REQUIRED":
         return (
           <sl-button
             type="default"
-            loading={states.loading}
-            //AL: TODO callback to open verification form
-            onClick={() => callbacks.onClick}
+            loading={states.veriffLoading}
+            onClick={callbacks.onClick}
           >
             {text.verificationRequiredButtonText}
           </sl-button>
@@ -205,12 +233,11 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         onSl-hide={callbacks.onCancel}
       >
         <iframe
-          // AL: TODO replace iframe URL with verification url when available
           scrolling="yes"
           frameBorder="0"
           width={"100%"}
           height={"100%"}
-          src="https://impacttech.complytaxforms.com/ServiceRedirect.aspx?Language=eng&Param1=UxBORV4bOIrqNb4gbpNmtvW3wjdZJyx4gPElIGMJNR8=&UUID=B576EA3E-80FD-4D85-AA59-653D23A7CCE8"
+          src={states.sessionUrl}
         ></iframe>
       </sl-dialog>
     </div>
