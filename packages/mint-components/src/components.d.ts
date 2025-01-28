@@ -1693,16 +1693,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<any>;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-         */
-        "errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-         */
-        "errorTitleText": string;
-        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
          */
@@ -7830,16 +7820,6 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-         */
-        "errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-         */
-        "errorTitleText"?: string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
