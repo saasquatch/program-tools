@@ -228,6 +228,36 @@ export class TaxAndCashDashboard {
   @Prop() verificationRequiredDescription: string =
     "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
   /**
+   * @uiName Verification required internal alert header
+   */
+  @Prop() verificationRequiredInternalHeader: string =
+    "Verification in Progress";
+  /**
+   * @uiName Verification required internal alert description
+   */
+  @Prop() verificationRequiredInternalDescription: string =
+    "Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley.";
+  /**
+   * @uiName Verification review internal alert header
+   */
+  @Prop() verificationReviewInternalHeader: string =
+    "Verification Under Review";
+  /**
+   * @uiName Verification review internal alert description
+   */
+  @Prop() verificationReviewInternalDescription: string =
+    "Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.";
+  /**
+   * @uiName Verification failed internal alert header
+   */
+  @Prop() verificationFailedInternalHeader: string =
+    "Verification Unsuccessful";
+  /**
+   * @uiName Verification failed internal alert description
+   */
+  @Prop() verificationFailedInternalDescription: string =
+    "Verification has failed. Our team is reviewing the report and will contact you with further information.";
+  /**
    * Part of the alert displayed at the top of the page when the user needs to verify their identity.
    * @uiName Verification required alert button text
    */

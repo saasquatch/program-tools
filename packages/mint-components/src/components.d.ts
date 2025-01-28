@@ -1723,7 +1723,7 @@ export namespace Components {
          */
         "errorHeader": string;
         /**
-          * @uiName Payout on hold alert description
+          * @uiName Payout on hold alert description AL: TODO copy not finalized for support section
          */
         "holdDescription": string;
         /**
@@ -1747,6 +1747,14 @@ export namespace Components {
          */
         "termsUrl": string;
         /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader": string;
+        /**
           * @uiName Verification required alert button text
          */
         "verificationRequiredButtonText": string;
@@ -1758,6 +1766,22 @@ export namespace Components {
           * @uiName Verification required alert header
          */
         "verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -5028,6 +5052,14 @@ export namespace Components {
          */
         "thresholdPayoutText": string;
         /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader": string;
+        /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert button text
          */
@@ -5044,6 +5076,22 @@ export namespace Components {
           * @uiWidget textArea
          */
         "verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader": string;
     }
     interface SqmText {
     }
@@ -7851,7 +7899,7 @@ declare namespace LocalJSX {
          */
         "errorHeader"?: string;
         /**
-          * @uiName Payout on hold alert description
+          * @uiName Payout on hold alert description AL: TODO copy not finalized for support section
          */
         "holdDescription"?: string;
         /**
@@ -7875,6 +7923,14 @@ declare namespace LocalJSX {
          */
         "termsUrl"?: string;
         /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader"?: string;
+        /**
           * @uiName Verification required alert button text
          */
         "verificationRequiredButtonText"?: string;
@@ -7886,6 +7942,22 @@ declare namespace LocalJSX {
           * @uiName Verification required alert header
          */
         "verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -11132,6 +11204,14 @@ declare namespace LocalJSX {
          */
         "thresholdPayoutText"?: string;
         /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader"?: string;
+        /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert button text
          */
@@ -11148,6 +11228,22 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader"?: string;
     }
     interface SqmText {
     }

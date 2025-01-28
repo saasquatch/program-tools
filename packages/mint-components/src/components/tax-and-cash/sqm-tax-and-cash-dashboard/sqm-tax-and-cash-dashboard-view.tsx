@@ -96,6 +96,12 @@ export interface TaxAndCashDashboardProps {
     verificationRequiredHeader: string;
     verificationRequiredDescription: string;
     verificationRequiredButtonText: string;
+    verificationRequiredInternalHeader: string;
+    verificationRequiredInternalDescription: string;
+    verificationReviewInternalHeader: string;
+    verificationReviewInternalDescription: string;
+    verificationFailedInternalHeader: string;
+    verificationFailedInternalDescription: string;
     cancelButton: string;
     error: {
       generalTitle: string;
@@ -114,6 +120,7 @@ const style = {
     },
   },
   HoldAlertContainer: {
+    marginLeft: "-20px",
     "&::part(base)": {
       border: "none",
       backgroundColor: "transparent",
@@ -275,6 +282,55 @@ const styleString = sheet.toString();
 export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   const { states, text, callbacks, slots } = props;
 
+  function getAlert(status: PayoutStatus) {
+    switch (status) {
+      case "VERIFICATION:REQUIRED":
+        return {
+          header: text.verificationRequiredHeader,
+          description: text.verificationRequiredDescription,
+          buttonText: text.verificationRequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:INTERNAL":
+        return {
+          header: text.verificationRequiredInternalHeader,
+          description: text.verificationRequiredInternalDescription,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:REVIEW":
+        return {
+          header: text.verificationReviewInternalHeader,
+          description: text.verificationReviewInternalDescription,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "VERIFICATION:FAILED":
+        return {
+          header: text.verificationFailedInternalHeader,
+          description: text.verificationFailedInternalDescription,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "HOLD":
+        return {
+          header: text.payoutHoldAlertHeader,
+          description: text.payoutHoldAlertDescription,
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      default:
+        return;
+    }
+  }
+
   const statusMap = {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
@@ -433,7 +489,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.hasHold && (
+        {states.payoutStatus !== "DONE" && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
             type="warning"
@@ -441,49 +497,23 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             class={sheet.classes.HoldAlertContainer}
           >
             <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-            <strong>{text.payoutHoldAlertHeader}</strong>
-            <br />
-            {text.payoutHoldAlertDescription}
-          </sl-alert>
-        )}
-        {states.payoutStatus === "VERIFICATION_NEEDED" && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="warning"
-            open
-            class={sheet.classes.HoldAlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-            <strong>{text.verificationRequiredHeader}</strong>
+            <strong>{getAlert(states.payoutStatus).header}</strong>
             <p style={{ margin: "0" }}>
-              {text.verificationRequiredDescription}
+              {getAlert(states.payoutStatus).description}
             </p>
-            <sl-button
-              style={{ marginTop: "var(--sl-spacing-x-small)" }}
-              type="default"
-              loading={states.loading}
-              //AL: TODO hooks
-              onClick={() => callbacks.onClick}
-            >
-              {text.verificationRequiredButtonText}
-            </sl-button>
+            {getAlert(states.payoutStatus).buttonText && (
+              <sl-button
+                style={{ marginTop: "var(--sl-spacing-x-small)" }}
+                type="default"
+                loading={states.loading}
+                //AL: TODO hooks
+                onClick={() => callbacks.onClick}
+              >
+                {getAlert(states.payoutStatus).buttonText}
+              </sl-button>
+            )}
           </sl-alert>
         )}
-        <sl-dialog
-          noDismiss
-          class={sheet.classes.Dialog}
-          open={states.showVerifyIdentity}
-          onSl-hide={callbacks.onVerifyIdentityCancel}
-        >
-          <iframe
-            // AL: TODO replace iframe URL with verification url when available
-            scrolling="yes"
-            frameBorder="0"
-            width={"100%"}
-            height={"100%"}
-            src="https://impacttech.complytaxforms.com/ServiceRedirect.aspx?Language=eng&Param1=UxBORV4bOIrqNb4gbpNmtvW3wjdZJyx4gPElIGMJNR8=&UUID=B576EA3E-80FD-4D85-AA59-653D23A7CCE8"
-          ></iframe>
-        </sl-dialog>
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
           class={sheet.classes.Dialog}

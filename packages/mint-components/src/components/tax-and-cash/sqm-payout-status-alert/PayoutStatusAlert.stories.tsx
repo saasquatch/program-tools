@@ -23,17 +23,23 @@ export const VerifyIdentity = () => (
   ></sqm-payout-status-alert>
 );
 
-// export const VerifyIdentityOpen = () => (
-//   <sqm-payout-status-alert
-//     demoData={{
-//       states: {
-//         ...defaultProps,
-//         status: "VERIFICATION:REQUIRED",
-//         showVerifyIdentity: true,
-//       },
-//     }}
-//   ></sqm-payout-status-alert>
-// );
+export const VerifyIdentityRequiredInternal = () => (
+  <sqm-payout-status-alert
+    demoData={{ states: { ...defaultProps, status: "VERIFICATION:INTERNAL" } }}
+  ></sqm-payout-status-alert>
+);
+
+export const VerifyIdentityReviewInternal = () => (
+  <sqm-payout-status-alert
+    demoData={{ states: { ...defaultProps, status: "VERIFICATION:REVIEW" } }}
+  ></sqm-payout-status-alert>
+);
+
+export const VerifyIdentityFailedInternal = () => (
+  <sqm-payout-status-alert
+    demoData={{ states: { ...defaultProps, status: "VERIFICATION:FAILED" } }}
+  ></sqm-payout-status-alert>
+);
 
 export const Hold = () => (
   <sqm-payout-status-alert

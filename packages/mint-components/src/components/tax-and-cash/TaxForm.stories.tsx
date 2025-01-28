@@ -1293,7 +1293,82 @@ export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "VERIFICATION_NEEDED",
+          payoutStatus: "VERIFICATION:REQUIRED",
+          showVerifyIdentity: true,
+          showIdentityVerificationDialog: true,
+          identiyRequired: true,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationRequiredInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:INTERNAL",
+          showVerifyIdentity: true,
+          showIdentityVerificationDialog: true,
+          identiyRequired: true,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationReviewInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:REVIEW",
+          showVerifyIdentity: true,
+          showIdentityVerificationDialog: true,
+          identiyRequired: true,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:FAILED",
           showVerifyIdentity: true,
           showIdentityVerificationDialog: true,
           identiyRequired: true,
@@ -1341,7 +1416,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "DONE",
+          payoutStatus: "HOLD",
           showVerifyIdentity: false,
           canEditPayoutInfo: true,
           disabled: true,

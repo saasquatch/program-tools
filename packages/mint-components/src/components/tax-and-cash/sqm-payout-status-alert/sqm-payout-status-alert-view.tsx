@@ -28,6 +28,12 @@ export interface PayoutStatusAlertViewProps {
     verificationRequiredHeader: string;
     verificationRequiredDescription: string;
     verificationRequiredButtonText: string;
+    verificationRequiredInternalHeader: string;
+    verificationRequiredInternalDescription: string;
+    verificationReviewInternalHeader: string;
+    verificationReviewInternalDescription: string;
+    verificationFailedInternalHeader: string;
+    verificationFailedInternalDescription: string;
     holdHeader: string;
     holdDescription: string;
     errorHeader: string;
@@ -133,29 +139,26 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:INTERNAL": // TODO
+      case "VERIFICATION:INTERNAL":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          header: text.verificationRequiredInternalHeader,
+          description: text.verificationRequiredInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:REVIEW": // TODO
+      case "VERIFICATION:REVIEW":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          header: text.verificationReviewInternalHeader,
+          description: text.verificationReviewInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:FAILED": // TODO
+      case "VERIFICATION:FAILED":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          header: text.verificationFailedInternalHeader,
+          description: text.verificationFailedInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
