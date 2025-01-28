@@ -58,7 +58,6 @@ export function getStatus(data: UserQuery): PayoutStatus {
 }
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
-  const { id, accountId } = useUserIdentity();
   const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
@@ -70,7 +69,6 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     errors: veriffErrors,
   } = useVeriffApp({ onComplete: refetch });
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
-  const [dialog, setDialog] = useState({ open: false, sessionUrl: null });
 
   useEffect(() => {
     if (!data) return;
@@ -90,8 +88,6 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       loading,
       veriffLoading,
       status,
-      showVerifyIdentity: dialog.open,
-      sessionUrl: dialog.sessionUrl,
       error: !!errors,
     },
     data: { type },
@@ -99,7 +95,6 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     callbacks: {
       onTermsClick: () => window.open(props.termsUrl, "_blank").focus(),
       onClick: render,
-      onCancel: () => setDialog({ open: false, sessionUrl: null }),
     },
   };
 }

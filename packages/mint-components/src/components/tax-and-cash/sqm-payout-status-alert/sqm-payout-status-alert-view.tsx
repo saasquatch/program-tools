@@ -6,9 +6,7 @@ export interface PayoutStatusAlertViewProps {
     error: boolean;
     loading: boolean;
     status: PayoutStatus;
-    showVerifyIdentity: boolean;
     veriffLoading: boolean;
-    sessionUrl: string | null;
   };
   data: {
     type:
@@ -22,7 +20,6 @@ export interface PayoutStatusAlertViewProps {
   callbacks: {
     onClick: () => void;
     onTermsClick: () => void;
-    onCancel: () => void;
   };
   text: {
     informationRequiredHeader: string;
@@ -226,20 +223,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         </p>
         {getButton(states.status)}
       </sl-alert>
-      <sl-dialog
-        noDismiss
-        class={sheet.classes.Dialog}
-        open={states.showVerifyIdentity}
-        onSl-hide={callbacks.onCancel}
-      >
-        <iframe
-          scrolling="yes"
-          frameBorder="0"
-          width={"100%"}
-          height={"100%"}
-          src={states.sessionUrl}
-        ></iframe>
-      </sl-dialog>
     </div>
   );
 }

@@ -7,10 +7,8 @@ export default {
 const defaultProps = {
   error: false,
   status: "INFORMATION_REQUIRED" as const,
-  sessionUrl: "https://example.com",
   loading: false,
   veriffLoading: false,
-  showVerifyIdentity: false,
 };
 
 export const InformationRequired = () => (
@@ -25,17 +23,17 @@ export const VerifyIdentity = () => (
   ></sqm-payout-status-alert>
 );
 
-export const VerifyIdentityOpen = () => (
-  <sqm-payout-status-alert
-    demoData={{
-      states: {
-        ...defaultProps,
-        status: "VERIFICATION:REQUIRED",
-        showVerifyIdentity: true,
-      },
-    }}
-  ></sqm-payout-status-alert>
-);
+// export const VerifyIdentityOpen = () => (
+//   <sqm-payout-status-alert
+//     demoData={{
+//       states: {
+//         ...defaultProps,
+//         status: "VERIFICATION:REQUIRED",
+//         showVerifyIdentity: true,
+//       },
+//     }}
+//   ></sqm-payout-status-alert>
+// );
 
 export const Hold = () => (
   <sqm-payout-status-alert
