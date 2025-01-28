@@ -89,6 +89,8 @@ export class PortalLogin {
    */
   @Prop() demoData?: DemoData<PortalLoginViewProps>;
 
+  @Prop() showGoogleSignIn: boolean = false;
+
   constructor() {
     withHooks(this);
   }
@@ -122,6 +124,9 @@ export class PortalLogin {
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
       pageLabel: this.pageLabel,
+      googleSignInButton: this.showGoogleSignIn ? (
+        <sqm-google-signin next-page={this.nextPage}></sqm-google-signin>
+      ) : undefined,
     };
     return (
       <PortalLoginView

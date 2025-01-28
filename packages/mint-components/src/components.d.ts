@@ -754,6 +754,9 @@ export namespace Components {
          */
         "type": string;
     }
+    interface SqmGoogleSignin {
+        "nextPage": string;
+    }
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
@@ -2023,6 +2026,7 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "registerPath": string;
+        "showGoogleSignIn": boolean;
         /**
           * @uiName Submit button text
          */
@@ -5231,6 +5235,12 @@ declare global {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
+    interface HTMLSqmGoogleSigninElement extends Components.SqmGoogleSignin, HTMLStencilElement {
+    }
+    var HTMLSqmGoogleSigninElement: {
+        prototype: HTMLSqmGoogleSigninElement;
+        new (): HTMLSqmGoogleSigninElement;
+    };
     interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqmGraphqlClientProviderElement: {
@@ -5800,6 +5810,7 @@ declare global {
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
+        "sqm-google-signin": HTMLSqmGoogleSigninElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
@@ -6599,6 +6610,9 @@ declare namespace LocalJSX {
           * @uiName Alert type
          */
         "type"?: string;
+    }
+    interface SqmGoogleSignin {
+        "nextPage"?: string;
     }
     interface SqmGraphqlClientProvider {
         /**
@@ -7863,6 +7877,7 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "registerPath"?: string;
+        "showGoogleSignIn"?: boolean;
         /**
           * @uiName Submit button text
          */
@@ -10965,6 +10980,7 @@ declare namespace LocalJSX {
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
+        "sqm-google-signin": SqmGoogleSignin;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
@@ -11079,6 +11095,7 @@ declare module "@stencil/core" {
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+            "sqm-google-signin": LocalJSX.SqmGoogleSignin & JSXBase.HTMLAttributes<HTMLSqmGoogleSigninElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
