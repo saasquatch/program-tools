@@ -111,17 +111,42 @@ export interface TaxAndCashDashboardProps {
 }
 
 const style = {
-  WarningAlertContainer: {
+  ErrorAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
     },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
   },
-  HoldAlertContainer: {
+  WarningAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-yellow-100)",
+      borderTop: "none",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-warning-500)",
+    },
+  },
+  WarningHoldAlertContainer: {
     marginLeft: "-20px",
     "&::part(base)": {
       border: "none",
       backgroundColor: "transparent",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-warning-500)",
+    },
+  },
+  ErrorHoldAlertContainer: {
+    marginLeft: "-20px",
+    "&::part(base)": {
+      border: "none",
+      backgroundColor: "transparent",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
     },
   },
   ExpiringSoonAlertContainer: {
@@ -289,7 +314,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:INTERNAL":
         return {
@@ -297,7 +322,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           description: text.verificationRequiredInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:REVIEW":
         return {
@@ -305,15 +330,15 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           description: text.verificationReviewInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:FAILED":
         return {
           header: text.verificationFailedInternalHeader,
           description: text.verificationFailedInternalDescription,
-          alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          alertType: "critical",
+          icon: "exclamation-octagon",
+          class: sheet.classes.ErrorHoldAlertContainer,
         };
       case "HOLD":
         return {
@@ -322,7 +347,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       default:
         return;
@@ -385,7 +410,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         exportparts="base: alert-base, icon:alert-icon"
         type="danger"
         open
-        class={sheet.classes.WarningAlertContainer}
+        class={sheet.classes.ErrorAlertContainer}
       >
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         <strong>
@@ -465,7 +490,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               exportparts="base: alert-base, icon:alert-icon"
               type="danger"
               open
-              class={sheet.classes.WarningAlertContainer}
+              class={sheet.classes.ErrorAlertContainer}
             >
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.loadingErrorAlertHeader}</strong>
@@ -479,7 +504,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             exportparts="base: alert-base, icon:alert-icon"
             type="danger"
             open
-            class={sheet.classes.WarningAlertContainer}
+            class={sheet.classes.ErrorAlertContainer}
           >
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
@@ -490,11 +515,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {states.payoutStatus !== "DONE" && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
-            type="warning"
+            name={getAlert(states.payoutStatus)?.alertType}
             open
-            class={sheet.classes.HoldAlertContainer}
+            class={getAlert(states.payoutStatus)?.class}
           >
-            <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+            <sl-icon
+              slot="icon"
+              name={getAlert(states.payoutStatus)?.icon}
+            ></sl-icon>
             <strong>{getAlert(states.payoutStatus).header}</strong>
             <p style={{ margin: "0" }}>
               {getAlert(states.payoutStatus).description}

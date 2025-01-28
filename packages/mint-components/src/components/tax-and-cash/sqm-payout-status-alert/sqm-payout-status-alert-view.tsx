@@ -55,7 +55,6 @@ const style = {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
     },
-
     "& sl-icon::part(base)": {
       color: "var(--sl-color-danger-500)",
     },
@@ -65,7 +64,6 @@ const style = {
       backgroundColor: "var(--sl-color-yellow-100)",
       borderTop: "none",
     },
-
     "& sl-icon::part(base)": {
       color: "var(--sl-color-danger-500)",
     },
@@ -159,9 +157,9 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         return {
           header: text.verificationFailedInternalHeader,
           description: text.verificationFailedInternalDescription,
-          alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          alertType: "critical",
+          icon: "exclamation-octagon",
+          class: sheet.classes.ErrorAlertContainer,
         };
       case "HOLD":
         return {

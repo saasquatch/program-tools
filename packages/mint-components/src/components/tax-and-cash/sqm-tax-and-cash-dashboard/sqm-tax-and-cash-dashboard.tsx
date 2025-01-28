@@ -231,32 +231,32 @@ export class TaxAndCashDashboard {
    * @uiName Verification required internal alert header
    */
   @Prop() verificationRequiredInternalHeader: string =
-    "Verification in Progress";
+    "Identity Verification in Progress";
   /**
    * @uiName Verification required internal alert description
    */
   @Prop() verificationRequiredInternalDescription: string =
-    "Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley.";
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley.";
   /**
    * @uiName Verification review internal alert header
    */
   @Prop() verificationReviewInternalHeader: string =
-    "Verification Under Review";
+    "Identity Verification Under Review";
   /**
    * @uiName Verification review internal alert description
    */
   @Prop() verificationReviewInternalDescription: string =
-    "Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.";
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.";
   /**
    * @uiName Verification failed internal alert header
    */
   @Prop() verificationFailedInternalHeader: string =
-    "Verification Unsuccessful";
+    "Identity Verification Unsuccessful";
   /**
    * @uiName Verification failed internal alert description
    */
   @Prop() verificationFailedInternalDescription: string =
-    "Verification has failed. Our team is reviewing the report and will contact you with further information.";
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information.";
   /**
    * Part of the alert displayed at the top of the page when the user needs to verify their identity.
    * @uiName Verification required alert button text
