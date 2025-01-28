@@ -27,11 +27,9 @@ export interface TaxAndCashDashboardProps {
     loading?: boolean;
     loadingError?: boolean;
     showNewFormDialog: boolean;
-    showIdentityVerificationDialog?: boolean;
-    identiyRequired?: boolean;
     hasHold: boolean;
     payoutStatus: PayoutStatus;
-    showVerifyIdentity: boolean;
+    veriffLoading: boolean;
     errors?: {
       general?: boolean;
     };
@@ -41,10 +39,10 @@ export interface TaxAndCashDashboardProps {
   };
   callbacks: {
     onClick: (props: any) => void;
+    onVerifyClick: () => void;
     onEditPayoutInfo: () => void;
     onNewFormCancel: () => void;
     onNewFormClick: () => void;
-    onVerifyIdentityCancel: () => void;
   };
   text: {
     statusTextActive?: string;

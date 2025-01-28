@@ -21,14 +21,16 @@ const REFRESH_USER_STATUS = gql`
   }
 `;
 
-export function useVeriffApp({ onComplete }: { onComplete: () => void }) {
+export const VERIFF_COMPLETE_EVENT_KEY = "sqm:veriff-updated";
+
+export function useVeriffApp() {
   const { id, accountId } = useUserIdentity();
   const [createImpactVerificationSessionMutation, { loading, errors }] =
     useMutation(CREATE_IMPACT_VERIFICATION_SESSION);
   const [
     refreshImpactPublisherFinanceStatus,
     { loading: refreshLoading, errors: refreshErrors },
-  ] = useMutation(CREATE_IMPACT_VERIFICATION_SESSION);
+  ] = useMutation(REFRESH_USER_STATUS);
 
   const refresh = async () => {
     try {
@@ -37,7 +39,7 @@ export function useVeriffApp({ onComplete }: { onComplete: () => void }) {
       });
       if (!res || (res as Error).message) throw new Error();
 
-      onComplete();
+      window.dispatchEvent(new Event(VERIFF_COMPLETE_EVENT_KEY));
     } catch (e) {
       console.error("Failed to initialise Veriff:", e);
     }
