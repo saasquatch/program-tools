@@ -28,6 +28,12 @@ export interface PayoutStatusAlertViewProps {
     verificationRequiredHeader: string;
     verificationRequiredDescription: string;
     verificationRequiredButtonText: string;
+    verificationRequiredInternalHeader: string;
+    verificationRequiredInternalDescription: string;
+    verificationReviewInternalHeader: string;
+    verificationReviewInternalDescription: string;
+    verificationFailedInternalHeader: string;
+    verificationFailedInternalDescription: string;
     holdHeader: string;
     holdDescription: string;
     errorHeader: string;
@@ -49,7 +55,6 @@ const style = {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
     },
-
     "& sl-icon::part(base)": {
       color: "var(--sl-color-danger-500)",
     },
@@ -59,7 +64,6 @@ const style = {
       backgroundColor: "var(--sl-color-yellow-100)",
       borderTop: "none",
     },
-
     "& sl-icon::part(base)": {
       color: "var(--sl-color-danger-500)",
     },
@@ -133,32 +137,29 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:INTERNAL": // TODO
+      case "VERIFICATION:INTERNAL":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          header: text.verificationRequiredInternalHeader,
+          description: text.verificationRequiredInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:REVIEW": // TODO
+      case "VERIFICATION:REVIEW":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
+          header: text.verificationReviewInternalHeader,
+          description: text.verificationReviewInternalDescription,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
         };
-      case "VERIFICATION:FAILED": // TODO
+      case "VERIFICATION:FAILED":
         return {
-          header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
-          buttonText: text.verificationRequiredButtonText,
-          alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
+          header: text.verificationFailedInternalHeader,
+          description: text.verificationFailedInternalDescription,
+          alertType: "critical",
+          icon: "exclamation-octagon",
+          class: sheet.classes.ErrorAlertContainer,
         };
       case "HOLD":
         return {

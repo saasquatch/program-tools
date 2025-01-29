@@ -34,7 +34,6 @@ export class PayoutStatusAlert {
    * @uiName Info required alert button text
    */
   @Prop() informationRequiredButtonText: string = "Payouts & Tax Settings";
-
   /**
    * @uiName Verification required alert header
    */
@@ -48,16 +47,46 @@ export class PayoutStatusAlert {
    * @uiName Verification required alert button text
    */
   @Prop() verificationRequiredButtonText: string = "Start Verification";
-
+  /**
+   * @uiName Verification required internal alert header
+   */
+  @Prop() verificationRequiredInternalHeader: string =
+    "Identity Verification in Progress";
+  /**
+   * @uiName Verification required internal alert description
+   */
+  @Prop() verificationRequiredInternalDescription: string =
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley.";
+  /**
+   * @uiName Verification review internal alert header
+   */
+  @Prop() verificationReviewInternalHeader: string =
+    "Identity Verification Under Review";
+  /**
+   * @uiName Verification review internal alert description
+   */
+  @Prop() verificationReviewInternalDescription: string =
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.";
+  /**
+   * @uiName Verification failed internal alert header
+   */
+  @Prop() verificationFailedInternalHeader: string =
+    "Identity Verification Unsuccessful";
+  /**
+   * @uiName Verification failed internal alert description
+   */
+  @Prop() verificationFailedInternalDescription: string =
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information.";
   /**
    * @uiName Payout on hold alert header
    */
   @Prop() holdHeader: string = "Your payouts and account are on hold";
   /**
    * @uiName Payout on hold alert description
+   * AL: TODO copy not finalized for support section
    */
   @Prop() holdDescription: string =
-    "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.";
+    "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our support team.";
   /**
    * @uiName Cash & Payouts Terms and Conditions url
    */
