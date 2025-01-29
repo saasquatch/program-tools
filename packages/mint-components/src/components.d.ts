@@ -1753,7 +1753,6 @@ export namespace Components {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -7694,7 +7693,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
