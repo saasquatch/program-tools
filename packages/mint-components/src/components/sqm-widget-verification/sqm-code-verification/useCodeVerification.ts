@@ -94,7 +94,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         const input = e.data;
         if (!input) return;
         if (idx === codeElements.length - 1) {
-          e.target.value = input.slice(-1);
+          e.target.value = input.slice(idx, idx + 1);
           return;
         }
 

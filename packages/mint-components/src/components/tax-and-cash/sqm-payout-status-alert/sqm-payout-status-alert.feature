@@ -61,11 +61,31 @@ Feature: Cash payout status widget alert
     When they click the button
     Then a modal opens with an iframe to verify their identity
 
+  @minutia
+  Scenario Outline: Alert displays the current state of the verification process
+    Given a user has <holdReason> included in their holdReasons
+    And they complete the payout and tax form flow
+    Then a <color> banner appears
+    And the alert has heading <heading>
+    And the alert has description <description>
+
+    Examples:
+      | holdReason                  | color  | heading                            | description                                                                                                                                             |
+      | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
+      | IDV_CHECK_REVIEW_INTERNAL   | yellow | Verification Under Review          | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                       |
+      | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
+
   @motivating
   Scenario: User has hold reasons
     Given they have impactConnection as one of the following
       | impactConnection                                                   |
       | { connected: true, publisher: { payoutsAccount: { hold: true } } } |
+    And hold reasons don't include any of the following
+      | holdReason                  |
+      | IDV_CHECK_REQUIRED          |
+      | IDV_CHECK_REQUIRED_INTERNAL |
+      | IDV_CHECK_REVIEW_INTERNAL   |
+      | IDV_CHECK_FAILED_INTERNAL   |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """

@@ -25,6 +25,10 @@ const USER_LOOKUP = gql`
         accountId
         email
         emailVerified
+        managedIdentity {
+          email
+          emailVerified
+        }
       }
     }
   }
@@ -51,6 +55,7 @@ function useWidgetVerificationInternal() {
         if (!res || res instanceof Error) throw new Error();
 
         if (res?.viewer?.emailVerified) setContext(true);
+        else if (res?.viewer?.managedIdentity?.emailVerified) setContext(true);
       } catch (e) {
         console.error("Could not fetch user information:", e);
       } finally {
