@@ -52,10 +52,6 @@ Feature: Widget verification flow
       """
       Didn't recieve your code? Resend Code
       """
-    And the default undo text:
-      """
-      Use a different email
-      """
 
   @motivating
   Scenario Outline: Entering an invalid or expired 2FA code
@@ -71,7 +67,7 @@ Feature: Widget verification flow
 
     Examples:
       | code   | time       |
-      | 234567 | 1 minute   |
+      | 234567 |   1 minute |
       | 123456 | 30 minutes |
       | 234567 | 30 minutes |
 
@@ -100,18 +96,6 @@ Feature: Widget verification flow
     And they click the submit button
     Then an invalid code error is displayed
 
-  @motivating
-  Scenario: Users can re-enter an email
-    Given a user originally entered "test@example.com" as their email
-    And they are on the code verification step
-    When they click "Use a different email"
-    Then they are shown the email verification step
-    And they can re-enter an email address
-    When they enter "test2@example.com"
-    And they click the submit button
-    Then a 2FA email is sent to "test2@example.com"
-    And any 2FA codes associated with "test@example.com" are now invalid
-
   @minutia
   Scenario: `sqm-widget-verification` displays a loading state initially
     Given "sqm-widget-verification" is included in the page's html
@@ -129,4 +113,3 @@ Feature: Widget verification flow
       | mayBeVerified   | UI                      |
       | is verified     | enabled slot            |
       | is not verified | email verification flow |
-
