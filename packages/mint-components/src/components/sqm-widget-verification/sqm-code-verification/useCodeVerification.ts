@@ -68,6 +68,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
 
   const {
     initialized,
+    verificationEmail,
     send: [sendEmail, { loading: sendLoading, errors: sendErrors }],
     verify: [verifyEmail, { loading: verifyLoading, errors: verifyErrors }],
   } = useVerificationEmail();
@@ -94,7 +95,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
         const input = e.data;
         if (!input) return;
         if (idx === codeElements.length - 1) {
-          e.target.value = input.slice(idx, idx + 1);
+          e.target.value = input.slice(0, 1);
           return;
         }
 
@@ -177,7 +178,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       codeWrapperRef: setCodeRef,
     },
     states: {
-      email,
+      email: verificationEmail,
       emailResent,
       resendError: sendErrors || verifyErrors,
       initialiseLoading: !initialized,
