@@ -421,6 +421,7 @@ export class BankingInfoForm {
             countryInputSlot: (
               <sl-select
                 label={props.text.bankLocationLabel}
+                disabled={props.states.saveLoading}
                 required
                 name="/bankCountry"
                 id="bankCountry"
@@ -437,6 +438,7 @@ export class BankingInfoForm {
                 })}
               >
                 <sl-input
+                  disabled={props.states.saveLoading}
                   class={searchStyle.SearchInput}
                   placeholder={this.searchForCountryText}
                   onKeyDown={(e) => {
@@ -475,6 +477,7 @@ export class BankingInfoForm {
             paymentThresholdSelectSlot: (
               <sl-select
                 required
+                disabled={props.states.saveLoading}
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
@@ -497,6 +500,7 @@ export class BankingInfoForm {
             paymentFixedDaySelectSlot: (
               <sl-select
                 required
+                disabled={props.states.saveLoading}
                 label={props.text.paymentDaySelectLabel}
                 value={props.states?.formState?.paymentDay || ""}
                 name="/paymentDay"
@@ -520,6 +524,7 @@ export class BankingInfoForm {
             paypalInputSlot: (
               <sl-input
                 required
+                disabled={props.states.saveLoading}
                 value={props.states?.formState?.paypalEmailAddress || ""}
                 label={props.text.payPalInputLabel}
                 key="paypalEmailAddress"

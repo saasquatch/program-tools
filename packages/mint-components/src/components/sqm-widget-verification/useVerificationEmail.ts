@@ -79,6 +79,9 @@ const SubmitImpactCodeMutation = gql`
 // ! is done before calling any mutations
 export function useVerificationEmail() {
   const userIdentity = useUserIdentity();
+  const [verificationEmail, setVerificationEmail] = useState<string | null>(
+    null
+  );
   const [hasEmails, setHasEmails] = useState({
     participant: false,
     impact: false,
@@ -121,6 +124,11 @@ export function useVerificationEmail() {
         participant: !!lookup?.viewer?.email,
         impact: !!lookup?.viewer?.impactConnection?.user?.email,
       });
+      setVerificationEmail(
+        lookup?.viewer?.impactConnection?.user?.email ||
+          lookup?.viewer?.email ||
+          null
+      );
       setInitialized(true);
     } catch (e) {
       console.error("Could not initialise verification", e);
@@ -189,6 +197,7 @@ export function useVerificationEmail() {
 
   return {
     initialized,
+    verificationEmail,
     send: [
       sendVerificationEmail,
       { loading: sendLoading, errors: sendErrors },

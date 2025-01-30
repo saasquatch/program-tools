@@ -123,7 +123,7 @@ export const useTaxAndCashDashboard = (
     (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion
   )?.displayName;
 
-  const payoutStatus = getStatus(data);
+  const payoutStatus = data ? getStatus(data) : null;
 
   useEffect(() => {
     const cb = () => refetch();

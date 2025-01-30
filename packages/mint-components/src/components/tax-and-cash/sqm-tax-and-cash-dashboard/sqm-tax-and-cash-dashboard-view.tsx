@@ -512,7 +512,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.payoutStatus !== "DONE" && (
+        {states.payoutStatus && states.payoutStatus !== "DONE" && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
             name={getAlert(states.payoutStatus)?.alertType}
