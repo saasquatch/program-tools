@@ -47,6 +47,7 @@ export interface BankingInfoFormViewProps {
     countrySearch?: string;
   };
   slots?: {
+    verificationDialogSlot?: VNode;
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
@@ -55,6 +56,7 @@ export interface BankingInfoFormViewProps {
     paypalInputSlot?: VNode;
   };
   callbacks: {
+    onVerificationHide: () => void;
     setPaymentMethodChecked: (
       paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
     ) => void;

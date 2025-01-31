@@ -26,6 +26,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
   },
 
   callbacks: {
+    onVerificationHide: () => {},
     onVerification: () => {},
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
