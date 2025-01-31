@@ -10,7 +10,7 @@ import { useReferralCode } from "./useReferralCode";
 /**
  * @uiName Referral Code
  * @exampleGroup Sharing
- * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-referral-code>
+ * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
  */
 @Component({
   tag: "sqm-referral-code",
