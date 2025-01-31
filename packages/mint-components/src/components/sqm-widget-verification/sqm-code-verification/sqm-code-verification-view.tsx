@@ -35,7 +35,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
-    maxWidth: "515px",
+    maxWidth: "550px",
   },
   HeaderContainer: {
     display: "flex",
