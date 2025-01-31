@@ -512,7 +512,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {text.error.generalDescription}
           </sl-alert>
         )}
-        {states.payoutStatus && states.payoutStatus !== "DONE" && (
+        {getAlert(states.payoutStatus) && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
             name={getAlert(states.payoutStatus)?.alertType}
@@ -531,9 +531,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 style={{ marginTop: "var(--sl-spacing-x-small)" }}
                 type="default"
-                loading={states.loading}
-                //AL: TODO hooks
-                onClick={() => callbacks.onClick}
+                loading={states.veriffLoading}
+                onClick={() => callbacks.onVerifyClick()}
               >
                 {getAlert(states.payoutStatus).buttonText}
               </sl-button>
