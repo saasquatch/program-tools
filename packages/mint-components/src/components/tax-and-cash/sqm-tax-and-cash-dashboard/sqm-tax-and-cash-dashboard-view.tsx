@@ -268,6 +268,7 @@ const style = {
   PageDescriptionText: {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
+    marginTop: "0",
   },
   Dialog: {
     "&::part(panel)": {
@@ -566,7 +567,9 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         </sl-dialog>
         {states.status === "INACTIVE" && alertMap[states.status]}
         <div>
-          <h3>{text.bankingInformationSectionHeader}</h3>
+          <h3 style={{ marginBottom: "0" }}>
+            {text.bankingInformationSectionHeader}
+          </h3>
           <p class={sheet.classes.PageDescriptionText}>
             {text.taxAndPayoutsDescription}
           </p>
