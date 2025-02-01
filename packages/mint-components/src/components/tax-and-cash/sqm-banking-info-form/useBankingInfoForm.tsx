@@ -454,10 +454,10 @@ export function useBankingInfoForm(
       });
       setShowVerification(false);
     }
-    await runMutation(formData, token);
+    if (token) await runMutation(formData, token);
   };
 
-  const onVerification = async (token: string) => {
+  const onVerification = async (token: string | null) => {
     host.dispatchEvent(
       new CustomEvent(VERIFICATION_EVENT_KEY, {
         detail: { token },
@@ -495,6 +495,7 @@ export function useBankingInfoForm(
       onBack: () => setStep("/dashboard"),
       setCountrySearch,
       onVerification,
+      onVerificationHide: () => onVerification(null),
     },
     states: {
       showVerification,

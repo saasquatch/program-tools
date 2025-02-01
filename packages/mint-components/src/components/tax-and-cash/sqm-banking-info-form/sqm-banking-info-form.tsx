@@ -18,6 +18,7 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
+import { createStyleSheet } from "../../../styling/JSS";
 
 /**
  * @uiName Banking Information Form
@@ -395,22 +396,47 @@ export class BankingInfoForm {
       formMap,
     });
 
-    const searchStyle = {
+    const style = {
+      Dialog: {
+        "&::part(panel)": {
+          maxWidth: "420px",
+        },
+        "&::part(close-button)": {
+          marginBottom: "var(--sl-spacing-xx-large)",
+        },
+        "&::part(body)": {
+          padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+          fontSize: "var(--sl-font-size-small)",
+        },
+        "&::part(footer)": {
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--sl-spacing-small)",
+          marginBottom: "var(--sl-spacing-xx-small)",
+          alignItems: "center",
+          flex: "1",
+        },
+      },
       SearchInput: {
         padding: "var(--sl-spacing-x-small)",
       },
     };
-
-    if (props.states.isPartner && props.states.showVerification) {
-      return (
-        <sqm-code-verification
-          onVerification={props.callbacks.onVerification}
-        ></sqm-code-verification>
-      );
-    }
+    const sheet = createStyleSheet(style);
 
     return (
       <Host>
+        {/* Force it to de-render every time to avoid state issues with inputs */}
+        {props.states.isPartner && props.states.showVerification ? (
+          <sl-dialog
+            class={sheet.classes.Dialog}
+            open={true}
+            onSl-hide={props.callbacks.onVerificationHide}
+          >
+            <sqm-code-verification
+              onVerification={props.callbacks.onVerification}
+            ></sqm-code-verification>
+          </sl-dialog>
+        ) : null}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
@@ -439,7 +465,7 @@ export class BankingInfoForm {
               >
                 <sl-input
                   disabled={props.states.saveLoading}
-                  class={searchStyle.SearchInput}
+                  class={sheet.classes.SearchInput}
                   placeholder={this.searchForCountryText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
@@ -652,6 +678,7 @@ function useDemoBankingInfoForm(
         hasPayPal: true,
       },
       callbacks: {
+        onVerificationHide: () => {},
         onSubmit: async () => {
           setStep("/dashboard");
         },
