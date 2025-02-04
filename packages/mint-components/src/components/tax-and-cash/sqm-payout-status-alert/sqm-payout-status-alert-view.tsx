@@ -189,6 +189,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             {text.informationRequiredButtonText}
           </sl-button>
         ) : (
+          // Demo case
           <sl-button type="default">
             {text.informationRequiredButtonText}
           </sl-button>

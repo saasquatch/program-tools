@@ -87,11 +87,11 @@ export class PayoutStatusAlert {
    */
   @Prop() holdDescription: string =
     "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our support team.";
+
   /**
-   * @uiName Cash & Payouts Terms and Conditions url
+   * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
-  @Prop() termsUrl: string =
-    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
+  @Prop() cashPayoutsPageUrl: string = "/cash";
 
   /**
    * @uiName Error header

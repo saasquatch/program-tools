@@ -92,7 +92,8 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     data: { type },
     text: props.getTextProps(),
     callbacks: {
-      onTermsClick: () => window.open(props.termsUrl, "_blank").focus(),
+      onTermsClick: () =>
+        window.open(props.cashPayoutsPageUrl, "_blank").focus(),
       onClick: render,
     },
   };
