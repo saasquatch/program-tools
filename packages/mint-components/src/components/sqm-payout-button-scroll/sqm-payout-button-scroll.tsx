@@ -8,6 +8,7 @@ import {
   PayoutButtonScrollViewProps,
 } from "./sqm-payout-button-scroll-view";
 import deepmerge from "deepmerge";
+import { usePayoutButton } from "./usePayoutButton";
 
 /**
  * @uiName Payout Button Scroll
@@ -46,7 +47,9 @@ export class PayoutButtonScroll {
   }
 
   render() {
-    const props = useDemoPayoutButtonScroll(this);
+    const props = isDemo()
+      ? useDemoPayoutButtonScroll(this)
+      : usePayoutButton(this);
 
     return <PayoutButtonScrollView {...props} />;
   }

@@ -24,14 +24,6 @@ const GET_PAYOUT_DETAILS = gql`
 `;
 export function usePayoutButton(props: PayoutButtonScroll) {
   const { data, refetch } = useQuery(GET_PAYOUT_DETAILS, {});
-  const [completed, setCompleted] = useState(false);
-
-  useEffect(() => {
-    if (!data) return;
-
-    const hasCompleted = data.user?.impactConnection?.publisher?.payoutAccount;
-    setCompleted(hasCompleted);
-  }, [data]);
 
   useEffect(() => {
     const cb = () => refetch();
@@ -41,7 +33,8 @@ export function usePayoutButton(props: PayoutButtonScroll) {
 
   return {
     states: {
-      payoutSettingsComplete: completed,
+      payoutSettingsComplete:
+        !!data?.user?.impactConnection?.publisher?.payoutsAccount,
     },
     text: props.getTextProps(),
   };
