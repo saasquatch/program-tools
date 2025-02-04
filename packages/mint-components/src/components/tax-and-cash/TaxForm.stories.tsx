@@ -974,6 +974,25 @@ export const StepFourToPaypalChecked = () => {
   );
 };
 
+export const StepFourReVerifyEmail = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          showVerification: true,
+          isPartner: true,
+          formState: {
+            ...stepFourProps.states.formState,
+            paymentMethodChecked: "toPayPalAccount",
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const TaxAndCashDashboardActiveW9Form = () => {
   return (
     <sqm-tax-and-cash-dashboard
