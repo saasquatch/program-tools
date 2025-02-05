@@ -334,7 +334,7 @@ export function useBankingInfoForm(
     setCurrentPaymentOption(currentPaymentOption);
   };
 
-  const runMutation = async (formData: any, token: string) => {
+  const runMutation = async (formData: any, token: string | undefined) => {
     setLoading(true);
     try {
       if (!currentPaymentOption) throw new Error("No currentPaymentOption");
@@ -356,6 +356,8 @@ export function useBankingInfoForm(
       // Call difference mutations based on whether the user is updating
       // the info for setting it for the first time
       if (isPartner) {
+        if (!token) return; // Require token for this mutation
+
         response = await updateWithdrawalSettings({
           updateImpactPublisherWithdrawalSettingsInput: {
             ...body,
@@ -454,7 +456,7 @@ export function useBankingInfoForm(
       });
       setShowVerification(false);
     }
-    if (token) await runMutation(formData, token);
+    await runMutation(formData, token);
   };
 
   const onVerification = async (token: string | null) => {
