@@ -16,6 +16,7 @@ export interface PayoutButtonScrollViewProps {
 const style = {
   Wrapper: {
     maxWidth: "200px",
+    border: "1px solid black",
   },
   PayoutButtonDescription: {
     color: "var(--sl-color-neutral-500)",
