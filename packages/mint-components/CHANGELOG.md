@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.1] - 2025-02-TBD
+
+### Added
+
+- \<sqm-referral-code>
+- \<sqm-referral-codes>
+- \<sqm-pagination>
+
+### Changed
+
+- \<sqm-empty>
+  - Added default value for `emptyStateImage` prop.
+- \<sqm-copy-text-view>
+  - Added props to show notification text underneath component when text has been previously copied
+- \<sqm-share-button>
+  - SAM TODO
+
 ## [1.11.0] - 2024-11-25
 
 ### Changed
@@ -1071,7 +1088,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.1...HEAD
+[1.11.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.1
 [1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
 [1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
 [1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
