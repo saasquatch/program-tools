@@ -1710,6 +1710,10 @@ export namespace Components {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
+         */
+        "cashPayoutsPageUrl": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1742,10 +1746,6 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
-        /**
-          * @uiName Cash & Payouts Terms and Conditions url
-         */
-        "termsUrl": string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -7886,6 +7886,10 @@ declare namespace LocalJSX {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
+         */
+        "cashPayoutsPageUrl"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -7918,10 +7922,6 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
-        /**
-          * @uiName Cash & Payouts Terms and Conditions url
-         */
-        "termsUrl"?: string;
         /**
           * @uiName Verification failed internal alert description
          */
