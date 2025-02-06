@@ -198,17 +198,12 @@ export function useReferralCodes(props: ReferralCodes) {
     }
   }, [referralData]);
 
-  console.log({ referralData, states });
-
   return {
     states: {
       ...states,
       noCodes: referralData?.totalCount === 0,
     },
     data: referralCodesContext,
-    callbacks: {
-      // onPrev: () => callbacks.setCurrentPage(states.currentPage - 1),
-      // onNext: () => callbacks.setCurrentPage(states.currentPage + 1),
-    },
+    callbacks: {},
   };
 }

@@ -87,8 +87,6 @@ const styleString = sheet.toString();
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
 
-  console.log("notification text is", props.notificationText);
-
   const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
   const disabled = error || props.loading || props.disabled;

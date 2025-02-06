@@ -23,7 +23,7 @@ interface ReferralCodeProps {
 }
 
 const MessageLinkQuery = gql`
-  query ($programId: ID) {
+  query getReferralCode($programId: ID) {
     user: viewer {
       ... on User {
         referralCode(programId: $programId)
@@ -53,7 +53,7 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
     !user?.jwt || contextData?.referralCode !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
-  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
+  const [setCopied] = useMutation(SET_CODE_COPIED);
 
   const copyString =
     (contextData?.referralCode || data?.user?.referralCode) ??

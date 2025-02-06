@@ -1,6 +1,5 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { EmptyStateView } from "../sqm-empty/sqm-empty-view";
 
 export interface ReferralCodesViewProps {
   slots: {

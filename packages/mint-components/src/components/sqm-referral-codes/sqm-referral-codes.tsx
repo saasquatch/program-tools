@@ -49,8 +49,6 @@ export class ReferralCodes {
       ? useDemoReferralCodes(thisProps)
       : useReferralCodes(thisProps);
 
-    console.log(props);
-
     const slots = {
       shareButtons: <slot name="shareButtons" />,
       shareCodes: <slot name="shareCodes" />,
