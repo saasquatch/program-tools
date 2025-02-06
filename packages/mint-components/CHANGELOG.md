@@ -12,8 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - \<sqm-referral-code>
+  - Displays either the user's referral code for the program in scope or the promo code retrieved from the \<sqm-referral-codes> component
 - \<sqm-referral-codes>
+  - Parent component that supports displaying program promo codes for the following components when used as the parent:
+    - \<sqm-referral-code>
+    - \<sqm-share-button>
+    - \<sqm-share-link>
 - \<sqm-pagination>
+  - pagination component for \<sqm-referral-codes>
 
 ### Changed
 
@@ -22,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-copy-text-view>
   - Added props to show notification text underneath component when text has been previously copied
 - \<sqm-share-button>
-  - SAM TODO
+  - Added support for displaying promo codes from the \<sqm-referral-codes> component
 
 ## [1.11.0] - 2024-11-25
 
