@@ -147,11 +147,9 @@ const style = {
     },
 
     "&::part(message)": {
-      display: "flex",
       alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
+      padding: "var(--sl-spacing-small)",
+      whiteSpace: "nowrap",
     },
 
     "& sl-icon::part(base)": {

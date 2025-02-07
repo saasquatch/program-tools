@@ -304,7 +304,7 @@ export const GeneralErrorView = () => {
     <ErrorView
       loadingErrorAlertHeader={"There was a problem loading your form"}
       loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact Support."
+        "Please refresh the page and try again. If this problem continues, contact our support team."
       }
     />
   );
