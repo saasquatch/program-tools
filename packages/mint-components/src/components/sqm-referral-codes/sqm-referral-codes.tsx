@@ -27,6 +27,24 @@ export class ReferralCodes {
   @Prop() titleText?: string = "Start sharing";
 
   /**
+   * @uiName Empty State Header Text
+   */
+  @Prop() emptyStateHeaderText?: string =
+    "Your new codes and links aren’t ready yet";
+
+  /**
+   * @uiName Empty State Description Text
+   */
+  @Prop() emptyStateDescriptionText?: string =
+    "Please contact our program support team to let them know you’re out of codes.";
+
+  /**
+   * @uiName Empty State Image URL
+   */
+  @Prop() emptyStateImageUrl?: string =
+    "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png";
+
+  /**
    * @uiName Program ID
    * @uiWidget programSelector
    */
@@ -53,7 +71,13 @@ export class ReferralCodes {
       shareButtons: <slot name="shareButtons" />,
       shareCodes: <slot name="shareCodes" />,
       pagination: <slot name="pagination" />,
-      empty: <EmptySlot />,
+      empty: (
+        <EmptySlot
+          headerText={this.emptyStateHeaderText}
+          descriptionText={this.emptyStateDescriptionText}
+          imageUrl={this.emptyStateImageUrl}
+        />
+      ),
       loading: <LoadingSlot />,
     };
 
@@ -68,12 +92,21 @@ export class ReferralCodes {
   }
 }
 
-function EmptySlot() {
+function EmptySlot({
+  headerText,
+  descriptionText,
+  imageUrl,
+}: {
+  headerText: string;
+  descriptionText: string;
+  imageUrl: string;
+}) {
   return (
     <slot name="empty">
       <sqm-empty
-        emptyStateHeader="Your new codes and links aren’t ready yet"
-        emptyStateText="Please contact our program support team to let them know you’re out of codes."
+        emptyStateHeader={headerText}
+        emptyStateText={descriptionText}
+        emptyStateImage={imageUrl}
       ></sqm-empty>
     </slot>
   );

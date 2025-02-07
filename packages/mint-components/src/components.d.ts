@@ -2650,6 +2650,18 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralCodesViewProps>;
         /**
+          * @uiName Empty State Description Text
+         */
+        "emptyStateDescriptionText"?: string;
+        /**
+          * @uiName Empty State Header Text
+         */
+        "emptyStateHeaderText"?: string;
+        /**
+          * @uiName Empty State Image URL
+         */
+        "emptyStateImageUrl"?: string;
+        /**
           * @uiName Program ID
           * @uiWidget programSelector
          */
@@ -8589,6 +8601,18 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<ReferralCodesViewProps>;
+        /**
+          * @uiName Empty State Description Text
+         */
+        "emptyStateDescriptionText"?: string;
+        /**
+          * @uiName Empty State Header Text
+         */
+        "emptyStateHeaderText"?: string;
+        /**
+          * @uiName Empty State Image URL
+         */
+        "emptyStateImageUrl"?: string;
         /**
           * @uiName Program ID
           * @uiWidget programSelector

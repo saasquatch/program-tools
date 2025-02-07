@@ -9,6 +9,12 @@ export default {
 };
 
 const demoData = {
+  titleText: "Start sharing",
+  emptyStateHeaderText: "Your new codes and links aren’t ready yet",
+  emptyStateDescriptionText:
+    "Please contact our program support team to let them know you’re out of codes.",
+  emptyStateImageUrl:
+    "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png",
   states: {
     noCodes: false,
     loading: false,
@@ -67,6 +73,23 @@ export const Empty = () => {
   return (
     <sqm-referral-codes
       demoData={{ states: { ...demoData.states, noCodes: true } }}
+    >
+      {pagination("pagination")}
+      {shareCodes("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+export const EmptyWithCustomTextAndImage = () => {
+  return (
+    <sqm-referral-codes
+      emptyStateHeaderText="Tus nuevos códigos y enlaces aún no están listos"
+      emptyStateDescriptionText="Comuníquese con nuestro equipo de soporte del programa para informarles que no tiene códigos."
+      emptyStateImageUrl="https://img.freepik.com/free-vector/hand-drawn-no-data-concept_52683-127829.jpg?t=st=1738890457~exp=1738894057~hmac=2f0f32c1f0fc051f47d772a4517e2e4c4f38af5069fb855edc96d8331d9d1329&w=826"
+      demoData={{
+        states: { ...demoData.states, noCodes: true },
+      }}
     >
       {pagination("pagination")}
       {shareCodes("shareCodes")}
