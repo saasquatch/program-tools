@@ -125,6 +125,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_searchForCurrencyText: string = "Search for currency..";
+  /**
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
@@ -237,7 +238,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step2_cannotChangeInfoAlert: string =
-    "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
+    "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing.";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
@@ -318,7 +319,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step3_docusignError: string =
-    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
+    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}.";
   /**
    * @uiName Refresh page button label
    * @uiGroup Step 3 Properties
@@ -733,7 +734,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_indirectTaxTooltipSupport: string =
-    "To make changes to your indirect tax information, please contact Support.";
+    "To make changes to your indirect tax information, please contact our {supportLink}.";
   /**
    * Displayed to participants who have submitted their indirect tax information.
    *
@@ -759,7 +760,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_notRegisteredForTax: string =
-    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact Support to add your information to stay tax compliant.";
+    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant.";
   /**
    * Displayed to participants registered in Quebec, Canada.
    * @uiName QST indirect tax details
@@ -844,7 +845,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() payoutHoldAlertDescription: string =
-    "Please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+    "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com.";
   /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
@@ -930,7 +931,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed under a field that is missing required information.
    * @uiName Empty form field error message
@@ -980,7 +981,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text
@@ -1002,7 +1003,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed at the top of the page on all set up steps.
    * @uiName Page description
@@ -1010,6 +1011,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+  /**
+   * Link text for contacting support team
+   * @uiName Suport link text
+   * @uiGroup General Form Properties
+   */
+  @Prop() supportLink: string = "support team";
 
   /**
    *
@@ -1043,6 +1050,7 @@ export class TaxAndCashMonolith {
       taxAndPayoutsDescription: props.taxAndPayoutsDescription,
       searchForCountryText: props.searchForCountryText,
       formStep: props.formStep,
+      supportLink: props.supportLink,
     };
   }
 

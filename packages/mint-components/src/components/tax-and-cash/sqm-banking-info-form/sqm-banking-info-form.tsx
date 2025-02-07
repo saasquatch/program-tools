@@ -266,7 +266,7 @@ export class BankingInfoForm {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
 
   /**
    * Part of the alert displayed at the top of the page.
@@ -282,7 +282,7 @@ export class BankingInfoForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed under a field that is missing required information.
    * @uiName Empty form field error message
@@ -293,6 +293,10 @@ export class BankingInfoForm {
    * @uiName Form field error message
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
   /**
    * @uiName Continue button label
    */

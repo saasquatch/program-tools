@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "./usePayoutStatus";
+import { intl } from "../../../global/global";
 export interface PayoutStatusAlertViewProps {
   states: {
     error: boolean;
@@ -36,6 +37,7 @@ export interface PayoutStatusAlertViewProps {
     verificationFailedInternalDescription: string;
     holdHeader: string;
     holdDescription: string;
+    supportLink: string;
     errorHeader: string;
     errorDescription: string;
   };
@@ -131,7 +133,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationRequiredDescription",
+              defaultMessage: text.verificationRequiredDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -140,7 +154,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "VERIFICATION:INTERNAL":
         return {
           header: text.verificationRequiredInternalHeader,
-          description: text.verificationRequiredInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationRequiredInternalDescription",
+              defaultMessage: text.verificationRequiredInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -148,7 +174,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "VERIFICATION:REVIEW":
         return {
           header: text.verificationReviewInternalHeader,
-          description: text.verificationReviewInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationReviewInternalDescription",
+              defaultMessage: text.verificationReviewInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -156,7 +194,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "VERIFICATION:FAILED":
         return {
           header: text.verificationFailedInternalHeader,
-          description: text.verificationFailedInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationFailedInternalDescription",
+              defaultMessage: text.verificationFailedInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "critical",
           icon: "exclamation-octagon",
           class: sheet.classes.ErrorAlertContainer,
@@ -164,7 +214,19 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "HOLD":
         return {
           header: text.holdHeader,
-          description: text.holdDescription,
+          description: intl.formatMessage(
+            {
+              id: "holdDescription",
+              defaultMessage: text.holdDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",

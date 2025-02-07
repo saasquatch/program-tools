@@ -100,6 +100,7 @@ export interface UserInfoFormViewProps {
     termsAndConditionsLabel: string;
     termsAndConditionsLink: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -316,7 +317,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.loadingErrorAlertHeader}</strong>
             <br />
-            {text.error.loadingErrorAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: text.error.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
           <br />
         </div>
@@ -354,7 +370,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.generalTitle}</strong>
               <br />
-              {text.error.generalDescription}
+              {intl.formatMessage(
+                {
+                  id: "generalDescription",
+                  defaultMessage: text.error.generalDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           )}
           {(states.isPartner || states.isUser) && (
@@ -367,7 +398,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-icon slot="icon" name="info-circle"></sl-icon>
               <strong>{text.isPartnerAlertHeader}</strong>
               <br />
-              {text.isPartnerAlertDescription}
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertDescription",
+                  defaultMessage: text.isPartnerAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           )}
 

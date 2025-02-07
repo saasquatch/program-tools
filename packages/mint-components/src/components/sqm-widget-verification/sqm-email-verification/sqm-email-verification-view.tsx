@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+import { intl } from "../../../global/global";
 
 export interface WidgetEmailVerificationViewProps {
   states: {
@@ -20,6 +21,7 @@ export interface WidgetEmailVerificationViewProps {
     sendCodeErrorHeader: string;
     sendCodeErrorDescription: string;
     emailValidationErrorText: string;
+    supportLink: string;
   };
 }
 
@@ -42,10 +44,7 @@ const style = {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
     },
-    "&::part(message)": {
-      display: "flex",
-      flexDirection: "column",
-    },
+    "&::part(message)": {},
   },
   ContinueButton: {
     width: "100%",
@@ -117,7 +116,20 @@ export function WidgetEmailVerificationView(
         >
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <b>{text.sendCodeErrorHeader}</b>
-          {text.sendCodeErrorDescription}
+          <br />
+          {intl.formatMessage(
+            {
+              id: "sendCodeErrorDescription",
+              defaultMessage: text.sendCodeErrorDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          )}
         </sl-alert>
       )}
       {states.initialLoading ? (

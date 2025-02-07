@@ -29,13 +29,18 @@ export class WidgetEmailVerification {
    * @uiName Send code to email alert header
    */
   @Prop()
-  sendCodeErrorHeader: string = "There was an error sending your code.";
+  sendCodeErrorHeader: string = "There was an error sending your code";
+  /**
+   * @uiName Support link text
+   */
+  @Prop()
+  supportLink: string = "support team";
   /**
    * @uiName Send code to email alert description
    */
   @Prop()
   sendCodeErrorDescription: string =
-    "Please try again. If this problem continues, contact our program support team.";
+    "Please try again. If this problem continues, contact our program {supportLink} team.";
   /**
    * @uiName Email input label
    */

@@ -97,7 +97,7 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -111,7 +111,7 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
@@ -168,13 +168,17 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed at the top of the page on all set up steps.
    * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
 
   /**
    * @undocumented

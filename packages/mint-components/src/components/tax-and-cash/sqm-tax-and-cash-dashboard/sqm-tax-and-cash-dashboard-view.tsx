@@ -4,7 +4,6 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 import { P } from "../../../global/mixins";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -101,6 +100,7 @@ export interface TaxAndCashDashboardProps {
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
     cancelButton: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -124,6 +124,7 @@ const style = {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-yellow-100)",
       borderTop: "none",
+      maxWidth: "600px",
     },
     "& sl-icon::part(base)": {
       color: "var(--sl-color-warning-500)",
@@ -132,6 +133,7 @@ const style = {
   WarningHoldAlertContainer: {
     marginLeft: "-20px",
     "&::part(base)": {
+      maxWidth: "850px",
       border: "none",
       backgroundColor: "transparent",
     },
@@ -142,6 +144,7 @@ const style = {
   ErrorHoldAlertContainer: {
     marginLeft: "-20px",
     "&::part(base)": {
+      maxWidth: "850px",
       border: "none",
       backgroundColor: "transparent",
     },
@@ -311,7 +314,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
-          description: text.verificationRequiredDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationRequiredDescription",
+              defaultMessage: text.verificationRequiredDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -320,7 +335,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "VERIFICATION:INTERNAL":
         return {
           header: text.verificationRequiredInternalHeader,
-          description: text.verificationRequiredInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationRequiredInternalDescription",
+              defaultMessage: text.verificationRequiredInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -328,7 +355,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "VERIFICATION:REVIEW":
         return {
           header: text.verificationReviewInternalHeader,
-          description: text.verificationReviewInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationReviewInternalDescription",
+              defaultMessage: text.verificationReviewInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -336,7 +375,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "VERIFICATION:FAILED":
         return {
           header: text.verificationFailedInternalHeader,
-          description: text.verificationFailedInternalDescription,
+          description: intl.formatMessage(
+            {
+              id: "verificationFailedInternalDescription",
+              defaultMessage: text.verificationFailedInternalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           alertType: "critical",
           icon: "exclamation-octagon",
           class: sheet.classes.ErrorHoldAlertContainer,
@@ -344,7 +395,19 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "HOLD":
         return {
           header: text.payoutHoldAlertHeader,
-          description: text.payoutHoldAlertDescription,
+          description: intl.formatMessage(
+            {
+              id: "payoutHoldAlertDescription",
+              defaultMessage: text.payoutHoldAlertDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -496,7 +559,22 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.loadingErrorAlertHeader}</strong>
               <br />
-              {text.error.loadingErrorAlertDescription}
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           </div>
         )}
@@ -510,7 +588,22 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
-            {text.error.generalDescription}
+            {intl.formatMessage(
+              {
+                id: "generalDescription",
+                defaultMessage: text.error.generalDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         {getAlert(states.payoutStatus) && (
@@ -672,7 +765,22 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 <span>
                   {states.notRegistered ? (
                     <span class={sheet.classes.NotRegisteredIndirectTaxText}>
-                      {text.notRegisteredForTax}
+                      {intl.formatMessage(
+                        {
+                          id: "notRegisteredForTax",
+                          defaultMessage: text.notRegisteredForTax,
+                        },
+                        {
+                          supportLink: (
+                            <a
+                              target="_blank"
+                              href={`mailto:advocate-support@impact.com`}
+                            >
+                              {text.supportLink}
+                            </a>
+                          ),
+                        }
+                      )}
                     </span>
                   ) : (
                     getIndirectTaxRegisteredIn()

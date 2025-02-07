@@ -42,7 +42,7 @@ export class PayoutStatusAlert {
    * @uiName Verification required alert description
    */
   @Prop() verificationRequiredDescription: string =
-    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.";
+    "It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
   /**
    * @uiName Verification required alert button text
    */
@@ -56,7 +56,7 @@ export class PayoutStatusAlert {
    * @uiName Verification required internal alert description
    */
   @Prop() verificationRequiredInternalDescription: string =
-    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley.";
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Verification review internal alert header
    */
@@ -66,7 +66,7 @@ export class PayoutStatusAlert {
    * @uiName Verification review internal alert description
    */
   @Prop() verificationReviewInternalDescription: string =
-    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.";
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Verification failed internal alert header
    */
@@ -76,7 +76,7 @@ export class PayoutStatusAlert {
    * @uiName Verification failed internal alert description
    */
   @Prop() verificationFailedInternalDescription: string =
-    "Identity verification has failed. Our team is reviewing the report and will contact you with further information.";
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Payout on hold alert header
    */
@@ -86,13 +86,15 @@ export class PayoutStatusAlert {
    * AL: TODO copy not finalized for support section
    */
   @Prop() holdDescription: string =
-    "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our support team.";
-
+    "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our {supportLink}.";
   /**
    * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
   @Prop() cashPayoutsPageUrl: string = "/cash";
-
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
   /**
    * @uiName Error header
    */

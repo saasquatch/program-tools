@@ -291,6 +291,10 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
@@ -661,6 +665,10 @@ export namespace Components {
          */
         "refreshButton": string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -798,6 +806,10 @@ export namespace Components {
           * @uiName Send code button text
          */
         "sendCodeText": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * @uiName Verify email widget header text
          */
@@ -1171,6 +1183,10 @@ export namespace Components {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -1746,6 +1762,10 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -4785,6 +4805,12 @@ export namespace Components {
          */
         "step4_voCodeLabel": string;
         /**
+          * Link text for contacting support team
+          * @uiName Suport link text
+          * @uiGroup General Form Properties
+         */
+        "supportLink": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
@@ -5009,6 +5035,10 @@ export namespace Components {
           * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
@@ -5305,6 +5335,10 @@ export namespace Components {
           * @uiName State field label
          */
         "state": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -6473,6 +6507,10 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
@@ -6843,6 +6881,10 @@ declare namespace LocalJSX {
          */
         "refreshButton"?: string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -6980,6 +7022,10 @@ declare namespace LocalJSX {
           * @uiName Send code button text
          */
         "sendCodeText"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * @uiName Verify email widget header text
          */
@@ -7353,6 +7399,10 @@ declare namespace LocalJSX {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -7922,6 +7972,10 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -10937,6 +10991,12 @@ declare namespace LocalJSX {
          */
         "step4_voCodeLabel"?: string;
         /**
+          * Link text for contacting support team
+          * @uiName Suport link text
+          * @uiGroup General Form Properties
+         */
+        "supportLink"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
@@ -11161,6 +11221,10 @@ declare namespace LocalJSX {
           * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
@@ -11456,6 +11520,10 @@ declare namespace LocalJSX {
           * @uiName State field label
          */
         "state"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description

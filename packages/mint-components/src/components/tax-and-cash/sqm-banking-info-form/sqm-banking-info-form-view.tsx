@@ -91,6 +91,7 @@ export interface BankingInfoFormViewProps {
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -382,7 +383,22 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
-            {text.error.generalDescription}
+            {intl.formatMessage(
+              {
+                id: "generalDescription",
+                defaultMessage: text.error.generalDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         {/* Don't show the warning if returning to edit */}
@@ -396,7 +412,22 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             <strong>{text.isPartnerAlertHeader}</strong>
             <br />
-            {text.isPartnerAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "isPartnerAlertDescription",
+                defaultMessage: text.isPartnerAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         <div>
