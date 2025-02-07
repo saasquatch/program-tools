@@ -1548,7 +1548,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<any>;
+        "demoData"?: DemoData<typeof usePagination>;
         /**
           * @uiName Pagination text
          */
@@ -7500,7 +7500,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<any>;
+        "demoData"?: DemoData<typeof usePagination>;
         /**
           * @uiName Pagination text
          */
