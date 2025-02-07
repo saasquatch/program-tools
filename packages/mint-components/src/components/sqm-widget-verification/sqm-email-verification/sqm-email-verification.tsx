@@ -40,7 +40,7 @@ export class WidgetEmailVerification {
    */
   @Prop()
   sendCodeErrorDescription: string =
-    "Please try again. If this problem continues, contact our program {supportLink} team.";
+    "Please try again. If this problem continues, contact our program {supportLink}.";
   /**
    * @uiName Email input label
    */
