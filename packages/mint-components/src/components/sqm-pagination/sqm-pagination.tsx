@@ -31,7 +31,7 @@ export class Pagination {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<any>; // TODO: types
+  @Prop() demoData?: DemoData<typeof usePagination>;
 
   constructor() {
     withHooks(this);
