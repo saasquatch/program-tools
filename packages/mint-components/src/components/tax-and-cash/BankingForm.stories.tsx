@@ -445,3 +445,24 @@ export const BankingInfoFormWithFixedDayPaymentScheduleLoading = () => {
     ></sqm-banking-info-form>
   );
 };
+
+export const BankingInfoFormVerififyIdentityModal = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          isPartner: true,
+          showVerification: true,
+          formState: {
+            ...bankingFormProps.states.formState,
+            bankCountry: "US",
+            paymentScheduleChecked: "FIXED_DAY",
+          },
+          currency: "USD",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};

@@ -405,6 +405,9 @@ export class BankingInfoForm {
         "&::part(panel)": {
           maxWidth: "420px",
         },
+        "&::part(base)": {
+          position: "absolute",
+        },
         "&::part(close-button)": {
           marginBottom: "var(--sl-spacing-xx-large)",
         },
