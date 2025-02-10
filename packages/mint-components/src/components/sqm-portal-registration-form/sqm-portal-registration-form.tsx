@@ -11,7 +11,7 @@ import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
 
 /**
  * @uiName Microsite Registration
- * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
  */
 @Component({
   tag: "sqm-portal-registration-form",
@@ -212,6 +212,7 @@ export class PortalRegistrationForm {
         </slot>
       ),
       terms: <slot name="terms"></slot>,
+      emailOptIn: <slot name="emailOptIn"></slot>,
       emailLabel: this.emailLabel,
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
