@@ -193,7 +193,6 @@ export function PortalRegistrationFormView(
         )}
         {content.emailOptIn}
         {content.terms}
-
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
