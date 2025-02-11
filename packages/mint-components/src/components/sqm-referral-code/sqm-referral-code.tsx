@@ -43,7 +43,7 @@ export class ReferralCode {
   })
   showNotificationText: boolean = false;
   /**
-   * Shown underneath the referral code when the user has already copied the code
+   * Shown underneath single-use promo codes when the user has already copied the code
    *
    * @uiName Notification text
    */

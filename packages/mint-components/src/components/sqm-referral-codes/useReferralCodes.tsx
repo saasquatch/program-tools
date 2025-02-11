@@ -93,6 +93,7 @@ export type ReferralCodeContext = {
   isUsed: boolean;
   isCopied: boolean;
   shareLink: string;
+  singleUse: boolean;
   email: {
     messageLink: string;
   };
@@ -165,6 +166,7 @@ export function useReferralCodes(props: ReferralCodes) {
         shareLink: "",
         isCopied: false,
         isUsed: false,
+        singleUse: false,
         email: {
           messageLink: "",
         },
@@ -184,6 +186,7 @@ export function useReferralCodes(props: ReferralCodes) {
         referralCode: data.code,
         isCopied: !!data.dateCopied,
         isUsed: !!data.dateUsed,
+        singleUse: !!data.singleUse,
         shareLink: data.shareLinkCodes?.data?.[0]?.direct,
         email: {
           messageLink: data.shareLinkCodes?.data?.[0]?.email,

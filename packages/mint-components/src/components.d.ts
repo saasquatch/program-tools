@@ -2610,7 +2610,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Shown underneath the referral code when the user has already copied the code
+          * Shown underneath single-use promo codes when the user has already copied the code
           * @uiName Notification text
          */
         "notificationText": string;
@@ -8562,7 +8562,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CopyTextViewProps>;
         /**
-          * Shown underneath the referral code when the user has already copied the code
+          * Shown underneath single-use promo codes when the user has already copied the code
           * @uiName Notification text
          */
         "notificationText"?: string;

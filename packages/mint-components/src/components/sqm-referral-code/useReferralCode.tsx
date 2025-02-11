@@ -14,13 +14,7 @@ import {
   REFERRAL_CODES_NAMESPACE,
   SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
-
-interface ReferralCodeProps {
-  programId?: string;
-  tooltiptext: string;
-  tooltiplifespan: number;
-  codeOverride?: string;
-}
+import { ReferralCode } from "./sqm-referral-code";
 
 const MessageLinkQuery = gql`
   query getReferralCode($programId: ID) {
@@ -38,7 +32,7 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
+export function useReferralCode(props: ReferralCode): CopyTextViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -92,5 +86,7 @@ export function useReferralCode(props: ReferralCodeProps): CopyTextViewProps {
     open,
     copyString: copyString,
     isCopied: contextData?.isCopied,
+    showNotificationText:
+      props.showNotificationText && !!contextData?.singleUse,
   };
 }
