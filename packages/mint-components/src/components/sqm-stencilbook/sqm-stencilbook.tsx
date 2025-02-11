@@ -26,6 +26,7 @@ import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
+import * as NewPortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgotPassword.stories";
 import * as PortalEmailVerification from "../sqm-portal-email-verification/PortalEmailVerification.stories";
 import * as PortalResetPassword from "../sqm-portal-reset-password/PortalResetPassword.stories";
@@ -174,6 +175,7 @@ const stories = [
   TaxFormSlots,
   PayoutDetailsCard,
   BankingInfoForm,
+  NewPortalRegistrationForm,
 ];
 
 /**
