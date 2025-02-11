@@ -222,6 +222,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     saveDisabled: false,
     thresholds: [],
     loadingError: false,
+    email: "test@example.com",
     formState: {
       paymentMethodChecked: "toBankAccount",
     },

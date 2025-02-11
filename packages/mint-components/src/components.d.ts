@@ -316,6 +316,15 @@ export namespace Components {
          */
         "toPayPalAccount": string;
         /**
+          * @uiName Verify code widget header text
+         */
+        "verifyEmailDescriptionText": string;
+        /**
+          * Text for verify email dialog
+          * @uiName Verify email header
+         */
+        "verifyEmailHeaderText": string;
+        /**
           * @uiName VO code field label
          */
         "voCodeLabel": string;
@@ -6531,6 +6540,15 @@ declare namespace LocalJSX {
           * @uiName PayPal payout option
          */
         "toPayPalAccount"?: string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyEmailDescriptionText"?: string;
+        /**
+          * Text for verify email dialog
+          * @uiName Verify email header
+         */
+        "verifyEmailHeaderText"?: string;
         /**
           * @uiName VO code field label
          */

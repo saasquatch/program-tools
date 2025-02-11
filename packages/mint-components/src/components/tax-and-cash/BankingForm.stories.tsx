@@ -23,6 +23,7 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     thresholds: [],
     currency: "USD",
     loadingError: false,
+    email: "test@example.com",
   },
 
   callbacks: {

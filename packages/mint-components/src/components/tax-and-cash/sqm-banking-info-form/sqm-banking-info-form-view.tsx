@@ -45,6 +45,7 @@ export interface BankingInfoFormViewProps {
     showInputs?: boolean;
     bankCountry?: string;
     countrySearch?: string;
+    email?: string;
   };
   slots?: {
     verificationDialogSlot?: VNode;
@@ -92,6 +93,8 @@ export interface BankingInfoFormViewProps {
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
     supportLink: string;
+    verifyEmailHeaderText: string;
+    verifyEmailDescriptionText: string;
     error: {
       generalTitle: string;
       generalDescription: string;

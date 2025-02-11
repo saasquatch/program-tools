@@ -267,7 +267,16 @@ export class BankingInfoForm {
    */
   @Prop() isPartnerAlertDescription: string =
     "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
-
+  /**
+   * Text for verify email dialog
+   * @uiName Verify email header
+   */
+  @Prop() verifyEmailHeaderText: string = "Verify your email";
+  /**
+   * @uiName Verify code widget header text
+   */
+  @Prop() verifyEmailDescriptionText: string =
+    "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -402,17 +411,22 @@ export class BankingInfoForm {
 
     const style = {
       Dialog: {
+        position: "relative",
         "&::part(panel)": {
           maxWidth: "420px",
+        },
+        "&::part(title)": {
+          padding:
+            "var(--sl-spacing-large) var(--sl-spacing-large) 0 var(--sl-spacing-large)",
         },
         "&::part(base)": {
           position: "absolute",
         },
         "&::part(close-button)": {
-          marginBottom: "var(--sl-spacing-xx-large)",
+          marginBottom: "var(--sl-spacing-large)",
         },
         "&::part(body)": {
-          padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+          padding: "0 var(--sl-spacing-large) 0 var(--sl-spacing-large)",
           fontSize: "var(--sl-font-size-small)",
         },
         "&::part(footer)": {
@@ -429,17 +443,31 @@ export class BankingInfoForm {
       },
     };
     const sheet = createStyleSheet(style);
+    const styleString = sheet.toString();
+    const verifyDescription = intl.formatMessage(
+      {
+        id: "codeResentSuccessfully",
+        defaultMessage: props.text.verifyEmailDescriptionText,
+      },
+      {
+        email: props.states.email,
+      }
+    );
 
     return (
       <Host>
         {/* Force it to de-render every time to avoid state issues with inputs */}
+        <style type="text/css">{styleString}</style>
         {props.states.isPartner && props.states.showVerification ? (
           <sl-dialog
             class={sheet.classes.Dialog}
             open={true}
             onSl-hide={props.callbacks.onVerificationHide}
+            label={props.text.verifyEmailHeaderText}
           >
             <sqm-code-verification
+              verifyCodeHeaderText={verifyDescription}
+              reverifyCodeHeaderText={verifyDescription}
               onVerification={props.callbacks.onVerification}
             ></sqm-code-verification>
           </sl-dialog>

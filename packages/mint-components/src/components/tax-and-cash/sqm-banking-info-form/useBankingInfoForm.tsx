@@ -58,6 +58,7 @@ export type BankingInfoFormData = {
   paymentThreshold?: string;
   paymentSchedulingType?: "FIXED_DAY" | "BALANCE_THRESHOLD";
   paymentDay?: string;
+  email?: string;
 
   // Fields that aren't...
   beneficiaryAccountName?: string;
@@ -532,6 +533,7 @@ export function useBankingInfoForm(
       hasPayPal,
       bankCountry: formState.bankCountry,
       countrySearch,
+      email: userData.user.email,
     },
     refs: {
       formRef,
