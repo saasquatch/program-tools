@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "./usePayoutStatus";
 import { intl } from "../../../global/global";

@@ -533,7 +533,7 @@ export function useBankingInfoForm(
       hasPayPal,
       bankCountry: formState.bankCountry,
       countrySearch,
-      email: userData.user.email,
+      email: userData?.user?.email,
     },
     refs: {
       formRef,
