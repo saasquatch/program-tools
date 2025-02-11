@@ -39,6 +39,8 @@ export function PaginationView(props: PaginationViewProps) {
   const { onNext, onPrev } = callbacks;
   const { currentPage, totalPages, loading } = states;
 
+  if (totalPages === 1) return <Fragment></Fragment>;
+
   return (
     <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
