@@ -6,6 +6,8 @@ import {
 import { intl } from "../../global/global";
 import { Pagination } from "./sqm-pagination";
 
+export type UsePagination = typeof usePagination;
+
 export function usePagination(props: Pagination) {
   const context = useParentValue<PaginationContext>(
     REFERRAL_CODES_PAGINATION_CONTEXT

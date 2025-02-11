@@ -1,13 +1,13 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { intl } from "../../global/global";
 import { getProps } from "../../utils/utils";
 import { PaginationView } from "./sqm-pagination-view";
-import { usePagination } from "./usePagination";
-import deepmerge from "deepmerge";
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { DemoData } from "../../global/demo";
-import { useState } from "@saasquatch/universal-hooks";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { intl } from "../../global/global";
+import { UsePagination, usePagination } from "./usePagination";
 
 /**
  * @uiName Pagination
@@ -31,7 +31,7 @@ export class Pagination {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<typeof usePagination>;
+  @Prop() demoData?: DemoData<UsePagination>;
 
   constructor() {
     withHooks(this);
