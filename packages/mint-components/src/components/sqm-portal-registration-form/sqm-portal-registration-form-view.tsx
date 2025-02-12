@@ -166,7 +166,6 @@ export function PortalRegistrationFormView(
             hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
-        {content.passwordField}
         {!states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label, base: input-base"
