@@ -1,6 +1,5 @@
-import { h, VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
-import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PayoutButtonScrollViewProps {
   states: {
@@ -16,7 +15,7 @@ export interface PayoutButtonScrollViewProps {
 const style = {
   Wrapper: {
     maxWidth: "200px",
-    border: "1px solid black",
+    marginLeft: "auto",
   },
   PayoutButtonDescription: {
     color: "var(--sl-color-neutral-500)",
@@ -33,7 +32,7 @@ export function PayoutButtonScrollView(props: PayoutButtonScrollViewProps) {
 
   if (!states.payoutSettingsComplete) return <div></div>;
   return (
-    <div part="sqm-base" class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
       <sqm-scroll
         scroll-tag-name="sqm-tabs"
