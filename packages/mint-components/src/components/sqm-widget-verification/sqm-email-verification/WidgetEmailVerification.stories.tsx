@@ -17,14 +17,25 @@ export const Default = () => (
 );
 
 export const EmailIsPrefilled = () => (
-  <sqm-email-verification
-    demoData={{
-      states: {
-        ...defaultProps,
-        email: "test@example.com",
-      },
-    }}
-  ></sqm-email-verification>
+  <div>
+    <sqm-text>
+      <h4>Verify your email</h4>
+    </sqm-text>
+    <sqm-text>
+      <sub>
+        To get your cash paid out directly to your bank account, please complete
+        your account setup
+      </sub>
+    </sqm-text>
+    <sqm-email-verification
+      demoData={{
+        states: {
+          ...defaultProps,
+          email: "test@example.com",
+        },
+      }}
+    ></sqm-email-verification>
+  </div>
 );
 
 export const Loading = () => (
