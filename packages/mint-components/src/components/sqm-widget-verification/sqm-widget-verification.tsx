@@ -1,56 +1,87 @@
-import { useParentState } from "@saasquatch/component-boilerplate";
-import { useHost, withHooks } from "@saasquatch/stencil-hooks";
-import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
-import { Component, h, Host, Prop } from "@stencil/core";
-import debugFn from "debug";
-import { VERIFICATION_EVENT_KEY, VERIFICATION_PARENT_NAMESPACE } from "./keys";
+import {
+  isDemo,
+  useLazyQuery,
+  useParentState,
+  useSetParent,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Prop } from "@stencil/core";
+import {
+  SHOW_CODE_NAMESPACE,
+  VERIFICATION_EMAIL_NAMESPACE,
+  VERIFICATION_PARENT_NAMESPACE,
+} from "./keys";
 import { getProps } from "../../utils/utils";
-const debug = debugFn("sq:widget-verification");
+import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
+import { gql } from "graphql-request";
+import { useEffect } from "@saasquatch/universal-hooks";
 
-function useTemplateChildren({ parent, callback }) {
-  const parentObserver = new MutationObserver(listenForTemplateChanges);
-  const childTemplateObserver = new MutationObserver(callback);
-
-  parentObserver.observe(parent, {
-    childList: true,
-    // We only care about immediate children templates
-    subtree: false,
-  });
-  listenForTemplateChanges({ addedNodes: parent.querySelectorAll("template") });
-
-  function listenForTemplateChanges(mutationList) {
-    // Be smart, only look at the mutation list
-    mutationList.addedNodes?.forEach((t) => {
-      childTemplateObserver.observe(t.content, {
-        childList: true,
-        attributes: true,
-        // Look deep into the templates for re-rendering
-        subtree: true,
-      });
-    });
+const USER_LOOKUP = gql`
+  query checkUserVerification {
+    viewer {
+      ... on User {
+        id
+        accountId
+        email
+        emailVerified
+        managedIdentity {
+          email
+          emailVerified
+        }
+      }
+    }
   }
+`;
 
-  return () => {
-    parentObserver.disconnect();
-    childTemplateObserver.disconnect();
+function useWidgetVerificationInternal() {
+  const userIdentity = useUserIdentity();
+  const [showCode, setShowCode] = useParentState<boolean>({
+    namespace: SHOW_CODE_NAMESPACE,
+    initialValue: false,
+  });
+  const [email, setEmail] = useParentState<string | undefined>({
+    namespace: VERIFICATION_EMAIL_NAMESPACE,
+    initialValue: userIdentity?.email,
+  });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+  const [loading, setLoading] = useState(true);
+  const [fetch] = useLazyQuery(USER_LOOKUP);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await fetch({});
+        if (!res || res instanceof Error) throw new Error();
+
+        if (res?.viewer?.emailVerified) setContext(true);
+        else if (res?.viewer?.managedIdentity?.emailVerified) setContext(true);
+      } catch (e) {
+        console.error("Could not fetch user information:", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, []);
+
+  const onVerification = () => {
+    setContext(true);
   };
+
+  return { showCode, onVerification, loading };
 }
 
-/**
- * @uiName Widget Verification Gate
- * @slots [{"name":"not-verified","title":"Not verified template"},{"name":"verified","title":"Verified template"}]
- * @canvasRenderer always-replace
- * @exampleGroup Widget Verification
- * @example Widget Verification Gate - <sqm-widget-verification><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification>
- */
 @Component({
   tag: "sqm-widget-verification",
+  shadow: true,
 })
 export class WidgetVerification {
   // ! Any updated must be reflected in sqm-widget-verification-internal AND sqm-email-verification AND sqm-code-verification
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                EMAIL STEP PROPS
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+                  EMAIL STEP PROPS
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * @uiName Verify email widget header text
    * @uiGroup Email Verification Step
@@ -92,8 +123,8 @@ export class WidgetVerification {
   emailStep_emailValidationErrorText: string = "Please enter a valid email";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                EMAIL STEP PROPS
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+                  EMAIL STEP PROPS
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * @uiName Verify code widget header text
    * @uiGroup Code Verification Step
@@ -146,132 +177,55 @@ export class WidgetVerification {
   @Prop() codeStep_networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                CODE STEP PROPS
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
+  getStepTextProps<T extends string>(prefix: T) {
+    const props = getProps(this);
+    return extractProps(props, prefix);
+  }
+
   render() {
-    const [context, setContext] = useParentState<boolean>({
-      namespace: VERIFICATION_PARENT_NAMESPACE,
-      initialValue: false,
-    });
+    const { showCode, onVerification, loading } = isDemo()
+      ? useDemoWidgetVerificationInternal()
+      : useWidgetVerificationInternal();
 
-    const [container, setContainer] = useState<HTMLDivElement>(undefined);
-    const [slot, setSlot] = useState<HTMLDivElement>(undefined);
+    // TODO: Shoelace spinner is throwing errors
+    if (loading) return <div></div>;
 
-    const updateTemplates = useCallback(() => {
-      const isAuth = context;
-      const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
-      const template = Array.from(templates).find(
-        (t) => t.slot === (isAuth ? "verified" : "not-verified")
+    if (showCode) {
+      return (
+        <sqm-code-verification
+          onVerification={onVerification}
+          {...this.getStepTextProps("codeStep_")}
+        ></sqm-code-verification>
       );
-
-      if (template) {
-        // use outerHTML if template's innerHTML is unset (only happens in Stencilbook)
-        const newContent =
-          template.innerHTML || template.firstElementChild.outerHTML;
-
-        // if template contents are an exact match
-        if (newContent === container.innerHTML) {
-          debug("don't rerender");
-        } else if (template) {
-          container.innerHTML = newContent;
-        }
-      }
-
-      const plopTargets = Array.from(slot.children).filter(
-        (el) => el.tagName === "RAISINS-PLOP-TARGET"
-      );
-
-      // if editing in raisins
-      if (plopTargets.length) {
-        const loggedInPlopTargets = plopTargets.filter(
-          (el) => el.slot === "verified"
-        );
-
-        const loggedOutPlopTargets = plopTargets.filter(
-          (el) => el.slot === "not-verified"
-        );
-
-        loggedOutPlopTargets.forEach((target: HTMLElement, i) => {
-          if (isAuth) {
-            target.style.display = "none";
-            return;
-          }
-          // Place last plop target at the bottom of the parent
-          if (i === loggedOutPlopTargets.length - 1) {
-            target.style.bottom = "0px";
-            target.style.left = "0px";
-            target.style.right = "0px";
-            target.style.position = "absolute";
-          }
-
-          target.style.height = "25px";
-        });
-
-        loggedInPlopTargets.forEach((target: HTMLElement, i) => {
-          if (!isAuth) {
-            target.style.display = "none";
-            return;
-          }
-          // Place last plop target at the bottom of the parent
-          if (i === loggedInPlopTargets.length - 1) {
-            target.style.bottom = "0px";
-            target.style.left = "0px";
-            target.style.right = "0px";
-            target.style.position = "absolute";
-          }
-
-          target.style.height = "25px";
-        });
-      }
-    }, [container, slot, context]);
-
-    useEffect(() => {
-      if (!container || !slot) {
-        debug("DOM not ready:");
-        return;
-      }
-
-      // Run on first render
-      updateTemplates();
-
-      return useTemplateChildren({ parent: slot, callback: updateTemplates });
-    }, [slot, container, context]);
-
-    // useEffect(() => {
-    //   const host = useHost();
-    //   const callback = (e: CustomEvent) => {
-    //     e.stopPropagation();
-    //     setContext({ token: e.detail.token });
-    //   };
-    //   host.addEventListener(VERIFICATION_EVENT_KEY, callback);
-
-    //   return () => {
-    //     host.removeEventListener(VERIFICATION_EVENT_KEY, callback);
-    //   };
-    // }, []);
+    }
 
     return (
-      <Host>
-        <div ref={setSlot} style={{ display: "contents" }}>
-          <template slot="not-verified">
-            <sqm-widget-verification-internal
-              {...getProps(this)}
-            ></sqm-widget-verification-internal>
-          </template>
-          <slot name="not-verified"></slot>
-          <slot name="verified" />
-        </div>
-        <div ref={setContainer}>
-          <slot name="shown"></slot>
-        </div>
-      </Host>
+      <sqm-email-verification
+        {...this.getStepTextProps("emailStep_")}
+      ></sqm-email-verification>
     );
   }
+}
+
+function useDemoWidgetVerificationInternal() {
+  const [showCode, setShowCode] = useParentState<boolean>({
+    namespace: SHOW_CODE_NAMESPACE,
+    initialValue: false,
+  });
+  const [email, setEmail] = useParentState<string | undefined>({
+    namespace: VERIFICATION_EMAIL_NAMESPACE,
+    initialValue: undefined,
+  });
+  const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+
+  const onVerification = () => {
+    setContext(true);
+  };
+
+  return { showCode, onVerification, loading: false };
 }

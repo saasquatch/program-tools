@@ -5458,21 +5458,7 @@ export namespace Components {
          */
         "emailStep_verifyEmailHeaderText": string;
     }
-    interface SqmWidgetVerificationInternal {
-        "codeStep_codeResentSuccessfullyText": string;
-        "codeStep_invalidCodeText": string;
-        "codeStep_networkErrorMessage": string;
-        "codeStep_resendCodeLabel": string;
-        "codeStep_resendCodeText": string;
-        "codeStep_reverifyCodeHeaderText": string;
-        "codeStep_verifyCodeHeaderText": string;
-        "codeStep_verifyText": string;
-        "emailStep_emailLabel": string;
-        "emailStep_emailValidationErrorText": string;
-        "emailStep_sendCodeErrorDescription": string;
-        "emailStep_sendCodeErrorHeader": string;
-        "emailStep_sendCodeText": string;
-        "emailStep_verifyEmailHeaderText": string;
+    interface SqmWidgetVerificationController {
     }
 }
 declare global {
@@ -6154,11 +6140,11 @@ declare global {
         prototype: HTMLSqmWidgetVerificationElement;
         new (): HTMLSqmWidgetVerificationElement;
     };
-    interface HTMLSqmWidgetVerificationInternalElement extends Components.SqmWidgetVerificationInternal, HTMLStencilElement {
+    interface HTMLSqmWidgetVerificationControllerElement extends Components.SqmWidgetVerificationController, HTMLStencilElement {
     }
-    var HTMLSqmWidgetVerificationInternalElement: {
-        prototype: HTMLSqmWidgetVerificationInternalElement;
-        new (): HTMLSqmWidgetVerificationInternalElement;
+    var HTMLSqmWidgetVerificationControllerElement: {
+        prototype: HTMLSqmWidgetVerificationControllerElement;
+        new (): HTMLSqmWidgetVerificationControllerElement;
     };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
@@ -6274,7 +6260,7 @@ declare global {
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
         "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
-        "sqm-widget-verification-internal": HTMLSqmWidgetVerificationInternalElement;
+        "sqm-widget-verification-controller": HTMLSqmWidgetVerificationControllerElement;
     }
 }
 declare namespace LocalJSX {
@@ -11652,21 +11638,7 @@ declare namespace LocalJSX {
          */
         "emailStep_verifyEmailHeaderText"?: string;
     }
-    interface SqmWidgetVerificationInternal {
-        "codeStep_codeResentSuccessfullyText"?: string;
-        "codeStep_invalidCodeText"?: string;
-        "codeStep_networkErrorMessage"?: string;
-        "codeStep_resendCodeLabel"?: string;
-        "codeStep_resendCodeText"?: string;
-        "codeStep_reverifyCodeHeaderText"?: string;
-        "codeStep_verifyCodeHeaderText"?: string;
-        "codeStep_verifyText"?: string;
-        "emailStep_emailLabel"?: string;
-        "emailStep_emailValidationErrorText"?: string;
-        "emailStep_sendCodeErrorDescription"?: string;
-        "emailStep_sendCodeErrorHeader"?: string;
-        "emailStep_sendCodeText"?: string;
-        "emailStep_verifyEmailHeaderText"?: string;
+    interface SqmWidgetVerificationController {
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
@@ -11782,7 +11754,7 @@ declare namespace LocalJSX {
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
         "sqm-widget-verification": SqmWidgetVerification;
-        "sqm-widget-verification-internal": SqmWidgetVerificationInternal;
+        "sqm-widget-verification-controller": SqmWidgetVerificationController;
     }
 }
 export { LocalJSX as JSX };
@@ -11902,7 +11874,7 @@ declare module "@stencil/core" {
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
             "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
-            "sqm-widget-verification-internal": LocalJSX.SqmWidgetVerificationInternal & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationInternalElement>;
+            "sqm-widget-verification-controller": LocalJSX.SqmWidgetVerificationController & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationControllerElement>;
         }
     }
 }

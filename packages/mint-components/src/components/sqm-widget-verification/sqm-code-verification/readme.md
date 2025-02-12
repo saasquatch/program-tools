@@ -27,7 +27,7 @@
 
  - [sqm-banking-info-form](../../tax-and-cash/sqm-banking-info-form)
  - [sqm-stencilbook](../../sqm-stencilbook)
- - [sqm-widget-verification-internal](..)
+ - [sqm-widget-verification](..)
 
 ### Depends on
 
@@ -39,7 +39,7 @@ graph TD;
   sqm-code-verification --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification
   sqm-stencilbook --> sqm-code-verification
-  sqm-widget-verification-internal --> sqm-code-verification
+  sqm-widget-verification --> sqm-code-verification
   style sqm-code-verification fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
