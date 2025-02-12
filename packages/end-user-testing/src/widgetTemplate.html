@@ -66,20 +66,14 @@
               </sqm-portal-container>
             </sqm-portal-container> </sqm-referral-card><sqm-tabs slot placement="top">
             <sqm-tab header="Cash Payout and Tax Settings">
-              <sqm-widget-verification-controller>
-                <template slot="not-verified">
-                  <sqm-text>
-                    <h4>Verify your email</h4>
-                  </sqm-text>
-                  <sqm-text>
-                    <sub>To get your cash paid out directly to your bank account, please complete your account setup</sub>
-                  </sqm-text>
-                  <sqm-widget-verification></sqm-widget-verification>
-                </template>
-                <template slot="verified">
-                  <sqm-tax-and-cash></sqm-tax-and-cash>
-                </template>
-              </sqm-widget-verification-controller>
+            <sqm-widget-verification-controller>
+              <template slot="not-verified">
+                <sqm-widget-verification></sqm-widget-verification>
+              </template>
+              <template slot="verified">
+                <sqm-tax-and-cash></sqm-tax-and-cash>
+              </template>
+            </sqm-widget-verification-controller>
             </sqm-tab>
             <sqm-tab header="Referral History"><sqm-referral-table per-page="4" hidden-columns="2" more-label="Next"
                 prev-label="Prev" sm-breakpoint="599" md-breakpoint="799">

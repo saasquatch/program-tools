@@ -5,7 +5,7 @@
     "declaration": false,
     "experimentalDecorators": true,
     "strict":false,
-    // AL: TODO skip checking for installed libraries because puppeteer keeps bugging out
+    // Skipped checking the installed libraries for now because puppeteer keeps bugging out
     "skipLibCheck": true,
     "lib": [
       "dom",

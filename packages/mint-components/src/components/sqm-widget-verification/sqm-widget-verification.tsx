@@ -87,6 +87,11 @@ export class WidgetVerification {
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                   EMAIL STEP PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  @Prop()
+  general_verifyEmailHeader = "Verify your email";
+  @Prop()
+  general_verifyEmailDescription =
+    "To get your cash paid out directly to your bank account, please complete your account setup";
   /**
    * @uiName Verify email widget header text
    * @uiGroup Email Verification Step
@@ -200,19 +205,33 @@ export class WidgetVerification {
     // TODO: Shoelace spinner is throwing errors
     if (loading) return <div></div>;
 
-    if (showCode) {
-      return (
-        <sqm-code-verification
-          onVerification={onVerification}
-          {...this.getStepTextProps("codeStep_")}
-        ></sqm-code-verification>
-      );
-    }
+    const generalText = this.getStepTextProps("general_");
 
     return (
-      <sqm-email-verification
-        {...this.getStepTextProps("emailStep_")}
-      ></sqm-email-verification>
+      <div>
+        <h3 style={{ fontSize: "24px", margin: "0" }}>
+          {generalText.verifyEmailHeader}
+        </h3>
+        <p
+          style={{
+            color: "var(--sl-color-neutral-500)",
+            fontSize: "var(--sl-font-size-medium)",
+            margin: "0",
+          }}
+        >
+          {generalText.verifyEmailDescription}
+        </p>
+        {showCode ? (
+          <sqm-code-verification
+            onVerification={onVerification}
+            {...this.getStepTextProps("codeStep_")}
+          ></sqm-code-verification>
+        ) : (
+          <sqm-email-verification
+            {...this.getStepTextProps("emailStep_")}
+          ></sqm-email-verification>
+        )}
+      </div>
     );
   }
 }

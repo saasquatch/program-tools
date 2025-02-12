@@ -5457,6 +5457,8 @@ export namespace Components {
           * @uiGroup Email Verification Step
          */
         "emailStep_verifyEmailHeaderText": string;
+        "general_verifyEmailDescription": string;
+        "general_verifyEmailHeader": string;
     }
     interface SqmWidgetVerificationController {
     }
@@ -11637,6 +11639,8 @@ declare namespace LocalJSX {
           * @uiGroup Email Verification Step
          */
         "emailStep_verifyEmailHeaderText"?: string;
+        "general_verifyEmailDescription"?: string;
+        "general_verifyEmailHeader"?: string;
     }
     interface SqmWidgetVerificationController {
     }
