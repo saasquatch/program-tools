@@ -8,19 +8,19 @@ import { getMissingProps, getProps } from "../../utils/utils";
 import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
-} from "./sqm-checkbox-field-view";
-import { useCheckboxField } from "./useCheckboxField";
+} from "../sqm-checkbox-field/sqm-checkbox-field-view";
+import { useCheckboxField } from "../sqm-checkbox-field/useCheckboxField";
 
 /**
  * @uiName Form Checkbox Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
  * @exampleGroup Microsite Components
- * @example Form Checkbox Field - <sqm-checkbox-field checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+ * @example Form Checkbox Field - <sqm-marketing-emails-checkbox checkbox-label="I would like to receive marketing and promotional emails for this referral program" required="false" name="marketing-emails" ></sqm-marketing-emails-checkbox>
  */
 @Component({
-  tag: "sqm-checkbox-field",
+  tag: "sqm-marketing-emails-checkbox",
 })
-export class CheckboxField {
+export class MarketingEmailsCheckbox {
   @State()
   ignored = true;
 
@@ -29,35 +29,19 @@ export class CheckboxField {
    * @uiName Checkbox name attribute
    * @required
    */
-  @Prop() checkboxName: string;
+  @Prop() checkboxName: string = "marketing-emails";
 
   /**
    * @uiName Checkbox label
    * @uiWidget textArea
    */
-  @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
+  @Prop() checkboxLabel: string =
+    "I would like to receive marketing and promotional emails for this referral program";
 
   /**
-   * Used with link text if the checkbox label contains {labelLink}
-   *
-   * @uiName Checkbox label link
+   * @uiName Required
    */
-  @Prop() checkboxLabelLink?: string = "https://example.com";
-
-  /**
-   * @uiName Checkbox label link lext
-   */
-  @Prop() checkboxLabelLinkText?: string = "Terms and Conditions";
-
-  /**
-   * @uiName Unchecked error message
-   */
-  @Prop() errorMessage?: string = "Must be checked";
-
-  /**
-   * @uiName Optional
-   */
-  @Prop() checkboxOptional?: boolean = false;
+  @Prop() checkboxRequired?: boolean = false;
 
   /**
    * @undocumented
@@ -72,26 +56,6 @@ export class CheckboxField {
   disconnectedCallback() {}
 
   render() {
-    const missingProps = getMissingProps([
-      {
-        attribute: "checkbox-name",
-        value: this.checkboxName,
-      },
-    ]);
-
-    if (!isDemo() && missingProps) {
-      return (
-        <RequiredPropsError
-          missingProps={missingProps}
-          heading={"An error occured while loading this form"}
-          subheading={
-            "A technical problem prevented this checkbox field from loading. Please contact us with the link to this page."
-          }
-          description={"Values for the following attributes are missing:"}
-        />
-      );
-    }
-
     const content = {
       ...getProps(this),
     };
@@ -109,7 +73,7 @@ export class CheckboxField {
   }
 }
 function useCheckboxFieldDemo(
-  props: CheckboxField
+  props: MarketingEmailsCheckbox
 ): Partial<CheckboxFieldViewProps> {
   return deepmerge(
     {

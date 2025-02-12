@@ -15,7 +15,7 @@ export interface CheckboxFieldViewProps {
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
     checkboxOptional?: boolean;
-    errorMessage: string;
+    errorMessage?: string;
   };
   callbacks: {
     setChecked: Function;

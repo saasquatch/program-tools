@@ -49,6 +49,7 @@ import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
 import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
+import * as MarketingEmailsCheckbox from "../sqm-marketing-emails-checkbox/MarketingEmailsCheckbox.stories";
 import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
 import * as DropdownField from "../sqm-dropdown-field/DropdownField.stories";
 import * as UseDropdownField from "../sqm-dropdown-field/UseDropdownField.stories";
@@ -142,6 +143,7 @@ const stories = [
   ReferralIframe,
   NameFields,
   CheckboxField,
+  MarketingEmailsCheckbox,
   DropdownField,
   InputField,
   RewardExchangeList,
