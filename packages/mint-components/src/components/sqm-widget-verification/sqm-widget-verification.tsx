@@ -85,13 +85,24 @@ function useWidgetVerificationInternal() {
 export class WidgetVerification {
   // ! Any updated must be reflected in sqm-widget-verification-internal AND sqm-email-verification AND sqm-code-verification
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                  EMAIL STEP PROPS
+                  GENERAL PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  /**
+   * @uiName General verify widget header text
+   * @uiGroup General Text
+   */
   @Prop()
   general_verifyEmailHeader = "Verify your email";
+  /**
+   * @uiName General verify widget description text
+   * @uiGroup General Text
+   */
   @Prop()
   general_verifyEmailDescription =
     "To get your cash paid out directly to your bank account, please complete your account setup";
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  EMAIL STEP PROPS
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * @uiName Verify email widget header text
    * @uiGroup Email Verification Step
