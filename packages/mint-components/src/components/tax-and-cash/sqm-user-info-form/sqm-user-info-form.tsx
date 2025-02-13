@@ -128,7 +128,8 @@ export class TaxForm {
    * The link that appears in the terms and conditions checkbox
    * @uiName Terms and conditions link
    */
-  @Prop() termsAndConditionsLink: string = "/payout-terms-and-conditions";
+  @Prop() termsAndConditionsLink: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text

@@ -118,7 +118,8 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions link
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_termsAndConditionsLink: string = "/payout-terms-and-conditions";
+  @Prop() step1_termsAndConditionsLink: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
   /**
    * Placeholder text displayed in the currency search dropdown
    * @uiName Currency field placeholder text
