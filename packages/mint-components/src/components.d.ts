@@ -1752,7 +1752,7 @@ export namespace Components {
          */
         "errorHeader": string;
         /**
-          * @uiName Payout on hold alert description AL: TODO copy not finalized for support section
+          * @uiName Payout on hold alert description
          */
         "holdDescription": string;
         /**
@@ -7967,7 +7967,7 @@ declare namespace LocalJSX {
          */
         "errorHeader"?: string;
         /**
-          * @uiName Payout on hold alert description AL: TODO copy not finalized for support section
+          * @uiName Payout on hold alert description
          */
         "holdDescription"?: string;
         /**

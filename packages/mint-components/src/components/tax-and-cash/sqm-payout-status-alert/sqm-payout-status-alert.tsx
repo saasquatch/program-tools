@@ -83,7 +83,6 @@ export class PayoutStatusAlert {
   @Prop() holdHeader: string = "Your payouts and account are on hold";
   /**
    * @uiName Payout on hold alert description
-   * AL: TODO copy not finalized for support section
    */
   @Prop() holdDescription: string =
     "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our {supportLink}.";
