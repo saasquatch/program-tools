@@ -383,11 +383,11 @@ export namespace Components {
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
          */
-        "checkboxLabelLink": string;
+        "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
          */
-        "checkboxLabelLinkText": string;
+        "checkboxLabelLinkText"?: string;
         /**
           * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox name attribute
@@ -406,7 +406,7 @@ export namespace Components {
         /**
           * @uiName Unchecked error message
          */
-        "errorMessage": string;
+        "errorMessage"?: string;
     }
     interface SqmCloseButton {
         /**
@@ -1487,6 +1487,28 @@ export namespace Components {
           * @uiName User identification text
          */
         "userIdentificationText": string;
+    }
+    interface SqmMarketingEmailsCheckbox {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName": string;
+        /**
+          * @uiName Required
+         */
+        "checkboxRequired"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
     interface SqmNameFields {
         /**
@@ -5351,6 +5373,12 @@ declare global {
         prototype: HTMLSqmLogoutCurrentUserElement;
         new (): HTMLSqmLogoutCurrentUserElement;
     };
+    interface HTMLSqmMarketingEmailsCheckboxElement extends Components.SqmMarketingEmailsCheckbox, HTMLStencilElement {
+    }
+    var HTMLSqmMarketingEmailsCheckboxElement: {
+        prototype: HTMLSqmMarketingEmailsCheckboxElement;
+        new (): HTMLSqmMarketingEmailsCheckboxElement;
+    };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
     var HTMLSqmNameFieldsElement: {
@@ -5820,6 +5848,7 @@ declare global {
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
         "sqm-logout-current-user": HTMLSqmLogoutCurrentUserElement;
+        "sqm-marketing-emails-checkbox": HTMLSqmMarketingEmailsCheckboxElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
@@ -7327,6 +7356,28 @@ declare namespace LocalJSX {
           * @uiName User identification text
          */
         "userIdentificationText"?: string;
+    }
+    interface SqmMarketingEmailsCheckbox {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName"?: string;
+        /**
+          * @uiName Required
+         */
+        "checkboxRequired"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
     interface SqmNameFields {
         /**
@@ -10985,6 +11036,7 @@ declare namespace LocalJSX {
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
         "sqm-logout-current-user": SqmLogoutCurrentUser;
+        "sqm-marketing-emails-checkbox": SqmMarketingEmailsCheckbox;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
@@ -11099,6 +11151,7 @@ declare module "@stencil/core" {
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
             "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
+            "sqm-marketing-emails-checkbox": LocalJSX.SqmMarketingEmailsCheckbox & JSXBase.HTMLAttributes<HTMLSqmMarketingEmailsCheckboxElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;

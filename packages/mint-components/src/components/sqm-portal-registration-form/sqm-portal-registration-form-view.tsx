@@ -27,6 +27,7 @@ export interface PortalRegistrationFormViewProps {
   content: {
     formData?: VNode;
     terms?: VNode;
+    emailOptIn?: VNode;
     passwordField?: VNode;
     secondaryButton?: VNode;
     emailLabel?: string;
@@ -165,7 +166,6 @@ export function PortalRegistrationFormView(
             hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
-        {content.passwordField}
         {!states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label, base: input-base"
@@ -190,6 +190,7 @@ export function PortalRegistrationFormView(
               : [])}
           ></sl-input>
         )}
+        {content.emailOptIn}
         {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
