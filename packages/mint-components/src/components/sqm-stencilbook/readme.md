@@ -11,6 +11,7 @@
 
 - [sqm-share-button](../sqm-share-button)
 - [sqm-empty](../sqm-empty)
+- [sqm-pagination](../sqm-pagination)
 - [sqm-share-link](../sqm-share-link)
 - [sqm-stat-container](../sqm-stat-container)
 - [sqm-big-stat](../sqm-big-stat)
@@ -73,6 +74,7 @@
 - [sqm-referral-card](../sqm-referral-card)
 - [sqm-portal-footer](../sqm-portal-footer)
 - [sqm-titled-section](../sqm-titled-section)
+- [sqm-referral-code](../sqm-referral-code)
 - [sqm-coupon-code](../sqm-coupon-code)
 - [sqm-link-button](../sqm-link-button)
 - [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
@@ -88,12 +90,14 @@
 - [sqm-invoice-table-download-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-data-column](../sqm-invoice-table/columns)
+- [sqm-referral-codes](../sqm-referral-codes)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-empty
+  sqm-stencilbook --> sqm-pagination
   sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-big-stat
@@ -156,6 +160,7 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-portal-footer
   sqm-stencilbook --> sqm-titled-section
+  sqm-stencilbook --> sqm-referral-code
   sqm-stencilbook --> sqm-coupon-code
   sqm-stencilbook --> sqm-link-button
   sqm-stencilbook --> sqm-payout-details-card
@@ -171,6 +176,7 @@ graph TD;
   sqm-stencilbook --> sqm-invoice-table-download-column
   sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-stencilbook --> sqm-invoice-table-data-column
+  sqm-stencilbook --> sqm-referral-codes
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
@@ -220,6 +226,7 @@ graph TD;
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-referral-codes --> sqm-empty
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -26,6 +26,7 @@ import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { UsePagination } from "./components/sqm-pagination/usePagination";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
@@ -37,6 +38,7 @@ import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-po
 import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
@@ -730,7 +732,7 @@ export namespace Components {
           * @format url
           * @uiName Image
          */
-        "emptyStateImage": string;
+        "emptyStateImage"?: string;
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -1542,6 +1544,17 @@ export namespace Components {
          */
         "path": string;
     }
+    interface SqmPagination {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UsePagination>;
+        /**
+          * @uiName Pagination text
+         */
+        "paginationText": string;
+    }
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -1741,7 +1754,6 @@ export namespace Components {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -2578,6 +2590,87 @@ export namespace Components {
           * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment": "start" | "center" | "end";
+    }
+    interface SqmReferralCode {
+        /**
+          * Set the copy button style and placement
+          * @uiName Style
+          * @uiType string
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
+         */
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Shown underneath single-use promo codes when the user has already copied the code
+          * @uiName Notification text
+         */
+        "notificationText": string;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * Boolean used to show notification text below input
+          * @uiName Show notification text
+         */
+        "showNotificationText": boolean;
+        /**
+          * Change the text alignment
+          * @uiName Referral code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "textAlign": "left" | "center" | "right";
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan": number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
+          * @uiName Tooltip text
+         */
+        "tooltiptext": string;
+    }
+    interface SqmReferralCodes {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralCodesViewProps>;
+        /**
+          * @uiName Empty State Description Text
+         */
+        "emptyStateDescriptionText"?: string;
+        /**
+          * @uiName Empty State Header Text
+         */
+        "emptyStateHeaderText"?: string;
+        /**
+          * @uiName Empty State Image URL
+         */
+        "emptyStateImageUrl"?: string;
+        /**
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * @uiName Title Text
+         */
+        "titleText"?: string;
     }
     interface SqmReferralIframe {
         /**
@@ -5375,6 +5468,12 @@ declare global {
         prototype: HTMLSqmNavigationSidebarItemElement;
         new (): HTMLSqmNavigationSidebarItemElement;
     };
+    interface HTMLSqmPaginationElement extends Components.SqmPagination, HTMLStencilElement {
+    }
+    var HTMLSqmPaginationElement: {
+        prototype: HTMLSqmPaginationElement;
+        new (): HTMLSqmPaginationElement;
+    };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
     var HTMLSqmPasswordFieldElement: {
@@ -5500,6 +5599,18 @@ declare global {
     var HTMLSqmReferralCardElement: {
         prototype: HTMLSqmReferralCardElement;
         new (): HTMLSqmReferralCardElement;
+    };
+    interface HTMLSqmReferralCodeElement extends Components.SqmReferralCode, HTMLStencilElement {
+    }
+    var HTMLSqmReferralCodeElement: {
+        prototype: HTMLSqmReferralCodeElement;
+        new (): HTMLSqmReferralCodeElement;
+    };
+    interface HTMLSqmReferralCodesElement extends Components.SqmReferralCodes, HTMLStencilElement {
+    }
+    var HTMLSqmReferralCodesElement: {
+        prototype: HTMLSqmReferralCodesElement;
+        new (): HTMLSqmReferralCodesElement;
     };
     interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
     }
@@ -5824,6 +5935,7 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
+        "sqm-pagination": HTMLSqmPaginationElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
@@ -5845,6 +5957,8 @@ declare global {
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
+        "sqm-referral-code": HTMLSqmReferralCodeElement;
+        "sqm-referral-codes": HTMLSqmReferralCodesElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
@@ -7382,6 +7496,17 @@ declare namespace LocalJSX {
          */
         "path"?: string;
     }
+    interface SqmPagination {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UsePagination>;
+        /**
+          * @uiName Pagination text
+         */
+        "paginationText"?: string;
+    }
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -7581,7 +7706,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @uiGroup Card style
           * @uiType string
          */
         "backgroundColor"?: string;
@@ -8418,6 +8542,87 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Top", "Center", "Bottom"]
          */
         "verticalAlignment"?: "start" | "center" | "end";
+    }
+    interface SqmReferralCode {
+        /**
+          * Set the copy button style and placement
+          * @uiName Style
+          * @uiType string
+          * @uiEnum ["icon", "button-outside", "button-below"]
+          * @uiEnumNames ["Icon", "Button outside", "Button below"]
+         */
+        "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * @uiName Copy button label
+         */
+        "copyButtonLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CopyTextViewProps>;
+        /**
+          * Shown underneath single-use promo codes when the user has already copied the code
+          * @uiName Notification text
+         */
+        "notificationText"?: string;
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * Boolean used to show notification text below input
+          * @uiName Show notification text
+         */
+        "showNotificationText"?: boolean;
+        /**
+          * Change the text alignment
+          * @uiName Referral code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "textAlign"?: "left" | "center" | "right";
+        /**
+          * The number of milliseconds that the tooltip appears for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
+          * Shown inside a tooltip after someone has successfully copied the link to their clipboard
+          * @uiName Tooltip text
+         */
+        "tooltiptext"?: string;
+    }
+    interface SqmReferralCodes {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralCodesViewProps>;
+        /**
+          * @uiName Empty State Description Text
+         */
+        "emptyStateDescriptionText"?: string;
+        /**
+          * @uiName Empty State Header Text
+         */
+        "emptyStateHeaderText"?: string;
+        /**
+          * @uiName Empty State Image URL
+         */
+        "emptyStateImageUrl"?: string;
+        /**
+          * @uiName Program ID
+          * @uiWidget programSelector
+         */
+        "programId"?: string;
+        /**
+          * @uiName Title Text
+         */
+        "titleText"?: string;
     }
     interface SqmReferralIframe {
         /**
@@ -10989,6 +11194,7 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
+        "sqm-pagination": SqmPagination;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
         "sqm-popup-container": SqmPopupContainer;
@@ -11010,6 +11216,8 @@ declare namespace LocalJSX {
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
         "sqm-referral-card": SqmReferralCard;
+        "sqm-referral-code": SqmReferralCode;
+        "sqm-referral-codes": SqmReferralCodes;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
@@ -11103,6 +11311,7 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
+            "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
@@ -11124,6 +11333,8 @@ declare module "@stencil/core" {
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
+            "sqm-referral-code": LocalJSX.SqmReferralCode & JSXBase.HTMLAttributes<HTMLSqmReferralCodeElement>;
+            "sqm-referral-codes": LocalJSX.SqmReferralCodes & JSXBase.HTMLAttributes<HTMLSqmReferralCodesElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;

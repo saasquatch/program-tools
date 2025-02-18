@@ -2,6 +2,8 @@ import {
   useEngagementMedium,
   useUserIdentity,
   useQuery,
+  useParentValue,
+  useMutation,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { ShareButtonViewProps } from "./sqm-share-button-view";
@@ -10,6 +12,11 @@ import {
   useProgramId,
   getEnvironmentSDK,
 } from "@saasquatch/component-boilerplate";
+import {
+  REFERRAL_CODES_NAMESPACE,
+  ReferralCodeContext,
+  SET_CODE_COPIED,
+} from "../sqm-referral-codes/useReferralCodes";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -66,28 +73,24 @@ function NativeShare(
   }
 }
 
-function FacebookShare(directLink: string, res: any, errorText: string) {
-  if (
-    res.data?.viewer?.messageLink === "undefined" ||
-    directLink === "undefined"
-  ) {
+function FacebookShare(
+  directLink: string,
+  messageLink: string,
+  errorText: string
+) {
+  if (messageLink === "undefined" || directLink === "undefined") {
     return alert(errorText);
   }
 
   if (typeof SquatchAndroid.shareOnFacebook !== "undefined") {
-    return SquatchAndroid.shareOnFacebook(
-      directLink,
-      res.data.viewer.messageLink
-    );
+    return SquatchAndroid.shareOnFacebook(directLink, messageLink);
   } else {
-    return GenericShare(res, errorText);
+    return GenericShare(messageLink, errorText);
   }
 }
 
-function GenericShare(res: any, errorText: string) {
-  return res.data?.viewer?.messageLink
-    ? window.open(res.data.viewer.messageLink)
-    : alert(errorText);
+function GenericShare(messageLink: string, errorText: string) {
+  return messageLink ? window.open(messageLink) : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -95,16 +98,29 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const programId = props.programId ? props.programId : useProgramId();
   const user = useUserIdentity();
+  const engagementMedium = useEngagementMedium();
   const variables = {
-    engagementMedium: useEngagementMedium(),
+    engagementMedium,
     programId: programId,
     shareMedium: medium.toUpperCase(),
   };
 
-  // only queries if a programId is available
-  const res = useQuery(MessageLinkQuery, variables, !user?.jwt || !programId);
+  const contextData = useParentValue<ReferralCodeContext>(
+    REFERRAL_CODES_NAMESPACE
+  );
 
-  const directLink = res?.data?.viewer?.shareLink;
+  const overrideData = contextData?.[medium];
+
+  // only queries if a programId is available
+  const res = useQuery(
+    MessageLinkQuery,
+    variables,
+    !user?.jwt || !programId || overrideData !== undefined
+  );
+
+  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
+
+  const directLink = overrideData?.shareLink || res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 
@@ -113,18 +129,40 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
-  function onClick() {
+  async function onClick() {
+    if (overrideData) {
+      await setCopied({ referralCode: contextData.referralCode });
+      contextData.refresh();
+    }
+
     if (
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
-      FacebookShare(directLink, res, props.errorText);
+      FacebookShare(
+        directLink,
+        overrideData?.messageLink || res.data?.viewer?.messageLink,
+        props.errorText
+      );
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
-      NativeShare({ sharetitle, sharetext }, directLink, props.errorText, props.unsupportedPlatformText);
+      NativeShare(
+        { sharetitle, sharetext },
+        directLink,
+        props.errorText,
+        props.unsupportedPlatformText
+      );
     } else {
-      GenericShare(res, props.errorText);
+      GenericShare(
+        overrideData?.messageLink || res.data?.viewer?.messageLink,
+        props.errorText
+      );
     }
   }
 
-  return { ...props, loading: res.loading, onClick, hide };
+  return {
+    ...props,
+    loading: res.loading && !overrideData?.messageLink,
+    onClick,
+    hide,
+  };
 }

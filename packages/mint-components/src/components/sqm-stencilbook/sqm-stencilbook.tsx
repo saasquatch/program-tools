@@ -4,6 +4,7 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../sqm-share-button/ShareButton.stories";
 import * as EmptyState from "../sqm-empty/EmptyState.stories";
+import * as Pagination from "../sqm-pagination/Pagination.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as Leaderboard from "../sqm-leaderboard/Leaderboard.stories";
@@ -70,6 +71,7 @@ import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as ShareCode from "../sqm-share-code/ShareCode.stories";
+import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as EmailRegistration from "../views/EmailRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
@@ -84,6 +86,7 @@ import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
 import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
+import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -96,6 +99,7 @@ const stories = [
   InvoiceTableCells,
   UseInvoiceTableCells,
   ShareButton,
+  Pagination,
   ShareLink,
   BigStat,
   Leaderboard,
@@ -164,6 +168,8 @@ const stories = [
   Tabs,
   ShareCode,
   CouponCode,
+  ReferralCode,
+  ReferralCodes,
   LogoutCurrentUser,
   LinkButton,
   EmailRegistration,
