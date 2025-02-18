@@ -13,7 +13,6 @@ declare global {
 export type UserContextName = "sq:user-identity";
 export type LocaleContextName = "sq:locale";
 export type ProgramContextName = "sq:program-id";
-export type VerificationContextName = "sq:verification";
 
 export const USER_CONTEXT_NAME: UserContextName = "sq:user-identity" as const;
 export const LOCALE_CONTEXT_NAME: LocaleContextName = "sq:locale" as const;

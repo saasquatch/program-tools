@@ -36,7 +36,7 @@ export function useQuery<T = any>(
   query: GqlType,
   variables: unknown,
   skip?: boolean,
-  options?: { batch?: boolean; protected?: boolean }
+  options?: { batch?: boolean }
 ): QueryData<T> {
   const [state, update] = useBaseQuery<T>(
     query,

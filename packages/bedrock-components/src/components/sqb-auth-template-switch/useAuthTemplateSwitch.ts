@@ -5,15 +5,15 @@ import { useTemplateChildren } from '../../utils/useTemplateChildren';
 const debug = debugFn('sq:useAuthTemplateSwitch');
 
 export function useAuthTemplateSwitch() {
-  const token = useToken();
+  const authToken = useToken();
 
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
   const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
-  if (!token) debug('No user identity available');
+  if (!authToken) debug('No user identity available');
 
   const updateTemplates = useCallback(() => {
-    const isAuth = !!token;
+    const isAuth = !!authToken;
     const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
     const template = Array.from(templates).find(t => t.slot === (isAuth ? 'logged-in' : 'logged-out'));
 
@@ -69,7 +69,7 @@ export function useAuthTemplateSwitch() {
         target.style.height = '25px';
       });
     }
-  }, [container, slot, token]);
+  }, [container, slot, authToken]);
 
   useEffect(() => {
     if (!container || !slot) {
@@ -81,7 +81,7 @@ export function useAuthTemplateSwitch() {
     updateTemplates();
 
     return useTemplateChildren({ parent: slot, callback: updateTemplates });
-  }, [slot, container, token]);
+  }, [slot, container, authToken]);
 
   return {
     setSlot,
