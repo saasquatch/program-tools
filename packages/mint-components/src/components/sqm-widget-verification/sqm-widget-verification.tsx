@@ -213,8 +213,7 @@ export class WidgetVerification {
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerificationInternal();
 
-    // TODO: Shoelace spinner is throwing errors
-    if (loading) return <div></div>;
+    if (loading) return <sl-spinner></sl-spinner>;
 
     const generalText = this.getStepTextProps("general_");
 

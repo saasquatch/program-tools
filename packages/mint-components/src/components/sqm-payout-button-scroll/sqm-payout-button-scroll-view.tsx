@@ -3,7 +3,6 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface PayoutButtonScrollViewProps {
   states: {
-    //AL: TODO
     payoutSettingsComplete: boolean;
   };
   text: {
