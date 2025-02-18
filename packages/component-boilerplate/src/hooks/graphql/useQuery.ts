@@ -43,7 +43,6 @@ export function useQuery<T = any>(
     initialQueryState as BaseQueryData<T>,
     {
       batch: true,
-      protected: false,
       ...(options || {}),
     }
   );
