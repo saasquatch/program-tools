@@ -17,6 +17,7 @@ import {
 import { taxTypeToName, validTaxDocument } from "../utils";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
@@ -170,6 +171,9 @@ export function useDocusignForm(props: DocusignForm) {
       if (!result || (result as Error).message) throw new Error();
       // @ts-expect-error: no data type for result
       if (!result.completeImpactPublisherTaxDocument.success) throw new Error();
+
+      // Fire form change event
+      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
 
       setShowExitButton(true);
     } catch (e) {

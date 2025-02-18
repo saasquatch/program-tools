@@ -46,11 +46,17 @@ export const GET_USER = gql`
   query getUserTaxInfo {
     user: viewer {
       ... on User {
+        id
         firstName
         lastName
         email
         countryCode
         customFields
+        managedIdentity {
+          uid
+          email
+          emailVerified
+        }
         impactConnection {
           connected
           user {
@@ -94,6 +100,7 @@ export const GET_USER = gql`
             }
             payoutsAccount {
               hold
+              holdReasons
               balance
             }
           }
@@ -141,6 +148,7 @@ export type ImpactPublisher = {
   };
   payoutsAccount: {
     hold: boolean;
+    holdReasons: string[];
     balance: string;
   };
 };
@@ -153,6 +161,11 @@ export type UserQuery = {
     customFields?: {
       [key: string]: any;
     };
+    managedIdentity?: {
+      uid: string;
+      email: string;
+      emailVerified: boolean;
+    } | null;
     impactConnection: null | {
       connected: boolean;
       user: {

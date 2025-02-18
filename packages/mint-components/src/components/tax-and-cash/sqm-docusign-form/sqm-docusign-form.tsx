@@ -45,6 +45,10 @@ export class DocusignForm {
   @Prop() taxFormDescription: string =
     "Participants based in the US need to submit a {documentType} form.";
   /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
+  /**
    * Displayed at the top of the page to individuals joining a US program who reside outside the country.
    * @uiName W-8 BEN tax form description
    * @uiWidget textArea
@@ -92,7 +96,7 @@ export class DocusignForm {
    * @uiWidget textArea
    */
   @Prop() docusignError: string =
-    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
+    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}.";
   /**
    * @uiName Refresh page button label
    */
@@ -110,7 +114,7 @@ export class DocusignForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
@@ -124,7 +128,7 @@ export class DocusignForm {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
 
   /**
    * Displayed at the top of the page on all set up steps.

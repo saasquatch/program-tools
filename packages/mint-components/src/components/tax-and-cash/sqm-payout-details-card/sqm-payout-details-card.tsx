@@ -35,29 +35,16 @@ export class PayoutDetailsCard {
    */
   @Prop() accountText: string = "Account";
   /**
-   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-   * @uiName Payout error message title
-   */
-  @Prop() errorTitleText: string = "Your payout is on hold ";
-  /**
-   * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-   * @uiName Payout error message description
-   */
-  @Prop()
-  errorDescriptionText: string =
-    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
-  /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
    */
   @Prop() payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
-
   /**
    * @undocumented
    */
   @Prop() demoData?: DemoData<any>;
-  
+
   constructor() {
     withHooks(this);
   }
@@ -68,10 +55,6 @@ export class PayoutDetailsCard {
     const props = getProps(this);
     return {
       ...props,
-      error: {
-        errorTitleText: this.errorTitleText,
-        errorDescriptionText: this.errorDescriptionText,
-      },
     };
   }
 

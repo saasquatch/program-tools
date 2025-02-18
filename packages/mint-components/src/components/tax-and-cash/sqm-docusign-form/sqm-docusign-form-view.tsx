@@ -47,6 +47,7 @@ export interface DocusignFormViewProps {
     individualParticipant: string;
     participantType: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -247,7 +248,22 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.loadingErrorAlertHeader}</strong>
             <br />
-            {text.error.loadingErrorAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: text.error.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         </div>
       )}
@@ -261,7 +277,19 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <strong>{text.error.generalTitle}</strong>
           <br />
-          {text.error.generalDescription}
+          {intl.formatMessage(
+            {
+              id: "generalDescription",
+              defaultMessage: text.error.generalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          )}
         </sl-alert>
       )}
 

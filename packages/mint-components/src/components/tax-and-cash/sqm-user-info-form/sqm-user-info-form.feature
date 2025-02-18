@@ -263,3 +263,15 @@ Feature: Tax Form Step One
       | United States | is not hidden |
       | Spain         | is not hidden |
 
+  @minutia
+  Scenario Outline: Prefilled user email prioritises their managed identity email if it has been verified
+    Given a user with participant email <participantEmail>
+    And managed identity email <miEmail>
+    And their managed identity is <verified>
+    Then the prefilled email in the user info form is <email>
+
+    Examples:
+      | participantEmail | miEmail        | verified     | email          |
+      | p@example.com    | null           | N/A          | p@example.com  |
+      | p@example.com    | mi@example.com | not verified | p@example.com  |
+      | p@example.com    | mi@example.com | verified     | mi@example.com |

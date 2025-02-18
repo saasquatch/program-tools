@@ -898,9 +898,12 @@ const payoutBalanceQuery = () => {
       query payoutBalance {
         viewer: viewer {
           ... on User {
-            publisher {
-              payoutsAccount {
-                balance
+            id
+            impactConnection {
+              publisher {
+                payoutsAccount {
+                  balance
+                }
               }
             }
           }

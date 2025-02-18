@@ -139,6 +139,9 @@ const deniedReward = {
 const payoutFailedReward = {
   statuses: ["PAYOUT_FAILED"],
 };
+const payoutCancelledReward = {
+  statuses: ["PAYOUT_CANCELLED"],
+};
 const pendingReviewReward = {
   statuses: ["PENDING_REVIEW"],
 };
@@ -233,9 +236,9 @@ function getYears() {
 }
 
 const statusText =
-  "{status, select, AVAILABLE {Available} PAYOUT_SENT {Payout Sent} CANCELLED {Cancelled} PAYOUT_FAILED {Payout Failed} PENDING {Pending} PENDING_REVIEW {Pending} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+  "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 const statusLongText =
-  "{status, select, AVAILABLE {Reward expiring on} PAYOUT_SENT {Reward approved for payout and was scheduled for payment based on your settings.} DENIED {Denied on} EXPIRED {Reward expired on} REDEEMED {Redeemed}  other {Not available} }";
+  "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward approved for payout and was scheduled for payment based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
 
 export const PendingNoUnpend = () => {
   return (
@@ -569,14 +572,35 @@ export const PayoutFailed = () => {
   );
 };
 
-// AL: TODO payout cancelled
-export const PayoutCancelled = () => {
+export const PayoutDenied = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[
         {
           ...cashPayoutSentReward,
           ...payoutFailedReward,
+          datePayoutRetried: getDays(),
+          dateGiven: null,
+        },
+      ]}
+      statusText={statusText}
+      statusLongText={statusLongText}
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
+      deniedHelpText="Contact support if you think this is a mistake."
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PayoutCancelled = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        {
+          ...cashPayoutSentReward,
+          ...payoutCancelledReward,
           datePayoutRetried: getDays(),
           dateGiven: null,
         },

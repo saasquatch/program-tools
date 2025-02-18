@@ -3,6 +3,16 @@ Feature: Tax Form Flow
 
   Background: A user submits their Tax information
 
+  @motivating
+  Scenario: Users must complete a 2FA flow to view the tax form
+    Given the tax form has just loaded
+    When a user views the tax form
+    Then they see a 2FA flow
+    And they are required to verify their email
+    When they verify their email
+    Then the `sqm-tax-and-cash` component is loaded
+    And they can now go through the tax form
+
   @minutia
   Scenario Outline: Participants can register as branded partners, provide indirect tax information and submit their tax forms
     Given they are on step 1
@@ -85,18 +95,19 @@ Feature: Tax Form Flow
       | Withholding tax Region |
       | QST Number             |
     When they press "Continue"
+    And the registered partner <hasExistingTaxDoc>
     Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
 
     Examples:
-      | countryCode | brandCountry | stepX |
-      | CA          | US           |     3 |
-      | CA          | MX           |     4 |
-      | US          | CA           |     3 |
-      | US          | MX           |     3 |
-      | GB          | US           |     3 |
-      | GB          | US           |     3 |
-      | ES          | US           |     3 |
-      | EG          | MX           |     4 |
+      | countryCode | brandCountry | hasExistingTaxDoc | stepX     |
+      | CA          | US           | true              | dashboard |
+      | CA          | MX           | n/a               | dashboard |
+      | US          | CA           | false             |         3 |
+      | US          | MX           | true              | dashboard |
+      | GB          | US           | false             |         3 |
+      | GB          | US           | true              | dashboard |
+      | ES          | US           | false             |         3 |
+      | EG          | MX           | n/a               | dashboard |
 
   @minutia
   Scenario Outline: Participants based in another country working with non-US brands do not have to fillout Comply Exchange forms

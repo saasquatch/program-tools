@@ -18,6 +18,7 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
+import { createStyleSheet } from "../../../styling/JSS";
 
 /**
  * @uiName Banking Information Form
@@ -265,8 +266,17 @@ export class BankingInfoForm {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our Support team or sign up for this referral program with a different email.";
-
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
+  /**
+   * Text for verify email dialog
+   * @uiName Verify email header
+   */
+  @Prop() verifyEmailHeaderText: string = "Verify your email";
+  /**
+   * @uiName Verify code widget header text
+   */
+  @Prop() verifyEmailDescriptionText: string =
+    "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -281,7 +291,7 @@ export class BankingInfoForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed under a field that is missing required information.
    * @uiName Empty form field error message
@@ -292,6 +302,10 @@ export class BankingInfoForm {
    * @uiName Form field error message
    */
   @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
   /**
    * @uiName Continue button label
    */
@@ -395,14 +409,69 @@ export class BankingInfoForm {
       formMap,
     });
 
-    const searchStyle = {
+    const style = {
+      Dialog: {
+        position: "relative",
+        "&::part(panel)": {
+          maxWidth: "420px",
+        },
+        "&::part(title)": {
+          padding:
+            "var(--sl-spacing-large) var(--sl-spacing-large) 0 var(--sl-spacing-large)",
+        },
+        "&::part(base)": {
+          position: "absolute",
+        },
+        "&::part(close-button)": {
+          marginBottom: "var(--sl-spacing-large)",
+        },
+        "&::part(body)": {
+          padding: "0 var(--sl-spacing-large) 0 var(--sl-spacing-large)",
+          fontSize: "var(--sl-font-size-small)",
+        },
+        "&::part(footer)": {
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--sl-spacing-small)",
+          marginBottom: "var(--sl-spacing-xx-small)",
+          alignItems: "center",
+          flex: "1",
+        },
+      },
       SearchInput: {
         padding: "var(--sl-spacing-x-small)",
       },
     };
+    const sheet = createStyleSheet(style);
+    const styleString = sheet.toString();
+    const verifyDescription = intl.formatMessage(
+      {
+        id: "codeResentSuccessfully",
+        defaultMessage: props.text.verifyEmailDescriptionText,
+      },
+      {
+        email: props.states.email,
+      }
+    );
 
     return (
       <Host>
+        {/* Force it to de-render every time to avoid state issues with inputs */}
+        <style type="text/css">{styleString}</style>
+        {props.states.isPartner && props.states.showVerification ? (
+          <sl-dialog
+            class={sheet.classes.Dialog}
+            open={true}
+            onSl-hide={props.callbacks.onVerificationHide}
+            label={props.text.verifyEmailHeaderText}
+          >
+            <sqm-code-verification
+              verifyCodeHeaderText={verifyDescription}
+              reverifyCodeHeaderText={verifyDescription}
+              onVerification={props.callbacks.onVerification}
+            ></sqm-code-verification>
+          </sl-dialog>
+        ) : null}
         <BankingInfoFormView
           callbacks={props.callbacks}
           text={props.text}
@@ -413,6 +482,7 @@ export class BankingInfoForm {
             countryInputSlot: (
               <sl-select
                 label={props.text.bankLocationLabel}
+                disabled={props.states.saveLoading}
                 required
                 name="/bankCountry"
                 id="bankCountry"
@@ -429,7 +499,8 @@ export class BankingInfoForm {
                 })}
               >
                 <sl-input
-                  class={searchStyle.SearchInput}
+                  disabled={props.states.saveLoading}
+                  class={sheet.classes.SearchInput}
                   placeholder={this.searchForCountryText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
@@ -467,6 +538,7 @@ export class BankingInfoForm {
             paymentThresholdSelectSlot: (
               <sl-select
                 required
+                disabled={props.states.saveLoading}
                 label={props.text.paymentThresholdSelectLabel}
                 name="/paymentThreshold"
                 id="paymentThreshold"
@@ -489,6 +561,7 @@ export class BankingInfoForm {
             paymentFixedDaySelectSlot: (
               <sl-select
                 required
+                disabled={props.states.saveLoading}
                 label={props.text.paymentDaySelectLabel}
                 value={props.states?.formState?.paymentDay || ""}
                 name="/paymentDay"
@@ -512,6 +585,7 @@ export class BankingInfoForm {
             paypalInputSlot: (
               <sl-input
                 required
+                disabled={props.states.saveLoading}
                 value={props.states?.formState?.paypalEmailAddress || ""}
                 label={props.text.payPalInputLabel}
                 key="paypalEmailAddress"
@@ -639,6 +713,7 @@ function useDemoBankingInfoForm(
         hasPayPal: true,
       },
       callbacks: {
+        onVerificationHide: () => {},
         onSubmit: async () => {
           setStep("/dashboard");
         },
@@ -647,6 +722,7 @@ function useDemoBankingInfoForm(
         setPaymentScheduleChecked,
         setCountrySearch: () => {},
         onBack: async () => setStep("/dashboard"),
+        onVerification: () => {},
       },
       text: props.getTextProps(),
       refs: {

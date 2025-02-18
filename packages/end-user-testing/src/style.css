@@ -1,0 +1,45 @@
+#setup {
+  border: 1px solid black;
+  position: absolute;
+  padding: 8px;
+  background: white;
+  z-index: 99999;
+  right: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+button {
+  padding: 8px;
+  color: white;
+  background: black;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+button.active {
+  background: grey;
+  border-color: white;
+}
+
+input[type="text"] {
+  height: 24px;
+  width: 450px;
+  padding: 4px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}

@@ -4,7 +4,10 @@
  * @param prefix Prefix denoting which group the text prop belongs to
  * @returns A new object with all keys with the prefix provided. The prefix is removed from each key.
  */
-export function extractProps(props: object, prefix: string) {
+export function extractProps<X extends object, T extends string>(
+  props: X,
+  prefix: T
+): PickPrefix<X, T> {
   const keys = Object.keys(props).filter((k) => k.startsWith(prefix));
 
   const formattedProps = keys.reduce((prev, k) => {
@@ -15,5 +18,11 @@ export function extractProps(props: object, prefix: string) {
     };
   }, {});
 
-  return formattedProps;
+  return formattedProps as PickPrefix<X, T>;
 }
+
+type PickPrefix<Object, Prefix extends string> = {
+  [K in keyof Object as K extends `${Prefix}${infer Suffix}`
+    ? `${Suffix}`
+    : never]: Object[K];
+};

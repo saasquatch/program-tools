@@ -98,7 +98,6 @@ Feature: Reward Table Source Column
       | rewardSource    | referral | sourceText  |
       | "FRIEND_SIGNUP" | referrer | Referral to |
       | "REFERRED"      | referred | Referred by |
-#  AL: TODO DELETED REFERRAL SPEC
 
   @motivating @ui
   Scenario Outline: The source column displays referral as "Deleted referral" if the referral user is deleted in the system

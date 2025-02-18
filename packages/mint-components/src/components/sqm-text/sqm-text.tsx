@@ -29,7 +29,7 @@ const vanillaStyle = `
 
   sqm-text h4 {
     font-size: var(--sl-font-size-large);
-    font-weight: var(--sl-font-weight-semibold);
+    font-weight: var(--sl-font-weight-bold);
     color: var(--sl-color-neutral-800);
     margin: 0;
   }

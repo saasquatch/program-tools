@@ -34,7 +34,7 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  if (!user.impactConnection?.connected) {
+  if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {
     return "/1";
   }
 

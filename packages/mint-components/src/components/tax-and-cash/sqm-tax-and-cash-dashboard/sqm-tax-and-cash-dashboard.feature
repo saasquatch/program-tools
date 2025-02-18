@@ -56,13 +56,13 @@ Feature: Tax And Cash Dashboard
 
     Examples:
       | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
-      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
-      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
-      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
-      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
-      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
-      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number |     345213, 12345 |
-      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number |     345213, 12345 |
+      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
+      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    | 345213            |
+      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    | 345213            |
+      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               | 345213, 12312     |
+      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    | 321413            |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number | 345213, 12345     |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number | 345213, 12345     |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
@@ -89,6 +89,60 @@ Feature: Tax And Cash Dashboard
       | NOT_ACTIVE | W9           | Your W-9 tax form has personal information that doesn't match your profile. | Please resubmit a new W-9 form.                                                                                           |
       | NOT_ACTIVE | W8-BEN       | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 form. |
       | NOT_ACTIVE | W8-BEN-E     | W-8 tax form is invalid.                                                    | Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new W-8 form. |
+
+  @minutia @ui
+  Scenario: A Warning Alert is displayed if the user has a payout on hold
+    Given the user has a hold reason
+    Then a warning alert indicating appears with description text:
+      """
+      Please contact Support or check your inbox for an email from our referral program provider, impact.com.
+      """
+
+  @minutia @ui
+  Scenario: A Warning Alert is displayed if the user must verify their identity
+    Given the user has "IDV_CHECK_REQUIRED" included in their hold reasons
+    Then a warning alert indicating appears with description text:
+      """
+      Complete your verification to start receiving your cash rewards. It should only take a few minutes verify.
+      """
+    And a Start Verification button is present
+    When they press the button
+    Then a modal will appear with steps to verify their identity
+
+  @minutia
+  Scenario Outline: Alert displays the current state of the verification process
+    Given a user has <holdReason> included in their holdReasons
+    And they complete the payout and tax form flow
+    Then a <color> banner appears
+    And the alert has heading <heading>
+    And the alert has description <description>
+
+    Examples:
+      | holdReason                  | color  | heading                            | description                                                                                                                                             |
+      | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
+      | IDV_CHECK_REVIEW_INTERNAL   | yellow | Verification Under Review          | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                       |
+      | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
+
+  @motivating
+  Scenario: User has hold reasons
+    Given they have impactConnection as one of the following
+      | impactConnection                                                   |
+      | { connected: true, publisher: { payoutsAccount: { hold: true } } } |
+    And hold reasons don't include any of the following
+      | holdReason                  |
+      | IDV_CHECK_REQUIRED          |
+      | IDV_CHECK_REQUIRED_INTERNAL |
+      | IDV_CHECK_REVIEW_INTERNAL   |
+      | IDV_CHECK_FAILED_INTERNAL   |
+    And they have completed the payout and tax form flow
+    Then a yellow warning banner appears with a header:
+      """
+      Your payouts and account are on hold
+      """
+    And description
+      """
+      Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.
+      """
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax

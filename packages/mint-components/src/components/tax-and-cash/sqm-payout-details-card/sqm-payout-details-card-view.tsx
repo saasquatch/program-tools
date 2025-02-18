@@ -24,10 +24,6 @@ export interface PayoutDetailsCardViewProps {
     statusBadgeText: string;
     accountText: string;
     payoutMissingInformationText: string;
-    error: {
-      errorTitleText: string;
-      errorDescriptionText: string;
-    };
   };
 }
 
@@ -220,20 +216,6 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   return (
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
-      {states.error && (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          class={classes.Alert}
-          type="warning"
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-          <div class={classes.AlertContent}>
-            <b>{text.error.errorTitleText}</b>
-            {text.error.errorDescriptionText}
-          </div>
-        </sl-alert>
-      )}
       {states.loading ? (
         renderLoadingSkeleton()
       ) : (

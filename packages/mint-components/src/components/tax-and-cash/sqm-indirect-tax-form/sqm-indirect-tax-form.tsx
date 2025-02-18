@@ -127,7 +127,7 @@ export class IndirectTaxForm {
    * @uiWidget textArea
    */
   @Prop() cannotChangeInfoAlert: string =
-    "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
+    "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing.";
   /**
    * @uiName Missing indirect tax number error message
    */
@@ -159,13 +159,15 @@ export class IndirectTaxForm {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
-
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
   /**
    * @uiName Continue button label
    */
   @Prop() continueButton: string = "Continue";
-
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -180,7 +182,7 @@ export class IndirectTaxForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
@@ -194,7 +196,7 @@ export class IndirectTaxForm {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed at the top of the page on all set up steps.
    * @uiName Page description

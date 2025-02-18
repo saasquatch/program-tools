@@ -25,6 +25,7 @@ export const PROGRAM_CONTEXT_NAME: ProgramContextName =
 export type UserIdentity = {
   id: string;
   accountId: string;
+  email?: string;
   jwt?: string;
   managedIdentity?: {
     email: string;
@@ -43,6 +44,7 @@ export interface DecodedSquatchJWT {
   user: {
     accountId: string;
     id: string;
+    email?: string;
   };
 }
 
@@ -68,6 +70,7 @@ export interface WidgetIdent {
   token: string;
   userId: string;
   accountId: string;
+  email?: string;
   locale?: string;
   engagementMedium?: "POPUP" | "EMBED";
   programId?: string;
