@@ -12,10 +12,10 @@ import {
 import { useCheckboxField } from "../sqm-checkbox-field/useCheckboxField";
 
 /**
- * @uiName Form Checkbox Field
+ * @uiName Marketing Emails Checkbox Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
  * @exampleGroup Microsite Components
- * @example Form Checkbox Field - <sqm-marketing-emails-checkbox checkbox-label="I would like to receive marketing and promotional emails for this referral program" required="false" name="marketing-emails" ></sqm-marketing-emails-checkbox>
+ * @example Form Checkbox Field - <sqm-marketing-emails-checkbox slot="emailOptIn" name="marketingEmails" checkbox-label="I would like to receive marketing and promotional emails for this referral program" required="false" name="marketing-emails" required="false" ></sqm-marketing-emails-checkbox>
  */
 @Component({
   tag: "sqm-marketing-emails-checkbox",
@@ -29,7 +29,7 @@ export class MarketingEmailsCheckbox {
    * @uiName Checkbox name attribute
    * @required
    */
-  @Prop() checkboxName: string = "marketing-emails";
+  @Prop() checkboxName: string = "marketingEmails";
 
   /**
    * @uiName Checkbox label

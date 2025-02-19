@@ -88,7 +88,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
-
+    console.log("Test 123");
     let formData: Record<string, any> = {};
     let validationErrors: Record<string, string> = {};
 
@@ -139,10 +139,14 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       validationErrors: {},
     });
     const { email, password } = formData;
+    console.log("form data is ", formData);
     delete formData.email;
     delete formData.password;
     delete formData.confirmPassword;
     const redirectPath = props.redirectPath;
+    const marketingEmailOptInDate = formData.marketingEmails
+      ? Date.now()
+      : null;
     const variables = {
       key: props.formKey,
       formData: {
@@ -150,6 +154,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
         email,
         password,
         redirectPath,
+        ...(formData.marketingEmails && { marketingEmailOptInDate }),
         ...formData,
       },
     };
