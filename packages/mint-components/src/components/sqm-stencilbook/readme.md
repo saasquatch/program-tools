@@ -34,6 +34,7 @@
 - [sqm-card-feed](../sqm-card-feed)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
+- [sqm-checkbox-field](../sqm-checkbox-field)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
 - [sqm-referral-table-user-cell](../sqm-referral-table/cells)
@@ -48,7 +49,7 @@
 - [sqm-hero](../sqm-hero)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
-- [sqm-checkbox-field](../sqm-checkbox-field)
+- [sqm-marketing-emails-checkbox](../sqm-marketing-emails-checkbox)
 - [sqm-name-fields](../sqm-name-fields)
 - [sqm-dropdown-field](../sqm-dropdown-field)
 - [sqm-input-field](../sqm-input-field)
@@ -117,6 +118,7 @@ graph TD;
   sqm-stencilbook --> sqm-card-feed
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register
+  sqm-stencilbook --> sqm-checkbox-field
   sqm-stencilbook --> sqm-table-row
   sqm-stencilbook --> sqm-table-cell
   sqm-stencilbook --> sqm-referral-table-user-cell
@@ -131,7 +133,7 @@ graph TD;
   sqm-stencilbook --> sqm-hero
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
-  sqm-stencilbook --> sqm-checkbox-field
+  sqm-stencilbook --> sqm-marketing-emails-checkbox
   sqm-stencilbook --> sqm-name-fields
   sqm-stencilbook --> sqm-dropdown-field
   sqm-stencilbook --> sqm-input-field
