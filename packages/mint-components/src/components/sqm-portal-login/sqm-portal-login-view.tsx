@@ -24,6 +24,7 @@ export interface PortalLoginViewProps {
     passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
+    googleSignInButton?: string;
   };
 }
 
@@ -99,6 +100,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             {content.submitLabel || "Login"}
           </sl-button>
           {content.secondaryButton}
+          {content.googleSignInButton}
         </div>
       </sl-form>
     </div>
