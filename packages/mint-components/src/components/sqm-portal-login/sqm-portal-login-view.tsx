@@ -98,6 +98,17 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           >
             {content.submitLabel || "Login"}
           </sl-button>
+          <sl-menu-divider
+            style={{ marginBottom: "var(--sl-spacing-medium" }}
+          ></sl-menu-divider>
+          <sl-button
+            submit
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            Sign in with Google
+          </sl-button>
           {content.secondaryButton}
         </div>
       </sl-form>
