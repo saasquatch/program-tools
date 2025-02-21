@@ -76,11 +76,12 @@ export interface WidgetIdent {
 
 /**
  * Portal env doesn't include User Id
+ * - googleClientId should be unique to SquatchPortal environments
  */
 export type PortalEnv = Pick<
   WidgetIdent,
   "tenantAlias" | "appDomain" | "programId"
->;
+> & { googleClientId: string | undefined };
 
 /**
  * An interface for interacting with the SaaSquatch Admin Portal.
