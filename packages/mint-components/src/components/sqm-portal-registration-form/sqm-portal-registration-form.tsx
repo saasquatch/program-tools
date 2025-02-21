@@ -228,6 +228,7 @@ export class PortalRegistrationForm {
       uppercaseErrorText: this.uppercaseErrorText,
       lowercaseErrorText: this.lowercaseErrorText,
       hasErrorText: this.hasErrorText,
+      isGoogleRegistration: false,
     };
 
     return (

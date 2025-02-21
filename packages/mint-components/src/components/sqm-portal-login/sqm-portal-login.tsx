@@ -109,13 +109,17 @@ export class PortalLogin {
       ),
       secondaryButton: (
         <slot name="secondaryButton">
-          <sl-button
-            type="text"
-            disabled={states.loading}
-            onClick={() => navigation.push(states.registerPath)}
-          >
-            {this.registerLabel}
-          </sl-button>
+          <span>
+            {" "}
+            Don't have an account?{" "}
+            <sl-button
+              type="text"
+              disabled={states.loading}
+              onClick={() => navigation.push(states.registerPath)}
+            >
+              {this.registerLabel}
+            </sl-button>
+          </span>
         </slot>
       ),
       emailLabel: this.emailLabel,

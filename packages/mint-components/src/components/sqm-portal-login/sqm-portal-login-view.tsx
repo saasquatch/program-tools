@@ -98,9 +98,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           >
             {content.submitLabel || "Login"}
           </sl-button>
-          <sl-menu-divider
-            style={{ marginBottom: "var(--sl-spacing-medium" }}
-          ></sl-menu-divider>
+          <sl-menu-divider />
           <sl-button
             submit
             loading={states.loading}
@@ -111,6 +109,10 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           </sl-button>
           {content.secondaryButton}
         </div>
+        <span>
+          {" "}
+          Don't have an account? <a style={{ fontWeight: "bold" }}>Register</a>
+        </span>
       </sl-form>
     </div>
   );

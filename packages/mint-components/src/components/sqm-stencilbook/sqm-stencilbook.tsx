@@ -87,6 +87,8 @@ import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
+import * as PortalGoogleRegistrationForm from "../sqm-google-registration-form/GoogleRegistrationForm.stories";
+import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -180,6 +182,8 @@ const stories = [
   TaxFormSlots,
   PayoutDetailsCard,
   BankingInfoForm,
+  PortalGoogleRegistrationForm,
+  BaseRegistrationForm,
 ];
 
 /**
