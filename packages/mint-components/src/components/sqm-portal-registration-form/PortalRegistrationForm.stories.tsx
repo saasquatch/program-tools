@@ -15,6 +15,7 @@ const defaultProps: PortalRegistrationFormViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
+    isGoogleRegistration: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -33,6 +34,7 @@ const errorProps: PortalRegistrationFormViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
+    isGoogleRegistration: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -54,6 +56,7 @@ const loadingProps: PortalRegistrationFormViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
+    isGoogleRegistration: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -72,6 +75,7 @@ const slottedProps: PortalRegistrationFormViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
+    isGoogleRegistration: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
