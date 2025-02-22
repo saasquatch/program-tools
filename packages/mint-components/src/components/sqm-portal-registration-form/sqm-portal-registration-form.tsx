@@ -7,6 +7,7 @@ import {
   PortalRegistrationFormView,
   PortalRegistrationFormViewProps,
 } from "./sqm-portal-registration-form-view";
+import { RegistrationFieldsView } from "./small-views/RegistrationFieldsView";
 import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
 
 /**
@@ -228,8 +229,23 @@ export class PortalRegistrationForm {
       uppercaseErrorText: this.uppercaseErrorText,
       lowercaseErrorText: this.lowercaseErrorText,
       hasErrorText: this.hasErrorText,
-      isGoogleRegistration: false,
+      isGoogle: false,
     };
+
+    const conditionalRegistrationFields = (
+      <RegistrationFieldsView
+        callbacks={callbacks}
+        content={content}
+        states={{
+          ...states,
+          enablePasswordValidation: !this.disablePasswordValidation,
+          registrationFormState: states.registrationFormState,
+        }}
+        text={{
+          confirmPasswordLabel: this.confirmPasswordLabel,
+        }}
+      ></RegistrationFieldsView>
+    );
 
     return (
       <PortalRegistrationFormView
@@ -237,6 +253,7 @@ export class PortalRegistrationForm {
         callbacks={callbacks}
         content={content}
         refs={refs}
+        slots={{ conditionalRegistrationFields }}
       ></PortalRegistrationFormView>
     );
   }
@@ -253,6 +270,7 @@ function useRegisterDemo(
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
         loginPath: "/login",
+        isGoogle: false,
       },
       callbacks: {
         submit: async (_event) => {

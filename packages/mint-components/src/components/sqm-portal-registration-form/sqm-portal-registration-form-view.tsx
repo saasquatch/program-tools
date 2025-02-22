@@ -19,7 +19,7 @@ export interface PortalRegistrationFormViewProps {
     registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
-    isGoogleRegistration: boolean;
+    isGoogle: boolean;
   };
   callbacks: {
     submit: Function;
@@ -46,6 +46,9 @@ export interface PortalRegistrationFormViewProps {
     uppercaseErrorText?: string;
     lowercaseErrorText?: string;
     hasErrorText?: string;
+  };
+  slots: {
+    conditionalRegistrationFields?: VNode;
   };
   refs: {
     formRef: any;
@@ -88,7 +91,7 @@ const styleString = sheet.toString();
 export function PortalRegistrationFormView(
   props: PortalRegistrationFormViewProps
 ) {
-  const { states, refs, callbacks, content } = props;
+  const { states, refs, callbacks, content, slots } = props;
 
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -154,7 +157,8 @@ export function PortalRegistrationFormView(
               : [])}
           ></sl-input>
         )}
-        {!states.isGoogleRegistration && !states.hideInputs && (
+        {slots.conditionalRegistrationFields}
+        {/* {!states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={!states.enablePasswordValidation}
@@ -166,8 +170,8 @@ export function PortalRegistrationFormView(
             hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
-        {!states.isGoogleRegistration && content.passwordField}
-        {!states.isGoogleRegistration &&
+        {!states.isGoogle && content.passwordField}
+        {!states.isGoogle &&
           !states.hideInputs &&
           states.confirmPassword && (
             <sl-input
@@ -196,7 +200,7 @@ export function PortalRegistrationFormView(
                   }
                 : [])}
             ></sl-input>
-          )}
+          )} */}
         {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button

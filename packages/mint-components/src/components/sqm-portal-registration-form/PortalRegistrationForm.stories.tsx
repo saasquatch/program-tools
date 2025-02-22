@@ -5,17 +5,18 @@ import {
 } from "./sqm-portal-registration-form-view";
 
 export default {
-  title: "Components/Microsite Register",
+  title: "Components/Microsite Portal Registration Form",
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
+  slots: {},
   states: {
     error: "",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogleRegistration: false,
+    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -28,13 +29,14 @@ const defaultProps: PortalRegistrationFormViewProps = {
 };
 
 const errorProps: PortalRegistrationFormViewProps = {
+  slots: {},
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogleRegistration: false,
+    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -50,13 +52,14 @@ const errorProps: PortalRegistrationFormViewProps = {
 };
 
 const loadingProps: PortalRegistrationFormViewProps = {
+  slots: {},
   states: {
     error: "",
     loading: true,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogleRegistration: false,
+    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -69,13 +72,14 @@ const loadingProps: PortalRegistrationFormViewProps = {
 };
 
 const slottedProps: PortalRegistrationFormViewProps = {
+  slots: {},
   states: {
     error: "",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogleRegistration: false,
+    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -105,7 +109,29 @@ const slottedProps: PortalRegistrationFormViewProps = {
   },
 };
 
-export const Default = () => <PortalRegistrationFormView {...defaultProps} />;
+export const Default = () => (
+  <sqm-portal-registration-form
+    demoData={{
+      states: {
+        ...defaultProps.states,
+        isGoogle: false,
+      },
+    }}
+  ></sqm-portal-registration-form>
+);
+
+export const IsGoogle = () => {
+  return (
+    <sqm-portal-registration-form
+      demoData={{
+        states: {
+          ...defaultProps.states,
+          isGoogle: true,
+        },
+      }}
+    ></sqm-portal-registration-form>
+  );
+};
 
 export const RegisterWithError = () => (
   <PortalRegistrationFormView {...errorProps} />
