@@ -231,20 +231,20 @@ export class PortalRegistrationForm {
       hasErrorText: this.hasErrorText,
     };
 
-    const conditionalRegistrationFields = (
-      <RegistrationFieldsView
-        callbacks={callbacks}
-        content={content}
-        states={{
-          ...states,
-          enablePasswordValidation: !this.disablePasswordValidation,
-          registrationFormState: states.registrationFormState,
-        }}
-        text={{
-          confirmPasswordLabel: this.confirmPasswordLabel,
-        }}
-      ></RegistrationFieldsView>
-    );
+    // const conditionalRegistrationFields = (
+    //   <RegistrationFieldsView
+    //     callbacks={callbacks}
+    //     content={content}
+    //     states={{
+    //       ...states,
+    //       enablePasswordValidation: !this.disablePasswordValidation,
+    //       registrationFormState: states.registrationFormState,
+    //     }}
+    //     text={{
+    //       confirmPasswordLabel: this.confirmPasswordLabel,
+    //     }}
+    //   ></RegistrationFieldsView>
+    // );
 
     return (
       <PortalRegistrationFormView
@@ -252,7 +252,7 @@ export class PortalRegistrationForm {
         callbacks={callbacks}
         content={content}
         refs={refs}
-        slots={{ conditionalRegistrationFields }}
+        // slots={{ conditionalRegistrationFields }}
       ></PortalRegistrationFormView>
     );
   }

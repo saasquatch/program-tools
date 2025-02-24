@@ -9,7 +9,6 @@ export default {
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
-  slots: {},
   states: {
     error: "",
     loading: false,
@@ -29,7 +28,6 @@ const defaultProps: PortalRegistrationFormViewProps = {
 };
 
 const errorProps: PortalRegistrationFormViewProps = {
-  slots: {},
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
@@ -52,7 +50,6 @@ const errorProps: PortalRegistrationFormViewProps = {
 };
 
 const loadingProps: PortalRegistrationFormViewProps = {
-  slots: {},
   states: {
     error: "",
     loading: true,
@@ -72,7 +69,6 @@ const loadingProps: PortalRegistrationFormViewProps = {
 };
 
 const slottedProps: PortalRegistrationFormViewProps = {
-  slots: {},
   states: {
     error: "",
     loading: false,
@@ -110,26 +106,15 @@ const slottedProps: PortalRegistrationFormViewProps = {
 };
 
 export const Default = () => (
-  <sqm-portal-registration-form
-    demoData={{
-      states: {
-        ...defaultProps.states,
-        isGoogle: false,
-      },
-    }}
-  ></sqm-portal-registration-form>
+  <PortalRegistrationFormView {...defaultProps}></PortalRegistrationFormView>
 );
 
 export const IsGoogle = () => {
   return (
-    <sqm-portal-registration-form
-      demoData={{
-        states: {
-          ...defaultProps.states,
-          isGoogle: true,
-        },
-      }}
-    ></sqm-portal-registration-form>
+    <PortalRegistrationFormView
+      {...defaultProps}
+      states={{ ...defaultProps.states, isGoogle: true }}
+    ></PortalRegistrationFormView>
   );
 };
 
@@ -163,18 +148,10 @@ export const SlottedInputs = () => (
 );
 
 export const SlottedInputsIsGoogle = () => (
-  <sqm-portal-registration-form
-    demoData={{
-      ...slottedProps,
-      content: {
-        formData: slottedProps.content.formData,
-      },
-      states: {
-        ...slottedProps.states,
-        isGoogle: true,
-      },
-    }}
-  ></sqm-portal-registration-form>
+  <PortalRegistrationFormView
+    {...slottedProps}
+    states={{ ...slottedProps.states, isGoogle: true }}
+  ></PortalRegistrationFormView>
 );
 
 export const TermsAndConditions = () => (
