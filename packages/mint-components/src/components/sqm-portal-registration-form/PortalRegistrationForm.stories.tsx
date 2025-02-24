@@ -162,6 +162,21 @@ export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
 );
 
+export const SlottedInputsIsGoogle = () => (
+  <sqm-portal-registration-form
+    demoData={{
+      ...slottedProps,
+      content: {
+        formData: slottedProps.content.formData,
+      },
+      states: {
+        ...slottedProps.states,
+        isGoogle: true,
+      },
+    }}
+  ></sqm-portal-registration-form>
+);
+
 export const TermsAndConditions = () => (
   <PortalRegistrationFormView
     {...defaultProps}

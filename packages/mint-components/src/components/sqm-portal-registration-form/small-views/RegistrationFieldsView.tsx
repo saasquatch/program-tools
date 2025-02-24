@@ -23,6 +23,7 @@ export interface RegistrationFieldsViewProps {
       };
     };
   };
+  //AL: TODO
   callbacks: {};
   text: {
     // indirectTaxNumber: string;
@@ -104,7 +105,8 @@ const vanillaStyle = `
   `;
 
 export const RegistrationFieldsView = (props: RegistrationFieldsViewProps) => {
-  const { states, callbacks, content, text } = props;
+  //AL :TODO callbacks
+  const { states, callbacks, content } = props;
   const { classes } = sheet;
 
   const RegularFields = () => {

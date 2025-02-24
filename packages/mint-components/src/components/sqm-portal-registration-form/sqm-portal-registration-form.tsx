@@ -229,7 +229,6 @@ export class PortalRegistrationForm {
       uppercaseErrorText: this.uppercaseErrorText,
       lowercaseErrorText: this.lowercaseErrorText,
       hasErrorText: this.hasErrorText,
-      isGoogle: false,
     };
 
     const conditionalRegistrationFields = (
@@ -277,6 +276,10 @@ function useRegisterDemo(
           console.log("submit");
         },
         inputFunction: () => {},
+      },
+      content: {
+        pageLabel: "Register",
+        formData: null,
       },
       refs: {
         formRef: {},
