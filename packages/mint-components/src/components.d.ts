@@ -393,7 +393,7 @@ export namespace Components {
           * @uiName Checkbox name attribute
           * @required
          */
-        "checkboxName": string;
+        "checkboxName"?: string;
         /**
           * @uiName Optional
          */
@@ -1494,12 +1494,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "checkboxLabel": string;
-        /**
-          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-          * @uiName Checkbox name attribute
-          * @required
-         */
-        "checkboxName": string;
         /**
           * @uiName Required
          */
@@ -7363,12 +7357,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "checkboxLabel"?: string;
-        /**
-          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-          * @uiName Checkbox name attribute
-          * @required
-         */
-        "checkboxName"?: string;
         /**
           * @uiName Required
          */

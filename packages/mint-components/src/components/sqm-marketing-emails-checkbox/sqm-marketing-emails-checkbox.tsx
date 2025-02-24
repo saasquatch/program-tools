@@ -3,8 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { RequiredPropsError } from "../../utils/RequiredPropsError";
-import { getMissingProps, getProps } from "../../utils/utils";
+import { getProps } from "../../utils/utils";
 import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
@@ -23,13 +22,6 @@ import { useCheckboxField } from "../sqm-checkbox-field/useCheckboxField";
 export class MarketingEmailsCheckbox {
   @State()
   ignored = true;
-
-  /**
-   * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-   * @uiName Checkbox name attribute
-   * @required
-   */
-  @Prop() checkboxName: string = "marketingEmails";
 
   /**
    * @uiName Checkbox label

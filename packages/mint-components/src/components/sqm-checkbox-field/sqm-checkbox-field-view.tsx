@@ -10,7 +10,6 @@ export interface CheckboxFieldViewProps {
     checked: boolean;
   };
   content: {
-    checkboxName: string;
     checkboxLabel: string;
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
@@ -79,26 +78,21 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
       </style>
       <sl-checkbox
         exportparts="label: input-label, base: input-base"
-        name={`/${content.checkboxName}`}
+        name={`/marketingEmails`}
         checked={states.checked}
         onSl-change={(e) => {
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
-        {...(!content.checkboxOptional ? { required: true } : [])}
+        {...(!content.checkboxOptional ? { required: false } : [])}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
-        {...(!states.checked && validationErrors?.[content.checkboxName]
-          ? {
-              class: sheet.classes.ErrorStyle,
-            }
-          : [])}
       >
         {intl.formatMessage(
           {
-            id: content.checkboxName + "-message",
+            id: "marketingEmails" + "-message",
             defaultMessage: content.checkboxLabel,
           },
           {
@@ -108,14 +102,6 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
               </a>
             ),
           }
-        )}
-        {!states.checked && validationErrors?.[content.checkboxName] && (
-          <p class={sheet.classes.ErrorMessageStyle}>
-            {intl.formatMessage({
-              id: `errorMessage-${content.checkboxName}`,
-              defaultMessage: content.errorMessage,
-            })}
-          </p>
         )}
       </sl-checkbox>
     </div>
