@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface CheckboxFieldViewProps {
   states: {

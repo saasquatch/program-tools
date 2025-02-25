@@ -147,7 +147,6 @@ export const FieldsHidden = () => {
           confirmPassword: true,
           hideInputs: true,
           loginPath: "/login",
-          isGoogle: false,
         },
       }}
     ></sqm-portal-register>

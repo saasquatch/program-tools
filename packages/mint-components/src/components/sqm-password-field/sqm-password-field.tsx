@@ -3,7 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,

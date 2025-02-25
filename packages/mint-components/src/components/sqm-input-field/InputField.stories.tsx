@@ -36,7 +36,6 @@ const defaultRegisterProps: PortalRegisterViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),

@@ -39,7 +39,10 @@ const style = {
     color: "#AAAAAA",
     margin: "0",
   },
-  ButtonsContainer: AuthButtonsContainer,
+  ButtonsContainer: {
+    ...AuthButtonsContainer,
+    gap: "var(--sl-spacing-medium)",
+  },
 };
 
 const vanillaStyle = `

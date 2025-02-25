@@ -6,7 +6,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { PortalRegister } from "./sqm-portal-register";
 import { AsYouType } from "libphonenumber-js";
-import { useRegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
+import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -138,8 +138,6 @@ export function usePortalRegister(props: PortalRegister) {
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,
       disablePasswordValidation: props.disablePasswordValidation,
-      // AL: TODO isGoogle state
-      isGoogle: false,
     },
     callbacks: {
       submit,

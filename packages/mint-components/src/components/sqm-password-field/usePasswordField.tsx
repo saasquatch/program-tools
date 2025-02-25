@@ -7,7 +7,7 @@ import { VNode } from "@stencil/core";
 import {
   RegistrationFormState,
   REGISTRATION_FORM_STATE_CONTEXT,
-} from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
+} from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export function usePasswordField(
   props: PortalPasswordField

@@ -49,9 +49,6 @@ export interface PortalGoogleRegistrationFormViewProps {
     lowercaseErrorText?: string;
     hasErrorText?: string;
   };
-  // slots: {
-  //   conditionalRegistrationFields?: VNode;
-  // };
   refs: {
     formRef: any;
   };
