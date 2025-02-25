@@ -102,8 +102,8 @@ function useDemoWidgetCodeVerification(
         loading: false,
         email: "test@example.com",
         emailResent,
-        resendError: true,
-        verifyFailed: true,
+        resendError: false,
+        verifyFailed: false,
       },
       refs: {
         codeWrapperRef: () => {},
