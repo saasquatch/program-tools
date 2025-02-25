@@ -191,7 +191,6 @@ export class PortalRegister {
             onClick={() => navigation.push(states.loginPath)}
           >
             {this.loginLabel}
-            CPOMONEE MAN
           </sl-button>
         </slot>
       ),

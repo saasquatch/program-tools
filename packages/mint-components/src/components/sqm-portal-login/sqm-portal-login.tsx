@@ -85,6 +85,11 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
+   * @uiName Register CTA
+   */
+  @Prop() registerCTA: string = "Don't have an account?";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -121,12 +126,16 @@ export class PortalLogin {
           </a>
         </slot>
       ),
+      googleButton: (
+        <sqm-google-sign-in
+          onInitComplete={(res) => console.log(res)}
+        ></sqm-google-sign-in>
+      ),
       secondaryButton: (
         <slot name="secondaryButton">
           <style>{styleString}</style>
           <span>
-            {" "}
-            Don't have an account?{" "}
+            {this.registerCTA}
             <sl-button
               type="text"
               disabled={states.loading}

@@ -20,7 +20,8 @@ const defaultProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setIsGoogle: () => console.log("type form"),
+    setShowRegistrationForm: () => console.log("type form"),
+    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -40,7 +41,8 @@ const errorProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setIsGoogle: () => console.log("type form"),
+    setShowRegistrationForm: () => console.log("type form"),
+    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -63,7 +65,8 @@ const loadingProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setIsGoogle: () => console.log("type form"),
+    setShowRegistrationForm: () => console.log("type form"),
+    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -83,7 +86,8 @@ const slottedProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setIsGoogle: () => console.log("type form"),
+    setShowRegistrationForm: () => console.log("type form"),
+    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},

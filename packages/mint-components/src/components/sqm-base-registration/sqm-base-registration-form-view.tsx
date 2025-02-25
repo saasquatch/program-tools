@@ -20,10 +20,11 @@ export interface BaseRegistrationFormViewProps {
   };
   callbacks: {
     submit: Function;
+    setShowRegistrationForm: (next: boolean) => void;
     inputFunction: Function;
-    setIsGoogle: Function;
   };
   content: {
+    googleButton?: VNode;
     formData?: VNode;
     terms?: VNode;
     secondaryButton?: VNode;
@@ -101,37 +102,35 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
           </sqm-form-message>
         )}
 
-        {!states.hideInputs && (
-          <sl-input
-            exportparts="label: input-label, base: input-base"
-            type="email"
-            name="/email"
-            label={content.emailLabel || "Email"}
-            disabled={states.loading}
-            required
-            validationError={({ value }: { value: string }) => {
-              if (!value) {
-                return content.requiredFieldErrorMessage;
-              }
-              // this matches shoelace validation, but could be better
-              if (!value.includes("@")) {
-                return content.invalidEmailErrorMessage;
-              }
-            }}
-            // {...(states.registrationFormState?.validationErrors?.email
-            //   ? {
-            //       class: sheet.classes.ErrorStyle,
-            //       helpText:
-            //         states.registrationFormState?.validationErrors?.email ||
-            //         content.requiredFieldErrorMessage,
-            //     }
-            //   : [])}
-          ></sl-input>
-        )}
+        <sl-input
+          exportparts="label: input-label, base: input-base"
+          type="email"
+          name="/email"
+          label={content.emailLabel || "Email"}
+          disabled={states.loading}
+          required
+          validationError={({ value }: { value: string }) => {
+            if (!value) {
+              return content.requiredFieldErrorMessage;
+            }
+            // this matches shoelace validation, but could be better
+            if (!value.includes("@")) {
+              return content.invalidEmailErrorMessage;
+            }
+          }}
+          // {...(states.registrationFormState?.validationErrors?.email
+          //   ? {
+          //       class: sheet.classes.ErrorStyle,
+          //       helpText:
+          //         states.registrationFormState?.validationErrors?.email ||
+          //         content.requiredFieldErrorMessage,
+          //     }
+          //   : [])}
+        ></sl-input>
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             // submit
-            onClick={() => callbacks.setIsGoogle(false)}
+            onClick={() => callbacks.setShowRegistrationForm(true)}
             loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"
@@ -140,15 +139,7 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
             {content.submitLabel || "Register"}
           </sl-button>
           <sl-menu-divider style={{ margin: "0" }} />
-          <sl-button
-            // submit
-            onClick={() => callbacks.setIsGoogle(true)}
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            Register with Google
-          </sl-button>
+          {content.googleButton}
         </div>
       </sl-form>
     </div>

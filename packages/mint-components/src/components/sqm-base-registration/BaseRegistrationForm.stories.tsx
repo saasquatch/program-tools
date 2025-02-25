@@ -19,7 +19,7 @@ const defaultProps: BaseRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setIsGoogle: () => console.log("type form"),
+    setShowRegistrationForm: () => console.log("type form"),
   },
   refs: {
     formRef: {},

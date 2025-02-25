@@ -843,6 +843,9 @@ export namespace Components {
          */
         "type": string;
     }
+    interface SqmGoogleSignIn {
+        "text": string;
+    }
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
@@ -2208,6 +2211,10 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
+          * @uiName Register CTA
+         */
+        "registerCTA": string;
+        /**
           * @uiName Register button text
          */
         "registerLabel": string;
@@ -2464,6 +2471,11 @@ export namespace Components {
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage": string;
+        /**
+          * Login Call-to-action
+          * @uiName Login CTA
+         */
+        "loginCTA": string;
         /**
           * @uiName Login button text
          */
@@ -5607,6 +5619,12 @@ declare global {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
+    interface HTMLSqmGoogleSignInElement extends Components.SqmGoogleSignIn, HTMLStencilElement {
+    }
+    var HTMLSqmGoogleSignInElement: {
+        prototype: HTMLSqmGoogleSignInElement;
+        new (): HTMLSqmGoogleSignInElement;
+    };
     interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqmGraphqlClientProviderElement: {
@@ -6220,6 +6238,7 @@ declare global {
         "sqm-email-verification": HTMLSqmEmailVerificationElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
+        "sqm-google-sign-in": HTMLSqmGoogleSignInElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
@@ -7109,6 +7128,10 @@ declare namespace LocalJSX {
           * @uiName Alert type
          */
         "type"?: string;
+    }
+    interface SqmGoogleSignIn {
+        "onInitComplete"?: (event: CustomEvent<any>) => void;
+        "text"?: string;
     }
     interface SqmGraphqlClientProvider {
         /**
@@ -8469,6 +8492,10 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
+          * @uiName Register CTA
+         */
+        "registerCTA"?: string;
+        /**
           * @uiName Register button text
          */
         "registerLabel"?: string;
@@ -8725,6 +8752,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "invalidEmailErrorMessage"?: string;
+        /**
+          * Login Call-to-action
+          * @uiName Login CTA
+         */
+        "loginCTA"?: string;
         /**
           * @uiName Login button text
          */
@@ -11752,6 +11784,7 @@ declare namespace LocalJSX {
         "sqm-email-verification": SqmEmailVerification;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
+        "sqm-google-sign-in": SqmGoogleSignIn;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
@@ -11875,6 +11908,7 @@ declare module "@stencil/core" {
             "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+            "sqm-google-sign-in": LocalJSX.SqmGoogleSignIn & JSXBase.HTMLAttributes<HTMLSqmGoogleSignInElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;

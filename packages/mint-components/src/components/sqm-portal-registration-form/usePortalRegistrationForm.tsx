@@ -1,4 +1,5 @@
 import jsonpointer from "jsonpointer";
+import decode from "jwt-decode";
 import {
   useCallback,
   useEffect,
@@ -57,6 +58,8 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const locale = useLocale();
 
+  const [googleCredentials, setGoogleCredentials] = useState(null);
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const { registrationFormState, setRegistrationFormState } =
     useRegistrationFormState({});
   const [request, { loading, errors, data, formError }] =
@@ -225,9 +228,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     e.target.value = asYouType.input(e.target.value);
   }, []);
 
-  //AL: TODO
-  const [isGoogle, setIsGoogle] = useState<boolean>(null);
-
   let errorMessage = "";
   if (queryResponse?.data?.form.initialData.isEnabled === false) {
     errorMessage =
@@ -243,8 +243,25 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       queryResponse?.errors?.response?.errors?.[0]?.message ||
       registrationFormState?.error;
   }
+
+  const handleGoogleInit = (credential: string) => {
+    try {
+      const res = decode(credential) as any;
+      // TODO: Double check
+      setGoogleCredentials({
+        firstName: res.payload.given_name,
+        lastName: res.payload.family_name,
+        email: res.payload.email,
+      });
+      setShowRegistrationForm(true);
+    } catch (e) {
+      console.error("Failed to decode Google Sign In credential JWT:", e);
+    }
+  };
+
   return {
     states: {
+      showRegistrationForm,
       loading: loading || queryResponse.loading,
       error: errorMessage,
       registrationFormState,
@@ -253,12 +270,13 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       loginPath: props.loginPath,
       enablePasswordValidation: !props.disablePasswordValidation,
       // AL: TODO google form state
-      isGoogle: isGoogle,
+      isGoogle: !!googleCredentials,
     },
     callbacks: {
       submit,
       inputFunction,
-      setIsGoogle,
+      handleGoogleInit,
+      setShowRegistrationForm,
     },
     refs: {
       formRef,
