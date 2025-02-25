@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
@@ -18,6 +18,7 @@ export interface PortalLoginViewProps {
     submit: (event: any) => Promise<void>;
   };
   content: {
+    googleButton?: VNode;
     forgotPasswordButton?: any;
     secondaryButton?: any;
     emailLabel?: string;
@@ -99,14 +100,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             {content.submitLabel || "Login"}
           </sl-button>
           <sl-menu-divider />
-          <sl-button
-            submit
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            Sign in with Google
-          </sl-button>
+          {content.googleButton}
           {content.secondaryButton}
         </div>
       </sl-form>

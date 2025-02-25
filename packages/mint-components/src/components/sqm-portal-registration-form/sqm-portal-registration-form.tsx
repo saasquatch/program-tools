@@ -185,6 +185,13 @@ export class PortalRegistrationForm {
   @Prop() formKey: string;
 
   /**
+   * Login Call-to-action
+   *
+   * @uiName Login CTA
+   */
+  @Prop() loginCTA: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -202,6 +209,11 @@ export class PortalRegistrationForm {
       : usePortalRegistrationForm(this);
     const content = {
       formData: <slot name="formData"></slot>,
+      googleButton: (
+        <sqm-google-sign-in
+          onInitComplete={callbacks.handleGoogleInit}
+        ></sqm-google-sign-in>
+      ),
       secondaryButton: (
         <slot name="secondaryButton">
           <sl-button
@@ -232,25 +244,8 @@ export class PortalRegistrationForm {
       hasErrorText: this.hasErrorText,
     };
 
-    // const conditionalRegistrationFields = (
-    //   <RegistrationFieldsView
-    //     callbacks={callbacks}
-    //     content={content}
-    //     states={{
-    //       ...states,
-    //       enablePasswordValidation: !this.disablePasswordValidation,
-    //       registrationFormState: states.registrationFormState,
-    //     }}
-    //     text={{
-    //       confirmPasswordLabel: this.confirmPasswordLabel,
-    //     }}
-    //   ></RegistrationFieldsView>
-    // );
-
     // AL: when user clicks "Register", show the base registration form
-    console.log(states);
-    const notRegistered = true;
-    if (states.isGoogle === null) {
+    if (!states.showRegistrationForm) {
       return (
         <BaseRegistrationFormView
           states={states}
@@ -274,7 +269,8 @@ export class PortalRegistrationForm {
 }
 function useRegisterDemo(
   props: PortalRegistrationForm
-): Pick<PortalRegistrationFormViewProps, "states" | "callbacks" | "refs"> {
+): Pick<PortalRegistrationFormViewProps, "states" | "callbacks" | "refs"> &
+  any {
   return deepmerge(
     {
       states: {
@@ -287,11 +283,12 @@ function useRegisterDemo(
         isGoogle: false,
       },
       callbacks: {
+        handleGoogleInit: () => {},
+        setShowRegistrationForm: () => {},
         submit: async (_event) => {
           console.log("submit");
         },
         inputFunction: () => {},
-        setIsGoogle: () => console.log("setForm"),
       },
       content: {
         pageLabel: "Register",

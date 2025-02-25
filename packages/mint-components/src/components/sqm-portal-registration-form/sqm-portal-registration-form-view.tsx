@@ -12,6 +12,7 @@ import { RegistrationFormState } from "./useRegistrationFormState";
 
 export interface PortalRegistrationFormViewProps {
   states: {
+    isGoogle: boolean;
     error: string;
     loading: boolean;
     confirmPassword: boolean;
@@ -19,13 +20,12 @@ export interface PortalRegistrationFormViewProps {
     registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
-    isGoogle: boolean;
-    // countries: [];
   };
   callbacks: {
     submit: Function;
     inputFunction: Function;
-    setIsGoogle: Function;
+    setShowRegistrationForm: (next: boolean) => void;
+    handleGoogleInit: (res: any) => void;
   };
   content: {
     formData?: VNode;
@@ -99,20 +99,6 @@ export function PortalRegistrationFormView(
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
 
-  states.isGoogle = true;
-
-  //AL:TODO pass countries as state or data
-  const countries = [
-    {
-      countryCode: "CA",
-      displayName: "Canada",
-    },
-    {
-      countryCode: "ES",
-      displayName: "Spain",
-    },
-  ];
-
   return (
     <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
@@ -172,19 +158,6 @@ export function PortalRegistrationFormView(
                 }
               : [])}
           ></sl-input>
-        )}
-        {states.isGoogle && (
-          <sl-select
-            id="countryCode"
-            exportparts="label: input-label, base: input-base"
-            name="/countryCode"
-            label={"Country"}
-            value={"CA"}
-          >
-            {countries?.map((c) => (
-              <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
-            ))}
-          </sl-select>
         )}
         {!states.isGoogle && !states.hideInputs && (
           <sqm-password-field
