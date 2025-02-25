@@ -54,7 +54,10 @@ const style = {
     width: "100%",
   },
 
-  ButtonsContainer: AuthButtonsContainer,
+  ButtonsContainer: {
+    ...AuthButtonsContainer,
+    gap: "var(--sl-spacing-medium)",
+  },
   ErrorStyle: ErrorStyles,
 };
 
@@ -132,10 +135,11 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
             loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"
+            style={{ margin: "0" }}
           >
             {content.submitLabel || "Register"}
           </sl-button>
-          <sl-menu-divider />
+          <sl-menu-divider style={{ margin: "0" }} />
           <sl-button
             // submit
             onClick={() => callbacks.setIsGoogle(true)}
