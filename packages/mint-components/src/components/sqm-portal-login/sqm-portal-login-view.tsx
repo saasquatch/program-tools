@@ -109,10 +109,6 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           </sl-button>
           {content.secondaryButton}
         </div>
-        <span>
-          {" "}
-          Don't have an account? <a style={{ fontWeight: "bold" }}>Register</a>
-        </span>
       </sl-form>
     </div>
   );

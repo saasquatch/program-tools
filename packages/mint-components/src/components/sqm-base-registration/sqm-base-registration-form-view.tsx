@@ -15,23 +15,21 @@ export interface BaseRegistrationFormViewProps {
     error: string;
     loading: boolean;
     hideInputs: boolean;
-    registrationFormState: RegistrationFormState;
+    // registrationFormState: RegistrationFormState;
     // loginPath: string;
   };
   callbacks: {
     submit: Function;
     inputFunction: Function;
+    setIsGoogle: Function;
   };
   content: {
     formData?: VNode;
     terms?: VNode;
-    passwordField?: VNode;
     secondaryButton?: VNode;
     emailLabel?: string;
-    passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
-    confirmPasswordLabel: string;
     requiredFieldErrorMessage: string;
     invalidEmailErrorMessage: string;
     meetsRequirementsText?: string;
@@ -117,19 +115,20 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
                 return content.invalidEmailErrorMessage;
               }
             }}
-            {...(states.registrationFormState?.validationErrors?.email
-              ? {
-                  class: sheet.classes.ErrorStyle,
-                  helpText:
-                    states.registrationFormState?.validationErrors?.email ||
-                    content.requiredFieldErrorMessage,
-                }
-              : [])}
+            // {...(states.registrationFormState?.validationErrors?.email
+            //   ? {
+            //       class: sheet.classes.ErrorStyle,
+            //       helpText:
+            //         states.registrationFormState?.validationErrors?.email ||
+            //         content.requiredFieldErrorMessage,
+            //     }
+            //   : [])}
           ></sl-input>
         )}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
-            submit
+            // submit
+            onClick={() => callbacks.setIsGoogle(false)}
             loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"
@@ -138,7 +137,8 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
           </sl-button>
           <sl-menu-divider />
           <sl-button
-            submit
+            // submit
+            onClick={() => callbacks.setIsGoogle(true)}
             loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"

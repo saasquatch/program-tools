@@ -5,6 +5,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
+import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Microsite Login
@@ -99,6 +100,19 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
+
+    // AL: flagging for code cleanup
+    const styles = {
+      RegisterButton: {
+        "&::part(label)": {
+          padding: "0",
+        },
+      },
+    };
+
+    const sheet = createStyleSheet(styles);
+    const styleString = sheet.toString();
+
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
@@ -109,6 +123,7 @@ export class PortalLogin {
       ),
       secondaryButton: (
         <slot name="secondaryButton">
+          <style>{styleString}</style>
           <span>
             {" "}
             Don't have an account?{" "}
@@ -116,6 +131,7 @@ export class PortalLogin {
               type="text"
               disabled={states.loading}
               onClick={() => navigation.push(states.registerPath)}
+              className={sheet.classes.RegisterButton}
             >
               {this.registerLabel}
             </sl-button>

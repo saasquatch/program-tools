@@ -87,7 +87,6 @@ import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
-import * as PortalGoogleRegistrationForm from "../sqm-google-registration-form/GoogleRegistrationForm.stories";
 import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
 import * as PortalRegistrationFormStories from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 
@@ -183,7 +182,6 @@ const stories = [
   TaxFormSlots,
   PayoutDetailsCard,
   BankingInfoForm,
-  PortalGoogleRegistrationForm,
   BaseRegistrationForm,
   PortalRegistrationFormStories,
 ];

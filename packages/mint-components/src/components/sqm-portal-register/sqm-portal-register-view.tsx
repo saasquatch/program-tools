@@ -19,6 +19,7 @@ export interface PortalRegisterViewProps {
     registrationFormState: RegistrationFormState;
     disablePasswordValidation?: boolean;
     loginPath: string;
+    isGoogle: boolean;
   };
   callbacks: {
     submit: Function;
@@ -83,6 +84,7 @@ const styleString = sheet.toString();
 
 export function PortalRegisterView(props: PortalRegisterViewProps) {
   const { states, refs, callbacks, content } = props;
+  states.isGoogle = true;
 
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -95,6 +97,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {styleString}
       </style>
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
+      SUCKPOOEDASKKL
       <sl-form
         class={sheet.classes.Column}
         onSl-submit={callbacks.submit}
@@ -135,7 +138,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
               : [])}
           ></sl-input>
         )}
-        {!states.hideInputs && (
+        {!states.isGoogle && !states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={states.disablePasswordValidation}
@@ -147,15 +150,21 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
-        {content.passwordField}
-        {!states.hideInputs && states.confirmPassword && (
+        {!states.isGoogle && content.passwordField}
+        {!states.isGoogle && !states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label, base: input-base"
             type="password"
             name="/confirmPassword"
             label={content.confirmPasswordLabel}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
+            {...(states.registrationFormState?.initialData?.confirmPassword
+              ? {
+                  value:
+                    states.registrationFormState?.initialData?.confirmPassword,
+                }
+              : {})}
             {...(states.registrationFormState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,

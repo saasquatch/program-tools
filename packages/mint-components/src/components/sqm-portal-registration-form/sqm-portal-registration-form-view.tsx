@@ -25,6 +25,7 @@ export interface PortalRegistrationFormViewProps {
   callbacks: {
     submit: Function;
     inputFunction: Function;
+    setIsGoogle: Function;
   };
   content: {
     formData?: VNode;
@@ -97,6 +98,8 @@ export function PortalRegistrationFormView(
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
+
+  states.isGoogle = true;
 
   //AL:TODO pass countries as state or data
   const countries = [

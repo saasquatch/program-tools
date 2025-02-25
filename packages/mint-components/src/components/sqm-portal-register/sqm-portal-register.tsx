@@ -191,6 +191,7 @@ export class PortalRegister {
             onClick={() => navigation.push(states.loginPath)}
           >
             {this.loginLabel}
+            CPOMONEE MAN
           </sl-button>
         </slot>
       ),
@@ -233,6 +234,7 @@ function useRegisterDemo(
         customPasswordField: false,
         loginPath: props.loginPath,
         disablePasswordValidation: props.disablePasswordValidation,
+        isGoogle: false,
       },
       callbacks: {
         submit: async (_event) => {

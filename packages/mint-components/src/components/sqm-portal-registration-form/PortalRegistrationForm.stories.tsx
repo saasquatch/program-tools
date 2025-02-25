@@ -20,6 +20,7 @@ const defaultProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    setIsGoogle: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -39,6 +40,7 @@ const errorProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    setIsGoogle: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -61,6 +63,7 @@ const loadingProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    setIsGoogle: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -80,6 +83,7 @@ const slottedProps: PortalRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    setIsGoogle: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -137,6 +141,7 @@ export const FieldsHidden = () => {
           confirmPassword: true,
           hideInputs: true,
           loginPath: "/login",
+          isGoogle: false,
         },
       }}
     ></sqm-portal-register>

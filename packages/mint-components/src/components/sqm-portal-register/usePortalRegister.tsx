@@ -138,6 +138,8 @@ export function usePortalRegister(props: PortalRegister) {
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,
       disablePasswordValidation: props.disablePasswordValidation,
+      // AL: TODO isGoogle state
+      isGoogle: false,
     },
     callbacks: {
       submit,

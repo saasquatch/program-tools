@@ -1,5 +1,10 @@
 import jsonpointer from "jsonpointer";
-import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import {
   navigation,
   useLocale,
@@ -220,6 +225,9 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     e.target.value = asYouType.input(e.target.value);
   }, []);
 
+  //AL: TODO
+  const [isGoogle, setIsGoogle] = useState<boolean>(null);
+
   let errorMessage = "";
   if (queryResponse?.data?.form.initialData.isEnabled === false) {
     errorMessage =
@@ -245,11 +253,12 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       loginPath: props.loginPath,
       enablePasswordValidation: !props.disablePasswordValidation,
       // AL: TODO google form state
-      isGoogle: false,
+      isGoogle: isGoogle,
     },
     callbacks: {
       submit,
       inputFunction,
+      setIsGoogle,
     },
     refs: {
       formRef,

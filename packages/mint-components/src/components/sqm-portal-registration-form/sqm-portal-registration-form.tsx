@@ -9,6 +9,7 @@ import {
 } from "./sqm-portal-registration-form-view";
 import { RegistrationFieldsView } from "./small-views/RegistrationFieldsView";
 import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
+import { BaseRegistrationFormView } from "../sqm-base-registration/sqm-base-registration-form-view";
 
 /**
  * @uiName Microsite Registration
@@ -246,6 +247,20 @@ export class PortalRegistrationForm {
     //   ></RegistrationFieldsView>
     // );
 
+    // AL: when user clicks "Register", show the base registration form
+    console.log(states);
+    const notRegistered = true;
+    if (states.isGoogle === null) {
+      return (
+        <BaseRegistrationFormView
+          states={states}
+          callbacks={callbacks}
+          content={content}
+          refs={refs}
+        />
+      );
+    }
+
     return (
       <PortalRegistrationFormView
         states={states}
@@ -276,6 +291,7 @@ function useRegisterDemo(
           console.log("submit");
         },
         inputFunction: () => {},
+        setIsGoogle: () => console.log("setForm"),
       },
       content: {
         pageLabel: "Register",

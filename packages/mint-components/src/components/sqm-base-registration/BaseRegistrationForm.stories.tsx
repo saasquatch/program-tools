@@ -10,7 +10,8 @@ export default {
 
 const defaultProps: BaseRegistrationFormViewProps = {
   states: {
-    registrationFormState: {},
+    // AL: TODO
+    // registrationFormState: {},
     error: "",
     loading: false,
     hideInputs: false,
@@ -18,13 +19,13 @@ const defaultProps: BaseRegistrationFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    setIsGoogle: () => console.log("type form"),
   },
   refs: {
     formRef: {},
   },
   content: {
     pageLabel: "Register",
-    confirmPasswordLabel: "Confirm Password",
     requiredFieldErrorMessage: "Cannot be empty",
     invalidEmailErrorMessage: "Must be a valid email address",
   },
