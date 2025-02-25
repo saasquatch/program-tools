@@ -8,7 +8,7 @@ import {
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
-import { GoogleRegistrationFormState } from "./useGoogleRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface PortalGoogleRegistrationFormViewProps {
   states: {
@@ -17,7 +17,7 @@ export interface PortalGoogleRegistrationFormViewProps {
     loading: boolean;
     confirmPassword: boolean;
     hideInputs: boolean;
-    registrationFormState?: GoogleRegistrationFormState;
+    registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
   };
