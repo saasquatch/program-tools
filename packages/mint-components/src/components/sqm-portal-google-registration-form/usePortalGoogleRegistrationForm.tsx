@@ -16,9 +16,9 @@ import { PortalGooglelRegistrationForm } from "./sqm-portal-google-registration-
 import { AsYouType } from "libphonenumber-js";
 import { gql } from "graphql-request";
 import {
-  GoogleRegistrationFormState,
-  useGoogleRegistrationFormState,
-} from "./useGoogleRegistrationFormState";
+  RegistrationFormState,
+  useRegistrationFormState,
+} from "../sqm-portal-registration-form/useRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -62,8 +62,8 @@ export function usePortalGoogleRegistrationForm(
 
   const [googleCredentials, setGoogleCredentials] = useState(null);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
-  const { googleRegistrationFormState, setGoogleRegistrationFormState } =
-    useGoogleRegistrationFormState({});
+  const { registrationFormState, setRegistrationFormState } =
+    useRegistrationFormState({});
   const [request, { loading, errors, data, formError }] =
     useRegisterViaRegistrationFormMutation();
 
@@ -78,13 +78,13 @@ export function usePortalGoogleRegistrationForm(
     const disabledMessage =
       queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
       props.formDisabledErrorMessage;
-    const formState: GoogleRegistrationFormState = {
+    const formState: RegistrationFormState = {
       loading: formLoading,
       disabled,
       disabledMessage,
       initialData,
     };
-    setGoogleRegistrationFormState(formState);
+    setRegistrationFormState(formState);
   }, [queryResponse?.data?.form.initialData]);
 
   useEffect(() => {
@@ -134,16 +134,16 @@ export function usePortalGoogleRegistrationForm(
 
     if (Object.keys(validationErrors).length) {
       // early return for validation errors
-      setGoogleRegistrationFormState({
-        ...googleRegistrationFormState,
+      setRegistrationFormState({
+        ...registrationFormState,
         loading: false,
         error: "",
         validationErrors,
       });
       return;
     }
-    setGoogleRegistrationFormState({
-      ...googleRegistrationFormState,
+    setRegistrationFormState({
+      ...registrationFormState,
       loading: true,
       error: "",
       validationErrors: {},
@@ -168,8 +168,8 @@ export function usePortalGoogleRegistrationForm(
       if (result instanceof Error) {
         throw result;
       }
-      setGoogleRegistrationFormState({
-        ...googleRegistrationFormState,
+      setRegistrationFormState({
+        ...registrationFormState,
         loading: false,
         error: "",
         validationErrors: {},
@@ -194,8 +194,8 @@ export function usePortalGoogleRegistrationForm(
           "Blocked email"
         )
       ) {
-        setGoogleRegistrationFormState({
-          ...googleRegistrationFormState,
+        setRegistrationFormState({
+          ...registrationFormState,
           loading: false,
           error: "",
           validationErrors: {
@@ -206,15 +206,15 @@ export function usePortalGoogleRegistrationForm(
     } catch (error) {
       // check for invalid email
       if (error?.message?.includes("is not a valid email address")) {
-        setGoogleRegistrationFormState({
-          ...googleRegistrationFormState,
+        setRegistrationFormState({
+          ...registrationFormState,
           loading: false,
           error: "",
           validationErrors: { email: props.invalidEmailErrorMessage },
         });
       } else {
-        setGoogleRegistrationFormState({
-          ...googleRegistrationFormState,
+        setRegistrationFormState({
+          ...registrationFormState,
           loading: false,
           error: props.networkErrorMessage,
           validationErrors: {},
@@ -243,7 +243,7 @@ export function usePortalGoogleRegistrationForm(
     errorMessage =
       formError ||
       queryResponse?.errors?.response?.errors?.[0]?.message ||
-      googleRegistrationFormState?.error;
+      registrationFormState?.error;
   }
 
   const handleGoogleInit = (credential: string) => {
@@ -266,7 +266,7 @@ export function usePortalGoogleRegistrationForm(
       showRegistrationForm,
       loading: loading || queryResponse.loading,
       error: errorMessage,
-      googleRegistrationFormState,
+      registrationFormState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,

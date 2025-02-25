@@ -116,6 +116,7 @@ export const FieldsHidden = () => {
     <sqm-portal-register
       demoData={{
         states: {
+          isGoogle: false,
           error: "",
           loading: true,
           registrationFormState: {},
