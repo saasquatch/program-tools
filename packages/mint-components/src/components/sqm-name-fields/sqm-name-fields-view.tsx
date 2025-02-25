@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 
 export interface NameFieldsViewProps {
   states: {

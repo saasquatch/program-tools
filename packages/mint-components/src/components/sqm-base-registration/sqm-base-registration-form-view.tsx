@@ -7,7 +7,6 @@ import {
   HostBlock,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface BaseRegistrationFormViewProps {

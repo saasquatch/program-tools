@@ -3,7 +3,7 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   RegistrationFormState,
   REGISTRATION_FORM_STATE_CONTEXT,
-} from "../sqm-portal-registration-form/useRegistrationFormState";
+} from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 import { CheckboxField } from "./sqm-checkbox-field";
 
 export function useCheckboxField(props: CheckboxField) {

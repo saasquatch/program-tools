@@ -3,7 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { ErrorStyles } from "../../global/mixins";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 
 export interface InputFieldViewProps {
   states: {

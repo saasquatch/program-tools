@@ -4,20 +4,22 @@ import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  PortalRegistrationFormView,
-  PortalRegistrationFormViewProps,
-} from "./sqm-portal-registration-form-view";
-import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
+  PortalGoogleRegistrationFormViewProps,
+  PortalGoogleRegistrationFormView,
+} from "./sqm-portal-google-registration-form-view";
+import { RegistrationFieldsView } from "./small-views/RegistrationFieldsView";
+import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
+import { BaseRegistrationFormView } from "../sqm-base-registration/sqm-base-registration-form-view";
 
 /**
- * @uiName Microsite Registration
+ * @uiName Microsite Google Registration
  * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
  */
 @Component({
-  tag: "sqm-portal-registration-form",
+  tag: "sqm-portal-google-registration-form",
   shadow: true,
 })
-export class PortalRegistrationForm {
+export class PortalGooglelRegistrationForm {
   @State()
   ignored = true;
 
@@ -183,10 +185,17 @@ export class PortalRegistrationForm {
   @Prop() formKey: string;
 
   /**
+   * Login Call-to-action
+   *
+   * @uiName Login CTA
+   */
+  @Prop() loginCTA: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PortalRegistrationFormViewProps>;
+  @Prop() demoData?: DemoData<PortalGoogleRegistrationFormViewProps>;
 
   constructor() {
     withHooks(this);
@@ -197,9 +206,14 @@ export class PortalRegistrationForm {
   render() {
     const { states, callbacks, refs } = isDemo()
       ? useRegisterDemo(this)
-      : usePortalRegistrationForm(this);
+      : usePortalGoogleRegistrationForm(this);
     const content = {
       formData: <slot name="formData"></slot>,
+      googleButton: (
+        <sqm-google-sign-in
+          onInitComplete={callbacks.handleGoogleInit}
+        ></sqm-google-sign-in>
+      ),
       secondaryButton: (
         <slot name="secondaryButton">
           <sl-button
@@ -230,19 +244,36 @@ export class PortalRegistrationForm {
       hasErrorText: this.hasErrorText,
     };
 
+    // AL: when user clicks "Register", show the base registration form
+    if (!states.showRegistrationForm) {
+      return (
+        <BaseRegistrationFormView
+          states={states}
+          callbacks={callbacks}
+          content={content}
+          refs={refs}
+        />
+      );
+    }
+
     return (
-      <PortalRegistrationFormView
+      <PortalGoogleRegistrationFormView
         states={states}
         callbacks={callbacks}
         content={content}
         refs={refs}
-      ></PortalRegistrationFormView>
+        // slots={{ conditionalRegistrationFields }}
+      ></PortalGoogleRegistrationFormView>
     );
   }
 }
 function useRegisterDemo(
-  props: PortalRegistrationForm
-): Pick<PortalRegistrationFormViewProps, "states" | "callbacks" | "refs"> {
+  props: PortalGooglelRegistrationForm
+): Pick<
+  PortalGoogleRegistrationFormViewProps,
+  "states" | "callbacks" | "refs"
+> &
+  any {
   return deepmerge(
     {
       states: {
@@ -252,12 +283,19 @@ function useRegisterDemo(
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
         loginPath: "/login",
+        isGoogle: false,
       },
       callbacks: {
+        handleGoogleInit: () => {},
+        setShowRegistrationForm: () => {},
         submit: async (_event) => {
           console.log("submit");
         },
         inputFunction: () => {},
+      },
+      content: {
+        pageLabel: "Register",
+        formData: null,
       },
       refs: {
         formRef: {},

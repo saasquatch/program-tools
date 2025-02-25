@@ -1,6 +1,9 @@
 # sqm-portal-registration-form
 
+
+
 <!-- Auto Generated Below -->
+
 
 ## Properties
 
@@ -32,6 +35,7 @@
 | `submitLabel`                  | `submit-label`                    |                                                                                                                                                                                                        | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `"Register"`                                       |
 | `uppercaseErrorText`           | `uppercase-error-text`            |                                                                                                                                                                                                        | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `"contain at least 1 uppercase character"`         |
 
+
 ## Dependencies
 
 ### Depends on
@@ -40,7 +44,6 @@
 - [sqm-password-field](../sqm-password-field)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqm-portal-registration-form --> sqm-form-message
@@ -48,6 +51,6 @@ graph TD;
   style sqm-portal-registration-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

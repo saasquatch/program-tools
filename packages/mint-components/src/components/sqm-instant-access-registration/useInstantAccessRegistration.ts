@@ -1,7 +1,7 @@
 import { useAuthenticateManagedIdentityWithInstantAccess } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { useRegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 import { InstantAccessRegistration } from "./sqm-instant-access-registration";
 import { ValidationErrorFunction } from "../sqm-portal-register/usePortalRegister";
 

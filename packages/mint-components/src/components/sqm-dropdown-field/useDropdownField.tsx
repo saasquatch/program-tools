@@ -2,7 +2,7 @@ import { useDomContext } from "@saasquatch/stencil-hooks";
 import {
   RegistrationFormState,
   REGISTRATION_FORM_STATE_CONTEXT,
-} from "../sqm-portal-registration-form/useRegistrationFormState";
+} from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 
 export function useDropdownField() {
   const registrationFormState = useDomContext<RegistrationFormState>(

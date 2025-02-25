@@ -7,7 +7,7 @@ import {
   gap,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 
 export interface EmailRegistrationViewProps {
   states: {

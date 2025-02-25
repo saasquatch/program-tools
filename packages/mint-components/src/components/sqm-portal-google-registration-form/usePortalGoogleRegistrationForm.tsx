@@ -1,15 +1,24 @@
 import jsonpointer from "jsonpointer";
-import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
+import decode from "jwt-decode";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import {
   navigation,
   useLocale,
   useQuery,
   useRegisterViaRegistrationFormMutation,
 } from "@saasquatch/component-boilerplate";
-import { PortalRegistrationForm } from "./sqm-portal-registration-form";
+import { PortalGooglelRegistrationForm } from "./sqm-portal-google-registration-form";
 import { AsYouType } from "libphonenumber-js";
 import { gql } from "graphql-request";
-import { RegistrationFormState, useRegist } from "./useRegistrationFormState";
+import {
+  GoogleRegistrationFormState,
+  useGoogleRegistrationFormState,
+} from "./useGoogleRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -44,13 +53,17 @@ interface RegistrationFormQueryData {
   };
 }
 
-export function usePortalRegistrationForm(props: PortalRegistrationForm) {
+export function usePortalGoogleRegistrationForm(
+  props: PortalGooglelRegistrationForm
+) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const locale = useLocale();
 
-  const { registrationFormState, setRegistrationFormState } =
-    useRegistrationFormState({});
+  const [googleCredentials, setGoogleCredentials] = useState(null);
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const { googleRegistrationFormState, setGoogleRegistrationFormState } =
+    useGoogleRegistrationFormState({});
   const [request, { loading, errors, data, formError }] =
     useRegisterViaRegistrationFormMutation();
 
@@ -65,13 +78,13 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     const disabledMessage =
       queryResponse?.data?.form.initialData.isEnabledErrorMessage ||
       props.formDisabledErrorMessage;
-    const formState: RegistrationFormState = {
+    const formState: GoogleRegistrationFormState = {
       loading: formLoading,
       disabled,
       disabledMessage,
       initialData,
     };
-    setRegistrationFormState(formState);
+    setGoogleRegistrationFormState(formState);
   }, [queryResponse?.data?.form.initialData]);
 
   useEffect(() => {
@@ -121,16 +134,16 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
     if (Object.keys(validationErrors).length) {
       // early return for validation errors
-      setRegistrationFormState({
-        ...registrationFormState,
+      setGoogleRegistrationFormState({
+        ...googleRegistrationFormState,
         loading: false,
         error: "",
         validationErrors,
       });
       return;
     }
-    setRegistrationFormState({
-      ...registrationFormState,
+    setGoogleRegistrationFormState({
+      ...googleRegistrationFormState,
       loading: true,
       error: "",
       validationErrors: {},
@@ -155,8 +168,8 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       if (result instanceof Error) {
         throw result;
       }
-      setRegistrationFormState({
-        ...registrationFormState,
+      setGoogleRegistrationFormState({
+        ...googleRegistrationFormState,
         loading: false,
         error: "",
         validationErrors: {},
@@ -181,8 +194,8 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
           "Blocked email"
         )
       ) {
-        setRegistrationFormState({
-          ...registrationFormState,
+        setGoogleRegistrationFormState({
+          ...googleRegistrationFormState,
           loading: false,
           error: "",
           validationErrors: {
@@ -193,15 +206,15 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     } catch (error) {
       // check for invalid email
       if (error?.message?.includes("is not a valid email address")) {
-        setRegistrationFormState({
-          ...registrationFormState,
+        setGoogleRegistrationFormState({
+          ...googleRegistrationFormState,
           loading: false,
           error: "",
           validationErrors: { email: props.invalidEmailErrorMessage },
         });
       } else {
-        setRegistrationFormState({
-          ...registrationFormState,
+        setGoogleRegistrationFormState({
+          ...googleRegistrationFormState,
           loading: false,
           error: props.networkErrorMessage,
           validationErrors: {},
@@ -230,21 +243,42 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     errorMessage =
       formError ||
       queryResponse?.errors?.response?.errors?.[0]?.message ||
-      registrationFormState?.error;
+      googleRegistrationFormState?.error;
   }
+
+  const handleGoogleInit = (credential: string) => {
+    try {
+      const res = decode(credential) as any;
+      // TODO: Double check
+      setGoogleCredentials({
+        firstName: res.payload.given_name,
+        lastName: res.payload.family_name,
+        email: res.payload.email,
+      });
+      setShowRegistrationForm(true);
+    } catch (e) {
+      console.error("Failed to decode Google Sign In credential JWT:", e);
+    }
+  };
+
   return {
     states: {
+      showRegistrationForm,
       loading: loading || queryResponse.loading,
       error: errorMessage,
-      registrationFormState,
+      googleRegistrationFormState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
       loginPath: props.loginPath,
       enablePasswordValidation: !props.disablePasswordValidation,
+      // AL: TODO google form state
+      isGoogle: !!googleCredentials,
     },
     callbacks: {
       submit,
       inputFunction,
+      handleGoogleInit,
+      setShowRegistrationForm,
     },
     refs: {
       formRef,

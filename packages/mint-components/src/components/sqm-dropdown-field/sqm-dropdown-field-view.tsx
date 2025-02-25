@@ -2,7 +2,7 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 
 export interface DropdownFieldViewProps {
   states: {

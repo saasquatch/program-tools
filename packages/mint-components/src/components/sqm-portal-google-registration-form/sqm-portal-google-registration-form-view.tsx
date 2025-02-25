@@ -7,23 +7,25 @@ import {
   HostBlock,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { RegistrationFormState } from "../sqm-portal-google-registration-form/useGoogleRegistrationFormState";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { GoogleRegistrationFormState } from "./useGoogleRegistrationFormState";
 
-export interface PortalRegisterViewProps {
+export interface PortalGoogleRegistrationFormViewProps {
   states: {
+    isGoogle: boolean;
     error: string;
     loading: boolean;
     confirmPassword: boolean;
     hideInputs: boolean;
-    registrationFormState: RegistrationFormState;
-    disablePasswordValidation?: boolean;
+    registrationFormState?: GoogleRegistrationFormState;
+    enablePasswordValidation?: boolean;
     loginPath: string;
-    isGoogle: boolean;
   };
   callbacks: {
     submit: Function;
     inputFunction: Function;
+    setShowRegistrationForm: (next: boolean) => void;
+    handleGoogleInit: (res: any) => void;
   };
   content: {
     formData?: VNode;
@@ -34,9 +36,12 @@ export interface PortalRegisterViewProps {
     passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
-    confirmPasswordLabel: string;
-    requiredFieldErrorMessage: string;
-    invalidEmailErrorMessage: string;
+    confirmPasswordLabel?: string;
+    networkErrorMessage?: string;
+    passwordMismatchErrorMessage?: string;
+    invalidEmailErrorMessage?: string;
+    formDisabledErrorMessage?: string;
+    requiredFieldErrorMessage?: string;
     meetsRequirementsText?: string;
     doesNotMeetRequirementsText?: string;
     minErrorText?: string;
@@ -44,6 +49,9 @@ export interface PortalRegisterViewProps {
     lowercaseErrorText?: string;
     hasErrorText?: string;
   };
+  // slots: {
+  //   conditionalRegistrationFields?: VNode;
+  // };
   refs: {
     formRef: any;
   };
@@ -82,9 +90,10 @@ sqm-portal-register {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function PortalRegisterView(props: PortalRegisterViewProps) {
+export function PortalGoogleRegistrationFormView(
+  props: PortalGoogleRegistrationFormViewProps
+) {
   const { states, refs, callbacks, content } = props;
-  states.isGoogle = true;
 
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -97,17 +106,24 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {styleString}
       </style>
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-      SUCKPOOEDASKKL
       <sl-form
         class={sheet.classes.Column}
         onSl-submit={callbacks.submit}
         ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
         novalidate
       >
-        {states.error && (
+        {states.registrationFormState?.disabled ? (
           <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
+            <div part="erroralert-text">
+              {states.registrationFormState.disabledMessage}
+            </div>
           </sqm-form-message>
+        ) : (
+          states.error && (
+            <sqm-form-message type="error" exportparts="erroralert-icon">
+              <div part="erroralert-text">{props.states.error}</div>
+            </sqm-form-message>
+          )
         )}
         {/* Must use inline styling to target slotted element here */}
         {content.formData}
@@ -117,7 +133,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
@@ -128,6 +144,11 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
                 return content.invalidEmailErrorMessage;
               }
             }}
+            {...(states.registrationFormState?.initialData?.email
+              ? {
+                  value: states.registrationFormState?.initialData?.email,
+                }
+              : {})}
             {...(states.registrationFormState?.validationErrors?.email
               ? {
                   class: sheet.classes.ErrorStyle,
@@ -141,7 +162,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {!states.isGoogle && !states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
-            disable-validation={states.disablePasswordValidation}
+            disable-validation={!states.enablePasswordValidation}
             meetsRequirementsText={content.meetsRequirementsText}
             doesNotMeetRequirementsText={content.doesNotMeetRequirementsText}
             minErrorText={content.minErrorText}
@@ -180,6 +201,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           <sl-button
             submit
             loading={states.loading}
+            disabled={states.registrationFormState?.disabled}
             exportparts="base: primarybutton-base"
             type="primary"
           >

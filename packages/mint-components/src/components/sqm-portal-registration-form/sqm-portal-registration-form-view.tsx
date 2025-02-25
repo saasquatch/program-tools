@@ -12,7 +12,6 @@ import { RegistrationFormState } from "./useRegistrationFormState";
 
 export interface PortalRegistrationFormViewProps {
   states: {
-    isGoogle: boolean;
     error: string;
     loading: boolean;
     confirmPassword: boolean;
@@ -24,8 +23,6 @@ export interface PortalRegistrationFormViewProps {
   callbacks: {
     submit: Function;
     inputFunction: Function;
-    setShowRegistrationForm: (next: boolean) => void;
-    handleGoogleInit: (res: any) => void;
   };
   content: {
     formData?: VNode;
@@ -49,9 +46,6 @@ export interface PortalRegistrationFormViewProps {
     lowercaseErrorText?: string;
     hasErrorText?: string;
   };
-  // slots: {
-  //   conditionalRegistrationFields?: VNode;
-  // };
   refs: {
     formRef: any;
   };
@@ -159,7 +153,7 @@ export function PortalRegistrationFormView(
               : [])}
           ></sl-input>
         )}
-        {!states.isGoogle && !states.hideInputs && (
+        {!states.hideInputs && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={!states.enablePasswordValidation}
@@ -171,8 +165,8 @@ export function PortalRegistrationFormView(
             hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
-        {!states.isGoogle && content.passwordField}
-        {!states.isGoogle && !states.hideInputs && states.confirmPassword && (
+        {content.passwordField}
+        {!states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label, base: input-base"
             type="password"
