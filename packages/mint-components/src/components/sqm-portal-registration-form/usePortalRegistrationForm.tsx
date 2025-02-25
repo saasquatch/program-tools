@@ -9,7 +9,10 @@ import {
 import { PortalRegistrationForm } from "./sqm-portal-registration-form";
 import { AsYouType } from "libphonenumber-js";
 import { gql } from "graphql-request";
-import { RegistrationFormState, useRegist } from "./useRegistrationFormState";
+import {
+  RegistrationFormState,
+  useRegistrationFormState,
+} from "./useRegistrationFormState";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
