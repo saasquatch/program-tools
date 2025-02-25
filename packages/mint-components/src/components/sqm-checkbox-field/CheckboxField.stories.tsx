@@ -25,7 +25,6 @@ const defaultProps: CheckboxFieldViewProps = {
     checked: false,
   },
   content: {
-    checkboxName: "agree",
     checkboxLabel: "By signing up you agree to the {labelLink}",
     checkboxLabelLink: "https://example.com",
     checkboxLabelLinkText: "Terms and Conditions",
