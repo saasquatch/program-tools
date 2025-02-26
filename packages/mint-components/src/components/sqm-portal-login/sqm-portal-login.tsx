@@ -136,6 +136,7 @@ export class PortalLogin {
           <style>{styleString}</style>
           <span>
             {this.registerCTA}
+            {""}
             <sl-button
               type="text"
               disabled={states.loading}

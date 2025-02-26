@@ -233,7 +233,6 @@ function useRegisterDemo(
         customPasswordField: false,
         loginPath: props.loginPath,
         disablePasswordValidation: props.disablePasswordValidation,
-        isGoogle: false,
       },
       callbacks: {
         submit: async (_event) => {

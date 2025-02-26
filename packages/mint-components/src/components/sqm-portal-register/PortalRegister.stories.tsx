@@ -16,7 +16,6 @@ const defaultProps: PortalRegisterViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -41,7 +40,6 @@ const errorProps: PortalRegisterViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -66,7 +64,6 @@ const loadingProps: PortalRegisterViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -91,7 +88,6 @@ const slottedProps: PortalRegisterViewProps = {
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -140,7 +136,6 @@ export const FieldsHidden = () => {
           confirmPassword: true,
           hideInputs: true,
           loginPath: "/login",
-          isGoogle: false,
         },
       }}
     ></sqm-portal-register>

@@ -287,7 +287,6 @@ function useRegisterDemo(
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
         loginPath: "/login",
-        isGoogle: false,
       },
       callbacks: {
         handleGoogleInit: () => {},
