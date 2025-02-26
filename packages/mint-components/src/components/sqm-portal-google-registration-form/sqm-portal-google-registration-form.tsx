@@ -193,6 +193,12 @@ export class PortalGoogleRegistrationForm {
    */
   @Prop() demoData?: DemoData<PortalRegistrationFormViewProps>;
 
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoGoogleData?: DemoData<PortalRegistrationFormViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -308,15 +314,29 @@ function useRegisterDemo(
     { arrayMerge: (_, a) => a }
   );
 }
-function useGoogleDemo() {
+
+type PortalGoogleResult = {
+  emailValidationError: boolean;
+  handleEmailSubmit: () => void;
+  showRegistrationForm: { mode: string };
+  handleGoogleInit: () => void;
+};
+
+function useGoogleDemo(
+  props: PortalGoogleRegistrationForm
+): PortalGoogleResult {
   const [showRegistrationForm, setShowRegistrationForm] = useState({
     mode: "base",
   });
 
-  return {
-    emailValidationError: true,
-    handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
-    showRegistrationForm,
-    handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),
-  };
+  return deepmerge(
+    {
+      emailValidationError: true,
+      handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
+      showRegistrationForm,
+      handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),
+    },
+    props.demoGoogleData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }
