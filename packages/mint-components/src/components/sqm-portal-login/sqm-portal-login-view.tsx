@@ -13,6 +13,7 @@ export interface PortalLoginViewProps {
     loading: boolean;
     forgotPasswordPath: string;
     registerPath: string;
+    showLoginForm: { mode: string };
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
@@ -42,6 +43,9 @@ const style = {
   ButtonsContainer: {
     ...AuthButtonsContainer,
     gap: "var(--sl-spacing-medium)",
+    "& > *": {
+      margin: "0 !important",
+    },
   },
 };
 
@@ -95,7 +99,6 @@ export function PortalLoginView(props: PortalLoginViewProps) {
         </div>
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
-            style={{ margin: "0" }}
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
@@ -103,7 +106,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           >
             {content.submitLabel || "Login"}
           </sl-button>
-          {content.googleButton && <sl-menu-divider style={{ margin: "0" }} />}
+          {content.googleButton && <sl-menu-divider />}
           {content.googleButton}
           {content.secondaryButton}
         </div>

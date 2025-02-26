@@ -1,5 +1,5 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -106,7 +106,11 @@ export class PortalLogin {
       ? useLoginDemo(this)
       : usePortalLogin(this);
 
-    // AL: flagging for code cleanup
+    // const { showLoginForm } = isDemo()
+    //   ? useGoogleDemo()
+    //   : usePortalLogin(this).states;
+
+    // AL: TODO styling cleanup
     const styles = {
       RegisterButton: {
         "&::part(label)": {
@@ -126,26 +130,37 @@ export class PortalLogin {
           </a>
         </slot>
       ),
-      googleButton: (
-        <sqm-google-sign-in
-          onInitComplete={(res) => console.log(res)}
-        ></sqm-google-sign-in>
-      ),
+      googleButton:
+        states.showLoginForm.mode === "google" ? (
+          <sqm-google-sign-in
+            onInitComplete={(res) => console.log(res)}
+          ></sqm-google-sign-in>
+        ) : null,
       secondaryButton: (
         <slot name="secondaryButton">
           <style>{styleString}</style>
-          <span>
-            {this.registerCTA}
-            {""}
+          {states.showLoginForm.mode === "google" ? (
+            <span>
+              {this.registerCTA}{" "}
+              <sl-button
+                type="text"
+                disabled={states.loading}
+                onClick={() => navigation.push(states.registerPath)}
+                className={sheet.classes.RegisterButton}
+                style={{ padding: "0" }}
+              >
+                {this.registerLabel}
+              </sl-button>
+            </span>
+          ) : (
             <sl-button
               type="text"
               disabled={states.loading}
               onClick={() => navigation.push(states.registerPath)}
-              className={sheet.classes.RegisterButton}
             >
               {this.registerLabel}
             </sl-button>
-          </span>
+          )}
         </slot>
       ),
       emailLabel: this.emailLabel,
@@ -170,14 +185,28 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
         loading: false,
         forgotPasswordPath: "/forgotPassword",
         registerPath: "/register",
+        showLoginForm: "manual",
       },
       callbacks: {
         submit: async (_event) => {
           console.log("submit");
         },
       },
+      content: {
+        googleButton: null,
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
+}
+
+function useGoogleDemo() {
+  const [showLoginForm, setShowLoginForm] = useState({
+    mode: "manual",
+  });
+
+  return {
+    showLoginForm,
+  };
 }
