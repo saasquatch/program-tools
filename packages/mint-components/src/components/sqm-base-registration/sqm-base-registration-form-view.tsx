@@ -12,35 +12,17 @@ import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 export interface BaseRegistrationFormViewProps {
   states: {
     error: string;
-    loading: boolean;
-    hideInputs: boolean;
-    // registrationFormState: RegistrationFormState;
-    // loginPath: string;
   };
   callbacks: {
-    submit: Function;
-    setShowRegistrationForm: (next: boolean) => void;
-    inputFunction: Function;
+    handleEmailSubmit: Function;
   };
   content: {
+    pageLabel?: string;
     googleButton?: VNode;
-    formData?: VNode;
-    terms?: VNode;
-    secondaryButton?: VNode;
     emailLabel?: string;
     submitLabel?: string;
-    pageLabel?: string;
     requiredFieldErrorMessage: string;
     invalidEmailErrorMessage: string;
-    meetsRequirementsText?: string;
-    doesNotMeetRequirementsText?: string;
-    minErrorText?: string;
-    uppercaseErrorText?: string;
-    lowercaseErrorText?: string;
-    hasErrorText?: string;
-  };
-  refs: {
-    formRef: any;
   };
 }
 
@@ -91,8 +73,7 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
       <sl-form
         class={sheet.classes.Column}
-        // onSl-submit={callbacks.submit}
-        // ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
+        onSl-submit={callbacks.handleEmailSubmit}
         novalidate
       >
         {states.error && (
@@ -100,13 +81,11 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-
         <sl-input
           exportparts="label: input-label, base: input-base"
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}
-          disabled={states.loading}
           required
           validationError={({ value }: { value: string }) => {
             if (!value) {
@@ -117,20 +96,10 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
               return content.invalidEmailErrorMessage;
             }
           }}
-          // {...(states.registrationFormState?.validationErrors?.email
-          //   ? {
-          //       class: sheet.classes.ErrorStyle,
-          //       helpText:
-          //         states.registrationFormState?.validationErrors?.email ||
-          //         content.requiredFieldErrorMessage,
-          //     }
-          //   : [])}
         ></sl-input>
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
-            // submit
-            onClick={() => callbacks.setShowRegistrationForm(true)}
-            loading={states.loading}
+            submit
             exportparts="base: primarybutton-base"
             type="primary"
             style={{ margin: "0" }}

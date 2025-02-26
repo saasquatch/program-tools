@@ -1,25 +1,21 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import {
-  PortalGoogleRegistrationFormViewProps,
-  PortalGoogleRegistrationFormView,
-} from "./sqm-portal-google-registration-form-view";
-import { RegistrationFieldsView } from "./small-views/RegistrationFieldsView";
-import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
 import { BaseRegistrationFormView } from "../sqm-base-registration/sqm-base-registration-form-view";
+import {
+  PortalRegistrationFormView,
+  PortalRegistrationFormViewProps,
+} from "../sqm-portal-registration-form/sqm-portal-registration-form-view";
+import { usePortalRegistrationForm } from "../sqm-portal-registration-form/usePortalRegistrationForm";
+import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
 
-/**
- * @uiName Microsite Google Registration
- * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
- */
 @Component({
   tag: "sqm-portal-google-registration-form",
   shadow: true,
 })
-export class PortalGooglelRegistrationForm {
+export class PortalGoogleRegistrationForm {
   @State()
   ignored = true;
 
@@ -195,7 +191,7 @@ export class PortalGooglelRegistrationForm {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PortalGoogleRegistrationFormViewProps>;
+  @Prop() demoData?: DemoData<PortalRegistrationFormViewProps>;
 
   constructor() {
     withHooks(this);
@@ -206,12 +202,20 @@ export class PortalGooglelRegistrationForm {
   render() {
     const { states, callbacks, refs } = isDemo()
       ? useRegisterDemo(this)
-      : usePortalGoogleRegistrationForm(this);
+      : usePortalRegistrationForm(this);
+
+    const {
+      handleGoogleInit,
+      handleEmailSubmit,
+      showRegistrationForm,
+      emailValidationError,
+    } = isDemo() ? useGoogleDemo() : usePortalGoogleRegistrationForm(this);
+
     const content = {
       formData: <slot name="formData"></slot>,
       googleButton: (
         <sqm-google-sign-in
-          onInitComplete={callbacks.handleGoogleInit}
+          onInitComplete={handleGoogleInit}
         ></sqm-google-sign-in>
       ),
       secondaryButton: (
@@ -245,34 +249,34 @@ export class PortalGooglelRegistrationForm {
     };
 
     // AL: when user clicks "Register", show the base registration form
-    if (!states.showRegistrationForm) {
+    if (showRegistrationForm.mode === "base") {
       return (
         <BaseRegistrationFormView
-          states={states}
-          callbacks={callbacks}
+          states={{
+            error: emailValidationError,
+          }}
+          callbacks={{ handleEmailSubmit }}
           content={content}
-          refs={refs}
         />
       );
     }
 
     return (
-      <PortalGoogleRegistrationFormView
-        states={states}
+      <PortalRegistrationFormView
+        states={{
+          ...states,
+          hidePasswords: showRegistrationForm.mode === "google",
+        }}
         callbacks={callbacks}
         content={content}
         refs={refs}
-        // slots={{ conditionalRegistrationFields }}
-      ></PortalGoogleRegistrationFormView>
+      ></PortalRegistrationFormView>
     );
   }
 }
 function useRegisterDemo(
-  props: PortalGooglelRegistrationForm
-): Pick<
-  PortalGoogleRegistrationFormViewProps,
-  "states" | "callbacks" | "refs"
-> &
+  props: PortalGoogleRegistrationForm
+): Pick<PortalRegistrationFormViewProps, "states" | "callbacks" | "refs"> &
   any {
   return deepmerge(
     {
@@ -304,4 +308,16 @@ function useRegisterDemo(
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
+}
+function useGoogleDemo() {
+  const [showRegistrationForm, setShowRegistrationForm] = useState({
+    mode: "base",
+  });
+
+  return {
+    emailValidationError: true,
+    handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
+    showRegistrationForm,
+    handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),
+  };
 }

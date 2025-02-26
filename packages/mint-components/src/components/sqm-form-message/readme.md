@@ -23,6 +23,7 @@
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
  - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
+ - [sqm-portal-google-registration-form](../sqm-portal-google-registration-form)
  - [sqm-portal-login](../sqm-portal-login)
  - [sqm-portal-profile](../sqm-portal-profile)
  - [sqm-portal-register](../sqm-portal-register)
@@ -41,6 +42,7 @@ graph TD;
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-portal-google-registration-form --> sqm-form-message
   sqm-portal-login --> sqm-form-message
   sqm-portal-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message

@@ -13,16 +13,9 @@ const defaultProps: BaseRegistrationFormViewProps = {
     // AL: TODO
     // registrationFormState: {},
     error: "",
-    loading: false,
-    hideInputs: false,
   },
   callbacks: {
-    submit: () => console.log("Submit!"),
-    inputFunction: () => {},
-    setShowRegistrationForm: () => console.log("type form"),
-  },
-  refs: {
-    formRef: {},
+    handleEmailSubmit: () => console.log("Submit!"),
   },
   content: {
     pageLabel: "Register",

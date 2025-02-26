@@ -32,11 +32,10 @@ import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-pa
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
 import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
-import { PortalGoogleRegistrationFormViewProps } from "./components/sqm-portal-google-registration-form/sqm-portal-google-registration-form-view";
+import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
 import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
-import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
@@ -2003,7 +2002,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PortalGoogleRegistrationFormViewProps>;
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
          */
@@ -8104,7 +8103,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PortalGoogleRegistrationFormViewProps>;
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
          */

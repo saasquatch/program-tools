@@ -1,27 +1,24 @@
 import { h } from "@stencil/core";
 import {
-  PortalGoogleRegistrationFormView,
-  PortalGoogleRegistrationFormViewProps,
-} from "./sqm-portal-google-registration-form-view";
+  PortalRegistrationFormView,
+  PortalRegistrationFormViewProps,
+} from "../sqm-portal-registration-form/sqm-portal-registration-form-view";
 
 export default {
   title: "Components/Microsite Portal Registration Form",
 };
 
-const defaultProps: PortalGoogleRegistrationFormViewProps = {
+const defaultProps: PortalRegistrationFormViewProps = {
   states: {
     error: "",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setShowRegistrationForm: () => console.log("type form"),
-    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -29,20 +26,17 @@ const defaultProps: PortalGoogleRegistrationFormViewProps = {
   content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
-const errorProps: PortalGoogleRegistrationFormViewProps = {
+const errorProps: PortalRegistrationFormViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setShowRegistrationForm: () => console.log("type form"),
-    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -53,20 +47,17 @@ const errorProps: PortalGoogleRegistrationFormViewProps = {
   },
 };
 
-const loadingProps: PortalGoogleRegistrationFormViewProps = {
+const loadingProps: PortalRegistrationFormViewProps = {
   states: {
     error: "",
     loading: true,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setShowRegistrationForm: () => console.log("type form"),
-    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -74,20 +65,17 @@ const loadingProps: PortalGoogleRegistrationFormViewProps = {
   content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
-const slottedProps: PortalGoogleRegistrationFormViewProps = {
+const slottedProps: PortalRegistrationFormViewProps = {
   states: {
     error: "",
     loading: false,
     confirmPassword: true,
     hideInputs: false,
     loginPath: "/login",
-    isGoogle: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
-    setShowRegistrationForm: () => console.log("type form"),
-    handleGoogleInit: () => console.log("type form"),
   },
   refs: {
     formRef: {},
@@ -114,31 +102,29 @@ const slottedProps: PortalGoogleRegistrationFormViewProps = {
 };
 
 export const Default = () => (
-  <PortalGoogleRegistrationFormView
-    {...defaultProps}
-  ></PortalGoogleRegistrationFormView>
+  <PortalRegistrationFormView {...defaultProps}></PortalRegistrationFormView>
 );
 
 export const IsGoogle = () => {
   return (
-    <PortalGoogleRegistrationFormView
+    <PortalRegistrationFormView
       {...defaultProps}
-      states={{ ...defaultProps.states, isGoogle: true }}
-    ></PortalGoogleRegistrationFormView>
+      states={{ ...defaultProps.states, hidePasswords: true }}
+    ></PortalRegistrationFormView>
   );
 };
 
 export const RegisterWithError = () => (
-  <PortalGoogleRegistrationFormView {...errorProps} />
+  <PortalRegistrationFormView {...errorProps} />
 );
 
 export const RegisterLoading = () => (
-  <PortalGoogleRegistrationFormView {...loadingProps} />
+  <PortalRegistrationFormView {...loadingProps} />
 );
 
 export const FieldsHidden = () => {
   return (
-    <sqm-portal-register
+    <sqm-portal-registration
       demoData={{
         states: {
           error: "",
@@ -150,23 +136,23 @@ export const FieldsHidden = () => {
           isGoogle: false,
         },
       }}
-    ></sqm-portal-register>
+    ></sqm-portal-registration>
   );
 };
 
 export const SlottedInputs = () => (
-  <PortalGoogleRegistrationFormView {...slottedProps} />
+  <PortalRegistrationFormView {...slottedProps} />
 );
 
 export const SlottedInputsIsGoogle = () => (
-  <PortalGoogleRegistrationFormView
+  <PortalRegistrationFormView
     {...slottedProps}
-    states={{ ...slottedProps.states, isGoogle: true }}
-  ></PortalGoogleRegistrationFormView>
+    states={{ ...slottedProps.states, hidePasswords: true }}
+  ></PortalRegistrationFormView>
 );
 
 export const TermsAndConditions = () => (
-  <PortalGoogleRegistrationFormView
+  <PortalRegistrationFormView
     {...defaultProps}
     content={{
       ...defaultProps.content,
