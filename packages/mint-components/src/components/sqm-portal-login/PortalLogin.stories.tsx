@@ -11,11 +11,14 @@ const defaultProps: PortalLoginViewProps = {
     loading: false,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
+    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { pageLabel: "Sign in to your account" },
+  content: {
+    pageLabel: "Sign in to your account",
+  },
 };
 
 const errorProps: PortalLoginViewProps = {
@@ -24,6 +27,7 @@ const errorProps: PortalLoginViewProps = {
     loading: false,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
+    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -37,14 +41,31 @@ const loadingProps: PortalLoginViewProps = {
     loading: true,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
+    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { pageLabel: "Sign in to your account" },
+  content: {
+    pageLabel: "Sign in to your account",
+  },
 };
 
-export const Default = () => <PortalLoginView {...defaultProps} />;
+export const Default = () => (
+  <sqm-portal-login demoData={{ ...defaultProps }} />
+);
+
+export const IsGoogle = () => (
+  <sqm-portal-login
+    demoData={{
+      ...defaultProps,
+      content: {
+        googleButton: <sl-button>Sign in with Google</sl-button>,
+      },
+      states: { ...defaultProps.states, showLoginForm: { mode: "google" } },
+    }}
+  ></sqm-portal-login>
+);
 
 export const LoginWithError = () => <PortalLoginView {...errorProps} />;
 
