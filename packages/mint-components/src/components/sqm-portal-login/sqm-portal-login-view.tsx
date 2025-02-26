@@ -95,6 +95,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
         </div>
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
+            style={{ margin: "0" }}
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
@@ -102,7 +103,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           >
             {content.submitLabel || "Login"}
           </sl-button>
-          <sl-menu-divider />
+          {content.googleButton && <sl-menu-divider style={{ margin: "0" }} />}
           {content.googleButton}
           {content.secondaryButton}
         </div>
