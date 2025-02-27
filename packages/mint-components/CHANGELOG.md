@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.1] - 2025-02-18
+
+### Added
+
+- \<sqm-referral-code>
+  - Displays either the user's referral code for the program in scope or the promo code retrieved from the \<sqm-referral-codes> component
+- \<sqm-referral-codes>
+  - Parent component that supports displaying program promo codes for the following components when used as the parent:
+    - \<sqm-referral-code>
+    - \<sqm-share-button>
+    - \<sqm-share-link>
+- \<sqm-pagination>
+  - pagination component for \<sqm-referral-codes>
+
+### Changed
+
+- \<sqm-empty>
+  - Added default value for `emptyStateImage` prop.
+- \<sqm-copy-text-view>
+  - Added props to show notification text underneath component when text has been previously copied
+- \<sqm-share-button>
+  - Added support for displaying promo codes from the \<sqm-referral-codes> component
+
 ## [1.11.0] - 2024-11-25
 
 ### Changed
@@ -1071,7 +1094,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.1...HEAD
+[1.11.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.1
 [1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
 [1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
 [1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
