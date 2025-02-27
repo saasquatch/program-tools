@@ -4146,6 +4146,20 @@ export namespace Components {
          */
         "dashboard_payoutFromImpact": string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertHeader": string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
@@ -4365,20 +4379,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "payoutHoldAlertDescription": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "payoutHoldAlertHeader": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
@@ -10394,6 +10394,20 @@ declare namespace LocalJSX {
          */
         "dashboard_payoutFromImpact"?: string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertHeader"?: string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
@@ -10613,20 +10627,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "payoutHoldAlertDescription"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "payoutHoldAlertHeader"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text

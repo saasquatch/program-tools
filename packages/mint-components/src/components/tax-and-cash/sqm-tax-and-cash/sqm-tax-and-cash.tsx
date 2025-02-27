@@ -838,14 +838,14 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() payoutHoldAlertHeader: string = "Your payout is on hold";
+  @Prop() dashboard_payoutHoldAlertHeader: string = "Your payout is on hold";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message description
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() payoutHoldAlertDescription: string =
+  @Prop() dashboard_payoutHoldAlertDescription: string =
     "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com.";
   /**
    * Text displayed for existing publishers that do not have saved banking information.
@@ -921,7 +921,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationRequiredDescription: string =
-    "Complete your dashboard_verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
   /**
    * @uiName Verification required internal alert header
    * @uiGroup Dashboard Properties
