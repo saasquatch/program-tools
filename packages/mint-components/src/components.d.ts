@@ -4239,6 +4239,63 @@ export namespace Components {
          */
         "dashboard_thresholdPayoutText": string;
         /**
+          * @uiName Verification failed internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredButtonText": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalHeader": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -10429,6 +10486,63 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText"?: string;
+        /**
+          * @uiName Verification failed internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredButtonText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalHeader"?: string;
         /**
           * @undocumented 
           * @uiType object

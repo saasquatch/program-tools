@@ -907,6 +907,72 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_replaceTaxFormModalBodyText: string =
     "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
 
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert message title
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredHeader: string = "Verify your identity";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity
+   * @uiName Verification required alert message description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredDescription: string =
+    "Complete your dashboard_verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
+  /**
+   * @uiName Verification required internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredInternalHeader: string =
+    "Identity Verification in Progress";
+  /**
+   * @uiName Verification required internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredInternalDescription: string =
+    "Identity dashboard_verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification review internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationReviewInternalHeader: string =
+    "Identity Verification Under Review";
+  /**
+   * @uiName Verification review internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationReviewInternalDescription: string =
+    "Identity dashboard_verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification failed internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationFailedInternalHeader: string =
+    "Identity Verification Unsuccessful";
+  /**
+   * @uiName Verification failed internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationFailedInternalDescription: string =
+    "Identity dashboard_verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredButtonText: string =
+    "Start Verification";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
