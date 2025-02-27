@@ -101,14 +101,6 @@ const styleString = sheet.toString();
 export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   const { text, states, data, callbacks } = props;
 
-  if (states.loading) {
-    return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
-  }
-
-  if (states.status === "DONE") {
-    return <div></div>;
-  }
-
   function getAlert(status: PayoutStatus) {
     if (states.error)
       return {
@@ -271,19 +263,28 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     }
   }
 
+  if (states.loading) {
+    return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
+  }
+
+  const alertDetails = getAlert(states.status);
+  if (states.status === "DONE" || !alertDetails) {
+    return <div></div>;
+  }
+
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
-        type={getAlert(states.status)?.alertType}
-        class={getAlert(states.status)?.class}
+        type={alertDetails.alertType}
+        class={alertDetails.class}
         open
       >
-        <sl-icon slot="icon" name={getAlert(states.status)?.icon}></sl-icon>
-        <strong>{getAlert(states.status)?.header}</strong>
+        <sl-icon slot="icon" name={alertDetails.icon}></sl-icon>
+        <strong>{alertDetails.header}</strong>
         <p class={sheet.classes.AlertDescriptionText}>
-          {getAlert(states.status)?.description}
+          {alertDetails.description}
         </p>
         {getButton(states.status)}
       </sl-alert>

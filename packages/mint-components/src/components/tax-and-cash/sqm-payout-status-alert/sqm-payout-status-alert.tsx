@@ -56,7 +56,7 @@ export class PayoutStatusAlert {
    * @uiName Verification required internal alert description
    */
   @Prop() verificationRequiredInternalDescription: string =
-    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortley. If you don't hear from us contact our {supportLink}.";
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Verification review internal alert header
    */

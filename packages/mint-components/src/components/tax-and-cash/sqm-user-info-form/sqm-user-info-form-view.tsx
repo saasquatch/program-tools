@@ -568,7 +568,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     id="phoneNumber"
                     name="/phoneNumber"
                     value={formState.phoneNumber}
-                    validationError={true}
+                    validationError={({ value }) => {
+                      // Naive phone number validation
+                      validateBillingField(/[a-zA-Z]+/, value) &&
+                        formatErrorMessage(
+                          text.phoneNumber,
+                          text.error.fieldInvalidError
+                        );
+                    }}
                     disabled={states.disabled || states.isPartner}
                     {...(formState.errors?.phoneNumber
                       ? {
