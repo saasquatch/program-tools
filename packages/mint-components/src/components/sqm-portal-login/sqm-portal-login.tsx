@@ -91,6 +91,11 @@ export class PortalLogin {
 
   /**
    * @undocumented
+   */
+  @Prop() showGoogleLogin: boolean = false;
+
+  /**
+   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<PortalLoginViewProps>;

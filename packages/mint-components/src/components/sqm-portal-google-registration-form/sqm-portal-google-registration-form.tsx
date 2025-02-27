@@ -215,7 +215,7 @@ export class PortalGoogleRegistrationForm {
       handleEmailSubmit,
       showRegistrationForm,
       emailValidationError,
-    } = isDemo() ? useGoogleDemo() : usePortalGoogleRegistrationForm(this);
+    } = isDemo() ? useGoogleDemo(this) : usePortalGoogleRegistrationForm(this);
 
     const content = {
       formData: <slot name="formData"></slot>,

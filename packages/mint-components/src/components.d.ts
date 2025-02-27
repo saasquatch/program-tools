@@ -2004,6 +2004,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
           * @uiName Disable password validation
          */
         "disablePasswordValidation": boolean;
@@ -2169,6 +2174,10 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "registerPath": string;
+        /**
+          * @undocumented
+         */
+        "showGoogleLogin": boolean;
         /**
           * @uiName Submit button text
          */
@@ -8105,6 +8114,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
           * @uiName Disable password validation
          */
         "disablePasswordValidation"?: boolean;
@@ -8270,6 +8284,10 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "registerPath"?: string;
+        /**
+          * @undocumented
+         */
+        "showGoogleLogin"?: boolean;
         /**
           * @uiName Submit button text
          */
