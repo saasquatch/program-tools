@@ -105,15 +105,6 @@ export const Default = () => (
   <PortalRegistrationFormView {...defaultProps}></PortalRegistrationFormView>
 );
 
-export const IsGoogle = () => {
-  return (
-    <PortalRegistrationFormView
-      {...defaultProps}
-      states={{ ...defaultProps.states, hidePasswords: true }}
-    ></PortalRegistrationFormView>
-  );
-};
-
 export const RegisterWithError = () => (
   <PortalRegistrationFormView {...errorProps} />
 );
@@ -141,13 +132,6 @@ export const FieldsHidden = () => {
 
 export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
-);
-
-export const SlottedInputsIsGoogle = () => (
-  <PortalRegistrationFormView
-    {...slottedProps}
-    states={{ ...slottedProps.states, hidePasswords: true }}
-  ></PortalRegistrationFormView>
 );
 
 export const TermsAndConditions = () => (
