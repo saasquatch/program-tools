@@ -92,7 +92,7 @@ export class PortalLogin {
   /**
    * @undocumented
    */
-  @Prop() showGoogleLogin: boolean = false;
+  @Prop() showGoogleLogin: boolean = true;
 
   /**
    * @undocumented
@@ -110,10 +110,6 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
-
-    // const { showLoginForm } = isDemo()
-    //   ? useGoogleDemo()
-    //   : usePortalLogin(this).states;
 
     // AL: TODO styling cleanup
     const styles = {
@@ -135,16 +131,15 @@ export class PortalLogin {
           </a>
         </slot>
       ),
-      googleButton:
-        states.showLoginForm.mode === "google" ? (
-          <sqm-google-sign-in
-            onInitComplete={(res) => console.log(res)}
-          ></sqm-google-sign-in>
-        ) : null,
+      googleButton: this.showGoogleLogin ? (
+        <sqm-google-sign-in
+          onInitComplete={(res) => console.log(res)}
+        ></sqm-google-sign-in>
+      ) : null,
       secondaryButton: (
         <slot name="secondaryButton">
           <style>{styleString}</style>
-          {states.showLoginForm.mode === "google" ? (
+          {this.showGoogleLogin ? (
             <span>
               {this.registerCTA}{" "}
               <sl-button

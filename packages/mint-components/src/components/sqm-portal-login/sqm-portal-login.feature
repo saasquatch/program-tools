@@ -1,5 +1,4 @@
-@author:derek
-@owner:ian
+@author:derek @owner:ian
 Feature: Portal Login
 
   @motivating
@@ -62,6 +61,7 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <nextPageParamValue>
+
     Examples:
       | mayHave       | nextPageValue | nextPageParamValue |
       | has           | /dashboard    | /activity          |
@@ -74,6 +74,7 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <url>
+
     Examples:
       | currentUrl                                                                 | url                                           |
       | https://www.example.com?nextPage=./activity                                | https://www.example.com/activity              |
@@ -97,10 +98,10 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <url>
+
     Examples:
       | currentUrl                                              | url                                  |
       | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |
-
 
   @minutia
   Scenario Outline: Navigation to the registration page can be customized but defaults to "/register"
@@ -109,6 +110,7 @@ Feature: Portal Login
     Then they see a "Register" text button
     When they click "Register"
     Then they are redirected to <redirectPath>
+
     Examples:
       | mayHave      | value   | redirectPath |
       | doesn't have | N/A     | /register    |
@@ -121,7 +123,28 @@ Feature: Portal Login
     Then they see a "Forgot Password?" text button
     When they click "Forgot Password?"
     Then they are redirected to <redirectPath>
+
     Examples:
       | mayHave      | value                    | redirectPath             |
       | doesn't have | N/A                      | /forgotPassword          |
       | has          | /whatTheHeckIsMyPassword | /whatTheHeckIsMyPassword |
+
+  @minutia
+  Scenario: Tenant has GOOGLE_SIGNUP feature enabled
+    Given the user is on the login page
+    And the GOOGLE_SIGNUP feature is enabled
+    Then they see a Sign in with Google button
+    And they see a CTA to register
+      """
+      Don't have an account? Register
+      """
+    When they press "Register"
+    Then they land on the base registration form
+
+  @minutia
+  Scenario: Tenant does not have GOOGLE_SIGNUP feature enabled
+    Given the user is on the login page
+    Then the user does not see a Sign in with Google button
+    And the CTA to register does not show
+    When they press the "Register" button
+    Then they land on the manual registration form
