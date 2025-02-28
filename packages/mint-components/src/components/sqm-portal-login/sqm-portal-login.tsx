@@ -147,7 +147,6 @@ export class PortalLogin {
                 disabled={states.loading}
                 onClick={() => navigation.push(states.registerPath)}
                 className={sheet.classes.RegisterButton}
-                style={{ padding: "0" }}
               >
                 {this.registerLabel}
               </sl-button>

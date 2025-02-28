@@ -10,6 +10,7 @@ import {
 } from "../sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { usePortalRegistrationForm } from "../sqm-portal-registration-form/usePortalRegistrationForm";
 import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
+import { createStyleSheet } from "../../styling/JSS";
 
 @Component({
   tag: "sqm-portal-google-registration-form",
@@ -99,6 +100,12 @@ export class PortalGoogleRegistrationForm {
    * @uiWidget pageSelect
    */
   @Prop() loginPath: string = "/login";
+  /**
+   * Login Call-to-action
+   *
+   * @uiName Login CTA
+   */
+  @Prop() loginCTA: string = "Already have an account?";
 
   /**
    * The message to be displayed when a required field is not filled.
@@ -181,13 +188,6 @@ export class PortalGoogleRegistrationForm {
   @Prop() formKey: string;
 
   /**
-   * Login Call-to-action
-   *
-   * @uiName Login CTA
-   */
-  @Prop() loginCTA: string;
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -210,6 +210,17 @@ export class PortalGoogleRegistrationForm {
       ? useRegisterDemo(this)
       : usePortalRegistrationForm(this);
 
+    const styles = {
+      LoginButton: {
+        "&::part(label)": {
+          padding: "0",
+        },
+      },
+    };
+
+    const sheet = createStyleSheet(styles);
+    const styleString = sheet.toString();
+
     const {
       handleGoogleInit,
       handleEmailSubmit,
@@ -226,13 +237,18 @@ export class PortalGoogleRegistrationForm {
       ),
       secondaryButton: (
         <slot name="secondaryButton">
-          <sl-button
-            type="text"
-            disabled={states.loading}
-            onClick={() => navigation.push(states.loginPath)}
-          >
-            {this.loginLabel}
-          </sl-button>
+          <style>{styleString}</style>
+          <span>
+            {this.loginCTA}{" "}
+            <sl-button
+              type="text"
+              disabled={states.loading}
+              onClick={() => navigation.push(states.loginPath)}
+              className={sheet.classes.LoginButton}
+            >
+              {this.loginLabel}
+            </sl-button>{" "}
+          </span>
         </slot>
       ),
       terms: <slot name="terms"></slot>,
@@ -254,7 +270,6 @@ export class PortalGoogleRegistrationForm {
       hasErrorText: this.hasErrorText,
     };
 
-    // AL: when user clicks "Register", show the base registration form
     if (showRegistrationForm.mode === "base") {
       return (
         <BaseRegistrationFormView
@@ -274,7 +289,10 @@ export class PortalGoogleRegistrationForm {
           hidePasswords: showRegistrationForm.mode === "google",
         }}
         callbacks={callbacks}
-        content={content}
+        content={{
+          ...content,
+          secondaryButton: <div style={{ display: "none" }}></div>,
+        }}
         refs={refs}
       ></PortalRegistrationFormView>
     );

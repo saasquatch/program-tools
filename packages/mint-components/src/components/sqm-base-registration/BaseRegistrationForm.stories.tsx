@@ -22,6 +22,7 @@ const defaultProps: BaseRegistrationFormViewProps = {
     requiredFieldErrorMessage: "Cannot be empty",
     invalidEmailErrorMessage: "Must be a valid email address",
     googleButton: <sl-button>Register with Google</sl-button>,
+    secondaryButton: <sl-button>Sign in</sl-button>,
   },
 };
 

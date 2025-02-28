@@ -130,6 +130,17 @@ Feature: Portal Login
       | has          | /whatTheHeckIsMyPassword | /whatTheHeckIsMyPassword |
 
   @minutia
+  Scenario: User signs in with Google
+    Given the user is on the login page
+    And the GOOGLE_SIGNUP feature is enabled
+    Then they see a Sign in with Google button
+    When they press the button
+    Then the user is prompted with the google sign in API
+    When they complete the google sign in process
+    Then they are taken to the microsite
+    # AL: TODO not sure what happenbs when they press google sign in button on login screen
+
+  @minutia
   Scenario: Tenant has GOOGLE_SIGNUP feature enabled
     Given the user is on the login page
     And the GOOGLE_SIGNUP feature is enabled

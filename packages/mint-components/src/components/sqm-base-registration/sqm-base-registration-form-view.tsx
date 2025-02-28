@@ -19,6 +19,7 @@ export interface BaseRegistrationFormViewProps {
   content: {
     pageLabel?: string;
     googleButton?: VNode;
+    secondaryButton?: VNode;
     emailLabel?: string;
     submitLabel?: string;
     requiredFieldErrorMessage: string;
@@ -39,6 +40,9 @@ const style = {
   ButtonsContainer: {
     ...AuthButtonsContainer,
     gap: "var(--sl-spacing-medium)",
+    "& > *": {
+      margin: "0 !important",
+    },
   },
   ErrorStyle: ErrorStyles,
 };
@@ -108,6 +112,7 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
           </sl-button>
           <sl-menu-divider style={{ margin: "0" }} />
           {content.googleButton}
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

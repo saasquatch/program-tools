@@ -4,7 +4,6 @@ Feature: Base registration form
 
   Background:
     Given the tenant has GOOGLE_SIGNUP feature enabled
-# AL: TODO
 
   @minutia
   Scenario: User can choose manual registration
@@ -17,4 +16,15 @@ Feature: Base registration form
   Scenario: User can choose google registration
     Given the user is on the base registration form
     When the user presses the "Sign up with Google" button
-    Then the user is taken to the google registration form
+    Then the user is prompted with the google sign in API
+    And then user is taking to the google registration form
+
+  @minutia
+  Scenario: User goes back to login page
+    Given the user is on the base registration form
+    Then they see a login CTA
+      """
+      Already have an account? Sign in
+      """
+    When the user presses Sign in
+    Then the user is taken back to the login page
