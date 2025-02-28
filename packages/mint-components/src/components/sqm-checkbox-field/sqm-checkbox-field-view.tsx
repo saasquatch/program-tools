@@ -10,6 +10,7 @@ export interface CheckboxFieldViewProps {
     checked: boolean;
   };
   content: {
+    checkboxName: string;
     checkboxLabel: string;
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
@@ -78,7 +79,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
       </style>
       <sl-checkbox
         exportparts="label: input-label, base: input-base"
-        name={`/marketingEmails`}
+        name={`/${content.checkboxName}`}
         checked={states.checked}
         onSl-change={(e) => {
           e.target.value = e.target.checked;
@@ -89,10 +90,11 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
+        required={false}
       >
         {intl.formatMessage(
           {
-            id: "marketingEmails" + "-message",
+            id: content.checkboxName + "-message",
             defaultMessage: content.checkboxLabel,
           },
           {

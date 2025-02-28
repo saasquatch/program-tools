@@ -144,9 +144,7 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     delete formData.password;
     delete formData.confirmPassword;
     const redirectPath = props.redirectPath;
-    const marketingEmailOptInDate = formData.marketingEmails
-      ? Date.now()
-      : null;
+
     const variables = {
       key: props.formKey,
       formData: {
@@ -154,7 +152,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
         email,
         password,
         redirectPath,
-        ...(formData.marketingEmails && { marketingEmailOptInDate }),
         ...formData,
       },
     };

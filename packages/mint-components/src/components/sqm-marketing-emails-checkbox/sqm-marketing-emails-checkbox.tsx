@@ -31,9 +31,9 @@ export class MarketingEmailsCheckbox {
     "I would like to receive marketing and promotional emails for this referral program";
 
   /**
-   * @uiName Required
+   * @undocumented
    */
-  @Prop() checkboxRequired?: boolean = false;
+  @Prop() checkboxName: string = "marketingEmailOptIn";
 
   /**
    * @undocumented

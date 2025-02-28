@@ -393,7 +393,7 @@ export namespace Components {
           * @uiName Checkbox name attribute
           * @required
          */
-        "checkboxName"?: string;
+        "checkboxName": string;
         /**
           * @uiName Optional
          */
@@ -1495,9 +1495,9 @@ export namespace Components {
          */
         "checkboxLabel": string;
         /**
-          * @uiName Required
+          * @undocumented
          */
-        "checkboxRequired"?: boolean;
+        "checkboxName": string;
         /**
           * @undocumented 
           * @uiType object
@@ -7358,9 +7358,9 @@ declare namespace LocalJSX {
          */
         "checkboxLabel"?: string;
         /**
-          * @uiName Required
+          * @undocumented
          */
-        "checkboxRequired"?: boolean;
+        "checkboxName"?: string;
         /**
           * @undocumented 
           * @uiType object
