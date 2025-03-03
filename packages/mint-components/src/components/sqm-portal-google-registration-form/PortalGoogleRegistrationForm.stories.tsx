@@ -5,7 +5,7 @@ import {
 } from "../sqm-portal-registration-form/sqm-portal-registration-form-view";
 
 export default {
-  title: "Components/Microsite Portal Registration Form",
+  title: "Components/Microsite Google Register",
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
@@ -23,7 +23,16 @@ const defaultProps: PortalRegistrationFormViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
+  content: {
+    pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
+    secondaryButton: (
+      <span>
+        Already have an account?
+        <sl-button type="text">Sign in</sl-button>{" "}
+      </span>
+    ),
+  },
 };
 
 const errorProps: PortalRegistrationFormViewProps = {
@@ -105,15 +114,6 @@ export const Default = () => (
   <PortalRegistrationFormView {...defaultProps}></PortalRegistrationFormView>
 );
 
-export const IsGoogle = () => {
-  return (
-    <PortalRegistrationFormView
-      {...defaultProps}
-      states={{ ...defaultProps.states, hidePasswords: true }}
-    ></PortalRegistrationFormView>
-  );
-};
-
 export const RegisterWithError = () => (
   <PortalRegistrationFormView {...errorProps} />
 );
@@ -141,13 +141,6 @@ export const FieldsHidden = () => {
 
 export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
-);
-
-export const SlottedInputsIsGoogle = () => (
-  <PortalRegistrationFormView
-    {...slottedProps}
-    states={{ ...slottedProps.states, hidePasswords: true }}
-  ></PortalRegistrationFormView>
 );
 
 export const TermsAndConditions = () => (

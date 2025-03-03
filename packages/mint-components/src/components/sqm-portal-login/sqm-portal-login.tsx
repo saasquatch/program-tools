@@ -92,7 +92,7 @@ export class PortalLogin {
   /**
    * @undocumented
    */
-  @Prop() showGoogleLogin: boolean = false;
+  @Prop() showGoogleLogin: boolean = true;
 
   /**
    * @undocumented
@@ -110,10 +110,6 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
-
-    // const { showLoginForm } = isDemo()
-    //   ? useGoogleDemo()
-    //   : usePortalLogin(this).states;
 
     // AL: TODO styling cleanup
     const styles = {
@@ -151,7 +147,6 @@ export class PortalLogin {
                 disabled={states.loading}
                 onClick={() => navigation.push(states.registerPath)}
                 className={sheet.classes.RegisterButton}
-                style={{ padding: "0" }}
               >
                 {this.registerLabel}
               </sl-button>

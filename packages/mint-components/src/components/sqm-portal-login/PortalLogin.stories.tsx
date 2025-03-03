@@ -11,7 +11,6 @@ const defaultProps: PortalLoginViewProps = {
     loading: false,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
-    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -27,7 +26,6 @@ const errorProps: PortalLoginViewProps = {
     loading: false,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
-    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -41,7 +39,6 @@ const loadingProps: PortalLoginViewProps = {
     loading: true,
     forgotPasswordPath: "/forgotPassword",
     registerPath: "/register",
-    showLoginForm: { mode: "manual" },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -52,17 +49,18 @@ const loadingProps: PortalLoginViewProps = {
 };
 
 export const Default = () => (
-  <sqm-portal-login demoData={{ ...defaultProps }} />
+  <sqm-portal-login showGoogleLogin={false} demoData={{ ...defaultProps }} />
 );
 
 export const IsGoogle = () => (
   <sqm-portal-login
+    showGoogleLogin
     demoData={{
       ...defaultProps,
       content: {
         googleButton: <sl-button>Sign in with Google</sl-button>,
       },
-      states: { ...defaultProps.states, showLoginForm: { mode: "google" } },
+      states: { ...defaultProps.states },
     }}
   ></sqm-portal-login>
 );
