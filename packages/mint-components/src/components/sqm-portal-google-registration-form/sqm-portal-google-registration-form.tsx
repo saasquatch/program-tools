@@ -324,6 +324,7 @@ function useRegisterDemo(
       content: {
         pageLabel: "Register",
         formData: null,
+        passwordField: null,
       },
       refs: {
         formRef: {},

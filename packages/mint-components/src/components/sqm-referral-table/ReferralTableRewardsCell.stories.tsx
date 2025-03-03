@@ -569,7 +569,6 @@ export const PayoutFailed = () => {
   );
 };
 
-// AL: TODO payout cancelled
 export const PayoutCancelled = () => {
   return (
     <sqm-referral-table-rewards-cell

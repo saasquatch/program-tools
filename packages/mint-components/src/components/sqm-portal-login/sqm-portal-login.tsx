@@ -92,7 +92,7 @@ export class PortalLogin {
   /**
    * @undocumented
    */
-  @Prop() showGoogleLogin: boolean = true;
+  @Prop() showGoogleLogin: boolean = false;
 
   /**
    * @undocumented
@@ -111,7 +111,6 @@ export class PortalLogin {
       ? useLoginDemo(this)
       : usePortalLogin(this);
 
-    // AL: TODO styling cleanup
     const styles = {
       RegisterButton: {
         "&::part(label)": {

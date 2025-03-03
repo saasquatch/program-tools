@@ -10,8 +10,6 @@ export default {
 
 const defaultProps: BaseRegistrationFormViewProps = {
   states: {
-    // AL: TODO
-    // registrationFormState: {},
     error: "",
   },
   callbacks: {
@@ -22,10 +20,33 @@ const defaultProps: BaseRegistrationFormViewProps = {
     requiredFieldErrorMessage: "Cannot be empty",
     invalidEmailErrorMessage: "Must be a valid email address",
     googleButton: <sl-button>Register with Google</sl-button>,
-    secondaryButton: <sl-button>Sign in</sl-button>,
+    secondaryButton: (
+      <span>
+        Already have an account?{" "}
+        <sl-button
+          padding="0"
+          style={{ width: "60px" }}
+          size="large"
+          type="text"
+        >
+          Sign in
+        </sl-button>{" "}
+      </span>
+    ),
+  },
+};
+
+const errorProps: BaseRegistrationFormViewProps = {
+  ...defaultProps,
+  states: {
+    error: "Something went wrong. Please try again.",
   },
 };
 
 export const Default = () => {
   return <BaseRegistrationFormView {...defaultProps} />;
+};
+
+export const EmailError = () => {
+  return <BaseRegistrationFormView {...errorProps} />;
 };

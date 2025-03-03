@@ -10,14 +10,14 @@ Feature: Base registration form
     Given the user is on the base registration form
     When the user enters their email
     And they press the "Register" button
-    Then the user is taken to the manual registration form
+    Then the user is taken to the microsite manual registration form
 
   @minutia
   Scenario: User can choose google registration
     Given the user is on the base registration form
     When the user presses the "Sign up with Google" button
     Then the user is prompted with the google sign in API
-    And then user is taking to the google registration form
+    And then user is taking to the microsite google registration form
 
   @minutia
   Scenario: User goes back to login page
