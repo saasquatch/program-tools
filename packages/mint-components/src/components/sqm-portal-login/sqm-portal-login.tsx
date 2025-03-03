@@ -135,16 +135,15 @@ export class PortalLogin {
           </a>
         </slot>
       ),
-      googleButton:
-        states.showLoginForm.mode === "google" ? (
-          <sqm-google-sign-in
-            onInitComplete={(res) => console.log(res)}
-          ></sqm-google-sign-in>
-        ) : null,
+      googleButton: this.showGoogleLogin ? (
+        <sqm-google-sign-in
+          onInitComplete={(res) => console.log(res)}
+        ></sqm-google-sign-in>
+      ) : null,
       secondaryButton: (
         <slot name="secondaryButton">
           <style>{styleString}</style>
-          {states.showLoginForm.mode === "google" ? (
+          {this.showGoogleLogin ? (
             <span>
               {this.registerCTA}{" "}
               <sl-button

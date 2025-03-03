@@ -13,7 +13,6 @@ export interface PortalLoginViewProps {
     loading: boolean;
     forgotPasswordPath: string;
     registerPath: string;
-    showLoginForm: { mode: string };
   };
   callbacks: {
     submit: (event: any) => Promise<void>;

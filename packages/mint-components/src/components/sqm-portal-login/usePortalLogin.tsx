@@ -11,9 +11,6 @@ export function usePortalLogin(props: PortalLogin) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
-  const [showLoginForm, setShowLoginForm] = useState({
-    mode: "manual",
-  });
   const urlParams = new URLSearchParams(navigation.location.search);
   const nextPageOverride = urlParams.get("nextPage");
 
@@ -50,7 +47,6 @@ export function usePortalLogin(props: PortalLogin) {
       error: errorMessage,
       registerPath: props.registerPath,
       forgotPasswordPath: props.forgotPasswordPath,
-      showLoginForm,
     },
     callbacks: {
       submit,
