@@ -143,6 +143,7 @@ export class PortalLogin {
             <span>
               {this.registerCTA}{" "}
               <sl-button
+                size="large"
                 type="text"
                 disabled={states.loading}
                 onClick={() => navigation.push(states.registerPath)}

@@ -241,6 +241,7 @@ export class PortalGoogleRegistrationForm {
           <span>
             {this.loginCTA}{" "}
             <sl-button
+              size="large"
               type="text"
               disabled={states.loading}
               onClick={() => navigation.push(states.loginPath)}
