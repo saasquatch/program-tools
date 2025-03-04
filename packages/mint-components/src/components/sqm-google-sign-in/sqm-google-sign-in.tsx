@@ -1,11 +1,7 @@
-import { getEnvironmentSDK } from "@saasquatch/component-boilerplate";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect } from "@saasquatch/universal-hooks";
-import { Event, Component, EventEmitter, h, Prop } from "@stencil/core";
-
-interface CredentialResponse {
-  credential: string;
-}
+import { Component, Event, EventEmitter, h, Prop } from "@stencil/core";
+import { useGoogleSignIn } from "./useGoogleSignIn";
 
 /**
  * @uiName Google Sign-In Button
@@ -16,6 +12,9 @@ interface CredentialResponse {
   shadow: true,
 })
 export class GoogleSignIn {
+  /**
+   * @uiName Button text
+   */
   @Prop() text: string;
   @Event({ composed: true }) initComplete: EventEmitter<any>;
 
@@ -23,36 +22,33 @@ export class GoogleSignIn {
     withHooks(this);
   }
   disconnectedCallback() {}
+  connectedCallback() {
+    const src = "https://accounts.google.com/gsi/client";
+    if (!document.head.querySelector(`script[src="${src}"]`)) {
+      const script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }
 
   render() {
-    const sdk = getEnvironmentSDK();
-    const [googleButtonDiv, setGoogleButtonDiv] =
-      useState<HTMLDivElement>(null);
+    const { setGoogleButtonDiv } = isDemo()
+      ? useDemoGoogleSignIn(this)
+      : useGoogleSignIn(this);
 
-    useEffect(() => {
-      if (sdk.type !== "SquatchPortal") return;
-      if (!googleButtonDiv) return;
-
-      const cb = (res: CredentialResponse) => {
-        this.initComplete.emit(res);
-      };
-
-      //@ts-expect-error
-      google.accounts.id.initialize({
-        //@ts-expect-error: link component-env/boilerplate for new types
-        client_id: sdk.env.googleClientId,
-        callback: cb,
-      });
-
-      //@ts-expect-error
-      google.accounts.id.renderButton(googleButtonDiv, {
-        theme: "outline",
-        size: "large",
-        text: this.text,
-      });
-    }, [googleButtonDiv]);
-
-    // TODO: Maybe a loading placeholder while initialising
-    return <div ref={setGoogleButtonDiv}></div>;
+    return (
+      <div>
+        <div ref={setGoogleButtonDiv}></div>
+      </div>
+    );
   }
+}
+
+function useDemoGoogleSignIn(props: GoogleSignIn) {
+  const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
+
+  return {
+    setGoogleButtonDiv: () => void 0,
+  };
 }

@@ -757,6 +757,9 @@ export namespace Components {
         "type": string;
     }
     interface SqmGoogleSignIn {
+        /**
+          * @uiName Button text
+         */
         "text": string;
     }
     interface SqmGraphqlClientProvider {
@@ -6873,6 +6876,9 @@ declare namespace LocalJSX {
     }
     interface SqmGoogleSignIn {
         "onInitComplete"?: (event: CustomEvent<any>) => void;
+        /**
+          * @uiName Button text
+         */
         "text"?: string;
     }
     interface SqmGraphqlClientProvider {

@@ -1,8 +1,7 @@
 import { useState } from "@saasquatch/universal-hooks";
-import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import decode from "jwt-decode";
-import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { useRegistrationForm } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { PortalGoogleRegistrationForm } from "./sqm-portal-google-registration-form";
 
 // returns either error message if invalid or undefined if valid
@@ -16,8 +15,8 @@ export function usePortalGoogleRegistrationForm(
   props: PortalGoogleRegistrationForm
 ) {
   const [emailValidationError, setEmailValidationError] = useState(null);
-  const { registrationFormState, setRegistrationFormState } =
-    useRegistrationFormState();
+  const [registrationFormState, setRegistrationFormState] =
+    useRegistrationForm();
   const [showRegistrationForm, setShowRegistrationForm] = useState({
     mode: "base",
   });
@@ -61,15 +60,14 @@ export function usePortalGoogleRegistrationForm(
 
   const handleGoogleInit = (event: CustomEvent<any>) => {
     try {
-      const res = decode(event.detail) as any;
-      // TODO: Double check
+      const res = decode(event.detail.credential) as any;
       setRegistrationFormState({
         ...registrationFormState,
+        _googleOAuthIdToken: event.detail.credential,
         initialData: {
-          ...registrationFormState.initialData,
-          email: res.payload.email,
-          firstName: res.payload.given_name,
-          lastName: res.payload.family_name,
+          email: res.email,
+          firstName: res.given_name,
+          lastName: res.family_name,
         },
       });
       setShowRegistrationForm({ mode: "google" });
