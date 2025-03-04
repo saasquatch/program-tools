@@ -232,6 +232,7 @@ export class PortalGoogleRegistrationForm {
       formData: <slot name="formData"></slot>,
       googleButton: (
         <sqm-google-sign-in
+          text="Register with Google"
           onInitComplete={handleGoogleInit}
         ></sqm-google-sign-in>
       ),

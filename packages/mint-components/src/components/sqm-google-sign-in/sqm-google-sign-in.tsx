@@ -1,5 +1,5 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
-import { useState, withHooks } from "@saasquatch/stencil-hooks";
+import { getEnvironmentSDK, isDemo } from "@saasquatch/component-boilerplate";
+import { useEffect, useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Event, EventEmitter, h, Prop } from "@stencil/core";
 import { useGoogleSignIn } from "./useGoogleSignIn";
 
@@ -46,9 +46,39 @@ export class GoogleSignIn {
 }
 
 function useDemoGoogleSignIn(props: GoogleSignIn) {
+  const [loaded, setLoaded] = useState(false);
   const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const cb = () => {
+      // @ts-expect-error
+      window.onGoogleLibraryLoad = null;
+      setLoaded(true);
+    };
+
+    // @ts-expect-error
+    if (window.google) cb();
+    // @ts-expect-error
+    window.onGoogleLibraryLoad = cb;
+  }, []);
+
+  useEffect(() => {
+    if (!googleButtonDiv || !loaded) return;
+
+    const cb = () => {
+      props.initComplete.emit({ credential: "PLACEHOLDERCREDENTIAL" });
+    };
+
+    //@ts-expect-error
+    google.accounts.id.renderButton(googleButtonDiv, {
+      theme: "outline",
+      size: "large",
+      text: props.text,
+      click_listener: cb,
+    });
+  }, [googleButtonDiv, loaded]);
+
   return {
-    setGoogleButtonDiv: () => void 0,
+    setGoogleButtonDiv,
   };
 }
