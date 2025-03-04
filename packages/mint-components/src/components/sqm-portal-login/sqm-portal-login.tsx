@@ -132,6 +132,7 @@ export class PortalLogin {
       ),
       googleButton: this.showGoogleLogin ? (
         <sqm-google-sign-in
+          // TODO
           onInitComplete={(res) => console.log(res)}
         ></sqm-google-sign-in>
       ) : null,

@@ -11,8 +11,7 @@ export function useGoogleSignIn(props: GoogleSignIn) {
   const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
 
   useEffect(() => {
-    // @ts-expect-error
-    window.onGoogleLibraryLoad = () => {
+    const cb = () => {
       // @ts-expect-error
       window.onGoogleLibraryLoad = null;
 
@@ -31,6 +30,11 @@ export function useGoogleSignIn(props: GoogleSignIn) {
       });
       setLoaded(true);
     };
+
+    // @ts-expect-error
+    if (window.google) cb();
+    // @ts-expect-error
+    window.onGoogleLibraryLoad = cb;
   }, []);
 
   useEffect(() => {
