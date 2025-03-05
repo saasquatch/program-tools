@@ -2,19 +2,19 @@
 @author:zach
 Feature: Marketing Emails Checkbox
 
-  A checkbox that is used to opt in for referral program marketing emails.
+    A checkbox that is used to opt in for referral program marketing emails.
 
     Background: A user is on the portal registration page
         Given a user is viewing the "/register"
         And "/register" contains the registration form
         And the registration form has the following fields
-            | fields                      |
-            | first name                  |
-            | last name                   |
-            | email                       |
-            | password                    |
-            | Marketing Emails Checkbox   |
-    
+            | fields                    |
+            | first name                |
+            | last name                 |
+            | email                     |
+            | password                  |
+            | Marketing Emails Checkbox |
+
     @motivating
     Scenario: Checkbox is optional by default
         Given the user is filling out the registration form
@@ -29,8 +29,4 @@ Feature: Marketing Emails Checkbox
     Scenario: The form field name is provided by default
         Given the customer has added a marketing emails checkbox to their registration form
         Then the field name is automatically set to "marketingEmailOptIn"
-        And the name is not configurable 
-
-
-
-  
+        And the name is not configurable
