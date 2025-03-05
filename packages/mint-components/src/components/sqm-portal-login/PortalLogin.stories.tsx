@@ -13,6 +13,7 @@ const defaultProps: PortalLoginViewProps = {
     registerPath: "/register",
   },
   callbacks: {
+    googleSubmit: async () => {},
     submit: async (e) => await e,
   },
   content: {
@@ -28,6 +29,7 @@ const errorProps: PortalLoginViewProps = {
     registerPath: "/register",
   },
   callbacks: {
+    googleSubmit: async () => {},
     submit: async (e) => await e,
   },
   content: {
@@ -43,6 +45,7 @@ const loadingProps: PortalLoginViewProps = {
     registerPath: "/register",
   },
   callbacks: {
+    googleSubmit: async () => {},
     submit: async (e) => await e,
   },
   content: {

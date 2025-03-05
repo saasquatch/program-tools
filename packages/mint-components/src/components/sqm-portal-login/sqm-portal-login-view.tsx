@@ -15,6 +15,7 @@ export interface PortalLoginViewProps {
     registerPath: string;
   };
   callbacks: {
+    googleSubmit: (event: CustomEvent<any>) => Promise<void>;
     submit: (event: any) => Promise<void>;
   };
   content: {

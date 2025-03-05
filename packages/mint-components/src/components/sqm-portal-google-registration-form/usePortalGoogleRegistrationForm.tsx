@@ -1,8 +1,8 @@
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
-import decode from "jwt-decode";
 import { useRegistrationForm } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { PortalGoogleRegistrationForm } from "./sqm-portal-google-registration-form";
+import { jwtDecode } from "jwt-decode";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -59,8 +59,10 @@ export function usePortalGoogleRegistrationForm(
   };
 
   const handleGoogleInit = (event: CustomEvent<any>) => {
+    if (!event.detail?.credential) return;
+
     try {
-      const res = decode(event.detail.credential) as any;
+      const res = jwtDecode(event.detail.credential) as any;
       setRegistrationFormState({
         ...registrationFormState,
         _googleOAuthIdToken: event.detail.credential,

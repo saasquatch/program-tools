@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@raisins/stencil-docs-target": "^1.1.1",
-    "@saasquatch/component-boilerplate": "^1.6.7",
+    "@saasquatch/component-boilerplate": "^1.6.8-0",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
@@ -90,6 +90,7 @@
     "highlight.js": "^10.6.0",
     "jsonpointer": "^4.1.0",
     "jss-preset-default": "^10.7.1",
+    "jwt-decode": "^4.0.0",
     "libphonenumber-js": "^1.9.23",
     "luxon": "^2.0.1",
     "password-validator": "^5.1.1",

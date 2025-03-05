@@ -6,6 +6,7 @@ import { useGoogleSignIn } from "./useGoogleSignIn";
 /**
  * @uiName Google Sign-In Button
  * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
+ * @undocumented
  */
 @Component({
   tag: "sqm-google-sign-in",
@@ -33,7 +34,7 @@ export class GoogleSignIn {
   }
 
   render() {
-    const { setGoogleButtonDiv } = isDemo()
+    const { setGoogleButtonDiv } = true
       ? useDemoGoogleSignIn(this)
       : useGoogleSignIn(this);
 
@@ -66,8 +67,14 @@ function useDemoGoogleSignIn(props: GoogleSignIn) {
     if (!googleButtonDiv || !loaded) return;
 
     const cb = () => {
-      props.initComplete.emit({ credential: "PLACEHOLDERCREDENTIAL" });
+      props.initComplete.emit({ credential: null });
     };
+
+    // @ts-expect-error
+    google.accounts.id.initialize({
+      client_id: "PLACEHOLDER",
+      cb: () => {},
+    });
 
     //@ts-expect-error
     google.accounts.id.renderButton(googleButtonDiv, {

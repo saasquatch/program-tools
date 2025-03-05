@@ -132,8 +132,7 @@ export class PortalLogin {
       ),
       googleButton: this.showGoogleLogin ? (
         <sqm-google-sign-in
-          // TODO
-          onInitComplete={(res) => console.log(res)}
+          onInitComplete={callbacks.googleSubmit}
         ></sqm-google-sign-in>
       ) : null,
       secondaryButton: (
@@ -188,6 +187,9 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
         showLoginForm: "manual",
       },
       callbacks: {
+        googleSubmit: async () => {
+          console.log("google submit");
+        },
         submit: async (_event) => {
           console.log("submit");
         },
@@ -199,14 +201,4 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
-}
-
-function useGoogleDemo() {
-  const [showLoginForm, setShowLoginForm] = useState({
-    mode: "manual",
-  });
-
-  return {
-    showLoginForm,
-  };
 }
