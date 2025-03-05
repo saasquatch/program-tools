@@ -28,8 +28,8 @@ Feature: Marketing Emails Checkbox
 
     Scenario: The form field name is provided by default
         Given the customer has added a marketing emails checkbox to their registration form
-        Then the field name is automatically set to "marketing-emails"
-        And the name is configurable 
+        Then the field name is automatically set to "marketingEmailOptIn"
+        And the name is not configurable 
 
 
 
