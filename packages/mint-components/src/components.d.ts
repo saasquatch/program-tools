@@ -2036,6 +2036,11 @@ export namespace Components {
          */
         "formKey": string;
         /**
+          * Can be "signup_with", "signin_with", "continue_with", or "signin"
+          * @uiName Google button text
+         */
+        "googleButtonText": string;
+        /**
           * @uiName Missing number or symbol text
          */
         "hasErrorText": string;
@@ -8148,6 +8153,11 @@ declare namespace LocalJSX {
           * @required
          */
         "formKey"?: string;
+        /**
+          * Can be "signup_with", "signin_with", "continue_with", or "signin"
+          * @uiName Google button text
+         */
+        "googleButtonText"?: string;
         /**
           * @uiName Missing number or symbol text
          */

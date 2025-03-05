@@ -188,6 +188,13 @@ export class PortalGoogleRegistrationForm {
   @Prop() formKey: string;
 
   /**
+   * Can be "signup_with", "signin_with", "continue_with", or "signin"
+   *
+   * @uiName Google button text
+   */
+  @Prop() googleButtonText: string = "signup_with";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -232,7 +239,7 @@ export class PortalGoogleRegistrationForm {
       formData: <slot name="formData"></slot>,
       googleButton: (
         <sqm-google-sign-in
-          text="Register with Google"
+          text={this.googleButtonText}
           onInitComplete={handleGoogleInit}
         ></sqm-google-sign-in>
       ),
