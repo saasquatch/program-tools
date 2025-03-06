@@ -137,7 +137,7 @@ Feature: Portal Login
     When they press the button
     Then the user is prompted with the Google Sign In popup
     When they complete the google sign in process
-    Then they are taken to the microsite
+    Then they are taken to the microsite dashboard
 
   @minutia
   Scenario: "showGoogleLogin" prop is required for google login to be displayed
