@@ -137,8 +137,7 @@ Feature: Portal Login
     When they press the button
     Then the user is prompted with the google sign in API
     When they complete the google sign in process
-    Then they are taken to the microsite
-    # AL: TODO not sure what happenbs when they press google sign in button on login screen
+    Then they are taken to the microsite dashboard
 
   @minutia
   Scenario: Tenant has GOOGLE_SIGNUP feature enabled
