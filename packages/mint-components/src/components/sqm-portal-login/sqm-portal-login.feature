@@ -132,30 +132,30 @@ Feature: Portal Login
   @minutia
   Scenario: User signs in with Google
     Given the user is on the login page
-    And the GOOGLE_SIGNUP feature is enabled
+    And the "showGoogleLogin" prop is true
     Then they see a Sign in with Google button
     When they press the button
-    Then the user is prompted with the google sign in API
+    Then the user is prompted with the Google Sign In popup
     When they complete the google sign in process
     Then they are taken to the microsite
-    # AL: TODO not sure what happenbs when they press google sign in button on login screen
 
   @minutia
-  Scenario: Tenant has GOOGLE_SIGNUP feature enabled
+  Scenario: "showGoogleLogin" prop is required for google login to be displayed
     Given the user is on the login page
-    And the GOOGLE_SIGNUP feature is enabled
-    Then they see a Sign in with Google button
+    And the "showGoogleLogin" prop is true
+    Then they see a "Sign in with Google" button
     And they see a CTA to register
       """
       Don't have an account? Register
       """
     When they press "Register"
-    Then they land on the base registration form
+    Then they are redirected to the register page
 
   @minutia
-  Scenario: Tenant does not have GOOGLE_SIGNUP feature enabled
+  Scenario: "showGoogleLogin" prop is false
     Given the user is on the login page
+    And the "showGoogleLogin" prop is false
     Then the user does not see a Sign in with Google button
     And the CTA to register does not show
     When they press the "Register" button
-    Then they land on the manual registration form
+    Then they are redirected to the register page
