@@ -27,12 +27,13 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PortalProfileViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
 import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
-import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
+import { PortalProfileViewProps as PortalProfileViewProps1 } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
@@ -1674,6 +1675,33 @@ export namespace Components {
           * @uiName "Powered by" text
          */
         "poweredByText": string;
+    }
+    interface SqmPortalChangeMarketing {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalProfileViewProps>;
+        /**
+          * @uiName Email preferences header
+         */
+        "emailPreferencesHeader": string;
+        /**
+          * @uiName Marketing checkbox label
+         */
+        "marketingCheckboxLabel": string;
+        /**
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+         */
+        "networkRequestMessage": string;
+        /**
+          * @uiName Submit changes button text
+         */
+        "submitChangeButtonText": string;
+        /**
+          * @uiName Successful update message
+         */
+        "successMessage": string;
     }
     interface SqmPortalChangePassword {
         /**
@@ -5415,6 +5443,12 @@ declare global {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    interface HTMLSqmPortalChangeMarketingElement extends Components.SqmPortalChangeMarketing, HTMLStencilElement {
+    }
+    var HTMLSqmPortalChangeMarketingElement: {
+        prototype: HTMLSqmPortalChangeMarketingElement;
+        new (): HTMLSqmPortalChangeMarketingElement;
+    };
     interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
     }
     var HTMLSqmPortalChangePasswordElement: {
@@ -5850,6 +5884,7 @@ declare global {
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-change-marketing": HTMLSqmPortalChangeMarketingElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
@@ -7537,6 +7572,33 @@ declare namespace LocalJSX {
           * @uiName "Powered by" text
          */
         "poweredByText"?: string;
+    }
+    interface SqmPortalChangeMarketing {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalProfileViewProps>;
+        /**
+          * @uiName Email preferences header
+         */
+        "emailPreferencesHeader"?: string;
+        /**
+          * @uiName Marketing checkbox label
+         */
+        "marketingCheckboxLabel"?: string;
+        /**
+          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+         */
+        "networkRequestMessage"?: string;
+        /**
+          * @uiName Submit changes button text
+         */
+        "submitChangeButtonText"?: string;
+        /**
+          * @uiName Successful update message
+         */
+        "successMessage"?: string;
     }
     interface SqmPortalChangePassword {
         /**
@@ -11032,6 +11094,7 @@ declare namespace LocalJSX {
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-change-marketing": SqmPortalChangeMarketing;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
@@ -11147,6 +11210,7 @@ declare module "@stencil/core" {
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-change-marketing": LocalJSX.SqmPortalChangeMarketing & JSXBase.HTMLAttributes<HTMLSqmPortalChangeMarketingElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
