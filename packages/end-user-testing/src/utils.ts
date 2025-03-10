@@ -5,7 +5,13 @@ export type User = {
 };
 
 export function b64decode(input: string) {
-  return atob(input.replace(/_/g, "/").replace(/-/g, "+"));
+  const binary = atob(input.replace(/_/g, "/").replace(/-/g, "+"));
+
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new TextDecoder("utf8").decode(bytes);
 }
 
 export function decodeUserJwt(tokenStr: string): User | null {

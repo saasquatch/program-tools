@@ -5,9 +5,9 @@ const prefix = "micro-testing";
 const defaults = {
   tenantAlias: undefined,
   mintSource:
-    "https://fast-staging.ssqt.io/npm/@saasquatch/mint-components@1.8.4/dist/mint-components/mint-components.esm.min.js",
+    "https://fast-staging.ssqt.io/npm/@saasquatch/mint-components@latest/dist/mint-components/mint-components.esm.min.js",
   bedrockSource:
-    "https://fast.ssqt.io/npm/@saasquatch/bedrock-components@1.4.5/dist/bedrock-components/bedrock-components.esm.min.js",
+    "https://fast.ssqt.io/npm/@saasquatch/bedrock-components@latest/dist/bedrock-components/bedrock-components.esm.min.js",
 } as Record<string, any>;
 
 const localStorage = window.localStorage;

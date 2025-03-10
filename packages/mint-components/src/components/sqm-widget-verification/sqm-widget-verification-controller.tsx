@@ -1,10 +1,9 @@
 import { useParentState } from "@saasquatch/component-boilerplate";
-import { useHost, withHooks } from "@saasquatch/stencil-hooks";
+import { withHooks } from "@saasquatch/stencil-hooks";
 import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
-import { Component, h, Host, Prop } from "@stencil/core";
+import { Component, h, Host } from "@stencil/core";
 import debugFn from "debug";
-import { VERIFICATION_EVENT_KEY, VERIFICATION_PARENT_NAMESPACE } from "./keys";
-import { getProps } from "../../utils/utils";
+import { VERIFICATION_PARENT_NAMESPACE } from "./keys";
 const debug = debugFn("sq:widget-verification");
 
 function useTemplateChildren({ parent, callback }) {
