@@ -67,27 +67,39 @@ Feature: Microsite Google Registration Form
     And the "email" field is disabled
 
   @minutia
+  Scenario: Registering with Google error
+    Given a user viewing the initial registration form
+    When they click the "Sign up with Google" Google SSO button
+    And go through the google flow
+    But an error occurs
+    Then they see an error on the registration form
+    And they are not brought to the 2nd registration form
+
+  @minutia
   Scenario: Fields are pre-filled with user's google account information
     Given the user has completed the google sign-in process
-    When the user is on the google registration form
+    When the user is on the 2nd registration form
     Then they see their google account's email address pre-filled
     And they see their google account's first/last name pre-filled
 
   @minutia @ui
-  Scenario: Form does not have redirect to login page button
+  Scenario: Form has a redirect to login page button
     Given the user is on the 2nd step of the registration form
-    Then they do not see a login CTA
-    And they must use the back button in the browser to return to the login page
+    Then there is the following text
+      """
+      Already have an account? Login
+      """
+    And the "Login" text is a link that redirects to the login page
 
   @minutia
   Scenario: Password fields are hidden
-    Given the user is on the google registration form
+    Given the user is on the 2nd registration form
     Then they do not see password fields
 
   @minutia
   Scenario: User encounters an error during form submission
     Given the user has completed the google sign-in process
-    And the user is on the google registration form
+    And the user is on the 2nd registration form
     When the user fills in all required fields
     And the user submits the form
     But an error occurs
@@ -97,7 +109,7 @@ Feature: Microsite Google Registration Form
   @minutia
   Scenario: User tries to submit the form with missing required fields
     Given the user has completed the google sign-in process
-    And the user is on the google registration form
+    And the user is on the 2nd registration form
     But the user leaves required fields empty
     When the user submits the form
     Then the user sees validation error messages
@@ -106,9 +118,27 @@ Feature: Microsite Google Registration Form
   @motivating
   Scenario: Registering through Google does not require manually verifying your email
     Given the user has completed the google sign-in process
-    And the user is on the google registration form
+    And the user is on the 2nd registration form
     And all default fields are valid
     When they click "Register"
     And registration is successful
     Then they are redirected to the microsite's dashboard
     And they do not need to verify their email manually
+  @minutia
+  Scenario: Leaving on the 2nd form requires re-filling out the 1st form
+    Given the user is on the 2nd registration form
+    When they refresh the page
+    Then they are shown the initial registration form
+
+  @minutia @ui
+  Scenario: Google Sign-In popup text
+    Given a user clicks the Google Sign-In button
+    Then a popup is displayed
+    And they can choose a Google account to register with
+    And the popup has the following title
+      """
+      Sign up with <domain>
+      """
+    And the "Terms of Service" link is "TBD"
+    And the "Privacy Policy" link is "TBD"
+

@@ -159,3 +159,15 @@ Feature: Portal Login
     And the CTA to register does not show
     When they press the "Register" button
     Then they are redirected to the register page
+
+  @minutia @ui
+  Scenario: Google Sign-In popup text
+    Given a user clicks the Google Sign-In button
+    Then a popup is displayed
+    And they can choose a Google account to register with
+    And the popup has the following title
+      """
+      Sign in with <domain>
+      """
+    And the "Terms of Service" link is "TBD"
+    And the "Privacy Policy" link is "TBD"
