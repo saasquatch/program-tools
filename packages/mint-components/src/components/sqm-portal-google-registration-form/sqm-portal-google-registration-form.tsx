@@ -300,7 +300,6 @@ export class PortalGoogleRegistrationForm {
         callbacks={callbacks}
         content={{
           ...content,
-          secondaryButton: <div style={{ display: "none" }}></div>,
         }}
         refs={refs}
       ></PortalRegistrationFormView>

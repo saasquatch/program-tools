@@ -46,7 +46,7 @@ export function useGoogleSignIn(props: GoogleSignIn) {
       size: "large",
       text: props.text,
       height: 40,
-      width: 402,
+      width: 400,
     });
   }, [googleButtonDiv, loaded]);
 

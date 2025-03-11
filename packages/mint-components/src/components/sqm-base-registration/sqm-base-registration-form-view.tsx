@@ -28,7 +28,7 @@ export interface BaseRegistrationFormViewProps {
 }
 
 const style = {
-  Wrapper: { ...AuthWrapper, "max-width": "600px" },
+  Wrapper: AuthWrapper,
   Column: AuthColumn,
   HostBlock: HostBlock,
 
