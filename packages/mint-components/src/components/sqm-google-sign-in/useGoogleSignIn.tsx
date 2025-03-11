@@ -9,6 +9,19 @@ interface CredentialResponse {
 export function useGoogleSignIn(props: GoogleSignIn) {
   const [loaded, setLoaded] = useState(false);
   const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
+  const [buttonWidth, setButtonWidth] = useState<number>(getButtonWidth());
+  function getButtonWidth() {
+    return Math.max(200, Math.min(400, window.innerWidth * 0.69));
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setButtonWidth(getButtonWidth());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const cb = () => {
@@ -46,9 +59,9 @@ export function useGoogleSignIn(props: GoogleSignIn) {
       size: "large",
       text: props.text,
       height: 40,
-      width: 400,
+      width: buttonWidth,
     });
-  }, [googleButtonDiv, loaded]);
+  }, [googleButtonDiv, loaded, buttonWidth]);
 
   return {
     setGoogleButtonDiv,
