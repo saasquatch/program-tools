@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] - 2025-03-12
+
+### Added
+- \<sqm-widget-verification>
+  - Adds a verification gate to a given slot, requiring a user passes a 2FA flow to view the component.
+
+### Changed
+- \<sqm-tax-and-cash>
+  - Added a 2FA step required to update withdrawal settings.
+
 ## [1.11.1] - 2025-02-18
 
 ### Added
@@ -1094,7 +1104,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.12.0...HEAD
+[1.12.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.12.0
 [1.11.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.1
 [1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
 [1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
