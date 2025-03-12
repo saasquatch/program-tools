@@ -24,6 +24,11 @@ export function useGoogleSignIn(props: GoogleSignIn) {
     }
 
     window.addEventListener("resize", handleResize);
+    const googleIframe = document.querySelector("iframe[id^='gsi_']");
+    if (googleIframe) {
+      googleIframe.id = "google-signin-iframe"; // Set a custom ID
+      // googleIframe.style.width = "100%";
+    }
     return () => {
       window.removeEventListener("resize", handleResize);
       if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
