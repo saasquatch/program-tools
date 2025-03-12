@@ -8,32 +8,30 @@ interface CredentialResponse {
 
 export function useGoogleSignIn(props: GoogleSignIn) {
   const [loaded, setLoaded] = useState(false);
-  const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
-  const [buttonWidth, setButtonWidth] = useState<number>(getButtonWidth());
-  const resizeTimeoutRef = useRef<NodeJS.Timeout>(null);
-  function getButtonWidth() {
-    return Math.max(200, Math.min(400, window.innerWidth * 0.7 - 20));
-  }
+  const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLElement | null>(
+    null
+  );
+  const [buttonWidth, setButtonWidth] = useState<number>(400);
 
   useEffect(() => {
-    function handleResize() {
-      clearTimeout(resizeTimeoutRef.current);
-      resizeTimeoutRef.current = setTimeout(() => {
-        setButtonWidth(getButtonWidth());
-      }, 40);
-    }
+    if (!googleButtonDiv) return;
 
-    window.addEventListener("resize", handleResize);
-    const googleIframe = document.querySelector("iframe[id^='gsi_']");
-    if (googleIframe) {
-      googleIframe.id = "google-signin-iframe"; // Set a custom ID
-      // googleIframe.style.width = "100%";
-    }
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
+    // Function to update the width based on the container's size
+    const updateWidth = () => {
+      if (googleButtonDiv) {
+        setButtonWidth(googleButtonDiv.clientWidth);
+      }
     };
-  }, []);
+
+    // Create a ResizeObserver to track width changes
+    const resizeObserver = new ResizeObserver(() => {
+      updateWidth();
+    });
+    resizeObserver.observe(googleButtonDiv);
+    updateWidth();
+
+    return () => resizeObserver.disconnect();
+  }, [googleButtonDiv, buttonWidth]);
 
   useEffect(() => {
     const cb = () => {

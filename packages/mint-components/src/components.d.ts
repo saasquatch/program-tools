@@ -757,6 +757,7 @@ export namespace Components {
         "type": string;
     }
     interface SqmGoogleSignIn {
+        "googleButtonDiv": HTMLElement | null;
         /**
           * @uiName Button text
          */
@@ -6880,6 +6881,7 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SqmGoogleSignIn {
+        "googleButtonDiv"?: HTMLElement | null;
         "onInitComplete"?: (event: CustomEvent<any>) => void;
         /**
           * @uiName Button text
