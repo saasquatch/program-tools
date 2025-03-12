@@ -13,15 +13,15 @@ export function useGoogleSignIn(props: GoogleSignIn) {
   );
   const [buttonWidth, setButtonWidth] = useState<number>(400);
 
+  // Update the width based on the container's size
+  const updateWidth = () => {
+    if (googleButtonDiv) {
+      setButtonWidth(googleButtonDiv.clientWidth);
+    }
+  };
+
   useEffect(() => {
     if (!googleButtonDiv) return;
-
-    // Function to update the width based on the container's size
-    const updateWidth = () => {
-      if (googleButtonDiv) {
-        setButtonWidth(googleButtonDiv.clientWidth);
-      }
-    };
 
     // Create a ResizeObserver to track width changes
     const resizeObserver = new ResizeObserver(() => {
