@@ -355,7 +355,6 @@ export const SourceCellDeletedUser = () => {
 
 export const SourceCellDeletedReferral = () => {
   return (
-    // AL: TODO
     <sqm-rewards-table-source-cell
       //@ts-ignore
       reward={{ ...rewardsData, ...deletedReferral(null) }}

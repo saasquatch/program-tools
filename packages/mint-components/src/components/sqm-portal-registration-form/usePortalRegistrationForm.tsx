@@ -143,9 +143,11 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     delete formData.password;
     delete formData.confirmPassword;
     const redirectPath = props.redirectPath;
+    const _googleOAuthIdToken = registrationFormState._googleOAuthIdToken;
     const variables = {
       key: props.formKey,
       formData: {
+        ...(_googleOAuthIdToken ? { _googleOAuthIdToken } : {}),
         locale,
         email,
         password,

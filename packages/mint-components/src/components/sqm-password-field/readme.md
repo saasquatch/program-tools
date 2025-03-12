@@ -25,6 +25,7 @@
 ### Used by
 
  - [sqm-portal-change-password](../sqm-portal-change-password)
+ - [sqm-portal-google-registration-form](../sqm-portal-google-registration-form)
  - [sqm-portal-register](../sqm-portal-register)
  - [sqm-portal-registration-form](../sqm-portal-registration-form)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
@@ -34,6 +35,7 @@
 ```mermaid
 graph TD;
   sqm-portal-change-password --> sqm-password-field
+  sqm-portal-google-registration-form --> sqm-password-field
   sqm-portal-register --> sqm-password-field
   sqm-portal-registration-form --> sqm-password-field
   sqm-portal-reset-password --> sqm-password-field

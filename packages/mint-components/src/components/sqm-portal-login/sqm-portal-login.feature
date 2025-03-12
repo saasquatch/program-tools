@@ -1,5 +1,4 @@
-@author:derek
-@owner:ian
+@author:derek @owner:ian
 Feature: Portal Login
 
   @motivating
@@ -62,6 +61,7 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <nextPageParamValue>
+
     Examples:
       | mayHave       | nextPageValue | nextPageParamValue |
       | has           | /dashboard    | /activity          |
@@ -74,6 +74,7 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <url>
+
     Examples:
       | currentUrl                                                                 | url                                           |
       | https://www.example.com?nextPage=./activity                                | https://www.example.com/activity              |
@@ -97,10 +98,10 @@ Feature: Portal Login
     When the user clicks "Login"
     Then they are logged in
     And they are redirected to <url>
+
     Examples:
       | currentUrl                                              | url                                  |
       | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |
-
 
   @minutia
   Scenario Outline: Navigation to the registration page can be customized but defaults to "/register"
@@ -109,6 +110,7 @@ Feature: Portal Login
     Then they see a "Register" text button
     When they click "Register"
     Then they are redirected to <redirectPath>
+
     Examples:
       | mayHave      | value   | redirectPath |
       | doesn't have | N/A     | /register    |
@@ -121,7 +123,51 @@ Feature: Portal Login
     Then they see a "Forgot Password?" text button
     When they click "Forgot Password?"
     Then they are redirected to <redirectPath>
+
     Examples:
       | mayHave      | value                    | redirectPath             |
       | doesn't have | N/A                      | /forgotPassword          |
       | has          | /whatTheHeckIsMyPassword | /whatTheHeckIsMyPassword |
+
+  @minutia
+  Scenario: User signs in with Google
+    Given the user is on the login page
+    And the "showGoogleLogin" prop is true
+    Then they see a Sign in with Google button
+    When they press the button
+    Then the user is prompted with the Google Sign In popup
+    When they complete the google sign in process
+    Then they are taken to the microsite dashboard
+
+  @minutia
+  Scenario: "showGoogleLogin" prop is required for google login to be displayed
+    Given the user is on the login page
+    And the "showGoogleLogin" prop is true
+    Then they see a "Sign in with Google" button
+    And they see a CTA to register
+      """
+      Don't have an account? Register
+      """
+    When they press "Register"
+    Then they are redirected to the register page
+
+  @minutia
+  Scenario: "showGoogleLogin" prop is false
+    Given the user is on the login page
+    And the "showGoogleLogin" prop is false
+    Then the user does not see a Sign in with Google button
+    And the CTA to register does not show
+    When they press the "Register" button
+    Then they are redirected to the register page
+
+  @minutia @ui
+  Scenario: Google Sign-In popup text
+    Given a user clicks the Google Sign-In button
+    Then a popup is displayed
+    And they can choose a Google account to register with
+    And the popup has the following title
+      """
+      Sign in with <domain>
+      """
+    And the "Terms of Service" link is "TBD"
+    And the "Privacy Policy" link is "TBD"

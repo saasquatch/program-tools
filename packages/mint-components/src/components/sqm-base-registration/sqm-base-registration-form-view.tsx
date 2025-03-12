@@ -3,43 +3,40 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
+  ErrorStyles,
+  HostBlock,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
-export interface PortalLoginViewProps {
+export interface BaseRegistrationFormViewProps {
   states: {
     error: string;
-    loading: boolean;
-    forgotPasswordPath: string;
-    registerPath: string;
   };
   callbacks: {
-    googleSubmit: (event: CustomEvent<any>) => Promise<void>;
-    submit: (event: any) => Promise<void>;
+    handleEmailSubmit: Function;
   };
   content: {
-    googleButton?: VNode;
-    forgotPasswordButton?: any;
-    secondaryButton?: any;
-    emailLabel?: string;
-    passwordLabel?: string;
-    submitLabel?: string;
     pageLabel?: string;
+    googleButton?: VNode;
+    secondaryButton?: VNode;
+    emailLabel?: string;
+    submitLabel?: string;
+    requiredFieldErrorMessage: string;
+    invalidEmailErrorMessage: string;
   };
 }
 
 const style = {
   Wrapper: AuthWrapper,
   Column: AuthColumn,
-  ForgotButtonContainer: {
-    display: "inline",
-    cursor: "pointer",
-    "font-size": "13px",
-    "font-weight": "600",
-    color: "#AAAAAA",
-    margin: "0",
+  HostBlock: HostBlock,
+
+  ":host": {
+    margin: "0 auto",
+    width: "100%",
   },
+
   ButtonsContainer: {
     ...AuthButtonsContainer,
     gap: "var(--sl-spacing-medium)",
@@ -47,13 +44,21 @@ const style = {
       margin: "0 !important",
     },
   },
+  ErrorStyle: ErrorStyles,
 };
 
 const vanillaStyle = `
-:host {
+sqm-portal-register {
+  margin: 0 auto;
+  width: 100%;
   display: block;
 }
-:host([hidden]): {
+
+:host{
+  display: block;
+}
+
+:host([hidden]) {
   display: none;
 }
 `;
@@ -61,17 +66,21 @@ const vanillaStyle = `
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function PortalLoginView(props: PortalLoginViewProps) {
-  const { states, callbacks, content } = props;
+export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
+  const { states, content, callbacks } = props;
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-base">
+    <div class={sheet.classes.Wrapper}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}
       </style>
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-      <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
-        {props.states.error && (
+      <sl-form
+        class={sheet.classes.Column}
+        onSl-submit={callbacks.handleEmailSubmit}
+        novalidate
+      >
+        {states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
@@ -81,32 +90,27 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}
-          disabled={states.loading}
           required
+          validationError={({ value }: { value: string }) => {
+            if (!value) {
+              return content.requiredFieldErrorMessage;
+            }
+            // this matches shoelace validation, but could be better
+            if (!value.includes("@")) {
+              return content.invalidEmailErrorMessage;
+            }
+          }}
         ></sl-input>
-        <div>
-          <sl-input
-            exportparts="label: input-label, base: input-base"
-            type="password"
-            name="/password"
-            label={content.passwordLabel || "Password"}
-            disabled={states.loading}
-            required
-          ></sl-input>
-          <div class={sheet.classes.ForgotButtonContainer}>
-            {content.forgotPasswordButton}
-          </div>
-        </div>
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
-            loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"
+            style={{ margin: "0" }}
           >
-            {content.submitLabel || "Login"}
+            {content.submitLabel || "Register"}
           </sl-button>
-          {content.googleButton && <sl-menu-divider />}
+          <sl-menu-divider style={{ margin: "0" }} />
           {content.googleButton}
           {content.secondaryButton}
         </div>

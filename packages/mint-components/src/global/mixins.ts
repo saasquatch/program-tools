@@ -108,7 +108,6 @@ export const AuthButtonsContainer = {
   display: "flex",
   "flex-direction": "column",
   width: "100%",
-  "align-items": "center",
   "&>*": {
     width: "100%",
   },

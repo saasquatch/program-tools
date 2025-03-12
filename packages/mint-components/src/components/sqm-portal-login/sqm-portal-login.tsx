@@ -1,10 +1,11 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
+import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Microsite Login
@@ -84,6 +85,16 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
+   * @uiName Register CTA
+   */
+  @Prop() registerCTA: string = "Don't have an account?";
+
+  /**
+   * @undocumented
+   */
+  @Prop() showGoogleLogin: boolean = false;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -99,6 +110,18 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
+
+    const styles = {
+      RegisterButton: {
+        "&::part(label)": {
+          padding: "0",
+        },
+      },
+    };
+
+    const sheet = createStyleSheet(styles);
+    const styleString = sheet.toString();
+
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
@@ -107,15 +130,36 @@ export class PortalLogin {
           </a>
         </slot>
       ),
+      googleButton: this.showGoogleLogin ? (
+        <sqm-google-sign-in
+          onInitComplete={callbacks.googleSubmit}
+        ></sqm-google-sign-in>
+      ) : null,
       secondaryButton: (
         <slot name="secondaryButton">
-          <sl-button
-            type="text"
-            disabled={states.loading}
-            onClick={() => navigation.push(states.registerPath)}
-          >
-            {this.registerLabel}
-          </sl-button>
+          <style>{styleString}</style>
+          {this.showGoogleLogin ? (
+            <span>
+              {this.registerCTA}{" "}
+              <sl-button
+                size="large"
+                type="text"
+                disabled={states.loading}
+                onClick={() => navigation.push(states.registerPath)}
+                className={sheet.classes.RegisterButton}
+              >
+                {this.registerLabel}
+              </sl-button>
+            </span>
+          ) : (
+            <sl-button
+              type="text"
+              disabled={states.loading}
+              onClick={() => navigation.push(states.registerPath)}
+            >
+              {this.registerLabel}
+            </sl-button>
+          )}
         </slot>
       ),
       emailLabel: this.emailLabel,
@@ -140,11 +184,18 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
         loading: false,
         forgotPasswordPath: "/forgotPassword",
         registerPath: "/register",
+        showLoginForm: "manual",
       },
       callbacks: {
+        googleSubmit: async () => {
+          console.log("google submit");
+        },
         submit: async (_event) => {
           console.log("submit");
         },
+      },
+      content: {
+        googleButton: null,
       },
     },
     props.demoData || {},
