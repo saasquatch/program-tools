@@ -578,6 +578,19 @@ export class TaxAndCashMonolith {
   @Prop() step4_fxWireProcessingFeeLabel: string =
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
+  /**
+   * @uiName Text for verify email dialog
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_verifyEmailHeaderText: string = "Verify your email";
+
+  /**
+   * @uiName Verify code widget header text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_verifyEmailDescriptionText: string =
+    "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
