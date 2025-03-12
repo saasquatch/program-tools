@@ -2,7 +2,7 @@
 @author:zach
 Feature: Marketing Emails Checkbox
 
-    A checkbox that is used to opt in for referral program marketing emails.
+    A checkbox that is used to opt in for marketing emails.
 
     Background: A user is on the portal registration page
         Given a user is viewing the "/register"
