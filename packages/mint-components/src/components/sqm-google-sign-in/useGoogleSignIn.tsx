@@ -1,5 +1,5 @@
 import { getEnvironmentSDK } from "@saasquatch/component-boilerplate";
-import { useState, useEffect, useRef } from "@saasquatch/stencil-hooks";
+import { useState, useEffect } from "@saasquatch/stencil-hooks";
 import { GoogleSignIn } from "./sqm-google-sign-in";
 
 interface CredentialResponse {
@@ -12,6 +12,7 @@ export function useGoogleSignIn(props: GoogleSignIn) {
     null
   );
   const [buttonWidth, setButtonWidth] = useState<number>(400);
+  let timeoutId: NodeJS.Timeout | null = null;
 
   // Update the width based on the container's size
   const updateWidth = () => {
@@ -25,8 +26,15 @@ export function useGoogleSignIn(props: GoogleSignIn) {
 
     // Create a ResizeObserver to track width changes
     const resizeObserver = new ResizeObserver(() => {
-      updateWidth();
+      // Mimic debounce for efficiency
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        updateWidth();
+      }, 50);
     });
+
     resizeObserver.observe(googleButtonDiv);
     updateWidth();
 
