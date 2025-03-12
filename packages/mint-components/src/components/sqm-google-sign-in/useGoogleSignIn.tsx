@@ -39,7 +39,7 @@ export function useGoogleSignIn(props: GoogleSignIn) {
     updateWidth();
 
     return () => resizeObserver.disconnect();
-  }, [googleButtonDiv, buttonWidth]);
+  }, [googleButtonDiv]);
 
   useEffect(() => {
     const cb = () => {
