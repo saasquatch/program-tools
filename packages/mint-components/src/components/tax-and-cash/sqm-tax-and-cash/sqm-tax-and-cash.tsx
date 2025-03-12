@@ -935,7 +935,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationRequiredInternalDescription: string =
-    "Identity dashboard_verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Verification review internal alert header
    * @uiGroup Dashboard Properties
@@ -949,7 +949,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationReviewInternalDescription: string =
-    "Identity dashboard_verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
   /**
    * @uiName Verification failed internal alert header
    * @uiGroup Dashboard Properties
@@ -963,7 +963,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationFailedInternalDescription: string =
-    "Identity dashboard_verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
   /**
    * Part of the alert displayed at the top of the page when the user needs to verify their identity.
    * @uiName Verification required alert button text
