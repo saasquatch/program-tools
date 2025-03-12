@@ -19,6 +19,16 @@ Feature: Marketing Emails Checkbox
                 | Marketing Emails Checkbox |
 
 
+        Scenario: The user can opt in to marketing emails
+            Given the user is filling out the registration form
+            And the fields have valid input
+            And the marketing emails checkbox is checked
+            When they try to register
+            Then the form is submitted
+            And there are no errors
+            And the "marketingEmailOptIn" value is set to true
+            And the user is opted in to marketing emails
+
 
         @motivating
         Scenario: Checkbox is optional by default
