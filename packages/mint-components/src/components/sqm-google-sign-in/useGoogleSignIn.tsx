@@ -1,5 +1,5 @@
 import { getEnvironmentSDK } from "@saasquatch/component-boilerplate";
-import { useState, useEffect } from "@saasquatch/stencil-hooks";
+import { useState, useEffect, useRef } from "@saasquatch/stencil-hooks";
 import { GoogleSignIn } from "./sqm-google-sign-in";
 
 interface CredentialResponse {
@@ -10,17 +10,24 @@ export function useGoogleSignIn(props: GoogleSignIn) {
   const [loaded, setLoaded] = useState(false);
   const [googleButtonDiv, setGoogleButtonDiv] = useState<HTMLDivElement>(null);
   const [buttonWidth, setButtonWidth] = useState<number>(getButtonWidth());
+  const resizeTimeoutRef = useRef<NodeJS.Timeout>(null);
   function getButtonWidth() {
-    return Math.max(200, Math.min(400, window.innerWidth * 0.69));
+    return Math.max(200, Math.min(400, window.innerWidth * 0.7 - 20));
   }
 
   useEffect(() => {
     function handleResize() {
-      setButtonWidth(getButtonWidth());
+      clearTimeout(resizeTimeoutRef.current);
+      resizeTimeoutRef.current = setTimeout(() => {
+        setButtonWidth(getButtonWidth());
+      }, 40);
     }
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
+    };
   }, []);
 
   useEffect(() => {
