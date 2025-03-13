@@ -1,6 +1,13 @@
 import { getEnvironmentSDK, isDemo } from "@saasquatch/component-boilerplate";
 import { useEffect, useState, withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Event, EventEmitter, h, Prop } from "@stencil/core";
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Prop,
+  Element,
+} from "@stencil/core";
 import { useGoogleSignIn } from "./useGoogleSignIn";
 
 /**
@@ -18,6 +25,8 @@ export class GoogleSignIn {
    */
   @Prop() text: string;
   @Event({ composed: true }) initComplete: EventEmitter<any>;
+  @Element() el!: HTMLElement; // Reference to the element
+  @Prop() googleButtonDiv: HTMLElement | null = null;
 
   constructor() {
     withHooks(this);
@@ -34,13 +43,11 @@ export class GoogleSignIn {
   }
 
   render() {
-    const { setGoogleButtonDiv } = isDemo()
-      ? useDemoGoogleSignIn(this)
-      : useGoogleSignIn(this);
+    const { setGoogleButtonDiv } = useGoogleSignIn(this);
 
     return (
-      <div>
-        <div ref={setGoogleButtonDiv}></div>
+      <div ref={setGoogleButtonDiv} style={{ width: "100%" }}>
+        {/* The Google button will be rendered inside this div and listens to parent containers style*/}
       </div>
     );
   }
