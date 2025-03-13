@@ -93,7 +93,8 @@ Feature: Microsite Google Registration Form
 
   @minutia
   Scenario: Password fields are hidden
-    Given the user is on the 2nd registration form
+    Given the user has completed the google sign-in process
+    And the user is on the 2nd registration form
     Then they do not see password fields
 
   @minutia
