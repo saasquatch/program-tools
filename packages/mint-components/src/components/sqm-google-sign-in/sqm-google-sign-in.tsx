@@ -1,4 +1,4 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { getEnvironmentSDK, isDemo } from "@saasquatch/component-boilerplate";
 import { useEffect, useState, withHooks } from "@saasquatch/stencil-hooks";
 import {
   Component,
