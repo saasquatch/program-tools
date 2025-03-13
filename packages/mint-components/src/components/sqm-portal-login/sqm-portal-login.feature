@@ -171,15 +171,3 @@ Feature: Portal Login
       """
     And the "Terms of Service" link is "TBD"
     And the "Privacy Policy" link is "TBD"
-
-  @minutia @ui
-  Scenario: User has not registered with Google account
-    Given a user clicks the Google Sign-In button
-    Then a popup is displayed
-    And they can choose a Google account to register with
-    When they select an account
-    And that google account has not completed the registration process
-    Then an error banner will display
-      """
-       Google user has not registered on our platform. Please complete the registration process with your Google account.
-      """

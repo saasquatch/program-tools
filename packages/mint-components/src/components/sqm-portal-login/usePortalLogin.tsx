@@ -25,8 +25,9 @@ export function usePortalLogin(props: PortalLogin) {
     if (result instanceof Error) {
       if (result?.message || result?.["response"]?.["error"])
         if (
-          result?.["response"]?.["errors"][0]?.["message"].includes(
-            "Invalid Credentials"
+          result?.["response"]?.["errors"].some(
+            (error) =>
+              error?.["extensions"]?.["message"] === "Invalid Credentials."
           )
         ) {
           setError(props.googleUserNotRegisteredError);

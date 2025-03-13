@@ -11,6 +11,9 @@ Feature: Google Sign-In Component
     When I click the Google Sign-In button
     And I fail to authenticate with Google
     Then I should see an error message
+      """
+        Google user has not registered on our platform. Please complete the registration process with your Google account.
+      """
     And I remain on the sign-in page
 
   Scenario: sqm-google-sign-in adds the SDK script to the document on load
@@ -41,5 +44,3 @@ Feature: Google Sign-In Component
       email: <email>,
       }
       """
-
-
