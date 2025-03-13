@@ -10,10 +10,12 @@ import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-v
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { WidgetCodeVerificationViewProps } from "./components/sqm-widget-verification/sqm-code-verification/sqm-code-verification-view";
 import { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
 import { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
+import { WidgetEmailVerificationViewProps } from "./components/sqm-widget-verification/sqm-email-verification/sqm-email-verification-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent, VNode } from "@stencil/core";
 import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
@@ -28,6 +30,8 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
+import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -289,6 +293,10 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
@@ -309,6 +317,15 @@ export namespace Components {
           * @uiName PayPal payout option
          */
         "toPayPalAccount": string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyEmailDescriptionText": string;
+        /**
+          * Text for verify email dialog
+          * @uiName Verify email header
+         */
+        "verifyEmailHeaderText": string;
         /**
           * @uiName VO code field label
          */
@@ -417,6 +434,54 @@ export namespace Components {
           * @uiType string
          */
         "color": string;
+    }
+    interface SqmCodeVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "codeResentSuccessfullyText": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+         */
+        "invalidCodeText": string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+         */
+        "networkErrorMessage": string;
+        /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+         */
+        "resendCodeLabel": string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+         */
+        "resendCodeText": string;
+        /**
+          * @uiName Reverify code widget header text
+         */
+        "reverifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code button text
+         */
+        "verifyText": string;
     }
     interface SqmContextRouter {
         "contextName": string;
@@ -611,6 +676,10 @@ export namespace Components {
          */
         "refreshButton": string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -721,6 +790,41 @@ export namespace Components {
           * @uiName Info button text
          */
         "updatetext": string;
+    }
+    interface SqmEmailVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName Send code button text
+         */
+        "emailValidationErrorText": string;
+        /**
+          * @uiName Send code to email alert description
+         */
+        "sendCodeErrorDescription": string;
+        /**
+          * @uiName Send code to email alert header
+         */
+        "sendCodeErrorHeader": string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText": string;
     }
     interface SqmEmpty {
         /**
@@ -1090,6 +1194,10 @@ export namespace Components {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -1596,6 +1704,22 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    interface SqmPayoutButtonScroll {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
+        "payoutButtonDescription": string;
+        /**
+          * @uiName Payout button text
+         */
+        "payoutButtonText": string;
+    }
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
@@ -1606,16 +1730,6 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-         */
-        "errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-         */
-        "errorTitleText": string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
@@ -1631,6 +1745,85 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
+    }
+    interface SqmPayoutStatusAlert {
+        /**
+          * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
+         */
+        "cashPayoutsPageUrl": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Error description
+         */
+        "errorDescription": string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader": string;
+        /**
+          * @uiName Payout on hold alert description
+         */
+        "holdDescription": string;
+        /**
+          * @uiName Payout on hold alert header
+         */
+        "holdHeader": string;
+        /**
+          * @uiName Info required alert button text
+         */
+        "informationRequiredButtonText": string;
+        /**
+          * @uiName Info required alert description
+         */
+        "informationRequiredDescription": string;
+        /**
+          * @uiName Info required alert header
+         */
+        "informationRequiredHeader": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader": string;
+        /**
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText": string;
+        /**
+          * @uiName Verification required alert description
+         */
+        "verificationRequiredDescription": string;
+        /**
+          * @uiName Verification required alert header
+         */
+        "verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3937,20 +4130,6 @@ export namespace Components {
          */
         "dashboard_editPaymentInformationButton": string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorTitleText": string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
@@ -4060,6 +4239,20 @@ export namespace Components {
          */
         "dashboard_payoutFromImpact": string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertHeader": string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
@@ -4152,6 +4345,63 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText": string;
+        /**
+          * @uiName Verification failed internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredButtonText": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalHeader": string;
         /**
           * @undocumented 
           * @uiType object
@@ -4714,6 +4964,12 @@ export namespace Components {
          */
         "step4_voCodeLabel": string;
         /**
+          * Link text for contacting support team
+          * @uiName Suport link text
+          * @uiGroup General Form Properties
+         */
+        "supportLink": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
@@ -4773,18 +5029,6 @@ export namespace Components {
           * @uiName Edit payment info button label
          */
         "editPaymentInformationButton": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiWidget textArea
-         */
-        "errorDescriptionText": string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiWidget textArea
-         */
-        "errorTitleText": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
@@ -4900,6 +5144,18 @@ export namespace Components {
          */
         "payoutFromImpact": string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader": string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
          */
@@ -4938,6 +5194,10 @@ export namespace Components {
           * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber": string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
@@ -4980,6 +5240,47 @@ export namespace Components {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText": string;
+        /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription": string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiWidget textArea
+         */
+        "verificationRequiredDescription": string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiWidget textArea
+         */
+        "verificationRequiredHeader": string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription": string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader": string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription": string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader": string;
     }
     interface SqmText {
     }
@@ -5194,6 +5495,10 @@ export namespace Components {
          */
         "state": string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink": string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -5225,6 +5530,95 @@ export namespace Components {
           * @uiName Loading text
          */
         "loadingText": string;
+    }
+    interface SqmWidgetVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_codeResentSuccessfullyText": string;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_invalidCodeText": string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_networkErrorMessage": string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeLabel": string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeText": string;
+        /**
+          * @uiName Reverify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_reverifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyCodeHeaderText": string;
+        /**
+          * @uiName Verify code button text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyText": string;
+        /**
+          * @uiName Email input label
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailLabel": string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailValidationErrorText": string;
+        /**
+          * @uiName Send code to email alert description
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorDescription": string;
+        /**
+          * @uiName Send code to email alert header
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorHeader": string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeText": string;
+        /**
+          * @uiName Verify email widget header text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_verifyEmailHeaderText": string;
+        /**
+          * @uiName General verify widget description text
+          * @uiGroup General Text
+         */
+        "general_verifyEmailDescription": string;
+        /**
+          * @uiName General verify widget header text
+          * @uiGroup General Text
+         */
+        "general_verifyEmailHeader": string;
+    }
+    interface SqmWidgetVerificationController {
     }
 }
 declare global {
@@ -5276,6 +5670,12 @@ declare global {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
+    interface HTMLSqmCodeVerificationElement extends Components.SqmCodeVerification, HTMLStencilElement {
+    }
+    var HTMLSqmCodeVerificationElement: {
+        prototype: HTMLSqmCodeVerificationElement;
+        new (): HTMLSqmCodeVerificationElement;
+    };
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
     var HTMLSqmContextRouterElement: {
@@ -5311,6 +5711,12 @@ declare global {
     var HTMLSqmEditProfileElement: {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
+    };
+    interface HTMLSqmEmailVerificationElement extends Components.SqmEmailVerification, HTMLStencilElement {
+    }
+    var HTMLSqmEmailVerificationElement: {
+        prototype: HTMLSqmEmailVerificationElement;
+        new (): HTMLSqmEmailVerificationElement;
     };
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
@@ -5480,11 +5886,23 @@ declare global {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
     };
+    interface HTMLSqmPayoutButtonScrollElement extends Components.SqmPayoutButtonScroll, HTMLStencilElement {
+    }
+    var HTMLSqmPayoutButtonScrollElement: {
+        prototype: HTMLSqmPayoutButtonScrollElement;
+        new (): HTMLSqmPayoutButtonScrollElement;
+    };
     interface HTMLSqmPayoutDetailsCardElement extends Components.SqmPayoutDetailsCard, HTMLStencilElement {
     }
     var HTMLSqmPayoutDetailsCardElement: {
         prototype: HTMLSqmPayoutDetailsCardElement;
         new (): HTMLSqmPayoutDetailsCardElement;
+    };
+    interface HTMLSqmPayoutStatusAlertElement extends Components.SqmPayoutStatusAlert, HTMLStencilElement {
+    }
+    var HTMLSqmPayoutStatusAlertElement: {
+        prototype: HTMLSqmPayoutStatusAlertElement;
+        new (): HTMLSqmPayoutStatusAlertElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -5894,6 +6312,18 @@ declare global {
         prototype: HTMLSqmUserNameElement;
         new (): HTMLSqmUserNameElement;
     };
+    interface HTMLSqmWidgetVerificationElement extends Components.SqmWidgetVerification, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationElement: {
+        prototype: HTMLSqmWidgetVerificationElement;
+        new (): HTMLSqmWidgetVerificationElement;
+    };
+    interface HTMLSqmWidgetVerificationControllerElement extends Components.SqmWidgetVerificationController, HTMLStencilElement {
+    }
+    var HTMLSqmWidgetVerificationControllerElement: {
+        prototype: HTMLSqmWidgetVerificationControllerElement;
+        new (): HTMLSqmWidgetVerificationControllerElement;
+    };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
         "sqm-asset-card": HTMLSqmAssetCardElement;
@@ -5903,12 +6333,14 @@ declare global {
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
+        "sqm-code-verification": HTMLSqmCodeVerificationElement;
         "sqm-context-router": HTMLSqmContextRouterElement;
         "sqm-coupon-code": HTMLSqmCouponCodeElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-docusign-form": HTMLSqmDocusignFormElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-email-verification": HTMLSqmEmailVerificationElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
@@ -5937,7 +6369,9 @@ declare global {
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-pagination": HTMLSqmPaginationElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
+        "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
+        "sqm-payout-status-alert": HTMLSqmPayoutStatusAlertElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -6006,6 +6440,8 @@ declare global {
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
+        "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
+        "sqm-widget-verification-controller": HTMLSqmWidgetVerificationControllerElement;
     }
 }
 declare namespace LocalJSX {
@@ -6247,6 +6683,10 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
@@ -6267,6 +6707,15 @@ declare namespace LocalJSX {
           * @uiName PayPal payout option
          */
         "toPayPalAccount"?: string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyEmailDescriptionText"?: string;
+        /**
+          * Text for verify email dialog
+          * @uiName Verify email header
+         */
+        "verifyEmailHeaderText"?: string;
         /**
           * @uiName VO code field label
          */
@@ -6375,6 +6824,54 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "color"?: string;
+    }
+    interface SqmCodeVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+         */
+        "codeResentSuccessfullyText"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetCodeVerificationViewProps>;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+         */
+        "invalidCodeText"?: string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * @undocumented
+         */
+        "onVerification"?: (token: string) => any;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+         */
+        "resendCodeLabel"?: string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+         */
+        "resendCodeText"?: string;
+        /**
+          * @uiName Reverify code widget header text
+         */
+        "reverifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code widget header text
+         */
+        "verifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code button text
+         */
+        "verifyText"?: string;
     }
     interface SqmContextRouter {
         "contextName"?: string;
@@ -6569,6 +7066,10 @@ declare namespace LocalJSX {
          */
         "refreshButton"?: string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -6679,6 +7180,41 @@ declare namespace LocalJSX {
           * @uiName Info button text
          */
         "updatetext"?: string;
+    }
+    interface SqmEmailVerification {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
+        /**
+          * @uiName Email input label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName Send code button text
+         */
+        "emailValidationErrorText"?: string;
+        /**
+          * @uiName Send code to email alert description
+         */
+        "sendCodeErrorDescription"?: string;
+        /**
+          * @uiName Send code to email alert header
+         */
+        "sendCodeErrorHeader"?: string;
+        /**
+          * @uiName Send code button text
+         */
+        "sendCodeText"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
+          * @uiName Verify email widget header text
+         */
+        "verifyEmailHeaderText"?: string;
     }
     interface SqmEmpty {
         /**
@@ -7048,6 +7584,10 @@ declare namespace LocalJSX {
           * @uiName Income tax field label
          */
         "subRegionTaxNumberLabel"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
@@ -7548,6 +8088,22 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    interface SqmPayoutButtonScroll {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutButtonScrollViewProps>;
+        /**
+          * Description text under payout button
+          * @uiName Payout button description text
+         */
+        "payoutButtonDescription"?: string;
+        /**
+          * @uiName Payout button text
+         */
+        "payoutButtonText"?: string;
+    }
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
@@ -7558,16 +8114,6 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<any>;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-         */
-        "errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-         */
-        "errorTitleText"?: string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
@@ -7583,6 +8129,85 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+    }
+    interface SqmPayoutStatusAlert {
+        /**
+          * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
+         */
+        "cashPayoutsPageUrl"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Error description
+         */
+        "errorDescription"?: string;
+        /**
+          * @uiName Error header
+         */
+        "errorHeader"?: string;
+        /**
+          * @uiName Payout on hold alert description
+         */
+        "holdDescription"?: string;
+        /**
+          * @uiName Payout on hold alert header
+         */
+        "holdHeader"?: string;
+        /**
+          * @uiName Info required alert button text
+         */
+        "informationRequiredButtonText"?: string;
+        /**
+          * @uiName Info required alert description
+         */
+        "informationRequiredDescription"?: string;
+        /**
+          * @uiName Info required alert header
+         */
+        "informationRequiredHeader"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader"?: string;
+        /**
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText"?: string;
+        /**
+          * @uiName Verification required alert description
+         */
+        "verificationRequiredDescription"?: string;
+        /**
+          * @uiName Verification required alert header
+         */
+        "verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -9865,20 +10490,6 @@ declare namespace LocalJSX {
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_errorTitleText"?: string;
-        /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
@@ -9988,6 +10599,20 @@ declare namespace LocalJSX {
          */
         "dashboard_payoutFromImpact"?: string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_payoutHoldAlertHeader"?: string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
@@ -10080,6 +10705,63 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_thresholdPayoutText"?: string;
+        /**
+          * @uiName Verification failed internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationFailedInternalHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredButtonText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_verificationReviewInternalHeader"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -10642,6 +11324,12 @@ declare namespace LocalJSX {
          */
         "step4_voCodeLabel"?: string;
         /**
+          * Link text for contacting support team
+          * @uiName Suport link text
+          * @uiGroup General Form Properties
+         */
+        "supportLink"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
@@ -10701,18 +11389,6 @@ declare namespace LocalJSX {
           * @uiName Edit payment info button label
          */
         "editPaymentInformationButton"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message description
-          * @uiWidget textArea
-         */
-        "errorDescriptionText"?: string;
-        /**
-          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
-          * @uiName Payout error message title
-          * @uiWidget textArea
-         */
-        "errorTitleText"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
@@ -10828,6 +11504,18 @@ declare namespace LocalJSX {
          */
         "payoutFromImpact"?: string;
         /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message description
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
+          * @uiName Payout error message title
+          * @uiWidget textArea
+         */
+        "payoutHoldAlertHeader"?: string;
+        /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
          */
@@ -10866,6 +11554,10 @@ declare namespace LocalJSX {
           * @uiName Spain sub-region indirect tax number
          */
         "subRegionTaxNumber"?: string;
+        /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
@@ -10908,6 +11600,47 @@ declare namespace LocalJSX {
           * @uiName Payout schedule by threshold text
          */
         "thresholdPayoutText"?: string;
+        /**
+          * @uiName Verification failed internal alert description
+         */
+        "verificationFailedInternalDescription"?: string;
+        /**
+          * @uiName Verification failed internal alert header
+         */
+        "verificationFailedInternalHeader"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert button text
+         */
+        "verificationRequiredButtonText"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity
+          * @uiName Verification required alert message description
+          * @uiWidget textArea
+         */
+        "verificationRequiredDescription"?: string;
+        /**
+          * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+          * @uiName Verification required alert message title
+          * @uiWidget textArea
+         */
+        "verificationRequiredHeader"?: string;
+        /**
+          * @uiName Verification required internal alert description
+         */
+        "verificationRequiredInternalDescription"?: string;
+        /**
+          * @uiName Verification required internal alert header
+         */
+        "verificationRequiredInternalHeader"?: string;
+        /**
+          * @uiName Verification review internal alert description
+         */
+        "verificationReviewInternalDescription"?: string;
+        /**
+          * @uiName Verification review internal alert header
+         */
+        "verificationReviewInternalHeader"?: string;
     }
     interface SqmText {
     }
@@ -11121,6 +11854,10 @@ declare namespace LocalJSX {
          */
         "state"?: string;
         /**
+          * @uiName Support link text
+         */
+        "supportLink"?: string;
+        /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
          */
@@ -11153,6 +11890,95 @@ declare namespace LocalJSX {
          */
         "loadingText"?: string;
     }
+    interface SqmWidgetVerification {
+        /**
+          * Link text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_codeResentSuccessfullyText"?: string;
+        /**
+          * Error text displayed under verification input
+          * @uiName Invalid code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_invalidCodeText"?: string;
+        /**
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_networkErrorMessage"?: string;
+        /**
+          * The link that appears in the resend code link
+          * @uiName Resend code label
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeLabel"?: string;
+        /**
+          * Text displayed under verify button
+          * @uiName Resend code text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_resendCodeText"?: string;
+        /**
+          * @uiName Reverify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_reverifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code widget header text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyCodeHeaderText"?: string;
+        /**
+          * @uiName Verify code button text
+          * @uiGroup Code Verification Step
+         */
+        "codeStep_verifyText"?: string;
+        /**
+          * @uiName Email input label
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailLabel"?: string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_emailValidationErrorText"?: string;
+        /**
+          * @uiName Send code to email alert description
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorDescription"?: string;
+        /**
+          * @uiName Send code to email alert header
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeErrorHeader"?: string;
+        /**
+          * @uiName Send code button text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_sendCodeText"?: string;
+        /**
+          * @uiName Verify email widget header text
+          * @uiGroup Email Verification Step
+         */
+        "emailStep_verifyEmailHeaderText"?: string;
+        /**
+          * @uiName General verify widget description text
+          * @uiGroup General Text
+         */
+        "general_verifyEmailDescription"?: string;
+        /**
+          * @uiName General verify widget header text
+          * @uiGroup General Text
+         */
+        "general_verifyEmailHeader"?: string;
+    }
+    interface SqmWidgetVerificationController {
+    }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
         "sqm-asset-card": SqmAssetCard;
@@ -11162,12 +11988,14 @@ declare namespace LocalJSX {
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
+        "sqm-code-verification": SqmCodeVerification;
         "sqm-context-router": SqmContextRouter;
         "sqm-coupon-code": SqmCouponCode;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-docusign-form": SqmDocusignForm;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-email-verification": SqmEmailVerification;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
@@ -11196,7 +12024,9 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-pagination": SqmPagination;
         "sqm-password-field": SqmPasswordField;
+        "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
+        "sqm-payout-status-alert": SqmPayoutStatusAlert;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -11265,6 +12095,8 @@ declare namespace LocalJSX {
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
+        "sqm-widget-verification": SqmWidgetVerification;
+        "sqm-widget-verification-controller": SqmWidgetVerificationController;
     }
 }
 export { LocalJSX as JSX };
@@ -11279,12 +12111,14 @@ declare module "@stencil/core" {
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
@@ -11313,7 +12147,9 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
+            "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
@@ -11382,6 +12218,8 @@ declare module "@stencil/core" {
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
+            "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
+            "sqm-widget-verification-controller": LocalJSX.SqmWidgetVerificationController & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationControllerElement>;
         }
     }
 }

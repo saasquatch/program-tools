@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-environment",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Environment and contexts for SaaSquatch components",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

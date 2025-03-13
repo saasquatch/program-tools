@@ -17,6 +17,7 @@
 
 ### Used by
 
+ - [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
  - [sqm-coupon-code](../sqm-coupon-code)
  - [sqm-edit-profile](../sqm-edit-profile)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
@@ -35,6 +36,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  sqm-code-verification --> sqm-form-message
   sqm-coupon-code --> sqm-form-message
   sqm-edit-profile --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
