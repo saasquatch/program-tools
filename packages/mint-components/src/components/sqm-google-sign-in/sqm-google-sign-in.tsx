@@ -1,4 +1,4 @@
-import { getEnvironmentSDK, isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { useEffect, useState, withHooks } from "@saasquatch/stencil-hooks";
 import {
   Component,
@@ -43,7 +43,9 @@ export class GoogleSignIn {
   }
 
   render() {
-    const { setGoogleButtonDiv } = useGoogleSignIn(this);
+    const { setGoogleButtonDiv } = isDemo
+      ? useDemoGoogleSignIn(this)
+      : useGoogleSignIn(this);
 
     return (
       <div ref={setGoogleButtonDiv} style={{ width: "100%" }}>
