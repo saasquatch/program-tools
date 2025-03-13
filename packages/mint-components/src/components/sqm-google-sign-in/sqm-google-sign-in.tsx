@@ -43,7 +43,7 @@ export class GoogleSignIn {
   }
 
   render() {
-    const { setGoogleButtonDiv } = isDemo
+    const { setGoogleButtonDiv } = isDemo()
       ? useDemoGoogleSignIn(this)
       : useGoogleSignIn(this);
 

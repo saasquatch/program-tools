@@ -24,7 +24,15 @@ export function usePortalLogin(props: PortalLogin) {
     const result = await loginWithGoogle({ idToken: e.detail.credential });
     if (result instanceof Error) {
       if (result?.message || result?.["response"]?.["error"])
-        setError(props.networkErrorMessage);
+        if (
+          result?.["response"]?.["errors"][0]?.["message"].includes(
+            "Invalid Credentials"
+          )
+        ) {
+          setError(props.googleUserNotRegisteredError);
+        } else {
+          setError(props.networkErrorMessage);
+        }
       return;
     }
     if (result.authenticateManagedIdentityWithGoogle?.token) {

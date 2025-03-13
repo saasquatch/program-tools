@@ -85,6 +85,13 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
+   * @uiName Google account error message
+   * Displayed when user tries to sign in with Google account but has not registered.
+   */
+  @Prop() googleUserNotRegisteredError: string =
+    "Your google account has not registered on our platform. Please complete the registration process with your Google account.";
+
+  /**
    * @uiName Register CTA
    */
   @Prop() registerCTA: string = "Don't have an account?";

@@ -2333,6 +2333,10 @@ export namespace Components {
          */
         "forgotPasswordPath": string;
         /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError": string;
+        /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
@@ -8760,6 +8764,10 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "forgotPasswordPath"?: string;
+        /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError"?: string;
         /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
