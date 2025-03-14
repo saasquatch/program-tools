@@ -3,7 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 import { CheckboxFieldView } from "../sqm-checkbox-field/sqm-checkbox-field-view";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
-export interface PortalProfileViewProps {
+export interface ChangeMarketingViewProps {
   states: {
     success: boolean;
     loading: boolean;
@@ -31,7 +31,7 @@ export interface PortalProfileViewProps {
   };
 }
 
-export function PortalProfileView(props: PortalProfileViewProps) {
+export function ChangeMarktingView(props: ChangeMarketingViewProps) {
   const { states, callbacks } = props;
 
   const { text, formState } = states;

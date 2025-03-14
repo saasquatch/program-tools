@@ -1,8 +1,8 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import {
-  PortalProfileView,
-  PortalProfileViewProps,
+  ChangeMarktingView,
+  ChangeMarketingViewProps,
 } from "./sqm-portal-change-marketing-view";
 import { usePortalProfile } from "./usePortalChangeMarketing";
 import { getProps } from "../../utils/utils";
@@ -55,7 +55,7 @@ export class PortalChangeMarketing {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PortalProfileViewProps>;
+  @Prop() demoData?: DemoData<ChangeMarketingViewProps>;
 
   constructor() {
     withHooks(this);
@@ -66,13 +66,13 @@ export class PortalChangeMarketing {
     const props = isDemo()
       ? usePortalProfileDemo(getProps(this))
       : usePortalProfile(getProps(this));
-    return <PortalProfileView {...props} />;
+    return <ChangeMarktingView {...props} />;
   }
 }
 
 function usePortalProfileDemo(
   props: PortalChangeMarketing
-): PortalProfileViewProps {
+): ChangeMarketingViewProps {
   return deepmerge(
     {
       states: {

@@ -7,7 +7,7 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import { PortalChangeMarketing } from "./sqm-portal-change-marketing";
-import { PortalProfileViewProps } from "./sqm-portal-change-marketing-view";
+import { ChangeMarketingViewProps } from "./sqm-portal-change-marketing-view";
 
 const GET_USER = gql`
   query {
@@ -39,7 +39,7 @@ const defaultFormState = {
 
 export function usePortalProfile(
   props: PortalChangeMarketing
-): PortalProfileViewProps {
+): ChangeMarketingViewProps {
   const userIdent = useUserIdentity();
 
   const [success, setSuccess] = useState(false);
