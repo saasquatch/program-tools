@@ -46,6 +46,8 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       padding: "0 var(--sl-spacing-xxx-large) var(--sl-spacing-xxx-large)",
     },
 
+    SubmitButton: { marginBottom: "var(--sl-spacing-medium)" },
+
     Error: {
       "&::part(erroralert-base)": {
         "margin-bottom": "15px",
@@ -81,6 +83,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           }}
         ></CheckboxFieldView>
         <sl-button
+          class={sheet.classes.SubmitButton}
           type="primary"
           submit
           loading={states.loading}
