@@ -42,8 +42,8 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     Container: {
       display: "flex",
       flexDirection: "column",
-      gap: "var(--sl-spacing-xxx-large)",
-      padding: "var(--sl-spacing-xxx-large)",
+      gap: "var(--sl-spacing-x-small)",
+      padding: "0 var(--sl-spacing-xxx-large) var(--sl-spacing-xxx-large)",
     },
 
     Error: {

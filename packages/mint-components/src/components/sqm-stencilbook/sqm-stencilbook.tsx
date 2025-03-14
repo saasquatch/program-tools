@@ -34,6 +34,7 @@ import * as PortalVerifyEmail from "../sqm-portal-verify-email/PortalVerifyEmail
 import * as AssetCard from "../sqm-asset-card/AssetCard.stories";
 import * as DividedLayout from "../sqm-divided-layout/DividedLayout.stories";
 import * as ChangePassword from "../sqm-portal-change-password/ChangePassword.stories";
+import * as ChangeMarketing from "../sqm-portal-change-marketing/ChangeMarketing.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
@@ -178,6 +179,7 @@ const stories = [
   PayoutDetailsCard,
   BankingInfoForm,
   NewPortalRegistrationForm,
+  ChangeMarketing,
 ];
 
 /**
