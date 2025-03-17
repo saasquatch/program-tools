@@ -13,6 +13,7 @@ import { useCheckboxField } from "../sqm-checkbox-field/useCheckboxField";
 /**
  * @uiName Marketing Emails Checkbox Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @requiredFeatures ["MARKETING_EMAILS"]
  * @exampleGroup Microsite Components
  * @example Marketing Emails Checkbox - <sqm-marketing-emails-checkbox slot="emailOptIn" name="marketingEmails" checkbox-label="I would like to receive marketing and promotional emails for this referral program" required="false" name="marketing-emails" required="false" ></sqm-marketing-emails-checkbox>
  */
