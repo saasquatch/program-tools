@@ -295,6 +295,7 @@ export class PortalGoogleRegistrationForm {
       <PortalRegistrationFormView
         states={{
           ...states,
+          emailDisabled: true,
           hidePasswords: showRegistrationForm.mode === "google",
         }}
         callbacks={callbacks}

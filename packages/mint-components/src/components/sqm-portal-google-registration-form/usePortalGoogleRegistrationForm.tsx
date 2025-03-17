@@ -2,7 +2,7 @@ import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useRegistrationForm } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { PortalGoogleRegistrationForm } from "./sqm-portal-google-registration-form";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {

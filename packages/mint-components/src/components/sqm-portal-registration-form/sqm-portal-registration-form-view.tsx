@@ -20,6 +20,7 @@ export interface PortalRegistrationFormViewProps {
     registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
+    emailDisabled?: boolean;
   };
   callbacks: {
     submit: Function;
@@ -128,7 +129,11 @@ export function PortalRegistrationFormView(
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
-            disabled={true} // Always disabled and should always be pre-filled
+            disabled={
+              states.loading ||
+              states.registrationFormState?.disabled ||
+              states.emailDisabled
+            }
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
