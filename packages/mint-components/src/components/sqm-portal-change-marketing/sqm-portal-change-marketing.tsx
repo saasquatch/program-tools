@@ -44,7 +44,6 @@ export class PortalChangeMarketing {
    * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
    *
    * @uiName Network request error message
-   *
    */
   @Prop() networkRequestMessage: string =
     "An error occurred while loading this page. Please refresh the page.";
