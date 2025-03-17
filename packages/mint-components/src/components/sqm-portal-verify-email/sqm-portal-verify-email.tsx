@@ -67,8 +67,8 @@ export class PortalVerifyEmail {
   @Prop() continueText: string = "Continue";
 
   /**
-   * @uiName Network error message
    * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
    */
   @Prop() networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";
