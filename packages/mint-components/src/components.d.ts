@@ -1873,7 +1873,8 @@ export namespace Components {
          */
         "marketingCheckboxLabel": string;
         /**
-          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * @uiName Network request error message
          */
         "networkRequestMessage": string;
         /**
@@ -8079,7 +8080,8 @@ declare namespace LocalJSX {
          */
         "marketingCheckboxLabel"?: string;
         /**
-          * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * @uiName Network request error message
          */
         "networkRequestMessage"?: string;
         /**
