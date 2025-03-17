@@ -58,16 +58,6 @@ export const Default = () => (
 );
 
 export const IsGoogle = () => (
-  // <sqm-portal-login
-  //   showGoogleLogin
-  //   demoData={{
-  //     ...defaultProps,
-  //     content: {
-  //       googleButton: <sl-button>Sign in with Google</sl-button>,
-  //     },
-  //     states: { ...defaultProps.states },
-  //   }}
-  // ></sqm-portal-login>
   <PortalLoginView
     {...defaultProps}
     content={{
