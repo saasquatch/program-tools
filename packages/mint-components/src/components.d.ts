@@ -32,8 +32,8 @@ import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-pa
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
 import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
-import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
+import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
@@ -1993,6 +1993,68 @@ export namespace Components {
          */
         "notFullScreen"?: boolean;
     }
+    interface SqmPortalGoogleLogin {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName Forgot password text
+         */
+        "forgotPasswordLabel": string;
+        /**
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot password redirect
+          * @uiWidget pageSelect
+         */
+        "forgotPasswordPath": string;
+        /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError": string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        /**
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Heading label
+          * @uiWidget textArea
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel": string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA": string;
+        /**
+          * @uiName Register button text
+         */
+        "registerLabel": string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register button redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+    }
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -2151,10 +2213,6 @@ export namespace Components {
          */
         "forgotPasswordPath": string;
         /**
-          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
-         */
-        "googleUserNotRegisteredError": string;
-        /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage": string;
@@ -2187,10 +2245,6 @@ export namespace Components {
           * @uiWidget pageSelect
          */
         "registerPath": string;
-        /**
-          * @undocumented
-         */
-        "showGoogleLogin": boolean;
         /**
           * @uiName Submit button text
          */
@@ -5690,6 +5744,12 @@ declare global {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
     };
+    interface HTMLSqmPortalGoogleLoginElement extends Components.SqmPortalGoogleLogin, HTMLStencilElement {
+    }
+    var HTMLSqmPortalGoogleLoginElement: {
+        prototype: HTMLSqmPortalGoogleLoginElement;
+        new (): HTMLSqmPortalGoogleLoginElement;
+    };
     interface HTMLSqmPortalGoogleRegistrationFormElement extends Components.SqmPortalGoogleRegistrationForm, HTMLStencilElement {
     }
     var HTMLSqmPortalGoogleRegistrationFormElement: {
@@ -6114,6 +6174,7 @@ declare global {
         "sqm-portal-footer": HTMLSqmPortalFooterElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
+        "sqm-portal-google-login": HTMLSqmPortalGoogleLoginElement;
         "sqm-portal-google-registration-form": HTMLSqmPortalGoogleRegistrationFormElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
@@ -8116,6 +8177,68 @@ declare namespace LocalJSX {
          */
         "notFullScreen"?: boolean;
     }
+    interface SqmPortalGoogleLogin {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName Forgot password text
+         */
+        "forgotPasswordLabel"?: string;
+        /**
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot password redirect
+          * @uiWidget pageSelect
+         */
+        "forgotPasswordPath"?: string;
+        /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError"?: string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Heading label
+          * @uiWidget textArea
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel"?: string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA"?: string;
+        /**
+          * @uiName Register button text
+         */
+        "registerLabel"?: string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register button redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+    }
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -8274,10 +8397,6 @@ declare namespace LocalJSX {
          */
         "forgotPasswordPath"?: string;
         /**
-          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
-         */
-        "googleUserNotRegisteredError"?: string;
-        /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
          */
         "networkErrorMessage"?: string;
@@ -8310,10 +8429,6 @@ declare namespace LocalJSX {
           * @uiWidget pageSelect
          */
         "registerPath"?: string;
-        /**
-          * @undocumented
-         */
-        "showGoogleLogin"?: boolean;
         /**
           * @uiName Submit button text
          */
@@ -11532,6 +11647,7 @@ declare namespace LocalJSX {
         "sqm-portal-footer": SqmPortalFooter;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
+        "sqm-portal-google-login": SqmPortalGoogleLogin;
         "sqm-portal-google-registration-form": SqmPortalGoogleRegistrationForm;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
@@ -11651,6 +11767,7 @@ declare module "@stencil/core" {
             "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+            "sqm-portal-google-login": LocalJSX.SqmPortalGoogleLogin & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleLoginElement>;
             "sqm-portal-google-registration-form": LocalJSX.SqmPortalGoogleRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleRegistrationFormElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;

@@ -24,14 +24,14 @@
 
 ### Used by
 
+ - [sqm-portal-google-login](../sqm-portal-google-login)
  - [sqm-portal-google-registration-form](../sqm-portal-google-registration-form)
- - [sqm-portal-login](../sqm-portal-login)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-portal-google-login --> sqm-google-sign-in
   sqm-portal-google-registration-form --> sqm-google-sign-in
-  sqm-portal-login --> sqm-google-sign-in
   style sqm-google-sign-in fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

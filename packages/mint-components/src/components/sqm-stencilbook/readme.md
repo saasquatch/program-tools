@@ -190,7 +190,6 @@ graph TD;
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
-  sqm-portal-login --> sqm-google-sign-in
   sqm-portal-login --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field

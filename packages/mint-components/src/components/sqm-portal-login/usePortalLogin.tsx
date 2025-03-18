@@ -1,5 +1,5 @@
-import jsonpointer from "jsonpointer";
 import { useState } from "@saasquatch/universal-hooks";
+import jsonpointer from "jsonpointer";
 import {
   navigation,
   useAuthenticateWithGoogle,
@@ -7,8 +7,9 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { sanitizeUrlPath } from "../../utils/utils";
 import { PortalLogin } from "./sqm-portal-login";
+import { PortalGoogleLogin } from "../sqm-portal-google-login/sqm-portal-google-login";
 
-export function usePortalLogin(props: PortalLogin) {
+export function usePortalLogin(props: PortalLogin | PortalGoogleLogin) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
 
@@ -30,7 +31,7 @@ export function usePortalLogin(props: PortalLogin) {
               error?.["extensions"]?.["message"] === "Invalid Credentials."
           )
         ) {
-          setError(props.googleUserNotRegisteredError);
+          setError((props as PortalGoogleLogin).googleUserNotRegisteredError);
         } else {
           setError(props.networkErrorMessage);
         }

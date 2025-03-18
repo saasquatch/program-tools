@@ -54,7 +54,7 @@ const loadingProps: PortalLoginViewProps = {
 };
 
 export const Default = () => (
-  <sqm-portal-login showGoogleLogin={false} demoData={{ ...defaultProps }} />
+  <sqm-portal-login demoData={{ ...defaultProps }} />
 );
 
 export const IsGoogle = () => (
