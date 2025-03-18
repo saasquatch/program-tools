@@ -5169,6 +5169,16 @@ export namespace Components {
          */
         "step4_toPayPalAccount": string;
         /**
+          * @uiName Verify code widget header text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailDescriptionText": string;
+        /**
+          * @uiName Text for verify email dialog
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailHeaderText": string;
+        /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties
          */
@@ -11760,6 +11770,16 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_toPayPalAccount"?: string;
+        /**
+          * @uiName Verify code widget header text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailDescriptionText"?: string;
+        /**
+          * @uiName Text for verify email dialog
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailHeaderText"?: string;
         /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties

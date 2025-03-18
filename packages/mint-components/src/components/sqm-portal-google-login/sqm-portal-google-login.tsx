@@ -92,7 +92,7 @@ export class PortalGoogleLogin {
    * Displayed when user tries to sign in with Google account but has not registered.
    */
   @Prop() googleUserNotRegisteredError: string =
-    "Your google account has not registered on our platform. Please complete the registration process with your Google account.";
+    "Your Google account has not registered on our platform. Please complete the registration process with your Google account.";
 
   /**
    * @uiName Register CTA
