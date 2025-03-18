@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.0] - 2025-03-18
+
+### Added
+- \<sqm-portal-google-registration-form>
+  - Contains a two step registration flow
+  - Adds the ability to choose to register with a Google account 
+- \<sqm-portal-google-login>
+  - Adds the ability to login with a Google account 
+
 ## [1.11.1] - 2025-02-18
 
 ### Added
@@ -1094,7 +1103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.11.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.0...HEAD
+[1.13.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.0
 [1.11.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.1
 [1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
 [1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
