@@ -58,6 +58,14 @@ const style = {
   MessageContainer: {
     maxWidth: "400px",
   },
+  IFrameContainer: {
+    "@media screen and (max-width: 440px)": {
+      position: "absolute",
+      width: "100vw",
+      left: "-30px",
+      zIndex: "9999",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -137,6 +145,7 @@ export const DocusignIframe = ({
   callbacks,
   text,
 }: DocusignIframeProps) => {
+  const { classes } = sheet;
   const [iFrameHeight, setiFrameHeight] = useState<string>("100%");
 
   const allowedDomains = [
@@ -148,7 +157,6 @@ export const DocusignIframe = ({
   const callback = useCallback((e) => {
     const allowed = allowedDomains.some((d) => e.origin?.includes(d));
     if (!allowed) return;
-
     if (typeof e.data === "number") {
       setiFrameHeight(e.data + "px");
     }
@@ -163,7 +171,7 @@ export const DocusignIframe = ({
     return () => {
       window.removeEventListener("message", callback, false);
     };
-  }, []);
+  }, [iFrameHeight]);
 
   if (states.urlLoading) return <DocusignLoadingView />;
 
@@ -174,13 +182,19 @@ export const DocusignIframe = ({
   if (DOCUSIGN_EXPIRED_STATES.includes(states.status))
     return <DocusignExpiredView text={text} />;
 
+  // Wrap iFrame with container that shares the same height to push other elements down when absolute positioned
   return (
-    <iframe
-      scrolling="yes"
-      frameBorder="0"
-      src={data.documentUrl}
-      width="100%"
-      height={iFrameHeight}
-    ></iframe>
+    <div style={{ height: iFrameHeight }}>
+      <style type="text/css">{styleString}</style>
+      <div class={classes.IFrameContainer}>
+        <iframe
+          scrolling="yes"
+          frameBorder="0"
+          width={"100%"}
+          src={data.documentUrl}
+          height={iFrameHeight}
+        ></iframe>
+      </div>
+    </div>
   );
 };

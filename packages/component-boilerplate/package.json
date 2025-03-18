@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
-    "@saasquatch/component-environment": "^1.0.9-0",
+    "@saasquatch/component-environment": "^1.0.10-0",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/universal-hooks": "^1.0.0",

@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `@saasquatch/component-boilerplate` package bump
 
+## [1.4.9] - 2025-03-12
+
+### Updated
+
+- `@saasquatch/component-boilerplate` package bump
+
 ## [1.4.8] - 2024-07-04
 
 ### Updated
@@ -194,6 +200,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.4.10...HEAD
 [1.4.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.10
+[1.4.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.9
 [1.4.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.8
 [1.4.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.7
 [1.4.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.6

@@ -90,6 +90,10 @@
 - [sqm-invoice-table-download-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-date-column](../sqm-invoice-table/columns)
 - [sqm-invoice-table-data-column](../sqm-invoice-table/columns)
+- [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
+- [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
+- [sqm-payout-button-scroll](../sqm-payout-button-scroll)
+- [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
 - [sqm-referral-codes](../sqm-referral-codes)
 
 ### Graph
@@ -176,6 +180,10 @@ graph TD;
   sqm-stencilbook --> sqm-invoice-table-download-column
   sqm-stencilbook --> sqm-invoice-table-date-column
   sqm-stencilbook --> sqm-invoice-table-data-column
+  sqm-stencilbook --> sqm-email-verification
+  sqm-stencilbook --> sqm-code-verification
+  sqm-stencilbook --> sqm-payout-button-scroll
+  sqm-stencilbook --> sqm-payout-status-alert
   sqm-stencilbook --> sqm-referral-codes
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
@@ -210,6 +218,8 @@ graph TD;
   sqm-user-info-form --> sqm-banking-info-form
   sqm-user-info-form --> sqm-tax-and-cash-dashboard
   sqm-user-info-form --> sqm-tax-and-cash
+  sqm-banking-info-form --> sqm-code-verification
+  sqm-code-verification --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
@@ -226,6 +236,8 @@ graph TD;
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-payout-button-scroll --> sqm-scroll
+  sqm-payout-status-alert --> sqm-scroll
   sqm-referral-codes --> sqm-empty
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```

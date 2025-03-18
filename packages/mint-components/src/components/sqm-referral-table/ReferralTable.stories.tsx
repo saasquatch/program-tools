@@ -14,6 +14,7 @@ import {
   PendingPartnerCreation,
   PendingTaxReview,
   PendingTaxSubmission,
+  PayoutCancelled,
 } from "./ReferralTableRewardsCell.stories";
 import {
   DateCell,
@@ -179,6 +180,12 @@ const simpleUserTableProps = {
         <ConvertedStatus />,
         <DateCell />,
         <PayoutFailed />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutCancelled />,
       ],
       [
         <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,

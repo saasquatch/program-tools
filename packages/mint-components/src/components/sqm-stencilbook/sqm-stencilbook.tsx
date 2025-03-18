@@ -86,6 +86,10 @@ import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
 import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
+import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
+import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
+import * as PayoutButtonScroll from "../sqm-payout-button-scroll/PayoutButtonScroll.stories";
+import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
 import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
@@ -186,6 +190,10 @@ const stories = [
   BaseRegistrationForm,
   PortalRegistrationForm,
   PortalGoogleRegistrationFormStories,
+  WidgetEmailVerification,
+  WidgetCodeVerification,
+  PayoutButtonScroll,
+  PayoutStatusAlert,
 ];
 
 /**

@@ -211,6 +211,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
 
 const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     step: "4",
     hideSteps: false,
     disabled: false,
@@ -221,11 +222,14 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     saveDisabled: false,
     thresholds: [],
     loadingError: false,
+    email: "test@example.com",
     formState: {
       paymentMethodChecked: "toBankAccount",
     },
   },
   callbacks: {
+    onVerificationHide: () => {},
+    onVerification: () => {},
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
@@ -264,6 +268,8 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
 
 const dashboardProps: StoryDemoData<TaxAndCashDashboardProps> = {
   states: {
+    veriffLoading: false,
+    payoutStatus: "DONE",
     canEditPayoutInfo: true,
     disabled: false,
     status: "ACTIVE",
@@ -275,6 +281,7 @@ const dashboardProps: StoryDemoData<TaxAndCashDashboardProps> = {
     indirectTaxNumber: "123456",
     indirectTaxType: "VAT",
     showNewFormDialog: false,
+    hasHold: false,
   },
   slots: {
     payoutDetailsCardSlot: (
@@ -298,7 +305,7 @@ export const GeneralErrorView = () => {
     <ErrorView
       loadingErrorAlertHeader={"There was a problem loading your form"}
       loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact Support."
+        "Please refresh the page and try again. If this problem continues, contact our support team."
       }
     />
   );
@@ -968,6 +975,25 @@ export const StepFourToPaypalChecked = () => {
   );
 };
 
+export const StepFourReVerifyEmail = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          showVerification: true,
+          isPartner: true,
+          formState: {
+            ...stepFourProps.states.formState,
+            paymentMethodChecked: "toPayPalAccount",
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
 export const TaxAndCashDashboardActiveW9Form = () => {
   return (
     <sqm-tax-and-cash-dashboard
@@ -984,6 +1010,8 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BEN",
@@ -992,6 +1020,7 @@ export const TaxAndCashDashboardActiveW8BENForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1004,6 +1033,8 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           documentType: "W8BENE",
@@ -1012,6 +1043,7 @@ export const TaxAndCashDashboardActiveW8BENEForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1024,6 +1056,8 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           noFormNeeded: false,
           canEditPayoutInfo: true,
           status: "INACTIVE",
@@ -1033,6 +1067,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1044,6 +1079,7 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1054,6 +1090,8 @@ export const TaxAndCashDashboardNotVerifiedW9Form = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
+          veriffLoading: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1066,6 +1104,8 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1077,6 +1117,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1089,6 +1130,8 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_VERIFIED",
@@ -1100,6 +1143,7 @@ export const TaxAndCashDashboardNotVerifiedW8BENEForm = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1112,6 +1156,8 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "NOT_ACTIVE",
@@ -1123,6 +1169,7 @@ export const TaxAndCashDashboardNotActiveW8BENEForm = () => {
           indirectTaxType: "VAT",
           country: "United Kingdom",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1135,6 +1182,8 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           documentType: "W9",
@@ -1146,6 +1195,7 @@ export const TaxAndCashDashboardNoFormNeeded = () => {
           indirectTaxNumber: "123456",
           indirectTaxType: "GST",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1158,6 +1208,8 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1170,6 +1222,7 @@ export const TaxAndCashDashboardIndirectTaxCanada = () => {
           indirectTaxType: "GST",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1182,6 +1235,8 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1195,6 +1250,7 @@ export const TaxAndCashDashboardIndirectTaxCanadaQuebec = () => {
           indirectTaxNumber: "123456",
           qstNumber: "44212",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1207,6 +1263,8 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           disabled: false,
@@ -1220,6 +1278,7 @@ export const TaxAndCashDashboardIndirectTaxSpain = () => {
           indirectTaxNumber: "123456",
           subRegionTaxNumber: "44212",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1232,6 +1291,8 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1240,6 +1301,99 @@ export const TaxAndCashDashboardIndirectTaxNotRegistered = () => {
           noFormNeeded: false,
           notRegistered: true,
           showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationRequired = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:REQUIRED",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationRequiredInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:INTERNAL",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationReviewInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:REVIEW",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "VERIFICATION:FAILED",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1252,6 +1406,8 @@ export const TaxAndCashDashboardNewTaxForm = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
           documentType: "W8BEN",
@@ -1260,6 +1416,32 @@ export const TaxAndCashDashboardNewTaxForm = () => {
           noFormNeeded: false,
           notRegistered: true,
           showNewFormDialog: true,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardPayoutsOnHold = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
+          country: "Slovania",
+          showNewFormDialog: false,
+          hasHold: true,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1272,6 +1454,8 @@ export const TaxAndCashDashboardLoading = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1281,6 +1465,7 @@ export const TaxAndCashDashboardLoading = () => {
           noFormNeeded: false,
           loading: true,
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1293,6 +1478,8 @@ export const TaxAndCashDashboardWithLoadingError = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           disabled: false,
           canEditPayoutInfo: true,
           status: "ACTIVE",
@@ -1303,6 +1490,7 @@ export const TaxAndCashDashboardWithLoadingError = () => {
           loading: true,
           loadingError: true,
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1315,6 +1503,8 @@ export const TaxAndCashDashboardWithGeneralError = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: false,
           status: "ACTIVE",
@@ -1326,6 +1516,7 @@ export const TaxAndCashDashboardWithGeneralError = () => {
           indirectTaxType: "VAT",
           country: "Slovania",
           showNewFormDialog: false,
+          hasHold: false,
           errors: {
             general: true,
           },
@@ -1341,6 +1532,8 @@ export const TaxAndCashDashboardDisabled = () => {
       demoData={{
         ...dashboardProps,
         states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
           status: "ACTIVE",
@@ -1351,6 +1544,7 @@ export const TaxAndCashDashboardDisabled = () => {
           indirectTaxNumber: "123456",
           country: "Slovania",
           showNewFormDialog: false,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>

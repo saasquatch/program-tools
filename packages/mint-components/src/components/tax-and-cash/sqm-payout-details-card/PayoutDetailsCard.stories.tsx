@@ -16,18 +16,6 @@ export const Loading = () => {
   );
 };
 
-export const Error = () => {
-  return (
-    <sqm-payout-details-card
-      demoData={{
-        states: {
-          error: true,
-        },
-      }}
-    ></sqm-payout-details-card>
-  );
-};
-
 export const NextPayout = () => {
   return (
     <sqm-payout-details-card
