@@ -3,18 +3,21 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
-import { usePortalLogin } from "./usePortalLogin";
 import { createStyleSheet } from "../../styling/JSS";
+import {
+  PortalLoginView,
+  PortalLoginViewProps,
+} from "../sqm-portal-login/sqm-portal-login-view";
+import { usePortalLogin } from "../sqm-portal-login/usePortalLogin";
 
 /**
  * @uiName Microsite Login
  */
 @Component({
-  tag: "sqm-portal-login",
+  tag: "sqm-portal-google-login",
   shadow: true,
 })
-export class PortalLogin {
+export class PortalGoogleLogin {
   @State()
   ignored = true;
 
@@ -85,6 +88,13 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
+   * @uiName Google account error message
+   * Displayed when user tries to sign in with Google account but has not registered.
+   */
+  @Prop() googleUserNotRegisteredError: string =
+    "Your Google account has not registered on our platform. Please complete the registration process with your Google account.";
+
+  /**
    * @uiName Register CTA
    */
   @Prop() registerCTA: string = "Don't have an account?";
@@ -125,17 +135,26 @@ export class PortalLogin {
           </a>
         </slot>
       ),
-      googleButton: null,
+      googleButton: (
+        <sqm-google-sign-in
+          onInitComplete={callbacks.googleSubmit}
+        ></sqm-google-sign-in>
+      ),
       secondaryButton: (
         <slot name="secondaryButton">
           <style>{styleString}</style>
-          <sl-button
-            type="text"
-            disabled={states.loading}
-            onClick={() => navigation.push(states.registerPath)}
-          >
-            {this.registerLabel}
-          </sl-button>
+          <span>
+            {this.registerCTA}{" "}
+            <sl-button
+              size="large"
+              type="text"
+              disabled={states.loading}
+              onClick={() => navigation.push(states.registerPath)}
+              className={sheet.classes.RegisterButton}
+            >
+              {this.registerLabel}
+            </sl-button>
+          </span>
         </slot>
       ),
       emailLabel: this.emailLabel,
@@ -152,7 +171,7 @@ export class PortalLogin {
     );
   }
 }
-function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
+function useLoginDemo(props: PortalGoogleLogin): Partial<PortalLoginViewProps> {
   return deepmerge(
     {
       states: {

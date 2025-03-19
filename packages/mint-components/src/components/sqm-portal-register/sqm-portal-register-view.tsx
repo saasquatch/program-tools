@@ -154,8 +154,14 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             type="password"
             name="/confirmPassword"
             label={content.confirmPasswordLabel}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
+            {...(states.registrationFormState?.initialData?.confirmPassword
+              ? {
+                  value:
+                    states.registrationFormState?.initialData?.confirmPassword,
+                }
+              : {})}
             {...(states.registrationFormState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,

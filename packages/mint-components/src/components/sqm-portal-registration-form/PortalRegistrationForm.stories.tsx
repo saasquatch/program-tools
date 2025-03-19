@@ -5,7 +5,7 @@ import {
 } from "./sqm-portal-registration-form-view";
 
 export default {
-  title: "Components/Microsite Register",
+  title: "Components/Microsite Portal Register",
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
