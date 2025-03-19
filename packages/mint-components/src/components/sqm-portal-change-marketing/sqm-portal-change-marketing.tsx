@@ -13,8 +13,6 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Change Marketing Opt in Status
  * @requiredFeatures ["MARKETING_EMAILS"]
- * @exampleGroup Microsite Components
- * @example Marketing Opt in Status - <div><sqm-portal-container direction="column" gap="large"><sqm-portal-change-marketing></sqm-portal-change-marketing></sqm-portal-container></div>
  */
 @Component({
   tag: "sqm-portal-change-marketing",
