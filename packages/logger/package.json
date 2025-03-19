@@ -30,6 +30,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "16"
   },
   "peerDependencies": {
