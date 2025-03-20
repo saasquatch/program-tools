@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@saasquatch/logger": "^1.4.1",
+    "@saasquatch/logger": "^1.5.1",
     "@types/express": "4",
     "@types/jest": "^29.5.12",
     "@types/node": "18",
