@@ -34,6 +34,7 @@
 - [sqm-task-card](../sqm-task-card)
 - [sqm-card-feed](../sqm-card-feed)
 - [sqm-password-field](../sqm-password-field)
+- [sqm-portal-login](../sqm-portal-login)
 - [sqm-portal-register](../sqm-portal-register)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
@@ -45,7 +46,6 @@
 - [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
 - [sqm-user-name](../sqm-user-name)
 - [sqm-program-menu](../sqm-program-menu)
-- [sqm-portal-login](../sqm-portal-login)
 - [sqm-hero](../sqm-hero)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
@@ -124,6 +124,7 @@ graph TD;
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-card-feed
   sqm-stencilbook --> sqm-password-field
+  sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-table-row
   sqm-stencilbook --> sqm-table-cell
@@ -135,7 +136,6 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-rewards-cell
   sqm-stencilbook --> sqm-user-name
   sqm-stencilbook --> sqm-program-menu
-  sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-hero
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
@@ -198,12 +198,12 @@ graph TD;
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
+  sqm-portal-login --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
-  sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
   sqm-referral-table-user-column --> sqm-referral-table-user-cell

@@ -37,9 +37,9 @@ import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
 import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
 import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
+import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
-import { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
@@ -859,6 +859,13 @@ export namespace Components {
           * @uiName Alert type
          */
         "type": string;
+    }
+    interface SqmGoogleSignIn {
+        "googleButtonDiv": HTMLElement | null;
+        /**
+          * @uiName Button text
+         */
+        "text": string;
     }
     interface SqmGraphqlClientProvider {
         /**
@@ -2179,6 +2186,205 @@ export namespace Components {
          */
         "notFullScreen"?: boolean;
     }
+    interface SqmPortalGoogleLogin {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName Forgot password text
+         */
+        "forgotPasswordLabel": string;
+        /**
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot password redirect
+          * @uiWidget pageSelect
+         */
+        "forgotPasswordPath": string;
+        /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError": string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage": string;
+        /**
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Heading label
+          * @uiWidget textArea
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel": string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA": string;
+        /**
+          * @uiName Register button text
+         */
+        "registerLabel": string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register button redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+    }
+    interface SqmPortalGoogleRegistrationForm {
+        /**
+          * @uiName Show confirm password field
+         */
+        "confirmPassword": boolean;
+        /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @uiName Disable password validation
+         */
+        "disablePasswordValidation": boolean;
+        /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText": string;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form disabled message
+          * @uiWidget textArea
+         */
+        "formDisabledErrorMessage": string;
+        /**
+          * The key of the registration form used for this microsite.
+          * @uiName Form key
+          * @required
+         */
+        "formKey": string;
+        /**
+          * Can be "signup_with", "signin_with", "continue_with", or "signin"
+          * @uiName Google button text
+         */
+        "googleButtonText": string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText": string;
+        /**
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide default fields
+         */
+        "hideInputs": boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * Login Call-to-action
+          * @uiName Login CTA
+         */
+        "loginCTA": string;
+        /**
+          * @uiName Login button text
+         */
+        "loginLabel": string;
+        /**
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "loginPath": string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText": string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText": string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel": string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel": string;
+        /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password mismatch message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage": string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Email verification redirect
+          * @uiWidget pageSelect
+         */
+        "redirectPath": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText": string;
+    }
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -2218,6 +2424,10 @@ export namespace Components {
           * @uiName Password field label
          */
         "passwordLabel": string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA": string;
         /**
           * @uiName Register button text
          */
@@ -4959,6 +5169,16 @@ export namespace Components {
          */
         "step4_toPayPalAccount": string;
         /**
+          * @uiName Verify code widget header text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailDescriptionText": string;
+        /**
+          * @uiName Text for verify email dialog
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailHeaderText": string;
+        /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties
          */
@@ -5730,6 +5950,12 @@ declare global {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
+    interface HTMLSqmGoogleSignInElement extends Components.SqmGoogleSignIn, HTMLStencilElement {
+    }
+    var HTMLSqmGoogleSignInElement: {
+        prototype: HTMLSqmGoogleSignInElement;
+        new (): HTMLSqmGoogleSignInElement;
+    };
     interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqmGraphqlClientProviderElement: {
@@ -5945,6 +6171,18 @@ declare global {
     var HTMLSqmPortalFrameElement: {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
+    };
+    interface HTMLSqmPortalGoogleLoginElement extends Components.SqmPortalGoogleLogin, HTMLStencilElement {
+    }
+    var HTMLSqmPortalGoogleLoginElement: {
+        prototype: HTMLSqmPortalGoogleLoginElement;
+        new (): HTMLSqmPortalGoogleLoginElement;
+    };
+    interface HTMLSqmPortalGoogleRegistrationFormElement extends Components.SqmPortalGoogleRegistrationForm, HTMLStencilElement {
+    }
+    var HTMLSqmPortalGoogleRegistrationFormElement: {
+        prototype: HTMLSqmPortalGoogleRegistrationFormElement;
+        new (): HTMLSqmPortalGoogleRegistrationFormElement;
     };
     interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
     }
@@ -6343,6 +6581,7 @@ declare global {
         "sqm-email-verification": HTMLSqmEmailVerificationElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
+        "sqm-google-sign-in": HTMLSqmGoogleSignInElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-header-logo": HTMLSqmHeaderLogoElement;
         "sqm-hero": HTMLSqmHeroElement;
@@ -6379,6 +6618,8 @@ declare global {
         "sqm-portal-footer": HTMLSqmPortalFooterElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
+        "sqm-portal-google-login": HTMLSqmPortalGoogleLoginElement;
+        "sqm-portal-google-registration-form": HTMLSqmPortalGoogleRegistrationFormElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
         "sqm-portal-profile": HTMLSqmPortalProfileElement;
@@ -7249,6 +7490,14 @@ declare namespace LocalJSX {
           * @uiName Alert type
          */
         "type"?: string;
+    }
+    interface SqmGoogleSignIn {
+        "googleButtonDiv"?: HTMLElement | null;
+        "onInitComplete"?: (event: CustomEvent<any>) => void;
+        /**
+          * @uiName Button text
+         */
+        "text"?: string;
     }
     interface SqmGraphqlClientProvider {
         /**
@@ -8563,6 +8812,205 @@ declare namespace LocalJSX {
          */
         "notFullScreen"?: boolean;
     }
+    interface SqmPortalGoogleLogin {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName Forgot password text
+         */
+        "forgotPasswordLabel"?: string;
+        /**
+          * Redirect participants to this page to reset their password
+          * @uiName Forgot password redirect
+          * @uiWidget pageSelect
+         */
+        "forgotPasswordPath"?: string;
+        /**
+          * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
+         */
+        "googleUserNotRegisteredError"?: string;
+        /**
+          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Redirect participants to this page after they successfully login.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Heading label
+          * @uiWidget textArea
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel"?: string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA"?: string;
+        /**
+          * @uiName Register button text
+         */
+        "registerLabel"?: string;
+        /**
+          * Redirect participants to this page to start registration.
+          * @uiName Register button redirect
+          * @uiWidget pageSelect
+         */
+        "registerPath"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+    }
+    interface SqmPortalGoogleRegistrationForm {
+        /**
+          * @uiName Show confirm password field
+         */
+        "confirmPassword"?: boolean;
+        /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
+        /**
+          * @uiName Disable password validation
+         */
+        "disablePasswordValidation"?: boolean;
+        /**
+          * @uiName Password requirement failed
+         */
+        "doesNotMeetRequirementsText"?: string;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * The message to be displayed when the registration form is disabled.
+          * @uiName Form disabled message
+          * @uiWidget textArea
+         */
+        "formDisabledErrorMessage"?: string;
+        /**
+          * The key of the registration form used for this microsite.
+          * @uiName Form key
+          * @required
+         */
+        "formKey"?: string;
+        /**
+          * Can be "signup_with", "signin_with", "continue_with", or "signin"
+          * @uiName Google button text
+         */
+        "googleButtonText"?: string;
+        /**
+          * @uiName Missing number or symbol text
+         */
+        "hasErrorText"?: string;
+        /**
+          * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
+          * @uiName Hide default fields
+         */
+        "hideInputs"?: boolean;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * Login Call-to-action
+          * @uiName Login CTA
+         */
+        "loginCTA"?: string;
+        /**
+          * @uiName Login button text
+         */
+        "loginLabel"?: string;
+        /**
+          * Redirect participants to this page after clicking the login button.
+          * @uiName Login redirect
+          * @uiWidget pageSelect
+         */
+        "loginPath"?: string;
+        /**
+          * @uiName Missing lowercase text
+         */
+        "lowercaseErrorText"?: string;
+        /**
+          * @uiName Password requirement met
+         */
+        "meetsRequirementsText"?: string;
+        /**
+          * @uiName Minimum length text
+         */
+        "minErrorText"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Redirect participants to this page after they successfully register.
+          * @uiName Registration redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel"?: string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordLabel"?: string;
+        /**
+          * The message to be displayed when password inputs do not match.
+          * @uiName Password mismatch message
+          * @uiWidget textArea
+         */
+        "passwordMismatchErrorMessage"?: string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Email verification redirect
+          * @uiWidget pageSelect
+         */
+        "redirectPath"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+        /**
+          * @uiName Missing uppercase text
+         */
+        "uppercaseErrorText"?: string;
+    }
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -8602,6 +9050,10 @@ declare namespace LocalJSX {
           * @uiName Password field label
          */
         "passwordLabel"?: string;
+        /**
+          * @uiName Register CTA
+         */
+        "registerCTA"?: string;
         /**
           * @uiName Register button text
          */
@@ -11319,6 +11771,16 @@ declare namespace LocalJSX {
          */
         "step4_toPayPalAccount"?: string;
         /**
+          * @uiName Verify code widget header text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailDescriptionText"?: string;
+        /**
+          * @uiName Text for verify email dialog
+          * @uiGroup Step 4 Properties
+         */
+        "step4_verifyEmailHeaderText"?: string;
+        /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties
          */
@@ -11998,6 +12460,7 @@ declare namespace LocalJSX {
         "sqm-email-verification": SqmEmailVerification;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
+        "sqm-google-sign-in": SqmGoogleSignIn;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-header-logo": SqmHeaderLogo;
         "sqm-hero": SqmHero;
@@ -12034,6 +12497,8 @@ declare namespace LocalJSX {
         "sqm-portal-footer": SqmPortalFooter;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
+        "sqm-portal-google-login": SqmPortalGoogleLogin;
+        "sqm-portal-google-registration-form": SqmPortalGoogleRegistrationForm;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
         "sqm-portal-profile": SqmPortalProfile;
@@ -12121,6 +12586,7 @@ declare module "@stencil/core" {
             "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+            "sqm-google-sign-in": LocalJSX.SqmGoogleSignIn & JSXBase.HTMLAttributes<HTMLSqmGoogleSignInElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
@@ -12157,6 +12623,8 @@ declare module "@stencil/core" {
             "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+            "sqm-portal-google-login": LocalJSX.SqmPortalGoogleLogin & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleLoginElement>;
+            "sqm-portal-google-registration-form": LocalJSX.SqmPortalGoogleRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleRegistrationFormElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
