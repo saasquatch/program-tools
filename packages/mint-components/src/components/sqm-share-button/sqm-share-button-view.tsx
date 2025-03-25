@@ -16,7 +16,7 @@ export interface ShareButtonViewProps {
     | "pinterest"
     | "reminder"
     | "unknown";
-
+  href?: string;
   loading?: boolean;
   disabled?: boolean;
   pill?: boolean;
@@ -39,6 +39,7 @@ export interface ShareButtonViewProps {
   borderradius?: number;
   backgroundcolor?: string;
   textcolor?: string;
+  messageLink?: string;
 }
 
 const medium = {
@@ -130,12 +131,14 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       <style type="text/css">{vanillaStyle}</style>
       <sl-button
         class={sheet.classes.buttonStyle}
+        target="_blank"
         loading={props.loading}
         disabled={props.disabled}
         pill={props.pill}
         size={props.size}
         type={props.type}
         onClick={props.onClick}
+        href={props.messageLink}
         exportparts={`base: ${props.type}sharebutton-base`}
       >
         {!props.hideicon && (

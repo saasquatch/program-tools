@@ -129,40 +129,46 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
-  async function onClick() {
-    if (overrideData) {
-      await setCopied({ referralCode: contextData.referralCode });
-      contextData.refresh();
+    const messageLink =
+      overrideData?.messageLink || res.data?.viewer?.messageLink;
+
+    async function onClick() {
+      if (overrideData) {
+        await setCopied({ referralCode: contextData.referralCode });
+        contextData.refresh();
+      }
+
+      if (
+        medium.toLocaleUpperCase() === "FACEBOOK" &&
+        environment.type === "SquatchAndroid"
+      ) {
+        FacebookShare(directLink, messageLink, props.errorText);
+      } else if (medium.toLocaleUpperCase() === "DIRECT") {
+        NativeShare(
+          { sharetitle, sharetext },
+          directLink,
+          props.errorText,
+          props.unsupportedPlatformText
+        );
+      } else {
+        GenericShare(messageLink, props.errorText);
+      }
     }
 
-    if (
+  const isPlainLink =
+    !(
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
-    ) {
-      FacebookShare(
-        directLink,
-        overrideData?.messageLink || res.data?.viewer?.messageLink,
-        props.errorText
-      );
-    } else if (medium.toLocaleUpperCase() === "DIRECT") {
-      NativeShare(
-        { sharetitle, sharetext },
-        directLink,
-        props.errorText,
-        props.unsupportedPlatformText
-      );
-    } else {
-      GenericShare(
-        overrideData?.messageLink || res.data?.viewer?.messageLink,
-        props.errorText
-      );
-    }
-  }
+    ) &&
+    medium.toLocaleUpperCase() !== "DIRECT" &&
+    messageLink;
 
   return {
     ...props,
     loading: res.loading && !overrideData?.messageLink,
-    onClick,
+    messageLink,
+    // If we have just a normal share link onClick should be undefined so we fallback to default link behavior
+    onClick: isPlainLink ? undefined : onClick,
     hide,
   };
 }
