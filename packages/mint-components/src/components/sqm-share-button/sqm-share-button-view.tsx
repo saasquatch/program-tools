@@ -16,7 +16,6 @@ export interface ShareButtonViewProps {
     | "pinterest"
     | "reminder"
     | "unknown";
-  href?: string;
   loading?: boolean;
   disabled?: boolean;
   pill?: boolean;
