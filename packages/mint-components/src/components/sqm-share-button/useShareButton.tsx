@@ -172,8 +172,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     loading: res.loading && !overrideData?.messageLink,
     messageLink,
     isPlainLink,
-    // If we have just a normal share link onClick should be undefined so we fallback to default link behavior
-    onClick: onClick,
+    onClick,
     openInSameTab,
     hide,
   };
