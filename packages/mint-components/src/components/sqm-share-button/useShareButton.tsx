@@ -90,7 +90,7 @@ function FacebookShare(
 }
 
 function GenericShare(messageLink: string, errorText: string) {
-  return messageLink ? window.open(messageLink) : alert(errorText);
+  return messageLink ? (window.location.href = messageLink) : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -129,31 +129,29 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
-    const messageLink =
-      overrideData?.messageLink || res.data?.viewer?.messageLink;
+  const messageLink =
+    overrideData?.messageLink || res.data?.viewer?.messageLink;
 
-    async function onClick() {
-      if (overrideData) {
-        await setCopied({ referralCode: contextData.referralCode });
-        contextData.refresh();
-      }
-
-      if (
-        medium.toLocaleUpperCase() === "FACEBOOK" &&
-        environment.type === "SquatchAndroid"
-      ) {
-        FacebookShare(directLink, messageLink, props.errorText);
-      } else if (medium.toLocaleUpperCase() === "DIRECT") {
-        NativeShare(
-          { sharetitle, sharetext },
-          directLink,
-          props.errorText,
-          props.unsupportedPlatformText
-        );
-      } else {
-        GenericShare(messageLink, props.errorText);
-      }
+  async function onClick() {
+    if (overrideData) {
+      await setCopied({ referralCode: contextData.referralCode });
+      contextData.refresh();
     }
+
+    if (
+      medium.toLocaleUpperCase() === "FACEBOOK" &&
+      environment.type === "SquatchAndroid"
+    ) {
+      FacebookShare(directLink, messageLink, props.errorText);
+    } else if (medium.toLocaleUpperCase() === "DIRECT") {
+      NativeShare(
+        { sharetitle, sharetext },
+        directLink,
+        props.errorText,
+        props.unsupportedPlatformText
+      );
+    }
+  }
 
   const isPlainLink =
     !(
@@ -163,12 +161,20 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     medium.toLocaleUpperCase() !== "DIRECT" &&
     messageLink;
 
+  const userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test(userAgent),
+    ios = /iphone|ipod|ipad/.test(userAgent);
+
+  const openInSameTab = ios && !safari;
+
   return {
     ...props,
     loading: res.loading && !overrideData?.messageLink,
     messageLink,
+    isPlainLink,
     // If we have just a normal share link onClick should be undefined so we fallback to default link behavior
-    onClick: isPlainLink ? undefined : onClick,
+    onClick: onClick,
+    openInSameTab,
     hide,
   };
 }

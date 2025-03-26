@@ -39,6 +39,8 @@ export interface ShareButtonViewProps {
   backgroundcolor?: string;
   textcolor?: string;
   messageLink?: string;
+  openInSameTab?: boolean;
+  isPlainLink?: boolean;
 }
 
 const medium = {
@@ -130,14 +132,14 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       <style type="text/css">{vanillaStyle}</style>
       <sl-button
         class={sheet.classes.buttonStyle}
-        target="_blank"
+        target={props.openInSameTab ? "_self" : "_blank"}
         loading={props.loading}
         disabled={props.disabled}
         pill={props.pill}
         size={props.size}
         type={props.type}
-        onClick={props.onClick}
-        href={props.messageLink}
+        onClick={!props.isPlainLink ? props.onClick : undefined}
+        href={props.isPlainLink ? props.messageLink : undefined}
         exportparts={`base: ${props.type}sharebutton-base`}
       >
         {!props.hideicon && (
