@@ -90,7 +90,7 @@ function FacebookShare(
 }
 
 function GenericShare(messageLink: string, errorText: string) {
-  return messageLink ? window.open(messageLink) : alert(errorText);
+  return messageLink ? (window.location.href = messageLink) : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -129,6 +129,9 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
+  const messageLink =
+    overrideData?.messageLink || res.data?.viewer?.messageLink;
+
   async function onClick() {
     if (overrideData) {
       await setCopied({ referralCode: contextData.referralCode });
@@ -139,11 +142,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
-      FacebookShare(
-        directLink,
-        overrideData?.messageLink || res.data?.viewer?.messageLink,
-        props.errorText
-      );
+      FacebookShare(directLink, messageLink, props.errorText);
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
       NativeShare(
         { sharetitle, sharetext },
@@ -151,18 +150,30 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
         props.errorText,
         props.unsupportedPlatformText
       );
-    } else {
-      GenericShare(
-        overrideData?.messageLink || res.data?.viewer?.messageLink,
-        props.errorText
-      );
     }
   }
+
+  const isPlainLink =
+    !(
+      medium.toLocaleUpperCase() === "FACEBOOK" &&
+      environment.type === "SquatchAndroid"
+    ) &&
+    medium.toLocaleUpperCase() !== "DIRECT" &&
+    messageLink;
+
+  const userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test(userAgent),
+    ios = /iphone|ipod|ipad/.test(userAgent);
+
+  const openInSameTab = ios && !safari;
 
   return {
     ...props,
     loading: res.loading && !overrideData?.messageLink,
+    messageLink,
+    isPlainLink,
     onClick,
+    openInSameTab,
     hide,
   };
 }
