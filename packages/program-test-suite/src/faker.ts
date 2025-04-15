@@ -67,6 +67,7 @@ export function getProgramTriggerJson(
       rules: info.rules,
     },
     tenant: {
+      impactBrandId: null,
       settings: {
         suspectedFraudModerationState: "IGNORE",
       },
