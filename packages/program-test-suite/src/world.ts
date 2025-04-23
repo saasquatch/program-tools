@@ -2,6 +2,7 @@ import { types } from "@saasquatch/program-boilerplate";
 import deepmerge from "deepmerge";
 import { readFileSync } from "fs";
 import { getRandomUser } from "./faker";
+import { TenantFlavor } from "./types";
 
 interface State {
   programTriggerResult: any;
@@ -19,6 +20,7 @@ interface State {
     rules: any;
     template: any;
     featureFlags: string[] | null | undefined;
+    flavor: TenantFlavor;
   }>;
 }
 
