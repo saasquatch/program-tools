@@ -108,6 +108,22 @@ const userSteps: StepDefinitions = ({ given }) => {
     });
   });
 
+  given(
+    /^the (?:referred )?user has the following programGoal:$/,
+    (data: any) => {
+      const programGoals = getWorld().state.current.user.programGoals ?? [];
+      programGoals.push(JSON.parse(data));
+
+      getWorld().setState({
+        current: {
+          user: {
+            programGoals,
+          },
+        },
+      });
+    }
+  );
+
   given("the referrer user has the following reward:", (data: any) => {
     const rewards = getWorld().state.current.user.referredByReferral
       .referrerUser.rewards || {

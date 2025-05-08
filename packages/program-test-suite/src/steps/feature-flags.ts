@@ -1,4 +1,5 @@
 import { StepDefinitions } from "jest-cucumber";
+import { TenantFlavor } from "../types";
 import { getWorld } from "../world";
 
 const featureSteps: StepDefinitions = ({ given }) => {
@@ -11,6 +12,10 @@ const featureSteps: StepDefinitions = ({ given }) => {
           : [flag],
       },
     });
+  });
+
+  given(/^the flavor is "?(saasquatch|impact)"?$/, (flavor: TenantFlavor) => {
+    getWorld().setState({ current: { flavor } });
   });
 };
 

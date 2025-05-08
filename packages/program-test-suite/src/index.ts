@@ -11,13 +11,13 @@ export function runProgramTests(
   program: types.rpc.Program,
   featurePath: string,
   steps: StepDefinitions[],
-  schemaFile: string,
+  schema: string | object,
   templateFile: string,
   rulesFile: string,
   featureFilterTags?: string[]
 ) {
   getWorld().setProgram(program);
-  getWorld().loadDefaults(templateFile, schemaFile, rulesFile);
+  getWorld().loadDefaults(templateFile, schema, rulesFile);
 
   const features: ReturnType<typeof loadFeature>[] = [];
   const featureFiles = globSync(`${featurePath}/**/*.feature`);
