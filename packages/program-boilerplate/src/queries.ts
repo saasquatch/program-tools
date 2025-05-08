@@ -17,6 +17,14 @@ export const rewardEmailQuery = `
       fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER,engagementMedium:EMAIL)
     }
 
+    program(id: $programId) {
+      sharing {
+        redirectUrl {
+          url
+        }
+      }
+    }
+
     referral(id:$referralId) {
       referrerUser{
         firstName
@@ -88,6 +96,14 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     }
   }
 
+  program(id: $programId) {
+    sharing {
+      redirectUrl {
+        url
+      }
+    }
+  }
+
   tenant {
     emailAddress
     settings {
@@ -107,6 +123,14 @@ export const rewardEmailQueryForNonReferralPrograms = `
       lastName
       customFields
       email:messageLink(programId:$programId,shareMedium:EMAIL)
+    }
+
+    program(id: $programId) {
+      sharing {
+        redirectUrl {
+          url
+        }
+      }
     }
 
     tenant {
@@ -142,6 +166,14 @@ export const nonRewardEmailQueryForNonReferralPrograms = `
       lastName
       customFields
       email:messageLink(programId:$programId,shareMedium:EMAIL)
+    }
+
+    program(id: $programId) {
+      sharing {
+        redirectUrl {
+          url
+        }
+      }
     }
 
     tenant {
