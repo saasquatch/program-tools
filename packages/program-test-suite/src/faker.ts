@@ -69,7 +69,7 @@ export function getProgramTriggerJson(
       rules: info.rules,
     },
     tenant: {
-      impactBrandId: flavor === "impact" ? 12345 : undefined,
+      impactBrandId: flavor === "impact" ? "12345" : undefined,
       settings: { suspectedFraudModerationState: "IGNORE" },
     },
     ids: [...Array(10).keys()].map((a) => `triggergivenid${a + 1}`),
