@@ -45,7 +45,7 @@ export type ProgramTriggerBody = {
   activeTrigger: any;
   program: any;
   tenant: {
-    impactBrandId: number | undefined | null;
+    impactBrandId: string | undefined | null;
     settings: {
       suspectedFraudModerationState: string;
     };
