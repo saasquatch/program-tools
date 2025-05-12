@@ -62,7 +62,7 @@ describe("triggerProgram", () => {
         isLiveMode: true,
       },
     };
-    const newTemplate = { test: "newTemplate" };
+    const newTemplate = { template: {} };
 
     test("PROGRAM_INTROSPECTION", () => {
       const spy = jest.fn((...args) => newTemplate);
@@ -118,6 +118,7 @@ describe("triggerProgram", () => {
         test: "program",
       },
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
