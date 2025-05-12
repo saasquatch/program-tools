@@ -75,6 +75,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
@@ -116,6 +117,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
@@ -157,6 +159,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
@@ -175,6 +178,7 @@ describe("#getTriggerSchema", () => {
             key: "subscription",
             id: 1,
             dateTriggered: 1619483037800,
+            isModification: undefined,
             fields: {
               key: "value1",
             },
@@ -183,6 +187,7 @@ describe("#getTriggerSchema", () => {
             key: "purchase",
             id: 2,
             dateTriggered: 1619483037830,
+            isModification: undefined,
             fields: {
               key: "value2",
             },
@@ -191,6 +196,7 @@ describe("#getTriggerSchema", () => {
             key: "ride",
             id: 3,
             dateTriggered: 1619483037860,
+            isModification: undefined,
             fields: {
               key: "value3",
             },
@@ -213,6 +219,7 @@ describe("#getTriggerSchema", () => {
           key: "subscription",
           id: 1,
           dateTriggered: 1619483037800,
+          isModification: undefined,
           fields: {
             key: "value1",
           },
@@ -231,6 +238,7 @@ describe("#getTriggerSchema", () => {
           key: "purchase",
           id: 2,
           dateTriggered: 1619483037830,
+          isModification: undefined,
           fields: {
             key: "value2",
           },
@@ -249,6 +257,7 @@ describe("#getTriggerSchema", () => {
           key: "ride",
           id: 3,
           dateTriggered: 1619483037860,
+          isModification: undefined,
           fields: {
             key: "value3",
           },
@@ -266,6 +275,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
@@ -305,6 +315,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
@@ -344,6 +355,7 @@ describe("#getTriggerSchema", () => {
       program: "programTestValue",
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },
