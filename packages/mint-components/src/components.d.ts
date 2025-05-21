@@ -2941,6 +2941,8 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmQrCode {
+    }
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -6250,6 +6252,12 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    interface HTMLSqmQrCodeElement extends Components.SqmQrCode, HTMLStencilElement {
+    }
+    var HTMLSqmQrCodeElement: {
+        prototype: HTMLSqmQrCodeElement;
+        new (): HTMLSqmQrCodeElement;
+    };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
@@ -6631,6 +6639,7 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-qr-code": HTMLSqmQrCodeElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-code": HTMLSqmReferralCodeElement;
         "sqm-referral-codes": HTMLSqmReferralCodesElement;
@@ -9566,6 +9575,8 @@ declare namespace LocalJSX {
         "textColor"?: string;
     }
     interface SqmProgramMenu {
+    }
+    interface SqmQrCode {
     }
     interface SqmReferralCard {
         /**
@@ -12510,6 +12521,7 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-qr-code": SqmQrCode;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-code": SqmReferralCode;
         "sqm-referral-codes": SqmReferralCodes;
@@ -12636,6 +12648,7 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-qr-code": LocalJSX.SqmQrCode & JSXBase.HTMLAttributes<HTMLSqmQrCodeElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-code": LocalJSX.SqmReferralCode & JSXBase.HTMLAttributes<HTMLSqmReferralCodeElement>;
             "sqm-referral-codes": LocalJSX.SqmReferralCodes & JSXBase.HTMLAttributes<HTMLSqmReferralCodesElement>;
