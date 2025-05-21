@@ -22,7 +22,7 @@ describe("webtask express wrapper functionality", () => {
       isLiveMode: true,
     },
   };
-  const newTemplate = { test: "newTemplate" };
+  const newTemplate = { template: {} };
 
   const testErrorBody = {
     messageType: "PROGRAM_TRIGGER" as "PROGRAM_TRIGGER",

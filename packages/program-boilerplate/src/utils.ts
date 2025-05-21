@@ -224,6 +224,7 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
           event: {
             key: event.key,
             id: event.id,
+            isModification: event.isModification,
             dateTriggered: event.dateTriggered,
             fields: event.fields,
           },

@@ -16,6 +16,7 @@ describe("Transaction class", () => {
       },
       ids: ["123", "345", "456"],
       tenant: {
+        impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
         },

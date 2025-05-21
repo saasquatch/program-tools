@@ -88,7 +88,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
-    console.log("Test 123");
     let formData: Record<string, any> = {};
     let validationErrors: Record<string, string> = {};
 
@@ -139,15 +138,15 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
       validationErrors: {},
     });
     const { email, password } = formData;
-    console.log("form data is ", formData);
     delete formData.email;
     delete formData.password;
     delete formData.confirmPassword;
     const redirectPath = props.redirectPath;
-
+    const _googleOAuthIdToken = registrationFormState._googleOAuthIdToken;
     const variables = {
       key: props.formKey,
       formData: {
+        ...(_googleOAuthIdToken ? { _googleOAuthIdToken } : {}),
         locale,
         email,
         password,

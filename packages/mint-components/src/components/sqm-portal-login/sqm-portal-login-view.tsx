@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
@@ -15,9 +15,11 @@ export interface PortalLoginViewProps {
     registerPath: string;
   };
   callbacks: {
+    googleSubmit: (event: CustomEvent<any>) => Promise<void>;
     submit: (event: any) => Promise<void>;
   };
   content: {
+    googleButton?: VNode;
     forgotPasswordButton?: any;
     secondaryButton?: any;
     emailLabel?: string;
@@ -38,7 +40,13 @@ const style = {
     color: "#AAAAAA",
     margin: "0",
   },
-  ButtonsContainer: AuthButtonsContainer,
+  ButtonsContainer: {
+    ...AuthButtonsContainer,
+    gap: "var(--sl-spacing-medium)",
+    "& > *": {
+      margin: "0 !important",
+    },
+  },
 };
 
 const vanillaStyle = `
@@ -98,6 +106,8 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           >
             {content.submitLabel || "Login"}
           </sl-button>
+          {content.googleButton && <sl-menu-divider />}
+          {content.googleButton}
           {content.secondaryButton}
         </div>
       </sl-form>

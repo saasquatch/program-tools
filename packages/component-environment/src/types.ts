@@ -25,6 +25,7 @@ export const PROGRAM_CONTEXT_NAME: ProgramContextName =
 export type UserIdentity = {
   id: string;
   accountId: string;
+  email?: string;
   jwt?: string;
   managedIdentity?: {
     email: string;
@@ -43,6 +44,7 @@ export interface DecodedSquatchJWT {
   user: {
     accountId: string;
     id: string;
+    email?: string;
   };
 }
 
@@ -68,6 +70,7 @@ export interface WidgetIdent {
   token: string;
   userId: string;
   accountId: string;
+  email?: string;
   locale?: string;
   engagementMedium?: "POPUP" | "EMBED";
   programId?: string;
@@ -76,11 +79,12 @@ export interface WidgetIdent {
 
 /**
  * Portal env doesn't include User Id
+ * - googleClientId should be unique to SquatchPortal environments
  */
 export type PortalEnv = Pick<
   WidgetIdent,
   "tenantAlias" | "appDomain" | "programId"
->;
+> & { googleClientId: string | undefined };
 
 /**
  * An interface for interacting with the SaaSquatch Admin Portal.

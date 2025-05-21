@@ -88,7 +88,6 @@ export class PortalContainer {
   /**
    * @uiName Background color
    * @uiWidget color
-   * @uiGroup Card style
    * @uiType string
    */
   @Prop() backgroundColor?: string = "#ffffff00";

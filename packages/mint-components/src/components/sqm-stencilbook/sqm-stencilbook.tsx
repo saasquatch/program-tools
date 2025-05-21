@@ -4,6 +4,7 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../sqm-share-button/ShareButton.stories";
 import * as EmptyState from "../sqm-empty/EmptyState.stories";
+import * as Pagination from "../sqm-pagination/Pagination.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as Leaderboard from "../sqm-leaderboard/Leaderboard.stories";
@@ -73,6 +74,7 @@ import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as ShareCode from "../sqm-share-code/ShareCode.stories";
+import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as EmailRegistration from "../views/EmailRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
@@ -87,6 +89,14 @@ import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
 import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
 import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
 import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
+import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
+import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
+import * as PayoutButtonScroll from "../sqm-payout-button-scroll/PayoutButtonScroll.stories";
+import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
+import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
+import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
+import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
+import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -99,6 +109,7 @@ const stories = [
   InvoiceTableCells,
   UseInvoiceTableCells,
   ShareButton,
+  Pagination,
   ShareLink,
   BigStat,
   Leaderboard,
@@ -168,6 +179,8 @@ const stories = [
   Tabs,
   ShareCode,
   CouponCode,
+  ReferralCode,
+  ReferralCodes,
   LogoutCurrentUser,
   LinkButton,
   EmailRegistration,
@@ -180,6 +193,13 @@ const stories = [
   BankingInfoForm,
   NewPortalRegistrationForm,
   ChangeMarketing,
+  BaseRegistrationForm,
+  PortalRegistrationForm,
+  PortalGoogleRegistrationFormStories,
+  WidgetEmailVerification,
+  WidgetCodeVerification,
+  PayoutButtonScroll,
+  PayoutStatusAlert,
 ];
 
 /**

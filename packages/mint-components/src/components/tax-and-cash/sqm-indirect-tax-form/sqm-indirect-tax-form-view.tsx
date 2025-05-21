@@ -42,6 +42,7 @@ export interface IndirectTaxFormViewProps {
     continueButton: string;
     backButton: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -146,11 +147,9 @@ const style = {
     },
 
     "&::part(message)": {
-      display: "flex",
       alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
+      padding: "var(--sl-spacing-small)",
+      whiteSpace: "nowrap",
     },
 
     "& sl-icon::part(base)": {
@@ -242,7 +241,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.loadingErrorAlertHeader}</strong>
               <br />
-              {text.error.loadingErrorAlertDescription}
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           </div>
         )}
@@ -256,7 +270,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
-            {text.error.generalDescription}
+            {intl.formatMessage(
+              {
+                id: "generalDescription",
+                defaultMessage: text.error.generalDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         {states.isPartner && (
@@ -269,7 +298,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             <strong>{text.isPartnerAlertHeader}</strong>
             <br />
-            {text.isPartnerAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "isPartnerAlertDescription",
+                defaultMessage: text.isPartnerAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         <div>
@@ -328,7 +372,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               slot="icon"
               name="exclamation-triangle"
             ></sl-icon>
-            {text.cannotChangeInfoAlert}
+            {intl.formatMessage(
+              {
+                id: "cannotChangeInfoAlert",
+                defaultMessage: text.cannotChangeInfoAlert,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
           <div class={classes.BtnContainer}>
             <sl-button

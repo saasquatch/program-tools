@@ -2,6 +2,7 @@ import { types } from "@saasquatch/program-boilerplate";
 import deepmerge from "deepmerge";
 import { readFileSync } from "fs";
 import { getRandomUser } from "./faker";
+import { TenantFlavor } from "./types";
 
 interface State {
   programTriggerResult: any;
@@ -19,6 +20,7 @@ interface State {
     rules: any;
     template: any;
     featureFlags: string[] | null | undefined;
+    flavor: TenantFlavor;
   }>;
 }
 
@@ -36,13 +38,22 @@ export class World {
     this.state = this.reset();
   }
 
-  loadDefaults(schemaFile: string, templateFile: string, rulesFile: string) {
+  loadDefaults(
+    templateFile: string,
+    schema: string | object,
+    rulesFile: string
+  ) {
     this.defaultIntrospection = JSON.parse(
       readFileSync(templateFile).toString()
     );
-    const schema = JSON.parse(readFileSync(schemaFile).toString());
+
+    const schemaFinal =
+      typeof schema === "string"
+        ? JSON.parse(readFileSync(schema).toString())
+        : schema;
+
     this.defaultRules = JSON.parse(readFileSync(rulesFile).toString());
-    this.defaultTemplate = deepmerge(this.defaultIntrospection, schema);
+    this.defaultTemplate = deepmerge(this.defaultIntrospection, schemaFinal);
   }
 
   setProgram(program: types.rpc.Program) {

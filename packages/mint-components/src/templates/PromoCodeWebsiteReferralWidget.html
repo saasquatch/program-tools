@@ -1,0 +1,112 @@
+<sqm-brand brand="Nunito Sans" brand-color="#4326c4ff" slot
+  ><sqm-close-button></sqm-close-button
+  ><sqb-auth-template-switch
+    ><template slot="logged-in"
+      ><sqm-hero
+        background="https://res.cloudinary.com/saasquatch/image/upload/v1683589933/Portal%20Assets/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+        columns="2"
+        padding-size="medium"
+        secondary-background="#FFFFFF"
+        wrap-direction="wrap"
+        min-height="200"
+        ><sqm-referral-card
+          padding-bottom="small"
+          padding-left="x-large"
+          padding-right="x-large"
+          padding-top="small"
+          slot="secondary-column"
+          vertical-alignment="start"
+          ><sqm-titled-section
+            label-margin="none"
+            padding="none"
+            slot="header"
+            text-align="center"
+            ><h1 slot="label">Invite your friends to unlock rewards!</h1>
+            <p slot="content">
+              They’ll get a $50 credit towards a new account and you’ll get a
+              $50 in credit for each friend you refer.
+            </p></sqm-titled-section
+          ><sqm-portal-container
+            gap="small"
+            slot="left"
+            display="grid"
+            direction="column"
+            max-width="100%"
+            padding="none"
+            ><sqm-referral-codes
+              ><sqm-pagination slot="pagination"></sqm-pagination
+              ><sqm-referral-code
+                show-notification-text="true"
+                slot="shareCodes"
+              ></sqm-referral-code
+              ><sqm-portal-container gap="small" slot="shareButtons"
+                ><sqm-share-button medium="email"
+                  >Share via email</sqm-share-button
+                ><sqm-share-button medium="fbmessenger"
+                  >Share on Facebook</sqm-share-button
+                ><sqm-share-button medium="whatsapp"
+                  >Share on WhatsApp</sqm-share-button
+                ></sqm-portal-container
+              ></sqm-referral-codes
+            ></sqm-portal-container
+          ><sqm-portal-container
+            gap="small"
+            slot="footer"
+            display="flex"
+            justify-content="center"
+            ><sqm-logout-current-user
+              switch-user-link="#"
+              switch-user-text="not you?"
+              user-identification-text="{email}"
+              email-error-text="Error fetching email"
+            ></sqm-logout-current-user
+            ><sqm-portal-footer
+              hide-support-text
+              padding-bottom="x-small"
+              padding-left="none"
+              padding-right="none"
+              padding-top="none"
+              show-powered-by="true"
+              support-email="support@example.com"
+              terms-link="https://example.com"
+              terms-text="Terms And Conditions"
+            ></sqm-portal-footer></sqm-portal-container></sqm-referral-card></sqm-hero></template
+    ><template slot="logged-out"
+      ><sqm-hero
+        background="https://res.cloudinary.com/saasquatch/image/upload/v1683589933/Portal%20Assets/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+        columns="2"
+        padding-size="medium"
+        secondary-background="#FFFFFF"
+        wrap-direction="wrap"
+        slot
+        ><sqm-instant-access-registration
+          padding-bottom="small"
+          padding-left="x-large"
+          padding-right="x-large"
+          padding-top="small"
+          slot="secondary-column"
+          ><sqm-titled-section
+            label-margin="small"
+            padding="none"
+            slot="top"
+            text-align="center"
+            ><div slot="label">
+              <h1>Invite your friends to unlock rewards!</h1>
+            </div>
+            <p slot="content">
+              They’ll get a $50 credit towards a new account and you’ll get a
+              $50 in credit for each friend you refer.
+            </p></sqm-titled-section
+          ><sqm-portal-footer
+            hide-support-text
+            padding-bottom="x-small"
+            padding-left="none"
+            padding-right="none"
+            padding-top="none"
+            show-powered-by="true"
+            support-email="support@example.com"
+            terms-link="https://example.com"
+            terms-text="Terms And Conditions"
+            slot="bottom"
+          ></sqm-portal-footer></sqm-instant-access-registration></sqm-hero></template></sqb-auth-template-switch
+></sqm-brand>

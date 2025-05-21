@@ -10,7 +10,10 @@ export default {
 };
 
 export const WithIconPrefix = () => {
-  const props = { medium: "whatsapp", iconslot: "prefix" } as const;
+  const props = {
+    medium: "whatsapp",
+    iconslot: "prefix",
+  } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
@@ -69,6 +72,16 @@ export const WithCustomBorderRadius = () => {
     iconslot: "prefix",
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
+};
+
+export const LinkLocationTest = () => {
+  const props = {
+    medium: "facebook",
+    type: "text",
+    onClick: undefined,
+    messageLink: "https://www.example.com",
+  } as const;
+  return <ShareButtonView {...props}>Click me</ShareButtonView>;
 };
 
 export const FullStackIcon = () => {

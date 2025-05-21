@@ -3,6 +3,7 @@ import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import referralWidget from "../templates/ReferralWidget.html";
 import monoWidget from "../templates/MonoWidget.html";
+import promoCodeReferralWidget from "../templates/PromoCodeReferralWidget.html";
 import loyaltyWidget from "../templates/LoyaltyWidget.html";
 import instantAccessReferrerShareWidget from "../templates/InstantAccessReferrerShareWidget.html";
 import instantAccessFriendCouponWidget from "../templates/InstantAccessFriendCouponWidget.html";
@@ -64,6 +65,17 @@ export const Loyalty = createHookStory(() => {
       states={states}
       callbacks={callbacks}
       template={loyaltyWidget}
+    />
+  );
+});
+
+export const PromoCodeReferralWidget = createHookStory(() => {
+  const { states, callbacks } = useTemplate(promoCodeReferralWidget);
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={referralWidget}
     />
   );
 });

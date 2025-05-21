@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.4.1] - 2025-05-12
+
+### Changed
+
+- bump `@raisins/stencil-docs-target` to `1.1.1`
+
 ## [1.4.0] - 2024-09-10
 
 ### Changed
@@ -74,7 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.4.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.4.1...HEAD
+[1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.1
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.0
 [1.2.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.9
 [1.2.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.8
