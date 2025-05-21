@@ -1,12 +1,8 @@
 import { h } from "@stencil/core";
 import { ChangeMarktingView } from "./sqm-portal-change-marketing-view";
-// import scenario from "./sqm-marketing-emails-checkbox.feature";
 
 export default {
   title: "Components/Change Marketing Emails Status",
-  //   parameters: {
-  //     scenario,
-  //   },
 };
 
 const defaultProps = {
