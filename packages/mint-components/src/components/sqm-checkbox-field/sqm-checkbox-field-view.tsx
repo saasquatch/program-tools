@@ -15,7 +15,7 @@ export interface CheckboxFieldViewProps {
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
     checkboxOptional?: boolean;
-    errorMessage: string;
+    errorMessage?: string;
   };
   callbacks: {
     setChecked: Function;
@@ -85,16 +85,12 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
-        {...(!content.checkboxOptional ? { required: true } : [])}
+        {...(!content.checkboxOptional ? { required: false } : [])}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
-        {...(!states.checked && validationErrors?.[content.checkboxName]
-          ? {
-              class: sheet.classes.ErrorStyle,
-            }
-          : [])}
+        required={false}
       >
         {intl.formatMessage(
           {
@@ -108,14 +104,6 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
               </a>
             ),
           }
-        )}
-        {!states.checked && validationErrors?.[content.checkboxName] && (
-          <p class={sheet.classes.ErrorMessageStyle}>
-            {intl.formatMessage({
-              id: `errorMessage-${content.checkboxName}`,
-              defaultMessage: content.errorMessage,
-            })}
-          </p>
         )}
       </sl-checkbox>
     </div>

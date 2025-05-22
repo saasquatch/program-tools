@@ -15,7 +15,7 @@ import { useCheckboxField } from "./useCheckboxField";
  * @uiName Form Checkbox Field
  * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
  * @exampleGroup Microsite Components
- * @example Form Checkbox Field - <sqm-checkbox-field checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+ * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
  */
 @Component({
   tag: "sqm-checkbox-field",
@@ -42,17 +42,17 @@ export class CheckboxField {
    *
    * @uiName Checkbox label link
    */
-  @Prop() checkboxLabelLink: string = "https://example.com";
+  @Prop() checkboxLabelLink?: string = "https://example.com";
 
   /**
    * @uiName Checkbox label link lext
    */
-  @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
+  @Prop() checkboxLabelLinkText?: string = "Terms and Conditions";
 
   /**
    * @uiName Unchecked error message
    */
-  @Prop() errorMessage: string = "Must be checked";
+  @Prop() errorMessage?: string = "Must be checked";
 
   /**
    * @uiName Optional

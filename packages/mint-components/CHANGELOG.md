@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.3] - 2025-05-22
+
+### Changed
+
+- \<sqm-portal-registration>
+  - Added email opt-in slot to portal registration form
+
+### Added
+
+- \<sqm-portal-marketing-emails-checkbox>
+  - checkbox to be used in the registration form to change the user's opt-in status
+- \<sqm-portal-change-marketing>
+  - checkbox to be used in the edit profile form to change the user's opt-in status
+
 ## [1.13.2] - 2025-04-03
 
 ### Changed
@@ -1130,7 +1144,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.3...HEAD
+[1.13.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.3
 [1.13.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.2
 [1.13.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.1
 [1.13.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.0

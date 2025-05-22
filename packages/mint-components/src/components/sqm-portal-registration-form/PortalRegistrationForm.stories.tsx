@@ -132,6 +132,18 @@ export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
 );
 
+export const RegisterWithMarketingEmailsCheckbox = () => (
+  <PortalRegistrationFormView
+    {...defaultProps}
+    content={{
+      ...defaultProps.content,
+      emailOptIn: (
+        <sqm-checkbox-field checkboxLabel="I would like to receive marketing and promotional emails for this referral program"></sqm-checkbox-field>
+      ),
+    }}
+  />
+);
+
 export const TermsAndConditions = () => (
   <PortalRegistrationFormView
     {...defaultProps}

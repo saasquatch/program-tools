@@ -29,6 +29,7 @@ export interface PortalRegistrationFormViewProps {
   content: {
     formData?: VNode;
     terms?: VNode;
+    emailOptIn?: VNode;
     passwordField?: VNode;
     secondaryButton?: VNode;
     emailLabel?: string;
@@ -201,6 +202,7 @@ export function PortalRegistrationFormView(
                 : [])}
             ></sl-input>
           )}
+        {content.emailOptIn}
         {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button

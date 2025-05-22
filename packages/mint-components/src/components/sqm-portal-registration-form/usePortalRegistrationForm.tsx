@@ -88,7 +88,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
-
     let formData: Record<string, any> = {};
     let validationErrors: Record<string, string> = {};
 
