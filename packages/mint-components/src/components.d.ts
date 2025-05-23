@@ -2942,6 +2942,22 @@ export namespace Components {
     interface SqmProgramMenu {
     }
     interface SqmQrCode {
+        /**
+          * @uiName Download QR code text
+         */
+        "downloadCodeText": string;
+        /**
+          * @uiName Print QR code text
+         */
+        "printCodeText": string;
+        /**
+          * @uiName Title
+         */
+        "titleText": string;
+        /**
+          * @uiName View QR code text
+         */
+        "viewCodeText": string;
     }
     interface SqmReferralCard {
         /**
@@ -9577,6 +9593,22 @@ declare namespace LocalJSX {
     interface SqmProgramMenu {
     }
     interface SqmQrCode {
+        /**
+          * @uiName Download QR code text
+         */
+        "downloadCodeText"?: string;
+        /**
+          * @uiName Print QR code text
+         */
+        "printCodeText"?: string;
+        /**
+          * @uiName Title
+         */
+        "titleText"?: string;
+        /**
+          * @uiName View QR code text
+         */
+        "viewCodeText"?: string;
     }
     interface SqmReferralCard {
         /**

@@ -6,12 +6,14 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
 import { gql } from "graphql-request";
 import {
   REFERRAL_CODES_NAMESPACE,
   ReferralCodeContext,
 } from "../sqm-referral-codes/useReferralCodes";
+import { QrCodeView } from "./sqm-qr-code-view";
+import { getProps } from "../../utils/utils";
 
 const ShareLinkQuery = gql`
   query shareLink($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -32,6 +34,26 @@ const ShareLinkQuery = gql`
   shadow: true,
 })
 export class QrCode {
+  /**
+   * @uiName Title
+   */
+  @Prop() titleText: string = "Share your QR code";
+
+  /**
+   * @uiName View QR code text
+   */
+  @Prop() viewCodeText: string = "View QR code";
+
+  /**
+   * @uiName Download QR code text
+   */
+  @Prop() downloadCodeText: string = "Download";
+
+  /**
+   * @uiName Print QR code text
+   */
+  @Prop() printCodeText: string = "Print";
+
   constructor() {
     withHooks(this);
   }
@@ -68,37 +90,21 @@ export class QrCode {
       document.body.removeChild(link);
     };
 
+    const createPrintable = async () => {};
+
     const fireViewQrEvent = () => {
       setExpanded((e) => !e);
     };
 
-    const dimensions = expanded ? 500 : 100;
-    const buttonLabel = expanded ? "Hide QR Code" : "View QR Code";
+    const viewProps = {
+      ...getProps(this),
+      qrLink,
+      expanded,
+      fireViewQrEvent,
+      createDownloadable,
+      createPrintable,
+    };
 
-    return (
-      <div
-        style={{
-          border: "1px solid #eee",
-          padding: "12px",
-          display: "flex",
-          flexDirection: expanded ? "column" : "row",
-          gap: "12px",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <span>Share your QR code</span>
-          <div style={{ display: "flex", gap: "12px" }}>
-            <button onClick={fireViewQrEvent}>{buttonLabel}</button>
-            <button onClick={createDownloadable}>Download</button>
-          </div>
-        </div>
-        <img
-          src={`${qrLink}&qrCodeImageFormat=svg`}
-          width={dimensions}
-          height={dimensions}
-        />
-      </div>
-    );
+    return <QrCodeView {...viewProps} />;
   }
 }

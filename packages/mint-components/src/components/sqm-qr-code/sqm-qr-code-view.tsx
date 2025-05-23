@@ -4,45 +4,62 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface QRCodeViewProps {
   expanded?: boolean;
   qrLink: string;
-  buttonLabel: string;
-  dimensions?: number;
-  fireViewQrEvent: any;
-  createDownloadable: any;
+  fireViewQrEvent: () => void;
+  createDownloadable: () => void;
+  titleText?: string;
+  viewCodeText?: string;
+  downloadCodeText?: string;
+  printCodeText?: string;
+  createPrintable: () => void;
 }
 
 export function QrCodeView({
   expanded,
   qrLink,
-  buttonLabel,
-  dimensions,
+  titleText,
+  viewCodeText,
+  downloadCodeText,
+  printCodeText,
   fireViewQrEvent,
   createDownloadable,
+  createPrintable,
 }: QRCodeViewProps) {
   const style = {
     DialogContainer: {
       maxWidth: "390px !important",
     },
     Container: {
-      padding: "12px",
+      padding: "var(--sl-spacing-small)",
       display: "flex",
       flexDirection: "row",
-      gap: "12px",
+      gap: "var(--sl-spacing-small)",
       justifyContent: "space-between",
     },
     FacadeContainer: {
       display: "flex",
-      gap: "16px",
+      gap: "var(--sl-spacing-medium)",
       flexDirection: "column",
     },
     ButtonContainer: {
       display: "flex",
-      gap: "16px",
+      gap: "var(--sl-spacing-medium)",
     },
     FooterContainer: {
       textAlign: "left",
       display: "flex",
       flexDirection: "column",
-      gap: "20px",
+      gap: "var(--sl-spacing-medium)",
+    },
+    CodeContainer: {
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    Code: {
+      width: "100%",
+      height: "100%",
+      maxWidth: "335px",
     },
   };
 
@@ -60,6 +77,9 @@ export function QrCodeView({
     gap: var(--sl-spacing-small);
     width: 100%;
   }
+  sl-dialog::part(body) {
+    padding: 0 var(--sl-spacing-large);
+  }
   :host{
     display: flex;
     width: 100%;
@@ -75,16 +95,16 @@ export function QrCodeView({
       <style>{vanillaStyle}</style>
       <style>{styleString}</style>
       <div class={sheet.classes.FacadeContainer}>
-        <span>Share your QR code</span>
+        <span part="sqm-title">{titleText}</span>
         <div class={sheet.classes.ButtonContainer}>
           <sl-button type="primary" onClick={fireViewQrEvent}>
-            {buttonLabel}
+            {viewCodeText}
           </sl-button>
           <sl-button type="text" onClick={createDownloadable}>
-            Download
+            {downloadCodeText}
           </sl-button>
-          <sl-button type="text" onClick={createDownloadable}>
-            Print
+          <sl-button type="text" onClick={createPrintable}>
+            {printCodeText}
           </sl-button>
         </div>
       </div>
@@ -93,30 +113,21 @@ export function QrCodeView({
         class={sheet.classes.DialogContainer}
         width="250px"
         open={expanded}
-        label="Share your QR code"
-        aria-modal="true"
+        label={titleText}
       >
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div class={sheet.classes.CodeContainer}>
           <img
+            class={sheet.classes.Code}
             src={`${qrLink}&qrCodeImageFormat=svg`}
-            width={dimensions}
-            height={dimensions}
           />
         </div>
 
         <div slot="footer" class={sheet.classes.FooterContainer}>
           <sl-button variant="default" onClick={createDownloadable}>
-            Download
+            {downloadCodeText}
           </sl-button>
           <sl-button variant="default" onClick={createDownloadable}>
-            Print
+            {printCodeText}
           </sl-button>
         </div>
       </sl-dialog>
