@@ -94,6 +94,7 @@ import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
 import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
+import * as QRCode from "../sqm-qr-code/QRCode.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -194,6 +195,7 @@ const stories = [
   WidgetCodeVerification,
   PayoutButtonScroll,
   PayoutStatusAlert,
+  QRCode,
 ];
 
 /**
