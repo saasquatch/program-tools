@@ -5,6 +5,7 @@ import { ErrorView } from "../tax-and-cash/sqm-tax-and-cash/ErrorView";
 export interface QRCodeViewProps {
   dialogIsOpen: boolean;
   error: boolean;
+  viewError: boolean;
   showDialog: () => void;
   hideDialog: () => void;
   qrLink: string;
@@ -23,7 +24,6 @@ const style = {
     maxWidth: "390px !important",
   },
   Container: {
-    padding: "var(--sl-spacing-small)",
     display: "flex",
     flexDirection: "row",
     gap: "var(--sl-spacing-small)",
@@ -87,6 +87,7 @@ const vanillaStyle = `
 export function QrCodeView({
   dialogIsOpen,
   error,
+  viewError,
   showDialog,
   hideDialog,
   qrLink,
@@ -131,18 +132,17 @@ export function QrCodeView({
         label={titleText}
         onSl-hide={hideDialog}
       >
-        {error && (
+        {(viewError || error) && (
           <ErrorView
             loadingErrorAlertDescription={errorHeaderText}
             loadingErrorAlertHeader={errorDescriptionText}
           />
         )}
-        <div class={sheet.classes.CodeContainer}>
-          <img
-            class={sheet.classes.Code}
-            src={`${qrLink}&qrCodeImageFormat=svg`}
-          />
-        </div>
+        {qrLink && (
+          <div class={sheet.classes.CodeContainer}>
+            <img class={sheet.classes.Code} src={qrLink} />
+          </div>
+        )}
 
         <div slot="footer" class={sheet.classes.FooterContainer}>
           <sl-button

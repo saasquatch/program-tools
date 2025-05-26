@@ -8,6 +8,7 @@ export default {
 const defaultProps: QRCodeViewProps = {
   dialogIsOpen: false,
   error: false,
+  viewError: false,
   showDialog: () => void 0,
   hideDialog: () => void 0,
   qrLink:
@@ -36,6 +37,20 @@ export const Expanded = () => {
 
 export const Error = () => {
   return (
-    <QrCodeView {...defaultProps} dialogIsOpen={true} error={true}></QrCodeView>
+    <QrCodeView
+      {...defaultProps}
+      dialogIsOpen={true}
+      viewError={true}
+    ></QrCodeView>
+  );
+};
+
+export const DownloadError = () => {
+  return (
+    <QrCodeView
+      {...defaultProps}
+      dialogIsOpen={false}
+      error={true}
+    ></QrCodeView>
   );
 };

@@ -7,6 +7,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/stencil-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
   REFERRAL_CODES_NAMESPACE,
@@ -42,16 +43,35 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
     REFERRAL_CODES_NAMESPACE
   );
   const [dialogIsOpen, setDialog] = useState(false);
+  const [qrLink, setQrUrl] = useState(null);
   const [error, setError] = useState(false);
+  const [viewError, setViewError] = useState(false);
 
-  const { data } = useQuery(
+  const { data, errors } = useQuery(
     ShareLinkQuery,
     { programId, engagementMedium },
     !user?.jwt || contextData?.shareLink !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
+  const shareLink = data?.user?.shareLink;
+  const qrPrefix = `${shareLink}?qrCode`;
 
-  const qrLink = data ? `${data.user.shareLink}?qrCode` : "";
+  useEffect(() => {
+    if (!shareLink) return;
+
+    const getQrCode = async () => {
+      try {
+        const res = await fetch(`${shareLink}?qrCode&qrCodeImageFormat=svg`);
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        setQrUrl(url);
+      } catch (e) {
+        setViewError(true);
+      }
+    };
+
+    getQrCode();
+  }, [shareLink]);
 
   const fireEvent = async () => {
     sendLoadEvent({
@@ -70,7 +90,9 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
 
   const createDownloadable = async () => {
     try {
-      const res = await fetch(`${qrLink}&qrCodeSize=800&qrCodeImageFormat=png`);
+      const res = await fetch(
+        `${qrPrefix}&qrCodeSize=800&qrCodeImageFormat=png`
+      );
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
 
@@ -93,7 +115,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   const createPrintable = async () => {
     try {
       const res = await fetch(
-        `${qrLink}&qrCodeSize=1000&qrCodeImageFormat=png&qrCodeErrorCorrectionLevel=H`
+        `${qrPrefix}&qrCodeSize=1000&qrCodeImageFormat=png&qrCodeErrorCorrectionLevel=H`
       );
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -120,7 +142,8 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
     ...props,
     qrLink,
     dialogIsOpen,
-    error,
+    error: error,
+    viewError: viewError || !!errors?.message,
     showDialog: () => {
       setError(false);
       setDialog(true);
