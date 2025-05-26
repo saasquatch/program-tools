@@ -59,7 +59,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
         programId,
         id: user?.id,
         accountId: user?.accountId,
-        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENET",
+        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
         meta: {
           engagementMedium,
           shareMedium: "DIRECT",
@@ -121,9 +121,13 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
     qrLink,
     dialogIsOpen,
     error,
-    showDialog: () => setDialog(true),
+    showDialog: () => {
+      setError(false);
+      setDialog(true);
+    },
     hideDialog: () => {
-      setDialog(false), setError(false);
+      setError(false);
+      setDialog(false);
     },
     createDownloadable,
     createPrintable,

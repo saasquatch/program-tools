@@ -104,6 +104,12 @@ export function QrCodeView({
       <style>{vanillaStyle}</style>
       <style>{styleString}</style>
       <div class={sheet.classes.FacadeContainer}>
+        {error && (
+          <ErrorView
+            loadingErrorAlertDescription={errorHeaderText}
+            loadingErrorAlertHeader={errorDescriptionText}
+          />
+        )}
         <span part="sqm-title">{titleText}</span>
         <div class={sheet.classes.ButtonContainer}>
           <sl-button type="primary" onClick={showDialog}>
