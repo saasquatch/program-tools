@@ -14,61 +14,49 @@ export interface QRCodeViewProps {
   createPrintable: () => void;
 }
 
-export function QrCodeView({
-  dialogIsOpen,
-  showDialog,
-  hideDialog,
-  qrLink,
-  titleText,
-  viewCodeText,
-  downloadCodeText,
-  printCodeText,
-  createDownloadable,
-  createPrintable,
-}: QRCodeViewProps) {
-  const style = {
-    DialogContainer: {
-      maxWidth: "390px !important",
-    },
-    Container: {
-      padding: "var(--sl-spacing-small)",
-      display: "flex",
-      flexDirection: "row",
-      gap: "var(--sl-spacing-small)",
-      justifyContent: "space-between",
-    },
-    FacadeContainer: {
-      display: "flex",
-      gap: "var(--sl-spacing-medium)",
-      flexDirection: "column",
-    },
-    ButtonContainer: {
-      display: "flex",
-      gap: "var(--sl-spacing-medium)",
-    },
-    FooterContainer: {
-      textAlign: "left",
-      display: "flex",
-      flexDirection: "column",
-      gap: "var(--sl-spacing-medium)",
-    },
-    CodeContainer: {
-      display: "flex",
-      width: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    Code: {
-      width: "100%",
-      height: "100%",
-      maxWidth: "335px",
-    },
-  };
+const style = {
+  DialogContainer: {
+    maxWidth: "390px !important",
+  },
+  Container: {
+    padding: "var(--sl-spacing-small)",
+    display: "flex",
+    flexDirection: "row",
+    gap: "var(--sl-spacing-small)",
+    justifyContent: "space-between",
+  },
+  FacadeContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    flexDirection: "column",
+  },
+  ButtonContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+  },
+  FooterContainer: {
+    textAlign: "left",
+    display: "flex",
+    flexDirection: "column",
+    gap: "var(--sl-spacing-medium)",
+  },
+  CodeContainer: {
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  Code: {
+    width: "100%",
+    height: "100%",
+    maxWidth: "335px",
+  },
+};
 
-  const sheet = createStyleSheet(style);
-  const styleString = sheet.toString();
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 
-  const vanillaStyle = `
+const vanillaStyle = `
   sl-dialog::part(panel) {
     max-width: 390px;
     width: 100%;
@@ -92,6 +80,18 @@ export function QrCodeView({
     }
   }`;
 
+export function QrCodeView({
+  dialogIsOpen,
+  showDialog,
+  hideDialog,
+  qrLink,
+  titleText,
+  viewCodeText,
+  downloadCodeText,
+  printCodeText,
+  createDownloadable,
+  createPrintable,
+}: QRCodeViewProps) {
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style>{vanillaStyle}</style>
@@ -115,8 +115,8 @@ export function QrCodeView({
         class={sheet.classes.DialogContainer}
         width="250px"
         open={dialogIsOpen}
-        onSl-hide={hideDialog}
         label={titleText}
+        onSl-hide={hideDialog}
       >
         <div class={sheet.classes.CodeContainer}>
           <img
