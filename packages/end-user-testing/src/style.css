@@ -11,6 +11,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 466px;
 }
 
 form.buttons {
@@ -22,7 +23,7 @@ form.buttons {
   display: none;
 }
 .show {
-  display: block;
+  display: inherit;
 }
 button {
   padding: 8px;

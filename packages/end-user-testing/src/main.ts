@@ -8,6 +8,9 @@ const defaults = {
     "https://fast-staging.ssqt.io/npm/@saasquatch/mint-components@latest/dist/mint-components/mint-components.esm.min.js",
   bedrockSource:
     "https://fast.ssqt.io/npm/@saasquatch/bedrock-components@latest/dist/bedrock-components/bedrock-components.esm.min.js",
+  programId: "",
+  widgetType: "",
+  token: "",
 } as Record<string, any>;
 
 const localStorage = window.localStorage;
@@ -27,6 +30,14 @@ export function sync() {
     tenantAlias: get("tenantAlias") || defaults["tenantAlias"],
     mintSource: get("mintSource") || defaults["mintSource"],
     bedrockSource: get("bedrockSource") || defaults["bedrockSource"],
+  };
+}
+
+function syncWidgetInfo() {
+  return {
+    programId: get("programId") || defaults["programId"],
+    widgetType: get("widgetType") || defaults["widgetType"],
+    token: get("token") || defaults["token"],
   };
 }
 
@@ -65,6 +76,34 @@ function setupForm() {
   });
 }
 
+function widgetForm() {
+  const current = syncWidgetInfo();
+  const form = document.querySelector("form#widgetForm")!;
+  form.className = "show";
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    for (const f of formData.entries()) {
+      set(f[0], f[1] as string);
+    }
+
+    // renderWidget({
+    //   programId: get("programId") || defaults["programId"],
+    //   widgetType: get("widgetType") || defaults["widgetType"],
+    //   token: get("JWT") || defaults["JWT"],
+    // });
+    window.location.reload();
+  });
+
+  const inputs = form.querySelectorAll("input");
+  inputs.forEach((input) => {
+    if (!get(input.name))
+      input.value = current[input.name as keyof typeof current] || "";
+    else input.value = get(input.name)!;
+  });
+}
+
 function showMicrosite() {
   wipeWidget();
 
@@ -92,6 +131,8 @@ function showMicrosite() {
 }
 
 function wipeWidget() {
+  const widgetForm = document.body.querySelector("form#widgetForm")!;
+  widgetForm.className = "hide";
   const frame = document.body.querySelector("iframe#squatchFrame");
   frame?.remove();
 }
@@ -112,10 +153,13 @@ function wipeMicrosite() {
 
 function showWidget() {
   wipeMicrosite();
+  widgetForm();
 
+  const current = syncWidgetInfo();
   renderWidget({
-    programId: "35203",
-    widgetType: "p/35203/w/websiteReferralWidget",
+    programId: current.programId,
+    widgetType: current.widgetType,
+    token: current.token,
   });
 }
 
