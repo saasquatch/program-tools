@@ -114,8 +114,8 @@ function showWidget() {
   wipeMicrosite();
 
   renderWidget({
-    programId: "27462",
-    widgetType: "p/27462/w/referrerWidget",
+    programId: "35203",
+    widgetType: "p/35203/w/websiteReferralWidget",
   });
 }
 
