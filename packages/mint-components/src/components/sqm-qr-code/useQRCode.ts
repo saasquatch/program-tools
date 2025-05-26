@@ -42,7 +42,7 @@ export function useQRCode(props: QrCode) {
     !user?.jwt || contextData?.shareLink !== undefined
   );
 
-  const qrLink = `${data.user.shareLink}?qrCode`;
+  const qrLink = data ? `${data.user.shareLink}?qrCode` : "";
 
   const createDownloadable = async () => {
     const res = await fetch(`${qrLink}&qrCodeSize=800&qrCodeImageFormat=png`);
