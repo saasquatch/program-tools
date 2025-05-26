@@ -8,12 +8,12 @@ import {
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import { gql } from "graphql-request";
+import { getProps } from "../../utils/utils";
 import {
   REFERRAL_CODES_NAMESPACE,
   ReferralCodeContext,
 } from "../sqm-referral-codes/useReferralCodes";
 import { QrCodeView } from "./sqm-qr-code-view";
-import { getProps } from "../../utils/utils";
 
 const ShareLinkQuery = gql`
   query shareLink($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -66,7 +66,7 @@ export class QrCode {
     const contextData = useParentValue<ReferralCodeContext>(
       REFERRAL_CODES_NAMESPACE
     );
-    const [expanded, setExpanded] = useState(false);
+    const [dialogIsOpen, setDialog] = useState(false);
 
     const { data } = useQuery(
       ShareLinkQuery,
@@ -90,17 +90,29 @@ export class QrCode {
       document.body.removeChild(link);
     };
 
-    const createPrintable = async () => {};
+    const createPrintable = async () => {
+      const res = await fetch(
+        `${qrLink}&qrCodeSize=1000&qrCodeImageFormat=png&qrCodeErrorCorrectionLevel=H`
+      );
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
 
-    const fireViewQrEvent = () => {
-      setExpanded((e) => !e);
+      const page = window.open("about:blank", "_new");
+      const img = page.document.createElement("img");
+      img.src = url;
+      img.onload = () => {
+        page.print();
+        page.close();
+      };
+      page.document.body.appendChild(img);
     };
 
     const viewProps = {
       ...getProps(this),
       qrLink,
-      expanded,
-      fireViewQrEvent,
+      dialogIsOpen,
+      showDialog: () => setDialog(true),
+      hideDialog: () => setDialog(false),
       createDownloadable,
       createPrintable,
     };

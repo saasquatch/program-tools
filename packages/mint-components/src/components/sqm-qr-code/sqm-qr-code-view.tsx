@@ -2,9 +2,10 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface QRCodeViewProps {
-  expanded?: boolean;
+  dialogIsOpen: boolean;
+  showDialog: () => void;
+  hideDialog: () => void;
   qrLink: string;
-  fireViewQrEvent: () => void;
   createDownloadable: () => void;
   titleText?: string;
   viewCodeText?: string;
@@ -14,13 +15,14 @@ export interface QRCodeViewProps {
 }
 
 export function QrCodeView({
-  expanded,
+  dialogIsOpen,
+  showDialog,
+  hideDialog,
   qrLink,
   titleText,
   viewCodeText,
   downloadCodeText,
   printCodeText,
-  fireViewQrEvent,
   createDownloadable,
   createPrintable,
 }: QRCodeViewProps) {
@@ -97,7 +99,7 @@ export function QrCodeView({
       <div class={sheet.classes.FacadeContainer}>
         <span part="sqm-title">{titleText}</span>
         <div class={sheet.classes.ButtonContainer}>
-          <sl-button type="primary" onClick={fireViewQrEvent}>
+          <sl-button type="primary" onClick={showDialog}>
             {viewCodeText}
           </sl-button>
           <sl-button type="text" onClick={createDownloadable}>
@@ -112,7 +114,8 @@ export function QrCodeView({
       <sl-dialog
         class={sheet.classes.DialogContainer}
         width="250px"
-        open={expanded}
+        open={dialogIsOpen}
+        onSl-hide={hideDialog}
         label={titleText}
       >
         <div class={sheet.classes.CodeContainer}>
@@ -126,7 +129,7 @@ export function QrCodeView({
           <sl-button variant="default" onClick={createDownloadable}>
             {downloadCodeText}
           </sl-button>
-          <sl-button variant="default" onClick={createDownloadable}>
+          <sl-button variant="default" onClick={createPrintable}>
             {printCodeText}
           </sl-button>
         </div>
