@@ -92,9 +92,13 @@ Feature: QR Code
   Scenario Outline: Error states when the QR code can't be loaded
     Given an error when <asyncAction>
     Then a banner is shown above the QR code component
-    And the banner has the following text
+    And the banner has the following title
       """
-      TODO
+      There was an error loading your QR code
+      """
+    And the banner has the following subtitle
+      """
+      Please refresh this page and try again
       """
     Examples:
       | asyncAction                            |
@@ -103,4 +107,11 @@ Feature: QR Code
       | the downloadable QR code request fails |
       | the printable QR code request fails    |
 
+  @minutia
+  Scenario: Buttons in dialog are displayed if the viewable QR code can't be fetched
+    Given a user clicked the "View QR code" button
+    But the QR code failed to be fetched
+    Then the error banner is shown in the dialog
+    And the "Download" button is disabled
+    And the "Print" button is disabled
 
