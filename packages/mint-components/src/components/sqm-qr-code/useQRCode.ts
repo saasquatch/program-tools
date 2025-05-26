@@ -1,5 +1,6 @@
 import {
   useEngagementMedium,
+  useMutation,
   useParentValue,
   useProgramId,
   useQuery,
@@ -12,6 +13,7 @@ import {
   ReferralCodeContext,
 } from "../sqm-referral-codes/useReferralCodes";
 import { QrCode } from "./sqm-qr-code";
+import { QRCodeViewProps } from "./sqm-qr-code-view";
 
 const ShareLinkQuery = gql`
   query shareLink($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -26,8 +28,13 @@ const ShareLinkQuery = gql`
     }
   }
 `;
+const WIDGET_ENGAGEMENT_EVENT = gql`
+  mutation loadEvent($eventMeta: UserAnalyticsEvent!) {
+    createUserAnalyticsEvent(eventMeta: $eventMeta)
+  }
+`;
 
-export function useQRCode(props: QrCode) {
+export function useQRCode(props: QrCode): QRCodeViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -35,50 +42,89 @@ export function useQRCode(props: QrCode) {
     REFERRAL_CODES_NAMESPACE
   );
   const [dialogIsOpen, setDialog] = useState(false);
+  const [error, setError] = useState(false);
 
   const { data } = useQuery(
     ShareLinkQuery,
     { programId, engagementMedium },
     !user?.jwt || contextData?.shareLink !== undefined
   );
+  const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const qrLink = data ? `${data.user.shareLink}?qrCode` : "";
 
+  const fireEvent = async () => {
+    sendLoadEvent({
+      eventMeta: {
+        programId,
+        id: user?.id,
+        accountId: user?.accountId,
+        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENET",
+        meta: {
+          engagementMedium,
+          shareMedium: "DIRECT",
+        },
+      },
+    });
+  };
+
   const createDownloadable = async () => {
-    const res = await fetch(`${qrLink}&qrCodeSize=800&qrCodeImageFormat=png`);
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "qrCode.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const res = await fetch(`${qrLink}&qrCodeSize=800&qrCodeImageFormat=png`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+
+      // Successful
+      if (blob) fireEvent();
+
+      // Trigger download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "qrCode.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (e) {
+      console.error("Failed to fetch QR code:", e);
+      setError(true);
+    }
   };
 
   const createPrintable = async () => {
-    const res = await fetch(
-      `${qrLink}&qrCodeSize=1000&qrCodeImageFormat=png&qrCodeErrorCorrectionLevel=H`
-    );
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
+    try {
+      const res = await fetch(
+        `${qrLink}&qrCodeSize=1000&qrCodeImageFormat=png&qrCodeErrorCorrectionLevel=H`
+      );
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
 
-    const page = window.open("about:blank", "_new");
-    const img = page.document.createElement("img");
-    img.src = url;
-    img.onload = () => {
-      page.print();
-      page.close();
-    };
-    page.document.body.appendChild(img);
+      // Successful
+      if (blob) fireEvent();
+
+      // Trigger print
+      const page = window.open("about:blank", "_new");
+      const img = page.document.createElement("img");
+      img.src = url;
+      img.onload = () => {
+        page.print();
+        page.close();
+      };
+      page.document.body.appendChild(img);
+    } catch (e) {
+      console.error("Failed to fetch QR code: ", e);
+      setError(true);
+    }
   };
 
   return {
     ...props,
     qrLink,
     dialogIsOpen,
+    error,
     showDialog: () => setDialog(true),
-    hideDialog: () => setDialog(false),
+    hideDialog: () => {
+      setDialog(false), setError(false);
+    },
     createDownloadable,
     createPrintable,
   };

@@ -1,8 +1,10 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
+import { ErrorView } from "../tax-and-cash/sqm-tax-and-cash/ErrorView";
 
 export interface QRCodeViewProps {
   dialogIsOpen: boolean;
+  error: boolean;
   showDialog: () => void;
   hideDialog: () => void;
   qrLink: string;
@@ -11,6 +13,8 @@ export interface QRCodeViewProps {
   viewCodeText?: string;
   downloadCodeText?: string;
   printCodeText?: string;
+  errorHeaderText?: string;
+  errorDescriptionText?: string;
   createPrintable: () => void;
 }
 
@@ -82,6 +86,7 @@ const vanillaStyle = `
 
 export function QrCodeView({
   dialogIsOpen,
+  error,
   showDialog,
   hideDialog,
   qrLink,
@@ -89,6 +94,8 @@ export function QrCodeView({
   viewCodeText,
   downloadCodeText,
   printCodeText,
+  errorHeaderText,
+  errorDescriptionText,
   createDownloadable,
   createPrintable,
 }: QRCodeViewProps) {
@@ -118,6 +125,12 @@ export function QrCodeView({
         label={titleText}
         onSl-hide={hideDialog}
       >
+        {error && (
+          <ErrorView
+            loadingErrorAlertDescription={errorHeaderText}
+            loadingErrorAlertHeader={errorDescriptionText}
+          />
+        )}
         <div class={sheet.classes.CodeContainer}>
           <img
             class={sheet.classes.Code}
@@ -126,10 +139,18 @@ export function QrCodeView({
         </div>
 
         <div slot="footer" class={sheet.classes.FooterContainer}>
-          <sl-button variant="default" onClick={createDownloadable}>
+          <sl-button
+            disabled={error}
+            variant="default"
+            onClick={createDownloadable}
+          >
             {downloadCodeText}
           </sl-button>
-          <sl-button variant="default" onClick={createPrintable}>
+          <sl-button
+            disabled={error}
+            variant="default"
+            onClick={createPrintable}
+          >
             {printCodeText}
           </sl-button>
         </div>

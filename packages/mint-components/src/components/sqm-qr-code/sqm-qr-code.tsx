@@ -36,6 +36,16 @@ export class QrCode {
    * @uiName Print QR code text
    */
   @Prop() printCodeText?: string = "Print";
+  /**
+   * @uiName Header for error banner
+   */
+  @Prop() errorHeaderText?: string = "There was an error loading your QR code";
+
+  /**
+   * @uiName Description for error banner
+   */
+  @Prop() errorDescriptionText?: string =
+    "Please refresh this page and try again";
 
   /**
    * @undocumented
