@@ -42,6 +42,7 @@ import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-port
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { QRCodeViewProps } from "./components/sqm-qr-code/sqm-qr-code-view";
 import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
@@ -2943,21 +2944,26 @@ export namespace Components {
     }
     interface SqmQrCode {
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<QRCodeViewProps>;
+        /**
           * @uiName Download QR code text
          */
-        "downloadCodeText": string;
+        "downloadCodeText"?: string;
         /**
           * @uiName Print QR code text
          */
-        "printCodeText": string;
+        "printCodeText"?: string;
         /**
           * @uiName Title
          */
-        "titleText": string;
+        "titleText"?: string;
         /**
           * @uiName View QR code text
          */
-        "viewCodeText": string;
+        "viewCodeText"?: string;
     }
     interface SqmReferralCard {
         /**
@@ -9593,6 +9599,11 @@ declare namespace LocalJSX {
     interface SqmProgramMenu {
     }
     interface SqmQrCode {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<QRCodeViewProps>;
         /**
           * @uiName Download QR code text
          */
