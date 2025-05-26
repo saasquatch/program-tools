@@ -73,10 +73,10 @@ function useDemoQRCode(props: QrCode): QRCodeViewProps {
       dialogIsOpen,
       showDialog: () => setDialog(true),
       hideDialog: () => setDialog(false),
-      titleText: this.titleText,
-      viewCodeText: this.viewCodeText,
-      downloadCodeText: this.downloadCodeText,
-      printCodeText: this.printCodeText,
+      titleText: props.titleText,
+      viewCodeText: props.viewCodeText,
+      downloadCodeText: props.downloadCodeText,
+      printCodeText: props.printCodeText,
       qrLink:
         "https://media.istockphoto.com/id/1251071788/vector/qr-code-bar-code-black-icon-digital-technology.jpg?s=612x612&w=0&k=20&c=maw4OqMSEegAdSo8Drm9HO7i1ddddvP2YaL1UuWbRig=",
       fireViewQrEvent: () => {
