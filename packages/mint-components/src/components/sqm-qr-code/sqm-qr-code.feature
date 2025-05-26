@@ -33,7 +33,7 @@ Feature: QR Code
     And the QR code is in "svg" format
 
   @motivating
-  Scenario Outline: No engagement event is fired
+  Scenario Outline: Engagement event is fired when user takes action to share the QR code
     Given a QR code loads successfully
     When the user <action>
     Then a "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" event is fired
