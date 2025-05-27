@@ -7,7 +7,7 @@ export interface PortalVerifyEmailViewProps {
   states: {
     error: string;
     loading: boolean;
-    verified: boolean;
+    success: boolean;
   };
   data: {
     oobCode: string;
@@ -15,6 +15,12 @@ export interface PortalVerifyEmailViewProps {
   callbacks: {
     gotoNextPage: () => void;
     failed: () => void;
+  };
+  content: {
+    verifySuccessText?: string;
+    verifyEmailText?: string;
+    verifyInvalidText?: string;
+    continueText?: string;
   };
 }
 
@@ -39,21 +45,20 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
-  const { states, data, callbacks } = props;
+  const { states, data, callbacks, content } = props;
 
-  if (states.verified) {
+  if (states.loading) return;
+
+  if (states.success) {
     return (
       <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">
           {vanillaStyle}
           {styleString}
         </style>
-        <TextSpanView type="h3">Verify your email</TextSpanView>
+        <TextSpanView type="h3">{content.verifyEmailText}</TextSpanView>
         <sqm-form-message exportparts="success-icon">
-          <div part="successalert-text">
-            Your email has been verified and you are being redirected. If you
-            are not redirected, please click Continue.
-          </div>
+          <div part="successalert-text">{content.verifySuccessText}</div>
         </sqm-form-message>
         <sl-button
           class={sheet.classes.ContinueButton}
@@ -62,7 +67,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           exportparts="base: primarybutton-base"
           type="primary"
         >
-          Continue
+          {content.continueText}
         </sl-button>
       </div>
     );
@@ -72,21 +77,18 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
     return (
       <div class={sheet.classes.Wrapper} part="sqm-base">
         <style type="text/css">{styleString}</style>
-        <TextSpanView type="h3">Verify your email</TextSpanView>
+        <TextSpanView type="h3">{content.verifyEmailText}</TextSpanView>
         <sqm-form-message type="error" exportparts="erroralert-icon">
-          <div part="erroralert-text">
-            The email verification code is invalid or has expired, please try
-            again.
-          </div>
+          <div part="erroralert-text">{content.verifyInvalidText}</div>
         </sqm-form-message>
         <sl-button
           class={sheet.classes.ContinueButton}
           onClick={callbacks.failed}
-          loading={states.loading}
+          disabled={states.loading}
           exportparts="base: primarybutton-base"
           type="primary"
         >
-          Continue
+          {content.continueText}
         </sl-button>
       </div>
     );

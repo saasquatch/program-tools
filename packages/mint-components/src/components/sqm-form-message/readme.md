@@ -17,12 +17,16 @@
 
 ### Used by
 
+ - [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
  - [sqm-coupon-code](../sqm-coupon-code)
  - [sqm-edit-profile](../sqm-edit-profile)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
+ - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
  - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
+ - [sqm-portal-google-login](../sqm-portal-google-login)
+ - [sqm-portal-google-registration-form](../sqm-portal-google-registration-form)
  - [sqm-portal-login](../sqm-portal-login)
  - [sqm-portal-profile](../sqm-portal-profile)
  - [sqm-portal-register](../sqm-portal-register)
@@ -35,12 +39,16 @@
 ### Graph
 ```mermaid
 graph TD;
+  sqm-code-verification --> sqm-form-message
   sqm-coupon-code --> sqm-form-message
   sqm-edit-profile --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
+  sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-portal-google-login --> sqm-form-message
+  sqm-portal-google-registration-form --> sqm-form-message
   sqm-portal-login --> sqm-form-message
   sqm-portal-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message

@@ -15,9 +15,11 @@ import { getProps } from "../../utils/utils";
 })
 export class PopupContainer {
   /**
-   * Show Powered with SaaSquatch by Impact.com link
+   * Show Powered by Impact.com link
    *
    * @uiName Show powered by
+   * @requiredFeatures ["CUSTOM_BRANDING"]
+   * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
    */
   @Prop() poweredBy: boolean;
   /**
@@ -32,6 +34,12 @@ export class PopupContainer {
    * @uiName Close button text
    */
   @Prop() closeButtonText: string;
+  /**
+   * Text at the bottom of the popup
+   *
+   * @uiName "Powered by" text
+   */
+  @Prop() poweredByText: string = "Powered By";
   /**
    * Specify padding on the popup contents when in embedded mode
    *

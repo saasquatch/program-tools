@@ -1,11 +1,11 @@
 import { h } from "@stencil/core";
 import {
   PortalProfileView,
-  PortalProfileViewProps
+  PortalProfileViewProps,
 } from "./sqm-portal-profile-view";
 
 export default {
-  title: "Components/Portal Profile",
+  title: "Components/Microsite Profile",
 };
 
 const defaultProps: PortalProfileViewProps = {

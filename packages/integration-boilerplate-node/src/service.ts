@@ -1,19 +1,27 @@
+import {
+  healthCheck,
+  installShutdownManager,
+  requestIdAndLogger,
+  shutdownManagerConfigFromEnv,
+} from "@saasquatch/express-boilerplate";
 import { httpLogMiddleware } from "@saasquatch/logger";
-import { hostname } from "os";
 import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
 import compression from "compression";
-import express, { Express, Request, Response, Router } from "express";
+import express, { Express, Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
 import fetch from "node-fetch";
+import { hostname } from "os";
 import path from "path";
 import { Logger } from "winston";
 import { gql } from ".";
 import { Auth } from "./auth";
+import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
 import { BaseConfig, loadConfig } from "./config";
 import { GraphQLError, IntegrationConfigError } from "./errors";
 import { formHandler } from "./formHandler";
+import { installInstrumentation } from "./instrumentation";
 import { introspectionHandler } from "./introspectionHandler";
 import { createLogger } from "./logger";
 import {
@@ -29,8 +37,6 @@ import {
 } from "./middleware";
 import * as types from "./types";
 import { webhookHandler } from "./webhookHandler";
-import { installInstrumentation } from "./instrumentation";
-import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
 
 declare module "http" {
   interface IncomingMessage {
@@ -41,24 +47,24 @@ declare module "http" {
 export interface IntegrationHandlers<
   ServiceConfig extends BaseConfig = BaseConfig,
   IntegrationConfig = {},
-  FormConfig = {}
+  FormConfig = {},
 > {
   webhookHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     webhook: types.Webhook,
     config: IntegrationConfig,
     graphql: types.TenantScopedGraphQLFn,
-    res: Response
+    res: Response,
   ) => Promise<void>;
   formSubmitHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     context: types.FormSubmitRequestContext<IntegrationConfig, FormConfig>,
-    graphql: types.TenantScopedGraphQLFn
+    graphql: types.TenantScopedGraphQLFn,
   ) => Promise<types.FormSubmissionResponse | types.FormErrorResponse>;
   formValidateHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     context: types.FormValidateRequestContext<IntegrationConfig, FormConfig>,
-    graphql: types.TenantScopedGraphQLFn
+    graphql: types.TenantScopedGraphQLFn,
   ) => Promise<types.FormValidationResponse | types.FormErrorResponse>;
   formIntrospectionHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
@@ -66,25 +72,25 @@ export interface IntegrationHandlers<
       IntegrationConfig,
       FormConfig
     >,
-    graphql: types.TenantScopedGraphQLFn
+    graphql: types.TenantScopedGraphQLFn,
   ) => Promise<types.FormIntrospectionResponse | types.FormErrorResponse>;
   formInitialDataHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     context: types.FormInitialDataRequestContext<IntegrationConfig, FormConfig>,
-    graphql: types.TenantScopedGraphQLFn
+    graphql: types.TenantScopedGraphQLFn,
   ) => Promise<types.FormInitialDataResponse | types.FormErrorResponse>;
   introspectionHandler?: (
     service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
     config: IntegrationConfig,
     templateIntegrationConfig: IntegrationConfiguration,
-    tenantAlias: types.TenantAlias
+    tenantAlias: types.TenantAlias,
   ) => Promise<types.IntrospectionResponse>;
 }
 
 export interface ServiceOptions<
   ServiceConfig extends BaseConfig,
   IntegrationConfig,
-  FormConfig
+  FormConfig,
 > {
   handlers?: IntegrationHandlers<ServiceConfig, IntegrationConfig, FormConfig>;
   configClass?: (new () => ServiceConfig) | null;
@@ -94,7 +100,7 @@ export interface ServiceOptions<
 export class IntegrationService<
   ServiceConfig extends BaseConfig,
   IntegrationConfig,
-  FormConfig
+  FormConfig,
 > {
   readonly config: ServiceConfig;
   readonly logger: Logger;
@@ -115,7 +121,7 @@ export class IntegrationService<
 
   constructor(
     config: ServiceConfig,
-    options?: ServiceOptions<ServiceConfig, IntegrationConfig, FormConfig>
+    options?: ServiceOptions<ServiceConfig, IntegrationConfig, FormConfig>,
   ) {
     this.options = options;
     this.config = config;
@@ -128,11 +134,11 @@ export class IntegrationService<
       config.saasquatchAuth0ClientId,
       config.saasquatchAuth0Secret,
       config.saasquatchAuth0Domain,
-      this.logger
+      this.logger,
     );
     this.tenantScopedTokenMiddleware = createSaasquatchTokenMiddleware(
       this.auth,
-      this.logger
+      this.logger,
     );
     this.router = options?.customRouter || Router();
     this.server = this.createExpressServer();
@@ -142,10 +148,24 @@ export class IntegrationService<
     });
   }
 
-  run() {
-    this.server.listen(this.config.port, () => {
-      this.logger.info(`Listening on port ${this.config.port}`);
-    });
+  run(opts?: { gracefulShutdown?: boolean }) {
+    const msg = `${this.config.serviceName} listening on port ${this.config.port}`;
+
+    if (opts?.gracefulShutdown) {
+      const httpServer = installShutdownManager(
+        this.server,
+        this.logger,
+        shutdownManagerConfigFromEnv(),
+      );
+
+      httpServer.listen(this.config.port, () => {
+        this.logger.notice(msg);
+      });
+    } else {
+      this.server.listen(this.config.port, () => {
+        this.logger.notice(msg);
+      });
+    }
   }
 
   async getIntegrationTenants() {
@@ -167,7 +187,7 @@ export class IntegrationService<
 
     const result = await this.graphql<TenantQueryData>(tenantQuery);
     const tenantAliases = result.data.viewer.tenants.map(
-      (tenant) => tenant.tenantAlias
+      (tenant) => tenant.tenantAlias,
     );
 
     return tenantAliases;
@@ -183,15 +203,19 @@ export class IntegrationService<
     return this.getUserScopedGraphQL(tenantAlias, userJwt);
   }
 
+  public flushIntegrationConfigCache(tenantAlias: types.TenantAlias): void {
+    this.tenantIntegrationConfigCache.del(tenantAlias);
+  }
+
   async getIntegrationConfig(
-    tenantAlias: types.TenantAlias
+    tenantAlias: types.TenantAlias,
   ): Promise<IntegrationConfig> {
     if (this.tenantIntegrationConfigCache.has(tenantAlias)) {
       this.logger.debug(
-        `Retrieving integration config for tenant [${tenantAlias}] from cache`
+        `Retrieving integration config for tenant [${tenantAlias}] from cache`,
       );
       return this.tenantIntegrationConfigCache.get(
-        tenantAlias
+        tenantAlias,
       ) as IntegrationConfig;
     }
 
@@ -212,7 +236,7 @@ export class IntegrationService<
       return config;
     } catch (e) {
       throw new IntegrationConfigError(
-        `Failed to get integration config: ${(e as Error).message}`
+        `Failed to get integration config: ${(e as Error).message}`,
       );
     }
   }
@@ -220,7 +244,7 @@ export class IntegrationService<
   public async authenticatedHttpRequest(
     method: "GET" | "POST",
     path: string,
-    body?: any
+    body?: any,
   ): Promise<{ status: number; json: any }> {
     const apiToken = await this.auth.getSaasquatchApiToken();
     const appDomain = this.config.saasquatchAppDomain;
@@ -238,12 +262,12 @@ export class IntegrationService<
   }
 
   private getTenantScopedGraphQL(
-    tenantAlias: types.TenantAlias
+    tenantAlias: types.TenantAlias,
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
       query: string,
       variables?: Record<string, any>,
-      operationName?: string
+      operationName?: string,
     ) => {
       return this.graphql<QueryResponseShape>(query, {
         tenantAlias,
@@ -255,12 +279,12 @@ export class IntegrationService<
 
   private getUserScopedGraphQL(
     tenantAlias: types.TenantAlias,
-    userJwt: string
+    userJwt: string,
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
       query: string,
       variables?: Record<string, any>,
-      operationName?: string
+      operationName?: string,
     ) => {
       return this.graphql<QueryResponseShape>(query, {
         tenantAlias,
@@ -278,7 +302,7 @@ export class IntegrationService<
       variables?: Record<string, any>;
       operationName?: string;
       token?: string;
-    }
+    },
   ): Promise<QueryResponseShape> {
     const apiToken = opts?.token
       ? opts.token
@@ -336,17 +360,20 @@ export class IntegrationService<
   }
 
   private createExpressServer() {
-    const server = express();
+    const app = express();
 
     // Enable compression
-    server.use(compression());
+    app.use(compression());
+
+    // generate request IDs and derived logger
+    app.use(requestIdAndLogger(this.logger));
 
     // Enable request logging
-    server.use(httpLogMiddleware(this.logger));
+    app.use(httpLogMiddleware(this.logger));
 
     // Record the server's HTTP response times if metrics are enabled
     if (this.config.metricsEnabled) {
-      server.use(async (_req, res, next) => {
+      app.use(async (_req, res, next) => {
         const startTimeNs = process.hrtime.bigint();
         this.metricsManager!.increment(METRIC_REQUEST_PROCESSING_COUNT);
 
@@ -357,7 +384,7 @@ export class IntegrationService<
           if (!Number.isNaN(time) && Number.isFinite(time) && time > 0) {
             this.metricsManager!.recordHistogramVal(
               "response_time",
-              Number(time)
+              Number(time),
             );
           }
 
@@ -371,7 +398,7 @@ export class IntegrationService<
     // Force HTTPS for all requests
     if (this.config.enforceHttps) {
       const enforceHttps = enforce.HTTPS({ trustProtoHeader: true });
-      server.use((req, res, next) => {
+      app.use((req, res, next) => {
         if (["/healthz", "/livez", "/readyz"].includes(req.path)) {
           next();
         } else {
@@ -381,38 +408,36 @@ export class IntegrationService<
     }
 
     // Support JSON bodies
-    server.use(
+    app.use(
       express.json({
         verify: (req, _res, buf) => {
           // Save the raw body for token validation
           // NOTE: The default encoding for buf.toString() is UTF-8
           req.rawBody = buf.toString();
         },
-      })
+      }),
     );
 
     //  Support application/x-www-form-urlencoded bodies
-    server.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: false }));
 
-    const healthCheck = (_req: Request, res: Response) =>
-      res.status(200).json({ status: "OK" });
-
-    server.get("/healthz", healthCheck);
-    server.get("/livez", healthCheck);
-    server.get("/readyz", healthCheck);
+    const healthCheckFn = healthCheck(app, this.logger);
+    app.get("/healthz", healthCheckFn);
+    app.get("/livez", healthCheckFn);
+    app.get("/readyz", healthCheckFn);
 
     const requireSaaSquatchSignature = createSaasquatchRequestMiddleware(
       this.auth,
-      this.logger
+      this.logger,
     );
 
     if (this.options?.handlers?.webhookHandler) {
-      server.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
+      app.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
         await webhookHandler(
           req,
           res,
           this,
-          this.getTenantScopedGraphQL(req.body.tenantAlias)
+          this.getTenantScopedGraphQL(req.body.tenantAlias),
         );
 
         if (this.config.metricsEnabled) {
@@ -422,7 +447,7 @@ export class IntegrationService<
     }
 
     if (this.options?.handlers?.introspectionHandler) {
-      server.post(
+      app.post(
         this.config.introspectionEndpointPath,
         requireSaaSquatchSignature,
         async (req, res) => {
@@ -430,7 +455,7 @@ export class IntegrationService<
           if (this.config.metricsEnabled) {
             this.metricsManager!.increment(METRIC_INTROSPECTION_COUNT);
           }
-        }
+        },
       );
     }
 
@@ -440,12 +465,12 @@ export class IntegrationService<
       this.options?.handlers?.formSubmitHandler ||
       this.options?.handlers?.formValidateHandler
     ) {
-      server.post("/form", requireSaaSquatchSignature, async (req, res) => {
+      app.post("/form", requireSaaSquatchSignature, async (req, res) => {
         await formHandler(
           req,
           res,
           this,
-          this.getTenantScopedGraphQL(req.body.tenantAlias)
+          this.getTenantScopedGraphQL(req.body.tenantAlias),
         );
 
         if (this.config.metricsEnabled) {
@@ -454,46 +479,46 @@ export class IntegrationService<
       });
     }
 
-    server.use("/", this.router);
+    app.use("/", this.router);
 
     // Serve the frontend at the root of the server
     if (this.config.proxyFrontend) {
-      server.use(
+      app.use(
         "/",
         createProxyMiddleware({
           target: this.config.proxyFrontend,
           changeOrigin: true,
-        })
+        }),
       );
     } else if (this.config.staticFrontendPath) {
       const frontendPath = path.join(
         require.main!.path,
-        this.config.staticFrontendPath
+        this.config.staticFrontendPath,
       );
-      server.use(express.static(frontendPath));
-      server.get("/*", (_req, res, next) => {
+      app.use(express.static(frontendPath));
+      app.get("/*", (_req, res, next) => {
         res.sendFile(
           path.join(frontendPath, this.config.staticFrontendIndex),
           undefined,
           (err) => {
             if (err) next();
-          }
+          },
         );
       });
     } else {
-      server.get("/", (_req, res) => {
+      app.get("/", (_req, res) => {
         res.sendStatus(204);
       });
     }
 
-    return server;
+    return app;
   }
 }
 
 export async function createIntegrationService<
   ServiceConfig extends BaseConfig = BaseConfig,
   IntegrationConfig = {},
-  FormConfig = {}
+  FormConfig = {},
 >(options?: {
   handlers: IntegrationHandlers<ServiceConfig, IntegrationConfig, FormConfig>;
   configClass?: (new () => ServiceConfig) | null;

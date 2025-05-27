@@ -16,6 +16,7 @@ jobs:
       packages: write
 
     strategy:
+      fail-fast: false
       matrix:
         package:
           - program-boilerplate
@@ -23,6 +24,7 @@ jobs:
           - stencil-grapes-plugin
           - mint-components
           - integration-boilerplate-node
+          - express-boilerplate
 
     steps:
       - uses: actions/checkout@v4

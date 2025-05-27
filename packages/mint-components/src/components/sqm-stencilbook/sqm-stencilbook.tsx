@@ -4,6 +4,7 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../sqm-share-button/ShareButton.stories";
 import * as EmptyState from "../sqm-empty/EmptyState.stories";
+import * as Pagination from "../sqm-pagination/Pagination.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as Leaderboard from "../sqm-leaderboard/Leaderboard.stories";
@@ -26,6 +27,7 @@ import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
+import * as NewPortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgotPassword.stories";
 import * as PortalEmailVerification from "../sqm-portal-email-verification/PortalEmailVerification.stories";
 import * as PortalResetPassword from "../sqm-portal-reset-password/PortalResetPassword.stories";
@@ -33,6 +35,7 @@ import * as PortalVerifyEmail from "../sqm-portal-verify-email/PortalVerifyEmail
 import * as AssetCard from "../sqm-asset-card/AssetCard.stories";
 import * as DividedLayout from "../sqm-divided-layout/DividedLayout.stories";
 import * as ChangePassword from "../sqm-portal-change-password/ChangePassword.stories";
+import * as ChangeMarketing from "../sqm-portal-change-marketing/ChangeMarketing.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
@@ -48,6 +51,7 @@ import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
 import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
+import * as MarketingEmailsCheckbox from "../sqm-marketing-emails-checkbox/MarketingEmailsCheckbox.stories";
 import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
 import * as DropdownField from "../sqm-dropdown-field/DropdownField.stories";
 import * as UseDropdownField from "../sqm-dropdown-field/UseDropdownField.stories";
@@ -70,11 +74,29 @@ import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as ShareCode from "../sqm-share-code/ShareCode.stories";
+import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as EmailRegistration from "../views/EmailRegistration.stories";
 import * as CouponCode from "../sqm-coupon-code/CouponCode.stories";
 import * as LogoutCurrentUser from "../sqm-logout-current-user/LogoutCurrentUser.stories";
 import * as LinkButton from "../sqm-link-button/LinkButton.stories";
 import * as CloseButton from "../sqm-close-button/CloseButton.stories";
+import * as TaxForm from "../tax-and-cash/TaxForm.stories";
+import * as TaxFormSlots from "../tax-and-cash/sqm-user-info-form/small-views/SlotViews.stories";
+import * as RadioCard from "../sqm-radio-card/RadioCard.stories";
+import * as ProgressBar from "../sqm-task-card/progress-bar/ProgressBar.stories";
+import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/PayoutDetailsCard.stories";
+import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
+import * as InvoiceTable from "../sqm-invoice-table/InvoiceTable.stories";
+import * as InvoiceTableCells from "../sqm-invoice-table/InvoiceTableCell.stories";
+import * as UseInvoiceTableCells from "../sqm-invoice-table/UseInvoiceTable.stories";
+import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
+import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
+import * as PayoutButtonScroll from "../sqm-payout-button-scroll/PayoutButtonScroll.stories";
+import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
+import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
+import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
+import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
+import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -83,7 +105,11 @@ import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { ResizerStylesheet } from "./Resizer";
 
 const stories = [
+  InvoiceTable,
+  InvoiceTableCells,
+  UseInvoiceTableCells,
   ShareButton,
+  Pagination,
   ShareLink,
   BigStat,
   Leaderboard,
@@ -129,6 +155,7 @@ const stories = [
   ReferralIframe,
   NameFields,
   CheckboxField,
+  MarketingEmailsCheckbox,
   DropdownField,
   InputField,
   RewardExchangeList,
@@ -152,10 +179,27 @@ const stories = [
   Tabs,
   ShareCode,
   CouponCode,
+  ReferralCode,
+  ReferralCodes,
   LogoutCurrentUser,
   LinkButton,
   EmailRegistration,
   CloseButton,
+  TaxForm,
+  RadioCard,
+  ProgressBar,
+  TaxFormSlots,
+  PayoutDetailsCard,
+  BankingInfoForm,
+  NewPortalRegistrationForm,
+  ChangeMarketing,
+  BaseRegistrationForm,
+  PortalRegistrationForm,
+  PortalGoogleRegistrationFormStories,
+  WidgetEmailVerification,
+  WidgetCodeVerification,
+  PayoutButtonScroll,
+  PayoutStatusAlert,
 ];
 
 /**

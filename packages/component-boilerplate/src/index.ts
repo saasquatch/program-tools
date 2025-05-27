@@ -17,6 +17,7 @@ export { useRequestPasswordResetEmailMutation } from "./hooks/managedIdentity/us
 export { useRequestVerificationEmailMutation } from "./hooks/managedIdentity/useRequestVerificationEmailMutation";
 export { useManagedIdentitySessionQuery } from "./hooks/managedIdentity/useManagedIdentitySessionQuery";
 export { useAuthenticateManagedIdentityWithInstantAccess } from "./hooks/instantaccess/useAuthenticateManagedIdentityWithInstantAccess";
+export { useAuthenticateWithGoogle } from "./hooks/managedIdentity/useAuthenticateWithGoogle";
 
 //
 //      GraphQL API
@@ -30,6 +31,10 @@ export {
   GRAPHQL_CONTEXT,
 } from "./hooks/graphql/useGraphQLClient";
 export { useRefreshDispatcher } from "./hooks/graphql/Refresh";
+export {
+  useParentQuery,
+  useParentQueryValue,
+} from "./hooks/graphql/useParentQuery";
 
 //      Navigation
 export { navigation, useCurrentPage } from "./hooks/useNavigation";
@@ -49,9 +54,18 @@ export {
   useHost,
   setImplementation as setUseHostImplementation,
 } from "./hooks/useHost";
+export {
+  useParentState,
+  useParent,
+  useParentValue,
+  useSetParent,
+  getContextName,
+  getContextValueName,
+} from "./hooks/useParentState";
 
 //
 //      Common higher-level functionality
 //
 export { useShareEvent } from "./hooks/useShareEvent";
+export { useLoadEvent } from "./hooks/useLoadEvent";
 export { useForm } from "./hooks/useForm";

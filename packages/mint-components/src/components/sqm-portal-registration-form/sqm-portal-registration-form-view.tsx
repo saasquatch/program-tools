@@ -16,9 +16,11 @@ export interface PortalRegistrationFormViewProps {
     loading: boolean;
     confirmPassword: boolean;
     hideInputs: boolean;
+    hidePasswords?: boolean;
     registrationFormState?: RegistrationFormState;
     enablePasswordValidation?: boolean;
     loginPath: string;
+    emailDisabled?: boolean;
   };
   callbacks: {
     submit: Function;
@@ -27,6 +29,7 @@ export interface PortalRegistrationFormViewProps {
   content: {
     formData?: VNode;
     terms?: VNode;
+    emailOptIn?: VNode;
     passwordField?: VNode;
     secondaryButton?: VNode;
     emailLabel?: string;
@@ -39,6 +42,12 @@ export interface PortalRegistrationFormViewProps {
     invalidEmailErrorMessage?: string;
     formDisabledErrorMessage?: string;
     requiredFieldErrorMessage?: string;
+    meetsRequirementsText?: string;
+    doesNotMeetRequirementsText?: string;
+    minErrorText?: string;
+    uppercaseErrorText?: string;
+    lowercaseErrorText?: string;
+    hasErrorText?: string;
   };
   refs: {
     formRef: any;
@@ -46,7 +55,7 @@ export interface PortalRegistrationFormViewProps {
 }
 
 const style = {
-  Wrapper: { ...AuthWrapper, "max-width": "600px" },
+  Wrapper: AuthWrapper,
   Column: AuthColumn,
   HostBlock: HostBlock,
 
@@ -117,11 +126,15 @@ export function PortalRegistrationFormView(
         {content.formData}
         {!states.hideInputs && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
-            disabled={states.loading || states.registrationFormState?.disabled}
+            disabled={
+              states.loading ||
+              states.registrationFormState?.disabled ||
+              states.emailDisabled
+            }
             required
             validationError={({ value }: { value: string }) => {
               if (!value) {
@@ -147,37 +160,49 @@ export function PortalRegistrationFormView(
               : [])}
           ></sl-input>
         )}
-        {!states.hideInputs && (
+        {!(states.hideInputs || states.hidePasswords) && (
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={!states.enablePasswordValidation}
+            meetsRequirementsText={content.meetsRequirementsText}
+            doesNotMeetRequirementsText={content.doesNotMeetRequirementsText}
+            minErrorText={content.minErrorText}
+            uppercaseErrorText={content.uppercaseErrorText}
+            lowercaseErrorText={content.lowercaseErrorText}
+            hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
         {content.passwordField}
-        {!states.hideInputs && states.confirmPassword && (
-          <sl-input
-            exportparts="label: input-label"
-            type="password"
-            name="/confirmPassword"
-            label={content.confirmPasswordLabel}
-            disabled={states.loading || states.registrationFormState?.disabled}
-            required
-            {...(states.registrationFormState?.initialData?.confirmPassword
-              ? {
-                  value:
-                    states.registrationFormState?.initialData?.confirmPassword,
-                }
-              : {})}
-            {...(states.registrationFormState?.validationErrors?.confirmPassword
-              ? {
-                  class: sheet.classes.ErrorStyle,
-                  helpText:
-                    states.registrationFormState?.validationErrors
-                      ?.confirmPassword || content.requiredFieldErrorMessage,
-                }
-              : [])}
-          ></sl-input>
-        )}
+        {!(states.hideInputs || states.hidePasswords) &&
+          states.confirmPassword && (
+            <sl-input
+              exportparts="label: input-label, base: input-base"
+              type="password"
+              name="/confirmPassword"
+              label={content.confirmPasswordLabel}
+              disabled={
+                states.loading || states.registrationFormState?.disabled
+              }
+              required
+              {...(states.registrationFormState?.initialData?.confirmPassword
+                ? {
+                    value:
+                      states.registrationFormState?.initialData
+                        ?.confirmPassword,
+                  }
+                : {})}
+              {...(states.registrationFormState?.validationErrors
+                ?.confirmPassword
+                ? {
+                    class: sheet.classes.ErrorStyle,
+                    helpText:
+                      states.registrationFormState?.validationErrors
+                        ?.confirmPassword || content.requiredFieldErrorMessage,
+                  }
+                : [])}
+            ></sl-input>
+          )}
+        {content.emailOptIn}
         {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button

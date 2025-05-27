@@ -1,5 +1,6 @@
 import { types } from "@saasquatch/program-boilerplate";
 import * as faker from "faker";
+import { TenantFlavor } from "./types";
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
@@ -25,7 +26,8 @@ export function getValidationJson(
 export function getIntrospectionJson(
   template?: any,
   rules?: any,
-  rewards?: any[]
+  rewards?: any[],
+  featureFlags?: string[] | null | undefined
 ): ProgramIntrospectionBody {
   return {
     messageType: "PROGRAM_INTROSPECTION",
@@ -39,6 +41,7 @@ export function getIntrospectionJson(
     tenant: {
       tenantAlias: "test_UNITTESTTENANT",
       isLiveMode: false,
+      featureFlags,
     },
   };
 }
@@ -51,7 +54,8 @@ type ProgramTriggerInfo = {
 };
 
 export function getProgramTriggerJson(
-  info: ProgramTriggerInfo
+  info: ProgramTriggerInfo,
+  flavor: TenantFlavor
 ): ProgramTriggerBody {
   return {
     messageType: "PROGRAM_TRIGGER",
@@ -65,9 +69,8 @@ export function getProgramTriggerJson(
       rules: info.rules,
     },
     tenant: {
-      settings: {
-        suspectedFraudModerationState: "IGNORE",
-      },
+      impactBrandId: flavor === "impact" ? "12345" : undefined,
+      settings: { suspectedFraudModerationState: "IGNORE" },
     },
     ids: [...Array(10).keys()].map((a) => `triggergivenid${a + 1}`),
   };

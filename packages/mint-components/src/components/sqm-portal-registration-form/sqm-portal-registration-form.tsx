@@ -11,7 +11,7 @@ import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
 
 /**
  * @uiName Microsite Registration
- * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
  */
 @Component({
   tag: "sqm-portal-registration-form",
@@ -144,6 +144,37 @@ export class PortalRegistrationForm {
     "The registration form is currently disabled.";
 
   /**
+   * @uiName Password requirement met
+   */
+  @Prop() meetsRequirementsText: string = "Password has met all requirements";
+
+  /**
+   * @uiName Password requirement failed
+   */
+  @Prop() doesNotMeetRequirementsText: string =
+    "Password must meet the following requirements:";
+
+  /**
+   * @uiName Minimum length text
+   */
+  @Prop() minErrorText: string = "be a minimum of 8 characters";
+
+  /**
+   * @uiName Missing uppercase text
+   */
+  @Prop() uppercaseErrorText: string = "contain at least 1 uppercase character";
+
+  /**
+   * @uiName Missing lowercase text
+   */
+  @Prop() lowercaseErrorText: string = "contain at least 1 lowercase character";
+
+  /**
+   * @uiName Missing number or symbol text
+   */
+  @Prop() hasErrorText: string = "contain at least 1 number or symbol";
+
+  /**
    * The key of the registration form used for this microsite.
    *
    * @uiName Form key
@@ -181,6 +212,7 @@ export class PortalRegistrationForm {
         </slot>
       ),
       terms: <slot name="terms"></slot>,
+      emailOptIn: <slot name="emailOptIn"></slot>,
       emailLabel: this.emailLabel,
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
@@ -191,6 +223,12 @@ export class PortalRegistrationForm {
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       formDisabledErrorMessage: this.formDisabledErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
+      meetsRequirementsText: this.meetsRequirementsText,
+      doesNotMeetRequirementsText: this.doesNotMeetRequirementsText,
+      minErrorText: this.minErrorText,
+      uppercaseErrorText: this.uppercaseErrorText,
+      lowercaseErrorText: this.lowercaseErrorText,
+      hasErrorText: this.hasErrorText,
     };
 
     return (

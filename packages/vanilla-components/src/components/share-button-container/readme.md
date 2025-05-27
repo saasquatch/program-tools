@@ -71,13 +71,13 @@
 | `smsiconvertical`          | `smsiconvertical`          | Number to vertically align the SMS button icon                       | `number`  | `undefined`     |
 | `smstext`                  | `smstext`                  |                                                                      | `string`  | `undefined`     |
 | `smstextcolor`             | `smstextcolor`             |                                                                      | `string`  | `undefined`     |
-| `twitterbackgroundcolor`   | `twitterbackgroundcolor`   | Background color of the twitter button                               | `string`  | `undefined`     |
+| `twitterbackgroundcolor`   | `twitterbackgroundcolor`   | Background color of the X button                                     | `string`  | `undefined`     |
 | `twitterclassName`         | `twitterclass-name`        | CSS class name for additional styling.                               | `string`  | `undefined`     |
 | `twitterdisplayrule`       | `twitterdisplayrule`       | Show and hide button depending on what type of device the user is on | `string`  | `undefined`     |
 | `twittericon`              | `twittericon`              |                                                                      | `string`  | `"twitter"`     |
-| `twittericonhorizontal`    | `twittericonhorizontal`    | Number to horizontally align the twitter button icon                 | `number`  | `9`             |
+| `twittericonhorizontal`    | `twittericonhorizontal`    | Number to horizontally align the X button icon                       | `number`  | `9`             |
 | `twittericonsize`          | `twittericonsize`          |                                                                      | `number`  | `1.2`           |
-| `twittericonvertical`      | `twittericonvertical`      | Number to vertically align the twitter button icon                   | `number`  | `undefined`     |
+| `twittericonvertical`      | `twittericonvertical`      | Number to vertically align the X button icon                         | `number`  | `undefined`     |
 | `twittertext`              | `twittertext`              |                                                                      | `string`  | `undefined`     |
 | `twittertextcolor`         | `twittertextcolor`         |                                                                      | `string`  | `undefined`     |
 | `whatsappbackgroundcolor`  | `whatsappbackgroundcolor`  | Background color of the WhatsApp button                              | `string`  | `undefined`     |

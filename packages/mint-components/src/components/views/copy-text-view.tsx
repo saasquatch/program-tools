@@ -1,6 +1,6 @@
-import { Host, h } from "@stencil/core";
+import { h } from "@stencil/core";
+import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { HostBlock, P } from "../../global/mixins";
 
 export interface CopyTextViewProps {
   copyString: string;
@@ -12,10 +12,12 @@ export interface CopyTextViewProps {
   buttonStyle?: "button-outside" | "button-below" | "icon";
   error?: boolean;
   errorText?: string;
+  notificationText?: string;
+  showNotificationText?: boolean;
   inputPlaceholderText?: string;
   dateAvailable?: string;
   loading?: boolean;
-
+  isCopied?: boolean;
   onClick?: () => void;
 }
 
@@ -31,6 +33,14 @@ const style = {
       border: "2px solid red",
     },
   },
+  ContainerDiv: {
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: "var(--sl-spacing-x-small)",
+    width: "100%",
+  },
   containerStyle: {
     display: "flex",
     alignItems: "center",
@@ -40,6 +50,10 @@ const style = {
   errorTextStyle: {
     margin: "0",
     color: "var(--sl-color-danger-500)",
+  },
+  notificationTextStyle: {
+    margin: "0",
+    color: "var(--sl-color-neutral-500)",
   },
 };
 
@@ -95,12 +109,14 @@ export function CopyTextView(props: CopyTextViewProps) {
     >
       {buttonStyle === "icon" ? (
         <sl-icon-button
+          exportparts="base: icon-button-base"
           onClick={() => props.onClick?.()}
           name="files"
           disabled={disabled}
         />
       ) : (
         <sl-button
+          exportparts="base: copy-button-base"
           onClick={() => props.onClick?.()}
           size={"medium"}
           style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
@@ -114,7 +130,7 @@ export function CopyTextView(props: CopyTextViewProps) {
   );
 
   return (
-    <div>
+    <div class={sheet.classes.ContainerDiv}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -132,7 +148,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          exportparts="label: input-label"
+          exportparts="base: input-base, input: input-label"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}
@@ -147,6 +163,16 @@ export function CopyTextView(props: CopyTextViewProps) {
         {(buttonStyle === "button-outside" || buttonStyle === "button-below") &&
           copyButton}
       </div>
+      {props.isCopied &&
+        props.showNotificationText &&
+        props.notificationText && (
+          <p
+            part="sqm-notification-text"
+            class={sheet.classes.notificationTextStyle}
+          >
+            {props.notificationText}
+          </p>
+        )}
     </div>
   );
 }

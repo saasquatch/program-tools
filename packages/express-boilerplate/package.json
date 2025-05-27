@@ -1,0 +1,55 @@
+{
+  "name": "@saasquatch/express-boilerplate",
+  "version": "1.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
+  "prettier": {},
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "engines": {
+    "node": "^18 || ^20"
+  },
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run build && node --enable-source-maps node_modules/jest/bin/jest.js --roots dist/tests --coverage",
+    "build": "tsc -b",
+    "lint": "eslint ./src --report-unused-disable-directives",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@saasquatch/logger": "^1.5.1",
+    "@types/express": "4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "18",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-node": "^10.9.2"
+  },
+  "peerDependencies": {
+    "express": "4",
+    "winston": "3"
+  },
+  "dependencies": {
+    "nanoid": "^3.3.7"
+  }
+}

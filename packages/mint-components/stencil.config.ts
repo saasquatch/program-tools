@@ -63,6 +63,9 @@ export const config: Config = {
         "sqm-rewards-table-status-cell",
       ],
     },
+    {
+      components: ["sqm-referral-code", "sqm-referral-codes", "sqm-pagination"],
+    },
   ],
   outputTargets:
     //@ts-ignore

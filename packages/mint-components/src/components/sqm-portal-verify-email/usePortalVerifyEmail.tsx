@@ -1,16 +1,30 @@
-import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
+  setUserIdentity,
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
+import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
 
-export function usePortalVerifyEmail({ nextPage, failedPage }) {
+let globalPromise: null | Promise<any | Error> = null;
+
+export function usePortalVerifyEmail({
+  nextPage,
+  failedPage,
+  verifySuccessText,
+  verifyEmailText,
+  verifyInvalidText,
+  networkErrorMessage,
+  continueText,
+}) {
+  const [completed, setCompleted] = useState(false);
+  const [successful, setSuccessful] = useState(false);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
+  const oobEmail = urlParams.get("email");
   const nextPageOverride = urlParams.get("nextPage");
 
   // derived from useMutation in component boilerplate initialState
@@ -20,8 +34,10 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
   const verified = !!(
     userIdent?.managedIdentity?.emailVerified ||
-    data?.verifyManagedIdentityEmail.success
+    data?.verifyManagedIdentityEmail?.success ||
+    successful
   );
+  const validEmail = userIdent?.managedIdentity?.email === oobEmail;
 
   const failed = () => {
     return navigation.push({
@@ -36,41 +52,52 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
     navigation.push(url.href);
   };
 
-  const submit = async () => {
-    if (oobCode) {
-      const result = await request({ oobCode });
-      if (
-        (result instanceof Error ||
-          !result.verifyManagedIdentityEmail.success) &&
-        !userIdent?.managedIdentity?.emailVerified
-      ) {
-        // pause on error if logged out/unverified
-        return;
-      }
-      setTimeout(() => {
-        gotoNextPage();
-      }, 3000);
-    }
+  const logout = () => {
+    setTimeout(() => {
+      setUserIdentity(undefined);
+      gotoNextPage();
+    }, 3000);
+  };
+
+  const login = () => {
+    setTimeout(gotoNextPage, 3000);
   };
 
   useEffect(() => {
-    // Already verified, begin redirect
-    if (verified) {
-      setTimeout(() => {
-        gotoNextPage();
-      }, 3000);
-    }
-    !data && submit();
-  }, [verified]);
+    const verify = async () => {
+      if (!globalPromise) globalPromise = request({ oobCode });
+      const result = await globalPromise;
+
+      if (
+        !(result instanceof Error) &&
+        result.verifyManagedIdentityEmail.success
+      ) {
+        // Needs to be explicitly updated if multiple renders have occured
+        setSuccessful(true);
+      }
+
+      setCompleted(true);
+    };
+
+    verify();
+  }, []);
+
+  useEffect(() => {
+    if (!completed) return;
+
+    if (verified && validEmail) login();
+    else logout();
+  }, [completed, verified]);
 
   return {
     states: {
-      loading: loading || disableContinue,
+      loading: loading || !completed,
+      disableContinue,
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
-        (errors?.message && "Network request failed."),
-      verified,
+        ((errors?.message || !validEmail) && networkErrorMessage),
+      success: completed && (verified || validEmail),
     },
     data: {
       oobCode,
@@ -78,6 +105,12 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
     callbacks: {
       failed,
       gotoNextPage,
+    },
+    content: {
+      verifySuccessText,
+      verifyEmailText,
+      verifyInvalidText,
+      continueText,
     },
   };
 }

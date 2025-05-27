@@ -39,7 +39,6 @@ graph TD;
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-rewards-table

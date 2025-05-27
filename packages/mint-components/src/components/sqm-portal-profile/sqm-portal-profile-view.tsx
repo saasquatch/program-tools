@@ -33,6 +33,8 @@ export interface PortalProfileViewProps {
       editProfileHeader: string;
       editProfileSubHeader: string;
       submitChangeButtonText: string;
+      submissionSuccessText?: string;
+      fieldEmptyText?: string;
     };
   };
   callbacks: {
@@ -115,9 +117,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             class={sheet.classes.Success}
             exportparts="success-icon"
           >
-            <div part="successalert-text">
-              Your profile has been successfully updated.
-            </div>
+            <div part="successalert-text">{text.submissionSuccessText}</div>
           </sqm-form-message>
         )}
 
@@ -133,13 +133,13 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         <div class={sheet.classes.NameInputContainer}>
           <sl-input
             class={sheet.classes.NameInputStyle}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             value={states.user?.firstName}
             onInput={callbacks.onChange}
             label={text.firstnametext}
             disabled={states.loading}
             {...(errors?.firstName && errors?.firstName.status !== "valid"
-              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
               : [])}
             id="firstName"
             name="firstName"
@@ -151,7 +151,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           ></sl-input>
           <sl-input
             class={sheet.classes.NameInputStyle}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             value={states.user?.lastName}
             onInput={callbacks.onChange}
             label={text.lastnametext}
@@ -159,7 +159,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             id="lastName"
             name="lastName"
             {...(errors?.lastName && errors?.lastName.status !== "valid"
-              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              ? { class: "ErrorStyles", helpText: text.fieldEmptyText }
               : [])}
             error={
               errors?.lastName && errors?.lastName.status !== "valid"
@@ -171,14 +171,14 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         <sl-input
           label={text.emailtext}
           value={states.user?.email}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           disabled
         ></sl-input>
         {states.showCountry && (
           <sl-input
             label={text.countrytext}
             value={country}
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             disabled
           ></sl-input>
         )}

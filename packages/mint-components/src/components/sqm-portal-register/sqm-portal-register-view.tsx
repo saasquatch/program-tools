@@ -36,6 +36,12 @@ export interface PortalRegisterViewProps {
     confirmPasswordLabel: string;
     requiredFieldErrorMessage: string;
     invalidEmailErrorMessage: string;
+    meetsRequirementsText?: string;
+    doesNotMeetRequirementsText?: string;
+    minErrorText?: string;
+    uppercaseErrorText?: string;
+    lowercaseErrorText?: string;
+    hasErrorText?: string;
   };
   refs: {
     formRef: any;
@@ -104,7 +110,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {content.formData}
         {!states.hideInputs && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="email"
             name="/email"
             label={content.emailLabel || "Email"}
@@ -133,17 +139,29 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           <sqm-password-field
             fieldLabel={content.passwordLabel}
             disable-validation={states.disablePasswordValidation}
+            meetsRequirementsText={content.meetsRequirementsText}
+            doesNotMeetRequirementsText={content.doesNotMeetRequirementsText}
+            minErrorText={content.minErrorText}
+            uppercaseErrorText={content.uppercaseErrorText}
+            lowercaseErrorText={content.lowercaseErrorText}
+            hasErrorText={content.hasErrorText}
           ></sqm-password-field>
         )}
         {content.passwordField}
         {!states.hideInputs && states.confirmPassword && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="password"
             name="/confirmPassword"
             label={content.confirmPasswordLabel}
-            disabled={states.loading}
+            disabled={states.loading || states.registrationFormState?.disabled}
             required
+            {...(states.registrationFormState?.initialData?.confirmPassword
+              ? {
+                  value:
+                    states.registrationFormState?.initialData?.confirmPassword,
+                }
+              : {})}
             {...(states.registrationFormState?.validationErrors?.confirmPassword
               ? {
                   class: sheet.classes.ErrorStyle,

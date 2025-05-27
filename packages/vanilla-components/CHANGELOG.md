@@ -7,11 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.8] - 2025-05-27
+## [1.4.3] - 2025-05-27
 
 ### Changed
 
 - Update user query to make `UserEngagementMedium` optional to match updated backend schema
+
+## [1.4.1] - 2025-05-12
+
+### Changed
+
+- bump `@raisins/stencil-docs-target` to `1.1.1`
+
+## [1.4.0] - 2024-09-10
+
+### Changed
+
+- Updated components & widget templates to use new X icon, color, and text copy.
+
+- Changed component:
+  -\<sqh-share-button-container>
+
+## [1.2.9] - 2024-07-03
+
+### Changed
+
+- Feature enforcement docs added to poweredby prop
+
+## [1.2.8] - 2023-03-05
+
+### Changed
+
+- Updated powered by link for advocate launch
 
 ## [1.2.7] - 2023-09-12
 
@@ -59,7 +86,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.8...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.4.2...HEAD
+[1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.2
+[1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.1
+[1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.4.0
+[1.2.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.9
 [1.2.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.8
 [1.2.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.7
 [1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6

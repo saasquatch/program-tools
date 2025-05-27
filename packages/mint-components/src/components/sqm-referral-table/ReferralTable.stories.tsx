@@ -8,6 +8,13 @@ import {
   Redeemed,
   Denied,
   PendingReview,
+  PayoutSent,
+  PayoutFailed,
+  PendingNewTaxForm,
+  PendingPartnerCreation,
+  PendingTaxReview,
+  PendingTaxSubmission,
+  PayoutCancelled,
 } from "./ReferralTableRewardsCell.stories";
 import {
   DateCell,
@@ -161,6 +168,48 @@ const simpleUserTableProps = {
         <ConvertedStatus />,
         <DateCell />,
         <Redeemed />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutSent />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutFailed />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutCancelled />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PendingNewTaxForm />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PendingPartnerCreation />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PendingTaxReview />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PendingTaxSubmission />,
       ],
       [
         <sqm-referral-table-user-cell name="Tom Smith"></sqm-referral-table-user-cell>,

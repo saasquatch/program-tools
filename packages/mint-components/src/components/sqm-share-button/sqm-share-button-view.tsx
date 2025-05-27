@@ -16,7 +16,6 @@ export interface ShareButtonViewProps {
     | "pinterest"
     | "reminder"
     | "unknown";
-
   loading?: boolean;
   disabled?: boolean;
   pill?: boolean;
@@ -39,11 +38,14 @@ export interface ShareButtonViewProps {
   borderradius?: number;
   backgroundcolor?: string;
   textcolor?: string;
+  messageLink?: string;
+  openInSameTab?: boolean;
+  isPlainLink?: boolean;
 }
 
 const medium = {
   facebook: { color: "#1877f2", text: "#fff", icon: "facebook" },
-  twitter: { color: "#1da1f2", text: "#fff", icon: "twitter" },
+  twitter: { color: "#000000", text: "#fff", icon: "twitter-x" },
   email: { color: "#666666", text: "#fff", icon: "envelope" },
   direct: { color: "var(--sl-color-primary-500)", text: "#fff", icon: "send" },
   linkedin: { color: "#0077b5", text: "#fff", icon: "linkedin" },
@@ -130,19 +132,21 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       <style type="text/css">{vanillaStyle}</style>
       <sl-button
         class={sheet.classes.buttonStyle}
+        target={props.openInSameTab ? "_self" : "_blank"}
         loading={props.loading}
         disabled={props.disabled}
         pill={props.pill}
         size={props.size}
         type={props.type}
-        onClick={props.onClick}
+        onClick={!props.isPlainLink ? props.onClick : undefined}
+        href={props.isPlainLink ? props.messageLink : undefined}
         exportparts={`base: ${props.type}sharebutton-base`}
       >
         {!props.hideicon && (
           <sl-icon
             slot={props.iconslot || "prefix"}
             name={props.icon ? props.icon : medium[props.medium].icon}
-            exportparts="icon"
+            exportparts="base: icon"
           ></sl-icon>
         )}
         {!props.hidetext && children}

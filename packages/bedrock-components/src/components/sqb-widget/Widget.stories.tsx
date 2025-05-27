@@ -217,7 +217,7 @@ export const DemoWidget = () => {
               pill="true"
               >Email a friend</sqm-share-button
             ><sqm-share-button medium="twitter" size="medium" pill="true"
-              >Tweet about us</sqm-share-button
+              >Post about us</sqm-share-button
             ><sqm-share-button medium="facebook" size="medium" pill="true"
               >Share on Facebook</sqm-share-button
             ></sqm-portal-container

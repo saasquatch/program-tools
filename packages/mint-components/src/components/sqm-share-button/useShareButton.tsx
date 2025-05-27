@@ -2,6 +2,8 @@ import {
   useEngagementMedium,
   useUserIdentity,
   useQuery,
+  useParentValue,
+  useMutation,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { ShareButtonViewProps } from "./sqm-share-button-view";
@@ -10,6 +12,11 @@ import {
   useProgramId,
   getEnvironmentSDK,
 } from "@saasquatch/component-boilerplate";
+import {
+  REFERRAL_CODES_NAMESPACE,
+  ReferralCodeContext,
+  SET_CODE_COPIED,
+} from "../sqm-referral-codes/useReferralCodes";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -17,6 +24,8 @@ interface ShareButtonProps extends ShareButtonViewProps {
   programId?: string;
   sharetitle?: string;
   sharetext?: string;
+  errorText?: string;
+  unsupportedPlatformText?: string;
 }
 
 const MessageLinkQuery = gql`
@@ -40,13 +49,15 @@ const MessageLinkQuery = gql`
 
 function NativeShare(
   props: { sharetitle: string; sharetext: string },
-  directLink: string
+  directLink: string,
+  undefinedErrorText: string,
+  unsupportedPlatformText: string
 ) {
   const title = props.sharetitle || "Share title";
   const text = props.sharetext || "Share text";
 
   if (directLink === "undefined") {
-    return alert("error: message link undefined!");
+    return alert(undefinedErrorText);
   }
 
   if (window.navigator.share) {
@@ -58,32 +69,28 @@ function NativeShare(
       })
       .catch((error) => console.error("Error on web share", error));
   } else {
-    alert("Not on a supported device");
+    alert(unsupportedPlatformText);
   }
 }
 
-function FacebookShare(directLink: string, res: any) {
-  if (
-    res.data?.viewer?.messageLink === "undefined" ||
-    directLink === "undefined"
-  ) {
-    return alert("error: message link undefined!");
+function FacebookShare(
+  directLink: string,
+  messageLink: string,
+  errorText: string
+) {
+  if (messageLink === "undefined" || directLink === "undefined") {
+    return alert(errorText);
   }
 
   if (typeof SquatchAndroid.shareOnFacebook !== "undefined") {
-    return SquatchAndroid.shareOnFacebook(
-      directLink,
-      res.data.viewer.messageLink
-    );
+    return SquatchAndroid.shareOnFacebook(directLink, messageLink);
   } else {
-    return GenericShare(res);
+    return GenericShare(messageLink, errorText);
   }
 }
 
-function GenericShare(res: any) {
-  return res.data?.viewer?.messageLink
-    ? window.open(res.data.viewer.messageLink)
-    : alert("error: message link undefined!");
+function GenericShare(messageLink: string, errorText: string) {
+  return messageLink ? (window.location.href = messageLink) : alert(errorText);
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
@@ -91,16 +98,29 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const programId = props.programId ? props.programId : useProgramId();
   const user = useUserIdentity();
+  const engagementMedium = useEngagementMedium();
   const variables = {
-    engagementMedium: useEngagementMedium(),
+    engagementMedium,
     programId: programId,
     shareMedium: medium.toUpperCase(),
   };
 
-  // only queries if a programId is available
-  const res = useQuery(MessageLinkQuery, variables, !user?.jwt || !programId);
+  const contextData = useParentValue<ReferralCodeContext>(
+    REFERRAL_CODES_NAMESPACE
+  );
 
-  const directLink = res?.data?.viewer?.shareLink;
+  const overrideData = contextData?.[medium];
+
+  // only queries if a programId is available
+  const res = useQuery(
+    MessageLinkQuery,
+    variables,
+    !user?.jwt || !programId || overrideData !== undefined
+  );
+
+  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
+
+  const directLink = overrideData?.shareLink || res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 
@@ -109,18 +129,51 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
       window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
-  function onClick() {
+  const messageLink =
+    overrideData?.messageLink || res.data?.viewer?.messageLink;
+
+  async function onClick() {
+    if (overrideData) {
+      await setCopied({ referralCode: contextData.referralCode });
+      contextData.refresh();
+    }
+
     if (
       medium.toLocaleUpperCase() === "FACEBOOK" &&
       environment.type === "SquatchAndroid"
     ) {
-      FacebookShare(directLink, res);
+      FacebookShare(directLink, messageLink, props.errorText);
     } else if (medium.toLocaleUpperCase() === "DIRECT") {
-      NativeShare({ sharetitle, sharetext }, directLink);
-    } else {
-      GenericShare(res);
+      NativeShare(
+        { sharetitle, sharetext },
+        directLink,
+        props.errorText,
+        props.unsupportedPlatformText
+      );
     }
   }
 
-  return { ...props, loading: res.loading, onClick, hide };
+  const isPlainLink =
+    !(
+      medium.toLocaleUpperCase() === "FACEBOOK" &&
+      environment.type === "SquatchAndroid"
+    ) &&
+    medium.toLocaleUpperCase() !== "DIRECT" &&
+    messageLink;
+
+  const userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test(userAgent),
+    ios = /iphone|ipod|ipad/.test(userAgent);
+
+  const openInSameTab = ios && !safari;
+
+  return {
+    ...props,
+    loading: res.loading && !overrideData?.messageLink,
+    messageLink,
+    isPlainLink,
+    onClick,
+    openInSameTab,
+    hide,
+  };
 }

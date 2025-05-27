@@ -60,6 +60,20 @@ export class PortalEmailVerification {
   @Prop() verificationLoadingMessage: string = "Checking verification status";
 
   /**
+   * @uiName Email verification resent text
+   * @uiWidget textArea
+   */
+  @Prop() verificationResentMessage: string =
+    "Your verification email has been resent successfully";
+
+  /**
+   * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
+   */
+  @Prop() networkErrorMessage: string =
+    "An error occurred while verifying your password. Please refresh the page.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -100,6 +114,8 @@ function usePortalEmailVerificationDemo(
         resendEmailButtonText: props.resendEmailButtonText,
         verificationLoadingMessage: props.verificationLoadingMessage,
         verificationStatusMessage: props.verificationStatusMessage,
+        verificationResentMessage: props.verificationResentMessage,
+        networkErrorMessage: props.networkErrorMessage,
       },
     },
     props.demoData || {},

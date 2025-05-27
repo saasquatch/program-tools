@@ -5,7 +5,7 @@ import {
 } from "./sqm-portal-register-view";
 
 export default {
-  title: "Components/Portal Register",
+  title: "Components/Microsite Register",
 };
 
 const defaultProps: PortalRegisterViewProps = {
@@ -105,12 +105,12 @@ const slottedProps: PortalRegisterViewProps = {
       <div>
         <sl-input
           style={{ marginBottom: "var(--sl-spacing-x-large)" }}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           label="Slotted Input"
           required
         ></sl-input>
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           label="Slotted Input 2"
           required
         ></sl-input>

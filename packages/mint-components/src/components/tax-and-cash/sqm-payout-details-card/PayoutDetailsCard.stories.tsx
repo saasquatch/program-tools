@@ -1,0 +1,66 @@
+import { h } from "@stencil/core";
+
+export default {
+  title: "Components/Payout Details Card",
+};
+
+export const Loading = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          loading: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const NextPayout = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          badgeStatus: "nextPayout",
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const PayoutToday = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          badgeStatus: "payoutToday",
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const ThresholdPayout = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          thresholdBalance: "50 USD",
+          badgeStatus: "thresholdPayout",
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const PaypalPayout = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          payoutType: "PAYPAL",
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};

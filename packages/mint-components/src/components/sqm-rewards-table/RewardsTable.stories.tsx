@@ -10,6 +10,7 @@ import {
   RewardsCellFueltank,
   RewardsCellFueltankLong,
   SourceCellDeletedUser,
+  SourceCellDeletedReferral,
   SourceCellManual,
   SourceCellReferral,
   SourceCellReferred,
@@ -21,6 +22,12 @@ import {
   StatusCellRedeemed,
   StatusCellDenied,
   StatusCellPendingReview,
+  StatusCellPayoutSent,
+  StatusCellPayoutFailed,
+  StatusCellPendingNewTaxForm,
+  StatusCellPendingPartnerCreation,
+  StatusCellPendingTaxReview,
+  StatusCellPendingTaxSubmission,
 } from "./RewardsTableCell.stories";
 import scenario from "./rewards-table.feature";
 
@@ -124,6 +131,13 @@ const r_expired = [
   <DateCell />,
 ];
 
+const r_deleted = [
+  <RewardsCellCreditCancelled />,
+  <StatusCellCancelled />,
+  <SourceCellDeletedReferral />,
+  <DateCell />,
+];
+
 const r_cancelled = [
   <RewardsCellCreditCancelled />,
   <StatusCellCancelled />,
@@ -173,6 +187,44 @@ const r_fueltank_long = [
   <DateCell />,
 ];
 
+const r_payout_sent = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPayoutSent />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+const r_payout_failed = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPayoutFailed />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+const r_pending_new_tax_form = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPendingNewTaxForm />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+const r_pending_partner_creation = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPendingPartnerCreation />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+const r_pending_tax_review = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPendingTaxReview />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+
+const r_pending_tax_submission = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellPendingTaxSubmission />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+
 export const RewardsTable = () => {
   return (
     <GenericTableView
@@ -180,9 +232,16 @@ export const RewardsTable = () => {
         r_available,
         r_redeemed,
         r_cancelled,
+        r_deleted,
         r_expired,
         r_denied,
         r_pending_review,
+        r_payout_sent,
+        r_payout_failed,
+        r_pending_new_tax_form,
+        r_pending_partner_creation,
+        r_pending_tax_submission,
+        r_pending_tax_review,
       ])}
     ></GenericTableView>
   );

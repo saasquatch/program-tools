@@ -3,14 +3,11 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
-  Column,
   ErrorStyles,
   gap,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { PoweredByImg } from "../sqm-portal-footer/PoweredByImg";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
-import { BottomTabs } from "../sqm-tabs/Tabs.stories";
 
 export interface EmailRegistrationViewProps {
   states: {
@@ -101,6 +98,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
 
   return (
     <div
+      part="sqm-base"
       class={sheet.classes.Wrapper}
       style={{
         border: `${content.hideBorder ? "none" : "1px solid #eaeaea"}`,
@@ -126,7 +124,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           )}
         {content.includeName && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="name"
             name="/firstName"
             label={content.firstNameLabel || "First Name"}
@@ -135,7 +133,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
         )}
         {content.includeName && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="name"
             name="/lastName"
             label={content.lastNameLabel || "Last Name"}
@@ -143,7 +141,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
           ></sl-input>
         )}
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}

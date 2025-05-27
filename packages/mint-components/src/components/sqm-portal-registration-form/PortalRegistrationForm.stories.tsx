@@ -5,7 +5,7 @@ import {
 } from "./sqm-portal-registration-form-view";
 
 export default {
-  title: "Components/Portal Register",
+  title: "Components/Microsite Portal Register",
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
@@ -87,12 +87,12 @@ const slottedProps: PortalRegistrationFormViewProps = {
       <div>
         <sl-input
           style={{ marginBottom: "var(--sl-spacing-x-large)" }}
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           label="Slotted Input"
           required
         ></sl-input>
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           label="Slotted Input 2"
           required
         ></sl-input>
@@ -130,6 +130,18 @@ export const FieldsHidden = () => {
 
 export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
+);
+
+export const RegisterWithMarketingEmailsCheckbox = () => (
+  <PortalRegistrationFormView
+    {...defaultProps}
+    content={{
+      ...defaultProps.content,
+      emailOptIn: (
+        <sqm-checkbox-field checkboxLabel="I would like to receive marketing and promotional emails for this referral program"></sqm-checkbox-field>
+      ),
+    }}
+  />
 );
 
 export const TermsAndConditions = () => (

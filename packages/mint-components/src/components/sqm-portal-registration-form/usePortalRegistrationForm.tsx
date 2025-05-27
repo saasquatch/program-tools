@@ -2,6 +2,7 @@ import jsonpointer from "jsonpointer";
 import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
 import {
   navigation,
+  useLocale,
   useQuery,
   useRegisterViaRegistrationFormMutation,
 } from "@saasquatch/component-boilerplate";
@@ -49,6 +50,8 @@ interface RegistrationFormQueryData {
 export function usePortalRegistrationForm(props: PortalRegistrationForm) {
   const formRef = useRef<HTMLFormElement>(null);
 
+  const locale = useLocale();
+
   const { registrationFormState, setRegistrationFormState } =
     useRegistrationFormState({});
   const [request, { loading, errors, data, formError }] =
@@ -85,7 +88,6 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
-
     let formData: Record<string, any> = {};
     let validationErrors: Record<string, string> = {};
 
@@ -140,9 +142,12 @@ export function usePortalRegistrationForm(props: PortalRegistrationForm) {
     delete formData.password;
     delete formData.confirmPassword;
     const redirectPath = props.redirectPath;
+    const _googleOAuthIdToken = registrationFormState._googleOAuthIdToken;
     const variables = {
       key: props.formKey,
       formData: {
+        ...(_googleOAuthIdToken ? { _googleOAuthIdToken } : {}),
+        locale,
         email,
         password,
         redirectPath,

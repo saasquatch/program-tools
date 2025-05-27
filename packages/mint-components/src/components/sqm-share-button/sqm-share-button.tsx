@@ -14,7 +14,7 @@ import deepmerge from "deepmerge";
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
  * @exampleGroup Sharing
  * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
- * @example Twitter Share Button - <sqm-share-button medium="twitter">Share via Tweet</sqm-share-button>
+ * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
  * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
  * @example Web Share Sheet Share Button - <sqm-share-button medium="direct">Share</sqm-share-button>
  * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
@@ -38,7 +38,7 @@ export class ShareButton {
    * @uiType string
    * @required
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
-   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
+   * @uiEnumNames ["Facebook", "X", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
   @Prop() medium:
     | "facebook"
@@ -146,6 +146,16 @@ export class ShareButton {
    * @uiName Share text
    */
   @Prop() sharetext?: string;
+  /**
+   * Alert text shown if the share link is undefined
+   * @uiName Undefined link text
+   */
+  @Prop() undefinedLinkText?: string = "Error: message link undefined!";
+  /**
+   * Alert text shown if the user's device does not support native sharing
+   * @uiName Unsupported platform text
+   */
+  @Prop() unsupportedPlatformText?: string = "Error: not on a supported device";
 
   /**
    * @undocumented

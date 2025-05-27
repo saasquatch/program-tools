@@ -1,10 +1,11 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
+import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Microsite Login
@@ -77,6 +78,18 @@ export class PortalLogin {
   @Prop() pageLabel: string = "Sign in to your account";
 
   /**
+   * Displayed when the login fails due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
+   */
+  @Prop() networkErrorMessage: string =
+    "An error occurred while logging you in. Please refresh the page and try again.";
+
+  /**
+   * @uiName Register CTA
+   */
+  @Prop() registerCTA: string = "Don't have an account?";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -92,6 +105,18 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
+
+    const styles = {
+      RegisterButton: {
+        "&::part(label)": {
+          padding: "0",
+        },
+      },
+    };
+
+    const sheet = createStyleSheet(styles);
+    const styleString = sheet.toString();
+
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
@@ -100,8 +125,10 @@ export class PortalLogin {
           </a>
         </slot>
       ),
+      googleButton: null,
       secondaryButton: (
         <slot name="secondaryButton">
+          <style>{styleString}</style>
           <sl-button
             type="text"
             disabled={states.loading}
@@ -133,11 +160,18 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
         loading: false,
         forgotPasswordPath: "/forgotPassword",
         registerPath: "/register",
+        showLoginForm: "manual",
       },
       callbacks: {
+        googleSubmit: async () => {
+          console.log("google submit");
+        },
         submit: async (_event) => {
           console.log("submit");
         },
+      },
+      content: {
+        googleButton: null,
       },
     },
     props.demoData || {},

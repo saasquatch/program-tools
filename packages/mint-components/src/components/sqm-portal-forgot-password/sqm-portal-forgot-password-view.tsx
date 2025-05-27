@@ -22,6 +22,7 @@ export interface PortalForgotPasswordViewProps {
     messageSlot: any;
     emailLabel?: string;
     submitLabel?: string;
+    successAlertText?: string;
   };
 }
 
@@ -65,14 +66,11 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
         )}
         {props.states.success && (
           <sqm-form-message type="success" exportparts="successalert-icon">
-            <div part="successalert-text">
-              If an account with that email exists, a password reset email will
-              be sent.
-            </div>
+            <div part="successalert-text">{content.successAlertText}</div>
           </sqm-form-message>
         )}
         <sl-input
-          exportparts="label: input-label"
+          exportparts="label: input-label, base: input-base"
           type="email"
           name="/email"
           label={content.emailLabel || "Email"}

@@ -28,7 +28,7 @@ export function usePortalResetPassword(
   const verifyPasswordResetCodeAndHandleResponse = async () => {
     const result = await verifyPasswordResetCode({ oobCode });
     if (result instanceof Error) {
-      setError("Network request failed.");
+      setError(props.networkErrorMessage);
     }
   };
 
@@ -46,13 +46,13 @@ export function usePortalResetPassword(
     const variables = { oobCode, password: formData.password };
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      setError(props.passwordMismatchText);
       return;
     }
 
     const result = await resetPassword(variables);
     if (result instanceof Error) {
-      return setError("Network request failed.");
+      return setError(props.networkErrorMessage);
     }
     if (result.resetManagedIdentityPassword) {
       setReset(true);
@@ -95,6 +95,15 @@ export function usePortalResetPassword(
         resetPasswordButtonText: props.resetPasswordButtonText,
         confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
         passwordFieldLabel: props.passwordFieldLabel,
+        meetsRequirementsText: props.meetsRequirementsText,
+        doesNotMeetRequirementsText: props.doesNotMeetRequirementsText,
+        minErrorText: props.minErrorText,
+        uppercaseErrorText: props.uppercaseErrorText,
+        lowercaseErrorText: props.lowercaseErrorText,
+        hasErrorText: props.hasErrorText,
+        passwordMismatchText: props.passwordMismatchText,
+        codeInvalidText: props.codeInvalidText,
+        resetSuccessText: props.resetSuccessText,
       },
     },
     callbacks: { submit, failed, gotoNextPage },

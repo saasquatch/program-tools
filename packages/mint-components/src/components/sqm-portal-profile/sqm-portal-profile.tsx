@@ -62,6 +62,30 @@ export class PortalProfile {
   @Prop() hideCountry: boolean = false;
 
   /**
+   * @uiName Network request error message
+   * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+   */
+  @Prop() networkRequestMessage: string =
+    "An error occurred while loading this page. Please refresh the page.";
+
+  /**
+   * @uiName Field empty text
+   */
+  @Prop() fieldEmptyText: string = "Field is required";
+
+  /**
+   * @uiName Form error message
+   */
+  @Prop() formErrorText: string =
+    "Please correct the errors below to update your profile.";
+
+  /**
+   * @uiName Submission success text
+   */
+  @Prop() submissionSuccessText: string =
+    "Your profile has been successfully updated.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -104,6 +128,8 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
           editProfileHeader: props.editProfileHeader,
           editProfileSubHeader: props.editProfileSubHeader,
           submitChangeButtonText: props.submitChangeButtonText,
+          submissionSuccessText: props.submissionSuccessText,
+          fieldEmptyText: props.fieldEmptyText,
         },
         formState: {
           country: "Canada",

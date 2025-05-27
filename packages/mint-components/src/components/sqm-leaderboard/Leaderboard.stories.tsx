@@ -85,8 +85,8 @@ const users = [
 
 const pointsUsers = [
   {
-    firstName: "",
-    lastInitial: "",
+    firstName: "Tom",
+    lastInitial: "Smith",
     textValue: "82 Points",
     rank: 1,
     rowNumber: 1,
@@ -161,7 +161,14 @@ const defaultStyles = {
   statsheading: "Referrals",
   rankheading: "Rank",
   anonymousUser: "Anonymous User",
+  viewingUserText: "You",
+  rankSuffix:
+    "{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}",
 };
+
+const link = <a>Support</a>;
+
+const tag = "Contact" + link + "about upgrading your plan";
 
 const defaultElements = {
   empty: (
@@ -170,21 +177,6 @@ const defaultElements = {
       empty-state-header="View your rank in the leaderboard"
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
     ></sqm-empty>
-  ),
-  loadingstate: (
-    <slot name="loading">
-      <table>
-        {[...Array(10)].map(() => {
-          return (
-            <tr>
-              <td>
-                <sl-skeleton></sl-skeleton>
-              </td>
-            </tr>
-          );
-        })}
-      </table>
-    </slot>
   ),
 };
 
@@ -229,6 +221,35 @@ export const Loading = () => {
       rankType: "rowNumber",
       rowNumber: 10,
       leaderboard: [],
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const Essentials = () => {
+  const props = {
+    states: {
+      loading: false,
+      isEssentials: true,
+      hasLeaders: false,
+      styles: {
+        ...defaultStyles,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [],
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        textValue: "8",
+        rowNumber: 11,
+        rank: 23,
+      },
     },
     elements: {
       ...defaultElements,
@@ -369,6 +390,39 @@ export const ReferralLeaderboard = () => {
   return <LeaderboardView {...props} />;
 };
 
+export const ReferralLeaderboardWithMaxWidth = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        ...defaultStyles,
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
+        showRank: false,
+        maxWidth: "300px",
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        textValue: "82",
+        rank: 1,
+        rowNumber: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
 export const PointsLeaderboard = () => {
   const props = {
     states: {
@@ -449,7 +503,7 @@ export const ViewerOutside = () => {
         lastInitial: "C",
         textValue: "8",
         rowNumber: 11,
-        rank: 23,
+        rank: 24,
       },
     },
     elements: {
@@ -474,6 +528,34 @@ export const ViewerAnonymous = () => {
       leaderboard: users,
       rowNumber: 10,
       viewerRank: null,
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const HideNamesWithViewerOutside = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        ...defaultStyles,
+        showRank: true,
+        hideNames: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        textValue: "8",
+        rowNumber: 11,
+        rank: 42,
+      },
     },
     elements: {
       ...defaultElements,
@@ -511,4 +593,88 @@ export const HideViewer = () => {
     },
   };
   return <LeaderboardView {...props} />;
+};
+
+export const HideNames = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      rowNumber: 10,
+      styles: {
+        ...defaultStyles,
+        showRank: true,
+        hideNames: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        textValue: "82",
+        rowNumber: 1,
+        rank: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const LeaderboardWithNoNamesAndGraphic = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        width: "100%",
+        gap: "50px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          maxWidth: "30%",
+        }}
+      >
+        <sqm-image
+          width="70%"
+          alignment="center"
+          imageUrl="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"
+        ></sqm-image>
+        <h2 style={{ margin: "auto" }}> Top Performers</h2>
+        <p style={{ margin: "0" }}>
+          The leaderboard highlights the top performers in real-time. Stay
+          motivated, stay competitive!
+        </p>
+      </div>
+      <sqm-leaderboard
+        width="300px"
+        usersheading="Referrer"
+        statsheading="Referrals"
+        rank-type="rank"
+        leaderboard-type="topStartedReferrers"
+        rankheading="Rank"
+        show-rank="true"
+        hide-names="true"
+        hide-viewer="true"
+      >
+        <sqm-empty
+          empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
+          empty-state-header="View your rank in the leaderboard"
+          empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+        ></sqm-empty>
+      </sqm-leaderboard>
+    </div>
+  );
 };

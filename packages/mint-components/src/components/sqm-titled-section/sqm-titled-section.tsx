@@ -1,5 +1,5 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Prop, VNode } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
 import { getProps } from "../../utils/utils";
 import { PortalSectionView } from "./sqm-portal-section-view";
@@ -19,8 +19,9 @@ export class TitledSection {
    * Text value shown when there is no label slot declared.
    *
    * @uiName Label
+   * @uiType string
    */
-  @Prop() label: string;
+  @Prop() label: string | VNode;
 
   /**
    * @uiName Text alignment

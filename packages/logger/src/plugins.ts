@@ -1,6 +1,15 @@
-import { IncomingMessage, ServerResponse } from "http";
+import type { Request, Response } from "express";
 import winston from "winston";
+import { LogLevel } from "./config";
 import { LOG_TYPE_MARKER } from "./logger";
+
+export type HttpLogMiddlewareOptions = {
+  nonErrorLogLevel?: LogLevel;
+  logNonErrorResponses?: boolean;
+  logHealthchecks?: boolean;
+};
+
+const HEALTHCHECK_ENDPOINTS = ["/healthz", "/livez", "/readyz"];
 
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
@@ -8,36 +17,51 @@ import { LOG_TYPE_MARKER } from "./logger";
  *
  * @param {winston.Logger} logger - The logger to use
  */
-export function httpLogMiddleware(logger: winston.Logger) {
+export function httpLogMiddleware(
+  logger: winston.Logger,
+  opts?: HttpLogMiddlewareOptions,
+) {
   return (
-    req: IncomingMessage,
-    res: ServerResponse & { locals?: Record<string, any> },
-    next: () => void
+    req: Request,
+    res: Response & { locals?: Record<string, any> },
+    next: () => void,
   ) => {
     const startTimeNs = process.hrtime.bigint();
 
     res.on("finish", () => {
+      const status = res.statusCode;
+      if (status < 400 && opts?.logNonErrorResponses === false) {
+        return;
+      }
+
+      const url = req.originalUrl;
+      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(url ?? "");
+      if (isHealthcheck && opts?.logHealthchecks === false) {
+        return;
+      }
+
+      // a 503 from a health check endpoint is not an error condition,
+      // it just means the service isn't ready for whatever reason.
+      if (isHealthcheck && status === 503) {
+        return;
+      }
+
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
-      const { method, url } = req;
-      const status = res.statusCode;
+      const method = req.method;
       const requestId = res.locals?.requestId;
 
       const level =
-        res.statusCode >= 500
+        status >= 500
           ? "error"
-          : res.statusCode >= 400
+          : status >= 400
           ? "warn"
-          : ["/healthz", "/livez", "/readyz"].includes(req.url ?? "")
+          : isHealthcheck
           ? "debug"
-          : "info";
+          : opts?.nonErrorLogLevel ?? "info";
 
       const message = { method, status, time, url, requestId };
-
-      logger.log(level, {
-        [LOG_TYPE_MARKER]: "HTTP",
-        message,
-      });
+      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message });
     });
 
     next();

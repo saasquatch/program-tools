@@ -3,6 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 interface DividedLayoutViewProps {
   direction: "row" | "column";
+  contentAreaWidth?: string | null;
   dividerStyle: string;
 }
 
@@ -43,11 +44,22 @@ export function DividedLayoutView(
         ? "width: 100%; max-width: var(--sqm-portal-main-width);"
         : ""
     }
+    ${
+      props.contentAreaWidth !== null
+        ? `max-width: ${props.contentAreaWidth} !important;`
+        : ""
+    }
   `;
 
   const vanillaStyle = `
   :host{
     ${hostStyle}
+  }
+  @media screen and (max-width: 570px) {
+    :host {
+      display: flex;
+      flex-direction: column;
+    }
   }
   sqm-divided-layout {
     ${hostStyle}
