@@ -55,6 +55,12 @@ export function DividedLayoutView(
   :host{
     ${hostStyle}
   }
+  @media screen and (max-width: 570px) {
+    :host {
+      display: flex;
+      flex-direction: column;
+    }
+  }
   sqm-divided-layout {
     ${hostStyle}
   }

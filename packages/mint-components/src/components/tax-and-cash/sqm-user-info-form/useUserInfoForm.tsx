@@ -102,10 +102,15 @@ export function useUserInfoForm(props: TaxForm) {
     // If form already filled out, skip initialising it
     if (objectIsFull(userFormContext)) return;
 
+    // Prefer MI email if it was verified before this
+    const email = user.managedIdentity?.emailVerified
+      ? user.managedIdentity.email
+      : user.email;
+
     if (user.impactConnection?.publisher && user.impactConnection?.user) {
       // Initialise with partner information
       setUserFormContext({
-        email: user.email,
+        email,
         firstName: user.impactConnection.user.firstName,
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
@@ -121,7 +126,7 @@ export function useUserInfoForm(props: TaxForm) {
     } else if (!userFormContext?.email) {
       // Initialise with user information
       setUserFormContext({
-        email: user.email,
+        email,
         firstName: user.firstName,
         lastName: user.lastName,
         countryCode: user.countryCode || "US",
@@ -228,6 +233,8 @@ export function useUserInfoForm(props: TaxForm) {
 
     setUserFormContext({
       ...userFormContext,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       phoneNumberCountryCode: userData.phoneNumberCountryCode,
       phoneNumber: userData.phoneNumber,
       countryCode: userData.countryCode,

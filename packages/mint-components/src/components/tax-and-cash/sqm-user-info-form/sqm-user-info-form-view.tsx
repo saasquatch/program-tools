@@ -100,6 +100,7 @@ export interface UserInfoFormViewProps {
     termsAndConditionsLabel: string;
     termsAndConditionsLink: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -201,6 +202,28 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
   },
+
+  PhoneInputsSection: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+    "& p": {
+      fontSize: "var(--sl-font-size-small)",
+      color: "var(--sl-input-label-color)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+    },
+  },
+
+  PhoneInputsContainer: {
+    display: "flex",
+    gap: "4px",
+    width: "100%",
+
+    "& #phoneNumber": {
+      width: "100%",
+      minWidth: "0px",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -228,7 +251,7 @@ const vanillaStyle = `
     }
 
     sl-select#phoneNumberCountryCode::part(menu) {
-      width: 450px;
+      min-width: 250px;
     }
   `;
 
@@ -294,7 +317,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.loadingErrorAlertHeader}</strong>
             <br />
-            {text.error.loadingErrorAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: text.error.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
           <br />
         </div>
@@ -332,7 +370,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.generalTitle}</strong>
               <br />
-              {text.error.generalDescription}
+              {intl.formatMessage(
+                {
+                  id: "generalDescription",
+                  defaultMessage: text.error.generalDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           )}
           {(states.isPartner || states.isUser) && (
@@ -345,7 +398,22 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-icon slot="icon" name="info-circle"></sl-icon>
               <strong>{text.isPartnerAlertHeader}</strong>
               <br />
-              {text.isPartnerAlertDescription}
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertDescription",
+                  defaultMessage: text.isPartnerAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           )}
 
@@ -441,88 +509,86 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
-              <div style={{ display: "flex", gap: "4px" }}>
-                <sl-select
-                  id="phoneNumberCountryCode"
-                  exportparts="label: input-label, base: input-base"
-                  name="/phoneNumberCountryCode"
-                  label={text.phoneNumber}
-                  style={{ minWidth: "140px" }}
-                  value={formState.phoneNumberCountryCode}
-                  disabled={states.disabled || states.isPartner}
-                  ref={(el: HTMLFormElement) =>
-                    (refs.phoneCountryRef.current = el)
-                  }
-                  // Hide error text since input is too small
-                  {...(formState.errors?.phoneNumberCountryCode
-                    ? {
-                        class: classes.ErrorInput,
-                      }
-                    : {})}
-                  required
-                  onSl-select={(e) => callbacks.onFormChange("phoneCountry", e)}
-                >
+              <div class={classes.PhoneInputsSection}>
+                <p>{text.phoneNumber}</p>
+                <div class={classes.PhoneInputsContainer}>
+                  <sl-select
+                    id="phoneNumberCountryCode"
+                    exportparts="label: input-label, base: input-base"
+                    name="/phoneNumberCountryCode"
+                    value={formState.phoneNumberCountryCode}
+                    disabled={states.disabled || states.isPartner}
+                    ref={(el: HTMLFormElement) =>
+                      (refs.phoneCountryRef.current = el)
+                    }
+                    // Hide error text since input is too small
+                    {...(formState.errors?.phoneNumberCountryCode
+                      ? {
+                          class: classes.ErrorInput,
+                        }
+                      : {})}
+                    required
+                    onSl-select={(e) =>
+                      callbacks.onFormChange("phoneCountry", e)
+                    }
+                  >
+                    <sl-input
+                      class={classes.SearchInput}
+                      placeholder={text.searchForCountryText}
+                      onKeyDown={(e) => {
+                        // Stop shoelace intercepting key presses
+                        e.stopPropagation();
+                      }}
+                      onSl-input={(e) => {
+                        callbacks.setPhoneCountrySearch(e.target.value);
+                      }}
+                    ></sl-input>
+                    {data?.phoneCountries?.map((c) => (
+                      <sl-menu-item value={c.countryCode}>
+                        <div slot="prefix">{`${
+                          PHONE_EXTENSIONS[c.countryCode]?.name
+                        } `}</div>
+                        {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
+                      </sl-menu-item>
+                    ))}
+                    {data?.allCountries?.map((c) => (
+                      <sl-menu-item
+                        value={c.countryCode}
+                        style={{ display: "none" }}
+                      >
+                        <div slot="prefix">{`${
+                          PHONE_EXTENSIONS[c.countryCode]?.name
+                        } `}</div>
+                        {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
+                      </sl-menu-item>
+                    ))}
+                  </sl-select>
                   <sl-input
-                    class={classes.SearchInput}
-                    placeholder={text.searchForCountryText}
-                    onKeyDown={(e) => {
-                      // Stop shoelace intercepting key presses
-                      e.stopPropagation();
-                    }}
-                    onSl-input={(e) => {
-                      callbacks.setPhoneCountrySearch(e.target.value);
-                    }}
-                  ></sl-input>
-                  {data?.phoneCountries?.map((c) => (
-                    <sl-menu-item
-                      style={{ width: "500px" }}
-                      value={c.countryCode}
-                    >
-                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
-                        PHONE_EXTENSIONS[c.countryCode]?.name
-                      } `}</div>
-                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
-                    </sl-menu-item>
-                  ))}
-                  {data?.allCountries?.map((c) => (
-                    <sl-menu-item
-                      value={c.countryCode}
-                      style={{ display: "none" }}
-                    >
-                      <div slot="prefix" style={{ marginRight: "8px" }}>{`${
-                        PHONE_EXTENSIONS[c.countryCode]?.name
-                      } `}</div>
-                      {PHONE_EXTENSIONS[c.countryCode]?.dial_code}
-                    </sl-menu-item>
-                  ))}
-                </sl-select>
-                <sl-input
-                  exportparts="label: input-label, base: input-base"
-                  label={" "}
-                  id="phoneNumber"
-                  name="/phoneNumber"
-                  value={formState.phoneNumber}
-                  style={{ marginTop: "2px", width: "362px" }}
-                  validationError={({ value }) =>
-                    // Naive phone number validation
-                    validateBillingField(/[a-zA-Z]+/, value) &&
-                    formatErrorMessage(
-                      text.phoneNumber,
-                      text.error.fieldInvalidError
-                    )
-                  }
-                  disabled={states.disabled || states.isPartner}
-                  {...(formState.errors?.phoneNumber
-                    ? {
-                        class: classes.ErrorInput,
-                        helpText: formatErrorMessage(
+                    exportparts="label: input-label, base: input-base"
+                    id="phoneNumber"
+                    name="/phoneNumber"
+                    value={formState.phoneNumber}
+                    validationError={({ value }) => {
+                      // Naive phone number validation
+                      validateBillingField(/[a-zA-Z]+/, value) &&
+                        formatErrorMessage(
                           text.phoneNumber,
-                          formState.errors.phoneNumber
-                        ),
-                      }
-                    : {})}
-                  required
-                ></sl-input>
+                          text.error.fieldInvalidError
+                        );
+                    }}
+                    disabled={states.disabled || states.isPartner}
+                    {...(formState.errors?.phoneNumber
+                      ? {
+                          class: classes.ErrorInput,
+                          helpText: formatErrorMessage(
+                            text.phoneNumber,
+                            formState.errors.phoneNumber
+                          ),
+                        }
+                      : {})}
+                    required
+                  ></sl-input>
+                </div>
               </div>
               <sl-input
                 exportparts="label: input-label, base: input-base"

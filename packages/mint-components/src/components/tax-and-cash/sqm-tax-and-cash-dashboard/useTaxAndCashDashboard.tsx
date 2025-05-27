@@ -1,4 +1,8 @@
-import { useLocale, useParentQueryValue, useSetParent } from "@saasquatch/component-boilerplate";
+import {
+  useLocale,
+  useParentQueryValue,
+  useSetParent,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { vatLabels } from "../countries";
@@ -17,6 +21,8 @@ import {
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
+import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
@@ -64,6 +70,11 @@ export const useTaxAndCashDashboard = (
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const [showDialog, setShowDialog] = useState(false);
+  const {
+    render,
+    loading: veriffLoading,
+    errors: veriffErrors,
+  } = useVeriffApp();
 
   const locale = useLocale();
 
@@ -76,10 +87,11 @@ export const useTaxAndCashDashboard = (
     data,
     loading,
     errors: userError,
+    refetch,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
   const publisher = data?.user?.impactConnection?.publisher;
-  const documentType = publisher?.currentTaxDocument?.type;
+  const documentType = publisher?.requiredTaxDocumentType;
   const submissionDate = publisher?.currentTaxDocument?.dateCreated;
 
   const dateSubmitted = submissionDate
@@ -111,6 +123,16 @@ export const useTaxAndCashDashboard = (
     (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion
   )?.displayName;
 
+  const payoutStatus = data ? getStatus(data) : null;
+
+  useEffect(() => {
+    const cb = () => refetch();
+    window.addEventListener(VERIFF_COMPLETE_EVENT_KEY, cb);
+    return () => {
+      window.removeEventListener(VERIFF_COMPLETE_EVENT_KEY, cb);
+    };
+  }, []);
+
   return {
     states: {
       dateSubmitted,
@@ -135,9 +157,13 @@ export const useTaxAndCashDashboard = (
       loading,
       loadingError: !!userError?.message,
       showNewFormDialog: showDialog,
+      hasHold: !!publisher?.payoutsAccount?.hold,
+      payoutStatus,
+      veriffLoading,
     },
     callbacks: {
       onClick: () => setShowDialog(true),
+      onVerifyClick: () => render(),
       onEditPayoutInfo,
       onNewFormCancel: () => setShowDialog(false),
       onNewFormClick,

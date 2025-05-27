@@ -73,6 +73,14 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
+   * @uiName Flex wrap behavior
+   * @uiType string
+   * @uiEnum ["wrap", "nowrap"]
+   * @uiEnumNames ["Wrap", "No Wrap"]
+   */
+  @Prop() flexWrap?: string = "wrap";
+
+  /**
    * @uiName Center content
    */
   @Prop() center?: boolean;
@@ -80,7 +88,6 @@ export class PortalContainer {
   /**
    * @uiName Background color
    * @uiWidget color
-   * @uiGroup Card style
    * @uiType string
    */
   @Prop() backgroundColor?: string = "#ffffff00";

@@ -7,12 +7,153 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.9.5] - 2024-08-22
+## [1.13.4] - 2025-05-27
 
 ### Updated
 
 - \<sqm-titled-section>
   - Fix broken `uiType` on `label` prop
+
+## [1.13.3] - 2025-05-22
+
+### Changed
+
+- \<sqm-portal-registration>
+  - Added email opt-in slot to portal registration form
+
+### Added
+
+- \<sqm-portal-marketing-emails-checkbox>
+  - checkbox to be used in the registration form to change the user's opt-in status
+- \<sqm-portal-change-marketing>
+  - checkbox to be used in the edit profile form to change the user's opt-in status
+
+## [1.13.2] - 2025-04-03
+
+### Changed
+
+- \<sqm-instant-access-registration>
+  - Include locale in user registration
+
+## [1.13.1] - 2025-03-27
+
+### Changed
+
+- \<sqm-share-button>
+  - Switch to treating share links as real links instead of calling `window.open` for better compatibility with WebViews in mobile apps.
+
+## [1.13.0] - 2025-03-18
+
+### Added
+
+- \<sqm-portal-google-registration-form>
+  - Contains a two step registration flow
+  - Adds the ability to choose to register with a Google account
+- \<sqm-portal-google-login>
+  - Adds the ability to login with a Google account
+
+## [1.12.0] - 2025-03-12
+
+### Added
+
+- \<sqm-widget-verification>
+  - Adds a verification gate to a given slot, requiring a user passes a 2FA flow to view the component.
+
+### Changed
+
+- \<sqm-tax-and-cash>
+  - Added a 2FA step required to update withdrawal settings.
+
+## [1.11.1] - 2025-02-18
+
+### Added
+
+- \<sqm-referral-code>
+  - Displays either the user's referral code for the program in scope or the promo code retrieved from the \<sqm-referral-codes> component
+- \<sqm-referral-codes>
+  - Parent component that supports displaying program promo codes for the following components when used as the parent:
+    - \<sqm-referral-code>
+    - \<sqm-share-button>
+    - \<sqm-share-link>
+- \<sqm-pagination>
+  - pagination component for \<sqm-referral-codes>
+
+### Changed
+
+- \<sqm-empty>
+  - Added default value for `emptyStateImage` prop.
+- \<sqm-copy-text-view>
+  - Added props to show notification text underneath component when text has been previously copied
+- \<sqm-share-button>
+  - Added support for displaying promo codes from the \<sqm-referral-codes> component
+
+## [1.11.0] - 2024-11-25
+
+### Changed
+
+- \<sqm-tax-and-cash>
+  - Replaced the DocuSign iframe with Comply Exchange.
+  - Added property `step-3_exit-button`, which controls the text of the Exit button shown at the end of the Comply exchange form.
+
+## [1.10.4] - 2024-11-20
+
+### Fixed
+
+- \<sqm-portal-verify-email>
+  - Removed unused `verified` prop being passed to the view.
+  - Updated demo props so component renders properly in the content editor.
+
+## [1.10.3] - 2024-11-08
+
+### Changed
+
+- \<sqm-leaderboard>
+
+  - Removed unused isEssentials prop
+
+## [1.10.2] - 2024-10-29
+
+### Changed
+
+- \<sqm-user-info-form>
+
+  - Removed hard coded widths and inline styling to ensure the view is responsive
+
+- \<sqm-portal-container>
+
+  - Added new `flexWrap` prop to optionally apply the flex-wrap css property
+
+- \<sqm-leaderboard>
+
+  - Added the following props:
+
+    - width
+    - rankSuffix
+    - hideNames
+
+  - New graphql queries that do not include the users names if `hideNames` is set to true
+  - New anonymouse leaderboard code example to display in raisins widget editor.
+
+- \<sqm-image>
+  - added new `width` prop
+
+## [1.10.1] - 2024-09-23
+
+### Fixed
+
+- \<sqm-logout-current-user>
+  - Updated query to use `viewer` instead to prevent permission errors
+
+## [1.10.0] - 2024-09-10
+
+### Changed
+
+- Added twitter-x icon
+- Updated templates using `Tweet about us` copy to `Post about us on X`
+- Updated stories using `Tweet about us` copy to `Post about us on X`
+- Changed components:
+  - \<sqm-share-button>
+    - Updated medium value 'twitter' to use `twitter-x` icon and color to `#000000`
 
 ## [1.9.5] - 2024-07-04
 
@@ -1010,15 +1151,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.9.6...HEAD
-[1.9.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.6
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.4...HEAD
+[1.13.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.4
+[1.13.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.3
+[1.13.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.2
+[1.13.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.1
+[1.13.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.0
+[1.12.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.12.0
+[1.11.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.1
+[1.11.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.11.0
+[1.10.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.4
+[1.10.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.3
+[1.10.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.2
+[1.10.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.1
+[1.10.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.10.0
 [1.9.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.5
 [1.9.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.4
 [1.9.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.3
 [1.9.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.2
 [1.9.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.1
 [1.9.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.9.0
-[1.8.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.5
 [1.8.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.4
 [1.8.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.3
 [1.8.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.8.2

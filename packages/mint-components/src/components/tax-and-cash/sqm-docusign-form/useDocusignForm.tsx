@@ -5,7 +5,7 @@ import {
   useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
   TAX_CONTEXT_NAMESPACE,
@@ -17,6 +17,7 @@ import {
 import { taxTypeToName, validTaxDocument } from "../utils";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {
@@ -24,6 +25,7 @@ type CreateTaxDocumentQuery = {
   };
 };
 type CreateImpactPublisherTaxDocumentInput = {
+  provider?: "DOCUSIGN" | "COMPLY_EXCHANGE";
   isBusinessEntity?: boolean;
   user: {
     id: string;
@@ -43,6 +45,19 @@ const GET_TAX_DOCUMENT = gql`
       createImpactPublisherTaxDocumentInput: $vars
     ) {
       documentUrl
+    }
+  }
+`;
+
+type CompleteTaxDocumentMutation = {
+  completeImpactPublisherTaxDocument: {
+    success: boolean;
+  };
+};
+const COMPLETE_TAX_DOCUMENT = gql`
+  mutation completeImpactPublisherTaxDocument($vars: UserIdInput!) {
+    completeImpactPublisherTaxDocument(user: $vars) {
+      success
     }
   }
 `;
@@ -73,20 +88,29 @@ export function useDocusignForm(props: DocusignForm) {
     { loading: documentLoading, data: document, errors: documentErrors },
   ] = useMutation<CreateTaxDocumentQuery>(GET_TAX_DOCUMENT);
 
+  const [
+    completeTaxDocument,
+    {
+      loading: completeDocumentLoading,
+      data: completeData,
+      errors: completeErrors,
+    },
+  ] = useMutation<CompleteTaxDocumentMutation>(COMPLETE_TAX_DOCUMENT);
+
   const [docusignStatus, setDocusignStatus] =
     useState<DocusignStatus>(undefined);
   const [participantType, setParticipantType] =
     useState<ParticipantType>(undefined);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showExitButton, setShowExitButton] = useState(false);
 
   // Only look at current document if it's valid (same as required type)
-  const existingDocumentType = validTaxDocument(
-    publisher?.requiredTaxDocumentType,
-    publisher?.currentTaxDocument?.type
-  )
-    ? publisher?.currentTaxDocument?.type
-    : undefined;
+  const existingDocumentType =
+    validTaxDocument(publisher?.requiredTaxDocumentType) &&
+    publisher?.currentTaxDocument
+      ? publisher?.requiredTaxDocumentType
+      : undefined;
 
   const actualDocumentType =
     existingDocumentType ||
@@ -107,18 +131,11 @@ export function useDocusignForm(props: DocusignForm) {
     // Skip if no publisher info
     if (!user || !publisher) return;
 
-    // Skip on initial load of W8 case
-    if (
-      publisher.requiredTaxDocumentType?.startsWith("W8") &&
-      !publisher.currentTaxDocument &&
-      !participantType
-    )
-      return;
-
     const fetchDocument = async () => {
       try {
         const result = await createTaxDocument({
           vars: {
+            provider: "COMPLY_EXCHANGE",
             user: {
               id: user.id,
               accountId: user.accountId,
@@ -138,36 +155,43 @@ export function useDocusignForm(props: DocusignForm) {
     fetchDocument();
   }, [user, publisher, participantType]);
 
-  useEffect(() => {
-    const onSubmit = async () => {
-      try {
-        setLoading(true);
+  const completeDocument = async () => {
+    if (!user) return;
 
-        await refetch();
+    try {
+      setLoading(true);
 
-        // Skip banking info form if it already is saved
-        // or if brandedSignup is false
-        setStep(
-          context.overrideNextStep ||
-            !!publisher?.withdrawalSettings ||
-            !publisher?.brandedSignup
-            ? "/dashboard"
-            : "/4"
-        );
-      } catch (e) {
-        setErrors({ general: true });
-      } finally {
-        setLoading(false);
-      }
-    };
+      const result = await completeTaxDocument({
+        vars: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+      });
 
-    // Handled in view
-    if (DOCUSIGN_ERROR_STATES.includes(docusignStatus)) return;
+      if (!result || (result as Error).message) throw new Error();
+      // @ts-expect-error: no data type for result
+      if (!result.completeImpactPublisherTaxDocument.success) throw new Error();
 
-    if (DOCUSIGN_SUCCESS_STATES.includes(docusignStatus)) {
-      onSubmit();
+      // Fire form change event
+      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+      setShowExitButton(true);
+    } catch (e) {
+      setErrors({ general: true });
+    } finally {
+      setLoading(false);
     }
-  }, [docusignStatus, refetch]);
+  };
+
+  const progressStep = () => {
+    setStep(
+      context.overrideNextStep ||
+        !!publisher?.withdrawalSettings ||
+        !publisher?.brandedSignup
+        ? "/dashboard"
+        : "/4"
+    );
+  };
 
   const allLoading = userLoading || documentLoading || loading;
 
@@ -177,7 +201,7 @@ export function useDocusignForm(props: DocusignForm) {
       hideSteps: context.hideSteps,
       disabled: allLoading,
       participantTypeDisabled: allLoading || !!existingDocumentType,
-      loading: userLoading || loading,
+      loading: userLoading || loading || completeDocumentLoading,
       urlLoading: documentLoading,
       loadingError: !!documentErrors?.message,
       formState: {
@@ -188,6 +212,7 @@ export function useDocusignForm(props: DocusignForm) {
       docusignStatus,
       documentType: actualDocumentType,
       documentTypeString: taxTypeToName(actualDocumentType),
+      showExitButton,
     },
     data: {
       taxForm: actualDocumentType,
@@ -195,6 +220,8 @@ export function useDocusignForm(props: DocusignForm) {
     },
     callbacks: {
       setDocusignStatus,
+      completeDocument,
+      onExit: progressStep,
       setParticipantType,
     },
     text: props.getTextProps(),

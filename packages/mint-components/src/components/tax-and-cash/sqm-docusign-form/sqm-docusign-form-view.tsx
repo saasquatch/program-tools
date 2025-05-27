@@ -13,6 +13,7 @@ export interface DocusignFormViewProps {
     hideSteps: boolean;
     participantTypeDisabled: boolean;
     loadingError?: boolean;
+    showExitButton: boolean;
     formState: {
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
@@ -29,9 +30,11 @@ export interface DocusignFormViewProps {
     docusignIframeSlot: VNode;
   };
   callbacks: {
+    onExit: () => void;
     setParticipantType: (p: ParticipantType) => void;
   };
   text: {
+    exitButton: string;
     formStep: string;
     taxForm: string;
     taxFormLabel: string;
@@ -44,6 +47,7 @@ export interface DocusignFormViewProps {
     individualParticipant: string;
     participantType: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -244,7 +248,22 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.loadingErrorAlertHeader}</strong>
             <br />
-            {text.error.loadingErrorAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: text.error.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         </div>
       )}
@@ -258,100 +277,58 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
           <strong>{text.error.generalTitle}</strong>
           <br />
-          {text.error.generalDescription}
+          {intl.formatMessage(
+            {
+              id: "generalDescription",
+              defaultMessage: text.error.generalDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          )}
         </sl-alert>
       )}
-      {/* 
-      // @ts-ignore */}
-      {states.documentType !== "W9" && (
-        <div class={classes.CheckboxWrapper}>
-          <p class={classes.BoldText}>{text.participantType}</p>
 
-          {states.loading ? (
-            <sl-spinner
-              style={{ fontSize: "50px", margin: "40px" }}
-            ></sl-spinner>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <sl-radio
-                exportparts="base: radio-base"
-                value="individualParticipant"
-                name="/participantType"
-                checked={formState.participantType === "individualParticipant"}
-                disabled={states.disabled || states.participantTypeDisabled}
-                onClick={() => {
-                  if (states.disabled || states.participantTypeDisabled) return;
-                  callbacks.setParticipantType("individualParticipant");
-                }}
-              >
-                <span class={classes.RadioText}>
-                  {text.individualParticipant}
-                </span>
-              </sl-radio>
-              <sl-radio
-                exportparts="base: radio-base"
-                value="businessEntity"
-                name="/participantType"
-                checked={formState.participantType === "businessEntity"}
-                disabled={states.disabled || states.participantTypeDisabled}
-                onClick={() => {
-                  if (states.disabled || states.participantTypeDisabled) return;
-                  callbacks.setParticipantType("businessEntity");
-                }}
-              >
-                <span class={classes.RadioText}>{text.businessEntity}</span>
-              </sl-radio>
-            </div>
-          )}
-
-          {formState.errors?.participantType && (
-            <p class={classes.ErrorText}>{text.error.participantType}</p>
-          )}
-        </div>
-      )}
-
-      {(states.documentType === "W9" || formState.participantType) && (
+      <div>
         <div>
-          <div>
-            <h5 class={classes.BoldText}>
-              {intl.formatMessage(
-                { id: "tax-form-label", defaultMessage: text.taxFormLabel },
-                { documentType: documentTypeString }
-              )}
-            </h5>
-            <p>
-              {intl.formatMessage(
-                {
-                  id: "tax-form-description",
-                  defaultMessage:
-                    states.documentType === "W9"
-                      ? text.taxFormDescription
-                      : formState.participantType === "individualParticipant"
-                      ? text.taxFormDescriptionIndividualParticipant
-                      : text.taxFormDescriptionBusinessEntity,
-                },
-                { documentType: documentTypeString }
-              )}
-            </p>
-          </div>
-          <div>
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="primary"
-              open
-              class={classes.InfoAlert}
-            >
-              <sl-icon
-                class={classes.InfoIcon}
-                slot="icon"
-                name="info-circle"
-              ></sl-icon>
-              {text.docusignSessionWarning}
-            </sl-alert>
-            {slots.docusignIframeSlot}
-          </div>
+          <h5 class={classes.BoldText}>
+            {intl.formatMessage(
+              { id: "tax-form-label", defaultMessage: text.taxFormLabel },
+              { documentType: documentTypeString }
+            )}
+          </h5>
+          <p>
+            {intl.formatMessage(
+              {
+                id: "tax-form-description",
+                defaultMessage:
+                  states.documentType === "W9"
+                    ? text.taxFormDescription
+                    : formState.participantType === "individualParticipant"
+                    ? text.taxFormDescriptionIndividualParticipant
+                    : text.taxFormDescriptionBusinessEntity,
+              },
+              { documentType: documentTypeString }
+            )}
+          </p>
         </div>
-      )}
+        <div>{slots.docusignIframeSlot}</div>
+        <div class={classes.BtnContainer}>
+          {states.showExitButton && (
+            <sl-button
+              type="primary"
+              exportparts="base: primarybutton-base"
+              onClick={callbacks.onExit}
+            >
+              {text.exitButton}
+            </sl-button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -74,7 +74,7 @@ try {
   registerIconLibrary("default", {
     // same link that shoelace uses internally
     resolver: (name) =>
-      `https://fast.ssqt.io/npm/bootstrap-icons@1.7.2/icons/${name}.svg`,
+      `https://fast.ssqt.io/npm/bootstrap-icons@1.11.3/icons/${name}.svg`,
   });
   // SlAlert.register();
   customElements.define("sl-alert", SlAlert);

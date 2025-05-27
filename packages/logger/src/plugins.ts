@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "http";
+import type { Request, Response } from "express";
 import winston from "winston";
 import { LogLevel } from "./config";
 import { LOG_TYPE_MARKER } from "./logger";
@@ -22,8 +22,8 @@ export function httpLogMiddleware(
   opts?: HttpLogMiddlewareOptions,
 ) {
   return (
-    req: IncomingMessage,
-    res: ServerResponse & { locals?: Record<string, any> },
+    req: Request,
+    res: Response & { locals?: Record<string, any> },
     next: () => void,
   ) => {
     const startTimeNs = process.hrtime.bigint();
@@ -34,7 +34,8 @@ export function httpLogMiddleware(
         return;
       }
 
-      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(req.url ?? "");
+      const url = req.originalUrl;
+      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(url ?? "");
       if (isHealthcheck && opts?.logHealthchecks === false) {
         return;
       }
@@ -47,7 +48,7 @@ export function httpLogMiddleware(
 
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
-      const { method, url } = req;
+      const method = req.method;
       const requestId = res.locals?.requestId;
 
       const level =

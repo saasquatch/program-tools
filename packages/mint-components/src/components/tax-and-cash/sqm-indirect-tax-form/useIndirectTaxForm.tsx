@@ -34,6 +34,7 @@ import {
 } from "../subregions";
 import { getCountryObj, validTaxDocument } from "../utils";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 type ConnectPartnerResult = {
   createImpactConnection: {
@@ -288,10 +289,12 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       const resultPublisher = (result as ConnectPartnerResult)
         .createImpactConnection?.user?.impactConnection?.publisher;
 
-      const hasValidCurrentDocument = validTaxDocument(
-        resultPublisher?.requiredTaxDocumentType,
-        resultPublisher?.currentTaxDocument?.type
-      );
+      const hasValidCurrentDocument =
+        validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+        resultPublisher?.currentTaxDocument;
+
+      // Fire form change event
+      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
 
       if (
         resultPublisher?.requiredTaxDocumentType &&

@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
   "title": "Mint Components",
-  "version": "1.9.6",
+  "version": "1.13.4",
   "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
   "raisins": "docs/raisins.json",
@@ -70,13 +70,14 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@raisins/stencil-docs-target": "^1.1.0",
-    "@saasquatch/component-boilerplate": "^1.6.7",
+    "@raisins/stencil-docs-target": "^1.1.1",
+    "@saasquatch/component-boilerplate": "^1.6.9",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/stencilbook": "^1.1.0",
     "@saasquatch/universal-hooks": "^1.0.0",
+    "@veriff/incontext-sdk": "^2.3.1",
     "babel-polyfill": "^6.26.0",
     "canvas-confetti": "^1.4.0",
     "color2k": "^1.2.4",
@@ -88,6 +89,7 @@
     "highlight.js": "^10.6.0",
     "jsonpointer": "^4.1.0",
     "jss-preset-default": "^10.7.1",
+    "jwt-decode": "^4.0.0",
     "libphonenumber-js": "^1.9.23",
     "luxon": "^2.0.1",
     "password-validator": "^5.1.1",

@@ -118,13 +118,15 @@ export class TaxAndCashMonolith {
    * @uiName Terms and conditions link
    * @uiGroup Step 1 Properties
    */
-  @Prop() step1_termsAndConditionsLink: string = "/payout-terms-and-conditions";
+  @Prop() step1_termsAndConditionsLink: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
   /**
    * Placeholder text displayed in the currency search dropdown
    * @uiName Currency field placeholder text
    * @uiGroup Step 1 Properties
    */
   @Prop() step1_searchForCurrencyText: string = "Search for currency..";
+  /**
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 2 PROPS:
@@ -237,7 +239,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step2_cannotChangeInfoAlert: string =
-    "Changes to your personal and indirect tax information can only be made through our Support team after you complete this step. Make sure these are correct before continuing.";
+    "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing.";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 3 PROPS:
@@ -318,12 +320,18 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step3_docusignError: string =
-    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support.";
+    "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}.";
   /**
    * @uiName Refresh page button label
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_refreshButton: string = "Refresh Page";
+
+  /**
+   * @uiName Exit button text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_exitButton: string = "Exit";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
@@ -570,6 +578,19 @@ export class TaxAndCashMonolith {
   @Prop() step4_fxWireProcessingFeeLabel: string =
     "FX Wire (Processing Fee {currency}{defaultFxFee}.00)";
 
+  /**
+   * @uiName Text for verify email dialog
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_verifyEmailHeaderText: string = "Verify your email";
+
+  /**
+   * @uiName Verify code widget header text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_verifyEmailDescriptionText: string =
+    "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -727,7 +748,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_indirectTaxTooltipSupport: string =
-    "To make changes to your indirect tax information, please contact Support.";
+    "To make changes to your indirect tax information, please contact our {supportLink}.";
   /**
    * Displayed to participants who have submitted their indirect tax information.
    *
@@ -753,7 +774,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_notRegisteredForTax: string =
-    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact Support to add your information to stay tax compliant.";
+    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant.";
   /**
    * Displayed to participants registered in Quebec, Canada.
    * @uiName QST indirect tax details
@@ -830,17 +851,15 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop()
-  dashboard_errorTitleText: string = "Your payout is on hold ";
+  @Prop() dashboard_payoutHoldAlertHeader: string = "Your payout is on hold";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message description
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop()
-  dashboard_errorDescriptionText: string =
-    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  @Prop() dashboard_payoutHoldAlertDescription: string =
+    "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com.";
   /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
@@ -901,6 +920,72 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_replaceTaxFormModalBodyText: string =
     "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
 
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert message title
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredHeader: string = "Verify your identity";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity
+   * @uiName Verification required alert message description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredDescription: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
+  /**
+   * @uiName Verification required internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredInternalHeader: string =
+    "Identity Verification in Progress";
+  /**
+   * @uiName Verification required internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredInternalDescription: string =
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification review internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationReviewInternalHeader: string =
+    "Identity Verification Under Review";
+  /**
+   * @uiName Verification review internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationReviewInternalDescription: string =
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification failed internal alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationFailedInternalHeader: string =
+    "Identity Verification Unsuccessful";
+  /**
+   * @uiName Verification failed internal alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationFailedInternalDescription: string =
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_verificationRequiredButtonText: string =
+    "Start Verification";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -926,7 +1011,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed under a field that is missing required information.
    * @uiName Empty form field error message
@@ -976,7 +1061,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text
@@ -998,7 +1083,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed at the top of the page on all set up steps.
    * @uiName Page description
@@ -1006,6 +1091,12 @@ export class TaxAndCashMonolith {
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+  /**
+   * Link text for contacting support team
+   * @uiName Suport link text
+   * @uiGroup General Form Properties
+   */
+  @Prop() supportLink: string = "support team";
 
   /**
    *
@@ -1039,6 +1130,7 @@ export class TaxAndCashMonolith {
       taxAndPayoutsDescription: props.taxAndPayoutsDescription,
       searchForCountryText: props.searchForCountryText,
       formStep: props.formStep,
+      supportLink: props.supportLink,
     };
   }
 

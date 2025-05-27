@@ -17,6 +17,7 @@
         >
           <sqm-router>
             <template path="/register">
+              <sqm-portal-login></sqm-portal-login>
               <sqm-portal-register>
                 <sqm-name-fields slot="formData"></sqm-name-fields>
               </sqm-portal-register>
@@ -228,6 +229,7 @@
                   step-3_docusign-session-warning="For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
                   step-3_docusign-error="There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support."
                   step-3_refresh-button="Refresh Page"
+                  step-3_exit-button="Exit"
                   step-4_tax-and-payouts="Payouts"
                   step-4_directly-to-bank-account="Directly to my bank account"
                   step-4_to-pay-pal-account="PayPal (2% processing fee capped to {feeCap})"

@@ -5,7 +5,7 @@ import {
 } from "./sqm-portal-registration-form-view";
 
 export default {
-  title: "Components/Microsite Register",
+  title: "Components/Microsite Portal Register",
 };
 
 const defaultProps: PortalRegistrationFormViewProps = {
@@ -130,6 +130,18 @@ export const FieldsHidden = () => {
 
 export const SlottedInputs = () => (
   <PortalRegistrationFormView {...slottedProps} />
+);
+
+export const RegisterWithMarketingEmailsCheckbox = () => (
+  <PortalRegistrationFormView
+    {...defaultProps}
+    content={{
+      ...defaultProps.content,
+      emailOptIn: (
+        <sqm-checkbox-field checkboxLabel="I would like to receive marketing and promotional emails for this referral program"></sqm-checkbox-field>
+      ),
+    }}
+  />
 );
 
 export const TermsAndConditions = () => (

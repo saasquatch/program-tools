@@ -20,7 +20,7 @@ const vanillaStyle = `
   100% {
     left: 0;
   }
-} 
+}
 
 @media screen and (min-width: 800px) {
   :host {

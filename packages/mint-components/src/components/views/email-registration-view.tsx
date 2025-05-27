@@ -98,6 +98,7 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
 
   return (
     <div
+      part="sqm-base"
       class={sheet.classes.Wrapper}
       style={{
         border: `${content.hideBorder ? "none" : "1px solid #eaeaea"}`,

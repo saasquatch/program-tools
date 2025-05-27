@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.1] - 2025-03-20
+
+### Changed
+
+- Updated `@saasquatch/logger` to version 1.5.1
+
 ## [2.4.0] - 2024-07-16
 
 ### Added

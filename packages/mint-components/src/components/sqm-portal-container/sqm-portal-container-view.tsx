@@ -10,6 +10,7 @@ interface PortalContainerViewProps {
   display?: string;
   minWidth?: string;
   maxWidth?: string;
+  flexWrap?: string;
   backgroundColor?: string;
   justifyContent?:
     | "start"
@@ -28,7 +29,7 @@ export function PortalContainerView(
     Container: {
       boxSizing: "border-box",
       display: props.display || "grid",
-      flexWrap: "wrap",
+      flexWrap: props.flexWrap || "wrap",
       "grid-template-columns":
         props.direction === "row"
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`

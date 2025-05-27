@@ -12,9 +12,10 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @requiredFeatures ["LEADERBOARDS"]
  * @exampleGroup Leaderboard
- * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Points Earned Leaderboard - <sqm-leaderboard usersheading="Name" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Points Earned Leaderboard - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
  * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
  */
 @Component({
@@ -47,6 +48,18 @@ export class Leaderboard {
    * @uiName Show leaderboard rank
    */
   @Prop() showRank: boolean;
+  /**
+   * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
+   *
+   * @uiName Width
+   */
+  @Prop() width: string = "100%";
+  /**
+   * A JSONata string that formats the rank with the appropriate ordinal suffix (e.g., "st" for 1st, "nd" for 2nd, "rd" for 3rd, and "th" for all others).
+   *
+   * @uiName Rank Suffix
+   */
+  @Prop() rankSuffix: string;
 
   /**
    * Hide the viewer's leaderboard row if not in the top results.
@@ -57,12 +70,17 @@ export class Leaderboard {
   @Prop() hideViewer: boolean = false;
 
   /**
-   * Hides the leaderboard if user is on Essentials plan
+   * @uiName Viewing user text
+   */
+  @Prop() viewingUserText: string = "You";
+
+  /**
+   * Hide the Names of users to protect personal identifiable information
    *
-   * @uiName Hide viewing user
+   * @uiName Hide users names
    * @default
    */
-  @Prop() isEssentials?: boolean = false;
+  @Prop() hideNames: boolean = false;
 
   /**
    * @uiName Rank type
@@ -122,8 +140,6 @@ export class Leaderboard {
   render() {
     const props = {
       empty: <EmptySlot />,
-      essentials: <EssentialsSlot />,
-      loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankheading: this.rankheading,
@@ -134,8 +150,11 @@ export class Leaderboard {
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,
+      viewingUserText: this.viewingUserText,
+      hideNames: this.hideNames,
       showRank: this.showRank,
-      isEssentials: this.isEssentials,
+      rankSuffix: this.rankSuffix,
+      width: this.width,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -153,38 +172,6 @@ function EmptySlot() {
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
       ></sqm-empty>
-    </slot>
-  );
-}
-
-function EssentialsSlot() {
-  return (
-    <slot name="essentials">
-      <sqm-empty
-        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1715360191/squatch-assets/Leaderboard_Not_Available.svg"
-        empty-state-header="Leaderboards aren’t available on your plan"
-        empty-state-text="Contact {supportText} to upgrade your plan and start leveraging gamification in your program."
-        support-text="Support"
-        missing-feature="Leaderboards"
-      ></sqm-empty>
-    </slot>
-  );
-}
-
-function LoadingSlot() {
-  return (
-    <slot name="loading">
-      <table>
-        {[...Array(10)].map(() => {
-          return (
-            <tr>
-              <td>
-                <sl-skeleton></sl-skeleton>
-              </td>
-            </tr>
-          );
-        })}
-      </table>
     </slot>
   );
 }
@@ -247,6 +234,10 @@ function useLeaderboardDemo(
             : "Anonymous User",
           showRank: props.showRank,
           hideViewer: props.hideViewer,
+          viewingUserText: props.viewingUserText,
+          hideNames: props.hideNames,
+          rankSuffix: props.rankSuffix,
+          width: props.width,
         },
       },
       data: {
@@ -255,8 +246,6 @@ function useLeaderboardDemo(
       },
       elements: {
         empty: <EmptySlot />,
-        essentials: <EssentialsSlot />,
-        loadingstate: <LoadingSlot />,
       },
     },
     props.demoData || {},

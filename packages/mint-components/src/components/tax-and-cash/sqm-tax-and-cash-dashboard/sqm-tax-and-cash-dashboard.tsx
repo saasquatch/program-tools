@@ -143,7 +143,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() indirectTaxTooltipSupport: string =
-    "To make changes to your indirect tax information, please contact Support.";
+    "To make changes to your indirect tax information, please contact our Support team.";
   /**
    * Displayed to participants who have submitted their indirect tax information.
    *
@@ -165,7 +165,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() notRegisteredForTax: string =
-    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact Support to add your information to stay tax compliant.";
+    "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant.";
   /**
    * Displayed to participants registered in Quebec, Canada.
    * @uiName QST indirect tax details
@@ -200,22 +200,68 @@ export class TaxAndCashDashboard {
    * @uiName Payout error message title
    * @uiWidget textArea
    */
-  @Prop() errorTitleText: string = "Your payout is on hold ";
+  @Prop() payoutHoldAlertHeader: string = "Your payout is on hold";
   /**
    * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
    * @uiName Payout error message description
    * @uiWidget textArea
    */
-  @Prop()
-  errorDescriptionText: string =
-    "If you’ve recently added your payout information, please wait while we verify your information. If it’s still on hold after a few days, please contact Support or check your inbox for an email from our referral program provider, impact.com.";
+  @Prop() payoutHoldAlertDescription: string =
+    "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com.";
   /**
    * Text displayed for existing publishers that do not have saved banking information.
    * @uiName Payout missing information subtext
    */
   @Prop() payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
-
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert message title
+   * @uiWidget textArea
+   */
+  @Prop() verificationRequiredHeader: string = "Verify your identity";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity
+   * @uiName Verification required alert message description
+   * @uiWidget textArea
+   */
+  @Prop() verificationRequiredDescription: string =
+    "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}.";
+  /**
+   * @uiName Verification required internal alert header
+   */
+  @Prop() verificationRequiredInternalHeader: string =
+    "Identity Verification in Progress";
+  /**
+   * @uiName Verification required internal alert description
+   */
+  @Prop() verificationRequiredInternalDescription: string =
+    "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification review internal alert header
+   */
+  @Prop() verificationReviewInternalHeader: string =
+    "Identity Verification Under Review";
+  /**
+   * @uiName Verification review internal alert description
+   */
+  @Prop() verificationReviewInternalDescription: string =
+    "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName Verification failed internal alert header
+   */
+  @Prop() verificationFailedInternalHeader: string =
+    "Identity Verification Unsuccessful";
+  /**
+   * @uiName Verification failed internal alert description
+   */
+  @Prop() verificationFailedInternalDescription: string =
+    "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
+  /**
+   * Part of the alert displayed at the top of the page when the user needs to verify their identity.
+   * @uiName Verification required alert button text
+   */
+  @Prop() verificationRequiredButtonText: string = "Start Verification";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -229,8 +275,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
-
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed under the payout details card.
    * @uiName Payout from impact text
@@ -251,7 +296,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
 
   /**
    * Part of the Invoice table displayed at the bottom of the page.
@@ -314,6 +359,10 @@ export class TaxAndCashDashboard {
    */
   @Prop() replaceTaxFormModalBodyText: string =
     "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout.";
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
   /**
    * @uiName Cancel button label
    */
@@ -384,12 +433,17 @@ function useDemoTaxAndCashDashboard(
         disabled: false,
         loading: false,
         showNewFormDialog: false,
+        hasHold: false,
+        showVerifyIdentity: false,
+        payoutStatus: "DONE",
+        veriffLoading: false,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
         onEditPayoutInfo: () => console.debug("payout info"),
         onNewFormCancel: () => console.log("hide"),
         onNewFormClick: () => console.log("show"),
+        onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
     },
