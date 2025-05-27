@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-tax-and-cash-dashboard>
   - Changed direction of tooltip popover to prevent it from getting cut off
 
+## [1.13.4] - 2025-05-27
+
+### Updated
+
+- \<sqm-titled-section>
+  - Fix broken `uiType` on `label` prop
+
 ## [1.13.3] - 2025-05-22
 
 ### Changed
