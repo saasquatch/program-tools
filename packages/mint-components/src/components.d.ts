@@ -32,6 +32,7 @@ import { UsePagination } from "./components/sqm-pagination/usePagination";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
+import { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
@@ -402,11 +403,11 @@ export namespace Components {
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
          */
-        "checkboxLabelLink": string;
+        "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
          */
-        "checkboxLabelLinkText": string;
+        "checkboxLabelLinkText"?: string;
         /**
           * This name is used as the key for this form field on submission. The name must be unique within this specific form.
           * @uiName Checkbox name attribute
@@ -425,7 +426,7 @@ export namespace Components {
         /**
           * @uiName Unchecked error message
          */
-        "errorMessage": string;
+        "errorMessage"?: string;
     }
     interface SqmCloseButton {
         /**
@@ -1605,6 +1606,22 @@ export namespace Components {
          */
         "userIdentificationText": string;
     }
+    interface SqmMarketingEmailsCheckbox {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel": string;
+        /**
+          * @undocumented
+         */
+        "checkboxName": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -1872,6 +1889,34 @@ export namespace Components {
          */
         "poweredByText": string;
     }
+    interface SqmPortalChangeMarketing {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ChangeMarketingViewProps>;
+        /**
+          * @uiName Email preferences header
+         */
+        "emailPreferencesHeader": string;
+        /**
+          * @uiName Marketing checkbox label
+         */
+        "marketingCheckboxLabel": string;
+        /**
+          * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * @uiName Network request error message
+         */
+        "networkRequestMessage": string;
+        /**
+          * @uiName Submit changes button text
+         */
+        "submitChangeButtonText": string;
+        /**
+          * @uiName Successful update message
+         */
+        "successMessage": string;
+    }
     interface SqmPortalChangePassword {
         /**
           * Found in modal
@@ -2029,7 +2074,8 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
-          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+          * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
         /**
@@ -2157,7 +2203,8 @@ export namespace Components {
          */
         "loginText": string;
         /**
-          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
         /**
@@ -2406,7 +2453,8 @@ export namespace Components {
          */
         "forgotPasswordPath": string;
         /**
-          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the login fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
         /**
@@ -2804,7 +2852,8 @@ export namespace Components {
          */
         "minErrorText": string;
         /**
-          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
         /**
@@ -2861,7 +2910,8 @@ export namespace Components {
          */
         "failedPage": string;
         /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage": string;
         /**
@@ -6077,6 +6127,12 @@ declare global {
         prototype: HTMLSqmLogoutCurrentUserElement;
         new (): HTMLSqmLogoutCurrentUserElement;
     };
+    interface HTMLSqmMarketingEmailsCheckboxElement extends Components.SqmMarketingEmailsCheckbox, HTMLStencilElement {
+    }
+    var HTMLSqmMarketingEmailsCheckboxElement: {
+        prototype: HTMLSqmMarketingEmailsCheckboxElement;
+        new (): HTMLSqmMarketingEmailsCheckboxElement;
+    };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
     var HTMLSqmNameFieldsElement: {
@@ -6136,6 +6192,12 @@ declare global {
     var HTMLSqmPopupContainerElement: {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
+    };
+    interface HTMLSqmPortalChangeMarketingElement extends Components.SqmPortalChangeMarketing, HTMLStencilElement {
+    }
+    var HTMLSqmPortalChangeMarketingElement: {
+        prototype: HTMLSqmPortalChangeMarketingElement;
+        new (): HTMLSqmPortalChangeMarketingElement;
     };
     interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
     }
@@ -6603,6 +6665,7 @@ declare global {
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
         "sqm-logout-current-user": HTMLSqmLogoutCurrentUserElement;
+        "sqm-marketing-emails-checkbox": HTMLSqmMarketingEmailsCheckboxElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
@@ -6613,6 +6676,7 @@ declare global {
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
         "sqm-payout-status-alert": HTMLSqmPayoutStatusAlertElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-change-marketing": HTMLSqmPortalChangeMarketingElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
@@ -8232,6 +8296,22 @@ declare namespace LocalJSX {
          */
         "userIdentificationText"?: string;
     }
+    interface SqmMarketingEmailsCheckbox {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel"?: string;
+        /**
+          * @undocumented
+         */
+        "checkboxName"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+    }
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -8499,6 +8579,34 @@ declare namespace LocalJSX {
          */
         "poweredByText"?: string;
     }
+    interface SqmPortalChangeMarketing {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ChangeMarketingViewProps>;
+        /**
+          * @uiName Email preferences header
+         */
+        "emailPreferencesHeader"?: string;
+        /**
+          * @uiName Marketing checkbox label
+         */
+        "marketingCheckboxLabel"?: string;
+        /**
+          * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
+          * @uiName Network request error message
+         */
+        "networkRequestMessage"?: string;
+        /**
+          * @uiName Submit changes button text
+         */
+        "submitChangeButtonText"?: string;
+        /**
+          * @uiName Successful update message
+         */
+        "successMessage"?: string;
+    }
     interface SqmPortalChangePassword {
         /**
           * Found in modal
@@ -8656,7 +8764,8 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
-          * @uiName Network error message Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+          * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
         /**
@@ -8784,7 +8893,8 @@ declare namespace LocalJSX {
          */
         "loginText"?: string;
         /**
-          * @uiName Network error message Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
         /**
@@ -9033,7 +9143,8 @@ declare namespace LocalJSX {
          */
         "forgotPasswordPath"?: string;
         /**
-          * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the login fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
         /**
@@ -9431,7 +9542,8 @@ declare namespace LocalJSX {
          */
         "minErrorText"?: string;
         /**
-          * @uiName Network error message Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
         /**
@@ -9488,7 +9600,8 @@ declare namespace LocalJSX {
          */
         "failedPage"?: string;
         /**
-          * @uiName Network error message Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
+          * @uiName Network error message
          */
         "networkErrorMessage"?: string;
         /**
@@ -12483,6 +12596,7 @@ declare namespace LocalJSX {
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
         "sqm-logout-current-user": SqmLogoutCurrentUser;
+        "sqm-marketing-emails-checkbox": SqmMarketingEmailsCheckbox;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
@@ -12493,6 +12607,7 @@ declare namespace LocalJSX {
         "sqm-payout-details-card": SqmPayoutDetailsCard;
         "sqm-payout-status-alert": SqmPayoutStatusAlert;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-change-marketing": SqmPortalChangeMarketing;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
@@ -12609,6 +12724,7 @@ declare module "@stencil/core" {
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
             "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
+            "sqm-marketing-emails-checkbox": LocalJSX.SqmMarketingEmailsCheckbox & JSXBase.HTMLAttributes<HTMLSqmMarketingEmailsCheckboxElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
@@ -12619,6 +12735,7 @@ declare module "@stencil/core" {
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
             "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-change-marketing": LocalJSX.SqmPortalChangeMarketing & JSXBase.HTMLAttributes<HTMLSqmPortalChangeMarketingElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
