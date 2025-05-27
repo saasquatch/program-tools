@@ -61,6 +61,11 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
+  sl-dialog::part(base) {
+    inset: auto;
+    position: absolute;
+    left: 25%;
+  }
   sl-dialog::part(panel) {
     max-width: 390px;
     width: 100%;
@@ -113,13 +118,25 @@ export function QrCodeView({
         )}
         <span part="sqm-title">{titleText}</span>
         <div class={sheet.classes.ButtonContainer}>
-          <sl-button type="primary" onClick={showDialog}>
+          <sl-button
+            type="primary"
+            exportparts="base: primarybutton-base"
+            onClick={showDialog}
+          >
             {viewCodeText}
           </sl-button>
-          <sl-button type="text" onClick={createDownloadable}>
+          <sl-button
+            exportparts="base: textbutton-base"
+            type="text"
+            onClick={createDownloadable}
+          >
             {downloadCodeText}
           </sl-button>
-          <sl-button type="text" onClick={createPrintable}>
+          <sl-button
+            exportparts="base: textbutton-base"
+            type="text"
+            onClick={createPrintable}
+          >
             {printCodeText}
           </sl-button>
         </div>
@@ -146,6 +163,7 @@ export function QrCodeView({
 
         <div slot="footer" class={sheet.classes.FooterContainer}>
           <sl-button
+            exportparts="base: button-base"
             disabled={error}
             variant="default"
             onClick={createDownloadable}
@@ -153,6 +171,7 @@ export function QrCodeView({
             {downloadCodeText}
           </sl-button>
           <sl-button
+            exportparts="base: button-base"
             disabled={error}
             variant="default"
             onClick={createPrintable}
