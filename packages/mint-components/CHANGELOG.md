@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.4] - 2025-05-27
+
+### Updated
+
+- \<sqm-titled-section>
+  - Fix broken `uiType` on `label` prop
+
 ## [1.13.3] - 2025-05-22
 
 ### Changed
@@ -1144,7 +1151,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.4...HEAD
+[1.13.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.4
 [1.13.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.3
 [1.13.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.2
 [1.13.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.1
