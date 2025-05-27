@@ -129,8 +129,8 @@ export class PortalResetPassword {
     "Your password has been reset and you are being redirected. If you are not redirected, please click Continue.";
 
   /**
-   * @uiName Network error message
    * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
+   * @uiName Network error message
    */
   @Prop() networkErrorMessage: string =
     "An error occurred while resetting your password. Please refresh the page and try again.";

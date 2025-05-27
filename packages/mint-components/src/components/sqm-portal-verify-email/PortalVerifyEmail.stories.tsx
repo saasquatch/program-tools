@@ -16,7 +16,7 @@ const errorProps: PortalVerifyEmailViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
-    verified: false,
+    success: false,
   },
   data: {
     oobCode: "abc123",
@@ -38,7 +38,7 @@ const verifiedProps: PortalVerifyEmailViewProps = {
   states: {
     error: "",
     loading: false,
-    verified: true,
+    success: true,
   },
   data: {
     oobCode: "abc123",

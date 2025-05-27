@@ -1,4 +1,7 @@
-import { useAuthenticateManagedIdentityWithInstantAccess } from "@saasquatch/component-boilerplate";
+import {
+  useAuthenticateManagedIdentityWithInstantAccess,
+  useLocale,
+} from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
 import { useRegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
@@ -6,6 +9,8 @@ import { InstantAccessRegistration } from "./sqm-instant-access-registration";
 import { ValidationErrorFunction } from "../sqm-portal-register/usePortalRegister";
 
 export function useInstantAccessRegistration(props: InstantAccessRegistration) {
+  const locale = useLocale();
+
   const cookie = new URLSearchParams(window.location.search);
 
   const cookies = cookie?.get("_saasquatch");
@@ -44,6 +49,7 @@ export function useInstantAccessRegistration(props: InstantAccessRegistration) {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
+      locale,
       ...(props?.includeCookies && cookies ? { cookies } : {}),
     };
 

@@ -33,7 +33,12 @@ const triggerSteps: StepDefinitions = ({ when }) => {
 
     switch (type) {
       case "PROGRAM_INTROSPECTION":
-        body = getIntrospectionJson(template, rules, programRewards);
+        body = getIntrospectionJson(
+          template,
+          rules,
+          programRewards,
+          currentState.featureFlags
+        );
         break;
 
       case "PROGRAM_VALIDATION":
@@ -45,12 +50,15 @@ const triggerSteps: StepDefinitions = ({ when }) => {
         break;
 
       default:
-        body = getProgramTriggerJson({
-          type,
-          user: getWorld().state.current.user,
-          rules: getWorld().state.current.rules,
-          time: getWorld().state.current.time,
-        });
+        body = getProgramTriggerJson(
+          {
+            type,
+            user: getWorld().state.current.user,
+            rules: getWorld().state.current.rules,
+            time: getWorld().state.current.time,
+          },
+          getWorld().state.current.flavor ?? "saasquatch"
+        );
     }
 
     switch (type) {

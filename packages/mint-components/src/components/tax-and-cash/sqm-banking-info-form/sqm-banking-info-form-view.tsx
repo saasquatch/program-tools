@@ -6,6 +6,7 @@ import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface BankingInfoFormViewProps {
   states: {
+    showVerification: boolean;
     step?: string;
     locale?: string;
     loading: boolean;
@@ -44,8 +45,10 @@ export interface BankingInfoFormViewProps {
     showInputs?: boolean;
     bankCountry?: string;
     countrySearch?: string;
+    email?: string;
   };
   slots?: {
+    verificationDialogSlot?: VNode;
     formInputsSlot?: VNode[];
     countryInputSlot?: VNode;
     paymentMethodSlot?: VNode;
@@ -54,6 +57,7 @@ export interface BankingInfoFormViewProps {
     paypalInputSlot?: VNode;
   };
   callbacks: {
+    onVerificationHide: () => void;
     setPaymentMethodChecked: (
       paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
     ) => void;
@@ -65,6 +69,7 @@ export interface BankingInfoFormViewProps {
     setBankCountry?: (country: string) => void;
     setCurrency?: (currency: string) => void;
     setCountrySearch: (c: any) => void;
+    onVerification: (token: string) => void;
   };
   text: {
     formStep: string;
@@ -87,6 +92,9 @@ export interface BankingInfoFormViewProps {
     paymentDayFifteenthOfMonthLabelText: string;
     isPartnerAlertHeader: string;
     isPartnerAlertDescription: string;
+    supportLink: string;
+    verifyEmailHeaderText: string;
+    verifyEmailDescriptionText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -107,7 +115,6 @@ const style = {
     alignItems: "flex-start",
     justifyContent: "flex-start",
     gap: "var(--sl-spacing-xx-small)",
-    maxWidth: "797px",
   },
   TitleContainer: {
     display: "flex",
@@ -216,7 +223,8 @@ const style = {
     background: "var(--sl-color-gray-200)",
   },
   LargeSkeleton: {
-    width: "320px",
+    width: "100%",
+    maxWidth: "320px",
     height: "40px",
     borderRadius: "50px",
     background: "var(--sl-color-gray-200)",
@@ -378,7 +386,22 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
-            {text.error.generalDescription}
+            {intl.formatMessage(
+              {
+                id: "generalDescription",
+                defaultMessage: text.error.generalDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         {/* Don't show the warning if returning to edit */}
@@ -392,7 +415,22 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             <strong>{text.isPartnerAlertHeader}</strong>
             <br />
-            {text.isPartnerAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "isPartnerAlertDescription",
+                defaultMessage: text.isPartnerAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         <div>
@@ -409,7 +447,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   checked={formState.paymentMethodChecked === "toBankAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toBankAccount")
@@ -421,6 +459,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   {text.directlyToBankAccount}
                 </sl-radio>
               )}
+
               {formState.paymentMethodChecked === "toBankAccount" && (
                 <div
                   class={classes.InputContainer}
@@ -441,7 +480,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label"
+                  exportparts="label: input-label, base: input-base"
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toPayPalAccount")
@@ -474,7 +513,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               </div>
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 checked={
                   formState.paymentScheduleChecked === "BALANCE_THRESHOLD"
                 }
@@ -501,7 +540,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label"
+                exportparts="label: input-label, base: input-base"
                 checked={formState.paymentScheduleChecked === "FIXED_DAY"}
                 onInput={() => callbacks.setPaymentScheduleChecked("FIXED_DAY")}
                 disabled={states.disabled}
@@ -536,6 +575,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </sl-button>
           {!states.hideBackButton && (
             <sl-button
+              exportparts="base: secondarybutton-base"
               class={classes.SecondaryBtn}
               type="text"
               onClick={callbacks.onBack}

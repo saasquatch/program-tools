@@ -8,6 +8,7 @@ export default {
 
 const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
   states: {
+    showVerification: false,
     hideSteps: false,
     disabled: false,
     loading: false,
@@ -22,9 +23,12 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     thresholds: [],
     currency: "USD",
     loadingError: false,
+    email: "test@example.com",
   },
 
   callbacks: {
+    onVerificationHide: () => {},
+    onVerification: () => {},
     onSubmit: async () => console.log("Submit"),
     setPaymentMethodChecked: () => {},
     setPaymentScheduleChecked: () => {},
@@ -431,6 +435,27 @@ export const BankingInfoFormWithFixedDayPaymentScheduleLoading = () => {
         states: {
           ...bankingFormProps.states,
           loading: true,
+          formState: {
+            ...bankingFormProps.states.formState,
+            bankCountry: "US",
+            paymentScheduleChecked: "FIXED_DAY",
+          },
+          currency: "USD",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormVerififyIdentityModal = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          isPartner: true,
+          showVerification: true,
           formState: {
             ...bankingFormProps.states.formState,
             bankCountry: "US",

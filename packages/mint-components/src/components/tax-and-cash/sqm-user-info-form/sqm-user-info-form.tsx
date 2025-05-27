@@ -35,6 +35,34 @@ export class TaxForm {
    */
   @Prop() country: string = "Country";
   /**
+   * @uiName Phone number field label
+   */
+  @Prop() phoneNumber: string = "Phone number";
+  /**
+   * @uiName Address field label
+   */
+  @Prop() address: string = "Address";
+  /**
+   * @uiName City field label
+   */
+  @Prop() city: string = "City";
+  /**
+   * @uiName State field label
+   */
+  @Prop() state: string = "State";
+  /**
+   * @uiName State field label
+   */
+  @Prop() province: string = "Province";
+  /**
+   * @uiName State field label
+   */
+  @Prop() region: string = "Region";
+  /**
+   * @uiName Postal code field label
+   */
+  @Prop() postalCode: string = "Postal code";
+  /**
    * @uiName Currency field label
    */
   @Prop() currency: string = "Currency";
@@ -69,7 +97,7 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -83,7 +111,7 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact Support.";
+    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
@@ -91,11 +119,17 @@ export class TaxForm {
   @Prop() allowBankingCollection: string =
     "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
   /**
-   * The text link that appears in the terms and conditions checkbox
+   * The link text that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
    * @uiWidget textArea
    */
   @Prop() termsAndConditionsLabel: string = "terms and conditions";
+  /**
+   * The link that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions link
+   */
+  @Prop() termsAndConditionsLink: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
   /**
    * Placeholder text displayed in the country search dropdown
    * @uiName Country field placeholder text
@@ -112,6 +146,17 @@ export class TaxForm {
    */
   @Prop() fieldRequiredError: string = "{fieldName} is required";
   /**
+   * Displayed under a field when it has an invalid entry.
+   * @uiName Form field error message
+   */
+  @Prop() fieldInvalidError: string = "{fieldName} is invalid";
+  /**
+   * Displayed under Address or City fields that includes invalid characters (non-ASCII).
+   * @uiName Invalid character error message
+   */
+  @Prop() invalidCharacterError: string =
+    "{fieldName} includes characters that aren't supported.";
+  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Page load error message title
    * @uiWidget textArea
@@ -124,13 +169,17 @@ export class TaxForm {
    * @uiWidget textArea
    */
   @Prop() loadingErrorAlertDescription: string =
-    "Please refresh the page and try again. If this problem continues, contact Support.";
+    "Please refresh the page and try again. If this problem continues, contact our {supportLink}.";
   /**
    * Displayed at the top of the page on all set up steps.
    * @uiName Page description
    */
   @Prop() taxAndPayoutsDescription: string =
     "Submit your tax documents and add your banking information to receive your rewards.";
+  /**
+   * @uiName Support link text
+   */
+  @Prop() supportLink: string = "support team";
 
   /**
    * @undocumented
@@ -150,10 +199,12 @@ export class TaxForm {
       ...props,
       error: {
         fieldRequiredError: props.fieldRequiredError,
+        fieldInvalidError: props.fieldInvalidError,
         generalTitle: props.generalErrorTitle,
         generalDescription: props.generalErrorDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
+        invalidCharacterError: props.invalidCharacterError,
       },
     };
   }
@@ -193,16 +244,19 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       refs: {
         formRef: { current: null },
         currencyRef: { current: null },
+        phoneCountryRef: { current: null },
       },
       data: {
         currencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         allCurrencies: [{ currencyCode: "CAD", displayName: "CAD" }],
         countries: [{ countryCode: "CA", displayName: "Canada" }],
+        phoneCountries: [{ countryCode: "CA", displayName: "Canada" }],
         allCountries: [{ countryCode: "CA", displayName: "Canada" }],
       },
       callbacks: {
         setCurrencySearch: (c) => console.log(c),
         setCountrySearch: (c) => console.log(c),
+        setPhoneCountrySearch: (c) => console.log(c),
         onFormChange: () => {},
       },
       states: {

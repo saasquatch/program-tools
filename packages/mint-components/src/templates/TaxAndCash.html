@@ -17,6 +17,7 @@
         >
           <sqm-router>
             <template path="/register">
+              <sqm-portal-login></sqm-portal-login>
               <sqm-portal-register>
                 <sqm-name-fields slot="formData"></sqm-name-fields>
               </sqm-portal-register>
@@ -185,11 +186,19 @@
                   step-1_last-name="Last name"
                   step-1_email="Email"
                   step-1_country="Country"
+                  step-1_phone-number="Phone number"
+                  step-1_address="Address"
+                  step-1_city="City"
+                  step-1_state="State"
+                  step-1_province="Province"
+                  step-1_region="Region"
+                  step-1_postal-code="Postal code"
                   step-1_currency="Currency"
                   step-1_currency-help-text="Choose your preferred payout currency"
                   step-1_allow-banking-collection="I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
                   step-1_personal-information="Personal Information"
                   step-1_terms-and-conditions-label="terms and conditions"
+                  step-1_terms-and-conditions-link="/payout-terms-and-conditions"
                   step-1_search-for-currency-text="Search for currency.."
                   step-2_indirect-tax="Indirect Tax"
                   step-2_indirect-tax-description="Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments."
@@ -220,6 +229,7 @@
                   step-3_docusign-session-warning="For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
                   step-3_docusign-error="There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support."
                   step-3_refresh-button="Refresh Page"
+                  step-3_exit-button="Exit"
                   step-4_tax-and-payouts="Payouts"
                   step-4_directly-to-bank-account="Directly to my bank account"
                   step-4_to-pay-pal-account="PayPal (2% processing fee capped to {feeCap})"
@@ -310,6 +320,7 @@
                   general-error-title="There was a problem submitting your information"
                   general-error-description="Please review your information and try again. If this problem continues, contact Support."
                   field-required-error="{fieldName} is required"
+                  invalid-character-error="{fieldName} includes characters that aren't supported."
                   field-invalid-error="{fieldName} is invalid"
                   continue-button="Continue"
                   back-button="Back"

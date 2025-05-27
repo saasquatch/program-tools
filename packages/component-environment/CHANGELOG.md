@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.10] - 2025-03-18
+
+### Changed
+
+- Add `googleClientId` to `PortalEnv` type 
+
+## [1.0.9] - 2025-03-12
+
+### Changed
+
+- Added handling for `email` field to the JWT methods
+
+## [1.0.8] - 2024-05-31
+
+### Changed
+
+- `dom-context` package bump
+
+## [1.0.7] - 2024-05-30
+
+### Changed
+
+- `dom-context` package bump
+
+## [1.0.6] - 2024-05-07
+
+### Fixed
+
+- Fixed an issue where the locale format `xx_XX` was valid but not `xx`
+
 ## [1.0.5] - 2024-02-14
 
 ### Fixed
@@ -42,7 +72,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial version.
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-environment%401.0.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-environment%401.0.10...HEAD
+[1.0.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.10
+[1.0.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.9
+[1.0.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.8
+[1.0.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.7
+[1.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.6
 [1.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.5
 [1.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.4
 [1.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-environment%401.0.3

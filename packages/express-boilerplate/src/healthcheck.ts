@@ -1,6 +1,17 @@
 import { Application, Request, Response } from "express";
 import { Logger } from "winston";
 import { TERMINATION_APP_LOCAL_KEY } from "./shutdown";
+import { formatGenericError } from "./error";
+
+export type HealthCheckResult<T, E> =
+  | {
+      status: "OK";
+      info?: T;
+    }
+  | {
+      status: "ERROR";
+      error?: E;
+    };
 
 /**
  * Return a request handler that can be used in Express
@@ -8,9 +19,10 @@ import { TERMINATION_APP_LOCAL_KEY } from "./shutdown";
  * health check will return HTTP code 503 if the app
  * is in a TERMINATING state.
  */
-export function healthCheck(
+export function healthCheck<T = undefined, E = undefined>(
   app: Application,
   logger: Logger,
+  customCheck?: () => Promise<HealthCheckResult<T, E>>,
 ): (req: Request, res: Response) => void {
   return (_req, res) => {
     // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
@@ -20,6 +32,26 @@ export function healthCheck(
       return res.status(503).json({ status: "TERMINATING" });
     }
 
-    return res.status(200).json({ status: "OK" });
+    if (customCheck) {
+      customCheck()
+        .then((result) => {
+          const code = result.status === "OK" ? 200 : 503;
+          res.status(code).json(result);
+        })
+        .catch((e) => {
+          const code = 503;
+          const error = formatGenericError(e);
+
+          logger.error({
+            message: "Custom health check callback failed",
+            ...error,
+          });
+
+          res.status(code).json({ status: "ERROR", error });
+        });
+      return;
+    } else {
+      return res.status(200).json({ status: "OK" });
+    }
   };
 }

@@ -28,6 +28,7 @@ declare global {
   namespace Express {
     interface Request {
       tenantAlias?: TenantAlias;
+      impactBrandId?: string;
     }
   }
 }
@@ -72,6 +73,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
     const decoded: any = jwt.decode(tenantScopedToken);
     logger.debug("%o", decoded);
     req.tenantAlias = decoded.sub.split("@")[0];
+    req.impactBrandId = decoded["impactBrandId"];
 
     next();
   };

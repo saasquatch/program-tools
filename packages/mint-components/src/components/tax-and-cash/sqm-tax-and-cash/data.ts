@@ -26,8 +26,14 @@ export type UserFormContext = {
   firstName: string;
   lastName: string;
   email: string;
+  phoneNumberCountryCode: string;
+  phoneNumber: string;
   countryCode: string;
   currency: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
 };
 
 export type TaxContext = {
@@ -40,11 +46,17 @@ export const GET_USER = gql`
   query getUserTaxInfo {
     user: viewer {
       ... on User {
+        id
         firstName
         lastName
         email
         countryCode
         customFields
+        managedIdentity {
+          uid
+          email
+          emailVerified
+        }
         impactConnection {
           connected
           user {
@@ -52,10 +64,17 @@ export const GET_USER = gql`
             lastName
           }
           publisher {
+            id
+            brandedSignup
             countryCode
             currency
-            requiredTaxDocumentType
-            brandedSignup
+            billingAddress
+            billingCity
+            billingState
+            billingCountryCode
+            billingPostalCode
+            phoneNumberCountryCode
+            phoneNumber
             taxInformation {
               indirectTaxId
               indirectTaxCountryCode
@@ -64,6 +83,7 @@ export const GET_USER = gql`
               withholdingTaxId
               withholdingTaxCountryCode
             }
+            requiredTaxDocumentType
             currentTaxDocument {
               status
               type
@@ -80,6 +100,7 @@ export const GET_USER = gql`
             }
             payoutsAccount {
               hold
+              holdReasons
               balance
             }
           }
@@ -91,10 +112,17 @@ export const GET_USER = gql`
 
 type TaxDocumentStatus = "NEW" | "NOT_VERIFIED" | "ACTIVE" | "INACTIVE";
 export type ImpactPublisher = {
+  id: string;
+  brandedSignup: boolean;
   countryCode: string;
   currency: string;
-  requiredTaxDocumentType: TaxDocumentType | null;
-  brandedSignup: boolean;
+  billingAddress: string | null;
+  billingCity: string | null;
+  billingState: string | null;
+  billingCountryCode: string | null;
+  billingPostalCode: string | null;
+  phoneNumberCountryCode: string | null;
+  phoneNumber: string | null;
   currentTaxDocument: null | {
     status: TaxDocumentStatus;
     type: TaxDocumentType;
@@ -108,6 +136,7 @@ export type ImpactPublisher = {
     withholdingTaxId: string | null;
     withholdingTaxCountryCode: string | null;
   };
+  requiredTaxDocumentType: TaxDocumentType | null;
   withdrawalSettings: {
     paymentMethod: "PAYPAL" | "BANK_TRANSFER";
     paypalEmailAddress: string | null;
@@ -119,6 +148,7 @@ export type ImpactPublisher = {
   };
   payoutsAccount: {
     hold: boolean;
+    holdReasons: string[];
     balance: string;
   };
 };
@@ -131,6 +161,11 @@ export type UserQuery = {
     customFields?: {
       [key: string]: any;
     };
+    managedIdentity?: {
+      uid: string;
+      email: string;
+      emailVerified: boolean;
+    } | null;
     impactConnection: null | {
       connected: boolean;
       user: {

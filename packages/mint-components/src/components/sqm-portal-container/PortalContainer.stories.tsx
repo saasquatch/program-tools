@@ -31,7 +31,7 @@ export const TooWideRow = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -52,7 +52,7 @@ export const TooWideSmallGap = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -78,7 +78,7 @@ export const TooWidePadding = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -104,7 +104,7 @@ export const TooWideDisplayFlex = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -130,7 +130,7 @@ export const HalfWidth = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -157,7 +157,7 @@ export const HalfWidthCenter = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -178,7 +178,7 @@ export const FullWidth = () => (
         Email a friend
       </sqm-share-button>
       <sqm-share-button medium="twitter" size="medium" class="hydrated">
-        Tweet about us
+        Post about us on X
       </sqm-share-button>
       <sqm-share-button medium="facebook" size="medium" class="hydrated">
         Share on Facebook
@@ -277,6 +277,50 @@ export const SpaceEvenly = () => {
         direction="row"
         display="flex"
         justify-content="space-evenly"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const ResponsiveBox = () => {
+  return (
+    <div
+      style={{ width: "100%", maxWidth: "1000px", border: "1px dashed grey" }}
+    >
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="space-between"
+        flex-wrap="nowrap"
       >
         <sqm-stat-container space="xxx-large" display="flex">
           <sqm-big-stat

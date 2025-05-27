@@ -1,17 +1,13 @@
 import {
   navigation,
+  setUserIdentity,
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
 
-const SUBMITTED_CONTEXT = "sq:verify-submitted";
-
-function setSubmitted(submitted: boolean) {
-  // using window due to dom-context getting reset on re-render
-  window[SUBMITTED_CONTEXT] = submitted;
-}
+let globalPromise: null | Promise<any | Error> = null;
 
 export function usePortalVerifyEmail({
   nextPage,
@@ -22,11 +18,13 @@ export function usePortalVerifyEmail({
   networkErrorMessage,
   continueText,
 }) {
-  const submitted = window[SUBMITTED_CONTEXT];
+  const [completed, setCompleted] = useState(false);
+  const [successful, setSuccessful] = useState(false);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
   const urlParams = new URLSearchParams(navigation.location.search);
   const oobCode = urlParams.get("oobCode");
+  const oobEmail = urlParams.get("email");
   const nextPageOverride = urlParams.get("nextPage");
 
   // derived from useMutation in component boilerplate initialState
@@ -36,8 +34,10 @@ export function usePortalVerifyEmail({
   // if logged out, userIdent?.managedIdentity?.emailVerified will be falsey, even if verification was successful
   const verified = !!(
     userIdent?.managedIdentity?.emailVerified ||
-    data?.verifyManagedIdentityEmail.success
+    data?.verifyManagedIdentityEmail?.success ||
+    successful
   );
+  const validEmail = userIdent?.managedIdentity?.email === oobEmail;
 
   const failed = () => {
     return navigation.push({
@@ -52,47 +52,52 @@ export function usePortalVerifyEmail({
     navigation.push(url.href);
   };
 
-  const submit = async () => {
-    setSubmitted(true);
+  const logout = () => {
+    setTimeout(() => {
+      setUserIdentity(undefined);
+      gotoNextPage();
+    }, 3000);
+  };
 
-    if (oobCode) {
-      const result = await request({ oobCode });
-      if (
-        (result instanceof Error ||
-          !result.verifyManagedIdentityEmail.success) &&
-        !userIdent?.managedIdentity?.emailVerified
-      ) {
-        // pause on error if logged out/unverified
-        return;
-      }
-      setTimeout(() => {
-        gotoNextPage();
-        setSubmitted(false);
-      }, 3000);
-    }
+  const login = () => {
+    setTimeout(gotoNextPage, 3000);
   };
 
   useEffect(() => {
-    // Already verified, begin redirect
-    if (verified) {
-      setTimeout(() => {
-        gotoNextPage();
-        setSubmitted(false);
-      }, 3000);
-      return;
-    }
+    const verify = async () => {
+      if (!globalPromise) globalPromise = request({ oobCode });
+      const result = await globalPromise;
 
-    if (userIdent && !data && !submitted) submit();
-  }, [verified, submitted, data, userIdent, submitted]);
+      if (
+        !(result instanceof Error) &&
+        result.verifyManagedIdentityEmail.success
+      ) {
+        // Needs to be explicitly updated if multiple renders have occured
+        setSuccessful(true);
+      }
+
+      setCompleted(true);
+    };
+
+    verify();
+  }, []);
+
+  useEffect(() => {
+    if (!completed) return;
+
+    if (verified && validEmail) login();
+    else logout();
+  }, [completed, verified]);
 
   return {
     states: {
-      loading: loading || disableContinue,
+      loading: loading || !completed,
+      disableContinue,
       error:
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
-        (errors?.message && networkErrorMessage),
-      verified,
+        ((errors?.message || !validEmail) && networkErrorMessage),
+      success: completed && (verified || validEmail),
     },
     data: {
       oobCode,

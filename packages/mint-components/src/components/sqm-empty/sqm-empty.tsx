@@ -14,7 +14,8 @@ export class Empty {
    * @uiWidget ImageUpload
    * @format url
    * @uiName Image */
-  @Prop() emptyStateImage: string;
+  @Prop() emptyStateImage?: string =
+    "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png";
 
   /** @uiName Title  */
   @Prop() emptyStateHeader: string;
@@ -25,6 +26,12 @@ export class Empty {
    */
   @Prop() emptyStateText: string;
 
+  /**
+   * @uiName Description
+   * @uiWidget textArea
+   */
+  @Prop() supportText?: string;
+
   render() {
     return (
       <Host slot="empty">
@@ -32,6 +39,7 @@ export class Empty {
           emptyStateImage={this.emptyStateImage}
           emptyStateHeader={this.emptyStateHeader}
           emptyStateText={this.emptyStateText}
+          supportText={this.supportText}
         />
       </Host>
     );

@@ -13,6 +13,7 @@
 | `backgroundColor` | `background-color` |                                                                                                                           | `string`                        | `undefined` |
 | `imageUrl`        | `image-url`        |                                                                                                                           | `string`                        | `undefined` |
 | `minHeight`       | `min-height`       | (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc. | `string`                        | `undefined` |
+| `width`           | `width`            | (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.              | `string`                        | `undefined` |
 
 
 ## Dependencies

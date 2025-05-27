@@ -29,3 +29,5 @@ export type FieldValueRow = {
   field: string;
   value: string;
 };
+
+export type TenantFlavor = "saasquatch" | "impact";

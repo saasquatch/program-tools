@@ -42,6 +42,12 @@ export class Image {
    */
   @Prop() minHeight?: string;
 
+  /**
+   * (Optional) Constrains the width of the image. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
+   * @uiName Width
+   */
+  @Prop() width?: string;
+
   render() {
     return <ImageView {...getProps(this)} />;
   }

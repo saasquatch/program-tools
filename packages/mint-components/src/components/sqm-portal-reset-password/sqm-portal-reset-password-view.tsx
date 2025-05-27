@@ -179,7 +179,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         )}
         {!states.reset && states.confirmPassword && (
           <sl-input
-            exportparts="label: input-label"
+            exportparts="label: input-label, base: input-base"
             type="password"
             name="/confirmPassword"
             label={states.content.confirmPasswordFieldLabel}

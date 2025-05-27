@@ -42,6 +42,7 @@ export interface IndirectTaxFormViewProps {
     continueButton: string;
     backButton: string;
     taxAndPayoutsDescription: string;
+    supportLink: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -76,6 +77,7 @@ const style = {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
+    width: "100%",
   },
   RadioContent: {
     display: "flex",
@@ -125,9 +127,6 @@ const style = {
       color: "var(--sl-color-danger-500)",
     },
   },
-  CannotChangeAlertContainer: {
-    maxWidth: "797px",
-  },
   PartnerAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-sky-100)",
@@ -148,11 +147,9 @@ const style = {
     },
 
     "&::part(message)": {
-      display: "flex",
       alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
+      padding: "var(--sl-spacing-small)",
+      whiteSpace: "nowrap",
     },
 
     "& sl-icon::part(base)": {
@@ -244,7 +241,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
               <strong>{text.error.loadingErrorAlertHeader}</strong>
               <br />
-              {text.error.loadingErrorAlertDescription}
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
             </sl-alert>
           </div>
         )}
@@ -258,7 +270,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
             <strong>{text.error.generalTitle}</strong>
             <br />
-            {text.error.generalDescription}
+            {intl.formatMessage(
+              {
+                id: "generalDescription",
+                defaultMessage: text.error.generalDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         {states.isPartner && (
@@ -271,7 +298,22 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <sl-icon slot="icon" name="info-circle"></sl-icon>
             <strong>{text.isPartnerAlertHeader}</strong>
             <br />
-            {text.isPartnerAlertDescription}
+            {intl.formatMessage(
+              {
+                id: "isPartnerAlertDescription",
+                defaultMessage: text.isPartnerAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
           </sl-alert>
         )}
         <div>
@@ -319,21 +361,34 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {slots.registeredInDifferentCountryDetailsSlot}
             </div>
           </div>
-          <div class={classes.CannotChangeAlertContainer}>
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="primary"
-              open
-              class={classes.InfoAlert}
-            >
-              <sl-icon
-                class={classes.InfoWarningIcon}
-                slot="icon"
-                name="exclamation-triangle"
-              ></sl-icon>
-              {text.cannotChangeInfoAlert}
-            </sl-alert>
-          </div>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="primary"
+            open
+            class={classes.InfoAlert}
+          >
+            <sl-icon
+              class={classes.InfoWarningIcon}
+              slot="icon"
+              name="exclamation-triangle"
+            ></sl-icon>
+            {intl.formatMessage(
+              {
+                id: "cannotChangeInfoAlert",
+                defaultMessage: text.cannotChangeInfoAlert,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
+          </sl-alert>
           <div class={classes.BtnContainer}>
             <sl-button
               type="primary"

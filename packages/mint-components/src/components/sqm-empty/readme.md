@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property           | Attribute            | Description | Type     | Default     |
-| ------------------ | -------------------- | ----------- | -------- | ----------- |
-| `emptyStateHeader` | `empty-state-header` |             | `string` | `undefined` |
-| `emptyStateImage`  | `empty-state-image`  |             | `string` | `undefined` |
-| `emptyStateText`   | `empty-state-text`   |             | `string` | `undefined` |
+| Property           | Attribute            | Description | Type     | Default                                                                                                  |
+| ------------------ | -------------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| `emptyStateHeader` | `empty-state-header` |             | `string` | `undefined`                                                                                              |
+| `emptyStateImage`  | `empty-state-image`  |             | `string` | `"https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"` |
+| `emptyStateText`   | `empty-state-text`   |             | `string` | `undefined`                                                                                              |
+| `supportText`      | `support-text`       |             | `string` | `undefined`                                                                                              |
 
 
 ## Dependencies
@@ -20,6 +21,7 @@
 
  - [sqm-invoice-table](../sqm-invoice-table)
  - [sqm-leaderboard](../sqm-leaderboard)
+ - [sqm-referral-codes](../sqm-referral-codes)
  - [sqm-referral-table](../sqm-referral-table)
  - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
  - [sqm-rewards-table](../sqm-rewards-table)
@@ -39,6 +41,7 @@ graph TD;
   sqm-empty --> sqm-text
   sqm-invoice-table --> sqm-empty
   sqm-leaderboard --> sqm-empty
+  sqm-referral-codes --> sqm-empty
   sqm-referral-table --> sqm-empty
   sqm-reward-exchange-list --> sqm-empty
   sqm-rewards-table --> sqm-empty

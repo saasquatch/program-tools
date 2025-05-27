@@ -1,4 +1,5 @@
 import {
+  useHost,
   useLocale,
   useMutation,
   useParent,
@@ -24,6 +25,8 @@ import {
 } from "../sqm-tax-and-cash/data";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -112,12 +115,37 @@ type SetImpactPublisherWithdrawalSettingsInput = {
   paymentDay?: string;
 } & BankingInfoFormData;
 
+type UpdateImpactPublisherWithdrawalSettingsInput =
+  SetImpactPublisherWithdrawalSettingsInput & { accessKey: string };
+type UpdateImpactPublisherWithdrawalSettingsResult = {
+  updateImpactPublisherWithdrawalSettings: {
+    success: boolean;
+    validationErrors: { field: string; message: string }[];
+  };
+};
+
 const SAVE_WITHDRAWAL_SETTINGS = gql`
   mutation setImpactPublisherWithdrawalSettings(
     $setImpactPublisherWithdrawalSettingsInput: SetImpactPublisherWithdrawalSettingsInput!
   ) {
     setImpactPublisherWithdrawalSettings(
       setImpactPublisherWithdrawalSettingsInput: $setImpactPublisherWithdrawalSettingsInput
+    ) {
+      success
+      validationErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+const UPDATE_WITHDRAWAL_SETTINGS = gql`
+  mutation updateImpactPublisherWithdrawalSettings(
+    $updateImpactPublisherWithdrawalSettingsInput: UpdateImpactPublisherWithdrawalSettingsInput!
+  ) {
+    updateImpactPublisherWithdrawalSettings(
+      updateImpactPublisherWithdrawalSettingsInput: $updateImpactPublisherWithdrawalSettingsInput
     ) {
       success
       validationErrors {
@@ -150,6 +178,7 @@ function parseImpactThreshold(threshold: string) {
 export function useBankingInfoForm(
   props: BankingInfoForm
 ): BankingInfoFormViewProps {
+  const host = useHost();
   const locale = useLocale();
   const user = useUserIdentity();
 
@@ -175,7 +204,13 @@ export function useBankingInfoForm(
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
       SAVE_WITHDRAWAL_SETTINGS
     );
+  const [updateWithdrawalSettings] =
+    useMutation<UpdateImpactPublisherWithdrawalSettingsResult>(
+      UPDATE_WITHDRAWAL_SETTINGS
+    );
 
+  const [showVerification, setShowVerification] = useState(false);
+  const [currentFormData, setCurrentFormData] = useState(null);
   const [formState, setFormState] = useState<BankingInfoFormData>({});
   const [currentPaymentOption, setCurrentPaymentOption] =
     useState<null | FinanceNetworkSetting>(null);
@@ -191,6 +226,8 @@ export function useBankingInfoForm(
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
+  const isPartner =
+    !!userData?.user?.impactConnection?.publisher?.withdrawalSettings;
 
   const feeCap = paypalFeeMap[currency] || "";
 
@@ -251,16 +288,19 @@ export function useBankingInfoForm(
     }
 
     const currentPaymentOption = paymentOptions?.find((paymentOption) => {
-      if (
-        initialData.paymentMethod === "PAYPAL" &&
-        paymentOption.defaultFinancePaymentMethodId === 7
-      )
-        return true;
-      if (paymentOption.countryCode !== initialData.bankCountry) return false;
-      return true;
+      if (initialData.paymentMethod === "PAYPAL") {
+        if (paymentOption.defaultFinancePaymentMethodId === 7) {
+          return true;
+        }
+      } else {
+        if (paymentOption.countryCode === initialData.bankCountry) return true;
+      }
+      return false;
     });
 
-    updateBankCountry(currentPaymentOption?.countryCode);
+    if (initialData.paymentMethod !== "PAYPAL")
+      updateBankCountry(currentPaymentOption?.countryCode);
+
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
@@ -294,6 +334,92 @@ export function useBankingInfoForm(
     setCurrentPaymentOption(currentPaymentOption);
   };
 
+  const runMutation = async (formData: any, token: string | undefined) => {
+    setLoading(true);
+    try {
+      if (!currentPaymentOption) throw new Error("No currentPaymentOption");
+
+      const body = {
+        user: {
+          id: user.id,
+          accountId: user.accountId,
+        },
+        ...formData,
+        paymentMethod: getPaymentMethod(currentPaymentOption),
+        paymentSchedulingType: paymentScheduleChecked,
+      };
+
+      let response: any = null;
+      let success: any = null;
+      let validationErrors: any = null;
+
+      // Call difference mutations based on whether the user is updating
+      // the info for setting it for the first time
+      if (isPartner) {
+        if (!token) return; // Require token for this mutation
+
+        response = await updateWithdrawalSettings({
+          updateImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+            accessKey: token,
+          } as UpdateImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as UpdateImpactPublisherWithdrawalSettingsResult)
+          ?.updateImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as UpdateImpactPublisherWithdrawalSettingsResult
+        )?.updateImpactPublisherWithdrawalSettings?.validationErrors;
+      } else {
+        response = await saveWithdrawalSettings({
+          setImpactPublisherWithdrawalSettingsInput: {
+            ...body,
+          } as SetImpactPublisherWithdrawalSettingsInput,
+        });
+        success = (response as SetImpactPublisherWithdrawalSettingsResult)
+          ?.setImpactPublisherWithdrawalSettings?.success;
+        validationErrors = (
+          response as SetImpactPublisherWithdrawalSettingsResult
+        )?.setImpactPublisherWithdrawalSettings?.validationErrors;
+      }
+
+      if (!response || (response as Error)?.message) {
+        throw new Error();
+      } else if (!success) {
+        console.error("Validation failed: ", validationErrors);
+
+        const mappedValidationErrors = validationErrors?.reduce(
+          (agg, error) => {
+            return {
+              ...agg,
+
+              [error.field]: {
+                type: "invalid",
+              },
+            };
+          },
+          {}
+        );
+
+        setErrors({
+          inputErrors: { ...mappedValidationErrors },
+          general: true,
+        });
+        return;
+      }
+
+      // Fire form change event
+      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+      await refetch();
+      setStep("/dashboard");
+    } catch (e) {
+      console.error(e);
+      setErrors({ general: true });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const onSubmit = async (event: any) => {
     let formData: BankingInfoFormData = {};
     let validationErrors: Record<string, string> = {};
@@ -317,67 +443,29 @@ export function useBankingInfoForm(
       return;
     }
 
-    setLoading(true);
-    try {
-      if (!currentPaymentOption) throw new Error("No currentPaymentOption");
-      const input = {
-        setImpactPublisherWithdrawalSettingsInput: {
-          user: {
-            id: user.id,
-            accountId: user.accountId,
-          },
-          ...formData,
-          paymentMethod: getPaymentMethod(currentPaymentOption),
-          paymentSchedulingType: paymentScheduleChecked,
-        } as SetImpactPublisherWithdrawalSettingsInput,
-      };
-
-      const response = await saveWithdrawalSettings(input);
-      if (!response || (response as Error)?.message) {
-        throw new Error();
-      } else if (
-        !(response as SetImpactPublisherWithdrawalSettingsResult)
-          .setImpactPublisherWithdrawalSettings?.success
-      ) {
-        console.error(
-          "Validation failed: ",
-          (response as SetImpactPublisherWithdrawalSettingsResult)
-            .setImpactPublisherWithdrawalSettings?.validationErrors
-        );
-
-        const validationErrors = (
-          response as SetImpactPublisherWithdrawalSettingsResult
-        ).setImpactPublisherWithdrawalSettings?.validationErrors;
-
-        const mappedValidationErrors = validationErrors?.reduce(
-          (agg, error) => {
-            return {
-              ...agg,
-
-              [error.field]: {
-                type: "invalid",
-              },
-            };
-          },
-          {}
-        );
-
-        setErrors({
-          inputErrors: { ...mappedValidationErrors },
-          general: true,
-        });
-        return;
-      }
-
-      await refetch();
-
-      setStep("/dashboard");
-    } catch (e) {
-      console.error(e);
-      setErrors({ general: true });
-    } finally {
-      setLoading(false);
+    let token = undefined;
+    if (isPartner) {
+      setShowVerification(true);
+      token = await new Promise((res: (arg: string) => void) => {
+        const cb = (e: CustomEvent) => {
+          e.stopPropagation();
+          host.removeEventListener(VERIFICATION_EVENT_KEY, cb);
+          res(e.detail.token);
+        };
+        host.addEventListener(VERIFICATION_EVENT_KEY, cb);
+      });
+      setShowVerification(false);
     }
+    await runMutation(formData, token);
+  };
+
+  const onVerification = async (token: string | null) => {
+    host.dispatchEvent(
+      new CustomEvent(VERIFICATION_EVENT_KEY, {
+        detail: { token },
+        bubbles: false,
+      })
+    );
   };
 
   function setPaymentMethodChecked(
@@ -408,14 +496,16 @@ export function useBankingInfoForm(
       setPaymentScheduleChecked,
       onBack: () => setStep("/dashboard"),
       setCountrySearch,
+      onVerification,
+      onVerificationHide: () => onVerification(null),
     },
     states: {
+      showVerification,
       step: step?.replace("/", ""),
       hideSteps: !!context.hideSteps,
       saveDisabled: !paymentMethodChecked || !paymentScheduleChecked,
       locale,
-      isPartner:
-        !!userData?.user?.impactConnection?.publisher?.withdrawalSettings,
+      isPartner,
       feeCap,
       paymentMethodFeeLabel,
       disabled: loading,
@@ -442,6 +532,7 @@ export function useBankingInfoForm(
       hasPayPal,
       bankCountry: formState.bankCountry,
       countrySearch,
+      email: userData?.user?.email,
     },
     refs: {
       formRef,

@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/logger",
-  "version": "1.4.2",
+  "version": "1.5.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -9,7 +9,7 @@
   "prettier": {},
   "author": "ReferralSaaSquatch.com, Inc.",
   "engines": {
-    "node": "^16 || ^18"
+    "node": "^16 || ^18 || ^20 || ^22"
   },
   "files": [
     "dist"
@@ -30,6 +30,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "16"
   },
   "peerDependencies": {

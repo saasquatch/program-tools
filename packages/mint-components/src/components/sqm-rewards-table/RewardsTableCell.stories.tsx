@@ -300,6 +300,13 @@ const referred = (user = null) => {
   };
 };
 
+const deletedReferral = () => {
+  return {
+    rewardSource: "REFERRED" as const,
+    referral: null,
+  };
+};
+
 export const SourceCellReferral = () => {
   return (
     <sqm-rewards-table-source-cell
@@ -342,6 +349,17 @@ export const SourceCellDeletedUser = () => {
       reward={{ ...rewardsData, ...referral(null) }}
       referralText="Referral to"
       deletedUserText="Deleted User"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
+export const SourceCellDeletedReferral = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      //@ts-ignore
+      reward={{ ...rewardsData, ...deletedReferral(null) }}
+      referralText={"Referral to"}
+      deletedReferralText="Deleted Referral"
     ></sqm-rewards-table-source-cell>
   );
 };
@@ -414,23 +432,15 @@ export const StatusCellExpired = () => {
 const pending = {
   statuses: ["PENDING"],
 };
-// const pendingTaxReview = {
-//   statuses: ["PENDING_TAX_REVIEW"],
-// };
-// const pendingNewTaxForm = {
-//   statuses: ["PENDING_NEW_TAX_FORM"],
-// };
-// const pendingTaxSubmission = {
-//   statuses: ["PENDING_TAX_SUBMISSION"],
-// };
-// const pendingPartnerCreation = {
-//   statuses: ["PENDING_PARTNER_CREATION"],
-// };
 const payoutSent = {
   statuses: ["PAYOUT_SENT"],
 };
 const payoutFailed = {
   statuses: ["PAYOUT_FAILED"],
+};
+const payoutCancelled = {
+  statuses: ["PAYOUT_CANCELLED"],
+  dateCancelled: 1355612521321,
 };
 const us_tax = {
   pendingReasons: ["US_TAX"],
@@ -536,6 +546,15 @@ export const StatusCellPayoutFailed = () => {
     <sqm-rewards-table-status-cell
       statusText="Payout Failed"
       reward={{ ...rewardsData, ...payoutFailed }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPayoutCancelled = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Payout Cancelled"
+      reward={{ ...rewardsData, ...payoutCancelled }}
     ></sqm-rewards-table-status-cell>
   );
 };

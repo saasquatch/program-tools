@@ -7,6 +7,7 @@ import {
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./sqm-leaderboard-view";
+import { useMemo } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardProps {
   usersheading: string;
@@ -15,6 +16,10 @@ export interface LeaderboardProps {
   anonymousUser?: string;
   showRank?: boolean;
   hideViewer?: boolean;
+  viewingUserText?: string;
+  hideNames?: boolean;
+  width?: string;
+  rankSuffix?: string;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType:
     | "topStartedReferrers"
@@ -24,7 +29,6 @@ export interface LeaderboardProps {
   programId?: string;
   interval: string;
   empty: VNode;
-  loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
 }
 
@@ -51,6 +55,27 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+const GET_LEADERBOARD_WITHOUT_NAMES = gql`
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+    $limit: Int!
+  ) {
+    userLeaderboard(type: $type, filter: $filter) {
+      dateModified
+      rows(limit: $limit) {
+        textValue(locale: $locale)
+        rank {
+          rank
+          denseRank
+          rowNumber
+        }
+      }
+    }
+  }
+`;
+
 const GET_RANK = gql`
   query (
     $type: String!
@@ -61,6 +86,25 @@ const GET_RANK = gql`
       ... on User {
         firstName
         lastInitial
+        leaderboardRank(type: $type, filter: $filter) {
+          textValue(locale: $locale)
+          rank
+          denseRank
+          rowNumber
+        }
+      }
+    }
+  }
+`;
+
+const GET_RANK_WITHOUT_NAMES = gql`
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+  ) {
+    viewer {
+      ... on User {
         leaderboardRank(type: $type, filter: $filter) {
           textValue(locale: $locale)
           rank
@@ -123,13 +167,22 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     variables["limit"] = props.maxRows;
   }
 
-  const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    GET_LEADERBOARD,
+  const {
+    data: leaderboardData,
+    loading: loadingLeaderboard,
+    errors: leaderboardErrors,
+  } = useQuery(
+    props.hideNames ? GET_LEADERBOARD_WITHOUT_NAMES : GET_LEADERBOARD,
+    variables,
+    !user?.jwt,
+    { batch: false }
+  );
+
+  const { data: rankData } = useQuery(
+    props.hideNames ? GET_RANK_WITHOUT_NAMES : GET_RANK,
     variables,
     !user?.jwt
   );
-
-  const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
 
   const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 
@@ -162,9 +215,19 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
   };
 
+  // Show feature enforcement if request was forbidden
+  const isEssentials = useMemo(
+    () =>
+      !!leaderboardErrors?.response?.errors?.find(
+        (error) => error?.extensions?.apiError?.statusCode === 403
+      ),
+    [leaderboardErrors]
+  );
+
   return {
     states: {
       loading: loadingLeaderboard,
+      isEssentials,
       hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
@@ -175,7 +238,6 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     },
     elements: {
       empty: props.empty,
-      loadingstate: props.loadingstate,
     },
   };
 }

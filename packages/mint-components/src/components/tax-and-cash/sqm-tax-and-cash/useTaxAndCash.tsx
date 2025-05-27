@@ -34,7 +34,7 @@ import {
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
-  if (!user.impactConnection?.connected) {
+  if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {
     return "/1";
   }
 
@@ -46,11 +46,7 @@ function getCurrentStep(user: UserQuery["user"]) {
   } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (
-    requiredTaxDocumentType &&
-    !validTaxDocument(requiredTaxDocumentType, currentTaxDocument?.type)
-  )
-    return "/3";
+  if (requiredTaxDocumentType && !currentTaxDocument) return "/3";
 
   if (!withdrawalSettings && brandedSignup) return "/4";
 
@@ -112,6 +108,9 @@ export function useTaxAndCash() {
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
     skip: !user,
+    options: {
+      batch: false,
+    },
   });
 
   const countryCode =
