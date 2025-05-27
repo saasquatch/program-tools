@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.8] - 2025-05-27
+
+### Changed
+
+- Update user query to make `UserEngagementMedium` optional to match updated backend schema
+
 ## [1.2.7] - 2023-09-12
 
 ### Changed
@@ -53,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqh-referral-list> show-referrer prop now prevents referrer from being queried when set to "false"
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.7...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/vanilla-components@1.2.8...HEAD
+[1.2.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.8
 [1.2.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.7
 [1.2.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.6
 [1.2.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fvanilla-components%401.2.5
