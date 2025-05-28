@@ -1,3 +1,5 @@
+import { useRef } from "@saasquatch/stencil-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorView } from "../tax-and-cash/sqm-tax-and-cash/ErrorView";
@@ -105,6 +107,26 @@ export function QrCodeView({
   createDownloadable,
   createPrintable,
 }: QRCodeViewProps) {
+  const ref = useRef<any>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const dialog = ref.current;
+    const cb = (e) =>
+      console.log({
+        e: e.target.renderRoot.activeElement.getBoundingClientRect(),
+      });
+    dialog.addEventListener("sl-after-show", cb);
+
+    return () => dialog.removeEventListener(cb);
+  }, [ref.current]);
+
+  const setHeight = () => {
+    if (!ref) return;
+    console.log("height", { ref: ref.current.renderRoot.activeElement });
+  };
+  console.log({ ref });
+
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style>{vanillaStyle}</style>
@@ -121,7 +143,10 @@ export function QrCodeView({
           <sl-button
             type="primary"
             exportparts="base: primarybutton-base"
-            onClick={showDialog}
+            onClick={() => {
+              showDialog();
+              setHeight();
+            }}
           >
             {viewCodeText}
           </sl-button>
@@ -143,6 +168,7 @@ export function QrCodeView({
       </div>
 
       <sl-dialog
+        ref={(r) => (ref.current = r)}
         class={sheet.classes.DialogContainer}
         width="250px"
         open={dialogIsOpen}
