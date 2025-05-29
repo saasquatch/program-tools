@@ -3,15 +3,12 @@ import { createStyleSheet } from "../../styling/JSS";
 import { ErrorView } from "../tax-and-cash/sqm-tax-and-cash/ErrorView";
 
 export interface QRCodeViewProps {
-  dialogIsOpen: boolean;
   error: boolean;
-  viewError: boolean;
-  showDialog: () => void;
-  hideDialog: () => void;
   qrLink: string;
   createDownloadable: () => void;
   titleText?: string;
-  viewCodeText?: string;
+  hideTitle?: boolean;
+  alignment?: "left" | "center" | "right";
   downloadCodeText?: string;
   printCodeText?: string;
   errorHeaderText?: string;
@@ -24,15 +21,17 @@ const style = {
     maxWidth: "390px !important",
   },
   Container: {
+    width: "100%",
     display: "flex",
     flexDirection: "row",
     gap: "var(--sl-spacing-small)",
     justifyContent: "space-between",
   },
-  FacadeContainer: {
+  TextContainer: {
     display: "flex",
     gap: "var(--sl-spacing-medium)",
     flexDirection: "column",
+    alignItems: "center",
   },
   ButtonContainer: {
     display: "flex",
@@ -55,30 +54,17 @@ const style = {
     height: "100%",
     maxWidth: "335px",
   },
+  TextButton: {
+    "&::part(base)": {
+      color: "var(--sl-color-gray-600)",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
-  sl-dialog::part(base) {
-    inset: auto;
-    position: absolute;
-    left: 25%;
-  }
-  sl-dialog::part(panel) {
-    max-width: 390px;
-    width: 100%;
-  }
-  sl-dialog::part(footer) {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sl-spacing-small);
-    width: 100%;
-  }
-  sl-dialog::part(body) {
-    padding: 0 var(--sl-spacing-large);
-  }
   :host{
     display: flex;
     width: 100%;
@@ -90,98 +76,54 @@ const vanillaStyle = `
   }`;
 
 export function QrCodeView({
-  dialogIsOpen,
   error,
-  viewError,
-  showDialog,
-  hideDialog,
   qrLink,
   titleText,
-  viewCodeText,
   downloadCodeText,
   printCodeText,
   errorHeaderText,
   errorDescriptionText,
   createDownloadable,
   createPrintable,
+  hideTitle,
 }: QRCodeViewProps) {
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style>{vanillaStyle}</style>
       <style>{styleString}</style>
-      <div class={sheet.classes.FacadeContainer}>
+      <div class={sheet.classes.TextContainer}>
+        {!hideTitle && <span part="sqm-title">{titleText}</span>}
         {error && (
           <ErrorView
             loadingErrorAlertDescription={errorHeaderText}
             loadingErrorAlertHeader={errorDescriptionText}
           />
         )}
-        <span part="sqm-title">{titleText}</span>
+        {qrLink && (
+          <svg width="100" height="100">
+            <image href={qrLink} width="100" height="100" />
+          </svg>
+        )}
         <div class={sheet.classes.ButtonContainer}>
           <sl-button
-            type="primary"
-            exportparts="base: primarybutton-base"
-            onClick={() => {
-              showDialog();
-            }}
-          >
-            {viewCodeText}
-          </sl-button>
-          <sl-button
-            exportparts="base: textbutton-base"
-            type="text"
+            size="small"
+            exportparts="base: defaultbutton-base"
+            type="default"
             onClick={createDownloadable}
           >
             {downloadCodeText}
           </sl-button>
           <sl-button
+            size="small"
             exportparts="base: textbutton-base"
             type="text"
             onClick={createPrintable}
+            class={sheet.classes.TextButton}
           >
             {printCodeText}
           </sl-button>
         </div>
       </div>
-
-      <sl-dialog
-        class={sheet.classes.DialogContainer}
-        width="250px"
-        open={dialogIsOpen}
-        label={titleText}
-        onSl-hide={hideDialog}
-      >
-        {(viewError || error) && (
-          <ErrorView
-            loadingErrorAlertDescription={errorHeaderText}
-            loadingErrorAlertHeader={errorDescriptionText}
-          />
-        )}
-        {qrLink && (
-          <div class={sheet.classes.CodeContainer}>
-            <img class={sheet.classes.Code} src={qrLink} />
-          </div>
-        )}
-
-        <div slot="footer" class={sheet.classes.FooterContainer}>
-          <sl-button
-            exportparts="base: button-base"
-            disabled={error}
-            variant="default"
-            onClick={createDownloadable}
-          >
-            {downloadCodeText}
-          </sl-button>
-          <sl-button
-            exportparts="base: button-base"
-            disabled={error}
-            variant="default"
-            onClick={createPrintable}
-          >
-            {printCodeText}
-          </sl-button>
-        </div>
-      </sl-dialog>
     </div>
   );
 }

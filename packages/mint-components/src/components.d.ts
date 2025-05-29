@@ -2961,6 +2961,10 @@ export namespace Components {
          */
         "errorHeaderText"?: string;
         /**
+          * @uiName Description for error banner
+         */
+        "hideTitle"?: boolean;
+        /**
           * @uiName Print QR code text
          */
         "printCodeText"?: string;
@@ -9624,6 +9628,10 @@ declare namespace LocalJSX {
           * @uiName Header for error banner
          */
         "errorHeaderText"?: string;
+        /**
+          * @uiName Description for error banner
+         */
+        "hideTitle"?: boolean;
         /**
           * @uiName Print QR code text
          */

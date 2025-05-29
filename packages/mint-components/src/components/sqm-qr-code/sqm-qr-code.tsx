@@ -46,6 +46,10 @@ export class QrCode {
    */
   @Prop() errorDescriptionText?: string =
     "Please refresh this page and try again";
+  /**
+   * @uiName Description for error banner
+   */
+  @Prop() hideTitle?: boolean = false;
 
   /**
    * @undocumented
@@ -71,6 +75,7 @@ function useDemoQRCode(props: QrCode): QRCodeViewProps {
   return deepmerge(
     {
       dialogIsOpen,
+      hideTitle: props.hideTitle,
       showDialog: () => setDialog(true),
       hideDialog: () => setDialog(false),
       titleText: props.titleText,

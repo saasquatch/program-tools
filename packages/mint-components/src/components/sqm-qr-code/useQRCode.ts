@@ -42,10 +42,8 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   const contextData = useParentValue<ReferralCodeContext>(
     REFERRAL_CODES_NAMESPACE
   );
-  const [dialogIsOpen, setDialog] = useState(false);
   const [qrLink, setQrUrl] = useState(null);
   const [error, setError] = useState(false);
-  const [viewError, setViewError] = useState(false);
 
   const { data, errors } = useQuery(
     ShareLinkQuery,
@@ -66,7 +64,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
         const url = URL.createObjectURL(blob);
         setQrUrl(url);
       } catch (e) {
-        setViewError(true);
+        setError(true);
       }
     };
 
@@ -141,17 +139,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   return {
     ...props,
     qrLink,
-    dialogIsOpen,
     error: error,
-    viewError: viewError || !!errors?.message,
-    showDialog: () => {
-      setError(false);
-      setDialog(true);
-    },
-    hideDialog: () => {
-      setError(false);
-      setDialog(false);
-    },
     createDownloadable,
     createPrintable,
   };

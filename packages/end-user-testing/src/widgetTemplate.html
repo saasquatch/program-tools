@@ -1,73 +1,168 @@
 <sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
-  <sqm-portal-container direction="column" padding="small" gap="xxx-large" display="grid" max-width="100%"
-    background-color="#ffffff">
-    <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%">
-      <sqm-hero-image header="Refer a Friend" description="Give $20.00, Get $10.00 giftcard" layout="columns"
-        image-pos="right" background-color="rgba(245, 245, 245, 1)" image-percentage="50" padding-text="xxxx-large"
-        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1745331824/tenant_test_a3jnwnbwg2v2d/moxflqk5kgdhdmhfjwcg.png"></sqm-hero-image>
-    </sqm-portal-container>
-    <sqm-portal-container>
-      <sqm-qr-code></sqm-qr-code>
-    </sqm-portal-container>
-    <sqm-portal-container direction="column" padding="none" gap="xxx-large" max-width="770px" center display="grid">
-      <sqm-titled-section text-align="center" label-margin="small" padding="none">
-        <div slot="label">
-          <h2>How it works</h2>
-        </div>
-        <div slot="content">
-          <p><span>Give your friends $20.00 off their first order when they purchase using
-              your link. You'll receive a $10.00 giftcard&#x2014;it&#x2019;s a
-              win-win.</span></p>
-        </div>
-      </sqm-titled-section><sqm-stat-container space="xxx-large" display="flex">
-        <sqm-big-stat alignment="center" stat-type="/referralsCount">
-          <p>Referrals</p>
-        </sqm-big-stat>
-        <sqm-big-stat alignment="center" stat-type="/rewardsCount">
-          <p>Rewards Earned</p>
-        </sqm-big-stat>
-      </sqm-stat-container>
-      <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none">
-        <p><sub>Your share link</sub></p>
-        <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000">
-        </sqm-share-link>
-        <sqm-portal-container gap="x-small" direction="row" display="flex" max-width="100%" padding="none"
-          flex-wrap="nowrap">
-          <sqm-share-button medium="direct" slot hidetext>Share</sqm-share-button><sqm-share-button medium="linkedin"
-            hidetext>
-            Share on LinkedIn</sqm-share-button><sqm-share-button medium="fbmessenger" hidetext>Share via
-            Messenger</sqm-share-button><sqm-share-button medium="email" hidetext> Share via Email </sqm-share-button>
-        </sqm-portal-container>
-      </sqm-portal-container>
-      <sqm-portal-container gap="large" direction="column" display="grid" max-width="100%" padding="none">
-        <sqm-titled-section padding="none" text-align="center" label-margin="xx-small">
-          <h3 slot="label">Referral History</h3>
-        </sqm-titled-section>
-        <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599"
-          md-breakpoint="799">
-          <sqm-referral-table-user-column column-title="User" anonymous-user="Anonymous User"
-            deleted-user="Deleted User">
-          </sqm-referral-table-user-column>
-          <sqm-referral-table-status-column column-title="Referral status" converted-status-text="Converted"
-            in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied"
-            pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral">
-          </sqm-referral-table-status-column>
-          <sqm-referral-table-rewards-column column-title="Rewards" expiring-text="Expiring in"
-            fuel-tank-text="Your code is" pending-for-text="{status} for {date}"
-            reward-received-text="Reward received on" denied-help-text="Contact support if you think this is a mistake."
-            status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward approved for payout and was scheduled for payment based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
-            status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }">
-          </sqm-referral-table-rewards-column>
-          <sqm-referral-table-date-column column-title="Date referred" date-shown="dateReferralStarted">
-          </sqm-referral-table-date-column>
-          <sqm-empty slot="empty"
-            empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
-            empty-state-header="View your referral details"
-            empty-state-text="Refer a friend to view the status of your referrals and rewards earned"></sqm-empty>
-        </sqm-referral-table>
-      </sqm-portal-container>
-      <sqm-portal-footer support-email="support@example.com" show-powered-by="true" padding-bottom="none"
-        padding-left="none" padding-right="none" padding-top="none" hide-support-text></sqm-portal-footer>
-    </sqm-portal-container>
-  </sqm-portal-container>
+	<sqm-portal-container
+		direction="column"
+		padding="small"
+		gap="xxx-large"
+		display="grid"
+		max-width="100%"
+		background-color="#ffffff"
+	>
+		<sqm-portal-container
+			direction="column"
+			padding="none"
+			gap="xxx-large"
+			display="grid"
+			max-width="100%"
+		>
+			<sqm-hero-image
+				header="Refer a Friend"
+				description="Give $20.00, Get $10.00 giftcard"
+				layout="columns"
+				image-pos="right"
+				background-color="rgba(245, 245, 245, 1)"
+				image-percentage="50"
+				padding-text="xxxx-large"
+				image-url="https://res.cloudinary.com/saasquatch/image/upload/v1745331824/tenant_test_a3jnwnbwg2v2d/moxflqk5kgdhdmhfjwcg.png"
+			></sqm-hero-image>
+		</sqm-portal-container>
+		<sqm-portal-container> </sqm-portal-container>
+		<sqm-portal-container
+			direction="column"
+			padding="none"
+			gap="xxx-large"
+			max-width="770px"
+			center
+			display="grid"
+		>
+			<sqm-titled-section
+				text-align="center"
+				label-margin="small"
+				padding="none"
+			>
+				<div slot="label">
+					<h2>How it works</h2>
+				</div>
+				<div slot="content">
+					<p>
+						<span
+							>Give your friends $20.00 off their first order when they purchase
+							using your link. You'll receive a $10.00
+							giftcard&#x2014;it&#x2019;s a win-win.</span
+						>
+					</p>
+				</div> </sqm-titled-section
+			><sqm-stat-container space="xxx-large" display="flex">
+				<sqm-big-stat alignment="center" stat-type="/referralsCount">
+					<p>Referrals</p>
+				</sqm-big-stat>
+				<sqm-big-stat alignment="center" stat-type="/rewardsCount">
+					<p>Rewards Earned</p>
+				</sqm-big-stat>
+			</sqm-stat-container>
+			<sqm-portal-container
+				gap="x-small"
+				direction="column"
+				display="grid"
+				max-width="100%"
+				padding="none"
+			>
+				<p><sub>Your share link</sub></p>
+				<sqm-share-link
+					tooltip-text="Copied to Clipboard"
+					tooltip-lifespan="1000"
+				>
+				</sqm-share-link>
+				<sqm-portal-container
+					gap="x-small"
+					direction="row"
+					display="flex"
+					max-width="100%"
+					padding="none"
+					flex-wrap="nowrap"
+				>
+					<sqm-share-button medium="direct" slot hidetext
+						>Share</sqm-share-button
+					><sqm-share-button medium="linkedin" hidetext>
+						Share on LinkedIn</sqm-share-button
+					><sqm-share-button medium="fbmessenger" hidetext
+						>Share via Messenger</sqm-share-button
+					><sqm-share-button medium="email" hidetext>
+						Share via Email
+					</sqm-share-button>
+				</sqm-portal-container>
+			</sqm-portal-container>
+			<sqm-qr-code></sqm-qr-code>
+			<sqm-portal-container
+				gap="large"
+				direction="column"
+				display="grid"
+				max-width="100%"
+				padding="none"
+			>
+				<sqm-titled-section
+					padding="none"
+					text-align="center"
+					label-margin="xx-small"
+				>
+					<h3 slot="label">Referral History</h3>
+				</sqm-titled-section>
+				<sqm-referral-table
+					per-page="4"
+					hidden-columns="2"
+					more-label="Next"
+					prev-label="Prev"
+					sm-breakpoint="599"
+					md-breakpoint="799"
+				>
+					<sqm-referral-table-user-column
+						column-title="User"
+						anonymous-user="Anonymous User"
+						deleted-user="Deleted User"
+					>
+					</sqm-referral-table-user-column>
+					<sqm-referral-table-status-column
+						column-title="Referral status"
+						converted-status-text="Converted"
+						in-progress-status-text="In Progress"
+						pending-review-status-text="Pending"
+						denied-status-text="Denied"
+						pending-review-status-sub-text="Awaiting review"
+						denied-status-sub-text="Detected self-referral"
+					>
+					</sqm-referral-table-status-column>
+					<sqm-referral-table-rewards-column
+						column-title="Rewards"
+						expiring-text="Expiring in"
+						fuel-tank-text="Your code is"
+						pending-for-text="{status} for {date}"
+						reward-received-text="Reward received on"
+						denied-help-text="Contact support if you think this is a mistake."
+						status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward approved for payout and was scheduled for payment based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
+						status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+					>
+					</sqm-referral-table-rewards-column>
+					<sqm-referral-table-date-column
+						column-title="Date referred"
+						date-shown="dateReferralStarted"
+					>
+					</sqm-referral-table-date-column>
+					<sqm-empty
+						slot="empty"
+						empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+						empty-state-header="View your referral details"
+						empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
+					></sqm-empty>
+				</sqm-referral-table>
+			</sqm-portal-container>
+			<sqm-portal-footer
+				support-email="support@example.com"
+				show-powered-by="true"
+				padding-bottom="none"
+				padding-left="none"
+				padding-right="none"
+				padding-top="none"
+				hide-support-text
+			></sqm-portal-footer>
+		</sqm-portal-container>
+	</sqm-portal-container>
 </sqm-brand>
