@@ -59,7 +59,9 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
 
     const getQrCode = async () => {
       try {
-        const res = await fetch(`${shareLink}?qrCode&qrCodeImageFormat=svg`);
+        const res = await fetch(
+          `${shareLink}?qrCode&qrCodeImageFormat=svg&qrCodeQuietZoneSize=0`
+        );
         const blob = await res.blob();
         const url = URL.createObjectURL(blob);
         setQrUrl(url);

@@ -6,11 +6,7 @@ export default {
 };
 
 const defaultProps: QRCodeViewProps = {
-  dialogIsOpen: false,
   error: false,
-  viewError: false,
-  showDialog: () => void 0,
-  hideDialog: () => void 0,
   qrLink:
     "https://media.istockphoto.com/id/1251071788/vector/qr-code-bar-code-black-icon-digital-technology.jpg?s=612x612&w=0&k=20&c=maw4OqMSEegAdSo8Drm9HO7i1ddddvP2YaL1UuWbRig=",
   createDownloadable: async () => {
@@ -20,7 +16,6 @@ const defaultProps: QRCodeViewProps = {
     console.log("Print QR Code clicked");
   },
   titleText: "Share your QR code",
-  viewCodeText: "View QR code",
   downloadCodeText: "Download",
   printCodeText: "Print",
   errorHeaderText: "There was an error loading your QR code",
@@ -32,25 +27,13 @@ export const Default = () => {
 };
 
 export const Expanded = () => {
-  return <QrCodeView {...defaultProps} dialogIsOpen={true}></QrCodeView>;
+  return <QrCodeView {...defaultProps}></QrCodeView>;
 };
 
 export const Error = () => {
-  return (
-    <QrCodeView
-      {...defaultProps}
-      dialogIsOpen={true}
-      viewError={true}
-    ></QrCodeView>
-  );
+  return <QrCodeView {...defaultProps} error={true}></QrCodeView>;
 };
 
 export const DownloadError = () => {
-  return (
-    <QrCodeView
-      {...defaultProps}
-      dialogIsOpen={false}
-      error={true}
-    ></QrCodeView>
-  );
+  return <QrCodeView {...defaultProps} error={true}></QrCodeView>;
 };
