@@ -47,9 +47,17 @@ export class QrCode {
   @Prop() errorDescriptionText?: string =
     "Please refresh this page and try again";
   /**
-   * @uiName Description for error banner
+   * @uiName Hide title
    */
   @Prop() hideTitle?: boolean = false;
+
+  /**
+   * @uiName QR code alignment
+   * @uiType string
+   * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
+   */
+  @Prop() alignment?: "left" | "center" | "right" = "center";
 
   /**
    * @undocumented
@@ -82,6 +90,7 @@ function useDemoQRCode(props: QrCode): QRCodeViewProps {
       viewCodeText: props.viewCodeText,
       downloadCodeText: props.downloadCodeText,
       printCodeText: props.printCodeText,
+      alignment: props.alignment,
       qrLink:
         "https://media.istockphoto.com/id/1251071788/vector/qr-code-bar-code-black-icon-digital-technology.jpg?s=612x612&w=0&k=20&c=maw4OqMSEegAdSo8Drm9HO7i1ddddvP2YaL1UuWbRig=",
       fireViewQrEvent: () => {

@@ -2944,6 +2944,13 @@ export namespace Components {
     }
     interface SqmQrCode {
         /**
+          * @uiName QR code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2961,7 +2968,7 @@ export namespace Components {
          */
         "errorHeaderText"?: string;
         /**
-          * @uiName Description for error banner
+          * @uiName Hide title
          */
         "hideTitle"?: boolean;
         /**
@@ -9612,6 +9619,13 @@ declare namespace LocalJSX {
     }
     interface SqmQrCode {
         /**
+          * @uiName QR code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -9629,7 +9643,7 @@ declare namespace LocalJSX {
          */
         "errorHeaderText"?: string;
         /**
-          * @uiName Description for error banner
+          * @uiName Hide title
          */
         "hideTitle"?: boolean;
         /**

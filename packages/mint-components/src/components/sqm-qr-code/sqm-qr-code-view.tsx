@@ -14,6 +14,7 @@ export interface QRCodeViewProps {
   errorHeaderText?: string;
   errorDescriptionText?: string;
   createPrintable: () => void;
+  loading: boolean;
 }
 
 const style = {
@@ -25,7 +26,6 @@ const style = {
     display: "flex",
     flexDirection: "row",
     gap: "var(--sl-spacing-small)",
-    justifyContent: "space-between",
   },
   TextContainer: {
     display: "flex",
@@ -86,12 +86,26 @@ export function QrCodeView({
   createDownloadable,
   createPrintable,
   hideTitle,
+  alignment,
 }: QRCodeViewProps) {
+  const codeAlignment =
+    alignment === "left"
+      ? "flex-start"
+      : alignment === "right"
+      ? "flex-end"
+      : "center";
   return (
-    <div class={sheet.classes.Container} part="sqm-base">
+    <div
+      class={sheet.classes.Container}
+      style={{ justifyContent: codeAlignment }}
+      part="sqm-base"
+    >
       <style>{vanillaStyle}</style>
       <style>{styleString}</style>
-      <div class={sheet.classes.TextContainer}>
+      <div
+        class={sheet.classes.TextContainer}
+        style={{ alignItems: codeAlignment }}
+      >
         {!hideTitle && <span part="sqm-title">{titleText}</span>}
         {error && (
           <ErrorView

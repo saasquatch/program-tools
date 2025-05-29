@@ -140,6 +140,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
 
   return {
     ...props,
+    loading: false,
     qrLink,
     error: error,
     createDownloadable,
