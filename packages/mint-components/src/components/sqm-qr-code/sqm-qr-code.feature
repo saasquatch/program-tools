@@ -13,25 +13,26 @@ Feature: QR Code
     And a QR code loads successfully
     Then the QR code component is displayed
     And it has "Share your QR code" text
-    And it has a "View QR code" primary button
-    And it has a "Download" text button
+    And it has a "Download" primary button
     And it has a "Print" text button
 
   @motivating
   Scenario: The QR code is displayed when the request succeeds
     Given a QR code loads successfully
-    When a user clicks the "View QR code" button
-    Then a dialog is shown
-    And the dialog contains the following
-      | components      |
-      | QR code         |
-      | download button |
-      | print button    |
-      | close button    |
-    And the dialog has header "Share your QR code"
+    Then the QR code is shown
+    And the QR code has header "Share your QR code"
     And the QR code is 100x100 pixels
     And the QR code is in "svg" format
+    
+  @motivating
+  Scenario: The QR code component can be added from the right side bar in the content editor
+    Given a user is editing a widget in the content editor
+    When the user clicks "Add component"
+    And they click the "Sharing" dropdown
+    Then they see the "QR Code" option
+    And they can add it to their widget
 
+  @minutia
   Scenario: Loading state is displayed while the QR code is loading
     Given a QR code is being loaded
     When the widget loads
