@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.13.5] - 2024-05-27
+## [1.13.5] - 2024-05-30
 
 - \<sqm-tax-and-cash-dashboard>
   - Changed direction of tooltip popover to prevent it from getting cut off
