@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
   "title": "Mint Components",
-  "version": "1.13.3-12",
+  "version": "1.14.0",
   "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
   "raisins": "docs/raisins.json",
