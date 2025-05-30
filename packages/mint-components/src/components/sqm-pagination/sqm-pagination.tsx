@@ -12,7 +12,7 @@ import { UsePagination, usePagination } from "./usePagination";
 /**
  * @uiName Pagination
  * @exampleGroup Common Components
- * @example Link Button - <sqm-pagination></sqm-pagination>
+ * @example Promo Code Pagination - <sqm-pagination></sqm-pagination>
  */
 @Component({
   tag: "sqm-pagination",
