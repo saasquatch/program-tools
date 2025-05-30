@@ -44,6 +44,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   );
   const [qrLink, setQrUrl] = useState(null);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { data, errors } = useQuery(
     ShareLinkQuery,
@@ -58,6 +59,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
     if (!shareLink) return;
 
     const getQrCode = async () => {
+      setLoading(true);
       try {
         const res = await fetch(
           `${shareLink}?qrCode&qrCodeImageFormat=svg&qrCodeQuietZoneSize=0`
@@ -67,6 +69,8 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
         setQrUrl(url);
       } catch (e) {
         setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -140,7 +144,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
 
   return {
     ...props,
-    loading: false,
+    loading,
     qrLink,
     error: error,
     createDownloadable,

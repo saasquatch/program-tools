@@ -59,6 +59,11 @@ const style = {
       color: "var(--sl-color-gray-600)",
     },
   },
+  LoadingSkeleton: {
+    "&::part(indicator)": {
+      borderRadius: "0px !important",
+    },
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -73,6 +78,7 @@ const vanillaStyle = `
     :host{
       display: block;
     }
+
   }`;
 
 export function QrCodeView({
@@ -87,6 +93,7 @@ export function QrCodeView({
   createPrintable,
   hideTitle,
   alignment,
+  loading,
 }: QRCodeViewProps) {
   const codeAlignment =
     alignment === "left"
@@ -94,6 +101,38 @@ export function QrCodeView({
       : alignment === "right"
       ? "flex-end"
       : "center";
+
+  const getCodeContent = (error: boolean, qrLink: string, loading: boolean) => {
+    if (error) {
+      return (
+        <ErrorView
+          loadingErrorAlertDescription={errorHeaderText}
+          loadingErrorAlertHeader={errorDescriptionText}
+        />
+      );
+    } else if (loading) {
+      return (
+        <sl-skeleton
+          className={sheet.classes.LoadingSkeleton}
+          effect="sheen"
+          style={{
+            width: "100px",
+            height: "100px",
+            borderRadius: "0px !important",
+          }}
+        ></sl-skeleton>
+      );
+    } else if (qrLink) {
+      return (
+        <svg width="100" height="100">
+          <image href={qrLink} width="100" height="100" />
+        </svg>
+      );
+    }
+    return null;
+  };
+
+  const codeContent = getCodeContent(error, qrLink, loading);
   return (
     <div
       class={sheet.classes.Container}
@@ -107,17 +146,7 @@ export function QrCodeView({
         style={{ alignItems: codeAlignment }}
       >
         {!hideTitle && <span part="sqm-title">{titleText}</span>}
-        {error && (
-          <ErrorView
-            loadingErrorAlertDescription={errorHeaderText}
-            loadingErrorAlertHeader={errorDescriptionText}
-          />
-        )}
-        {qrLink && (
-          <svg width="100" height="100">
-            <image href={qrLink} width="100" height="100" />
-          </svg>
-        )}
+        {codeContent}
         <div class={sheet.classes.ButtonContainer}>
           <sl-button
             size="small"

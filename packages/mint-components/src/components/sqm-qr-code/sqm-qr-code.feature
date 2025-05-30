@@ -18,7 +18,7 @@ Feature: QR Code
     And it has a "Print" text button
 
   @motivating
-  Scenario: The QR code is displayed when the button is clicked
+  Scenario: The QR code is displayed when the request succeeds
     Given a QR code loads successfully
     When a user clicks the "View QR code" button
     Then a dialog is shown
@@ -29,8 +29,13 @@ Feature: QR Code
       | print button    |
       | close button    |
     And the dialog has header "Share your QR code"
-    And the QR code is 300x300 pixels
+    And the QR code is 100x100 pixels
     And the QR code is in "svg" format
+
+  Scenario: Loading state is displayed while the QR code is loading
+    Given a QR code is being loaded
+    When the widget loads
+    Then a loading state is displayed in place of the QR code component
 
   @motivating
   Scenario Outline: Engagement event is fired when user takes action to share the QR code
@@ -107,11 +112,4 @@ Feature: QR Code
       | the downloadable QR code request fails |
       | the printable QR code request fails    |
 
-  @minutia
-  Scenario: Buttons in dialog are displayed if the viewable QR code can't be fetched
-    Given a user clicked the "View QR code" button
-    But the QR code failed to be fetched
-    Then the error banner is shown in the dialog
-    And the "Download" button is disabled
-    And the "Print" button is disabled
 
