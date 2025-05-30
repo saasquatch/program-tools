@@ -46,7 +46,11 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { data, errors } = useQuery(
+  const {
+    data,
+    errors,
+    loading: requestLoading,
+  } = useQuery(
     ShareLinkQuery,
     { programId, engagementMedium },
     !user?.jwt || contextData?.shareLink !== undefined
@@ -54,6 +58,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
   const shareLink = data?.user?.shareLink;
   const qrPrefix = `${shareLink}?qrCode`;
+  const completeLoading = requestLoading || loading;
 
   useEffect(() => {
     if (!shareLink) return;
@@ -144,7 +149,7 @@ export function useQRCode(props: QrCode): QRCodeViewProps {
 
   return {
     ...props,
-    loading,
+    loading: completeLoading,
     qrLink,
     error: error,
     createDownloadable,
