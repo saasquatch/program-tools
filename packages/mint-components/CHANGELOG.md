@@ -14,6 +14,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-qr-code>
   - Adds the ability to share using a QR code
 
+## [1.13.5] - 2024-05-30
+
+- \<sqm-tax-and-cash-dashboard>
+  - Changed direction of tooltip popover to prevent it from getting cut off
+
+## [1.13.4] - 2025-05-27
+
+### Updated
+
+- \<sqm-titled-section>
+  - Fix broken `uiType` on `label` prop
+
+## [1.13.3] - 2025-05-22
+
+### Changed
+
+- \<sqm-portal-registration>
+  - Added email opt-in slot to portal registration form
+
+### Added
+
+- \<sqm-portal-marketing-emails-checkbox>
+  - checkbox to be used in the registration form to change the user's opt-in status
+- \<sqm-portal-change-marketing>
+  - checkbox to be used in the edit profile form to change the user's opt-in status
+
 ## [1.13.2] - 2025-04-03
 
 ### Changed
@@ -1139,6 +1165,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.0...HEAD
 [1.14.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.0
+[1.13.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.5
+[1.13.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.4
+[1.13.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.3
 [1.13.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.2
 [1.13.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.1
 [1.13.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.0

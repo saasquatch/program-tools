@@ -754,7 +754,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 {text.indirectTaxInfoSectionHeader}
                 <sl-tooltip
                   trigger="hover"
-                  placement="top"
+                  placement="right"
                   content={text.indirectTaxTooltipSupport}
                   class={sheet.classes.TooltipContainer}
                 >

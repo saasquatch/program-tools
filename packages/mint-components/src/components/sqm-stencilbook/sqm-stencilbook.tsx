@@ -27,6 +27,7 @@ import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
+import * as NewPortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgotPassword.stories";
 import * as PortalEmailVerification from "../sqm-portal-email-verification/PortalEmailVerification.stories";
 import * as PortalResetPassword from "../sqm-portal-reset-password/PortalResetPassword.stories";
@@ -34,6 +35,7 @@ import * as PortalVerifyEmail from "../sqm-portal-verify-email/PortalVerifyEmail
 import * as AssetCard from "../sqm-asset-card/AssetCard.stories";
 import * as DividedLayout from "../sqm-divided-layout/DividedLayout.stories";
 import * as ChangePassword from "../sqm-portal-change-password/ChangePassword.stories";
+import * as ChangeMarketing from "../sqm-portal-change-marketing/ChangeMarketing.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
@@ -49,6 +51,7 @@ import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
 import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
+import * as MarketingEmailsCheckbox from "../sqm-marketing-emails-checkbox/MarketingEmailsCheckbox.stories";
 import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
 import * as DropdownField from "../sqm-dropdown-field/DropdownField.stories";
 import * as UseDropdownField from "../sqm-dropdown-field/UseDropdownField.stories";
@@ -153,6 +156,7 @@ const stories = [
   ReferralIframe,
   NameFields,
   CheckboxField,
+  MarketingEmailsCheckbox,
   DropdownField,
   InputField,
   RewardExchangeList,
@@ -188,6 +192,8 @@ const stories = [
   TaxFormSlots,
   PayoutDetailsCard,
   BankingInfoForm,
+  NewPortalRegistrationForm,
+  ChangeMarketing,
   BaseRegistrationForm,
   PortalRegistrationForm,
   PortalGoogleRegistrationFormStories,

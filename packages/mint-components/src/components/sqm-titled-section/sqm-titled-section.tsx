@@ -19,6 +19,7 @@ export class TitledSection {
    * Text value shown when there is no label slot declared.
    *
    * @uiName Label
+   * @uiType string
    */
   @Prop() label: string | VNode;
 
