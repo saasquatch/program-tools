@@ -1,14 +1,14 @@
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
+import { ErrorView } from "./ErrorView";
 import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
-import { ErrorView } from "./ErrorView";
 
 /**
  * @uiName Tax and Cash
@@ -1099,9 +1099,14 @@ export class TaxAndCashMonolith {
   @Prop() supportLink: string = "support team";
 
   /**
-   *
+   * @ghost
    * @undocumented
    * @uiType object
+   * @demo Step 1 - { "step": "/1" }
+   * @demo Step 2 - { "step": "/2" }
+   * @demo Step 3 - { "step": "/3" }
+   * @demo Step 3 - { "step": "/4" }
+   * @demo Dashboard - { "step": "/dashboard" }
    */
   @Prop() demoData?: DemoData<UseTaxAndCashResultType>;
 
