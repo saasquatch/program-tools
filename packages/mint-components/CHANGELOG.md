@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.0] - 2025-06-02
+
+### Added
+
+- \<sqm-qr-code>
+  - Adds the ability to share using a QR code
+
 ## [1.13.5] - 2024-05-30
 
 - \<sqm-tax-and-cash-dashboard>
@@ -1156,7 +1163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.13.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.0...HEAD
+[1.14.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.0
 [1.13.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.5
 [1.13.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.4
 [1.13.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.3

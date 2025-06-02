@@ -1,68 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" src="./src/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-    <script>
-      !(function (a, b) {
-        a("squatch", "https://fast.ssqt.io/squatch-js@2", b);
-      })(function (a, b, c) {
-        var d, e, f;
-        (c["_" + a] = {}),
-          (c[a] = {}),
-          (c[a].ready = function (b) {
-            c["_" + a].ready = c["_" + a].ready || [];
-            c["_" + a].ready.push(b);
-          }),
-          (e = document.createElement("script")),
-          (e.async = 1),
-          (e.src = b),
-          (f = document.getElementsByTagName("script")[0]),
-          f.parentNode.insertBefore(e, f);
-      }, this);
-    </script>
-  </head>
-  <body>
-    <div id="setup">
-      <button id="showBtn" class="hide">Show</button>
-      <div id="formWrapper" class="show">
-        <div style="cursor: pointer" id="hideBtn">X</div>
-        <hr />
-        <span>
-          <button id="widgetBtn">Widget</button>
-          <button id="micrositeBtn">Microsite</button>
-        </span>
-        <hr />
-        <form id="setupForm">
-          <input
-            type="text"
-            placeholder="Tenant alias"
-            id="tenantAlias"
-            name="tenantAlias"
-            value="test_axbgtatw1tccp"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Mint source file"
-            id="mintSource"
-            name="mintSource"
-          />
-          <input
-            type="text"
-            placeholder="Bedrock source file"
-            id="bedrockSource"
-            name="bedrockSource"
-          />
-          <button type="submit">Update</button>
-        </form>
-        <hr />
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" src="./src/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <script>
+    !(function (a, b) {
+      a("squatch", "https://fast.ssqt.io/squatch-js@2", b);
+    })(function (a, b, c) {
+      var d, e, f;
+      (c["_" + a] = {}),
+        (c[a] = {}),
+        (c[a].ready = function (b) {
+          c["_" + a].ready = c["_" + a].ready || [];
+          c["_" + a].ready.push(b);
+        }),
+        (e = document.createElement("script")),
+        (e.async = 1),
+        (e.src = b),
+        (f = document.getElementsByTagName("script")[0]),
+        f.parentNode.insertBefore(e, f);
+    }, this);
+  </script>
+</head>
+
+<body>
+  <div id="setup">
+    <button id="showBtn" class="hide">Show</button>
+    <div id="formWrapper" class="show">
+      <div style="cursor: pointer" id="hideBtn">X</div>
+      <hr />
+      <span>
+        <button id="widgetBtn">Widget</button>
+        <button id="micrositeBtn">Microsite</button>
+      </span>
+      <hr />
+      <form id="setupForm">
+        <input type="text" placeholder="Tenant alias" id="tenantAlias" name="tenantAlias" value="test_axbgtatw1tccp"
+          required />
+        <input type="text" placeholder="Mint source file" id="mintSource" name="mintSource" />
+        <input type="text" placeholder="Bedrock source file" id="bedrockSource" name="bedrockSource" />
+        <button type="submit">Update</button>
+      </form>
+      <hr />
+      <form id="widgetForm" class="hide">
+        <input type="text" id="programId" name="programId" placeholder="Program ID" />
+        <input type="text" id="widgetType" name="widgetType" placeholder="Widget Type" />
+        <input type="text" id="token" name="token" placeholder="JWT (For verified widgets)" />
+        <button type="submit">Update</button>
+      </form>
     </div>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+  </div>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

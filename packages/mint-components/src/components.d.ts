@@ -43,6 +43,7 @@ import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-port
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { QRCodeViewProps } from "./components/sqm-qr-code/sqm-qr-code-view";
 import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
@@ -2990,6 +2991,48 @@ export namespace Components {
         "textColor": string;
     }
     interface SqmProgramMenu {
+    }
+    interface SqmQrCode {
+        /**
+          * @uiName QR code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<QRCodeViewProps>;
+        /**
+          * @uiName Download QR code text
+         */
+        "downloadCodeText"?: string;
+        /**
+          * @uiName Description for error banner
+         */
+        "errorDescriptionText"?: string;
+        /**
+          * @uiName Header for error banner
+         */
+        "errorHeaderText"?: string;
+        /**
+          * @uiName Hide title
+         */
+        "hideTitle"?: boolean;
+        /**
+          * @uiName Print QR code text
+         */
+        "printCodeText"?: string;
+        /**
+          * @uiName Title
+         */
+        "titleText"?: string;
+        /**
+          * @uiName View QR code text
+         */
+        "viewCodeText"?: string;
     }
     interface SqmReferralCard {
         /**
@@ -6313,6 +6356,12 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    interface HTMLSqmQrCodeElement extends Components.SqmQrCode, HTMLStencilElement {
+    }
+    var HTMLSqmQrCodeElement: {
+        prototype: HTMLSqmQrCodeElement;
+        new (): HTMLSqmQrCodeElement;
+    };
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
@@ -6696,6 +6745,7 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-qr-code": HTMLSqmQrCodeElement;
         "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-code": HTMLSqmReferralCodeElement;
         "sqm-referral-codes": HTMLSqmReferralCodesElement;
@@ -9681,6 +9731,48 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmQrCode {
+        /**
+          * @uiName QR code alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
+         */
+        "alignment"?: "left" | "center" | "right";
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<QRCodeViewProps>;
+        /**
+          * @uiName Download QR code text
+         */
+        "downloadCodeText"?: string;
+        /**
+          * @uiName Description for error banner
+         */
+        "errorDescriptionText"?: string;
+        /**
+          * @uiName Header for error banner
+         */
+        "errorHeaderText"?: string;
+        /**
+          * @uiName Hide title
+         */
+        "hideTitle"?: boolean;
+        /**
+          * @uiName Print QR code text
+         */
+        "printCodeText"?: string;
+        /**
+          * @uiName Title
+         */
+        "titleText"?: string;
+        /**
+          * @uiName View QR code text
+         */
+        "viewCodeText"?: string;
+    }
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -12627,6 +12719,7 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-qr-code": SqmQrCode;
         "sqm-referral-card": SqmReferralCard;
         "sqm-referral-code": SqmReferralCode;
         "sqm-referral-codes": SqmReferralCodes;
@@ -12755,6 +12848,7 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-qr-code": LocalJSX.SqmQrCode & JSXBase.HTMLAttributes<HTMLSqmQrCodeElement>;
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-code": LocalJSX.SqmReferralCode & JSXBase.HTMLAttributes<HTMLSqmReferralCodeElement>;
             "sqm-referral-codes": LocalJSX.SqmReferralCodes & JSXBase.HTMLAttributes<HTMLSqmReferralCodesElement>;
