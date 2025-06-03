@@ -9,6 +9,8 @@ import { DemoData } from "../../global/demo";
 /**
  *
  * @uiName User Stat
+ * @validParents ["sqm-stat-container"]
+ * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
  * @slots [{"name":"","title":"Stat Text"}]
  * @slotEditor richText
  * @exampleGroup Statistics

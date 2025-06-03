@@ -6,6 +6,8 @@ import { Spacing } from "../../global/mixins";
 
 /**
  * @uiName Stat Container
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
+ * @validChildren ["sqm-big-stat"]
  * @slots [{"name":"", "title":"Stats"}]
  * @exampleGroup Statistics
  * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
