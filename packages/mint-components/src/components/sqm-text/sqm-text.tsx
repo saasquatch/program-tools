@@ -51,6 +51,7 @@ const vanillaStyle = `
 
 /**
  * @uiName Text
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"", "title":"Text"}]
  * @slotEditor richText
  * @canvasRenderer always-replace

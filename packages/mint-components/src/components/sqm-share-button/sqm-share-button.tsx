@@ -9,6 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"", "title":"Button Content"}]
  * @slotEditor richText
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]

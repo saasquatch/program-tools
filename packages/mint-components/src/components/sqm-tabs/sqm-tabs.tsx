@@ -6,6 +6,8 @@ import { useTabs } from "./useTabs";
 
 /**
  * @uiName Tab Group
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+ * @validChildren ["sqm-tab"]
  * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
  * @exampleGroup Layout
  * @canvasRenderer always-replace
