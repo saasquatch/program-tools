@@ -55,19 +55,19 @@ const style = {
       boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
       fontSize: "var(--sl-font-size-small)",
       lineHeight: "var(--sl-line-height-dense)",
-      color: "var(--sl-color-neutral-600)",
+      color: "var(--sqm-text)",
     },
     "& .main.complete": {
       background: "var(--sl-color-primary-50)",
       borderColor: "var(--sl-color-primary-500)",
     },
     "& .main.expired": {
-      color: "var(--sl-color-neutral-600)",
+      color: "var(--sqm-text)",
       background: "var(--sl-color-neutral-50)",
     },
     "& .title": {
       fontSize: "var(--sl-font-size-medium)",
-      color: "var(--sl-color-neutral-950)",
+      color: "var(--sqm-text)",
     },
     "& .container": {
       margin: "var(--sl-spacing-medium)",
@@ -130,7 +130,7 @@ const style = {
       alignSelf: "center",
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "var(--sl-font-weight-semibold)",
-      color: "var(--sl-color-neutral-950)",
+      color: "var(--sqm-text)",
       lineHeight: "100%",
       marginRight: "var(--sl-spacing-xx-small)",
     },
@@ -139,7 +139,7 @@ const style = {
       alignSelf: "end",
       textTransform: "uppercase",
       fontSize: "var(--sl-font-size-x-small)",
-      color: "var(--sl-color-neutral-950)",
+      color: "var(--sqm-text)",
       lineHeight: "var(--sl-font-size-medium)",
       marginRight: "var(--sl-spacing-xx-small)",
     },
@@ -157,7 +157,7 @@ const style = {
       color: "var(--sl-color-primary-300)",
     },
     "&[data-subdue] .neutral": {
-      color: "var(--sl-color-neutral-300)",
+      color: "var(--sqm-text)",
     },
     display: "flex",
     "& .icon": {
@@ -169,7 +169,7 @@ const style = {
       marginTop: "auto",
       verticalAlign: "text-bottom",
       fontSize: "var(--sl-font-size-x-small)",
-      color: "var(--sl-color-neutral-400)",
+      color: "var(--sqm-text)",
     },
     "& .success": {
       color: "var(--sl-color-primary-500)",
@@ -179,19 +179,19 @@ const style = {
       marginTop: "auto",
       marginLeft: "auto",
       "&::part(base)": {
-        color: "var(--sl-color-neutral-0)",
+        color: "var(--sqm-text)",
       },
       "&.disabled::part(base)": {
         border: "1px solid var(--sl-color-primary-400)",
         background: "var(--sl-color-primary-400)",
       },
       "&.neutral::part(base)": {
-        border: "1px solid var(--sl-color-neutral-400)",
-        background: "var(--sl-color-neutral-400)",
+        border: "1px solid var(--sqm-text)",
+        background: "var(--sqm-text)",
       },
     },
     "& .neutral": {
-      color: "var(--sl-color-neutral-400)",
+      color: "var(--sqm-text)",
     },
     "& .datetime": {
       display: "block",

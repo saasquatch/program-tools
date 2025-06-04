@@ -12,7 +12,7 @@ const style = {
   HostBlock: HostBlock,
   couponCodeLabel: {
     margin: "var(--sl-spacing-x-small) 0",
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-small)",
   },
 };

@@ -585,6 +585,8 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
+  --sqm-text: var(--sl-color-neutral-800);
+  --sqm-text-subdued: var(--sl-color-neutral-500);
 }
 
 body {
@@ -592,7 +594,7 @@ body {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
-  color: var(--sl-color-gray-800);
+  color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
   background-color: var(--sqm-portal-background);
@@ -624,7 +626,6 @@ h2, .Title {
 }
 .P {
   font-size: var(--sl-font-size-small);
-  color: var(--sl-color-gray-800);
   margin-top: 0px;
 }
 
@@ -635,7 +636,7 @@ h2, .Title {
 .Subtitle {
   text-align: center;
   margin-bottom: 0px;
-  color: var(--sl-color-gray-500);
+  color: var(--sqm-text-subdued);
 }
 .SupportText{
   margin-top: var(--sl-spacing-small);

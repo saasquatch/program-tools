@@ -65,14 +65,14 @@ const style = {
     "& .ellipses": {
       textAlign: "left",
       padding: "0",
-      color: "var(--sl-color-neutral-500)",
+      color: "var(--sqm-text)",
       paddingLeft: "25%",
     },
     "& .highlight": {
       background: "var(--sl-color-primary-50)",
     },
     "& td, th": {
-      color: "var(--sl-color-gray-800)",
+      color: "var(--sqm-text)",
       padding: "var(--sl-spacing-medium)",
     },
     "& .User": {

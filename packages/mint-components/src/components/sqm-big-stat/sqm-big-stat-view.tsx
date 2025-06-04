@@ -35,8 +35,7 @@ export function BigStatView(props: BigStatViewProps) {
     Description: {
       "font-size": "var(--sl-font-size-small)",
       "font-weight": "var(--sl-font-weight-normal)",
-      color: "var(--sl-color-gray-600)",
-      "text-transform": "uppercase",
+      color: "var(--sqm-text-subdued)",
       "text-align": alignment,
     },
   };

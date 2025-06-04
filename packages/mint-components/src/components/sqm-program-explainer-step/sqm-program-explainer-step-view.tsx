@@ -18,7 +18,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       width: "100%",
       padding: "var(--sl-spacing-x-large)",
       lineHeight: "var(--sl-line-height-dense)",
-      color: props.textColor || "var(--sl-color-neutral-900)",
+      color: props.textColor || "var(--sqm-text)",
       background: props.backgroundColor || "var(--sl-color-primary-50)",
       "@media (max-width: 499px)": {
         flexDirection: "row",
@@ -32,6 +32,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       },
     },
     Header: {
+      color: props.textColor || "var(--sqm-text)",
       fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-bold)",
       marginTop: "var(--sl-spacing-x-large)",
@@ -40,6 +41,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       },
     },
     Description: {
+      color: props.textColor || "var(--sqm-text)",
       fontSize: "var(--sl-font-size-medium)",
       marginTop: "var(--sl-spacing-small)",
       "@media (max-width: 499px)": {

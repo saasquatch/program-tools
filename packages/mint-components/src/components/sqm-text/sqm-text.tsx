@@ -4,47 +4,48 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 const vanillaStyle = `
   sqm-text {
     display: block;
+    color: var(--sqm-text);
   }
 
   sqm-text h1 {
     font-size: var(--sl-font-size-xxx-large);
     font-weight: var(--sl-font-weight-semibold);
-    color: var(--sl-color-neutral-800);
+    color: var(--sqm-text);
     margin: 0;
   }
 
   sqm-text h2 {
     font-size: var(--sl-font-size-xx-large);
     font-weight: var(--sl-font-weight-semibold);
-    color: var(--sl-color-neutral-800);
+    color: var(--sqm-text);
     margin: 0;
   }
 
   sqm-text h3 {
     font-size: var(--sl-font-size-x-large);
     font-weight: var(--sl-font-weight-semibold);
-    color: var(--sl-color-neutral-800);
+    color: var(--sqm-text);
     margin: 0;
   }
 
   sqm-text h4 {
     font-size: var(--sl-font-size-large);
     font-weight: var(--sl-font-weight-bold);
-    color: var(--sl-color-neutral-800);
+    color: var(--sqm-text);
     margin: 0;
   }
 
   sqm-text p {
     font-size: var(--sl-font-size-medium);
     font-weight: var(--sl-font-weight-normal);
-    color: var(--sl-color-neutral-800);
+    color: var(--sqm-text);
     margin: 0;
   }
 
   sqm-text sub {
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
-    color: var(--sl-color-neutral-400);
+    color: var(--sqm-text);
     margin: 0;
   }
 `;
