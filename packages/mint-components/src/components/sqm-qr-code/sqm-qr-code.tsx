@@ -9,6 +9,7 @@ import { useQRCode } from "./useQRCode";
 
 /**
  * @uiName QR Code
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
  * @exampleGroup Sharing
  * @example QR Code - <sqm-qr-code></sqm-qr-code>
  */

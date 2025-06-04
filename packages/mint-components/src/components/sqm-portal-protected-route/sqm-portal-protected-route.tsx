@@ -5,6 +5,7 @@ import { usePortalProtectedRoute } from "./usePortalProtectedRoute";
 
 /**
  * @uiName Microsite Protected Route
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
  * @slots [{"name":"","title":"Route Content"}]
  */
 @Component({

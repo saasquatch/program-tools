@@ -12,6 +12,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Microsite Participant Profile
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
  */
 @Component({
   tag: "sqm-portal-profile",
