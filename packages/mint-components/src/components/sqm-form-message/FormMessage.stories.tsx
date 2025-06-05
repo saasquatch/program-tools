@@ -43,8 +43,8 @@ export const FullStackSuccess = () => {
         <div part="successalert-text">Title</div>
         <div part="successalert-subtext">Body text.</div>
         <sl-button
-          type="default"
-          exportparts="base: defaultbutton-base"
+          type="primary"
+          exportparts="base: primarybutton-base"
           onClick={() => {
             console.log("click");
           }}

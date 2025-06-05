@@ -585,8 +585,34 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
+
+  /*
   --sqm-text: var(--sl-color-neutral-800);
   --sqm-text-subdued: var(--sl-color-neutral-500);
+ */
+
+  --sqm-text: slateblue;
+  --sqm-text-subdued: var(--sl-color-neutral-500);
+  /*
+  --sqm-primary-button-background: var(--sl-color-primary-500);
+  --sqm-primary-button-background-hover: var(--sl-color-primary-300);
+  --sqm-primary-button-color: var(--sl-color-primary-text);
+  --sqm-primary-button-color-border: none;
+  --sqm-primary-button-radius: var(--sl-border-radius-large);
+ */
+
+  --sqm-primary-button-background: tomato;
+  --sqm-primary-button-background-hover: darkred;
+  --sqm-primary-button-color: white;
+  --sqm-primary-button-color-border: transparent;
+  --sqm-primary-button-radius: 30px;
+
+
+  --sqm-secondary-button-background: var(--sl-color-primary-200);
+  --sqm-secondary-button-background-hover: var(--sl-color-primary-100);
+  --sqm-secondary-button-color: var(--sl-color-secondary-500);
+  --sqm-secondary-button-color-border: var(--sl-color-primary-200);
+  --sqm-secondary-button-radius: var(--sl-border-radius-large);
 }
 
 body {
@@ -665,8 +691,11 @@ sl-details::part(summary) {
   font-weight: var(--sl-font-weight-semibold);
   margin: 0px;
 }
+
+/**************************
+ * Now Deprecated - Use secondarybutton-base instead *
 *::part(defaultbutton-base){
-  background-color: rgba(0,0,0,0);
+
   color: var(--sl-color-gray-800);
   border-color: var(--sl-color-gray-800);
 }
@@ -679,18 +708,34 @@ sl-details::part(summary) {
 *::part(defaultbutton-base):focus{
   box-shadow: none;
 }
+*/
+
 *::part(primarybutton-base){
-  background-color: var(--sl-color-primary-400);
-  color: var(--sl-color-white);
-  border-color: var(--sl-color-primary-400);
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
 }
+
 *::part(primarybutton-base):hover{
-  background-color: var(--sl-color-primary-300);
-  border-color: var(--sl-color-primary-300);
+  background-color: var(--sqm-primary-button-background-hover);
 }
-*::part(primarybutton-base):active{
-  background-color: var(--sl-color-primary-500);
-  border-color: var(--sl-color-primary-500);
+
+
+
+*::part(primarybutton-base):focus{
+  box-shadow: none;
+}
+
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+}
+
+*::part(secondarybutton-base):hover{
+  background-color: var(--sqm-secondary-button-background-hover);
 }
 
 *::part(primarybutton-base):focus{

@@ -162,6 +162,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <sl-button
               class={sheet.classes.Button}
               type="primary"
+              exportparts="base: primarybutton-base"
               onClick={() =>
                 props.buttonNewTab
                   ? window.open(props.buttonLink)

@@ -111,11 +111,6 @@ const style = {
   DescriptionText: {
     color: "var(--sl-color-neutral-500)",
   },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
-  },
   AlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-red-100)",
@@ -180,11 +175,6 @@ const vanillaStyle = `
        box-sizing: border-box;
     }
 
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-       font-size: var(--sl-font-size-small);
-    }
   `;
 
 export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
@@ -399,7 +389,6 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {text.continueButton}
             </sl-button>
             <sl-button
-              class={classes.SecondaryBtn}
               type="text"
               disabled={states.disabled}
               onClick={callbacks.onBack}

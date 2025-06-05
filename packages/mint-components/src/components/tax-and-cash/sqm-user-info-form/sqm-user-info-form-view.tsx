@@ -241,8 +241,7 @@ const vanillaStyle = `
 
     p {
       line-height: 18px;
-      color: var(--sl-color-gray-800);
-       font-size: var(--sl-font-size-small);
+      font-size: var(--sl-font-size-small);
     }
 
     sl-radio-group::part(base) {

@@ -146,11 +146,7 @@ const style = {
   DescriptionText: {
     color: "var(--sl-color-neutral-500)",
   },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
-  },
+
   AlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-red-100)",
@@ -270,12 +266,6 @@ const vanillaStyle = `
     & sl-select::part(label) {
       font-size: var(--sl-font-size-small);
       font-weight: 600
-    }
-
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-      font-size: var(--sl-font-size-small);
     }
 
     /* this class is dynamically applied in controller */
@@ -576,7 +566,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {!states.hideBackButton && (
             <sl-button
               exportparts="base: secondarybutton-base"
-              class={classes.SecondaryBtn}
               type="text"
               onClick={callbacks.onBack}
             >

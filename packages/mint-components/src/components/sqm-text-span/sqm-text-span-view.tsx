@@ -8,37 +8,37 @@ const style = {
   p: {
     "font-size": "var(--sl-font-size-small)",
     "font-weight": "400",
-    color: "var(--sl-color-gray-800)",
+    color: "var(--sq-text)",
     margin: "0",
   },
   subtext: {
     "font-size": "var(--sl-font-size-x-small)",
     "font-weight": "400",
-    color: "var(--sl-color-gray-600)",
+    color: "var(--sqm-text-subdued)",
     margin: "0",
   },
   h1: {
     "font-size": "var(--sl-font-size-xx-large)",
     "font-weight": "600",
-    color: "var(--sl-color-gray-800)",
+    color: "var(--sq-text)",
     margin: "0",
   },
   h2: {
     "font-size": "var(--sl-font-size-x-large)",
     "font-weight": "600",
-    color: "var(--sl-color-gray-800)",
+    color: "var(--sq-text)",
     margin: "0",
   },
   h3: {
     "font-size": "var(--sl-font-size-large)",
     "font-weight": "600",
-    color: "var(--sl-color-gray-800)",
+    color: "var(--sq-text)",
     margin: "0",
   },
   h4: {
     "font-size": "13px",
     "font-weight": "600",
-    color: "var(--sl-color-gray-800)",
+    color: "var(--sq-text)",
     margin: "0",
   },
 };
