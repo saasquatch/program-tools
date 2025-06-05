@@ -1514,6 +1514,11 @@ export namespace Components {
          */
         "usersheading": string;
         /**
+          * @uiWidget color
+          * @uiName Viewing user highlight color
+         */
+        "viewingUserHighlightColor": string;
+        /**
           * @uiName Viewing user text
          */
         "viewingUserText": string;
@@ -8252,6 +8257,11 @@ declare namespace LocalJSX {
           * @uiName User column heading
          */
         "usersheading"?: string;
+        /**
+          * @uiWidget color
+          * @uiName Viewing user highlight color
+         */
+        "viewingUserHighlightColor"?: string;
         /**
           * @uiName Viewing user text
          */

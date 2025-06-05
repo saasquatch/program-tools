@@ -76,6 +76,12 @@ export class Leaderboard {
   @Prop() viewingUserText: string = "You";
 
   /**
+   * @uiWidget color
+   * @uiName Viewing user highlight color
+   */
+  @Prop() viewingUserHighlightColor: string;
+
+  /**
    * Hide the Names of users to protect personal identifiable information
    *
    * @uiName Hide users names
@@ -223,6 +229,7 @@ function useLeaderboardDemo(
         hasLeaders: true,
         isEssentials: false,
         styles: {
+          // viewingUserHighlightColor: props.viewingUserHighlightColor,
           usersheading: props.usersheading
             ? props.usersheading
             : "Top referrers",

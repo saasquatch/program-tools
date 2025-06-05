@@ -510,7 +510,7 @@ html {
   --sl-focus-ring-color-info: var(--sl-color-info-100);
   --sl-focus-ring-color-warning: var(--sl-color-warning-100);
   --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
-  --sl-focus-ring-width: 3px;
+  --sl-focus-ring-width: 0px;
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
   --sl-button-font-size-large: var(--sl-font-size-medium);
