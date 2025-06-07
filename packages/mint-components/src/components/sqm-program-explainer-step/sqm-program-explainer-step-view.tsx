@@ -61,6 +61,9 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       fontSize: "26px",
       textAlign: "center",
       lineHeight: "72px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   };
 
