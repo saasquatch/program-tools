@@ -281,7 +281,7 @@ export class TaskCard {
     const { states, callbacks } = isDemo()
       ? useTaskCardDemo(this)
       : useTaskCard(this);
-
+    console.log("button style from controller", this.buttonStyle);
     return (
       <TaskCardView
         callbacks={callbacks}

@@ -608,11 +608,11 @@ html {
   --sqm-primary-button-radius: 30px;
 
 
-  --sqm-secondary-button-background: var(--sl-color-primary-200);
-  --sqm-secondary-button-background-hover: var(--sl-color-primary-100);
-  --sqm-secondary-button-color: var(--sl-color-secondary-500);
-  --sqm-secondary-button-color-border: var(--sl-color-primary-200);
-  --sqm-secondary-button-radius: var(--sl-border-radius-large);
+  --sqm-secondary-button-background: #191414; /* Spotify Black */
+  --sqm-secondary-button-background-hover: #282828; /* Slightly lighter black for hover effect */
+  --sqm-secondary-button-color: #FFFFFF; /* Spotify White for text */
+  --sqm-secondary-button-color-border: #FFFFFF; /* Spotify White for border */
+  --sqm-secondary-button-radius: 30px;
 }
 
 body {

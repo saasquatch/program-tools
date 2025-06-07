@@ -49,7 +49,7 @@ export type TaskCardViewProps = {
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
-
+  console.log("text color from the view ", content.textColor);
   const style = {
     TaskCard: {
       display: "inline-block",
@@ -106,7 +106,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         position: "relative",
         top: "0.1em",
         marginRight: "var(--sl-spacing-small)",
-        color: content.textColor || "var(--sl-color-primary-500)",
+        color: content.textColor || "var(--sqm-text)",
       },
     },
     Ended: {
@@ -126,7 +126,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         position: "relative",
         top: "0.1em",
         marginRight: "var(--sl-spacing-small)",
-        color: content.textColor || "var(--sl-color-warning-500)",
+        color: content.textColor || "var(--sqm-text)",
       },
     },
     Header: {
@@ -136,7 +136,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         top: "5%",
         alignSelf: "center",
         lineHeight: "0",
-        color: content.textColor || "var(--sl-color-primary-400)",
+        color: content.textColor || "var(--sqm-text)",
         fontSize: "var(--sl-font-size-large)",
         marginRight: "var(--sl-spacing-x-small)",
       },
@@ -186,35 +186,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         color: content.textColor || "var(--sqm-text)",
       },
       "& .success": {
-        color: content.textColor || "var(--sl-color-primary-500)",
+        color: content.textColor || "var(--sqm-text)",
         fontWeight: "var(--sl-font-weight-semibold)",
-      },
-      "& .action": {
-        marginTop: "auto",
-        marginLeft: "auto",
-        "&::part(base)": {
-          color:
-            content.buttonStyle === "secondary"
-              ? content.textColor || "var(--sqm-text)"
-              : "white", // Example for buttonStyle
-          background:
-            content.buttonStyle === "primary"
-              ? content.backgroundColor || "var(--sl-color-primary-500)"
-              : "transparent",
-          border: `1px solid ${
-            content.borderColor || "var(--sl-color-primary-500)"
-          }`, // Example for buttonStyle
-        },
-        "&.disabled::part(base)": {
-          border: `1px solid ${
-            content.borderColor || "var(--sl-color-primary-400)"
-          }`,
-          background: content.backgroundColor || "var(--sl-color-primary-400)",
-        },
-        "&.neutral::part(base)": {
-          border: `1px solid ${content.borderColor || "var(--sqm-text)"}`,
-          background: content.backgroundColor || "var(--sqm-text)",
-        },
       },
       "& .neutral": {
         color: content.textColor || "var(--sqm-text)",
@@ -269,6 +242,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 	}
 
   `;
+
+  function getExportParts(content: TaskCardViewProps["content"]): string {
+    return `base: ${
+      content.buttonStyle === "primary" ? "primary" : "secondary"
+    }button-base`;
+  }
 
   return (
     <div class={sheet.classes.TaskCard} part="sqm-base">
@@ -475,16 +454,15 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   ""
                 ) : (
                   <sl-button
-                    exportparts="base: primarybutton-base"
+                    exportparts={`base: ${
+                      content.buttonStyle === "primary"
+                        ? "primary"
+                        : "secondary"
+                    }button-base`}
                     id="sl-button"
-                    class={
-                      taskUnavailable
-                        ? "action neutral"
-                        : taskComplete
-                        ? "action disabled"
-                        : "action"
+                    type={
+                      content.buttonStyle === "primary" ? "primary" : "default"
                     }
-                    type="primary"
                     size="small"
                     onClick={callbacks.onClick}
                     loading={states.loadingEvent}
