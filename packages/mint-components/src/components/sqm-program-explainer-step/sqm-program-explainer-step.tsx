@@ -40,6 +40,13 @@ export class ProgramExplainerStep {
   @Prop() backgroundColor: string;
 
   /**
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() borderRadius: string;
+
+  /**
    * Displayed in place of an icon
    *
    * @uiName Image URL

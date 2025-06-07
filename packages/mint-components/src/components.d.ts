@@ -2968,6 +2968,12 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+         */
+        "borderRadius": string;
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -9743,6 +9749,12 @@ declare namespace LocalJSX {
           * @format color
          */
         "backgroundColor"?: string;
+        /**
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+         */
+        "borderRadius"?: string;
         /**
           * @uiName Description
           * @uiWidget textArea
