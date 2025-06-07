@@ -7,6 +7,8 @@ export interface ProgramExplainerStepViewProps {
   textColor?: string;
   backgroundColor?: string;
   borderRadius?: string;
+  iconBackgroundColor?: string;
+  iconColor?: string;
   imageUrl?: string;
   icon?: string;
 }
@@ -56,8 +58,8 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       borderRadius: "100%",
       objectFit: "cover",
       userSelect: "none",
-      background: "#FFF",
-      color: "var(--sl-color-primary-300)",
+      background: props.iconBackgroundColor || "var(--sl-color-white)",
+      color: props.iconColor || "var(--sl-color-primary-500)",
       fontSize: "26px",
       textAlign: "center",
       lineHeight: "72px",

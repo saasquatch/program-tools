@@ -2966,13 +2966,12 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "backgroundColor": string;
+        "backgroundColor"?: string;
         /**
-          * @uiName Background color
-          * @uiWidget color
-          * @format color
+          * @uiName Border radius
+          * @type number
          */
-        "borderRadius": string;
+        "borderRadius"?: string;
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -2988,6 +2987,18 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
+        /**
           * Displayed in place of an icon
           * @uiName Image URL
           * @uiWidget imageUpload
@@ -2999,7 +3010,7 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "textColor": string;
+        "textColor"?: string;
     }
     interface SqmProgramMenu {
     }
@@ -9750,9 +9761,8 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * @uiName Background color
-          * @uiWidget color
-          * @format color
+          * @uiName Border radius
+          * @type number
          */
         "borderRadius"?: string;
         /**
@@ -9769,6 +9779,18 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
         /**
           * Displayed in place of an icon
           * @uiName Image URL
