@@ -12,7 +12,7 @@ export interface TimelineEntryProps {
 
 const style = {
   TimelineReward: {
-    color: "var(--sl-color-neutral-900)",
+    color: "var(--sqm-text)",
     lineHeight: "var(--sl-line-height-dense)",
     "& .container": {
       display: "flex",

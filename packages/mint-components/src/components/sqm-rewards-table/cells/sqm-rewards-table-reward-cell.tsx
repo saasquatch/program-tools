@@ -201,11 +201,11 @@ export class RewardTableRewardsCell {
           },
           Text: {
             fontSize: "var(--sl-font-size-medium)",
-            color: "var(--sl-color-gray-800)",
+            color: "var(--sqm-text)",
           },
           Subtext: {
             fontSize: "var(--sl-font-size-small)",
-            color: "var(--sl-color-neutral-500)",
+            color: "var(--sqm-text-subdued)",
           },
         };
         const sheet = createStyleSheet(style);

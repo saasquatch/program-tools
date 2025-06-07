@@ -9,6 +9,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
  * @uiName Leaderboard
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @requiredFeatures ["LEADERBOARDS"]
  * @exampleGroup Leaderboard
@@ -73,6 +74,12 @@ export class Leaderboard {
    * @uiName Viewing user text
    */
   @Prop() viewingUserText: string = "You";
+
+  /**
+   * @uiWidget color
+   * @uiName Viewing user highlight color
+   */
+  @Prop() viewingUserHighlightColor: string;
 
   /**
    * Hide the Names of users to protect personal identifiable information
@@ -222,6 +229,7 @@ function useLeaderboardDemo(
         hasLeaders: true,
         isEssentials: false,
         styles: {
+          // viewingUserHighlightColor: props.viewingUserHighlightColor,
           usersheading: props.usersheading
             ? props.usersheading
             : "Top referrers",

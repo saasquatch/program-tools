@@ -30,11 +30,11 @@ export const HostBlock = {
 
 export const P = {
   "font-size": "var(--sl-font-size-small)",
-  color: "var(--sl-color-gray-800)",
+  color: "var(--sqm-text)",
   "margin-top": "0px",
 
   "&.Subtitle": {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     margin: "0px",
   },
 };

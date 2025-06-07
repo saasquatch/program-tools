@@ -1514,6 +1514,11 @@ export namespace Components {
          */
         "usersheading": string;
         /**
+          * @uiWidget color
+          * @uiName Viewing user highlight color
+         */
+        "viewingUserHighlightColor": string;
+        /**
           * @uiName Viewing user text
          */
         "viewingUserText": string;
@@ -2961,7 +2966,12 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "backgroundColor": string;
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border radius
+          * @type number
+         */
+        "borderRadius"?: string;
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -2977,6 +2987,18 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
+        /**
           * Displayed in place of an icon
           * @uiName Image URL
           * @uiWidget imageUpload
@@ -2988,7 +3010,7 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "textColor": string;
+        "textColor"?: string;
     }
     interface SqmProgramMenu {
     }
@@ -4217,10 +4239,36 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
+          * @uiName Card Background color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Border radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Button link
           * @uiGroup Button
          */
         "buttonLink": string;
+        /**
+          * @uiName Button Style
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonStyle"?: "primary" | "secondary";
         /**
           * @uiName Button text
           * @uiGroup Button
@@ -4363,6 +4411,12 @@ export namespace Components {
           * @default
          */
         "steps": boolean;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
     }
     interface SqmTaxAndCash {
         /**
@@ -8253,6 +8307,11 @@ declare namespace LocalJSX {
          */
         "usersheading"?: string;
         /**
+          * @uiWidget color
+          * @uiName Viewing user highlight color
+         */
+        "viewingUserHighlightColor"?: string;
+        /**
           * @uiName Viewing user text
          */
         "viewingUserText"?: string;
@@ -9702,6 +9761,11 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * @uiName Border radius
+          * @type number
+         */
+        "borderRadius"?: string;
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -9715,6 +9779,18 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
         /**
           * Displayed in place of an icon
           * @uiName Image URL
@@ -10932,10 +11008,36 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
+          * @uiName Card Background color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Border radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Button link
           * @uiGroup Button
          */
         "buttonLink"?: string;
+        /**
+          * @uiName Button Style
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonStyle"?: "primary" | "secondary";
         /**
           * @uiName Button text
           * @uiGroup Button
@@ -11078,6 +11180,12 @@ declare namespace LocalJSX {
           * @default
          */
         "steps"?: boolean;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
     }
     interface SqmTaxAndCash {
         /**

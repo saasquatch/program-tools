@@ -48,7 +48,7 @@ const style = {
   },
 
   TitleText: {
-    color: "var(--sl-color-neutral-700)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-large)",
     margin: "0",
   },

@@ -22,7 +22,7 @@ export interface ReferralCardViewProps {
 const style = {
   Container: {
     borderRadius: "var(--sl-border-radius-large)",
-    color: "var(--sl-color-neutral-900)",
+    color: "var(--sqm-text)",
     background: "var(--sl-color-neutral-0)",
     display: "flex",
     flexDirection: "column",

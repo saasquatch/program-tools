@@ -9,6 +9,7 @@ import { useCouponCode } from "./useCouponCode";
 
 /**
  * @uiName Coupon Code
+ * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>

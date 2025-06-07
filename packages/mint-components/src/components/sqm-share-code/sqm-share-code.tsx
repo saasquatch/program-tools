@@ -9,6 +9,7 @@ import { useShareCode } from "./useShareCode";
 
 /**
  * @uiName Share Code
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Sharing
  * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
  */
