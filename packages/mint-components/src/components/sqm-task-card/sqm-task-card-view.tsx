@@ -243,12 +243,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
   `;
 
-  function getExportParts(content: TaskCardViewProps["content"]): string {
-    return `base: ${
-      content.buttonStyle === "primary" ? "primary" : "secondary"
-    }button-base`;
-  }
-
   return (
     <div class={sheet.classes.TaskCard} part="sqm-base">
       <style type="text/css">
