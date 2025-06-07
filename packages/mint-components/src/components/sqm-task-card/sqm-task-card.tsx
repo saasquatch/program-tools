@@ -220,6 +220,48 @@ export class TaskCard {
   @Prop() hideButton?: boolean = false;
 
   /**
+   * @uiName Card Background color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop()
+  backgroundColor?: string;
+
+  /**
+   * @uiName Text color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop()
+  textColor?: string;
+
+  /**
+   * @uiName Border color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop()
+  borderColor?: string;
+
+  /**
+   * @uiName Border radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop()
+  borderRadius?: number;
+
+  /**
+   * @uiName Button Style
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonStyle?: "primary" | "secondary" = "primary";
+
+  /**
    * @undocumented
    * @uiType object
    */

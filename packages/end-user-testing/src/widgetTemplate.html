@@ -1,40 +1,47 @@
 <style>
 	:host {
-		--sqm-primary-button-background: tomato;
-		--sqm-text: slateblue;
+		--sqm-primary-button-background: #1ed760;
+		--sqm-text: white !important;
 	}
 </style>
 
-<sqm-brand brand-color="tomato" brand-font="Nunito Sans"
-	><sqm-portal-container
+<sqm-brand brand-color="rgba(30, 215, 96, 1)" brand-font="Poppins">
+	<sqm-portal-container
 		direction="column"
 		padding="small"
 		gap="xxx-large"
 		display="grid"
 		max-width="100%"
-		background-color="#ffffff"
+		background-color="rgba(18, 18, 18, 1)"
 		><sqm-portal-container
 			direction="column"
 			padding="none"
 			gap="xxx-large"
 			display="grid"
 			max-width="100%"
+			><sqm-image
+				alignment="center"
+				slot
+				image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1749243966/tenant_test_ahsf8e6g2r1dh/ku3cu7f0fca3jd3byfrr.jpg"
+			></sqm-image
 			><sqm-hero-image
-				image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
-				header="Test Rewards"
+				header="Spotify Rewards"
 				description="Refer friends and complete tasks to earn rewards"
 				layout="columns"
 				image-pos="right"
-				background-color="#F9F9F9"
+				background-color="rgba(30, 215, 96, 1)"
 				image-mobile-pos="top"
 				image-percentage="50"
 				padding-image="none"
-				padding-text="xxxx-large"
+				padding-text="x-large"
+				overlay-opacity="1"
+				text-color="rgba(18, 18, 18, 1)"
+				image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1749244569/tenant_test_ahsf8e6g2r1dh/llyuiejgzc6caec2ozxs.webp"
 			></sqm-hero-image
 			><sqm-pagination slot></sqm-pagination
 			><sqm-hero-image
 				image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
-				header="MyCompany Rewards"
+				header="Spotify Rewards"
 				description="Refer a friend and earn up to $1200 in rewards"
 				layout="overlay"
 				image-pos="center"
@@ -43,10 +50,12 @@
 				button-new-tab
 				button-text="Earn!"
 				image-percentage="45"
-				overlay-opacity=".5"
+				overlay-opacity="1"
 				padding-image="small"
 				padding-text="xxxx-large"
 				slot
+				text-color="rgba(18, 18, 18, 1)"
+				overlay-color="rgba(30, 215, 96, 1)"
 			></sqm-hero-image></sqm-portal-container
 		><sqm-portal-container
 			direction="column"
@@ -71,11 +80,13 @@
 					description="Explore and use our product while earning points in the process!"
 					header="Earn points"
 					icon="cash-stack"
+					text-color="#000000"
 				></sqm-program-explainer-step
 				><sqm-program-explainer-step
 					description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard"
 					header="Redeem rewards"
 					icon="people"
+					text-color="#000000"
 				></sqm-program-explainer-step></sqm-program-explainer
 			><sqm-stat-container space="xxx-large" display="flex">
 				<sqm-big-stat
@@ -144,6 +155,7 @@
 				</sqm-timeline-entry></sqm-timeline
 			><sqm-card-feed gap="24" width="347" slot>
 				<sqm-task-card
+					background-color="#13d760"
 					reward-amount="20"
 					goal="1"
 					card-title="Complete a Survey"
@@ -246,6 +258,7 @@
 				rankheading="Rank"
 				show-rank="true"
 				slot
+				viewing-user-highlight-color="rgba(30, 215, 96, 1)"
 				><sqm-empty
 					empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
 					empty-state-header="View your rank in the leaderboard"
@@ -415,6 +428,7 @@
 					rankheading="Rank"
 					show-rank="true"
 					slot
+					viewing-user-highlight-color="rgba(30, 215, 96, 1)"
 					><sqm-empty
 						empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
 						empty-state-header="View your rank in the leaderboard"

@@ -591,7 +591,7 @@ html {
   --sqm-text-subdued: var(--sl-color-neutral-500);
  */
 
-  --sqm-text: slateblue;
+  --sqm-text: white;
   --sqm-text-subdued: var(--sl-color-neutral-500);
   /*
   --sqm-primary-button-background: var(--sl-color-primary-500);
@@ -601,9 +601,9 @@ html {
   --sqm-primary-button-radius: var(--sl-border-radius-large);
  */
 
-  --sqm-primary-button-background: tomato;
-  --sqm-primary-button-background-hover: darkred;
-  --sqm-primary-button-color: white;
+  --sqm-primary-button-background: #1ed760;
+  --sqm-primary-button-background-hover: #1DB954;
+  --sqm-primary-button-color: #121212;
   --sqm-primary-button-color-border: transparent;
   --sqm-primary-button-radius: 30px;
 

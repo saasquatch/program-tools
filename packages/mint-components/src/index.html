@@ -10,7 +10,7 @@
     <script type="module" src="build/mint-components.esm.js"></script>
     <script nomodule src="build/mint-components.js"></script>
 
-    <script>
+    <!-- <script>
       !(function (a, b) {
         a("squatch", "https://fast.ssqt.io/squatch-js@2", b);
       })(function (a, b, c) {
@@ -35,11 +35,16 @@
       };
       window.squatchToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaCIsImFjY291bnRJZCI6InphY2gifX0.wvidaxUEpR3GWLogRxks1H9v7pwlIZ5a3ORuKYpmgE0";
-    </script>
+    </script> -->
   </head>
 
   <body>
-    <!-- <sqm-stencilbook></sqm-stencilbook> -->
-    <squatch-embed widget="p/qa/w/referrerWidget"></squatch-embed>
+    <style>
+      :root {
+        --sqm-text: black !important;
+      }
+    </style>
+    <sqm-stencilbook></sqm-stencilbook>
+    <!-- <squatch-embed widget="p/qa/w/referrerWidget"></squatch-embed> -->
   </body>
 </html>

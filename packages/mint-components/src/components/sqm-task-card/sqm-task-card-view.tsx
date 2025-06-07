@@ -29,6 +29,11 @@ export type TaskCardViewProps = {
     openNewTab: boolean;
     eventKey?: string;
     hideButton?: boolean;
+    backgroundColor?: string;
+    textColor?: string;
+    borderColor?: string;
+    borderRadius?: number;
+    buttonStyle?: "primary" | "secondary";
   };
   states: {
     loading: boolean;
@@ -42,169 +47,187 @@ export type TaskCardViewProps = {
   };
 };
 
-const style = {
-  TaskCard: {
-    display: "inline-block",
-    width: "100%",
-    "& .main": {
-      position: "relative",
-      boxSizing: "border-box",
-      background: "var(--sl-color-neutral-0)",
-      border: "1px solid var(--sl-color-neutral-200)",
-      borderRadius: "var(--sl-border-radius-large)",
-      boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
-      fontSize: "var(--sl-font-size-small)",
-      lineHeight: "var(--sl-line-height-dense)",
-      color: "var(--sqm-text)",
-    },
-    "& .main.complete": {
-      background: "var(--sl-color-primary-50)",
-      borderColor: "var(--sl-color-primary-500)",
-    },
-    "& .main.expired": {
-      color: "var(--sqm-text)",
-      background: "var(--sl-color-neutral-50)",
-    },
-    "& .title": {
-      fontSize: "var(--sl-font-size-medium)",
-      color: "var(--sqm-text)",
-    },
-    "& .container": {
-      margin: "var(--sl-spacing-medium)",
-    },
-    "& .container.subdued": {
-      opacity: "0.45",
-    },
-    "& .container > div": {
-      margin: "var(--sl-spacing-medium) 0",
-    },
-  },
-  NotStarted: {
-    fontSize: "var(--sl-font-size-small)",
-    padding: "var(--sl-spacing-medium)",
-    color: "var(--sl-color-primary-600)",
-    border: "1px solid var(--sl-color-neutral-200)",
-    borderRadius:
-      "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
-    borderBottom: "none",
-    background: "var(--sl-color-primary-50)",
-    fontWeight: "var(--sl-font-weight-semibold)",
-    lineHeight: "var(--sl-line-height-dense)",
-    "& .icon": {
-      position: "relative",
-      top: "0.1em",
-      marginRight: "var(--sl-spacing-small)",
-      color: "var(--sl-color-primary-500)",
-    },
-  },
-  Ended: {
-    fontSize: "var(--sl-font-size-small)",
-    padding: "var(--sl-spacing-medium)",
-    color: "var(--sl-color-warning-600)",
-    border: "1px solid var(--sl-color-neutral-200)",
-    borderRadius:
-      "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
-    borderBottom: "none",
-    background: "var(--sl-color-warning-50)",
-    fontWeight: "var(--sl-font-weight-semibold)",
-    lineHeight: "var(--sl-line-height-dense)",
-    "& .icon": {
-      position: "relative",
-      top: "0.1em",
-      marginRight: "var(--sl-spacing-small)",
-      color: "var(--sl-color-warning-500)",
-    },
-  },
-  Header: {
-    display: "flex",
-    "& .icon": {
-      position: "relative",
-      top: "5%",
-      alignSelf: "center",
-      lineHeight: "0",
-      color: "var(--sl-color-primary-400)",
-      fontSize: "var(--sl-font-size-large)",
-      marginRight: "var(--sl-spacing-x-small)",
-    },
-    "& .value": {
-      alignSelf: "center",
-      fontSize: "var(--sl-font-size-x-large)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-      color: "var(--sqm-text)",
-      lineHeight: "100%",
-      marginRight: "var(--sl-spacing-xx-small)",
-    },
-
-    "& .text": {
-      alignSelf: "end",
-      textTransform: "uppercase",
-      fontSize: "var(--sl-font-size-x-small)",
-      color: "var(--sqm-text)",
-      lineHeight: "var(--sl-font-size-medium)",
-      marginRight: "var(--sl-spacing-xx-small)",
-    },
-    "& .end": {
-      color: "var(--sl-color-warning-500)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-      marginBottom: "var(--sl-spacing-xx-small)",
-    },
-    "& .neutral": {
-      color: "var(--sl-color-neutral-400)",
-    },
-  },
-  Footer: {
-    "&[data-subdue] .success": {
-      color: "var(--sl-color-primary-300)",
-    },
-    "&[data-subdue] .neutral": {
-      color: "var(--sqm-text)",
-    },
-    display: "flex",
-    "& .icon": {
-      fontSize: "var(--sl-font-size-xx-small)",
-      marginRight: "var(--sl-spacing-xx-small)",
-      verticalAlign: "middle",
-    },
-    "& .text": {
-      marginTop: "auto",
-      verticalAlign: "text-bottom",
-      fontSize: "var(--sl-font-size-x-small)",
-      color: "var(--sqm-text)",
-    },
-    "& .success": {
-      color: "var(--sl-color-primary-500)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-    },
-    "& .action": {
-      marginTop: "auto",
-      marginLeft: "auto",
-      "&::part(base)": {
-        color: "var(--sqm-text)",
-      },
-      "&.disabled::part(base)": {
-        border: "1px solid var(--sl-color-primary-400)",
-        background: "var(--sl-color-primary-400)",
-      },
-      "&.neutral::part(base)": {
-        border: "1px solid var(--sqm-text)",
-        background: "var(--sqm-text)",
-      },
-    },
-    "& .neutral": {
-      color: "var(--sqm-text)",
-    },
-    "& .datetime": {
-      display: "block",
-      marginTop: "var(--sl-spacing-xx-small)",
-    },
-  },
-};
-
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
+
+  const style = {
+    TaskCard: {
+      display: "inline-block",
+      width: "100%",
+      "& .main": {
+        position: "relative",
+        boxSizing: "border-sizing",
+        background: content.backgroundColor || "var(--sl-color-neutral-0)",
+        border: `1px solid ${
+          content.borderColor || "var(--sl-color-neutral-200)"
+        }`,
+        borderRadius: "var(--sl-border-radius-large)",
+        boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
+        fontSize: "var(--sl-font-size-small)",
+        lineHeight: "var(--sl-line-height-dense)",
+        color: content.textColor || "var(--sqm-text)",
+      },
+      "& .main.complete": {
+        background: content.backgroundColor || "var(--sl-color-primary-50)",
+        borderColor: content.borderColor || "var(--sl-color-primary-500)",
+      },
+      "& .main.expired": {
+        color: content.textColor || "var(--sqm-text)",
+        background: content.backgroundColor || "var(--sl-color-neutral-50)",
+      },
+      "& .title": {
+        fontSize: "var(--sl-font-size-medium)",
+        color: content.textColor || "var(--sqm-text)",
+      },
+      "& .container": {
+        margin: "var(--sl-spacing-medium)",
+      },
+      "& .container.subdued": {
+        opacity: "0.45",
+      },
+      "& .container > div": {
+        margin: "var(--sl-spacing-medium) 0",
+      },
+    },
+    NotStarted: {
+      fontSize: "var(--sl-font-size-small)",
+      padding: "var(--sl-spacing-medium)",
+      color: content.textColor || "var(--sl-color-primary-600)",
+      border: `1px solid ${
+        content.borderColor || "var(--sl-color-neutral-200)"
+      }`,
+      borderRadius:
+        "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
+      borderBottom: "none",
+      background: content.backgroundColor || "var(--sl-color-primary-50)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      lineHeight: "var(--sl-line-height-dense)",
+      "& .icon": {
+        position: "relative",
+        top: "0.1em",
+        marginRight: "var(--sl-spacing-small)",
+        color: content.textColor || "var(--sl-color-primary-500)",
+      },
+    },
+    Ended: {
+      fontSize: "var(--sl-font-size-small)",
+      padding: "var(--sl-spacing-medium)",
+      color: content.textColor || "var(--sl-color-warning-600)",
+      border: `1px solid ${
+        content.borderColor || "var(--sl-color-neutral-200)"
+      }`,
+      borderRadius:
+        "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
+      borderBottom: "none",
+      background: content.backgroundColor || "var(--sl-color-warning-50)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      lineHeight: "var(--sl-line-height-dense)",
+      "& .icon": {
+        position: "relative",
+        top: "0.1em",
+        marginRight: "var(--sl-spacing-small)",
+        color: content.textColor || "var(--sl-color-warning-500)",
+      },
+    },
+    Header: {
+      display: "flex",
+      "& .icon": {
+        position: "relative",
+        top: "5%",
+        alignSelf: "center",
+        lineHeight: "0",
+        color: content.textColor || "var(--sl-color-primary-400)",
+        fontSize: "var(--sl-font-size-large)",
+        marginRight: "var(--sl-spacing-x-small)",
+      },
+      "& .value": {
+        alignSelf: "center",
+        fontSize: "var(--sl-font-size-x-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        color: content.textColor || "var(--sqm-text)",
+        lineHeight: "100%",
+        marginRight: "var(--sl-spacing-xx-small)",
+      },
+
+      "& .text": {
+        alignSelf: "end",
+        textTransform: "uppercase",
+        fontSize: "var(--sl-font-size-x-small)",
+        color: content.textColor || "var(--sqm-text)",
+        lineHeight: "var(--sl-font-size-medium)",
+        marginRight: "var(--sl-spacing-xx-small)",
+      },
+      "& .end": {
+        color: content.textColor || "var(--sl-color-warning-500)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        marginBottom: "var(--sl-spacing-xx-small)",
+      },
+      "& .neutral": {
+        color: content.textColor || "var(--sl-color-neutral-400)",
+      },
+    },
+    Footer: {
+      "&[data-subdue] .success": {
+        color: content.textColor || "var(--sl-color-primary-300)",
+      },
+      "&[data-subdue] .neutral": {
+        color: content.textColor || "var(--sqm-text)",
+      },
+      display: "flex",
+      "& .icon": {
+        fontSize: "var(--sl-font-size-xx-small)",
+        marginRight: "var(--sl-spacing-xx-small)",
+        verticalAlign: "middle",
+      },
+      "& .text": {
+        marginTop: "auto",
+        verticalAlign: "text-bottom",
+        fontSize: "var(--sl-font-size-x-small)",
+        color: content.textColor || "var(--sqm-text)",
+      },
+      "& .success": {
+        color: content.textColor || "var(--sl-color-primary-500)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
+      "& .action": {
+        marginTop: "auto",
+        marginLeft: "auto",
+        "&::part(base)": {
+          color:
+            content.buttonStyle === "secondary"
+              ? content.textColor || "var(--sqm-text)"
+              : "white", // Example for buttonStyle
+          background:
+            content.buttonStyle === "primary"
+              ? content.backgroundColor || "var(--sl-color-primary-500)"
+              : "transparent",
+          border: `1px solid ${
+            content.borderColor || "var(--sl-color-primary-500)"
+          }`, // Example for buttonStyle
+        },
+        "&.disabled::part(base)": {
+          border: `1px solid ${
+            content.borderColor || "var(--sl-color-primary-400)"
+          }`,
+          background: content.backgroundColor || "var(--sl-color-primary-400)",
+        },
+        "&.neutral::part(base)": {
+          border: `1px solid ${content.borderColor || "var(--sqm-text)"}`,
+          background: content.backgroundColor || "var(--sqm-text)",
+        },
+      },
+      "& .neutral": {
+        color: content.textColor || "var(--sqm-text)",
+      },
+      "& .datetime": {
+        display: "block",
+        marginTop: "var(--sl-spacing-xx-small)",
+      },
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const contenttring = sheet.toString();
 
   const dateStart =
     content.rewardDuration &&
@@ -250,7 +273,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   return (
     <div class={sheet.classes.TaskCard} part="sqm-base">
       <style type="text/css">
-        {styleString}
+        {contenttring}
         {vanillaStyle}
       </style>
       {!states.loading && taskNotStarted && (
