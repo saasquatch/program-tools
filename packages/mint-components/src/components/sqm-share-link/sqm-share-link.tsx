@@ -67,6 +67,34 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   */
+  backgroundColor?: string;
+
+  /**
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   */
+  textColor?: string;
+
+  /**
+   * @uiName Border Radius
+   * @uiType number
+   */
+  borderRadius?: string;
+  /**
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
+
+  /**
    * Set the copy button style and placement
    *
    * @uiName Style
@@ -108,7 +136,12 @@ function useDemoShareLink(props: ShareLink): CopyTextViewProps {
       tooltiptext: props.tooltiptext,
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       copyButtonLabel: props.copyButtonLabel,
+      // borderColor: props.borderColor,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {

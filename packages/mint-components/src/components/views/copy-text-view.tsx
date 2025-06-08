@@ -18,44 +18,13 @@ export interface CopyTextViewProps {
   dateAvailable?: string;
   loading?: boolean;
   isCopied?: boolean;
+  backgroundColor?: string;
+  textColor?: string;
+  borderRadius?: string;
+  buttonType?: "primary" | "secondary";
+  borderColor?: string;
   onClick?: () => void;
 }
-
-const style = {
-  HostBlock: HostBlock,
-  inputStyle: {
-    "&::part(input)": { textOverflow: "ellipsis", width: "100%" },
-    "&::part(base)": { cursor: "pointer", overflow: "visible" },
-    width: "100%",
-  },
-  inputErrorStyle: {
-    "&::part(base)": {
-      border: "2px solid red",
-    },
-  },
-  ContainerDiv: {
-    display: "flex",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    justifyContent: "center",
-    gap: "var(--sl-spacing-x-small)",
-    width: "100%",
-  },
-  containerStyle: {
-    display: "flex",
-    alignItems: "center",
-    gap: "var(--sl-spacing-x-small)",
-    width: "100%",
-  },
-  errorTextStyle: {
-    margin: "0",
-    color: "var(--sl-color-danger-500)",
-  },
-  notificationTextStyle: {
-    margin: "0",
-    color: "var(--sl-color-neutral-500)",
-  },
-};
 
 const vanillaStyle = `
   :host{
@@ -81,11 +50,62 @@ const disabledStyles = `
   }
 `;
 
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
+
+  const style = {
+    HostBlock: HostBlock,
+    inputStyle: {
+      "&::part(input)": {
+        textOverflow: "ellipsis",
+        width: "100%",
+        color: props.textColor || "var(--sqm-text)",
+      },
+      "&::part(base)": {
+        cursor: "pointer",
+        overflow: "visible",
+        borderRadius: props.borderRadius || "var(--sl-border-radius-medium)",
+        background: props.backgroundColor || "var(--sl-color-white)",
+        border: `1px solid ${props.borderColor || "transparent"}`,
+      },
+      width: "100%",
+    },
+    icon: {
+      "&::part(base)": {
+        color: props.textColor || "var(--sqm-text)",
+      },
+    },
+    inputErrorStyle: {
+      "&::part(base)": {
+        border: "2px solid red",
+      },
+    },
+    ContainerDiv: {
+      display: "flex",
+      alignItems: "flex-start",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "var(--sl-spacing-x-small)",
+      width: "100%",
+    },
+    containerStyle: {
+      display: "flex",
+      alignItems: "center",
+      gap: "var(--sl-spacing-x-small)",
+      width: "100%",
+    },
+    errorTextStyle: {
+      margin: "0",
+      color: "var(--sl-color-danger-500)",
+    },
+    notificationTextStyle: {
+      margin: "0",
+      color: "var(--sl-color-neutral-500)",
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
 
   const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
@@ -109,6 +129,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     >
       {buttonStyle === "icon" ? (
         <sl-icon-button
+          class={sheet.classes.icon}
           exportparts="base: icon-button-base"
           onClick={() => props.onClick?.()}
           name="files"
@@ -116,7 +137,9 @@ export function CopyTextView(props: CopyTextViewProps) {
         />
       ) : (
         <sl-button
-          exportparts="base: copy-button-base"
+          exportparts={`base: ${
+            props.buttonType === "primary" ? "primary" : "secondary"
+          }button-base`}
           onClick={() => props.onClick?.()}
           size={"medium"}
           style={{ width: `${buttonStyle === "button-below" && "100%"}` }}

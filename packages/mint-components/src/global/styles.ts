@@ -742,6 +742,18 @@ sl-details::part(summary) {
   box-shadow: none;
 }
 
+sl-input::part(input-base){
+  border: 3px dashed red !important;
+}
+
+sl-input::part(input){
+  broder: 3px dashed red !important;
+}
+
+sl-input::part(input-base){
+  border: 3px dashed red !important;
+}
+
 *::part(input-label), *::part(select-label), *::part(textarea-label){
   font-size: var(--sl-input-font-size-small);
   font-weight: var(--sl-font-weight-semibold);

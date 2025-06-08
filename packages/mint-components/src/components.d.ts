@@ -4154,6 +4154,13 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -10922,6 +10929,13 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */

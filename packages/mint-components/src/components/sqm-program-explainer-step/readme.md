@@ -5,14 +5,17 @@
 
 ## Properties
 
-| Property          | Attribute          | Description                                                                                                                                   | Type     | Default     |
-| ----------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `backgroundColor` | `background-color` |                                                                                                                                               | `string` | `undefined` |
-| `description`     | `description`      |                                                                                                                                               | `string` | `undefined` |
-| `header`          | `header`           |                                                                                                                                               | `string` | `undefined` |
-| `icon`            | `icon`             | Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive. | `string` | `undefined` |
-| `imageUrl`        | `image-url`        | Displayed in place of an icon                                                                                                                 | `string` | `undefined` |
-| `textColor`       | `text-color`       |                                                                                                                                               | `string` | `undefined` |
+| Property              | Attribute               | Description                                                                                                                                   | Type     | Default     |
+| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `backgroundColor`     | `background-color`      |                                                                                                                                               | `string` | `undefined` |
+| `borderRadius`        | `border-radius`         |                                                                                                                                               | `string` | `undefined` |
+| `description`         | `description`           |                                                                                                                                               | `string` | `undefined` |
+| `header`              | `header`                |                                                                                                                                               | `string` | `undefined` |
+| `icon`                | `icon`                  | Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive. | `string` | `undefined` |
+| `iconBackgroundColor` | `icon-background-color` |                                                                                                                                               | `string` | `undefined` |
+| `iconColor`           | `icon-color`            |                                                                                                                                               | `string` | `undefined` |
+| `imageUrl`            | `image-url`             | Displayed in place of an icon                                                                                                                 | `string` | `undefined` |
+| `textColor`           | `text-color`            |                                                                                                                                               | `string` | `undefined` |
 
 
 ## Dependencies
