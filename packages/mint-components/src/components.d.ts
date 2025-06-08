@@ -4147,17 +4147,20 @@ export namespace Components {
     interface SqmShareLink {
         /**
           * Set the copy button style and placement
-          * @uiName Style
+          * @uiName Button style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
           * @uiName Button Type
           * @uiType string
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -10923,17 +10926,20 @@ declare namespace LocalJSX {
     interface SqmShareLink {
         /**
           * Set the copy button style and placement
-          * @uiName Style
+          * @uiName Button style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
           * @uiName Button Type
           * @uiType string
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
          */
         "buttonType"?: "primary" | "secondary";
         /**
