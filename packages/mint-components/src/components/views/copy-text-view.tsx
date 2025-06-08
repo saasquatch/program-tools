@@ -64,9 +64,10 @@ export function CopyTextView(props: CopyTextViewProps) {
       "&::part(base)": {
         cursor: "pointer",
         overflow: "visible",
-        borderRadius: props.borderRadius || "var(--sl-border-radius-medium)",
+        borderRadius:
+          `${props.borderRadius}px` || "var(--sl-border-radius-medium)",
         background: props.backgroundColor || "var(--sl-color-white)",
-        border: `1px solid ${props.borderColor || "transparent"}`,
+        border: `1px solid ${props.borderColor || "transparent"}`, // TODO add multi select widget for pixels and color
       },
       width: "100%",
     },

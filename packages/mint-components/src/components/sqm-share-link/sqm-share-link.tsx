@@ -67,26 +67,39 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
+   * Background color of share link container
    * @uiName Background color
    * @uiWidget color
    * @format color
    * @uiGroup Style
    */
-  backgroundColor?: string;
+  @Prop() backgroundColor?: string;
 
   /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
    * @uiName Text color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
-  textColor?: string;
+  @Prop() textColor?: string;
 
   /**
+   * The border radius on the share link container
    * @uiName Border Radius
    * @uiType number
    * @uiGroup Style
    */
-  borderRadius?: string;
+  @Prop() borderRadius?: string;
   /**
    * The type of the button (primary or secondary) that will be used to copy the link.
    * @uiName Button Type
@@ -146,7 +159,7 @@ function useDemoShareLink(props: ShareLink): CopyTextViewProps {
       borderRadius: props.borderRadius,
       buttonType: props.buttonType,
       copyButtonLabel: props.copyButtonLabel,
-      // borderColor: props.borderColor,
+      borderColor: props.borderColor,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
