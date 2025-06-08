@@ -94,7 +94,7 @@ export class ShareLink {
   @Prop() textColor?: string;
 
   /**
-   * The border radius on the share link container
+   * The border radius on the share link container (in pixels)
    * @uiName Border Radius
    * @uiType number
    * @uiGroup Style
