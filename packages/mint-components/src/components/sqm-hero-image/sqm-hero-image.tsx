@@ -27,11 +27,13 @@ export class HeroImage {
    * @uiName Overlay color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() overlayColor?: string;
 
   /**
    * @uiName Overlay opacity
+   * @uiGroup Style
    */
   @Prop() overlayOpacity: string = "0.75";
 
@@ -39,6 +41,7 @@ export class HeroImage {
    * @uiName Text color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() textColor?: string;
 
@@ -46,6 +49,7 @@ export class HeroImage {
    * @uiName Background color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() backgroundColor?: string;
 
@@ -54,12 +58,14 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["overlay", "columns"]
    * @uiEnumNames ["Overlay", "Two-column"]
+   * @uiGroup Style
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
 
   /**
    * @uiName Image percentage
    * @uiType number
+   * @uiGroup Style
    */
   @Prop() imagePercentage: number = 50;
 
@@ -68,6 +74,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop() imagePos: "left" | "center" | "right" = "center";
 
@@ -76,6 +83,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["top", "bottom"]
    * @uiEnumNames ["Top", "Bottom"]
+   * @uiGroup Style
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
@@ -111,6 +119,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   * @uiGroup Style
    */
   @Prop() paddingText: Spacing = "xxxx-large";
 
@@ -119,8 +128,20 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   * @uiGroup Style
    */
   @Prop() paddingImage: Spacing = "none";
+
+  /**
+   * The type of the button (primary or secondary) that will be used to copy the link.
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
 
   constructor() {
     withHooks(this);

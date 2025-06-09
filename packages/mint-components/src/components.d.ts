@@ -936,6 +936,7 @@ export namespace Components {
           * @uiName Background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundColor"?: string;
         /**
@@ -952,6 +953,15 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -965,11 +975,13 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
+          * @uiGroup Style
          */
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
+          * @uiGroup Style
          */
         "imagePercentage": number;
         /**
@@ -977,6 +989,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "imagePos": "left" | "center" | "right";
         /**
@@ -990,16 +1003,19 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiGroup Style
          */
         "layout": "overlay" | "columns";
         /**
           * @uiName Overlay color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "overlayColor"?: string;
         /**
           * @uiName Overlay opacity
+          * @uiGroup Style
          */
         "overlayOpacity": string;
         /**
@@ -1007,6 +1023,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingImage": Spacing;
         /**
@@ -1014,12 +1031,14 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingText": Spacing;
         /**
           * @uiName Text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textColor"?: string;
     }
@@ -7866,6 +7885,7 @@ declare namespace LocalJSX {
           * @uiName Background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundColor"?: string;
         /**
@@ -7882,6 +7902,15 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -7895,11 +7924,13 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
+          * @uiGroup Style
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
+          * @uiGroup Style
          */
         "imagePercentage"?: number;
         /**
@@ -7907,6 +7938,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "imagePos"?: "left" | "center" | "right";
         /**
@@ -7920,16 +7952,19 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
         /**
           * @uiName Overlay color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "overlayColor"?: string;
         /**
           * @uiName Overlay opacity
+          * @uiGroup Style
          */
         "overlayOpacity"?: string;
         /**
@@ -7937,6 +7972,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingImage"?: Spacing;
         /**
@@ -7944,12 +7980,14 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingText"?: Spacing;
         /**
           * @uiName Text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textColor"?: string;
     }

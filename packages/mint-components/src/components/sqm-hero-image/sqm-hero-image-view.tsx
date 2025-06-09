@@ -19,6 +19,7 @@ export interface HeroImageViewProps {
   paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
+  buttonType?: "primary" | "secondary";
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {
@@ -162,7 +163,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <sl-button
               class={sheet.classes.Button}
               type="primary"
-              exportparts="base: primarybutton-base"
+              exportparts={`base: ${
+                props.buttonType === "primary" ? "primary" : "secondary"
+              }button-base`}
               onClick={() =>
                 props.buttonNewTab
                   ? window.open(props.buttonLink)
