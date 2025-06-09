@@ -68,6 +68,7 @@ export class ReferralCode {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",

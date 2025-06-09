@@ -590,7 +590,6 @@ html {
   --sqm-text: var(--sl-color-neutral-800);
   --sqm-text-subdued: var(--sl-color-neutral-500);
  */
-
   --sqm-text: white;
   --sqm-text-subdued: var(--sl-color-neutral-500);
   /*

@@ -52,6 +52,7 @@ export class CouponCode {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -73,6 +74,7 @@ export class CouponCode {
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
@@ -176,6 +178,52 @@ export class CouponCode {
   couponCodePlaceholder: string = "...";
 
   /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button (primary or secondary) that will be used to copy the link.
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
+
+  /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -209,6 +257,11 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
       couponCodeLabel: props.couponCodeLabel,
+      borderColor: props.borderColor,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
