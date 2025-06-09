@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
 import {
@@ -369,6 +370,17 @@ export class TaxAndCashDashboard {
   @Prop() cancelButton: string = "Cancel";
 
   /**
+   * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
+   * @componentState { "title": "Default", "props": { } }
+   * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
+   * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
+   * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
+   * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
+   * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
+   */
+  @Prop() stateController?: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -419,6 +431,8 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  const states = parseStates(props.stateController);
+  console.log({ states });
   return deepmerge(
     {
       states: {
@@ -427,16 +441,24 @@ function useDemoTaxAndCashDashboard(
         documentTypeString: "W9",
         status: "ACTIVE",
         country: "United States",
-        indirectTaxNumber: 55555555,
+        indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
         noFormNeeded: true,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        showVerifyIdentity: false,
         payoutStatus: "DONE",
         veriffLoading: false,
+
+        canEditPayoutInfo: true,
+        subRegion: "CA",
+        subRegionTaxNumber: undefined,
+        qstNumber: undefined,
+        isBusinessEntity: false,
+        province: undefined,
+        notRegistered: false,
+        loadingError: false,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -447,7 +469,7 @@ function useDemoTaxAndCashDashboard(
       },
       text: props.getTextProps(),
     },
-    props.demoData || {},
+    props.demoData || states || {},
     { arrayMerge: (_, a) => a }
   );
 }

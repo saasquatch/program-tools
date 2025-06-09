@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
@@ -182,6 +183,14 @@ export class TaxForm {
   @Prop() supportLink: string = "support team";
 
   /**
+   * @uiName States
+   * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
+   * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
+   * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -233,10 +242,11 @@ export class TaxForm {
 function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
+  // @ts-ignore
   return deepmerge(
     {
       setStep,
-      onSubmit: () => {
+      onSubmit: async () => {
         setStep("/2");
       },
       onRadioClick: () => {},
@@ -277,7 +287,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         },
       },
     },
-    props.demoData || {},
+    props.demoData || parseStates(props.stateController) || {},
     { arrayMerge: (_, a) => a }
   );
 }

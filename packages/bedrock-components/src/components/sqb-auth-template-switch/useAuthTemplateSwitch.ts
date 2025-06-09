@@ -4,8 +4,8 @@ import debugFn from 'debug';
 import { useTemplateChildren } from '../../utils/useTemplateChildren';
 const debug = debugFn('sq:useAuthTemplateSwitch');
 
-export function useAuthTemplateSwitch() {
-  const authToken = useToken();
+export function useAuthTemplateSwitch(tokenOverride?: string) {
+  const authToken = useToken() || tokenOverride;
 
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
   const [slot, setSlot] = useState<HTMLDivElement>(undefined);

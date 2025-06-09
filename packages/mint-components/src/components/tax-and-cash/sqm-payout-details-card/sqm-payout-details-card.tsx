@@ -3,9 +3,9 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { getProps } from "../../../utils/utils";
 import { PayoutDetailsCardView } from "./sqm-payout-details-card-view";
 import { usePayoutDetailsCard } from "./usePayoutDetailsCard";
-import { getProps } from "../../../utils/utils";
 
 /**
  * @uiName Payout Details Card
@@ -40,6 +40,12 @@ export class PayoutDetailsCard {
    */
   @Prop() payoutMissingInformationText: string =
     "Missing banking information, go to Impact.com to resolve.";
+
+  /**
+   * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+   */
+  @Prop() stateController?: string = "{}";
+
   /**
    * @undocumented
    */

@@ -49,7 +49,6 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -1759,6 +1758,10 @@ export namespace Components {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText": string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -4663,16 +4666,9 @@ export namespace Components {
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
-          * @ghost 
-          * @undocumented 
-          * @uiType object
-          * @demo Step 1 - { "step": "/1" }
-          * @demo Step 2 - { "step": "/2" }
-          * @demo Step 3 - { "step": "/3" }
-          * @demo Step 3 - { "step": "/4" }
-          * @demo Dashboard - { "step": "/dashboard" }
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -4744,6 +4740,15 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "searchForCountryText": string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1", "props": { "step": "/1" } }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" } }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" } }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" } }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" } }
+         */
+        "stateController": string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -5450,6 +5455,16 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
+          * @componentState { "title": "Default", "props": { } }
+          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
+          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
+          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
+          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
+          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -5771,6 +5786,13 @@ export namespace Components {
           * @uiName State field label
          */
         "state": string;
+        /**
+          * @uiName States
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
+          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController": string;
         /**
           * @uiName Support link text
          */
@@ -8455,6 +8477,10 @@ declare namespace LocalJSX {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText"?: string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -11335,16 +11361,9 @@ declare namespace LocalJSX {
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
-          * @ghost 
-          * @undocumented 
-          * @uiType object
-          * @demo Step 1 - { "step": "/1" }
-          * @demo Step 2 - { "step": "/2" }
-          * @demo Step 3 - { "step": "/3" }
-          * @demo Step 3 - { "step": "/4" }
-          * @demo Dashboard - { "step": "/dashboard" }
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -11416,6 +11435,15 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "searchForCountryText"?: string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1", "props": { "step": "/1" } }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" } }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" } }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" } }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" } }
+         */
+        "stateController"?: string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -12122,6 +12150,16 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
+          * @componentState { "title": "Default", "props": { } }
+          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
+          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
+          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
+          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
+          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -12442,6 +12480,13 @@ declare namespace LocalJSX {
           * @uiName State field label
          */
         "state"?: string;
+        /**
+          * @uiName States
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
+          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * @uiName Support link text
          */
