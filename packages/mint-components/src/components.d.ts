@@ -3111,13 +3111,46 @@ export namespace Components {
     }
     interface SqmReferralCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -3152,6 +3185,14 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
         /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
@@ -3185,6 +3226,12 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Text Color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Title Text
          */
@@ -4119,7 +4166,7 @@ export namespace Components {
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container
+          * The border radius on the share link container (in pixels)
           * @uiName Border Radius
           * @uiType number
           * @uiGroup Style
@@ -4204,7 +4251,7 @@ export namespace Components {
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container
+          * The border radius on the share link container (in pixels)
           * @uiName Border Radius
           * @uiType number
           * @uiGroup Style
@@ -4249,6 +4296,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -9987,13 +10035,46 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -10028,6 +10109,14 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
         /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
@@ -10061,6 +10150,12 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Text Color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Title Text
          */
@@ -10971,7 +11066,7 @@ declare namespace LocalJSX {
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container
+          * The border radius on the share link container (in pixels)
           * @uiName Border Radius
           * @uiType number
           * @uiGroup Style
@@ -11056,7 +11151,7 @@ declare namespace LocalJSX {
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container
+          * The border radius on the share link container (in pixels)
           * @uiName Border Radius
           * @uiType number
           * @uiGroup Style
@@ -11101,6 +11196,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
         /**

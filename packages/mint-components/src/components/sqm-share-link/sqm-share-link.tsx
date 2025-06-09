@@ -52,6 +52,7 @@ export class ShareLink {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -100,6 +101,7 @@ export class ShareLink {
    * @uiGroup Style
    */
   @Prop() borderRadius?: string;
+
   /**
    * The type of the button (primary or secondary) that will be used to copy the link.
    * @uiName Button Type

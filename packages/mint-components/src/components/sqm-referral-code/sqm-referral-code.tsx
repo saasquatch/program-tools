@@ -89,11 +89,58 @@ export class ReferralCode {
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
   })
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
+
+  /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button (primary or secondary) that will be used to copy the link.
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * @undocumented
@@ -128,6 +175,11 @@ function useDemoReferralCode(props: ReferralCode): CopyTextViewProps {
       notificationText: props.notificationText,
       showNotificationText: props.showNotificationText,
       isCopied: props.showNotificationText,
+      borderColor: props.borderColor,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       isUsed: false,
       rewardStatus: "AVAILABLE",
       open,

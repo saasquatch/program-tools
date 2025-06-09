@@ -28,6 +28,13 @@ export class ReferralCodes {
   @Prop() titleText?: string = "Start sharing";
 
   /**
+   * @uiName Text Color
+   * @uiType string
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
+  /**
    * @uiName Empty State Header Text
    */
   @Prop() emptyStateHeaderText?: string =
@@ -131,6 +138,7 @@ function useDemoReferralCodes(props: ReferralCodes) {
   return deepmerge(
     {
       titleText: props.titleText,
+      textColor: props.textColor,
       states: {
         noCodes: false,
         loading: false,

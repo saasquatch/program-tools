@@ -101,7 +101,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     },
     notificationTextStyle: {
       margin: "0",
-      color: "var(--sl-color-neutral-500)",
+      color: "inherit",
     },
   };
 
