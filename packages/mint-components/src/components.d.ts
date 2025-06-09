@@ -490,13 +490,46 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -569,8 +602,17 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -3083,6 +3125,19 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Hide border
           * @uiType boolean
          */
@@ -3120,6 +3175,13 @@ export namespace Components {
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop": string;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Vertical alignment
           * @uiType string
@@ -3201,6 +3263,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -7438,13 +7501,46 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -7517,8 +7613,17 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -10026,6 +10131,19 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Hide border
           * @uiType boolean
          */
@@ -10063,6 +10181,13 @@ declare namespace LocalJSX {
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingTop"?: string;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Vertical alignment
           * @uiType string
@@ -10144,6 +10269,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
         /**
