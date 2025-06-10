@@ -40,9 +40,7 @@ export class ReferralTableRewardsCell {
       },
 
       Details: {
-        "padding-bottom": "var(--sl-spacing-small)",
         "max-width": "500px",
-        // "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
           cursor: `${this.hideDetails ? "default" : "pointer"}`,

@@ -99,15 +99,6 @@ const style = {
   BoldText: {
     fontWeight: "bold",
   },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
-    "&::part(label)": {
-      padding: "0px",
-      margin: "0px",
-    },
-  },
   ErrorAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-red-100)",
@@ -186,12 +177,6 @@ const vanillaStyle = `
        margin: 0;
        padding: 0;
        box-sizing: border-box;
-    }
-
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-       font-size: var(--sl-font-size-small);
     }
 
     a {

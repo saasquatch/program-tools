@@ -510,7 +510,7 @@ html {
   --sl-focus-ring-color-info: var(--sl-color-info-100);
   --sl-focus-ring-color-warning: var(--sl-color-warning-100);
   --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
-  --sl-focus-ring-width: 3px;
+  --sl-focus-ring-width: 0px;
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
   --sl-button-font-size-large: var(--sl-font-size-medium);
@@ -585,6 +585,33 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
+
+  /*
+  --sqm-text: var(--sl-color-neutral-800);
+  --sqm-text-subdued: var(--sl-color-neutral-500);
+ */
+  --sqm-text: white;
+  --sqm-text-subdued: var(--sl-color-neutral-500);
+  /*
+  --sqm-primary-button-background: var(--sl-color-primary-500);
+  --sqm-primary-button-background-hover: var(--sl-color-primary-300);
+  --sqm-primary-button-color: var(--sl-color-primary-text);
+  --sqm-primary-button-color-border: none;
+  --sqm-primary-button-radius: var(--sl-border-radius-large);
+ */
+
+  --sqm-primary-button-background: #1ed760;
+  --sqm-primary-button-background-hover: #1DB954;
+  --sqm-primary-button-color: #121212;
+  --sqm-primary-button-color-border: transparent;
+  --sqm-primary-button-radius: 30px;
+
+
+  --sqm-secondary-button-background: #191414; /* Spotify Black */
+  --sqm-secondary-button-background-hover: #282828; /* Slightly lighter black for hover effect */
+  --sqm-secondary-button-color: #FFFFFF; /* Spotify White for text */
+  --sqm-secondary-button-color-border: #FFFFFF; /* Spotify White for border */
+  --sqm-secondary-button-radius: 30px;
 }
 
 body {
@@ -592,7 +619,7 @@ body {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
-  color: var(--sl-color-gray-800);
+  color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
   background-color: var(--sqm-portal-background);
@@ -624,7 +651,6 @@ h2, .Title {
 }
 .P {
   font-size: var(--sl-font-size-small);
-  color: var(--sl-color-gray-800);
   margin-top: 0px;
 }
 
@@ -635,7 +661,7 @@ h2, .Title {
 .Subtitle {
   text-align: center;
   margin-bottom: 0px;
-  color: var(--sl-color-gray-500);
+  color: var(--sqm-text-subdued);
 }
 .SupportText{
   margin-top: var(--sl-spacing-small);
@@ -664,8 +690,11 @@ sl-details::part(summary) {
   font-weight: var(--sl-font-weight-semibold);
   margin: 0px;
 }
+
+/**************************
+ * Now Deprecated - Use secondarybutton-base instead *
 *::part(defaultbutton-base){
-  background-color: rgba(0,0,0,0);
+
   color: var(--sl-color-gray-800);
   border-color: var(--sl-color-gray-800);
 }
@@ -678,22 +707,50 @@ sl-details::part(summary) {
 *::part(defaultbutton-base):focus{
   box-shadow: none;
 }
+*/
+
 *::part(primarybutton-base){
-  background-color: var(--sl-color-primary-400);
-  color: var(--sl-color-white);
-  border-color: var(--sl-color-primary-400);
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
 }
+
 *::part(primarybutton-base):hover{
-  background-color: var(--sl-color-primary-300);
-  border-color: var(--sl-color-primary-300);
+  background-color: var(--sqm-primary-button-background-hover);
 }
-*::part(primarybutton-base):active{
-  background-color: var(--sl-color-primary-500);
-  border-color: var(--sl-color-primary-500);
+
+
+
+*::part(primarybutton-base):focus{
+  box-shadow: none;
+}
+
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+}
+
+*::part(secondarybutton-base):hover{
+  background-color: var(--sqm-secondary-button-background-hover);
 }
 
 *::part(primarybutton-base):focus{
   box-shadow: none;
+}
+
+sl-input::part(input-base){
+  border: 3px dashed red !important;
+}
+
+sl-input::part(input){
+  broder: 3px dashed red !important;
+}
+
+sl-input::part(input-base){
+  border: 3px dashed red !important;
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){

@@ -4,6 +4,7 @@ import { TextSpanView } from "./sqm-text-span-view";
 
 /**
  * @uiName Text Span
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
  * @canvasRenderer always-replace
  */
 @Component({

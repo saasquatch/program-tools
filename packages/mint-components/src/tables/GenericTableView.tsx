@@ -192,7 +192,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           disabled={!states.hasPrev}
           loading={show === "loading"}
           onClick={callbacks.prevPage}
-          exportparts="base: defaultbutton-base"
+          exportparts="base: secondarybutton-base"
           class={!states.hasPrev ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.prevLabel}
@@ -202,7 +202,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           loading={show === "loading"}
           disabled={!states.hasNext}
           onClick={callbacks.nextPage}
-          exportparts="base: defaultbutton-base"
+          exportparts="base: secondarybutton-base"
           class={!states.hasNext ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.moreLabel}

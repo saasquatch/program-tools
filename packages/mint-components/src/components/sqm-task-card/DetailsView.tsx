@@ -13,7 +13,7 @@ export const style = {
       position: "absolute",
       top: "var(--sl-spacing-medium)",
       right: "var(--sl-spacing-medium)",
-      color: "var(--sl-color-neutral-700)",
+      color: "var(--sqm-text)",
       fontSize: "var(--sl-font-size-large)",
       "& :hover": {
         color: "var(--sl-color-primary-700)",
