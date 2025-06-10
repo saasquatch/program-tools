@@ -14,11 +14,16 @@ export interface LeaderboardViewProps {
       showRank?: boolean;
       hideViewer?: boolean;
       viewingUserText?: string;
-      viewingUserhighlightColor?: string;
+      viewingUserHighlightColor?: string;
+      viewingUserHighlightTextColor?: string;
       hideNames?: boolean;
       anonymousUser?: string;
       rankSuffix?: string;
       width?: string;
+      background?: string;
+      borderColor?: string;
+      textColor?: string;
+      borderRadius?: number;
     };
   };
   data: {
@@ -52,6 +57,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       "& table": {
         width: "100%",
         borderCollapse: "collapse",
+        background: styles.background || "transparent",
+        borderRadius: styles.borderRadius ? `${styles.borderRadius}px` : "0",
       },
       "& th": {
         textAlign: "left",
@@ -61,7 +68,9 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& tr:not(:first-child)": {
-        borderTop: "1px solid var(--sl-color-neutral-200)",
+        borderTop: `1px solid ${
+          styles.borderColor || "var(--sl-color-neutral-200)"
+        }`,
       },
       "& td": {
         fontSize: "var(--sl-font-size-medium)",
@@ -70,15 +79,18 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       "& .ellipses": {
         textAlign: "left",
         padding: "0",
-        color: "var(--sqm-text)",
+        color: styles.textColor || "var(--sqm-text)",
         paddingLeft: "25%",
       },
       "& .highlight": {
         background:
-          styles.viewingUserhighlightColor || "var(--sl-color-primary-100)",
+          styles.viewingUserHighlightColor || "var(--sl-color-primary-200)",
+        "& td, th": {
+          color: styles.viewingUserHighlightTextColor || "var(--sqm-text)",
+        },
       },
       "& td, th": {
-        color: "var(--sqm-text)",
+        color: styles.textColor || "var(--sqm-text)",
         padding: "var(--sl-spacing-medium)",
       },
       "& .User": {

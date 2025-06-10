@@ -1503,6 +1503,26 @@ export namespace Components {
          */
         "anonymousUser": string;
         /**
+          * Changes the background color of the leaderboard.
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "background"?: string;
+        /**
+          * Changes the border color of the table rows.
+          * @uiName Border Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * Leaderboard border radius in pixels.
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1571,14 +1591,30 @@ export namespace Components {
          */
         "statsheading": string;
         /**
+          * Text color of the leaderboard.
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * @uiName User column heading
          */
         "usersheading": string;
         /**
+          * Changes the background color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Highlight Color
           * @uiWidget color
-          * @uiName Viewing user highlight color
+          * @uiGroup Style
          */
-        "viewingUserHighlightColor": string;
+        "viewingUserHighlightColor"?: string;
+        /**
+          * Changes the text color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
          */
@@ -8535,6 +8571,26 @@ declare namespace LocalJSX {
          */
         "anonymousUser"?: string;
         /**
+          * Changes the background color of the leaderboard.
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "background"?: string;
+        /**
+          * Changes the border color of the table rows.
+          * @uiName Border Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * Leaderboard border radius in pixels.
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -8603,14 +8659,30 @@ declare namespace LocalJSX {
          */
         "statsheading"?: string;
         /**
+          * Text color of the leaderboard.
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * @uiName User column heading
          */
         "usersheading"?: string;
         /**
+          * Changes the background color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Highlight Color
           * @uiWidget color
-          * @uiName Viewing user highlight color
+          * @uiGroup Style
          */
         "viewingUserHighlightColor"?: string;
+        /**
+          * Changes the text color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
          */

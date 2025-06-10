@@ -63,23 +63,9 @@ export class Leaderboard {
   @Prop() rankSuffix: string;
 
   /**
-   * Hide the viewer's leaderboard row if not in the top results.
-   *
-   * @uiName Hide viewing user
-   * @default
-   */
-  @Prop() hideViewer: boolean = false;
-
-  /**
    * @uiName Viewing user text
    */
   @Prop() viewingUserText: string = "You";
-
-  /**
-   * @uiWidget color
-   * @uiName Viewing user highlight color
-   */
-  @Prop() viewingUserHighlightColor: string;
 
   /**
    * Hide the Names of users to protect personal identifiable information
@@ -130,6 +116,57 @@ export class Leaderboard {
   @Prop() maxRows: number = 10;
 
   /**
+   * Hide the viewer's leaderboard row if not in the top results.
+   *
+   * @uiName Hide viewing user
+   * @default
+   */
+  @Prop() hideViewer: boolean = false;
+
+  /**
+   * Changes the background color of the viewing user row in the leaderboard.
+   * @uiName Viewing User Highlight Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() viewingUserHighlightColor?: string;
+
+  /**
+   * Changes the text color of the viewing user row in the leaderboard.
+   * @uiName Viewing User Text Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() viewingUserHighlightTextColor?: string;
+  /**
+   * Changes the background color of the leaderboard.
+   * @uiName Background Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() background?: string;
+  /**
+   * Changes the border color of the table rows.
+   * @uiName Border Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+  /**
+   * Text color of the leaderboard.
+   * @uiName Text Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+  /**
+   * Leaderboard border radius in pixels.
+   * @uiName Border Radius
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: number;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -162,6 +199,8 @@ export class Leaderboard {
       showRank: this.showRank,
       rankSuffix: this.rankSuffix,
       width: this.width,
+      viewingUserHighlightColor: this.viewingUserHighlightColor,
+      viewingUserHighlightTextColor: this.viewingUserHighlightTextColor,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -229,7 +268,6 @@ function useLeaderboardDemo(
         hasLeaders: true,
         isEssentials: false,
         styles: {
-          // viewingUserHighlightColor: props.viewingUserHighlightColor,
           usersheading: props.usersheading
             ? props.usersheading
             : "Top referrers",
@@ -246,6 +284,12 @@ function useLeaderboardDemo(
           hideNames: props.hideNames,
           rankSuffix: props.rankSuffix,
           width: props.width,
+          viewingUserHighlightColor: props.viewingUserHighlightColor,
+          viewingUserHighlightTextColor: props.viewingUserHighlightTextColor,
+          background: props.background,
+          borderColor: props.borderColor,
+          textColor: props.textColor,
+          borderRadius: props.borderRadius,
         },
       },
       data: {
