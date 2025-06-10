@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.1] - 2025-06-10
+
+### Changed
+
+- \<sqm-payout-status-alert>
+  - Hides alert if NEW_PAYEE_REVIEW is the only hold reason.
+
 ## [1.14.0] - 2025-06-02
 
 ### Added
@@ -1163,7 +1170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.1...HEAD
+[1.14.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.1
 [1.14.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.0
 [1.13.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.5
 [1.13.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.13.4
