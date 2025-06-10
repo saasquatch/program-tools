@@ -69,7 +69,6 @@ export class TimelineReward {
   disconnectedCallback() {}
 
   render() {
-    console.log({ ...getProps(this) });
     useRequestRerender([this.reward]);
 
     return <TimelineEntryView {...getProps(this)} />;

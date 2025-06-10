@@ -5,6 +5,14 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute    | Description         | Type     | Default     |
+| ----------- | ------------ | ------------------- | -------- | ----------- |
+| `fontSize`  | `font-size`  | Font size in pixels | `number` | `undefined` |
+| `textColor` | `text-color` |                     | `string` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by

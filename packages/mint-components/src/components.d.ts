@@ -5863,6 +5863,18 @@ export namespace Components {
         "verificationReviewInternalHeader": string;
     }
     interface SqmText {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
     }
     interface SqmTextSpan {
         /**
@@ -12859,6 +12871,18 @@ declare namespace LocalJSX {
         "verificationReviewInternalHeader"?: string;
     }
     interface SqmText {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
     }
     interface SqmTextSpan {
         /**

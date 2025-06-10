@@ -51,7 +51,7 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
         position: "relative",
         top: "4px",
         zIndex: "1",
-        color: "var(--sl-color-primary-500)",
+        color: props.lineColor || "var(--sl-color-primary-500)",
         marginRight: "var(--sl-spacing-large)",
       },
       "& .reward": {
