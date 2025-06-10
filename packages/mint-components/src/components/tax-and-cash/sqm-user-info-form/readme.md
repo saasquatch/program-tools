@@ -51,37 +51,10 @@
 
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
- - [sqm-user-info-form](.)
-
-### Depends on
-
-- [sqm-payout-details-card](../sqm-payout-details-card)
-- [sqm-user-info-form](.)
-- [sqm-indirect-tax-form](../sqm-indirect-tax-form)
-- [sqm-docusign-form](../sqm-docusign-form)
-- [sqm-banking-info-form](../sqm-banking-info-form)
-- [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-user-info-form --> sqm-user-info-form
-  sqm-banking-info-form --> sqm-code-verification
-  sqm-code-verification --> sqm-form-message
-  sqm-tax-and-cash-dashboard --> sqm-payout-details-card
-  sqm-tax-and-cash-dashboard --> sqm-invoice-table
-  sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
-  sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
-  sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
-  sqm-invoice-table --> sqm-empty
-  sqm-invoice-table --> sqm-table-row
-  sqm-invoice-table --> sqm-table-cell
-  sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-titled-section
-  sqm-empty --> sqm-text
-  sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
-  sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
-  sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
   sqm-stencilbook --> sqm-user-info-form
   sqm-tax-and-cash --> sqm-user-info-form
   style sqm-user-info-form fill:#f9f,stroke:#333,stroke-width:4px

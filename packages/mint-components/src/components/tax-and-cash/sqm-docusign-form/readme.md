@@ -38,14 +38,12 @@
 
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
- - [sqm-user-info-form](../sqm-user-info-form)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-docusign-form
-  sqm-user-info-form --> sqm-docusign-form
   style sqm-docusign-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

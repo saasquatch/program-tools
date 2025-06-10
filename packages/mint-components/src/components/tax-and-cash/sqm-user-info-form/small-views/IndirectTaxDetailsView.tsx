@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { vatLabels } from "../../countries";
-import { TaxCountry } from "../../sqm-tax-and-cash/data";
+import { TaxCountry } from "../../data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { formatErrorMessage } from "../../utils";
 

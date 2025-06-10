@@ -224,12 +224,6 @@ graph TD;
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-code-verification --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification
-  sqm-user-info-form --> sqm-payout-details-card
-  sqm-user-info-form --> sqm-user-info-form
-  sqm-user-info-form --> sqm-indirect-tax-form
-  sqm-user-info-form --> sqm-docusign-form
-  sqm-user-info-form --> sqm-banking-info-form
-  sqm-user-info-form --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column

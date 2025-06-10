@@ -72,7 +72,6 @@
 
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
- - [sqm-user-info-form](../sqm-user-info-form)
 
 ### Depends on
 
@@ -85,7 +84,6 @@ graph TD;
   sqm-code-verification --> sqm-form-message
   sqm-stencilbook --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-banking-info-form
-  sqm-user-info-form --> sqm-banking-info-form
   style sqm-banking-info-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

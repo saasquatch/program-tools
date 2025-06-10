@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import { intl } from "../../../global/global";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
@@ -22,11 +23,10 @@ import {
   TaxCountry,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
-import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
-import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {

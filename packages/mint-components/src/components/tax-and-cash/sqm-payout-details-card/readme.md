@@ -23,14 +23,12 @@
 
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
- - [sqm-user-info-form](../sqm-user-info-form)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
-  sqm-user-info-form --> sqm-payout-details-card
   style sqm-payout-details-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

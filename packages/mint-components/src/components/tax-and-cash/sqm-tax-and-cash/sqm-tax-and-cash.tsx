@@ -5,10 +5,10 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { ErrorView } from "./ErrorView";
-import LoadingView from "./LoadingView";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
+import LoadingView from "./LoadingView";
 import { useTaxAndCash } from "./useTaxAndCash";
 
 /**

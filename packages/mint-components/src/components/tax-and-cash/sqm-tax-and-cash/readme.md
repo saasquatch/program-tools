@@ -190,12 +190,6 @@ graph TD;
   sqm-tax-and-cash --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
-  sqm-user-info-form --> sqm-payout-details-card
-  sqm-user-info-form --> sqm-user-info-form
-  sqm-user-info-form --> sqm-indirect-tax-form
-  sqm-user-info-form --> sqm-docusign-form
-  sqm-user-info-form --> sqm-banking-info-form
-  sqm-user-info-form --> sqm-tax-and-cash-dashboard
   sqm-banking-info-form --> sqm-code-verification
   sqm-code-verification --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
