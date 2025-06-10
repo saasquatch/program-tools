@@ -8,54 +8,9 @@ export interface TimelineEntryProps {
   desc: string;
   icon: string;
   iconState: string;
+  textColor?: string;
+  lineColor?: string;
 }
-
-const style = {
-  TimelineReward: {
-    color: "var(--sqm-text)",
-    lineHeight: "var(--sl-line-height-dense)",
-    "& .container": {
-      display: "flex",
-    },
-    "& .line": {
-      display: "none",
-      color: "transparent",
-      userSelect: "none",
-      background: "var(--sl-color-primary-300)",
-      width: "4px",
-      borderRadius: "4px",
-      margin: "-2px",
-      position: "relative",
-      left: "12px",
-      top: "34px",
-    },
-    "& .step": {
-      display: "flex",
-    },
-    "& .icon": {
-      position: "relative",
-      top: "4px",
-      zIndex: "1",
-      color: "var(--sl-color-primary-300)",
-      marginRight: "var(--sl-spacing-large)",
-    },
-    "& .reward": {
-      marginRight: "var(--sl-spacing-x-small)",
-      fontSize: "var(--sl-font-size-x-large)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-    },
-    "& .unit": {
-      textTransform: "uppercase",
-      fontSize: "var(--sl-font-size-small)",
-    },
-    "& .description": {
-      fontSize: "var(--sl-font-size-medium)",
-    },
-  },
-};
-
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
 
 const vanillaStyle = `
 	:host{
@@ -69,6 +24,53 @@ const vanillaStyle = `
 
 export function TimelineEntryView(props: TimelineEntryProps): VNode {
   const timeline_icon = props.icon ?? props.iconState;
+
+  const style = {
+    TimelineReward: {
+      color: props.textColor || "var(--sqm-text)",
+      lineHeight: "var(--sl-line-height-dense)",
+      "& .container": {
+        display: "flex",
+      },
+      "& .line": {
+        display: "none",
+        color: "transparent",
+        userSelect: "none",
+        background: props.lineColor || "var(--sl-color-primary-500)",
+        width: "4px",
+        borderRadius: "4px",
+        margin: "-2px",
+        position: "relative",
+        left: "12px",
+        top: "34px",
+      },
+      "& .step": {
+        display: "flex",
+      },
+      "& .icon": {
+        position: "relative",
+        top: "4px",
+        zIndex: "1",
+        color: "var(--sl-color-primary-500)",
+        marginRight: "var(--sl-spacing-large)",
+      },
+      "& .reward": {
+        marginRight: "var(--sl-spacing-x-small)",
+        fontSize: "var(--sl-font-size-x-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
+      "& .unit": {
+        textTransform: "uppercase",
+        fontSize: "var(--sl-font-size-small)",
+      },
+      "& .description": {
+        fontSize: "var(--sl-font-size-medium)",
+      },
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
 
   return (
     <div class={sheet.classes.TimelineReward} part="sqm-base">

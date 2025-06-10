@@ -19,6 +19,22 @@ export class TimelineReward {
   ignored = true;
 
   /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * Color of timeline
+   * @uiName Line color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() lineColor?: string;
+
+  /**
    * @uiName Reward amount
    */
   @Prop() reward: string;
@@ -53,6 +69,7 @@ export class TimelineReward {
   disconnectedCallback() {}
 
   render() {
+    console.log({ ...getProps(this) });
     useRequestRerender([this.reward]);
 
     return <TimelineEntryView {...getProps(this)} />;

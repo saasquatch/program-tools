@@ -5899,10 +5899,24 @@ export namespace Components {
          */
         "icon": "gift" | "circle";
         /**
+          * Color of timeline
+          * @uiName Line color
+          * @uiWidget color
+          * @format color
+         */
+        "lineColor"?: string;
+        /**
           * @uiName Reward amount
          */
         "reward": string;
         "setIcon": (value: "gift" | "circle") => Promise<void>;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward unit
          */
@@ -12881,9 +12895,23 @@ declare namespace LocalJSX {
          */
         "icon"?: "gift" | "circle";
         /**
+          * Color of timeline
+          * @uiName Line color
+          * @uiWidget color
+          * @format color
+         */
+        "lineColor"?: string;
+        /**
           * @uiName Reward amount
          */
         "reward"?: string;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward unit
          */
