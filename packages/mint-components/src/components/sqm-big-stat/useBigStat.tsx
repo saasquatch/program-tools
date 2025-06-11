@@ -1108,6 +1108,11 @@ export function useBigStat(props: BigStat): BigStatHook {
         flexReverse,
         alignment,
         loading: false,
+        statTextColor: props.statTextColor,
+        statFontSize: props.statFontSize,
+        descriptionTextColor: props.descriptionTextColor,
+        descriptionFontSize: props.descriptionFontSize,
+        statFontWeight: props.statFontWeight,
       },
       label: "BAD PROP TYPE",
     };
@@ -1147,6 +1152,11 @@ export function useBigStat(props: BigStat): BigStatHook {
       loading: stat?.loading,
       flexReverse,
       alignment,
+      statTextColor: props.statTextColor,
+      statFontSize: props.statFontSize,
+      descriptionTextColor: props.descriptionTextColor,
+      descriptionFontSize: props.descriptionFontSize,
+      statFontWeight: props.statFontWeight,
     },
     label,
   };

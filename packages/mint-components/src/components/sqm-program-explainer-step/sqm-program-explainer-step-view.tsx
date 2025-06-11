@@ -6,7 +6,7 @@ export interface ProgramExplainerStepViewProps {
   description: string;
   textColor?: string;
   backgroundColor?: string;
-  borderRadius?: string;
+  borderRadius?: number;
   iconBackgroundColor?: string;
   iconColor?: string;
   imageUrl?: string;
@@ -21,7 +21,9 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       width: "100%",
       padding: "var(--sl-spacing-x-large)",
       lineHeight: "var(--sl-line-height-dense)",
-      borderRadius: props.borderRadius || "var(--sl-border-radius-large)",
+      borderRadius: props.borderRadius
+        ? `${props.borderRadius}px`
+        : "var(--sl-border-radius-large)",
       color: props.textColor || "var(--sqm-text)",
       background: props.backgroundColor || "var(--sl-color-primary-50)",
       "@media (max-width: 499px)": {

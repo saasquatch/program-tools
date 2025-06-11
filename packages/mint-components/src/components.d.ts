@@ -340,6 +340,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
+          * @uiGroup Style
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -348,9 +349,25 @@ export namespace Components {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
+          * Font size of the description text in pixels
+          * @uiName Description font size
+          * @uiGroup Style
+         */
+        "descriptionFontSize"?: number;
+        /**
+          * Color of the description text
+          * @uiName Description text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Style
+         */
+        "descriptionTextColor"?: string;
+        /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
-          * @default
+          * @default 
+          * @uiGroup Style
          */
         "flexReverse"?: boolean;
         /**
@@ -359,6 +376,30 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiType string
+          * @uiGroup Style
+         */
+        "statFontSize"?: number;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "statFontWeight"?: number;
+        /**
+          * Color of the stat text
+          * @uiName Stat text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Style
+         */
+        "statTextColor"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget statTypeSelectWidget
@@ -3065,10 +3106,11 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
+          * Amount in pixels
           * @uiName Border radius
           * @type number
          */
-        "borderRadius"?: string;
+        "borderRadius"?: number;
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -7433,6 +7475,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
+          * @uiGroup Style
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -7441,9 +7484,25 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
+          * Font size of the description text in pixels
+          * @uiName Description font size
+          * @uiGroup Style
+         */
+        "descriptionFontSize"?: number;
+        /**
+          * Color of the description text
+          * @uiName Description text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Style
+         */
+        "descriptionTextColor"?: string;
+        /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
-          * @default
+          * @default 
+          * @uiGroup Style
          */
         "flexReverse"?: boolean;
         /**
@@ -7452,6 +7511,30 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiType string
+          * @uiGroup Style
+         */
+        "statFontSize"?: number;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "statFontWeight"?: number;
+        /**
+          * Color of the stat text
+          * @uiName Stat text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Style
+         */
+        "statTextColor"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget statTypeSelectWidget
@@ -10153,10 +10236,11 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Amount in pixels
           * @uiName Border radius
           * @type number
          */
-        "borderRadius"?: string;
+        "borderRadius"?: number;
         /**
           * @uiName Description
           * @uiWidget textArea

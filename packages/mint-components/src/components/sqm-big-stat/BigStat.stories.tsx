@@ -84,6 +84,23 @@ export const InvalidStatValue = () => {
   return <BigStatView {...props}>Big stat</BigStatView>;
 };
 
+export const CustomStyles = () => {
+  return (
+    <sqm-big-stat
+      stat-font-weight="500"
+      stat-text-color="#1ed760"
+      stat-font-size="45"
+      description-text-color="#121212"
+      description-font-size="18"
+      alignment="center"
+      stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+      flex-reverse
+    >
+      <p>Giftcards Earned</p>
+    </sqm-big-stat>
+  );
+};
+
 export const MultipleStats = () => {
   return (
     <sqm-stat-container space="xxx-large" display="flex">
@@ -115,5 +132,5 @@ export const MultipleStats = () => {
         </sqm-text>
       </sqm-big-stat>
     </sqm-stat-container>
-  )
-}
+  );
+};

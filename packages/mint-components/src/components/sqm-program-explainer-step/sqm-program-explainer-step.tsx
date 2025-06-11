@@ -40,10 +40,11 @@ export class ProgramExplainerStep {
   @Prop() backgroundColor?: string;
 
   /**
+   * Amount in pixels
    * @uiName Border radius
    * @type number
    */
-  @Prop() borderRadius?: string;
+  @Prop() borderRadius?: number;
 
   /**
    * @uiName Icon Background color
