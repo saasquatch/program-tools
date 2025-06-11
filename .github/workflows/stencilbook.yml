@@ -6,8 +6,9 @@ on:
   pull_request:
   workflow_dispatch:
 
-env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+# not sure why this was needed, commenting out to see if anything breaks
+# env:
+#   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
   deploy:
@@ -17,7 +18,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      packages: write
 
     strategy:
       fail-fast: false
@@ -29,46 +29,41 @@ jobs:
 
     steps:
       - name: Checkout
+        id: checkout
         uses: actions/checkout@v4
 
       - name: Node Setup
-        uses: actions/setup-node@v3
+        id: setup-node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-
-      - name: Setup private NPM registries
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
-        run: |
-          cd packages/${{ matrix.package }}
-          echo "//npm.pkg.github.com/saasquatch/:_authToken=$GITHUB_TOKEN" >> ./.npmrc
-          echo "//npm.pkg.github.com/impactinc/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
-          echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch/" >> ./.npmrc
-          echo "@impactinc:registry=https://npm.pkg.github.com/impactinc/" >> ./.npmrc
+          node-version: 22.x
 
       - name: Install npm dependencies
+        id: install-deps
         run: cd packages/${{ matrix.package }} && npm ci
 
       - name: Build
+        id: build
         run: cd packages/${{ matrix.package }} && NODE_ENV=dev npm run build
 
       - name: Authenticate with Google Cloud
         id: auth
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v2
         with:
           token_format: "access_token"
           workload_identity_provider: "projects/167728399658/locations/global/workloadIdentityPools/github/providers/github"
           service_account: "github-static-site-actions@static-site-proxy.iam.gserviceaccount.com"
 
       - name: Setup GCP
-        id: setup_gcp
-        uses: google-github-actions/setup-gcloud@v0
+        id: setup-gcp
+        uses: google-github-actions/setup-gcloud@v2
 
       - name: Deploy to bucket (pull request)
+        id: deploy-to-bucket-pr
         if: ${{ github.event_name == 'pull_request' }}
         run: gsutil -m rsync -d -r packages/${{ matrix.package }}/www/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/pr${{ github.event.number }}/
 
       - name: Deploy to bucket (push)
+        id: deploy-to-bucket-push
         if: ${{ github.event_name == 'push' }}
         run: gsutil -m rsync -d -r packages/${{ matrix.package }}/www/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/production/
