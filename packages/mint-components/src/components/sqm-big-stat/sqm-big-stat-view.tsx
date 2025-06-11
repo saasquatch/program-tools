@@ -31,8 +31,8 @@ export function BigStatView(props: BigStatViewProps) {
   const style = {
     Container: {
       display: "flex",
-      height: "inherit",
-      "justify-content": "space-between",
+      // height: "inherit",
+      // "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
         alignment === "left"
@@ -56,7 +56,7 @@ export function BigStatView(props: BigStatViewProps) {
         ? `${descriptionFontSize}px`
         : "var(--sl-font-size-small)",
       "font-weight": "var(--sl-font-weight-normal)",
-      color: descriptionTextColor || "var(--sqm-text-subdued)",
+      color: descriptionTextColor || "var(--sqm-text)",
       "text-align": alignment,
       lineHeight: "20px",
     },

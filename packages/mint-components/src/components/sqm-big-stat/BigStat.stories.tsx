@@ -134,3 +134,51 @@ export const MultipleStats = () => {
     </sqm-stat-container>
   );
 };
+
+export const MultipleStatsWithCustomBranding = () => {
+  return (
+    <sqm-stat-container
+      space="xxx-large"
+      display="grid"
+      alignment="center"
+      hide-border="true"
+    >
+      <sqm-big-stat
+        stat-font-weight="500"
+        stat-text-color="#1ed760"
+        stat-font-size="45"
+        description-text-color="#121212"
+        description-font-size="18"
+        alignment="center"
+        stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+        flex-reverse
+      >
+        <p>Giftcards Earned</p>
+      </sqm-big-stat>
+      <sqm-big-stat
+        stat-font-weight="500"
+        stat-text-color="#1ed760"
+        stat-font-size="45"
+        description-text-color="#121212"
+        description-font-size="18"
+        alignment="center"
+        stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+        flex-reverse
+      >
+        <p>Referrals</p>
+      </sqm-big-stat>
+      <sqm-big-stat
+        stat-font-weight="500"
+        stat-text-color="#1ed760"
+        stat-font-size="45"
+        description-text-color="#121212"
+        description-font-size="18"
+        alignment="center"
+        stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+        flex-reverse
+      >
+        <p>Points balance</p>
+      </sqm-big-stat>
+    </sqm-stat-container>
+  );
+};

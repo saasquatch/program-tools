@@ -4493,12 +4493,34 @@ export namespace Components {
     }
     interface SqmStatContainer {
         /**
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented 
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
+        /**
+          * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "gap": Spacing;
+        /**
+          * Hide the seperating border between stats
+          * @uiName Hide border
+          * @uiType boolean
+         */
+        "hideBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string
@@ -11599,12 +11621,34 @@ declare namespace LocalJSX {
     }
     interface SqmStatContainer {
         /**
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented 
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
+        /**
+          * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "gap"?: Spacing;
+        /**
+          * Hide the seperating border between stats
+          * @uiName Hide border
+          * @uiType boolean
+         */
+        "hideBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string

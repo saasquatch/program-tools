@@ -4,6 +4,9 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface StatContainerProps {
   space: string;
   display?: "grid" | "flex";
+  alignment?: "left" | "right" | "center";
+  hideBorder?: boolean;
+  gap?: string;
 }
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
@@ -14,25 +17,40 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
     return `${Math.floor(parseInt(spaceValue) / 2)}rem`;
   };
 
-  // Dependent on props, not feasiable to move out
+  // take alignment variable and convert it to CSS flexbox alignment
+  const alignment =
+    props.alignment === "center"
+      ? "center"
+      : props.alignment === "right"
+      ? "flex-end"
+      : "flex-start";
+
+  // Dependent on props, not feasible to move out
   const style = {
     StatContainer: {
       width: "100%",
-      display: props.display || "grid",
-      "grid-template-columns": "repeat(auto-fill, minmax(130px, auto))",
-      gap: divideSpace(),
-      // First set of styles applies when shadow DOM is disabled, second set applies when shadow DOM is enabled
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      justifyContent: alignment,
+      flexDirection: "row",
+      gap: `var(--sl-spacing-${props.gap})`,
+
+      // Apply border styles conditionally based on the hideBorder prop
       "& > *": {
-        "border-right": "1px solid #EAEAEA",
+        "border-right": props.hideBorder
+          ? "none"
+          : "1px solid var(--sqm-text-subdued)",
         "padding-right": divideSpace(),
       },
       "& > :last-child": {
         "border-right": "none",
       },
       "& > ::slotted(*)": {
-        "border-right": "1px solid #EAEAEA",
+        "border-right": props.hideBorder
+          ? "none"
+          : "1px solid var(--sqm-text-subdued)",
         "padding-right": divideSpace(),
-        height: "100%",
       },
       "& > ::slotted(*:last-child)": {
         "border-right": "none",

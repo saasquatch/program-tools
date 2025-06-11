@@ -29,12 +29,38 @@ export class StatContainer {
   @Prop() space: Spacing = "xxx-large";
 
   /**
+   * @undocumented
    * @uiName Display
    * @uiType string
    * @uiEnum ["grid", "flex"]
    * @uiEnumNames ["Grid", "Flex"]
    */
-  @Prop() display: "grid" | "flex" = "grid";
+  @Prop() display: "grid" | "flex" = "flex";
+
+  /**
+   * Hide the seperating border between stats
+   * @uiName Hide border
+   * @uiType boolean
+   */
+  @Prop() hideBorder?: boolean;
+
+  /**
+   * Controls the alignment of the flexbox
+   *
+   * @uiName Alignment
+   * @uiType string
+   * @uiEnum ["left", "right", "center"]
+   * @uiEnumNames ["Left", "Right", "Center"]
+   */
+  @Prop() alignment?: "left" | "right" | "center" = "center";
+
+  /**
+   * @uiName Gap
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() gap: Spacing = "x-large";
 
   constructor() {
     withHooks(this);
