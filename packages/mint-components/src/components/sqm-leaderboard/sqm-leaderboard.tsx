@@ -201,6 +201,10 @@ export class Leaderboard {
       width: this.width,
       viewingUserHighlightColor: this.viewingUserHighlightColor,
       viewingUserHighlightTextColor: this.viewingUserHighlightTextColor,
+      background: this.background,
+      borderColor: this.borderColor,
+      textColor: this.textColor,
+      borderRadius: this.borderRadius,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
