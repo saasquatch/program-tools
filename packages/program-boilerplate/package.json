@@ -6,13 +6,13 @@
   "files": [
     "dist/"
   ],
+  "engines": {
+    "node": "^18 || ^20 || ^22"
+  },
   "scripts": {
     "build": "tsc --declaration",
     "build:docs": "typedoc --out ./docs ./src --ignoreCompilerErrors --media assets --hideGenerator",
-    "format": "prettier \"src/**/*.js\" --write",
-    "prepush": "npm run format",
-    "prepare": "npm run build",
-    "deploy": "np",
+    "prepack": "npm run build",
     "test": "SSQT_LOG_LEVEL=emerg jest"
   },
   "author": "ReferralSaaSquatch.com, Inc.",

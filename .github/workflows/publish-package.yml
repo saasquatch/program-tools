@@ -1,0 +1,31 @@
+name: Publish Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: The package to publish
+        required: true
+        type: choice
+        options:
+          - program-boilerplate
+
+      increment:
+        description: The version number to increment
+        required: true
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+          - prerelease
+
+jobs:
+  publish:
+    uses: saasquatch/workflows/.github/workflows/publish-npm-package.yml@0bb1620ff32b2bec5c6d877fcc162f617ab34d24
+    secrets: inherit
+    with:
+      increment-type: ${{ inputs.increment }}
+      working-directory: ${{ inputs.package }}
+      node-version-file: ${{ inputs.package }}/package.json
+      private-registry: true
