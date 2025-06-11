@@ -53,13 +53,15 @@ export const TextStyleWithoutIcon = () => {
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
-export const WithCustomColors = () => {
+export const WithCustomColorsAndBranding = () => {
   const props = {
     medium: "facebook",
     type: "text",
     backgroundcolor: "red",
     textcolor: "yellow",
     iconslot: "prefix",
+    border: "2px solid yellow",
+    borderradius: 30,
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
 };

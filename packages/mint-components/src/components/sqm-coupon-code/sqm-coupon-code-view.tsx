@@ -6,29 +6,30 @@ import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 export interface CouponCodeViewProps extends CopyTextViewProps {
   errorType?: "error" | "warning" | "info" | "success";
   couponCodeLabel?: string;
+  textColor?: string;
 }
 
-const style = {
-  HostBlock: HostBlock,
-  couponCodeLabel: {
-    margin: "var(--sl-spacing-x-small) 0",
-    color: "var(--sqm-text-subdued)",
-    fontSize: "var(--sl-font-size-small)",
-  },
-};
+export function CouponCodeView(props: CouponCodeViewProps) {
+  const error = !props.loading && props.error;
 
-const vanillaStyle = `
+  const style = {
+    HostBlock: HostBlock,
+    couponCodeLabel: {
+      margin: "var(--sl-spacing-x-small) 0",
+      color: props.textColor || "var(--sqm-text-subdued)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+  };
+
+  const vanillaStyle = `
   :host{
     display: block;   
     width: 100%;
   }
 `;
 
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
-
-export function CouponCodeView(props: CouponCodeViewProps) {
-  const error = !props.loading && props.error;
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
   return (
     <div>
       <style type="text/css">

@@ -4151,11 +4151,18 @@ export namespace Components {
           * @uiName Button background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundcolor"?: string;
         /**
+          * @uiName Border
+          * @uiGroup Style
+         */
+        "border"?: string;
+        /**
           * Configure border radius with pixel amount
           * @uiName Border radius
+          * @uiGroup Style
          */
         "borderradius"?: number;
         /**
@@ -4169,11 +4176,13 @@ export namespace Components {
         "disabled"?: boolean;
         /**
           * @uiName Hide icon
+          * @uiGroup Style
           * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide text
+          * @uiGroup Style
           * @default
          */
         "hidetext"?: boolean;
@@ -4211,6 +4220,7 @@ export namespace Components {
     | "unknown";
         /**
           * @uiName Display pill
+          * @uiGroup Style
          */
         "pill"?: boolean;
         /**
@@ -4234,21 +4244,24 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
+          * @uiGroup Style
          */
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+          * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -4485,6 +4498,13 @@ export namespace Components {
           * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs placement
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmTaskCard {
         /**
@@ -11195,11 +11215,18 @@ declare namespace LocalJSX {
           * @uiName Button background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundcolor"?: string;
         /**
+          * @uiName Border
+          * @uiGroup Style
+         */
+        "border"?: string;
+        /**
           * Configure border radius with pixel amount
           * @uiName Border radius
+          * @uiGroup Style
          */
         "borderradius"?: number;
         /**
@@ -11213,11 +11240,13 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * @uiName Hide icon
+          * @uiGroup Style
           * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide text
+          * @uiGroup Style
           * @default
          */
         "hidetext"?: boolean;
@@ -11255,6 +11284,7 @@ declare namespace LocalJSX {
     | "unknown";
         /**
           * @uiName Display pill
+          * @uiGroup Style
          */
         "pill"?: boolean;
         /**
@@ -11278,21 +11308,24 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
+          * @uiGroup Style
          */
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+          * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -11529,6 +11562,13 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
+        /**
+          * Used to specify the placement of the tabs
+          * @uiName Tabs placement
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmTaskCard {
         /**

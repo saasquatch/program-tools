@@ -22,6 +22,10 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
     sl-tab-panel::part(base) {
       padding: ${padding};
     }
+
+    sl-tab::part(tab) {
+      color: red;
+    }
   `;
 
   return (
@@ -43,6 +47,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
             <sl-tab
               slot="nav"
               panel={slotName}
+              part="tab"
               id={tab.getAttribute("id") || slotName}
             >
               {tab.getAttribute("header")}

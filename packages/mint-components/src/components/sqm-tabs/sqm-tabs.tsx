@@ -28,6 +28,15 @@ export class Tabs {
    */
   @Prop() placement?: "left" | "right" | "bottom" | "top";
 
+  /**
+   * Used to specify the placement of the tabs
+   *
+   * @uiName Tabs placement
+   * @uiType string
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
   constructor() {
     withHooks(this);
   }
