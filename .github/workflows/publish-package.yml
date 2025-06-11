@@ -22,7 +22,8 @@ on:
 
 jobs:
   publish:
-    uses: saasquatch/workflows/.github/workflows/publish-npm-package.yml@a025daa9900fe7dee224652164858430f56bbeff
+    uses: saasquatch/workflows/.github/workflows/publish-npm-package.yml@0bb1620ff32b2bec5c6d877fcc162f617ab34d24
+    secrets: inherit
     with:
       increment-type: ${{ inputs.increment }}
       working-directory: ${{ inputs.package }}
