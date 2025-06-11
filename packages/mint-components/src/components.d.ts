@@ -4499,8 +4499,8 @@ export namespace Components {
          */
         "placement"?: "left" | "right" | "bottom" | "top";
         /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs placement
+          * Tab text color
+          * @uiName Text color
           * @uiType string
           * @uiWidget color
          */
@@ -11563,8 +11563,8 @@ declare namespace LocalJSX {
          */
         "placement"?: "left" | "right" | "bottom" | "top";
         /**
-          * Used to specify the placement of the tabs
-          * @uiName Tabs placement
+          * Tab text color
+          * @uiName Text color
           * @uiType string
           * @uiWidget color
          */

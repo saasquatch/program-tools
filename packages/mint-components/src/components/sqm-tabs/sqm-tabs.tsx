@@ -29,9 +29,9 @@ export class Tabs {
   @Prop() placement?: "left" | "right" | "bottom" | "top";
 
   /**
-   * Used to specify the placement of the tabs
+   * Tab text color
    *
-   * @uiName Tabs placement
+   * @uiName Text color
    * @uiType string
    * @uiWidget color
    */
@@ -45,10 +45,10 @@ export class Tabs {
 
   render() {
     const { content } = useTabs();
-    const { placement } = getProps(this);
+    const { placement, textColor } = getProps(this);
 
     return (
-      <TabsView placement={placement} content={content}>
+      <TabsView placement={placement} content={content} textColor={textColor}>
         <slot />
       </TabsView>
     );
