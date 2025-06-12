@@ -52,7 +52,9 @@ export function NavigationSidebarItemView(
       padding: `var(--sl-spacing-${props.padding})`,
 
       "text-decoration": "none",
-      color: props.textColor || "var(--sqm-text)",
+      color: states.active
+        ? textFocusedColor
+        : props.textColor || "var(--sqm-text)",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
