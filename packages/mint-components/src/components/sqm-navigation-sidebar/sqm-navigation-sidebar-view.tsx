@@ -13,6 +13,16 @@ const vanillaStyle = `
   box-sizing: border-box;
 }
 
+.container {
+  background: var(--sqm-portal-background);
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 @keyframes slideIn {
   0% {
     left: -350px;
@@ -64,12 +74,12 @@ const vanillaStyle = `
     flex-direction: column;
     z-index: 100;
   }
-  .menu-items { 
+  .menu-items {
     display: none;
     padding: 20px;
     border-right: 1px solid #eaeaea;
     padding-top: 60px;
-    background: white; 
+    background: var(--sqm-portal-background); 
     width: 100vw;
     height: 100vh;
     position: absolute;

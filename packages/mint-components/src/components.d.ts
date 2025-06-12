@@ -384,8 +384,8 @@ export namespace Components {
          */
         "statFontSize"?: number;
         /**
-          * Font size of the stat text in pixels
-          * @uiName Stat font size
+          * Font weight of the stat text
+          * @uiName Stat font weight
           * @uiGroup Style
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
@@ -666,6 +666,12 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmDividedLayout {
+        /**
+          * Background color of the divider
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
         /**
           * Overrides max-width of content area
           * @uiName Content Area Width
@@ -1801,6 +1807,33 @@ export namespace Components {
     }
     interface SqmNavigationSidebarItem {
         /**
+          * Background color of the nav item
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Background color of the nav item when focused
+          * @uiName Background Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundFocusedColor"?: string;
+        /**
+          * Background color of the nav item when hovered
+          * @uiName Background Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundHoverColor"?: string;
+        /**
+          * Border radius (in number of pixels)
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1808,6 +1841,7 @@ export namespace Components {
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon
+          * @uiGroup Style
          */
         "icon": string;
         /**
@@ -1815,10 +1849,38 @@ export namespace Components {
          */
         "label": string;
         /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
           * @uiName Navigation path
           * @uiWidget pageSelect
          */
         "path": string;
+        /**
+          * Text color of the nav item
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
+          * Text color of the nav item when items is focused
+          * @uiName Text Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textFocusedColor"?: string;
+        /**
+          * Text color of the nav item when hovered
+          * @uiName Text Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textHoverColor"?: string;
     }
     interface SqmPagination {
         /**
@@ -7550,8 +7612,8 @@ declare namespace LocalJSX {
          */
         "statFontSize"?: number;
         /**
-          * Font size of the stat text in pixels
-          * @uiName Stat font size
+          * Font weight of the stat text
+          * @uiName Stat font weight
           * @uiGroup Style
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
@@ -7832,6 +7894,12 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmDividedLayout {
+        /**
+          * Background color of the divider
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
         /**
           * Overrides max-width of content area
           * @uiName Content Area Width
@@ -8962,6 +9030,33 @@ declare namespace LocalJSX {
     }
     interface SqmNavigationSidebarItem {
         /**
+          * Background color of the nav item
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Background color of the nav item when focused
+          * @uiName Background Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundFocusedColor"?: string;
+        /**
+          * Background color of the nav item when hovered
+          * @uiName Background Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundHoverColor"?: string;
+        /**
+          * Border radius (in number of pixels)
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -8969,6 +9064,7 @@ declare namespace LocalJSX {
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon
+          * @uiGroup Style
          */
         "icon"?: string;
         /**
@@ -8976,10 +9072,38 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
           * @uiName Navigation path
           * @uiWidget pageSelect
          */
         "path"?: string;
+        /**
+          * Text color of the nav item
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
+          * Text color of the nav item when items is focused
+          * @uiName Text Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textFocusedColor"?: string;
+        /**
+          * Text color of the nav item when hovered
+          * @uiName Text Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textHoverColor"?: string;
     }
     interface SqmPagination {
         /**

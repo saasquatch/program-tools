@@ -9,6 +9,7 @@ import {
   NavigationSidebarItemViewProps,
 } from "./sqm-navigation-sidebar-item-view";
 import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
+import { Spacing } from "../../global/mixins";
 
 /**
  * @uiName Microsite Sidebar Item
@@ -30,12 +31,76 @@ export class NavigationSidebarItem {
    * Options available at https://shoelace.style/components/icon
    *
    * @uiName Icon
+   * @uiGroup Style
    */
   @Prop() icon: string;
   /**
    * @uiName Label
    */
   @Prop() label: string;
+
+  /**
+   * Background color of the nav item
+   * @uiName Background Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Background color of the nav item when hovered
+   * @uiName Background Hover Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() backgroundHoverColor?: string;
+
+  /**
+   * Background color of the nav item when focused
+   * @uiName Background Focused Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() backgroundFocusedColor?: string;
+
+  /**
+   * Text color of the nav item
+   * @uiName Text Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * Text color of the nav item when hovered
+   * @uiName Text Hover Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() textHoverColor?: string;
+
+  /**
+   * Text color of the nav item when items is focused
+   * @uiName Text Focused Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() textFocusedColor?: string;
+
+  /**
+   * Border radius (in number of pixels)
+   * @uiName Border Radius
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: number;
+
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   */
+  @Prop() padding?: Spacing = "x-small";
 
   /**
    * @undocumented
@@ -68,6 +133,14 @@ function useSidebarItemDemo(
         label: props.label || "Dashboard",
         icon: props.icon || "house",
       },
+      backgroundColor: props.backgroundColor,
+      backgroundHoverColor: props.backgroundHoverColor,
+      textColor: props.textColor,
+      textHoverColor: props.textHoverColor,
+      borderRadius: props.borderRadius,
+      backgroundFocusedColor: props.backgroundFocusedColor,
+      textFocusedColor: props.textFocusedColor,
+      padding: props.padding,
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
