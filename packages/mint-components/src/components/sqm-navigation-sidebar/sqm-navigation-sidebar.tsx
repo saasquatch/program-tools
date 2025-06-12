@@ -33,7 +33,7 @@ export class NavigationSidebar {
    * @format color
    * @uiGroup Style
    */
-  @Prop() mobileMenuColor?: string;
+  @Prop() mobileMenuColor?: string = "var(--sqm-text, #444445)";
 
   /**
    * @undocumented
