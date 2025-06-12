@@ -3,14 +3,29 @@ import { h, VNode } from "@stencil/core";
 export interface NavigationSidebarViewProps {
   checked?: boolean;
   onClick?: (e: MouseEvent) => void;
+  mobileMenuColor?: string;
 }
 
-const vanillaStyle = `
+export function NavigationSidebarView(
+  props: NavigationSidebarViewProps,
+  children: VNode
+) {
+  const vanillaStyle = `
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.container {
+  background: var(--sqm-portal-background);
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 @keyframes slideIn {
@@ -64,12 +79,12 @@ const vanillaStyle = `
     flex-direction: column;
     z-index: 100;
   }
-  .menu-items { 
+  .menu-items {
     display: none;
     padding: 20px;
     border-right: 1px solid #eaeaea;
     padding-top: 60px;
-    background: white; 
+    background: var(--sqm-portal-background); 
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -133,7 +148,7 @@ const vanillaStyle = `
   .toggler:checked ~ .hamburger > .line:nth-child(2),
   .toggler:checked ~ .hamburger > .line:nth-child(3) {
     width: 75%;
-    border-bottom: 3px solid #444445;
+    border-bottom: 3px solid ${props.mobileMenuColor};
     margin: 0;
   }
 
@@ -143,15 +158,11 @@ const vanillaStyle = `
     height: 4px;
     width: 100%;
     margin-bottom: 3px;
-    border-bottom: 5px solid #444445;
+    border-bottom: 5px solid ${props.mobileMenuColor};
   }
 }
 `;
 
-export function NavigationSidebarView(
-  props: NavigationSidebarViewProps,
-  children: VNode
-) {
   return (
     <div class="container" part="sqm-base">
       <style>{vanillaStyle}</style>

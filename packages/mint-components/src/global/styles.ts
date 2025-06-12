@@ -582,11 +582,11 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: transparent;
+  --sqm-portal-background: #121212;
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-
+  
   /*
   --sqm-text: var(--sl-color-neutral-800);
   --sqm-text-subdued: var(--sl-color-neutral-500);

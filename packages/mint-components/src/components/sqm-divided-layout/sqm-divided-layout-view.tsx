@@ -5,12 +5,15 @@ interface DividedLayoutViewProps {
   direction: "row" | "column";
   contentAreaWidth?: string | null;
   dividerStyle: string;
+  backgroundColor?: string;
+  borderless?: boolean;
 }
 
 export function DividedLayoutView(
   props: DividedLayoutViewProps,
   children: VNode
 ) {
+  console.log("background color is ", props.backgroundColor);
   const getBorder = () => {
     if (props.direction === "row") {
       return { "border-right": props.dividerStyle || "1px solid #EAEAEA" };
@@ -21,6 +24,7 @@ export function DividedLayoutView(
 
   const style = {
     LayoutContainer: {
+      background: props.backgroundColor,
       display: "contents",
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
@@ -37,7 +41,8 @@ export function DividedLayoutView(
     flex: 1;
     box-sizing: border-box;
     flex-direction: ${props.direction};
-    background-color: var(--sqm-content-background);
+    background-color: var(--sqm-portal-background);
+    color: var(--sqm-text);
     overflow-x: clip;
     ${
       props.direction === "column"

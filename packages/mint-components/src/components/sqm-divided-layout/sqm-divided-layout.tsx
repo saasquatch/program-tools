@@ -38,6 +38,12 @@ export class DividedLayout {
    */
   @Prop() dividerStyle: string = "1px solid #EAEAEA";
 
+  /**
+   * Background color of the divider
+   * @uiName Divider Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string = "#FFFFFF";
   constructor() {
     withHooks(this);
   }

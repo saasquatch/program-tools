@@ -44,19 +44,81 @@
         --sqm-text: black !important;
       }
     </style>
-    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Success" type="success" open>
-      <sl-icon  slot="icon" name="exclamation-triangle" ></sl-icon>
-      test alert success
-    </sl-alert>
-    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Warning" type="warning" open>
-      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-      test alert warning
-    </sl-alert>
-    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Danger" type="danger" open>
-      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-      test alert danger
-    </sl-alert>
     <!-- <sqm-stencilbook></sqm-stencilbook> -->
     <!-- <squatch-embed widget="p/qa/w/referrerWidget"></squatch-embed> -->
+    <sqm-divided-layout
+      direction="row"
+      background="#121212"
+      divider-style="1px solid white"
+    >
+      <sqm-navigation-sidebar>
+        <sqm-navigation-sidebar-item
+          path="/"
+          icon="house"
+          label="Dashboard"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/activity"
+          icon="bar-chart"
+          label="Activity"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/editProfile"
+          icon="person"
+          label="Edit Profile"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/logout"
+          icon="box-arrow-right"
+          label="Logout"
+        ></sqm-navigation-sidebar-item>
+      </sqm-navigation-sidebar>
+      <sqm-divided-layout
+        background-color="purple"
+        direction="column"
+        divider-style="1px solid white"
+      >
+        <sqm-portal-protected-route
+          require-email-verification="true"
+          redirect-to="/login"
+          redirect-to-unverified="/emailVerification"
+        ></sqm-portal-protected-route>
+        <sqm-portal-container
+          direction="column"
+          padding="xxx-large"
+          gap="xxx-large"
+        >
+          <sqm-text> <h1>Activity</h1></sqm-text>
+          <sqm-stat-container alignment="left" space="xxxx-large"
+            ><sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/referralsCount"
+              ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+            >
+            <sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardsCountFiltered/AVAILABLE"
+              ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+            >
+            <sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardBalance/CREDIT/CENTS"
+              ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+            >
+          </sqm-stat-container>
+          <sqm-referral-table>
+            <sqm-referral-table-user-column></sqm-referral-table-user-column>
+            <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+            <sqm-referral-table-status-column></sqm-referral-table-status-column>
+            <sqm-referral-table-date-column
+              column-title="Referred"
+              date-shown="dateReferralStarted"
+            ></sqm-referral-table-date-column> </sqm-referral-table
+        ></sqm-portal-container>
+      </sqm-divided-layout>
+    </sqm-divided-layout>
   </body>
 </html>

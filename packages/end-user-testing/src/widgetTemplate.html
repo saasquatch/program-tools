@@ -1,564 +1,98 @@
-<style>
-	:host {
-		--sqm-primary-button-background: #1ed760;
-		--sqm-text: white !important;
-	}
-</style>
-
-<sqm-brand brand-color="rgba(30, 215, 96, 1)" brand-font="Poppins">
-	<sqm-portal-container
+<sqm-divided-layout
+	direction="row"
+	background="#121212"
+	divider-style="1px solid white"
+>
+	<sqm-navigation-sidebar>
+		<sqm-navigation-sidebar-item
+			path="/"
+			icon="house"
+			label="Dashboard"
+			background-color="#121212"
+			background-hover-color="#282828"
+			border-radius="30"
+			background-focused-color="#1ed760"
+			text-focused-color="#121212"
+			text-color="#ffffff"
+		></sqm-navigation-sidebar-item>
+		<sqm-navigation-sidebar-item
+			path="/activity"
+			icon="bar-chart"
+			label="Activity"
+			background-color="#121212"
+			background-hover-color="#282828"
+			border-radius="30"
+			background-focused-color="#1ed760"
+			text-focused-color="#121212"
+			text-color="#ffffff"
+		></sqm-navigation-sidebar-item>
+		<sqm-navigation-sidebar-item
+			path="/editProfile"
+			icon="person"
+			label="Edit Profile"
+			background-color="#121212"
+			background-hover-color="#282828"
+			border-radius="30"
+			background-focused-color="#1ed760"
+			text-focused-color="#121212"
+			text-color="#ffffff"
+		></sqm-navigation-sidebar-item>
+		<sqm-navigation-sidebar-item
+			path="/logout"
+			icon="box-arrow-right"
+			label="Logout"
+			background-color="#121212"
+			background-hover-color="#282828"
+			border-radius="30"
+			background-focused-color="#1ed760"
+			text-focused-color="#121212"
+			text-color="#ffffff"
+		></sqm-navigation-sidebar-item>
+	</sqm-navigation-sidebar>
+	<sqm-divided-layout
+		background-color="purple"
 		direction="column"
-		padding="small"
-		gap="xxx-large"
-		display="grid"
-		max-width="100%"
-		background-color="rgba(18, 18, 18, 1)"
-		><sqm-portal-container
+		divider-style="1px solid white"
+	>
+		<sqm-portal-protected-route
+			require-email-verification="true"
+			redirect-to="/login"
+			redirect-to-unverified="/emailVerification"
+		></sqm-portal-protected-route>
+		<sqm-portal-container
 			direction="column"
-			padding="none"
+			padding="xxx-large"
 			gap="xxx-large"
-			display="grid"
-			max-width="100%"
-			><sqm-image
-				alignment="center"
-				slot
-				image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1749243966/tenant_test_ahsf8e6g2r1dh/ku3cu7f0fca3jd3byfrr.jpg"
-			></sqm-image
-			><sqm-hero-image
-				header="Spotify Rewards"
-				description="Refer friends and complete tasks to earn rewards"
-				layout="columns"
-				image-pos="right"
-				background-color="rgba(30, 215, 96, 1)"
-				image-mobile-pos="top"
-				image-percentage="50"
-				padding-image="none"
-				padding-text="x-large"
-				overlay-opacity="1"
-				text-color="rgba(18, 18, 18, 1)"
-				image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1749244569/tenant_test_ahsf8e6g2r1dh/llyuiejgzc6caec2ozxs.webp"
-			></sqm-hero-image
-			><sqm-pagination slot></sqm-pagination
-			><sqm-hero-image
-				image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
-				header="Spotify Rewards"
-				description="Refer a friend and earn up to $1200 in rewards"
-				layout="overlay"
-				image-pos="center"
-				background-color="#F9F9F9"
-				button-link="https://www.example.com"
-				button-new-tab
-				button-text="Earn!"
-				image-percentage="45"
-				overlay-opacity="1"
-				padding-image="small"
-				padding-text="xxxx-large"
-				slot
-				text-color="rgba(18, 18, 18, 1)"
-				overlay-color="rgba(30, 215, 96, 1)"
-			></sqm-hero-image></sqm-portal-container
-		><sqm-portal-container
-			direction="column"
-			padding="none"
-			gap="xxx-large"
-			max-width="770px"
-			center
-			display="grid"
-			><sqm-user-name
-				fallback="Anonymous User"
-				loading-text="..."
-				slot
-			></sqm-user-name>
-			<p slot>This is a test paragraph, what color is it ?&#xa0;<br /></p>
-			<sqm-share-code
-				tooltip-text="Copied to Clipboard"
-				tooltip-lifespan="1000"
-				slot
-			></sqm-share-code
-			><sqm-program-explainer header="How it works" slot
-				><sqm-program-explainer-step
-					background-color="#13d760"
-					description="Explore and use our product while earning points in the process!"
-					header="Earn points"
-					icon="cash-stack"
-					text-color="#000000"
-				></sqm-program-explainer-step
-				><sqm-program-explainer-step
-					background-color="#13d760"
-					description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard"
-					header="Redeem rewards"
-					icon="people"
-					text-color="#000000"
-				></sqm-program-explainer-step></sqm-program-explainer
-			><sqm-stat-container space="xxx-large" display="flex">
-				<sqm-big-stat
+		>
+			<sqm-text> <h1>Activity</h1></sqm-text>
+			<sqm-stat-container alignment="left" space="xxxx-large"
+				><sqm-big-stat
 					flex-reverse="true"
 					alignment="left"
 					stat-type="/referralsCount"
-					><p>Referrals</p></sqm-big-stat
-				><sqm-big-stat
+					><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+				>
+				<sqm-big-stat
 					flex-reverse="true"
 					alignment="left"
-					stat-type="/rewardBalance/CREDIT/POINT/value/global"
-					slot
-					><p>Points Balance</p></sqm-big-stat
-				><sqm-big-stat
+					stat-type="/rewardsCountFiltered/AVAILABLE"
+					><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+				>
+				<sqm-big-stat
 					flex-reverse="true"
 					alignment="left"
-					stat-type="/rewardBalance/CREDIT/POINT/value/global"
-					slot
-					><p>Points Balance</p></sqm-big-stat
-				><sqm-big-stat
-					flex-reverse="true"
-					alignment="left"
-					stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
-					><p>Giftcards Earned</p></sqm-big-stat
-				><sqm-big-stat
-					flex-reverse="true"
-					alignment="left"
-					stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
-					slot
-					><p>Giftcards Earned</p></sqm-big-stat
-				><sqm-big-stat
-					flex-reverse="true"
-					alignment="left"
-					stat-type="/rewardBalance/CREDIT/POINT/value/global"
-					><p>Points Balance</p></sqm-big-stat
-				></sqm-stat-container
-			><sqm-timeline icon="circle" slot>
-				<sqm-timeline-entry
-					reward="$50"
-					unit="visa giftcard"
-					desc="You refer a friend"
-					icon="circle"
+					stat-type="/rewardBalance/CREDIT/CENTS"
+					><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
 				>
-				</sqm-timeline-entry>
-				<sqm-timeline-entry
-					reward="$200"
-					unit="visa giftcard"
-					desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
-					icon="circle"
-				>
-				</sqm-timeline-entry>
-				<sqm-timeline-entry
-					reward="$1000"
-					unit="visa giftcard"
-					desc="Your friend purchases an Enterprise plan"
-					icon="circle"
-				>
-				</sqm-timeline-entry
-				><sqm-timeline-entry
-					reward="$50"
-					unit="visa giftcard"
-					desc="You refer a friend"
-					icon="circle"
-					slot
-				>
-				</sqm-timeline-entry></sqm-timeline
-			><sqm-card-feed gap="24" width="347" slot>
-				<sqm-task-card
-					border-color="transparent"
-					text-color="white"
-					background-color="#13d760"
-					button-style="secondary"
-					reward-amount="20"
-					goal="1"
-					card-title="Complete a Survey"
-					description="Fill out our NPS survey and get 20 points for giving us honest feedback."
-					button-text="Take survey"
-					reward-unit="Points"
-					completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
-					ended-message="Ended {endDate}"
-					expiry-message="Ends {endDate}"
-					finite="0"
-					starts-on-message="Starts {startDate}"
-				>
-				</sqm-task-card>
-				<sqm-task-card
-					border-color="transparent"
-					background-color="#13d760"
-					button-style="secondary"
-					reward-amount="250"
-					goal="500"
-					show-progress-bar
-					card-title="Spend $500"
-					description="Earn 250 points when you spend $500 or more."
-					button-text="See plans"
-					completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
-					ended-message="Ended {endDate}"
-					expiry-message="Ends {endDate}"
-					progress-bar-unit="$"
-					finite="0"
-					reward-unit="Points"
-					starts-on-message="Starts {startDate}"
-				>
-				</sqm-task-card>
-				<sqm-task-card
-					border-color="transparent"
-					background-color="#13d760"
-					button-style="secondary"
-					goal="1"
-					reward-amount="50"
-					card-title="Follow Us on X"
-					description="Earn 50 points when you Follow Us on X!"
-					button-text="Follow"
-					button-link="https://twitter.com/"
-					open-new-tab="true"
-					event-key="socialFollow"
-					completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
-					ended-message="Ended {endDate}"
-					expiry-message="Ends {endDate}"
-					finite="0"
-					reward-unit="Points"
-					starts-on-message="Starts {startDate}"
-				>
-				</sqm-task-card>
-				<sqm-task-card
-					border-color="transparent"
-					background-color="#13d760"
-					button-style="secondary"
-					reward-amount="1"
-					reward-unit="Free Month"
-					goal="1"
-					card-title="Upgrade Your Plan"
-					description="Receive one free month for being a committed customer when you upgrade your plan."
-					button-text="Upgrade"
-					completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
-					ended-message="Ended {endDate}"
-					expiry-message="Ends {endDate}"
-					open-new-tab="false"
-					finite="0"
-					starts-on-message="Starts {startDate}"
-				>
-				</sqm-task-card
-				><sqm-task-card
-					border-color="transparent"
-					background-color="#13d760"
-					button-style="secondary"
-					goal="1"
-					reward-amount="50"
-					card-title="Follow Us on X"
-					description="Earn 50 points when you Follow Us on X!"
-					button-text="Follow"
-					button-link="https://twitter.com/"
-					open-new-tab="true"
-					event-key="socialFollow"
-					completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
-					ended-message="Ended {endDate}"
-					expiry-message="Ends {endDate}"
-					finite="0"
-					reward-unit="Points"
-					starts-on-message="Starts {startDate}"
-					slot
-				></sqm-task-card> </sqm-card-feed
-			><sqm-qr-code></sqm-qr-code
-			><sqm-referral-codes slot
-				><sqm-pagination slot="pagination"></sqm-pagination
-				><sqm-referral-code
-					slot="shareCodes"
-					show-notification-text="true"
-				></sqm-referral-code
-				><sqm-portal-container gap="small" slot="shareButtons"
-					><sqm-share-button medium="email">Share via email</sqm-share-button
-					><sqm-share-button medium="fbmessenger"
-						>Share on Facebook</sqm-share-button
-					><sqm-share-button medium="whatsapp"
-						>Share on WhatsApp</sqm-share-button
-					></sqm-portal-container
-				></sqm-referral-codes
-			><sqm-leaderboard
-				usersheading="Referrer"
-				rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
-				statsheading="Referrals"
-				rank-type="rank"
-				leaderboard-type="topStartedReferrers"
-				rankheading="Rank"
-				show-rank="true"
-				slot
-				viewing-user-highlight-color="rgba(30, 215, 96, 1)"
-				><sqm-empty
-					empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
-					empty-state-header="View your rank in the leaderboard"
-					empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-				></sqm-empty
-			></sqm-leaderboard>
-			<div
-				slot
-				style="
-					display: flex;
-					align-items: flex-start;
-					justify-content: center;
-					width: 100%;
-					gap: 50px;
-				"
-			>
-				<div
-					style="
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-						justify-content: center;
-						gap: 10px;
-						max-width: 30%;
-					"
-				>
-					<sqm-image
-						width="70%"
-						alignment="center"
-						image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"
-					></sqm-image>
-					<h2 style="margin: auto">Top Performers</h2>
-					<p style="margin: 0; text-align: center">
-						The leaderboard highlights the top performers in real-time. Stay
-						motivated, stay competitive!
-					</p>
-				</div>
-				<sqm-leaderboard
-					width="300px"
-					usersheading="Referrer"
-					statsheading="Referrals"
-					rank-type="rank"
-					leaderboard-type="topStartedReferrers"
-					rankheading="Rank"
-					show-rank="true"
-					hide-viewer="true"
-					program-id="qa"
-					hide-names
-					><sqm-empty
-						empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
-						empty-state-header="View your rank in the leaderboard"
-						empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-					></sqm-empty
-				></sqm-leaderboard>
-			</div>
-			<sqm-portal-container
-				gap="xx-large"
-				direction="column"
-				display="grid"
-				max-width="100%"
-				padding="none"
-				><sqm-titled-section
-					text-align="center"
-					label-margin="xxx-small"
-					padding="none"
-					><h3 slot="label">Share &#x24;50 with friends</h3>
-					<p slot="content">
-						They&#x2019;ll get a &#x24;50 credit towards a new account and
-						you&#x2019;ll get up to &#x24;1200
-					</p></sqm-titled-section
-				><sqm-coupon-code
-					tooltip-text="Copied to Clipboard"
-					tooltip-lifespan="1000"
-					slot
-				></sqm-coupon-code
-				><sqm-referral-card vertical-alignment="start"
-					><sqm-portal-container
-						gap="large"
-						slot="left"
-						direction="column"
-						display="grid"
-						max-width="100%"
-						padding="none"
-						><p>
-							They&#x2019;ll get a &#x24;50 credit towards a new account and
-							you&#x2019;ll get:
-						</p>
-						<sqm-timeline icon="circle"
-							><sqm-timeline-entry
-								reward="$50"
-								unit="visa giftcard"
-								desc="Your friend purchases a Business plan"
-								icon="circle"
-							></sqm-timeline-entry
-							><sqm-timeline-entry
-								reward="$200"
-								unit="visa giftcard"
-								desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
-								icon="circle"
-							></sqm-timeline-entry
-							><sqm-timeline-entry
-								reward="$1000"
-								unit="visa giftcard"
-								desc="Your friend purchases an Enterprise plan"
-								icon="circle"
-							></sqm-timeline-entry></sqm-timeline></sqm-portal-container
-					><sqm-portal-container
-						gap="large"
-						slot="right"
-						direction="column"
-						display="grid"
-						max-width="100%"
-						padding="none"
-						><p>Choose how you want to share:</p>
-						<p><sub>Your unique referral link:</sub></p>
-						<sqm-share-link
-							tooltip-text="Copied to Clipboard"
-							tooltip-lifespan="1000"
-						></sqm-share-link
-						><sqm-portal-container
-							gap="x-small"
-							direction="column"
-							display="grid"
-							max-width="100%"
-							padding="none"
-							><sqm-share-button
-								medium="email"
-								icon-slot="prefix"
-								size="medium"
-								type="default"
-								>Share via email</sqm-share-button
-							><sqm-share-button
-								medium="linkedin"
-								icon-slot="prefix"
-								size="medium"
-								type="default"
-								>Share on LinkedIn</sqm-share-button
-							><sqm-share-button
-								medium="twitter"
-								icon-slot="prefix"
-								size="medium"
-								type="default"
-								>Post about us</sqm-share-button
-							></sqm-portal-container
-						></sqm-portal-container
-					></sqm-referral-card
-				><sqm-portal-container
-					gap="xx-large"
-					direction="column"
-					display="grid"
-					max-width="100%"
-					min-width
-					padding="none"
-					><sqm-titled-section text-align="center" label-margin="xxx-small"
-						><h3 slot="label">Earn more rewards</h3>
-						<p slot="content">
-							Get points while using our product. Use those points to redeem
-							rewards like one free month of Enterprise or two plane tickets to
-							anywhere in North America
-						</p></sqm-titled-section
-					></sqm-portal-container
-				><sqm-leaderboard
-					usersheading="Referrer"
-					statsheading="Referrals"
-					rank-type="rank"
-					leaderboard-type="topStartedReferrers"
-					rankheading="Rank"
-					show-rank="true"
-					slot
-					viewing-user-highlight-color="rgba(30, 215, 96, 1)"
-					><sqm-empty
-						empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
-						empty-state-header="View your rank in the leaderboard"
-						empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-					></sqm-empty></sqm-leaderboard
-				><sqm-tabs
-					><sqm-tab header="Referral history"
-						><sqm-referral-table
-							per-page="4"
-							hidden-columns="2"
-							more-label="Next"
-							prev-label="Prev"
-							sm-breakpoint="599"
-							md-breakpoint="799"
-							><sqm-referral-table-user-column
-								column-title="User"
-								anonymous-user="Anonymous User"
-								deleted-user="Deleted User"
-							></sqm-referral-table-user-column
-							><sqm-referral-table-status-column
-								column-title="Referral status"
-								converted-status-text="Converted"
-								in-progress-status-text="In Progress"
-								pending-review-status-text="Pending"
-								denied-status-text="Denied"
-								pending-review-status-sub-text="Awaiting review"
-								denied-status-sub-text="Detected self-referral"
-							></sqm-referral-table-status-column
-							><sqm-referral-table-rewards-column
-								column-title="Rewards"
-								expiring-text="Expiring in"
-								fuel-tank-text="Your code is"
-								pending-for-text="{status} for {date}"
-								reward-received-text="Reward received on"
-								denied-help-text="Contact support if you think this is a mistake."
-								status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward approved for payout and was scheduled for payment based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
-								status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-							></sqm-referral-table-rewards-column
-							><sqm-referral-table-date-column
-								column-title="Date referred"
-								date-shown="dateReferralStarted"
-							></sqm-referral-table-date-column
-							><sqm-empty
-								slot="empty"
-								empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
-								empty-state-header="View your referral details"
-								empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
-							></sqm-empty></sqm-referral-table></sqm-tab
-					><sqm-tab header="Reward history"
-						><sqm-rewards-table
-							per-page="4"
-							program-id
-							hidden-columns="0"
-							more-label="Next"
-							prev-label="Prev"
-							sm-breakpoint="599"
-							md-breakpoint="799"
-							><sqm-rewards-table-reward-column
-								available-text="{availableAmount} remaining"
-								column-title="Reward"
-								copy-text="Copied!"
-								redeemed-text="{redeemedAmount} redeemed"
-							></sqm-rewards-table-reward-column
-							><sqm-rewards-table-date-column
-								column-title="Date received"
-								date-shown="dateGiven"
-								slot
-							></sqm-rewards-table-date-column
-							><sqm-rewards-table-source-column
-								anonymous-user="Anonymous User"
-								column-title="Source"
-								deleted-user="Deleted User"
-								referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
-								reward-exchange-text="Reward Exchange"
-								reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
-							></sqm-rewards-table-source-column
-							><sqm-rewards-table-status-column
-								column-title="Status"
-								expiry-text="Expires on "
-								status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }"
-								pending-us-tax="W-9 required"
-								pending-scheduled="Until"
-								pending-unhandled="Fulfillment error"
-								pending-review-text="Awaiting review"
-								denied-text="Detected self-referral"
-								pending-tax-review="Awaiting tax form review."
-								pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards."
-								pending-tax-submission="Submit your tax documents to receive your rewards."
-								pending-partner-creation="Complete your tax and cash payout setup to receive your rewards."
-								payout-failed="Payout failed due to a fulfillment issue and is current being retried."
-								payout-cancelled="If you think this is a mistake, contact our Support team."
-								payout-approved="Reward approved for payout and was scheduled for payment based on your settings."
-							></sqm-rewards-table-status-column
-							><sqm-rewards-table-date-column
-								column-title="Date received"
-								date-shown="dateGiven"
-							></sqm-rewards-table-date-column
-							><sqm-empty
-								slot="empty"
-								empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
-								empty-state-header="View your rewards"
-								empty-state-text="Refer friends and complete tasks to view the details of your rewards"
-							></sqm-empty></sqm-rewards-table></sqm-tab></sqm-tabs></sqm-portal-container
-			><sqm-portal-footer
-				support-email="support@example.com"
-				terms-link="https://example.com"
-				faq-link="https://example.com"
-				terms-text="Terms And Conditions"
-				faq-text="FAQ"
-				show-powered-by="true"
-				padding-bottom="none"
-				padding-left="none"
-				padding-right="none"
-				padding-top="none"
-			></sqm-portal-footer></sqm-portal-container></sqm-portal-container
-></sqm-brand>
+			</sqm-stat-container>
+			<sqm-referral-table>
+				<sqm-referral-table-user-column></sqm-referral-table-user-column>
+				<sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+				<sqm-referral-table-status-column></sqm-referral-table-status-column>
+				<sqm-referral-table-date-column
+					column-title="Referred"
+					date-shown="dateReferralStarted"
+				></sqm-referral-table-date-column> </sqm-referral-table
+		></sqm-portal-container>
+	</sqm-divided-layout>
+</sqm-divided-layout>
