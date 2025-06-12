@@ -79,8 +79,8 @@ export class BigStat {
   @Prop() statFontSize?: number;
 
   /**
-   * Font size of the stat text in pixels
-   * @uiName Stat font size
+   * Font weight of the stat text
+   * @uiName Stat font weight
    * @uiGroup Style
    * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
    * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
