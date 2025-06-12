@@ -27,6 +27,7 @@ import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-
 import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
+import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
@@ -1804,6 +1805,18 @@ export namespace Components {
         "menuLabel": string;
     }
     interface SqmNavigationSidebar {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<NavigationSidebarViewProps>;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "mobileMenuColor"?: string;
     }
     interface SqmNavigationSidebarItem {
         /**
@@ -9027,6 +9040,18 @@ declare namespace LocalJSX {
         "menuLabel"?: string;
     }
     interface SqmNavigationSidebar {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<NavigationSidebarViewProps>;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "mobileMenuColor"?: string;
     }
     interface SqmNavigationSidebarItem {
         /**
