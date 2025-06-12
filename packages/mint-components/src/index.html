@@ -44,7 +44,19 @@
         --sqm-text: black !important;
       }
     </style>
-    <sqm-stencilbook></sqm-stencilbook>
+    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Success" type="success" open>
+      <sl-icon  slot="icon" name="exclamation-triangle" ></sl-icon>
+      test alert success
+    </sl-alert>
+    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Warning" type="warning" open>
+      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+      test alert warning
+    </sl-alert>
+    <sl-alert exportparts="base: warningalert-base, icon:warningalert-icon" class="Danger" type="danger" open>
+      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+      test alert danger
+    </sl-alert>
+    <!-- <sqm-stencilbook></sqm-stencilbook> -->
     <!-- <squatch-embed widget="p/qa/w/referrerWidget"></squatch-embed> -->
   </body>
 </html>

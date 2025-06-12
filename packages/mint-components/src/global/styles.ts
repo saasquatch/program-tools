@@ -575,6 +575,7 @@ html {
   --sl-z-index-toast: 950;
   --sl-z-index-tooltip: 1000;
 }
+  
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
@@ -623,6 +624,73 @@ body {
   line-height: var(--sl-line-height-normal);
   margin: 0;
   background-color: var(--sqm-portal-background);
+}
+
+/** AL: Shading variables **/
+sl-alert[type="success"]::part(icon) {
+  color: var(--sqm-success-icon-color, var(--sl-color-success-500));
+}
+
+sl-alert[type="success"]::part(base) {
+  background-color: var(--sqm-success-icon-color, var(--sl-color-success-100));
+}
+
+sl-alert[type="warning"]::part(icon) {
+  color: var(--sqm-warning-icon-color, var(--sl-color-warning-500));
+}
+
+sl-alert[type="warning"]::part(base) {
+  background-color: var(--sqm-warning-icon-color, var(--sl-color-warning-100));
+}
+
+sl-alert[type="danger"]::part(icon) {
+  color: var(--sqm-danger-icon-color, var(--sl-color-danger-500));
+}
+
+sl-alert[type="danger"]::part(base) {
+  background-color: var(--sqm-danger-icon-color, var(--sl-color-danger-100));
+}
+
+
+sl-alert[type="info"]::part(icon) {
+  color: var(--sqm-info-icon-color, var(--sl-color-info-500));
+}
+
+sl-alert[type="info"]::part(base) {
+  background-color: var(--sqm-info-icon-color, var(--sl-color-info-100));
+}
+
+sl-alert[type="neutral"]::part(icon) {
+  color: var(--sqm-neutral-icon-color, var(--sl-color-neutral-500));
+}
+
+sl-alert[type="neutral"]::part(base) {
+  background-color: var(--sqm-neutral-icon-color, var(--sl-color-neutral-100));
+}
+
+sl-badge[type="success"]::part(base) {
+  background-color: var(--sqm-success-badge-background, var(--sl-color-success-100));
+  color: var(--sqm-success-badge-text-color, var(--sl-color-success-700));
+}
+
+sl-badge[type="warning"]::part(base) {
+  background-color: var(--sqm-warning-badge-background, var(--sl-color-warning-100));
+  color: var(--sqm-warning-badge-text-color, var(--sl-color-warning-700));
+}
+
+sl-badge[type="danger"]::part(base) {
+  background-color: var(--sqm-danger-badge-background, var(--sl-color-danger-100));
+  color: var(--sqm-danger-badge-text-color, var(--sl-color-danger-700));
+}
+
+sl-badge[type="info"]::part(base) {
+  background-color: var(--sqm-info-badge-background, var(--sl-color-info-100));
+  color: var(--sqm-info-badge-text-color, var(--sl-color-info-700));
+}
+
+sl-badge[type="neutral"]::part(base) {
+  background-color: var(--sqm-neutral-badge-background, var(--sl-color-neutral-100));
+  color: var(--sqm-neutral-badge-text-color, var(--sl-color-neutral-700));
 }
 
 // .terms-link,
