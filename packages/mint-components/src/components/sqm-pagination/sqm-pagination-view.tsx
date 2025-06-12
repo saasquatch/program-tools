@@ -14,6 +14,7 @@ export interface PaginationViewProps {
     onNext: (e: Event) => void;
     onPrev: (e: Event) => void;
   };
+  buttonType?: "primary" | "secondary";
 }
 
 const style = {
@@ -35,7 +36,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PaginationView(props: PaginationViewProps) {
-  const { states, callbacks, text } = props;
+  const { states, callbacks, text, buttonType } = props;
   const { onNext, onPrev } = callbacks;
   const { currentPage, totalPages, loading } = states;
 
@@ -47,6 +48,9 @@ export function PaginationView(props: PaginationViewProps) {
       {!loading && (
         <Fragment>
           <sl-button
+            exportparts={`base: ${
+              props.buttonType === "primary" ? "primary" : "secondary"
+            }button-base`}
             onClick={onPrev}
             part="sqm-pagination-button"
             circle
@@ -58,6 +62,9 @@ export function PaginationView(props: PaginationViewProps) {
         </Fragment>
       )}
       <sl-button
+        exportparts={`base: ${
+          props.buttonType === "primary" ? "primary" : "secondary"
+        }button-base`}
         onClick={onNext}
         part="sqm-pagination-button"
         circle

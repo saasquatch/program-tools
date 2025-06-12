@@ -8,7 +8,7 @@
 | Property              | Attribute               | Description                                                                                                                                   | Type     | Default     |
 | --------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `backgroundColor`     | `background-color`      |                                                                                                                                               | `string` | `undefined` |
-| `borderRadius`        | `border-radius`         |                                                                                                                                               | `string` | `undefined` |
+| `borderRadius`        | `border-radius`         | Amount in pixels                                                                                                                              | `number` | `undefined` |
 | `description`         | `description`           |                                                                                                                                               | `string` | `undefined` |
 | `header`              | `header`                |                                                                                                                                               | `string` | `undefined` |
 | `icon`                | `icon`                  | Full list of valid icon names available in the [Shoelace Icon Library](https://shoelace.style/components/icon). This value is case sensitive. | `string` | `undefined` |

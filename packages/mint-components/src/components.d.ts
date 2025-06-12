@@ -1822,6 +1822,15 @@ export namespace Components {
     }
     interface SqmPagination {
         /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -8973,6 +8982,15 @@ declare namespace LocalJSX {
         "path"?: string;
     }
     interface SqmPagination {
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object

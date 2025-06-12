@@ -28,6 +28,17 @@ export class Pagination {
   @Prop() paginationText: string = "{currentPage} of {totalPages}";
 
   /**
+   * The type of the button (primary or secondary) that will be used to copy the link.
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "secondary";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -60,6 +71,7 @@ function useDemoPagination(
         totalPages: 5,
         loading: false,
       },
+      buttonType: props.buttonType,
       callbacks: {
         onNext: () => setCurrentPage(currentPage + 1),
         onPrev: () => setCurrentPage(currentPage - 1),

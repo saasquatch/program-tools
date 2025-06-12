@@ -13,8 +13,8 @@
 - [sqm-empty](../sqm-empty)
 - [sqm-pagination](../sqm-pagination)
 - [sqm-share-link](../sqm-share-link)
-- [sqm-stat-container](../sqm-stat-container)
 - [sqm-big-stat](../sqm-big-stat)
+- [sqm-stat-container](../sqm-stat-container)
 - [sqm-text](../sqm-text)
 - [sqm-image](../sqm-image)
 - [sqm-leaderboard](../sqm-leaderboard)
@@ -105,8 +105,8 @@ graph TD;
   sqm-stencilbook --> sqm-empty
   sqm-stencilbook --> sqm-pagination
   sqm-stencilbook --> sqm-share-link
-  sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-big-stat
+  sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-leaderboard
