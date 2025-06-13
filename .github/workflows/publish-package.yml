@@ -10,6 +10,7 @@ on:
         options:
           - program-boilerplate
           - program-test-suite
+          - express-boilerplate
 
       increment-type:
         description: The version number to increment
