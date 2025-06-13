@@ -8,10 +8,11 @@ on:
         required: true
         type: choice
         options:
-          - program-boilerplate
-          - program-test-suite
           - express-boilerplate
           - integration-boilerplate-node
+          - logger
+          - program-boilerplate
+          - program-test-suite
 
       increment-type:
         description: The version number to increment
