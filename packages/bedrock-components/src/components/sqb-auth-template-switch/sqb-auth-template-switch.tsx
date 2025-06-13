@@ -1,24 +1,23 @@
-import { isDemo } from '@saasquatch/component-boilerplate';
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, h, Host, Prop } from '@stencil/core';
-import { useAuthTemplateSwitch } from './useAuthTemplateSwitch';
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Host, Prop } from "@stencil/core";
+import { useAuthTemplateSwitch } from "./useAuthTemplateSwitch";
 
 /**
  * Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
  *
  * @uiName Auth Template Switcher
- * @slots [{"name":"logged-out","title":"Logged out template"}, {"name": "logged-in", "title": "Logged in template"}]
+ * @slots [{"name":"logged-out","title":"Logged out template"},{"name":"logged-in","title":"Logged in template"}]
  * @canvasRenderer always-replace
  */
 @Component({
-  tag: 'sqb-auth-template-switch',
+  tag: "sqb-auth-template-switch",
 })
 export class SqbAuthTemplateSwitch {
   /**
-   * @state { "title": "Verified", "slot": "logged-in", "props": "testToken" }
-   * @state { "title": "Unverified", "slot": "logged-out", "props": "" }
+   * @componentState { "title": "Logged Out", "slot": "logged-out", "props": { "overrideToken": false } }
+   * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
    */
-  @Prop() stateController?: string = undefined;
+  @Prop() stateController: string = "{}";
 
   constructor() {
     withHooks(this);
@@ -27,11 +26,12 @@ export class SqbAuthTemplateSwitch {
   disconnectedCallback() {}
 
   render() {
-    const { setContainer, setSlot } = isDemo() ? useDemoAuthSwitch(this) : useAuthTemplateSwitch();
+    const stateProps = JSON.parse(this.stateController)["sqb-auth-template-switch"];
+    const { setContainer, setSlot } = useAuthTemplateSwitch(stateProps?.overrideToken);
 
     return (
       <Host>
-        <div ref={setSlot} style={{ display: 'contents' }}>
+        <div ref={setSlot} style={{ display: "contents" }}>
           <slot name="logged-out" />
           <slot name="logged-in" />
         </div>
@@ -41,13 +41,4 @@ export class SqbAuthTemplateSwitch {
       </Host>
     );
   }
-}
-
-function useDemoAuthSwitch(props: SqbAuthTemplateSwitch) {
-  const { setContainer, setSlot } = useAuthTemplateSwitch(props.stateController);
-
-  return {
-    setContainer,
-    setSlot,
-  };
 }

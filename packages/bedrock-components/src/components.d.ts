@@ -9,6 +9,11 @@ import { FunctionalComponent } from "@stencil/core";
 import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbAuthTemplateSwitch {
+        /**
+          * @componentState { "title": "Logged Out", "slot": "logged-out", "props": { "overrideToken": false } }
+          * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
+         */
+        "stateController": string;
     }
     interface SqbConditionalSection {
         /**
@@ -127,6 +132,11 @@ declare global {
 }
 declare namespace LocalJSX {
     interface SqbAuthTemplateSwitch {
+        /**
+          * @componentState { "title": "Logged Out", "slot": "logged-out", "props": { "overrideToken": false } }
+          * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
+         */
+        "stateController"?: string;
     }
     interface SqbConditionalSection {
         /**
