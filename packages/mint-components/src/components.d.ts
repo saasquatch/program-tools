@@ -475,6 +475,11 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
+          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController": string;
+        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText": string;
@@ -5916,8 +5921,18 @@ export namespace Components {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader": string;
+        /**
+          * @componentState { "title": "Email Step", "props": { "states": { "showCode": false }} }
+          * @componentState { "title": "Code Step", "props": { "states": { "showCode": true }} }
+         */
+        "stateController": string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController": string;
     }
 }
 declare global {
@@ -7198,6 +7213,11 @@ declare namespace LocalJSX {
           * @uiName Reverify code widget header text
          */
         "reverifyCodeHeaderText"?: string;
+        /**
+          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * @uiName Verify code widget header text
          */
@@ -12610,8 +12630,18 @@ declare namespace LocalJSX {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader"?: string;
+        /**
+          * @componentState { "title": "Email Step", "props": { "states": { "showCode": false }} }
+          * @componentState { "title": "Code Step", "props": { "states": { "showCode": true }} }
+         */
+        "stateController"?: string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController"?: string;
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;

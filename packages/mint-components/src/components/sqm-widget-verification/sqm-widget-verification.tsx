@@ -139,6 +139,12 @@ export class WidgetVerification {
   @Prop() codeStep_networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
+  /**
+   * @componentState { "title": "Email Step", "props": { "states": { "showCode": false }} }
+   * @componentState { "title": "Code Step", "props": { "states": { "showCode": true }} }
+   */
+  @Prop() stateController: string = "{}";
+
   constructor() {
     withHooks(this);
   }
