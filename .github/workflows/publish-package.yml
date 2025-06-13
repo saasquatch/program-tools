@@ -52,14 +52,17 @@ jobs:
           echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
           echo 'always-auth=true' >> .npmrc
 
+      # we could add this to devDependencies but we'd have to do it for every package
+      # so might as well just install it inside the action
+      - name: Install semver
+        id: npm-i-semver
+        run: |
+          npm i --no-save semver
+
       - name: Install dependencies
         id: npm-ci
         working-directory: ${{ steps.vars.outputs.dir }}
-        run: |
-          # we could add this to devDependencies but we'd have to do it for every package
-          # so might as well just install it inside the action
-          npm i --no-save semver
-          npm ci
+        run: npm ci
 
       - name: Compute new tag
         id: compute-tag
