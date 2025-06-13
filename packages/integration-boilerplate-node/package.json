@@ -3,7 +3,7 @@
   "version": "2.4.1",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "files": [
     "dist/"
@@ -21,10 +21,14 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
+    "prepare": "npm run build"
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
+  "publishConfig": {
+    "provenance": true
+  },
   "resolutions": {
     "source-map": "^0.7.4"
   },
