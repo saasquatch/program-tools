@@ -38,15 +38,14 @@ const GET_USER_STATUS = gql`
 export function getStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
+  if (!data.user?.impactConnection?.connected || !account)
+    return "INFORMATION_REQUIRED";
   if (
     account.holdReasons?.length === 1 &&
     account.holdReasons?.includes("NEW_PAYEE_REVIEW")
   ) {
     return "DONE";
   }
-
-  if (!data.user?.impactConnection?.connected || !account)
-    return "INFORMATION_REQUIRED";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
     return "VERIFICATION:REQUIRED";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED_INTERNAL"))
