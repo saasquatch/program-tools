@@ -1,15 +1,17 @@
 {
   "name": "@saasquatch/express-boilerplate",
   "version": "1.1.1",
+  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
+  "main": "dist/index.js",
   "private": false,
   "publishConfig": {
+    "provenance": true,
     "access": "public"
   },
-  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
-  "prettier": {},
   "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
   "engines": {
-    "node": "^18 || ^20"
+    "node": "^18 || ^20 || ^22"
   },
   "files": [
     "dist/*.js",
@@ -19,17 +21,19 @@
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/saasquatch/program-tools/issues"
   },
   "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
-  "main": "dist/index.js",
   "scripts": {
     "test": "npm run build && node --enable-source-maps node_modules/jest/bin/jest.js --roots dist/tests --coverage",
     "build": "tsc -b",
-    "lint": "eslint ./src --report-unused-disable-directives",
-    "prepare": "npm run build"
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
+    "prepack": "npm run build",
+    "lint": "eslint ./src --report-unused-disable-directives"
+  },
+  "dependencies": {
+    "nanoid": "^3.3.7"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
@@ -49,7 +53,5 @@
     "express": "4",
     "winston": "3"
   },
-  "dependencies": {
-    "nanoid": "^3.3.7"
-  }
+  "prettier": {}
 }
