@@ -4,21 +4,29 @@ import { createStyleSheet } from "../../styling/JSS";
 interface DividedLayoutViewProps {
   direction: "row" | "column";
   contentAreaWidth?: string | null;
-  dividerStyle: string;
+  dividerStyle?: string;
   backgroundColor?: string;
   borderless?: boolean;
+  borderColor?: string;
 }
 
 export function DividedLayoutView(
   props: DividedLayoutViewProps,
   children: VNode
 ) {
-  console.log("background color is ", props.backgroundColor);
   const getBorder = () => {
     if (props.direction === "row") {
-      return { "border-right": props.dividerStyle || "1px solid #EAEAEA" };
+      return {
+        "border-right": props.borderless
+          ? "none"
+          : `1px solid ${props.borderColor || "var(--sqm-text)"}`,
+      };
     } else {
-      return { "border-bottom": props.dividerStyle || "1px solid #EAEAEA" };
+      return {
+        "border-bottom": props.borderless
+          ? "none"
+          : `1px solid ${props.borderColor || "var(--sqm-text)"}`,
+      };
     }
   };
 
@@ -44,11 +52,7 @@ export function DividedLayoutView(
     background-color: var(--sqm-portal-background);
     color: var(--sqm-text);
     overflow-x: clip;
-    ${
-      props.direction === "column"
-        ? "width: 100%; max-width: var(--sqm-portal-main-width);"
-        : ""
-    }
+    ${props.direction === "column" ? "width: 100%; max-width: 100%" : ""}
     ${
       props.contentAreaWidth !== null
         ? `max-width: ${props.contentAreaWidth} !important;`

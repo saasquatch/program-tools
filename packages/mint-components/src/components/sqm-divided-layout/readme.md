@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property           | Attribute            | Description                                                                                 | Type                | Default               |
-| ------------------ | -------------------- | ------------------------------------------------------------------------------------------- | ------------------- | --------------------- |
-| `backgroundColor`  | `background-color`   | Background color of the divider                                                             | `string`            | `"#FFFFFF"`           |
-| `contentAreaWidth` | `content-area-width` | Overrides max-width of content area                                                         | `string`            | `undefined`           |
-| `direction`        | `direction`          |                                                                                             | `"column" \| "row"` | `undefined`           |
-| `dividerStyle`     | `divider-style`      | Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color. | `string`            | `"1px solid #EAEAEA"` |
+| Property           | Attribute            | Description                                                          | Type                | Default               |
+| ------------------ | -------------------- | -------------------------------------------------------------------- | ------------------- | --------------------- |
+| `backgroundColor`  | `background-color`   | Background color of the divider                                      | `string`            | `"#FFFFFF"`           |
+| `borderColor`      | `border-color`       | Color of the divider (defaults to default text color if none is set) | `string`            | `undefined`           |
+| `contentAreaWidth` | `content-area-width` | Overrides max-width of content area                                  | `string`            | `undefined`           |
+| `direction`        | `direction`          |                                                                      | `"column" \| "row"` | `undefined`           |
+| `dividerStyle`     | `divider-style`      |                                                                      | `string`            | `"1px solid #EAEAEA"` |
 
 
 ## Dependencies

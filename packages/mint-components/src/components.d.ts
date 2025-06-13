@@ -674,6 +674,12 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
+          * Color of the divider (defaults to default text color if none is set)
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
           * Overrides max-width of content area
           * @uiName Content Area Width
           * @uiType string
@@ -687,7 +693,7 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
          */
         "dividerStyle": string;
@@ -7920,6 +7926,12 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Color of the divider (defaults to default text color if none is set)
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
+        /**
           * Overrides max-width of content area
           * @uiName Content Area Width
           * @uiType string
@@ -7933,7 +7945,7 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
          */
         "dividerStyle"?: string;

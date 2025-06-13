@@ -33,6 +33,7 @@ export class DividedLayout {
   @Prop() contentAreaWidth: string | null;
 
   /**
+   * @undocumented
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border style
    */
@@ -44,6 +45,13 @@ export class DividedLayout {
    * @uiWidget color
    */
   @Prop() backgroundColor?: string = "#FFFFFF";
+
+  /**
+   * Color of the divider (defaults to default text color if none is set)
+   * @uiName Divider Background Color
+   * @uiWidget color
+   */
+  @Prop() borderColor?: string;
   constructor() {
     withHooks(this);
   }
