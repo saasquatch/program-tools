@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.2] - 2025-06-13
+
+### Changed
+
+- \<sqm-payout-status-alert>
+  - Fix NPE when no impact.com account exists for the user
+
 ## [1.14.1] - 2025-06-10
 
 ### Changed
