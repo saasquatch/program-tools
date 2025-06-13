@@ -10,53 +10,55 @@ export interface PortalFrameViewProps {
     rerender: Function;
   };
   notFullScreen?: boolean;
+  backgroundColor?: string;
 }
-
-const style = {
-  HostBlock: HostBlock,
-  Frame: {
-    display: "flex",
-    "flex-direction": "column",
-    "box-sizing": "border-box",
-  },
-
-  FooterWrapper: {
-    width: "100%",
-    "max-width": "100%",
-    padding: "var(--sl-spacing-medium) var(--sl-spacing-x-large)",
-    background: "var(--sqm-footer-background)",
-    display: "flex",
-    "justify-content": "flex-end",
-    "align-items": "center",
-    "box-sizing": "border-box",
-
-    "margin-top": "auto",
-  },
-
-  HeaderWrapper: {
-    width: "100%",
-    "max-width": "100%",
-    "box-sizing": "border-box",
-    display: "flex",
-    "justify-content": "space-between",
-    padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
-    "align-items": "center",
-
-    "background-color": "var(--sqm-header-background)",
-
-    "@media screen and (max-width: 499px)": {
-      "flex-direction": "row-reverse",
-      "justify-content": "flex-end",
-      padding: "0",
-    },
-  },
-};
-
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
 
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
   const { data, notFullScreen } = props;
+
+  const style = {
+    HostBlock: HostBlock,
+    Frame: {
+      display: "flex",
+      "flex-direction": "column",
+      "box-sizing": "border-box",
+    },
+
+    FooterWrapper: {
+      width: "100%",
+      "max-width": "100%",
+      padding: "var(--sl-spacing-medium) var(--sl-spacing-x-large)",
+      background: props.backgroundColor,
+      display: "flex",
+      "justify-content": "flex-end",
+      "align-items": "center",
+      "box-sizing": "border-box",
+
+      "margin-top": "auto",
+    },
+
+    HeaderWrapper: {
+      width: "100%",
+      "max-width": "100%",
+      "box-sizing": "border-box",
+      display: "flex",
+      "justify-content": "space-between",
+      padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
+      "align-items": "center",
+
+      background: props.backgroundColor,
+
+      "@media screen and (max-width: 499px)": {
+        "flex-direction": "row-reverse",
+        "justify-content": "flex-end",
+        padding: "0",
+      },
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
+
   return (
     <div
       style={{ minHeight: notFullScreen ? "100%" : "100vh" }}

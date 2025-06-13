@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type                                                                     | Default     |
-| --------------- | ----------------- | ----------- | ------------------------------------------------------------------------ | ----------- |
-| `demoData`      | --                |             | `{ data?: { footer: VNode; header: VNode; }; notFullScreen?: boolean; }` | `undefined` |
-| `notFullScreen` | `not-full-screen` |             | `boolean`                                                                | `false`     |
+| Property          | Attribute          | Description | Type                                                                                               | Default                                 |
+| ----------------- | ------------------ | ----------- | -------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `backgroundColor` | `background-color` |             | `string`                                                                                           | `"var(--sqm-portal-background, #fff);"` |
+| `demoData`        | --                 |             | `{ data?: { footer: VNode; header: VNode; }; backgroundColor?: string; notFullScreen?: boolean; }` | `undefined`                             |
+| `notFullScreen`   | `not-full-screen`  |             | `boolean`                                                                                          | `false`                                 |
 
 
 ## Dependencies

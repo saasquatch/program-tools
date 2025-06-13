@@ -2452,6 +2452,12 @@ export namespace Components {
     }
     interface SqmPortalFrame {
         /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -9686,6 +9692,12 @@ declare namespace LocalJSX {
         "successAlertText"?: string;
     }
     interface SqmPortalFrame {
+        /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
         /**
           * @undocumented 
           * @uiType object
