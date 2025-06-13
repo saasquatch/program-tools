@@ -9,6 +9,7 @@ on:
         type: choice
         options:
           - program-boilerplate
+          - program-test-suite
 
       increment-type:
         description: The version number to increment
