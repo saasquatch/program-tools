@@ -27,8 +27,6 @@ export function NavigationSidebarItemView(
 ) {
   const { states, data } = props;
 
-  console.log("new props", { ...props });
-
   const backgroundColor =
     props.backgroundColor || "var(--sqm-portal-background)";
 
