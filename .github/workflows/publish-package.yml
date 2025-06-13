@@ -144,7 +144,7 @@ jobs:
 
       - name: Commit and push changes
         id: commit-and-push
-        uses: saasquatch/git-commit-action@v0.0.12
+        uses: saasquatch/git-commit-action@v0.0.15
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
