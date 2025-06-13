@@ -475,6 +475,7 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
+          * @parentState {"parent": "sqm-widget-verification", "title": "Code Step" }
           * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
          */
@@ -5922,8 +5923,8 @@ export namespace Components {
          */
         "general_verifyEmailHeader": string;
         /**
-          * @componentState { "title": "Email Step", "props": { "states": { "showCode": false }} }
-          * @componentState { "title": "Code Step", "props": { "states": { "showCode": true }} }
+          * @componentState { "title": "Email Step", "props": { "showCode": false } }
+          * @componentState { "title": "Code Step", "props": { "showCode": true } }
          */
         "stateController": string;
     }
@@ -7214,6 +7215,7 @@ declare namespace LocalJSX {
          */
         "reverifyCodeHeaderText"?: string;
         /**
+          * @parentState {"parent": "sqm-widget-verification", "title": "Code Step" }
           * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
          */
@@ -12631,8 +12633,8 @@ declare namespace LocalJSX {
          */
         "general_verifyEmailHeader"?: string;
         /**
-          * @componentState { "title": "Email Step", "props": { "states": { "showCode": false }} }
-          * @componentState { "title": "Code Step", "props": { "states": { "showCode": true }} }
+          * @componentState { "title": "Email Step", "props": { "showCode": false } }
+          * @componentState { "title": "Code Step", "props": { "showCode": true } }
          */
         "stateController"?: string;
     }
