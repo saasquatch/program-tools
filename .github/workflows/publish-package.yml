@@ -15,10 +15,10 @@ on:
         required: true
         type: choice
         options:
-          - major
-          - minor
-          - patch
           - prerelease
+          - patch
+          - minor
+          - major
 
 jobs:
   publish:
@@ -55,7 +55,11 @@ jobs:
       - name: Install dependencies
         id: npm-ci
         working-directory: ${{ steps.vars.outputs.dir }}
-        run: npm ci
+        run: |
+          # we could add this to devDependencies but we'd have to do it for every package
+          # so might as well just install it inside the action
+          npm i --no-save semver
+          npm ci
 
       - name: Compute new tag
         id: compute-tag
