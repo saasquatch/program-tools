@@ -11,10 +11,12 @@ export interface PortalFrameViewProps {
   };
   notFullScreen?: boolean;
   backgroundColor?: string;
+  border?: string;
+  headerAndFooterBackgroundColor?: string;
 }
 
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
-  const { data, notFullScreen } = props;
+  const { data, notFullScreen, border } = props;
 
   const style = {
     HostBlock: HostBlock,
@@ -22,18 +24,21 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
       display: "flex",
       "flex-direction": "column",
       "box-sizing": "border-box",
+      "&:nth-child(2)": {
+        background: props.backgroundColor,
+      },
     },
 
     FooterWrapper: {
       width: "100%",
       "max-width": "100%",
       padding: "var(--sl-spacing-medium) var(--sl-spacing-x-large)",
-      background: props.backgroundColor,
+      background: props.headerAndFooterBackgroundColor,
       display: "flex",
       "justify-content": "flex-end",
       "align-items": "center",
       "box-sizing": "border-box",
-
+      borderTop: border,
       "margin-top": "auto",
     },
 
@@ -45,9 +50,8 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
       "justify-content": "space-between",
       padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
       "align-items": "center",
-
-      background: props.backgroundColor,
-
+      borderBottom: border,
+      background: props.headerAndFooterBackgroundColor,
       "@media screen and (max-width: 499px)": {
         "flex-direction": "row-reverse",
         "justify-content": "flex-end",

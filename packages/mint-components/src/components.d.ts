@@ -2464,10 +2464,23 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * Borders placed to seperate the header and footer from the body content.
+          * @uiName Border
+          * @uiType string
+         */
+        "border": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * Background color for the header and footer.
+          * @uiName Header and Footer Background Color
+          * @uiWidget color
+          * @uiType string
+         */
+        "headerAndFooterBackgroundColor": string;
         /**
           * @undocumented
          */
@@ -9711,10 +9724,23 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Borders placed to seperate the header and footer from the body content.
+          * @uiName Border
+          * @uiType string
+         */
+        "border"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * Background color for the header and footer.
+          * @uiName Header and Footer Background Color
+          * @uiWidget color
+          * @uiType string
+         */
+        "headerAndFooterBackgroundColor"?: string;
         /**
           * @undocumented
          */

@@ -19,5 +19,7 @@ export function usePortalFrame(
       rerender,
     },
     backgroundColor: props.backgroundColor,
+    border: props.border,
+    headerAndFooterBackgroundColor: props.headerAndFooterBackgroundColor,
   };
 }

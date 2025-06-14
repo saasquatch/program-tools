@@ -30,6 +30,23 @@ export class PortalFrame {
    */
   @Prop() backgroundColor: string = "var(--sqm-portal-background, #fff);";
 
+  // TODO: Replace with border variable later
+  /**
+   * Borders placed to seperate the header and footer from the body content.
+   * @uiName Border
+   * @uiType string
+   */
+  @Prop() border: string = "1px solid var(--sqm-text, #eaeaea);";
+
+  /**
+   * Background color for the header and footer.
+   * @uiName Header and Footer Background Color
+   * @uiWidget color
+   * @uiType string
+   */
+  @Prop() headerAndFooterBackgroundColor: string =
+    "var(--sqm-portal-background, #fff);";
+
   /**
    * @undocumented
    * @uiType object
@@ -64,6 +81,8 @@ function usePortalFrameDemo(
     {
       notFullScreen: true,
       backgroundColor: props.backgroundColor,
+      headerAndFooterBackgroundColor: props.headerAndFooterBackgroundColor,
+      border: props.border,
       data: {
         footer: footerContent ? (
           footerContent
