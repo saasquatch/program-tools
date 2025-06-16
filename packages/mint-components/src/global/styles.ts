@@ -523,7 +523,6 @@ html {
   --sl-input-background-color-disabled: var(--sl-color-gray-100);
   --sl-input-border-color: var(--sl-color-gray-300);
   --sl-input-border-color-hover: var(--sl-color-gray-400);
-  --sl-input-border-color-focus: var(--sl-color-primary-500);
   --sl-input-border-color-disabled: var(--sl-color-gray-300);
   --sl-input-border-width: 1px;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
@@ -613,6 +612,9 @@ html {
   --sqm-secondary-button-color: #FFFFFF; /* Spotify White for text */
   --sqm-secondary-button-color-border: #FFFFFF; /* Spotify White for border */
   --sqm-secondary-button-radius: 30px;
+  
+  --sqm-border-radius-normal: 18px;
+
 
   --sqm-input-background: #121212;
   --sqm-input-border: 1px solid #7c7c7c;
@@ -624,7 +626,7 @@ html {
   --sqm-input-label-font-size: white;
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
-
+  
   --sl-input-color: var(--sqm-input-color);
   --sl-input-color-hover: var(--sqm-input-color);
   --sl-input-color-focus: var(--sqm-input-color);
@@ -826,7 +828,7 @@ sl-details::part(summary) {
 
 *::part(input-base), *::part(select-base), *::part(textarea-base){
   background-color: var(--sqm-input-background, #fff);
-  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-medium), 0.25rem);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
   border-width: var(--sqm-border-width, 1px);
 }

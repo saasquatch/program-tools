@@ -37,8 +37,12 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const { states, callbacks } = props;
   const style = {
     Dialog: {
-      background: "var(--sqm-portal-background)",
       padding: "0",
+      "&::part(panel)": {
+        background: "var(--sqm-portal-background)",
+        borderRadius:
+          "var(--sqm-border-radius-normal, var(--sl-border-radius-medium))",
+      },
       "&::part(close-button)": {
         "margin-top": "var(--sl-spacing-medium)",
       },
@@ -68,7 +72,6 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
     },
 
     CancelButton: {
-      width: "25%",
       margin: "var(--sl-spacing-large) auto",
     },
     PasswordField: {
