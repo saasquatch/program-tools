@@ -632,7 +632,7 @@ html {
   --sl-input-border-color-disabled: #7c7c7c;
   --sl-input-border-color-focus: white;
   --sl-input-border-color: #7c7c7c;
-  --sl-input-border-color-hover: #7c7c7c;
+  --sl-input-border-color-hover: white;
 }
 
 body {
