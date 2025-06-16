@@ -620,7 +620,7 @@ html {
   --sqm-input-color: white;
   --sqm-input-focus-border: 1px solid #1ed760;
   --sqm-input-label-color: white;
-
+  --sqm-border-width: 1px;
   --sqm-input-label-font-size: white;
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
@@ -630,7 +630,7 @@ html {
   --sl-input-color-focus: var(--sqm-input-color);
   --sl-input-color-disabled: var(--sqm-input-disabled-color);
   --sl-input-border-color-disabled: #7c7c7c;
-  --sl-input-border-color-focus: white;
+  --sl-input-border-color-focus: white !important;
   --sl-input-border-color: #7c7c7c;
   --sl-input-border-color-hover: white;
 }
@@ -828,6 +828,7 @@ sl-details::part(summary) {
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-medium), 0.25rem);
   color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-width, 1px);
 }
 
 *::part(input-label):focus,

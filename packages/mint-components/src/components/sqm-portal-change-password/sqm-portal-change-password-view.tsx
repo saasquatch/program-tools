@@ -37,6 +37,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const { states, callbacks } = props;
   const style = {
     Dialog: {
+      background: "var(--sqm-portal-background)",
       padding: "0",
       "&::part(close-button)": {
         "margin-top": "var(--sl-spacing-medium)",
@@ -157,6 +158,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     <sl-button
                       class={sheet.classes.ChangePasswordButton}
                       type="primary"
+                      exportparts="base: primarybutton-base"
                       submit
                       loading={states.loading}
                     >
@@ -165,6 +167,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     <sl-button
                       class={sheet.classes.CancelButton}
                       type="text"
+                      exportparts="base: secondarybutton-base"
                       onClick={() => callbacks.setOpen(false)}
                     >
                       {states.content.cancelText}
@@ -186,7 +189,10 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
             </TextSpanView>
           ),
           content: (
-            <sl-button onClick={() => callbacks.setOpen(true)}>
+            <sl-button
+              exportparts="base: primarybutton-base"
+              onClick={() => callbacks.setOpen(true)}
+            >
               {states.content.portalChangePasswordButtonText}
             </sl-button>
           ),
