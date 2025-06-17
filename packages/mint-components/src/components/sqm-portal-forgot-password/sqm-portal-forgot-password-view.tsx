@@ -47,7 +47,7 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
   const { states, callbacks, content, styles } = props;
 
   const style = {
-    Wrapper: {
+    FormWrapper: {
       ...AuthWrapper,
       background: styles.backgroundColor,
       borderRadius: styles.borderRadius,
@@ -66,7 +66,7 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-base">
+    <div class={sheet.classes.FormWrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
