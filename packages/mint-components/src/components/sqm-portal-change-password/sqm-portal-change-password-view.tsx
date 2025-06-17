@@ -31,6 +31,9 @@ export interface PortalChangePasswordViewProps {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
   };
+  borderRadius?: string;
+  background?: string;
+  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {

@@ -73,6 +73,25 @@ export class PortalForgotPassword {
     "If an account with that email exists, a password reset email will be sent.";
 
   /**
+   * @uiName Background color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor: string = "var(--sqm-portal-background, #ffffff)";
+
+  /**
+   * @uiName Border radius
+   * @uiWidget number
+   */
+  @Prop() borderRadius: string = "var(--sqm-border-radius-normal)";
+
+  /**
+   * @uiName Border style
+   * @uiWidget textArea
+   */
+  @Prop() border: string =
+    "1px solid var(--sqm-border-color, var(--sqm-text), #eaeaea)";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -105,12 +124,19 @@ export class PortalForgotPassword {
       emailLabel: this.emailLabel,
       submitLabel: this.submitLabel,
       successAlertText: this.successAlertText,
+      loginText: this.loginText,
+    };
+    const styles = {
+      backgroundColor: this.backgroundColor,
+      borderRadius: this.borderRadius,
+      border: this.border,
     };
     return (
       <PortalForgotPasswordView
         states={states}
         callbacks={callbacks}
         content={content}
+        styles={styles}
       />
     );
   }

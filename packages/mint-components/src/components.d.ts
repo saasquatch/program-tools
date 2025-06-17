@@ -2414,6 +2414,21 @@ export namespace Components {
     }
     interface SqmPortalForgotPassword {
         /**
+          * @uiName Background color
+          * @uiWidget color
+         */
+        "backgroundColor": string;
+        /**
+          * @uiName Border style
+          * @uiWidget textArea
+         */
+        "border": string;
+        /**
+          * @uiName Border radius
+          * @uiWidget number
+         */
+        "borderRadius": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -6107,9 +6122,21 @@ export namespace Components {
     }
     interface SqmTextSpan {
         /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
           * @uiName Text
          */
         "text": string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Type
           * @uiType string
@@ -9673,6 +9700,21 @@ declare namespace LocalJSX {
         "termsText"?: string;
     }
     interface SqmPortalForgotPassword {
+        /**
+          * @uiName Background color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border style
+          * @uiWidget textArea
+         */
+        "border"?: string;
+        /**
+          * @uiName Border radius
+          * @uiWidget number
+         */
+        "borderRadius"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -13343,9 +13385,21 @@ declare namespace LocalJSX {
     }
     interface SqmTextSpan {
         /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
           * @uiName Text
          */
         "text"?: string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Type
           * @uiType string

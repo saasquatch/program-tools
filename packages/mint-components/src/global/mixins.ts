@@ -82,11 +82,11 @@ export const Wrapper = {
   width: "100%",
   "max-width": "var(--sqm-content-max-width)",
   height: "auto",
-  "background-color": "var(--sqm-content-background)",
+  // "background-color": "var(--sqm-content-background)",
   display: "flex",
   padding: "var(--sl-spacing-xxx-large)",
-  border: "1px solid #eaeaea",
-  "border-radius": "8px",
+  // border: "1px solid #eaeaea",
+  // "border-radius": "8px",
 };
 
 export const AuthWrapper = {

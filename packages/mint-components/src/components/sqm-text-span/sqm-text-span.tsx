@@ -11,7 +11,7 @@ import { TextSpanView } from "./sqm-text-span-view";
   tag: "sqm-text-span",
   shadow: false,
 })
-export class Text {
+export class TextSpan {
   @State()
   ignored = true;
 
@@ -28,6 +28,20 @@ export class Text {
    */
   @Prop() type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 
+  /**
+   * Font size in pixels
+   * @uiName Font Size
+   * @uiType number
+   */
+  @Prop() fontSize?: number;
+
+  /**
+   * @uiName Text Color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() textColor?: string;
+
   constructor() {
     withHooks(this);
   }
@@ -36,6 +50,14 @@ export class Text {
   componentWillLoad() {}
 
   render() {
-    return <TextSpanView type={this.type}>{this.text}</TextSpanView>;
+    return (
+      <TextSpanView
+        type={this.type}
+        fontSize={this.fontSize}
+        textColor={this.textColor}
+      >
+        {this.text}
+      </TextSpanView>
+    );
   }
 }

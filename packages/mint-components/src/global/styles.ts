@@ -614,6 +614,7 @@ html {
   --sqm-secondary-button-radius: 30px;
   
   --sqm-border-radius-normal: 18px;
+  --sqm-border-color: white;
 
 
   --sqm-input-background: #121212;
@@ -816,6 +817,16 @@ sl-details::part(summary) {
   background-color: var(--sqm-secondary-button-background-hover);
 }
 
+*::part(tertiarybutton-base){
+  color: var(--sqm-text, var(--sl-color-neutral-800));
+  width: max-content;
+  display: inline-block;
+  margin: auto;
+}
+
+*::part(tertiarybutton-base):hover{
+  color: #1ed760;
+}
 *::part(primarybutton-base):focus{
   box-shadow: none;
 }
@@ -833,9 +844,10 @@ sl-details::part(summary) {
   border-width: var(--sqm-border-width, 1px);
 }
 
-*::part(input-label):focus,
-*::part(select-label):focus,
-*::part(textarea-label):focus {
+sl-input::part(base):focus,
+sl-select::part(form-control-wrapper):focus,
+sl-textare::part(textarea-label):focus {
+  border-color: none;
   border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
 }
 
