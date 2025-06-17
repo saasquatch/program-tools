@@ -620,7 +620,7 @@ html {
   --sqm-input-border: 1px solid #7c7c7c;
   --sqm-input-border-radius: 30px;
   --sqm-input-color: white;
-  --sqm-input-focus-border: 1px solid #1ed760;
+  --sqm-input-focus-border: 1px solid white;
   --sqm-input-label-color: white;
   --sqm-border-width: 1px;
   --sqm-input-label-font-size: white;
@@ -837,7 +837,6 @@ sl-details::part(summary) {
 *::part(select-label):focus,
 *::part(textarea-label):focus {
   border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
-  background: pink !important;
 }
 
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
