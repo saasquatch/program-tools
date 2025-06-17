@@ -625,6 +625,7 @@ html {
   --sqm-input-focus-border: 1px solid white;
   --sqm-input-label-color: white;
   --sqm-border-width: 1px;
+  --sqm-border-color-focus: white;
   --sqm-input-label-font-size: white;
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
@@ -855,6 +856,10 @@ sl-textare::part(textarea-label):focus {
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
   background: var(--sqm-input-disabled-background, #f5f5f5);
   color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+}
+
+sl-input {
+  --sl-input-border-color-focus: var(--sqm-border-color-focus); 
 }
 
 

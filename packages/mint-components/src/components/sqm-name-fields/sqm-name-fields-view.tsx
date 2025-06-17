@@ -29,10 +29,7 @@ const vanillaStyle = `
   display: block;
 }
 
-sl-input::part(label){
-  font-size: var(--sl-input-label-font-size-small);
-  font-weight: var(--sl-font-weight-semibold);
-}
+
 `;
 
 const sheet = createStyleSheet(style);
