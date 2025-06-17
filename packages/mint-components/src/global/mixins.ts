@@ -78,21 +78,21 @@ export const ErrorStyles = {
 };
 
 export const Wrapper = {
-  "box-sizing": "border-box",
+  boxSizing: "border-box",
   width: "100%",
-  "max-width": "var(--sqm-content-max-width)",
+  maxWidth: "var(--sqm-content-max-width)",
   height: "auto",
   display: "flex",
   padding: "var(--sl-spacing-xxx-large)",
-  background: "var(--sqm-content-background)",
-  border: "1px solid #eaeaea",
-  borderRadius: "8px",
+  background: "var(--sqm-portal-background)",
+  border: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
+  borderRadius: "var(--sqm-border-radius-normal)",
 };
 
 export const AuthWrapper = {
   margin: "auto",
   ...Wrapper,
-  "max-width": "500px",
+  maxWidth: "500px",
   ...Column,
   ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
 };

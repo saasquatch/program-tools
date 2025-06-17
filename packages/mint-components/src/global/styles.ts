@@ -615,6 +615,7 @@ html {
   
   --sqm-border-radius-normal: 18px;
   --sqm-border-color: white;
+  --sqm-border-thickness: 1px;
 
 
   --sqm-input-background: #121212;
