@@ -820,7 +820,7 @@ sl-details::part(summary) {
 *::part(tertiarybutton-base){
   color: var(--sqm-text, var(--sl-color-neutral-800));
   width: max-content;
-  display: inline-block;
+  display: flex;
   margin: auto;
 }
 
