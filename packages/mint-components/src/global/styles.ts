@@ -590,8 +590,10 @@ html {
   --sqm-text: var(--sl-color-neutral-800);
   --sqm-text-subdued: var(--sl-color-neutral-500);
  */
+
   --sqm-text: white;
-  --sqm-text-subdued: var(--sl-color-neutral-500);
+  --sqm-text-subdued: #b3b3b3;
+  
   /*
   --sqm-primary-button-background: var(--sl-color-primary-500);
   --sqm-primary-button-background-hover: var(--sl-color-primary-300);
@@ -865,6 +867,21 @@ sl-textarea::part(textarea-label):focus {
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
   background: var(--sqm-input-disabled-background, #f5f5f5);
   color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+}
+
+*::part(input):-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:hover {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
 }
 
 sl-checkbox::part(input-base) {
