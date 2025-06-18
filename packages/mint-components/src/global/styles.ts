@@ -846,9 +846,18 @@ sl-details::part(summary) {
   border-width: var(--sqm-border-width, 1px);
 }
 
+sqm-name-fields::part(input-base) {
+  background-color: var(--sqm-input-background, #fff);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+  color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-width, 1px);
+}
+
+
+
 sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
-sl-textare::part(textarea-label):focus {
+sl-textarea::part(textarea-label):focus {
   border-color: none;
   border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
 }
@@ -856,6 +865,11 @@ sl-textare::part(textarea-label):focus {
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
   background: var(--sqm-input-disabled-background, #f5f5f5);
   color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+}
+
+sl-checkbox::part(input-base) {
+  border: red;
+  background: black;
 }
 
 sl-input {

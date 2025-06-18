@@ -48,8 +48,14 @@
     <!-- <squatch-embed widget="p/qa/w/referrerWidget"></squatch-embed> -->
     <!-- <sqm-portal-profile></sqm-portal-profile> -->
     <!-- <sqm-portal-login></sqm-portal-login> -->
-    <sqm-portal-forgot-password
-      email-label="Business Email"
-    ></sqm-portal-forgot-password>
+    <sqm-portal-registration-form form-key="microsite-registration">
+      <sqm-marketing-emails-checkbox
+        slot="terms"
+        name="marketingEmails"
+        checkbox-label="I would like to receive marketing and promotional emails for this referral program"
+        required="false"
+      ></sqm-marketing-emails-checkbox
+      ><sqm-name-fields slot="formData"></sqm-name-fields>
+    </sqm-portal-registration-form>
   </body>
 </html>
