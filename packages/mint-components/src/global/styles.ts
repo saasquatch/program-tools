@@ -876,8 +876,6 @@ sl-input {
   --sl-input-border-color-focus: var(--sqm-border-color-focus); 
 }
 
-
-
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);

@@ -37,7 +37,7 @@ const style = {
     cursor: "pointer",
     "font-size": "13px",
     "font-weight": "600",
-    color: "#AAAAAA",
+    color: "var(--sq-text-subdued)",
     margin: "0",
   },
   ButtonsContainer: {
