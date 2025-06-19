@@ -509,7 +509,7 @@ html {
   --sl-focus-ring-color-success: var(--sl-color-success-100);
   --sl-focus-ring-color-info: var(--sl-color-info-100);
   --sl-focus-ring-color-warning: var(--sl-color-warning-100);
-  --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
+  --sl-focus-ring-color-danger: #var(--sl-color-danger-100);
   --sl-focus-ring-width: 0px;
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
@@ -517,16 +517,7 @@ html {
   --sl-input-height-small: 1.875rem;
   --sl-input-height-medium: 2.5rem;
   --sl-input-height-large: 3.125rem;
-  --sl-input-background-color: var(--sl-color-white);
-  --sl-input-background-color-hover: var(--sl-color-white);
-  --sl-input-background-color-focus: var(--sl-color-white);
-  --sl-input-background-color-disabled: var(--sl-color-gray-100);
-  --sl-input-border-color: var(--sl-color-gray-300);
-  --sl-input-border-color-hover: var(--sl-color-gray-400);
-  --sl-input-border-color-disabled: var(--sl-color-gray-300);
-  --sl-input-border-width: 1px;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
-  --sl-input-border-radius-medium: var(--sl-border-radius-medium);
   --sl-input-border-radius-large: var(--sl-border-radius-medium);
   --sl-input-font-family: var(--sl-font-sans);
   --sl-input-font-weight: var(--sl-font-weight-normal);
@@ -534,15 +525,11 @@ html {
   --sl-input-font-size-medium: var(--sl-font-size-medium);
   --sl-input-font-size-large: var(--sl-font-size-large);
   --sl-input-letter-spacing: var(--sl-letter-spacing-normal);
-  --sl-input-color: var(--sl-color-gray-700);
-  --sl-input-color-hover: var(--sl-color-gray-700);
-  --sl-input-color-focus: var(--sl-color-gray-700);
   --sl-input-color-disabled: var(--sl-color-gray-900);
   --sl-input-icon-color: var(--sl-color-gray-400);
   --sl-input-icon-color-hover: var(--sl-color-gray-600);
   --sl-input-icon-color-focus: var(--sl-color-gray-600);
   --sl-input-placeholder-color: var(--sl-color-gray-400);
-  --sl-input-placeholder-color-disabled: var(--sl-color-gray-600);
   --sl-input-spacing-small: var(--sl-spacing-small);
   --sl-input-spacing-medium: var(--sl-spacing-medium);
   --sl-input-spacing-large: var(--sl-spacing-large);
@@ -593,7 +580,7 @@ html {
 
   --sqm-text: white;
   --sqm-text-subdued: #b3b3b3;
-  
+
   /*
   --sqm-primary-button-background: var(--sl-color-primary-500);
   --sqm-primary-button-background-hover: var(--sl-color-primary-300);
@@ -622,24 +609,56 @@ html {
 
   --sqm-input-background: #121212;
   --sqm-input-border: 1px solid #7c7c7c;
+  --sqm-input-border-color: #7c7c7c;
   --sqm-input-border-radius: 30px;
   --sqm-input-color: white;
   --sqm-input-focus-border: 1px solid white;
   --sqm-input-label-color: white;
   --sqm-border-width: 1px;
   --sqm-border-color-focus: white;
+  --sqm-border-color-hover: white;
   --sqm-input-label-font-size: white;
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
   
-  --sl-input-color: var(--sqm-input-color);
+  --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-color-hover: var(--sqm-input-color);
   --sl-input-color-focus: var(--sqm-input-color);
   --sl-input-color-disabled: var(--sqm-input-disabled-color);
   --sl-input-border-color-disabled: #7c7c7c;
-  --sl-input-border-color-focus: white !important;
-  --sl-input-border-color: #7c7c7c;
-  --sl-input-border-color-hover: white;
+  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, white);
+  --sl-input-border-color: var(--sqm-input-border-color, #7c7c7c);
+  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, white); 
+  --sl-input-background-color-focus: var(--sqm-input-background, #ffffff);
+  --sl-input-border-radius: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
+  --sl-input-background-color: var(--sqm-input-background, #ffffff);
+  --sl-input-color: var(--sqm-input-color, var(--sqm-text), #333); 
+  --sl-input-placeholder-color: var(--sqm-text-subdued, var(--sl-color-neutral-500));
+  --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
+  --sl-input-border-width: var(--sqm-border-width, 1px);
+  --sl-input-border-style: solid;
+
+
+
+/* --- Disabled State --- */
+--sl-input-background-color-disabled: var(--sqm-input-disabled-background, var(--sl-color-neutral-100));
+--sl-input-color-disabled: var(--sqm-input-disabled-color, var(--sl-color-neutral-500)); /* Your current: var(--sqm-input-disabled-color) */
+--sl-input-placeholder-color-disabled: var(--sl-color-neutral-400);
+
+/* --- Invalid/Error State --- */
+--sl-input-background-color-invalid: var(--sl-color-danger-50);
+--sl-input-border-color-invalid: var(--sl-color-danger-500);
+--sl-input-color-invalid: var(--sl-color-danger-700);
+
+/* --- Internal Elements (Prefix, Suffix, Clear Icon) --- */
+--sl-input-icon-color: var(--sl-color-neutral-500);
+--sl-input-icon-size: var(--sl-font-size-medium);
+--sl-input-clear-icon-color: var(--sl-color-neutral-500);
+--sl-input-clear-icon-color-hover: var(--sl-color-neutral-700);
+
+/* --- Box Shadow --- */
+--sl-input-box-shadow: none; /* Typically no box shadow by default */
+--sl-input-box-shadow-focus: 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color);
 }
 
 body {
@@ -889,9 +908,7 @@ sl-checkbox::part(input-base) {
   background: black;
 }
 
-sl-input {
-  --sl-input-border-color-focus: var(--sqm-border-color-focus); 
-}
+
 
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);

@@ -252,7 +252,118 @@ const vanillaStyle = `
     sl-select#phoneNumberCountryCode::part(menu) {
       min-width: 250px;
     }
-  `;
+
+    /* Corrected: Target sl-button::part(base) for primary button */
+    sl-button[type="primary"]::part(base){
+        background-color: var(--sqm-primary-button-background);
+        color: var(--sqm-primary-button-color);
+        border-color: var(--sqm-primary-button-color-border);
+        border-radius: var(--sqm-primary-button-radius);
+    }
+
+    sl-button[type="primary"]::part(base):hover{
+        background-color: var(--sqm-primary-button-background-hover);
+    }
+
+    sl-button[type="primary"]::part(base):focus{
+        box-shadow: none;
+    }
+
+    /* Corrected: Target sl-button::part(base) for secondary button */
+    sl-button[type="secondary"]::part(base){
+        background-color: var(--sqm-secondary-button-background);
+        color: var(--sqm-secondary-button-color);
+        border-color: var(--sqm-secondary-button-color-border);
+        border-radius: var(--sqm-secondary-button-radius);
+    }
+
+    sl-button[type="secondary"]::part(base):hover{
+        background-color: var(--sqm-secondary-button-background-hover);
+    }
+
+    /* Corrected: Target sl-button::part(base) for tertiary button */
+    sl-button[type="tertiary"]::part(base){
+        color: var(--sqm-text, var(--sl-color-neutral-800));
+        width: max-content;
+        display: flex;
+        margin: auto;
+    }
+
+    sl-button[type="tertiary"]::part(base):hover{
+        color: #1ed760;
+    }
+
+    /* Corrected: This rule was duplicated and possibly redundant, ensure only one focus rule for primary buttons */
+    /* If you only have one primary button, this is the better way to apply global button styling */
+    /* sl-button[type="primary"]::part(base):focus{
+        box-shadow: none;
+    } */
+
+
+    /* Corrected: Target sl-input, sl-select, sl-textarea labels */
+    sl-input::part(label),
+    sl-select::part(label),
+    sl-textarea::part(label){
+      font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
+      font-weight: var(--sl-font-weight-semibold);
+      color: var(--sqm-input-label-color, var(--sqm-text), black);
+    }
+
+    /* Corrected: Target sl-input, sl-select, sl-textarea base elements */
+    sl-input::part(base),
+    sl-dropdown::part(base),
+    sl-textarea::part(base){
+      background-color: var(--sqm-input-background, #fff);
+      border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+      color: var(--sqm-input-color, white);
+      border-width: var(--sqm-border-width, 1px);
+      border-style: solid; 
+      border-color: var(--sqm-input-border-color, #ccc); 
+    }
+
+    sl-menu::part(menu) {
+      background: red;
+    }
+
+    /* Corrected: sl-select::part(base), sl-textarea::part(base), removed border-color: none */
+    sl-input::part(base):focus,
+    sl-select::part(base):focus, /* Corrected part name for sl-select */
+    sl-textarea::part(base):focus { /* Corrected part name for sl-textarea */
+      /* border-color: none; -- REMOVED: Invalid property value */
+      border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus, #007bff)); /* Added fallback for --sl-input-border-color-focus */
+    }
+
+    /* Corrected: Target [disabled] host element then its part */
+    sl-input[disabled]::part(label),
+    sl-select[disabled]::part(label),
+    sl-textarea[disabled]::part(label){
+      color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+    }
+    /* Add rules for the disabled base parts if you want background/border */
+    sl-input[disabled]::part(base),
+    sl-select[disabled]::part(base),
+    sl-textarea[disabled]::part(base){
+      background: var(--sqm-input-disabled-background, #f5f5f5);
+      border-color: var(--sl-input-border-color-disabled, #e0e0e0); /* Example disabled border color */
+    }
+
+
+    /* Corrected: Target sl-input::part(input) for autofill */
+    sl-input::part(input):-webkit-autofill {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+
+    sl-input::part(input):-webkit-autofill:hover {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+
+    sl-input::part(input):-webkit-autofill:focus {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+`;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   const {

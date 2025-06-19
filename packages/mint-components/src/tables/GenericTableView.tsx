@@ -76,7 +76,7 @@ export function GenericTableView(props: GenericTableViewProps) {
         },
         "& tr": {
           display: "block",
-          background: "#FFFFFF",
+          background: "inherit",
           border: "1px solid var(--sl-color-neutral-200)",
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
           borderRadius: "var(--sl-border-radius-large)",
