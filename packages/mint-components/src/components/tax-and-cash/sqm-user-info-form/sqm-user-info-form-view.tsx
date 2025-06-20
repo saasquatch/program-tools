@@ -199,7 +199,7 @@ const style = {
     },
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
 

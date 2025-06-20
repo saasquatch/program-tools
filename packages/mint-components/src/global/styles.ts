@@ -596,16 +596,40 @@ html {
   --sqm-primary-button-radius: 30px;
 
 
-  --sqm-secondary-button-background: #191414; /* Spotify Black */
-  --sqm-secondary-button-background-hover: #282828; /* Slightly lighter black for hover effect */
-  --sqm-secondary-button-color: #FFFFFF; /* Spotify White for text */
-  --sqm-secondary-button-color-border: #FFFFFF; /* Spotify White for border */
+  --sqm-secondary-button-background: #191414;
+  --sqm-secondary-button-background-hover: #282828; 
+  --sqm-secondary-button-color: #FFFFFF; 
+  --sqm-secondary-button-color-border: #FFFFFF; 
   --sqm-secondary-button-radius: 30px;
   
   --sqm-border-radius-normal: 18px;
   --sqm-border-color: white;
   --sqm-border-thickness: 1px;
 
+  --sqm-accent-color-icon: ADD_COLOR_LATER;
+  --sqm-accent-color-text: ADD_COLOR_LATER;
+  --sqm-accent-color-border: ADD_COLOR_LATER;
+  --sqm-accent-color-background: ADD_COLOR_LATER;
+
+  --sqm-success-color-icon: ADD_COLOR_LATER;
+  --sqm-success-color-text: ADD_COLOR_LATER;
+  --sqm-success-color-border: ADD_COLOR_LATER;
+  --sqm-success-color-background: ADD_COLOR_LATER;
+  
+  --sqm-warning-color-icon: ADD_COLOR_LATER;
+  --sqm-warning-color-text: ADD_COLOR_LATER;
+  --sqm-warning-color-border: ADD_COLOR_LATER;
+  --sqm-warning-color-background: ADD_COLOR_LATER;
+
+  --sqm-danger-color-icon: ADD_COLOR_LATER;
+  --sqm-danger-color-text: ADD_COLOR_LATER;
+  --sqm-danger-color-border: ADD_COLOR_LATER;
+  --sqm-danger-color-background: ADD_COLOR_LATER;
+
+  --sqm-informative-color-icon: ADD_COLOR_LATER;
+  --sqm-informative-color-text: ADD_COLOR_LATER;
+  --sqm-informative-color-border: ADD_COLOR_LATER;
+  --sqm-informative-color-background: ADD_COLOR_LATER;
 
   --sqm-input-background: #121212;
   --sqm-input-border: 1px solid #7c7c7c;
