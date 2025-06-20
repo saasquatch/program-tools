@@ -238,7 +238,10 @@ const vanillaStyle = `
        padding: 0;
        box-sizing: border-box;
     }
-
+    a {
+      color: var(--sqm-text);
+      text-decoration: underline;
+    }
     p {
       line-height: 18px;
       font-size: var(--sl-font-size-small);

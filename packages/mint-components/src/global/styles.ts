@@ -909,7 +909,14 @@ sl-checkbox::part(input-base) {
   background: black;
 }
 
+a {
+  color: var(--sqm-text);
+  text-decoration: underline;
+}
 
+a:hover {
+  cursor: pointer;
+}
 
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);
