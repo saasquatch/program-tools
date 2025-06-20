@@ -611,7 +611,7 @@ html {
   --sqm-input-border: 1px solid #7c7c7c;
   --sqm-input-border-color: #7c7c7c;
   --sqm-input-border-radius: 30px;
-  --sqm-input-color: white;
+  --sqm-input-color: var(--sqm-text);
   --sqm-input-focus-border: 1px solid white;
   --sqm-input-label-color: white;
   --sqm-border-width: 1px;
@@ -620,6 +620,8 @@ html {
   --sqm-input-label-font-size: white;
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
+
+
   
   --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-color-hover: var(--sqm-input-color);
@@ -696,7 +698,6 @@ sl-alert[type="danger"]::part(icon) {
 sl-alert[type="danger"]::part(base) {
   background-color: var(--sqm-danger-icon-color, var(--sl-color-danger-100));
 }
-
 
 sl-alert[type="info"]::part(icon) {
   color: var(--sqm-info-icon-color, var(--sl-color-info-500));

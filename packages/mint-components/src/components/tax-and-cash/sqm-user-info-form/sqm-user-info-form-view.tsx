@@ -321,8 +321,12 @@ const vanillaStyle = `
       border-color: var(--sqm-input-border-color, #ccc); 
     }
 
-    sl-menu::part(menu) {
-      background: red;
+
+    sl-select::part(menu) {
+      background: var(--sqm-input-background, inherit);
+      // border-radius: var(--sqm-border-radius-normal);
+      color: var(--sqm-input-color, inherit);
+      border:none;
     }
 
     /* Corrected: sl-select::part(base), sl-textarea::part(base), removed border-color: none */
