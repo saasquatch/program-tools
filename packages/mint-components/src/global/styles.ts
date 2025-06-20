@@ -580,14 +580,7 @@ html {
 
   --sqm-text: white;
   --sqm-text-subdued: #b3b3b3;
-
-  /*
-  --sqm-primary-button-background: var(--sl-color-primary-500);
-  --sqm-primary-button-background-hover: var(--sl-color-primary-300);
-  --sqm-primary-button-color: var(--sl-color-primary-text);
-  --sqm-primary-button-color-border: none;
-  --sqm-primary-button-radius: var(--sl-border-radius-large);
- */
+  --sqm-primary-color: #1ed760;
 
   --sqm-primary-button-background: #1ed760;
   --sqm-primary-button-background-hover: #1DB954;
@@ -601,6 +594,12 @@ html {
   --sqm-secondary-button-color: #FFFFFF; 
   --sqm-secondary-button-color-border: #FFFFFF; 
   --sqm-secondary-button-radius: 30px;
+
+  --sqm-tertiary-button-background: transparent;
+  --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
+  --sqm-tertiary-button-color: var(--sqm-text); 
+  --sqm-tertiary-button-color-border: transparent; 
+  --sqm-tertiary-button-radius: 30px;
   
   --sqm-border-radius-normal: 18px;
   --sqm-border-color: white;
@@ -696,6 +695,16 @@ body {
   line-height: var(--sl-line-height-normal);
   margin: 0;
   background-color: var(--sqm-portal-background);
+}
+
+sl-select::part(menu) {
+  background: var(--sqm-input-background, inherit);
+  color: var(--sqm-input-color, inherit);
+  border:none;
+}
+
+sl-select::part(panel) {
+  border-radius: var(--sqm-border-radius-normal);
 }
 
 /** AL: Shading variables **/
@@ -822,24 +831,6 @@ sl-details::part(summary) {
   margin: 0px;
 }
 
-/**************************
- * Now Deprecated - Use secondarybutton-base instead *
-*::part(defaultbutton-base){
-
-  color: var(--sl-color-gray-800);
-  border-color: var(--sl-color-gray-800);
-}
-*::part(defaultbutton-base):hover{
-  background-color: rgba(20,20,20,.08);
-}
-*::part(defaultbutton-base):active{
-  background-color: rgba(20,20,20,.16);
-}
-*::part(defaultbutton-base):focus{
-  box-shadow: none;
-}
-*/
-
 *::part(primarybutton-base){
   background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
@@ -867,17 +858,17 @@ sl-details::part(summary) {
 }
 
 *::part(tertiarybutton-base){
-  color: var(--sqm-text, var(--sl-color-neutral-800));
+  background-color: var(--sqm-tertiary-button-background);
+  color: var(--sqm-tertiary-button-color);
+  border-color: var(--sqm-tertiary-button-color-border);
+  border-radius: var(--sqm-tertiary-button-radius);
   width: max-content;
   display: flex;
   margin: auto;
 }
 
 *::part(tertiarybutton-base):hover{
-  color: #1ed760;
-}
-*::part(primarybutton-base):focus{
-  box-shadow: none;
+  background: var(--sqm-tertiary-button-background-hover);
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
@@ -899,8 +890,6 @@ sqm-name-fields::part(input-base) {
   color: var(--sqm-input-color, white);
   border-width: var(--sqm-border-width, 1px);
 }
-
-
 
 sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
@@ -930,7 +919,6 @@ sl-textarea::part(textarea-label):focus {
 }
 
 a {
-  // color: var(--sqm-text);
   color: inherit;
   text-decoration: underline;
 }

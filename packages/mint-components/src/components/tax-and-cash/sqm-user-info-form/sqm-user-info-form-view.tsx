@@ -165,9 +165,6 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
   },
-  DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
-  },
 
   BoldText: {
     fontWeight: "bold",
@@ -300,18 +297,46 @@ const vanillaStyle = `
         margin: auto;
     }
 
-    sl-button[type="tertiary"]::part(base):hover{
-        color: #1ed760;
-    }
+*::part(primarybutton-base){
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
+}
 
-    /* Corrected: This rule was duplicated and possibly redundant, ensure only one focus rule for primary buttons */
-    /* If you only have one primary button, this is the better way to apply global button styling */
-    /* sl-button[type="primary"]::part(base):focus{
-        box-shadow: none;
-    } */
+*::part(primarybutton-base):hover{
+  background-color: var(--sqm-primary-button-background-hover);
+}
 
+*::part(primarybutton-base):focus{
+  box-shadow: none;
+}
 
-    /* Corrected: Target sl-input, sl-select, sl-textarea labels */
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+}
+
+*::part(secondarybutton-base):hover{
+  background-color: var(--sqm-secondary-button-background-hover);
+}
+
+*::part(tertiarybutton-base){
+  background-color: var(--sqm-tertiary-button-background);
+  color: var(--sqm-tertiary-button-color);
+  border-color: var(--sqm-tertiary-button-color-border);
+  border-radius: var(--sqm-tertiary-button-radius);
+  width: max-content;
+  display: flex;
+  margin: auto;
+}
+
+*::part(tertiarybutton-base):hover{
+  background: var(--sqm-tertiary-button-background-hover);
+}
+
     sl-input::part(label),
     sl-select::part(label),
     sl-textarea::part(label){
@@ -335,7 +360,6 @@ const vanillaStyle = `
 
     sl-select::part(menu) {
       background: var(--sqm-input-background, inherit);
-      // border-radius: var(--sqm-border-radius-normal);
       color: var(--sqm-input-color, inherit);
       border:none;
     }
@@ -344,21 +368,22 @@ const vanillaStyle = `
       border-radius: var(--sqm-border-radius-normal);
     }
 
-    /* Corrected: sl-select::part(base), sl-textarea::part(base), removed border-color: none */
+    sl-select::part(help-text) {
+      color: var(--sqm-text-subdued, var(--sl-input-help-text-color, #6c757d));
+    }
+
     sl-input::part(base):focus,
     sl-select::part(base):focus, /* Corrected part name for sl-select */
     sl-textarea::part(base):focus { /* Corrected part name for sl-textarea */
-      /* border-color: none; -- REMOVED: Invalid property value */
       border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus, #007bff)); /* Added fallback for --sl-input-border-color-focus */
     }
 
-    /* Corrected: Target [disabled] host element then its part */
     sl-input[disabled]::part(label),
     sl-select[disabled]::part(label),
     sl-textarea[disabled]::part(label){
       color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
     }
-    /* Add rules for the disabled base parts if you want background/border */
+
     sl-input[disabled]::part(base),
     sl-select[disabled]::part(base),
     sl-textarea[disabled]::part(base){
@@ -367,7 +392,6 @@ const vanillaStyle = `
     }
 
 
-    /* Corrected: Target sl-input::part(input) for autofill */
     sl-input::part(input):-webkit-autofill {
       box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
       -webkit-text-fill-color: var(--sqm-input-color, white) !important;

@@ -175,6 +175,46 @@ const vanillaStyle = `
        box-sizing: border-box;
     }
 
+    *::part(primarybutton-base){
+      background-color: var(--sqm-primary-button-background);
+      color: var(--sqm-primary-button-color);
+      border-color: var(--sqm-primary-button-color-border);
+      border-radius: var(--sqm-primary-button-radius);
+    }
+
+    *::part(primarybutton-base):hover{
+      background-color: var(--sqm-primary-button-background-hover);
+    }
+
+    *::part(primarybutton-base):focus{
+      box-shadow: none;
+    }
+
+    *::part(secondarybutton-base){
+      background-color: var(--sqm-secondary-button-background);
+      color: var(--sqm-secondary-button-color);
+      border-color: var(--sqm-secondary-button-color-border);
+      border-radius: var(--sqm-secondary-button-radius);
+    }
+
+    *::part(secondarybutton-base):hover{
+      background-color: var(--sqm-secondary-button-background-hover);
+    }
+
+    *::part(tertiarybutton-base){
+      background-color: var(--sqm-tertiary-button-background);
+      color: var(--sqm-tertiary-button-color);
+      border-color: var(--sqm-tertiary-button-color-border);
+      border-radius: var(--sqm-tertiary-button-radius);
+      width: max-content;
+      display: flex;
+      margin: auto;
+    }
+
+    *::part(tertiarybutton-base):hover{
+      background: var(--sqm-tertiary-button-background-hover);
+    }
+
   `;
 
 export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
@@ -392,7 +432,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               type="text"
               disabled={states.disabled}
               onClick={callbacks.onBack}
-              exportparts="base: secondarybutton-base"
+              exportparts="base: tertiarybutton-base"
             >
               {text.backButton}
             </sl-button>
