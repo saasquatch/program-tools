@@ -904,11 +904,6 @@ sl-textarea::part(textarea-label):focus {
   -webkit-text-fill-color: var(--sqm-input-color, white) !important;
 }
 
-sl-checkbox::part(input-base) {
-  border: red;
-  background: black;
-}
-
 a {
   color: var(--sqm-text);
   text-decoration: underline;
