@@ -124,16 +124,16 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sl-color-danger-500)",
+      border: "1px solid var(--sqm-danger-color-icon)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-icon)",
     marginTop: "10px",
   },
   TextContainer: {
@@ -179,23 +179,29 @@ const style = {
   },
   AlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      color: "var(--sqm-danger-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   PartnerAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
       padding: "0 16px",
+      border: "none",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
+
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   PageDescriptionText: {
@@ -240,8 +246,10 @@ const vanillaStyle = `
     }
     a {
       color: var(--sqm-text);
+      color: inherit !important;
       text-decoration: underline;
     }
+
     p {
       line-height: 18px;
       font-size: var(--sl-font-size-small);
@@ -330,6 +338,10 @@ const vanillaStyle = `
       // border-radius: var(--sqm-border-radius-normal);
       color: var(--sqm-input-color, inherit);
       border:none;
+    }
+
+    sl-select::part(panel) {
+      border-radius: var(--sqm-border-radius-normal);
     }
 
     /* Corrected: sl-select::part(base), sl-textarea::part(base), removed border-color: none */
@@ -423,6 +435,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+
       {states.loadingError && (
         <div>
           <sl-alert
@@ -454,6 +467,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <br />
         </div>
       )}
+
       {states.loading ? (
         <GeneralLoadingView />
       ) : (
@@ -477,6 +491,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </p>
             </div>
           </div>
+
           {formState.errors?.general && (
             <sl-alert
               exportparts="base: alert-base, icon:alert-icon"
@@ -505,6 +520,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               )}
             </sl-alert>
           )}
+
           {(states.isPartner || states.isUser) && (
             <sl-alert
               type="primary"
@@ -537,6 +553,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <div>
             <div class={classes.InputContainer}>
               <sl-input
+                class="ErrorInput"
                 exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
