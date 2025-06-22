@@ -68,8 +68,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         color: content.textColor || "var(--sqm-text)",
       },
       "& .main.complete": {
-        background: content.backgroundColor || "var(--sl-color-primary-50)",
-        borderColor: content.borderColor || "var(--sl-color-primary-500)",
+        background: "var(--sl-color-primary-50)",
+        borderColor: "var(--sqm-accent-color-border)",
       },
       "& .main.expired": {
         color: content.textColor || "var(--sqm-text)",
@@ -136,7 +136,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         top: "5%",
         alignSelf: "center",
         lineHeight: "0",
-        color: content.textColor || "var(--sqm-text)",
+        color: "var(--sqm-accent-color-icon)",
         fontSize: "var(--sl-font-size-large)",
         marginRight: "var(--sl-spacing-x-small)",
       },
@@ -371,7 +371,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               <ProgressBarView
                 {...props.content}
                 {...props.states}
-                opacity={taskComplete || taskUnavailable ? "0.45" : "1"}
+                opacity={taskComplete || taskUnavailable ? "0.75" : "1"}
                 complete={taskComplete}
                 expired={taskUnavailable}
               />

@@ -23,7 +23,7 @@ export const style = {
       color: "var(--sqm-text)",
       fontSize: "var(--sl-font-size-large)",
       "& :hover": {
-        color: "var(--sqm-accent-color-icon)",
+        color: "var(--sl-color-primary-700)",
       },
       transformOrigin: "50% 37%",
       transition: "transform var(--sl-transition-medium) ease",
