@@ -90,7 +90,7 @@ const style = {
     gap: "8px",
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-icon)",
     marginTop: "10px",
   },
   DescriptionText: {
@@ -101,34 +101,29 @@ const style = {
   },
   ErrorAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      color: "var(--sqm-danger-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   InfoAlert: {
     "&::part(base)": {
-      backgroundColor: "transparent",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
-      padding: "0px",
-      marginBottom: "16px",
+      padding: "0 16px",
       border: "none",
-    },
-
-    "&::part(message)": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-sky-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   Container: {
@@ -137,16 +132,6 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
     gap: "16px",
-  },
-  Link: {
-    color: "var(--sl-color-sky-500)",
-    textDecoration: "none",
-    "&:visited": {
-      color: "var(--sl-color-sky-500)",
-    },
-    "&:hover": {
-      textDecoration: "underline",
-    },
   },
   CheckboxWrapper: {
     display: "flex",
@@ -161,7 +146,7 @@ const style = {
     fontSize: "var(--sl-font-size-small)",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
 };
@@ -181,6 +166,8 @@ const vanillaStyle = `
 
     a {
       cursor: pointer;
+      color: var(--sqm-text);
+      text-decoration: underline;
     }
 
 
