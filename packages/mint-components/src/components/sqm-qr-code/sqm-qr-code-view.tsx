@@ -154,7 +154,7 @@ export function QrCodeView({
           </sl-button>
           <sl-button
             size="small"
-            exportparts="base: textbutton-base"
+            exportparts="base: tertiarybutton-base"
             type="text"
             onClick={createPrintable}
           >
