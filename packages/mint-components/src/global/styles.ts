@@ -777,36 +777,6 @@ h1, h2, h3, h4{
   line-height: var(--sl-line-height-dense);
 }
 
-
-h2, .Title {
-  font-size: var(--sl-font-size-large);
-  font-weight: var(--sl-font-weight-semibold);
-  margin: 0;
-}
-.H4 {
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-semibold);
-  margin: 0;
-}
-.P {
-  font-size: var(--sl-font-size-small);
-  margin-top: 0px;
-}
-
-.Title {
-  text-align: center;
-}
-
-.Subtitle {
-  text-align: center;
-  margin-bottom: 0px;
-  color: var(--sqm-text-subdued);
-}
-.SupportText{
-  margin-top: var(--sl-spacing-small);
-  text-align: center;
-}
-
 sl-button::part(base){
   width: 100%;
 }
@@ -921,33 +891,24 @@ sl-textarea::part(textarea-label):focus {
 a {
   color: inherit;
   text-decoration: underline;
-}
-
-a:hover {
   cursor: pointer;
 }
+
 
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);
 }
 
-.poweredBy {
-  color: var(--sl-color-gray-400);
-  font-size: var(--sl-font-size-xx-small);
+sl-icon::part(base) {
+  color: var(--sqm-text);
 }
 
-.poweredBy:hover {
-  color: var(--sl-color-gray-900);
+sl-icon::part(base):hover {
+  color: var(--sqm-accent-color-icon);
 }
 
-.FooterEmail{
-  text-decoration: none;
-  font-size: var(--sl-font-size-medium);
-  color: var(--sl-color-gray-800);
-  margin: 0px;
-  cursor:pointer;
-}
+
 
 
 

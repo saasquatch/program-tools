@@ -36,7 +36,7 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
         display: "none",
         color: "transparent",
         userSelect: "none",
-        background: props.lineColor || "var(--sl-color-primary-500)",
+        background: props.lineColor || "var(--sqm-accent-color-icon)",
         width: "4px",
         borderRadius: "4px",
         margin: "-2px",
@@ -51,7 +51,7 @@ export function TimelineEntryView(props: TimelineEntryProps): VNode {
         position: "relative",
         top: "4px",
         zIndex: "1",
-        color: props.lineColor || "var(--sl-color-primary-500)",
+        color: props.lineColor || "var(--sqm-accent-color-icon)",
         marginRight: "var(--sl-spacing-large)",
       },
       "& .reward": {
