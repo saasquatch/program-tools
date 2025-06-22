@@ -21,7 +21,7 @@ export interface CopyTextViewProps {
   backgroundColor?: string;
   textColor?: string;
   borderRadius?: string;
-  buttonType?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary" | "tertiary";
   borderColor?: string;
   onClick?: () => void;
 }
@@ -97,7 +97,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     },
     errorTextStyle: {
       margin: "0",
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-text)",
     },
     notificationTextStyle: {
       margin: "0",
@@ -138,9 +138,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         />
       ) : (
         <sl-button
-          exportparts={`base: ${
-            props.buttonType === "primary" ? "primary" : "secondary"
-          }button-base`}
+          exportparts={`base: ${props.buttonType || "primary"}button-base`}
           onClick={() => props.onClick?.()}
           size={"medium"}
           style={{ width: `${buttonStyle === "button-below" && "100%"}` }}
@@ -152,6 +150,8 @@ export function CopyTextView(props: CopyTextViewProps) {
       )}
     </sl-tooltip>
   );
+
+  console.log("buttontype is ", props.buttonType);
 
   return (
     <div class={sheet.classes.ContainerDiv}>

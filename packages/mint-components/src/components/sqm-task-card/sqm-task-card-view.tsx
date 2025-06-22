@@ -33,7 +33,7 @@ export type TaskCardViewProps = {
     textColor?: string;
     borderColor?: string;
     borderRadius?: number;
-    buttonStyle?: "primary" | "secondary";
+    buttonType?: "primary" | "secondary" | "tertiary";
   };
   states: {
     loading: boolean;
@@ -49,7 +49,7 @@ export type TaskCardViewProps = {
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
-  console.log("text color from the view ", content.textColor);
+  console.log("buttonType ", content.buttonType);
   const style = {
     TaskCard: {
       display: "inline-block",
@@ -449,14 +449,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 ) : (
                   <sl-button
                     exportparts={`base: ${
-                      content.buttonStyle === "primary"
-                        ? "primary"
-                        : "secondary"
+                      content.buttonType || "primary"
                     }button-base`}
+                    type="primary"
                     id="sl-button"
-                    type={
-                      content.buttonStyle === "primary" ? "primary" : "default"
-                    }
                     size="small"
                     onClick={callbacks.onClick}
                     loading={states.loadingEvent}

@@ -19,7 +19,7 @@ export interface HeroImageViewProps {
   paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
-  buttonType?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {
@@ -27,6 +27,8 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     (props.header || props.description || props.buttonText) &&
       props.layout === "overlay"
   );
+
+  console.log("buttonType is ", props.buttonType);
   // Dependent on props, not feasiable to move out
   const style = {
     Container: {
@@ -36,7 +38,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: "100%",
         height: "100%",
         position: "absolute",
-        background: props.overlayColor || "var(--sl-color-primary-900)",
+        background: props.overlayColor || "var(--sl-color-black)",
         opacity: props.overlayOpacity,
       },
     },
@@ -163,9 +165,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <sl-button
               class={sheet.classes.Button}
               type="primary"
-              exportparts={`base: ${
-                props.buttonType === "primary" ? "primary" : "secondary"
-              }button-base`}
+              exportparts={`base: ${props.buttonType}button-base`}
               onClick={() =>
                 props.buttonNewTab
                   ? window.open(props.buttonLink)

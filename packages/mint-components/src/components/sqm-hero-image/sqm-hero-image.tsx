@@ -133,15 +133,15 @@ export class HeroImage {
   @Prop() paddingImage: Spacing = "none";
 
   /**
-   * The type of the button (primary or secondary) that will be used to copy the link.
+   * The type of the button that is used (primary, secondary, or tertiary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary"]
-   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" = "primary";
+  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
 
   constructor() {
     withHooks(this);

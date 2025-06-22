@@ -33,7 +33,6 @@ export interface PortalChangePasswordViewProps {
   };
   borderRadius?: string;
   background?: string;
-  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {

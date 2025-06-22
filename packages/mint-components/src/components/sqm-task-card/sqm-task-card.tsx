@@ -254,12 +254,12 @@ export class TaskCard {
   /**
    * @uiName Button Style
    * @uiType string
-   * @uiEnum ["primary", "secondary"]
-   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonStyle?: "primary" | "secondary" = "primary";
+  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
 
   /**
    * @undocumented
@@ -281,7 +281,6 @@ export class TaskCard {
     const { states, callbacks } = isDemo()
       ? useTaskCardDemo(this)
       : useTaskCard(this);
-    console.log("button style from controller", this.buttonStyle);
     return (
       <TaskCardView
         callbacks={callbacks}
@@ -300,6 +299,7 @@ export class TaskCard {
 function useTaskCardDemo(props: TaskCard) {
   return deepmerge(
     {
+      content: { ...props },
       states: { loadingEvent: false, locale: "en" },
       callbacks: {
         sendEvent: (event: string) => console.log(event),

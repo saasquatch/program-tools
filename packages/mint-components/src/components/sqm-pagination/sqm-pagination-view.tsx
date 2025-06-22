@@ -14,7 +14,7 @@ export interface PaginationViewProps {
     onNext: (e: Event) => void;
     onPrev: (e: Event) => void;
   };
-  buttonType?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 const style = {
@@ -48,9 +48,7 @@ export function PaginationView(props: PaginationViewProps) {
       {!loading && (
         <Fragment>
           <sl-button
-            exportparts={`base: ${
-              props.buttonType === "primary" ? "primary" : "secondary"
-            }button-base`}
+            exportparts={`base: ${buttonType}button-base`}
             onClick={onPrev}
             part="sqm-pagination-button"
             circle
@@ -62,9 +60,7 @@ export function PaginationView(props: PaginationViewProps) {
         </Fragment>
       )}
       <sl-button
-        exportparts={`base: ${
-          props.buttonType === "primary" ? "primary" : "secondary"
-        }button-base`}
+        exportparts={`base: ${buttonType}button-base`}
         onClick={onNext}
         part="sqm-pagination-button"
         circle

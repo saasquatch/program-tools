@@ -56,7 +56,7 @@ export function useTaskCard(props: TaskCard) {
       textColor: props.textColor,
       borderColor: props.borderColor,
       borderRadius: props.borderRadius,
-      buttonStyle: props.buttonStyle,
+      buttonType: props.buttonType,
     },
   };
 

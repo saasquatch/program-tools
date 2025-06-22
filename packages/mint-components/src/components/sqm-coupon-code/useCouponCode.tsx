@@ -19,6 +19,7 @@ interface CouponCodeProps {
   pendingErrorText: string;
   redeemedErrorText: string;
   genericErrorText: string;
+  buttonType?: "primary" | "secondary" | "tertiary";
 }
 
 type FuelTankReward = {
@@ -193,5 +194,6 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
     dateAvailable,
     loading,
     errorType,
+    buttonType: props.buttonType || "primary",
   };
 }

@@ -28,15 +28,15 @@ export class Pagination {
   @Prop() paginationText: string = "{currentPage} of {totalPages}";
 
   /**
-   * The type of the button (primary or secondary) that will be used to copy the link.
+   * The type of the button that is used (primary, secondary, or tertiary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary"]
-   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" = "secondary";
+  buttonType?: "primary" | "secondary" | "tertiary" = "secondary";
 
   /**
    * @undocumented
