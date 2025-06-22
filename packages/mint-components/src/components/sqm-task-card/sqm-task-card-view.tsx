@@ -200,7 +200,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   };
 
   const sheet = createStyleSheet(style);
-  const contenttring = sheet.toString();
+  const contentString = sheet.toString();
 
   const dateStart =
     content.rewardDuration &&
@@ -246,7 +246,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   return (
     <div class={sheet.classes.TaskCard} part="sqm-base">
       <style type="text/css">
-        {contenttring}
+        {contentString}
         {vanillaStyle}
       </style>
       {!states.loading && taskNotStarted && (
