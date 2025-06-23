@@ -2,7 +2,6 @@ import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../sqm-tax-and-cash/data";
-import { P } from "../../../global/mixins";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 
 export interface TaxAndCashDashboardProps {
@@ -263,13 +262,13 @@ const style = {
     gap: "6px",
   },
   DescriptionText: {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-x-small)",
     marginBottom: "none",
     maxWidth: "492px",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
     marginTop: "0",
   },

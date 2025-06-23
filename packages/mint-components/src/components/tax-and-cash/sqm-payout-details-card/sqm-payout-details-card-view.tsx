@@ -32,12 +32,12 @@ const style = {
     display: "grid",
     gridTemplateColumns: "1fr",
     gridGap: "var(--sl-spacing-large)",
-    background: "var(--sl-color-neutral-0)",
+    background: "inherit",
     boxShadow: "0px 2px 4px rgba(28, 28, 33, 0.12)",
-    borderRadius: "4px",
+    borderRadius: "var(--sqm-border-radius-normal)",
     padding: "var(--sl-spacing-large)",
     minHeight: "150px",
-    border: "1px solid var(--sl-color-gray-200)",
+    border: "1px solid var(--sqm-border-color)",
     maxWidth: "450px",
   },
   StatusContainer: {
@@ -47,7 +47,7 @@ const style = {
   },
   MainCurrencyLabel: {
     fontWeight: "var(--sl-font-weight-normal)",
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
   },
   MainCurrency: {
     margin: 0,
@@ -56,13 +56,13 @@ const style = {
   },
   SubduedRegularText: {
     fontSize: "var(--sl-font-size-small)",
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     margin: 0,
     width: "auto",
   },
 
   PaypalEmail: {
-    borderRight: "1px solid var(--sl-color-gray-200)",
+    borderRight: "1px solid var(--sqm-border-color)",
     paddingRight: "var(--sl-spacing-small)",
     "@media (max-width: 499px)": {
       borderRight: "none",
@@ -70,7 +70,7 @@ const style = {
     },
   },
   PaypalDetailsContainer: {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     display: "flex",
     gap: "var(--sl-spacing-small)",
     justifyContent: "flex-start",
@@ -92,7 +92,7 @@ const style = {
     },
   },
   AccountDetailsContainer: {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     display: "flex",
     gap: "var(--sl-spacing-small)",
     justifyContent: "flex-start",
@@ -105,7 +105,7 @@ const style = {
     gap: "var(--sl-spacing-xx-small) var(--sl-spacing-small)",
     paddingTop: "var(--sq-spacing-xx-small)",
     "& > :not(:last-child)": {
-      borderRight: "1px solid var(--sl-color-gray-200)",
+      borderRight: "1px solid var(--sqm-border-color)",
     },
     "& > :nth-child(3)": {
       border: "none",
@@ -122,7 +122,7 @@ const style = {
   },
   W9Container: {
     paddingTop: "var(--sl-spacing-large)",
-    borderTop: "1px solid var(--sl-color-gray-200)",
+    borderTop: "1px solid var(--sqm-border-color)",
   },
   SkeletonOne: {
     width: "25%",
@@ -138,8 +138,8 @@ const style = {
   },
   Alert: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-warning-100)",
-      border: "1px solid var(--sl-color-warning-200)",
+      backgroundColor: "var(--sqm-warning-color-background)",
+      border: "1px solid var(--sqm-warning-color-border)",
       padding: "0 16px",
     },
     "& sl-icon": {
@@ -147,7 +147,7 @@ const style = {
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sqm-warning-color-text)",
       margin: 0,
     },
   },

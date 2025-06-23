@@ -151,8 +151,6 @@ export function CopyTextView(props: CopyTextViewProps) {
     </sl-tooltip>
   );
 
-  console.log("buttontype is ", props.buttonType);
-
   return (
     <div class={sheet.classes.ContainerDiv}>
       <style type="text/css">
