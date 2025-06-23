@@ -644,8 +644,6 @@ html {
   --sqm-input-disabled-color: white;
   --sqm-input-disabled-background: #303030;
 
-
-  
   --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-color-hover: var(--sqm-input-color);
   --sl-input-color-focus: var(--sqm-input-color);
@@ -695,6 +693,11 @@ body {
   line-height: var(--sl-line-height-normal);
   margin: 0;
   background-color: var(--sqm-portal-background);
+}
+
+sl-spinner {
+  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-spinner-stroke-width: 4px;
 }
 
 sl-select::part(menu) {
