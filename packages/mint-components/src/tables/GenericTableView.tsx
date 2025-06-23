@@ -53,9 +53,9 @@ export function GenericTableView(props: GenericTableViewProps) {
       tableLayout: "fixed",
       width: "100%",
       "& tbody tr": {
-        borderBottom: "1px solid var(--sl-color-neutral-200)",
+        borderBottom: "1px solid var(--sqm-border-color)",
         "&:first-child": {
-          borderTop: "1px solid var(--sl-color-neutral-200)",
+          borderTop: "1px solid var(--sqm-border-color)",
         },
       },
       "& th": {
@@ -77,7 +77,7 @@ export function GenericTableView(props: GenericTableViewProps) {
         "& tr": {
           display: "block",
           background: "inherit",
-          border: "1px solid var(--sl-color-neutral-200)",
+          border: "1px solid var(--sqm-border-color)",
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
           borderRadius: "var(--sl-border-radius-large)",
           padding: "var(--sl-spacing-medium)",
