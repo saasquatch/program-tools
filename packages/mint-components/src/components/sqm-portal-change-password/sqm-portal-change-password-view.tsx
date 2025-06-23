@@ -75,6 +75,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
 
     CancelButton: {
       margin: "var(--sl-spacing-large) auto",
+      width: "100%",
     },
     PasswordField: {
       marginBottom: "var(--sl-spacing-large) !important",

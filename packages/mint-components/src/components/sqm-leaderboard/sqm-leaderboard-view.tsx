@@ -84,7 +84,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       },
       "& .highlight": {
         background:
-          styles.viewingUserHighlightColor || "var(--sl-color-primary-200)",
+          styles.viewingUserHighlightColor ||
+          "var(--sqm-accent-color-background)",
         "& td, th": {
           color: styles.viewingUserHighlightTextColor || "var(--sqm-text)",
         },
