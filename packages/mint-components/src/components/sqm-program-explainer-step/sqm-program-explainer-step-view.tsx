@@ -23,9 +23,9 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       lineHeight: "var(--sl-line-height-dense)",
       borderRadius: props.borderRadius
         ? `${props.borderRadius}px`
-        : "var(--sl-border-radius-large)",
+        : "var(--sqm-border-radius-normal)",
       color: props.textColor || "var(--sqm-text)",
-      background: props.backgroundColor || "var(--sl-color-primary-50)",
+      background: props.backgroundColor || "var(--sqm-accent-color-background)",
       "@media (max-width: 499px)": {
         flexDirection: "row",
         width: "auto",
@@ -61,7 +61,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       objectFit: "cover",
       userSelect: "none",
       background: props.iconBackgroundColor || "var(--sl-color-white)",
-      color: props.iconColor || "var(--sl-color-primary-500)",
+      color: props.iconColor || "var(--sqm-accent-color-icon)",
       fontSize: "26px",
       textAlign: "center",
       lineHeight: "72px",
