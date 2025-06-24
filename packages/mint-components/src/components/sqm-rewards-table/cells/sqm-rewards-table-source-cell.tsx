@@ -42,7 +42,7 @@ export class RewardTableSourceCell {
           <span
             style={{
               fontSize: "var(--sl-font-size-small)",
-              color: "var(--sl-color-neutral-500)",
+              color: "var(--sqm-text-subdued)",
             }}
           >
             {this.rewardExchangeText}
@@ -89,7 +89,7 @@ export class RewardTableSourceCell {
         this.reward.referral === null ? (
           <p
             style={{
-              color: "var(--sl-color-gray-400)",
+              color: "var(--sqm-text-subdued)",
             }}
           >
             {this.deletedReferralText}
@@ -99,7 +99,7 @@ export class RewardTableSourceCell {
             <div
               style={{
                 fontSize: "var(--sl-font-size-small)",
-                color: "var(--sl-color-neutral-500)",
+                color: "var(--sqm-text-subdued)",
               }}
             >
               {intl.formatMessage(

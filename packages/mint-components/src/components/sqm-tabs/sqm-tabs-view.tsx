@@ -12,7 +12,7 @@ export type TabsViewProps = {
 export const TabsView: FunctionalComponent<TabsViewProps> = ({
   content,
   placement,
-  textColor = "var(--sqm-accent-color-text)",
+  textColor = "var(--sqm-text)",
 }) => {
   // Vertical padding for top & bottom placement, horizontal for left & right.
   const padding =

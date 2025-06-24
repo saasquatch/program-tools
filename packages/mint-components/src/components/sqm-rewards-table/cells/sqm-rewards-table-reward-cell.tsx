@@ -181,11 +181,11 @@ export class RewardTableRewardsCell {
             height: "3px",
             width: "100%",
             margin: "var(--sl-spacing-xx-small) 0",
-            background: "var(--sl-color-neutral-200)",
+            background: "var(--sqm-border-color)",
             "&:after": {
               content: '""',
               display: "block",
-              background: "var(--sl-color-primary-300)",
+              background: "var(--sqm-accent-color-icon)",
               borderRadius: "100px",
               width: `${progress}%`,
               height: "100%",

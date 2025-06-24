@@ -15,15 +15,48 @@ const style = {
   },
   RedeemBadge: {
     "&::part(base)": {
-      fontSize: "var(--sl-font-size-small)",
       padding: "4px 8px",
-      background: "var(--sl-color-blue-600)",
+      fontSize: "var(--sl-font-size-small)",
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-informative-color-background)",
+      color: "var(--sqm-informative-color-text)",
+    },
+  },
+  DangerBadge: {
+    "&::part(base)": {
+      padding: "4px 8px",
+      fontSize: "var(--sl-font-size-small)",
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-danger-color-background)",
+      color: "var(--sqm-danger-color-text)",
+    },
+  },
+  WarningBadge: {
+    "&::part(base)": {
+      padding: "4px 8px",
+      fontSize: "var(--sl-font-size-small)",
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-warning-color-background)",
+      color: "var(--sqm-warning-color-text)",
+    },
+  },
+  SuccessBadge: {
+    "&::part(base)": {
+      padding: "4px 8px",
+      fontSize: "var(--sl-font-size-small)",
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-success-color-background)",
+      color: "var(--sqm-success-color-text)",
     },
   },
 
   Date: {
     fontSize: "var(--sl-font-size-small)",
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     margin: "0",
   },
 };
@@ -208,17 +241,61 @@ export class RewardTableStatusCell {
         ? this.deniedText
         : null;
 
+    type ShoeLaceBadgeType =
+      | "primary"
+      | "danger"
+      | "warning"
+      | "success"
+      | "info";
+
+    const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
+      // switch (badgeType) {
+
+      //   case "primary":
+      //     return sheet.classes.RedeemBadge;
+
+      //   case "danger":
+      //     return sheet.classes.DangerBadge;
+
+      //   case "success":
+      //     return sheet.classes.SuccessBadge;
+
+      //   case "warning":
+      //   case "info":
+      //     return sheet.classes.WarningBadge;
+
+      //   default:
+      //     return sheet.classes.WarningBadge;
+      // }
+
+      switch (rewardStatus) {
+        case "AVAILABLE":
+          return sheet.classes.SuccessBadge;
+        case "REDEEMED":
+        case "PAYOUT_APPROVED":
+          return sheet.classes.RedeemBadge;
+        case "PENDING":
+        case "PENDING_REVIEW":
+          return sheet.classes.WarningBadge;
+        default:
+          return sheet.classes.DangerBadge;
+      }
+    };
+
+    const badgeCSSClass = getBadgeCSSClass(badgeType);
+
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
         <sl-badge
           type={badgeType}
           pill
-          class={
-            rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_APPROVED"
-              ? sheet.classes.RedeemBadge
-              : sheet.classes.Badge
-          }
+          // class={
+          //   rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_APPROVED"
+          //     ? sheet.classes.RedeemBadge
+          //     : sheet.classes.Badge
+          // }
+          class={badgeCSSClass}
         >
           {statusText}
         </sl-badge>
