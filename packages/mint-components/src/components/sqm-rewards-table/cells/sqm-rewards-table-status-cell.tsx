@@ -249,6 +249,7 @@ export class RewardTableStatusCell {
       | "info";
 
     const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
+      console.log("badgeType", badgeType);
       // switch (badgeType) {
 
       //   case "primary":
