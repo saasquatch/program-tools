@@ -122,14 +122,14 @@ export class ReferralTableRewardsCell {
 
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
-    type shoeLaceBadgeType =
+    type ShoeLaceBadgeType =
       | "primary"
       | "danger"
       | "warning"
       | "success"
       | "info";
 
-    const getBadgeCSSClass = (badgeType: shoeLaceBadgeType): string => {
+    const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
       switch (badgeType) {
         case "primary":
           return sheet.classes.RedeemBadge;
@@ -211,7 +211,7 @@ export class ReferralTableRewardsCell {
       );
     };
 
-    const getSLBadgeType = (state: string): shoeLaceBadgeType => {
+    const getSLBadgeType = (state: string): ShoeLaceBadgeType => {
       switch (state) {
         case "REDEEMED":
         case "PAYOUT_APPROVED":
