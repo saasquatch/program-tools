@@ -49,6 +49,7 @@ export class ReferralTableRewardsCell {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
         },
         "&::part(base)": {
+          border: "1px solid var(--sqm-border-color)",
           opacity: "1",
         },
         "&::part(summary-icon)": {
@@ -57,7 +58,6 @@ export class ReferralTableRewardsCell {
 
         "&::part(summary-icon[open])": {
           transform: "rotate(-90deg)",
-          background: "red",
         },
       },
 
@@ -81,13 +81,73 @@ export class ReferralTableRewardsCell {
       RedeemBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
         "&::part(base)": {
-          background: "var(--sl-color-blue-600)",
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-informative-color-background)",
+          color: "var(--sqm-informative-color-text)",
+        },
+      },
+      DangerBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-danger-color-background)",
+          color: "var(--sqm-danger-color-text)",
+        },
+      },
+      WarningBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-warning-color-background)",
+          color: "var(--sqm-warning-color-text)",
+        },
+      },
+      SuccessBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-success-color-background)",
+          color: "var(--sqm-success-color-text)",
         },
       },
     };
 
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
+    type shoeLaceBadgeType =
+      | "primary"
+      | "danger"
+      | "warning"
+      | "success"
+      | "info";
+
+    const getBadgeCSSClass = (badgeType: shoeLaceBadgeType): string => {
+      switch (badgeType) {
+        case "primary":
+          return sheet.classes.RedeemBadge;
+
+        case "danger":
+          return sheet.classes.DangerBadge;
+
+        case "success":
+          return sheet.classes.SuccessBadge;
+
+        case "warning":
+        case "info":
+          return sheet.classes.WarningBadge;
+
+        default:
+          return sheet.classes.WarningBadge;
+      }
+    };
 
     const getState = (
       reward: Reward,
@@ -151,7 +211,7 @@ export class ReferralTableRewardsCell {
       );
     };
 
-    const getSLBadgeType = (state: string): string => {
+    const getSLBadgeType = (state: string): shoeLaceBadgeType => {
       switch (state) {
         case "REDEEMED":
         case "PAYOUT_APPROVED":
@@ -218,11 +278,7 @@ export class ReferralTableRewardsCell {
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type={slBadgeType}
                   pill
                 >
@@ -239,11 +295,7 @@ export class ReferralTableRewardsCell {
                 </sl-badge>
               ) : (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type={slBadgeType}
                   pill
                 >
@@ -252,11 +304,7 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type="info"
                   pill
                 >
