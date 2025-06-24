@@ -12,7 +12,7 @@ export type TabsViewProps = {
 export const TabsView: FunctionalComponent<TabsViewProps> = ({
   content,
   placement,
-  textColor = "var(--sqm-text)",
+  textColor = "var(--sqm-accent-color-text)",
 }) => {
   // Vertical padding for top & bottom placement, horizontal for left & right.
   const padding =
@@ -28,9 +28,15 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
     sl-tab::part(base) {
       color: ${textColor};
     }
-  `;
 
-  console.log("text color is ", textColor);
+    sl-tab-group {
+      --sl-color-primary-500: var(--sqm-accent-color-icon);
+    }
+
+    sl-tab-group::part(tabs) {
+      border-bottom: 2px solid var(--sqm-border-color);
+    }
+  `;
 
   return (
     <Host>
