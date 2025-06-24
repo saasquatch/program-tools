@@ -126,7 +126,7 @@ export class InstantAccessRegistration {
    * @uiGroup Card style
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#ffffff";
+  @Prop() backgroundColor: string = "var(--sqm-portal-background)";
 
   /**
    * @undocumented

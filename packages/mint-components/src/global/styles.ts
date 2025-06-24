@@ -71,6 +71,8 @@
   --teal-7: #004551;
 } */
 
+// console.log("branding config is ", window.brandingConfig)
+
 const style = `
 /* vietnamese */
 @font-face {
