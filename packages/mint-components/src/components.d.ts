@@ -425,6 +425,8 @@ export namespace Components {
          */
         "brandFont": string;
     }
+    interface SqmBrandSelector {
+    }
     interface SqmCardFeed {
         /**
           * @uiName Column gap
@@ -6515,6 +6517,12 @@ declare global {
         prototype: HTMLSqmBrandElement;
         new (): HTMLSqmBrandElement;
     };
+    interface HTMLSqmBrandSelectorElement extends Components.SqmBrandSelector, HTMLStencilElement {
+    }
+    var HTMLSqmBrandSelectorElement: {
+        prototype: HTMLSqmBrandSelectorElement;
+        new (): HTMLSqmBrandSelectorElement;
+    };
     interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
     }
     var HTMLSqmCardFeedElement: {
@@ -7229,6 +7237,7 @@ declare global {
         "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
+        "sqm-brand-selector": HTMLSqmBrandSelectorElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
@@ -7716,6 +7725,8 @@ declare namespace LocalJSX {
           * @default "Nunito Sans"
          */
         "brandFont"?: string;
+    }
+    interface SqmBrandSelector {
     }
     interface SqmCardFeed {
         /**
@@ -13751,6 +13762,7 @@ declare namespace LocalJSX {
         "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
+        "sqm-brand-selector": SqmBrandSelector;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
@@ -13880,6 +13892,7 @@ declare module "@stencil/core" {
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
+            "sqm-brand-selector": LocalJSX.SqmBrandSelector & JSXBase.HTMLAttributes<HTMLSqmBrandSelectorElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;

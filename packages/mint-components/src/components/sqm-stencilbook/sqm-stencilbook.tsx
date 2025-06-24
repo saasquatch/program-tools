@@ -235,7 +235,7 @@ export class StencilStorybook {
     const theme = Themes[selectedTheme];
     return (
       <Host class={Style} onClick={{}}>
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: "0",
@@ -251,24 +251,8 @@ export class StencilStorybook {
               <option selected={t === selectedTheme}>{t}</option>
             ))}
           </select>
-          <div>
-            <div></div>
-          </div>
-          <ColorScale />
-          <br />
-          <input
-            type="checkbox"
-            id="checkerboard"
-            onClick={() => setCheckerboard(!checkerboard)}
-            onChange={() =>
-              document.documentElement.style.setProperty(
-                "--checker-color-1",
-                checkerboard ? "#ebebeb" : "#ffffff00"
-              )
-            }
-          ></input>
-          <label htmlFor="checkerboard">Checkerboard?</label>
-        </div>
+        </div> */}
+        <sqm-brand-selector></sqm-brand-selector>
         <style>{theme}</style>
         <style>{ResizerStylesheet}</style>
 
