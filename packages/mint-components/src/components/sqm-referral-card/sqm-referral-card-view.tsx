@@ -32,9 +32,9 @@ const vanillaStyle = `
 export function ReferralCardView(props: ReferralCardViewProps) {
   const style = {
     Container: {
-      borderRadius: props.borderRadius || "var(--sl-border-radius-large)",
+      borderRadius: props.borderRadius || "var(--sqm-border-radius-normal)",
       color: props.textColor || "var(--sqm-text)",
-      background: props.backgroundColor || "var(--sl-color-neutral-0)",
+      background: props.backgroundColor || "var(--sqm-portal-background)",
       display: "flex",
       flexDirection: "column",
       rowGap: "var(--sl-spacing-large)",
@@ -63,7 +63,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const borderColor = props.borderColor || "var(--sl-color-neutral-300)";
+  const borderColor = props.borderColor || "var(--sqm-border-color)";
   return (
     <div
       part="sqm-base"
