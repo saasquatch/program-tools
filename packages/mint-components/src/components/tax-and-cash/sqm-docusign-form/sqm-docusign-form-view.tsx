@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { FORM_STEPS, TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { FORM_STEPS, TaxDocumentType } from "../data";
 import { ParticipantType } from "./useDocusignForm";
 
 export interface DocusignFormViewProps {

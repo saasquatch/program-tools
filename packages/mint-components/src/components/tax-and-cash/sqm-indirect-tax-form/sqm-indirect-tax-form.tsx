@@ -5,7 +5,7 @@ import { Component, Host, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { OtherRegionSlotView } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   INDIRECT_TAX_PROVINCES,

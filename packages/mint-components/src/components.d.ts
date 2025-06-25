@@ -50,7 +50,6 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -476,6 +475,11 @@ export namespace Components {
           * @uiName Reverify code widget header text
          */
         "reverifyCodeHeaderText": string;
+        /**
+          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController": string;
         /**
           * @uiName Verify code widget header text
          */
@@ -1760,6 +1764,10 @@ export namespace Components {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText": string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -4706,10 +4714,9 @@ export namespace Components {
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -4781,6 +4788,15 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "searchForCountryText": string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+         */
+        "stateController": string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -5487,6 +5503,16 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
+          * @componentState { "title": "Default", "props": { } }
+          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
+          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
+          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
+          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
+          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -5809,6 +5835,13 @@ export namespace Components {
          */
         "state": string;
         /**
+          * @uiName States
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
+          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController": string;
+        /**
           * @uiName Support link text
          */
         "supportLink": string;
@@ -5931,8 +5964,18 @@ export namespace Components {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader": string;
+        /**
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+         */
+        "stateController": string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController": string;
     }
 }
 declare global {
@@ -7221,6 +7264,11 @@ declare namespace LocalJSX {
          */
         "reverifyCodeHeaderText"?: string;
         /**
+          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText"?: string;
@@ -8499,6 +8547,10 @@ declare namespace LocalJSX {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText"?: string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -11421,10 +11473,9 @@ declare namespace LocalJSX {
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -11496,6 +11547,15 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "searchForCountryText"?: string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+         */
+        "stateController"?: string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -12202,6 +12262,16 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
+          * @componentState { "title": "Default", "props": { } }
+          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
+          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
+          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
+          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
+          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -12523,6 +12593,13 @@ declare namespace LocalJSX {
          */
         "state"?: string;
         /**
+          * @uiName States
+          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
+          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Support link text
          */
         "supportLink"?: string;
@@ -12645,8 +12722,18 @@ declare namespace LocalJSX {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader"?: string;
+        /**
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+         */
+        "stateController"?: string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController"?: string;
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;

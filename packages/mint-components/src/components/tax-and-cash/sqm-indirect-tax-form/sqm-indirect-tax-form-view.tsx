@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
+import { createStyleSheet } from "../../../styling/JSS";
+import { FORM_STEPS } from "../data";
 
 export interface IndirectTaxFormViewProps {
   states: {

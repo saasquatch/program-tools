@@ -1,8 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TaxDocumentType } from "../sqm-tax-and-cash/data";
-import { P } from "../../../global/mixins";
+import { TaxDocumentType } from "../data";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 
 export interface TaxAndCashDashboardProps {

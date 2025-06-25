@@ -1,5 +1,5 @@
 import { intl } from "../../global/global";
-import { TaxDocumentType } from "./sqm-tax-and-cash/data";
+import { TaxDocumentType } from "./data";
 
 export function validTaxDocument(requiredType: TaxDocumentType | undefined) {
   const validTypes = ["W9", "W8BENE", "W8BEN"];

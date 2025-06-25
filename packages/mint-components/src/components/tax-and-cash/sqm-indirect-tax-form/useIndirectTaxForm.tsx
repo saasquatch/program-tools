@@ -15,18 +15,19 @@ import {
 import { gql } from "graphql-request";
 import JSONPointer from "jsonpointer";
 import {
-  CountriesQuery,
   COUNTRIES_QUERY_NAMESPACE,
+  CountriesQuery,
+  TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
   TaxContext,
   TaxCountry,
   TaxDocumentType,
-  TAX_CONTEXT_NAMESPACE,
-  TAX_FORM_CONTEXT_NAMESPACE,
-  UserFormContext,
-  UserQuery,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
-} from "../sqm-tax-and-cash/data";
+  UserFormContext,
+  UserQuery,
+} from "../data";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { IndirectDetailsSlotViewProps } from "../sqm-user-info-form/small-views/IndirectTaxDetailsView";
 import {
   INDIRECT_TAX_PROVINCES,
@@ -34,7 +35,6 @@ import {
 } from "../subregions";
 import { getCountryObj, validTaxDocument } from "../utils";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
-import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 type ConnectPartnerResult = {
   createImpactConnection: {

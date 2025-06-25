@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { GeneralLoadingView } from "../TaxForm.stories";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { formatErrorMessage, validateBillingField } from "../utils";
+// import { GeneralLoadingView } from "../TaxForm.stories";
+import { FORM_STEPS } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
+import LoadingView from "../sqm-tax-and-cash/LoadingView";
+import { formatErrorMessage, validateBillingField } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -338,7 +339,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         </div>
       )}
       {states.loading ? (
-        <GeneralLoadingView />
+        <LoadingView />
       ) : (
         <div>
           <div class={classes.TextContainer}>

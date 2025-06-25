@@ -7,31 +7,31 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { getCountryObj, validTaxDocument } from "../utils";
 import {
-  CountriesQuery,
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
+  CountriesQuery,
   Currencies,
-  CurrenciesQuery,
   CURRENCIES_NAMESPACE,
   CURRENCIES_QUERY_NAMESPACE,
-  FinanceNetworkSettingsQuery,
+  CurrenciesQuery,
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
+  FinanceNetworkSettingsQuery,
   GET_COUNTRIES,
   GET_CURRENCIES,
   GET_FINANCE_NETWORK_SETTINGS,
   GET_USER,
   SORTED_COUNTRIES_NAMESPACE,
-  TaxContext,
-  TaxCountry,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
-  UserFormContext,
-  UserQuery,
+  TaxContext,
+  TaxCountry,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
-} from "./data";
+  UserFormContext,
+  UserQuery,
+} from "../data";
+import { getCountryObj } from "../utils";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {

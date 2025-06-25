@@ -1,8 +1,8 @@
 import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
+import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
-import { UserQuery } from "../sqm-tax-and-cash/data";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 

@@ -3,13 +3,14 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
+import { VERIFICATION_PARENT_NAMESPACE } from "../keys";
 import {
   WidgetCodeVerificationView,
   WidgetCodeVerificationViewProps,
 } from "./sqm-code-verification-view";
 import { useWidgetCodeVerification } from "./useCodeVerification";
-import { SHOW_CODE_NAMESPACE, VERIFICATION_PARENT_NAMESPACE } from "../keys";
 
 @Component({
   tag: "sqm-code-verification",
@@ -61,6 +62,12 @@ export class WidgetCodeVerification {
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
   /**
+   * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
+   * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -99,10 +106,10 @@ function useDemoWidgetCodeVerification(
   return deepmerge(
     {
       states: {
+        initialiseLoading: false,
         loading: false,
         email: "test@example.com",
         emailResent,
-        resendError: false,
         verifyFailed: false,
       },
       refs: {
@@ -114,7 +121,7 @@ function useDemoWidgetCodeVerification(
       },
       text: props.getTextProps(),
     },
-    props.demoData || {},
+    props.demoData || parseStates(props.stateController) || {},
     { arrayMerge: (_, a) => a }
   );
 }
