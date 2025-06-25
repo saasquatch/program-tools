@@ -13,7 +13,17 @@ export class SqmBrandSelector {
   // replace these with actual logo URLs or local assets.
 
   constructor() {
-    withHooks(this); // Initialize hooks for this component instance
+    withHooks(this);
+    // Initialize window.SquatchBrandingConfig in the constructor
+    // Use the DefaultBranding config from Themes
+    if (!window.SquatchBrandingConfig) {
+      window.SquatchBrandingConfig = Themes.Netflix;
+      // Dispatch initial event if you want other parts of the app to react on load
+      const event = new CustomEvent("brandingConfigUpdated", {
+        detail: window.SquatchBrandingConfig,
+      });
+      window.dispatchEvent(event);
+    }
   }
   disconnectedCallback() {}
   private brands = [
@@ -45,12 +55,31 @@ export class SqmBrandSelector {
   // };
 
   render() {
-    const [selectedBrand, setSelectedBrand] = useState("Default");
+    const [selectedBrand, setSelectedBrand] = useState("Netflix");
     const themes = Object.keys(Themes);
     const theme = Themes[selectedBrand];
+    // const brandHash = theme.hash;
+
+    // console.log(brandHash);
 
     const handleBrandClick = (brandName: string) => {
       setSelectedBrand(brandName);
+      const configToSet: BrandingConfig =
+        Themes[brandName as keyof typeof Themes] || Themes.Netflix;
+
+      // Update the global window object with the structured config
+      window.SquatchBrandingConfig = configToSet;
+
+      console.log(
+        "Updated window.SquatchBrandingConfig:",
+        window.SquatchBrandingConfig
+      );
+
+      // Dispatch event to notify other parts of the application
+      const event = new CustomEvent("brandingConfigUpdated", {
+        detail: window.SquatchBrandingConfig,
+      });
+      window.dispatchEvent(event);
     };
     return (
       <Host>
@@ -182,14 +211,12 @@ export class SqmBrandSelector {
           }
           `}
         </style>
-        <style>{theme}</style>
+        {/* <style>{theme}</style> */}
         <div class="card-container">
           <h2 class="card-heading">Select Branding</h2>
 
-          {/* Segmented Control Container */}
           <div class="segmented-control-container">
             {this.brands.map((brand) => (
-              // Individual brand segment/pill
               <div
                 key={brand.name}
                 class={`brand-segment ${
@@ -206,7 +233,6 @@ export class SqmBrandSelector {
                       "https://placehold.co/80x40/cccccc/000000?text=Logo";
                   }}
                 />
-                {/* <span class="brand-name">{brand.name}</span> */}
               </div>
             ))}
           </div>

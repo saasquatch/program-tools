@@ -13,43 +13,58 @@
 import { autoColorScaleCss } from "./AutoColor";
 
 //
-export const Default = `
- // No CSS
-`;
+export const Default = null;
 
-export const Netflix = `
-:root{
-    --sqm-portal-background: #101010 !important;
-      --sqm-text: white;
+export const Netflix: BrandingConfig = {
+  font: {
+    textColor: "white",
+  },
+  color: {
+    background: "#101010",
+    accentColorShades: {
+      icon: "#E50914",
+    },
+  },
+};
 
-          --sqm-accent-color-icon: #E50914;
-    }
-`;
+export const Amazon: BrandingConfig = {
+  font: {
+    textColor: "#2f2f2f",
+  },
+  border: {
+    color: "#d5d9d9",
+  },
+  color: {
+    background: "#ffffff",
+    accentColorShades: {
+      icon: "#FF9900",
+    },
+  },
+};
 
-export const Amazon = `
-:root{
-    --sqm-portal-background: #ffffff !important;
-    --sqm-text: #2f2f2f;
-    --sqm-border-color: #d5d9d9;
+export const Spotify: BrandingConfig = {
+  font: {
+    textColor: "white",
+  },
+  color: {
+    background: "#121212",
+    accentColorShades: {
+      icon: "#1ed760",
+    },
+  },
+};
 
-    --sqm-accent-color-icon: #FF9900;
-}
-`;
-
-export const Spotify = `
-:root{
-    --sqm-portal-background: #121212 !important;
-      --sqm-text: white;
-}
-`;
-
-export const Google = `
-:root{
-    --sqm-portal-background: #ffffff !important;
-    --sqm-text: #212124;
-    --sqm-border-color: #E0E0E0;
-
-        --sqm-accent-color-icon: #4285F4;
-    
-}
-`;
+export const Google: BrandingConfig = {
+  font: {
+    textColor: "#212124",
+  },
+  border: {
+    color: "#E0E0E0",
+  },
+  color: {
+    background: "#ffffff",
+    accentColorShades: {
+      icon: "#4285F4",
+    },
+  },
+};

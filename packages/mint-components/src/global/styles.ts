@@ -77,6 +77,8 @@ declare global {
   }
 }
 
+console.log("The branding config is ", window.SquatchBrandingConfig);
+
 const style = `
 /* vietnamese */
 @font-face {
@@ -607,13 +609,13 @@ html {
   --sqm-tertiary-button-radius: 30px;
   
   --sqm-border-radius-normal: ${
-    window.SquatchBrandingConfig?.border.radius + "px" || "18px"
-  };
-  --sqm-border-color: ${window.SquatchBrandingConfig?.border.color || "white"};
+    window.SquatchBrandingConfig?.border?.radius || "18px"
+  }; 
+  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
   --sqm-border-thickness: 1px;
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color.accentColorShades.icon || "#1ed760"
+    window.SquatchBrandingConfig?.color?.accentColorShades?.icon || "#1ed760"
   };
   --sqm-accent-color-text: #ffffff;     
   --sqm-accent-color-border: #1db954;
