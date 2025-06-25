@@ -3,29 +3,52 @@ import { Component, State, h, Host } from "@stencil/core";
 import * as Themes from "./Themes";
 @Component({
   tag: "sqm-brand-selector",
-  shadow: false, // Encapsulate styles within the component
+  shadow: false,
 })
 export class SqmBrandSelector {
-  // State to keep track of the currently selected brand
-
-  // Array of brand objects, each containing a name and an image URL.
-  // Using placeholder images for now. In a real application, you would
-  // replace these with actual logo URLs or local assets.
+  @State() selectedBrand: string = "Netflix";
 
   constructor() {
-    withHooks(this);
+    this.hashChangeHandler = this.hashChangeHandler.bind(this);
+
     // Initialize window.SquatchBrandingConfig in the constructor
-    // Use the DefaultBranding config from Themes
+    // Read the initial hash from the URL
+    const initialHashBrand = window.location.hash.substring(1); // Remove the '#'
+    // Determine the initial brand config based on hash, fallback to Netflix if invalid/empty
+    const initialConfig =
+      Themes[initialHashBrand as keyof typeof Themes] || Themes.Netflix;
+
     if (!window.SquatchBrandingConfig) {
-      window.SquatchBrandingConfig = Themes.Netflix;
-      // Dispatch initial event if you want other parts of the app to react on load
+      window.SquatchBrandingConfig = initialConfig;
       const event = new CustomEvent("brandingConfigUpdated", {
         detail: window.SquatchBrandingConfig,
       });
       window.dispatchEvent(event);
     }
   }
-  disconnectedCallback() {}
+
+  componentDidLoad() {
+    window.addEventListener("hashchange", this.hashChangeHandler);
+
+    const initialHashBrand = window.location.hash.substring(1);
+    if (initialHashBrand && Themes[initialHashBrand as keyof typeof Themes]) {
+      this.selectedBrand = initialHashBrand;
+    } else if (!initialHashBrand) {
+      this.selectedBrand = "Netflix";
+    }
+    const currentConfig =
+      Themes[this.selectedBrand as keyof typeof Themes] || Themes.Netflix;
+    if (window.SquatchBrandingConfig !== currentConfig) {
+      window.SquatchBrandingConfig = currentConfig;
+      const event = new CustomEvent("brandingConfigUpdated", {
+        detail: window.SquatchBrandingConfig,
+      });
+      window.dispatchEvent(event);
+    }
+  }
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.hashChangeHandler);
+  }
   private brands = [
     {
       name: "Netflix",
@@ -49,41 +72,39 @@ export class SqmBrandSelector {
     },
   ];
 
-  // Handler function for when a brand logo is clicked
-  // private handleBrandClick = (brandName: string) => {
+  private hashChangeHandler() {
+    const hash = window.location.hash.substring(1); // Remove '#'
+    // Only update if the hash corresponds to a known brand, or if it's empty
+    if (Themes[hash as keyof typeof Themes] && this.selectedBrand !== hash) {
+      this.updateBrand(hash);
+    } else if (hash === "" && this.selectedBrand !== "Netflix") {
+      this.updateBrand("Netflix");
+    }
+  }
 
-  // };
+  private updateBrand(brandName: string) {
+    this.selectedBrand = brandName;
 
+    if (window.location.hash !== `#${brandName}`) {
+      window.location.hash = brandName;
+    }
+
+    const configToSet: BrandingConfig =
+      Themes[brandName as keyof typeof Themes] || Themes.Netflix;
+    window.SquatchBrandingConfig = configToSet;
+
+    console.log(
+      "Updated window.SquatchBrandingConfig:",
+      window.SquatchBrandingConfig
+    );
+    const event = new CustomEvent("brandingConfigUpdated", {
+      detail: window.SquatchBrandingConfig,
+    });
+    window.dispatchEvent(event);
+  }
   render() {
-    const [selectedBrand, setSelectedBrand] = useState("Netflix");
-    const themes = Object.keys(Themes);
-    const theme = Themes[selectedBrand];
-    // const brandHash = theme.hash;
-
-    // console.log(brandHash);
-
-    const handleBrandClick = (brandName: string) => {
-      setSelectedBrand(brandName);
-      const configToSet: BrandingConfig =
-        Themes[brandName as keyof typeof Themes] || Themes.Netflix;
-
-      // Update the global window object with the structured config
-      window.SquatchBrandingConfig = configToSet;
-
-      console.log(
-        "Updated window.SquatchBrandingConfig:",
-        window.SquatchBrandingConfig
-      );
-
-      // Dispatch event to notify other parts of the application
-      const event = new CustomEvent("brandingConfigUpdated", {
-        detail: window.SquatchBrandingConfig,
-      });
-      window.dispatchEvent(event);
-    };
     return (
       <Host>
-        {/* Vanilla CSS styles encapsulated within the shadow DOM */}
         <style>
           {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -211,7 +232,6 @@ export class SqmBrandSelector {
           }
           `}
         </style>
-        {/* <style>{theme}</style> */}
         <div class="card-container">
           <h2 class="card-heading">Select Branding</h2>
 
@@ -220,9 +240,9 @@ export class SqmBrandSelector {
               <div
                 key={brand.name}
                 class={`brand-segment ${
-                  selectedBrand === brand.name ? "active" : ""
+                  this.selectedBrand === brand.name ? "active" : ""
                 }`}
-                onClick={() => handleBrandClick(brand.name)}
+                onClick={() => this.updateBrand(brand.name)}
               >
                 <img
                   src={brand.logoUrl}
