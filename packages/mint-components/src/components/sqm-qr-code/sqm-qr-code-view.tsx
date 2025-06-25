@@ -54,11 +54,7 @@ const style = {
     height: "100%",
     maxWidth: "335px",
   },
-  TextButton: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-600)",
-    },
-  },
+
   LoadingSkeleton: {
     "&::part(indicator)": {
       borderRadius: "0px !important",
@@ -150,18 +146,17 @@ export function QrCodeView({
         <div class={sheet.classes.ButtonContainer}>
           <sl-button
             size="small"
-            exportparts="base: defaultbutton-base"
-            type="default"
+            exportparts="base: primarybutton-base"
+            type="primary"
             onClick={createDownloadable}
           >
             {downloadCodeText}
           </sl-button>
           <sl-button
             size="small"
-            exportparts="base: textbutton-base"
+            exportparts="base: tertiarybutton-base"
             type="text"
             onClick={createPrintable}
-            class={sheet.classes.TextButton}
           >
             {printCodeText}
           </sl-button>

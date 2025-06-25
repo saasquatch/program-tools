@@ -5,6 +5,7 @@ import { PortalFooterView } from "./sqm-portal-footer-view";
 
 /**
  * @uiName Footer
+ * @validParents ["div","sqm-brand","sqm-portal-container"]
  */
 @Component({
   tag: "sqm-portal-footer",

@@ -112,21 +112,21 @@ export interface TaxAndCashDashboardProps {
 const style = {
   ErrorAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
     },
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
   WarningAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-yellow-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-warning-color-background)",
+      border: "none",
       maxWidth: "600px",
     },
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sqm-warning-color-text)",
     },
   },
   WarningHoldAlertContainer: {
@@ -137,7 +137,7 @@ const style = {
       backgroundColor: "transparent",
     },
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sqm-warning-color-text)",
     },
   },
   ErrorHoldAlertContainer: {
@@ -148,13 +148,13 @@ const style = {
       backgroundColor: "transparent",
     },
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   ExpiringSoonAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-yellow-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-warning-color-background)",
+      border: "none",
     },
   },
   BankingInformationContainer: {
@@ -162,7 +162,7 @@ const style = {
   },
   IndirectTaxPreviewContainer: {
     marginTop: "var(--sl-spacing-x-large)",
-    borderTop: "1px solid var(--sl-color-neutral-200)",
+    borderTop: "1px solid var(--sqm-border-color)",
   },
   IndirectTaxPreviewHeaderContainer: {
     marginTop: "var(--sl-spacing-large)",
@@ -171,7 +171,7 @@ const style = {
     display: "flex",
     gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {
-      color: "var(--sl-color-green-500)",
+      color: "var(--sqm-success-color-text)",
     },
   },
   IndirectTaxPreviewDetails: {
@@ -185,11 +185,11 @@ const style = {
     marginTop: "var(--sl-spacing-medium)",
   },
   NotRegisteredIndirectTaxText: {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
-    borderTop: "1px solid var(--sl-color-neutral-200)",
+    borderTop: "1px solid var(--sqm-border-color)",
   },
   TaxDocumentsSectionHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
@@ -206,7 +206,7 @@ const style = {
     "& p": {
       margin: "0",
       paddingTop: "2px",
-      color: "var(--sl-color-gray-500)",
+      color: "var(--sqm-text-subdued)",
     },
   },
   StatusAlert: {
@@ -241,7 +241,7 @@ const style = {
   },
   TaxDocSubtext: {
     margin: "0",
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     lineHeight: "var(--sl-spacing-medium)",
     fontSize: "var(--sl-font-size-small)",
     marginLeft: "1px",
@@ -262,13 +262,13 @@ const style = {
     gap: "6px",
   },
   DescriptionText: {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-x-small)",
     marginBottom: "none",
     maxWidth: "492px",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
     marginTop: "0",
   },

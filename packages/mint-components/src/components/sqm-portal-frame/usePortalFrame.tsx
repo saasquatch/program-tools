@@ -1,10 +1,12 @@
 import { useTick } from "@saasquatch/component-boilerplate";
 import { VNode } from "@stencil/core";
 import { PortalFrameViewProps } from "./sqm-portal-frame-view";
+import { PortalFrame } from "./sqm-portal-frame";
 
 export function usePortalFrame(
   footerContent: VNode,
   headerContent: VNode,
+  props: PortalFrame
 ): PortalFrameViewProps {
   const [, rerender] = useTick();
 
@@ -16,5 +18,8 @@ export function usePortalFrame(
     callbacks: {
       rerender,
     },
+    backgroundColor: props.backgroundColor,
+    border: props.border,
+    headerAndFooterBackgroundColor: props.headerAndFooterBackgroundColor,
   };
 }

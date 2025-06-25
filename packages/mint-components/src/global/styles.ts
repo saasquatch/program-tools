@@ -71,6 +71,12 @@
   --teal-7: #004551;
 } */
 
+declare global {
+  interface Window {
+    SquatchBrandingConfig: BrandingConfig | null;
+  }
+}
+
 const style = `
 /* vietnamese */
 @font-face {
@@ -509,25 +515,15 @@ html {
   --sl-focus-ring-color-success: var(--sl-color-success-100);
   --sl-focus-ring-color-info: var(--sl-color-info-100);
   --sl-focus-ring-color-warning: var(--sl-color-warning-100);
-  --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
-  --sl-focus-ring-width: 3px;
+  --sl-focus-ring-color-danger: #var(--sl-color-danger-100);
+  --sl-focus-ring-width: 0px;
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
   --sl-button-font-size-large: var(--sl-font-size-medium);
   --sl-input-height-small: 1.875rem;
   --sl-input-height-medium: 2.5rem;
   --sl-input-height-large: 3.125rem;
-  --sl-input-background-color: var(--sl-color-white);
-  --sl-input-background-color-hover: var(--sl-color-white);
-  --sl-input-background-color-focus: var(--sl-color-white);
-  --sl-input-background-color-disabled: var(--sl-color-gray-100);
-  --sl-input-border-color: var(--sl-color-gray-300);
-  --sl-input-border-color-hover: var(--sl-color-gray-400);
-  --sl-input-border-color-focus: var(--sl-color-primary-500);
-  --sl-input-border-color-disabled: var(--sl-color-gray-300);
-  --sl-input-border-width: 1px;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
-  --sl-input-border-radius-medium: var(--sl-border-radius-medium);
   --sl-input-border-radius-large: var(--sl-border-radius-medium);
   --sl-input-font-family: var(--sl-font-sans);
   --sl-input-font-weight: var(--sl-font-weight-normal);
@@ -535,15 +531,11 @@ html {
   --sl-input-font-size-medium: var(--sl-font-size-medium);
   --sl-input-font-size-large: var(--sl-font-size-large);
   --sl-input-letter-spacing: var(--sl-letter-spacing-normal);
-  --sl-input-color: var(--sl-color-gray-700);
-  --sl-input-color-hover: var(--sl-color-gray-700);
-  --sl-input-color-focus: var(--sl-color-gray-700);
   --sl-input-color-disabled: var(--sl-color-gray-900);
   --sl-input-icon-color: var(--sl-color-gray-400);
   --sl-input-icon-color-hover: var(--sl-color-gray-600);
   --sl-input-icon-color-focus: var(--sl-color-gray-600);
   --sl-input-placeholder-color: var(--sl-color-gray-400);
-  --sl-input-placeholder-color-disabled: var(--sl-color-gray-600);
   --sl-input-spacing-small: var(--sl-spacing-small);
   --sl-input-spacing-medium: var(--sl-spacing-medium);
   --sl-input-spacing-large: var(--sl-spacing-large);
@@ -575,16 +567,130 @@ html {
   --sl-z-index-toast: 950;
   --sl-z-index-tooltip: 1000;
 }
+  
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: transparent;
+  --sqm-portal-background: ${
+    window.SquatchBrandingConfig?.color.background || "#121212"
+  };
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
+  
+  --sqm-text: ${window.SquatchBrandingConfig?.font.textColor || "white"};
+  --sqm-text-subdued: ${
+    window.SquatchBrandingConfig?.font.secondaryTextColor || "#b3b3b3"
+  };
+  --sqm-primary-color: #1ed760;
+
+  --sqm-primary-button-background: #1ed760;
+  --sqm-primary-button-background-hover: #1DB954;
+  --sqm-primary-button-color: #121212;
+  --sqm-primary-button-color-border: transparent;
+  --sqm-primary-button-radius: 30px;
+
+
+  --sqm-secondary-button-background: #191414;
+  --sqm-secondary-button-background-hover: #282828; 
+  --sqm-secondary-button-color: #FFFFFF; 
+  --sqm-secondary-button-color-border: #FFFFFF; 
+  --sqm-secondary-button-radius: 30px;
+
+  --sqm-tertiary-button-background: transparent;
+  --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
+  --sqm-tertiary-button-color: var(--sqm-text); 
+  --sqm-tertiary-button-color-border: transparent; 
+  --sqm-tertiary-button-radius: 30px;
+  
+  --sqm-border-radius-normal: ${
+    window.SquatchBrandingConfig?.border.radius + "px" || "18px"
+  };
+  --sqm-border-color: ${window.SquatchBrandingConfig?.border.color || "white"};
+  --sqm-border-thickness: 1px;
+
+  --sqm-accent-color-icon: ${
+    window.SquatchBrandingConfig?.color.accentColorShades.icon || "#1ed760"
+  };
+  --sqm-accent-color-text: #ffffff;     
+  --sqm-accent-color-border: #1db954;
+  --sqm-accent-color-background: #0d4a27;
+
+  --sqm-success-color-icon: var(--sl-color-success-600);
+  --sqm-success-color-text: var(--sl-color-success-950);
+  --sqm-success-color-border: var(--sl-color-success-400);
+  --sqm-success-color-background: var(--sl-color-success-300);
+  
+  --sqm-warning-color-icon: var(--sl-color-warning-600);
+  --sqm-warning-color-text: var(--sl-color-warning-950);
+  --sqm-warning-color-border: var(--sl-color-warning-400);
+  --sqm-warning-color-background: var(--sl-color-warning-300);
+
+  --sqm-danger-color-icon: var(--sl-color-danger-600);
+  --sqm-danger-color-text: var(--sl-color-danger-950);
+  --sqm-danger-color-border: var(--sl-color-danger-400);
+  --sqm-danger-color-background: var(--sl-color-danger-300);
+
+  --sqm-informative-color-icon: var(--sl-color-sky-600);
+  --sqm-informative-color-text: var(--sl-color-sky-950);
+  --sqm-informative-color-border: var(--sl-color-sky-400);
+  --sqm-informative-color-background: var(--sl-color-sky-300);
+
+  --sqm-input-background: #121212;
+  --sqm-input-border: 1px solid #7c7c7c;
+  --sqm-input-border-color: #7c7c7c;
+  --sqm-input-border-radius: 30px;
+  --sqm-input-color: var(--sqm-text);
+  --sqm-input-focus-border: 1px solid white;
+  --sqm-input-label-color: white;
+  --sqm-border-width: 1px;
+  --sqm-border-color-focus: white;
+  --sqm-border-color-hover: white;
+  --sqm-input-label-font-size: white;
+  --sqm-input-disabled-color: white;
+  --sqm-input-disabled-background: #303030;
+
+  --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
+  --sl-input-color-hover: var(--sqm-input-color);
+  --sl-input-color-focus: var(--sqm-input-color);
+  --sl-input-color-disabled: var(--sqm-input-disabled-color);
+  --sl-input-border-color-disabled: #7c7c7c;
+  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, white);
+  --sl-input-border-color: var(--sqm-input-border-color, #7c7c7c);
+  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, white); 
+  --sl-input-background-color-focus: var(--sqm-input-background, #ffffff);
+  --sl-input-border-radius: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
+  --sl-input-background-color: var(--sqm-input-background, #ffffff);
+  --sl-input-color: var(--sqm-input-color, var(--sqm-text), #333); 
+  --sl-input-placeholder-color: var(--sqm-text-subdued, var(--sl-color-neutral-500));
+  --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
+  --sl-input-border-width: var(--sqm-border-width, 1px);
+  --sl-input-border-style: solid;
+
+
+
+/* --- Disabled State --- */
+--sl-input-background-color-disabled: var(--sqm-input-disabled-background, var(--sl-color-neutral-100));
+--sl-input-color-disabled: var(--sqm-input-disabled-color, var(--sl-color-neutral-500)); /* Your current: var(--sqm-input-disabled-color) */
+--sl-input-placeholder-color-disabled: var(--sl-color-neutral-400);
+
+/* --- Invalid/Error State --- */
+--sl-input-background-color-invalid: var(--sl-color-danger-50);
+--sl-input-border-color-invalid: var(--sl-color-danger-500);
+--sl-input-color-invalid: var(--sl-color-danger-700);
+
+/* --- Internal Elements (Prefix, Suffix, Clear Icon) --- */
+--sl-input-icon-color: var(--sl-color-neutral-500);
+--sl-input-icon-size: var(--sl-font-size-medium);
+--sl-input-clear-icon-color: var(--sl-color-neutral-500);
+--sl-input-clear-icon-color-hover: var(--sl-color-neutral-700);
+
+/* --- Box Shadow --- */
+--sl-input-box-shadow: none; /* Typically no box shadow by default */
+--sl-input-box-shadow-focus: 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color);
 }
 
 body {
@@ -592,54 +698,133 @@ body {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
-  color: var(--sl-color-gray-800);
+  color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--sqm-portal-background);
+  background-color: var(--sqm-portal-background) !important;
 }
 
-// .terms-link,
-// .terms-link:visited {
-//   color: var(--sl-color-gray-500);
-//   text-decoration: none;
-// }
-// .terms-link:hover {
-//   color: var(--sl-color-gray-600);
-// }
+.story-div {
+  background: var(--sqm-portal-background) !important;
+  color: var(--sqm-text) !important;
+}
+
+sqm-tabs::part(active-tab-indicator) {
+  border: red;
+  :root {
+    --tabs-border-color: pink;
+  
+  }
+}
+
+sl-tab-group::part(nav) {
+  border-bottom: 1px solid blue; /* Emphasize the separator */
+}
+
+sl-tab-group {
+  /* Set the active tab indicator color to Spotify Green */
+  --indicator-color: #1db954; 
+
+  /* Set the border color separating tabs from content */
+  --sl-tab-group-border-color: #333333; 
+
+  /* You might also want to adjust the nav area's background */
+  background-color: #1a1a1a; /* Dark background for the entire group or just the nav */
+  border-radius: 8px; /* Rounded corners for the entire tab group */
+  padding: 1rem; /* Adjust overall padding */
+}
+
+sl-tab::part(base)[active] {
+  /* You can add a top/left/right border to the active tab button itself if desired */
+  /* For a look like your previous input fields, you might want to mimic that border. */
+  border: 1px solid #1db954; /* Spotify Green border */
+  border-bottom-color: transparent; /* Hide the bottom border to let the indicator show */
+  border-radius: 4px 4px 0 0; /* Keep top corners rounded */
+}
+
+sl-spinner {
+  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-spinner-stroke-width: 4px;
+}
+
+sl-select::part(menu) {
+  background: var(--sqm-input-background, inherit);
+  color: var(--sqm-input-color, inherit);
+  border:none;
+}
+
+sl-select::part(panel) {
+  border-radius: var(--sqm-border-radius-normal);
+}
+
+/** AL: Shading variables **/
+sl-alert[type="success"]::part(icon) {
+  color: var(--sqm-success-icon-color, var(--sl-color-success-500));
+}
+
+sl-alert[type="success"]::part(base) {
+  background-color: var(--sqm-success-icon-color, var(--sl-color-success-100));
+}
+
+sl-alert[type="warning"]::part(icon) {
+  color: var(--sqm-warning-icon-color, var(--sl-color-warning-500));
+}
+
+sl-alert[type="warning"]::part(base) {
+  background-color: var(--sqm-warning-icon-color, var(--sl-color-warning-100));
+}
+
+sl-alert[type="danger"]::part(icon) {
+  color: var(--sqm-danger-icon-color, var(--sl-color-danger-500));
+}
+
+sl-alert[type="danger"]::part(base) {
+  background-color: var(--sqm-danger-icon-color, var(--sl-color-danger-100));
+}
+
+sl-alert[type="info"]::part(icon) {
+  color: var(--sqm-info-icon-color, var(--sl-color-info-500));
+}
+
+sl-alert[type="info"]::part(base) {
+  background-color: var(--sqm-info-icon-color, var(--sl-color-info-100));
+}
+
+sl-alert[type="neutral"]::part(icon) {
+  color: var(--sqm-neutral-icon-color, var(--sl-color-neutral-500));
+}
+
+sl-alert[type="neutral"]::part(base) {
+  background-color: var(--sqm-neutral-icon-color, var(--sl-color-neutral-100));
+}
+
+sl-badge[type="success"]::part(base) {
+  background-color: var(--sqm-success-badge-background, var(--sl-color-success-100));
+  color: var(--sqm-success-badge-text-color, var(--sl-color-success-700));
+}
+
+sl-badge[type="warning"]::part(base) {
+  background-color: var(--sqm-warning-badge-background, var(--sl-color-warning-100));
+  color: var(--sqm-warning-badge-text-color, var(--sl-color-warning-700));
+}
+
+sl-badge[type="danger"]::part(base) {
+  background-color: var(--sqm-danger-badge-background, var(--sl-color-danger-100));
+  color: var(--sqm-danger-badge-text-color, var(--sl-color-danger-700));
+}
+
+sl-badge[type="info"]::part(base) {
+  background-color: var(--sqm-info-badge-background, var(--sl-color-info-100));
+  color: var(--sqm-info-badge-text-color, var(--sl-color-info-700));
+}
+
+sl-badge[type="neutral"]::part(base) {
+  background-color: var(--sqm-neutral-badge-background, var(--sl-color-neutral-100));
+  color: var(--sqm-neutral-badge-text-color, var(--sl-color-neutral-700));
+}
 
 h1, h2, h3, h4{
   line-height: var(--sl-line-height-dense);
-}
-
-
-h2, .Title {
-  font-size: var(--sl-font-size-large);
-  font-weight: var(--sl-font-weight-semibold);
-  margin: 0;
-}
-.H4 {
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-semibold);
-  margin: 0;
-}
-.P {
-  font-size: var(--sl-font-size-small);
-  color: var(--sl-color-gray-800);
-  margin-top: 0px;
-}
-
-.Title {
-  text-align: center;
-}
-
-.Subtitle {
-  text-align: center;
-  margin-bottom: 0px;
-  color: var(--sl-color-gray-500);
-}
-.SupportText{
-  margin-top: var(--sl-spacing-small);
-  text-align: center;
 }
 
 sl-button::part(base){
@@ -656,77 +841,124 @@ sqm-hero img {
 }
 
 sl-details::part(base){
-  background-color: var(--sl-color-white);
-  border-color: var(--sl-color-gray-300)
+  background-color: inherit;
+  border-color: var(--sqm-border-color)
 }
+
 sl-details::part(summary) {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-semibold);
   margin: 0px;
 }
-*::part(defaultbutton-base){
-  background-color: rgba(0,0,0,0);
-  color: var(--sl-color-gray-800);
-  border-color: var(--sl-color-gray-800);
-}
-*::part(defaultbutton-base):hover{
-  background-color: rgba(20,20,20,.08);
-}
-*::part(defaultbutton-base):active{
-  background-color: rgba(20,20,20,.16);
-}
-*::part(defaultbutton-base):focus{
-  box-shadow: none;
-}
+
 *::part(primarybutton-base){
-  background-color: var(--sl-color-primary-400);
-  color: var(--sl-color-white);
-  border-color: var(--sl-color-primary-400);
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
 }
+
 *::part(primarybutton-base):hover{
-  background-color: var(--sl-color-primary-300);
-  border-color: var(--sl-color-primary-300);
-}
-*::part(primarybutton-base):active{
-  background-color: var(--sl-color-primary-500);
-  border-color: var(--sl-color-primary-500);
+  background-color: var(--sqm-primary-button-background-hover);
 }
 
 *::part(primarybutton-base):focus{
   box-shadow: none;
 }
 
-*::part(input-label), *::part(select-label), *::part(textarea-label){
-  font-size: var(--sl-input-font-size-small);
-  font-weight: var(--sl-font-weight-semibold);
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
 }
 
-sl-input::part(label){
-  font-size: var(--sl-input-label-font-size-small);
-  font-weight: var(--sl-font-weight-semibold);
+*::part(secondarybutton-base):hover{
+  background-color: var(--sqm-secondary-button-background-hover);
 }
+
+*::part(tertiarybutton-base){
+  background-color: var(--sqm-tertiary-button-background);
+  color: var(--sqm-tertiary-button-color);
+  border-color: var(--sqm-tertiary-button-color-border);
+  border-radius: var(--sqm-tertiary-button-radius);
+  width: max-content;
+  display: flex;
+  margin: auto;
+}
+
+*::part(tertiarybutton-base):hover{
+  background: var(--sqm-tertiary-button-background-hover);
+}
+
+*::part(input-label), *::part(select-label), *::part(textarea-label){
+  font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
+  font-weight: var(--sl-font-weight-semibold);
+  color: var(--sqm-input-label-color, var(--sqm-text), black);
+}
+
+*::part(input-base), *::part(select-base), *::part(textarea-base){
+  background-color: var(--sqm-input-background, #fff);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+  color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-width, 1px);
+}
+
+sqm-name-fields::part(input-base) {
+  background-color: var(--sqm-input-background, #fff);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+  color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-width, 1px);
+}
+
+sl-input::part(base):focus,
+sl-select::part(form-control-wrapper):focus,
+sl-textarea::part(textarea-label):focus {
+  border-color: none;
+  border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
+}
+
+*::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
+  background: var(--sqm-input-disabled-background, #f5f5f5);
+  color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+}
+
+*::part(input):-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:hover {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);
 }
 
-.poweredBy {
-  color: var(--sl-color-gray-400);
-  font-size: var(--sl-font-size-xx-small);
+sl-icon::part(base) {
+  color: var(--sqm-text);
 }
 
-.poweredBy:hover {
-  color: var(--sl-color-gray-900);
+sl-icon::part(base):hover {
+  color: var(--sqm-accent-color-icon);
 }
 
-.FooterEmail{
-  text-decoration: none;
-  font-size: var(--sl-font-size-medium);
-  color: var(--sl-color-gray-800);
-  margin: 0px;
-  cursor:pointer;
-}
+
 
 
 

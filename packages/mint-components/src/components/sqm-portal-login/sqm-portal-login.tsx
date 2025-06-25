@@ -9,6 +9,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Microsite Login
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
  */
 @Component({
   tag: "sqm-portal-login",

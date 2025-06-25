@@ -77,6 +77,19 @@ export const CopyButtonBelow = () => {
     ></CopyTextView>
   );
 };
+
+export const CustomStyles = () => {
+  const props = {
+    copyString: "https://noah.example.com",
+    open: false,
+    tooltiptext: "Copied!",
+    backgroundColor: "#1ed760",
+    borderRadius: "30px",
+    textColor: "#121212",
+    buttonType: "primary" as const,
+  };
+  return <CopyTextView {...props} />;
+};
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
 };

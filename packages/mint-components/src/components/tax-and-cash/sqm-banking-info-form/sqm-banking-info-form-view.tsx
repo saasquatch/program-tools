@@ -136,30 +136,28 @@ const style = {
     gap: "8px",
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-icon)",
     marginTop: "10px",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
   DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
   },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
-  },
+
   AlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      color: "var(--sqm-danger-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   RadioContainer: {
@@ -168,12 +166,16 @@ const style = {
   },
   PartnerAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
       padding: "0 16px",
+      border: "none",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
+
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   Checkbox: {
@@ -187,8 +189,8 @@ const style = {
   InputContainer: {
     padding: "16px",
     margin: "16px 0px 16px 0px",
-    borderTop: "1px solid var(--sl-color-gray-300)",
-    borderBottom: "1px solid var(--sl-color-gray-300)",
+    borderTop: "1px solid var(--sqm-border-color)",
+    borderBottom: "1px solid var(--sqm-border-color)",
     display: "flex",
     flexDirection: "column",
     width: "100%",
@@ -229,25 +231,6 @@ const style = {
     borderRadius: "50px",
     background: "var(--sl-color-gray-200)",
   },
-  InfoAlert: {
-    "&::part(base)": {
-      backgroundColor: "transparent",
-      borderTop: "none",
-      border: "none",
-    },
-
-    "&::part(message)": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-yellow-500)",
-    },
-  },
   InfoWarningIcon: {
     height: "26px",
     width: "26px",
@@ -272,20 +255,14 @@ const vanillaStyle = `
       font-weight: 600
     }
 
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-      font-size: var(--sl-font-size-small);
-    }
-
     /* this class is dynamically applied in controller */
     .error-input::part(base) {
-      border: 1px solid var(--sl-color-danger-500);
-      border-radius: var(--sl-input-border-radius-medium);
+      border: 1px solid var(--sqm-danger-color-border);
+      border-radius: var(--sqm-input-border-radius);
     }
 
     .error-input::part(help-text) {
-      color: var(--sl-color-danger-500) !important;
+      color: var(--sqm-danger-color-text);
     }
     
   `;
@@ -576,7 +553,6 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {!states.hideBackButton && (
             <sl-button
               exportparts="base: secondarybutton-base"
-              class={classes.SecondaryBtn}
               type="text"
               onClick={callbacks.onBack}
             >

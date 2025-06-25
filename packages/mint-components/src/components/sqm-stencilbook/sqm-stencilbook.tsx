@@ -87,6 +87,7 @@ import * as Tabs from "../sqm-tabs/Tabs.stories";
 import * as TaskCard from "../sqm-task-card/TaskCard.stories";
 import * as UseTaskCard from "../sqm-task-card/UseTaskCard.stories";
 import * as ProgressBar from "../sqm-task-card/progress-bar/ProgressBar.stories";
+import * as Text from "../sqm-text/Text.stories";
 import * as Timeline from "../sqm-timeline/Timeline.stories";
 import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as UserName from "../sqm-user-name/UserName.stories";
@@ -102,7 +103,6 @@ import * as EmailRegistration from "../views/EmailRegistration.stories";
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
-import { ResizerStylesheet } from "./Resizer";
 import * as Themes from "./Themes";
 
 const stories = [
@@ -202,6 +202,7 @@ const stories = [
   PayoutButtonScroll,
   PayoutStatusAlert,
   QRCode,
+  Text,
 ];
 
 /**
@@ -232,7 +233,7 @@ export class StencilStorybook {
     const theme = Themes[selectedTheme];
     return (
       <Host class={Style} onClick={{}}>
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: "0",
@@ -248,26 +249,10 @@ export class StencilStorybook {
               <option selected={t === selectedTheme}>{t}</option>
             ))}
           </select>
-          <div>
-            <div></div>
-          </div>
-          <ColorScale />
-          <br />
-          <input
-            type="checkbox"
-            id="checkerboard"
-            onClick={() => setCheckerboard(!checkerboard)}
-            onChange={() =>
-              document.documentElement.style.setProperty(
-                "--checker-color-1",
-                checkerboard ? "#ebebeb" : "#ffffff00"
-              )
-            }
-          ></input>
-          <label htmlFor="checkerboard">Checkerboard?</label>
-        </div>
-        <style>{theme}</style>
-        <style>{ResizerStylesheet}</style>
+        </div> */}
+        <sqm-brand-selector></sqm-brand-selector>
+        {/* <style>{theme}</style> */}
+        {/* <style>{ResizerStylesheet}</style> */}
 
         {children}
       </Host>
@@ -290,7 +275,7 @@ function ColorToken({ type = "primary" }: { type?: string }) {
   return (
     <span
       style={{
-        background: `var(--sl-color-${type}-500)`,
+        // background: `var(--sl-color-${type}-500)`,
         width: "1em",
         marginRight: "2px",
         padding: "0 4px",

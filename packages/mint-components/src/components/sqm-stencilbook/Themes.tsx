@@ -17,35 +17,39 @@ export const Default = `
  // No CSS
 `;
 
-export const Orangey = `
-:root{
-    ${autoColorScaleCss("orange")}
-}
-`;
-
 export const Netflix = `
 :root{
-    ${autoColorScaleCss("#e50914")}
+    --sqm-portal-background: #101010 !important;
+      --sqm-text: white;
+
+          --sqm-accent-color-icon: #E50914;
+    }
+`;
+
+export const Amazon = `
+:root{
+    --sqm-portal-background: #ffffff !important;
+    --sqm-text: #2f2f2f;
+    --sqm-border-color: #d5d9d9;
+
+    --sqm-accent-color-icon: #FF9900;
 }
 `;
 
-export const SaaSquatchCorporate = `
+export const Spotify = `
 :root{
-    ${autoColorScaleCss("#65bd60")}
-    --sl-font-sans: Arial;
+    --sqm-portal-background: #121212 !important;
+      --sqm-text: white;
 }
 `;
 
-export const NYTimes = `
+export const Google = `
 :root{
-    ${autoColorScaleCss("black")}
-    --sl-font-sans: Georgia, 'Times New Roman', serif;
-}
-`;
+    --sqm-portal-background: #ffffff !important;
+    --sqm-text: #212124;
+    --sqm-border-color: #E0E0E0;
 
-export const Klip = `
-:root{
-    ${autoColorScaleCss("#4225C4")};
+        --sqm-accent-color-icon: #4285F4;
+    
 }
-
 `;

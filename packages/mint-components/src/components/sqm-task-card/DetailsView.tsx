@@ -3,6 +3,13 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export const style = {
   Description: {
+    "& .icon": {
+      color: "var(--sqm-text)",
+
+      "&:hover": {
+        color: "var(--sqm-accent-color-icon)",
+      },
+    },
     "& input[type=checkbox]": {
       display: "none",
     },
@@ -13,7 +20,7 @@ export const style = {
       position: "absolute",
       top: "var(--sl-spacing-medium)",
       right: "var(--sl-spacing-medium)",
-      color: "var(--sl-color-neutral-700)",
+      color: "var(--sqm-text)",
       fontSize: "var(--sl-font-size-large)",
       "& :hover": {
         color: "var(--sl-color-primary-700)",
@@ -54,6 +61,7 @@ export function Details(props): VNode {
         <input type="checkbox" id={"details-" + rid} />
         <label class="details" htmlFor={"details-" + rid}>
           <sl-icon
+            class="icon"
             exportparts="base: chevron-icon"
             name="chevron-down"
           ></sl-icon>

@@ -14,10 +14,16 @@ export interface LeaderboardViewProps {
       showRank?: boolean;
       hideViewer?: boolean;
       viewingUserText?: string;
+      viewingUserHighlightColor?: string;
+      viewingUserHighlightTextColor?: string;
       hideNames?: boolean;
       anonymousUser?: string;
       rankSuffix?: string;
       width?: string;
+      background?: string;
+      borderColor?: string;
+      textColor?: string;
+      borderRadius?: number;
     };
   };
   data: {
@@ -42,68 +48,77 @@ export interface LeaderboardViewProps {
   };
 }
 
-const style = {
-  Leaderboard: {
-    "& table": {
-      width: "100%",
-      borderCollapse: "collapse",
-    },
-    "& th": {
-      textAlign: "left",
-      padding: "var(--sl-spacing-medium)",
-      paddingTop: "0",
-      fontSize: "var(--sl-font-size-medium)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-    },
-    "& tr:not(:first-child)": {
-      borderTop: "1px solid var(--sl-color-neutral-200)",
-    },
-    "& td": {
-      fontSize: "var(--sl-font-size-medium)",
-      fontWeight: "var(--sl-font-weight-normal)",
-    },
-    "& .ellipses": {
-      textAlign: "left",
-      padding: "0",
-      color: "var(--sl-color-neutral-500)",
-      paddingLeft: "25%",
-    },
-    "& .highlight": {
-      background: "var(--sl-color-primary-50)",
-    },
-    "& td, th": {
-      color: "var(--sl-color-gray-800)",
-      padding: "var(--sl-spacing-medium)",
-    },
-    "& .User": {
-      width: "100%",
-    },
-    "& .Score": {
-      width: "auto",
-      whiteSpace: "nowrap",
-    },
+export function LeaderboardView(props: LeaderboardViewProps) {
+  const { states, data, elements } = props;
+  const { styles } = states;
 
-    "& .Rank": {
-      whiteSpace: "nowrap",
-    },
-    "& .fullWidth": {
-      width: "100%",
-    },
-  },
-};
+  const style = {
+    Leaderboard: {
+      "& table": {
+        width: "100%",
+        borderCollapse: "collapse",
+        background: styles.background || "transparent",
+        borderRadius: styles.borderRadius ? `${styles.borderRadius}px` : "0",
+      },
+      "& th": {
+        textAlign: "left",
+        padding: "var(--sl-spacing-medium)",
+        paddingTop: "0",
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
+      "& tr:not(:first-child)": {
+        borderTop: `1px solid ${
+          styles.borderColor || "var(--sl-color-neutral-200)"
+        }`,
+      },
+      "& td": {
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-normal)",
+      },
+      "& .ellipses": {
+        textAlign: "left",
+        padding: "0",
+        color: styles.textColor || "var(--sqm-text)",
+        paddingLeft: "25%",
+      },
+      "& .highlight": {
+        background:
+          styles.viewingUserHighlightColor ||
+          "var(--sqm-accent-color-background)",
+        "& td, th": {
+          color: styles.viewingUserHighlightTextColor || "var(--sqm-text)",
+        },
+      },
+      "& td, th": {
+        color: styles.textColor || "var(--sqm-text)",
+        padding: "var(--sl-spacing-medium)",
+      },
+      "& .User": {
+        width: "100%",
+      },
+      "& .Score": {
+        width: "auto",
+        whiteSpace: "nowrap",
+      },
 
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
+      "& .Rank": {
+        whiteSpace: "nowrap",
+      },
+      "& .fullWidth": {
+        width: "100%",
+      },
+    },
+  };
 
-const vanillaStyle = `
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
+
+  const vanillaStyle = `
   :host{
     display: block;
   }
 `;
-
-export function LeaderboardView(props: LeaderboardViewProps) {
-  const { states, data, elements } = props;
-  const { styles } = states;
 
   if (states.isEssentials) {
     return (

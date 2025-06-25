@@ -9,6 +9,7 @@ import { useReferralCode } from "./useReferralCode";
 
 /**
  * @uiName Referral Code
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span"]
  * @exampleGroup Sharing
  * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
  */
@@ -67,6 +68,7 @@ export class ReferralCode {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -88,11 +90,58 @@ export class ReferralCode {
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
   })
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
+
+  /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button that is used (primary, secondary, or tertiary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
 
   /**
    * @undocumented
@@ -127,6 +176,11 @@ function useDemoReferralCode(props: ReferralCode): CopyTextViewProps {
       notificationText: props.notificationText,
       showNotificationText: props.showNotificationText,
       isCopied: props.showNotificationText,
+      borderColor: props.borderColor,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       isUsed: false,
       rewardStatus: "AVAILABLE",
       open,

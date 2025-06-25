@@ -52,6 +52,7 @@ export class ShareLink {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -67,12 +68,59 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button that is used (primary, secondary, or tertiary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+
+  /**
    * Set the copy button style and placement
    *
-   * @uiName Style
+   * @uiName Button style
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
@@ -108,7 +156,12 @@ function useDemoShareLink(props: ShareLink): CopyTextViewProps {
       tooltiptext: props.tooltiptext,
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       copyButtonLabel: props.copyButtonLabel,
+      borderColor: props.borderColor,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {

@@ -31,6 +31,8 @@ export interface PortalChangePasswordViewProps {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
   };
+  borderRadius?: string;
+  background?: string;
 }
 
 export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
@@ -38,6 +40,11 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const style = {
     Dialog: {
       padding: "0",
+      "&::part(panel)": {
+        background: "var(--sqm-portal-background)",
+        borderRadius:
+          "var(--sqm-border-radius-normal, var(--sl-border-radius-medium))",
+      },
       "&::part(close-button)": {
         "margin-top": "var(--sl-spacing-medium)",
       },
@@ -67,8 +74,8 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
     },
 
     CancelButton: {
-      width: "25%",
       margin: "var(--sl-spacing-large) auto",
+      width: "100%",
     },
     PasswordField: {
       marginBottom: "var(--sl-spacing-large) !important",
@@ -157,6 +164,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     <sl-button
                       class={sheet.classes.ChangePasswordButton}
                       type="primary"
+                      exportparts="base: primarybutton-base"
                       submit
                       loading={states.loading}
                     >
@@ -165,6 +173,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     <sl-button
                       class={sheet.classes.CancelButton}
                       type="text"
+                      exportparts="base: secondarybutton-base"
                       onClick={() => callbacks.setOpen(false)}
                     >
                       {states.content.cancelText}
@@ -186,7 +195,10 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
             </TextSpanView>
           ),
           content: (
-            <sl-button onClick={() => callbacks.setOpen(true)}>
+            <sl-button
+              exportparts="base: primarybutton-base"
+              onClick={() => callbacks.setOpen(true)}
+            >
               {states.content.portalChangePasswordButtonText}
             </sl-button>
           ),

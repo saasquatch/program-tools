@@ -5,6 +5,7 @@ import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Microsite Program Menu
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
  * @slots [{"name":"","title":"Menu Content"}]
  * @canvasRenderer always-replace
  */

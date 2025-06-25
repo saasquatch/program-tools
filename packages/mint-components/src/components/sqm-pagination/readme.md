@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property         | Attribute         | Description | Type     | Default                           |
-| ---------------- | ----------------- | ----------- | -------- | --------------------------------- |
-| `demoData`       | --                |             | `{}`     | `undefined`                       |
-| `paginationText` | `pagination-text` |             | `string` | `"{currentPage} of {totalPages}"` |
+| Property         | Attribute         | Description                                                            | Type                                     | Default                           |
+| ---------------- | ----------------- | ---------------------------------------------------------------------- | ---------------------------------------- | --------------------------------- |
+| `buttonType`     | `button-type`     | The type of the button that is used (primary, secondary, or tertiary). | `"primary" \| "secondary" \| "tertiary"` | `"secondary"`                     |
+| `demoData`       | --                |                                                                        | `{}`                                     | `undefined`                       |
+| `paginationText` | `pagination-text` |                                                                        | `string`                                 | `"{currentPage} of {totalPages}"` |
 
 
 ## Dependencies

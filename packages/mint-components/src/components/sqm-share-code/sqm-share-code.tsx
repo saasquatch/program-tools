@@ -9,6 +9,7 @@ import { useShareCode } from "./useShareCode";
 
 /**
  * @uiName Share Code
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Sharing
  * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
  */
@@ -49,11 +50,38 @@ export class ShareCode {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
   })
   textAlign: "left" | "center" | "right" = "left";
+
+  /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
 
   /**
    * @uiName Copy button label
@@ -70,11 +98,32 @@ export class ShareCode {
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
   })
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
+
+  /**
+   * The type of the button that is used (primary, secondary, or tertiary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+
+  /**
+   * Border color of share link container (default is set to 1px solid transparent)
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
 
   /**
    * @undocumented
@@ -106,6 +155,11 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
       textAlign: props.textAlign,
       copyButtonLabel: props.copyButtonLabel,
       buttonStyle: props.buttonStyle,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      borderColor: props.borderColor,
+      buttonType: props.buttonType,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {

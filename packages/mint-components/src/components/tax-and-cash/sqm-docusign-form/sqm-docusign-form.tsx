@@ -215,7 +215,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
     {
       text: props.getTextProps(),
       states: {
-        step: "4",
+        step: "3",
         disabled: false,
         submitDisabled: false,
         loading: false,
@@ -254,7 +254,7 @@ const DemoDocusignIframe = ({ callbacks }) => {
       style={{
         width: "100%",
         height: "600px",
-        background: "#fafafa",
+        background: "inherit",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

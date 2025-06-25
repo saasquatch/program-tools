@@ -84,7 +84,7 @@ export const DocusignExpiredView = (props: {
           style={{
             width: "50px",
             height: "50px",
-            color: "var(--sl-color-neutral-500)",
+            color: "var(--sqm-text)",
           }}
           name="clock"
         ></sl-icon>
@@ -112,7 +112,7 @@ export const DocusignErrorView = (props: {
           style={{
             width: "50px",
             height: "50px",
-            color: "var(--sl-color-gray-500)",
+            color: "var(--sqm-text)",
           }}
           name="exclamation-octagon"
         ></sl-icon>

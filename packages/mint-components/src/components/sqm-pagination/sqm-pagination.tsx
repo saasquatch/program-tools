@@ -28,6 +28,17 @@ export class Pagination {
   @Prop() paginationText: string = "{currentPage} of {totalPages}";
 
   /**
+   * The type of the button that is used (primary, secondary, or tertiary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary", "tertiary"]
+   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" | "tertiary" = "secondary";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -60,6 +71,7 @@ function useDemoPagination(
         totalPages: 5,
         loading: false,
       },
+      buttonType: props.buttonType,
       callbacks: {
         onNext: () => setCurrentPage(currentPage + 1),
         onPrev: () => setCurrentPage(currentPage - 1),

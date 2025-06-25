@@ -17,10 +17,29 @@ const defaultProps: CouponCodeViewProps = {
   inputPlaceholderText: "CODE ERROR",
   couponCodeLabel: "Your coupon code:",
   error: false,
+  buttonType: "primary",
 };
 
 export const CouponCode = () => {
   return <sqm-coupon-code tooltiptext="Copied to Clipboard"></sqm-coupon-code>;
+};
+export const CouponCodeWithSecondaryButtonType = () => {
+  return (
+    <sqm-coupon-code
+      tooltiptext="Copied to Clipboard"
+      buttonType="secondary"
+      buttonStyle="button-outside"
+    ></sqm-coupon-code>
+  );
+};
+export const CouponCodeWithTertiaryButtonType = () => {
+  return (
+    <sqm-coupon-code
+      tooltiptext="Copied to Clipboard"
+      buttonType="tertiary"
+      buttonStyle="button-outside"
+    ></sqm-coupon-code>
+  );
 };
 export const CustomTooltipText = () => {
   return <sqm-coupon-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-coupon-code>;

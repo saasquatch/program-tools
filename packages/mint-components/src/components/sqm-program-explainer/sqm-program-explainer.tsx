@@ -5,6 +5,8 @@ import { ProgramExplainerView } from "./sqm-program-explainer-view";
 
 /**
  * @uiName Program Explainer
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+ * @validChildren ["sqm-program-explainer-step"]
  * @exampleGroup Common Components
  * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
  * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack" text-color="#000000"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people" text-color="#000000"></sqm-program-explainer-step></sqm-program-explainer>

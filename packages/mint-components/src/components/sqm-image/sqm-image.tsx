@@ -5,6 +5,7 @@ import { ImageView } from "./sqm-image-view";
 
 /**
  * @uiName Image
+ * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
  * @exampleGroup Common Components
  * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
  */
