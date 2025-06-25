@@ -71,6 +71,12 @@
   --teal-7: #004551;
 } */
 
+declare global {
+  interface Window {
+    SquatchBrandingConfig: BrandingConfig | null;
+  }
+}
+
 const style = `
 /* vietnamese */
 @font-face {

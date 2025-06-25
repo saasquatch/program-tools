@@ -9,6 +9,7 @@
 
 ### Depends on
 
+- [sqm-brand-selector](.)
 - [sqm-share-button](../sqm-share-button)
 - [sqm-empty](../sqm-empty)
 - [sqm-pagination](../sqm-pagination)
@@ -101,6 +102,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  sqm-stencilbook --> sqm-brand-selector
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-empty
   sqm-stencilbook --> sqm-pagination

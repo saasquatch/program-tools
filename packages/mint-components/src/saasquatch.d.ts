@@ -200,7 +200,7 @@ interface WidgetSizeConfig {
   maxWidth?: WidgetSizeDimension;
 }
 
-export interface BrandingConfig {
+interface BrandingConfig {
   color?: {
     primaryColor?: string;
     background?: string;
@@ -241,13 +241,4 @@ export interface BrandingConfig {
     embeddedWidgets?: WidgetSizeConfig;
     popupWidgets?: WidgetSizeConfig;
   };
-  // You might want to add a property for the CSS string here too,
-  // as it's not part of the JSON schema but you're using it
-  cssVariables?: string;
-}
-
-declare global {
-  interface Window {
-    SquatchBrandingConfig?: BrandingConfig | null;
-  }
 }
