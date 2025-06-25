@@ -1530,7 +1530,7 @@ export namespace Components {
           * @uiName Property name
          */
         "property": string;
-        "renderCell": (data: Invoice) => Promise<any>;
+        "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDateCell {
@@ -1542,14 +1542,14 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (data: Invoice, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmInvoiceTableDownloadCell {
         "downloadUrl": string;
     }
     interface SqmInvoiceTableDownloadColumn {
-        "renderCell": (data: Invoice) => Promise<any>;
+        "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<any>;
     }
     interface SqmLeaderboard {
@@ -3605,7 +3605,7 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (_: Referral) => Promise<any>;
+        "renderCell": (_: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableDateCell {
@@ -3624,9 +3624,9 @@ export namespace Components {
           * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
          */
         "dateShown": ReferralDates;
-        "renderCell": (data: Referral, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: any) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
         "deniedHelpText": string;
@@ -3671,9 +3671,9 @@ export namespace Components {
           * @uiName Reward pending text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: any) => Promise<any>;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward received text
@@ -3727,9 +3727,9 @@ export namespace Components {
           * @uiName Pending review status text
          */
         "pendingReviewStatusText": string;
-        "renderCell": (data: Referral) => Promise<any>;
+        "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: any) => Promise<any>;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -3749,9 +3749,9 @@ export namespace Components {
           * @uiName Deleted user text
          */
         "deletedUser": string;
-        "renderCell": (data: Referral) => Promise<any>;
+        "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
+        "renderReferrerCell": (data: any) => Promise<any>;
     }
     interface SqmReferredRegistration {
         /**
@@ -4040,7 +4040,7 @@ export namespace Components {
           * @uiName Column title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableDateCell {
@@ -4059,7 +4059,7 @@ export namespace Components {
           * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -4086,7 +4086,7 @@ export namespace Components {
           * @uiName Redeemed amount text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
@@ -4120,7 +4120,7 @@ export namespace Components {
           * @uiWidget textArea
          */
         "referralText": string;
-        "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward exchange label
@@ -4222,7 +4222,7 @@ export namespace Components {
           * @uiName W9 pending text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
+        "renderCell": (data: any, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward status text

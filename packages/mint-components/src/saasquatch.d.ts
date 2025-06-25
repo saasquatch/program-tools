@@ -181,3 +181,73 @@ interface Invoice {
   indirectTax: string;
   netEarnings: string;
 }
+
+interface ColorShadeConfig {
+  text?: string;
+  icon?: string;
+  border?: string;
+  background?: string;
+  iconAndBadge?: string;
+}
+
+interface WidgetSizeDimension {
+  value?: number;
+  unit?: "PX" | "%";
+}
+
+interface WidgetSizeConfig {
+  minWidth?: WidgetSizeDimension;
+  maxWidth?: WidgetSizeDimension;
+}
+
+export interface BrandingConfig {
+  color?: {
+    primaryColor?: string;
+    background?: string;
+    accentColorShades?: ColorShadeConfig;
+    success?: ColorShadeConfig;
+    warning?: ColorShadeConfig;
+    critical?: ColorShadeConfig;
+    informative?: ColorShadeConfig;
+    neutral?: ColorShadeConfig;
+  };
+  border?: {
+    color?: string;
+    radius?: number;
+    width?: number;
+  };
+  font?: {
+    font?: string;
+    textColor?: string;
+    secondaryTextColor?: string;
+  };
+  primaryButton?: {
+    buttonColor?: string;
+    buttonTextColor?: string;
+    borderRadius?: number;
+  };
+  secondaryButton?: {
+    buttonColor?: string;
+    buttonTextColor?: string;
+    buttonBorderColor?: string;
+    borderRadius?: number;
+  };
+  tertiaryButton?: {
+    buttonColor?: string;
+    buttonTextColor?: string;
+    borderRadius?: number;
+  };
+  widgetSize?: {
+    embeddedWidgets?: WidgetSizeConfig;
+    popupWidgets?: WidgetSizeConfig;
+  };
+  // You might want to add a property for the CSS string here too,
+  // as it's not part of the JSON schema but you're using it
+  cssVariables?: string;
+}
+
+declare global {
+  interface Window {
+    SquatchBrandingConfig?: BrandingConfig | null;
+  }
+}
