@@ -71,7 +71,11 @@
   --teal-7: #004551;
 } */
 
-// console.log("branding config is ", window.brandingConfig)
+declare global {
+  interface Window {
+    SquatchBrandingConfig: any | null;
+  }
+}
 
 const style = `
 /* vietnamese */
@@ -603,7 +607,9 @@ html {
   --sqm-tertiary-button-color-border: transparent; 
   --sqm-tertiary-button-radius: 30px;
   
-  --sqm-border-radius-normal: 18px;
+  --sqm-border-radius-normal: ${
+    window.SquatchBrandingConfig?.borderRadiusNormal || "18px"
+  };
   --sqm-border-color: white;
   --sqm-border-thickness: 1px;
 
@@ -694,7 +700,12 @@ body {
   color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--sqm-portal-background);
+  background-color: var(--sqm-portal-background) !important;
+}
+
+.story-div {
+  background: var(--sqm-portal-background) !important;
+  color: var(--sqm-text) !important;
 }
 
 sqm-tabs::part(active-tab-indicator) {

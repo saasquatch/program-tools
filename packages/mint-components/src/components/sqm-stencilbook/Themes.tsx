@@ -17,35 +17,26 @@ export const Default = `
  // No CSS
 `;
 
-export const Orangey = `
-:root{
-    ${autoColorScaleCss("orange")}
-}
-`;
-
 export const Netflix = `
 :root{
-    ${autoColorScaleCss("#e50914")}
+    --sqm-portal-background: #101010 !important;
+    }
+`;
+
+export const Amazon = `
+:root{
+    --sqm-portal-background: #ffffff !important;
 }
 `;
 
-export const SaaSquatchCorporate = `
+export const Spotify = `
 :root{
-    ${autoColorScaleCss("#65bd60")}
-    --sl-font-sans: Arial;
+    --sqm-portal-background: #121212 !important;
 }
 `;
 
-export const NYTimes = `
+export const Google = `
 :root{
-    ${autoColorScaleCss("black")}
-    --sl-font-sans: Georgia, 'Times New Roman', serif;
+    --sqm-portal-background: #ffffff !important;
 }
-`;
-
-export const Klip = `
-:root{
-    ${autoColorScaleCss("#4225C4")};
-}
-
 `;
