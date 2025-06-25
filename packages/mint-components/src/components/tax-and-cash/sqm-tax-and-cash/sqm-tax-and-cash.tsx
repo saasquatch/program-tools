@@ -1101,11 +1101,11 @@ export class TaxAndCashMonolith {
 
   /**
    * @uiName Monolith States
-   * @componentState { "title": "Step 1", "props": { "step": "/1" } }
-   * @componentState { "title": "Step 2", "props": { "step": "/2" } }
-   * @componentState { "title": "Step 3", "props": { "step": "/3" } }
-   * @componentState { "title": "Step 4", "props": { "step": "/4" } }
-   * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" } }
+   * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+   * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+   * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+   * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+   * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
    */
   @Prop() stateController: string = "{}";
 

@@ -62,7 +62,6 @@ export class WidgetCodeVerification {
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
   /**
-   * @parentState {"parent": "sqm-widget-verification", "title": "Code Step" }
    * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
    * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
    */

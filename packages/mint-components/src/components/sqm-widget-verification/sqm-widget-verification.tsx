@@ -142,8 +142,8 @@ export class WidgetVerification {
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
   /**
-   * @componentState { "title": "Email Step", "props": { "showCode": false } }
-   * @componentState { "title": "Code Step", "props": { "showCode": true } }
+   * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+   * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
    */
   @Prop() stateController: string = "{}";
 

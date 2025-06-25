@@ -475,7 +475,6 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
-          * @parentState {"parent": "sqm-widget-verification", "title": "Code Step" }
           * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
          */
@@ -4748,11 +4747,11 @@ export namespace Components {
         "searchForCountryText": string;
         /**
           * @uiName Monolith States
-          * @componentState { "title": "Step 1", "props": { "step": "/1" } }
-          * @componentState { "title": "Step 2", "props": { "step": "/2" } }
-          * @componentState { "title": "Step 3", "props": { "step": "/3" } }
-          * @componentState { "title": "Step 4", "props": { "step": "/4" } }
-          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" } }
+          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
          */
         "stateController": string;
         /**
@@ -5923,8 +5922,8 @@ export namespace Components {
          */
         "general_verifyEmailHeader": string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false } }
-          * @componentState { "title": "Code Step", "props": { "showCode": true } }
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
          */
         "stateController": string;
     }
@@ -7215,7 +7214,6 @@ declare namespace LocalJSX {
          */
         "reverifyCodeHeaderText"?: string;
         /**
-          * @parentState {"parent": "sqm-widget-verification", "title": "Code Step" }
           * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
          */
@@ -11459,11 +11457,11 @@ declare namespace LocalJSX {
         "searchForCountryText"?: string;
         /**
           * @uiName Monolith States
-          * @componentState { "title": "Step 1", "props": { "step": "/1" } }
-          * @componentState { "title": "Step 2", "props": { "step": "/2" } }
-          * @componentState { "title": "Step 3", "props": { "step": "/3" } }
-          * @componentState { "title": "Step 4", "props": { "step": "/4" } }
-          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" } }
+          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
          */
         "stateController"?: string;
         /**
@@ -12633,8 +12631,8 @@ declare namespace LocalJSX {
          */
         "general_verifyEmailHeader"?: string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false } }
-          * @componentState { "title": "Code Step", "props": { "showCode": true } }
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
          */
         "stateController"?: string;
     }
