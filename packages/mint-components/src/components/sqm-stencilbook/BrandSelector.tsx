@@ -11,12 +11,12 @@ export class SqmBrandSelector {
   constructor() {
     this.hashChangeHandler = this.hashChangeHandler.bind(this);
 
-    // Initialize window.SquatchBrandingConfig in the constructor
-    // Read the initial hash from the URL
-    const initialHashBrand = window.location.hash.substring(1); // Remove the '#'
-    // Determine the initial brand config based on hash, fallback to Netflix if invalid/empty
+    const initialFullHash = window.location.hash.substring(1);
+    const initialBrandFromHash =
+      this.parseBrandFromCombinedHash(initialFullHash);
+
     const initialConfig =
-      Themes[initialHashBrand as keyof typeof Themes] || Themes.Netflix;
+      Themes[initialBrandFromHash as keyof typeof Themes] || Themes.Netflix;
 
     if (!window.SquatchBrandingConfig) {
       window.SquatchBrandingConfig = initialConfig;
@@ -30,10 +30,13 @@ export class SqmBrandSelector {
   componentDidLoad() {
     window.addEventListener("hashchange", this.hashChangeHandler);
 
-    const initialHashBrand = window.location.hash.substring(1);
-    if (initialHashBrand && Themes[initialHashBrand as keyof typeof Themes]) {
-      this.selectedBrand = initialHashBrand;
-    } else if (!initialHashBrand) {
+    const initialFullHash = window.location.hash.substring(1);
+    const initialBrandFromHash =
+      this.parseBrandFromCombinedHash(initialFullHash);
+
+    if (initialBrandFromHash && this.selectedBrand !== initialBrandFromHash) {
+      this.selectedBrand = initialBrandFromHash;
+    } else if (!initialFullHash) {
       this.selectedBrand = "Netflix";
     }
     const currentConfig =
@@ -46,9 +49,11 @@ export class SqmBrandSelector {
       window.dispatchEvent(event);
     }
   }
+
   disconnectedCallback() {
     window.removeEventListener("hashchange", this.hashChangeHandler);
   }
+
   private brands = [
     {
       name: "Netflix",
@@ -72,12 +77,25 @@ export class SqmBrandSelector {
     },
   ];
 
+  private parseBrandFromCombinedHash(fullHash: string): string {
+    if (!fullHash) return "Netflix";
+
+    const segments = fullHash.split("#");
+    const lastSegment = segments[segments.length - 1];
+
+    if (Themes[lastSegment as keyof typeof Themes]) {
+      return lastSegment;
+    }
+    return "Netflix";
+  }
+
   private hashChangeHandler() {
-    const hash = window.location.hash.substring(1); // Remove '#'
-    // Only update if the hash corresponds to a known brand, or if it's empty
-    if (Themes[hash as keyof typeof Themes] && this.selectedBrand !== hash) {
-      this.updateBrand(hash);
-    } else if (hash === "" && this.selectedBrand !== "Netflix") {
+    const fullHash = window.location.hash.substring(1);
+    const brandFromHash = this.parseBrandFromCombinedHash(fullHash);
+
+    if (brandFromHash && this.selectedBrand !== brandFromHash) {
+      this.updateBrand(brandFromHash);
+    } else if (!fullHash && this.selectedBrand !== "Netflix") {
       this.updateBrand("Netflix");
     }
   }
@@ -85,8 +103,31 @@ export class SqmBrandSelector {
   private updateBrand(brandName: string) {
     this.selectedBrand = brandName;
 
-    if (window.location.hash !== `#${brandName}`) {
-      window.location.hash = brandName;
+    const currentFullHash = window.location.hash.substring(1);
+
+    let newCombinedHash = "";
+    const lastSegmentOfCurrentHash =
+      this.parseBrandFromCombinedHash(currentFullHash);
+
+    if (currentFullHash && lastSegmentOfCurrentHash === brandName) {
+      newCombinedHash = currentFullHash;
+    } else if (currentFullHash) {
+      const hashWithoutExistingBrand = currentFullHash.includes("#")
+        ? currentFullHash.substring(0, currentFullHash.lastIndexOf("#"))
+        : currentFullHash;
+
+      if (Themes[lastSegmentOfCurrentHash as keyof typeof Themes]) {
+        newCombinedHash = `${hashWithoutExistingBrand}#${brandName}`;
+      } else {
+        newCombinedHash = `${currentFullHash}#${brandName}`;
+      }
+    } else {
+      newCombinedHash = brandName;
+    }
+
+    const finalHashToSet = `#${newCombinedHash}`;
+    if (window.location.hash !== finalHashToSet) {
+      window.location.hash = finalHashToSet;
     }
 
     const configToSet: BrandingConfig =
@@ -102,6 +143,7 @@ export class SqmBrandSelector {
     });
     window.dispatchEvent(event);
   }
+
   render() {
     return (
       <Host>
@@ -248,10 +290,6 @@ export class SqmBrandSelector {
                   src={brand.logoUrl}
                   alt={`${brand.name} Logo`}
                   class="brand-logo"
-                  onError={(e: any) => {
-                    e.target.src =
-                      "https://placehold.co/80x40/cccccc/000000?text=Logo";
-                  }}
                 />
               </div>
             ))}
