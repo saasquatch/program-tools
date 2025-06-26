@@ -2,6 +2,7 @@ import { Component, State, h, Host } from "@stencil/core";
 import * as Themes from "./Themes";
 
 const LOCAL_STORAGE_BRAND_KEY = "localStorageBrandKey";
+const LOCAL_STORAGE_BRAND_CONFIG_KEY = "localStorageBrandConfigKey";
 
 @Component({
   tag: "sqm-brand-selector",
@@ -61,18 +62,16 @@ export class SqmBrandSelector {
 
   private updateBrand(brandName: string) {
     this.selectedBrand = brandName;
-
-    localStorage.setItem(LOCAL_STORAGE_BRAND_KEY, brandName);
-
     const configToSet: BrandingConfig =
       Themes[brandName as keyof typeof Themes] || Themes.Netflix;
+    const brandConfigString = JSON.stringify(configToSet);
+
+    localStorage.setItem(LOCAL_STORAGE_BRAND_KEY, brandName);
+    localStorage.setItem(LOCAL_STORAGE_BRAND_CONFIG_KEY, brandConfigString);
 
     window.SquatchBrandingConfig = configToSet;
+    window.location.reload();
 
-    console.log(
-      "Updated window.SquatchBrandingConfig:",
-      window.SquatchBrandingConfig
-    );
     const event = new CustomEvent("brandingConfigUpdated", {
       detail: window.SquatchBrandingConfig,
     });
