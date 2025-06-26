@@ -3327,7 +3327,7 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
          */
-        "backgroundColor": string;
+        "backgroundColor"?: string;
         /**
           * Border color of share link container (default is set to 1px solid transparent)
           * @uiName Border color

@@ -22,7 +22,7 @@ export const Netflix: BrandingConfig = {
   color: {
     background: "#101010",
     accentColorShades: {
-      icon: "#E50914",
+      iconAndBadge: "#E50914",
     },
   },
 };
@@ -37,7 +37,7 @@ export const Amazon: BrandingConfig = {
   color: {
     background: "#ffffff",
     accentColorShades: {
-      icon: "#FF9900",
+      iconAndBadge: "#FF9900",
     },
   },
 };
@@ -49,7 +49,7 @@ export const Spotify: BrandingConfig = {
   color: {
     background: "#121212",
     accentColorShades: {
-      icon: "#1ed760",
+      iconAndBadge: "#1ed760",
     },
   },
 };
@@ -75,43 +75,37 @@ export const Google: BrandingConfig = {
     background: "#FFFFFF",
     accentColorShades: {
       text: "#1A73E8",
-      icon: "#4285F4",
       border: "#8AB4F8",
       background: "#E8F0FE",
       iconAndBadge: "#4285F4",
     },
     success: {
-      text: "#137333", // Darker green for text for contrast (Google's green is #34A853)
-      icon: "#34A853", // Google Green 500
+      text: "#044e1d", // Darker green for text for contrast (Google's green is #34A853)
       border: "#A8DCD7", // Lighter, desaturated green for borders (e.g., Material Design Green 200/300 equivalent)
       background: "#E6F4EA", // Very light green for subtle backgrounds (e.g., Material Design Green 100 equivalent)
       iconAndBadge: "#34A853", // Google Green 500
     },
     warning: {
-      text: "#B95A00", // Darker orange/brown for text (derived from Google Yellow for contrast)
-      icon: "#FBBC04", // Google Yellow 500 (using #FBBC04 from your image)
+      text: "#996a3d", // Darker orange/brown for text (derived from Google Yellow for contrast)
       border: "#FCD667", // Lighter yellow for borders (e.g., Material Design Yellow 200/300 equivalent)
       background: "#FFF7EE", // Very light yellow for subtle backgrounds (e.g., Material Design Yellow 100 equivalent)
       iconAndBadge: "#FBBC04", // Google Yellow 500
     },
     critical: {
       // Renamed from "danger" in previous example to match common "critical" usage
-      text: "#B31412", // Darker red for text for contrast (Google's red is #EA4335)
-      icon: "#EA4335", // Google Red 500
+      text: "#760b09", // Darker red for text for contrast (Google's red is #EA4335)
       border: "#F28B82", // Lighter red for borders (e.g., Material Design Red 200/300 equivalent)
       background: "#FCE8E6", // Very light red for subtle backgrounds (e.g., Material Design Red 100 equivalent)
       iconAndBadge: "#EA4335", // Google Red 500
     },
     informative: {
-      text: "#174EA6", // Darker blue for text for contrast (Google's blue is #4285F4)
-      icon: "#4285F4", // Google Blue 500
+      text: "#01368c", // Darker blue for text for contrast (Google's blue is #4285F4)
       border: "#A8DCD7", // Lighter blue for borders (e.g., Material Design Blue 200/300 equivalent)
       background: "#E8F0FE", // Very light blue for subtle backgrounds (e.g., Material Design Blue 100 equivalent)
       iconAndBadge: "#4285F4", // Google Blue 500
     },
     neutral: {
       text: "#202124",
-      icon: "#5F6368",
       border: "#DADCE0",
       background: "#F8F9FA",
       iconAndBadge: "#5F6368",

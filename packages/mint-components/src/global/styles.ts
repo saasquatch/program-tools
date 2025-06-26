@@ -587,8 +587,8 @@ html {
   --sqm-text-subdued: ${
     window.SquatchBrandingConfig?.font.secondaryTextColor || "#b3b3b3"
   };
-  --sqm-primary-color: #1ed760;
 
+  --sqm-primary-color: #1ed760;
   --sqm-primary-button-background: #1ed760;
   --sqm-primary-button-background-hover: #1DB954;
   --sqm-primary-button-color: #121212;
@@ -615,7 +615,8 @@ html {
   --sqm-border-thickness: 1px;
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.icon || "#1ed760"
+    window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
+    "#1ed760"
   };
   --sqm-accent-color-text: #ffffff;     
   --sqm-accent-color-border: #1db954;
