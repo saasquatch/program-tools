@@ -60,7 +60,7 @@ export class SqmBrandSelector {
   ];
 
   private updateBrand(brandName: string) {
-    this.selectedBrand = brandName; // Stencil will automatically re-render
+    this.selectedBrand = brandName;
 
     localStorage.setItem(LOCAL_STORAGE_BRAND_KEY, brandName);
 
