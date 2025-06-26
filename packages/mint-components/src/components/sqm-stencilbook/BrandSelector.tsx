@@ -1,6 +1,8 @@
-import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, State, h, Host } from "@stencil/core";
 import * as Themes from "./Themes";
+
+const LOCAL_STORAGE_BRAND_KEY = "localStorageBrandKey";
+
 @Component({
   tag: "sqm-brand-selector",
   shadow: false,
@@ -9,50 +11,30 @@ export class SqmBrandSelector {
   @State() selectedBrand: string = "Netflix";
 
   constructor() {
-    this.hashChangeHandler = this.hashChangeHandler.bind(this);
+    const storedBrand = localStorage.getItem(LOCAL_STORAGE_BRAND_KEY);
+    const initialBrandName = storedBrand;
 
-    const initialFullHash = window.location.hash.substring(1);
-    const initialBrandFromHash =
-      this.parseBrandFromCombinedHash(initialFullHash);
+    this.selectedBrand = initialBrandName;
 
+    // Initialize window.SquatchBrandingConfig based on the loaded brand
     const initialConfig =
-      Themes[initialBrandFromHash as keyof typeof Themes] || Themes.Netflix;
+      Themes[initialBrandName as keyof typeof Themes] || Themes.Netflix;
 
-    if (!window.SquatchBrandingConfig) {
-      window.SquatchBrandingConfig = initialConfig;
-      const event = new CustomEvent("brandingConfigUpdated", {
-        detail: window.SquatchBrandingConfig,
-      });
-      window.dispatchEvent(event);
-    }
+    window.SquatchBrandingConfig = initialConfig;
+    const event = new CustomEvent("brandingConfigUpdated", {
+      detail: window.SquatchBrandingConfig,
+    });
+    window.dispatchEvent(event);
   }
 
   componentDidLoad() {
-    window.addEventListener("hashchange", this.hashChangeHandler);
+    const storedBrand = localStorage.getItem(LOCAL_STORAGE_BRAND_KEY);
+    const initialBrandName = storedBrand;
 
-    const initialFullHash = window.location.hash.substring(1);
-    const initialBrandFromHash =
-      this.parseBrandFromCombinedHash(initialFullHash);
-
-    if (initialBrandFromHash && this.selectedBrand !== initialBrandFromHash) {
-      this.selectedBrand = initialBrandFromHash;
-    } else if (!initialFullHash) {
-      this.selectedBrand = "Netflix";
-    }
-    const currentConfig =
-      Themes[this.selectedBrand as keyof typeof Themes] || Themes.Netflix;
-    if (window.SquatchBrandingConfig !== currentConfig) {
-      window.SquatchBrandingConfig = currentConfig;
-      const event = new CustomEvent("brandingConfigUpdated", {
-        detail: window.SquatchBrandingConfig,
-      });
-      window.dispatchEvent(event);
-    }
+    this.selectedBrand = initialBrandName;
   }
 
-  disconnectedCallback() {
-    window.removeEventListener("hashchange", this.hashChangeHandler);
-  }
+  disconnectedCallback() {}
 
   private brands = [
     {
@@ -77,67 +59,20 @@ export class SqmBrandSelector {
     },
   ];
 
-  private parseBrandFromCombinedHash(fullHash: string): string {
-    if (!fullHash) return "Netflix";
-
-    const segments = fullHash.split("#");
-    const lastSegment = segments[segments.length - 1];
-
-    if (Themes[lastSegment as keyof typeof Themes]) {
-      return lastSegment;
-    }
-    return "Netflix";
-  }
-
-  private hashChangeHandler() {
-    const fullHash = window.location.hash.substring(1);
-    const brandFromHash = this.parseBrandFromCombinedHash(fullHash);
-
-    if (brandFromHash && this.selectedBrand !== brandFromHash) {
-      this.updateBrand(brandFromHash);
-    } else if (!fullHash && this.selectedBrand !== "Netflix") {
-      this.updateBrand("Netflix");
-    }
-  }
-
   private updateBrand(brandName: string) {
-    this.selectedBrand = brandName;
+    this.selectedBrand = brandName; // Stencil will automatically re-render
 
-    const currentFullHash = window.location.hash.substring(1);
-
-    let newCombinedHash = "";
-    const lastSegmentOfCurrentHash =
-      this.parseBrandFromCombinedHash(currentFullHash);
-
-    if (currentFullHash && lastSegmentOfCurrentHash === brandName) {
-      newCombinedHash = currentFullHash;
-    } else if (currentFullHash) {
-      const hashWithoutExistingBrand = currentFullHash.includes("#")
-        ? currentFullHash.substring(0, currentFullHash.lastIndexOf("#"))
-        : currentFullHash;
-
-      if (Themes[lastSegmentOfCurrentHash as keyof typeof Themes]) {
-        newCombinedHash = `${hashWithoutExistingBrand}#${brandName}`;
-      } else {
-        newCombinedHash = `${currentFullHash}#${brandName}`;
-      }
-    } else {
-      newCombinedHash = brandName;
-    }
-
-    const finalHashToSet = `#${newCombinedHash}`;
-    if (window.location.hash !== finalHashToSet) {
-      window.location.hash = finalHashToSet;
-    }
+    localStorage.setItem(LOCAL_STORAGE_BRAND_KEY, brandName);
 
     const configToSet: BrandingConfig =
       Themes[brandName as keyof typeof Themes] || Themes.Netflix;
+
     window.SquatchBrandingConfig = configToSet;
 
-    // console.log(
-    //   "Updated window.SquatchBrandingConfig:",
-    //   window.SquatchBrandingConfig
-    // );
+    console.log(
+      "Updated window.SquatchBrandingConfig:",
+      window.SquatchBrandingConfig
+    );
     const event = new CustomEvent("brandingConfigUpdated", {
       detail: window.SquatchBrandingConfig,
     });
@@ -196,7 +131,7 @@ export class SqmBrandSelector {
             align-items: center;
             justify-content: center;
             flex: 1;
-            padding 4px 8px
+            padding: 4px 8px; /* Fixed spacing syntax */
             cursor: pointer;
             transition: all 300ms ease-in-out;
             border-radius: 9999px;
@@ -290,6 +225,10 @@ export class SqmBrandSelector {
                   src={brand.logoUrl}
                   alt={`${brand.name} Logo`}
                   class="brand-logo"
+                  onError={(e: any) => {
+                    e.target.src =
+                      "https://placehold.co/80x40/cccccc/000000?text=Logo";
+                  }}
                 />
               </div>
             ))}
