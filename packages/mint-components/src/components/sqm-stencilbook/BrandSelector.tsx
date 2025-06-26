@@ -134,10 +134,10 @@ export class SqmBrandSelector {
       Themes[brandName as keyof typeof Themes] || Themes.Netflix;
     window.SquatchBrandingConfig = configToSet;
 
-    console.log(
-      "Updated window.SquatchBrandingConfig:",
-      window.SquatchBrandingConfig
-    );
+    // console.log(
+    //   "Updated window.SquatchBrandingConfig:",
+    //   window.SquatchBrandingConfig
+    // );
     const event = new CustomEvent("brandingConfigUpdated", {
       detail: window.SquatchBrandingConfig,
     });
