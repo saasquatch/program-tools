@@ -52,22 +52,20 @@ export const Spotify: BrandingConfig = {
       iconAndBadge: "#1ed760",
     },
   },
+  inputs: {
+    background: "#121212",
+    borderColor: "#7c7c7c",
+    borderThickness: "1px",
+    borderRadius: "30px",
+    textColor: "#fff",
+    focusBorderColor: "white",
+    labelColor: "white",
+    hoverBorderColor: "white",
+    labelFontSize: "18px",
+    disabledTextColor: "white",
+    disabledBackground: "#303030",
+  },
 };
-
-// export const Google: BrandingConfig = {
-//   font: {
-//     textColor: "#212124",
-//   },
-//   border: {
-//     color: "#E0E0E0",
-//   },
-//   color: {
-//     background: "#ffffff",
-//     accentColorShades: {
-//       icon: "#4285F4",
-//     },
-//   },
-// };
 
 export const Google: BrandingConfig = {
   color: {
@@ -80,29 +78,28 @@ export const Google: BrandingConfig = {
       iconAndBadge: "#4285F4",
     },
     success: {
-      text: "#044e1d", // Darker green for text for contrast (Google's green is #34A853)
-      border: "#A8DCD7", // Lighter, desaturated green for borders (e.g., Material Design Green 200/300 equivalent)
-      background: "#E6F4EA", // Very light green for subtle backgrounds (e.g., Material Design Green 100 equivalent)
-      iconAndBadge: "#34A853", // Google Green 500
+      text: "#044e1d",
+      border: "#A8DCD7",
+      background: "#E6F4EA",
+      iconAndBadge: "#34A853",
     },
     warning: {
-      text: "#996a3d", // Darker orange/brown for text (derived from Google Yellow for contrast)
-      border: "#FCD667", // Lighter yellow for borders (e.g., Material Design Yellow 200/300 equivalent)
-      background: "#FFF7EE", // Very light yellow for subtle backgrounds (e.g., Material Design Yellow 100 equivalent)
-      iconAndBadge: "#FBBC04", // Google Yellow 500
+      text: "#996a3d",
+      border: "#FCD667",
+      background: "#FFF7EE",
+      iconAndBadge: "#FBBC04",
     },
     critical: {
-      // Renamed from "danger" in previous example to match common "critical" usage
-      text: "#760b09", // Darker red for text for contrast (Google's red is #EA4335)
-      border: "#F28B82", // Lighter red for borders (e.g., Material Design Red 200/300 equivalent)
-      background: "#FCE8E6", // Very light red for subtle backgrounds (e.g., Material Design Red 100 equivalent)
-      iconAndBadge: "#EA4335", // Google Red 500
+      text: "#760b09",
+      border: "#F28B82",
+      background: "#FCE8E6",
+      iconAndBadge: "#EA4335",
     },
     informative: {
-      text: "#01368c", // Darker blue for text for contrast (Google's blue is #4285F4)
-      border: "#A8DCD7", // Lighter blue for borders (e.g., Material Design Blue 200/300 equivalent)
-      background: "#E8F0FE", // Very light blue for subtle backgrounds (e.g., Material Design Blue 100 equivalent)
-      iconAndBadge: "#4285F4", // Google Blue 500
+      text: "#01368c",
+      border: "#A8DCD7",
+      background: "#E8F0FE",
+      iconAndBadge: "#4285F4",
     },
     neutral: {
       text: "#202124",

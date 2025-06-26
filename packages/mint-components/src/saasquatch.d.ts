@@ -237,6 +237,19 @@ interface BrandingConfig {
     buttonTextColor?: string;
     borderRadius?: number;
   };
+  inputs?: {
+    background?: string;
+    borderColor?: string;
+    borderRadius?: string;
+    textColor?: string;
+    labelColor?: string;
+    borderThickness?: string;
+    disabledBackground?: string;
+    disabledTextColor?: string;
+    labelFontSize?: string;
+    focusBorderColor?: string;
+    hoverBorderColor?: string;
+  };
   widgetSize?: {
     embeddedWidgets?: WidgetSizeConfig;
     popupWidgets?: WidgetSizeConfig;
