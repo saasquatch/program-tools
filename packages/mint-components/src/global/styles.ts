@@ -812,39 +812,6 @@ body {
   color: var(--sqm-text) !important;
 }
 
-sqm-tabs::part(active-tab-indicator) {
-  border: red;
-  :root {
-    --tabs-border-color: pink;
-  
-  }
-}
-
-sl-tab-group::part(nav) {
-  border-bottom: 1px solid blue; /* Emphasize the separator */
-}
-
-sl-tab-group {
-  /* Set the active tab indicator color to Spotify Green */
-  --indicator-color: #1db954; 
-
-  /* Set the border color separating tabs from content */
-  --sl-tab-group-border-color: #333333; 
-
-  /* You might also want to adjust the nav area's background */
-  background-color: #1a1a1a; /* Dark background for the entire group or just the nav */
-  border-radius: 8px; /* Rounded corners for the entire tab group */
-  padding: 1rem; /* Adjust overall padding */
-}
-
-sl-tab::part(base)[active] {
-  /* You can add a top/left/right border to the active tab button itself if desired */
-  /* For a look like your previous input fields, you might want to mimic that border. */
-  border: 1px solid #1db954; /* Spotify Green border */
-  border-bottom-color: transparent; /* Hide the bottom border to let the indicator show */
-  border-radius: 4px 4px 0 0; /* Keep top corners rounded */
-}
-
 sl-spinner {
   --sl-color-primary-500: var(--sqm-accent-color-icon)
   --sl-spinner-stroke-width: 4px;
