@@ -196,6 +196,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
           ),
           content: (
             <sl-button
+              type="primary"
               exportparts="base: primarybutton-base"
               onClick={() => callbacks.setOpen(true)}
             >

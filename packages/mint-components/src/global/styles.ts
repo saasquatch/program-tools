@@ -646,9 +646,16 @@ html {
     window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
     "#1ed760"
   };
-  --sqm-accent-color-text: #ffffff;     
-  --sqm-accent-color-border: #1db954;
-  --sqm-accent-color-background: #0d4a27;
+  --sqm-accent-color-text: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.text || "#fff"
+  };    
+  --sqm-accent-color-border: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.border || "#1ed760"
+  };
+  --sqm-accent-color-background: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.background ||
+    "#0d4a27"
+  };
 
   --sqm-success-color-icon: ${
     window.SquatchBrandingConfig?.color?.success?.iconAndBadge ||
@@ -899,6 +906,10 @@ h1, h2, h3, h4{
 
 sl-button::part(base){
   width: 100%;
+  background-color: var(--sqm-primary-button-background) !important;
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
 }
 
 sqm-share-button{
@@ -919,13 +930,6 @@ sl-details::part(summary) {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-semibold);
   margin: 0px;
-}
-
-*::part(primarybutton-base){
-  background-color: var(--sqm-primary-button-background) !important;
-  color: var(--sqm-primary-button-color);
-  border-color: var(--sqm-primary-button-color-border);
-  border-radius: var(--sqm-primary-button-radius);
 }
 
 *::part(primarybutton-base):hover{
