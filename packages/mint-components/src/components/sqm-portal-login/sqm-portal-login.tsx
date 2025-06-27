@@ -131,6 +131,7 @@ export class PortalLogin {
         <slot name="secondaryButton">
           <style>{styleString}</style>
           <sl-button
+            exportparts="base: tertiarybutton-base"
             type="text"
             disabled={states.loading}
             onClick={() => navigation.push(states.registerPath)}
