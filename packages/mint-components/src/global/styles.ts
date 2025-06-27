@@ -577,7 +577,7 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${
-    window.SquatchBrandingConfig?.color.background || "#121212"
+    window.SquatchBrandingConfig?.color?.background || "#121212"
   };
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
@@ -638,6 +638,7 @@ html {
     window.SquatchBrandingConfig?.border?.radius || "18px"
   }; 
   --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
+
   --sqm-border-thickness: ${
     window.SquatchBrandingConfig?.border?.thickness || "1px"
   };
@@ -728,7 +729,6 @@ html {
   --sqm-input-background: ${
     window.SquatchBrandingConfig?.inputs?.background || "#fff"
   };
-  --sqm-input-border: 1px solid #7c7c7c;
   --sqm-input-border-color: ${
     window.SquatchBrandingConfig?.inputs?.borderColor || "#eaeaea"
   };
@@ -738,7 +738,6 @@ html {
   --sqm-input-color: ${
     window.SquatchBrandingConfig?.inputs?.textColor || "#000"
   };
-  --sqm-input-focus-border: 1px solid white;
   --sqm-input-label-color: ${
     window.SquatchBrandingConfig?.inputs?.labelColor || "#000"
   };
