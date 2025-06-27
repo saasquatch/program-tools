@@ -922,7 +922,7 @@ sl-details::part(summary) {
 }
 
 *::part(primarybutton-base){
-  background-color: var(--sqm-primary-button-background);
+  background-color: var(--sqm-primary-button-background) !important;
   color: var(--sqm-primary-button-color);
   border-color: var(--sqm-primary-button-color-border);
   border-radius: var(--sqm-primary-button-radius);

@@ -99,7 +99,7 @@ export class SqmBrandSelector {
             overflow: hidden;
             padding: 20px 10px;
             position: absolute;
-            top: 0;
+            bottom: 0;
             right: 0;
             z-index: 999999;
           }
