@@ -588,19 +588,45 @@ html {
     window.SquatchBrandingConfig?.font.secondaryTextColor || "#b3b3b3"
   };
 
-  --sqm-primary-color: #1ed760;
-  --sqm-primary-button-background: #1ed760;
-  --sqm-primary-button-background-hover: #1DB954;
-  --sqm-primary-button-color: #121212;
-  --sqm-primary-button-color-border: transparent;
-  --sqm-primary-button-radius: 30px;
+  --sqm-primary-color: ${
+    window.SquatchBrandingConfig?.color?.primaryColor || "#1ed760"
+  };
+  --sqm-primary-button-background:${
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
+  };
+  --sqm-primary-button-background-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.hoverColor || "#1ed760"
+  };
+  --sqm-primary-button-color: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonTextColor || "#FFFFFF"
+  };
+  --sqm-primary-button-color-border: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonBorderColor ||
+    "transparent"
+  };
+  --sqm-primary-button-radius: ${
+    window.SquatchBrandingConfig?.primaryButton?.borderRadius || "4px"
+  };
 
 
-  --sqm-secondary-button-background: #191414;
-  --sqm-secondary-button-background-hover: #282828; 
-  --sqm-secondary-button-color: #FFFFFF; 
-  --sqm-secondary-button-color-border: #FFFFFF; 
-  --sqm-secondary-button-radius: 30px;
+  --sqm-secondary-button-background: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
+  };
+  --sqm-secondary-button-background-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.hoverColor || "#282828"
+  };
+
+  
+  --sqm-secondary-button-color: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonTextColor || "#FFFFFF"
+  };
+  --sqm-secondary-button-color-border: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonBorderColor ||
+    "#FFFFFF"
+  };
+  --sqm-secondary-button-radius: ${
+    window.SquatchBrandingConfig?.secondaryButton?.borderRadius || "30px"
+  };
 
   --sqm-tertiary-button-background: transparent;
   --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
@@ -612,7 +638,9 @@ html {
     window.SquatchBrandingConfig?.border?.radius || "18px"
   }; 
   --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
-  --sqm-border-thickness: 1px;
+  --sqm-border-thickness: ${
+    window.SquatchBrandingConfig?.border?.thickness || "1px"
+  };
 
   --sqm-accent-color-icon: ${
     window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
@@ -723,12 +751,12 @@ html {
     window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
   };
   --sqm-input-disabled-background: ${
-    window.SquatchBrandingConfig?.inputs?.disabledBackground || "#eee"
+    window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
   };
 
   --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
-  --sl-input-color-hover: var(--sqm-input-color);
-  --sl-input-color-focus: var(--sqm-input-color);
+  --sl-input-color-hover: var(--sqm-input-color-hover);
+  --sl-input-color-focus: var(--sqm-input-color-focus);
   --sl-input-color-disabled: var(--sqm-input-disabled-color);
   --sl-input-border-color-disabled: #7c7c7c;
   --sl-input-border-color-focus: var(--sqm-input-border-color-focus, white);
@@ -979,6 +1007,14 @@ sl-details::part(summary) {
   border-width: var(--sqm-border-width, 1px);
 }
 
+*::part(input-base):hover, *::part(select-base):hover, *::part(textarea-base):hover{
+  border-color: var(--sqm-border-color-hover);
+}
+
+*::part(input-base):focus, *::part(select-base):focus, *::part(textarea-base):focus{
+  border-color: var(--sqm-border-color-focus);
+}
+
 sqm-name-fields::part(input-base) {
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
@@ -989,8 +1025,7 @@ sqm-name-fields::part(input-base) {
 sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
 sl-textarea::part(textarea-label):focus {
-  border-color: none;
-  border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
+  border-color: var(--sqm-border-color-focus);
 }
 
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{

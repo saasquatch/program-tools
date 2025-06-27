@@ -213,8 +213,8 @@ interface BrandingConfig {
   };
   border?: {
     color?: string;
-    radius?: number;
-    width?: number;
+    radius?: string;
+    thickness?: string;
   };
   font?: {
     font?: string;
@@ -224,18 +224,23 @@ interface BrandingConfig {
   primaryButton?: {
     buttonColor?: string;
     buttonTextColor?: string;
-    borderRadius?: number;
+    borderRadius?: string;
+    buttonBorderColor?: string;
+    hoverColor?: string;
+    hoverTextColor?: string;
   };
   secondaryButton?: {
     buttonColor?: string;
     buttonTextColor?: string;
     buttonBorderColor?: string;
-    borderRadius?: number;
+    borderRadius?: string;
+    hoverColor?: string;
+    hoverTextColor?: string;
   };
   tertiaryButton?: {
     buttonColor?: string;
     buttonTextColor?: string;
-    borderRadius?: number;
+    borderRadius?: string;
   };
   inputs?: {
     background?: string;
