@@ -370,17 +370,6 @@ export class TaxAndCashDashboard {
   @Prop() cancelButton: string = "Cancel";
 
   /**
-   * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
-   * @componentState { "title": "Default", "props": { } }
-   * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
-   * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
-   * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
-   * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
-   * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
-   */
-  @Prop() stateController?: string = "{}";
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -432,33 +421,33 @@ function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
   const states = parseStates(props.stateController);
-  console.log({ states });
   return deepmerge(
     {
       states: {
         dateSubmitted: "today",
         documentType: "W9",
         documentTypeString: "W9",
-        status: "ACTIVE",
         country: "United States",
         indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
-        noFormNeeded: true,
+        noFormNeeded: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        payoutStatus: "DONE",
-        veriffLoading: false,
 
-        canEditPayoutInfo: true,
         subRegion: "CA",
         subRegionTaxNumber: undefined,
         qstNumber: undefined,
         isBusinessEntity: false,
         province: undefined,
-        notRegistered: false,
+        notRegistered: true,
         loadingError: false,
+
+        payoutStatus: "DONE",
+        veriffLoading: false,
+        canEditPayoutInfo: true,
+        status: "ACTIVE",
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -468,6 +457,17 @@ function useDemoTaxAndCashDashboard(
         onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
+      slots: {
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card
+            demoData={{
+              states: {
+                badgeStatus: "nextPayout",
+              },
+            }}
+          ></sqm-payout-details-card>
+        ),
+      },
     },
     props.demoData || states || {},
     { arrayMerge: (_, a) => a }

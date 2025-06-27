@@ -183,14 +183,6 @@ export class TaxForm {
   @Prop() supportLink: string = "support team";
 
   /**
-   * @uiName States
-   * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
-   * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
-   * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-   */
-  @Prop() stateController: string = "{}";
-
-  /**
    * @undocumented
    * @uiType object
    */

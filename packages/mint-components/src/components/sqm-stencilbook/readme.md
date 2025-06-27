@@ -9,42 +9,15 @@
 
 ### Depends on
 
-- [sqm-divided-layout](../sqm-divided-layout)
-- [sqm-text](../sqm-text)
-- [sqm-form-message](../sqm-form-message)
-- [sqm-password-field](../sqm-password-field)
-- [sqm-hook-story-container](../sqm-hook-story-container)
-- [sqm-stat-container](../sqm-stat-container)
-- [sqm-big-stat](../sqm-big-stat)
-- [sqm-brand](../sqm-brand)
 - [sqm-brand-selector](.)
-- [sqm-share-button](../sqm-share-button)
-- [sqm-empty](../sqm-empty)
-- [sqm-pagination](../sqm-pagination)
-- [sqm-share-link](../sqm-share-link)
+- [sqm-divided-layout](../sqm-divided-layout)
+- [sqm-text](../sqm-text)
+- [sqm-form-message](../sqm-form-message)
+- [sqm-password-field](../sqm-password-field)
+- [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-big-stat](../sqm-big-stat)
 - [sqm-stat-container](../sqm-stat-container)
-- [sqm-text](../sqm-text)
-- [sqm-image](../sqm-image)
-- [sqm-leaderboard](../sqm-leaderboard)
-- [sqm-router](../sqm-router)
-- [sqm-hook-story-container](../sqm-hook-story-container)
-- [sqm-navigation-menu](../sqm-navigation-menu)
-- [sqm-portal-frame](../sqm-portal-frame)
-- [sqm-edit-profile](../sqm-edit-profile)
-- [sqm-form-message](../sqm-form-message)
-- [sqm-divided-layout](../sqm-divided-layout)
-- [sqm-reward-exchange-list](../sqm-reward-exchange-list)
-- [sqm-rewards-table](../sqm-rewards-table)
-- [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
-- [sqm-rewards-table-source-column](../sqm-rewards-table/columns)
-- [sqm-rewards-table-status-column](../sqm-rewards-table/columns)
-- [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
-- [sqm-task-card](../sqm-task-card)
-- [sqm-card-feed](../sqm-card-feed)
-- [sqm-password-field](../sqm-password-field)
-- [sqm-portal-login](../sqm-portal-login)
-- [sqm-portal-register](../sqm-portal-register)
+- [sqm-brand](../sqm-brand)
 - [sqm-checkbox-field](../sqm-checkbox-field)
 - [sqm-portal-register](../sqm-portal-register)
 - [sqm-name-fields](../sqm-name-fields)
@@ -128,42 +101,15 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-divided-layout
-  sqm-stencilbook --> sqm-text
-  sqm-stencilbook --> sqm-form-message
-  sqm-stencilbook --> sqm-password-field
-  sqm-stencilbook --> sqm-hook-story-container
-  sqm-stencilbook --> sqm-stat-container
-  sqm-stencilbook --> sqm-big-stat
-  sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-brand-selector
-  sqm-stencilbook --> sqm-share-button
-  sqm-stencilbook --> sqm-empty
-  sqm-stencilbook --> sqm-pagination
-  sqm-stencilbook --> sqm-share-link
+  sqm-stencilbook --> sqm-divided-layout
+  sqm-stencilbook --> sqm-text
+  sqm-stencilbook --> sqm-form-message
+  sqm-stencilbook --> sqm-password-field
+  sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-big-stat
   sqm-stencilbook --> sqm-stat-container
-  sqm-stencilbook --> sqm-text
-  sqm-stencilbook --> sqm-image
-  sqm-stencilbook --> sqm-leaderboard
-  sqm-stencilbook --> sqm-router
-  sqm-stencilbook --> sqm-hook-story-container
-  sqm-stencilbook --> sqm-navigation-menu
-  sqm-stencilbook --> sqm-portal-frame
-  sqm-stencilbook --> sqm-edit-profile
-  sqm-stencilbook --> sqm-form-message
-  sqm-stencilbook --> sqm-divided-layout
-  sqm-stencilbook --> sqm-reward-exchange-list
-  sqm-stencilbook --> sqm-rewards-table
-  sqm-stencilbook --> sqm-rewards-table-reward-column
-  sqm-stencilbook --> sqm-rewards-table-source-column
-  sqm-stencilbook --> sqm-rewards-table-status-column
-  sqm-stencilbook --> sqm-rewards-table-date-column
-  sqm-stencilbook --> sqm-task-card
-  sqm-stencilbook --> sqm-card-feed
-  sqm-stencilbook --> sqm-password-field
-  sqm-stencilbook --> sqm-portal-login
-  sqm-stencilbook --> sqm-portal-register
+  sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-checkbox-field
   sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-name-fields

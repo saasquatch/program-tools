@@ -290,7 +290,7 @@ function useDemoIndirectTaxForm(
   props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
-  const [option, setOption] = useState(null);
+  const [option, setOption] = useState("otherRegion");
   const [demoFormState, setDemoFormState] = useState<any>({});
 
   return deepmerge(

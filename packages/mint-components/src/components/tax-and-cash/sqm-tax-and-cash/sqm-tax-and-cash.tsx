@@ -1177,18 +1177,21 @@ export class TaxAndCashMonolith {
           return (
             <sqm-indirect-tax-form
               {...this.getGeneralStepTextProps("step2_")}
+              {...extractProps(props, "sqm-indirect-tax-form_")}
             ></sqm-indirect-tax-form>
           );
         case "/3":
           return (
             <sqm-docusign-form
               {...this.getGeneralStepTextProps("step3_")}
+              {...extractProps(props, "sqm-docusign-form_")}
             ></sqm-docusign-form>
           );
         case "/4":
           return (
             <sqm-banking-info-form
               {...this.getGeneralStepTextProps("step4_")}
+              {...extractProps(props, "sqm-banking-info-form_")}
             ></sqm-banking-info-form>
           );
         case "/dashboard":
