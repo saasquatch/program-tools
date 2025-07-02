@@ -903,14 +903,6 @@ h1, h2, h3, h4{
   line-height: var(--sl-line-height-dense);
 }
 
-sl-button::part(base){
-  width: 100%;
-  background-color: var(--sqm-primary-button-background) !important;
-  color: var(--sqm-primary-button-color);
-  border-color: var(--sqm-primary-button-color-border);
-  border-radius: var(--sqm-primary-button-radius);
-}
-
 sqm-share-button{
   flex: 1;
 }
@@ -929,6 +921,14 @@ sl-details::part(summary) {
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-semibold);
   margin: 0px;
+}
+
+*::part(primarybutton-base){
+  width: 100%;
+  background-color: var(--sqm-primary-button-background) !important;
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
 }
 
 *::part(primarybutton-base):hover{
