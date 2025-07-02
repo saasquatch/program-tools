@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
-import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
@@ -59,21 +58,6 @@ export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
         "renderLabel": (idx: any) => Promise<any>;
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner image
-         */
-        "imgUrl": string;
-        /**
-          * @uiName Banner title
-         */
-        "titleText": string;
     }
     interface SqmBankingInfoForm {
         /**
@@ -6493,12 +6477,6 @@ declare global {
         prototype: HTMLRaisinsPlopTargetElement;
         new (): HTMLRaisinsPlopTargetElement;
     };
-    interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
-    }
-    var HTMLSqmAssetCardElement: {
-        prototype: HTMLSqmAssetCardElement;
-        new (): HTMLSqmAssetCardElement;
-    };
     interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
     }
     var HTMLSqmBankingInfoFormElement: {
@@ -7233,7 +7211,6 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
-        "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
@@ -7360,21 +7337,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RaisinsPlopTarget {
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner image
-         */
-        "imgUrl"?: string;
-        /**
-          * @uiName Banner title
-         */
-        "titleText"?: string;
     }
     interface SqmBankingInfoForm {
         /**
@@ -13758,7 +13720,6 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
-        "sqm-asset-card": SqmAssetCard;
         "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
@@ -13888,7 +13849,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
-            "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;

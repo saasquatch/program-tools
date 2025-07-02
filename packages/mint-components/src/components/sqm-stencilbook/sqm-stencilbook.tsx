@@ -32,7 +32,6 @@ import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgo
 import * as PortalEmailVerification from "../sqm-portal-email-verification/PortalEmailVerification.stories";
 import * as PortalResetPassword from "../sqm-portal-reset-password/PortalResetPassword.stories";
 import * as PortalVerifyEmail from "../sqm-portal-verify-email/PortalVerifyEmail.stories";
-import * as AssetCard from "../sqm-asset-card/AssetCard.stories";
 import * as DividedLayout from "../sqm-divided-layout/DividedLayout.stories";
 import * as ChangePassword from "../sqm-portal-change-password/ChangePassword.stories";
 import * as ChangeMarketing from "../sqm-portal-change-marketing/ChangeMarketing.stories";
@@ -138,7 +137,6 @@ const stories = [
   PortalEmailVerification,
   PortalResetPassword,
   PortalVerifyEmail,
-  AssetCard,
   DividedLayout,
   ChangePassword,
   PortalProfile,
