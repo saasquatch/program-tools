@@ -102,6 +102,7 @@ export class SqmBrandSelector {
             bottom: 0;
             right: 0;
             z-index: 999999;
+            border: 1px solid #ccc;
           }
 
           .card-heading {

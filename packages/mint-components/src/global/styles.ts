@@ -955,7 +955,7 @@ sl-details::part(summary) {
   color: var(--sqm-tertiary-button-color);
   border-color: var(--sqm-tertiary-button-color-border);
   border-radius: var(--sqm-tertiary-button-radius);
-  width: max-content;
+  width: 100%;
   display: flex;
   margin: auto;
 }
