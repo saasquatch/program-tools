@@ -216,20 +216,20 @@ const style = {
     width: "16px",
     height: "16px",
     borderRadius: "50%",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   SmallSkeleton: {
     width: "100px",
     height: "16px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   LargeSkeleton: {
     width: "100%",
     maxWidth: "320px",
     height: "40px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   InfoWarningIcon: {
     height: "26px",

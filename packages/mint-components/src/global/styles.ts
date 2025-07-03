@@ -582,7 +582,7 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-  
+  --sqm-skeleton-background: #eee;
   --sqm-text: ${window.SquatchBrandingConfig?.font.textColor || "white"};
   --sqm-text-subdued: ${
     window.SquatchBrandingConfig?.font.secondaryTextColor || "#b3b3b3"

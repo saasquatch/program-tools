@@ -52,7 +52,7 @@ const style = {
     gap: "10px",
     margin: "auto",
     textAlign: "center",
-    border: "1px solid var(--sl-color-gray-200)",
+    border: "1px solid var(--sqm-border-color)",
     justifyContent: "center",
   },
   MessageContainer: {
