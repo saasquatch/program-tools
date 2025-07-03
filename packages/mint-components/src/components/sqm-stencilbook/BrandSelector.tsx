@@ -95,9 +95,9 @@ export class SqmBrandSelector {
             border-radius: 18px; 
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); 
             width: 100%;
-            max-width: 500px;
+            max-width: 350px;
             overflow: hidden;
-            padding: 20px 10px;
+            padding: 10px;
             position: absolute;
             bottom: 0;
             right: 0;

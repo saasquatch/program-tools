@@ -914,7 +914,7 @@ sqm-hero img {
 
 sl-details::part(base){
   background-color: inherit;
-  border-color: var(--sqm-border-color)
+  border-color: var(--sqm-border-color);
 }
 
 sl-details::part(summary) {
