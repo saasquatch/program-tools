@@ -257,8 +257,10 @@ const vanillaStyle = `
 
     /* this class is dynamically applied in controller */
     .error-input::part(base) {
-      border: 1px solid var(--sqm-danger-color-border);
-      border-radius: var(--sqm-input-border-radius);
+      --sqm-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color-hover: var(--sqm-danger-color-border);  
+      --sl-input-border-color-focus: var(--sqm-danger-color-background);
     }
 
     .error-input::part(help-text) {
