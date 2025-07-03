@@ -172,7 +172,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     </sl-button>
                     <sl-button
                       class={sheet.classes.CancelButton}
-                      type="text"
+                      type="secondary"
                       exportparts="base: secondarybutton-base"
                       onClick={() => callbacks.setOpen(false)}
                     >
