@@ -3,7 +3,6 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
@@ -277,7 +276,7 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         },
       },
     },
-    props.demoData || parseStates(props.stateController) || {},
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

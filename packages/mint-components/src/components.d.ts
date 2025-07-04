@@ -520,11 +520,6 @@ export namespace Components {
          */
         "reverifyCodeHeaderText": string;
         /**
-          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
-          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-         */
-        "stateController": string;
-        /**
           * @uiName Verify code widget header text
          */
         "verifyCodeHeaderText": string;
@@ -6016,16 +6011,6 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
-          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
-          * @componentState { "title": "Default", "props": { } }
-          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
-          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
-          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
-          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
-          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
-         */
-        "stateController"?: string;
-        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -6385,13 +6370,6 @@ export namespace Components {
           * @uiName State field label
          */
         "state": string;
-        /**
-          * @uiName States
-          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
-          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
-          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-         */
-        "stateController": string;
         /**
           * @uiName Support link text
          */
@@ -7864,11 +7842,6 @@ declare namespace LocalJSX {
           * @uiName Reverify code widget header text
          */
         "reverifyCodeHeaderText"?: string;
-        /**
-          * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
-          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-         */
-        "stateController"?: string;
         /**
           * @uiName Verify code widget header text
          */
@@ -13332,16 +13305,6 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
-          * @parentState { "parent": "sqm-tax-and-cash", "title": "Dashboard" }
-          * @componentState { "title": "Default", "props": { } }
-          * @componentState { "title": "Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:REQUIRED" } } }
-          * @componentState { "title": "Internal Verification Required", "props": { "states": { "payoutStatus": "VERIFICATION:INTERNAL" } } }
-          * @componentState { "title": "Review in progress", "props": { "states": { "payoutStatus": "VERIFICATION:REVIEW" } } }
-          * @componentState { "title": "Verification failed", "props": { "states": { "payoutStatus": "VERIFICATION:FAILED" } } }
-          * @componentState { "title": "Payout hold", "props": { "states": { "payoutStatus": "HOLD" } } }
-         */
-        "stateController"?: string;
-        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -13700,13 +13663,6 @@ declare namespace LocalJSX {
           * @uiName State field label
          */
         "state"?: string;
-        /**
-          * @uiName States
-          * @parentState { "parent": "sqm-tax-and-cash", "title": "Step 1" }
-          * @componentState { "title": "Errors", "props": { "states": { "loadingError": true, "formState": { "errors": { "email": true, "firstName": true, "lastName": true, "countryCode": true, "currency": true } } } } }
-          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-         */
-        "stateController"?: string;
         /**
           * @uiName Support link text
          */

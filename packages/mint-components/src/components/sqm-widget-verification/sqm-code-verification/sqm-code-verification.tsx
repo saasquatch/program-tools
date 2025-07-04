@@ -3,7 +3,6 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { VERIFICATION_PARENT_NAMESPACE } from "../keys";
 import {
@@ -62,12 +61,6 @@ export class WidgetCodeVerification {
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
   /**
-   * @componentState { "title": "Verification Failed", "props": { "states": { "verifyFailed": true } } }
-   * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-   */
-  @Prop() stateController: string = "{}";
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -121,7 +114,7 @@ function useDemoWidgetCodeVerification(
       },
       text: props.getTextProps(),
     },
-    props.demoData || parseStates(props.stateController) || {},
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
