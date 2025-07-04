@@ -249,26 +249,6 @@ export class RewardTableStatusCell {
       | "info";
 
     const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
-      console.log("badgeType", badgeType);
-      // switch (badgeType) {
-
-      //   case "primary":
-      //     return sheet.classes.RedeemBadge;
-
-      //   case "danger":
-      //     return sheet.classes.DangerBadge;
-
-      //   case "success":
-      //     return sheet.classes.SuccessBadge;
-
-      //   case "warning":
-      //   case "info":
-      //     return sheet.classes.WarningBadge;
-
-      //   default:
-      //     return sheet.classes.WarningBadge;
-      // }
-
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;
@@ -288,16 +268,7 @@ export class RewardTableStatusCell {
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <sl-badge
-          type={badgeType}
-          pill
-          // class={
-          //   rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_APPROVED"
-          //     ? sheet.classes.RedeemBadge
-          //     : sheet.classes.Badge
-          // }
-          class={badgeCSSClass}
-        >
+        <sl-badge type={badgeType} pill class={badgeCSSClass}>
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>

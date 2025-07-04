@@ -94,7 +94,6 @@ import * as PayoutButtonScroll from "../sqm-payout-button-scroll/PayoutButtonScr
 import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
-import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
 import * as QRCode from "../sqm-qr-code/QRCode.stories";
 import * as Text from "../sqm-text/Text.stories";
@@ -194,7 +193,6 @@ const stories = [
   NewPortalRegistrationForm,
   ChangeMarketing,
   BaseRegistrationForm,
-  PortalRegistrationForm,
   PortalGoogleRegistrationFormStories,
   WidgetEmailVerification,
   WidgetCodeVerification,
