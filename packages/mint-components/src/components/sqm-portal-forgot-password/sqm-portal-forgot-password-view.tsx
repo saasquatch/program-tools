@@ -19,19 +19,22 @@ export interface PortalForgotPasswordViewProps {
     submit: (event: any) => Promise<void>;
   };
   content: {
-    secondaryButton: any;
     messageSlot: any;
     emailLabel?: string;
     submitLabel?: string;
     successAlertText?: string;
     loginText?: string;
-  };
-  styles?: {
     backgroundColor?: string;
     borderRadius?: string;
     border?: string;
     textColor?: string;
   };
+  // styles?: {
+  //   backgroundColor?: string;
+  //   borderRadius?: string;
+  //   border?: string;
+  //   textColor?: string;
+  // };
 }
 
 const vanillaStyle = `
@@ -44,14 +47,16 @@ const vanillaStyle = `
 `;
 
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
-  const { states, callbacks, content, styles } = props;
+  const { states, callbacks, content } = props;
 
   const style = {
     FormWrapper: {
       ...AuthWrapper,
-      background: styles.backgroundColor,
-      borderRadius: styles.borderRadius,
-      border: styles.border,
+      background: content.backgroundColor || "var(--sqm-portal-background)",
+      borderRadius: content.borderRadius || "var(--sqm-border-radius-normal)",
+      border:
+        content.border ||
+        "var(--sqm-border-thickness) solid var(--sqm-border-color)",
     },
     Column: { ...AuthColumn },
     ButtonsContainer: AuthButtonsContainer,
@@ -71,9 +76,7 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
         {vanillaStyle}
         {styleString}
       </style>
-      <TextSpanView textColor={styles.textColor} type="h3">
-        {content.messageSlot}
-      </TextSpanView>
+      <TextSpanView type="h3">{content.messageSlot}</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
@@ -106,8 +109,8 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             {content.secondaryButton}
           </div> */}
           <sl-button
-            type="text"
-            exportparts="base: tertiarybutton-base"
+            type="secondary"
+            exportparts="base: secondarybutton-base"
             class={sheet.classes.SecondaryButton}
             disabled={states.loading}
             onClick={() => navigation.push(states.loginPath)}

@@ -923,7 +923,8 @@ sl-details::part(summary) {
   margin: 0px;
 }
 
-*::part(primarybutton-base){
+*::part(primarybutton-base),
+sl-button[type="primary"]::part(base) {
   width: 100%;
   background-color: var(--sqm-primary-button-background) !important;
   color: var(--sqm-primary-button-color);
@@ -931,22 +932,27 @@ sl-details::part(summary) {
   border-radius: var(--sqm-primary-button-radius);
 }
 
-*::part(primarybutton-base):hover{
+*::part(primarybutton-base):hover,
+sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
 }
 
-*::part(primarybutton-base):focus{
+
+*::part(primarybutton-base):focus,
+sl-button[type="primary"]::part(base):focus {
   box-shadow: none;
 }
 
-*::part(secondarybutton-base){
+*::part(secondarybutton-base),
+sl-button[type="secondary"]::part(base) {
   background-color: var(--sqm-secondary-button-background);
   color: var(--sqm-secondary-button-color);
   border-color: var(--sqm-secondary-button-color-border);
   border-radius: var(--sqm-secondary-button-radius);
 }
 
-*::part(secondarybutton-base):hover{
+*::part(secondarybutton-base):hover,
+sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-secondary-button-background-hover);
 }
 

@@ -72,6 +72,8 @@ export const Default = () => (
   <sqm-portal-login demoData={{ ...defaultProps }} />
 );
 
+export const Text = () => <PortalLoginView {...defaultProps} />;
+
 export const IsGoogle = () => (
   <sqm-portal-login demoData={{ ...googleProps }} />
 );
