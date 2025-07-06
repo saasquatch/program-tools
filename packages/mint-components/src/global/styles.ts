@@ -760,6 +760,12 @@ html {
     window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
   };
 
+  --sl-color-primary-100: var(--sqm-primary-color);
+  --sl-color-primary-200: var(--sqm-primary-color);
+  --sl-color-primary-300: var(--sqm-primary-color);
+  --sl-color-primary-400: var(--sqm-primary-color);
+  --sl-color-primary-500: var(--sqm-primary-color);
+
   --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-color-hover: var(--sqm-input-color-hover);
   --sl-input-color-focus: var(--sqm-input-color-focus);
@@ -1043,7 +1049,6 @@ sl-icon::part(base) {
 sl-icon::part(base):hover {
   color: var(--sqm-accent-color-icon);
 }
-
 
 
 

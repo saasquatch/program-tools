@@ -98,11 +98,12 @@ export class SqmBrandSelector {
             max-width: 350px;
             overflow: hidden;
             padding: 10px;
-            position: absolute;
+            position: fixed;
             bottom: 0;
             right: 0;
             z-index: 999999;
             border: 1px solid #ccc;
+            margin: 10px;
           }
 
           .card-heading {
@@ -112,6 +113,7 @@ export class SqmBrandSelector {
             padding-bottom: 10px;
             color: black;
             margin: 0;
+            font-size: 16px;
           }
 
           .segmented-control-container {
@@ -131,7 +133,7 @@ export class SqmBrandSelector {
             align-items: center;
             justify-content: center;
             flex: 1;
-            padding: 4px 8px; /* Fixed spacing syntax */
+            padding: 0px 8px; 
             cursor: pointer;
             transition: all 300ms ease-in-out;
             border-radius: 9999px;
