@@ -25,16 +25,16 @@ export interface NavigationSidebarItemViewProps {
 export function NavigationSidebarItemView(
   props: NavigationSidebarItemViewProps
 ) {
-  const { states, data } = props;
+  const { states, data, padding = "x-small" } = props;
 
   const backgroundColor =
     props.backgroundColor || "var(--sqm-portal-background)";
 
   const backgroundHoverColor =
-    props.backgroundHoverColor || "var(--sl-color-gray-50)";
+    props.backgroundHoverColor || "var(--sqm-accent-color-background)";
 
   const backgroundFocusedColor =
-    props.backgroundFocusedColor || "var(--sl-color-gray-200)";
+    props.backgroundFocusedColor || "var(--sqm-primary-color)";
 
   const textFocusedColor = props.textFocusedColor || "var(--sqm-text)";
 
@@ -46,8 +46,8 @@ export function NavigationSidebarItemView(
       }`,
       borderRadius: props.borderRadius
         ? `${props.borderRadius}px`
-        : "var(--sl-border-radius-large)",
-      padding: `var(--sl-spacing-${props.padding})`,
+        : "var(--sqm-border-radius-normal)",
+      padding: `var(--sl-spacing-${padding})`,
 
       "text-decoration": "none",
       color: states.active
