@@ -71,10 +71,6 @@
   --teal-7: #004551;
 } */
 
-// !!!!!!!!!! REMOVE ME !!!!!!!!!!!!!!!
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* @ts-nocheck */
-
 import { BrandingConfiguration } from "../saasquatch";
 
 declare global {
@@ -647,12 +643,17 @@ html {
   --sqm-tertiary-button-radius: 30px;
   
   --sqm-border-radius-normal: ${
-    window.SquatchBrandingConfig?.border?.radius || "18px"
+    // window.SquatchBrandingConfig?.border?.radius || "18px"
+    "18px"
   }; 
-  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
+  --sqm-border-color: ${
+    // window.SquatchBrandingConfig?.border?.color || "white"
+    "white"
+  };
 
   --sqm-border-thickness: ${
-    window.SquatchBrandingConfig?.border?.thickness || "1px"
+    // window.SquatchBrandingConfig?.border?.thickness || "1px"
+    "1px"
   };
 
   --sqm-accent-color-icon: ${
@@ -746,7 +747,8 @@ html {
     "#eaeaea"
   };
   --sqm-input-border-radius: ${
-    window.SquatchBrandingConfig?.formFields?.borderRadius || "4px"
+    // window.SquatchBrandingConfig?.formFields?.borderRadius || "4px"
+    "4px"
   };
   --sqm-input-color: ${
     window.SquatchBrandingConfig?.formFields?.formFieldColor?.inputText ||
@@ -763,10 +765,12 @@ html {
   };
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: ${
-    window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
+    // window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
+    "#fff"
   };
   --sqm-input-disabled-background: ${
-    window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
+    // window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
+    "#fff"
   };
 
   --sl-color-primary-100: var(--sqm-primary-color);

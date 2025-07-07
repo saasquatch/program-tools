@@ -16,7 +16,7 @@
 
 ## Methods
 
-### `renderCell(data: Referral) => Promise<any>`
+### `renderCell(data: any) => Promise<any>`
 
 
 
@@ -36,7 +36,7 @@ Type: `Promise<string>`
 
 
 
-### `renderReferrerCell(data: Referrer) => Promise<any>`
+### `renderReferrerCell(data: any) => Promise<any>`
 
 
 

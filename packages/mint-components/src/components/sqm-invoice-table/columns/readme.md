@@ -7,7 +7,7 @@
 
 ## Methods
 
-### `renderCell(data: Invoice) => Promise<any>`
+### `renderCell(data: any) => Promise<any>`
 
 
 

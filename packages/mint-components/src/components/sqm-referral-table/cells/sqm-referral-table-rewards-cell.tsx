@@ -1,9 +1,10 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { ImpactConnection, Reward } from "../../../saasquatch";
+import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",

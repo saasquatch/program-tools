@@ -1,8 +1,9 @@
 import { h } from "@stencil/core";
+import { Reward } from "../../saasquatch";
 import scenario1 from "./columns/sqm-rewards-table-date-column.feature";
 import scenario2 from "./columns/sqm-rewards-table-reward-column.feature";
-import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
 import scenario4 from "./columns/sqm-rewards-table-source-column.feature";
+import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
 
 const scenario = scenario1 + scenario2 + scenario3 + scenario4;
 
