@@ -127,6 +127,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               onClick={() => {
                 callbacks.setShowEdit(false);
               }}
+              type="secondary"
               exportparts="base: secondarybutton-base"
             >
               {text.canceltext}

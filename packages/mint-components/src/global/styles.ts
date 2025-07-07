@@ -77,6 +77,11 @@ declare global {
   }
 }
 
+console.log(
+  "The input hover color is ",
+  window.SquatchBrandingConfig.inputs?.hoverBorderColor
+);
+
 const style = `
 /* vietnamese */
 @font-face {
@@ -567,6 +572,8 @@ html {
   --sl-z-index-toast: 950;
   --sl-z-index-tooltip: 1000;
 }
+
+
   
 :root {
   --sqm-header-background: var(--sl-color-white);
@@ -580,25 +587,51 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-  
-  --sqm-text: ${window.SquatchBrandingConfig?.font?.textColor || "white"};
+  --sqm-skeleton-background: #eee;
+  --sqm-text: ${window.SquatchBrandingConfig?.font.textColor || "white"};
   --sqm-text-subdued: ${
     window.SquatchBrandingConfig?.font?.secondaryTextColor || "#b3b3b3"
   };
-  --sqm-primary-color: #1ed760;
 
-  --sqm-primary-button-background: #1ed760;
-  --sqm-primary-button-background-hover: #1DB954;
-  --sqm-primary-button-color: #121212;
-  --sqm-primary-button-color-border: transparent;
-  --sqm-primary-button-radius: 30px;
+  --sqm-primary-color: ${
+    window.SquatchBrandingConfig?.color?.primaryColor || "#1ed760"
+  };
+  --sqm-primary-button-background:${
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
+  };
+  --sqm-primary-button-background-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.hoverColor || "#1ed760"
+  };
+  --sqm-primary-button-color: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonTextColor || "#FFFFFF"
+  };
+  --sqm-primary-button-color-border: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonBorderColor ||
+    "transparent"
+  };
+  --sqm-primary-button-radius: ${
+    window.SquatchBrandingConfig?.primaryButton?.borderRadius || "4px"
+  };
 
 
-  --sqm-secondary-button-background: #191414;
-  --sqm-secondary-button-background-hover: #282828; 
-  --sqm-secondary-button-color: #FFFFFF; 
-  --sqm-secondary-button-color-border: #FFFFFF; 
-  --sqm-secondary-button-radius: 30px;
+  --sqm-secondary-button-background: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
+  };
+  --sqm-secondary-button-background-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.hoverColor || "#282828"
+  };
+
+  
+  --sqm-secondary-button-color: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonTextColor || "#FFFFFF"
+  };
+  --sqm-secondary-button-color-border: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonBorderColor ||
+    "#FFFFFF"
+  };
+  --sqm-secondary-button-radius: ${
+    window.SquatchBrandingConfig?.secondaryButton?.borderRadius || "30px"
+  };
 
   --sqm-tertiary-button-background: transparent;
   --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
@@ -607,60 +640,145 @@ html {
   --sqm-tertiary-button-radius: 30px;
   
   --sqm-border-radius-normal: ${
-    window.SquatchBrandingConfig?.border?.radius || "18"
-  }px;
+    window.SquatchBrandingConfig?.border?.radius || "18px"
+  }; 
   --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
-  --sqm-border-thickness: 1px;
+
+  --sqm-border-thickness: ${
+    window.SquatchBrandingConfig?.border?.thickness || "1px"
+  };
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.icon || "#1ed760"
+    window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
+    "#1ed760"
   };
-  --sqm-accent-color-text: #ffffff;     
-  --sqm-accent-color-border: #1db954;
-  --sqm-accent-color-background: #0d4a27;
+  --sqm-accent-color-text: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.text || "#fff"
+  };    
+  --sqm-accent-color-border: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.border || "#1ed760"
+  };
+  --sqm-accent-color-background: ${
+    window.SquatchBrandingConfig?.color?.accentColorShades?.background ||
+    "#0d4a27"
+  };
 
-  --sqm-success-color-icon: var(--sl-color-success-600);
-  --sqm-success-color-text: var(--sl-color-success-950);
-  --sqm-success-color-border: var(--sl-color-success-400);
-  --sqm-success-color-background: var(--sl-color-success-300);
+  --sqm-success-color-icon: ${
+    window.SquatchBrandingConfig?.color?.success?.iconAndBadge ||
+    "var(--sl-color-success-600)"
+  };
+  --sqm-success-color-text: ${
+    window.SquatchBrandingConfig?.color?.success?.text ||
+    "var(--sl-color-success-950)"
+  };
+  --sqm-success-color-border: ${
+    window.SquatchBrandingConfig?.color?.success?.border ||
+    "var(--sl-color-success-400)"
+  };
+  --sqm-success-color-background: ${
+    window.SquatchBrandingConfig?.color?.success?.background ||
+    "var(--sl-color-success-300)"
+  };
   
-  --sqm-warning-color-icon: var(--sl-color-warning-600);
-  --sqm-warning-color-text: var(--sl-color-warning-950);
-  --sqm-warning-color-border: var(--sl-color-warning-400);
-  --sqm-warning-color-background: var(--sl-color-warning-300);
+  --sqm-warning-color-icon: ${
+    window.SquatchBrandingConfig?.color?.warning?.iconAndBadge ||
+    "var(--sl-color-warning-600)"
+  };
+  --sqm-warning-color-text: ${
+    window.SquatchBrandingConfig?.color?.warning?.text ||
+    "var(--sl-color-warning-950)"
+  };
+  --sqm-warning-color-border: ${
+    window.SquatchBrandingConfig?.color?.warning?.border ||
+    "var(--sl-color-warning-400)"
+  };
+  --sqm-warning-color-background: ${
+    window.SquatchBrandingConfig?.color?.warning?.background ||
+    "var(--sl-color-warning-300)"
+  };
 
-  --sqm-danger-color-icon: var(--sl-color-danger-600);
-  --sqm-danger-color-text: var(--sl-color-danger-950);
-  --sqm-danger-color-border: var(--sl-color-danger-400);
-  --sqm-danger-color-background: var(--sl-color-danger-300);
+  --sqm-danger-color-icon: ${
+    window.SquatchBrandingConfig?.color?.critical?.iconAndBadge ||
+    "var(--sl-color-danger-600)"
+  };
+  --sqm-danger-color-text: ${
+    window.SquatchBrandingConfig?.color?.critical?.text ||
+    "var(--sl-color-danger-950)"
+  };
+  --sqm-danger-color-border: ${
+    window.SquatchBrandingConfig?.color?.critical?.border ||
+    "var(--sl-color-danger-400)"
+  };
+  --sqm-danger-color-background: ${
+    window.SquatchBrandingConfig?.color?.critical?.background ||
+    "var(--sl-color-danger-300)"
+  };
 
-  --sqm-informative-color-icon: var(--sl-color-sky-600);
-  --sqm-informative-color-text: var(--sl-color-sky-950);
-  --sqm-informative-color-border: var(--sl-color-sky-400);
-  --sqm-informative-color-background: var(--sl-color-sky-300);
+  --sqm-informative-color-icon: ${
+    window.SquatchBrandingConfig?.color?.informative?.iconAndBadge ||
+    "var(--sl-color-sky-600)"
+  };
+  --sqm-informative-color-text: ${
+    window.SquatchBrandingConfig?.color?.informative?.text ||
+    "var(--sl-color-sky-950)"
+  };
+  --sqm-informative-color-border: ${
+    window.SquatchBrandingConfig?.color?.informative?.border ||
+    "var(--sl-color-sky-400)"
+  };
+  --sqm-informative-color-background: ${
+    window.SquatchBrandingConfig?.color?.informative?.background ||
+    "var(--sl-color-sky-300)"
+  };
 
-  --sqm-input-background: #121212;
-  --sqm-input-border: 1px solid #7c7c7c;
-  --sqm-input-border-color: #7c7c7c;
-  --sqm-input-border-radius: 30px;
-  --sqm-input-color: var(--sqm-text);
-  --sqm-input-focus-border: 1px solid white;
-  --sqm-input-label-color: white;
-  --sqm-border-width: 1px;
-  --sqm-border-color-focus: white;
-  --sqm-border-color-hover: white;
-  --sqm-input-label-font-size: white;
-  --sqm-input-disabled-color: white;
-  --sqm-input-disabled-background: #303030;
+  --sqm-input-background: ${
+    window.SquatchBrandingConfig?.inputs?.background || "#fff"
+  };
+  --sqm-input-border-color: ${
+    window.SquatchBrandingConfig?.inputs?.borderColor || "#eaeaea"
+  };
+  --sqm-input-border-radius: ${
+    window.SquatchBrandingConfig?.inputs?.borderRadius || "4px"
+  };
+  --sqm-input-color: ${
+    window.SquatchBrandingConfig?.inputs?.textColor || "#000"
+  };
+  --sqm-input-label-color: ${
+    window.SquatchBrandingConfig?.inputs?.labelColor || "#000"
+  };
+  --sqm-border-width: ${
+    window.SquatchBrandingConfig?.inputs?.borderThickness || "1px"
+  };
+  --sqm-input-border-color-focus: ${
+    window.SquatchBrandingConfig?.inputs?.focusBorderColor || "#eaeaea"
+  };
+  --sqm-input-border-color-hover: ${
+    window.SquatchBrandingConfig?.inputs?.hoverBorderColor || "#ccc"
+  };
+  --sqm-input-label-font-size: ${
+    window.SquatchBrandingConfig?.inputs?.labelFontSize || "18px"
+  };
+  --sqm-input-disabled-color: ${
+    window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
+  };
+  --sqm-input-disabled-background: ${
+    window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
+  };
+
+  --sl-color-primary-100: var(--sqm-primary-color);
+  --sl-color-primary-200: var(--sqm-primary-color);
+  --sl-color-primary-300: var(--sqm-primary-color);
+  --sl-color-primary-400: var(--sqm-primary-color);
+  --sl-color-primary-500: var(--sqm-primary-color);
 
   --sl-input-border-radius-medium: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
-  --sl-input-color-hover: var(--sqm-input-color);
-  --sl-input-color-focus: var(--sqm-input-color);
+  --sl-input-color-hover: var(--sqm-input-color-hover);
+  --sl-input-color-focus: var(--sqm-input-color-focus);
   --sl-input-color-disabled: var(--sqm-input-disabled-color);
   --sl-input-border-color-disabled: #7c7c7c;
-  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, white);
+  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, #999999);
   --sl-input-border-color: var(--sqm-input-border-color, #7c7c7c);
-  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, white); 
+  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, #999999); 
   --sl-input-background-color-focus: var(--sqm-input-background, #ffffff);
   --sl-input-border-radius: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-background-color: var(--sqm-input-background, #ffffff);
@@ -694,7 +812,9 @@ html {
 }
 
 body {
-  font-family: var(--sl-font-sans);
+  font-family: ${
+    window.SquatchBrandingConfig.font.font || "var(--sl-font-sans)"
+  };
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
@@ -707,39 +827,6 @@ body {
 .story-div {
   background: var(--sqm-portal-background) !important;
   color: var(--sqm-text) !important;
-}
-
-sqm-tabs::part(active-tab-indicator) {
-  border: red;
-  :root {
-    --tabs-border-color: pink;
-  
-  }
-}
-
-sl-tab-group::part(nav) {
-  border-bottom: 1px solid blue; /* Emphasize the separator */
-}
-
-sl-tab-group {
-  /* Set the active tab indicator color to Spotify Green */
-  --indicator-color: #1db954; 
-
-  /* Set the border color separating tabs from content */
-  --sl-tab-group-border-color: #333333; 
-
-  /* You might also want to adjust the nav area's background */
-  background-color: #1a1a1a; /* Dark background for the entire group or just the nav */
-  border-radius: 8px; /* Rounded corners for the entire tab group */
-  padding: 1rem; /* Adjust overall padding */
-}
-
-sl-tab::part(base)[active] {
-  /* You can add a top/left/right border to the active tab button itself if desired */
-  /* For a look like your previous input fields, you might want to mimic that border. */
-  border: 1px solid #1db954; /* Spotify Green border */
-  border-bottom-color: transparent; /* Hide the bottom border to let the indicator show */
-  border-radius: 4px 4px 0 0; /* Keep top corners rounded */
 }
 
 sl-spinner {
@@ -827,10 +914,6 @@ h1, h2, h3, h4{
   line-height: var(--sl-line-height-dense);
 }
 
-sl-button::part(base){
-  width: 100%;
-}
-
 sqm-share-button{
   flex: 1;
 }
@@ -842,7 +925,7 @@ sqm-hero img {
 
 sl-details::part(base){
   background-color: inherit;
-  border-color: var(--sqm-border-color)
+  border-color: var(--sqm-border-color);
 }
 
 sl-details::part(summary) {
@@ -851,29 +934,36 @@ sl-details::part(summary) {
   margin: 0px;
 }
 
-*::part(primarybutton-base){
-  background-color: var(--sqm-primary-button-background);
+*::part(primarybutton-base),
+sl-button[type="primary"]::part(base) {
+  width: 100%;
+  background-color: var(--sqm-primary-button-background) !important;
   color: var(--sqm-primary-button-color);
   border-color: var(--sqm-primary-button-color-border);
   border-radius: var(--sqm-primary-button-radius);
 }
 
-*::part(primarybutton-base):hover{
+*::part(primarybutton-base):hover,
+sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
 }
 
-*::part(primarybutton-base):focus{
+
+*::part(primarybutton-base):focus,
+sl-button[type="primary"]::part(base):focus {
   box-shadow: none;
 }
 
-*::part(secondarybutton-base){
+*::part(secondarybutton-base),
+sl-button[type="secondary"]::part(base) {
   background-color: var(--sqm-secondary-button-background);
   color: var(--sqm-secondary-button-color);
   border-color: var(--sqm-secondary-button-color-border);
   border-radius: var(--sqm-secondary-button-radius);
 }
 
-*::part(secondarybutton-base):hover{
+*::part(secondarybutton-base):hover,
+sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-secondary-button-background-hover);
 }
 
@@ -882,7 +972,7 @@ sl-details::part(summary) {
   color: var(--sqm-tertiary-button-color);
   border-color: var(--sqm-tertiary-button-color-border);
   border-radius: var(--sqm-tertiary-button-radius);
-  width: max-content;
+  width: 100%;
   display: flex;
   margin: auto;
 }
@@ -904,6 +994,14 @@ sl-details::part(summary) {
   border-width: var(--sqm-border-width, 1px);
 }
 
+*::part(input-base):hover, *::part(select-base):hover, *::part(textarea-base):hover{
+  border-color: var(--sqm-border-color-hover);
+}
+
+*::part(input-base):focus, *::part(select-base):focus, *::part(textarea-base):focus{
+  border-color: var(--sqm-border-color-focus);
+}
+
 sqm-name-fields::part(input-base) {
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
@@ -914,8 +1012,7 @@ sqm-name-fields::part(input-base) {
 sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
 sl-textarea::part(textarea-label):focus {
-  border-color: none;
-  border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
+  border-color: var(--sqm-border-color-focus);
 }
 
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
@@ -957,7 +1054,6 @@ sl-icon::part(base) {
 sl-icon::part(base):hover {
   color: var(--sqm-accent-color-icon);
 }
-
 
 
 

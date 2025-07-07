@@ -151,6 +151,24 @@ const style = {
       margin: 0,
     },
   },
+
+  SuccessBadge: {
+    "&::part(base)": {
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-success-color-icon)",
+      color: "var(--sqm-success-color-text)",
+    },
+  },
+
+  PrimaryBadge: {
+    "&::part(base)": {
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-informative-color-icon)",
+      color: "var(--sqm-informative-color-text)",
+    },
+  },
   AlertContent: {
     display: "flex",
     alignItems: "flex-start",
@@ -186,6 +204,8 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
   const renderStatusBadge = (status: string, statusBadgeText: string) => {
     const badgeType = status === "nextPayout" ? "success" : "primary";
+    const badgeClass =
+      badgeType === "success" ? classes.SuccessBadge : classes.PrimaryBadge;
     const statusText = intl.formatMessage(
       {
         id: "badgeText",
@@ -197,7 +217,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     );
 
     return (
-      <sl-badge pill type={badgeType}>
+      <sl-badge pill class={badgeClass}>
         {statusText}
       </sl-badge>
     );

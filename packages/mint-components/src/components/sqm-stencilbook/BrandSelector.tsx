@@ -1,21 +1,42 @@
-import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, State, h, Host } from "@stencil/core";
 import * as Themes from "./Themes";
+
+const LOCAL_STORAGE_BRAND_KEY = "localStorageBrandKey";
+const LOCAL_STORAGE_BRAND_CONFIG_KEY = "localStorageBrandConfigKey";
+
 @Component({
   tag: "sqm-brand-selector",
-  shadow: false, // Encapsulate styles within the component
+  shadow: false,
 })
 export class SqmBrandSelector {
-  // State to keep track of the currently selected brand
-
-  // Array of brand objects, each containing a name and an image URL.
-  // Using placeholder images for now. In a real application, you would
-  // replace these with actual logo URLs or local assets.
+  @State() selectedBrand: string = "Netflix";
 
   constructor() {
-    withHooks(this); // Initialize hooks for this component instance
+    const storedBrand = localStorage.getItem(LOCAL_STORAGE_BRAND_KEY);
+    const initialBrandName = storedBrand;
+
+    this.selectedBrand = initialBrandName;
+
+    // Initialize window.SquatchBrandingConfig based on the loaded brand
+    const initialConfig =
+      Themes[initialBrandName as keyof typeof Themes] || Themes.Netflix;
+
+    window.SquatchBrandingConfig = initialConfig;
+    const event = new CustomEvent("brandingConfigUpdated", {
+      detail: window.SquatchBrandingConfig,
+    });
+    window.dispatchEvent(event);
   }
+
+  componentDidLoad() {
+    const storedBrand = localStorage.getItem(LOCAL_STORAGE_BRAND_KEY);
+    const initialBrandName = storedBrand;
+
+    this.selectedBrand = initialBrandName;
+  }
+
   disconnectedCallback() {}
+
   private brands = [
     {
       name: "Netflix",
@@ -39,22 +60,27 @@ export class SqmBrandSelector {
     },
   ];
 
-  // Handler function for when a brand logo is clicked
-  // private handleBrandClick = (brandName: string) => {
+  private updateBrand(brandName: string) {
+    this.selectedBrand = brandName;
+    const configToSet: BrandingConfig =
+      Themes[brandName as keyof typeof Themes] || Themes.Netflix;
+    const brandConfigString = JSON.stringify(configToSet);
 
-  // };
+    localStorage.setItem(LOCAL_STORAGE_BRAND_KEY, brandName);
+    localStorage.setItem(LOCAL_STORAGE_BRAND_CONFIG_KEY, brandConfigString);
+
+    window.SquatchBrandingConfig = configToSet;
+    window.location.reload();
+
+    const event = new CustomEvent("brandingConfigUpdated", {
+      detail: window.SquatchBrandingConfig,
+    });
+    window.dispatchEvent(event);
+  }
 
   render() {
-    const [selectedBrand, setSelectedBrand] = useState("Default");
-    const themes = Object.keys(Themes);
-    const theme = Themes[selectedBrand];
-
-    const handleBrandClick = (brandName: string) => {
-      setSelectedBrand(brandName);
-    };
     return (
       <Host>
-        {/* Vanilla CSS styles encapsulated within the shadow DOM */}
         <style>
           {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -69,13 +95,15 @@ export class SqmBrandSelector {
             border-radius: 18px; 
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); 
             width: 100%;
-            max-width: 500px;
+            max-width: 350px;
             overflow: hidden;
-            padding: 20px 10px;
-            position: absolute;
-            top: 0;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
             right: 0;
             z-index: 999999;
+            border: 1px solid #ccc;
+            margin: 10px;
           }
 
           .card-heading {
@@ -85,6 +113,7 @@ export class SqmBrandSelector {
             padding-bottom: 10px;
             color: black;
             margin: 0;
+            font-size: 16px;
           }
 
           .segmented-control-container {
@@ -104,7 +133,7 @@ export class SqmBrandSelector {
             align-items: center;
             justify-content: center;
             flex: 1;
-            padding 4px 8px
+            padding: 0px 8px; 
             cursor: pointer;
             transition: all 300ms ease-in-out;
             border-radius: 9999px;
@@ -182,20 +211,17 @@ export class SqmBrandSelector {
           }
           `}
         </style>
-        <style>{theme}</style>
         <div class="card-container">
           <h2 class="card-heading">Select Branding</h2>
 
-          {/* Segmented Control Container */}
           <div class="segmented-control-container">
             {this.brands.map((brand) => (
-              // Individual brand segment/pill
               <div
                 key={brand.name}
                 class={`brand-segment ${
-                  selectedBrand === brand.name ? "active" : ""
+                  this.selectedBrand === brand.name ? "active" : ""
                 }`}
-                onClick={() => handleBrandClick(brand.name)}
+                onClick={() => this.updateBrand(brand.name)}
               >
                 <img
                   src={brand.logoUrl}
@@ -206,7 +232,6 @@ export class SqmBrandSelector {
                       "https://placehold.co/80x40/cccccc/000000?text=Logo";
                   }}
                 />
-                {/* <span class="brand-name">{brand.name}</span> */}
               </div>
             ))}
           </div>

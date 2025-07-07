@@ -172,7 +172,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     </sl-button>
                     <sl-button
                       class={sheet.classes.CancelButton}
-                      type="text"
+                      type="secondary"
                       exportparts="base: secondarybutton-base"
                       onClick={() => callbacks.setOpen(false)}
                     >
@@ -196,6 +196,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
           ),
           content: (
             <sl-button
+              type="primary"
               exportparts="base: primarybutton-base"
               onClick={() => callbacks.setOpen(true)}
             >

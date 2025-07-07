@@ -19,7 +19,7 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       textAlign: "center",
       whiteSpace: "pre-line",
-      background: "var(--sqm-informative-color-background)",
+      background: "var(--sqm-informative-color-icon)",
       color: "var(--sqm-informative-color-text)",
     },
   },
@@ -29,7 +29,7 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       textAlign: "center",
       whiteSpace: "pre-line",
-      background: "var(--sqm-danger-color-background)",
+      background: "var(--sqm-danger-color-icon)",
       color: "var(--sqm-danger-color-text)",
     },
   },
@@ -39,7 +39,7 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       textAlign: "center",
       whiteSpace: "pre-line",
-      background: "var(--sqm-warning-color-background)",
+      background: "var(--sqm-warning-color-icon)",
       color: "var(--sqm-warning-color-text)",
     },
   },
@@ -49,7 +49,7 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       textAlign: "center",
       whiteSpace: "pre-line",
-      background: "var(--sqm-success-color-background)",
+      background: "var(--sqm-success-color-icon)",
       color: "var(--sqm-success-color-text)",
     },
   },
@@ -249,26 +249,6 @@ export class RewardTableStatusCell {
       | "info";
 
     const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
-      console.log("badgeType", badgeType);
-      // switch (badgeType) {
-
-      //   case "primary":
-      //     return sheet.classes.RedeemBadge;
-
-      //   case "danger":
-      //     return sheet.classes.DangerBadge;
-
-      //   case "success":
-      //     return sheet.classes.SuccessBadge;
-
-      //   case "warning":
-      //   case "info":
-      //     return sheet.classes.WarningBadge;
-
-      //   default:
-      //     return sheet.classes.WarningBadge;
-      // }
-
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;
@@ -288,16 +268,7 @@ export class RewardTableStatusCell {
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <sl-badge
-          type={badgeType}
-          pill
-          // class={
-          //   rewardStatus === "REDEEMED" || rewardStatus === "PAYOUT_APPROVED"
-          //     ? sheet.classes.RedeemBadge
-          //     : sheet.classes.Badge
-          // }
-          class={badgeCSSClass}
-        >
+        <sl-badge type={badgeType} pill class={badgeCSSClass}>
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>

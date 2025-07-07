@@ -6,7 +6,6 @@ import * as NewPortal from "../../stories/NewPortal.stories";
 import * as PortalTemplates from "../../stories/PortalTemplates.stories";
 import * as PoweredByImg from "../../stories/PoweredByImg.stories";
 import * as Widget from "../../stories/Widget.stories";
-import * as AssetCard from "../sqm-asset-card/AssetCard.stories";
 import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistrationForm.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as UseBigStat from "../sqm-big-stat/UseBigStat.stories";
@@ -55,7 +54,6 @@ import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
 import * as NewPortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
-import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalResetPassword from "../sqm-portal-reset-password/PortalResetPassword.stories";
 import * as PortalVerifyEmail from "../sqm-portal-verify-email/PortalVerifyEmail.stories";
 import * as ProgramExplainerStep from "../sqm-program-explainer-step/ProgramExplainerStep.stories";
@@ -137,7 +135,6 @@ const stories = [
   PortalEmailVerification,
   PortalResetPassword,
   PortalVerifyEmail,
-  AssetCard,
   DividedLayout,
   ChangePassword,
   PortalProfile,
@@ -195,7 +192,6 @@ const stories = [
   NewPortalRegistrationForm,
   ChangeMarketing,
   BaseRegistrationForm,
-  PortalRegistrationForm,
   PortalGoogleRegistrationFormStories,
   WidgetEmailVerification,
   WidgetCodeVerification,

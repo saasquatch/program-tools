@@ -82,14 +82,13 @@ export class PortalForgotPassword {
    * @uiName Border radius
    * @uiWidget number
    */
-  @Prop() borderRadius: string = "var(--sqm-border-radius-normal)";
+  @Prop() borderRadius: string = "var(--sqm-border-radius-normal, 8px)";
 
   /**
    * @uiName Border style
    * @uiWidget textArea
    */
-  @Prop() border: string =
-    "1px solid var(--sqm-border-color, var(--sqm-text), #eaeaea)";
+  @Prop() border: string = "1px solid var(--sqm-border-color, #eaeaea)";
 
   /**
    * @undocumented
@@ -109,34 +108,21 @@ export class PortalForgotPassword {
       : usePortalForgotPassword(this);
 
     const content = {
-      secondaryButton: (
-        <slot name="secondaryButton">
-          <sl-button
-            type="text"
-            disabled={states.loading}
-            onClick={() => navigation.push(states.loginPath)}
-          >
-            {this.loginText}
-          </sl-button>
-        </slot>
-      ),
       messageSlot: <slot name="messageSlot">{this.headerText}</slot>,
       emailLabel: this.emailLabel,
       submitLabel: this.submitLabel,
       successAlertText: this.successAlertText,
       loginText: this.loginText,
-    };
-    const styles = {
       backgroundColor: this.backgroundColor,
       borderRadius: this.borderRadius,
       border: this.border,
     };
+
     return (
       <PortalForgotPasswordView
         states={states}
         callbacks={callbacks}
         content={content}
-        styles={styles}
       />
     );
   }
@@ -149,6 +135,26 @@ function usePortalForgotPasswordDemo(
       states: { error: "", loading: false, success: false },
       callbacks: {
         submit: async (_event) => {},
+      },
+      content: {
+        secondaryButton: (
+          <sl-button
+            type="secondary"
+            exportparts="base: secondarybutton-base"
+            disabled={false}
+            onClick={() => navigation.push(props.loginPath)}
+          >
+            {props.loginText}
+          </sl-button>
+        ),
+        messageSlot: <span>{props.headerText}</span>,
+        emailLabel: props.emailLabel,
+        submitLabel: props.submitLabel,
+        successAlertText: props.successAlertText,
+        loginText: props.loginText,
+        backgroundColor: props.backgroundColor,
+        borderRadius: props.borderRadius,
+        border: props.border,
       },
     },
     props.demoData || {},

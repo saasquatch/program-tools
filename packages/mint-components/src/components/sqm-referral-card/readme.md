@@ -9,7 +9,7 @@
 
 | Property            | Attribute            | Description                                                                    | Type                           | Default     |
 | ------------------- | -------------------- | ------------------------------------------------------------------------------ | ------------------------------ | ----------- |
-| `backgroundColor`   | `background-color`   |                                                                                | `string`                       | `"#ffffff"` |
+| `backgroundColor`   | `background-color`   |                                                                                | `string`                       | `undefined` |
 | `borderColor`       | `border-color`       | Border color of share link container (default is set to 1px solid transparent) | `string`                       | `undefined` |
 | `borderRadius`      | `border-radius`      | The border radius on the share link container (in pixels)                      | `number`                       | `undefined` |
 | `hideBorder`        | `hide-border`        |                                                                                | `boolean`                      | `false`     |

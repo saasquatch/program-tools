@@ -216,20 +216,20 @@ const style = {
     width: "16px",
     height: "16px",
     borderRadius: "50%",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   SmallSkeleton: {
     width: "100px",
     height: "16px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   LargeSkeleton: {
     width: "100%",
     maxWidth: "320px",
     height: "40px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   InfoWarningIcon: {
     height: "26px",
@@ -257,8 +257,10 @@ const vanillaStyle = `
 
     /* this class is dynamically applied in controller */
     .error-input::part(base) {
-      border: 1px solid var(--sqm-danger-color-border);
-      border-radius: var(--sqm-input-border-radius);
+      --sqm-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color-hover: var(--sqm-danger-color-border);  
+      --sl-input-border-color-focus: var(--sqm-danger-color-background);
     }
 
     .error-input::part(help-text) {
@@ -553,7 +555,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {!states.hideBackButton && (
             <sl-button
               exportparts="base: secondarybutton-base"
-              type="text"
+              type="secondary"
               onClick={callbacks.onBack}
             >
               {text.backButton}
