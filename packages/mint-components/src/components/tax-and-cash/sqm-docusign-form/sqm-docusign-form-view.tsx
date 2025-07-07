@@ -265,7 +265,17 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           </div>
           {text.modalTitle}
         </div>
-        <p>{text.modalDescription}</p>
+        <p>
+          {intl.formatMessage(
+            {
+              id: "modalText",
+              defaultMessage: text.modalDescription,
+            },
+            {
+              br: <br />,
+            }
+          )}
+        </p>
         <sl-button
           slot="footer"
           type="primary"
