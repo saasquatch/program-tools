@@ -268,6 +268,9 @@ const style = {
     "&::part(title)": {
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "600",
+      marginTop: "var(--sl-spacing-xxx-large)",
+      padding:
+        "var(--sl-spacing-small) var(--sl-spacing-large) 0 var(--sl-spacing-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
@@ -394,11 +397,17 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         open={states.showModal}
         onSl-hide={callbacks.onModalClose}
       >
-        <div slot="label">
-          <div color="red">
-            <sl-icon name="info-circle" />
-          </div>
-          {text.modalTitle}
+        <div>
+          <h1>
+            <sl-icon
+              name="info-circle"
+              style={{ color: "var(--sl-color-info-500)" }}
+            />
+          </h1>
+          <h2 style={{ fontSize: "var(--sl-font-size-x-large)" }}>
+            {text.modalTitle}
+          </h2>
+          <br />
         </div>
         <p>{text.modalDescription}</p>
         <sl-button
@@ -406,6 +415,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           type="primary"
           class={sheet.classes.DialogButton}
           submit
+          exportparts="base: primarybutton-base"
         >
           {text.modalButtonText}
         </sl-button>

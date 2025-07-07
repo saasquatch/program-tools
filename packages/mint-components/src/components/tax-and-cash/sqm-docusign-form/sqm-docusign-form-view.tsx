@@ -186,13 +186,6 @@ const style = {
     "&::part(close-button)": {
       marginBottom: "var(--sl-spacing-xx-large)",
     },
-    "&::part(title)": {
-      fontSize: "var(--sl-font-size-x-large)",
-      fontWeight: "600",
-      // marginTop: "var(--sl-spacing-x-large)",
-      // padding:
-      //   "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
-    },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
       fontSize: "var(--sl-font-size-small)",
@@ -256,12 +249,23 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         class={sheet.classes.Dialog}
         open={states.showModal}
         onSl-hide={callbacks.onModalClose}
+        no-header
       >
-        <div slot="label">
-          <div color="red">
-            <sl-icon name="info-circle" />
-          </div>
-          {text.modalTitle}
+        <div
+          style={{
+            marginTop: "var(--sl-spacing-x-large)",
+            marginBottom: "var(--sl-spacing-large)",
+          }}
+        >
+          <h1>
+            <sl-icon
+              name="info-circle"
+              style={{ color: "var(--sl-color-info-500)" }}
+            />
+          </h1>
+          <h2 style={{ fontSize: "var(--sl-font-size-x-large)" }}>
+            {text.modalTitle}
+          </h2>
         </div>
         <p>
           {intl.formatMessage(
@@ -279,6 +283,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           type="primary"
           class={sheet.classes.DialogButton}
           onClick={callbacks.onModalClose}
+          exportparts="base: primarybutton-base"
         >
           {text.modalButtonText}
         </sl-button>
