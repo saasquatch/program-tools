@@ -127,7 +127,7 @@ Feature: Banking Information Form
     And the user has a verified email
     When they submit the form
     Then a confirmation modal is shown
-    And the modal contains the text "By changing your bank account information, your account and payouts will be placed on hold for up to 48 hours until your change is verified."
+    And the modal contains the text "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
     When they click the confirmation button
     Then the modal is closed
     And the `sqm-code-verification` component is shown

@@ -343,7 +343,7 @@ export class BankingInfoForm {
    * @uiName Information modal description text
    */
   @Prop() modalDescription: string =
-    "By changing your bank account information, your account and payouts will be placed on hold for up to 48 hours until your change is verified.";
+    "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped.";
 
   /**
    * @uiName Information modal button text
