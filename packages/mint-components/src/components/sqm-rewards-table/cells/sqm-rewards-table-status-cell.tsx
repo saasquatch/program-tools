@@ -1,6 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
+import { ImpactConnection, Reward } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
 
@@ -241,14 +242,8 @@ export class RewardTableStatusCell {
         ? this.deniedText
         : null;
 
-    type ShoeLaceBadgeType =
-      | "primary"
-      | "danger"
-      | "warning"
-      | "success"
-      | "info";
-
-    const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
+    // @ts-ignore
+    const getBadgeCSSClass = (badgeType: string): string => {
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;

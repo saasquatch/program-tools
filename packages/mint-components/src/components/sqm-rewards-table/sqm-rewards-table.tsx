@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect, useReducer, useMemo } from "@saasquatch/universal-hooks";
+import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -15,6 +15,7 @@ import {
 import { useChildElements } from "../../tables/useChildElements";
 import mockRewardData from "./mockRewardData";
 
+import { Referral } from "../../saasquatch";
 import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**

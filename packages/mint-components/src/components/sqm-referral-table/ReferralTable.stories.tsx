@@ -1,30 +1,28 @@
 import { h } from "@stencil/core";
+import { Reward } from "../../saasquatch";
 import { GenericTableView } from "../../tables/GenericTableView";
 import {
-  AvailableNoExpiry,
-  Cancelled,
-  PendingNoUnpend,
-  PendingWithUnpend,
-  Redeemed,
-  Denied,
-  PendingReview,
-  PayoutSent,
-  PayoutFailed,
-  PendingNewTaxForm,
-  PendingPartnerCreation,
-  PendingTaxReview,
-  PendingTaxSubmission,
-  PayoutCancelled,
-} from "./ReferralTableRewardsCell.stories";
-import {
+  Converted as ConvertedStatus,
   DateCell,
+  Denied as DeniedStatus,
+  InProgress,
   PendingReview as PendingReviewStatus,
   Pending as PendingStatus,
-  Denied as DeniedStatus,
-  Converted as ConvertedStatus,
-  InProgress,
-  Pending,
 } from "./ReferralTableCell.stories";
+import {
+  AvailableNoExpiry,
+  Denied,
+  PayoutCancelled,
+  PayoutFailed,
+  PayoutSent,
+  PendingNewTaxForm,
+  PendingNoUnpend,
+  PendingPartnerCreation,
+  PendingReview,
+  PendingTaxReview,
+  PendingTaxSubmission,
+  Redeemed,
+} from "./ReferralTableRewardsCell.stories";
 import scenario from "./referral-table.feature";
 
 export default {

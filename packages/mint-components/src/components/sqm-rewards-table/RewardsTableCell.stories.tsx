@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { Reward } from "../../saasquatch";
+import { ImpactConnection, Reward } from "../../saasquatch";
 import scenario1 from "./columns/sqm-rewards-table-date-column.feature";
 import scenario2 from "./columns/sqm-rewards-table-reward-column.feature";
 import scenario4 from "./columns/sqm-rewards-table-source-column.feature";

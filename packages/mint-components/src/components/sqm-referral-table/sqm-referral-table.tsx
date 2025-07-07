@@ -4,6 +4,7 @@ import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { Referral } from "../../saasquatch";
 import {
   GenericTableView,
   GenericTableViewProps,

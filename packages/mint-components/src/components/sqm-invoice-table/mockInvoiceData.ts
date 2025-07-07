@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { Invoice } from "../../saasquatch";
 
 export default (count = 4) => {
   const data = [...Array(count)].map(() => getMockData()) as Invoice[];

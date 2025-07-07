@@ -1,6 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
 import { intl } from "../../../global/global";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+import { Reward } from "../../../saasquatch";
 
 @Component({
   tag: "sqm-rewards-table-source-cell",

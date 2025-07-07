@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { FraudStatus, Referral, Referrer } from "../../../saasquatch";
 import { useRequestRerender } from "../../../tables/re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 

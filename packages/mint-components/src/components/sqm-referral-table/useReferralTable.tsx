@@ -9,6 +9,7 @@ import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
 import debugFn from "debug";
 import { gql } from "graphql-request";
+import { ImpactConnection, Referral } from "../../saasquatch";
 import { GenericTableViewProps } from "../../tables/GenericTableView";
 import { useRerenderListener } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";

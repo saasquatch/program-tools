@@ -1,4 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
+import { FraudStatus } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
 
 const style = {

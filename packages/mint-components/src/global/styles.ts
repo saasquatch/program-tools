@@ -821,7 +821,7 @@ html {
 
 body {
   font-family: ${
-    window.SquatchBrandingConfig.main?.brandFont || "var(--sl-font-sans)"
+    window.SquatchBrandingConfig?.main?.brandFont || "var(--sl-font-sans)"
   };
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
