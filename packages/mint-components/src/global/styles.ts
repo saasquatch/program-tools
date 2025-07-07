@@ -71,16 +71,17 @@
   --teal-7: #004551;
 } */
 
+// !!!!!!!!!! REMOVE ME !!!!!!!!!!!!!!!
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* @ts-nocheck */
+
+import { BrandingConfiguration } from "../saasquatch";
+
 declare global {
   interface Window {
-    SquatchBrandingConfig: BrandingConfig | null;
+    SquatchBrandingConfig: BrandingConfiguration | null;
   }
 }
-
-console.log(
-  "The input hover color is ",
-  window.SquatchBrandingConfig.inputs?.hoverBorderColor
-);
 
 const style = `
 /* vietnamese */
@@ -582,31 +583,35 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${
-    window.SquatchBrandingConfig?.color?.background || "#121212"
+    window.SquatchBrandingConfig?.color?.backgroundColor || "#121212"
   };
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
   --sqm-skeleton-background: #eee;
-  --sqm-text: ${window.SquatchBrandingConfig?.font.textColor || "white"};
+  --sqm-text: ${
+    window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "white"
+  };
   --sqm-text-subdued: ${
-    window.SquatchBrandingConfig?.font?.secondaryTextColor || "#b3b3b3"
+    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText ||
+    "#b3b3b3"
   };
 
   --sqm-primary-color: ${
-    window.SquatchBrandingConfig?.color?.primaryColor || "#1ed760"
+    window.SquatchBrandingConfig?.main?.brandColor || "#1ed760"
   };
   --sqm-primary-button-background:${
     window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
   };
   --sqm-primary-button-background-hover: ${
-    window.SquatchBrandingConfig?.primaryButton?.hoverColor || "#1ed760"
+    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.background ||
+    "#1ed760"
   };
   --sqm-primary-button-color: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonTextColor || "#FFFFFF"
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.label || "#FFFFFF"
   };
   --sqm-primary-button-color-border: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonBorderColor ||
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.border ||
     "transparent"
   };
   --sqm-primary-button-radius: ${
@@ -618,15 +623,17 @@ html {
     window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
   };
   --sqm-secondary-button-background-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.hoverColor || "#282828"
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor
+      ?.background || "#282828"
   };
 
   
   --sqm-secondary-button-color: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonTextColor || "#FFFFFF"
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label ||
+    "#FFFFFF"
   };
   --sqm-secondary-button-color-border: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonBorderColor ||
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border ||
     "#FFFFFF"
   };
   --sqm-secondary-button-radius: ${
@@ -649,8 +656,7 @@ html {
   };
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
-    "#1ed760"
+    window.SquatchBrandingConfig?.color?.accentColorShades?.icon || "#1ed760"
   };
   --sqm-accent-color-text: ${
     window.SquatchBrandingConfig?.color?.accentColorShades?.text || "#fff"
@@ -732,32 +738,30 @@ html {
   };
 
   --sqm-input-background: ${
-    window.SquatchBrandingConfig?.inputs?.background || "#fff"
+    window.SquatchBrandingConfig?.formFields?.formFieldColor?.background ||
+    "#fff"
   };
   --sqm-input-border-color: ${
-    window.SquatchBrandingConfig?.inputs?.borderColor || "#eaeaea"
+    window.SquatchBrandingConfig?.formFields?.formFieldColor?.border ||
+    "#eaeaea"
   };
   --sqm-input-border-radius: ${
-    window.SquatchBrandingConfig?.inputs?.borderRadius || "4px"
+    window.SquatchBrandingConfig?.formFields?.borderRadius || "4px"
   };
   --sqm-input-color: ${
-    window.SquatchBrandingConfig?.inputs?.textColor || "#000"
+    window.SquatchBrandingConfig?.formFields?.formFieldColor?.inputText ||
+    "#000"
   };
   --sqm-input-label-color: ${
-    window.SquatchBrandingConfig?.inputs?.labelColor || "#000"
-  };
-  --sqm-border-width: ${
-    window.SquatchBrandingConfig?.inputs?.borderThickness || "1px"
+    window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "#000"
   };
   --sqm-input-border-color-focus: ${
-    window.SquatchBrandingConfig?.inputs?.focusBorderColor || "#eaeaea"
+    window.SquatchBrandingConfig?.formFields?.selectedStateColor || "#eaeaea"
   };
   --sqm-input-border-color-hover: ${
-    window.SquatchBrandingConfig?.inputs?.hoverBorderColor || "#ccc"
+    window.SquatchBrandingConfig?.formFields?.hoverStateColor || "#ccc"
   };
-  --sqm-input-label-font-size: ${
-    window.SquatchBrandingConfig?.inputs?.labelFontSize || "18px"
-  };
+  --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: ${
     window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
   };
@@ -785,7 +789,7 @@ html {
   --sl-input-color: var(--sqm-input-color, var(--sqm-text), #333); 
   --sl-input-placeholder-color: var(--sqm-text-subdued, var(--sl-color-neutral-500));
   --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
-  --sl-input-border-width: var(--sqm-border-width, 1px);
+  --sl-input-border-width: var(--sqm-border-thickness, 1px);
   --sl-input-border-style: solid;
 
 
@@ -813,7 +817,7 @@ html {
 
 body {
   font-family: ${
-    window.SquatchBrandingConfig.font.font || "var(--sl-font-sans)"
+    window.SquatchBrandingConfig.main?.brandFont || "var(--sl-font-sans)"
   };
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
@@ -991,7 +995,7 @@ sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
-  border-width: var(--sqm-border-width, 1px);
+  border-width: var(--sqm-border-thickness, 1px);
 }
 
 *::part(input-base):hover, *::part(select-base):hover, *::part(textarea-base):hover{
@@ -1006,7 +1010,7 @@ sqm-name-fields::part(input-base) {
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
-  border-width: var(--sqm-border-width, 1px);
+  border-width: var(--sqm-border-thickness, 1px);
 }
 
 sl-input::part(base):focus,

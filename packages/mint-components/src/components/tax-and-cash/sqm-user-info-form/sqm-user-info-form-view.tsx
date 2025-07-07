@@ -353,7 +353,7 @@ const vanillaStyle = `
       background-color: var(--sqm-input-background, #fff);
       border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
       color: var(--sqm-input-color, white);
-      border-width: var(--sqm-border-width, 1px);
+      border-width: var(--sqm-border-thickness, 1px);
       border-style: solid; 
       border-color: var(--sqm-input-border-color, #ccc); 
     }

@@ -200,63 +200,119 @@ interface WidgetSizeConfig {
   maxWidth?: WidgetSizeDimension;
 }
 
-interface BrandingConfig {
+export interface BrandingConfiguration {
+  /**
+   * Defines all branding related styles.
+   */
+  main?: {
+    brandColor?: string;
+    brandFont?: string;
+  };
   color?: {
-    primaryColor?: string;
-    background?: string;
-    accentColorShades?: ColorShadeConfig;
-    success?: ColorShadeConfig;
-    warning?: ColorShadeConfig;
-    critical?: ColorShadeConfig;
-    informative?: ColorShadeConfig;
-    neutral?: ColorShadeConfig;
-  };
-  border?: {
-    color?: string;
-    radius?: string;
-    thickness?: string;
-  };
-  font?: {
-    font?: string;
-    textColor?: string;
-    secondaryTextColor?: string;
+    backgroundColor?: string;
+    textColorShades?: {
+      mainText: string;
+      subduedText: string;
+    };
+    accentColorShades?: {
+      icon?: string;
+      text?: string;
+      border?: string;
+      background?: string;
+    };
+    success?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    warning?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    critical?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    informative?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    neutral?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+      [k: string]: unknown;
+    };
   };
   primaryButton?: {
-    buttonColor?: string;
-    buttonTextColor?: string;
-    borderRadius?: string;
-    buttonBorderColor?: string;
-    hoverColor?: string;
-    hoverTextColor?: string;
+    buttonColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    buttonHoverColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    borderRadius?: number;
   };
   secondaryButton?: {
-    buttonColor?: string;
-    buttonTextColor?: string;
-    buttonBorderColor?: string;
-    borderRadius?: string;
-    hoverColor?: string;
-    hoverTextColor?: string;
+    buttonColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    buttonHoverColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    borderRadius?: number;
   };
-  tertiaryButton?: {
-    buttonColor?: string;
-    buttonTextColor?: string;
-    borderRadius?: string;
+  /**
+   * Defines form field colors.
+   */
+  formFields?: {
+    formFieldColor?: {
+      background?: string;
+      inputText?: string;
+      border?: string;
+    };
+    selectedStateColor?: string;
+    hoverStateColor?: string;
   };
-  inputs?: {
-    background?: string;
-    borderColor?: string;
-    borderRadius?: string;
-    textColor?: string;
-    labelColor?: string;
-    borderThickness?: string;
-    disabledBackground?: string;
-    disabledTextColor?: string;
-    labelFontSize?: string;
-    focusBorderColor?: string;
-    hoverBorderColor?: string;
-  };
+  /**
+   * Defines widget dimensions.
+   */
   widgetSize?: {
-    embeddedWidgets?: WidgetSizeConfig;
-    popupWidgets?: WidgetSizeConfig;
+    embeddedWidgets?: {
+      minWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+      maxWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+    };
+    popupWidgets?: {
+      minWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+      maxWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+    };
   };
 }
