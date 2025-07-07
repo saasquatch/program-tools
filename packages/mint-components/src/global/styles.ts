@@ -77,7 +77,10 @@ declare global {
   }
 }
 
-console.log("The branding config is ", window.SquatchBrandingConfig);
+console.log(
+  "The input hover color is ",
+  window.SquatchBrandingConfig.inputs?.hoverBorderColor
+);
 
 const style = `
 /* vietnamese */
@@ -569,6 +572,8 @@ html {
   --sl-z-index-toast: 950;
   --sl-z-index-tooltip: 1000;
 }
+
+
   
 :root {
   --sqm-header-background: var(--sl-color-white);
@@ -744,10 +749,10 @@ html {
   --sqm-border-width: ${
     window.SquatchBrandingConfig?.inputs?.borderThickness || "1px"
   };
-  --sqm-border-color-focus: ${
+  --sqm-input-border-color-focus: ${
     window.SquatchBrandingConfig?.inputs?.focusBorderColor || "#eaeaea"
   };
-  --sqm-border-color-hover: ${
+  --sqm-input-border-color-hover: ${
     window.SquatchBrandingConfig?.inputs?.hoverBorderColor || "#ccc"
   };
   --sqm-input-label-font-size: ${
@@ -771,9 +776,9 @@ html {
   --sl-input-color-focus: var(--sqm-input-color-focus);
   --sl-input-color-disabled: var(--sqm-input-disabled-color);
   --sl-input-border-color-disabled: #7c7c7c;
-  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, white);
+  --sl-input-border-color-focus: var(--sqm-input-border-color-focus, #999999);
   --sl-input-border-color: var(--sqm-input-border-color, #7c7c7c);
-  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, white); 
+  --sl-input-border-color-hover: var(--sqm-input-border-color-hover, #999999); 
   --sl-input-background-color-focus: var(--sqm-input-background, #ffffff);
   --sl-input-border-radius: var(--sqm-input-border-radius, var(--sqm-border-radius-normal));
   --sl-input-background-color: var(--sqm-input-background, #ffffff);
