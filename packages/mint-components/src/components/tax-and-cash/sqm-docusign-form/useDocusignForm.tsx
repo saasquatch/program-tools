@@ -104,7 +104,7 @@ export function useDocusignForm(props: DocusignForm) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showExitButton, setShowExitButton] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   // Only look at current document if it's valid (same as required type)
   const existingDocumentType =
