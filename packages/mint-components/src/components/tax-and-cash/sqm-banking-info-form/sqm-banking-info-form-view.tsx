@@ -268,7 +268,7 @@ const style = {
     "&::part(title)": {
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "600",
-      marginTop: "var(--sl-spacing-xxx-large)",
+      marginTop: "var(--sl-spacing-x-large)",
       padding:
         "var(--sl-spacing-small) var(--sl-spacing-large) 0 var(--sl-spacing-large)",
     },
