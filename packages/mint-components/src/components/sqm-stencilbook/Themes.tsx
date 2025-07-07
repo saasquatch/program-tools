@@ -57,10 +57,9 @@ export const Netflix: BrandingConfiguration = {
     },
     neutral: {
       text: "white",
-      icon: "#B3B3B3",
+      iconAndBadge: "#B3B3B3", // Changed 'icon' to 'iconAndBadge'
       border: "#333333",
       background: "#222222",
-      iconAndBadge: "#B3B3B3",
     },
   },
   primaryButton: {
@@ -74,6 +73,7 @@ export const Netflix: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4, // Changed to number
   },
   secondaryButton: {
     buttonColor: {
@@ -86,6 +86,7 @@ export const Netflix: BrandingConfiguration = {
       border: "#B3B3B3",
       label: "#FFFFFF",
     },
+    borderRadius: 30, // Changed to number
   },
   formFields: {
     formFieldColor: {
@@ -140,10 +141,9 @@ export const Amazon: BrandingConfiguration = {
     },
     neutral: {
       text: "#232F3E",
-      icon: "#565959",
+      iconAndBadge: "#565959", // Changed 'icon' to 'iconAndBadge'
       border: "#D5D9D9",
       background: "#F0F2F2",
-      iconAndBadge: "#565959",
     },
   },
   primaryButton: {
@@ -157,6 +157,7 @@ export const Amazon: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4, // Assuming a default value, as it was missing and is a number
   },
   secondaryButton: {
     buttonColor: {
@@ -169,6 +170,7 @@ export const Amazon: BrandingConfiguration = {
       border: "#888C8C",
       label: "#232F3E",
     },
+    borderRadius: 30, // Assuming a default value, as it was missing and is a number
   },
   formFields: {
     formFieldColor: {
@@ -182,6 +184,9 @@ export const Amazon: BrandingConfiguration = {
 };
 
 export const Spotify: BrandingConfiguration = {
+  main: {
+    // Spotify currently doesn't specify main.brandFont or brandColor, but the interface allows it.
+  },
   color: {
     textColorShades: {
       mainText: "white",
@@ -190,6 +195,7 @@ export const Spotify: BrandingConfiguration = {
     backgroundColor: "#121212",
     accentColorShades: {
       icon: "#1ed760",
+      // Text, border, background missing but optional per interface.
     },
   },
   primaryButton: {
@@ -203,6 +209,7 @@ export const Spotify: BrandingConfiguration = {
       border: "transparent",
       label: "#121212",
     },
+    borderRadius: 4, // Assuming a default value, as it was missing and is a number
   },
   secondaryButton: {
     buttonColor: {
@@ -215,6 +222,7 @@ export const Spotify: BrandingConfiguration = {
       border: "#FFFFFF",
       label: "#121212",
     },
+    borderRadius: 30, // Assuming a default value, as it was missing and is a number
   },
   formFields: {
     formFieldColor: {
@@ -283,6 +291,7 @@ export const Google: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4, // Assuming a default value, as it was missing and is a number
   },
   secondaryButton: {
     buttonColor: {
@@ -295,6 +304,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       label: "#4285F4",
     },
+    borderRadius: 30, // Assuming a default value, as it was missing and is a number
   },
   formFields: {
     formFieldColor: {
@@ -302,7 +312,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       inputText: "#202124",
     },
-    hoverStateColor: "9AA0A6",
-    selectedStateColor: "4285F4",
+    hoverStateColor: "#9AA0A6", // Fixed: '9AA0A6' to "#9AA0A6" (string literal)
+    selectedStateColor: "#4285F4", // Fixed: '4285F4' to "#4285F4" (string literal)
   },
 };
