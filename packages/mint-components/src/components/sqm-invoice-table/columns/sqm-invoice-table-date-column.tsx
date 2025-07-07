@@ -7,7 +7,7 @@ import { InvoiceTableColumn } from "./InvoiceTableColumn";
  * @uiName Invoice Table Date Column
  * @validParents ["sqm-invoice-table"]
  * @exampleGroup Invoices
- * @example Invoice Table Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
+ * @example Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
  */
 @Component({
   tag: "sqm-invoice-table-date-column",
