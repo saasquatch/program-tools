@@ -441,6 +441,7 @@ export function useBankingInfoForm(
 
     setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
+      setShowModal(false);
       return;
     }
 
