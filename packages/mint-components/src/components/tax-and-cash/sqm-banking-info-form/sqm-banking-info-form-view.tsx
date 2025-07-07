@@ -405,7 +405,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           slot="footer"
           type="primary"
           class={sheet.classes.DialogButton}
-          onClick={callbacks.onSubmit}
+          submit
         >
           {text.modalButtonText}
         </sl-button>

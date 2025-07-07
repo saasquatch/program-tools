@@ -447,6 +447,7 @@ export function useBankingInfoForm(
 
     let token = undefined;
     if (isPartner) {
+      setShowModal(false);
       setShowVerification(true);
       token = await new Promise((res: (arg: string) => void) => {
         const cb = (e: CustomEvent) => {
