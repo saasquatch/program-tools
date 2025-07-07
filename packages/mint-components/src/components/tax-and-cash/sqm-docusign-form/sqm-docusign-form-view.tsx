@@ -270,7 +270,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
           slot="footer"
           type="primary"
           class={sheet.classes.DialogButton}
-          onClick={callbacks.onExit}
+          onClick={callbacks.onModalClose}
         >
           {text.modalButtonText}
         </sl-button>

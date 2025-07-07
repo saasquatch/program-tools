@@ -458,6 +458,8 @@ export function useBankingInfoForm(
       setShowVerification(false);
     }
     await runMutation(formData, token);
+
+    setShowModal(false);
   };
 
   const onVerification = async (token: string | null) => {
