@@ -250,6 +250,7 @@ export class RewardTableStatusCell {
 
     // AL: badgeType arg? TODO
     const getBadgeCSSClass = (rewardStatus: string): string => {
+      // const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;
