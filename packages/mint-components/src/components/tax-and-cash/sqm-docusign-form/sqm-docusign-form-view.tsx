@@ -14,6 +14,7 @@ export interface DocusignFormViewProps {
     participantTypeDisabled: boolean;
     loadingError?: boolean;
     showExitButton: boolean;
+    showModal: boolean;
     formState: {
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
@@ -32,6 +33,8 @@ export interface DocusignFormViewProps {
   callbacks: {
     onExit: () => void;
     setParticipantType: (p: ParticipantType) => void;
+    onModalOpen: () => void;
+    onModalClose: () => void;
   };
   text: {
     exitButton: string;
@@ -48,6 +51,9 @@ export interface DocusignFormViewProps {
     participantType: string;
     taxAndPayoutsDescription: string;
     supportLink: string;
+    modalTitle: string;
+    modalDescription: string;
+    modalButtonText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -173,6 +179,34 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+    "&::part(close-button)": {
+      marginBottom: "var(--sl-spacing-xx-large)",
+    },
+    "&::part(title)": {
+      fontSize: "var(--sl-font-size-x-large)",
+      fontWeight: "600",
+      // marginTop: "var(--sl-spacing-x-large)",
+      // padding:
+      //   "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -212,12 +246,35 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
 
   const { classes } = sheet;
 
+  console.log({ states });
+
   return (
     <div class={classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.showModal}
+        onSl-hide={callbacks.onModalClose}
+      >
+        <div slot="label">
+          <div color="red">
+            <sl-icon name="info-circle" />
+          </div>
+          {text.modalTitle}
+        </div>
+        <p>{text.modalDescription}</p>
+        <sl-button
+          slot="footer"
+          type="primary"
+          class={sheet.classes.DialogButton}
+          onClick={callbacks.onExit}
+        >
+          {text.modalButtonText}
+        </sl-button>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && (

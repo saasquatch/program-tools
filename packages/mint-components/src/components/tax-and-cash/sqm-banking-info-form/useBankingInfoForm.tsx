@@ -9,7 +9,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import JSONPointer from "jsonpointer";
+import JSONPointer, { set } from "jsonpointer";
 import { intl } from "../../../global/global";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
@@ -224,6 +224,7 @@ export function useBankingInfoForm(
   >(undefined);
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
+  const [showModal, setShowModal] = useState(false);
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
   const isPartner =
@@ -498,6 +499,8 @@ export function useBankingInfoForm(
       setCountrySearch,
       onVerification,
       onVerificationHide: () => onVerification(null),
+      onModalClose: () => setShowModal(false),
+      onModalOpen: () => setShowModal(true),
     },
     states: {
       showVerification,
@@ -533,6 +536,7 @@ export function useBankingInfoForm(
       bankCountry: formState.bankCountry,
       countrySearch,
       email: userData?.user?.email,
+      showModal,
     },
     refs: {
       formRef,

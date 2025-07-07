@@ -26,6 +26,7 @@ export function getFormMap({
           id="beneficiaryAccountName"
           key="beneficiaryAccountName"
           type="text"
+          help-text={props.text.beneficiaryAccountNameDescription}
           {...(errors?.inputErrors?.beneficiaryAccountName && {
             class: "error-input",
             helpText: getValidationErrorMessage({

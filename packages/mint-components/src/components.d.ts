@@ -117,6 +117,10 @@ export namespace Components {
          */
         "bankStateLabel": string;
         /**
+          * @uiName Beneficiary account field description
+         */
+        "beneficiaryAccountNameDescription": string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel": string;
@@ -232,6 +236,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription": string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle": string;
         /**
           * @uiName Patronymic name field label
          */
@@ -669,6 +685,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription": string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle": string;
         /**
           * @uiName Participant type field label
          */
@@ -5014,6 +5042,21 @@ export namespace Components {
          */
         "step3_individualParticipant": string;
         /**
+          * @uiName Information modal button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalDescription": string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalTitle": string;
+        /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
@@ -5101,6 +5144,11 @@ export namespace Components {
          */
         "step4_bankStateLabel": string;
         /**
+          * @uiName Beneficiary account field description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameDescription": string;
+        /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
@@ -5170,6 +5218,21 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel": string;
+        /**
+          * @uiName Information modal button text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalDescription": string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalTitle": string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
@@ -6861,6 +6924,10 @@ declare namespace LocalJSX {
          */
         "bankStateLabel"?: string;
         /**
+          * @uiName Beneficiary account field description
+         */
+        "beneficiaryAccountNameDescription"?: string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel"?: string;
@@ -6976,6 +7043,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle"?: string;
         /**
           * @uiName Patronymic name field label
          */
@@ -7413,6 +7492,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle"?: string;
         /**
           * @uiName Participant type field label
          */
@@ -11729,6 +11820,21 @@ declare namespace LocalJSX {
          */
         "step3_individualParticipant"?: string;
         /**
+          * @uiName Information modal button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalTitle"?: string;
+        /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
@@ -11816,6 +11922,11 @@ declare namespace LocalJSX {
          */
         "step4_bankStateLabel"?: string;
         /**
+          * @uiName Beneficiary account field description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameDescription"?: string;
+        /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
@@ -11885,6 +11996,21 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel"?: string;
+        /**
+          * @uiName Information modal button text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalTitle"?: string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties

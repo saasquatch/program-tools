@@ -144,6 +144,22 @@ export class DocusignForm {
   @Prop() exitButton: string = "Exit";
 
   /**
+   * @uiName Information modal title
+   */
+  @Prop() modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   */
+  @Prop() modalDescription: string =
+    "Ensure the name you enter in your tax form matches the name on your bank account, also known as the beneficiary name.\n\nOtherwise you will have to resubmit  your form again and there will be delays receiving your payout.";
+
+  /**
+   * @uiName Information modal button text
+   */
+  @Prop() modalButtonText: string = "I understand";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -228,6 +244,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
+        showModal: false,
       },
       data: {
         taxForm: "W9",
@@ -238,6 +255,8 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         demo: {
           onSubmit: () => setStep("/4"),
           onBack: () => setStep("/3"),
+          onModalOpen: () => {},
+          onModalClose: () => {},
         },
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),

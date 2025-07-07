@@ -116,8 +116,12 @@ export class BankingInfoForm {
   /**
    * @uiName Beneficiary account field label
    */
-  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary account name";
-
+  @Prop() beneficiaryAccountNameLabel: string = "Account holder name";
+  /**
+   * @uiName Beneficiary account field description
+   */
+  @Prop() beneficiaryAccountNameDescription: string =
+    "The beneficiary name of your bank account. Ensure this matches the name on your tax form.";
   /**
    * @uiName Bank account type field label
    */
@@ -329,6 +333,22 @@ export class BankingInfoForm {
    */
   @Prop() loadingErrorAlertDescription: string =
     "Please refresh the page and try again. If this problem continues, contact Support.";
+
+  /**
+   * @uiName Information modal title
+   */
+  @Prop() modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   */
+  @Prop() modalDescription: string =
+    "By changing your bank account information, your account and payouts will be placed on hold for up to 48 hours until your change is verified.";
+
+  /**
+   * @uiName Information modal button text
+   */
+  @Prop() modalButtonText: string = "I understand, update my information";
 
   /**
    * @undocumented
@@ -711,6 +731,7 @@ function useDemoBankingInfoForm(
         currency,
         setCurrency,
         hasPayPal: true,
+        showModal: false,
       },
       callbacks: {
         onVerificationHide: () => {},
@@ -723,6 +744,8 @@ function useDemoBankingInfoForm(
         setCountrySearch: () => {},
         onBack: async () => setStep("/dashboard"),
         onVerification: () => {},
+        onModalOpen: () => {},
+        onModalClose: () => {},
       },
       text: props.getTextProps(),
       refs: {

@@ -104,6 +104,7 @@ export function useDocusignForm(props: DocusignForm) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showExitButton, setShowExitButton] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // Only look at current document if it's valid (same as required type)
   const existingDocumentType =
@@ -213,6 +214,7 @@ export function useDocusignForm(props: DocusignForm) {
       documentType: actualDocumentType,
       documentTypeString: taxTypeToName(actualDocumentType),
       showExitButton,
+      showModal,
     },
     data: {
       taxForm: actualDocumentType,
@@ -223,6 +225,8 @@ export function useDocusignForm(props: DocusignForm) {
       completeDocument,
       onExit: progressStep,
       setParticipantType,
+      onModalClose: () => setShowModal(false),
+      onModalOpen: () => setShowModal(true),
     },
     text: props.getTextProps(),
   };
