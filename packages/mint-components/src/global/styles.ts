@@ -987,20 +987,6 @@ sl-button[type="secondary"]::part(base):hover {
   border-color: var(--sqm-secondary-button-border-color-hover);
 }
 
-*::part(tertiarybutton-base){
-  background-color: var(--sqm-tertiary-button-background);
-  color: var(--sqm-tertiary-button-color);
-  border-color: var(--sqm-tertiary-button-color-border);
-  border-radius: var(--sqm-tertiary-button-radius);
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
-*::part(tertiarybutton-base):hover{
-  background: var(--sqm-tertiary-button-background-hover);
-}
-
 *::part(input-label), *::part(select-label), *::part(textarea-label){
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-semibold);

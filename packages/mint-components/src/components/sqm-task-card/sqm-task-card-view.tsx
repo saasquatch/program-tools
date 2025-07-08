@@ -33,7 +33,7 @@ export type TaskCardViewProps = {
     textColor?: string;
     borderColor?: string;
     borderRadius?: number;
-    buttonType?: "primary" | "secondary" | "tertiary";
+    buttonType?: "primary" | "secondary";
   };
   states: {
     loading: boolean;

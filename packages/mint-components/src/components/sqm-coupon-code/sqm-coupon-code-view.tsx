@@ -7,7 +7,7 @@ export interface CouponCodeViewProps extends CopyTextViewProps {
   errorType?: "error" | "warning" | "info" | "success";
   couponCodeLabel?: string;
   textColor?: string;
-  buttonType: "primary" | "secondary" | "tertiary";
+  buttonType: "primary" | "secondary";
 }
 
 export function CouponCodeView(props: CouponCodeViewProps) {

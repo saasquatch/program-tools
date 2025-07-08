@@ -180,12 +180,12 @@ const style = {
     },
   },
 
-  TertiaryButton: {
+  SecondaryButton: {
     "&::part(base)": {
-      background: "var(--sqm-tertiary-button-background)",
-      color: "var(--sqm-tertiary-button-color)",
-      borderColor: "var(--sqm-tertiary-button-color-border)",
-      borderRadius: "var(--sqm-tertiary-button-radius)",
+      background: "var(--sqm-secondary-button-background)",
+      color: "var(--sqm-secondary-button-color)",
+      borderColor: "var(--sqm-secondary-button-color-border)",
+      borderRadius: "var(--sqm-secondary-button-radius)",
       width: "max-content",
       display: "flex",
       margin: "auto",
@@ -193,7 +193,7 @@ const style = {
 
     "&::part(base):hover": {
       color: "var(--sqm-text)",
-      background: "var(--sqm-tertiary-button-background-hover)",
+      background: "var(--sqm-secondary-button-background-hover)",
     },
   },
 };
@@ -435,11 +435,11 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {text.continueButton}
             </sl-button>
             <sl-button
-              class={classes.TertiaryButton}
+              class={classes.SecondaryButton}
               type="text"
               disabled={states.disabled}
               onClick={callbacks.onBack}
-              exportparts="base: tertiarybutton-base"
+              exportparts="base: secondarybutton-base"
             >
               {text.backButton}
             </sl-button>
