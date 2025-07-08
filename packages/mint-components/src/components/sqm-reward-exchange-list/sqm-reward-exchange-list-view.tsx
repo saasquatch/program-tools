@@ -708,7 +708,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               exportparts="base: secondarybutton-base"
               class="cancel"
               size="large"
-              type="text"
+              type="secondary"
               onClick={() => callbacks.resetState()}
             >
               {states.content.text.cancelText}

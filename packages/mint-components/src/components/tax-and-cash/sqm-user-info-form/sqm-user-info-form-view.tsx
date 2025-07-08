@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { GeneralLoadingView } from "../TaxForm.stories";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { formatErrorMessage, validateBillingField } from "../utils";
+// import { GeneralLoadingView } from "../TaxForm.stories";
+import { FORM_STEPS } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
+import LoadingView from "../sqm-tax-and-cash/LoadingView";
+import { formatErrorMessage, validateBillingField } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -124,16 +125,16 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sl-color-danger-500)",
+      border: "1px solid var(--sqm-danger-color-icon)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-icon)",
     marginTop: "10px",
   },
   TextContainer: {
@@ -165,9 +166,6 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
   },
-  DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
-  },
 
   BoldText: {
     fontWeight: "bold",
@@ -179,27 +177,33 @@ const style = {
   },
   AlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      color: "var(--sqm-danger-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   PartnerAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
       padding: "0 16px",
+      border: "none",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
+
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
 
@@ -238,11 +242,15 @@ const vanillaStyle = `
        padding: 0;
        box-sizing: border-box;
     }
+    a {
+      color: var(--sqm-text);
+      color: inherit !important;
+      text-decoration: underline;
+    }
 
     p {
       line-height: 18px;
-      color: var(--sl-color-gray-800);
-       font-size: var(--sl-font-size-small);
+      font-size: var(--sl-font-size-small);
     }
 
     sl-radio-group::part(base) {
@@ -253,7 +261,145 @@ const vanillaStyle = `
     sl-select#phoneNumberCountryCode::part(menu) {
       min-width: 250px;
     }
-  `;
+
+    sl-button[type="primary"]::part(base){
+        background-color: var(--sqm-primary-button-background);
+        color: var(--sqm-primary-button-color);
+        border-color: var(--sqm-primary-button-color-border);
+        border-radius: var(--sqm-primary-button-radius);
+    }
+
+    sl-button[type="primary"]::part(base):hover{
+        background-color: var(--sqm-primary-button-background-hover);
+    }
+
+    sl-button[type="primary"]::part(base):focus{
+        box-shadow: none;
+    }
+
+    sl-button[type="secondary"]::part(base){
+        background-color: var(--sqm-secondary-button-background);
+        color: var(--sqm-secondary-button-color);
+        border-color: var(--sqm-secondary-button-color-border);
+        border-radius: var(--sqm-secondary-button-radius);
+    }
+
+    sl-button[type="secondary"]::part(base):hover{
+        background-color: var(--sqm-secondary-button-background-hover);
+    }
+
+
+
+*::part(primarybutton-base){
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
+}
+
+*::part(primarybutton-base):hover{
+  background-color: var(--sqm-primary-button-background-hover);
+}
+
+*::part(primarybutton-base):focus{
+  box-shadow: none;
+}
+
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+}
+
+*::part(secondarybutton-base):hover{
+  background-color: var(--sqm-secondary-button-background-hover);
+}
+
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+  width: max-content;
+  display: flex;
+  margin: auto;
+}
+
+*::part(secondarybutton-base):hover{
+  background: var(--sqm-secondary-button-background-hover);
+}
+
+    sl-input::part(label),
+    sl-select::part(label),
+    sl-textarea::part(label){
+      font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
+      font-weight: var(--sl-font-weight-semibold);
+      color: var(--sqm-input-label-color, var(--sqm-text), black);
+    }
+
+    /* Corrected: Target sl-input, sl-select, sl-textarea base elements */
+    sl-input::part(base),
+    sl-dropdown::part(base),
+    sl-textarea::part(base){
+      background-color: var(--sqm-input-background, #fff);
+      border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+      color: var(--sqm-input-color, white);
+      border-width: var(--sqm-border-thickness, 1px);
+      border-style: solid; 
+      border-color: var(--sqm-input-border-color, #ccc); 
+    }
+
+
+    sl-select::part(menu) {
+      background: var(--sqm-input-background, inherit);
+      color: var(--sqm-input-color, inherit);
+      border:none;
+    }
+
+    sl-select::part(panel) {
+      border-radius: var(--sqm-border-radius-normal);
+    }
+
+    sl-select::part(help-text) {
+      color: var(--sqm-text-subdued, var(--sl-input-help-text-color, #6c757d));
+    }
+
+    sl-input::part(base):focus,
+    sl-select::part(base):focus, /* Corrected part name for sl-select */
+    sl-textarea::part(base):focus { /* Corrected part name for sl-textarea */
+      border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus, #007bff)); /* Added fallback for --sl-input-border-color-focus */
+    }
+
+    sl-input[disabled]::part(label),
+    sl-select[disabled]::part(label),
+    sl-textarea[disabled]::part(label){
+      color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+    }
+
+    sl-input[disabled]::part(base),
+    sl-select[disabled]::part(base),
+    sl-textarea[disabled]::part(base){
+      background: var(--sqm-input-disabled-background, #f5f5f5);
+      border-color: var(--sl-input-border-color-disabled, #e0e0e0); /* Example disabled border color */
+    }
+
+
+    sl-input::part(input):-webkit-autofill {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+
+    sl-input::part(input):-webkit-autofill:hover {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+
+    sl-input::part(input):-webkit-autofill:focus {
+      box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+      -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+`;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   const {
@@ -306,6 +452,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+
       {states.loadingError && (
         <div>
           <sl-alert
@@ -337,8 +484,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <br />
         </div>
       )}
+
       {states.loading ? (
-        <GeneralLoadingView />
+        <LoadingView />
       ) : (
         <div>
           <div class={classes.TextContainer}>
@@ -360,6 +508,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </p>
             </div>
           </div>
+
           {formState.errors?.general && (
             <sl-alert
               exportparts="base: alert-base, icon:alert-icon"
@@ -388,6 +537,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               )}
             </sl-alert>
           )}
+
           {(states.isPartner || states.isUser) && (
             <sl-alert
               type="primary"
@@ -420,6 +570,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           <div>
             <div class={classes.InputContainer}>
               <sl-input
+                class="ErrorInput"
                 exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}

@@ -4,7 +4,10 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface ReferralCardViewProps {
   verticalAlignment: "start" | "center" | "end";
   hideBorder?: boolean;
-  backgroundColor: string;
+  borderColor?: string;
+  borderRadius?: number;
+  textColor?: string;
+  backgroundColor?: string;
   slots: {
     left: VNode;
     right: VNode;
@@ -15,42 +18,10 @@ export interface ReferralCardViewProps {
   paddingRight?: string;
   paddingBottom?: string;
   paddingLeft?: string;
-  limitWidth: boolean;
+  limitWidth?: boolean;
   hasHeader: boolean;
   hasFooter: boolean;
 }
-const style = {
-  Container: {
-    borderRadius: "var(--sl-border-radius-large)",
-    color: "var(--sl-color-neutral-900)",
-    background: "var(--sl-color-neutral-0)",
-    display: "flex",
-    flexDirection: "column",
-    rowGap: "var(--sl-spacing-large)",
-  },
-  EndContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  ColumnContainer: {
-    "& p": { margin: "0" },
-    display: "grid",
-    gridAutoColumns: "minmax(0, 1fr)",
-    gridAutoFlow: "column",
-    gap: "calc(2 * var(--sl-spacing-medium))",
-
-    "@media (max-width: 499px)": {
-      gridAutoFlow: "unset",
-      gridAutoColumns: "unset",
-      gridTemplateColumns: "1fr",
-      border: "none",
-    },
-  },
-};
-
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
 
 const vanillaStyle = `
     :host{
@@ -59,14 +30,46 @@ const vanillaStyle = `
   `;
 
 export function ReferralCardView(props: ReferralCardViewProps) {
+  const style = {
+    Container: {
+      borderRadius: props.borderRadius || "var(--sqm-border-radius-normal)",
+      color: props.textColor || "var(--sqm-text)",
+      background: props.backgroundColor || "var(--sqm-portal-background)",
+      display: "flex",
+      flexDirection: "column",
+      rowGap: "var(--sl-spacing-large)",
+    },
+    EndContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    ColumnContainer: {
+      "& p": { margin: "0" },
+      display: "grid",
+      gridAutoColumns: "minmax(0, 1fr)",
+      gridAutoFlow: "column",
+      gap: "calc(2 * var(--sl-spacing-medium))",
+
+      "@media (max-width: 499px)": {
+        gridAutoFlow: "unset",
+        gridAutoColumns: "unset",
+        gridTemplateColumns: "1fr",
+        border: "none",
+      },
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
+
+  const borderColor = props.borderColor || "var(--sqm-border-color)";
   return (
     <div
       part="sqm-base"
       class={sheet.classes.Container}
       style={{
-        border: `${
-          props.hideBorder ? "none" : "1px solid var(--sl-color-neutral-300)"
-        }`,
+        border: `${props.hideBorder ? "none" : "1px solid " + borderColor}`,
 
         "padding-top": `var(--sl-spacing-${props.paddingTop})`,
         "padding-right": `var(--sl-spacing-${props.paddingRight})`,

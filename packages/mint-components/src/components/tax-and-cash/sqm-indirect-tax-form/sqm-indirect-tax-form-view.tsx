@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
+import { createStyleSheet } from "../../../styling/JSS";
+import { FORM_STEPS } from "../data";
 
 export interface IndirectTaxFormViewProps {
   states: {
@@ -68,6 +68,7 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
+    marginBottom: "16px",
 
     "& sl-radio::part(base)": {
       alignItems: "start",
@@ -109,32 +110,32 @@ const style = {
     marginTop: "10px",
   },
   DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
-  },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
+    color: "var(--sqm-text-subdued)",
   },
   AlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   PartnerAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
       padding: "0 16px",
+      border: "none",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
+
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   InfoAlert: {
@@ -161,9 +162,39 @@ const style = {
     width: "26px",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
     marginBottom: "var(--sl-spacing-small)",
+  },
+
+  PrimaryButton: {
+    "&::part(base)": {
+      background: "var(--sqm-primary-button-background)",
+      color: "var(--sqm-primary-button-color)",
+      borderColor: "var(--sqm-primary-button-color-border)",
+      borderRadius: "var(--sqm-primary-button-radius)",
+    },
+
+    "&::part(base):hover": {
+      background: "var(--sqm-primary-button-background-hover)",
+    },
+  },
+
+  SecondaryButton: {
+    "&::part(base)": {
+      background: "var(--sqm-secondary-button-background)",
+      color: "var(--sqm-secondary-button-color)",
+      borderColor: "var(--sqm-secondary-button-color-border)",
+      borderRadius: "var(--sqm-secondary-button-radius)",
+      width: "max-content",
+      display: "flex",
+      margin: "auto",
+    },
+
+    "&::part(base):hover": {
+      color: "var(--sqm-text)",
+      background: "var(--sqm-secondary-button-background-hover)",
+    },
   },
 };
 
@@ -174,17 +205,25 @@ const vanillaStyle = `
     :host{
       display: block;   
     }
+
+    hr {
+      border: 1px solid var(--sqm-border-color);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      cursor: pointer;
+    }
     * {
        margin: 0;
        padding: 0;
        box-sizing: border-box;
     }
 
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-       font-size: var(--sl-font-size-small);
-    }
   `;
 
 export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
@@ -365,13 +404,9 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             exportparts="base: alert-base, icon:alert-icon"
             type="primary"
             open
-            class={classes.InfoAlert}
+            class={classes.PartnerAlertContainer}
           >
-            <sl-icon
-              class={classes.InfoWarningIcon}
-              slot="icon"
-              name="exclamation-triangle"
-            ></sl-icon>
+            <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
             {intl.formatMessage(
               {
                 id: "cannotChangeInfoAlert",
@@ -391,6 +426,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           </sl-alert>
           <div class={classes.BtnContainer}>
             <sl-button
+              class={classes.PrimaryButton}
               type="primary"
               disabled={states.disabled}
               submit
@@ -399,7 +435,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {text.continueButton}
             </sl-button>
             <sl-button
-              class={classes.SecondaryBtn}
+              class={classes.SecondaryButton}
               type="text"
               disabled={states.disabled}
               onClick={callbacks.onBack}

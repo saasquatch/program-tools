@@ -21,6 +21,7 @@ export interface ShareButtonViewProps {
   pill?: boolean;
   type?:
     | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -28,7 +29,7 @@ export interface ShareButtonViewProps {
     | "default"
     | "text";
   size?: "small" | "medium" | "large";
-
+  border?: string;
   icon?: string;
   hideicon?: boolean;
   hidetext?: boolean;
@@ -69,17 +70,32 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
+// TODO: Figure out hover and active states
+// *::part(base):hover {
+// 	border-color: ${
+//     props.backgroundcolor
+//       ? props.backgroundcolor
+//       : props.medium
+//       ? medium[props.medium].color
+//       : ""
+//   }!important;
+// }
+
+// *::part(base):focus {
+// 	border-color: ${
+//     props.backgroundcolor
+//       ? props.backgroundcolor
+//       : props.medium
+//       ? medium[props.medium].color
+//       : ""
+//   }!important;
+// }
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
-	*::part(base) {
-	border: none;
-			--sl-focus-ring-color-primary: ${
-        props.backgroundcolor
-          ? props.backgroundcolor
-          : props.medium
-          ? medium[props.medium].color
-          : ""
-      }80!important;
+	sl-button::part(base) {
+	  border: ${props.border || "none"};
+	
 
 	background: ${
     props.backgroundcolor
@@ -98,25 +114,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
 	border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
 	}
 
-	*::part(base):hover {
-		border-color: ${
-      props.backgroundcolor
-        ? props.backgroundcolor
-        : props.medium
-        ? medium[props.medium].color
-        : ""
-    }D1!important;
-	}
 
-	*::part(base):focus {
-		border-color: ${
-      props.backgroundcolor
-        ? props.backgroundcolor
-        : props.medium
-        ? medium[props.medium].color
-        : ""
-    }D1!important;
-	}
 
 	*::part(label) {
 		position: relative;
@@ -140,7 +138,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         type={props.type}
         onClick={!props.isPlainLink ? props.onClick : undefined}
         href={props.isPlainLink ? props.messageLink : undefined}
-        exportparts={`base: ${props.type}sharebutton-base`}
+        exportparts={`base: ${props.type}button-base`}
       >
         {!props.hideicon && (
           <sl-icon

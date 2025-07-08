@@ -4,6 +4,8 @@ import { useRouter } from "./useRouter";
 
 /**
  * @uiName Router
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
+ * @validChildren ["sqm-route"]
  * @slots [{"name":"","title":"Routes"}]
  */
 @Component({

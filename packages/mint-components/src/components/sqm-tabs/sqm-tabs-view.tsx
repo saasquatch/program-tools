@@ -3,6 +3,7 @@ import { TabElement } from "./useTabs";
 
 export type TabsViewProps = {
   placement: "left" | "right" | "bottom" | "top";
+  textColor?: string;
   content: {
     tabs: TabElement[];
   };
@@ -11,6 +12,7 @@ export type TabsViewProps = {
 export const TabsView: FunctionalComponent<TabsViewProps> = ({
   content,
   placement,
+  textColor = "var(--sqm-text)",
 }) => {
   // Vertical padding for top & bottom placement, horizontal for left & right.
   const padding =
@@ -21,6 +23,18 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
   const vanillaStyle = `
     sl-tab-panel::part(base) {
       padding: ${padding};
+    }
+
+    sl-tab::part(base) {
+      color: ${textColor};
+    }
+
+    sl-tab-group {
+      --sl-color-primary-500: var(--sqm-accent-color-icon);
+    }
+
+    sl-tab-group::part(tabs) {
+      border-bottom: 2px solid var(--sqm-border-color);
     }
   `;
 
@@ -43,6 +57,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
             <sl-tab
               slot="nav"
               panel={slotName}
+              part="tab"
               id={tab.getAttribute("id") || slotName}
             >
               {tab.getAttribute("header")}

@@ -1,9 +1,10 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { ImpactConnection, Reward } from "../../../saasquatch";
+import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -40,9 +41,7 @@ export class ReferralTableRewardsCell {
       },
 
       Details: {
-        "padding-bottom": "var(--sl-spacing-small)",
         "max-width": "500px",
-        // "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
           cursor: `${this.hideDetails ? "default" : "pointer"}`,
@@ -51,6 +50,7 @@ export class ReferralTableRewardsCell {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
         },
         "&::part(base)": {
+          border: "1px solid var(--sqm-border-color)",
           opacity: "1",
         },
         "&::part(summary-icon)": {
@@ -59,7 +59,6 @@ export class ReferralTableRewardsCell {
 
         "&::part(summary-icon[open])": {
           transform: "rotate(-90deg)",
-          background: "red",
         },
       },
 
@@ -72,24 +71,76 @@ export class ReferralTableRewardsCell {
       BoldText: {
         "font-weight": "var(--sl-font-weight-semibold)",
       },
-      StatusBadge: {
+      RedeemBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
         "&::part(base)": {
           textAlign: "center",
           maxWidth: "170px",
           whiteSpace: "pre-line",
+          background: "var(--sqm-informative-color-icon)",
+          color: "var(--sqm-informative-color-text)",
         },
       },
-      RedeemBadge: {
+      DangerBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
         "&::part(base)": {
-          background: "var(--sl-color-blue-600)",
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-danger-color-icon)",
+          color: "var(--sqm-danger-color-text)",
+        },
+      },
+      WarningBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-warning-color-icon)",
+          color: "var(--sqm-warning-color-text)",
+        },
+      },
+      SuccessBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+          background: "var(--sqm-success-color-icon)",
+          color: "var(--sqm-success-color-text)",
         },
       },
     };
 
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
+    type ShoeLaceBadgeType =
+      | "primary"
+      | "danger"
+      | "warning"
+      | "success"
+      | "info";
+
+    const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
+      switch (badgeType) {
+        case "primary":
+          return sheet.classes.RedeemBadge;
+
+        case "danger":
+          return sheet.classes.DangerBadge;
+
+        case "success":
+          return sheet.classes.SuccessBadge;
+
+        case "warning":
+        case "info":
+          return sheet.classes.WarningBadge;
+
+        default:
+          return sheet.classes.WarningBadge;
+      }
+    };
 
     const getState = (
       reward: Reward,
@@ -153,7 +204,7 @@ export class ReferralTableRewardsCell {
       );
     };
 
-    const getSLBadgeType = (state: string): string => {
+    const getSLBadgeType = (state: string): ShoeLaceBadgeType => {
       switch (state) {
         case "REDEEMED":
         case "PAYOUT_APPROVED":
@@ -220,11 +271,7 @@ export class ReferralTableRewardsCell {
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type={slBadgeType}
                   pill
                 >
@@ -241,11 +288,7 @@ export class ReferralTableRewardsCell {
                 </sl-badge>
               ) : (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type={slBadgeType}
                   pill
                 >
@@ -254,11 +297,7 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge
-                  class={
-                    slBadgeType === "primary"
-                      ? sheet.classes.RedeemBadge
-                      : sheet.classes.StatusBadge
-                  }
+                  class={getBadgeCSSClass(slBadgeType)}
                   type="info"
                   pill
                 >

@@ -11,6 +11,7 @@ import {
 
 /**
  * @uiName Instant Access Friend Registration
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
  * @example Instant Access Friend Registration - <sqm-referred-registration></sqm-referred-registration>

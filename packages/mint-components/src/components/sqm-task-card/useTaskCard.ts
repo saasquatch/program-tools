@@ -50,8 +50,19 @@ export function useTaskCard(props: TaskCard) {
     props.eventKey ? sendEvent(props.eventKey) : openLink();
   }
 
+  const styles = {
+    card: {
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderColor: props.borderColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
+    },
+  };
+
   return {
     states: { loadingEvent, locale },
+    styles,
     callbacks: { sendEvent, onClick },
   };
 }

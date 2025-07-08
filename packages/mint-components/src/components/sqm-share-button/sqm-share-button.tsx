@@ -9,6 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"", "title":"Button Content"}]
  * @slotEditor richText
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
@@ -68,24 +69,35 @@ export class ShareButton {
   /**
    * Configure border radius with pixel amount
    * @uiName Border radius
+   * @uiGroup Style
    */
   @Prop() borderradius?: number;
   /**
    * @uiName Button background color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() backgroundcolor?: string;
+
+  /**
+   * @uiName Border
+   * @uiGroup Style
+   */
+  @Prop() border?: string;
   /**
    * @uiName Button text color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() textcolor?: string;
   /**
    * @uiName Display pill
+   * @uiGroup Style
    */
   @Prop() pill?: boolean;
+
   /**
    * @uiName Disabled
    */
@@ -93,11 +105,12 @@ export class ShareButton {
   /**
    * @uiType string
    * @uiName Button style
-   * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-   * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+   * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
+   * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
    */
   @Prop() type?:
     | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -109,6 +122,7 @@ export class ShareButton {
    * @uiType string
    * @uiEnum ["small", "medium", "large" ]
    * @uiEnumNames ["Small", "Medium", "Large"]
+   * @uiGroup Style
    */
   @Prop() size?: "small" | "medium" | "large";
   /**
@@ -128,11 +142,13 @@ export class ShareButton {
   @Prop() icon?: string;
   /**
    * @uiName Hide icon
+   * @uiGroup Style
    * @default
    */
   @Prop() hideicon?: boolean = false;
   /**
    * @uiName Hide text
+   * @uiGroup Style
    * @default
    */
   @Prop() hidetext?: boolean = false;

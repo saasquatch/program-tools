@@ -7,10 +7,13 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type                                                                     | Default     |
-| --------------- | ----------------- | ----------- | ------------------------------------------------------------------------ | ----------- |
-| `demoData`      | --                |             | `{ data?: { footer: VNode; header: VNode; }; notFullScreen?: boolean; }` | `undefined` |
-| `notFullScreen` | `not-full-screen` |             | `boolean`                                                                | `false`     |
+| Property                         | Attribute                            | Description                                                             | Type                                                                                                                                                         | Default                                 |
+| -------------------------------- | ------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- |
+| `backgroundColor`                | `background-color`                   |                                                                         | `string`                                                                                                                                                     | `"var(--sqm-portal-background, #fff);"` |
+| `border`                         | `border`                             | Borders placed to seperate the header and footer from the body content. | `string`                                                                                                                                                     | `"1px solid var(--sqm-text, #eaeaea);"` |
+| `demoData`                       | --                                   |                                                                         | `{ data?: { footer: VNode; header: VNode; }; backgroundColor?: string; notFullScreen?: boolean; border?: string; headerAndFooterBackgroundColor?: string; }` | `undefined`                             |
+| `headerAndFooterBackgroundColor` | `header-and-footer-background-color` | Background color for the header and footer.                             | `string`                                                                                                                                                     | `"var(--sqm-portal-background, #fff);"` |
+| `notFullScreen`                  | `not-full-screen`                    |                                                                         | `boolean`                                                                                                                                                    | `false`                                 |
 
 
 ## Dependencies

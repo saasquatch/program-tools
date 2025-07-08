@@ -1,4 +1,4 @@
-import { h } from '@stencil/core';
+import { h } from "@stencil/core";
 
 export interface LeaderboardRankViewProps {
   data: {
@@ -8,5 +8,9 @@ export interface LeaderboardRankViewProps {
 
 export function LeaderboardRankView(props: LeaderboardRankViewProps) {
   const { data } = props;
-  return <span class="P">{data.rank}</span>;
+  return (
+    <span style={{ marginTop: "0px", fontSize: "var(--sl-font-size-small)" }}>
+      {data.rank}
+    </span>
+  );
 }

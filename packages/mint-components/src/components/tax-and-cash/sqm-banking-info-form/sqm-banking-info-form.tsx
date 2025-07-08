@@ -5,8 +5,9 @@ import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { getFormMap } from "./formDefinitions";
 import { mockPaymentOptions } from "./mockData";
 import {
@@ -18,7 +19,6 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
-import { createStyleSheet } from "../../../styling/JSS";
 
 /**
  * @uiName Banking Information Form

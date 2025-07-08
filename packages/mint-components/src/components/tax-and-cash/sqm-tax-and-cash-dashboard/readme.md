@@ -80,7 +80,6 @@
 
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
- - [sqm-user-info-form](../sqm-user-info-form)
 
 ### Depends on
 
@@ -109,7 +108,6 @@ graph TD;
   sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
   sqm-stencilbook --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
-  sqm-user-info-form --> sqm-tax-and-cash-dashboard
   style sqm-tax-and-cash-dashboard fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -1,8 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { FORM_STEPS } from "../data";
 import { BankingInfoFormData } from "./useBankingInfoForm";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface BankingInfoFormViewProps {
   states: {
@@ -136,30 +136,28 @@ const style = {
     gap: "8px",
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-icon)",
     marginTop: "10px",
   },
   PageDescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
   DescriptionText: {
-    color: "var(--sl-color-neutral-500)",
+    color: "var(--sqm-text-subdued)",
   },
-  SecondaryBtn: {
-    "&::part(base)": {
-      color: "var(--sl-color-gray-800) !important",
-    },
-  },
+
   AlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
+      backgroundColor: "var(--sqm-danger-color-background)",
+      border: "none",
       padding: "0 16px",
+      color: "var(--sqm-danger-color-text)",
+      marginBottom: "16px",
     },
 
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-icon)",
     },
   },
   RadioContainer: {
@@ -168,12 +166,16 @@ const style = {
   },
   PartnerAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
+      backgroundColor: "var(--sqm-informative-color-background)",
       borderTop: "none",
       padding: "0 16px",
+      border: "none",
+      color: "var(--sqm-informative-color-text)",
+      marginBottom: "16px",
     },
+
     "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
+      color: "var(--sqm-informative-color-icon)",
     },
   },
   Checkbox: {
@@ -187,8 +189,8 @@ const style = {
   InputContainer: {
     padding: "16px",
     margin: "16px 0px 16px 0px",
-    borderTop: "1px solid var(--sl-color-gray-300)",
-    borderBottom: "1px solid var(--sl-color-gray-300)",
+    borderTop: "1px solid var(--sqm-border-color)",
+    borderBottom: "1px solid var(--sqm-border-color)",
     display: "flex",
     flexDirection: "column",
     width: "100%",
@@ -214,39 +216,20 @@ const style = {
     width: "16px",
     height: "16px",
     borderRadius: "50%",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   SmallSkeleton: {
     width: "100px",
     height: "16px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
+    background: "var(--sqm-skeleton-background)",
   },
   LargeSkeleton: {
     width: "100%",
     maxWidth: "320px",
     height: "40px",
     borderRadius: "50px",
-    background: "var(--sl-color-gray-200)",
-  },
-  InfoAlert: {
-    "&::part(base)": {
-      backgroundColor: "transparent",
-      borderTop: "none",
-      border: "none",
-    },
-
-    "&::part(message)": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      padding: "10px",
-      height: "max-content",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-yellow-500)",
-    },
+    background: "var(--sqm-skeleton-background)",
   },
   InfoWarningIcon: {
     height: "26px",
@@ -272,20 +255,16 @@ const vanillaStyle = `
       font-weight: 600
     }
 
-    p {
-      line-height: 18px;
-      color: var(--sl-color-gray-800);
-      font-size: var(--sl-font-size-small);
-    }
-
     /* this class is dynamically applied in controller */
     .error-input::part(base) {
-      border: 1px solid var(--sl-color-danger-500);
-      border-radius: var(--sl-input-border-radius-medium);
+      --sqm-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color: var(--sqm-danger-color-border);
+      --sl-input-border-color-hover: var(--sqm-danger-color-border);  
+      --sl-input-border-color-focus: var(--sqm-danger-color-background);
     }
 
     .error-input::part(help-text) {
-      color: var(--sl-color-danger-500) !important;
+      color: var(--sqm-danger-color-text);
     }
     
   `;
@@ -576,8 +555,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           {!states.hideBackButton && (
             <sl-button
               exportparts="base: secondarybutton-base"
-              class={classes.SecondaryBtn}
-              type="text"
+              type="secondary"
               onClick={callbacks.onBack}
             >
               {text.backButton}
