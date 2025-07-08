@@ -604,6 +604,12 @@ html {
     window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.background ||
     "#1ed760"
   };
+  --sqm-primary-button-color-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.label
+  };
+  --sqm-primary-button-border-color-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.border
+  };
   --sqm-primary-button-color: ${
     window.SquatchBrandingConfig?.primaryButton?.buttonColor?.label || "#FFFFFF"
   };
@@ -614,17 +620,18 @@ html {
   --sqm-primary-button-radius: ${
     window.SquatchBrandingConfig?.primaryButton?.borderRadius + "px"
   };
-
-
   --sqm-secondary-button-background: ${
     window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
   };
   --sqm-secondary-button-background-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor
-      ?.background || "#282828"
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.background
   };
-
-  
+  --sqm-secondary-button-color-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label
+  };
+  --sqm-secondary-button-border-color-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border
+  };
   --sqm-secondary-button-color: ${
     window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.label ||
     "#FFFFFF"
@@ -955,6 +962,8 @@ sl-button[type="primary"]::part(base) {
 *::part(primarybutton-base):hover,
 sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
+  border-color: var(--sqm-primary-button-color-border-hover);
+  color: var(--sqm-primary-button-color-hover);
 }
 
 
@@ -974,6 +983,8 @@ sl-button[type="secondary"]::part(base) {
 *::part(secondarybutton-base):hover,
 sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-secondary-button-background-hover);
+  color: var(--sqm-secondary-button-color-hover);
+  border-color: var(--sqm-secondary-button-border-color-hover);
 }
 
 *::part(tertiarybutton-base){

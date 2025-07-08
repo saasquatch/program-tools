@@ -18,6 +18,7 @@ export const Default = null;
 export const Netflix: BrandingConfiguration = {
   main: {
     brandFont: "Netflix Sans, Arial, sans-serif",
+    brandColor: "#E50914",
   },
   color: {
     textColorShades: {
@@ -102,6 +103,7 @@ export const Netflix: BrandingConfiguration = {
 export const Amazon: BrandingConfiguration = {
   main: {
     brandFont: "Amazon Ember, Arial, sans-serif",
+    brandColor: "#FF9900",
   },
   color: {
     backgroundColor: "#ffffff",
@@ -185,7 +187,7 @@ export const Amazon: BrandingConfiguration = {
 
 export const Spotify: BrandingConfiguration = {
   main: {
-    // Spotify currently doesn't specify main.brandFont or brandColor, but the interface allows it.
+    brandColor: "#1ed760",
   },
   color: {
     textColorShades: {
@@ -195,7 +197,6 @@ export const Spotify: BrandingConfiguration = {
     backgroundColor: "#121212",
     accentColorShades: {
       icon: "#1ed760",
-      // Text, border, background missing but optional per interface.
     },
   },
   primaryButton: {
