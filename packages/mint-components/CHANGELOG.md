@@ -14,7 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-tax-and-cash>
   - Added new text props for label and confirmation modals on the docusign and banking info forms
     - new props:
-      -
+      - `step3_modalTitle`
+      - `step3_modalDescription`
+      - `step3_modalButtonText`
+      - `step4_beneficiaryAccountNameDescription`
+      - `step4_modalTitle`
+      - `step4_modalDescription`
+      - `step4_modalButtonText`
 
 ## [1.14.2] - 2025-06-13
 
