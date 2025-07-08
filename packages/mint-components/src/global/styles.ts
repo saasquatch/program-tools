@@ -597,7 +597,8 @@ html {
     window.SquatchBrandingConfig?.main?.brandColor || "#1ed760"
   };
   --sqm-primary-button-background:${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.background ||
+    "#1ed760"
   };
   --sqm-primary-button-background-hover: ${
     window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.background ||
@@ -611,7 +612,7 @@ html {
     "transparent"
   };
   --sqm-primary-button-radius: ${
-    window.SquatchBrandingConfig?.primaryButton?.borderRadius || "4px"
+    window.SquatchBrandingConfig?.primaryButton?.borderRadius + "px"
   };
 
 
@@ -625,15 +626,15 @@ html {
 
   
   --sqm-secondary-button-color: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label ||
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.label ||
     "#FFFFFF"
   };
   --sqm-secondary-button-color-border: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border ||
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.border ||
     "#FFFFFF"
   };
   --sqm-secondary-button-radius: ${
-    window.SquatchBrandingConfig?.secondaryButton?.borderRadius || "30px"
+    window.SquatchBrandingConfig?.secondaryButton?.borderRadius + "px"
   };
 
   --sqm-tertiary-button-background: transparent;

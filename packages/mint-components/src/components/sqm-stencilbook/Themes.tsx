@@ -57,7 +57,7 @@ export const Netflix: BrandingConfiguration = {
     },
     neutral: {
       text: "white",
-      iconAndBadge: "#B3B3B3", // Changed 'icon' to 'iconAndBadge'
+      iconAndBadge: "#B3B3B3",
       border: "#333333",
       background: "#222222",
     },
@@ -73,7 +73,7 @@ export const Netflix: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
-    borderRadius: 4, // Changed to number
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -86,7 +86,7 @@ export const Netflix: BrandingConfiguration = {
       border: "#B3B3B3",
       label: "#FFFFFF",
     },
-    borderRadius: 30, // Changed to number
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -141,7 +141,7 @@ export const Amazon: BrandingConfiguration = {
     },
     neutral: {
       text: "#232F3E",
-      iconAndBadge: "#565959", // Changed 'icon' to 'iconAndBadge'
+      iconAndBadge: "#565959",
       border: "#D5D9D9",
       background: "#F0F2F2",
     },
@@ -157,7 +157,7 @@ export const Amazon: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
-    borderRadius: 4, // Assuming a default value, as it was missing and is a number
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -170,7 +170,7 @@ export const Amazon: BrandingConfiguration = {
       border: "#888C8C",
       label: "#232F3E",
     },
-    borderRadius: 30, // Assuming a default value, as it was missing and is a number
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -209,7 +209,7 @@ export const Spotify: BrandingConfiguration = {
       border: "transparent",
       label: "#121212",
     },
-    borderRadius: 4, // Assuming a default value, as it was missing and is a number
+    borderRadius: 30,
   },
   secondaryButton: {
     buttonColor: {
@@ -222,7 +222,7 @@ export const Spotify: BrandingConfiguration = {
       border: "#FFFFFF",
       label: "#121212",
     },
-    borderRadius: 30, // Assuming a default value, as it was missing and is a number
+    borderRadius: 30,
   },
   formFields: {
     formFieldColor: {
@@ -291,7 +291,7 @@ export const Google: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
-    borderRadius: 4, // Assuming a default value, as it was missing and is a number
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -304,7 +304,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       label: "#4285F4",
     },
-    borderRadius: 30, // Assuming a default value, as it was missing and is a number
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -312,7 +312,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       inputText: "#202124",
     },
-    hoverStateColor: "#9AA0A6", // Fixed: '9AA0A6' to "#9AA0A6" (string literal)
-    selectedStateColor: "#4285F4", // Fixed: '4285F4' to "#4285F4" (string literal)
+    hoverStateColor: "#9AA0A6",
+    selectedStateColor: "#4285F4",
   },
 };
