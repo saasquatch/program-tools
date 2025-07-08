@@ -112,6 +112,12 @@ export interface BankingInfoFormViewProps {
 }
 
 const style = {
+  ModalTitleContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    alignItems: "center",
+  },
+
   FormWrapper: {
     display: "flex",
     justifyContent: "flex-start",
@@ -262,15 +268,10 @@ const style = {
     "&::part(panel)": {
       maxWidth: "420px",
     },
-    "&::part(close-button)": {
-      marginBottom: "var(--sl-spacing-xx-large)",
-    },
+
     "&::part(title)": {
-      fontSize: "var(--sl-font-size-x-large)",
+      fontSize: "var(--sl-font-size-large)",
       fontWeight: "600",
-      marginTop: "var(--sl-spacing-x-large)",
-      padding:
-        "var(--sl-spacing-small) var(--sl-spacing-large) 0 var(--sl-spacing-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
@@ -397,17 +398,14 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         open={states.showModal}
         onSl-hide={callbacks.onModalClose}
       >
-        <div>
-          <h1>
-            <sl-icon
-              name="info-circle"
-              style={{ color: "var(--sl-color-info-500)" }}
-            />
-          </h1>
-          <h2 style={{ fontSize: "var(--sl-font-size-x-large)" }}>
+        <div class={classes.ModalTitleContainer} slot="label">
+          <sl-icon
+            name="info-circle"
+            style={{ color: "var(--sl-color-info-500)" }}
+          />
+          <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
             {text.modalTitle}
           </h2>
-          <br />
         </div>
         <p>{text.modalDescription}</p>
         <sl-button
