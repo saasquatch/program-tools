@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.3] - 2025-07-09
+
+### Changed
+
+- \<sqm-referral-table-rewards-cell>
+- \<sqm-rewards-table-status-cell>
+  - Fix incorrect conditional checking for PAYOUT_CONFIGURATION_MISSING rather than MISSING_PAYOUT_CONFIGURATION
+
 ## [1.14.2] - 2025-06-13
 
 ### Changed
@@ -1177,7 +1185,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.3...HEAD
+[1.14.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.3
 [1.14.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.2
 [1.14.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.1
 [1.14.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.0
