@@ -152,7 +152,7 @@ export class DocusignForm {
    * @uiName Information modal description text
    */
   @Prop() modalDescription: string =
-    "Remember the name you enter in your tax form. It must match the bank account holder name, also known as beneficiary name, configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
+    "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
 
   /**
    * @uiName Information modal button text
