@@ -344,7 +344,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_modalDescription: string =
-    "Ensure the name you enter in your tax form matches the name on your bank account, also known as the beneficiary name.{br}{br}Otherwise you will have to resubmit  your form again and there will be delays receiving your payout.";
+    "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
 
   /**
    * @uiName Information modal button text
