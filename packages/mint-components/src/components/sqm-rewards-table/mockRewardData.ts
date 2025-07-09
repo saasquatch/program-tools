@@ -99,7 +99,7 @@ const getMockData = (status?: string): Reward => {
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires = today.minus({ days: 1 }).toMillis();
   } else if (randomStatus === "PENDING") {
-    // pendingReason = ["PAYOUT_CONFIGURATION_MISSING"];
+    // pendingReason = ["MISSING_PAYOUT_CONFIGURATION"];
     const reason = pendingReasons[Math.floor(Math.random() * 3)];
     pendingReason = [reason];
     if (reason === "SCHEDULED") {
