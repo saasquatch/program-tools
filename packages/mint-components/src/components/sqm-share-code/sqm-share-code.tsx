@@ -106,15 +106,15 @@ export class ShareCode {
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
-   * The type of the button that is used (primary, secondary, or tertiary).
+   * The type of the button that is used (primary or secondary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * Border color of share link container (default is set to 1px solid transparent)

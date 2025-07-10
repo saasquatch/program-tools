@@ -21,7 +21,7 @@ export interface CopyTextViewProps {
   backgroundColor?: string;
   textColor?: string;
   borderRadius?: string;
-  buttonType?: "primary" | "secondary" | "tertiary";
+  buttonType?: "primary" | "secondary";
   borderColor?: string;
   onClick?: () => void;
 }

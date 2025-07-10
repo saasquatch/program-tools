@@ -262,7 +262,6 @@ const vanillaStyle = `
       min-width: 250px;
     }
 
-    /* Corrected: Target sl-button::part(base) for primary button */
     sl-button[type="primary"]::part(base){
         background-color: var(--sqm-primary-button-background);
         color: var(--sqm-primary-button-color);
@@ -278,7 +277,6 @@ const vanillaStyle = `
         box-shadow: none;
     }
 
-    /* Corrected: Target sl-button::part(base) for secondary button */
     sl-button[type="secondary"]::part(base){
         background-color: var(--sqm-secondary-button-background);
         color: var(--sqm-secondary-button-color);
@@ -290,13 +288,7 @@ const vanillaStyle = `
         background-color: var(--sqm-secondary-button-background-hover);
     }
 
-    /* Corrected: Target sl-button::part(base) for tertiary button */
-    sl-button[type="tertiary"]::part(base){
-        color: var(--sqm-text, var(--sl-color-neutral-800));
-        width: max-content;
-        display: flex;
-        margin: auto;
-    }
+
 
 *::part(primarybutton-base){
   background-color: var(--sqm-primary-button-background);
@@ -324,18 +316,18 @@ const vanillaStyle = `
   background-color: var(--sqm-secondary-button-background-hover);
 }
 
-*::part(tertiarybutton-base){
-  background-color: var(--sqm-tertiary-button-background);
-  color: var(--sqm-tertiary-button-color);
-  border-color: var(--sqm-tertiary-button-color-border);
-  border-radius: var(--sqm-tertiary-button-radius);
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
   width: max-content;
   display: flex;
   margin: auto;
 }
 
-*::part(tertiarybutton-base):hover{
-  background: var(--sqm-tertiary-button-background-hover);
+*::part(secondarybutton-base):hover{
+  background: var(--sqm-secondary-button-background-hover);
 }
 
     sl-input::part(label),

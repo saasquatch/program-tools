@@ -212,7 +212,7 @@ export class CouponCode {
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * Background color of share link container

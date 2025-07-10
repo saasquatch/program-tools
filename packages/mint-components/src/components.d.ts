@@ -557,7 +557,7 @@ export namespace Components {
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -1035,14 +1035,14 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -1889,14 +1889,14 @@ export namespace Components {
     }
     interface SqmPagination {
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -3416,14 +3416,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4469,14 +4469,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4554,14 +4554,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4716,11 +4716,11 @@ export namespace Components {
         /**
           * @uiName Button Style
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
@@ -7858,7 +7858,7 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -8337,14 +8337,14 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -9185,14 +9185,14 @@ declare namespace LocalJSX {
     }
     interface SqmPagination {
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -10712,14 +10712,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11741,14 +11741,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11826,14 +11826,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11988,11 +11988,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Style
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task

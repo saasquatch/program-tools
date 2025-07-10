@@ -254,12 +254,12 @@ export class TaskCard {
   /**
    * @uiName Button Style
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * @undocumented

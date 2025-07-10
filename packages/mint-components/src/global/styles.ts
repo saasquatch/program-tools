@@ -589,19 +589,25 @@ html {
     window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "white"
   };
   --sqm-text-subdued: ${
-    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText ||
-    "#b3b3b3"
+    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText
   };
 
   --sqm-primary-color: ${
     window.SquatchBrandingConfig?.main?.brandColor || "#1ed760"
   };
   --sqm-primary-button-background:${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
+    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.background ||
+    "#1ed760"
   };
   --sqm-primary-button-background-hover: ${
     window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.background ||
     "#1ed760"
+  };
+  --sqm-primary-button-color-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.label
+  };
+  --sqm-primary-button-border-color-hover: ${
+    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.border
   };
   --sqm-primary-button-color: ${
     window.SquatchBrandingConfig?.primaryButton?.buttonColor?.label || "#FFFFFF"
@@ -611,49 +617,39 @@ html {
     "transparent"
   };
   --sqm-primary-button-radius: ${
-    window.SquatchBrandingConfig?.primaryButton?.borderRadius || "4px"
+    window.SquatchBrandingConfig?.primaryButton?.borderRadius + "px"
   };
-
-
   --sqm-secondary-button-background: ${
     window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
   };
   --sqm-secondary-button-background-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor
-      ?.background || "#282828"
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.background
   };
-
-  
+  --sqm-secondary-button-color-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label
+  };
+  --sqm-secondary-button-border-color-hover: ${
+    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border
+  };
   --sqm-secondary-button-color: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label ||
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.label ||
     "#FFFFFF"
   };
   --sqm-secondary-button-color-border: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border ||
+    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.border ||
     "#FFFFFF"
   };
   --sqm-secondary-button-radius: ${
-    window.SquatchBrandingConfig?.secondaryButton?.borderRadius || "30px"
+    window.SquatchBrandingConfig?.secondaryButton?.borderRadius + "px"
   };
 
-  --sqm-tertiary-button-background: transparent;
-  --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
-  --sqm-tertiary-button-color: var(--sqm-text); 
-  --sqm-tertiary-button-color-border: transparent; 
-  --sqm-tertiary-button-radius: 30px;
-  
   --sqm-border-radius-normal: ${
-    // window.SquatchBrandingConfig?.border?.radius || "18px"
-    "18px"
+    window.SquatchBrandingConfig?.border?.borderRadius + "px"
   }; 
-  --sqm-border-color: ${
-    // window.SquatchBrandingConfig?.border?.color || "white"
-    "white"
-  };
+  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.borderColor};
 
   --sqm-border-thickness: ${
-    // window.SquatchBrandingConfig?.border?.thickness || "1px"
-    "1px"
+    window.SquatchBrandingConfig?.border?.borderThickness + "px"
   };
 
   --sqm-accent-color-icon: ${
@@ -747,8 +743,7 @@ html {
     "#eaeaea"
   };
   --sqm-input-border-radius: ${
-    // window.SquatchBrandingConfig?.formFields?.borderRadius || "4px"
-    "4px"
+    window.SquatchBrandingConfig?.formFields?.borderRadius + "px"
   };
   --sqm-input-color: ${
     window.SquatchBrandingConfig?.formFields?.formFieldColor?.inputText ||
@@ -764,13 +759,9 @@ html {
     window.SquatchBrandingConfig?.formFields?.hoverStateColor || "#ccc"
   };
   --sqm-input-label-font-size: inherit;
-  --sqm-input-disabled-color: ${
-    // window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
-    "#fff"
-  };
+  --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
-    // window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
-    "#fff"
+    window.SquatchBrandingConfig?.formFields?.disabledBackgroundColor
   };
 
   --sl-color-primary-100: var(--sqm-primary-color);
@@ -954,6 +945,8 @@ sl-button[type="primary"]::part(base) {
 *::part(primarybutton-base):hover,
 sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
+  border-color: var(--sqm-primary-button-color-border-hover);
+  color: var(--sqm-primary-button-color-hover);
 }
 
 
@@ -973,20 +966,8 @@ sl-button[type="secondary"]::part(base) {
 *::part(secondarybutton-base):hover,
 sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-secondary-button-background-hover);
-}
-
-*::part(tertiarybutton-base){
-  background-color: var(--sqm-tertiary-button-background);
-  color: var(--sqm-tertiary-button-color);
-  border-color: var(--sqm-tertiary-button-color-border);
-  border-radius: var(--sqm-tertiary-button-radius);
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
-*::part(tertiarybutton-base):hover{
-  background: var(--sqm-tertiary-button-background-hover);
+  color: var(--sqm-secondary-button-color-hover);
+  border-color: var(--sqm-secondary-button-border-color-hover);
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){

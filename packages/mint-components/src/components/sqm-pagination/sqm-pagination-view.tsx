@@ -14,7 +14,7 @@ export interface PaginationViewProps {
     onNext: (e: Event) => void;
     onPrev: (e: Event) => void;
   };
-  buttonType?: "primary" | "secondary" | "tertiary";
+  buttonType?: "primary" | "secondary";
 }
 
 const style = {

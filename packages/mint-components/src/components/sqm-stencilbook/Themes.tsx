@@ -18,6 +18,12 @@ export const Default = null;
 export const Netflix: BrandingConfiguration = {
   main: {
     brandFont: "Netflix Sans, Arial, sans-serif",
+    brandColor: "#E50914",
+  },
+  border: {
+    borderColor: "#333333",
+    borderRadius: 4,
+    borderThickness: 1,
   },
   color: {
     textColorShades: {
@@ -57,10 +63,9 @@ export const Netflix: BrandingConfiguration = {
     },
     neutral: {
       text: "white",
-      icon: "#B3B3B3",
+      iconAndBadge: "#B3B3B3",
       border: "#333333",
       background: "#222222",
-      iconAndBadge: "#B3B3B3",
     },
   },
   primaryButton: {
@@ -74,6 +79,7 @@ export const Netflix: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -86,6 +92,7 @@ export const Netflix: BrandingConfiguration = {
       border: "#B3B3B3",
       label: "#FFFFFF",
     },
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -101,6 +108,12 @@ export const Netflix: BrandingConfiguration = {
 export const Amazon: BrandingConfiguration = {
   main: {
     brandFont: "Amazon Ember, Arial, sans-serif",
+    brandColor: "#FF9900",
+  },
+  border: {
+    borderColor: "#D5D9D9",
+    borderRadius: 4,
+    borderThickness: 1,
   },
   color: {
     backgroundColor: "#ffffff",
@@ -140,10 +153,9 @@ export const Amazon: BrandingConfiguration = {
     },
     neutral: {
       text: "#232F3E",
-      icon: "#565959",
+      iconAndBadge: "#565959",
       border: "#D5D9D9",
       background: "#F0F2F2",
-      iconAndBadge: "#565959",
     },
   },
   primaryButton: {
@@ -157,6 +169,7 @@ export const Amazon: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -169,6 +182,7 @@ export const Amazon: BrandingConfiguration = {
       border: "#888C8C",
       label: "#232F3E",
     },
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -182,6 +196,14 @@ export const Amazon: BrandingConfiguration = {
 };
 
 export const Spotify: BrandingConfiguration = {
+  main: {
+    brandColor: "#1ed760",
+  },
+  border: {
+    borderColor: "#f4f4f4",
+    borderRadius: 18,
+    borderThickness: 1,
+  },
   color: {
     textColorShades: {
       mainText: "white",
@@ -203,6 +225,7 @@ export const Spotify: BrandingConfiguration = {
       border: "transparent",
       label: "#121212",
     },
+    borderRadius: 30,
   },
   secondaryButton: {
     buttonColor: {
@@ -215,6 +238,7 @@ export const Spotify: BrandingConfiguration = {
       border: "#FFFFFF",
       label: "#121212",
     },
+    borderRadius: 30,
   },
   formFields: {
     formFieldColor: {
@@ -229,6 +253,11 @@ export const Spotify: BrandingConfiguration = {
 
 export const Google: BrandingConfiguration = {
   main: { brandColor: "#4285F4", brandFont: "Roboto, Arial, sans-serif" },
+  border: {
+    borderColor: "#DADCE0",
+    borderRadius: 4,
+    borderThickness: 1,
+  },
   color: {
     textColorShades: {
       mainText: "#212124",
@@ -283,6 +312,7 @@ export const Google: BrandingConfiguration = {
       border: "transparent",
       label: "#FFFFFF",
     },
+    borderRadius: 4,
   },
   secondaryButton: {
     buttonColor: {
@@ -295,6 +325,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       label: "#4285F4",
     },
+    borderRadius: 4,
   },
   formFields: {
     formFieldColor: {
@@ -302,7 +333,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       inputText: "#202124",
     },
-    hoverStateColor: "9AA0A6",
-    selectedStateColor: "4285F4",
+    hoverStateColor: "#9AA0A6",
+    selectedStateColor: "#4285F4",
   },
 };

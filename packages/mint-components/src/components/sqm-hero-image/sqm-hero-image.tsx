@@ -133,15 +133,15 @@ export class HeroImage {
   @Prop() paddingImage: Spacing = "none";
 
   /**
-   * The type of the button that is used (primary, secondary, or tertiary).
+   * The type of the button that is used (primary or secondary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   constructor() {
     withHooks(this);

@@ -19,7 +19,7 @@ export interface HeroImageViewProps {
   paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
-  buttonType?: "primary" | "secondary" | "tertiary";
+  buttonType?: "primary" | "secondary";
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {

@@ -287,8 +287,15 @@ export interface BrandingConfiguration {
       inputText?: string;
       border?: string;
     };
+    borderRadius?: number;
+    disabledBackgroundColor?: string;
     selectedStateColor?: string;
     hoverStateColor?: string;
+  };
+  border?: {
+    borderRadius?: number;
+    borderThickness?: number;
+    borderColor?: string;
   };
   /**
    * Defines widget dimensions.

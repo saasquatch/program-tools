@@ -19,7 +19,7 @@ interface CouponCodeProps {
   pendingErrorText: string;
   redeemedErrorText: string;
   genericErrorText: string;
-  buttonType?: "primary" | "secondary" | "tertiary";
+  buttonType?: "primary" | "secondary";
 }
 
 type FuelTankReward = {
