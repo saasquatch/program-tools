@@ -226,6 +226,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     formState: {
       paymentMethodChecked: "toBankAccount",
     },
+    showModal: false,
   },
   callbacks: {
     onVerificationHide: () => {},
@@ -235,6 +236,8 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     setPaymentScheduleChecked: () => {},
     onBack: async () => console.log("back"),
     setCountrySearch: () => {},
+    onModalOpen: () => {},
+    onModalClose: () => {},
   },
   refs: { formRef: { current: null } },
 };
@@ -257,12 +260,15 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
       errors: {},
       taxFormExpired: false,
     },
+    showModal: false,
   },
   callbacks: {
     onExit: () => {},
     completeDocument: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
+    onModalOpen: () => {},
+    onModalClose: () => {},
   },
 };
 
@@ -914,6 +920,21 @@ export const StepThreeDocusignDisabled = () => {
         states: {
           ...docusignFormProps.states,
           disabled: true,
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
+export const StepThreeWithDocusignModalOpen = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          ...docusignFormProps.states,
+          showModal: true,
         },
       }}
     ></sqm-docusign-form>

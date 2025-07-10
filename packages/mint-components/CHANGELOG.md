@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.4] - 2025-07-10
+
+### Changed
+
+- \<sqm-tax-and-cash>
+  - Added new text props for label and confirmation modals on the docusign and banking info forms
+    - new props:
+      - `step3_modalTitle`
+      - `step3_modalDescription`
+      - `step3_modalButtonText`
+      - `step4_beneficiaryAccountNameDescription`
+      - `step4_modalTitle`
+      - `step4_modalDescription`
+      - `step4_modalButtonText`
+
 ## [1.14.3] - 2025-07-09
 
 ### Changed
@@ -1185,7 +1200,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.4...HEAD
+[1.14.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.4
 [1.14.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.3
 [1.14.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.2
 [1.14.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.1

@@ -112,3 +112,23 @@ Feature: Comply Exchange Form
       """
       Please review your information and try again. If this problem continues, contact Support.
       """
+
+  @minutia
+  Scenario: Information modal is shown when the docusign step is shown
+    Given a participant loads the Comply Exchange form
+    And they have a required tax document type
+    When the docusign step is shown
+    Then an information modal is shown
+    And the modal has a title
+      """
+      Important Note
+      """
+    And the modal has a description
+      """
+      Ensure the name you enter in your tax form matches the name on your bank account, also known as the beneficiary name.
+
+      Otherwise you will have to resubmit your form again and there will be delays receiving your payout.
+      """
+    And the modal has a button with text "I understand"
+    When the participant clicks the button
+    Then the modal is closed

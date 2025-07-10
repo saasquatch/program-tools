@@ -14,6 +14,7 @@ export interface DocusignFormViewProps {
     participantTypeDisabled: boolean;
     loadingError?: boolean;
     showExitButton: boolean;
+    showModal: boolean;
     formState: {
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
@@ -32,6 +33,8 @@ export interface DocusignFormViewProps {
   callbacks: {
     onExit: () => void;
     setParticipantType: (p: ParticipantType) => void;
+    onModalOpen: () => void;
+    onModalClose: () => void;
   };
   text: {
     exitButton: string;
@@ -48,6 +51,9 @@ export interface DocusignFormViewProps {
     participantType: string;
     taxAndPayoutsDescription: string;
     supportLink: string;
+    modalTitle: string;
+    modalDescription: string;
+    modalButtonText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -59,6 +65,11 @@ export interface DocusignFormViewProps {
 }
 
 const style = {
+  ModalTitleContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    alignItems: "center",
+  },
   FormWrapper: {
     display: "flex",
     justifyContent: "flex-start",
@@ -173,6 +184,29 @@ const style = {
     color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+
+    "&::part(title)": {
+      fontSize: "var(--sl-font-size-large)",
+      fontWeight: "600",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -218,6 +252,41 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.showModal}
+        onSl-hide={callbacks.onModalClose}
+      >
+        <div class={classes.ModalTitleContainer} slot="label">
+          <sl-icon
+            name="info-circle"
+            style={{ color: "var(--sl-color-info-500)" }}
+          />
+          <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
+            {text.modalTitle}
+          </h2>
+        </div>
+        <p>
+          {intl.formatMessage(
+            {
+              id: "modalText",
+              defaultMessage: text.modalDescription,
+            },
+            {
+              br: <br />,
+            }
+          )}
+        </p>
+        <sl-button
+          slot="footer"
+          type="primary"
+          class={sheet.classes.DialogButton}
+          onClick={callbacks.onModalClose}
+          exportparts="base: primarybutton-base"
+        >
+          {text.modalButtonText}
+        </sl-button>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && (
