@@ -61,7 +61,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         border: `1px solid ${
           content.borderColor || "var(--sl-color-neutral-200)"
         }`,
-        borderRadius: "var(--sl-border-radius-large)",
+        borderRadius: "var(--sqm-border-radius-normal)",
         boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
@@ -97,7 +97,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
       borderRadius:
-        "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
+        "var(--sqm-border-radius-normal) var(--sqm-border-radius-normal) 0 0",
       borderBottom: "none",
       background: content.backgroundColor || "var(--sl-color-primary-50)",
       fontWeight: "var(--sl-font-weight-semibold)",
@@ -117,7 +117,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
       borderRadius:
-        "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
+        "var(--sqm-border-radius-normal) var(--sqm-border-radius-normal) 0 0",
       borderBottom: "none",
       background: content.backgroundColor || "var(--sl-color-warning-50)",
       fontWeight: "var(--sl-font-weight-semibold)",
@@ -294,7 +294,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         style={{
           borderRadius:
             taskUnavailable &&
-            "0 0 var(--sl-border-radius-large) var(--sl-border-radius-large)",
+            "0 0 var(--sqm-border-radius-normal) var(--sqm-border-radius-normal)",
         }}
         class={
           taskUnavailable
