@@ -123,7 +123,7 @@ export class RewardTableStatusCell {
       if (!taxConnection?.publisher?.withdrawalSettings)
         return this.pendingPartnerCreation;
     }
-    if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+    if (reward?.pendingReasons?.includes("MISSING_PAYOUT_CONFIGURATION")) {
       return this.pendingPartnerCreation;
     }
 

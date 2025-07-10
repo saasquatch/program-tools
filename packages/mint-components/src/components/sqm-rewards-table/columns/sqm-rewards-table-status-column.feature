@@ -2,7 +2,7 @@
 Feature: Reward Table Status Column
   Shows the status of each reward
 
-  Background: 
+  Background:
     Given the status column is included in the reward table
 
   @motivating @ui
@@ -10,7 +10,7 @@ Feature: Reward Table Status Column
     Given the "column-title" prop is set to <value>
     Then the status column is shown with <columnTitle>
 
-    Examples: 
+    Examples:
       | value           | columnTitle     |
       | Status          |                 |
       | My column title | My column title |
@@ -22,7 +22,7 @@ Feature: Reward Table Status Column
     When they view the reward table
     Then the status of their reward is displayed in <pillColour> pill with <text>
 
-    Examples: 
+    Examples:
       | status                   | text             | pillColour |
       | AVAILABLE                | Available        | Green      |
       | CANCELLED                | Cancelled        | Red        |
@@ -50,7 +50,7 @@ Feature: Reward Table Status Column
     And under the pill is <text>
     And the date is localized to the users locale
 
-    Examples: 
+    Examples:
       | reward                                                       | text                                                                             |
       | available reward with an expiry date                         | localized expiry date in format "Month-Day-Year"                                 |
       | redeemed reward                                              | localized redemption date in format "Month-Day-Year"                             |
@@ -74,7 +74,7 @@ Feature: Reward Table Status Column
     Given a user
     And they are in a program that has Impact tax handling enabled
     And they have at least one pending reward
-    And the reward's pending reasons include "PAYOUT_CONFIGURATION_MISSING"
+    And the reward's pending reasons include "MISSING_PAYOUT_CONFIGURATION"
     Then the status description will be
       """
       Complete your tax and cash payout setup to receive your rewards.
@@ -88,7 +88,7 @@ Feature: Reward Table Status Column
     When they view the reward table
     Then the status of their reward is displayed in <pillColour> pill with <text>
 
-    Examples: 
+    Examples:
       | status             | text              | pillColour |
       | AVAILABLE          | Redeem me!        | Green      |
       | CANCELLED          | Unavailable       | Red        |
@@ -109,7 +109,7 @@ Feature: Reward Table Status Column
     When they view the reward table
     Then they see <text> under the Available Status pill
 
-    Examples: 
+    Examples:
       | value         | text                        |
       |               | Expires on <EXPIRY DATE>    |
       | Redeem before | Redeem before <EXPIRY DATE> |
