@@ -1,17 +1,17 @@
-import { gql } from "graphql-request";
-import { pathToRegexp } from "path-to-regexp";
-import { useMemo } from "@saasquatch/universal-hooks";
 import {
-  useQuery,
-  useProgramId,
-  useUserIdentity,
   useLocale,
+  useProgramId,
+  useQuery,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
+import { useMemo } from "@saasquatch/universal-hooks";
 import debugFn from "debug";
+import { gql } from "graphql-request";
+import { pathToRegexp } from "path-to-regexp";
+import { useChildElements } from "../../tables/useChildElements";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
-import { useChildElements } from "../../tables/useChildElements";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -1020,8 +1020,8 @@ export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
   { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
-  { name: "referralsMonth", route: "/(referralsMonth)" },
-  { name: "referralsWeek", route: "/(referralsWeek)" },
+  { name: "referralsMonth", route: "/(referralsMonth)/:status?" }, // TODO: Add status
+  { name: "referralsWeek", route: "/(referralsWeek)/:status?" }, // TODO: Add status
   { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
   { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
   { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
