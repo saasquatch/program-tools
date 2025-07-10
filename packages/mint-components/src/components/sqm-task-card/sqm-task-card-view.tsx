@@ -58,9 +58,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         position: "relative",
         boxSizing: "border-sizing",
         background: content.backgroundColor || "var(--sqm-portal-background)",
-        border: `1px solid ${
-          content.borderColor || "var(--sl-color-neutral-200)"
-        }`,
+        border: `1px solid ${content.borderColor || "var(--sqm-border-color)"}`,
         borderRadius: "var(--sqm-border-radius-normal)",
         boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
         fontSize: "var(--sl-font-size-small)",

@@ -589,8 +589,7 @@ html {
     window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "white"
   };
   --sqm-text-subdued: ${
-    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText ||
-    "#b3b3b3"
+    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText
   };
 
   --sqm-primary-color: ${
@@ -644,12 +643,6 @@ html {
     window.SquatchBrandingConfig?.secondaryButton?.borderRadius + "px"
   };
 
-  --sqm-tertiary-button-background: transparent;
-  --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
-  --sqm-tertiary-button-color: var(--sqm-text); 
-  --sqm-tertiary-button-color-border: transparent; 
-  --sqm-tertiary-button-radius: 30px;
-  
   --sqm-border-radius-normal: ${
     window.SquatchBrandingConfig?.border?.borderRadius + "px"
   }; 
@@ -750,8 +743,7 @@ html {
     "#eaeaea"
   };
   --sqm-input-border-radius: ${
-    // window.SquatchBrandingConfig?.formFields?.borderRadius || "4px"
-    "4px"
+    window.SquatchBrandingConfig?.formFields?.borderRadius + "px"
   };
   --sqm-input-color: ${
     window.SquatchBrandingConfig?.formFields?.formFieldColor?.inputText ||
@@ -767,13 +759,9 @@ html {
     window.SquatchBrandingConfig?.formFields?.hoverStateColor || "#ccc"
   };
   --sqm-input-label-font-size: inherit;
-  --sqm-input-disabled-color: ${
-    // window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
-    "#fff"
-  };
+  --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
-    // window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
-    "#fff"
+    window.SquatchBrandingConfig?.formFields?.disabledBackgroundColor
   };
 
   --sl-color-primary-100: var(--sqm-primary-color);
