@@ -20,6 +20,11 @@ export const Netflix: BrandingConfiguration = {
     brandFont: "Netflix Sans, Arial, sans-serif",
     brandColor: "#E50914",
   },
+  border: {
+    borderColor: "#333333",
+    borderRadius: 4,
+    borderThickness: 1,
+  },
   color: {
     textColorShades: {
       mainText: "white",
@@ -105,6 +110,11 @@ export const Amazon: BrandingConfiguration = {
     brandFont: "Amazon Ember, Arial, sans-serif",
     brandColor: "#FF9900",
   },
+  border: {
+    borderColor: "#D5D9D9",
+    borderRadius: 4,
+    borderThickness: 1,
+  },
   color: {
     backgroundColor: "#ffffff",
     textColorShades: {
@@ -189,6 +199,11 @@ export const Spotify: BrandingConfiguration = {
   main: {
     brandColor: "#1ed760",
   },
+  border: {
+    borderColor: "#f4f4f4",
+    borderRadius: 18,
+    borderThickness: 1,
+  },
   color: {
     textColorShades: {
       mainText: "white",
@@ -238,6 +253,11 @@ export const Spotify: BrandingConfiguration = {
 
 export const Google: BrandingConfiguration = {
   main: { brandColor: "#4285F4", brandFont: "Roboto, Arial, sans-serif" },
+  border: {
+    borderColor: "#DADCE0",
+    borderRadius: 4,
+    borderThickness: 1,
+  },
   color: {
     textColorShades: {
       mainText: "#212124",

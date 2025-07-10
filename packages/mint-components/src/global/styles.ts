@@ -651,17 +651,12 @@ html {
   --sqm-tertiary-button-radius: 30px;
   
   --sqm-border-radius-normal: ${
-    // window.SquatchBrandingConfig?.border?.radius || "18px"
-    "18px"
+    window.SquatchBrandingConfig?.border?.borderRadius + "px"
   }; 
-  --sqm-border-color: ${
-    // window.SquatchBrandingConfig?.border?.color || "white"
-    "white"
-  };
+  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.borderColor};
 
   --sqm-border-thickness: ${
-    // window.SquatchBrandingConfig?.border?.thickness || "1px"
-    "1px"
+    window.SquatchBrandingConfig?.border?.borderThickness + "px"
   };
 
   --sqm-accent-color-icon: ${

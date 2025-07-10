@@ -290,6 +290,11 @@ export interface BrandingConfiguration {
     selectedStateColor?: string;
     hoverStateColor?: string;
   };
+  border?: {
+    borderRadius?: number;
+    borderThickness?: number;
+    borderColor?: string;
+  };
   /**
    * Defines widget dimensions.
    */
