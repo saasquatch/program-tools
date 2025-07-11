@@ -445,7 +445,7 @@ const stageList = ["chooseReward", "chooseAmount", "confirmation", "success"];
 export function RewardExchangeView(props: RewardExchangeViewProps) {
   const { states, data, callbacks, refs } = props;
   const { selectedItem, selectedStep } = states;
-
+  console.log("Hello ? ");
   const stageProgressList = {
     chooseReward: states.content.text.chooseRewardTitle,
     chooseAmount: states.content.text.chooseAmountTitle,

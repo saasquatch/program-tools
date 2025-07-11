@@ -1,4 +1,6 @@
 import { h } from "@stencil/core";
+import { RewardExchangeProps } from "./useRewardExchangeList";
+import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
 
 const baseResponse = (
   data,
@@ -10,7 +12,7 @@ const baseResponse = (
   fueltank = null,
   noExchangeOptions = false,
   queryError = false
-) => ({
+): RewardExchangeViewProps => ({
   states: {
     content: {
       text: {
@@ -75,7 +77,7 @@ const baseResponse = (
     setStage: null,
     setExchangeState: null,
     copyFuelTankCode: null,
-    refs: null,
+    // refs: null,
   },
   refs: null,
 });
