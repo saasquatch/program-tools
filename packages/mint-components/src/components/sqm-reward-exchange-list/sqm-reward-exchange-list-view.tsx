@@ -79,8 +79,11 @@ const style = {
     margin: "0 auto",
   },
   Select: {
+    "&::part(base)": {
+      borderRadius: "var(--sqm-input-border-radius)",
+    },
     "&::part(label)": {
-      //   color: "var(--sl-color-primary-500)",
+      color: "var(--sqm-input-label-color)",
     },
     "&::part(menu)": {
       maxHeight: "450px",
@@ -96,7 +99,7 @@ const style = {
     },
 
     "& sl-menu-item::part(base):focus": {
-      background: "transparent",
+      background: "var(--sqm-accent-color-background)",
       color: "var(--sqm-text)",
     },
   },
@@ -118,7 +121,7 @@ const style = {
         flex: "1 1 0",
       },
       "& .text.subdued": {
-        color: "var(--sl-color-neutral-200)",
+        color: "var(--sqm-text-subdued)",
       },
     },
   },
@@ -366,7 +369,6 @@ const style = {
     },
     "& .field": {
       width: "30%",
-      textTransform: "uppercase",
       fontSize: "var(--sl-font-size-medium)",
       fontWeight: "var(--sl-font-weight-normal)",
       color: "var(--sqm-text-subdued)",

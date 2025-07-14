@@ -102,6 +102,7 @@ export const Netflix: BrandingConfiguration = {
     },
     hoverStateColor: "#777777",
     selectedStateColor: "#E50914",
+    borderRadius: 4,
   },
 };
 
@@ -190,6 +191,7 @@ export const Amazon: BrandingConfiguration = {
       border: "#D5D9D9",
       inputText: "#2f2f2f",
     },
+    borderRadius: 4,
     hoverStateColor: "#A2A2A2",
     selectedStateColor: "#007185",
   },
@@ -246,6 +248,7 @@ export const Spotify: BrandingConfiguration = {
       border: "#7c7c7c",
       inputText: "#fff",
     },
+    borderRadius: 30,
     hoverStateColor: "white",
     selectedStateColor: "white",
   },
@@ -333,6 +336,7 @@ export const Google: BrandingConfiguration = {
       border: "#DADCE0",
       inputText: "#202124",
     },
+    borderRadius: 4,
     hoverStateColor: "#9AA0A6",
     selectedStateColor: "#4285F4",
   },
