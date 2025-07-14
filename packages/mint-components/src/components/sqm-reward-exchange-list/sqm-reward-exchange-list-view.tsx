@@ -132,6 +132,9 @@ const style = {
     userSelect: "none",
     height: "120px",
     "&::part(base)": {
+      background: "var(--sqm-portal-background)",
+      border: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
+      borderRadius: "var(--sqm-border-radius-normal)",
       boxShadow: "none",
       width: "100%",
     },
@@ -140,10 +143,11 @@ const style = {
       padding: 0,
     },
     "& .selected": {
+      borderRadius: "var(--sqm-border-radius-normal)",
       position: "relative",
       top: "-2%",
       left: "100%",
-      color: "var(--sl-color-primary-500)",
+      color: "var(--sqm-primary-color)",
       margin: "-9px",
     },
   },
@@ -178,7 +182,7 @@ const style = {
       fontSize: "var(--sl-font-size-medium)",
       lineHeight: "var(--sl-line-height-dense)",
       fontWeight: "600",
-      color: "var(--sl-color-neutral-1000)",
+      color: "var(--sqm-text)",
       display: "-webkit-box",
       "-webkit-line-clamp": "1",
       "-webkit-box-orient": "vertical",
@@ -188,7 +192,7 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       lineHeight: "var(--sl-line-height-dense)",
       marginTop: "var(--sl-spacing-x-small)",
-      color: "var(--sl-color-neutral-500)",
+      color: "var(--sqm-text-subdued)",
       display: "-webkit-box",
       "-webkit-line-clamp": "1",
       "-webkit-box-orient": "vertical",
@@ -199,7 +203,7 @@ const style = {
       lineHeight: "var(--sl-line-height-dense)",
       marginTop: "var(--sl-spacing-x-small)",
       fontWeight: "600",
-      color: "var(--sl-color-warning-600)",
+      color: "var(--sqm-warning-color-icon)",
       display: "-webkit-box",
       "-webkit-line-clamp": "1",
       "-webkit-box-orient": "vertical",
@@ -244,17 +248,17 @@ const style = {
     "& .title": {
       fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-semibold)",
-      color: "var(--sl-color-neutral-1000)",
+      color: "var(--sqm-text)",
     },
     "& .points": {
       fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-semibold)",
-      color: "var(--sl-color-primary-500)",
+      color: "var(--sqm-accent-color-text)",
     },
     "& .description": {
       fontSize: "var(--sl-font-size-medium)",
       fontWeight: "var(--sl-font-weight-normal)",
-      color: "var(--sl-color-neutral-500)",
+      color: "var(--sqm-text-subdued)",
       margin: "var(--sl-spacing-medium) 0",
       lineHeight: "var(--sl-line-height-dense)",
       marginTop: "var(--sl-spacing-xx-small)",
@@ -264,15 +268,15 @@ const style = {
     },
 
     "& sl-menu-item[disabled]::part(label)": {
-      color: "var(--sl-color-neutral-300)",
+      color: "var(sqm-text-subdued)",
     },
 
     "& sl-menu-item[disabled]": {
       "& .step-cost": {
-        color: "var(--sl-color-neutral-300)",
+        color: "var(sqm-text-subdued)",
       },
       "& .step-value": {
-        color: "var(--sl-color-neutral-300)",
+        color: "var(sqm-text-subdued)",
       },
     },
   },
@@ -281,11 +285,11 @@ const style = {
     display: "flex",
     flexDirection: "column",
     "&::part(label)": {
-      color: "var(--sl-color-neutral-900)",
+      color: "var(--sqm-text)",
       margin: "0",
     },
     "& .step-cost": {
-      color: "var(--sl-color-neutral-500)",
+      color: "var(--sqm-text-subdued)",
       marginBottom: "var(--sl-spacing-x-small)",
     },
     "& .step-unavailable": {
@@ -300,10 +304,10 @@ const style = {
     "& .title": {
       fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-semibold)",
-      color: "var(--sl-color-neutral-1000)",
+      color: "var(--sqm-text)",
     },
     "& .description": {
-      color: "var(--sl-color-neutral-400)",
+      color: "var(--sqm-text-subued)",
       maxWidth: "350px",
       margin: "0 auto",
       lineHeight: "var(--sl-line-height-dense)",
@@ -396,10 +400,7 @@ const style = {
     "& .cancel": {
       marginLeft: "auto",
       marginRight: "var(--sl-spacing-medium)",
-      "&::part(base)": {
-        fontWeight: "var(--sl-font-weight-normal)",
-        color: "var(--sl-color-neutral-1000)",
-      },
+
       "@media (max-width: 499px)": {
         width: "100%",
         marginRight: "0",
@@ -407,12 +408,6 @@ const style = {
       },
     },
     "& .continue": {
-      "&::part(base)": {
-        background: "var(--sl-color-primary-500)",
-        borderColor: "var(--sl-color-primary-500)",
-        fontWeight: "var(--sl-font-weight-normal)",
-        color: "var(--sl-color-neutral-0)",
-      },
       "@media (max-width: 499px)": {
         width: "100%",
       },
@@ -445,7 +440,6 @@ const stageList = ["chooseReward", "chooseAmount", "confirmation", "success"];
 export function RewardExchangeView(props: RewardExchangeViewProps) {
   const { states, data, callbacks, refs } = props;
   const { selectedItem, selectedStep } = states;
-  console.log("Hello ? ");
   const stageProgressList = {
     chooseReward: states.content.text.chooseRewardTitle,
     chooseAmount: states.content.text.chooseAmountTitle,
@@ -532,9 +526,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               const style = {
                 boxShadow:
                   item.key === selectedItem?.key
-                    ? "0 0 0 2px var(--sl-color-primary-500)"
+                    ? "0 0 0 2px var(--sqm-primary-color)"
                     : "none",
-                borderRadius: "4px",
+                borderRadius: "var(--sqm-border-radius-normal)",
+                borderColor: "none",
               };
 
               return (
@@ -658,6 +653,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <div class={sheet.classes.Button}>
           <sl-button
             exportparts="base: primarybutton-base"
+            type="primary"
             class="continue right"
             size="large"
             onClick={() => callbacks.setStage("chooseAmount")}
@@ -717,6 +713,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               exportparts="base: primarybutton-base"
               class="continue"
               size="large"
+              type="primary"
               onClick={() => callbacks.setStage("confirmation")}
               disabled={isDisabled}
             >
@@ -880,7 +877,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                         width: "100px",
                         height: "100px",
                         margin: "9px",
-                        "--border-radius": "4px",
+                        "--border-radius": "var(--sqm-border-radius-normal)",
                       }}
                     ></sl-skeleton>
                   </div>

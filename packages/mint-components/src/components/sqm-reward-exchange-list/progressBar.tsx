@@ -76,8 +76,8 @@ function ProgressLine({
         borderRadius: "4px",
         background:
           incomplete || active
-            ? "var(--sl-color-neutral-200)"
-            : "var(--sl-color-success-500)",
+            ? "var(--sqm-border-color)"
+            : "var(--sqm-success-color-icon)",
         position: "relative",
         bottom: "0",
         left: "0",
