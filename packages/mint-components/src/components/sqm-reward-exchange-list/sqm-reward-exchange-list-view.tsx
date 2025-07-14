@@ -88,6 +88,7 @@ const style = {
 
     "& sl-menu-item::part(checked-icon)": {
       top: "8px",
+      color: "var(--sqm-text)",
     },
 
     "& sl-menu-item::part(base)": {
@@ -96,7 +97,7 @@ const style = {
 
     "& sl-menu-item::part(base):focus": {
       background: "transparent",
-      color: "var(--sl-color-gray-700)",
+      color: "var(--sqm-text)",
     },
   },
   ProgressBar: {
@@ -239,7 +240,6 @@ const style = {
     "& .text": {
       width: "50%",
       maxWidth: "400px",
-      //   minWidth: "330px",
       "@media (max-width: 799px)": {
         width: "auto",
         margin: "auto",
@@ -294,7 +294,7 @@ const style = {
     },
     "& .step-unavailable": {
       fontSize: "var(--sl-font-size-small)",
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sqm-warning-color-text)",
       margin: "0",
     },
   },
@@ -318,7 +318,7 @@ const style = {
       maxWidth: "350px",
       margin: "-30px auto var(--sl-spacing-xxx-large) auto",
       textAlign: "left",
-      color: "var(--sl-color-neutral-700)",
+      color: "var(--sqm-text-subdued)",
     },
   },
 
@@ -369,7 +369,7 @@ const style = {
       textTransform: "uppercase",
       fontSize: "var(--sl-font-size-medium)",
       fontWeight: "var(--sl-font-weight-normal)",
-      color: "var(--sl-color-neutral-400)",
+      color: "var(--sqm-text-subdued)",
       textAlign: "left",
       paddingRight: "var(--sl-spacing-xxx-large)",
       "@media (max-width: 499px)": {
@@ -383,7 +383,7 @@ const style = {
       fontWeight: "var(--sl-font-weight-semibold)",
     },
     "& .top-border": {
-      borderTop: "1px solid var(--sl-color-neutral-200)",
+      borderTop: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
     },
     "& .image": {
       width: "200px",
@@ -766,7 +766,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class={sheet.classes.Button}>
             <sl-button
               class="cancel"
-              type="text"
+              type="secondary"
               size="large"
               onClick={() => callbacks.setStage("chooseAmount")}
             >
@@ -775,6 +775,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <sl-button
               class="continue"
               size="large"
+              type="primary"
               loading={states.loading}
               onClick={callbacks.exchangeReward}
             >
