@@ -193,7 +193,7 @@ export class ReferralTableRewardsCell {
         if (!taxConnection?.publisher?.withdrawalSettings)
           return "PENDING_PARTNER_CREATION";
       }
-      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+      if (reward?.pendingReasons?.includes("MISSING_PAYOUT_CONFIGURATION")) {
         return "PENDING_PARTNER_CREATION";
       }
 
