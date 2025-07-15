@@ -79,7 +79,7 @@ declare global {
   }
 }
 
-const style = `
+export const getStyles = (config: BrandingConfiguration | null) => `
 /* vietnamese */
 @font-face {
   font-family: 'Nunito Sans';
@@ -579,189 +579,148 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${
-    window.SquatchBrandingConfig?.color?.backgroundColor
+    config?.color?.backgroundColor
   };
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
   --sqm-skeleton-background: #eee;
-  --sqm-text: ${
-    window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "white"
-  };
-  --sqm-text-subdued: ${
-    window.SquatchBrandingConfig?.color?.textColorShades?.subduedText
-  };
+  --sqm-text: ${config?.color?.textColorShades?.mainText || "white"};
+  --sqm-text-subdued: ${config?.color?.textColorShades?.subduedText};
 
-  --sqm-primary-color: ${
-    window.SquatchBrandingConfig?.main?.brandColor || "#1ed760"
-  };
+  --sqm-primary-color: ${config?.main?.brandColor || "#1ed760"};
   --sqm-primary-button-background:${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.background ||
-    "#1ed760"
+    config?.primaryButton?.buttonColor?.background || "#1ed760"
   };
   --sqm-primary-button-background-hover: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.background ||
-    "#1ed760"
+    config?.primaryButton?.buttonHoverColor?.background || "#1ed760"
   };
   --sqm-primary-button-color-hover: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.label
+    config?.primaryButton?.buttonHoverColor?.label
   };
   --sqm-primary-button-border-color-hover: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonHoverColor?.border
+    config?.primaryButton?.buttonHoverColor?.border
   };
   --sqm-primary-button-color: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.label || "#FFFFFF"
+    config?.primaryButton?.buttonColor?.label || "#FFFFFF"
   };
   --sqm-primary-button-color-border: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor?.border ||
-    "transparent"
+    config?.primaryButton?.buttonColor?.border || "transparent"
   };
-  --sqm-primary-button-radius: ${
-    window.SquatchBrandingConfig?.primaryButton?.borderRadius + "px"
-  };
+  --sqm-primary-button-radius: ${config?.primaryButton?.borderRadius + "px"};
   --sqm-secondary-button-background: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
+    config?.secondaryButton?.buttonColor || "#191414"
   };
   --sqm-secondary-button-background-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.background
+    config?.secondaryButton?.buttonHoverColor?.background
   };
   --sqm-secondary-button-color-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.label
+    config?.secondaryButton?.buttonHoverColor?.label
   };
   --sqm-secondary-button-border-color-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonHoverColor?.border
+    config?.secondaryButton?.buttonHoverColor?.border
   };
   --sqm-secondary-button-color: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.label ||
-    "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.label || "#FFFFFF"
   };
   --sqm-secondary-button-color-border: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonColor?.border ||
-    "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.border || "#FFFFFF"
   };
   --sqm-secondary-button-radius: ${
-    window.SquatchBrandingConfig?.secondaryButton?.borderRadius + "px"
+    config?.secondaryButton?.borderRadius + "px"
   };
 
-  --sqm-border-radius-normal: ${
-    window.SquatchBrandingConfig?.border?.borderRadius + "px"
-  }; 
-  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.borderColor};
+  --sqm-border-radius-normal: ${config?.border?.borderRadius + "px"}; 
+  --sqm-border-color: ${config?.border?.borderColor};
 
-  --sqm-border-thickness: ${
-    window.SquatchBrandingConfig?.border?.borderThickness + "px"
-  };
+  --sqm-border-thickness: ${config?.border?.borderThickness + "px"};
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.icon || "#1ed760"
+    config?.color?.accentColorShades?.icon || "#1ed760"
   };
   --sqm-accent-color-text: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.text || "#fff"
+    config?.color?.accentColorShades?.text || "#fff"
   };    
   --sqm-accent-color-border: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.border || "#1ed760"
+    config?.color?.accentColorShades?.border || "#1ed760"
   };
   --sqm-accent-color-background: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.background ||
-    "#0d4a27"
+    config?.color?.accentColorShades?.background || "#0d4a27"
   };
 
   --sqm-success-color-icon: ${
-    window.SquatchBrandingConfig?.color?.success?.iconAndBadge ||
-    "var(--sl-color-success-600)"
+    config?.color?.success?.iconAndBadge || "var(--sl-color-success-600)"
   };
   --sqm-success-color-text: ${
-    window.SquatchBrandingConfig?.color?.success?.text ||
-    "var(--sl-color-success-950)"
+    config?.color?.success?.text || "var(--sl-color-success-950)"
   };
   --sqm-success-color-border: ${
-    window.SquatchBrandingConfig?.color?.success?.border ||
-    "var(--sl-color-success-400)"
+    config?.color?.success?.border || "var(--sl-color-success-400)"
   };
   --sqm-success-color-background: ${
-    window.SquatchBrandingConfig?.color?.success?.background ||
-    "var(--sl-color-success-300)"
+    config?.color?.success?.background || "var(--sl-color-success-300)"
   };
   
   --sqm-warning-color-icon: ${
-    window.SquatchBrandingConfig?.color?.warning?.iconAndBadge ||
-    "var(--sl-color-warning-600)"
+    config?.color?.warning?.iconAndBadge || "var(--sl-color-warning-600)"
   };
   --sqm-warning-color-text: ${
-    window.SquatchBrandingConfig?.color?.warning?.text ||
-    "var(--sl-color-warning-950)"
+    config?.color?.warning?.text || "var(--sl-color-warning-950)"
   };
   --sqm-warning-color-border: ${
-    window.SquatchBrandingConfig?.color?.warning?.border ||
-    "var(--sl-color-warning-400)"
+    config?.color?.warning?.border || "var(--sl-color-warning-400)"
   };
   --sqm-warning-color-background: ${
-    window.SquatchBrandingConfig?.color?.warning?.background ||
-    "var(--sl-color-warning-300)"
+    config?.color?.warning?.background || "var(--sl-color-warning-300)"
   };
 
   --sqm-danger-color-icon: ${
-    window.SquatchBrandingConfig?.color?.critical?.iconAndBadge ||
-    "var(--sl-color-danger-600)"
+    config?.color?.critical?.iconAndBadge || "var(--sl-color-danger-600)"
   };
   --sqm-danger-color-text: ${
-    window.SquatchBrandingConfig?.color?.critical?.text ||
-    "var(--sl-color-danger-950)"
+    config?.color?.critical?.text || "var(--sl-color-danger-950)"
   };
   --sqm-danger-color-border: ${
-    window.SquatchBrandingConfig?.color?.critical?.border ||
-    "var(--sl-color-danger-400)"
+    config?.color?.critical?.border || "var(--sl-color-danger-400)"
   };
   --sqm-danger-color-background: ${
-    window.SquatchBrandingConfig?.color?.critical?.background ||
-    "var(--sl-color-danger-300)"
+    config?.color?.critical?.background || "var(--sl-color-danger-300)"
   };
 
   --sqm-informative-color-icon: ${
-    window.SquatchBrandingConfig?.color?.informative?.iconAndBadge ||
-    "var(--sl-color-sky-600)"
+    config?.color?.informative?.iconAndBadge || "var(--sl-color-sky-600)"
   };
   --sqm-informative-color-text: ${
-    window.SquatchBrandingConfig?.color?.informative?.text ||
-    "var(--sl-color-sky-950)"
+    config?.color?.informative?.text || "var(--sl-color-sky-950)"
   };
   --sqm-informative-color-border: ${
-    window.SquatchBrandingConfig?.color?.informative?.border ||
-    "var(--sl-color-sky-400)"
+    config?.color?.informative?.border || "var(--sl-color-sky-400)"
   };
   --sqm-informative-color-background: ${
-    window.SquatchBrandingConfig?.color?.informative?.background ||
-    "var(--sl-color-sky-300)"
+    config?.color?.informative?.background || "var(--sl-color-sky-300)"
   };
 
   --sqm-input-background: ${
-    window.SquatchBrandingConfig?.formFields?.formFieldColor?.background ||
-    "#fff"
+    config?.formFields?.formFieldColor?.background || "#fff"
   };
   --sqm-input-border-color: ${
-    window.SquatchBrandingConfig?.formFields?.formFieldColor?.border ||
-    "#eaeaea"
+    config?.formFields?.formFieldColor?.border || "#eaeaea"
   };
-  --sqm-input-border-radius: ${
-    window.SquatchBrandingConfig?.formFields?.borderRadius + "px"
-  };
-  --sqm-input-color: ${
-    window.SquatchBrandingConfig?.formFields?.formFieldColor?.inputText ||
-    "#000"
-  };
+  --sqm-input-border-radius: ${config?.formFields?.borderRadius + "px"};
+  --sqm-input-color: ${config?.formFields?.formFieldColor?.inputText || "#000"};
   --sqm-input-label-color: ${
-    window.SquatchBrandingConfig?.color?.textColorShades?.mainText || "#000"
+    config?.color?.textColorShades?.mainText || "#000"
   };
   --sqm-input-border-color-focus: ${
-    window.SquatchBrandingConfig?.formFields?.selectedStateColor || "#eaeaea"
+    config?.formFields?.selectedStateColor || "#eaeaea"
   };
   --sqm-input-border-color-hover: ${
-    window.SquatchBrandingConfig?.formFields?.hoverStateColor || "#ccc"
+    config?.formFields?.hoverStateColor || "#ccc"
   };
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
-    window.SquatchBrandingConfig?.formFields?.disabledBackgroundColor
+    config?.formFields?.disabledBackgroundColor
   };
 
   --sl-color-primary-100: var(--sqm-primary-color);
@@ -811,9 +770,7 @@ html {
 }
 
 body {
-  font-family: ${
-    window.SquatchBrandingConfig?.main?.brandFont || "var(--sl-font-sans)"
-  };
+  font-family: ${config?.main?.brandFont || "var(--sl-font-sans)"};
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
@@ -1048,5 +1005,3 @@ sl-icon::part(base):hover {
 
 
 `;
-
-export default style;
