@@ -8,7 +8,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Customer Note Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Reward Table Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
+ * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
  */
 @Component({
   tag: "sqm-rewards-table-customer-note-column",
