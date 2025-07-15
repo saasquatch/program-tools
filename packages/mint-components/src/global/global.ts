@@ -1,12 +1,15 @@
-import "@formatjs/intl-relativetimeformat/polyfill";
 import "@formatjs/intl-relativetimeformat/dist/locale-data/en";
+import "@formatjs/intl-relativetimeformat/polyfill";
 
-import "@formatjs/intl-pluralrules/polyfill";
-import "@formatjs/intl-pluralrules/dist/locale-data/en";
-import "babel-polyfill";
-import { useHost } from "@saasquatch/stencil-hooks";
-import { setUseHostImplementation } from "@saasquatch/component-boilerplate";
 import { createIntl, createIntlCache } from "@formatjs/intl";
+import "@formatjs/intl-pluralrules/dist/locale-data/en";
+import "@formatjs/intl-pluralrules/polyfill";
+import {
+  getEnvironmentSDK,
+  setUseHostImplementation,
+} from "@saasquatch/component-boilerplate";
+import { useHost } from "@saasquatch/stencil-hooks";
+import "babel-polyfill";
 import debugFn from "debug";
 setUseHostImplementation(useHost);
 
@@ -64,8 +67,8 @@ import {
   SlTag,
   SlTextarea,
   SlTooltip,
-  setBasePath,
   registerIconLibrary,
+  setBasePath,
 } from "@saasquatch/shoelace";
 
 try {
@@ -127,10 +130,24 @@ try {
 
 import { insertCSS } from "../insertcss";
 
-import CSS from "./styles";
+import { getStyles } from "./styles";
 
-try {
-  insertCSS(CSS as any);
-} catch (error) {
-  debug(error);
+const applyStyles = (css: string) => {
+  try {
+    insertCSS(css);
+  } catch (error) {
+    debug(error);
+  }
+};
+
+if (getEnvironmentSDK().type === "None") {
+  window.addEventListener("message", ({ data }) => {
+    if (!data?.brandingConfig) return;
+
+    const styles = getStyles(data.brandingConfig);
+    applyStyles(styles);
+  });
 }
+
+const styles = getStyles(window.SquatchBrandingConfig);
+applyStyles(styles);
