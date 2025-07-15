@@ -66,7 +66,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         color: content.textColor || "var(--sqm-text)",
       },
       "& .main.complete": {
-        background: "var(--sl-color-primary-50)",
+        opacity: "0.8",
         borderColor: "var(--sqm-accent-color-border)",
       },
       "& .main.expired": {

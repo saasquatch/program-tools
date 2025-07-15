@@ -579,7 +579,7 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${
-    window.SquatchBrandingConfig?.color?.backgroundColor || "#121212"
+    window.SquatchBrandingConfig?.color?.backgroundColor
   };
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
