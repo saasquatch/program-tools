@@ -334,6 +334,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() step3_exitButton: string = "Exit";
 
+  /**
+   * @uiName Information modal title
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalDescription: string =
+    "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
+
+  /**
+   * @uiName Information modal button text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalButtonText: string = "I understand";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -422,9 +441,13 @@ export class TaxAndCashMonolith {
    * @uiName Beneficiary account field label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_beneficiaryAccountNameLabel: string =
-    "Beneficiary account name";
-
+  @Prop() step4_beneficiaryAccountNameLabel: string = "Account holder name";
+  /**
+   * @uiName Beneficiary account field description
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_beneficiaryAccountNameDescription: string =
+    "The beneficiary name of your bank account. Ensure this matches the name on your tax form.";
   /**
    * @uiName Bank account type field label
    * @uiGroup Step 4 Properties
@@ -591,6 +614,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() step4_verifyEmailDescriptionText: string =
     "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
+
+  /**
+   * @uiName Information modal title
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalDescription: string =
+    "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped.";
+
+  /**
+   * @uiName Information modal button text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalButtonText: string = "I understand, update my information";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:

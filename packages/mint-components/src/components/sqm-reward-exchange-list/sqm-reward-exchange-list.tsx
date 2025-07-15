@@ -262,11 +262,11 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
         queryError: false,
         loading: false,
         noExchangeOptions: false,
-        empty: EmptySlot(),
+        // empty: EmptySlot(),
       },
 
       data: {
-        shareCode: "SHARECODE123",
+        // shareCode: "SHARECODE123",
         exchangeList: demoRewardExchange.data.exchangeList,
       },
       callbacks: {

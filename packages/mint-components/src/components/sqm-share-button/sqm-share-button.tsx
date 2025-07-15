@@ -17,12 +17,12 @@ import deepmerge from "deepmerge";
  * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
  * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
  * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
- * @example Web Share Sheet Share Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+ * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
  * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
  * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
- * @example Facebook Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+ * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
  * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
- * @example Line Messenger Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+ * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
  * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
  */
 @Component({

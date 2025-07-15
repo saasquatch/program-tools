@@ -14,7 +14,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
  * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
- * @example Instant Access Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+ * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({

@@ -46,6 +46,7 @@ export interface BankingInfoFormViewProps {
     bankCountry?: string;
     countrySearch?: string;
     email?: string;
+    showModal: boolean;
   };
   slots?: {
     verificationDialogSlot?: VNode;
@@ -70,6 +71,8 @@ export interface BankingInfoFormViewProps {
     setCurrency?: (currency: string) => void;
     setCountrySearch: (c: any) => void;
     onVerification: (token: string) => void;
+    onModalOpen: () => void;
+    onModalClose: () => void;
   };
   text: {
     formStep: string;
@@ -95,6 +98,9 @@ export interface BankingInfoFormViewProps {
     supportLink: string;
     verifyEmailHeaderText: string;
     verifyEmailDescriptionText: string;
+    modalTitle: string;
+    modalDescription: string;
+    modalButtonText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -106,6 +112,12 @@ export interface BankingInfoFormViewProps {
 }
 
 const style = {
+  ModalTitleContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    alignItems: "center",
+  },
+
   FormWrapper: {
     display: "flex",
     justifyContent: "flex-start",
@@ -235,6 +247,29 @@ const style = {
     height: "26px",
     width: "26px",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+
+    "&::part(title)": {
+      fontSize: "var(--sl-font-size-large)",
+      fontWeight: "600",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -337,6 +372,31 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.showModal}
+        onSl-hide={callbacks.onModalClose}
+      >
+        <div class={classes.ModalTitleContainer} slot="label">
+          <sl-icon
+            name="info-circle"
+            style={{ color: "var(--sl-color-info-500)" }}
+          />
+          <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
+            {text.modalTitle}
+          </h2>
+        </div>
+        <p>{text.modalDescription}</p>
+        <sl-button
+          slot="footer"
+          type="primary"
+          class={sheet.classes.DialogButton}
+          submit
+          exportparts="base: primarybutton-base"
+        >
+          {text.modalButtonText}
+        </sl-button>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && (
@@ -547,7 +607,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             type="primary"
             disabled={states.disabled || states.saveDisabled}
             loading={states.saveLoading}
-            submit
+            {...(states.hideSteps
+              ? { onClick: callbacks.onModalOpen }
+              : { submit: "submit" })}
             exportparts="base: primarybutton-base"
           >
             {text.continueButton}

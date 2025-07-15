@@ -34,7 +34,7 @@ const rewardsData: Reward = {
   prettyAvailableNumber: "19",
   prettyRedeemedNumber: "0",
   statuses: ["AVAILABLE", "PENDING"],
-  pendingReasons: ["US_TAX", "PAYOUT_CONFIGURATION_MISSING"],
+  pendingReasons: ["US_TAX", "MISSING_PAYOUT_CONFIGURATION"],
   globalRewardKey: null,
   rewardSource: "MANUAL",
   prettyRedeemedCredit: "0 Points",
@@ -526,7 +526,7 @@ export const StatusCellPendingPartnerCreation = () => {
       statusText="Pending"
       reward={{
         ...rewardsData,
-        pendingReasons: ["PAYOUT_CONFIGURATION_MISSING"],
+        pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
       }}
     ></sqm-rewards-table-status-cell>
   );
