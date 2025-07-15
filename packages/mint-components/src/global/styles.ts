@@ -945,7 +945,7 @@ sl-button[type="primary"]::part(base) {
 *::part(primarybutton-base):hover,
 sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
-  border-color: var(--sqm-primary-button-color-border-hover);
+  border-color: var(--sqm-primary-button-border-color-hover);
   color: var(--sqm-primary-button-color-hover);
 }
 
