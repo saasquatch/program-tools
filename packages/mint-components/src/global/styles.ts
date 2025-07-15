@@ -578,9 +578,7 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: ${
-    config?.color?.backgroundColor
-  };
+  --sqm-portal-background: ${config?.color?.backgroundColor};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
@@ -777,11 +775,11 @@ body {
   color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--sqm-portal-background) !important;
+  background-color: var(--sqm-portal-background);
 }
 
 .story-div {
-  background: var(--sqm-portal-background) !important;
+  background: var(--sqm-portal-background);
   color: var(--sqm-text) !important;
 }
 
@@ -893,7 +891,7 @@ sl-details::part(summary) {
 *::part(primarybutton-base),
 sl-button[type="primary"]::part(base) {
   width: 100%;
-  background-color: var(--sqm-primary-button-background) !important;
+  background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
   border-color: var(--sqm-primary-button-color-border);
   border-radius: var(--sqm-primary-button-radius);
