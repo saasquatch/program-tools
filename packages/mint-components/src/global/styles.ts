@@ -616,7 +616,7 @@ html {
     config?.secondaryButton?.buttonColor || "transparent"
   };
   --sqm-secondary-button-background-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.background || "transparent"
+    config?.secondaryButton?.buttonHoverColor?.background || "#DEF0FC"
   };
   --sqm-secondary-button-color-hover: ${
     config?.secondaryButton?.buttonHoverColor?.label || "#3878DB"
@@ -625,7 +625,7 @@ html {
     config?.secondaryButton?.buttonHoverColor?.border || "#3798DF"
   };
   --sqm-secondary-button-color: ${
-    config?.secondaryButton?.buttonColor?.label || "#3878DB"
+    config?.secondaryButton?.buttonColor?.label || "#27272A"
   };
   --sqm-secondary-button-color-border: ${
     config?.secondaryButton?.buttonColor?.border || "#E4E4E7"
