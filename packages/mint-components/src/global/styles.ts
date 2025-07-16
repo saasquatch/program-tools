@@ -579,26 +579,28 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: ${config?.color?.backgroundColor};
+  --sqm-portal-background: ${config?.color?.backgroundColor || "#fff"};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
   --sqm-skeleton-background: #eee;
-  --sqm-text: ${config?.color?.textColorShades?.mainText || "white"};
-  --sqm-text-subdued: ${config?.color?.textColorShades?.subduedText};
+  --sqm-text: ${config?.color?.textColorShades?.mainText || "#27272A"};
+  --sqm-text-subdued: ${
+    config?.color?.textColorShades?.subduedText || "#717179"
+  };
 
-  --sqm-primary-color: ${config?.main?.brandColor || "#1ed760"};
+  --sqm-primary-color: ${config?.main?.brandColor || "#236AEB"};
   --sqm-primary-button-background:${
-    config?.primaryButton?.buttonColor?.background || "#1ed760"
+    config?.primaryButton?.buttonColor?.background || "#236AEB"
   };
   --sqm-primary-button-background-hover: ${
-    config?.primaryButton?.buttonHoverColor?.background || "#1ed760"
+    config?.primaryButton?.buttonHoverColor?.background || "#3698df"
   };
   --sqm-primary-button-color-hover: ${
-    config?.primaryButton?.buttonHoverColor?.label
+    config?.primaryButton?.buttonHoverColor?.label || "#FFFFFF"
   };
   --sqm-primary-button-border-color-hover: ${
-    config?.primaryButton?.buttonHoverColor?.border
+    config?.primaryButton?.buttonHoverColor?.border || "transparent"
   };
   --sqm-primary-button-color: ${
     config?.primaryButton?.buttonColor?.label || "#FFFFFF"
@@ -606,53 +608,63 @@ html {
   --sqm-primary-button-color-border: ${
     config?.primaryButton?.buttonColor?.border || "transparent"
   };
-  --sqm-primary-button-radius: ${config?.primaryButton?.borderRadius + "px"};
+  --sqm-primary-button-radius: ${
+    config?.primaryButton?.borderRadius
+      ? config?.primaryButton?.borderRadius + "px"
+      : "4px"
+  };
   --sqm-secondary-button-background: ${
-    config?.secondaryButton?.buttonColor || "#191414"
+    config?.secondaryButton?.buttonColor || "transparent"
   };
   --sqm-secondary-button-background-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.background
+    config?.secondaryButton?.buttonHoverColor?.background || "#DEF0FC"
   };
   --sqm-secondary-button-color-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.label
+    config?.secondaryButton?.buttonHoverColor?.label || "#3878DB"
   };
   --sqm-secondary-button-border-color-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.border
+    config?.secondaryButton?.buttonHoverColor?.border || "#3798DF"
   };
   --sqm-secondary-button-color: ${
-    config?.secondaryButton?.buttonColor?.label || "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.label || "#27272A"
   };
   --sqm-secondary-button-color-border: ${
-    config?.secondaryButton?.buttonColor?.border || "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.border || "#E4E4E7"
   };
   --sqm-secondary-button-radius: ${
-    config?.secondaryButton?.borderRadius + "px"
+    config?.secondaryButton?.borderRadius
+      ? config?.secondaryButton?.borderRadius + "px"
+      : "4px"
   };
 
-  --sqm-border-radius-normal: ${config?.border?.borderRadius + "px"}; 
-  --sqm-border-color: ${config?.border?.borderColor};
+  --sqm-border-radius-normal: ${
+    config?.border?.borderRadius ? config?.border?.borderRadius + "px" : "4px"
+  }; 
+  --sqm-border-color: ${config?.border?.borderColor || "#E4E4E7"};
 
-  --sqm-border-thickness: ${config?.border?.borderThickness + "px"};
+  --sqm-border-thickness: ${
+    config?.border?.borderThickness
+      ? config?.border?.borderThickness + "px"
+      : "1px"
+  };
 
   --sqm-accent-color-icon: ${
-    config?.color?.accentColorShades?.icon || "#1ed760"
+    config?.color?.accentColorShades?.icon || "#7ECCF7"
   };
   --sqm-accent-color-text: ${
-    config?.color?.accentColorShades?.text || "#fff"
+    config?.color?.accentColorShades?.text || "#3798DF"
   };    
   --sqm-accent-color-border: ${
-    config?.color?.accentColorShades?.border || "#1ed760"
+    config?.color?.accentColorShades?.border || "#3798DF"
   };
   --sqm-accent-color-background: ${
-    config?.color?.accentColorShades?.background || "#0d4a27"
+    config?.color?.accentColorShades?.background || "#EFF8FE"
   };
 
   --sqm-success-color-icon: ${
     config?.color?.success?.iconAndBadge || "var(--sl-color-success-600)"
   };
-  --sqm-success-color-text: ${
-    config?.color?.success?.text || "var(--sl-color-success-950)"
-  };
+  --sqm-success-color-text: ${config?.color?.success?.text || "#fff"};
   --sqm-success-color-border: ${
     config?.color?.success?.border || "var(--sl-color-success-400)"
   };
@@ -663,9 +675,7 @@ html {
   --sqm-warning-color-icon: ${
     config?.color?.warning?.iconAndBadge || "var(--sl-color-warning-600)"
   };
-  --sqm-warning-color-text: ${
-    config?.color?.warning?.text || "var(--sl-color-warning-950)"
-  };
+  --sqm-warning-color-text: ${config?.color?.warning?.text || "#fff"};
   --sqm-warning-color-border: ${
     config?.color?.warning?.border || "var(--sl-color-warning-400)"
   };
@@ -676,9 +686,7 @@ html {
   --sqm-danger-color-icon: ${
     config?.color?.critical?.iconAndBadge || "var(--sl-color-danger-600)"
   };
-  --sqm-danger-color-text: ${
-    config?.color?.critical?.text || "var(--sl-color-danger-950)"
-  };
+  --sqm-danger-color-text: ${config?.color?.critical?.text || "#fff"};
   --sqm-danger-color-border: ${
     config?.color?.critical?.border || "var(--sl-color-danger-400)"
   };
@@ -689,9 +697,7 @@ html {
   --sqm-informative-color-icon: ${
     config?.color?.informative?.iconAndBadge || "var(--sl-color-sky-600)"
   };
-  --sqm-informative-color-text: ${
-    config?.color?.informative?.text || "var(--sl-color-sky-950)"
-  };
+  --sqm-informative-color-text: ${config?.color?.informative?.text || "#fff"};
   --sqm-informative-color-border: ${
     config?.color?.informative?.border || "var(--sl-color-sky-400)"
   };
@@ -703,23 +709,29 @@ html {
     config?.formFields?.formFieldColor?.background || "#fff"
   };
   --sqm-input-border-color: ${
-    config?.formFields?.formFieldColor?.border || "#eaeaea"
+    config?.formFields?.formFieldColor?.border || "#E4E4E7"
   };
-  --sqm-input-border-radius: ${config?.formFields?.borderRadius + "px"};
-  --sqm-input-color: ${config?.formFields?.formFieldColor?.inputText || "#000"};
+  --sqm-input-border-radius: ${
+    config?.formFields?.borderRadius
+      ? config?.formFields?.borderRadius + "px"
+      : "4px"
+  };
+  --sqm-input-color: ${
+    config?.formFields?.formFieldColor?.inputText || "#27272A"
+  };
   --sqm-input-label-color: ${
-    config?.color?.textColorShades?.mainText || "#000"
+    config?.color?.textColorShades?.mainText || "#27272A"
   };
   --sqm-input-border-color-focus: ${
-    config?.formFields?.selectedStateColor || "#eaeaea"
+    config?.formFields?.selectedStateColor || "#E4E4E7"
   };
   --sqm-input-border-color-hover: ${
-    config?.formFields?.hoverStateColor || "#ccc"
+    config?.formFields?.hoverStateColor || "#E4E4E7"
   };
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
-    config?.formFields?.disabledBackgroundColor
+    config?.formFields?.disabledBackgroundColor || "#F4F4F5"
   };
 
   --sl-color-primary-100: var(--sqm-primary-color);
@@ -892,7 +904,7 @@ sl-details::part(summary) {
 *::part(primarybutton-base),
 sl-button[type="primary"]::part(base) {
   width: 100%;
-  background-color: var(--sqm-primary-button-background) !important;
+  background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
   border-color: var(--sqm-primary-button-color-border);
   border-radius: var(--sqm-primary-button-radius);

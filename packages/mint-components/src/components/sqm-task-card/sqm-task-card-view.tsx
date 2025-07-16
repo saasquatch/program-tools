@@ -56,7 +56,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       width: "100%",
       "& .main": {
         position: "relative",
-        boxSizing: "border-sizing",
+        boxSizing: "border-box",
         background: content.backgroundColor || "var(--sqm-portal-background)",
         border: `1px solid ${content.borderColor || "var(--sqm-border-color)"}`,
         borderRadius: "var(--sqm-border-radius-normal)",
@@ -71,7 +71,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .main.expired": {
         color: content.textColor || "var(--sqm-text)",
-        background: content.backgroundColor || "var(--sl-color-neutral-50)",
+        opacity: "0.8",
       },
       "& .title": {
         fontSize: "var(--sl-font-size-medium)",
