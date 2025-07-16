@@ -135,8 +135,8 @@ import { parseBrandingConfig } from "./styles";
 
 const applyStyles = (css: string, font: string) => {
   try {
-    insertFont(font);
     insertCSS(css);
+    insertFont(font);
   } catch (error) {
     debug(error);
   }
@@ -146,6 +146,7 @@ if (getEnvironmentSDK().type === "None") {
   window.addEventListener("message", ({ data }) => {
     if (!data?.brandingConfig) return;
 
+    window.SquatchBrandingConfig = data.brandingConfig;
     const { styles, font } = parseBrandingConfig(data.brandingConfig);
     applyStyles(styles, font);
   });
