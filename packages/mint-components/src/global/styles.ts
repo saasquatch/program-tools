@@ -787,11 +787,11 @@ body {
   color: var(--sqm-text);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--sqm-portal-background);
+  background-color: var(--sqm-portal-background) !important;
 }
 
 .story-div {
-  background: var(--sqm-portal-background);
+  background: var(--sqm-portal-background) !important;
   color: var(--sqm-text) !important;
 }
 
