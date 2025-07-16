@@ -47,12 +47,14 @@ export class BrandComponent {
       return undefined;
     }
 
+    const brandingConfigFont = window.SquatchBrandingConfig?.main?.brandFont;
     const css = getCss(this.brandColor) ?? "";
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
-      if (!sanitizedFont) {
+      if (!sanitizedFont || brandingConfigFont) {
         // Nothing required in default case.
+        // Don't add font if it's set in the global config
         return;
       }
       const sheet = document.createElement("link");
@@ -76,6 +78,11 @@ export class BrandComponent {
            - resets css variable inheritence for fonts
           
           */
+
+          ${
+            brandingConfigFont
+              ? ``
+              : `
           ::slotted(*) {
             --sl-font-sans: "${font}", arial;
             --sl-input-font-family: "${font}", arial;
@@ -83,6 +90,8 @@ export class BrandComponent {
             font-family:  "${font}", arial;
 			
             ${css}
+          `
+          }
 
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);

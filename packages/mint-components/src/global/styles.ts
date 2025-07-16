@@ -79,7 +79,8 @@ declare global {
   }
 }
 
-export const getStyles = (config: BrandingConfiguration | null) => `
+export const parseBrandingConfig = (config: BrandingConfiguration | null) => ({
+  styles: `
 /* vietnamese */
 @font-face {
   font-family: 'Nunito Sans';
@@ -578,9 +579,7 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: ${
-    config?.color?.backgroundColor
-  };
+  --sqm-portal-background: ${config?.color?.backgroundColor};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
@@ -1004,4 +1003,6 @@ sl-icon::part(base):hover {
 
 
 
-`;
+`,
+  font: config.main.brandFont,
+});
