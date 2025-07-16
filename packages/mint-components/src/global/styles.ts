@@ -588,7 +588,7 @@ html {
 
   --sqm-primary-color: ${config?.main?.brandColor || "#1ed760"};
   --sqm-primary-button-background:${
-    config?.primaryButton?.buttonColor?.background || "#1ed760"
+    config?.primaryButton?.buttonColor?.background || "#ff6347"
   };
   --sqm-primary-button-background-hover: ${
     config?.primaryButton?.buttonHoverColor?.background || "#1ed760"
@@ -597,7 +597,7 @@ html {
     config?.primaryButton?.buttonHoverColor?.label
   };
   --sqm-primary-button-border-color-hover: ${
-    config?.primaryButton?.buttonHoverColor?.border
+    config?.primaryButton?.buttonHoverColor?.border || "#ff6347"
   };
   --sqm-primary-button-color: ${
     config?.primaryButton?.buttonColor?.label || "#FFFFFF"
@@ -633,17 +633,11 @@ html {
 
   --sqm-border-thickness: ${config?.border?.borderThickness + "px"};
 
-  --sqm-accent-color-icon: ${
-    config?.color?.accentColorShades?.icon || "#1ed760"
-  };
-  --sqm-accent-color-text: ${
-    config?.color?.accentColorShades?.text || "#fff"
-  };    
-  --sqm-accent-color-border: ${
-    config?.color?.accentColorShades?.border || "#1ed760"
-  };
+  --sqm-accent-color-icon: ${config?.color?.accentColorShades?.icon};
+  --sqm-accent-color-text: ${config?.color?.accentColorShades?.text};    
+  --sqm-accent-color-border: ${config?.color?.accentColorShades?.border};
   --sqm-accent-color-background: ${
-    config?.color?.accentColorShades?.background || "#0d4a27"
+    config?.color?.accentColorShades?.background
   };
 
   --sqm-success-color-icon: ${
