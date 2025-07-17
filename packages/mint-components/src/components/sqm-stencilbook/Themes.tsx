@@ -293,7 +293,7 @@ export const Google: BrandingConfiguration = {
     },
     informative: {
       text: "#01368c",
-      border: "#A8DCD7",
+      border: "#BFDBFE",
       background: "#E8F0FE",
       iconAndBadge: "#4285F4",
     },
