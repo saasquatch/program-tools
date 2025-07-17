@@ -552,7 +552,7 @@ html {
   --sl-input-help-text-color: var(--sl-color-gray-400);
   --sl-toggle-size: 1rem;
   --sl-overlay-background-color: #37415180;
-  --sl-panel-background-color: var(--sl-color-white);
+  --sl-panel-background-color: var(--sqm-portal-background);
   --sl-panel-border-color: var(--sl-color-gray-200);
   --sl-tooltip-border-radius: var(--sl-border-radius-medium);
   --sl-tooltip-background-color: var(--sl-color-gray-900);

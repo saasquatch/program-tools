@@ -463,7 +463,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             class={sheet.classes.AlertContainer}
           >
             <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.loadingErrorAlertHeader}</strong>
+            <strong>{text.error.loadingErrorAlertHeader}</strong> TEST
+            12345678910
             <br />
             {intl.formatMessage(
               {

@@ -53,6 +53,9 @@ const style = {
   },
   CodeInput: {
     maxWidth: "40px",
+    "&::part(base)": {
+      borderRadius: "4px !important",
+    },
     "&::part(input)": {
       margin: "0",
       padding: "0 var(--sl-input-spacing-small)",
@@ -62,6 +65,9 @@ const style = {
   CodeInputError: {
     ...ErrorStyles,
     maxWidth: "40px",
+    "&::part(base)": {
+      borderRadius: "4px !important",
+    },
     "&::part(input)": {
       margin: "0",
       padding: "0 var(--sl-input-spacing-small)",
@@ -69,7 +75,7 @@ const style = {
     },
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-text)",
     fontSize: "var(--sl-font-size-small)",
     margin: "0",
   },
@@ -123,7 +129,11 @@ export function WidgetCodeVerificationView(
       resendCodeLink: (
         <a
           href={""}
-          style={{ textDecoration: "none" }}
+          style={{
+            textDecoration: "underline",
+            color: "inherit",
+            cursor: "pointer",
+          }}
           onClick={(e) => {
             e.preventDefault();
             callbacks.resendEmail();

@@ -159,37 +159,11 @@ const style = {
     color: "var(--sqm-text-subdued)",
   },
 
-  AlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
   RadioContainer: {
     display: "flex",
     flexDirection: "column",
   },
-  PartnerAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   Checkbox: {
     "&::part(control)": {
       borderRadius: "50% !important",
@@ -417,15 +391,8 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </p>
         </div>
         {formState.errors?.general && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="warning"
-            open
-            class={sheet.classes.AlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.generalTitle}</strong>
-            <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.generalTitle}</p>
             {intl.formatMessage(
               {
                 id: "generalDescription",
@@ -442,19 +409,12 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
         {/* Don't show the warning if returning to edit */}
         {states.isPartner && !states.hideSteps && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={sheet.classes.PartnerAlertContainer}
-          >
-            <sl-icon slot="icon" name="info-circle"></sl-icon>
-            <strong>{text.isPartnerAlertHeader}</strong>
-            <br />
+          <sqm-form-message type="info">
+            <p part="alert-title">{text.isPartnerAlertHeader}</p>
             {intl.formatMessage(
               {
                 id: "isPartnerAlertDescription",
@@ -471,7 +431,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
         <div>
           <h4>{text.paymentMethod}</h4>

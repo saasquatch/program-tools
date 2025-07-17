@@ -39,13 +39,6 @@ const style = {
     flexDirection: "column",
     maxWidth: "320px",
   },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
-    },
-    "&::part(message)": {},
-  },
   ContinueButton: {
     width: "100%",
     maxWidth: "100px",
@@ -81,6 +74,12 @@ const vanillaStyle = `
 :host([hidden]): {
   display: none;
 }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
 `;
 
 const sheet = createStyleSheet(style);
@@ -108,15 +107,8 @@ export function WidgetEmailVerificationView(
         {styleString}
       </style>
       {states.sendCodeError && (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="danger"
-          class={sheet.classes.ErrorAlertContainer}
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <b>{text.sendCodeErrorHeader}</b>
-          <br />
+        <sqm-form-message type="error">
+          <p part="alert-title">{text.sendCodeErrorHeader}</p>
           {intl.formatMessage(
             {
               id: "sendCodeErrorDescription",
@@ -130,7 +122,7 @@ export function WidgetEmailVerificationView(
               ),
             }
           )}
-        </sl-alert>
+        </sqm-form-message>
       )}
       {states.initialLoading ? (
         renderLoadingSkeleton()

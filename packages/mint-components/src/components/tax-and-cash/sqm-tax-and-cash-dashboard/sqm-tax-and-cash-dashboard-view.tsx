@@ -302,6 +302,14 @@ const style = {
   DialogButton: { margin: "auto", width: "100%" },
 };
 
+const vanillaStyle = `
+  a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
@@ -547,6 +555,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     <div>
       <div>
         <style type="text/css">{styleString}</style>
+        <style type="text/css">{vanillaStyle}</style>
         {states.loadingError && (
           <div>
             <sl-alert

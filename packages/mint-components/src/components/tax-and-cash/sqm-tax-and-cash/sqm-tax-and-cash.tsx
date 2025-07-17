@@ -1245,10 +1245,12 @@ export class TaxAndCashMonolith {
           );
         case "/error":
           return (
-            <ErrorView
-              loadingErrorAlertHeader={this.loadingErrorAlertHeader}
-              loadingErrorAlertDescription={this.loadingErrorAlertDescription}
-            />
+            <sqm-form-message type="error">
+              <p part="alert-title">{this.loadingErrorAlertHeader}</p>
+              <p part="alert-description">
+                {this.loadingErrorAlertDescription}
+              </p>
+            </sqm-form-message>
           );
       }
     };
