@@ -43,6 +43,7 @@ export class FormMessage {
           open
         >
           <sl-icon
+            part="alert-icon"
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-octagon"}`}
           ></sl-icon>
@@ -59,6 +60,7 @@ export class FormMessage {
         >
           <sl-icon
             slot="icon"
+            part="alert-icon"
             name={`${this.icon ? this.icon : "info-circle"}`}
           ></sl-icon>
           <slot />
@@ -73,6 +75,7 @@ export class FormMessage {
           open
         >
           <sl-icon
+            part="alert-icon"
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-triangle"}`}
           ></sl-icon>
@@ -88,6 +91,7 @@ export class FormMessage {
           open
         >
           <sl-icon
+            part="alert-icon"
             slot="icon"
             name={`${this.icon ? this.icon : "check2-circle"}`}
           ></sl-icon>

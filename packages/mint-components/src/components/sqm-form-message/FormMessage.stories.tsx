@@ -7,7 +7,8 @@ export default {
 export const SuccessAlert = () => {
   return (
     <sqm-form-message type="success">
-      <div>This is a success message.</div>
+      <p part="alert-title">This is the title</p>
+      <p part="alert-description">This is the description</p>
     </sqm-form-message>
   );
 };
@@ -15,7 +16,8 @@ export const SuccessAlert = () => {
 export const ErrorAlert = () => {
   return (
     <sqm-form-message type="error">
-      <div>This is an error message</div>
+      <p part="alert-title">This is the title</p>
+      <p part="alert-description">This is the description</p>
     </sqm-form-message>
   );
 };
@@ -23,7 +25,8 @@ export const ErrorAlert = () => {
 export const WarningAlert = () => {
   return (
     <sqm-form-message type="warning">
-      <div>This is an error message</div>
+      <p part="alert-title">This is the title</p>
+      <p part="alert-description">This is the description</p>
     </sqm-form-message>
   );
 };
@@ -31,7 +34,8 @@ export const WarningAlert = () => {
 export const InfoAlert = () => {
   return (
     <sqm-form-message type="info">
-      <div>This is an info message</div>
+      <p part="alert-title">This is the title</p>
+      <p part="alert-description">This is the description</p>
     </sqm-form-message>
   );
 };
@@ -40,7 +44,7 @@ export const FullStackSuccess = () => {
   return (
     <sqm-form-message type="success" exportparts="successalert-icon">
       <div class="AlertContent">
-        <div part="successalert-text">Title</div>
+        <div part="title">Title</div>
         <div part="successalert-subtext">Body text.</div>
         <sl-button
           type="primary"
