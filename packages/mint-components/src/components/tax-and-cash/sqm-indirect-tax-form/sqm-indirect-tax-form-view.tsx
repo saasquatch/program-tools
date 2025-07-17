@@ -207,7 +207,7 @@ const vanillaStyle = `
     }
 
     hr {
-      border: 1px solid var(--sqm-border-color);
+      border: var(--sqm-border-thickness, 1px) solid var(--sqm-border-color);
     }
 
     a {

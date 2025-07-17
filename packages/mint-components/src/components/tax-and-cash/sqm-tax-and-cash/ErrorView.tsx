@@ -10,7 +10,8 @@ const styles = {
   Alert: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-danger-100)",
-      border: "1px solid var(--sl-color-danger-200)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sl-color-danger-200)",
       padding: "0 16px",
     },
     "& sl-icon": {

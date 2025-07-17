@@ -37,7 +37,8 @@ export class DividedLayout {
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border style
    */
-  @Prop() dividerStyle: string = "1px solid #EAEAEA";
+  @Prop() dividerStyle: string =
+    "var(--sqm-border-thickness) solid var(--sqm-border-color)";
 
   /**
    * Background color of the divider

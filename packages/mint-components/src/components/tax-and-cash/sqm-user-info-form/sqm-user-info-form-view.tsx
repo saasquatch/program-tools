@@ -125,7 +125,8 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sqm-danger-color-icon)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-icon)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 

@@ -162,7 +162,7 @@ const style = {
   },
   IndirectTaxPreviewContainer: {
     marginTop: "var(--sl-spacing-x-large)",
-    borderTop: "1px solid var(--sqm-border-color)",
+    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
   },
   IndirectTaxPreviewHeaderContainer: {
     marginTop: "var(--sl-spacing-large)",

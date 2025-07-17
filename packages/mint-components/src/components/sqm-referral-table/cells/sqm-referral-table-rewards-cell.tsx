@@ -50,7 +50,7 @@ export class ReferralTableRewardsCell {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
         },
         "&::part(base)": {
-          border: "1px solid var(--sqm-border-color)",
+          border: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
           opacity: "1",
         },
         "&::part(summary-icon)": {

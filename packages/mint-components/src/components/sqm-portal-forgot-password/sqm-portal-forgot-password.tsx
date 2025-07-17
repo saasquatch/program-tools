@@ -88,7 +88,8 @@ export class PortalForgotPassword {
    * @uiName Border style
    * @uiWidget textArea
    */
-  @Prop() border: string = "1px solid var(--sqm-border-color, #eaeaea)";
+  @Prop() border: string =
+    "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)";
 
   /**
    * @undocumented

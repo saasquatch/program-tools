@@ -58,7 +58,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         position: "relative",
         boxSizing: "border-box",
         background: content.backgroundColor || "var(--sqm-portal-background)",
-        border: `1px solid ${content.borderColor || "var(--sqm-border-color)"}`,
+        border: `var(--sqm-border-thickness) solid ${
+          content.borderColor || "var(--sqm-border-color)"
+        }`,
         borderRadius: "var(--sqm-border-radius-normal)",
         boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
         fontSize: "var(--sl-font-size-small)",
@@ -91,7 +93,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       fontSize: "var(--sl-font-size-small)",
       padding: "var(--sl-spacing-medium)",
       color: content.textColor || "var(--sl-color-primary-600)",
-      border: `1px solid ${
+      border: `var(--sqm-border-thickness, 1px) solid ${
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
       borderRadius:
@@ -111,7 +113,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       fontSize: "var(--sl-font-size-small)",
       padding: "var(--sl-spacing-medium)",
       color: content.textColor || "var(--sl-color-warning-600)",
-      border: `1px solid ${
+      border: `var(--sqm-border-thickness, 1px) solid ${
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
       borderRadius:

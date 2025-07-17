@@ -201,8 +201,9 @@ const style = {
   InputContainer: {
     padding: "16px",
     margin: "16px 0px 16px 0px",
-    borderTop: "1px solid var(--sqm-border-color)",
-    borderBottom: "1px solid var(--sqm-border-color)",
+    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
+    borderBottom:
+      "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     display: "flex",
     flexDirection: "column",
     width: "100%",

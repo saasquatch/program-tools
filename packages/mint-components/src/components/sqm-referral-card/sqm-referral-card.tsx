@@ -73,7 +73,7 @@ export class ReferralCard {
   @Prop() backgroundColor?: string;
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of container
    * @uiName Border color
    * @uiWidget color
    * @format color
@@ -89,7 +89,7 @@ export class ReferralCard {
   @Prop() textColor?: string;
 
   /**
-   * The border radius on the share link container (in pixels)
+   * The border radius (in pixels)
    * @uiName Border Radius
    * @uiType number
    */

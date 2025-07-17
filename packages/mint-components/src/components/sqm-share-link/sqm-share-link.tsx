@@ -77,7 +77,7 @@ export class ShareLink {
   @Prop() backgroundColor?: string;
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of share link container
    * @uiName Border color
    * @uiWidget color
    * @format color

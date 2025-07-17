@@ -58,8 +58,8 @@ export const RadioCardView = ({
   selected,
 }: RadioCardViewProps) => {
   const border = selected
-    ? "1px solid var(--sl-color-primary-500)"
-    : "1px solid #CACFD3";
+    ? "var(--sqm-border-thickness) solid var(--sqm-primary-color)"
+    : "var(--sqm-border-thickness) solid var(--sqm-border-color)";
 
   return (
     <div
