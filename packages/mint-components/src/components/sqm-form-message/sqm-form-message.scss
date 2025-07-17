@@ -1,7 +1,6 @@
 sl-alert::part(base) {
   border: var(--sqm-border-thickness) solid;
   border-radius: var(--sqm-border-radius-normal);
-  box-shadow: 0 1px 2px rgb(20 20 20 / 10%);
 }
 
 .Error::part(base) {

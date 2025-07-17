@@ -39,32 +39,3 @@ export const InfoAlert = () => {
     </sqm-form-message>
   );
 };
-
-export const FullStackSuccess = () => {
-  return (
-    <sqm-form-message type="success" exportparts="successalert-icon">
-      <div class="AlertContent">
-        <div part="title">Title</div>
-        <div part="successalert-subtext">Body text.</div>
-        <sl-button
-          type="primary"
-          exportparts="base: primarybutton-base"
-          onClick={() => {
-            console.log("click");
-          }}
-        >
-          Primary Action
-        </sl-button>
-        <sl-button
-          class="SecondaryTextButton"
-          type="text"
-          onClick={() => {
-            console.log("click");
-          }}
-        >
-          Secondary Action
-        </sl-button>
-      </div>
-    </sqm-form-message>
-  );
-};
