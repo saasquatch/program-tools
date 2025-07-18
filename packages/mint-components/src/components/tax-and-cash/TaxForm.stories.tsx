@@ -308,12 +308,13 @@ export const GeneralLoadingView = () => {
 
 export const GeneralErrorView = () => {
   return (
-    <ErrorView
-      loadingErrorAlertHeader={"There was a problem loading your form"}
-      loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact our support team."
-      }
-    />
+    <sqm-form-message type="error">
+      <p part="alert-title">There was a problem loading your form</p>
+      <p part="alert-description">
+        Please refresh the page and try again. If this problem continues,
+        contact our support team.
+      </p>
+    </sqm-form-message>
   );
 };
 

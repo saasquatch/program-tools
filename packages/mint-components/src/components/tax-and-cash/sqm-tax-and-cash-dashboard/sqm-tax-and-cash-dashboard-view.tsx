@@ -110,53 +110,6 @@ export interface TaxAndCashDashboardProps {
 }
 
 const style = {
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-text)",
-    },
-  },
-  WarningAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-warning-color-background)",
-      border: "none",
-      maxWidth: "600px",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-warning-color-text)",
-    },
-  },
-  WarningHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-warning-color-text)",
-    },
-  },
-  ErrorHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
-  ExpiringSoonAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-warning-color-background)",
-      border: "none",
-    },
-  },
   BankingInformationContainer: {
     maxWidth: "700px",
   },
@@ -336,8 +289,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:INTERNAL":
         return {
@@ -356,8 +307,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:REVIEW":
         return {
@@ -376,8 +325,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:FAILED":
         return {
@@ -396,8 +343,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "critical",
-          icon: "exclamation-octagon",
-          class: sheet.classes.ErrorHoldAlertContainer,
         };
       case "HOLD":
         return {
@@ -417,8 +362,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           ),
           buttonText: null,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningHoldAlertContainer,
         };
       default:
         return;
@@ -477,14 +420,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   const alertMap = {
     INACTIVE: (
-      <sl-alert
-        exportparts="base: alert-base, icon:alert-icon"
-        type="danger"
-        open
-        class={sheet.classes.ErrorAlertContainer}
-      >
-        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        <strong>
+      <sqm-form-message type="error">
+        <p part="alert-title">
           {intl.formatMessage(
             {
               id: `taxAlertHeaderNotActive`,
@@ -497,8 +434,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               documentType: states.documentTypeString,
             }
           )}
-        </strong>
-        <br />
+        </p>
         {intl.formatMessage(
           {
             id: `taxAlertMessage`,
@@ -511,7 +447,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             documentType: states.documentTypeString,
           }
         )}
-      </sl-alert>
+      </sqm-form-message>
     ),
   };
 
@@ -551,51 +487,37 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     }
   };
 
+  const alert = getAlert(states.payoutStatus);
+
   return (
     <div>
       <div>
         <style type="text/css">{styleString}</style>
         <style type="text/css">{vanillaStyle}</style>
         {states.loadingError && (
-          <div>
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="danger"
-              open
-              class={sheet.classes.ErrorAlertContainer}
-            >
-              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-              <strong>{text.error.loadingErrorAlertHeader}</strong>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "loadingErrorAlertDescription",
-                  defaultMessage: text.error.loadingErrorAlertDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {text.supportLink}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
-          </div>
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
+            {intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: text.error.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            )}
+          </sqm-form-message>
         )}
         {states.errors?.general && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-            class={sheet.classes.ErrorAlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.generalTitle}</strong>
-            <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.generalTitle}</p>
             {intl.formatMessage(
               {
                 id: "generalDescription",
@@ -612,34 +534,25 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
-        {getAlert(states.payoutStatus) && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            name={getAlert(states.payoutStatus)?.alertType}
-            open
-            class={getAlert(states.payoutStatus)?.class}
-          >
-            <sl-icon
-              slot="icon"
-              name={getAlert(states.payoutStatus)?.icon}
-            ></sl-icon>
-            <strong>{getAlert(states.payoutStatus).header}</strong>
-            <p style={{ margin: "0" }}>
-              {getAlert(states.payoutStatus).description}
-            </p>
-            {getAlert(states.payoutStatus).buttonText && (
+
+        {alert && (
+          <sqm-form-message type={alert.alertType}>
+            <p part="alert-title">{alert.header}</p>
+            <p part="alert-description">{alert.description}</p>
+            {alert.buttonText && (
               <sl-button
-                style={{ marginTop: "var(--sl-spacing-x-small)" }}
-                type="default"
+                style={{ marginTop: "10px" }}
+                exportparts="base: secondarybutton-base"
+                type="secondary"
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
-                {getAlert(states.payoutStatus).buttonText}
+                {alert.buttonText}
               </sl-button>
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
@@ -651,6 +564,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <sl-button
             slot="footer"
             type="primary"
+            exportparts="base: primarybutton-base"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormClick}
           >
@@ -658,7 +572,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           </sl-button>
           <sl-button
             slot="footer"
-            type="default"
+            type="secondary"
+            exportparts="base: secondarybutton-base"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormCancel}
           >
@@ -683,8 +598,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {states.canEditPayoutInfo && (
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="default"
-                class={sheet.classes.EditBankDetailsButton}
+                type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onEditPayoutInfo}
               >
                 {text.editPaymentInformationButton}
@@ -734,10 +649,10 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     </span>
                     {states.status !== "NOT_VERIFIED" && (
                       <sl-button
+                        style={{ marginTop: "20px" }}
                         disabled={states.disabled || states.loading}
                         onClick={callbacks.onClick}
-                        type="default"
-                        class={sheet.classes.NewFormButton}
+                        type="primary"
                         exportparts="base: primarybutton-base"
                       >
                         {text.newFormButton}
