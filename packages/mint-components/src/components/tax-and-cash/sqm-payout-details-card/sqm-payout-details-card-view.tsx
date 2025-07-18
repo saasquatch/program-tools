@@ -172,12 +172,7 @@ const style = {
       color: "var(--sqm-informative-color-text)",
     },
   },
-  AlertContent: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    flexDirection: "column",
-  },
+
   Container: {
     display: "flex",
     flexDirection: "column",

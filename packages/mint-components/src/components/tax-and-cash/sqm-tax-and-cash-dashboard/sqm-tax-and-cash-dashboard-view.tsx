@@ -110,6 +110,24 @@ export interface TaxAndCashDashboardProps {
 }
 
 const style = {
+  DangerBadge: {
+    "&::part(base)": {
+      backgroundColor: "var(--sqm-danger-color-icon)",
+      color: "var(--sqm-danger-color-text)",
+    },
+  },
+  SuccessBadge: {
+    "&::part(base)": {
+      backgroundColor: "var(--sqm-success-color-icon)",
+      color: "var(--sqm-success-color-text)",
+    },
+  },
+  WarningBadge: {
+    "&::part(base)": {
+      backgroundColor: "var(--sqm-warning-color-icon)",
+      color: "var(--sqm-warning-color-text)",
+    },
+  },
   BankingInformationContainer: {
     maxWidth: "700px",
   },
@@ -371,7 +389,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   const statusMap = {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="warning" pill>
+        <sl-badge class={sheet.classes.WarningBadge} type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
         <p>
@@ -389,7 +407,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="success" pill>
+        <sl-badge class={sheet.classes.SuccessBadge} type="success" pill>
           {text.statusTextActive}
         </sl-badge>
         <p>
@@ -410,7 +428,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     ),
     INACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge type="danger" pill>
+        <sl-badge class={sheet.classes.DangerBadge} type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
         <p>{text.invalidForm}</p>
