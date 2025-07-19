@@ -318,6 +318,9 @@ const style = {
 };
 
 const vanillaStyle = `
+  * {
+    font-family: var(--sqm-primary-font);
+    }
   a {
     color: inherit;
     text-decoration: underline;

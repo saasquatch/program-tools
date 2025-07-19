@@ -580,6 +580,7 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${config?.color?.backgroundColor || "#fff"};
+  --sqm-primary-font: ${config?.main?.brandFont || "var(--sl-font-sans)"};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
@@ -781,7 +782,7 @@ html {
 }
 
 body {
-  font-family: ${config?.main?.brandFont || "var(--sl-font-sans)"};
+  font-family: var(--sqm-primary-font);
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
@@ -903,6 +904,7 @@ sl-details::part(summary) {
 
 *::part(primarybutton-base),
 sl-button[type="primary"]::part(base) {
+  font-family: var(--sqm-primary-font);
   width: 100%;
   background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
@@ -925,6 +927,7 @@ sl-button[type="primary"]::part(base):focus {
 
 *::part(secondarybutton-base),
 sl-button[type="secondary"]::part(base) {
+font-family: var(--sqm-primary-font);
   background-color: var(--sqm-secondary-button-background);
   color: var(--sqm-secondary-button-color);
   border-color: var(--sqm-secondary-button-color-border);
@@ -939,12 +942,14 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
+  font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-semibold);
   color: var(--sqm-input-label-color, var(--sqm-text), black);
 }
 
 *::part(input-base), *::part(select-base), *::part(textarea-base){
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
@@ -960,6 +965,7 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 sqm-name-fields::part(input-base) {
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
@@ -993,6 +999,7 @@ sl-textarea::part(textarea-label):focus {
 }
 
 a {
+  font-family: var(--sqm-primary-font);
   color: inherit;
   text-decoration: underline;
   cursor: pointer;

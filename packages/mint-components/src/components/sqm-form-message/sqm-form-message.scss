@@ -1,6 +1,7 @@
 sl-alert::part(base) {
   border: var(--sqm-border-thickness) solid;
   border-radius: var(--sqm-border-radius-normal);
+  font-family: var(--sqm-primary-font);
 }
 
 .Error::part(base) {
