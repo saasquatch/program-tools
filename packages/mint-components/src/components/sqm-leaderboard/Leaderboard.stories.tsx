@@ -390,6 +390,44 @@ export const ReferralLeaderboard = () => {
   return <LeaderboardView {...props} />;
 };
 
+export const ReferralLeaderboardWithCustomStyles = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        ...defaultStyles,
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
+        showRank: true,
+        textColor: "white",
+        borderColor: "white",
+        background: "slateblue",
+        borderRadius: 18,
+        viewingUserHighlightColor: "yellow",
+        viewingUserHighlightTextColor: "slateblue",
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      rowNumber: 10,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        textValue: "82",
+        rank: 1,
+        rowNumber: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
 export const ReferralLeaderboardWithMaxWidth = () => {
   const props = {
     states: {

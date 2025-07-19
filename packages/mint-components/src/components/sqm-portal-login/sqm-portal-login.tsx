@@ -9,6 +9,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Microsite Login
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
  */
 @Component({
   tag: "sqm-portal-login",
@@ -130,6 +131,7 @@ export class PortalLogin {
         <slot name="secondaryButton">
           <style>{styleString}</style>
           <sl-button
+            exportparts="base: secondarybutton-base"
             type="text"
             disabled={states.loading}
             onClick={() => navigation.push(states.registerPath)}

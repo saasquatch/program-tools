@@ -52,7 +52,7 @@ const style = {
     gap: "10px",
     margin: "auto",
     textAlign: "center",
-    border: "1px solid var(--sl-color-gray-200)",
+    border: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     justifyContent: "center",
   },
   MessageContainer: {
@@ -84,7 +84,7 @@ export const DocusignExpiredView = (props: {
           style={{
             width: "50px",
             height: "50px",
-            color: "var(--sl-color-neutral-500)",
+            color: "var(--sqm-text)",
           }}
           name="clock"
         ></sl-icon>
@@ -112,7 +112,7 @@ export const DocusignErrorView = (props: {
           style={{
             width: "50px",
             height: "50px",
-            color: "var(--sl-color-gray-500)",
+            color: "var(--sqm-text)",
           }}
           name="exclamation-octagon"
         ></sl-icon>

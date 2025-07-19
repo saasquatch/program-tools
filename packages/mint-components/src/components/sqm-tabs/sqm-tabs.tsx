@@ -6,6 +6,8 @@ import { useTabs } from "./useTabs";
 
 /**
  * @uiName Tab Group
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+ * @validChildren ["sqm-tab"]
  * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
  * @exampleGroup Layout
  * @canvasRenderer always-replace
@@ -26,6 +28,15 @@ export class Tabs {
    */
   @Prop() placement?: "left" | "right" | "bottom" | "top";
 
+  /**
+   * Tab text color
+   *
+   * @uiName Text color
+   * @uiType string
+   * @uiWidget color
+   */
+  @Prop() textColor?: string;
+
   constructor() {
     withHooks(this);
   }
@@ -34,10 +45,10 @@ export class Tabs {
 
   render() {
     const { content } = useTabs();
-    const { placement } = getProps(this);
+    const { placement, textColor } = getProps(this);
 
     return (
-      <TabsView placement={placement} content={content}>
+      <TabsView placement={placement} content={content} textColor={textColor}>
         <slot />
       </TabsView>
     );

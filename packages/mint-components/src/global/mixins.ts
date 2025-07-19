@@ -30,11 +30,11 @@ export const HostBlock = {
 
 export const P = {
   "font-size": "var(--sl-font-size-small)",
-  color: "var(--sl-color-gray-800)",
+  color: "var(--sqm-text)",
   "margin-top": "0px",
 
   "&.Subtitle": {
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     margin: "0px",
   },
 };
@@ -78,21 +78,21 @@ export const ErrorStyles = {
 };
 
 export const Wrapper = {
-  "box-sizing": "border-box",
+  boxSizing: "border-box",
   width: "100%",
-  "max-width": "var(--sqm-content-max-width)",
+  maxWidth: "var(--sqm-content-max-width)",
   height: "auto",
-  "background-color": "var(--sqm-content-background)",
   display: "flex",
   padding: "var(--sl-spacing-xxx-large)",
-  border: "1px solid #eaeaea",
-  "border-radius": "8px",
+  background: "var(--sqm-portal-background)",
+  border: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
+  borderRadius: "var(--sqm-border-radius-normal)",
 };
 
 export const AuthWrapper = {
   margin: "auto",
   ...Wrapper,
-  "max-width": "500px",
+  maxWidth: "500px",
   ...Column,
   ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
 };

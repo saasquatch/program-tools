@@ -53,27 +53,35 @@ const loadingProps: PortalLoginViewProps = {
   },
 };
 
+const googleProps: PortalLoginViewProps = {
+  ...defaultProps,
+  content: {
+    secondaryButton: (
+      <span>
+        Don't have an account?{" "}
+        <sl-button style={{ width: "50px" }} size="large" type="text">
+          Register
+        </sl-button>
+      </span>
+    ),
+    googleButton: <sl-button>Sign in with Google</sl-button>,
+  },
+};
+
 export const Default = () => (
   <sqm-portal-login demoData={{ ...defaultProps }} />
 );
 
+export const Text = () => <PortalLoginView {...defaultProps} />;
+
 export const IsGoogle = () => (
-  <PortalLoginView
-    {...defaultProps}
-    content={{
-      secondaryButton: (
-        <span>
-          Don't have an account?{" "}
-          <sl-button style={{ width: "50px" }} size="large" type="text">
-            Register
-          </sl-button>
-        </span>
-      ),
-      googleButton: <sl-button>Sign in with Google</sl-button>,
-    }}
-  />
+  <sqm-portal-login demoData={{ ...googleProps }} />
 );
 
-export const LoginWithError = () => <PortalLoginView {...errorProps} />;
+export const LoginWithError = () => (
+  <sqm-portal-login demoData={{ ...errorProps }} />
+);
 
-export const LoginLoading = () => <PortalLoginView {...loadingProps} />;
+export const LoginLoading = () => (
+  <sqm-portal-login demoData={{ ...loadingProps }} />
+);

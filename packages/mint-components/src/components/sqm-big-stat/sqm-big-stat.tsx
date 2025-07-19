@@ -9,6 +9,8 @@ import { DemoData } from "../../global/demo";
 /**
  *
  * @uiName User Stat
+ * @validParents ["sqm-stat-container"]
+ * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
  * @slots [{"name":"","title":"Stat Text"}]
  * @slotEditor richText
  * @exampleGroup Statistics
@@ -36,6 +38,7 @@ export class BigStat {
    *
    * @uiName Flex reverse
    * @default
+   * @uiGroup Style
    */
   @Prop() flexReverse?: boolean = false;
   /**
@@ -45,8 +48,9 @@ export class BigStat {
    * @uiType string
    * @uiEnum ["left", "right", "center"]
    * @uiEnumNames ["Left", "Right", "Center"]
+   * @uiGroup Style
    */
-  @Prop() alignment?: "left" | "right" | "center";
+  @Prop() alignment?: "left" | "right" | "center" = "center";
 
   /**
    * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
@@ -55,6 +59,50 @@ export class BigStat {
    * @uiWidget programSelector
    */
   @Prop() programId?: string;
+
+  /**
+   * Color of the stat text
+   * @uiName Stat text color
+   * @uiWidget color
+   * @uiType string
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() statTextColor?: string;
+
+  /**
+   * Font size of the stat text in pixels
+   * @uiName Stat font size
+   * @uiType string
+   * @uiGroup Style
+   */
+  @Prop() statFontSize?: number;
+
+  /**
+   * Font weight of the stat text
+   * @uiName Stat font weight
+   * @uiGroup Style
+   * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+   * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+   */
+  @Prop() statFontWeight?: number;
+
+  /**
+   * Color of the description text
+   * @uiName Description text color
+   * @uiWidget color
+   * @uiType string
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() descriptionTextColor?: string;
+
+  /**
+   * Font size of the description text in pixels
+   * @uiName Description font size
+   * @uiGroup Style
+   */
+  @Prop() descriptionFontSize?: number;
 
   /**
    * @undocumented

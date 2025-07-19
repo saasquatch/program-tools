@@ -1,8 +1,10 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { Invoice } from "../../saasquatch";
 import {
   GenericTableView,
   GenericTableViewProps,
@@ -12,10 +14,9 @@ import {
   useRerenderListener,
 } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
-import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
 import mockInvoiceData from "./mockInvoiceData";
-import { isDemo } from "@saasquatch/component-boilerplate";
 import { InvoiceTableView } from "./sqm-invoice-table-view";
+import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
 
 /**
  * @uiName Invoice Table

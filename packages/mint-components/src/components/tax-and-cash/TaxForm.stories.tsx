@@ -1,21 +1,21 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
+import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
+import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
 import {
   ParticipantType,
   UseDocusignFormResult,
 } from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
+import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
+import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
+import LoadingView from "./sqm-tax-and-cash/LoadingView";
+import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "./subregions";
-import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
-import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
-import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
-import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
-import LoadingView from "./sqm-tax-and-cash/LoadingView";
 import { taxTypeToName } from "./utils";
-import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
 
 export default {
   title: "Components/Tax Form",
@@ -308,12 +308,13 @@ export const GeneralLoadingView = () => {
 
 export const GeneralErrorView = () => {
   return (
-    <ErrorView
-      loadingErrorAlertHeader={"There was a problem loading your form"}
-      loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact our support team."
-      }
-    />
+    <sqm-form-message type="error">
+      <p part="alert-title">There was a problem loading your form</p>
+      <p part="alert-description">
+        Please refresh the page and try again. If this problem continues,
+        contact our support team.
+      </p>
+    </sqm-form-message>
   );
 };
 
@@ -1572,13 +1573,13 @@ export const TaxAndCashDashboardDisabled = () => {
   );
 };
 
-export const TaxAndCashTextProps = () => {
-  return (
-    <sqm-tax-and-cash
-      demoData={{
-        // @ts-ignore
-        showTextProps: true,
-      }}
-    ></sqm-tax-and-cash>
-  );
-};
+// export const TaxAndCashTextProps = () => {
+//   return (
+//     <sqm-tax-and-cash
+//       demoData={{
+//         // @ts-ignore
+//         showTextProps: true,
+//       }}
+//     ></sqm-tax-and-cash>
+//   );
+// };
