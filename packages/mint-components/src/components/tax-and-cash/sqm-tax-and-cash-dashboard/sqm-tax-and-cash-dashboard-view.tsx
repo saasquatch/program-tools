@@ -3,6 +3,7 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { TaxDocumentType } from "../data";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import { capitalizeFirstLetter } from "../../../utils/utils";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -243,19 +244,62 @@ const style = {
     fontSize: "var(--sl-font-size-medium)",
     marginTop: "0",
   },
+
+  WarningButton: {
+    "&::part(base)": {
+      marginTop: "20px",
+      borderColor: "var(--sqm-warning-color-border)",
+      color: "var(--sqm-warning-color-text)",
+      background: "var(--sqm-warning-color-background)",
+
+      "&:hover": {
+        background: "var(--sqm-warning-color-icon)",
+      },
+    },
+  },
+
+  ErrorButton: {
+    "&::part(base)": {
+      marginTop: "20px",
+      borderColor: "var(--sqm-danger-color-border)",
+      color: "var(--sqm-danger-color-text)",
+      background: "var(--sqm-danger-color-background)",
+
+      "&:hover": {
+        background: "var(--sqm-danger-color-icon)",
+      },
+    },
+  },
+
+  SuccessButton: {
+    "&::part(base)": {
+      marginTop: "20px",
+      borderColor: "var(--sqm-success-color-border)",
+      color: "var(--sqm-success-color-text)",
+      background: "var(--sqm-success-color-background)",
+
+      "&:hover": {
+        background: "var(--sqm-success-color-icon)",
+      },
+    },
+  },
   Dialog: {
     "&::part(panel)": {
       maxWidth: "420px",
+    },
+    "&::part(header)": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      paddingTop: "var(--sl-spacing-large)",
     },
     "&::part(close-button)": {
       marginBottom: "var(--sl-spacing-xx-large)",
     },
     "&::part(title)": {
-      fontSize: "var(--sl-font-size-x-large)",
+      fontSize: "var(--sl-font-size-large)",
       fontWeight: "600",
-      marginTop: "var(--sl-spacing-xxx-large)",
-      padding:
-        "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      padding: "0px var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
@@ -360,7 +404,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          alertType: "critical",
+          alertType: "error",
         };
       case "HOLD":
         return {
@@ -561,9 +605,11 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <p part="alert-description">{alert.description}</p>
             {alert.buttonText && (
               <sl-button
-                style={{ marginTop: "10px" }}
-                exportparts="base: secondarybutton-base"
-                type="secondary"
+                class={
+                  sheet.classes[
+                    `${capitalizeFirstLetter(alert.alertType)}Button`
+                  ]
+                }
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
