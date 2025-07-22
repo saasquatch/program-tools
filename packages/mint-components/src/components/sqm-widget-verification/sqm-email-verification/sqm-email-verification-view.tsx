@@ -178,6 +178,36 @@ sl-textarea::part(textarea-label):focus {
   -webkit-text-fill-color: var(--sqm-input-color, white) !important;
 }
 
+*::part(input)::placeholder,
+*::part(select)::placeholder, 
+*::part(textarea)::placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-webkit-input-placeholder,
+*::part(select)::-webkit-input-placeholder,
+*::part(textarea)::-webkit-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-moz-placeholder,
+*::part(select)::-moz-placeholder,
+*::part(textarea)::-moz-placeholder {
+  font-family: var(--sqm-primary-font);
+  opacity: 1; /* Firefox adds an opacity to placeholders by default */
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-ms-input-placeholder,
+*::part(select)::-ms-input-placeholder,
+*::part(textarea)::-ms-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+
 `;
 
 const sheet = createStyleSheet(style);
