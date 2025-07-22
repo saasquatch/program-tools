@@ -47,9 +47,14 @@
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
 
+### Depends on
+
+- [sqm-form-message](../../sqm-form-message)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-indirect-tax-form --> sqm-form-message
   sqm-stencilbook --> sqm-indirect-tax-form
   sqm-tax-and-cash --> sqm-indirect-tax-form
   style sqm-indirect-tax-form fill:#f9f,stroke:#333,stroke-width:4px

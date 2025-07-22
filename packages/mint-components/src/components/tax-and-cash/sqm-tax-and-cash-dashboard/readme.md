@@ -84,6 +84,7 @@
 ### Depends on
 
 - [sqm-payout-details-card](../sqm-payout-details-card)
+- [sqm-form-message](../../sqm-form-message)
 - [sqm-invoice-table](../../sqm-invoice-table)
 - [sqm-invoice-table-download-column](../../sqm-invoice-table/columns)
 - [sqm-invoice-table-date-column](../../sqm-invoice-table/columns)
@@ -93,6 +94,7 @@
 ```mermaid
 graph TD;
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-tax-and-cash-dashboard --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
