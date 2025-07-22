@@ -6,7 +6,6 @@ import { DemoData } from "../../../global/demo";
 import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
-import { ErrorView } from "./ErrorView";
 import { extractProps } from "./extractProps";
 import LoadingView from "./LoadingView";
 import { useTaxAndCash } from "./useTaxAndCash";
@@ -14,6 +13,7 @@ import { useTaxAndCash } from "./useTaxAndCash";
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  */
 @Component({

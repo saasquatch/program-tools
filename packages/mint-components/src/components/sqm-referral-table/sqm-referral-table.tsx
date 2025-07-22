@@ -19,7 +19,7 @@ import { tryMethod, useReferralTable } from "./useReferralTable";
 
 /**
  * @uiName Referral Table
- * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqm-tab","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
  * @exampleGroup Referrals
  * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
