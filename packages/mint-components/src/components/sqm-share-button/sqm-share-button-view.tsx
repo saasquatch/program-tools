@@ -95,7 +95,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
 	sl-button::part(base) {
 	  border: ${props.border || "none"};
-	
+    font-family: var(--sqm-primary-font);
 
 	background: ${
     props.backgroundcolor
