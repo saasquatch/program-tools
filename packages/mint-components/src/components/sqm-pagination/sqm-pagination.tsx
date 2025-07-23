@@ -11,7 +11,6 @@ import { UsePagination, usePagination } from "./usePagination";
 
 /**
  * @uiName Pagination
- * @example Promo Code Pagination - <sqm-pagination></sqm-pagination>
  */
 @Component({
   tag: "sqm-pagination",

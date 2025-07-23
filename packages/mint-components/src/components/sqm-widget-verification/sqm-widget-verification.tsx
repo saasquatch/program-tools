@@ -18,8 +18,6 @@ import { useWidgetVerification } from "./useWidgetVerification";
 
 /**
  * @uiName Widget Verification Flow
- * @exampleGroup Widget Verification
- * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
  */
 @Component({
   tag: "sqm-widget-verification",
