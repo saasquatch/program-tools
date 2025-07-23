@@ -48,7 +48,9 @@ export class BrandComponent {
     }
 
     const brandingConfigFont = window.SquatchBrandingConfig?.main?.brandFont;
-    const css = getCss(this.brandColor) ?? "";
+    const css = window.SquatchBrandingConfig?.main?.brandColor
+      ? ""
+      : getCss(this.brandColor) ?? "";
     const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
