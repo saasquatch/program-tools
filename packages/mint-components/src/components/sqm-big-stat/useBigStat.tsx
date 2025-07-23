@@ -143,16 +143,28 @@ const customFieldsQuery = (
   );
 };
 
-const referralsMonthQuery = (programId: string) => {
+const referralsMonthQuery = (
+  programId: string,
+  status?: "started" | "converted"
+) => {
   const programFilter =
     programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId };
 
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
   const filter = {
     ...programFilter,
+    ...convertedFilter,
     dateReferralStarted_timeframe: "this_month",
   };
+
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
