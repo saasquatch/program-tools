@@ -125,7 +125,8 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sqm-danger-color-icon)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-icon)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
@@ -175,33 +176,7 @@ const style = {
       borderRadius: "50%",
     },
   },
-  AlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
-  PartnerAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   PageDescriptionText: {
     color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
@@ -455,33 +430,27 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
       {states.loadingError && (
         <div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-            class={sheet.classes.AlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.loadingErrorAlertHeader}</strong>
-            <br />
-            {intl.formatMessage(
-              {
-                id: "loadingErrorAlertDescription",
-                defaultMessage: text.error.loadingErrorAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
-                  >
-                    {text.supportLink}
-                  </a>
-                ),
-              }
-            )}
-          </sl-alert>
-          <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
+            <p part="alert-description">
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
+            </p>
+          </sqm-form-message>
         </div>
       )}
 
@@ -510,61 +479,51 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           </div>
 
           {formState.errors?.general && (
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="warning"
-              open
-              class={sheet.classes.AlertContainer}
-            >
-              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-              <strong>{text.error.generalTitle}</strong>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "generalDescription",
-                  defaultMessage: text.error.generalDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {text.supportLink}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
+            <sqm-form-message type="error">
+              <p part="alert-title">{text.error.generalTitle}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "generalDescription",
+                    defaultMessage: text.error.generalDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {text.supportLink}
+                      </a>
+                    ),
+                  }
+                )}
+              </p>
+            </sqm-form-message>
           )}
 
           {(states.isPartner || states.isUser) && (
-            <sl-alert
-              type="primary"
-              open
-              class={sheet.classes.PartnerAlertContainer}
-              exportparts="base: alert-base, icon:alert-icon"
-            >
-              <sl-icon slot="icon" name="info-circle"></sl-icon>
-              <strong>{text.isPartnerAlertHeader}</strong>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "isPartnerAlertDescription",
-                  defaultMessage: text.isPartnerAlertDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {text.supportLink}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
+            <sqm-form-message type="info">
+              <p part="alert-title">{text.isPartnerAlertHeader}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "isPartnerAlertDescription",
+                    defaultMessage: text.isPartnerAlertDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {text.supportLink}
+                      </a>
+                    ),
+                  }
+                )}
+              </p>
+            </sqm-form-message>
           )}
 
           <div>

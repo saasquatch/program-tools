@@ -37,7 +37,7 @@ const style = {
     borderRadius: "var(--sqm-border-radius-normal)",
     padding: "var(--sl-spacing-large)",
     minHeight: "150px",
-    border: "1px solid var(--sqm-border-color)",
+    border: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     maxWidth: "450px",
   },
   StatusContainer: {
@@ -62,7 +62,8 @@ const style = {
   },
 
   PaypalEmail: {
-    borderRight: "1px solid var(--sqm-border-color)",
+    borderRight:
+      "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     paddingRight: "var(--sl-spacing-small)",
     "@media (max-width: 499px)": {
       borderRight: "none",
@@ -105,7 +106,8 @@ const style = {
     gap: "var(--sl-spacing-xx-small) var(--sl-spacing-small)",
     paddingTop: "var(--sq-spacing-xx-small)",
     "& > :not(:last-child)": {
-      borderRight: "1px solid var(--sqm-border-color)",
+      borderRight:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     },
     "& > :nth-child(3)": {
       border: "none",
@@ -122,7 +124,7 @@ const style = {
   },
   W9Container: {
     paddingTop: "var(--sl-spacing-large)",
-    borderTop: "1px solid var(--sqm-border-color)",
+    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
   },
   SkeletonOne: {
     width: "25%",
@@ -139,7 +141,8 @@ const style = {
   Alert: {
     "&::part(base)": {
       backgroundColor: "var(--sqm-warning-color-background)",
-      border: "1px solid var(--sqm-warning-color-border)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-warning-color-border)",
       padding: "0 16px",
     },
     "& sl-icon": {
@@ -169,12 +172,7 @@ const style = {
       color: "var(--sqm-informative-color-text)",
     },
   },
-  AlertContent: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    flexDirection: "column",
-  },
+
   Container: {
     display: "flex",
     flexDirection: "column",

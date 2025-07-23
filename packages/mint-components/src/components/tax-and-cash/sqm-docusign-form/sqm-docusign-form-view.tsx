@@ -110,33 +110,7 @@ const style = {
   BoldText: {
     fontWeight: "bold",
   },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
-  InfoAlert: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   Container: {
     width: "100%",
     display: "flex",
@@ -189,20 +163,21 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
-    :host{
-      display: block;   
-    }
-    * {
-       margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-    }
+  :host{
+    display: block;   
+  }
 
-    a {
-      cursor: pointer;
-      color: var(--sqm-text);
-      text-decoration: underline;
-    }
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
 
   `;
@@ -232,7 +207,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         <div class={classes.ModalTitleContainer} slot="label">
           <sl-icon
             name="info-circle"
-            style={{ color: "var(--sl-color-info-500)" }}
+            style={{ color: "var(--sqm-informative-color-icon)" }}
           />
           <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
             {text.modalTitle}
@@ -280,15 +255,8 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       </div>
       {states.loadingError && (
         <div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-            class={sheet.classes.ErrorAlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.loadingErrorAlertHeader}</strong>
-            <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
             {intl.formatMessage(
               {
                 id: "loadingErrorAlertDescription",
@@ -305,19 +273,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         </div>
       )}
       {formState.errors?.general && (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="warning"
-          open
-          class={sheet.classes.ErrorAlertContainer}
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{text.error.generalTitle}</strong>
-          <br />
+        <sqm-form-message type="error">
+          <p part="alert-title">{text.error.generalTitle}</p>
           {intl.formatMessage(
             {
               id: "generalDescription",
@@ -331,7 +292,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               ),
             }
           )}
-        </sl-alert>
+        </sqm-form-message>
       )}
 
       <div>

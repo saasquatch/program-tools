@@ -46,7 +46,7 @@ sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
 sl-textare::part(textarea-label):focus {
   border-color: none;
-  border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
+  border: var(--sqm-input-focus-border, var(--sqm-border-thickness) solid var(--sl-input-border-color-focus));
 }
 
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{

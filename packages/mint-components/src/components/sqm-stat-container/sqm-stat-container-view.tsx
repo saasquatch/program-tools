@@ -40,7 +40,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > *": {
         "border-right": props.hideBorder
           ? "none"
-          : "1px solid var(--sqm-text-subdued)",
+          : "var(--sqm-border-thickness) solid var(--sqm-border-color)",
         "padding-right": divideSpace(),
       },
       "& > :last-child": {
@@ -49,7 +49,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > ::slotted(*)": {
         "border-right": props.hideBorder
           ? "none"
-          : "1px solid var(--sqm-text-subdued)",
+          : "var(--sqm-border-thickness) solid var(--sqm-border-color)",
         "padding-right": divideSpace(),
       },
       "& > ::slotted(*:last-child)": {
@@ -66,7 +66,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       display: "flex",
     },
     BorderFix: {
-      "border-right": "1px solid transparent",
+      "border-right": "var(--sqm-border-thickness) solid transparent",
       width: "0px",
       "margin-left": "-1px",
     },

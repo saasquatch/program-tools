@@ -542,7 +542,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -3345,14 +3345,14 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of container
           * @uiName Border color
           * @uiWidget color
           * @format color
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container (in pixels)
+          * The border radius (in pixels)
           * @uiName Border Radius
           * @uiType number
          */
@@ -4473,7 +4473,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -4558,7 +4558,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -7906,7 +7906,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -10704,14 +10704,14 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of container
           * @uiName Border color
           * @uiWidget color
           * @format color
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container (in pixels)
+          * The border radius (in pixels)
           * @uiName Border Radius
           * @uiType number
          */
@@ -11808,7 +11808,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -11893,7 +11893,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color

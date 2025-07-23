@@ -39,13 +39,6 @@ const style = {
     flexDirection: "column",
     maxWidth: "320px",
   },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
-    },
-    "&::part(message)": {},
-  },
   ContinueButton: {
     width: "100%",
     maxWidth: "100px",
@@ -64,12 +57,13 @@ const style = {
   },
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sl-color-danger-500)",
-      borderRadius: "var(--sl-input-border-radius-medium)",
+      border:
+        "var(--sqm-border-thickness) solid var(--sqm-danger-color-border)",
+      borderRadius: "var(--sqm-input-border-radius)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
 };
@@ -81,6 +75,139 @@ const vanillaStyle = `
 :host([hidden]): {
   display: none;
 }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+*::part(primarybutton-base),
+sl-button[type="primary"]::part(base) {
+  font-family: var(--sqm-primary-font);
+  width: 100%;
+  background-color: var(--sqm-primary-button-background);
+  color: var(--sqm-primary-button-color);
+  border-color: var(--sqm-primary-button-color-border);
+  border-radius: var(--sqm-primary-button-radius);
+}
+
+*::part(primarybutton-base):hover,
+sl-button[type="primary"]::part(base):hover{
+  background-color: var(--sqm-primary-button-background-hover);
+  border-color: var(--sqm-primary-button-border-color-hover);
+  color: var(--sqm-primary-button-color-hover);
+}
+
+
+*::part(primarybutton-base):focus,
+sl-button[type="primary"]::part(base):focus {
+  box-shadow: none;
+}
+
+*::part(secondarybutton-base),
+sl-button[type="secondary"]::part(base) {
+font-family: var(--sqm-primary-font);
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
+}
+
+*::part(secondarybutton-base):hover,
+sl-button[type="secondary"]::part(base):hover {
+  background-color: var(--sqm-secondary-button-background-hover);
+  color: var(--sqm-secondary-button-color-hover);
+  border-color: var(--sqm-secondary-button-border-color-hover);
+}
+
+*::part(input-label), *::part(select-label), *::part(textarea-label){
+  font-family: var(--sqm-primary-font);
+  font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
+  font-weight: var(--sl-font-weight-semibold);
+  color: var(--sqm-input-label-color, var(--sqm-text), black);
+}
+
+*::part(input-base), *::part(select-base), *::part(textarea-base){
+  font-family: var(--sqm-primary-font);
+  background-color: var(--sqm-input-background, #fff);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+  color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-thickness, 1px);
+}
+
+*::part(input-base):hover, *::part(select-base):hover, *::part(textarea-base):hover{
+  border-color: var(--sqm-border-color-hover);
+}
+
+*::part(input-base):focus, *::part(select-base):focus, *::part(textarea-base):focus{
+  border-color: var(--sqm-border-color-focus);
+}
+
+sqm-name-fields::part(input-base) {
+  font-family: var(--sqm-primary-font);
+  background-color: var(--sqm-input-background, #fff);
+  border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
+  color: var(--sqm-input-color, white);
+  border-width: var(--sqm-border-thickness, 1px);
+}
+
+sl-input::part(base):focus,
+sl-select::part(form-control-wrapper):focus,
+sl-textarea::part(textarea-label):focus {
+  border-color: var(--sqm-border-color-focus);
+}
+
+*::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
+  background: var(--sqm-input-disabled-background, #f5f5f5);
+  color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
+}
+
+*::part(input):-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:hover {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input):-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
+  -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+}
+
+*::part(input)::placeholder,
+*::part(select)::placeholder, 
+*::part(textarea)::placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-webkit-input-placeholder,
+*::part(select)::-webkit-input-placeholder,
+*::part(textarea)::-webkit-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-moz-placeholder,
+*::part(select)::-moz-placeholder,
+*::part(textarea)::-moz-placeholder {
+  font-family: var(--sqm-primary-font);
+  opacity: 1; /* Firefox adds an opacity to placeholders by default */
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-ms-input-placeholder,
+*::part(select)::-ms-input-placeholder,
+*::part(textarea)::-ms-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+
 `;
 
 const sheet = createStyleSheet(style);
@@ -108,15 +235,8 @@ export function WidgetEmailVerificationView(
         {styleString}
       </style>
       {states.sendCodeError && (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="danger"
-          class={sheet.classes.ErrorAlertContainer}
-          open
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <b>{text.sendCodeErrorHeader}</b>
-          <br />
+        <sqm-form-message type="error">
+          <p part="alert-title">{text.sendCodeErrorHeader}</p>
           {intl.formatMessage(
             {
               id: "sendCodeErrorDescription",
@@ -130,7 +250,7 @@ export function WidgetEmailVerificationView(
               ),
             }
           )}
-        </sl-alert>
+        </sqm-form-message>
       )}
       {states.initialLoading ? (
         renderLoadingSkeleton()

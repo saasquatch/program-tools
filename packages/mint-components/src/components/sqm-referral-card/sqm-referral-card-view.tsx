@@ -69,7 +69,11 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       part="sqm-base"
       class={sheet.classes.Container}
       style={{
-        border: `${props.hideBorder ? "none" : "1px solid " + borderColor}`,
+        border: `${
+          props.hideBorder
+            ? "none"
+            : `var(--sqm-border-thickness) solid ${borderColor}`
+        }`,
 
         "padding-top": `var(--sl-spacing-${props.paddingTop})`,
         "padding-right": `var(--sl-spacing-${props.paddingRight})`,

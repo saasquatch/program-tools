@@ -62,10 +62,12 @@ export function CopyTextView(props: CopyTextViewProps) {
         color: props.textColor || "var(--sqm-text)",
       },
       "&::part(base)": {
-        "--sl-input-border-radius": "var(--sqm-border-radius-normal)",
-        "--sl-input-background-color": "var(--sl-color-white)",
+        "--sl-input-border-radius":
+          `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
+        "--sl-input-background-color":
+          props.backgroundColor || "var(--sqm-portal-background)",
         "--sl-input-color": "var(--sqm-text)",
-        "--sl-input-border-color": "#D6D8F0",
+        "--sl-input-border-color": "var(--sqm-border-color)",
         "--sl-input-border-color-hover": "#999999",
         "--sl-input-border-color-focus": "#999999",
         "--sl-input-color-hover": "var(--sqm-input-color-hover)",
@@ -78,7 +80,9 @@ export function CopyTextView(props: CopyTextViewProps) {
         borderRadius:
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
         background: props.backgroundColor || "var(--sqm-portal-background)",
-        border: `1px solid ${props.borderColor || "#d4d4d8"}`,
+        border: `var(--sqm-border-thickness) solid ${
+          props.borderColor || "var(--sqm-border-color)"
+        }`,
       },
       width: "100%",
     },

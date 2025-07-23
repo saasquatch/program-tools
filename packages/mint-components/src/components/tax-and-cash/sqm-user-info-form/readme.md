@@ -51,9 +51,14 @@
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash](../sqm-tax-and-cash)
 
+### Depends on
+
+- [sqm-form-message](../../sqm-form-message)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-user-info-form --> sqm-form-message
   sqm-stencilbook --> sqm-user-info-form
   sqm-tax-and-cash --> sqm-user-info-form
   style sqm-user-info-form fill:#f9f,stroke:#333,stroke-width:4px

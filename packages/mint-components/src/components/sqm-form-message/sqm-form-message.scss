@@ -1,25 +1,64 @@
 sl-alert::part(base) {
-  border: 1px solid;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(20 20 20 / 10%);
+  border: var(--sqm-border-thickness) solid;
+  border-radius: var(--sqm-border-radius-normal);
+  font-family: var(--sqm-primary-font);
 }
 
 .Error::part(base) {
-  background-color: var(--sl-color-danger-100);
-  border-color: var(--sl-color-danger-200);
+  color: var(--sqm-danger-color-text);
+  background-color: var(--sqm-danger-color-background);
+  border-color: var(--sqm-danger-color-border);
+  font-size: 14px;
+}
+
+.Error::part(icon) {
+  color: var(--sqm-danger-color-icon);
+  font-size: 24px;
 }
 
 .Warning::part(base) {
-  background-color: var(--sl-color-warning-100);
-  border-color: var(--sl-color-warning-200);
+  color: var(--sqm-warning-color-text);
+  background-color: var(--sqm-warning-color-background);
+  border-color: var(--sqm-warning-color-border);
+}
+
+.Warning::part(icon) {
+  color: var(--sqm-warning-color-icon);
+  font-size: 24px;
 }
 
 .Success::part(base) {
-  background-color: var(--sl-color-success-100);
-  border-color: var(--sl-color-success-200);
+  color: var(--sqm-success-color-text);
+  background-color: var(--sqm-success-color-background);
+  border-color: var(--sqm-success-color-border);
+}
+
+.Success::part(icon) {
+  color: var(--sqm-success-color-icon);
+  font-size: 24px;
 }
 
 .Info::part(base) {
-  background-color: var(--sl-color-primary-100);
-  border-color: var(--sl-color-primary-200);
+  color: var(--sqm-informative-color-text);
+  background-color: var(--sqm-informative-color-background);
+  border-color: var(--sqm-informative-color-border);
+}
+
+.Info::part(icon) {
+  color: var(--sqm-informative-color-icon);
+  font-size: 24px;
+}
+
+::slotted(*) {
+  margin: 0;
+}
+
+::slotted(*[part="alert-title"]) {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+::slotted(*[part="alert-description"]),
+::slotted(*[part="erroralert-text"]) {
+  font-size: 14px;
 }

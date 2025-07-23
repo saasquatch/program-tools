@@ -552,7 +552,7 @@ html {
   --sl-input-help-text-color: var(--sl-color-gray-400);
   --sl-toggle-size: 1rem;
   --sl-overlay-background-color: #37415180;
-  --sl-panel-background-color: var(--sl-color-white);
+  --sl-panel-background-color: var(--sqm-portal-background);
   --sl-panel-border-color: var(--sl-color-gray-200);
   --sl-tooltip-border-radius: var(--sl-border-radius-medium);
   --sl-tooltip-background-color: var(--sl-color-gray-900);
@@ -580,6 +580,7 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${config?.color?.backgroundColor || "#fff"};
+  --sqm-primary-font: ${config?.main?.brandFont || "var(--sl-font-sans)"};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
@@ -781,7 +782,7 @@ html {
 }
 
 body {
-  font-family: ${config?.main?.brandFont || "var(--sl-font-sans)"};
+  font-family: var(--sqm-primary-font);
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
@@ -903,6 +904,7 @@ sl-details::part(summary) {
 
 *::part(primarybutton-base),
 sl-button[type="primary"]::part(base) {
+  font-family: var(--sqm-primary-font);
   width: 100%;
   background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
@@ -925,6 +927,7 @@ sl-button[type="primary"]::part(base):focus {
 
 *::part(secondarybutton-base),
 sl-button[type="secondary"]::part(base) {
+font-family: var(--sqm-primary-font);
   background-color: var(--sqm-secondary-button-background);
   color: var(--sqm-secondary-button-color);
   border-color: var(--sqm-secondary-button-color-border);
@@ -939,12 +942,14 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
+  font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-semibold);
   color: var(--sqm-input-label-color, var(--sqm-text), black);
 }
 
 *::part(input-base), *::part(select-base), *::part(textarea-base){
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
@@ -960,6 +965,7 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 sqm-name-fields::part(input-base) {
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
@@ -992,7 +998,37 @@ sl-textarea::part(textarea-label):focus {
   -webkit-text-fill-color: var(--sqm-input-color, white) !important;
 }
 
+*::part(input)::placeholder,
+*::part(select)::placeholder, 
+*::part(textarea)::placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-webkit-input-placeholder,
+*::part(select)::-webkit-input-placeholder,
+*::part(textarea)::-webkit-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-moz-placeholder,
+*::part(select)::-moz-placeholder,
+*::part(textarea)::-moz-placeholder {
+  font-family: var(--sqm-primary-font);
+  opacity: 1; /* Firefox adds an opacity to placeholders by default */
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-ms-input-placeholder,
+*::part(select)::-ms-input-placeholder,
+*::part(textarea)::-ms-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
 a {
+  font-family: var(--sqm-primary-font);
   color: inherit;
   text-decoration: underline;
   cursor: pointer;

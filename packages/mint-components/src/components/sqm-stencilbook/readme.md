@@ -225,13 +225,20 @@ graph TD;
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-code-verification --> sqm-form-message
+  sqm-email-verification --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification
+  sqm-banking-info-form --> sqm-form-message
+  sqm-user-info-form --> sqm-form-message
+  sqm-indirect-tax-form --> sqm-form-message
+  sqm-docusign-form --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-tax-and-cash-dashboard --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
   sqm-payout-status-alert --> sqm-scroll
+  sqm-payout-status-alert --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

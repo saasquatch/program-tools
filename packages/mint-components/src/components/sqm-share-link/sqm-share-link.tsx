@@ -10,6 +10,7 @@ import { useShareLink } from "./useShareLink";
 /**
  * @uiName Share Link
  * @exampleGroup Sharing
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
  */
 @Component({
@@ -77,7 +78,7 @@ export class ShareLink {
   @Prop() backgroundColor?: string;
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of share link container
    * @uiName Border color
    * @uiWidget color
    * @format color
