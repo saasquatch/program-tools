@@ -151,6 +151,32 @@ export class CouponCode {
     "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!";
 
   /**
+   * Display this message when the code fails to load before retrying.
+   *
+   * @uiWidget textArea
+   * @uiName Code sync error retry message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "code-sync-error-retry-text",
+  })
+  codeSyncErrorRetryText: string =
+    "We're experiencing an issue generating your coupon code. If it doesn't appear shortly, please contact {supportEmail}. Retrying in {timeRemaining} seconds.";
+
+  /**
+   * Display this message when the code fails to load after retrying.
+   *
+   * @uiWidget textArea
+   * @uiName Code sync error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "code-sync-error-text",
+  })
+  codeSyncErrorText: string =
+    "We're still experiencing an issue generating your coupon code. Please contact {supportEmail} for assistance.";
+
+  /**
    * Display this message when the code fails to load due to an unspecified error.
    *
    * @uiWidget textArea
@@ -208,6 +234,8 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
       couponCodeLabel: props.couponCodeLabel,
+      codeSyncErrorText: props.codeSyncErrorText,
+      codeSyncErrorRetryText: props.codeSyncErrorRetryText,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

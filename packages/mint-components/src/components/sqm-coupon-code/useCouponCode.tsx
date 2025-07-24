@@ -1,12 +1,14 @@
 import {
+  setUserIdentity,
   useEngagementMedium,
   useMutation,
   useProgramId,
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useState } from "@saasquatch/universal-hooks";
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
+import { intl } from "../../global/global";
 import { CouponCodeViewProps } from "./sqm-coupon-code-view";
 
 interface CouponCodeProps {
@@ -19,7 +21,17 @@ interface CouponCodeProps {
   pendingErrorText: string;
   redeemedErrorText: string;
   genericErrorText: string;
+  codeSyncErrorText: string;
+  codeSyncErrorRetryText: string;
 }
+
+type PendingReasons =
+  | "SCHEDULED"
+  | "UNHANDLED_ERROR"
+  | "US_TAX"
+  | "SUSPECTED_FRAUD"
+  | "MISSING_PAYOUT_CONFIGURATION"
+  | "ERROR_SYNCING_FUEL_TANK_CODE";
 
 type FuelTankReward = {
   fuelTankCode: string;
@@ -31,6 +43,7 @@ type FuelTankReward = {
   dateCancelled: number;
   dateScheduledFor: number;
   datePendingForUnhandledError: number;
+  pendingReasons: PendingReasons[];
 };
 
 export type RewardStatusType =
@@ -40,7 +53,8 @@ export type RewardStatusType =
   | "CANCELLED"
   | "PENDING"
   | "EMPTY_TANK"
-  | "ERROR";
+  | "ERROR"
+  | "ERROR_SYNCING_FUEL_TANK_CODE";
 
 interface FuelTankRewardsQueryResult {
   user: {
@@ -69,6 +83,7 @@ const FuelTankRewardsQuery = gql`
             dateCancelled
             dateScheduledFor
             datePendingForUnhandledError
+            pendingReasons
           }
           count
           totalCount
@@ -91,6 +106,11 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
 
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
+  const [retried, setRetried] = useState(false);
+  const [countdown, setCountdown] = useState(60);
+  const timerRef = useRef<NodeJS.Timer>(undefined);
+  const countdownRef = useRef<NodeJS.Timer>(undefined);
+
   const { data, loading, refetch, errors } =
     useQuery<FuelTankRewardsQueryResult>(
       FuelTankRewardsQuery,
@@ -98,18 +118,88 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
       !user?.jwt
     );
 
+  async function checkReward() {
+    const data = await refetch();
+    setRetried(true);
+    if (
+      // @ts-ignore
+      !data?.user?.instantAccessRewards?.data?.[0]?.pendingReasons?.includes(
+        "ERROR_SYNCING_FUEL_TANK_CODE"
+      )
+    ) {
+      return clearInterval(timerRef.current);
+    }
+  }
+
+  const reward = data?.user?.instantAccessRewards?.data?.[1];
+
+  const startTimer = (countdown: number = 61000) =>
+    setInterval(checkReward, countdown);
+  const startCountdown = (countdown: number) =>
+    setInterval(() => setCountdown(countdown), 1000);
+
+  // Refetch reward status timer
+  useEffect(() => {
+    setUserIdentity({
+      jwt: "eyJraWQiOiJJUk1Yc1l5NllZcXE0Njk0MzdtRzhFUlF0OFFvS0ZCYUcxIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2ODgyNzkwODNiMDIzMzg0Yjg3MTU2OTAiLCJpYXQiOjE3NTMzODExMjgsImV4cCI6MTc1MzQ2NzUyOCwic3ViIjoiTTJObVlXTXdOVGt4WWpBMk5tRXhORFE0TTJObE5tRXdaV0U0TkdSaFltUmtOelU0TnpBNE1ETXpNbVl3TTJNNVltTTNNVFpqTm1JNVltWmhZVE5qTVE9PTpNMk5tWVdNd05Ua3hZakEyTm1FeE5EUTRNMk5sTm1Fd1pXRTROR1JoWW1Sa056VTROekE0TURNek1tWXdNMk01WW1NM01UWmpObUk1WW1aaFlUTmpNUT09QGFkY3Rkd3Fya2Yyeng6dXNlcnMiLCJ1c2VyIjp7ImlkIjoiM2NmYWMwNTkxYjA2NmExNDQ4M2NlNmEwZWE4NGRhYmRkNzU4NzA4MDMzMmYwM2M5YmM3MTZjNmI5YmZhYTNjMSIsImFjY291bnRJZCI6IjNjZmFjMDU5MWIwNjZhMTQ0ODNjZTZhMGVhODRkYWJkZDc1ODcwODAzMzJmMDNjOWJjNzE2YzZiOWJmYWEzYzEiLCJkYXRlQmxvY2tlZCI6bnVsbH19.lkoqVrRfzHJXzokOw9werq-en-bWbw3djQsVw9lLF3U",
+      id: "3cfac0591b066a14483ce6a0ea84dabdd7587080332f03c9bc716c6b9bfaa3c1",
+      accountId:
+        "3cfac0591b066a14483ce6a0ea84dabdd7587080332f03c9bc716c6b9bfaa3c1",
+    });
+    if (
+      !timerRef.current &&
+      reward?.statuses?.includes("PENDING") &&
+      reward?.pendingReasons?.includes("ERROR_SYNCING_FUEL_TANK_CODE")
+    ) {
+      timerRef.current = startTimer();
+    }
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
+
+  // Countdown timer
+  useEffect(() => {
+    if (
+      countdown > 0 &&
+      reward?.statuses?.includes("PENDING") &&
+      reward?.pendingReasons?.includes("ERROR_SYNCING_FUEL_TANK_CODE")
+    ) {
+      clearInterval(countdownRef.current);
+      countdownRef.current = startCountdown(countdown - 1);
+    }
+
+    return () => {
+      clearInterval(countdownRef.current);
+    };
+  }, [countdown, reward]);
+
+  useEffect(() => {
+    // Retry after a minute if the reward is pending and has an error syncing the fuel tank code
+    if (
+      reward?.statuses?.includes("PENDING") &&
+      reward?.pendingReasons?.includes("ERROR_SYNCING_FUEL_TANK_CODE")
+    ) {
+      startTimer();
+    }
+  }, [reward]);
+
   const getStatus = (reward: FuelTankReward | undefined) => {
     if (!reward || !reward.statuses) return "ERROR";
 
     const state = reward.statuses[reward.statuses.length - 1];
+
+    if (
+      state === "PENDING" &&
+      reward.pendingReasons.includes("ERROR_SYNCING_FUEL_TANK_CODE")
+    )
+      return "ERROR_SYNCING_FUEL_TANK_CODE";
 
     if (state === "PENDING" && reward.dateScheduledFor === null)
       return "EMPTY_TANK";
 
     return state;
   };
-
-  const reward = data?.user?.instantAccessRewards?.data?.[0];
 
   const rewardStatus = getStatus(reward) as RewardStatusType;
   const dateAvailable =
@@ -153,6 +243,27 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
         return props.expiredErrorText;
       case "EMPTY_TANK":
         return props.fullfillmentErrorText;
+      case "ERROR_SYNCING_FUEL_TANK_CODE":
+        return retried
+          ? intl.formatMessage(
+              {
+                id: "codeSyncErrorText",
+                defaultMessage: props.codeSyncErrorText,
+              },
+              {
+                supportEmail: "advocate-support@impact.com",
+              }
+            )
+          : intl.formatMessage(
+              {
+                id: "codeSyncErrorText",
+                defaultMessage: props.codeSyncErrorRetryText,
+              },
+              {
+                supportEmail: "advocate-support@impact.com",
+                timeRemaining: countdown,
+              }
+            );
       case "PENDING":
         return props.pendingErrorText.replace("{unpendDate}", dateAvailable);
       case "REDEEMED":

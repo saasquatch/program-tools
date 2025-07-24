@@ -521,6 +521,20 @@ export namespace Components {
          */
         "cancelledErrorText": string;
         /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText": string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText": string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -7327,6 +7341,20 @@ declare namespace LocalJSX {
           * @uiGroup Coupon code error
          */
         "cancelledErrorText"?: string;
+        /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText"?: string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText"?: string;
         /**
           * @uiName Copy button label
          */
