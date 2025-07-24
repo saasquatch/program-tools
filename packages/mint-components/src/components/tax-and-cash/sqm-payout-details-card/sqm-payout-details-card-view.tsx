@@ -138,29 +138,13 @@ const style = {
     width: "50%",
     height: "34px",
   },
-  Alert: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-warning-color-background)",
-      border:
-        "var(--sqm-border-thickness, 1px) solid var(--sqm-warning-color-border)",
-      padding: "0 16px",
-    },
-    "& sl-icon": {
-      margin: 0,
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-warning-color-text)",
-      margin: 0,
-    },
-  },
 
   SuccessBadge: {
     "&::part(base)": {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-success-color-icon)",
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
 
@@ -169,7 +153,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-informative-color-icon)",
-      color: "var(--sqm-informative-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
 

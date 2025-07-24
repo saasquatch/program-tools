@@ -21,7 +21,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-informative-color-icon)",
-      color: "var(--sqm-informative-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   DangerBadge: {
@@ -31,7 +31,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-danger-color-icon)",
-      color: "var(--sqm-danger-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   WarningBadge: {
@@ -41,7 +41,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-warning-color-icon)",
-      color: "var(--sqm-warning-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   SuccessBadge: {
@@ -51,7 +51,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-success-color-icon)",
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
 
