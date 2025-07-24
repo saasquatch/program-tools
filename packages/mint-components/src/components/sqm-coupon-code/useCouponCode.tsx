@@ -1,5 +1,4 @@
 import {
-  setUserIdentity,
   useEngagementMedium,
   useMutation,
   useProgramId,
@@ -131,7 +130,7 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
     }
   }
 
-  const reward = data?.user?.instantAccessRewards?.data?.[1];
+  const reward = data?.user?.instantAccessRewards?.data?.[0];
 
   const startTimer = (countdown: number = 61000) =>
     setInterval(checkReward, countdown);
@@ -140,12 +139,6 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
 
   // Refetch reward status timer
   useEffect(() => {
-    setUserIdentity({
-      jwt: "eyJraWQiOiJJUk1Yc1l5NllZcXE0Njk0MzdtRzhFUlF0OFFvS0ZCYUcxIiwidHlwIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2ODgyNzkwODNiMDIzMzg0Yjg3MTU2OTAiLCJpYXQiOjE3NTMzODExMjgsImV4cCI6MTc1MzQ2NzUyOCwic3ViIjoiTTJObVlXTXdOVGt4WWpBMk5tRXhORFE0TTJObE5tRXdaV0U0TkdSaFltUmtOelU0TnpBNE1ETXpNbVl3TTJNNVltTTNNVFpqTm1JNVltWmhZVE5qTVE9PTpNMk5tWVdNd05Ua3hZakEyTm1FeE5EUTRNMk5sTm1Fd1pXRTROR1JoWW1Sa056VTROekE0TURNek1tWXdNMk01WW1NM01UWmpObUk1WW1aaFlUTmpNUT09QGFkY3Rkd3Fya2Yyeng6dXNlcnMiLCJ1c2VyIjp7ImlkIjoiM2NmYWMwNTkxYjA2NmExNDQ4M2NlNmEwZWE4NGRhYmRkNzU4NzA4MDMzMmYwM2M5YmM3MTZjNmI5YmZhYTNjMSIsImFjY291bnRJZCI6IjNjZmFjMDU5MWIwNjZhMTQ0ODNjZTZhMGVhODRkYWJkZDc1ODcwODAzMzJmMDNjOWJjNzE2YzZiOWJmYWEzYzEiLCJkYXRlQmxvY2tlZCI6bnVsbH19.lkoqVrRfzHJXzokOw9werq-en-bWbw3djQsVw9lLF3U",
-      id: "3cfac0591b066a14483ce6a0ea84dabdd7587080332f03c9bc716c6b9bfaa3c1",
-      accountId:
-        "3cfac0591b066a14483ce6a0ea84dabdd7587080332f03c9bc716c6b9bfaa3c1",
-    });
     if (
       !timerRef.current &&
       reward?.statuses?.includes("PENDING") &&
