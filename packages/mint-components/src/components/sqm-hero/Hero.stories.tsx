@@ -322,3 +322,53 @@ export const MinHeight = () => {
   };
   return <HeroView {...props}></HeroView>;
 };
+
+export const InstantAccessLoggedOutView = () => {
+  return (
+    <sqm-hero
+      background="https://res.cloudinary.com/saasquatch/image/upload/v1683589933/Portal%20Assets/Screen-Shot-2022-01-06-at-3.23.58-AM.png"
+      columns={2}
+      padding-size="medium"
+      wrap-direction="wrap"
+      secondary-background="var(--sqm-portal-background)"
+      columnToHideInMobile="primary"
+    >
+      <sqm-referred-registration
+        slot="secondary-column"
+        register-label="Get $50 off"
+        padding-bottom="small"
+        padding-left="x-large"
+        padding-right="x-large"
+        padding-top="small"
+      >
+        <sqm-titled-section
+          text-align="center"
+          label-margin="small"
+          padding="none"
+          slot="top"
+        >
+          <h1 slot="label">You got &#x24;50 off thanks to a friend!</h1>
+          <p slot="content">
+            <span>Use this reward to get &#x24;50 off your next purchase.</span>
+          </p>
+        </sqm-titled-section>
+        <div slot="bottom">
+          <p style={{ textAlign: "center" }}>
+            *Valid on purchases of &#x24;75 or more
+          </p>
+          <sqm-portal-footer
+            slot="footer"
+            show-powered-by="true"
+            padding-bottom="none"
+            padding-left="none"
+            padding-right="none"
+            padding-top="none"
+            hide-support-text
+            terms-text="Terms And Conditions"
+            terms-link="https://example.com"
+          ></sqm-portal-footer>
+        </div>
+      </sqm-referred-registration>
+    </sqm-hero>
+  );
+};

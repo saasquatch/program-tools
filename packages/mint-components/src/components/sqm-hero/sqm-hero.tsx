@@ -62,6 +62,11 @@ export class Hero {
    */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
 
+  /**
+   * @uiName Hide the column in mobile view (can only be used when two columns are present)
+   */
+  @Prop() columnToHideInMobile?: "primary" | "secondary" | null = null;
+
   constructor() {
     withHooks(this);
   }
