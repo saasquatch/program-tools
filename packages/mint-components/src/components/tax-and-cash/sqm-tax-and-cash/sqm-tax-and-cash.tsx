@@ -13,7 +13,7 @@ import { useTaxAndCash } from "./useTaxAndCash";
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
- * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  */
 @Component({
