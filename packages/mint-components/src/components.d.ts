@@ -1011,6 +1011,10 @@ export namespace Components {
          */
         "background"?: string;
         /**
+          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
+        /**
           * @uiName Columns
           * @uiEnum [1, 2]
           * @uiEnumNames ["One", "Two"]
@@ -8375,6 +8379,10 @@ declare namespace LocalJSX {
           * @uiWidget Background
          */
         "background"?: string;
+        /**
+          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]

@@ -29,6 +29,9 @@
 - [sqm-portal-login](../sqm-portal-login)
 - [sqm-hero](../sqm-hero)
 - [sqm-portal-change-password](../sqm-portal-change-password)
+- [sqm-referred-registration](../sqm-referred-registration)
+- [sqm-titled-section](../sqm-titled-section)
+- [sqm-portal-footer](../sqm-portal-footer)
 - [sqm-image](../sqm-image)
 - [sqm-input-field](../sqm-input-field)
 - [sqm-table-row](../sqm-table-row)
@@ -58,7 +61,6 @@
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
-- [sqm-portal-footer](../sqm-portal-footer)
 - [sqm-referral-code](../sqm-referral-code)
 - [sqm-referral-codes](../sqm-referral-codes)
 - [sqm-referral-iframe](../sqm-referral-iframe)
@@ -86,7 +88,6 @@
 - [sqm-router](../sqm-router)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-card-feed](../sqm-card-feed)
-- [sqm-titled-section](../sqm-titled-section)
 - [sqm-user-name](../sqm-user-name)
 - [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
 - [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
@@ -121,6 +122,9 @@ graph TD;
   sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-hero
   sqm-stencilbook --> sqm-portal-change-password
+  sqm-stencilbook --> sqm-referred-registration
+  sqm-stencilbook --> sqm-titled-section
+  sqm-stencilbook --> sqm-portal-footer
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-input-field
   sqm-stencilbook --> sqm-table-row
@@ -150,7 +154,6 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
-  sqm-stencilbook --> sqm-portal-footer
   sqm-stencilbook --> sqm-referral-code
   sqm-stencilbook --> sqm-referral-codes
   sqm-stencilbook --> sqm-referral-iframe
@@ -178,7 +181,6 @@ graph TD;
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-card-feed
-  sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-user-name
   sqm-stencilbook --> sqm-code-verification
   sqm-stencilbook --> sqm-email-verification
@@ -199,6 +201,7 @@ graph TD;
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
+  sqm-referred-registration --> sqm-form-message
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell

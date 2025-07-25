@@ -114,19 +114,19 @@ const style = {
   DangerBadge: {
     "&::part(base)": {
       backgroundColor: "var(--sqm-danger-color-icon)",
-      color: "var(--sqm-danger-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   SuccessBadge: {
     "&::part(base)": {
       backgroundColor: "var(--sqm-success-color-icon)",
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   WarningBadge: {
     "&::part(base)": {
       backgroundColor: "var(--sqm-warning-color-icon)",
-      color: "var(--sqm-warning-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   BankingInformationContainer: {

@@ -9,6 +9,7 @@ import { useConditionalSection, UseConditionalSection } from "./useConditonalSec
  * @uiName Conditional Section
  * @exampleGroup Advanced
  * @slots [{"name":"","title":"Section Content"}]
+ * @validParents ["sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
  * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
  * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
  */

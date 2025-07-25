@@ -144,7 +144,7 @@ export class ReferredRegistration {
    * @uiGroup Card style
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#ffffff";
+  @Prop() backgroundColor: string;
 
   /**
    * @undocumented

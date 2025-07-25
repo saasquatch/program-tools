@@ -10,6 +10,7 @@ export interface HeroProps {
     secondaryBackground?: string;
     paddingSize: "none" | "small" | "medium" | "large";
     wrapDirection: "wrap" | "wrap-reverse";
+    columnToHideInMobile?: "primary" | "secondary" | null;
   };
   content: {
     primaryColumn?: VNode | VNode[];
@@ -115,6 +116,9 @@ export function HeroView(props: HeroProps) {
       minHeight: `${states.minHeight}px`,
       display: "block",
     },
+    HideColumn: {
+      "@media screen and (max-width: 1023px)": { display: "none" },
+    },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
@@ -152,6 +156,7 @@ export function HeroView(props: HeroProps) {
 `;
 
   // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
+  console.log("column to hide in mobile is ", states.columnToHideInMobile);
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
@@ -165,13 +170,25 @@ export function HeroView(props: HeroProps) {
         >
           <div
             part="sqm-two-col-primary-col"
-            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+            class={`${sheet.classes.ColumnWrapper} ${
+              sheet.classes.ColumnPadding
+            } ${
+              states.columnToHideInMobile === "primary"
+                ? sheet.classes.HideColumn
+                : ""
+            }`}
           >
             {content.primaryColumn}
           </div>
           <div
             part="sqm-two-col-secondary-col"
-            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+            class={`${sheet.classes.ColumnWrapper} ${
+              sheet.classes.ColumnPadding
+            } ${
+              states.columnToHideInMobile === "secondary"
+                ? sheet.classes.HideColumn
+                : ""
+            }`}
           >
             {content.secondaryColumn}
           </div>
