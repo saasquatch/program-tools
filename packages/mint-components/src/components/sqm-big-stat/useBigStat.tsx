@@ -1040,7 +1040,7 @@ export const StatPaths = [
   {
     name: "rewardsCountFiltered",
     route:
-      "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
+      "/(rewardsCountFiltered)/:statType([FUELTANK|INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
   },
   {
     name: "integrationRewardsCountFiltered",
@@ -1116,7 +1116,7 @@ export function useBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         flexReverse,
         alignment,
         loading: false,

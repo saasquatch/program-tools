@@ -1,10 +1,10 @@
-import { Component, h, Prop, State } from "@stencil/core";
+import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Prop, State } from "@stencil/core";
+import { DemoData } from "../../global/demo";
 import { BigStatView, BigStatViewProps } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
-import { isDemo, useHost } from "@saasquatch/component-boilerplate";
-import { DemoData } from "../../global/demo";
 
 /**
  *
@@ -12,11 +12,13 @@ import { DemoData } from "../../global/demo";
  * @validParents ["sqm-stat-container"]
  * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
  * @slots [{"name":"","title":"Stat Text"}]
+ * @uiOrder ["statType", "programId", "*"]
  * @slotEditor richText
  * @exampleGroup Statistics
  * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
  * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
  * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
+ * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
  */
 @Component({
   tag: "sqm-big-stat",
@@ -38,7 +40,7 @@ export class BigStat {
    *
    * @uiName Flex reverse
    * @default
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() flexReverse?: boolean = false;
   /**
@@ -48,7 +50,7 @@ export class BigStat {
    * @uiType string
    * @uiEnum ["left", "right", "center"]
    * @uiEnumNames ["Left", "Right", "Center"]
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() alignment?: "left" | "right" | "center" = "center";
 
@@ -66,7 +68,7 @@ export class BigStat {
    * @uiWidget color
    * @uiType string
    * @format color
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() statTextColor?: string;
 
@@ -74,14 +76,14 @@ export class BigStat {
    * Font size of the stat text in pixels
    * @uiName Stat font size
    * @uiType string
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() statFontSize?: number;
 
   /**
    * Font weight of the stat text
    * @uiName Stat font weight
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
    * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
    */
@@ -93,14 +95,14 @@ export class BigStat {
    * @uiWidget color
    * @uiType string
    * @format color
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() descriptionTextColor?: string;
 
   /**
    * Font size of the description text in pixels
    * @uiName Description font size
-   * @uiGroup Style
+   * @uiGroup Additional Settings
    */
   @Prop() descriptionFontSize?: number;
 

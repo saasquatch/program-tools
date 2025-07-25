@@ -17,7 +17,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         loading: false,
         flexReverse: props.flexReverse,
         alignment: props.alignment,
