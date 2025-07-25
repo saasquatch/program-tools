@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { vatLabels } from "../../countries";
-import { TaxCountry } from "../../sqm-tax-and-cash/data";
+import { TaxCountry } from "../../data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { formatErrorMessage } from "../../utils";
 
@@ -81,7 +81,7 @@ const style = {
     gap: "16px",
   },
   HR: {
-    border: "1px solid #E0E0E0",
+    border: "var(--sqm-border-thickness, 1px) solid #E0E0E0",
     margin: "10px 0",
   },
   Input: { maxWidth: "500px" },
@@ -96,7 +96,8 @@ const style = {
   ErrorInput: {
     maxWidth: "500px",
     "&::part(base)": {
-      border: "1px solid var(--sl-color-danger-500)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sl-color-danger-500)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 

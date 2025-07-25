@@ -419,24 +419,34 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  // const states = parseStates(props.stateController);
   return deepmerge(
     {
       states: {
         dateSubmitted: "today",
         documentType: "W9",
         documentTypeString: "W9",
-        status: "ACTIVE",
         country: "United States",
-        indirectTaxNumber: 55555555,
+        indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
-        noFormNeeded: true,
+        noFormNeeded: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        showVerifyIdentity: false,
+
+        subRegion: "CA",
+        subRegionTaxNumber: undefined,
+        qstNumber: undefined,
+        isBusinessEntity: false,
+        province: undefined,
+        notRegistered: true,
+        loadingError: false,
+
         payoutStatus: "DONE",
         veriffLoading: false,
+        canEditPayoutInfo: true,
+        status: "ACTIVE",
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -446,6 +456,17 @@ function useDemoTaxAndCashDashboard(
         onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
+      slots: {
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card
+            demoData={{
+              states: {
+                badgeStatus: "nextPayout",
+              },
+            }}
+          ></sqm-payout-details-card>
+        ),
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

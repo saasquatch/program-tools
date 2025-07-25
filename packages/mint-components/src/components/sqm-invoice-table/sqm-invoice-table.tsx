@@ -1,8 +1,10 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { Invoice } from "../../saasquatch";
 import {
   GenericTableView,
   GenericTableViewProps,
@@ -12,14 +14,15 @@ import {
   useRerenderListener,
 } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
-import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
 import mockInvoiceData from "./mockInvoiceData";
-import { isDemo } from "@saasquatch/component-boilerplate";
 import { InvoiceTableView } from "./sqm-invoice-table-view";
+import { tryMethod, useInvoiceTable } from "./useInvoiceTable";
 
 /**
  * @uiName Invoice Table
  * @exampleGroup Invoices
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+ * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
  * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
  * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table> */
 @Component({

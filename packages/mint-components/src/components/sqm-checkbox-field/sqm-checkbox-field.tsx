@@ -19,6 +19,7 @@ import { useCheckboxField } from "./useCheckboxField";
  */
 @Component({
   tag: "sqm-checkbox-field",
+  shadow: true,
 })
 export class CheckboxField {
   @State()

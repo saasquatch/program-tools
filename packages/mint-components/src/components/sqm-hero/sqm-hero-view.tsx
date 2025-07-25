@@ -10,6 +10,7 @@ export interface HeroProps {
     secondaryBackground?: string;
     paddingSize: "none" | "small" | "medium" | "large";
     wrapDirection: "wrap" | "wrap-reverse";
+    columnToHideInMobile?: "primary" | "secondary" | null;
   };
   content: {
     primaryColumn?: VNode | VNode[];
@@ -54,9 +55,9 @@ export function HeroView(props: HeroProps) {
 
     var index: number = sizes[size];
 
-    if (isMobile(767)) {
+    if (isMobile(650)) {
       index = index - 2;
-    } else if (isMobile(1023)) {
+    } else if (isMobile(767)) {
       index = index - 1;
     }
     return half ? paddingList[index - 2] : paddingList[index];
@@ -76,7 +77,7 @@ export function HeroView(props: HeroProps) {
   const style = {
     TwoColumnContainer: {
       display: "flex",
-      "@media screen and (max-width: 1023px)": {
+      "@media screen and (max-width: 650px)": {
         flexDirection:
           states.wrapDirection == "wrap-reverse" ? "column-reverse" : "column",
         justfiyContent: "center",
@@ -111,9 +112,12 @@ export function HeroView(props: HeroProps) {
           states.secondaryBackground
         )}`,
       },
-      "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
+      "@media screen and (min-width: 650px)": { flex: "1 1 0" },
       minHeight: `${states.minHeight}px`,
       display: "block",
+    },
+    HideColumn: {
+      "@media screen and (max-width: 650px)": { display: "none" },
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
@@ -152,6 +156,7 @@ export function HeroView(props: HeroProps) {
 `;
 
   // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
+  console.log("column to hide in mobile is ", states.columnToHideInMobile);
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">
@@ -165,13 +170,25 @@ export function HeroView(props: HeroProps) {
         >
           <div
             part="sqm-two-col-primary-col"
-            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+            class={`${sheet.classes.ColumnWrapper} ${
+              sheet.classes.ColumnPadding
+            } ${
+              states.columnToHideInMobile === "primary"
+                ? sheet.classes.HideColumn
+                : ""
+            }`}
           >
             {content.primaryColumn}
           </div>
           <div
             part="sqm-two-col-secondary-col"
-            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+            class={`${sheet.classes.ColumnWrapper} ${
+              sheet.classes.ColumnPadding
+            } ${
+              states.columnToHideInMobile === "secondary"
+                ? sheet.classes.HideColumn
+                : ""
+            }`}
           >
             {content.secondaryColumn}
           </div>

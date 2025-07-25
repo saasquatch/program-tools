@@ -1,4 +1,5 @@
 import { VNode } from "@stencil/core";
+import { ImpactConnection, Reward } from "../../../saasquatch";
 
 export interface RewardTableColumn {
   renderLabel(idx?: number): Promise<string>;

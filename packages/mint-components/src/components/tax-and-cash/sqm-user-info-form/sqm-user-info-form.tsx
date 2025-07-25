@@ -1,12 +1,12 @@
 import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Host, Prop, State, h } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { UserInfoFormView } from "./sqm-user-info-form-view";
-import { UseUserInfoFormResult, useUserInfoForm } from "./useUserInfoForm";
+import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 
 /**
  * @uiName User Information Form
@@ -213,19 +213,17 @@ export class TaxForm {
     const props = isDemo() ? useDemoUserInfoForm(this) : useUserInfoForm(this);
 
     return (
-      <Host>
-        <UserInfoFormView
-          data={props.data}
-          // @ts-ignore
-          states={props.states}
-          callbacks={{
-            ...props.callbacks,
-            onSubmit: props.onSubmit,
-          }}
-          text={props.text}
-          refs={props.refs}
-        />
-      </Host>
+      <UserInfoFormView
+        data={props.data}
+        // @ts-ignore
+        states={props.states}
+        callbacks={{
+          ...props.callbacks,
+          onSubmit: props.onSubmit,
+        }}
+        text={props.text}
+        refs={props.refs}
+      />
     );
   }
 }
@@ -233,10 +231,11 @@ export class TaxForm {
 function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
+  // @ts-ignore
   return deepmerge(
     {
       setStep,
-      onSubmit: () => {
+      onSubmit: async () => {
         setStep("/2");
       },
       onRadioClick: () => {},

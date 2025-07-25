@@ -1,18 +1,19 @@
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
-import LoadingView from "./LoadingView";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { extractProps } from "./extractProps";
-import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
-import { ErrorView } from "./ErrorView";
+import LoadingView from "./LoadingView";
+import { useTaxAndCash } from "./useTaxAndCash";
 
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  */
 @Component({
@@ -1141,11 +1142,19 @@ export class TaxAndCashMonolith {
   @Prop() supportLink: string = "support team";
 
   /**
-   *
-   * @undocumented
-   * @uiType object
+   * @uiName Monolith States
+   * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+   * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+   * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+   * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+   * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
    */
-  @Prop() demoData?: DemoData<UseTaxAndCashResultType>;
+  @Prop() stateController: string = "{}";
+
+  /**
+   * @undocumented
+   */
+  @Prop() demoData?: DemoData<TaxAndCashMonolith>;
 
   constructor() {
     withHooks(this);
@@ -1197,47 +1206,56 @@ export class TaxAndCashMonolith {
       );
     }
 
-    switch (props.step) {
-      case "/1":
-        return (
-          <sqm-user-info-form
-            {...this.getGeneralStepTextProps("step1_")}
-          ></sqm-user-info-form>
-        );
-      case "/2":
-        return (
-          <sqm-indirect-tax-form
-            {...this.getGeneralStepTextProps("step2_")}
-          ></sqm-indirect-tax-form>
-        );
-      case "/3":
-        return (
-          <sqm-docusign-form
-            {...this.getGeneralStepTextProps("step3_")}
-          ></sqm-docusign-form>
-        );
-      case "/4":
-        return (
-          <sqm-banking-info-form
-            {...this.getGeneralStepTextProps("step4_")}
-          ></sqm-banking-info-form>
-        );
-      case "/dashboard":
-        return (
-          <sqm-tax-and-cash-dashboard
-            {...this.getGeneralStepTextProps("dashboard_")}
-          ></sqm-tax-and-cash-dashboard>
-        );
-      case "/error":
-        return (
-          <ErrorView
-            loadingErrorAlertHeader={this.loadingErrorAlertHeader}
-            loadingErrorAlertDescription={this.loadingErrorAlertDescription}
-          />
-        );
-    }
+    const getStep = () => {
+      switch (props.step) {
+        case "/1":
+          return (
+            <sqm-user-info-form
+              {...this.getGeneralStepTextProps("step1_")}
+              {...extractProps(props, "sqm-user-info-form_")}
+            ></sqm-user-info-form>
+          );
+        case "/2":
+          return (
+            <sqm-indirect-tax-form
+              {...this.getGeneralStepTextProps("step2_")}
+              {...extractProps(props, "sqm-indirect-tax-form_")}
+            ></sqm-indirect-tax-form>
+          );
+        case "/3":
+          return (
+            <sqm-docusign-form
+              {...this.getGeneralStepTextProps("step3_")}
+              {...extractProps(props, "sqm-docusign-form_")}
+            ></sqm-docusign-form>
+          );
+        case "/4":
+          return (
+            <sqm-banking-info-form
+              {...this.getGeneralStepTextProps("step4_")}
+              {...extractProps(props, "sqm-banking-info-form_")}
+            ></sqm-banking-info-form>
+          );
+        case "/dashboard":
+          return (
+            <sqm-tax-and-cash-dashboard
+              {...this.getGeneralStepTextProps("dashboard_")}
+              {...extractProps(props, "sqm-tax-and-cash-dashboard_")}
+            ></sqm-tax-and-cash-dashboard>
+          );
+        case "/error":
+          return (
+            <sqm-form-message type="error">
+              <p part="alert-title">{this.loadingErrorAlertHeader}</p>
+              <p part="alert-description">
+                {this.loadingErrorAlertDescription}
+              </p>
+            </sqm-form-message>
+          );
+      }
+    };
 
-    return <LoadingView />;
+    return getStep() || <LoadingView />;
   }
 }
 
@@ -1247,12 +1265,22 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
     initialValue: "/1",
   });
 
+  console.log("PROPS", props);
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-tax-and-cash"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
+
   return deepmerge(
     {
       step,
       setStep,
     },
-    props.demoData || {},
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
 }

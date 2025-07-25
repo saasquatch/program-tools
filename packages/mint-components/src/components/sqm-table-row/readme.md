@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default               |
-| -------- | --------- | ----------- | -------- | --------------------- |
-| `border` | `border`  |             | `string` | `"1px solid #EAEAEA"` |
+| Property | Attribute | Description | Type     | Default                                                                     |
+| -------- | --------- | ----------- | -------- | --------------------------------------------------------------------------- |
+| `border` | `border`  |             | `string` | `"var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"` |
 
 
 ## Dependencies

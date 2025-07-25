@@ -1,4 +1,6 @@
 import { h } from "@stencil/core";
+import { ExchangeItem, RewardExchangeProps } from "./useRewardExchangeList";
+import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
 
 const baseResponse = (
   data,
@@ -10,7 +12,7 @@ const baseResponse = (
   fueltank = null,
   noExchangeOptions = false,
   queryError = false
-) => ({
+): RewardExchangeViewProps => ({
   states: {
     content: {
       text: {
@@ -75,17 +77,18 @@ const baseResponse = (
     setStage: null,
     setExchangeState: null,
     copyFuelTankCode: null,
-    refs: null,
+    // refs: null,
   },
   refs: null,
 });
 
-const baseReward = {
-  key: "",
-  name: "",
+const baseReward: ExchangeItem = {
+  key: "reward",
+  name: "Demo Reward",
   description:
     "Description of reward. Lorem ipsum dolor sit amet, consectetur adipiscing. Id nec semper sapien dignissim rhoncus nunc.",
-  imageUrl: "",
+  imageUrl:
+    "https://res.cloudinary.com/saasquatch/image/upload/v1643653103/squatch-assets/default_rewards_1.png",
   available: true,
   unavailableReasonCode: null,
   ruleType: "FIXED_GLOBAL_REWARD",
@@ -102,7 +105,34 @@ const baseReward = {
   prettyDestinationMaxValue: null,
   globalRewardKey: "",
   destinationUnit: null,
-  steps: [],
+  steps: [
+    {
+      prettyDestinationValue: "Reward Step 1",
+      prettySourceValue: "50 Points",
+      available: true,
+      unavailableReasonCode: null,
+      destinationValue: 10,
+      sourceValue: 1,
+      globalRewardKey: "reward1",
+      rewardInput: {
+        accountId: "zach",
+        userId: "zach",
+      },
+    },
+    {
+      prettyDestinationValue: "Reward Step 2",
+      prettySourceValue: "100 Points",
+      available: false,
+      unavailableReasonCode: "Not enough points",
+      destinationValue: 10,
+      sourceValue: 1,
+      globalRewardKey: "reward1",
+      rewardInput: {
+        accountId: "zach",
+        userId: "zach",
+      },
+    },
+  ],
 };
 
 const notEnoughPoints = {

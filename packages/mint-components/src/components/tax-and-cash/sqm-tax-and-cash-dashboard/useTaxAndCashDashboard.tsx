@@ -8,21 +8,21 @@ import { DateTime } from "luxon";
 import { vatLabels } from "../countries";
 import {
   ImpactPublisher,
-  TaxContext,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
-  UserQuery,
+  TaxContext,
   USER_QUERY_NAMESPACE,
-} from "../sqm-tax-and-cash/data";
+  UserQuery,
+} from "../data";
+import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
+import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
-import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
-import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;

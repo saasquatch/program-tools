@@ -8,17 +8,31 @@ export interface BigStatViewProps {
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";
   labelSlot?: VNode;
+  statTextColor?: string;
+  statFontSize?: number;
+  descriptionTextColor?: string;
+  descriptionFontSize?: number;
+  statFontWeight?: number;
 }
 
 export function BigStatView(props: BigStatViewProps) {
-  const { statvalue, flexReverse, alignment } = props;
+  const {
+    statvalue,
+    flexReverse,
+    alignment,
+    statTextColor,
+    statFontSize,
+    descriptionTextColor,
+    descriptionFontSize,
+    statFontWeight,
+  } = props;
 
-  // Dependent on props, not feasiable to move out
+  // Dependent on props, not feasible to move out
   const style = {
     Container: {
       display: "flex",
-      height: "inherit",
-      "justify-content": "space-between",
+      // height: "inherit",
+      // "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
         alignment === "left"
@@ -29,15 +43,22 @@ export function BigStatView(props: BigStatViewProps) {
       }`,
     },
     Stat: {
-      "font-size": "var(--sl-font-size-x-large)",
+      "font-size": statFontSize
+        ? `${statFontSize}px`
+        : "var(--sl-font-size-xx-large)",
       "text-align": alignment,
+      color: statTextColor || "var(--sqm-text)",
+      lineHeight: "35px",
+      fontWeight: statFontWeight || "var(--sl-font-weight-normal)",
     },
     Description: {
-      "font-size": "var(--sl-font-size-small)",
+      "font-size": descriptionFontSize
+        ? `${descriptionFontSize}px`
+        : "var(--sl-font-size-small)",
       "font-weight": "var(--sl-font-weight-normal)",
-      color: "var(--sl-color-gray-600)",
-      "text-transform": "uppercase",
+      color: descriptionTextColor || "var(--sqm-text)",
       "text-align": alignment,
+      lineHeight: "20px",
     },
   };
 

@@ -20,6 +20,19 @@ export const SimpleTabs = () => (
   ></div>
 );
 
+export const CustomColor = () => (
+  <div
+    style={{ maxWidth: "700px", margin: "auto" }}
+    innerHTML={`
+     <sqm-tabs text-color="red">
+        <sqm-tab header="General">This is the general tab</sqm-tab>
+        <sqm-tab header="Custom">This is the custom tab</sqm-tab>
+        <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
+      </sqm-tabs>
+    `}
+  ></div>
+);
+
 export const ManyTabs = () => (
   <div
     style={{ maxWidth: "700px", margin: "auto" }}

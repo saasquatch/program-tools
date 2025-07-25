@@ -1,17 +1,17 @@
-import { gql } from "graphql-request";
-import { pathToRegexp } from "path-to-regexp";
-import { useMemo } from "@saasquatch/universal-hooks";
 import {
-  useQuery,
-  useProgramId,
-  useUserIdentity,
   useLocale,
+  useProgramId,
+  useQuery,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
+import { useMemo } from "@saasquatch/universal-hooks";
 import debugFn from "debug";
+import { gql } from "graphql-request";
+import { pathToRegexp } from "path-to-regexp";
+import { useChildElements } from "../../tables/useChildElements";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
-import { useChildElements } from "../../tables/useChildElements";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -143,16 +143,28 @@ const customFieldsQuery = (
   );
 };
 
-const referralsMonthQuery = (programId: string) => {
+const referralsMonthQuery = (
+  programId: string,
+  status?: "started" | "converted"
+) => {
   const programFilter =
     programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId };
 
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
   const filter = {
     ...programFilter,
+    ...convertedFilter,
     dateReferralStarted_timeframe: "this_month",
   };
+
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
@@ -1020,15 +1032,15 @@ export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
   { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
-  { name: "referralsMonth", route: "/(referralsMonth)" },
-  { name: "referralsWeek", route: "/(referralsWeek)" },
+  { name: "referralsMonth", route: "/(referralsMonth)/:status?" }, // TODO: Add status
+  { name: "referralsWeek", route: "/(referralsWeek)/:status?" }, // TODO: Add status
   { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
   { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
   { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
   {
     name: "rewardsCountFiltered",
     route:
-      "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
+      "/(rewardsCountFiltered)/:statType([FUELTANK|INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
   },
   {
     name: "integrationRewardsCountFiltered",
@@ -1104,10 +1116,15 @@ export function useBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         flexReverse,
         alignment,
         loading: false,
+        statTextColor: props.statTextColor,
+        statFontSize: props.statFontSize,
+        descriptionTextColor: props.descriptionTextColor,
+        descriptionFontSize: props.descriptionFontSize,
+        statFontWeight: props.statFontWeight,
       },
       label: "BAD PROP TYPE",
     };
@@ -1147,6 +1164,11 @@ export function useBigStat(props: BigStat): BigStatHook {
       loading: stat?.loading,
       flexReverse,
       alignment,
+      statTextColor: props.statTextColor,
+      statFontSize: props.statFontSize,
+      descriptionTextColor: props.descriptionTextColor,
+      descriptionFontSize: props.descriptionFontSize,
+      statFontWeight: props.statFontWeight,
     },
     label,
   };
