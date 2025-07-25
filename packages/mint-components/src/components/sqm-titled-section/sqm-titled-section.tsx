@@ -6,7 +6,7 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 
 /**
  * @uiName Titled Section
- * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section"]
  * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span"]
  * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
  * @exampleGroup Layout

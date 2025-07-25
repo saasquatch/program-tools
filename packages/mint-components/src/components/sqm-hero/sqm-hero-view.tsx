@@ -55,9 +55,9 @@ export function HeroView(props: HeroProps) {
 
     var index: number = sizes[size];
 
-    if (isMobile(767)) {
+    if (isMobile(650)) {
       index = index - 2;
-    } else if (isMobile(1023)) {
+    } else if (isMobile(767)) {
       index = index - 1;
     }
     return half ? paddingList[index - 2] : paddingList[index];
@@ -77,7 +77,7 @@ export function HeroView(props: HeroProps) {
   const style = {
     TwoColumnContainer: {
       display: "flex",
-      "@media screen and (max-width: 1023px)": {
+      "@media screen and (max-width: 650px)": {
         flexDirection:
           states.wrapDirection == "wrap-reverse" ? "column-reverse" : "column",
         justfiyContent: "center",
@@ -112,12 +112,12 @@ export function HeroView(props: HeroProps) {
           states.secondaryBackground
         )}`,
       },
-      "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
+      "@media screen and (min-width: 650px)": { flex: "1 1 0" },
       minHeight: `${states.minHeight}px`,
       display: "block",
     },
     HideColumn: {
-      "@media screen and (max-width: 1023px)": { display: "none" },
+      "@media screen and (max-width: 650px)": { display: "none" },
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
