@@ -1116,7 +1116,7 @@ export function useBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         flexReverse,
         alignment,
         loading: false,
