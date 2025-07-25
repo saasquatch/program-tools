@@ -273,6 +273,7 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
       case "EMPTY_TANK":
       case "CANCELLED":
       case "ERROR":
+      case "ERROR_SYNCING_FUEL_TANK_CODE":
         return "warning";
       case "PENDING":
         return "info";
