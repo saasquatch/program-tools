@@ -36,7 +36,7 @@ export class Hero {
    * @uiName Background
    * @uiWidget Background
    */
-  @Prop() background?: string = "var(--sl-color-gray-50)";
+  @Prop() background?: string = "#f9fafb";
 
   /**
    * @uiName Padding size
