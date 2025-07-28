@@ -1005,7 +1005,7 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */
@@ -8374,7 +8374,7 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */
