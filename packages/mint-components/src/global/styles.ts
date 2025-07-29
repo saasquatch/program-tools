@@ -720,9 +720,7 @@ html {
   --sqm-input-color: ${
     config?.formFields?.formFieldColor?.inputText || "#27272A"
   };
-  --sqm-input-label-color: ${
-    config?.color?.textColorShades?.mainText || "#27272A"
-  };
+  --sqm-input-label-color: var(--sqm-text);
   --sqm-input-border-color-focus: ${
     config?.formFields?.selectedStateColor || "#E4E4E7"
   };

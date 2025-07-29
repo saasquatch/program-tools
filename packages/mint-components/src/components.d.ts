@@ -341,7 +341,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -352,7 +352,7 @@ export namespace Components {
         /**
           * Font size of the description text in pixels
           * @uiName Description font size
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionFontSize"?: number;
         /**
@@ -361,14 +361,14 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionTextColor"?: string;
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
           * @default 
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
@@ -381,13 +381,13 @@ export namespace Components {
           * Font size of the stat text in pixels
           * @uiName Stat font size
           * @uiType string
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statFontSize"?: number;
         /**
           * Font weight of the stat text
           * @uiName Stat font weight
-          * @uiGroup Style
+          * @uiGroup Additional Settings
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
@@ -398,7 +398,7 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statTextColor"?: string;
         /**
@@ -1005,7 +1005,7 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */
@@ -7709,7 +7709,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -7720,7 +7720,7 @@ declare namespace LocalJSX {
         /**
           * Font size of the description text in pixels
           * @uiName Description font size
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionFontSize"?: number;
         /**
@@ -7729,14 +7729,14 @@ declare namespace LocalJSX {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionTextColor"?: string;
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
           * @default 
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
@@ -7749,13 +7749,13 @@ declare namespace LocalJSX {
           * Font size of the stat text in pixels
           * @uiName Stat font size
           * @uiType string
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statFontSize"?: number;
         /**
           * Font weight of the stat text
           * @uiName Stat font weight
-          * @uiGroup Style
+          * @uiGroup Additional Settings
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
@@ -7766,7 +7766,7 @@ declare namespace LocalJSX {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statTextColor"?: string;
         /**
@@ -8374,7 +8374,7 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */

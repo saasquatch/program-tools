@@ -31,12 +31,12 @@ export class Hero {
   @Prop() minHeight: number = 200;
 
   /**
-   * Can be an image url, colour or Shoelace variable.
+   * Add an image or select a color. Recommended image aspect ratio of 4:5
    *
    * @uiName Background
    * @uiWidget Background
    */
-  @Prop() background?: string = "var(--sl-color-gray-50)";
+  @Prop() background?: string = "#f9fafb";
 
   /**
    * @uiName Padding size
