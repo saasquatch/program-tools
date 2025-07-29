@@ -704,6 +704,112 @@ const rewardsAssignedQuery = (
   );
 };
 
+const rewardsExpiredQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
+            ) {
+              ... on CreditRewardBalance {
+                prettyExpiredCredit
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback;
+      return {
+        value: arr?.[0]?.prettyAssignedCredit || 0,
+        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+      };
+    }
+  );
+};
+
+const rewardsCancelledQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
+            ) {
+              ... on CreditRewardBalance {
+                prettyCancelledCredit
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback;
+      return {
+        value: arr?.[0]?.prettyAssignedCredit || 0,
+        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+      };
+    }
+  );
+};
+
 const rewardsAvailableQuery = (
   programId: string,
   locale: string,
@@ -953,6 +1059,14 @@ export const queries: {
     label: "Rewards Pending",
     query: rewardsPendingQuery,
   },
+  rewardsExpired: {
+    label: "Rewards Expired",
+    query: rewardsExpiredQuery,
+  },
+  rewardsCancelled: {
+    label: "Rewards Cancelled",
+    query: rewardsCancelledQuery,
+  },
   rewardsRedeemed: {
     label: "Rewards Paid",
     query: rewardsRedeemedQuery,
@@ -1051,6 +1165,14 @@ export const StatPaths = [
   {
     name: "rewardsAssigned",
     route: "/(rewardsAssigned)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsExpired",
+    route: "/(rewardsExpired)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsCancelled",
+    route: "/(rewardsCancelled)/:statType/:unit/:global?",
   },
   {
     name: "rewardsPending",

@@ -375,6 +375,7 @@ export namespace Components {
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
         /**
@@ -7743,6 +7744,7 @@ declare namespace LocalJSX {
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
         /**
