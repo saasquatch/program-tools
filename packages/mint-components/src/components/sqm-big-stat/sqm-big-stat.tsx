@@ -59,6 +59,7 @@ export class BigStat {
    *
    * @uiName Program ID
    * @uiWidget programSelector
+   * @uiGroup Additional Settings
    */
   @Prop() programId?: string;
 

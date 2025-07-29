@@ -1027,6 +1027,7 @@ export const queries: {
   },
 };
 
+// TODO: Add rewardsExpired and rewardsCancelled
 // this should be exposed in documentation somehow
 export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
