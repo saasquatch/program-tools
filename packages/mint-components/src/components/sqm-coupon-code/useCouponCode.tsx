@@ -121,8 +121,9 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
     const data = await refetch();
     setRetried(true);
     if (
-      // @ts-ignore
-      !data?.user?.instantAccessRewards?.data?.[0]?.pendingReasons?.includes(
+      !(
+        data as FuelTankRewardsQueryResult
+      )?.user?.instantAccessRewards?.data?.[0]?.pendingReasons?.includes(
         "ERROR_SYNCING_FUEL_TANK_CODE"
       )
     ) {
