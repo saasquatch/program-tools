@@ -67,7 +67,7 @@ Feature: Widget verification flow
 
     Examples:
       | code   | time       |
-      | 234567 |   1 minute |
+      | 234567 | 1 minute   |
       | 123456 | 30 minutes |
       | 234567 | 30 minutes |
 
@@ -113,3 +113,31 @@ Feature: Widget verification flow
       | mayBeVerified   | UI                      |
       | is verified     | enabled slot            |
       | is not verified | email verification flow |
+
+  @motivating
+  Scenario: sqm-widget-verification editor states
+    Given html is loaded into a raisins editor
+    And the html includes "<sqm-widget-verification></sqm-widget-verification>"
+    When "sqm-widget-verification" is selected in the editor
+    Then the following states are displayed
+      | state      |
+      | Email Step |
+      | Code Step  |
+    When "Email Step" is selected
+    Then "sqm-widget-verification" displays the email verification flow
+    When "Code Step" is selected
+    Then "sqm-widget-verification" displays the 2FA verification flow
+
+  @motivating
+  Scenario: sqm-widget-verification-controller editor states
+    Given html is loaded into a raisins editor
+    And the html includes "<sqm-widget-verification-controller></sqm-widget-verification-controller>"
+    When "sqm-widget-verification-controller" is selected in the editor
+    Then the following states are displayed
+      | state        |
+      | Verified     |
+      | Not Verified |
+    When "Verified" is selected
+    Then "sqm-widget-verification-controller" displays whatever is slotted in the template slot "verified"
+    When "Not Verified" is selected
+    Then "sqm-widget-verification-controller" displays whatever is slotted in the template slot "not-verified"
