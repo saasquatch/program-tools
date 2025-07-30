@@ -28,7 +28,6 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       props.layout === "overlay"
   );
 
-  console.log("buttonType is ", props.buttonType);
   // Dependent on props, not feasiable to move out
   const style = {
     Container: {
