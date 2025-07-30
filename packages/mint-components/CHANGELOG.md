@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-coupon-code>
   - Added a 1 minute retry on fetching the coupon code if the fuel tank code fails to load due to a syncing error
 
+## [1.14.4] - 2025-07-10
+
 ### Changed
 
 - \<sqm-tax-and-cash>
