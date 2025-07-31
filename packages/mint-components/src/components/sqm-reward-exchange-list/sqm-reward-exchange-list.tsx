@@ -16,6 +16,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
+import { parseStates } from "../../utils/parseStates";
 
 /**
  * @uiName Reward Exchange
@@ -196,6 +197,14 @@ export class SqmRewardExchangeList {
   @Prop() costTitle: string = "Cost to Redeem";
 
   /**
+   * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -247,6 +256,15 @@ function EmptySlot() {
 }
 
 function useRewardExchangeListDemo(props: RewardExchangeProps) {
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "reward-exchange-list"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
+
   return deepmerge(
     {
       states: {
@@ -280,7 +298,7 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
         canvasRef: {},
       },
     },
-    props.demoData || {},
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
 }
