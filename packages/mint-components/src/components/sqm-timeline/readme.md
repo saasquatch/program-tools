@@ -7,12 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                 | Default     |
-| -------- | --------- | ----------- | -------------------- | ----------- |
-| `desc`   | `desc`    |             | `string`             | `undefined` |
-| `icon`   | `icon`    |             | `"circle" \| "gift"` | `undefined` |
-| `reward` | `reward`  |             | `string`             | `undefined` |
-| `unit`   | `unit`    |             | `string`             | `undefined` |
+| Property    | Attribute    | Description                     | Type                 | Default     |
+| ----------- | ------------ | ------------------------------- | -------------------- | ----------- |
+| `desc`      | `desc`       |                                 | `string`             | `undefined` |
+| `icon`      | `icon`       |                                 | `"circle" \| "gift"` | `undefined` |
+| `lineColor` | `line-color` | Color of timeline               | `string`             | `undefined` |
+| `reward`    | `reward`     |                                 | `string`             | `undefined` |
+| `textColor` | `text-color` | Color of the text and copy icon | `string`             | `undefined` |
+| `unit`      | `unit`       |                                 | `string`             | `undefined` |
 
 
 ## Methods

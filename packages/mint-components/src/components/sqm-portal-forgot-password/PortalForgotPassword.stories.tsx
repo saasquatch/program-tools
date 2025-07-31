@@ -23,7 +23,7 @@ const defaultProps: PortalForgotPasswordViewProps = {
     submit: async (e) => await e,
   },
   content: {
-    secondaryButton: "Cancel",
+    loginText: "Login",
     messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
@@ -39,8 +39,8 @@ const errorProps: PortalForgotPasswordViewProps = {
     submit: async (e) => await e,
   },
   content: {
-    secondaryButton: "Cancel",
     messageSlot: "Enter your email below to receive a password reset link.",
+    loginText: "Login",
   },
 };
 
@@ -55,7 +55,7 @@ const loadingProps: PortalForgotPasswordViewProps = {
     submit: async (e) => await e,
   },
   content: {
-    secondaryButton: "Cancel",
+    loginText: "Login",
     messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
@@ -71,7 +71,7 @@ const successProps: PortalForgotPasswordViewProps = {
     submit: async (e) => await e,
   },
   content: {
-    secondaryButton: "Cancel",
+    loginText: "Login",
     messageSlot: "Enter your email below to receive a password reset link.",
   },
 };

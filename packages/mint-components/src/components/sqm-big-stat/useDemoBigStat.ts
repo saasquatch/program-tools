@@ -17,10 +17,14 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         loading: false,
-        flexReverse: false,
-        alignment: "center" as const,
+        flexReverse: props.flexReverse,
+        alignment: props.alignment,
+        statTextColor: props.statTextColor,
+        statFontSize: props.statFontSize,
+        descriptionTextColor: props.descriptionTextColor,
+        descriptionFontSize: props.descriptionFontSize,
       },
       label: "BAD PROP TYPE",
     };
@@ -35,8 +39,13 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
       {
         statvalue: "12345",
         value: 0,
-        flexReverse: false,
-        alignment: "center" as const,
+        flexReverse: props.flexReverse,
+        alignment: props.alignment,
+        statTextColor: props.statTextColor,
+        statFontSize: props.statFontSize,
+        descriptionTextColor: props.descriptionTextColor,
+        descriptionFontSize: props.descriptionFontSize,
+        statFontWeight: props.statFontWeight,
       },
       props.demoData || {},
       { arrayMerge: (_, a) => a }

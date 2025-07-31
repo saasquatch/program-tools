@@ -30,14 +30,35 @@ export class ProgramExplainerStep {
    * @uiWidget color
    * @format color
    */
-  @Prop() textColor: string;
+  @Prop() textColor?: string;
 
   /**
    * @uiName Background color
    * @uiWidget color
    * @format color
    */
-  @Prop() backgroundColor: string;
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Amount in pixels
+   * @uiName Border radius
+   * @type number
+   */
+  @Prop() borderRadius?: number;
+
+  /**
+   * @uiName Icon Background color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() iconBackgroundColor?: string;
+
+  /**
+   * @uiName Icon color
+   * @uiWidget color
+   * @format color
+   */
+  @Prop() iconColor?: string;
 
   /**
    * Displayed in place of an icon

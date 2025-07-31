@@ -13,14 +13,26 @@
 | `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                              | `string` | `undefined` |
 
 
+## Shadow Parts
+
+| Part           | Description |
+| -------------- | ----------- |
+| `"alert-icon"` |             |
+
+
 ## Dependencies
 
 ### Used by
 
+ - [sqm-banking-info-form](../tax-and-cash/sqm-banking-info-form)
  - [sqm-code-verification](../sqm-widget-verification/sqm-code-verification)
  - [sqm-coupon-code](../sqm-coupon-code)
+ - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
  - [sqm-edit-profile](../sqm-edit-profile)
+ - [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
+ - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
+ - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
  - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
@@ -33,16 +45,25 @@
  - [sqm-portal-registration-form](../sqm-portal-registration-form)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
+ - [sqm-qr-code](../sqm-qr-code)
  - [sqm-referred-registration](../sqm-referred-registration)
  - [sqm-stencilbook](../sqm-stencilbook)
+ - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
+ - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
+ - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-banking-info-form --> sqm-form-message
   sqm-code-verification --> sqm-form-message
   sqm-coupon-code --> sqm-form-message
+  sqm-docusign-form --> sqm-form-message
   sqm-edit-profile --> sqm-form-message
+  sqm-email-verification --> sqm-form-message
+  sqm-indirect-tax-form --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
+  sqm-payout-status-alert --> sqm-form-message
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
@@ -55,8 +76,12 @@ graph TD;
   sqm-portal-registration-form --> sqm-form-message
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-verify-email --> sqm-form-message
+  sqm-qr-code --> sqm-form-message
   sqm-referred-registration --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
+  sqm-tax-and-cash --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-form-message
+  sqm-user-info-form --> sqm-form-message
   style sqm-form-message fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

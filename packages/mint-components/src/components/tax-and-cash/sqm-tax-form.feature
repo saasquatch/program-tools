@@ -36,15 +36,15 @@ Feature: Tax Form Flow
 
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           |     3 |
-      | CA          | MX           |     4 |
-      | US          | CA           |     3 |
-      | US          | MX           |     3 |
-      | GB          | US           |     3 |
-      | GB          | MX           |     4 |
-      | EG          | US           |     3 |
-      | EG          | MX           |     4 |
-      | US          | US           |     3 |
+      | CA          | US           | 3     |
+      | CA          | MX           | 4     |
+      | US          | CA           | 3     |
+      | US          | MX           | 3     |
+      | GB          | US           | 3     |
+      | GB          | MX           | 4     |
+      | EG          | US           | 3     |
+      | EG          | MX           | 4     |
+      | US          | US           | 3     |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
@@ -102,11 +102,11 @@ Feature: Tax Form Flow
       | countryCode | brandCountry | hasExistingTaxDoc | stepX     |
       | CA          | US           | true              | dashboard |
       | CA          | MX           | n/a               | dashboard |
-      | US          | CA           | false             |         3 |
+      | US          | CA           | false             | 3         |
       | US          | MX           | true              | dashboard |
-      | GB          | US           | false             |         3 |
+      | GB          | US           | false             | 3         |
       | GB          | US           | true              | dashboard |
-      | ES          | US           | false             |         3 |
+      | ES          | US           | false             | 3         |
       | EG          | MX           | n/a               | dashboard |
 
   @minutia
@@ -227,3 +227,26 @@ Feature: Tax Form Flow
     And the request for the user returns with errors
     Then the form / dashboard is not shown
     And an error banner is shown
+
+  @motivating
+  Scenario Outline: sqm-tax-and-cash editor states
+    Given html loaded in a raisins editor
+    And the html includes "<sqm-tax-and-cash></sqm-tax-and-cash>"
+    When "sqm-tax-and-cash" is selected in the editor
+    Then a state dropdown appears with the following states
+      | state     |
+      | Step 1    |
+      | Step 2    |
+      | Step 3    |
+      | Step 4    |
+      | Dashboard |
+    When <state> is selected
+    Then "sqm-tax-and-cash" displays the <UI>
+
+    Examples:
+      | state     | UI                                  |
+      | Step 1    | user information form               |
+      | Step 2    | indirect tax form                   |
+      | Step 3    | complyexchange iframe               |
+      | Step 4    | banking/withdrawal information form |
+      | Dashboard | tax dashboard                       |

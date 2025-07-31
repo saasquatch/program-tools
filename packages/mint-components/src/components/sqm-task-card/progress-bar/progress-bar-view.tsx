@@ -61,7 +61,8 @@ const style = {
       width: "100%",
       height: "4px",
       borderRadius: "4px",
-      backgroundColor: "var(--sl-color-primary-300)",
+      backgroundColor: "var(--sqm-accent-color-icon)",
+      background: "red",
     },
     "& .progress": {
       display: "block",
@@ -74,7 +75,7 @@ const style = {
       width: "12px",
       height: "12px",
       display: "flex",
-      backgroundColor: "var(--sl-color-primary-300)",
+      backgroundColor: "var(--sqm-accent-color-icon)",
       borderRadius: "50%",
       position: "relative",
       left: "47%",

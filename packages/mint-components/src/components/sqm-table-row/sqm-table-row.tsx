@@ -9,10 +9,11 @@ import { Component, h, Host, Prop } from "@stencil/core";
   shadow: true,
 })
 export class TableRow {
-  /** 
-   * @uiName Border 
+  /**
+   * @uiName Border
    */
-  @Prop() border: string = "1px solid #EAEAEA";
+  @Prop() border: string =
+    "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)";
   render() {
     return (
       <Host style={{ display: "contents" }}>

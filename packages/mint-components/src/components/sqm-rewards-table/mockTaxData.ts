@@ -1,3 +1,5 @@
+import { ImpactConnection } from "../../saasquatch";
+
 export default (): ImpactConnection => {
   return {
     connected: true,

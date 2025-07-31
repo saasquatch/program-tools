@@ -6,7 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
-import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
@@ -22,11 +21,13 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { FraudStatus, ImpactConnection, Invoice, Referral, Referrer, Reward } from "./saasquatch";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
+import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
@@ -50,7 +51,6 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -58,21 +58,6 @@ export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
         "renderLabel": (idx: any) => Promise<any>;
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner image
-         */
-        "imgUrl": string;
-        /**
-          * @uiName Banner title
-         */
-        "titleText": string;
     }
     interface SqmBankingInfoForm {
         /**
@@ -356,6 +341,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -364,17 +350,58 @@ export namespace Components {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
+          * Font size of the description text in pixels
+          * @uiName Description font size
+          * @uiGroup Additional Settings
+         */
+        "descriptionFontSize"?: number;
+        /**
+          * Color of the description text
+          * @uiName Description text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Additional Settings
+         */
+        "descriptionTextColor"?: string;
+        /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
-          * @default
+          * @default 
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiType string
+          * @uiGroup Additional Settings
+         */
+        "statFontSize"?: number;
+        /**
+          * Font weight of the stat text
+          * @uiName Stat font weight
+          * @uiGroup Additional Settings
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "statFontWeight"?: number;
+        /**
+          * Color of the stat text
+          * @uiName Stat text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Additional Settings
+         */
+        "statTextColor"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget statTypeSelectWidget
@@ -398,6 +425,8 @@ export namespace Components {
           * @default "Nunito Sans"
          */
         "brandFont": string;
+    }
+    interface SqmBrandSelector {
     }
     interface SqmCardFeed {
         /**
@@ -506,13 +535,46 @@ export namespace Components {
     }
     interface SqmCouponCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -585,8 +647,17 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -599,6 +670,18 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmDividedLayout {
+        /**
+          * Background color of the divider
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * Color of the divider (defaults to default text color if none is set)
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
         /**
           * Overrides max-width of content area
           * @uiName Content Area Width
@@ -613,7 +696,7 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
          */
         "dividerStyle": string;
@@ -923,11 +1006,15 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */
         "background"?: string;
+        /**
+          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
@@ -964,6 +1051,7 @@ export namespace Components {
           * @uiName Background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundColor"?: string;
         /**
@@ -980,6 +1068,15 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -993,11 +1090,13 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
+          * @uiGroup Style
          */
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
+          * @uiGroup Style
          */
         "imagePercentage": number;
         /**
@@ -1005,6 +1104,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "imagePos": "left" | "center" | "right";
         /**
@@ -1018,16 +1118,19 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiGroup Style
          */
         "layout": "overlay" | "columns";
         /**
           * @uiName Overlay color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "overlayColor"?: string;
         /**
           * @uiName Overlay opacity
+          * @uiGroup Style
          */
         "overlayOpacity": string;
         /**
@@ -1035,6 +1138,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingImage": Spacing;
         /**
@@ -1042,12 +1146,14 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingText": Spacing;
         /**
           * @uiName Text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textColor"?: string;
     }
@@ -1470,6 +1576,26 @@ export namespace Components {
          */
         "anonymousUser": string;
         /**
+          * Changes the background color of the leaderboard.
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "background"?: string;
+        /**
+          * Changes the border color of the table rows.
+          * @uiName Border Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * Leaderboard border radius in pixels.
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1538,9 +1664,30 @@ export namespace Components {
          */
         "statsheading": string;
         /**
+          * Text color of the leaderboard.
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * @uiName User column heading
          */
         "usersheading": string;
+        /**
+          * Changes the background color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Highlight Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightColor"?: string;
+        /**
+          * Changes the text color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
          */
@@ -1683,8 +1830,47 @@ export namespace Components {
         "menuLabel": string;
     }
     interface SqmNavigationSidebar {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<NavigationSidebarViewProps>;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "mobileMenuColor"?: string;
     }
     interface SqmNavigationSidebarItem {
+        /**
+          * Background color of the nav item
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Background color of the nav item when focused
+          * @uiName Background Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundFocusedColor"?: string;
+        /**
+          * Background color of the nav item when hovered
+          * @uiName Background Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundHoverColor"?: string;
+        /**
+          * Border radius (in number of pixels)
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -1693,6 +1879,7 @@ export namespace Components {
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon
+          * @uiGroup Style
          */
         "icon": string;
         /**
@@ -1700,12 +1887,49 @@ export namespace Components {
          */
         "label": string;
         /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
           * @uiName Navigation path
           * @uiWidget pageSelect
          */
         "path": string;
+        /**
+          * Text color of the nav item
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
+          * Text color of the nav item when items is focused
+          * @uiName Text Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textFocusedColor"?: string;
+        /**
+          * Text color of the nav item when hovered
+          * @uiName Text Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textHoverColor"?: string;
     }
     interface SqmPagination {
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -1788,6 +2012,10 @@ export namespace Components {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText": string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -2209,6 +2437,21 @@ export namespace Components {
     }
     interface SqmPortalForgotPassword {
         /**
+          * @uiName Background color
+          * @uiWidget color
+         */
+        "backgroundColor": string;
+        /**
+          * @uiName Border style
+          * @uiWidget textArea
+         */
+        "border": string;
+        /**
+          * @uiName Border radius
+          * @uiWidget number
+         */
+        "borderRadius": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2253,10 +2496,29 @@ export namespace Components {
     }
     interface SqmPortalFrame {
         /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor": string;
+        /**
+          * Borders placed to seperate the header and footer from the body content.
+          * @uiName Border
+          * @uiType string
+         */
+        "border": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * Background color for the header and footer.
+          * @uiName Header and Footer Background Color
+          * @uiWidget color
+          * @uiType string
+         */
+        "headerAndFooterBackgroundColor": string;
         /**
           * @undocumented
          */
@@ -2989,7 +3251,13 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "backgroundColor": string;
+        "backgroundColor"?: string;
+        /**
+          * Amount in pixels
+          * @uiName Border radius
+          * @type number
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -3005,6 +3273,18 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
+        /**
           * Displayed in place of an icon
           * @uiName Image URL
           * @uiWidget imageUpload
@@ -3016,7 +3296,7 @@ export namespace Components {
           * @uiWidget color
           * @format color
          */
-        "textColor": string;
+        "textColor"?: string;
     }
     interface SqmProgramMenu {
     }
@@ -3068,7 +3348,20 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
          */
-        "backgroundColor": string;
+        "backgroundColor"?: string;
+        /**
+          * Border color of container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Hide border
           * @uiType boolean
@@ -3108,6 +3401,13 @@ export namespace Components {
          */
         "paddingTop": string;
         /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
+        /**
           * @uiName Vertical alignment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
@@ -3117,13 +3417,46 @@ export namespace Components {
     }
     interface SqmReferralCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -3155,8 +3488,17 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign": "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -3191,6 +3533,12 @@ export namespace Components {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Text Color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Title Text
          */
@@ -3655,6 +4003,14 @@ export namespace Components {
          */
         "sourceAmountMessage": string;
         /**
+          * @uiName Monolith States
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController": string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -3992,11 +4348,18 @@ export namespace Components {
           * @uiName Button background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundcolor"?: string;
         /**
+          * @uiName Border
+          * @uiGroup Style
+         */
+        "border"?: string;
+        /**
           * Configure border radius with pixel amount
           * @uiName Border radius
+          * @uiGroup Style
          */
         "borderradius"?: number;
         /**
@@ -4010,11 +4373,13 @@ export namespace Components {
         "disabled"?: boolean;
         /**
           * @uiName Hide icon
+          * @uiGroup Style
           * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide text
+          * @uiGroup Style
           * @default
          */
         "hidetext"?: boolean;
@@ -4052,6 +4417,7 @@ export namespace Components {
     | "unknown";
         /**
           * @uiName Display pill
+          * @uiGroup Style
          */
         "pill"?: boolean;
         /**
@@ -4075,21 +4441,24 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
+          * @uiGroup Style
          */
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+          * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -4109,13 +4478,46 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4137,8 +4539,17 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign": "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -4152,13 +4563,46 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
-          * @uiName Style
+          * @uiName Button style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4180,8 +4624,17 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -4195,12 +4648,34 @@ export namespace Components {
     }
     interface SqmStatContainer {
         /**
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented 
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
+        /**
+          * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "gap": Spacing;
+        /**
+          * Hide the seperating border between stats
+          * @uiName Hide border
+          * @uiType boolean
+         */
+        "hideBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string
@@ -4242,8 +4717,33 @@ export namespace Components {
           * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
+        /**
+          * Tab text color
+          * @uiName Text color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmTaskCard {
+        /**
+          * @uiName Card Background color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Border radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Button link
           * @uiGroup Button
@@ -4254,6 +4754,14 @@ export namespace Components {
           * @uiGroup Button
          */
         "buttonText": string;
+        /**
+          * @uiName Button Style
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
@@ -4391,6 +4899,12 @@ export namespace Components {
           * @default
          */
         "steps": boolean;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
     }
     interface SqmTaxAndCash {
         /**
@@ -4734,10 +5248,9 @@ export namespace Components {
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -4809,6 +5322,15 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "searchForCountryText": string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2: Indirect tax ", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+         */
+        "stateController": string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -5659,12 +6181,36 @@ export namespace Components {
         "verificationReviewInternalHeader": string;
     }
     interface SqmText {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
     }
     interface SqmTextSpan {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
         /**
           * @uiName Text
          */
         "text": string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Type
           * @uiType string
@@ -5695,10 +6241,24 @@ export namespace Components {
          */
         "icon": "gift" | "circle";
         /**
+          * Color of timeline
+          * @uiName Line color
+          * @uiWidget color
+          * @format color
+         */
+        "lineColor"?: string;
+        /**
           * @uiName Reward amount
          */
         "reward": string;
         "setIcon": (value: "gift" | "circle") => Promise<void>;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward unit
          */
@@ -5994,8 +6554,18 @@ export namespace Components {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader": string;
+        /**
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+         */
+        "stateController": string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController": string;
     }
 }
 declare global {
@@ -6004,12 +6574,6 @@ declare global {
     var HTMLRaisinsPlopTargetElement: {
         prototype: HTMLRaisinsPlopTargetElement;
         new (): HTMLRaisinsPlopTargetElement;
-    };
-    interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
-    }
-    var HTMLSqmAssetCardElement: {
-        prototype: HTMLSqmAssetCardElement;
-        new (): HTMLSqmAssetCardElement;
     };
     interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
     }
@@ -6028,6 +6592,12 @@ declare global {
     var HTMLSqmBrandElement: {
         prototype: HTMLSqmBrandElement;
         new (): HTMLSqmBrandElement;
+    };
+    interface HTMLSqmBrandSelectorElement extends Components.SqmBrandSelector, HTMLStencilElement {
+    }
+    var HTMLSqmBrandSelectorElement: {
+        prototype: HTMLSqmBrandSelectorElement;
+        new (): HTMLSqmBrandSelectorElement;
     };
     interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
     }
@@ -6739,10 +7309,10 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
-        "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
+        "sqm-brand-selector": HTMLSqmBrandSelectorElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
@@ -6865,21 +7435,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface RaisinsPlopTarget {
-    }
-    interface SqmAssetCard {
-        /**
-          * @undocumented 
-          * @uiType object
-         */
-        "demoData"?: DemoData<AssetCardViewProps>;
-        /**
-          * @uiName Banner image
-         */
-        "imgUrl"?: string;
-        /**
-          * @uiName Banner title
-         */
-        "titleText"?: string;
     }
     interface SqmBankingInfoForm {
         /**
@@ -7163,6 +7718,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -7171,17 +7727,58 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
+          * Font size of the description text in pixels
+          * @uiName Description font size
+          * @uiGroup Additional Settings
+         */
+        "descriptionFontSize"?: number;
+        /**
+          * Color of the description text
+          * @uiName Description text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Additional Settings
+         */
+        "descriptionTextColor"?: string;
+        /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
-          * @default
+          * @default 
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
+        /**
+          * Font size of the stat text in pixels
+          * @uiName Stat font size
+          * @uiType string
+          * @uiGroup Additional Settings
+         */
+        "statFontSize"?: number;
+        /**
+          * Font weight of the stat text
+          * @uiName Stat font weight
+          * @uiGroup Additional Settings
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "statFontWeight"?: number;
+        /**
+          * Color of the stat text
+          * @uiName Stat text color
+          * @uiWidget color
+          * @uiType string
+          * @format color
+          * @uiGroup Additional Settings
+         */
+        "statTextColor"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget statTypeSelectWidget
@@ -7205,6 +7802,8 @@ declare namespace LocalJSX {
           * @default "Nunito Sans"
          */
         "brandFont"?: string;
+    }
+    interface SqmBrandSelector {
     }
     interface SqmCardFeed {
         /**
@@ -7313,13 +7912,46 @@ declare namespace LocalJSX {
     }
     interface SqmCouponCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement.
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button (primary or secondary) that will be used to copy the link.
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -7392,8 +8024,17 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -7406,6 +8047,18 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmDividedLayout {
+        /**
+          * Background color of the divider
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * Color of the divider (defaults to default text color if none is set)
+          * @uiName Divider Background Color
+          * @uiWidget color
+         */
+        "borderColor"?: string;
         /**
           * Overrides max-width of content area
           * @uiName Content Area Width
@@ -7420,7 +8073,7 @@ declare namespace LocalJSX {
          */
         "direction"?: "row" | "column";
         /**
-          * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
+          * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
          */
         "dividerStyle"?: string;
@@ -7731,11 +8384,15 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
+          * Add an image or select a color. Recommended image aspect ratio of 4:5
           * @uiName Background
           * @uiWidget Background
          */
         "background"?: string;
+        /**
+          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
@@ -7772,6 +8429,7 @@ declare namespace LocalJSX {
           * @uiName Background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundColor"?: string;
         /**
@@ -7788,6 +8446,15 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -7801,11 +8468,13 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
+          * @uiGroup Style
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
+          * @uiGroup Style
          */
         "imagePercentage"?: number;
         /**
@@ -7813,6 +8482,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "imagePos"?: "left" | "center" | "right";
         /**
@@ -7826,16 +8496,19 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
         /**
           * @uiName Overlay color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "overlayColor"?: string;
         /**
           * @uiName Overlay opacity
+          * @uiGroup Style
          */
         "overlayOpacity"?: string;
         /**
@@ -7843,6 +8516,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingImage"?: Spacing;
         /**
@@ -7850,12 +8524,14 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+          * @uiGroup Style
          */
         "paddingText"?: Spacing;
         /**
           * @uiName Text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textColor"?: string;
     }
@@ -8272,6 +8948,26 @@ declare namespace LocalJSX {
          */
         "anonymousUser"?: string;
         /**
+          * Changes the background color of the leaderboard.
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "background"?: string;
+        /**
+          * Changes the border color of the table rows.
+          * @uiName Border Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * Leaderboard border radius in pixels.
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -8340,9 +9036,30 @@ declare namespace LocalJSX {
          */
         "statsheading"?: string;
         /**
+          * Text color of the leaderboard.
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
           * @uiName User column heading
          */
         "usersheading"?: string;
+        /**
+          * Changes the background color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Highlight Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightColor"?: string;
+        /**
+          * Changes the text color of the viewing user row in the leaderboard.
+          * @uiName Viewing User Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
          */
@@ -8485,8 +9202,47 @@ declare namespace LocalJSX {
         "menuLabel"?: string;
     }
     interface SqmNavigationSidebar {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<NavigationSidebarViewProps>;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "mobileMenuColor"?: string;
     }
     interface SqmNavigationSidebarItem {
+        /**
+          * Background color of the nav item
+          * @uiName Background Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Background color of the nav item when focused
+          * @uiName Background Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundFocusedColor"?: string;
+        /**
+          * Background color of the nav item when hovered
+          * @uiName Background Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundHoverColor"?: string;
+        /**
+          * Border radius (in number of pixels)
+          * @uiName Border Radius
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -8495,6 +9251,7 @@ declare namespace LocalJSX {
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon
+          * @uiGroup Style
          */
         "icon"?: string;
         /**
@@ -8502,12 +9259,49 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "padding"?: Spacing;
+        /**
           * @uiName Navigation path
           * @uiWidget pageSelect
          */
         "path"?: string;
+        /**
+          * Text color of the nav item
+          * @uiName Text Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
+        /**
+          * Text color of the nav item when items is focused
+          * @uiName Text Focused Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textFocusedColor"?: string;
+        /**
+          * Text color of the nav item when hovered
+          * @uiName Text Hover Color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textHoverColor"?: string;
     }
     interface SqmPagination {
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -8590,6 +9384,10 @@ declare namespace LocalJSX {
           * @uiName Payout missing information subtext
          */
         "payoutMissingInformationText"?: string;
+        /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
@@ -9011,6 +9809,21 @@ declare namespace LocalJSX {
     }
     interface SqmPortalForgotPassword {
         /**
+          * @uiName Background color
+          * @uiWidget color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border style
+          * @uiWidget textArea
+         */
+        "border"?: string;
+        /**
+          * @uiName Border radius
+          * @uiWidget number
+         */
+        "borderRadius"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -9055,10 +9868,29 @@ declare namespace LocalJSX {
     }
     interface SqmPortalFrame {
         /**
+          * @uiName Background color
+          * @uiWidget color
+          * @uiType string
+         */
+        "backgroundColor"?: string;
+        /**
+          * Borders placed to seperate the header and footer from the body content.
+          * @uiName Border
+          * @uiType string
+         */
+        "border"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
+        /**
+          * Background color for the header and footer.
+          * @uiName Header and Footer Background Color
+          * @uiWidget color
+          * @uiType string
+         */
+        "headerAndFooterBackgroundColor"?: string;
         /**
           * @undocumented
          */
@@ -9793,6 +10625,12 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Amount in pixels
+          * @uiName Border radius
+          * @type number
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Description
           * @uiWidget textArea
          */
@@ -9806,6 +10644,18 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * @uiName Icon Background color
+          * @uiWidget color
+          * @format color
+         */
+        "iconBackgroundColor"?: string;
+        /**
+          * @uiName Icon color
+          * @uiWidget color
+          * @format color
+         */
+        "iconColor"?: string;
         /**
           * Displayed in place of an icon
           * @uiName Image URL
@@ -9872,6 +10722,19 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * Border color of container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+         */
+        "borderRadius"?: number;
+        /**
           * @uiName Hide border
           * @uiType boolean
          */
@@ -9910,6 +10773,13 @@ declare namespace LocalJSX {
          */
         "paddingTop"?: string;
         /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
+        /**
           * @uiName Vertical alignment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
@@ -9919,13 +10789,46 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container (default is set to 1px solid transparent)
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -9957,8 +10860,17 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -9993,6 +10905,12 @@ declare namespace LocalJSX {
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * @uiName Text Color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
         /**
           * @uiName Title Text
          */
@@ -10443,6 +11361,14 @@ declare namespace LocalJSX {
          */
         "sourceAmountMessage"?: string;
         /**
+          * @uiName Monolith States
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController"?: string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -10770,11 +11696,18 @@ declare namespace LocalJSX {
           * @uiName Button background color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "backgroundcolor"?: string;
         /**
+          * @uiName Border
+          * @uiGroup Style
+         */
+        "border"?: string;
+        /**
           * Configure border radius with pixel amount
           * @uiName Border radius
+          * @uiGroup Style
          */
         "borderradius"?: number;
         /**
@@ -10788,11 +11721,13 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * @uiName Hide icon
+          * @uiGroup Style
           * @default
          */
         "hideicon"?: boolean;
         /**
           * @uiName Hide text
+          * @uiGroup Style
           * @default
          */
         "hidetext"?: boolean;
@@ -10830,6 +11765,7 @@ declare namespace LocalJSX {
     | "unknown";
         /**
           * @uiName Display pill
+          * @uiGroup Style
          */
         "pill"?: boolean;
         /**
@@ -10853,21 +11789,24 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
+          * @uiGroup Style
          */
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
           * @uiWidget color
           * @format color
+          * @uiGroup Style
          */
         "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
-          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
+          * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -10887,13 +11826,46 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
           * @uiName Style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -10915,8 +11887,17 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -10930,13 +11911,46 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
+          * Background color of share link container
+          * @uiName Background color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * Border color of share link container
+          * @uiName Border color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * The border radius on the share link container (in pixels)
+          * @uiName Border Radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: string;
+        /**
           * Set the copy button style and placement
-          * @uiName Style
+          * @uiName Button style
           * @uiType string
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
+          * @uiGroup Style
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
+        /**
+          * The type of the button that is used (primary or secondary).
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -10958,8 +11972,17 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
+          * @uiGroup Style
          */
         "textAlign"?: "left" | "center" | "right";
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
@@ -10973,12 +11996,34 @@ declare namespace LocalJSX {
     }
     interface SqmStatContainer {
         /**
+          * Controls the alignment of the flexbox
+          * @uiName Alignment
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented 
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
+        /**
+          * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+         */
+        "gap"?: Spacing;
+        /**
+          * Hide the seperating border between stats
+          * @uiName Hide border
+          * @uiType boolean
+         */
+        "hideBorder"?: boolean;
         /**
           * @uiName Space between stats
           * @uiType string
@@ -11020,8 +12065,33 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
+        /**
+          * Tab text color
+          * @uiName Text color
+          * @uiType string
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmTaskCard {
+        /**
+          * @uiName Card Background color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Border color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "borderColor"?: string;
+        /**
+          * @uiName Border radius
+          * @uiType number
+          * @uiGroup Style
+         */
+        "borderRadius"?: number;
         /**
           * @uiName Button link
           * @uiGroup Button
@@ -11032,6 +12102,14 @@ declare namespace LocalJSX {
           * @uiGroup Button
          */
         "buttonText"?: string;
+        /**
+          * @uiName Button Style
+          * @uiType string
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
+          * @uiGroup Style
+         */
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
@@ -11169,6 +12247,12 @@ declare namespace LocalJSX {
           * @default
          */
         "steps"?: boolean;
+        /**
+          * @uiName Text color
+          * @uiWidget color
+          * @uiGroup Style
+         */
+        "textColor"?: string;
     }
     interface SqmTaxAndCash {
         /**
@@ -11512,10 +12596,9 @@ declare namespace LocalJSX {
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @undocumented
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -11587,6 +12670,15 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "searchForCountryText"?: string;
+        /**
+          * @uiName Monolith States
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
+          * @componentState { "title": "Step 2: Indirect tax ", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+         */
+        "stateController"?: string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -12437,12 +13529,36 @@ declare namespace LocalJSX {
         "verificationReviewInternalHeader"?: string;
     }
     interface SqmText {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
     }
     interface SqmTextSpan {
+        /**
+          * Font size in pixels
+          * @uiName Font Size
+          * @uiType number
+         */
+        "fontSize"?: number;
         /**
           * @uiName Text
          */
         "text"?: string;
+        /**
+          * @uiName Text Color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Type
           * @uiType string
@@ -12473,9 +13589,23 @@ declare namespace LocalJSX {
          */
         "icon"?: "gift" | "circle";
         /**
+          * Color of timeline
+          * @uiName Line color
+          * @uiWidget color
+          * @format color
+         */
+        "lineColor"?: string;
+        /**
           * @uiName Reward amount
          */
         "reward"?: string;
+        /**
+          * Color of the text and copy icon
+          * @uiName Text color
+          * @uiWidget color
+          * @format color
+         */
+        "textColor"?: string;
         /**
           * @uiName Reward unit
          */
@@ -12771,15 +13901,25 @@ declare namespace LocalJSX {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader"?: string;
+        /**
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+         */
+        "stateController"?: string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+         */
+        "stateController"?: string;
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
-        "sqm-asset-card": SqmAssetCard;
         "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
+        "sqm-brand-selector": SqmBrandSelector;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
@@ -12905,10 +14045,10 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
-            "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
+            "sqm-brand-selector": LocalJSX.SqmBrandSelector & JSXBase.HTMLAttributes<HTMLSqmBrandSelectorElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;

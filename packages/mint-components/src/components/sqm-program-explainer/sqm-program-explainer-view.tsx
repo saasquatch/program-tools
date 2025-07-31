@@ -13,7 +13,7 @@ export function ProgramExplainerView(
 ) {
   const style = {
     Container: {
-      color: props.textColor || "var(--sl-color-neutral-900)",
+      color: props.textColor || "var(--sqm-text)",
       background: props.backgroundColor || "",
     },
     Header: {

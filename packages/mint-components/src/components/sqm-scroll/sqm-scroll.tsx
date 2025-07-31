@@ -5,6 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Scroll Button
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"", "title":"Button Content"}]
  * @slotEditor richText
  */

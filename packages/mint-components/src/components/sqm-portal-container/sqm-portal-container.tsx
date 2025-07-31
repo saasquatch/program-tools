@@ -90,7 +90,7 @@ export class PortalContainer {
    * @uiWidget color
    * @uiType string
    */
-  @Prop() backgroundColor?: string = "#ffffff00";
+  @Prop() backgroundColor?: string;
 
   constructor() {
     withHooks(this);

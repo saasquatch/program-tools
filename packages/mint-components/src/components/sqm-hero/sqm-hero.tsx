@@ -5,6 +5,7 @@ import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Hero Layout
+ * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
  * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
  * @exampleGroup Layout
@@ -30,12 +31,12 @@ export class Hero {
   @Prop() minHeight: number = 200;
 
   /**
-   * Can be an image url, colour or Shoelace variable.
+   * Add an image or select a color. Recommended image aspect ratio of 4:5
    *
    * @uiName Background
    * @uiWidget Background
    */
-  @Prop() background?: string = "var(--sl-color-gray-50)";
+  @Prop() background?: string = "#f9fafb";
 
   /**
    * @uiName Padding size
@@ -60,6 +61,11 @@ export class Hero {
    * @uiEnumNames ["Wrap", "Wrap Reverse"]
    */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
+
+  /**
+   * @uiName Hide the column in mobile view (can only be used when two columns are present)
+   */
+  @Prop() columnToHideInMobile?: "primary" | "secondary" | null = null;
 
   constructor() {
     withHooks(this);
