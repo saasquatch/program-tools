@@ -4003,10 +4003,9 @@ export namespace Components {
          */
         "sourceAmountMessage": string;
         /**
-          * @uiName Monolith States
-          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] } *
-          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] } *
-          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
          */
         "stateController": string;
@@ -11361,10 +11360,9 @@ declare namespace LocalJSX {
          */
         "sourceAmountMessage"?: string;
         /**
-          * @uiName Monolith States
-          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] } *
-          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] } *
-          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] } *
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
          */
         "stateController"?: string;
