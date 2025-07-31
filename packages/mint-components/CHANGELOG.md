@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.5] - 2025-07-30
+
+### Changed
+
+- \<sqm-coupon-code>
+  - Added a 1 minute retry on fetching the coupon code if the fuel tank code fails to load due to a syncing error
+
 ## [1.14.4] - 2025-07-10
 
 ### Changed
@@ -1200,7 +1207,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.5...HEAD
+[1.14.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.5
 [1.14.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.4
 [1.14.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.3
 [1.14.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.2
