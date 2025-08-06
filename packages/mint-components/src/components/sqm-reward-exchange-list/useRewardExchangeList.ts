@@ -95,6 +95,7 @@ export interface RewardExchangeProps {
   rewardRedeemedText: string;
   costTitle: string;
   empty: VNode;
+  stateController: string;
   demoData?: object;
 }
 
