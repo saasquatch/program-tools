@@ -30,9 +30,9 @@ Feature: Hero Unit
 
     Scenario Outline: Hero layout can hide a column at 1023px or less
         Given the user is viewing a hero unit with a "primary" and "secondary" column
-        And the "column-to-hide-in-mobile" is set to "<column_to_hide>"
+        And the "column-to-hide-in-mobile" is set to <columnToHide>
         When the user views the hero unit at 1023px or less
-        Then the "<column_to_hide>" column <isHidden>
+        Then the <columnToHide> column <isHidden>
 
         Examples:
             | column_to_hide | isHidden     |
