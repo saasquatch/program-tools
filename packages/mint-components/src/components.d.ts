@@ -4003,6 +4003,13 @@ export namespace Components {
          */
         "sourceAmountMessage": string;
         /**
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController": string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -5316,7 +5323,7 @@ export namespace Components {
         "searchForCountryText": string;
         /**
           * @undocumented 
-          * @componentState { "title": "Step 1: Personal Information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
           * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
@@ -6552,8 +6559,9 @@ export namespace Components {
          */
         "general_verifyEmailHeader": string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
-          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @undocumented 
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
          */
         "stateController": string;
     }
@@ -11358,6 +11366,13 @@ declare namespace LocalJSX {
          */
         "sourceAmountMessage"?: string;
         /**
+          * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController"?: string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -12661,7 +12676,7 @@ declare namespace LocalJSX {
         "searchForCountryText"?: string;
         /**
           * @undocumented 
-          * @componentState { "title": "Step 1: Personal Information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
           * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
@@ -13896,8 +13911,9 @@ declare namespace LocalJSX {
          */
         "general_verifyEmailHeader"?: string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
-          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @undocumented 
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
          */
         "stateController"?: string;
     }

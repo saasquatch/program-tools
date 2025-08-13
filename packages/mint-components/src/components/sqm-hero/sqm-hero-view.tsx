@@ -156,7 +156,6 @@ export function HeroView(props: HeroProps) {
 `;
 
   // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
-  console.log("column to hide in mobile is ", states.columnToHideInMobile);
   return (
     <div class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">

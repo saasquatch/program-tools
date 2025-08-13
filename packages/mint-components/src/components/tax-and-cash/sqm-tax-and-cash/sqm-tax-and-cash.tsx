@@ -1143,7 +1143,7 @@ export class TaxAndCashMonolith {
 
   /**
    * @undocumented
-   * @componentState { "title": "Step 1: Personal Information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+   * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
    * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
    * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
    * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
