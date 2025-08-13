@@ -5315,12 +5315,12 @@ export namespace Components {
          */
         "searchForCountryText": string;
         /**
-          * @uiName Monolith States
-          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
-          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
-          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
-          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
-          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+          * @undocumented 
+          * @componentState { "title": "Step 1: Personal Information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
          */
         "stateController": string;
         /**
@@ -6064,6 +6064,11 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payouts on hold", "props": { "payoutStatus": "HOLD" }, "uiGroup": "Dashboard Properties" }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -6547,8 +6552,8 @@ export namespace Components {
          */
         "general_verifyEmailHeader": string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
-          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
          */
         "stateController": string;
     }
@@ -12655,12 +12660,12 @@ declare namespace LocalJSX {
          */
         "searchForCountryText"?: string;
         /**
-          * @uiName Monolith States
-          * @componentState { "title": "Step 1", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"] }
-          * @componentState { "title": "Step 2", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"] }
-          * @componentState { "title": "Step 3", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"] }
-          * @componentState { "title": "Step 4", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"] }
-          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"] }
+          * @undocumented 
+          * @componentState { "title": "Step 1: Personal Information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
          */
         "stateController"?: string;
         /**
@@ -13404,6 +13409,11 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payouts on hold", "props": { "payoutStatus": "HOLD" }, "uiGroup": "Dashboard Properties" }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -13886,8 +13896,8 @@ declare namespace LocalJSX {
          */
         "general_verifyEmailHeader"?: string;
         /**
-          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"] }
-          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"] }
+          * @componentState { "title": "Email Step", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Code Step", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
          */
         "stateController"?: string;
     }

@@ -1050,5 +1050,5 @@ sl-icon::part(base):hover {
 
 
 `,
-  font: config.main.brandFont,
+  font: config?.main?.brandFont,
 });
