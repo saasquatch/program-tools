@@ -1,22 +1,21 @@
-import { Component, h, Host, Prop, State, VNode } from "@stencil/core";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Host, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import { parseStates } from "../../utils/parseStates";
+import { getProps } from "../../utils/utils";
+import { demoRewardExchange } from "./RewardExchangeListData";
+import {
+  RewardExchangeView,
+  RewardExchangeViewProps,
+} from "./sqm-reward-exchange-list-view";
 import {
   ExchangeState,
   RewardExchangeProps,
   Stages,
   useRewardExchangeList,
-  ExchangeStep,
 } from "./useRewardExchangeList";
-import {
-  RewardExchangeViewProps,
-  RewardExchangeView,
-} from "./sqm-reward-exchange-list-view";
-import { isDemo } from "@saasquatch/component-boilerplate";
-import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
-import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
-import { parseStates } from "../../utils/parseStates";
 
 /**
  * @uiName Reward Exchange
@@ -198,7 +197,7 @@ export class SqmRewardExchangeList {
 
   /**
    * @componentState { "title": "Choose reward", "props": { "redeemStage": "chooseReward" }, "dependencies": ["sqm-reward-exchange-list"] }
-   * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount",  }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Reward details", "props": { "redeemStage": "chooseAmount" }, "dependencies": ["sqm-reward-exchange-list"] }
    * @componentState { "title": "Confirm exchange", "props": { "redeemStage": "confirmation" }, "dependencies": ["sqm-reward-exchange-list"] }
    * @componentState { "title": "Exchange successful", "props": { "redeemStage": "success" }, "dependencies": ["sqm-reward-exchange-list"] }
    */
