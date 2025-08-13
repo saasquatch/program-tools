@@ -1141,7 +1141,7 @@ export const queries: {
   },
 };
 
-// TODO: Add rewardsExpired and rewardsCancelled
+// ! Any update to this should be reflected in StatPathBuilder.tsx in the saasquatch repo
 // this should be exposed in documentation somehow
 export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
