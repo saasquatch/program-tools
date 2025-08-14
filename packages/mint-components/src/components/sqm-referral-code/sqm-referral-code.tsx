@@ -9,7 +9,7 @@ import { useReferralCode } from "./useReferralCode";
 
 /**
  * @uiName Referral Code
- * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span"]
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
  * @exampleGroup Sharing
  * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
  */
