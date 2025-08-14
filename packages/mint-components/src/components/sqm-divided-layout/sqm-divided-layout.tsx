@@ -8,7 +8,7 @@ import { getProps } from "../../utils/utils";
  * Spacing is left up to the child
  *
  * @uiName Divided Layout
- * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
  * @exampleGroup Layout
  * @slots [{"name":"", "title":"Layout Content"}]
  */
