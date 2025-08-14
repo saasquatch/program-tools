@@ -7,7 +7,7 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 /**
  * @uiName Titled Section
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card"]
- * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span"]
+ * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
  * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
  * @exampleGroup Layout
  * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>

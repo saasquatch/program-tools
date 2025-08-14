@@ -10,7 +10,7 @@ import { useShareLink } from "./useShareLink";
 /**
  * @uiName Share Link
  * @exampleGroup Sharing
- * @validParents ["sqm-portal-container","div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
  */
 @Component({
