@@ -85,6 +85,7 @@ const style = {
     flexDirection: "column",
     gap: "var(--sl-spacing-xx-small)",
     fontSize: "var(--sl-font-size-small)",
+    color: "var(--sqm-text)",
   },
   TitleContainer: {
     display: "flex",

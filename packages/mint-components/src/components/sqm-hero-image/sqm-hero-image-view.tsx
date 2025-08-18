@@ -123,6 +123,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       marginTop: "var(--sl-spacing-medium)",
       "&::part(base)": {
         padding: "0 var(--sl-spacing-x-large)",
+        color: "var(--sqm-primary-button-color)",
+        backgroundColor: "var(--sqm-primary-button-background)",
+        border: "var(--sqm-primary-button-color-border)",
       },
       "@media (max-width: 599px)": {
         width: "100%",

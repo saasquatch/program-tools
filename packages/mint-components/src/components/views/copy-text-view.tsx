@@ -59,14 +59,14 @@ export function CopyTextView(props: CopyTextViewProps) {
       "&::part(input)": {
         textOverflow: "ellipsis",
         width: "100%",
-        color: props.textColor || "var(--sqm-text)",
+        // color: props.textColor || "var(--sqm-input-color)",
       },
       "&::part(base)": {
         "--sl-input-border-radius":
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
         "--sl-input-background-color":
           props.backgroundColor || "var(--sqm-portal-background)",
-        "--sl-input-color": "var(--sqm-text)",
+        "--sl-input-color": props.textColor || "var(--sqm-input-color)",
         "--sl-input-border-color": "var(--sqm-border-color)",
         "--sl-input-border-color-hover": "#999999",
         "--sl-input-border-color-focus": "#999999",
@@ -88,7 +88,7 @@ export function CopyTextView(props: CopyTextViewProps) {
     },
     icon: {
       "&::part(base)": {
-        color: props.textColor || "var(--sqm-text)",
+        color: props.textColor || "var(--sqm-input-color)",
       },
     },
     inputErrorStyle: {
@@ -185,7 +185,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          exportparts="base: input-base, input: input-label"
+          exportparts="base: input-base, input: input-field"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}
