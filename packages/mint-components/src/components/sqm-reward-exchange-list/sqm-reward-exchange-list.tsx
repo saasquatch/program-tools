@@ -258,7 +258,7 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
   const states = parseStates(props.stateController);
   const formatted = Object.keys(states).reduce(
     (prev, key) =>
-      key === "reward-exchange-list"
+      key === "sqm-reward-exchange-list"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
     {}
