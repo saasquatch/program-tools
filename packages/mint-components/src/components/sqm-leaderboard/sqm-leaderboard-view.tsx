@@ -68,7 +68,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& tr:not(:first-child)": {
-        borderTop: `var(--sqm-bordr-thickness) solid ${
+        borderTop: `var(--sqm-border-thickness) solid ${
           styles.borderColor || "var(--sqm-border-color)"
         }`,
       },
