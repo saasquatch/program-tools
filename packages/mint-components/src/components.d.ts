@@ -22,6 +22,7 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -1476,6 +1477,58 @@ export namespace Components {
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel": string;
+        "formKey": string;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel": string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Submission redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage": string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
     }
     interface SqmLeaderboard {
         /**
@@ -6223,6 +6276,12 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
+    }
+    var HTMLSqmLeadFormElement: {
+        prototype: HTMLSqmLeadFormElement;
+        new (): HTMLSqmLeadFormElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -6787,6 +6846,7 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-form": HTMLSqmLeadFormElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -8292,6 +8352,58 @@ declare namespace LocalJSX {
         "downloadUrl"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel"?: string;
+        "formKey"?: string;
+        /**
+          * The message to be displayed when the email used is invalid or blocked.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * The message to be displayed when a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * Redirect participants to this page from their verification email
+          * @uiName Submission redirect
+          * @uiWidget pageSelect
+         */
+        "nextPage"?: string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -12838,6 +12950,7 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-form": SqmLeadForm;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -12967,6 +13080,7 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;

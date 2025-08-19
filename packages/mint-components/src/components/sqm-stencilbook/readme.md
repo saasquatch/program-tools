@@ -97,6 +97,7 @@
 - [sqm-payout-button-scroll](../sqm-payout-button-scroll)
 - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
 - [sqm-referral-codes](../sqm-referral-codes)
+- [sqm-lead-form](../sqm-lead-form)
 
 ### Graph
 ```mermaid
@@ -189,6 +190,7 @@ graph TD;
   sqm-stencilbook --> sqm-payout-button-scroll
   sqm-stencilbook --> sqm-payout-status-alert
   sqm-stencilbook --> sqm-referral-codes
+  sqm-stencilbook --> sqm-lead-form
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
@@ -244,6 +246,7 @@ graph TD;
   sqm-payout-button-scroll --> sqm-scroll
   sqm-payout-status-alert --> sqm-scroll
   sqm-referral-codes --> sqm-empty
+  sqm-lead-form --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
