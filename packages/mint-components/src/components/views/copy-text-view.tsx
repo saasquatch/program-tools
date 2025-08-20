@@ -52,19 +52,17 @@ const disabledStyles = `
 
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
-
   const style = {
     HostBlock: HostBlock,
     inputStyle: {
       "&::part(input)": {
         textOverflow: "ellipsis",
         width: "100%",
+        color: props.textColor || "var(--sqm-text)",
       },
       "&::part(base)": {
         "--sl-input-border-radius":
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
-        // "--sl-input-background-color":
-        //   props.backgroundColor || "var(--sqm-portal-background)",
         "--sl-input-border-color": "var(--sqm-border-color)",
         "--sl-input-border-color-hover": "#999999",
         "--sl-input-border-color-focus": "#999999",
@@ -86,13 +84,13 @@ export function CopyTextView(props: CopyTextViewProps) {
     },
     icon: {
       "&::part(base)": {
-        color: props.textColor || "var(--sqm-input-color)",
+        color: props.textColor || "var(--sqm-text)",
       },
     },
     inputErrorStyle: {
-      "&::part(base)": {
-        border: "2px solid red",
-      },
+      // "&::part(base)": {
+      //   border: "1px solid red",
+      // },
     },
     ContainerDiv: {
       display: "flex",

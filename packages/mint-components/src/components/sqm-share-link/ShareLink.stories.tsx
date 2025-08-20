@@ -98,7 +98,7 @@ export const CustomStylesWithDemoHooks = () => {
     tooltiptext: "Copied!",
     backgroundColor: "#1ed760",
     borderRadius: "30px",
-    textColor: "#121212",
+    textColor: "red",
     buttonType: "primary" as const,
     borderColor: "#121212",
   };
