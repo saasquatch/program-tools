@@ -25,6 +25,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-form-message](../sqm-form-message)
@@ -33,6 +37,7 @@
 ```mermaid
 graph TD;
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-stencilbook --> sqm-portal-forgot-password
   style sqm-portal-forgot-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
