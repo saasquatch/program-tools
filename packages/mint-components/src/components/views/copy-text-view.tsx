@@ -63,9 +63,8 @@ export function CopyTextView(props: CopyTextViewProps) {
       "&::part(base)": {
         "--sl-input-border-radius":
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
-        "--sl-input-background-color":
-          props.backgroundColor || "var(--sqm-portal-background)",
-        "--sl-input-color": props.textColor || "var(--sqm-input-color)",
+        // "--sl-input-background-color":
+        //   props.backgroundColor || "var(--sqm-portal-background)",
         "--sl-input-border-color": "var(--sqm-border-color)",
         "--sl-input-border-color-hover": "#999999",
         "--sl-input-border-color-focus": "#999999",
@@ -184,7 +183,7 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          exportparts="base: input-base, input: input-field"
+          // exportparts="base: input-base, input: input-field"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}
