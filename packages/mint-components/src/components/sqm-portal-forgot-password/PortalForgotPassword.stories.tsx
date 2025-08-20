@@ -78,6 +78,10 @@ const successProps: PortalForgotPasswordViewProps = {
 
 export const Default = () => <PortalForgotPasswordView {...defaultProps} />;
 
+export const DemoDataTest = () => (
+  <sqm-portal-forgot-password></sqm-portal-forgot-password>
+);
+
 export const ForgotPasswordWithError = () => (
   <PortalForgotPasswordView {...errorProps} />
 );
