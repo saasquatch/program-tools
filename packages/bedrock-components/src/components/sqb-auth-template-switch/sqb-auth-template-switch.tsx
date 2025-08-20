@@ -15,7 +15,7 @@ import { useAuthTemplateSwitch } from "./useAuthTemplateSwitch";
 export class SqbAuthTemplateSwitch {
   /**
    * @componentState { "title": "Sign up form", "slot": "logged-out", "props": { "overrideToken": false } }
-   * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
+   * @componentState { "title": "Referral & Reward info", "slot": "logged-in", "props": { "overrideToken": true } }
    */
   @Prop() stateController: string = "{}";
 
