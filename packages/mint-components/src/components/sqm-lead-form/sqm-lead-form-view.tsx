@@ -213,6 +213,16 @@ export function LeadFormView(props: LeadFormViewProps) {
         ></input>
         {/* Must use inline styling to target slotted element here */}
         {content.formData}
+        <div class={sheet.classes.ButtonsContainer}>
+          <sl-button
+            submit
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            {content.submitLabel || "Register"}
+          </sl-button>
+        </div>
       </sl-form>
     </div>
   );

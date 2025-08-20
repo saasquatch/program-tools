@@ -18,7 +18,7 @@ export type ValidationErrorFunction = (input: {
 }) => string | undefined;
 
 const SUBMIT_LEAD = gql`
-  mutation submitForm($formSubmissionInput: FormSubmissionInput) {
+  mutation submitForm($formSubmissionInput: FormSubmissionInput!) {
     submitForm(formSubmissionInput: $formSubmissionInput) {
       success
     }
