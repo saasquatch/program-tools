@@ -331,7 +331,7 @@ export const InstantAccessLoggedOutView = () => {
       padding-size="medium"
       wrap-direction="wrap"
       secondary-background="var(--sqm-portal-background)"
-      columnToHideInMobile="primary"
+      column-to-hide-in-mobile="primary"
     >
       <sqm-referred-registration
         slot="secondary-column"
