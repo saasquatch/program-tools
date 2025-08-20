@@ -123,6 +123,8 @@ export function useLeadForm(props: LeadForm) {
     states: {
       loading,
       error: errorMessage,
+      // AL: Handle sucess boolean
+      success: false,
       leadFormState,
       referralCode: "ABC123", // Example referral code, replace with actual logic if needed
     },

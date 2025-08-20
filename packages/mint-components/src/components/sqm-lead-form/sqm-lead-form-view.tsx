@@ -9,10 +9,12 @@ import {
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { LeadFormState } from "./useLeadFormState";
+import { intl } from "../../global/global";
 
 export interface LeadFormViewProps {
   states: {
     error: string;
+    success: boolean;
     loading: boolean;
     leadFormState: LeadFormState;
     referralCode: string;
@@ -27,7 +29,13 @@ export interface LeadFormViewProps {
     firstNameLabel?: string;
     lastNameLabel?: string;
     submitLabel?: string;
+    resubmitFormLabel?: string;
     pageLabel?: string;
+    supportLink?: string;
+    submitSuccessHeader?: string;
+    submitSuccessDescription?: string;
+    submitErrorHeader?: string;
+    submitErrorDescription?: string;
     requiredFieldErrorMessage: string;
     invalidEmailErrorMessage: string;
   };
@@ -45,8 +53,24 @@ const style = {
     margin: "0 auto",
     width: "100%",
   },
-
+  NameFieldWrapper: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+  },
+  ContinueButton: { maxWidth: "169px" },
   ButtonsContainer: AuthButtonsContainer,
+  SuccessAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-green-100)",
+      borderTop: "none",
+    },
+  },
+  ErrorAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+    },
+  },
   ErrorStyle: ErrorStyles,
 };
 
@@ -76,6 +100,33 @@ export function LeadFormView(props: LeadFormViewProps) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
 
+  if (states.success) {
+    return (
+      <div class={sheet.classes.Wrapper} part="sqm-base">
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+        </style>
+        <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
+        <sqm-form-message exportparts="success-icon">
+          <b>{content.submitSuccessHeader}</b>
+          <br />
+          <div part="successalert-text">{content.submitSuccessDescription}</div>
+        </sqm-form-message>
+        <sl-button
+          // AL: TODO add button to allow user to submit another form
+          class={sheet.classes.ContinueButton}
+          // onClick={callbacks.submitAnotherForm}
+          loading={states.loading}
+          exportparts="base: primarybutton-base"
+          type="default"
+        >
+          {content.resubmitFormLabel}
+        </sl-button>
+      </div>
+    );
+  }
+
   return (
     <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
@@ -90,53 +141,80 @@ export function LeadFormView(props: LeadFormViewProps) {
         novalidate
       >
         {states.error && (
-          <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
-          </sqm-form-message>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="danger"
+            class={sheet.classes.ErrorAlertContainer}
+            open
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <b>{content.submitErrorHeader}</b>
+            <br />
+            {intl.formatMessage(
+              {
+                id: "submitErrorDescription",
+                defaultMessage: content.submitErrorDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {content.supportLink}
+                  </a>
+                ),
+              }
+            )}
+          </sl-alert>
         )}
+        <div class={sheet.classes.NameFieldWrapper}>
+          <sl-input
+            style={{ width: "50%" }}
+            exportparts="label: input-label, base: input-base"
+            type="text"
+            name="/lastName"
+            label={content.firstNameLabel || "First Name"}
+            disabled={states.loading}
+            required
+            validationError={({ value }: { value: string }) => {
+              if (!value) {
+                return content.requiredFieldErrorMessage;
+              }
+            }}
+            {...(states.leadFormState?.validationErrors?.firstName
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.leadFormState?.validationErrors?.firstName ||
+                    content.requiredFieldErrorMessage,
+                }
+              : [])}
+          ></sl-input>
+          <sl-input
+            style={{ width: "50%" }}
+            exportparts="label: input-label, base: input-base"
+            type="text"
+            name="/lastName"
+            label={content.lastNameLabel || "Last Name"}
+            disabled={states.loading}
+            required
+            validationError={({ value }: { value: string }) => {
+              if (!value) {
+                return content.requiredFieldErrorMessage;
+              }
+            }}
+            {...(states.leadFormState?.validationErrors?.lastName
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.leadFormState?.validationErrors?.lastName ||
+                    content.requiredFieldErrorMessage,
+                }
+              : [])}
+          ></sl-input>
+        </div>
 
-        <sl-input
-          exportparts="label: input-label, base: input-base"
-          type="text"
-          name="/lastName"
-          label={content.firstNameLabel || "First Name"}
-          disabled={states.loading}
-          required
-          validationError={({ value }: { value: string }) => {
-            if (!value) {
-              return content.requiredFieldErrorMessage;
-            }
-          }}
-          {...(states.leadFormState?.validationErrors?.firstName
-            ? {
-                class: sheet.classes.ErrorStyle,
-                helpText:
-                  states.leadFormState?.validationErrors?.firstName ||
-                  content.requiredFieldErrorMessage,
-              }
-            : [])}
-        ></sl-input>
-        <sl-input
-          exportparts="label: input-label, base: input-base"
-          type="text"
-          name="/lastName"
-          label={content.lastNameLabel || "Last Name"}
-          disabled={states.loading}
-          required
-          validationError={({ value }: { value: string }) => {
-            if (!value) {
-              return content.requiredFieldErrorMessage;
-            }
-          }}
-          {...(states.leadFormState?.validationErrors?.lastName
-            ? {
-                class: sheet.classes.ErrorStyle,
-                helpText:
-                  states.leadFormState?.validationErrors?.lastName ||
-                  content.requiredFieldErrorMessage,
-              }
-            : [])}
-        ></sl-input>
         <sl-input
           exportparts="label: input-label, base: input-base"
           type="email"
