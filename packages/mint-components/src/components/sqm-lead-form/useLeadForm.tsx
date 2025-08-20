@@ -6,6 +6,10 @@ import { AsYouType } from "libphonenumber-js";
 import { LeadForm } from "./sqm-lead-form";
 import { useLeadFormState } from "./useLeadFormState";
 
+export type LeadFormState = {
+  [key: string]: any;
+};
+
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
   control;

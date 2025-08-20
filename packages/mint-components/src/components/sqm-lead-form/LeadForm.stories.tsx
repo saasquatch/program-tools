@@ -21,6 +21,7 @@ const defaultProps: LeadFormViewProps = {
     formRef: {},
   },
   content: {
+    submitLabel: "Submit",
     pageLabel: "Submit your information",
     resubmitFormLabel: "Refer Another Friend",
     requiredFieldErrorMessage: "Cannot be empty",
@@ -52,6 +53,13 @@ const errorProps: LeadFormViewProps = {
   states: {
     ...defaultProps.states,
     error: "Something went wrong. Please try again.",
+    leadFormState: {
+      validationErrors: {
+        firstName: "Please enter a first name",
+        lastName: "Please enter a last name",
+        email: "Please enter a valid email",
+      },
+    },
   },
 };
 

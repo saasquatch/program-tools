@@ -169,52 +169,17 @@ export function LeadFormView(props: LeadFormViewProps) {
           </sl-alert>
         )}
         <div class={sheet.classes.NameFieldWrapper}>
-          <sl-input
+          <sqm-lead-input-field
             style={{ width: "50%" }}
-            exportparts="label: input-label, base: input-base"
-            type="text"
-            name="/lastName"
-            label={content.firstNameLabel || "First Name"}
-            disabled={states.loading}
-            required
-            validationError={({ value }: { value: string }) => {
-              if (!value) {
-                return content.requiredFieldErrorMessage;
-              }
-            }}
-            {...(states.leadFormState?.validationErrors?.firstName
-              ? {
-                  class: sheet.classes.ErrorStyle,
-                  helpText:
-                    states.leadFormState?.validationErrors?.firstName ||
-                    content.requiredFieldErrorMessage,
-                }
-              : [])}
-          ></sl-input>
-          <sl-input
+            field-label="First Name"
+            field-name="firstName"
+          ></sqm-lead-input-field>
+          <sqm-lead-input-field
             style={{ width: "50%" }}
-            exportparts="label: input-label, base: input-base"
-            type="text"
-            name="/lastName"
-            label={content.lastNameLabel || "Last Name"}
-            disabled={states.loading}
-            required
-            validationError={({ value }: { value: string }) => {
-              if (!value) {
-                return content.requiredFieldErrorMessage;
-              }
-            }}
-            {...(states.leadFormState?.validationErrors?.lastName
-              ? {
-                  class: sheet.classes.ErrorStyle,
-                  helpText:
-                    states.leadFormState?.validationErrors?.lastName ||
-                    content.requiredFieldErrorMessage,
-                }
-              : [])}
-          ></sl-input>
+            field-label="Last Name"
+            field-name="lastName"
+          ></sqm-lead-input-field>
         </div>
-
         <sl-input
           exportparts="label: input-label, base: input-base"
           type="email"

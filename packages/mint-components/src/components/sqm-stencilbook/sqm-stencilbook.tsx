@@ -99,6 +99,7 @@ import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalR
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
 import * as QRCode from "../sqm-qr-code/QRCode.stories";
 import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
+import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -204,6 +205,7 @@ const stories = [
   PayoutStatusAlert,
   QRCode,
   LeadForm,
+  LeadInputField,
 ];
 
 /**
