@@ -7,6 +7,7 @@ export default {
 
 const defaultProps: LeadFormViewProps = {
   states: {
+    success: false,
     leadFormState: {},
     error: "",
     loading: false,
@@ -21,71 +22,51 @@ const defaultProps: LeadFormViewProps = {
   },
   content: {
     pageLabel: "Submit your information",
+    resubmitFormLabel: "Refer Another Friend",
     requiredFieldErrorMessage: "Cannot be empty",
     invalidEmailErrorMessage: "Must be a valid email address",
+    submitSuccessHeader: "Referral submitted",
+    submitSuccessDescription:
+      "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page.",
+    submitErrorHeader: "An error occurred while submitting",
+    submitErrorDescription:
+      "Please try again later. If the problem continues, contact Support",
+  },
+};
+
+const successProps: LeadFormViewProps = {
+  ...defaultProps,
+  states: {
+    ...defaultProps.states,
+    success: true,
+    error: null,
+  },
+  content: {
+    ...defaultProps.content,
+    pageLabel: "Refer your friend",
   },
 };
 
 const errorProps: LeadFormViewProps = {
+  ...defaultProps,
   states: {
+    ...defaultProps.states,
     error: "Something went wrong. Please try again.",
-    leadFormState: {},
-    loading: false,
-    referralCode: "ABC123",
-  },
-  callbacks: {
-    submit: () => console.log("Submit!"),
-    inputFunction: () => {},
-  },
-  refs: {
-    formRef: {},
-  },
-  content: {
-    pageLabel: "Submit your information",
-    requiredFieldErrorMessage: "Cannot be empty",
-    invalidEmailErrorMessage: "Must be a valid email address",
   },
 };
 
 const loadingProps: LeadFormViewProps = {
+  ...defaultProps,
   states: {
-    leadFormState: {},
-    error: "",
+    ...defaultProps.states,
     loading: true,
-    referralCode: "ABC123",
-  },
-  callbacks: {
-    submit: () => console.log("Submit!"),
-    inputFunction: () => {},
-  },
-  refs: {
-    formRef: {},
-  },
-  content: {
-    pageLabel: "Submit your information",
-    requiredFieldErrorMessage: "Cannot be empty",
-    invalidEmailErrorMessage: "Must be a valid email address",
   },
 };
 
 const slottedProps: LeadFormViewProps = {
-  states: {
-    leadFormState: {},
-    error: "",
-    loading: false,
-    referralCode: "ABC123",
-  },
-  callbacks: {
-    submit: () => console.log("Submit!"),
-    inputFunction: () => {},
-  },
-  refs: {
-    formRef: {},
-  },
+  ...defaultProps,
   content: {
-    pageLabel: "Submit your information",
-    requiredFieldErrorMessage: "Cannot be empty",
-    invalidEmailErrorMessage: "Must be a valid email address",
+    ...defaultProps.content,
     formData: (
       <div>
         <sl-input
@@ -106,6 +87,8 @@ const slottedProps: LeadFormViewProps = {
 
 export const Default = () => <LeadFormView {...defaultProps} />;
 
+export const LeadSubmitSuccess = () => <LeadFormView {...successProps} />;
+
 export const LeadSubmitWithError = () => <LeadFormView {...errorProps} />;
 
 export const LeadSubmitLoading = () => <LeadFormView {...loadingProps} />;
@@ -117,6 +100,7 @@ export const FieldsHidden = () => {
         states: {
           leadFormState: {},
           error: "",
+          success: false,
           loading: true,
           referralCode: "ABC123",
         },

@@ -52,12 +52,39 @@ export class LeadForm {
   submitLabel: string = "Submit";
 
   /**
+   * @uiName Submit another form button label
+   */
+  @Prop() resubmitFormLabel: string = "Refer Another Friend";
+
+  /**
    * @uiName Header text
    */
   @Prop()
-  pageLabel: string = "Submit your information";
+  pageLabel: string = "Refer your friend";
 
   @Prop() formKey: string = "lead-form";
+  /**
+   * Optional support link for error messages.
+   */
+  @Prop() supportLink: string = "Support";
+  /**
+   * Header text shown on successful submission.
+   */
+  @Prop() submitSuccessHeader: string = "Referral submitted";
+  /**
+   * Description text shown on successful submission.
+   */
+  @Prop() submitSuccessDescription: string =
+    "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page.";
+  /**
+   * Header text shown when an error occurs.
+   */
+  @Prop() submitErrorHeader: string = "An error occurred while submitting";
+  /**
+   * Description text shown when an error occurs.
+   */
+  @Prop() submitErrorDescription: string =
+    "Please try again later. If the problem continues, contact {supportLink}";
 
   /**
    * The message to be displayed when a required field is not filled.
@@ -103,7 +130,13 @@ export class LeadForm {
       formData: <slot name="formData"></slot>,
       emailLabel: this.emailLabel,
       submitLabel: this.submitLabel,
+      resubmitFormLabel: this.resubmitFormLabel,
       pageLabel: this.pageLabel,
+      supportLink: this.supportLink,
+      submitSuccessHeader: this.submitSuccessHeader,
+      submitSuccessDescription: this.submitSuccessDescription,
+      submitErrorHeader: this.submitErrorHeader,
+      submitErrorDescription: this.submitErrorDescription,
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
     };
@@ -120,12 +153,13 @@ export class LeadForm {
 }
 function useRegisterDemo(
   props: LeadForm
-): Pick<LeadFormViewProps, "states" | "callbacks" | "refs"> {
+): Pick<LeadFormViewProps, "states" | "callbacks" | "content" | "refs"> {
   return deepmerge(
     {
       states: {
         error: "",
         loading: false,
+        success: false,
       },
       callbacks: {
         submit: async (_event) => {

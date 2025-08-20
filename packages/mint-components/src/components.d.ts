@@ -1526,9 +1526,33 @@ export namespace Components {
          */
         "requiredFieldErrorMessage": string;
         /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel": string;
+        /**
+          * Description text shown when an error occurs.
+         */
+        "submitErrorDescription": string;
+        /**
+          * Header text shown when an error occurs.
+         */
+        "submitErrorHeader": string;
+        /**
           * @uiName Submit button text
          */
         "submitLabel": string;
+        /**
+          * Description text shown on successful submission.
+         */
+        "submitSuccessDescription": string;
+        /**
+          * Header text shown on successful submission.
+         */
+        "submitSuccessHeader": string;
+        /**
+          * Optional support link for error messages.
+         */
+        "supportLink": string;
     }
     interface SqmLeaderboard {
         /**
@@ -8401,9 +8425,33 @@ declare namespace LocalJSX {
          */
         "requiredFieldErrorMessage"?: string;
         /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel"?: string;
+        /**
+          * Description text shown when an error occurs.
+         */
+        "submitErrorDescription"?: string;
+        /**
+          * Header text shown when an error occurs.
+         */
+        "submitErrorHeader"?: string;
+        /**
           * @uiName Submit button text
          */
         "submitLabel"?: string;
+        /**
+          * Description text shown on successful submission.
+         */
+        "submitSuccessDescription"?: string;
+        /**
+          * Header text shown on successful submission.
+         */
+        "submitSuccessHeader"?: string;
+        /**
+          * Optional support link for error messages.
+         */
+        "supportLink"?: string;
     }
     interface SqmLeaderboard {
         /**
