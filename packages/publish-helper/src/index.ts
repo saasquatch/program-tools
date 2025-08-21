@@ -16,14 +16,15 @@ import { helpText } from "./help";
 const workflowName = "publish-package.yml";
 
 async function main() {
-  const args = process.argv.slice(2);
+  const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+  const flags = process.argv.slice(2).filter((a) => a.startsWith("--"));
 
-  if (args.includes("--help")) {
+  if (flags.includes("--help")) {
     console.log(helpText);
     return;
   }
 
-  const dryRun = args.includes("--dry-run");
+  const dryRun = flags.includes("--dry-run");
   if (dryRun) {
     console.log(`=== DRY RUN ===`);
   }
@@ -83,21 +84,27 @@ async function main() {
 
   const currentPackage = relative(join(gitRoot, "packages"), process.cwd());
 
-  const packageChoice = await select(
-    "Select package:",
-    packageOptions.map((o) => ({
-      value: o,
-      isDefault: currentPackage === o,
-    })),
-  );
+  const packageChoice =
+    args[0] && packageOptions.includes(args[0])
+      ? args[0]
+      : await select(
+          "Select package:",
+          packageOptions.map((o) => ({
+            value: o,
+            isDefault: currentPackage === o,
+          })),
+        );
 
-  const bumpChoice = await select(
-    "Select version bump type:",
-    bumpOptions.map((o) => ({
-      value: o,
-      isDefault: o === "prerelease",
-    })),
-  );
+  const bumpChoice =
+    args[1] && bumpOptions.includes(args[1])
+      ? args[1]
+      : await select(
+          "Select version bump type:",
+          bumpOptions.map((o) => ({
+            value: o,
+            isDefault: o === "prerelease",
+          })),
+        );
 
   if (
     packageChoice.includes('"') ||

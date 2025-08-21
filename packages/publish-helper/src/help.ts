@@ -9,6 +9,7 @@ packages inside the program-tools repository.
 USAGE:
 
 publish-helper [OPTIONS]
+publish-helper [OPTIONS] <package> <increment type>
 
 OPTIONS:
 
