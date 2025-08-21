@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/publish-helper",
-  "version": "0.0.1-0",
+  "version": "0.0.1-1",
   "description": "Command line utility to assist with package publishing GH Actions workflows",
   "main": "dist/index.js",
   "bin": {
