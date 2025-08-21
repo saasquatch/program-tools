@@ -18,7 +18,6 @@ const defaultProps: LeadInputFieldViewProps = {
     },
   },
   content: {
-    required: false,
     fieldName: "firstName",
     fieldLabel: "First Name",
     fieldType: "text",

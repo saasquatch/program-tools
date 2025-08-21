@@ -1,4 +1,9 @@
-import { useMutation } from "@saasquatch/component-boilerplate";
+import {
+  useMutation,
+  useProgramId,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import {
   useCallback,
   useEffect,
@@ -31,13 +36,30 @@ const SUBMIT_LEAD = gql`
   }
 `;
 
+const GET_USER_DETAILS = gql`
+  query getUser($programId: ID) {
+    viewer {
+      ... on User {
+        referralCode(programId: $programId)
+      }
+    }
+  }
+`;
+
 export function useLeadForm(props: LeadForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const { leadFormState, setLeadFormState } = useLeadFormState({});
 
-  const referralCode = useReferralIframe()?.data?.shareCode;
+  const programId = useProgramId();
+  const user = useUserIdentity();
 
-  console.log({ referralCode });
+  const { data: userDetails } = useQuery(
+    GET_USER_DETAILS,
+    { programId },
+    !user?.jwt || !programId
+  );
+
+  console.log({ userDetails });
 
   const [submitLead, { loading, errors, data }] = useMutation(SUBMIT_LEAD);
 
@@ -140,13 +162,16 @@ export function useLeadForm(props: LeadForm) {
       errors?.response?.errors?.[0]?.message ||
       leadFormState?.error;
   }
+
+  console.log({ errors });
+
   return {
     states: {
       loading,
       error: errorMessage,
       success,
       leadFormState,
-      referralCode,
+      referralCode: userDetails?.viewer?.referralCode || "",
     },
     callbacks: {
       submit,
