@@ -6,44 +6,36 @@ import { DemoData } from "../../global/demo";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 import { getMissingProps, getProps } from "../../utils/utils";
 import {
-  LeadInputFieldView,
-  LeadInputFieldViewProps,
-} from "./sqm-lead-input-field-view";
-import { useLeadInputField } from "./useLeadInputField";
+  LeadDropdownFieldView,
+  DropdownFieldViewProps,
+} from "./sqm-lead-dropdown-field-view";
+import { useLeadDropdownField } from "./useLeadDropdownField";
 
 /**
- * @uiName Lead Form Input Field
+ * @uiName Lead Form Dropdown Field
  * @validParents ["sqm-lead-form"]
+ * @slots [{"name":"", "title":"Drop Down Option"}]
  * @exampleGroup Microsite Components
- * @example Lead Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+ * @example Lead Form Dropdown Field - <sqm-lead-dropdown-field dropdown-label="Select an option" required-field-error-message="Please select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-lead-dropdown-field>
  */
 @Component({
-  tag: "sqm-lead-input-field",
+  tag: "sqm-lead-dropdown-field",
 })
-export class LeadInputField {
+export class LeadDropdownField {
   @State()
   ignored = true;
 
   /**
    * This name is used as the key for this form field on submission. The name must be unique within this specific form.
-   *
-   * @uiName Input name attribute
+   * @uiName Dropdown name attribute
    * @required
    */
-  @Prop() fieldName: string;
+  @Prop() dropdownName: string;
 
   /**
-   * @uiName Input label
+   * @uiName Dropdown label
    */
-  @Prop() fieldLabel: string;
-
-  /**
-   * @uiName Input type
-   * @uiType string
-   * @uiEnum ["text", "date", "tel"]
-   * @uiEnumNames ["Text", "Date", "Phone Number"]
-   */
-  @Prop() fieldType: "text" | "date" | "tel" = "text";
+  @Prop() dropdownLabel: string = "Select an option";
 
   /**
    * The message to be displayed when a required field is not filled.
@@ -51,19 +43,19 @@ export class LeadInputField {
    * @uiName Required field message
    * @uiWidget textArea
    */
-  @Prop() requiredFieldErrorMessage: string = "Please enter a {fieldName}";
+  @Prop() requiredFieldErrorMessage: string = "Please select a {dropdownLabel}";
 
   /**
    * @uiName Optional
    * @default
    */
-  @Prop() fieldOptional?: boolean = false;
+  @Prop() dropdownOptional?: boolean = false;
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<LeadInputFieldViewProps>;
+  @Prop() demoData?: DemoData<DropdownFieldViewProps>;
 
   constructor() {
     withHooks(this);
@@ -72,14 +64,10 @@ export class LeadInputField {
   disconnectedCallback() {}
 
   render() {
-    const content = {
-      ...getProps(this),
-    };
-
     const missingProps = getMissingProps([
       {
-        attribute: "field-name",
-        value: this.fieldName,
+        attribute: "dropdown-name",
+        value: this.dropdownName,
       },
     ]);
 
@@ -89,30 +77,39 @@ export class LeadInputField {
           missingProps={missingProps}
           heading={"An error occured while loading this form"}
           subheading={
-            "A technical problem prevented this input field from loading. Please contact us with the link to this page."
+            "A technical problem prevented this drop down field from loading. Please contact us with the link to this page."
           }
           description={"Values for the following attributes are missing:"}
-        />
+        >
+          <slot />
+        </RequiredPropsError>
       );
     }
+
+    const content = {
+      ...getProps(this),
+      selectOptions: <slot></slot>,
+    };
+
     const { states } = isDemo()
-      ? useLeadInputFieldDemo(this)
-      : useLeadInputField();
+      ? useLeadDropdownFieldDemo(this)
+      : useLeadDropdownField();
     return (
-      <LeadInputFieldView
+      <LeadDropdownFieldView
         states={states}
         content={content}
-      ></LeadInputFieldView>
+      ></LeadDropdownFieldView>
     );
   }
 }
-function useLeadInputFieldDemo(
-  props: LeadInputField
-): Partial<LeadInputFieldViewProps> {
+
+function useLeadDropdownFieldDemo(
+  props: LeadDropdownField
+): Partial<DropdownFieldViewProps> {
   return deepmerge(
     {
       states: {
-        leadForState: {},
+        leadFormState: {},
       },
     },
     props.demoData || {},

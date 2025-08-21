@@ -22,6 +22,7 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
 import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
 import { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
@@ -1478,6 +1479,34 @@ export namespace Components {
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmLeadForm {
         /**
@@ -6336,6 +6365,12 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadDropdownFieldElement: {
+        prototype: HTMLSqmLeadDropdownFieldElement;
+        new (): HTMLSqmLeadDropdownFieldElement;
+    };
     interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
     }
     var HTMLSqmLeadFormElement: {
@@ -6912,6 +6947,7 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-dropdown-field": HTMLSqmLeadDropdownFieldElement;
         "sqm-lead-form": HTMLSqmLeadFormElement;
         "sqm-lead-input-field": HTMLSqmLeadInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
@@ -8419,6 +8455,34 @@ declare namespace LocalJSX {
         "downloadUrl"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmLeadForm {
         /**
@@ -13076,6 +13140,7 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-dropdown-field": SqmLeadDropdownField;
         "sqm-lead-form": SqmLeadForm;
         "sqm-lead-input-field": SqmLeadInputField;
         "sqm-leaderboard": SqmLeaderboard;
@@ -13207,6 +13272,7 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
             "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
             "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;

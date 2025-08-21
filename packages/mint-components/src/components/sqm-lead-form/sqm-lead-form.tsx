@@ -92,7 +92,8 @@ export class LeadForm {
    * @uiName Required field message
    * @uiWidget textArea
    */
-  @Prop() requiredFieldErrorMessage: string = "Cannot be empty";
+  @Prop() requiredFieldErrorMessage: string =
+    "Please enter a valid {fieldLabel}";
 
   /**
    * The message to be displayed when a the form submission fails unexpectedly.

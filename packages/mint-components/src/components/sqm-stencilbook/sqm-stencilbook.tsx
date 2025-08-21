@@ -100,6 +100,7 @@ import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-regis
 import * as QRCode from "../sqm-qr-code/QRCode.stories";
 import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
 import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
+import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -206,6 +207,7 @@ const stories = [
   QRCode,
   LeadForm,
   LeadInputField,
+  LeadFormDropdownField,
 ];
 
 /**

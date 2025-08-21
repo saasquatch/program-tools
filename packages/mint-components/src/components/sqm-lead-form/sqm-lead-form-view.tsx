@@ -44,6 +44,10 @@ export interface LeadFormViewProps {
   };
 }
 
+type RequiredFieldErrorParams = {
+  fieldLabel: string;
+};
+
 const style = {
   Wrapper: { ...AuthWrapper, "max-width": "600px" },
   Column: AuthColumn,
@@ -99,6 +103,19 @@ export function LeadFormView(props: LeadFormViewProps) {
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
+
+  const getRequiredFieldErrorMessage = ({
+    fieldLabel,
+  }: RequiredFieldErrorParams) =>
+    intl.formatMessage(
+      {
+        id: "requiredFieldErrorMessage",
+        defaultMessage: content.requiredFieldErrorMessage,
+      },
+      {
+        fieldLabel,
+      }
+    );
 
   if (states.success) {
     return (
@@ -189,7 +206,9 @@ export function LeadFormView(props: LeadFormViewProps) {
           required
           validationError={({ value }: { value: string }) => {
             if (!value) {
-              return content.requiredFieldErrorMessage;
+              return getRequiredFieldErrorMessage({
+                fieldLabel: content.emailLabel || "Email",
+              });
             }
             // this matches shoelace validation, but could be better
             if (!value.includes("@")) {
