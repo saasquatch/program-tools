@@ -1501,6 +1501,7 @@ export namespace Components {
           * @default
          */
         "dropdownOptional"?: boolean;
+        "required": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -1539,12 +1540,6 @@ export namespace Components {
           * @uiWidget textArea
          */
         "networkErrorMessage": string;
-        /**
-          * Redirect participants to this page from their verification email
-          * @uiName Submission redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage": string;
         /**
           * @uiName Header text
          */
@@ -1612,6 +1607,7 @@ export namespace Components {
           * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType": "text" | "date" | "tel";
+        "required": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -8477,6 +8473,7 @@ declare namespace LocalJSX {
           * @default
          */
         "dropdownOptional"?: boolean;
+        "required"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -8515,12 +8512,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "networkErrorMessage"?: string;
-        /**
-          * Redirect participants to this page from their verification email
-          * @uiName Submission redirect
-          * @uiWidget pageSelect
-         */
-        "nextPage"?: string;
         /**
           * @uiName Header text
          */
@@ -8588,6 +8579,7 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType"?: "text" | "date" | "tel";
+        "required"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message

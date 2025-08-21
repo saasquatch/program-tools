@@ -1,5 +1,10 @@
-import { navigation, useMutation } from "@saasquatch/component-boilerplate";
-import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
+import { useMutation } from "@saasquatch/component-boilerplate";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import jsonpointer from "jsonpointer";
 import { AsYouType } from "libphonenumber-js";
@@ -30,6 +35,8 @@ export function useLeadForm(props: LeadForm) {
   const { leadFormState, setLeadFormState } = useLeadFormState({});
 
   const [submitLead, { loading, errors, data }] = useMutation(SUBMIT_LEAD);
+
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!formRef.current) return;
@@ -78,13 +85,17 @@ export function useLeadForm(props: LeadForm) {
     });
 
     formData = { ...formData };
-    const redirectPath = props.nextPage;
+
     const variables = {
       key: props.formKey,
       formData,
     };
     try {
       const result = await submitLead({ formSubmissionInput: variables });
+      console.log({
+        success: result.data.submitForm.success,
+        isError: result instanceof Error,
+      });
       if (result instanceof Error) {
         throw result;
       }
@@ -93,8 +104,9 @@ export function useLeadForm(props: LeadForm) {
         error: "",
         validationErrors: {},
       });
-      if (result.success) {
-        navigation.push(props.nextPage);
+
+      if (result?.data?.submitForm?.success) {
+        setSuccess(true);
       }
     } catch (error) {
       setLeadFormState({
@@ -127,8 +139,7 @@ export function useLeadForm(props: LeadForm) {
     states: {
       loading,
       error: errorMessage,
-      // AL: Handle sucess boolean
-      success: false,
+      success,
       leadFormState,
       referralCode: "ABC123", // Example referral code, replace with actual logic if needed
     },

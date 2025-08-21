@@ -19,15 +19,6 @@ export class LeadForm {
   ignored = true;
 
   /**
-   * Redirect participants to this page from their verification email
-   *
-   * @uiName Submission redirect
-   * @uiWidget pageSelect
-   */
-  @Prop()
-  nextPage: string = "/";
-
-  /**
    * @uiName Email field label
    */
   @Prop()
