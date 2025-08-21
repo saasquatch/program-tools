@@ -10,6 +10,7 @@ import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { LeadFormState } from "./useLeadFormState";
 import { intl } from "../../global/global";
+import { useRequestRerender } from "../../tables/re-render";
 
 export interface LeadFormViewProps {
   states: {

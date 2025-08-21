@@ -155,6 +155,9 @@ export function useLeadForm(props: LeadForm) {
       error: "",
       validationErrors: {},
     });
+    formRef.current?.getFormControls()?.forEach((c) => {
+      c.value = "";
+    });
     setSuccess(false);
   }
 
