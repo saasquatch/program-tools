@@ -615,7 +615,7 @@ html {
       : "4px"
   };
   --sqm-secondary-button-background: ${
-    config?.secondaryButton?.buttonColor || "transparent"
+    config?.secondaryButton?.buttonColor?.background || "transparent"
   };
   --sqm-secondary-button-background-hover: ${
     config?.secondaryButton?.buttonHoverColor?.background || "#DEF0FC"
