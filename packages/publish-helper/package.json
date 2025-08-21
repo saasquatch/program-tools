@@ -3,7 +3,9 @@
   "version": "0.0.1-0",
   "description": "Command line utility to assist with package publishing GH Actions workflows",
   "main": "dist/index.js",
-  "bin": "dist/index.js",
+  "bin": {
+    "publish-helper": "dist/index.js"
+  },
   "prettier": {},
   "engines": {
     "node": "^18 || ^20 || ^22"
