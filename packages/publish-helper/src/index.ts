@@ -18,7 +18,9 @@ async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes("--dry-run");
 
-  console.log(`=== DRY RUN ===`);
+  if (dryRun) {
+    console.log(`=== DRY RUN ===`);
+  }
 
   let gitRoot: string | undefined = undefined;
   try {
