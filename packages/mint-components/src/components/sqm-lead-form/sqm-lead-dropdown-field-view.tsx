@@ -92,12 +92,9 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
             });
           }
         }}
-        {...(states.leadFormState?.validationErrors?.firstName
+        {...(states.leadFormState?.validationErrors
           ? {
               class: sheet.classes.ErrorStyle,
-              helpText:
-                states.leadFormState?.validationErrors?.firstName ||
-                content.requiredFieldErrorMessage,
             }
           : [])}
       >
