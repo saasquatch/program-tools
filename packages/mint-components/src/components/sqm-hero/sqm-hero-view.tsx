@@ -10,7 +10,7 @@ export interface HeroProps {
     secondaryBackground?: string;
     paddingSize: "none" | "small" | "medium" | "large";
     wrapDirection: "wrap" | "wrap-reverse";
-    columnToHideInMobile?: "primary" | "secondary" | null;
+    columnToHideInMobile?: "primary" | "secondary";
   };
   content: {
     primaryColumn?: VNode | VNode[];

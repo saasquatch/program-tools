@@ -10,7 +10,7 @@
 | Property               | Attribute                  | Description                                                             | Type                                       | Default     |
 | ---------------------- | -------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | ----------- |
 | `background`           | `background`               | Add an image or select a color. Recommended image aspect ratio of 4:5   | `string`                                   | `"#f9fafb"` |
-| `columnToHideInMobile` | `column-to-hide-in-mobile` |                                                                         | `"primary" \| "secondary"`                 | `null`      |
+| `columnToHideInMobile` | `column-to-hide-in-mobile` | Can only be used when two columns are present                           | `"primary" \| "secondary"`                 | `undefined` |
 | `columns`              | `columns`                  |                                                                         | `1 \| 2`                                   | `1`         |
 | `minHeight`            | `min-height`               | Minimum height of each column including when they are stacked on mobile | `number`                                   | `200`       |
 | `paddingSize`          | `padding-size`             |                                                                         | `"large" \| "medium" \| "none" \| "small"` | `"large"`   |
