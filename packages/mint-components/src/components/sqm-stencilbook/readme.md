@@ -51,6 +51,7 @@
 - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
 - [sqm-share-button](../sqm-share-button)
 - [sqm-scroll](../sqm-scroll)
+- [sqm-portal-forgot-password](../sqm-portal-forgot-password)
 - [sqm-navigation-menu](../sqm-navigation-menu)
 - [sqm-portal-frame](../sqm-portal-frame)
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
@@ -144,6 +145,7 @@ graph TD;
   sqm-stencilbook --> sqm-portal-change-marketing
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-scroll
+  sqm-stencilbook --> sqm-portal-forgot-password
   sqm-stencilbook --> sqm-navigation-menu
   sqm-stencilbook --> sqm-portal-frame
   sqm-stencilbook --> sqm-program-explainer-step
@@ -211,6 +213,7 @@ graph TD;
   sqm-leaderboard --> sqm-empty
   sqm-payout-button-scroll --> sqm-scroll
   sqm-portal-change-marketing --> sqm-form-message
+  sqm-portal-forgot-password --> sqm-form-message
   sqm-referral-codes --> sqm-empty
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row

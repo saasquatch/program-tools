@@ -151,6 +151,8 @@ export class ShareLink {
 function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "https://www.example.com/sharelink/abc";
+
+  console.log("Demo props", props);
   return deepmerge(
     {
       copyString: copyString,

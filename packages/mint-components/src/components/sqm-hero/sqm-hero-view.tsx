@@ -39,12 +39,14 @@ const parseBackground = (provided_bg: string) => {
       return `url(${provided_bg})`;
     }
   } else {
-    return "";
+    return "var(--sqm-portal-background)";
   }
 };
 
 export function HeroView(props: HeroProps) {
   const { states, content } = props;
+
+  const { secondaryBackground = "var(--sqm-portal-background)" } = states;
 
   const getVertivalPadding = (size: string, half?: boolean) => {
     const sizes = {
@@ -109,7 +111,7 @@ export function HeroView(props: HeroProps) {
       },
       "&:last-of-type": {
         background: `no-repeat center/cover ${parseBackground(
-          states.secondaryBackground
+          secondaryBackground
         )}`,
       },
       "@media screen and (min-width: 650px)": { flex: "1 1 0" },

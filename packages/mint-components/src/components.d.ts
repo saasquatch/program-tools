@@ -1012,7 +1012,10 @@ export namespace Components {
          */
         "background"?: string;
         /**
-          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+          * Can only be used when two columns are present
+          * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
          */
         "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
@@ -6567,8 +6570,8 @@ export namespace Components {
     }
     interface SqmWidgetVerificationController {
         /**
-          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
-          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+          * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true } }
          */
         "stateController": string;
     }
@@ -8395,7 +8398,10 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
-          * @uiName Hide the column in mobile view (can only be used when two columns are present)
+          * Can only be used when two columns are present
+          * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
          */
         "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
@@ -13919,8 +13925,8 @@ declare namespace LocalJSX {
     }
     interface SqmWidgetVerificationController {
         /**
-          * @componentState { "title": "Not Verified", "slot": "not-verified", "props": { "isAuth": false } }
-          * @componentState { "title": "Verified", "slot": "verified", "props": { "isAuth": true } }
+          * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false } }
+          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true } }
          */
         "stateController"?: string;
     }

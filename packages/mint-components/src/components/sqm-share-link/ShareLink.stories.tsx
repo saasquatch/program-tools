@@ -90,6 +90,25 @@ export const CustomStyles = () => {
   };
   return <CopyTextView {...props} />;
 };
+
+export const CustomStylesWithDemoHooks = () => {
+  const props = {
+    copyString: "https://noah.example.com",
+    open: false,
+    tooltiptext: "Copied!",
+    backgroundColor: "#1ed760",
+    borderRadius: "30px",
+    textColor: "red",
+    buttonType: "primary" as const,
+    borderColor: "#121212",
+  };
+  return (
+    <sqm-share-link
+      demoData={{ ...props }}
+      backgroundColor="#1ed760"
+    ></sqm-share-link>
+  );
+};
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
 };
