@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.10.0",
+  "version": "3.10.1-1",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "files": [
@@ -12,11 +12,18 @@
   "scripts": {
     "build": "tsc --declaration",
     "build:docs": "typedoc --out ./docs ./src --ignoreCompilerErrors --media assets --hideGenerator",
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
     "prepack": "npm run build",
     "test": "SSQT_LOG_LEVEL=emerg jest"
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/saasquatch/program-tools"
+  },
+  "publishConfig": {
+    "provenance": true
+  },
   "resolutions": {
     "source-map": "^0.7.4"
   },

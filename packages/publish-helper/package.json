@@ -1,0 +1,41 @@
+{
+  "name": "@saasquatch/publish-helper",
+  "version": "0.0.1-2",
+  "description": "Command line utility to assist with package publishing GH Actions workflows",
+  "main": "dist/index.js",
+  "bin": {
+    "publish-helper": "dist/index.js"
+  },
+  "prettier": {},
+  "engines": {
+    "node": "^18 || ^20 || ^22"
+  },
+  "files": [
+    "dist/*.js"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "license": "MIT",
+  "publishConfig": {
+    "provenance": true
+  },
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools#readme",
+  "dependencies": {
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.31",
+    "typescript": "^5.8.3"
+  }
+}
