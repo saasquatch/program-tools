@@ -65,8 +65,10 @@ export class Hero {
   /**
    * Can only be used when two columns are present
    * @uiName Hide the column in mobile view
+   * @uiEnum ["primary", "secondary", "null"]
+   * @uiEnumNames ["Primary", "Secondary", "None"]
    */
-  @Prop() columnToHideInMobile?: "primary" | "secondary";
+  @Prop() columnToHideInMobile?: "primary" | "secondary" | null = null;
 
   constructor() {
     withHooks(this);

@@ -1014,8 +1014,10 @@ export namespace Components {
         /**
           * Can only be used when two columns are present
           * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
          */
-        "columnToHideInMobile"?: "primary" | "secondary";
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
@@ -8398,8 +8400,10 @@ declare namespace LocalJSX {
         /**
           * Can only be used when two columns are present
           * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
          */
-        "columnToHideInMobile"?: "primary" | "secondary";
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
