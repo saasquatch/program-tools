@@ -22,6 +22,7 @@ export interface LeadFormViewProps {
   callbacks: {
     submit: Function;
     inputFunction: Function;
+    resetForm: Function;
   };
   content: {
     formData?: VNode;
@@ -100,6 +101,8 @@ const styleString = sheet.toString();
 export function LeadFormView(props: LeadFormViewProps) {
   const { states, refs, callbacks, content } = props;
 
+  console.log({ states });
+
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
@@ -131,9 +134,8 @@ export function LeadFormView(props: LeadFormViewProps) {
           <div part="successalert-text">{content.submitSuccessDescription}</div>
         </sqm-form-message>
         <sl-button
-          // AL: TODO add button to allow user to submit another form
           class={sheet.classes.ContinueButton}
-          // onClick={callbacks.submitAnotherForm}
+          onClick={callbacks.resetForm}
           loading={states.loading}
           exportparts="base: primarybutton-base"
           type="default"

@@ -158,6 +158,7 @@ function useRegisterDemo(
           console.log("submit");
         },
         inputFunction: () => {},
+        resetForm: () => {},
       },
       refs: {
         formRef: {},
