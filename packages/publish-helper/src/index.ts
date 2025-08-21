@@ -11,13 +11,19 @@ const exec = promisify(child_exec);
 
 import { gitCurrentBranch } from "./git";
 import { select } from "./select";
+import { helpText } from "./help";
 
 const workflowName = "publish-package.yml";
 
 async function main() {
   const args = process.argv.slice(2);
-  const dryRun = args.includes("--dry-run");
 
+  if (args.includes("--help")) {
+    console.log(helpText);
+    return;
+  }
+
+  const dryRun = args.includes("--dry-run");
   if (dryRun) {
     console.log(`=== DRY RUN ===`);
   }
@@ -103,8 +109,10 @@ async function main() {
   }
 
   const workflowRunCmd = `gh workflow run ${workflowName} --ref "${currentBranch}" -f "package=${packageChoice}" -f "increment-type=${bumpChoice}"`;
-  console.log("$ " + `\x1b[1m${workflowRunCmd}\x1b[0m`);
-  if (!dryRun) {
+
+  if (dryRun) {
+    console.log("$ " + `\x1b[1m${workflowRunCmd}\x1b[0m`);
+  } else {
     await exec(workflowRunCmd);
   }
 
@@ -114,8 +122,10 @@ async function main() {
   await new Promise<void>((resolve) => setTimeout(() => resolve(), 3000));
 
   const workflowViewCmd = `gh workflow view ${workflowName}`;
-  console.log("$ " + `\x1b[1m${workflowViewCmd}\x1b[0m`);
-  if (!dryRun) {
+
+  if (dryRun) {
+    console.log("$ " + `\x1b[1m${workflowViewCmd}\x1b[0m`);
+  } else {
     const { stdout } = await exec(workflowViewCmd);
 
     const runs = stdout
