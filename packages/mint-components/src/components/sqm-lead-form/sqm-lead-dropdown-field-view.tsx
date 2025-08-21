@@ -10,7 +10,6 @@ export interface DropdownFieldViewProps {
     leadFormState?: LeadFormState;
   };
   content: {
-    required: boolean;
     dropdownName: string;
     dropdownLabel: string;
     dropdownOptional?: boolean;
@@ -86,7 +85,6 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
         disabled={
           states.leadFormState?.loading || states.leadFormState?.disabled
         }
-        required={content.required}
         validationError={({ value }: { value: string }) => {
           if (!value) {
             return getRequiredFieldErrorMessage({

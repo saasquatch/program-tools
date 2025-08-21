@@ -1501,7 +1501,6 @@ export namespace Components {
           * @default
          */
         "dropdownOptional"?: boolean;
-        "required": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -1607,7 +1606,6 @@ export namespace Components {
           * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType": "text" | "date" | "tel";
-        "required": boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -8473,7 +8471,6 @@ declare namespace LocalJSX {
           * @default
          */
         "dropdownOptional"?: boolean;
-        "required"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
@@ -8579,7 +8576,6 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType"?: "text" | "date" | "tel";
-        "required"?: boolean;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message

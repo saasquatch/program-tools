@@ -10,6 +10,7 @@ import jsonpointer from "jsonpointer";
 import { AsYouType } from "libphonenumber-js";
 import { LeadForm } from "./sqm-lead-form";
 import { useLeadFormState } from "./useLeadFormState";
+import { useReferralIframe } from "../sqm-referral-iframe/useReferralIframe";
 
 export type LeadFormState = {
   [key: string]: any;
@@ -33,6 +34,10 @@ const SUBMIT_LEAD = gql`
 export function useLeadForm(props: LeadForm) {
   const formRef = useRef<HTMLFormElement>(null);
   const { leadFormState, setLeadFormState } = useLeadFormState({});
+
+  const referralCode = useReferralIframe()?.data?.shareCode;
+
+  console.log({ referralCode });
 
   const [submitLead, { loading, errors, data }] = useMutation(SUBMIT_LEAD);
 
@@ -90,8 +95,8 @@ export function useLeadForm(props: LeadForm) {
       key: props.formKey,
       formData,
     };
+    const result = await submitLead({ formSubmissionInput: variables });
     try {
-      const result = await submitLead({ formSubmissionInput: variables });
       console.log({
         success: result.data.submitForm.success,
         isError: result instanceof Error,
@@ -141,7 +146,7 @@ export function useLeadForm(props: LeadForm) {
       error: errorMessage,
       success,
       leadFormState,
-      referralCode: "ABC123", // Example referral code, replace with actual logic if needed
+      referralCode,
     },
     callbacks: {
       submit,

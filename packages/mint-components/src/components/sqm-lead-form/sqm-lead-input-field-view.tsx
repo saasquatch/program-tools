@@ -10,7 +10,6 @@ export interface LeadInputFieldViewProps {
     leadFormState?: LeadFormState;
   };
   content: {
-    required: boolean;
     fieldName: string;
     fieldLabel: string;
     fieldType: "date" | "tel" | "text";
@@ -73,7 +72,6 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
         disabled={
           states.leadFormState?.loading || states.leadFormState?.disabled
         }
-        required={content.required}
         validationError={({ value }: { value: string }) => {
           if (!value) {
             return getRequiredFieldErrorMessage({

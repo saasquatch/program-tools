@@ -37,8 +37,6 @@ export class LeadDropdownField {
    */
   @Prop() dropdownLabel: string = "Select an option";
 
-  @Prop() required: boolean = false;
-
   /**
    * The message to be displayed when a required field is not filled.
    *
@@ -118,7 +116,6 @@ function useLeadDropdownFieldDemo(
         dropdownLabel: props.dropdownLabel,
         requiredFieldErrorMessage: props.requiredFieldErrorMessage,
         dropdownOptional: props.dropdownOptional,
-        required: props.required,
       },
     },
     props.demoData || {},

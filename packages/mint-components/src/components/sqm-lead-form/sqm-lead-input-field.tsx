@@ -37,8 +37,6 @@ export class LeadInputField {
    */
   @Prop() fieldLabel: string;
 
-  @Prop() required: boolean = false;
-
   /**
    * @uiName Input type
    * @uiType string
@@ -121,7 +119,6 @@ function useLeadInputFieldDemo(
         fieldLabel: props.fieldLabel,
         fieldType: props.fieldType,
         requiredFieldErrorMessage: props.requiredFieldErrorMessage,
-        required: props.required,
       },
     },
     props.demoData || {},
