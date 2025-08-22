@@ -22,6 +22,9 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
+import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
+import { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -1476,6 +1479,142 @@ export namespace Components {
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+         */
+        "formKey": string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel": string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel": string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel": string;
+        /**
+          * @uiName Submit error description Description text shown if an error occurs.
+         */
+        "submitErrorDescription": string;
+        /**
+          * @uiName Submit error header Header text shown if an error occurs.
+         */
+        "submitErrorHeader": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+        /**
+          * @uiName Submit success description Description text shown on successful lead submission.
+         */
+        "submitSuccessDescription": string;
+        /**
+          * @uiName Submit success header Header text shown on successful lead submission.
+         */
+        "submitSuccessHeader": string;
+        /**
+          * @uiName Support link text Optional support link text for error messages.
+         */
+        "supportLinkText": string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType": "text" | "date" | "tel";
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
     }
     interface SqmLeaderboard {
         /**
@@ -6223,6 +6362,24 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadDropdownFieldElement: {
+        prototype: HTMLSqmLeadDropdownFieldElement;
+        new (): HTMLSqmLeadDropdownFieldElement;
+    };
+    interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
+    }
+    var HTMLSqmLeadFormElement: {
+        prototype: HTMLSqmLeadFormElement;
+        new (): HTMLSqmLeadFormElement;
+    };
+    interface HTMLSqmLeadInputFieldElement extends Components.SqmLeadInputField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadInputFieldElement: {
+        prototype: HTMLSqmLeadInputFieldElement;
+        new (): HTMLSqmLeadInputFieldElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -6787,6 +6944,9 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-dropdown-field": HTMLSqmLeadDropdownFieldElement;
+        "sqm-lead-form": HTMLSqmLeadFormElement;
+        "sqm-lead-input-field": HTMLSqmLeadInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -8292,6 +8452,142 @@ declare namespace LocalJSX {
         "downloadUrl"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+         */
+        "formKey"?: string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel"?: string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel"?: string;
+        /**
+          * @uiName Submit error description Description text shown if an error occurs.
+         */
+        "submitErrorDescription"?: string;
+        /**
+          * @uiName Submit error header Header text shown if an error occurs.
+         */
+        "submitErrorHeader"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+        /**
+          * @uiName Submit success description Description text shown on successful lead submission.
+         */
+        "submitSuccessDescription"?: string;
+        /**
+          * @uiName Submit success header Header text shown on successful lead submission.
+         */
+        "submitSuccessHeader"?: string;
+        /**
+          * @uiName Support link text Optional support link text for error messages.
+         */
+        "supportLinkText"?: string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType"?: "text" | "date" | "tel";
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -12838,6 +13134,9 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-dropdown-field": SqmLeadDropdownField;
+        "sqm-lead-form": SqmLeadForm;
+        "sqm-lead-input-field": SqmLeadInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -12967,6 +13266,9 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
+            "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
+            "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;

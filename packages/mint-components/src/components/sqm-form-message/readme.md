@@ -21,6 +21,7 @@
  - [sqm-coupon-code](../sqm-coupon-code)
  - [sqm-edit-profile](../sqm-edit-profile)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
+ - [sqm-lead-form](../sqm-lead-form)
  - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
@@ -43,6 +44,7 @@ graph TD;
   sqm-coupon-code --> sqm-form-message
   sqm-edit-profile --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
+  sqm-lead-form --> sqm-form-message
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
