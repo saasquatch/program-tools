@@ -1,4 +1,5 @@
 import { Fragment, h, VNode } from "@stencil/core";
+import { intl } from "../../global/global";
 import {
   AuthButtonsContainer,
   AuthColumn,
@@ -9,8 +10,6 @@ import {
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { LeadFormState } from "./useLeadFormState";
-import { intl } from "../../global/global";
-import { useRequestRerender } from "../../tables/re-render";
 
 export interface LeadFormViewProps {
   states: {
@@ -33,7 +32,7 @@ export interface LeadFormViewProps {
     submitLabel?: string;
     resubmitFormLabel?: string;
     pageLabel?: string;
-    supportLink?: string;
+    supportLinkText?: string;
     submitSuccessHeader?: string;
     submitSuccessDescription?: string;
     submitErrorHeader?: string;
@@ -195,7 +194,7 @@ export function LeadFormView(props: LeadFormViewProps) {
                       target="_blank"
                       href={`mailto:advocate-support@impact.com`}
                     >
-                      {content.supportLink}
+                      {content.supportLinkText}
                     </a>
                   ),
                 }

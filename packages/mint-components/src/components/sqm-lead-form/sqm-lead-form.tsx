@@ -53,32 +53,42 @@ export class LeadForm {
   @Prop()
   pageLabel: string = "Refer your friend";
 
+  /**
+   * @uiName Form key
+   * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+   */
   @Prop() formKey: string = "lead-form";
+
   /**
-   * Optional support link for error messages.
+   * @uiName Support link text
+   * Optional support link text for error messages.
    */
-  @Prop() supportLink: string = "Support";
+  @Prop() supportLinkText: string = "Support";
   /**
-   * Header text shown on successful submission.
+   * @uiName Submit success header
+   * Header text shown on successful lead submission.
    */
-  @Prop() submitSuccessHeader: string = "Referral submitted";
+  @Prop() submitSuccessHeader: string = "Lead submitted";
   /**
-   * Description text shown on successful submission.
+   * @uiName Submit success description
+   * Description text shown on successful lead submission.
    */
   @Prop() submitSuccessDescription: string =
     "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page.";
   /**
-   * Header text shown when an error occurs.
+   * @uiName Submit error header
+   * Header text shown if an error occurs.
    */
   @Prop() submitErrorHeader: string = "An error occurred while submitting";
   /**
-   * Description text shown when an error occurs.
+   * @uiName Submit error description
+   * Description text shown if an error occurs.
    */
   @Prop() submitErrorDescription: string =
     "Please try again later. If the problem continues, contact {supportLink}";
 
   /**
-   * The message to be displayed when a required field is not filled.
+   * The message to be displayed if a required field is not filled.
    *
    * @uiName Required field message
    * @uiWidget textArea
@@ -87,7 +97,7 @@ export class LeadForm {
     "Please enter a valid {fieldLabel}";
 
   /**
-   * The message to be displayed when a the form submission fails unexpectedly.
+   * The message to be displayed if a the form submission fails unexpectedly.
    *
    * @uiName Network error message
    * @uiWidget textArea
@@ -95,7 +105,7 @@ export class LeadForm {
   @Prop() networkErrorMessage: string = "Network request failed.";
 
   /**
-   * The message to be displayed when the email used is invalid or blocked.
+   * The message to be displayed if the email used is invalid.
    *
    * @uiName Invalid email message
    * @uiWidget textArea
@@ -124,7 +134,7 @@ export class LeadForm {
       submitLabel: this.submitLabel,
       resubmitFormLabel: this.resubmitFormLabel,
       pageLabel: this.pageLabel,
-      supportLink: this.supportLink,
+      supportLinkText: this.supportLinkText,
       submitSuccessHeader: this.submitSuccessHeader,
       submitSuccessDescription: this.submitSuccessDescription,
       submitErrorHeader: this.submitErrorHeader,

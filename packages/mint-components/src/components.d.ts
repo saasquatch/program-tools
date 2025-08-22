@@ -1522,9 +1522,12 @@ export namespace Components {
           * @uiName First Name field label
          */
         "firstNameLabel": string;
+        /**
+          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+         */
         "formKey": string;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * The message to be displayed if the email used is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
          */
@@ -1534,7 +1537,7 @@ export namespace Components {
          */
         "lastNameLabel": string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
+          * The message to be displayed if a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
          */
@@ -1544,7 +1547,7 @@ export namespace Components {
          */
         "pageLabel": string;
         /**
-          * The message to be displayed when a required field is not filled.
+          * The message to be displayed if a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
@@ -1554,11 +1557,11 @@ export namespace Components {
          */
         "resubmitFormLabel": string;
         /**
-          * Description text shown when an error occurs.
+          * @uiName Submit error description Description text shown if an error occurs.
          */
         "submitErrorDescription": string;
         /**
-          * Header text shown when an error occurs.
+          * @uiName Submit error header Header text shown if an error occurs.
          */
         "submitErrorHeader": string;
         /**
@@ -1566,17 +1569,17 @@ export namespace Components {
          */
         "submitLabel": string;
         /**
-          * Description text shown on successful submission.
+          * @uiName Submit success description Description text shown on successful lead submission.
          */
         "submitSuccessDescription": string;
         /**
-          * Header text shown on successful submission.
+          * @uiName Submit success header Header text shown on successful lead submission.
          */
         "submitSuccessHeader": string;
         /**
-          * Optional support link for error messages.
+          * @uiName Support link text Optional support link text for error messages.
          */
-        "supportLink": string;
+        "supportLinkText": string;
     }
     interface SqmLeadInputField {
         /**
@@ -8492,9 +8495,12 @@ declare namespace LocalJSX {
           * @uiName First Name field label
          */
         "firstNameLabel"?: string;
+        /**
+          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+         */
         "formKey"?: string;
         /**
-          * The message to be displayed when the email used is invalid or blocked.
+          * The message to be displayed if the email used is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
          */
@@ -8504,7 +8510,7 @@ declare namespace LocalJSX {
          */
         "lastNameLabel"?: string;
         /**
-          * The message to be displayed when a the form submission fails unexpectedly.
+          * The message to be displayed if a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
          */
@@ -8514,7 +8520,7 @@ declare namespace LocalJSX {
          */
         "pageLabel"?: string;
         /**
-          * The message to be displayed when a required field is not filled.
+          * The message to be displayed if a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
          */
@@ -8524,11 +8530,11 @@ declare namespace LocalJSX {
          */
         "resubmitFormLabel"?: string;
         /**
-          * Description text shown when an error occurs.
+          * @uiName Submit error description Description text shown if an error occurs.
          */
         "submitErrorDescription"?: string;
         /**
-          * Header text shown when an error occurs.
+          * @uiName Submit error header Header text shown if an error occurs.
          */
         "submitErrorHeader"?: string;
         /**
@@ -8536,17 +8542,17 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
         /**
-          * Description text shown on successful submission.
+          * @uiName Submit success description Description text shown on successful lead submission.
          */
         "submitSuccessDescription"?: string;
         /**
-          * Header text shown on successful submission.
+          * @uiName Submit success header Header text shown on successful lead submission.
          */
         "submitSuccessHeader"?: string;
         /**
-          * Optional support link for error messages.
+          * @uiName Support link text Optional support link text for error messages.
          */
-        "supportLink"?: string;
+        "supportLinkText"?: string;
     }
     interface SqmLeadInputField {
         /**
