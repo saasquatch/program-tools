@@ -447,7 +447,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label, base: input-base"
+                  exportparts="base: radio-base"
                   checked={formState.paymentMethodChecked === "toBankAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toBankAccount")
@@ -480,7 +480,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label, base: input-base"
+                  exportparts="base: radio-base"
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toPayPalAccount")
@@ -513,7 +513,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               </div>
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label, base: input-base"
+                exportparts="base: radio-base"
                 checked={
                   formState.paymentScheduleChecked === "BALANCE_THRESHOLD"
                 }
@@ -540,7 +540,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label, base: input-base"
+                exportparts="base: radio-base"
                 checked={formState.paymentScheduleChecked === "FIXED_DAY"}
                 onInput={() => callbacks.setPaymentScheduleChecked("FIXED_DAY")}
                 disabled={states.disabled}
