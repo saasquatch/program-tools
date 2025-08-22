@@ -58,12 +58,15 @@ const styleString = sheet.toString();
 export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
   const { states, content } = props;
   const validationErrors = states?.leadFormState?.validationErrors;
+
+  console.log({ validationErrors });
+
   const getRequiredFieldErrorMessage = ({
     dropdownLabel,
   }: RequiredFieldErrorParams) =>
     intl.formatMessage(
       {
-        id: "requiredFieldErrorMessage",
+        id: `requiredFieldErrorMessage-${dropdownLabel}`,
         defaultMessage: content.requiredFieldErrorMessage,
       },
       {
@@ -92,7 +95,7 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
             });
           }
         }}
-        {...(states.leadFormState?.validationErrors
+        {...(states.leadFormState?.validationErrors?.[content.dropdownName]
           ? {
               class: sheet.classes.ErrorStyle,
             }
@@ -102,9 +105,8 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
       </sl-select>
       {validationErrors?.[content.dropdownName] && (
         <p class={sheet.classes.ErrorMessageStyle}>
-          {intl.formatMessage({
-            id: `errorMessage-${content.dropdownName}`,
-            defaultMessage: content.requiredFieldErrorMessage,
+          {getRequiredFieldErrorMessage({
+            dropdownLabel: content.dropdownLabel,
           })}
         </p>
       )}

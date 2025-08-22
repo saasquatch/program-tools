@@ -195,12 +195,12 @@ export function LeadFormView(props: LeadFormViewProps) {
           <div class={sheet.classes.NameFieldWrapper}>
             <sqm-lead-input-field
               style={{ width: "50%" }}
-              field-label="First Name"
+              field-label={content.firstNameLabel || "First Name"}
               field-name="firstName"
             ></sqm-lead-input-field>
             <sqm-lead-input-field
               style={{ width: "50%" }}
-              field-label="Last Name"
+              field-label={content.lastNameLabel || "Last Name"}
               field-name="lastName"
             ></sqm-lead-input-field>
           </div>
@@ -234,7 +234,7 @@ export function LeadFormView(props: LeadFormViewProps) {
           <input
             type="hidden"
             hidden
-            name="/rsReferralCode"
+            name="/referralCode"
             value={states.referralCode}
           ></input>
           {/* Must use inline styling to target slotted element here */}
