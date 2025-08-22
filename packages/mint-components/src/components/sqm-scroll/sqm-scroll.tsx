@@ -118,85 +118,25 @@ export class Scroll {
   render() {
     const { callbacks } = useScroll(this);
     const outlineColor = this.buttonType ?? "primary";
-    const style = {
-      Button: {
-        "& .outline": {
-          "&::part(base)": {
-            color: "var(--sl-color-" + outlineColor + "-500)",
-            borderColor: "var(--sl-color-" + outlineColor + "-500)",
-            backgroundColor: "transparent",
-            "&:hover": {
-              color: "var(--sl-color-primary-text)",
-              backgroundColor: "var(--sl-color-" + outlineColor + "-500)",
-            },
-          },
-        },
-        "& .neutral": {
-          "&::part(base)": {
-            color: "var(--sl-color-primary-text)",
-            background: "var(--sl-color-neutral-500)",
-            "&:hover": {
-              opacity: "0.8",
-            },
-          },
-        },
-        "& .mobile": {
-          "@media (max-width: 499px)": {
-            width: "100%",
-          },
-        },
-      },
-    };
-
-    const sheet = createStyleSheet(style);
-    const styleString = sheet.toString();
-
-    const vanillaStyle = `
-		:host{
-			display: contents;
-		}
-		${
-      this.mobile &&
-      `
-		@media only screen and (max-width: 499px) {
-			:host {
-				display: block;
-				width: 100%;
-			}
-		}
-	  `
-    }
-	`;
-
-    let classStack = "";
-    if (this.outline && this.buttonType != "default") classStack += "outline ";
-    if (this.buttonType === "neutral") classStack += "neutral ";
-    if (this.mobile) classStack += "mobile ";
 
     return (
-      <div class={sheet.classes.Button}>
-        <style type="text/css">
-          {vanillaStyle}
-          {styleString}
-        </style>
-        <sl-button
-          type={this.buttonType}
-          onClick={callbacks.scroll}
-          size={this.size}
-          pill={this.pill}
-          circle={this.circle}
-          class={classStack}
-        >
-          {(this.iconSlot || this.iconName) && (
-            <sl-icon
-              slot={this.iconSlot || "prefix"}
-              name={this.iconName}
-            ></sl-icon>
-          )}
-          {this.buttonText}
-          <slot />
-        </sl-button>
-      </div>
+      <sl-button
+        type="secondary"
+        onClick={callbacks.scroll}
+        size={this.size}
+        pill={this.pill}
+        circle={this.circle}
+        exportparts="base: secondarybutton-base"
+      >
+        {(this.iconSlot || this.iconName) && (
+          <sl-icon
+            slot={this.iconSlot || "prefix"}
+            name={this.iconName}
+          ></sl-icon>
+        )}
+        {this.buttonText}
+        <slot />
+      </sl-button>
     );
   }
 }
