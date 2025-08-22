@@ -665,8 +665,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {states.canEditPayoutInfo && (
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="primary"
-                exportparts="base: primarybutton-base"
+                type="secondary"
+                exportparts="base: secondarybutton-base"
                 onClick={callbacks.onEditPayoutInfo}
               >
                 {text.editPaymentInformationButton}
@@ -719,8 +719,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         style={{ marginTop: "20px" }}
                         disabled={states.disabled || states.loading}
                         onClick={callbacks.onClick}
-                        type="primary"
-                        exportparts="base: primarybutton-base"
+                        type="secondary"
+                        exportparts="base: secondarybutton-base"
                       >
                         {text.newFormButton}
                       </sl-button>
