@@ -77,17 +77,25 @@ const slottedProps: LeadFormViewProps = {
     ...defaultProps.content,
     formData: (
       <div>
-        <sl-input
-          style={{ marginBottom: "var(--sl-spacing-x-large)" }}
-          exportparts="label: input-label, base: input-base"
-          label="Slotted Input"
-          required
-        ></sl-input>
-        <sl-input
-          exportparts="label: input-label, base: input-base"
-          label="Slotted Input 2"
-          required
-        ></sl-input>
+        <sqm-lead-input-field
+          field-name="firstName"
+          field-label="First Name"
+          field-type="text"
+          required-field-error-message="Please enter a first name"
+        ></sqm-lead-input-field>
+        <sqm-lead-input-field
+          field-name="lastName"
+          field-label="Last Name"
+          field-type="text"
+          required-field-error-message="Please enter a last name"
+        ></sqm-lead-input-field>
+        <sqm-lead-input-field
+          field-name="email"
+          field-label="Email"
+          field-type="email"
+          required-field-error-message="Please enter a valid email address"
+        ></sqm-lead-input-field>
+        <sqm-lead-dropdown-field></sqm-lead-dropdown-field>
       </div>
     ),
   },

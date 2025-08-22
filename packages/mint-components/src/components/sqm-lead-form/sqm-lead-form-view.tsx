@@ -49,7 +49,7 @@ type RequiredFieldErrorParams = {
 };
 
 const style = {
-  Wrapper: { ...AuthWrapper, "max-width": "600px" },
+  Wrapper: { ...AuthWrapper, "max-width": "600px", border: "none" },
   Column: AuthColumn,
   HostBlock: HostBlock,
 
@@ -60,6 +60,7 @@ const style = {
   NameFieldWrapper: {
     display: "flex",
     gap: "var(--sl-spacing-medium)",
+    marginBottom: "0 !important",
   },
   ContinueButton: { maxWidth: "169px" },
   ButtonsContainer: AuthButtonsContainer,
@@ -74,6 +75,10 @@ const style = {
       backgroundColor: "var(--sl-color-red-100)",
       borderTop: "none",
     },
+  },
+  NameInput: {
+    marginBottom: "0",
+    width: "50%",
   },
   ErrorStyle: ErrorStyles,
 };
@@ -187,12 +192,12 @@ export function LeadFormView(props: LeadFormViewProps) {
         )}
         <div class={sheet.classes.NameFieldWrapper}>
           <sqm-lead-input-field
-            style={{ width: "50%" }}
+            class={sheet.classes.NameInput}
             field-label="First Name"
             field-name="firstName"
           ></sqm-lead-input-field>
           <sqm-lead-input-field
-            style={{ width: "50%" }}
+            class={sheet.classes.NameInput}
             field-label="Last Name"
             field-name="lastName"
           ></sqm-lead-input-field>

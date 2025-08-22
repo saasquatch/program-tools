@@ -25,7 +25,7 @@ type RequiredFieldErrorParams = {
 const style = {
   ErrorStyle: ErrorStyles,
   FieldContainer: {
-    "margin-bottom": "var(--sl-spacing-large)",
+    "margin-bottom": "var(--sl-spacing-medium)",
   },
 };
 
@@ -58,7 +58,7 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
     );
 
   return (
-    <div part="sqm-base">
+    <div class={sheet.classes.FieldContainer} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
