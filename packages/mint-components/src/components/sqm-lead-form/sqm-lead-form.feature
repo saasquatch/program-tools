@@ -5,6 +5,7 @@ Feature: Lead Form
     @motivating
     Scenario: Users can fill out a lead form
         Given a user viewing the lead form
+        And the form is connected to a form with form key "lead-form"
         And they enter the first name "Bob"
         And they enter the last name "Testerson"
         And they provide the email "bobtesterson@example.com"
@@ -27,6 +28,7 @@ Feature: Lead Form
     @minutia
     Scenario: Users are notified if submission fails
         Given a user viewing the lead form
+        And the form is connected to a form with form key "lead-form"
         And they enter the first name "Bob"
         And they enter the last name "Testerson"
         And they provide a valid email "bobtesterson@example.com"
@@ -38,6 +40,7 @@ Feature: Lead Form
     @minutia
     Scenario: A user can enter another lead after a successful submission
         Given a user viewing the lead form
+        And the form is connected to a form with form key "lead-form"
         And they enter the first name "Bob"
         And they enter the last name "Testerson"
         And they provide the email "bobtesterson@example.com"
@@ -50,9 +53,10 @@ Feature: Lead Form
     @motivating
     Scenario: Additional fields can be slotted into the lead form
         Given a user viewing the lead form
+        And the form is connected to a form with form key "lead-form"
         And the lead form contains the following html
             """
-            <sqm-lead-form>
+            <sqm-lead-form form-key="lead-form">
             <sqm-lead-input-field
             field-name="customInput"
             field-label="Custom Input" />
@@ -75,7 +79,7 @@ Feature: Lead Form
         Given a user viewing the lead form
         And the lead form contains the following html
             """
-            <sqm-lead-form>
+            <sqm-lead-form form-key="lead-form">
             <sqm-lead-input-field
             field-name="customInput1"
             field-label="Custom Input 1" />
