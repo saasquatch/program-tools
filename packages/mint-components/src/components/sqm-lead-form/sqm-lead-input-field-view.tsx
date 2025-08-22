@@ -49,7 +49,7 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
   }: RequiredFieldErrorParams) =>
     intl.formatMessage(
       {
-        id: "requiredFieldErrorMessage",
+        id: `requiredFieldErrorMessage-${fieldLabel}`,
         defaultMessage: content.requiredFieldErrorMessage,
       },
       {
@@ -79,11 +79,11 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
             });
           }
         }}
-        {...(states.leadFormState?.validationErrors?.firstName
+        {...(states.leadFormState?.validationErrors?.[content.fieldName]
           ? {
               class: sheet.classes.ErrorStyle,
               helpText:
-                states.leadFormState?.validationErrors?.firstName ||
+                states.leadFormState?.validationErrors?.[content.fieldName] ||
                 content.requiredFieldErrorMessage,
             }
           : [])}

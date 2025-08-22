@@ -51,7 +51,7 @@ export class LeadInputField {
    * @uiName Required field message
    * @uiWidget textArea
    */
-  @Prop() requiredFieldErrorMessage: string = "Please enter a {fieldName}";
+  @Prop() requiredFieldErrorMessage: string = "Please enter a {fieldLabel}";
 
   /**
    * @uiName Optional

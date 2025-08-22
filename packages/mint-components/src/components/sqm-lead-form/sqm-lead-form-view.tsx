@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { Fragment, h, VNode } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
@@ -10,6 +10,7 @@ import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { LeadFormState } from "./useLeadFormState";
 import { intl } from "../../global/global";
+import { useRequestRerender } from "../../tables/re-render";
 
 export interface LeadFormViewProps {
   states: {
@@ -22,6 +23,7 @@ export interface LeadFormViewProps {
   callbacks: {
     submit: Function;
     inputFunction: Function;
+    resetForm: Function;
   };
   content: {
     formData?: VNode;
@@ -105,6 +107,8 @@ const styleString = sheet.toString();
 export function LeadFormView(props: LeadFormViewProps) {
   const { states, refs, callbacks, content } = props;
 
+  console.log({ states });
+
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
@@ -122,132 +126,136 @@ export function LeadFormView(props: LeadFormViewProps) {
       }
     );
 
-  if (states.success) {
-    return (
-      <div class={sheet.classes.Wrapper} part="sqm-base">
+  return (
+    <Fragment>
+      {states.success && (
+        <div class={sheet.classes.Wrapper} part="sqm-base">
+          <style type="text/css">
+            {vanillaStyle}
+            {styleString}
+          </style>
+          <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
+          <sqm-form-message exportparts="success-icon">
+            <b>{content.submitSuccessHeader}</b>
+            <br />
+            <div part="successalert-text">
+              {content.submitSuccessDescription}
+            </div>
+          </sqm-form-message>
+          <sl-button
+            class={sheet.classes.ContinueButton}
+            onClick={callbacks.resetForm}
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="default"
+          >
+            {content.resubmitFormLabel}
+          </sl-button>
+        </div>
+      )}
+      <div
+        class={sheet.classes.Wrapper}
+        part="sqm-base"
+        style={{ display: states.success ? "none" : "block" }}
+      >
         <style type="text/css">
           {vanillaStyle}
           {styleString}
         </style>
         <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-        <sqm-form-message exportparts="success-icon">
-          <b>{content.submitSuccessHeader}</b>
-          <br />
-          <div part="successalert-text">{content.submitSuccessDescription}</div>
-        </sqm-form-message>
-        <sl-button
-          // AL: TODO add button to allow user to submit another form
-          class={sheet.classes.ContinueButton}
-          // onClick={callbacks.submitAnotherForm}
-          loading={states.loading}
-          exportparts="base: primarybutton-base"
-          type="default"
+        <sl-form
+          class={sheet.classes.Column}
+          onSl-submit={callbacks.submit}
+          ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
+          novalidate
         >
-          {content.resubmitFormLabel}
-        </sl-button>
+          {states.error && (
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="danger"
+              class={sheet.classes.ErrorAlertContainer}
+              open
+            >
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <b>{content.submitErrorHeader}</b>
+              <br />
+              {intl.formatMessage(
+                {
+                  id: "submitErrorDescription",
+                  defaultMessage: content.submitErrorDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {content.supportLink}
+                    </a>
+                  ),
+                }
+              )}
+            </sl-alert>
+          )}
+          <div class={sheet.classes.NameFieldWrapper}>
+            <sqm-lead-input-field
+              class={sheet.classes.NameInput}
+              field-label={content.firstNameLabel || "First Name"}
+              field-name="firstName"
+            ></sqm-lead-input-field>
+            <sqm-lead-input-field
+              class={sheet.classes.NameInput}
+              field-label={content.lastNameLabel || "Last Name"}
+              field-name="lastName"
+            ></sqm-lead-input-field>
+          </div>
+          <sl-input
+            exportparts="label: input-label, base: input-base"
+            type="email"
+            name="/email"
+            label={content.emailLabel || "Email"}
+            disabled={states.loading}
+            required
+            validationError={({ value }: { value: string }) => {
+              if (!value) {
+                return getRequiredFieldErrorMessage({
+                  fieldLabel: content.emailLabel || "Email",
+                });
+              }
+              // this matches shoelace validation, but could be better
+              if (!value.includes("@")) {
+                return content.invalidEmailErrorMessage;
+              }
+            }}
+            {...(states.leadFormState?.validationErrors?.email
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.leadFormState?.validationErrors?.email ||
+                    content.requiredFieldErrorMessage,
+                }
+              : [])}
+          ></sl-input>
+          <input
+            type="hidden"
+            hidden
+            name="/referralCode"
+            value={states.referralCode}
+          ></input>
+          {/* Must use inline styling to target slotted element here */}
+          {content.formData}
+          <div class={sheet.classes.ButtonsContainer}>
+            <sl-button
+              submit
+              loading={states.loading}
+              exportparts="base: primarybutton-base"
+              type="primary"
+            >
+              {content.submitLabel || "Register"}
+            </sl-button>
+          </div>
+        </sl-form>
       </div>
-    );
-  }
-
-  return (
-    <div class={sheet.classes.Wrapper} part="sqm-base">
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-      </style>
-      <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-      <sl-form
-        class={sheet.classes.Column}
-        onSl-submit={callbacks.submit}
-        ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
-        novalidate
-      >
-        {states.error && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            class={sheet.classes.ErrorAlertContainer}
-            open
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <b>{content.submitErrorHeader}</b>
-            <br />
-            {intl.formatMessage(
-              {
-                id: "submitErrorDescription",
-                defaultMessage: content.submitErrorDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
-                  >
-                    {content.supportLink}
-                  </a>
-                ),
-              }
-            )}
-          </sl-alert>
-        )}
-        <div class={sheet.classes.NameFieldWrapper}>
-          <sqm-lead-input-field
-            class={sheet.classes.NameInput}
-            field-label="First Name"
-            field-name="firstName"
-          ></sqm-lead-input-field>
-          <sqm-lead-input-field
-            class={sheet.classes.NameInput}
-            field-label="Last Name"
-            field-name="lastName"
-          ></sqm-lead-input-field>
-        </div>
-        <sl-input
-          exportparts="label: input-label, base: input-base"
-          type="email"
-          name="/email"
-          label={content.emailLabel || "Email"}
-          disabled={states.loading}
-          required
-          validationError={({ value }: { value: string }) => {
-            if (!value) {
-              return getRequiredFieldErrorMessage({
-                fieldLabel: content.emailLabel || "Email",
-              });
-            }
-            // this matches shoelace validation, but could be better
-            if (!value.includes("@")) {
-              return content.invalidEmailErrorMessage;
-            }
-          }}
-          {...(states.leadFormState?.validationErrors?.email
-            ? {
-                class: sheet.classes.ErrorStyle,
-                helpText:
-                  states.leadFormState?.validationErrors?.email ||
-                  content.requiredFieldErrorMessage,
-              }
-            : [])}
-        ></sl-input>
-        <input
-          type="hidden"
-          hidden
-          name="/rsReferralCode"
-          value={states.referralCode}
-        ></input>
-        {/* Must use inline styling to target slotted element here */}
-        {content.formData}
-        <div class={sheet.classes.ButtonsContainer}>
-          <sl-button
-            submit
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            {content.submitLabel || "Register"}
-          </sl-button>
-        </div>
-      </sl-form>
-    </div>
+    </Fragment>
   );
 }

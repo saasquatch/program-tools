@@ -117,12 +117,10 @@ export function useLeadForm(props: LeadForm) {
       key: props.formKey,
       formData,
     };
-    const result = await submitLead({ formSubmissionInput: variables });
+
     try {
-      console.log({
-        success: result.data.submitForm.success,
-        isError: result instanceof Error,
-      });
+      const result = await submitLead({ formSubmissionInput: variables });
+
       if (result instanceof Error) {
         throw result;
       }
@@ -132,7 +130,7 @@ export function useLeadForm(props: LeadForm) {
         validationErrors: {},
       });
 
-      if (result?.data?.submitForm?.success) {
+      if (result?.submitForm?.success) {
         setSuccess(true);
       }
     } catch (error) {
@@ -151,6 +149,18 @@ export function useLeadForm(props: LeadForm) {
     e.target.value = asYouType.input(e.target.value);
   }, []);
 
+  function resetForm() {
+    setLeadFormState({
+      loading: false,
+      error: "",
+      validationErrors: {},
+    });
+    formRef.current?.getFormControls()?.forEach((c) => {
+      c.value = "";
+    });
+    setSuccess(false);
+  }
+
   let errorMessage = "";
   if (errors?.response?.["error"]) {
     errorMessage = props.networkErrorMessage;
@@ -163,7 +173,7 @@ export function useLeadForm(props: LeadForm) {
       leadFormState?.error;
   }
 
-  console.log({ errors });
+  console.log({ errors, errorMessage });
 
   return {
     states: {
@@ -176,6 +186,7 @@ export function useLeadForm(props: LeadForm) {
     callbacks: {
       submit,
       inputFunction,
+      resetForm,
     },
     refs: {
       formRef,

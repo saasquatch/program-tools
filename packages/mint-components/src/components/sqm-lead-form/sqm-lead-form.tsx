@@ -131,6 +131,8 @@ export class LeadForm {
       submitErrorDescription: this.submitErrorDescription,
       invalidEmailErrorMessage: this.invalidEmailErrorMessage,
       requiredFieldErrorMessage: this.requiredFieldErrorMessage,
+      firstNameLabel: this.firstNameLabel,
+      lastNameLabel: this.lastNameLabel,
     };
 
     return (
@@ -158,6 +160,7 @@ function useRegisterDemo(
           console.log("submit");
         },
         inputFunction: () => {},
+        resetForm: () => {},
       },
       refs: {
         formRef: {},

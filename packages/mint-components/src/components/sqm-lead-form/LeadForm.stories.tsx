@@ -16,6 +16,7 @@ const defaultProps: LeadFormViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
     inputFunction: () => {},
+    resetForm: () => {},
   },
   refs: {
     formRef: {},
