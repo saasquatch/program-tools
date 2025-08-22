@@ -579,35 +579,39 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: ${config?.color?.backgroundColor || "#fff"};
-  --sqm-primary-font: ${config?.main?.brandFont || "var(--sl-font-sans)"};
+  --sqm-portal-background: ${
+    config?.color?.backgroundColor || "hsla(0, 0%, 100%, 1)"
+  };
+  --sqm-primary-font: ${config?.main?.brandFont || "Nunito Sans"};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-  --sqm-skeleton-background: #eee;
-  --sqm-text: ${config?.color?.textColorShades?.mainText || "#27272A"};
+  --sqm-skeleton-background: hsl(240, 4%, 91%);
+  --sqm-text: ${
+    config?.color?.textColorShades?.mainText || "hsl(240, 4%, 16%)"
+  };
   --sqm-text-subdued: ${
-    config?.color?.textColorShades?.subduedText || "#717179"
+    config?.color?.textColorShades?.subduedText || "hsl(240, 3%, 46%)"
   };
 
-  --sqm-primary-color: ${config?.main?.brandColor || "#236AEB"};
+  --sqm-primary-color: ${config?.main?.brandColor || "hsl(0, 0%, 7%)"};
   --sqm-primary-button-background:${
-    config?.primaryButton?.buttonColor?.background || "#236AEB"
+    config?.primaryButton?.buttonColor?.background || "hsl(0, 0%, 7%)"
   };
   --sqm-primary-button-background-hover: ${
-    config?.primaryButton?.buttonHoverColor?.background || "#3698df"
+    config?.primaryButton?.buttonHoverColor?.background || "hsl(0, 0%, 25%)"
   };
   --sqm-primary-button-color-hover: ${
-    config?.primaryButton?.buttonHoverColor?.label || "#FFFFFF"
+    config?.primaryButton?.buttonHoverColor?.label || "hsla(0, 0%, 100%, 1)"
   };
   --sqm-primary-button-border-color-hover: ${
-    config?.primaryButton?.buttonHoverColor?.border || "transparent"
+    config?.primaryButton?.buttonHoverColor?.border || "hsl(0, 0%, 25%)"
   };
   --sqm-primary-button-color: ${
-    config?.primaryButton?.buttonColor?.label || "#FFFFFF"
+    config?.primaryButton?.buttonColor?.label || "hsla(0, 0%, 100%, 1)"
   };
   --sqm-primary-button-color-border: ${
-    config?.primaryButton?.buttonColor?.border || "transparent"
+    config?.primaryButton?.buttonColor?.border || "hsl(0, 0%, 7%)"
   };
   --sqm-primary-button-radius: ${
     config?.primaryButton?.borderRadius
@@ -615,22 +619,22 @@ html {
       : "4px"
   };
   --sqm-secondary-button-background: ${
-    config?.secondaryButton?.buttonColor?.background || "transparent"
+    config?.secondaryButton?.buttonColor?.background || "hsl(0, 0%, 100%)"
   };
   --sqm-secondary-button-background-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.background || "#DEF0FC"
+    config?.secondaryButton?.buttonHoverColor?.background || "hsl(0, 0%, 7%)"
   };
   --sqm-secondary-button-color-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.label || "#3878DB"
+    config?.secondaryButton?.buttonHoverColor?.label || "hsl(0, 0%, 100%)"
   };
   --sqm-secondary-button-border-color-hover: ${
-    config?.secondaryButton?.buttonHoverColor?.border || "#3798DF"
+    config?.secondaryButton?.buttonHoverColor?.border || "hsl(0, 0%, 7%)"
   };
   --sqm-secondary-button-color: ${
-    config?.secondaryButton?.buttonColor?.label || "#27272A"
+    config?.secondaryButton?.buttonColor?.label || "hsl(0, 0%, 7%)"
   };
   --sqm-secondary-button-color-border: ${
-    config?.secondaryButton?.buttonColor?.border || "#E4E4E7"
+    config?.secondaryButton?.buttonColor?.border || "hsl(0, 0%, 100%)"
   };
   --sqm-secondary-button-radius: ${
     config?.secondaryButton?.borderRadius
@@ -641,7 +645,7 @@ html {
   --sqm-border-radius-normal: ${
     config?.border?.borderRadius ? config?.border?.borderRadius + "px" : "4px"
   }; 
-  --sqm-border-color: ${config?.border?.borderColor || "#E4E4E7"};
+  --sqm-border-color: ${config?.border?.borderColor || "hsl(240, 4%, 91%)"};
 
   --sqm-border-thickness: ${
     config?.border?.borderThickness
@@ -650,67 +654,75 @@ html {
   };
 
   --sqm-accent-color-icon: ${
-    config?.color?.accentColorShades?.icon || "#7ECCF7"
+    config?.color?.accentColorShades?.icon || "hsl(0, 0%, 7%)"
   };
   --sqm-accent-color-text: ${
-    config?.color?.accentColorShades?.text || "#3798DF"
+    config?.color?.accentColorShades?.text || "hsl(0, 0%, 7%)"
   };    
   --sqm-accent-color-border: ${
-    config?.color?.accentColorShades?.border || "#3798DF"
+    config?.color?.accentColorShades?.border || "hsl(240, 6%, 90%)"
   };
   --sqm-accent-color-background: ${
-    config?.color?.accentColorShades?.background || "#EFF8FE"
+    config?.color?.accentColorShades?.background || "hsl(0, 0%, 93%)"
   };
 
   --sqm-success-color-icon: ${
-    config?.color?.success?.iconAndBadge || "var(--sl-color-success-600)"
+    config?.color?.success?.iconAndBadge || "hsl(142, 71%, 45%)"
   };
-  --sqm-success-color-text: ${config?.color?.success?.text || "#fff"};
+  --sqm-success-color-text: ${
+    config?.color?.success?.text || "hsl(164, 74%, 15%)"
+  };
   --sqm-success-color-border: ${
-    config?.color?.success?.border || "var(--sl-color-success-400)"
+    config?.color?.success?.border || "hsl(141, 79%, 85%)"
   };
   --sqm-success-color-background: ${
-    config?.color?.success?.background || "var(--sl-color-success-300)"
+    config?.color?.success?.background || "hsl(141, 84%, 93%)"
   };
   
   --sqm-warning-color-icon: ${
-    config?.color?.warning?.iconAndBadge || "var(--sl-color-warning-600)"
+    config?.color?.warning?.iconAndBadge || "hsl(38, 92%, 50%)"
   };
-  --sqm-warning-color-text: ${config?.color?.warning?.text || "#fff"};
+  --sqm-warning-color-text: ${
+    config?.color?.warning?.text || "hsl(38, 70%, 24%)"
+  };
   --sqm-warning-color-border: ${
-    config?.color?.warning?.border || "var(--sl-color-warning-400)"
+    config?.color?.warning?.border || "hsl(48, 97%, 85%)"
   };
   --sqm-warning-color-background: ${
-    config?.color?.warning?.background || "var(--sl-color-warning-300)"
+    config?.color?.warning?.background || "hsl(48, 97%, 85%)"
   };
 
   --sqm-danger-color-icon: ${
-    config?.color?.critical?.iconAndBadge || "var(--sl-color-danger-600)"
+    config?.color?.critical?.iconAndBadge || "hsl(0, 84%, 60%)"
   };
-  --sqm-danger-color-text: ${config?.color?.critical?.text || "#fff"};
+  --sqm-danger-color-text: ${
+    config?.color?.critical?.text || "hsl(0, 57%, 26%)"
+  };
   --sqm-danger-color-border: ${
-    config?.color?.critical?.border || "var(--sl-color-danger-400)"
+    config?.color?.critical?.border || "hsl(0, 97%, 85%)"
   };
   --sqm-danger-color-background: ${
-    config?.color?.critical?.background || "var(--sl-color-danger-300)"
+    config?.color?.critical?.background || "hsl(0, 93%, 94%)"
   };
 
   --sqm-informative-color-icon: ${
-    config?.color?.informative?.iconAndBadge || "var(--sl-color-sky-600)"
+    config?.color?.informative?.iconAndBadge || "hsl(221, 83%, 53%)"
   };
-  --sqm-informative-color-text: ${config?.color?.informative?.text || "#fff"};
+  --sqm-informative-color-text: ${
+    config?.color?.informative?.text || "hsl(221, 75%, 20%)"
+  };
   --sqm-informative-color-border: ${
-    config?.color?.informative?.border || "var(--sl-color-sky-400)"
+    config?.color?.informative?.border || "hsl(213, 97%, 85%)"
   };
   --sqm-informative-color-background: ${
-    config?.color?.informative?.background || "var(--sl-color-sky-300)"
+    config?.color?.informative?.background || "hsl(214, 95%, 93%)"
   };
 
   --sqm-input-background: ${
-    config?.formFields?.formFieldColor?.background || "#fff"
+    config?.formFields?.formFieldColor?.background || "hsla(0, 0%, 100%, 1)"
   };
   --sqm-input-border-color: ${
-    config?.formFields?.formFieldColor?.border || "#E4E4E7"
+    config?.formFields?.formFieldColor?.border || "hsl(240, 6%, 90%)"
   };
   --sqm-input-border-radius: ${
     config?.formFields?.borderRadius
@@ -718,14 +730,14 @@ html {
       : "4px"
   };
   --sqm-input-color: ${
-    config?.formFields?.formFieldColor?.inputText || "#27272A"
+    config?.formFields?.formFieldColor?.inputText || "hsl(0, 0%, 7%)"
   };
   --sqm-input-label-color: var(--sqm-text);
   --sqm-input-border-color-focus: ${
-    config?.formFields?.selectedStateColor || "#E4E4E7"
+    config?.formFields?.selectedStateColor || "hsl(0, 0%, 7%)"
   };
   --sqm-input-border-color-hover: ${
-    config?.formFields?.hoverStateColor || "#E4E4E7"
+    config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
   };
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: var(--sqm-text-subdued);
