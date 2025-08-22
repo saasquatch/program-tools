@@ -51,7 +51,12 @@ type RequiredFieldErrorParams = {
 };
 
 const style = {
-  Wrapper: { ...AuthWrapper, "max-width": "600px", border: "none" },
+  Wrapper: {
+    ...AuthWrapper,
+    "max-width": "600px",
+    border: "none",
+    margin: "0",
+  },
   Column: AuthColumn,
   HostBlock: HostBlock,
 
