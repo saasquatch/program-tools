@@ -4276,19 +4276,6 @@ export namespace Components {
          */
         "buttonText": string;
         /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType": | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
-        /**
           * Draws a circle button.
           * @uiName Circle
          */
@@ -11631,19 +11618,6 @@ declare namespace LocalJSX {
           * @uiName Button text
          */
         "buttonText"?: string;
-        /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType"?: | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
         /**
           * Draws a circle button.
           * @uiName Circle

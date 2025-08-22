@@ -18,22 +18,6 @@ export class Scroll {
   ignored = true;
 
   /**
-   * @uiName Button type
-   * @uiType string
-   * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-   * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-
-   */
-  @Prop() buttonType:
-    | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text" = "default";
-
-  /**
    * @uiName Button text
    */
   @Prop() buttonText: string;
@@ -117,17 +101,33 @@ export class Scroll {
 
   render() {
     const { callbacks } = useScroll(this);
-    const outlineColor = this.buttonType ?? "primary";
+    const vanillaStyleString = `
+    *::part(secondarybutton-base),
+    sl-button[type="secondary"]::part(base) {
+      font-family: var(--sqm-primary-font);
+      background-color: var(--sqm-secondary-button-background);
+      color: var(--sqm-secondary-button-color);
+      border-color: var(--sqm-secondary-button-color-border);
+      border-radius: var(--sqm-secondary-button-radius);
+    }
 
+    *::part(secondarybutton-base):hover,
+    sl-button[type="secondary"]::part(base):hover {
+      background-color: var(--sqm-secondary-button-background-hover);
+      color: var(--sqm-secondary-button-color-hover);
+      border-color: var(--sqm-secondary-button-border-color-hover);
+    }
+  `;
     return (
       <sl-button
         type="secondary"
+        exportparts="base: secondarybutton-base"
         onClick={callbacks.scroll}
         size={this.size}
         pill={this.pill}
         circle={this.circle}
-        exportparts="base: secondarybutton-base"
       >
+        <style type="text/css">{vanillaStyleString}</style>
         {(this.iconSlot || this.iconName) && (
           <sl-icon
             slot={this.iconSlot || "prefix"}
