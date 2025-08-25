@@ -374,6 +374,10 @@ const vanillaStyle = `
       box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
       -webkit-text-fill-color: var(--sqm-input-color, white) !important;
     }
+
+    sl-checkbox::part(label){
+      color: var(--sqm-text);
+    }
 `;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {
@@ -843,7 +847,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <div class={classes.CheckboxWrapper}>
                 <sl-checkbox
-                  exportparts="label: input-label, base: input-base"
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;
