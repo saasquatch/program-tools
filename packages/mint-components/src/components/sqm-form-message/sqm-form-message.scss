@@ -12,7 +12,7 @@ sl-alert::part(base) {
 }
 
 .Error::part(alert-icon) {
-  color: var(--sqm-danger-color-icon);
+  color: var(--sqm-danger-color-icon) !important;
   font-size: 24px;
 }
 
@@ -23,7 +23,7 @@ sl-alert::part(base) {
 }
 
 .Warning::part(alert-icon) {
-  color: var(--sqm-warning-color-icon);
+  color: var(--sqm-warning-color-icon) !important;
   font-size: 24px;
 }
 
@@ -34,7 +34,7 @@ sl-alert::part(base) {
 }
 
 .Success::part(alert-icon) {
-  color: var(--sqm-success-color-icon);
+  color: var(--sqm-success-color-icon) !important;
   font-size: 24px;
 }
 
@@ -45,7 +45,7 @@ sl-alert::part(base) {
 }
 
 .Info::part(alert-icon) {
-  color: var(--sqm-informative-color-icon);
+  color: var(--sqm-informative-color-icon) !important;
   font-size: 24px;
 }
 

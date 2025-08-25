@@ -672,13 +672,13 @@ export namespace Components {
     interface SqmDividedLayout {
         /**
           * Background color of the divider
-          * @uiName Divider Background Color
+          * @uiName Background Color
           * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
           * Color of the divider (defaults to default text color if none is set)
-          * @uiName Divider Background Color
+          * @uiName Border Color
           * @uiWidget color
          */
         "borderColor"?: string;
@@ -8044,13 +8044,13 @@ declare namespace LocalJSX {
     interface SqmDividedLayout {
         /**
           * Background color of the divider
-          * @uiName Divider Background Color
+          * @uiName Background Color
           * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
           * Color of the divider (defaults to default text color if none is set)
-          * @uiName Divider Background Color
+          * @uiName Border Color
           * @uiWidget color
          */
         "borderColor"?: string;
