@@ -89,7 +89,7 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
           states.leadFormState?.loading || states.leadFormState?.disabled
         }
         validationError={({ value }: { value: string }) => {
-          if (!value) {
+          if (!value && !content.dropdownOptional) {
             return getRequiredFieldErrorMessage({
               dropdownLabel: content.dropdownLabel,
             });

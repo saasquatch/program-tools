@@ -73,7 +73,7 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
           states.leadFormState?.loading || states.leadFormState?.disabled
         }
         validationError={({ value }: { value: string }) => {
-          if (!value) {
+          if (!value && !content.fieldOptional) {
             return getRequiredFieldErrorMessage({
               fieldLabel: content.fieldLabel,
             });
