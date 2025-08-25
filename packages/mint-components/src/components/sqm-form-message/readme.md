@@ -13,13 +13,6 @@
 | `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                              | `string` | `undefined` |
 
 
-## Shadow Parts
-
-| Part           | Description |
-| -------------- | ----------- |
-| `"alert-icon"` |             |
-
-
 ## Dependencies
 
 ### Used by
