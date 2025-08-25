@@ -70,7 +70,7 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
         defaultMessage: content.requiredFieldErrorMessage,
       },
       {
-        dropdownLabel,
+        dropdownLabel: dropdownLabel.toLowerCase(),
       }
     );
 

@@ -53,7 +53,7 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
         defaultMessage: content.requiredFieldErrorMessage,
       },
       {
-        fieldLabel,
+        fieldLabel: fieldLabel.toLowerCase(),
       }
     );
 

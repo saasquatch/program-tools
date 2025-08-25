@@ -126,7 +126,7 @@ export function LeadFormView(props: LeadFormViewProps) {
         defaultMessage: content.requiredFieldErrorMessage,
       },
       {
-        fieldLabel,
+        fieldLabel: fieldLabel.toLowerCase(),
       }
     );
 

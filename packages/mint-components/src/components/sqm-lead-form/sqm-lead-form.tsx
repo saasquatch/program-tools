@@ -54,35 +54,35 @@ export class LeadForm {
   pageLabel: string = "Refer your friend";
 
   /**
-   * @uiName Form key
    * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+   * @uiName Form key
    */
   @Prop() formKey: string = "lead-form";
 
   /**
-   * @uiName Support link text
    * Optional support link text for error messages.
+   * @uiName Support link text
    */
   @Prop() supportLinkText: string = "Support";
   /**
-   * @uiName Submit success header
    * Header text shown on successful lead submission.
+   * @uiName Submit success header
    */
   @Prop() submitSuccessHeader: string = "Lead submitted";
   /**
-   * @uiName Submit success description
    * Description text shown on successful lead submission.
+   * @uiName Submit success description
    */
   @Prop() submitSuccessDescription: string =
     "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page.";
   /**
+   *  Header text shown if an error occurs.
    * @uiName Submit error header
-   * Header text shown if an error occurs.
    */
   @Prop() submitErrorHeader: string = "An error occurred while submitting";
   /**
-   * @uiName Submit error description
    * Description text shown if an error occurs.
+   * @uiName Submit error description
    */
   @Prop() submitErrorDescription: string =
     "Please try again later. If the problem continues, contact {supportLink}";

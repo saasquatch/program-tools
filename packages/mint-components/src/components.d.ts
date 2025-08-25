@@ -1523,7 +1523,8 @@ export namespace Components {
          */
         "firstNameLabel": string;
         /**
-          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
          */
         "formKey": string;
         /**
@@ -1557,11 +1558,13 @@ export namespace Components {
          */
         "resubmitFormLabel": string;
         /**
-          * @uiName Submit error description Description text shown if an error occurs.
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
          */
         "submitErrorDescription": string;
         /**
-          * @uiName Submit error header Header text shown if an error occurs.
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
          */
         "submitErrorHeader": string;
         /**
@@ -1569,15 +1572,18 @@ export namespace Components {
          */
         "submitLabel": string;
         /**
-          * @uiName Submit success description Description text shown on successful lead submission.
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
          */
         "submitSuccessDescription": string;
         /**
-          * @uiName Submit success header Header text shown on successful lead submission.
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
          */
         "submitSuccessHeader": string;
         /**
-          * @uiName Support link text Optional support link text for error messages.
+          * Optional support link text for error messages.
+          * @uiName Support link text
          */
         "supportLinkText": string;
     }
@@ -8496,7 +8502,8 @@ declare namespace LocalJSX {
          */
         "firstNameLabel"?: string;
         /**
-          * @uiName Form key Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
          */
         "formKey"?: string;
         /**
@@ -8530,11 +8537,13 @@ declare namespace LocalJSX {
          */
         "resubmitFormLabel"?: string;
         /**
-          * @uiName Submit error description Description text shown if an error occurs.
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
          */
         "submitErrorDescription"?: string;
         /**
-          * @uiName Submit error header Header text shown if an error occurs.
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
          */
         "submitErrorHeader"?: string;
         /**
@@ -8542,15 +8551,18 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
         /**
-          * @uiName Submit success description Description text shown on successful lead submission.
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
          */
         "submitSuccessDescription"?: string;
         /**
-          * @uiName Submit success header Header text shown on successful lead submission.
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
          */
         "submitSuccessHeader"?: string;
         /**
-          * @uiName Support link text Optional support link text for error messages.
+          * Optional support link text for error messages.
+          * @uiName Support link text
          */
         "supportLinkText"?: string;
     }
