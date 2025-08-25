@@ -15,6 +15,7 @@ import { useTaxAndCash } from "./useTaxAndCash";
  * @exampleGroup Tax and Cash
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+ * @example 2FA Protected Tax and Cash Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  */
 @Component({
   tag: "sqm-tax-and-cash",
