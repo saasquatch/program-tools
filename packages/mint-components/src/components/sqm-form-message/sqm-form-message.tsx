@@ -43,7 +43,7 @@ export class FormMessage {
           open
         >
           <sl-icon
-            part="alert-icon"
+            id="icon"
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-octagon"}`}
           ></sl-icon>
@@ -53,14 +53,15 @@ export class FormMessage {
     } else if (this.type === "info") {
       return (
         <sl-alert
+          id="icon"
           exportparts="base: infoalert-base, icon:infoalert-icon"
           class="Info"
           type="primary"
           open
         >
           <sl-icon
+            id="icon"
             slot="icon"
-            part="alert-icon"
             name={`${this.icon ? this.icon : "info-circle"}`}
           ></sl-icon>
           <slot />
@@ -75,7 +76,7 @@ export class FormMessage {
           open
         >
           <sl-icon
-            part="alert-icon"
+            id="icon"
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-triangle"}`}
           ></sl-icon>
@@ -91,7 +92,7 @@ export class FormMessage {
           open
         >
           <sl-icon
-            part="alert-icon"
+            id="icon"
             slot="icon"
             name={`${this.icon ? this.icon : "check2-circle"}`}
           ></sl-icon>
