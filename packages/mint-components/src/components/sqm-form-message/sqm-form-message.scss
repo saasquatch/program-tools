@@ -11,7 +11,7 @@ sl-alert::part(base) {
   font-size: 14px;
 }
 
-.Error::part(alert-icon) {
+.Error #icon {
   color: var(--sqm-danger-color-icon);
   font-size: 24px;
 }
@@ -22,7 +22,7 @@ sl-alert::part(base) {
   border-color: var(--sqm-warning-color-border);
 }
 
-.Warning::part(alert-icon) {
+.Warning #icon {
   color: var(--sqm-warning-color-icon);
   font-size: 24px;
 }
@@ -33,7 +33,7 @@ sl-alert::part(base) {
   border-color: var(--sqm-success-color-border);
 }
 
-.Success::part(alert-icon) {
+.Success #icon {
   color: var(--sqm-success-color-icon);
   font-size: 24px;
 }
@@ -44,7 +44,7 @@ sl-alert::part(base) {
   border-color: var(--sqm-informative-color-border);
 }
 
-.Info::part(alert-icon) {
+.Info #icon {
   color: var(--sqm-informative-color-icon);
   font-size: 24px;
 }

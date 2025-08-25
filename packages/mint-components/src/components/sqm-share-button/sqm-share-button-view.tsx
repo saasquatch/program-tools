@@ -48,7 +48,11 @@ const medium = {
   facebook: { color: "#1877f2", text: "#fff", icon: "facebook" },
   twitter: { color: "#000000", text: "#fff", icon: "twitter-x" },
   email: { color: "#666666", text: "#fff", icon: "envelope" },
-  direct: { color: "var(--sl-color-primary-500)", text: "#fff", icon: "send" },
+  direct: {
+    color: "var(--sqm-primary-button-background)",
+    text: "var(--sqm-primary-button-color)",
+    icon: "send",
+  },
   linkedin: { color: "#0077b5", text: "#fff", icon: "linkedin" },
   sms: { color: "#34DA50", text: "#fff", icon: "chat" },
   fbmessenger: { color: "#0084ff", text: "#fff", icon: "messenger" },
@@ -70,27 +74,6 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-// TODO: Figure out hover and active states
-// *::part(base):hover {
-// 	border-color: ${
-//     props.backgroundcolor
-//       ? props.backgroundcolor
-//       : props.medium
-//       ? medium[props.medium].color
-//       : ""
-//   }!important;
-// }
-
-// *::part(base):focus {
-// 	border-color: ${
-//     props.backgroundcolor
-//       ? props.backgroundcolor
-//       : props.medium
-//       ? medium[props.medium].color
-//       : ""
-//   }!important;
-// }
-
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
 	sl-button::part(base) {
@@ -111,7 +94,11 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       ? medium[props.medium].text
       : ""
   };
-	border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
+	border-radius: ${
+    props.borderradius
+      ? props.borderradius + "px"
+      : "var(--sqm-primary-button-radius)"
+  };
 	}
 
 

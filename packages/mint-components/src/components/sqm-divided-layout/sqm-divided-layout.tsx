@@ -42,14 +42,14 @@ export class DividedLayout {
 
   /**
    * Background color of the divider
-   * @uiName Divider Background Color
+   * @uiName Background Color
    * @uiWidget color
    */
   @Prop() backgroundColor?: string = "#FFFFFF";
 
   /**
    * Color of the divider (defaults to default text color if none is set)
-   * @uiName Divider Background Color
+   * @uiName Border Color
    * @uiWidget color
    */
   @Prop() borderColor?: string;

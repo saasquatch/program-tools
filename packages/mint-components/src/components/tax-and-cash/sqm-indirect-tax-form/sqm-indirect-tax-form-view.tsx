@@ -133,7 +133,9 @@ const style = {
     },
 
     "&::part(base):hover": {
-      background: "var(--sqm-primary-button-background-hover)",
+      backgroundColor: "var(--sqm-primary-button-background-hover)",
+      borderColor: "var(--sqm-primary-button-border-color-hover)",
+      color: "var(--sqm-primary-button-color-hover)",
     },
   },
 
@@ -149,8 +151,9 @@ const style = {
     },
 
     "&::part(base):hover": {
-      color: "var(--sqm-text)",
-      background: "var(--sqm-secondary-button-background-hover)",
+      backgroundColor: "var(--sqm-secondary-button-background-hover)",
+      color: "var(--sqm-secondary-button-color-hover)",
+      borderColor: "var(--sqm-secondary-button-border-color-hover)",
     },
   },
 };
