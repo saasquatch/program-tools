@@ -49,6 +49,9 @@ sl-select::part(label){
   font-size: var(--sl-input-label-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
 }
+sl-select::part(menu){
+  max-height: 300px;
+}
 `;
 
 jss.setup(preset());
@@ -81,6 +84,7 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
         {styleString}
       </style>
       <sl-select
+        style={{ maxHeight: "100px" }}
         exportparts="label: input-label, base: input-base"
         label={content.dropdownLabel}
         name={`/${content.dropdownName}`}
