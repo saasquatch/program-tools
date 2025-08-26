@@ -21,6 +21,7 @@ const defaultProps: LeadInputFieldViewProps = {
     fieldName: "firstName",
     fieldLabel: "First Name",
     fieldType: "text",
+    optionalLabel: "(Optional)",
     requiredFieldErrorMessage: "Please {fieldAction} a {fieldLabel}",
     fieldOptional: false,
   },

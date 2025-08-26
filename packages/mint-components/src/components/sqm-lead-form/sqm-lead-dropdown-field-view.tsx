@@ -12,7 +12,9 @@ export interface DropdownFieldViewProps {
   content: {
     dropdownName: string;
     dropdownLabel: string;
-    dropdownOptional?: boolean;
+    dropdownOptional: boolean;
+    optionalLabel: string;
+    multiple: boolean;
     requiredFieldErrorMessage?: string;
     selectOptions?: VNode | VNode[];
   };
@@ -86,8 +88,11 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
       <sl-select
         style={{ maxHeight: "100px" }}
         exportparts="label: input-label, base: input-base"
-        label={content.dropdownLabel}
+        label={`${content.dropdownLabel}${
+          content.dropdownOptional ? ` ${content.optionalLabel}` : ""
+        }`}
         name={`/${content.dropdownName}`}
+        multiple={content.multiple}
         {...(!content.dropdownOptional ? { required: true } : [])}
         disabled={
           states.leadFormState?.loading || states.leadFormState?.disabled

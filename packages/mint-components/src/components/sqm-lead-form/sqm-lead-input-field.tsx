@@ -38,6 +38,11 @@ export class LeadInputField {
   @Prop() fieldLabel: string;
 
   /**
+   * @uiName Optional label
+   */
+  @Prop() optionalLabel: string = "(optional)";
+
+  /**
    * @uiName Input type
    * @uiType string
    * @uiEnum ["text", "date", "tel"]

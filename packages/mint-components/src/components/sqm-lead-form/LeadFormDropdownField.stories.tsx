@@ -21,7 +21,9 @@ const defaultProps: DropdownFieldViewProps = {
     dropdownName: "country",
     dropdownLabel: "Country",
     requiredFieldErrorMessage: "Please select a country",
+    optionalLabel: "(Optional)",
     dropdownOptional: false,
+    multiple: false,
     selectOptions: [
       <sl-menu-item value="red">Canada</sl-menu-item>,
       <sl-menu-item value="blue">United States</sl-menu-item>,
@@ -31,6 +33,13 @@ const defaultProps: DropdownFieldViewProps = {
 };
 
 export const Default = () => <LeadDropdownFieldView {...defaultProps} />;
+
+export const Multiple = () => (
+  <LeadDropdownFieldView
+    {...defaultProps}
+    content={{ ...defaultProps.content, multiple: true }}
+  />
+);
 
 export const WithError = () => (
   <LeadDropdownFieldView
