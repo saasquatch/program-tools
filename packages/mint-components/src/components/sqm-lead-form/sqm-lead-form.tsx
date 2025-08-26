@@ -28,13 +28,13 @@ export class LeadForm {
    * @uiName First Name field label
    */
   @Prop()
-  firstNameLabel: string = "First Name";
+  firstNameLabel: string = "First name";
 
   /**
    * @uiName Last Name field label
    */
   @Prop()
-  lastNameLabel: string = "Last Name";
+  lastNameLabel: string = "Last name";
 
   /**
    * @uiName Submit button text
