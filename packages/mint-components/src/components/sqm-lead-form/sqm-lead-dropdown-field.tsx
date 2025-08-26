@@ -46,10 +46,21 @@ export class LeadDropdownField {
   @Prop() requiredFieldErrorMessage: string = "Please select a {dropdownLabel}";
 
   /**
+   * @uiName Optional label
+   */
+  @Prop() optionalLabel: string = "(optional)";
+
+  /**
    * @uiName Optional
    * @default
    */
-  @Prop() dropdownOptional?: boolean = false;
+  @Prop() dropdownOptional: boolean = false;
+
+  /**
+   * @uiName Multiple selection
+   * @default
+   */
+  @Prop() multiple: boolean = false;
 
   /**
    * @undocumented

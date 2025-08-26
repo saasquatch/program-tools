@@ -12,6 +12,7 @@ export interface LeadInputFieldViewProps {
   content: {
     fieldName: string;
     fieldLabel: string;
+    optionalLabel: string;
     fieldType: "date" | "tel" | "text";
     fieldOptional?: boolean;
     requiredFieldErrorMessage: string;
@@ -67,7 +68,9 @@ export function LeadInputFieldView(props: LeadInputFieldViewProps) {
         exportparts="label: input-label, base: input-base"
         name={`/${content.fieldName}`}
         type={content.fieldType}
-        label={content.fieldLabel}
+        label={`${content.fieldLabel}${
+          content.fieldOptional ? ` ${content.optionalLabel}` : ""
+        }`}
         {...(!content.fieldOptional ? { required: true } : [])}
         disabled={
           states.leadFormState?.loading || states.leadFormState?.disabled
