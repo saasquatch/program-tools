@@ -236,7 +236,6 @@ const style = {
   DescriptionText: {
     color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-x-small)",
-    marginBottom: "none",
     maxWidth: "492px",
   },
   PageDescriptionText: {
@@ -668,6 +667,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 type="secondary"
                 exportparts="base: secondarybutton-base"
                 onClick={callbacks.onEditPayoutInfo}
+                style={{ marginTop: states.loading ? "12px" : "0px" }} //Need to add margin when loading because we are relying on the margin from the DescriptionText which is hidden when loading
               >
                 {text.editPaymentInformationButton}
               </sl-button>
