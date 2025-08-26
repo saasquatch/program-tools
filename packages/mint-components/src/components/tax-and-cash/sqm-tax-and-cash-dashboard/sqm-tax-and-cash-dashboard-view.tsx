@@ -161,7 +161,7 @@ const style = {
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
-    borderTop: "1px solid var(--sqm-border-color)",
+    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
   },
   TaxDocumentsSectionHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
