@@ -126,16 +126,16 @@ const style = {
   ErrorInput: {
     "&::part(base)": {
       border:
-        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-icon)",
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-border)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sqm-danger-color-icon)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
   ErrorText: {
-    color: "var(--sqm-danger-color-icon)",
+    color: "var(--sqm-danger-color-text)",
     marginTop: "10px",
   },
   TextContainer: {
@@ -188,7 +188,7 @@ const style = {
     gap: "4px",
     "& p": {
       fontSize: "var(--sl-font-size-small)",
-      color: "var(--sl-input-label-color)",
+      color: "var(--sqm-input-label-color)",
       fontWeight: "var(--sl-font-weight-semibold)",
     },
   },

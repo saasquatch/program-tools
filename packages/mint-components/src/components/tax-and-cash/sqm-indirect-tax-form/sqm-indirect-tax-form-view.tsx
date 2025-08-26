@@ -107,7 +107,7 @@ const style = {
     gap: "8px",
   },
   ErrorText: {
-    color: "var(--sl-color-danger-500)",
+    color: "var(--sqm-danger-color-text)",
     marginTop: "10px",
   },
   DescriptionText: {

@@ -81,7 +81,7 @@ const style = {
     gap: "16px",
   },
   HR: {
-    border: "var(--sqm-border-thickness, 1px) solid #E0E0E0",
+    border: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     margin: "10px 0",
   },
   Input: { maxWidth: "500px" },
@@ -97,12 +97,12 @@ const style = {
     maxWidth: "500px",
     "&::part(base)": {
       border:
-        "var(--sqm-border-thickness, 1px) solid var(--sl-color-danger-500)",
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-border)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
 };
