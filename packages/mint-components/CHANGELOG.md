@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.6] - 2025-08-26
+
+### Added
+
+- \<sqm-lead-form>
+  - Submits user information to an assigned form key using the `formKey` prop
+  - supports additional fields using the `formData` slot
+
 ## [1.14.5] - 2025-07-30
 
 ### Changed
@@ -1207,7 +1215,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.6...HEAD
+[1.14.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.6
 [1.14.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.5
 [1.14.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.4
 [1.14.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.3
