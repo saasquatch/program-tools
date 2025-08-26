@@ -346,12 +346,6 @@ const vanillaStyle = `
       border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus, #007bff)); /* Added fallback for --sl-input-border-color-focus */
     }
 
-    sl-input[disabled]::part(label),
-    sl-select[disabled]::part(label),
-    sl-textarea[disabled]::part(label){
-      color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
-    }
-
     sl-input[disabled]::part(base),
     sl-select[disabled]::part(base),
     sl-textarea[disabled]::part(base){
