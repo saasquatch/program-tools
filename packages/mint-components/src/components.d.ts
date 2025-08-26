@@ -6062,7 +6062,7 @@ export namespace Components {
         "replaceTaxFormModalHeader": string;
         /**
           * @undocumented 
-          * @componentState { "title": "Payouts on hold", "props": { "payoutStatus": "HOLD" }, "uiGroup": "Dashboard Properties" }
+          * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
          */
         "stateController"?: string;
         /**
@@ -13405,7 +13405,7 @@ declare namespace LocalJSX {
         "replaceTaxFormModalHeader"?: string;
         /**
           * @undocumented 
-          * @componentState { "title": "Payouts on hold", "props": { "payoutStatus": "HOLD" }, "uiGroup": "Dashboard Properties" }
+          * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
          */
         "stateController"?: string;
         /**

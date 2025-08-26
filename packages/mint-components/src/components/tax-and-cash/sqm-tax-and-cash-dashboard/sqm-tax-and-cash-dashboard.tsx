@@ -376,7 +376,7 @@ export class TaxAndCashDashboard {
 
   /**
    * @undocumented
-   * @componentState { "title": "Payouts on hold", "props": { "payoutStatus": "HOLD" }, "uiGroup": "Dashboard Properties" }
+   * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
    */
   @Prop() stateController?: string = "{}";
 
@@ -425,6 +425,7 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  console.log("dashboard", { props });
   // @ts-ignore
   return deepmerge(
     {
