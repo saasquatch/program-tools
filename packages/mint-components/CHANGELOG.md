@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-lead-form>
   - Submits user information to an assigned form key using the `formKey` prop
   - supports additional fields using the `formData` slot
+- \<sqm-lead-input-field>, \<sqm-lead-dropdown-field>
+  - text and dropdown input to be used within the `formData` slot of \<sqm-lead-form>
 
 ## [1.14.5] - 2025-07-30
 
