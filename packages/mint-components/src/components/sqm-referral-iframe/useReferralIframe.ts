@@ -18,7 +18,7 @@ const GET_USER_DETAILS = gql`
 `;
 
 export function useReferralIframe(
-  props?: SqmReferralIframe
+  props: SqmReferralIframe
 ): ReferralIframeViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
