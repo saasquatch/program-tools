@@ -108,8 +108,6 @@ export function useLeadForm(props: LeadForm) {
       validationErrors: {},
     });
 
-    formData = { ...formData };
-
     const variables = {
       key: props.formKey,
       formData,
