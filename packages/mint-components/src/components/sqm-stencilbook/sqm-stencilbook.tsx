@@ -98,6 +98,9 @@ import * as BaseRegistrationForm from "../sqm-base-registration/BaseRegistration
 import * as PortalRegistrationForm from "../sqm-portal-registration-form/PortalRegistrationForm.stories";
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
 import * as QRCode from "../sqm-qr-code/QRCode.stories";
+import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
+import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
+import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -202,6 +205,9 @@ const stories = [
   PayoutButtonScroll,
   PayoutStatusAlert,
   QRCode,
+  LeadForm,
+  LeadInputField,
+  LeadFormDropdownField,
 ];
 
 /**
