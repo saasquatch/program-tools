@@ -64,8 +64,6 @@ export function LeadDropdownFieldView(props: DropdownFieldViewProps) {
   const { states, content } = props;
   const validationErrors = states?.leadFormState?.validationErrors;
 
-  console.log({ validationErrors });
-
   const getRequiredFieldErrorMessage = ({
     dropdownLabel,
   }: RequiredFieldErrorParams) =>

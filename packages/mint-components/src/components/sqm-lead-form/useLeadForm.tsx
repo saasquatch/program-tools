@@ -59,8 +59,6 @@ export function useLeadForm(props: LeadForm) {
     !user?.jwt || !programId
   );
 
-  console.log({ userDetails });
-
   const [submitLead, { loading, errors, data }] = useMutation(SUBMIT_LEAD);
 
   const [success, setSuccess] = useState(false);
@@ -172,8 +170,6 @@ export function useLeadForm(props: LeadForm) {
       errors?.response?.errors?.[0]?.message ||
       leadFormState?.error;
   }
-
-  console.log({ errors, errorMessage });
 
   return {
     states: {

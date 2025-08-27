@@ -111,8 +111,6 @@ const styleString = sheet.toString();
 export function LeadFormView(props: LeadFormViewProps) {
   const { states, refs, callbacks, content } = props;
 
-  console.log({ states });
-
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
