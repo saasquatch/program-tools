@@ -6,17 +6,15 @@ import { DemoData } from "../../global/demo";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 import { getMissingProps, getProps } from "../../utils/utils";
 import {
-  LeadDropdownFieldView,
   DropdownFieldViewProps,
+  LeadDropdownFieldView,
 } from "./sqm-lead-dropdown-field-view";
 import { useLeadDropdownField } from "./useLeadDropdownField";
 
 /**
  * @uiName Lead Form Dropdown Field
  * @validParents ["sqm-lead-form"]
- * @slots [{"name":"", "title":"Drop Down Option"}]
- * @exampleGroup Microsite Components
- * @example Lead Form Dropdown Field - <sqm-lead-dropdown-field dropdown-label="Select an option" required-field-error-message="Please select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-lead-dropdown-field>
+ * @slots [{"name":"", "title":"Dropdown Option"}]
  */
 @Component({
   tag: "sqm-lead-dropdown-field",

@@ -1,4 +1,4 @@
-import { isDemo, navigation } from "@saasquatch/component-boilerplate";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -8,7 +8,7 @@ import { useLeadForm } from "./useLeadForm";
 
 /**
  * @uiName Lead Form
- * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @slots [{"name":"formData","title":"Additional Fields"}]
  */
 @Component({
   tag: "sqm-lead-form",

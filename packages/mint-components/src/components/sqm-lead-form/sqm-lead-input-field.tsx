@@ -14,8 +14,6 @@ import { useLeadInputField } from "./useLeadInputField";
 /**
  * @uiName Lead Form Input Field
  * @validParents ["sqm-lead-form"]
- * @exampleGroup Microsite Components
- * @example Lead Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
  */
 @Component({
   tag: "sqm-lead-input-field",

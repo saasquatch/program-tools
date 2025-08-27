@@ -1,9 +1,8 @@
 import { h } from "@stencil/core";
 import {
-  LeadDropdownFieldView,
   DropdownFieldViewProps,
+  LeadDropdownFieldView,
 } from "./sqm-lead-dropdown-field-view";
-
 export default {
   title: "Components/Lead Form Dropdown Field",
 };

@@ -3,7 +3,6 @@ import {
   LeadInputFieldView,
   LeadInputFieldViewProps,
 } from "./sqm-lead-input-field-view";
-
 export default {
   title: "Components/Lead Form Input Field",
 };

@@ -15,7 +15,6 @@ import jsonpointer from "jsonpointer";
 import { AsYouType } from "libphonenumber-js";
 import { LeadForm } from "./sqm-lead-form";
 import { useLeadFormState } from "./useLeadFormState";
-import { useReferralIframe } from "../sqm-referral-iframe/useReferralIframe";
 
 export type LeadFormState = {
   [key: string]: any;
