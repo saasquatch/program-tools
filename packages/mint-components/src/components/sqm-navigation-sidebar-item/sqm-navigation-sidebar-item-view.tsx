@@ -53,7 +53,7 @@ export function NavigationSidebarItemView(
       "text-decoration": "none",
       color: states.active
         ? textFocusedColor
-        : props.textColor || "var(--sqm-primary-button-color)",
+        : props.textColor || "var(--sqm-text)",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
