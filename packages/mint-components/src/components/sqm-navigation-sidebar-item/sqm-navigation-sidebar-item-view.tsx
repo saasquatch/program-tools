@@ -31,12 +31,13 @@ export function NavigationSidebarItemView(
     props.backgroundColor || "var(--sqm-portal-background)";
 
   const backgroundHoverColor =
-    props.backgroundHoverColor || "var(--sqm-accent-color-background)";
+    props.backgroundHoverColor || "var(--sqm-primary-button-background-hover)";
 
   const backgroundFocusedColor =
-    props.backgroundFocusedColor || "var(--sqm-primary-color)";
+    props.backgroundFocusedColor || "var(--sqm-primary-button-background)";
 
-  const textFocusedColor = props.textFocusedColor || "var(--sqm-text)";
+  const textFocusedColor =
+    props.textFocusedColor || "var(--sqm-primary-button-color)";
 
   const style = {
     ItemContainer: {
@@ -52,7 +53,7 @@ export function NavigationSidebarItemView(
       "text-decoration": "none",
       color: states.active
         ? textFocusedColor
-        : props.textColor || "var(--sqm-text)",
+        : props.textColor || "var(--sqm-primary-button-color)",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
@@ -62,7 +63,7 @@ export function NavigationSidebarItemView(
           : backgroundHoverColor,
         color: states.active
           ? textFocusedColor
-          : props.textHoverColor || "var(--sqm-text)",
+          : props.textHoverColor || "var(--sqm-primary-button-color-hover)",
       },
     },
     Label: {
