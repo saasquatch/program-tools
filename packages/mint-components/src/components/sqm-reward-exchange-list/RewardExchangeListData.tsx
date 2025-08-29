@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import { ExchangeItem, RewardExchangeProps } from "./useRewardExchangeList";
 import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
+import { ExchangeItem } from "./useRewardExchangeList";
 
 const baseResponse = (
   data,
@@ -292,7 +292,7 @@ export const rewardExchange = {
 };
 
 export const demoRewardExchange = {
-  ...baseResponse(demoData),
+  ...baseResponse(demoData, "chooseReward", baseReward),
 };
 
 export const rewardExchangeLongText = {

@@ -729,7 +729,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function confirmation() {
     const cost =
-      selectedStep?.prettySourceValue || selectedItem.prettySourceValue;
+      selectedStep?.prettySourceValue || selectedItem?.prettySourceValue;
 
     const amount = selectedStep?.prettyDestinationValue;
     return (
@@ -741,7 +741,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class="wrapper">
             <div class="field">{states.content.text.rewardNameTitle}</div>
             <div class="reward-item-container">
-              <div class="reward-title">{selectedItem.name}</div>
+              <div class="reward-title">{selectedItem?.name}</div>
               <img
                 class="image"
                 src={
@@ -803,12 +803,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             },
             {
               sourceValue:
-                states.selectedItem.prettySourceValue ??
+                states.selectedItem?.prettySourceValue ??
                 states.selectedStep?.prettySourceValue,
               destinationValue:
                 states.selectedStep?.prettyDestinationValue ||
                 states.selectedItem?.name ||
-                states.selectedItem.globalRewardKey,
+                states.selectedItem?.globalRewardKey,
             }
           )}
         </div>
