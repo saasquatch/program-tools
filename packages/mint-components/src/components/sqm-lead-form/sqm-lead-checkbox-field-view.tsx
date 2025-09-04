@@ -7,7 +7,6 @@ import { LeadFormState } from "./useLeadFormState";
 export interface LeadCheckboxFieldViewProps {
   states: {
     leadFormState?: LeadFormState;
-    checked: boolean;
   };
   content: {
     checkboxName: string;
@@ -16,9 +15,6 @@ export interface LeadCheckboxFieldViewProps {
     checkboxLabelLinkText?: string;
     checkboxOptional?: boolean;
     errorMessage?: string;
-  };
-  callbacks: {
-    setChecked: Function;
   };
 }
 
@@ -29,7 +25,6 @@ type RequiredFieldErrorParams = {
 const style = {
   ErrorStyle: {
     "&::part(control)": {
-      background: "var(--sl-color-danger-10)",
       borderColor: "var(--sl-color-danger-500)",
       outline: "var(--sl-color-danger-500)",
     },
@@ -72,7 +67,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
-  const { states, content, callbacks } = props;
+  const { states, content } = props;
 
   const validationErrors = states?.leadFormState?.validationErrors;
 
@@ -98,10 +93,8 @@ export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
       <sl-checkbox
         exportparts="label: input-label, base: input-base"
         name={`/${content.checkboxName}`}
-        checked={states.checked}
         onSl-change={(e) => {
           e.target.value = e.target.checked;
-          callbacks.setChecked(e.target.value);
         }}
         {...(!content.checkboxOptional ? { required: false } : [])}
         disabled={

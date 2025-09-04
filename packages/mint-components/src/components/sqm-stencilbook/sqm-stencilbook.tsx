@@ -101,6 +101,7 @@ import * as QRCode from "../sqm-qr-code/QRCode.stories";
 import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
 import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
 import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
+import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -208,6 +209,7 @@ const stories = [
   LeadForm,
   LeadInputField,
   LeadFormDropdownField,
+  LeadCheckboxField,
 ];
 
 /**

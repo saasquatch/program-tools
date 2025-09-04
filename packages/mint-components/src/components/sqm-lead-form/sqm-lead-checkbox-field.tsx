@@ -50,7 +50,7 @@ export class LeadCheckboxField {
   /**
    * @uiName Unchecked error message
    */
-  @Prop() errorMessage?: string = "{checkboxLabel} must be checked";
+  @Prop() errorMessage?: string = "Must be checked";
 
   /**
    * @uiName Optional
@@ -94,14 +94,13 @@ export class LeadCheckboxField {
       ...getProps(this),
     };
 
-    const { states, callbacks } = isDemo()
+    const { states } = isDemo()
       ? useLeadCheckboxFieldDemo(this)
-      : useLeadCheckboxField(this);
+      : useLeadCheckboxField();
     return (
       <LeadCheckboxFieldView
         states={states}
         content={content}
-        callbacks={callbacks}
       ></LeadCheckboxFieldView>
     );
   }
@@ -112,11 +111,7 @@ function useLeadCheckboxFieldDemo(
   return deepmerge(
     {
       states: {
-        registrationFormState: {},
-        checked: false,
-      },
-      callbacks: {
-        setChecked: () => {},
+        leadFormState: {},
       },
     },
     props.demoData || {},
