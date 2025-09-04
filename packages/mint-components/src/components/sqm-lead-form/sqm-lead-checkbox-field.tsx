@@ -50,7 +50,7 @@ export class LeadCheckboxField {
   /**
    * @uiName Unchecked error message
    */
-  @Prop() errorMessage?: string = "Must be checked";
+  @Prop() errorMessage?: string = "{checkboxLabel} must be checked";
 
   /**
    * @uiName Optional

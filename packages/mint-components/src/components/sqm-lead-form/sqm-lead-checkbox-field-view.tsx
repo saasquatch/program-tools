@@ -22,6 +22,10 @@ export interface LeadCheckboxFieldViewProps {
   };
 }
 
+type RequiredFieldErrorParams = {
+  checkboxLabel: string;
+};
+
 const style = {
   ErrorStyle: {
     "&::part(control)": {
@@ -69,7 +73,21 @@ const styleString = sheet.toString();
 
 export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
   const { states, content, callbacks } = props;
+
   const validationErrors = states?.leadFormState?.validationErrors;
+
+  const getRequiredFieldErrorMessage = ({
+    checkboxLabel,
+  }: RequiredFieldErrorParams) =>
+    intl.formatMessage(
+      {
+        id: `requiredFieldErrorMessage-${checkboxLabel}`,
+        defaultMessage: content.errorMessage,
+      },
+      {
+        checkboxLabel,
+      }
+    );
 
   return (
     <div class={sheet.classes.FieldContainer} part="sqm-base">
@@ -89,7 +107,18 @@ export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
         disabled={
           states.leadFormState?.loading || states.leadFormState?.disabled
         }
-        required={false}
+        validationError={({ value }: { value: string }) => {
+          if (!value && !content.checkboxOptional) {
+            return getRequiredFieldErrorMessage({
+              checkboxLabel: content.checkboxLabel,
+            });
+          }
+        }}
+        {...(states.leadFormState?.validationErrors?.[content.checkboxName]
+          ? {
+              class: sheet.classes.ErrorStyle,
+            }
+          : [])}
       >
         {intl.formatMessage(
           {
@@ -105,6 +134,13 @@ export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
           }
         )}
       </sl-checkbox>
+      {validationErrors?.[content.checkboxName] && (
+        <p class={sheet.classes.ErrorMessageStyle}>
+          {getRequiredFieldErrorMessage({
+            checkboxLabel: content.checkboxLabel,
+          })}
+        </p>
+      )}
     </div>
   );
 }
