@@ -90,7 +90,18 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
-        required={false}
+        validationError={({ value }: { value: string }) => {
+          if (!value && !content.checkboxOptional) {
+            return content.errorMessage;
+          }
+        }}
+        {...(states.registrationFormState?.validationErrors?.[
+          content.checkboxName
+        ]
+          ? {
+              class: sheet.classes.ErrorStyle,
+            }
+          : [])}
       >
         {intl.formatMessage(
           {
@@ -106,6 +117,9 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           }
         )}
       </sl-checkbox>
+      {validationErrors?.[content.checkboxName] && (
+        <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+      )}
     </div>
   );
 }
