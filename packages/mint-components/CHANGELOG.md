@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.14.7] - 2025-09-04
+## [1.14.7] - 2025-09-05
 
 ### Added
 
 - \<sqm-lead-checkbox-field>
   - checkbox input to be used within the `formData` slot of \<sqm-lead-form>
+
+### Changed
+
+-\<sqm-checkbox-field>
+
+- field now properly throws validation errors unless `checkboxOptional` is true
 
 ## [1.14.6] - 2025-08-27
 
