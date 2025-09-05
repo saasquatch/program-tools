@@ -25,7 +25,6 @@ export interface CheckboxFieldViewProps {
 const style = {
   ErrorStyle: {
     "&::part(control)": {
-      background: "var(--sl-color-danger-10)",
       borderColor: "var(--sl-color-danger-500)",
       outline: "var(--sl-color-danger-500)",
     },
