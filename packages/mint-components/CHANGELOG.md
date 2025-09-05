@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.7] - 2025-09-05
+
+### Added
+
+- \<sqm-lead-checkbox-field>
+  - checkbox input to be used within the `formData` slot of \<sqm-lead-form>
+
+### Changed
+
+-\<sqm-checkbox-field>
+
+- field now properly throws validation errors unless `checkboxOptional` is true
+
 ## [1.14.6] - 2025-08-27
 
 ### Added
@@ -1217,7 +1230,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.7...HEAD
+[1.14.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.7
 [1.14.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.6
 [1.14.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.5
 [1.14.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.4
