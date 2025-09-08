@@ -8,6 +8,7 @@ import { useLeadForm } from "./useLeadForm";
 
 /**
  * @uiName Lead Form
+ * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"}]
  */
 @Component({
