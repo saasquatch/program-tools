@@ -1,9 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TaxDocumentType } from "../sqm-tax-and-cash/data";
-import { P } from "../../../global/mixins";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -99,6 +98,9 @@ export interface TaxAndCashDashboardProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    w9RequiredHeader: string;
+    w9RequiredDescription: string;
+    w9RequiredButtonText: string;
     cancelButton: string;
     supportLink: string;
     error: {
@@ -311,6 +313,23 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   function getAlert(status: PayoutStatus) {
     switch (status) {
+      case "OVER_W9_THRESHOLD":
+        return {
+          header: text.w9RequiredHeader,
+          description: text.w9RequiredDescription,
+          button: (
+            <sl-button
+              style={{ marginTop: "var(--sl-spacing-x-small)" }}
+              type="default"
+              onClick={callbacks.onNewFormClick}
+            >
+              {text.w9RequiredButtonText}
+            </sl-button>
+          ),
+          alertType: "info",
+          icon: "info-circle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
@@ -544,6 +563,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     }
   };
 
+  const alertInfo = getAlert(states.payoutStatus);
+
   return (
     <div>
       <div>
@@ -606,30 +627,30 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </sl-alert>
         )}
-        {getAlert(states.payoutStatus) && (
+        {alertInfo && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
-            name={getAlert(states.payoutStatus)?.alertType}
+            name={alertInfo?.alertType}
             open
-            class={getAlert(states.payoutStatus)?.class}
+            class={alertInfo?.class}
           >
-            <sl-icon
-              slot="icon"
-              name={getAlert(states.payoutStatus)?.icon}
-            ></sl-icon>
-            <strong>{getAlert(states.payoutStatus).header}</strong>
-            <p style={{ margin: "0" }}>
-              {getAlert(states.payoutStatus).description}
-            </p>
-            {getAlert(states.payoutStatus).buttonText && (
+            <sl-icon slot="icon" name={alertInfo?.icon}></sl-icon>
+            <strong>{alertInfo.header}</strong>
+            <p style={{ margin: "0" }}>{alertInfo.description}</p>
+            {alertInfo.buttonText && (
               <sl-button
                 style={{ marginTop: "var(--sl-spacing-x-small)" }}
                 type="default"
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
-                {getAlert(states.payoutStatus).buttonText}
+                {alertInfo.buttonText}
               </sl-button>
+            )}
+            {alertInfo.button ? (
+              alertInfo.button
+            ) : (
+              <div style={{ display: "none" }}></div>
             )}
           </sl-alert>
         )}

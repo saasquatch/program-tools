@@ -2085,6 +2085,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -5559,6 +5571,24 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * @uiName W9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -5865,6 +5895,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmText {
     }
@@ -9119,6 +9161,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -12569,6 +12623,24 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * @uiName W9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -12875,6 +12947,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmText {
     }

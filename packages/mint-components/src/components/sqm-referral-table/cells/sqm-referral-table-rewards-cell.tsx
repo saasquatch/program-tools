@@ -1,9 +1,9 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -136,7 +136,12 @@ export class ReferralTableRewardsCell {
             return "PENDING_TAX_SUBMISSION";
 
           const status = taxConnection.publisher.currentTaxDocument.status;
-          if (status === "INACTIVE") return "PENDING_NEW_TAX_FORM";
+          if (
+            status === "INACTIVE" ||
+            status === "INVALID_W9_ELECTRONIC_DOCUMENT" ||
+            status === "INVALID_W9_ELECTRONIC_DOCUMENT_CHECK_INTERNAL"
+          )
+            return "PENDING_NEW_TAX_FORM";
           if (status === "NOT_VERIFIED") return "PENDING_TAX_REVIEW";
         }
         if (!taxConnection?.publisher?.withdrawalSettings)

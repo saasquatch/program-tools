@@ -1,14 +1,14 @@
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
+import { ErrorView } from "./ErrorView";
 import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
-import { ErrorView } from "./ErrorView";
 
 /**
  * @uiName Tax and Cash
@@ -1027,6 +1027,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_verificationRequiredButtonText: string =
     "Start Verification";
+  /**
+   * @uiName W9 payment threshold alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W9 payment threshold alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() w9RequiredDescription: string =
+    'Congrats, you earned over $600 this tax year! To continue to receive payouts, we need to collect a W9 tax form from you. Please click "Submit W9" to start the process.';
+  /**
+   * @uiName W9 payment threshold alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() w9RequiredButtonText: string = "Submit W9";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:

@@ -1,3 +1,4 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -8,7 +9,6 @@ import {
   PayoutStatusAlertViewProps,
 } from "./sqm-payout-status-alert-view";
 import { usePayoutStatus } from "./usePayoutStatus";
-import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Payout Status Alert
@@ -77,6 +77,19 @@ export class PayoutStatusAlert {
    */
   @Prop() verificationFailedInternalDescription: string =
     "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
+  /**
+   * @uiName W9 payment threshold alert header
+   */
+  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W9 payment threshold alert description
+   */
+  @Prop() w9RequiredDescription: string =
+    'Congrats, you earned over $600 this tax year! To continue to receive payouts, we need to collect a W9 tax form from you. Please click "Submit W9" to start the process.';
+  /**
+   * @uiName W9 payment threshold alert button text
+   */
+  @Prop() w9RequiredButtonText: string = "Submit W9";
   /**
    * @uiName Payout on hold alert header
    */

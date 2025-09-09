@@ -7,6 +7,7 @@ import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type PayoutStatus =
+  | "OVER_W9_THRESHOLD"
   | "INFORMATION_REQUIRED"
   | "VERIFICATION:REQUIRED"
   | "VERIFICATION:INTERNAL"
@@ -46,6 +47,11 @@ export function getStatus(data: UserQuery): PayoutStatus {
   ) {
     return "DONE";
   }
+
+  const currentTaxDocument =
+    data.user.impactConnection?.publisher?.currentTaxDocument;
+  if (account.holdReasons?.includes("NO_W9_DOCUMENT") && !currentTaxDocument)
+    return "OVER_W9_THRESHOLD";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
     return "VERIFICATION:REQUIRED";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED_INTERNAL"))
