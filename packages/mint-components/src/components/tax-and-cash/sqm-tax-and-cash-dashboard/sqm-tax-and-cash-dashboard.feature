@@ -29,19 +29,19 @@ Feature: Tax And Cash Dashboard
       | W8BENE               | W-8          |
 
   @minutia @ui
-  #@Coleton - can you make sure these status text examples are correct?
   Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
     Given the participant <mayHave> submitted a tax form
     And it is currently <status>
     When they view the tax document section
     Then they see a <badgeVariant> with <statusText> text
     Then they see the message <taxStatusMessage>
+
     Examples:
-      | mayHave | status       | badgeVariant | statusText      | taxStatusMessage                                             |
-      | have    | ACTIVE       | success      | Active          | Submitted on {dateSubmitted}                                 |
-      | have    | NOT_VERIFIED | neutral      | Awaiting Review | Awaiting Review. Submitted on {dateSubmitted}                |
-      | have    | NOT_ACTIVE   | danger       | Invalid         | Make sure your information is correct and submit new form.   |
-      | haven't | N/A          | danger       | Required        | Your payouts are on hold until you submit a {type} tax form. |
+      | mayHave | status       | badgeVariant | statusText       | taxStatusMessage                                             |
+      | have    | ACTIVE       | success      | Active           | Submitted on {dateSubmitted}                                 |
+      | have    | NOT_VERIFIED | neutral      | Not Verified     | Awaiting review. Submitted on {dateSubmitted}                |
+      | have    | INACTIVE     | danger       | Invalid Tax Form | Make sure your information is correct and submit new form.   |
+      | haven't | N/A          | danger       | Required         | Your payouts are on hold until you submit a {type} tax form. |
 
   @minutia @ui
   Scenario: Status badge and text does not appear if participant is not required to submit tax form

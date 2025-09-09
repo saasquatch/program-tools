@@ -657,6 +657,21 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_statusTextNotVerified?: string = "Not Verified";
 
   /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() dashboard_statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() dashboard_requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
+
+  /**
    * Additional text displayed next to the tax form's status badge
    *
    * @uiName Active W-9 description
@@ -1032,20 +1047,20 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  @Prop() dashboard_w9RequiredHeader: string = "Your next payout is on hold";
   /**
    * @uiName W9 payment threshold alert description
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() w9RequiredDescription: string =
-    'Congrats, you earned over $600 this tax year! To continue to receive payouts, we need to collect a W9 tax form from you. Please click "Submit W9" to start the process.';
+  @Prop() dashboard_w9RequiredDescription: string =
+    "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process.";
   /**
    * @uiName W9 payment threshold alert button text
    * @uiGroup Dashboard Properties
    * @uiWidget textArea
    */
-  @Prop() w9RequiredButtonText: string = "Submit W9";
+  @Prop() dashboard_w9RequiredButtonText: string = "Submit W9";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:

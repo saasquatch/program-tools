@@ -33,6 +33,21 @@ export class TaxAndCashDashboard {
   @Prop() statusTextNotVerified?: string = "Not Verified";
 
   /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
+
+  /**
    * Additional text displayed next to the tax form's status badge
    *
    * @uiName Active W-9 description
@@ -106,14 +121,6 @@ export class TaxAndCashDashboard {
    * @uiName Tax documents section description
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
-  /**
-   * No other statuses or badges will be displayed in the tax form section in this case.
-   *
-   * @uiName Tax form not required text
-   * @uiWidget textArea
-   */
-  @Prop() noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
 
   /**
    *
@@ -270,7 +277,7 @@ export class TaxAndCashDashboard {
    * @uiName W9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    'Congrats, you earned over $600 this tax year! To continue to receive payouts, we need to collect a W9 tax form from you. Please click "Submit W9" to start the process.';
+    "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process.";
   /**
    * @uiName W9 payment threshold alert button text
    */

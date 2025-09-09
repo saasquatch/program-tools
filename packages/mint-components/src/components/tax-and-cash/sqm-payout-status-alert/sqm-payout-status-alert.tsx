@@ -85,7 +85,7 @@ export class PayoutStatusAlert {
    * @uiName W9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    'Congrats, you earned over $600 this tax year! To continue to receive payouts, we need to collect a W9 tax form from you. Please click "Submit W9" to start the process.';
+    "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process.";
   /**
    * @uiName W9 payment threshold alert button text
    */

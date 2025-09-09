@@ -46,9 +46,11 @@ export interface TaxAndCashDashboardProps {
     statusTextActive?: string;
     statusTextNotActive?: string;
     statusTextNotVerified?: string;
+    statusTextRequired?: string;
     badgeTextSubmittedOn?: string;
     badgeTextSubmittedOnW8?: string;
     badgeTextAwaitingReview?: string;
+    requiredTaxForm?: string;
     noTaxFormRequired?: string;
     taxAlertHeaderNotActive?: string;
     taxAlertHeaderNotActiveW9?: string;
@@ -69,7 +71,6 @@ export interface TaxAndCashDashboardProps {
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
-    noFormNeededSubtext?: string;
     notRegisteredForTax?: string;
     qstNumber?: string;
     subRegionTaxNumber: string;
@@ -101,6 +102,7 @@ export interface TaxAndCashDashboardProps {
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
+
     cancelButton: string;
     supportLink: string;
     error: {
@@ -485,6 +487,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <p>{text.invalidForm}</p>
       </div>
     ),
+    undefined: (
+      <div class={sheet.classes.TaxFormDetailsContainer}>
+        <sl-badge type="danger" pill>
+          {text.statusTextRequired}
+        </sl-badge>
+        <p>
+          {intl.formatMessage(
+            {
+              id: `requiredTaxForm`,
+              defaultMessage: text.requiredTaxForm,
+            },
+            {
+              taxFormType: states.documentType,
+            }
+          )}
+        </p>
+      </div>
+    ),
   };
 
   const alertMap = {
@@ -714,18 +734,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               </div>
             ) : (
               <div>
-                {states.noFormNeeded ? (
-                  <div>
-                    <h3
-                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
-                    >
-                      {text.taxDocumentSectionHeader}
-                    </h3>
-                    <p class={sheet.classes.TaxDocSubtext}>
-                      {text.noFormNeededSubtext}
-                    </p>
-                  </div>
-                ) : (
+                {!states.noFormNeeded && (
                   <div>
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
