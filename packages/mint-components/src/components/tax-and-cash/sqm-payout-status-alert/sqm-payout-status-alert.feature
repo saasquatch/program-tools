@@ -1,8 +1,6 @@
 @author:andy @owner:andy
 Feature: Cash payout status widget alert
 
-  #UPDATE ME!
-
   Background: A user sees alert status banners in the widget related to their tax form status
     Given they are viewing the widget
 
@@ -70,7 +68,6 @@ Feature: Cash payout status widget alert
     Then a <color> banner appears
     And the alert has heading <heading>
     And the alert has description <description>
-
     Examples:
       | holdReason                  | color  | heading                            | description                                                                                                                                             |
       | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
@@ -78,7 +75,26 @@ Feature: Cash payout status widget alert
       | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
 
   @motivating
-  Scenario: User has hold reasons
+  Scenario Outline: Alert displays when a user has gone over the tax limit and we require one to pay them out on the "" tax setting
+    Given a brand on the <type> tax setting
+    And a participant that selected US as their payout country
+    And USD as their payout currency
+    When they pass the $600 reward limit within a tax year
+    And the "NO_W9_DOCUMENT" QTP status gets added to their account
+    And they receive "W9" as their required tax form
+    Then they <maySee> a yellow banner
+    And it has heading "Your next payout is on hold"
+    And it has description "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process."
+    When they click the "Submit W9" button
+    #Ideally this would actually just open the tax form for them to complete, if its not a technical nightmare lets try to do it
+    Then the page scrolls/redirects to the payouts and tax form
+    Examples:
+      | type | maySee    |
+      | 5    | see       |
+      | 4    | don't see |
+
+  @motivating
+  Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
       | impactConnection                                                   |
       | { connected: true, publisher: { payoutsAccount: { hold: true } } } |
@@ -88,6 +104,7 @@ Feature: Cash payout status widget alert
       | IDV_CHECK_REQUIRED_INTERNAL |
       | IDV_CHECK_REVIEW_INTERNAL   |
       | IDV_CHECK_FAILED_INTERNAL   |
+      | NO_W9_DOCUMENT              |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
