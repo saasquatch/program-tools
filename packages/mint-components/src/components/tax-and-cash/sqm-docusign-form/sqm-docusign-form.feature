@@ -1,8 +1,6 @@
 @owner:andy @author:andy
 Feature: Comply Exchange Form
 
-  #UPDATE ME
-
   Background: A user has submitted their information in Step 1 and Step 2
     Given a user is on the Comply Exchange Form
 
@@ -30,7 +28,6 @@ Feature: Comply Exchange Form
     And their current tax document status is not "ACTIVE" or "NOT_VERIFIED"
     When the page loads
     Then the Comply Exchange iframe is displayed
-
     Examples:
       | publisherCountry | brandCountry     | currentDocument |
       | a non-US country | US               | null            |
@@ -44,7 +41,6 @@ Feature: Comply Exchange Form
     And are <participantType>
     Then the page header is <header>
     And the description is <description>
-
     Examples:
       | typeTaxForm | participantType       | header       | description                                                                                                             |
       | W9          | N/A                   | W-9 Tax Form | Participants based in the US need to submit a W-9 form.                                                                 |
@@ -59,7 +55,6 @@ Feature: Comply Exchange Form
     And a request is sent to mark the document as completed
     When the request <status>
     Then they <may> be redirected to step 4
-
     Examples:
       | status   | may      |
       | fails    | will not |
