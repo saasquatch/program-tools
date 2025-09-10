@@ -4827,6 +4827,11 @@ export namespace Components {
          */
         "dashboard_replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -4847,6 +4852,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -4953,6 +4963,24 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader": string;
+        /**
+          * @uiName W9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText": string;
+        /**
+          * @uiName W9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription": string;
+        /**
+          * @uiName W9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader": string;
         /**
           * @undocumented 
           * @uiType object
@@ -5571,24 +5599,6 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
-        /**
-          * @uiName W9 payment threshold alert button text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredButtonText": string;
-        /**
-          * @uiName W9 payment threshold alert description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredDescription": string;
-        /**
-          * @uiName W9 payment threshold alert header
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredHeader": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -5741,12 +5751,6 @@ export namespace Components {
          */
         "newFormButton": string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext": string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -5788,6 +5792,11 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -5804,6 +5813,11 @@ export namespace Components {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -11879,6 +11893,11 @@ declare namespace LocalJSX {
          */
         "dashboard_replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -11899,6 +11918,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -12005,6 +12029,24 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText"?: string;
+        /**
+          * @uiName W9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription"?: string;
+        /**
+          * @uiName W9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -12623,24 +12665,6 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
-        /**
-          * @uiName W9 payment threshold alert button text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredButtonText"?: string;
-        /**
-          * @uiName W9 payment threshold alert description
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredDescription"?: string;
-        /**
-          * @uiName W9 payment threshold alert header
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "w9RequiredHeader"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -12793,12 +12817,6 @@ declare namespace LocalJSX {
          */
         "newFormButton"?: string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext"?: string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -12840,6 +12858,11 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -12856,6 +12879,11 @@ declare namespace LocalJSX {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */

@@ -725,16 +725,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        <div class={sheet.classes.TaxDocumentsContainer}>
-          <div>
-            {states.loading ? (
-              <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-              </div>
-            ) : (
-              <div>
-                {!states.noFormNeeded && (
+        {!states.noFormNeeded && (
+          <div class={sheet.classes.TaxDocumentsContainer}>
+            <div>
+              {states.loading ? (
+                <div class={sheet.classes.TaxSectionSkeletonContainer}>
+                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                </div>
+              ) : (
+                <div>
                   <div>
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
@@ -766,11 +766,11 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       </sl-button>
                     )}
                   </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
