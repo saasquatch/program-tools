@@ -371,7 +371,7 @@ const API = {
               $userId: String!
               $accountId: String!
               $programId: ID
-              $engagementMedium: UserEngagementMedium!
+              $engagementMedium: UserEngagementMedium
             ) {
               user(id: $userId, accountId: $accountId) {
                 shareLink(
@@ -685,7 +685,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
               ${mediums[0]}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${mediums[0]})
               ${mediums[1]}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${mediums[1]})
