@@ -150,7 +150,7 @@ Feature: Tax And Cash Dashboard
     And they receive "W9" as their required tax form
     Then they <maySee> a yellow alert
     And it has heading "Your next payout is on hold"
-    And it has description "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process."
+    And it has description "To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process."
     When they click the "Submit W9" button
     Then comply exchange opens on their page
     When they submit the tax form

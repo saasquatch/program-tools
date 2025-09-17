@@ -41,6 +41,7 @@ export interface PayoutStatusAlertViewProps {
     holdHeader: string;
     holdDescription: string;
     supportLink: string;
+    termsAndConditions: string;
     errorHeader: string;
     errorDescription: string;
   };
@@ -209,7 +210,12 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
       case "OVER_W9_THRESHOLD":
         return {
           header: text.w9RequiredHeader,
-          description: text.w9RequiredDescription,
+          description: intl.formatMessage({ id: "w9RequiredDescription", defaultMessage: text.w9RequiredDescription }, { termsAndConditions: (
+                <a target="_blank" href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}>
+                  {text.termsAndConditions}
+                </a>
+
+          )}),
           buttonText: text.w9RequiredButtonText,
           alertType: "warning",
           icon: "exclamation-triangle",

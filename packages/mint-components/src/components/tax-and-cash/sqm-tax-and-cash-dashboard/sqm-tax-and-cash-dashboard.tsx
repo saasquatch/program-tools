@@ -6,8 +6,8 @@ import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
 import {
-  useTaxAndCashDashboard,
-  UseTaxAndCashDashboardResult,
+    useTaxAndCashDashboard,
+    UseTaxAndCashDashboardResult,
 } from "./useTaxAndCashDashboard";
 
 /**
@@ -277,7 +277,7 @@ export class TaxAndCashDashboard {
    * @uiName W9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "To remove the hold, you need to submit a W9 tax form as outlines in our Terms and Conditions. Please click 'Submit W9' to start the process.";
+    "To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
   /**
    * @uiName W9 payment threshold alert button text
    */
