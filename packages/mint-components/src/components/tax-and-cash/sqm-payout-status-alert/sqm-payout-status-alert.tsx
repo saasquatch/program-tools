@@ -85,7 +85,7 @@ export class PayoutStatusAlert {
    * @uiName W9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "You have surpassed the $600 th ershold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
+    "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
   /**
    * @uiName W9 payment threshold alert button text
    */
@@ -102,7 +102,7 @@ export class PayoutStatusAlert {
   /**
    * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
-  @Prop() cashPayoutsPageUrl: string = "/taxAndCash";
+  @Prop() cashPayoutsPageUrl: string = "/taxAndCash#3";
   /**
    * @uiName Support link text
    */

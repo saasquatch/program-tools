@@ -81,6 +81,9 @@ export const useTaxAndCashDashboard = (
   useEffect(() => {
     // Clear override context once on submitted
     setContext({});
+
+    if (window.location.hash)
+      setStep(`/${window.location.hash.replace("#", "")}`);
   }, []);
 
   const {

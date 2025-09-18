@@ -2050,6 +2050,10 @@ export namespace Components {
          */
         "supportLink": string;
         /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
+        /**
           * @uiName Verification failed internal alert description
          */
         "verificationFailedInternalDescription": string;
@@ -5599,6 +5603,12 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions": string;
     }
     interface SqmTaxAndCashDashboard {
         /**
@@ -9140,6 +9150,10 @@ declare namespace LocalJSX {
          */
         "supportLink"?: string;
         /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
+        /**
           * @uiName Verification failed internal alert description
          */
         "verificationFailedInternalDescription"?: string;
@@ -12665,6 +12679,12 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions"?: string;
     }
     interface SqmTaxAndCashDashboard {
         /**
