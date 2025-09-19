@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.9] - 2025-09-19
+
+### Changed
+
+- \<sqm-qr-code>
+  - Fixed embedded image to use the sharelink instead of url blob
+
 ## [1.14.8] - 2025-09-08
 
 ### Added
@@ -1241,7 +1248,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.8...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.9...HEAD
+[1.14.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.9
 [1.14.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.8
 [1.14.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.7
 [1.14.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.6
