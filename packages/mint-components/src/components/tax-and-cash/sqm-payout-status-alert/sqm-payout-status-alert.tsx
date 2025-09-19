@@ -1,3 +1,4 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -8,7 +9,6 @@ import {
   PayoutStatusAlertViewProps,
 } from "./sqm-payout-status-alert-view";
 import { usePayoutStatus } from "./usePayoutStatus";
-import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Payout Status Alert
@@ -78,6 +78,19 @@ export class PayoutStatusAlert {
   @Prop() verificationFailedInternalDescription: string =
     "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
   /**
+   * @uiName W9 payment threshold alert header
+   */
+  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W9 payment threshold alert description
+   */
+  @Prop() w9RequiredDescription: string =
+    "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
+  /**
+   * @uiName W9 payment threshold alert button text
+   */
+  @Prop() w9RequiredButtonText: string = "Submit W9";
+  /**
    * @uiName Payout on hold alert header
    */
   @Prop() holdHeader: string = "Your payouts and account are on hold";
@@ -89,11 +102,15 @@ export class PayoutStatusAlert {
   /**
    * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
-  @Prop() cashPayoutsPageUrl: string = "/cash";
+  @Prop() cashPayoutsPageUrl: string = "/taxAndCash#3";
   /**
    * @uiName Support link text
    */
   @Prop() supportLink: string = "support team";
+  /**
+   * @uiName Terms and Conditions text
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
   /**
    * @uiName Error header
    */

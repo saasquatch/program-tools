@@ -41,7 +41,13 @@ interface Referrer {
 }
 
 interface CurrentTaxDocument {
-  status: "NOT_VERIFIED" | "ACTIVE" | "INACTIVE" | "UNKNOWN";
+  status:
+    | "NOT_VERIFIED"
+    | "ACTIVE"
+    | "INACTIVE"
+    | "UNKNOWN"
+    | "INVALID_W9_ELECTRONIC_DOCUMENT"
+    | "INVALID_W9_ELECTRONIC_DOCUMENT_CHECK_INTERNAL";
   type: "W9" | "W8BEN" | "W8BENE";
   dateCreated: number;
 }

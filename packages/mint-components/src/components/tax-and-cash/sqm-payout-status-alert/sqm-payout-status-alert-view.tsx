@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
+import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "./usePayoutStatus";
-import { intl } from "../../../global/global";
 export interface PayoutStatusAlertViewProps {
   states: {
     error: boolean;
@@ -35,9 +35,13 @@ export interface PayoutStatusAlertViewProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    w9RequiredHeader: string;
+    w9RequiredDescription: string;
+    w9RequiredButtonText: string;
     holdHeader: string;
     holdDescription: string;
     supportLink: string;
+    termsAndConditions: string;
     errorHeader: string;
     errorDescription: string;
   };
@@ -203,6 +207,20 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           icon: "exclamation-octagon",
           class: sheet.classes.ErrorAlertContainer,
         };
+      case "OVER_W9_THRESHOLD":
+        return {
+          header: text.w9RequiredHeader,
+          description: intl.formatMessage({ id: "w9RequiredDescription", defaultMessage: text.w9RequiredDescription }, { termsAndConditions: (
+                <a target="_blank" href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}>
+                  {text.termsAndConditions}
+                </a>
+
+          )}),
+          buttonText: text.w9RequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
       case "HOLD":
         return {
           header: text.holdHeader,
@@ -231,6 +249,21 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
 
   function getButton(status: PayoutStatus) {
     switch (status) {
+      case "OVER_W9_THRESHOLD":
+        return data.type === "SquatchJS2" ? (
+          <sqm-scroll
+            scroll-tag-name="sqm-tabs"
+            button-text={text.w9RequiredButtonText}
+            scroll-animation="smooth"
+          ></sqm-scroll>
+        ) : data.type === "SquatchPortal" ? (
+          <sl-button type="default" onClick={callbacks.onTermsClick}>
+            {text.w9RequiredButtonText}
+          </sl-button>
+        ) : (
+          // Demo case
+          <sl-button type="default">{text.w9RequiredButtonText}</sl-button>
+        );
       case "INFORMATION_REQUIRED":
         return data.type === "SquatchJS2" ? (
           <sqm-scroll

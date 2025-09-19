@@ -1,14 +1,14 @@
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
+import { ErrorView } from "./ErrorView";
 import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
-import { ErrorView } from "./ErrorView";
 
 /**
  * @uiName Tax and Cash
@@ -657,6 +657,21 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_statusTextNotVerified?: string = "Not Verified";
 
   /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() dashboard_statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() dashboard_requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
+
+  /**
    * Additional text displayed next to the tax form's status badge
    *
    * @uiName Active W-9 description
@@ -1027,6 +1042,25 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_verificationRequiredButtonText: string =
     "Start Verification";
+  /**
+   * @uiName W9 payment threshold alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W9 payment threshold alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredDescription: string =
+    "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
+  /**
+   * @uiName W9 payment threshold alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredButtonText: string = "Submit W9";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
@@ -1139,6 +1173,13 @@ export class TaxAndCashMonolith {
    * @uiGroup General Form Properties
    */
   @Prop() supportLink: string = "support team";
+
+  /**
+   * Link text for Terms and Conditions
+   * @uiName Terms and Conditions text
+   * @uiGroup General Form Properties
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
 
   /**
    *

@@ -1,9 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TaxDocumentType } from "../sqm-tax-and-cash/data";
-import { P } from "../../../global/mixins";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import { TaxDocumentType } from "../sqm-tax-and-cash/data";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -47,9 +46,11 @@ export interface TaxAndCashDashboardProps {
     statusTextActive?: string;
     statusTextNotActive?: string;
     statusTextNotVerified?: string;
+    statusTextRequired?: string;
     badgeTextSubmittedOn?: string;
     badgeTextSubmittedOnW8?: string;
     badgeTextAwaitingReview?: string;
+    requiredTaxForm?: string;
     noTaxFormRequired?: string;
     taxAlertHeaderNotActive?: string;
     taxAlertHeaderNotActiveW9?: string;
@@ -70,7 +71,6 @@ export interface TaxAndCashDashboardProps {
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
-    noFormNeededSubtext?: string;
     notRegisteredForTax?: string;
     qstNumber?: string;
     subRegionTaxNumber: string;
@@ -99,6 +99,10 @@ export interface TaxAndCashDashboardProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    w9RequiredHeader: string;
+    w9RequiredDescription: string;
+    w9RequiredButtonText: string;
+
     cancelButton: string;
     supportLink: string;
     error: {
@@ -311,6 +315,23 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   function getAlert(status: PayoutStatus) {
     switch (status) {
+      case "OVER_W9_THRESHOLD":
+        return {
+          header: text.w9RequiredHeader,
+          description: text.w9RequiredDescription,
+          button: (
+            <sl-button
+              style={{ marginTop: "var(--sl-spacing-x-small)" }}
+              type="default"
+              onClick={callbacks.onNewFormClick}
+            >
+              {text.w9RequiredButtonText}
+            </sl-button>
+          ),
+          alertType: "info",
+          icon: "info-circle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
@@ -466,6 +487,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <p>{text.invalidForm}</p>
       </div>
     ),
+    undefined: (
+      <div class={sheet.classes.TaxFormDetailsContainer}>
+        <sl-badge type="danger" pill>
+          {text.statusTextRequired}
+        </sl-badge>
+        <p>
+          {intl.formatMessage(
+            {
+              id: `requiredTaxForm`,
+              defaultMessage: text.requiredTaxForm,
+            },
+            {
+              taxFormType: states.documentType,
+            }
+          )}
+        </p>
+      </div>
+    ),
   };
 
   const alertMap = {
@@ -544,6 +583,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     }
   };
 
+  const alertInfo = getAlert(states.payoutStatus);
+
   return (
     <div>
       <div>
@@ -606,30 +647,30 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </sl-alert>
         )}
-        {getAlert(states.payoutStatus) && (
+        {alertInfo && (
           <sl-alert
             exportparts="base: alert-base, icon:alert-icon"
-            name={getAlert(states.payoutStatus)?.alertType}
+            name={alertInfo?.alertType}
             open
-            class={getAlert(states.payoutStatus)?.class}
+            class={alertInfo?.class}
           >
-            <sl-icon
-              slot="icon"
-              name={getAlert(states.payoutStatus)?.icon}
-            ></sl-icon>
-            <strong>{getAlert(states.payoutStatus).header}</strong>
-            <p style={{ margin: "0" }}>
-              {getAlert(states.payoutStatus).description}
-            </p>
-            {getAlert(states.payoutStatus).buttonText && (
+            <sl-icon slot="icon" name={alertInfo?.icon}></sl-icon>
+            <strong>{alertInfo.header}</strong>
+            <p style={{ margin: "0" }}>{alertInfo.description}</p>
+            {alertInfo.buttonText && (
               <sl-button
                 style={{ marginTop: "var(--sl-spacing-x-small)" }}
                 type="default"
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
-                {getAlert(states.payoutStatus).buttonText}
+                {alertInfo.buttonText}
               </sl-button>
+            )}
+            {alertInfo.button ? (
+              alertInfo.button
+            ) : (
+              <div style={{ display: "none" }}></div>
             )}
           </sl-alert>
         )}
@@ -684,27 +725,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        <div class={sheet.classes.TaxDocumentsContainer}>
-          <div>
-            {states.loading ? (
-              <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-              </div>
-            ) : (
-              <div>
-                {states.noFormNeeded ? (
-                  <div>
-                    <h3
-                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
-                    >
-                      {text.taxDocumentSectionHeader}
-                    </h3>
-                    <p class={sheet.classes.TaxDocSubtext}>
-                      {text.noFormNeededSubtext}
-                    </p>
-                  </div>
-                ) : (
+        {!states.noFormNeeded && (
+          <div class={sheet.classes.TaxDocumentsContainer}>
+            <div>
+              {states.loading ? (
+                <div class={sheet.classes.TaxSectionSkeletonContainer}>
+                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                </div>
+              ) : (
+                <div>
                   <div>
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
@@ -736,11 +766,11 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       </sl-button>
                     )}
                   </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (

@@ -7,30 +7,30 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { getCountryObj, validTaxDocument } from "../utils";
+import { getCountryObj } from "../utils";
 import {
-  CountriesQuery,
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
+  CountriesQuery,
   Currencies,
-  CurrenciesQuery,
   CURRENCIES_NAMESPACE,
   CURRENCIES_QUERY_NAMESPACE,
-  FinanceNetworkSettingsQuery,
+  CurrenciesQuery,
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
+  FinanceNetworkSettingsQuery,
   GET_COUNTRIES,
   GET_CURRENCIES,
   GET_FINANCE_NETWORK_SETTINGS,
   GET_USER,
   SORTED_COUNTRIES_NAMESPACE,
-  TaxContext,
-  TaxCountry,
   TAX_CONTEXT_NAMESPACE,
   TAX_FORM_CONTEXT_NAMESPACE,
-  UserFormContext,
-  UserQuery,
+  TaxContext,
+  TaxCountry,
   USER_FORM_CONTEXT_NAMESPACE,
   USER_QUERY_NAMESPACE,
+  UserFormContext,
+  UserQuery,
 } from "./data";
 
 function getCurrentStep(user: UserQuery["user"]) {
@@ -43,10 +43,20 @@ function getCurrentStep(user: UserQuery["user"]) {
     currentTaxDocument,
     withdrawalSettings,
     brandedSignup,
+    payoutsAccount,
   } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (requiredTaxDocumentType && !currentTaxDocument) return "/3";
+  if (requiredTaxDocumentType && !currentTaxDocument) {
+    // Specific to custom CASH setting,
+    if (
+      payoutsAccount.hold &&
+      payoutsAccount.holdReasons.includes("NO_W9_DOCUMENT")
+    )
+      return "/dashboard";
+
+    return "/3";
+  }
 
   if (!withdrawalSettings && brandedSignup) return "/4";
 
