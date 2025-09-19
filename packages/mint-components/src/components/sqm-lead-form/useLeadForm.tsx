@@ -151,7 +151,12 @@ export function useLeadForm(props: LeadForm) {
       validationErrors: {},
     });
     formRef.current?.getFormControls()?.forEach((c) => {
-      c.value = "";
+      if (c.input?.type === "checkbox") {
+        c.checked = false;
+        c.value = false;
+      } else {
+        c.value = "";
+      }
     });
     setSuccess(false);
   }

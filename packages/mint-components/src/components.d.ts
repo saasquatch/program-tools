@@ -22,6 +22,7 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { LeadCheckboxFieldViewProps } from "./components/sqm-lead-form/sqm-lead-checkbox-field-view";
 import { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
 import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
 import { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
@@ -1479,6 +1480,41 @@ export namespace Components {
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
+    }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel": string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName": string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
     }
     interface SqmLeadDropdownField {
         /**
@@ -6381,6 +6417,12 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    interface HTMLSqmLeadCheckboxFieldElement extends Components.SqmLeadCheckboxField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadCheckboxFieldElement: {
+        prototype: HTMLSqmLeadCheckboxFieldElement;
+        new (): HTMLSqmLeadCheckboxFieldElement;
+    };
     interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
     }
     var HTMLSqmLeadDropdownFieldElement: {
@@ -6963,6 +7005,7 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-checkbox-field": HTMLSqmLeadCheckboxFieldElement;
         "sqm-lead-dropdown-field": HTMLSqmLeadDropdownFieldElement;
         "sqm-lead-form": HTMLSqmLeadFormElement;
         "sqm-lead-input-field": HTMLSqmLeadInputFieldElement;
@@ -8471,6 +8514,41 @@ declare namespace LocalJSX {
         "downloadUrl"?: string;
     }
     interface SqmInvoiceTableDownloadColumn {
+    }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel"?: string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
     }
     interface SqmLeadDropdownField {
         /**
@@ -13172,6 +13250,7 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-checkbox-field": SqmLeadCheckboxField;
         "sqm-lead-dropdown-field": SqmLeadDropdownField;
         "sqm-lead-form": SqmLeadForm;
         "sqm-lead-input-field": SqmLeadInputField;
@@ -13304,6 +13383,7 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-checkbox-field": LocalJSX.SqmLeadCheckboxField & JSXBase.HTMLAttributes<HTMLSqmLeadCheckboxFieldElement>;
             "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
             "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
             "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;

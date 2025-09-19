@@ -2,12 +2,11 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
+import { LeadFormState } from "./useLeadFormState";
 
-export interface CheckboxFieldViewProps {
+export interface LeadCheckboxFieldViewProps {
   states: {
-    registrationFormState?: RegistrationFormState;
-    checked: boolean;
+    leadFormState?: LeadFormState;
   };
   content: {
     checkboxName: string;
@@ -17,10 +16,11 @@ export interface CheckboxFieldViewProps {
     checkboxOptional?: boolean;
     errorMessage?: string;
   };
-  callbacks: {
-    setChecked: Function;
-  };
 }
+
+type RequiredFieldErrorParams = {
+  checkboxLabel: string;
+};
 
 const style = {
   ErrorStyle: {
@@ -66,9 +66,23 @@ jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function CheckboxFieldView(props: CheckboxFieldViewProps) {
-  const { states, content, callbacks } = props;
-  const validationErrors = states?.registrationFormState?.validationErrors;
+export function LeadCheckboxFieldView(props: LeadCheckboxFieldViewProps) {
+  const { states, content } = props;
+
+  const validationErrors = states?.leadFormState?.validationErrors;
+
+  const getRequiredFieldErrorMessage = ({
+    checkboxLabel,
+  }: RequiredFieldErrorParams) =>
+    intl.formatMessage(
+      {
+        id: `requiredFieldErrorMessage-${checkboxLabel}`,
+        defaultMessage: content.errorMessage,
+      },
+      {
+        checkboxLabel,
+      }
+    );
 
   return (
     <div class={sheet.classes.FieldContainer} part="sqm-base">
@@ -79,24 +93,21 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
       <sl-checkbox
         exportparts="label: input-label, base: input-base"
         name={`/${content.checkboxName}`}
-        checked={states.checked}
         onSl-change={(e) => {
           e.target.value = e.target.checked;
-          callbacks.setChecked(e.target.value);
         }}
         {...(!content.checkboxOptional ? { required: false } : [])}
         disabled={
-          states.registrationFormState?.loading ||
-          states.registrationFormState?.disabled
+          states.leadFormState?.loading || states.leadFormState?.disabled
         }
         validationError={({ value }: { value: string }) => {
           if (!value && !content.checkboxOptional) {
-            return content.errorMessage;
+            return getRequiredFieldErrorMessage({
+              checkboxLabel: content.checkboxLabel,
+            });
           }
         }}
-        {...(states.registrationFormState?.validationErrors?.[
-          content.checkboxName
-        ]
+        {...(states.leadFormState?.validationErrors?.[content.checkboxName]
           ? {
               class: sheet.classes.ErrorStyle,
             }
@@ -117,7 +128,11 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
         )}
       </sl-checkbox>
       {validationErrors?.[content.checkboxName] && (
-        <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+        <p class={sheet.classes.ErrorMessageStyle}>
+          {getRequiredFieldErrorMessage({
+            checkboxLabel: content.checkboxLabel,
+          })}
+        </p>
       )}
     </div>
   );

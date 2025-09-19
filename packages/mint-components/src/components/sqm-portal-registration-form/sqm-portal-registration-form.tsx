@@ -11,6 +11,7 @@ import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
 
 /**
  * @uiName Microsite Registration
+ * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
  */
 @Component({
