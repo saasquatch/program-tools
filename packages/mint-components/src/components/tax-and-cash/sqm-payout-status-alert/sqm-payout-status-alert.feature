@@ -29,7 +29,7 @@ Feature: Cash payout status widget alert
     Then the page will scroll to the payouts and tax form
 
   @motivating
-  Scenario: User completes form and payout information required alert dissapears
+  Scenario: User completes form and payout information required alert disappears
     Given they have impactConnection as one of the following
       | impactConnection                                                    |
       | { connected: true, publisher: { payoutsAccount: { hold: false } } } |
