@@ -279,6 +279,10 @@ export class TaxAndCashDashboard {
   @Prop() w9RequiredDescription: string =
     "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
   /**
+   * @uiName Terms and Conditions text
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
+  /**
    * @uiName W9 payment threshold alert button text
    */
   @Prop() w9RequiredButtonText: string = "Submit W9";

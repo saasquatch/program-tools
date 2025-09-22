@@ -102,7 +102,7 @@ export interface TaxAndCashDashboardProps {
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
-
+    termsAndConditions: string;
     cancelButton: string;
     supportLink: string;
     error: {
@@ -318,7 +318,22 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
       case "OVER_W9_THRESHOLD":
         return {
           header: text.w9RequiredHeader,
-          description: text.w9RequiredDescription,
+          description: intl.formatMessage(
+            {
+              id: "w9RequiredDescription",
+              defaultMessage: text.w9RequiredDescription,
+            },
+            {
+              termsAndConditions: (
+                <a
+                  target="_blank"
+                  href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                >
+                  {text.termsAndConditions}
+                </a>
+              ),
+            }
+          ),
           button: (
             <sl-button
               style={{ marginTop: "var(--sl-spacing-x-small)" }}

@@ -4905,6 +4905,11 @@ export namespace Components {
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions": string;
+        /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
@@ -5873,6 +5878,10 @@ export namespace Components {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -11981,6 +11990,11 @@ declare namespace LocalJSX {
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions"?: string;
+        /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
@@ -12949,6 +12963,10 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
