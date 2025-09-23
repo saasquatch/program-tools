@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.14.9] - 2025-09-19
 
+### Fixed
+
+- \<sqm-name-fields>
+  - Add sqm-portal-google-registration-form as valid parent
+
+## [1.14.9] - 2025-09-19
+
 ### Changed
 
 - \<sqm-qr-code>
@@ -1248,7 +1255,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.9...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.10...HEAD
+[1.14.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.10
 [1.14.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.9
 [1.14.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.8
 [1.14.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.7
