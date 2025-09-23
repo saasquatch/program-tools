@@ -105,7 +105,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     text: props.getTextProps(),
     callbacks: {
       onTermsClick: () =>
-        window.open(props.cashPayoutsPageUrl, "_blank").focus(),
+        window.history.pushState(null, "", props.cashPayoutsPageUrl),
       onClick: render,
     },
   };
