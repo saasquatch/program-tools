@@ -94,6 +94,14 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     };
   }, []);
 
+  const onTermsClick = () => {
+    let url = props.cashPayoutsPageUrl;
+    if (status === "INFORMATION_REQUIRED") url += "#1";
+    else if (status === "OVER_W9_THRESHOLD") url += "#3";
+
+    window.history.pushState(null, "", url);
+  };
+
   return {
     states: {
       loading,
@@ -104,8 +112,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     data: { type },
     text: props.getTextProps(),
     callbacks: {
-      onTermsClick: () =>
-        window.history.pushState(null, "", props.cashPayoutsPageUrl),
+      onTermsClick,
       onClick: render,
     },
   };

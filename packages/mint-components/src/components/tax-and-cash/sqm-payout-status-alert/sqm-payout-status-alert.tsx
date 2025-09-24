@@ -102,7 +102,7 @@ export class PayoutStatusAlert {
   /**
    * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
-  @Prop() cashPayoutsPageUrl: string = "/taxAndCash#3";
+  @Prop() cashPayoutsPageUrl: string = "/taxAndCash";
   /**
    * @uiName Support link text
    */
