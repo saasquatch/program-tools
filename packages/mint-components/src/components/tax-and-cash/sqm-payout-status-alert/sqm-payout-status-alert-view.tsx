@@ -36,6 +36,8 @@ export interface PayoutStatusAlertViewProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    accountReviewHeader: string;
+    accountReviewDescription: string;
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
@@ -258,6 +260,50 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             class: sheet.classes.WarningAlertContainer,
           };
         }
+        return {
+          header: text.w9RequiredHeader,
+          description: intl.formatMessage(
+            {
+              id: "w9RequiredDescription",
+              defaultMessage: text.w9RequiredDescription,
+            },
+            {
+              termsAndConditions: (
+                <a
+                  target="_blank"
+                  href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                >
+                  {text.termsAndConditions}
+                </a>
+              ),
+            }
+          ),
+          buttonText: text.w9RequiredButtonText,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
+      case "ACCOUNT_REVIEW":
+        return {
+          header: text.accountReviewHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.accountReviewDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningAlertContainer,
+        };
       case "HOLD":
         return {
           header: text.holdHeader,

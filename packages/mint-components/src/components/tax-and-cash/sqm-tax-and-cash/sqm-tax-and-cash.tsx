@@ -1056,6 +1056,17 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_w9RequiredDescription: string =
     "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
   /**
+   * @uiName Account review alert header
+   */
+  @Prop() dashboard_accountReviewHeader: string =
+    "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() dashboard_accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+
+  /**
    * @uiName Terms and Conditions text
    * @uiGroup Dashboard Properties
    */
