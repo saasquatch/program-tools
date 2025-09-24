@@ -260,29 +260,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             class: sheet.classes.WarningAlertContainer,
           };
         }
-        return {
-          header: text.w9RequiredHeader,
-          description: intl.formatMessage(
-            {
-              id: "w9RequiredDescription",
-              defaultMessage: text.w9RequiredDescription,
-            },
-            {
-              termsAndConditions: (
-                <a
-                  target="_blank"
-                  href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
-                >
-                  {text.termsAndConditions}
-                </a>
-              ),
-            }
-          ),
-          buttonText: text.w9RequiredButtonText,
-          alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
-        };
       case "ACCOUNT_REVIEW":
         return {
           header: text.accountReviewHeader,
