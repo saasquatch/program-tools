@@ -6,6 +6,14 @@ import { UserQuery } from "../sqm-tax-and-cash/data";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
+export type EnforceUsTaxComplianceOption =
+  | "NONE"
+  | "EXPLICIT_COUNTRY_CODE"
+  | "IMPLIED_COUNTRY_CODE"
+  | "ALL"
+  | "CASH_ONLY"
+  | "CASH_ONLY_DEFER_W9";
+
 export type PayoutStatus =
   | "OVER_W9_THRESHOLD"
   | "INFORMATION_REQUIRED"
@@ -15,6 +23,12 @@ export type PayoutStatus =
   | "VERIFICATION:FAILED"
   | "HOLD"
   | "DONE";
+
+export type TenantSettingsQuery = {
+  tenantSettings: {
+    enforceUsTaxCompliance: EnforceUsTaxComplianceOption;
+  };
+};
 
 const GET_USER_STATUS = gql`
   query getUserStatus {
@@ -32,6 +46,14 @@ const GET_USER_STATUS = gql`
           }
         }
       }
+    }
+  }
+`;
+
+const GET_TAX_SETTING = gql`
+  query getTenantSettings {
+    tenantSettings {
+      enforceUsTaxCompliance
     }
   }
 `;
@@ -70,12 +92,19 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     GET_USER_STATUS,
     {}
   );
+  const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
+    GET_TAX_SETTING,
+    {}
+  );
   const {
     render,
     loading: veriffLoading,
     errors: veriffErrors,
   } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
+
+  const enforceUsTaxComplianceOption =
+    taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
 
   useEffect(() => {
     if (!data) return;
@@ -100,6 +129,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       veriffLoading,
       status,
       error: !!errors,
+      enforceUsTaxComplianceOption,
     },
     data: { type },
     text: props.getTextProps(),
