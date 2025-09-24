@@ -1,13 +1,14 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { PayoutStatus } from "./usePayoutStatus";
+import { EnforceUsTaxComplianceOption, PayoutStatus } from "./usePayoutStatus";
 export interface PayoutStatusAlertViewProps {
   states: {
     error: boolean;
     loading: boolean;
     status: PayoutStatus;
     veriffLoading: boolean;
+    enforceUsTaxComplianceOption?: EnforceUsTaxComplianceOption;
   };
   data: {
     type:
@@ -210,29 +211,55 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           class: sheet.classes.ErrorAlertContainer,
         };
       case "OVER_W9_THRESHOLD":
-        return {
-          header: text.w9RequiredHeader,
-          description: intl.formatMessage(
-            {
-              id: "w9RequiredDescription",
-              defaultMessage: text.w9RequiredDescription,
-            },
-            {
-              termsAndConditions: (
-                <a
-                  target="_blank"
-                  href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
-                >
-                  {text.termsAndConditions}
-                </a>
-              ),
-            }
-          ),
-          buttonText: text.w9RequiredButtonText,
-          alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
-        };
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9") {
+          return {
+            header: text.w9RequiredHeader,
+            description: intl.formatMessage(
+              {
+                id: "w9RequiredDescription",
+                defaultMessage: text.w9RequiredDescription,
+              },
+              {
+                termsAndConditions: (
+                  <a
+                    target="_blank"
+                    href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                  >
+                    {text.termsAndConditions}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: text.w9RequiredButtonText,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+            class: sheet.classes.WarningAlertContainer,
+          };
+        } else {
+          return {
+            header: text.holdHeader,
+            description: intl.formatMessage(
+              {
+                id: "holdDescription",
+                defaultMessage: text.holdDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: null,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+            class: sheet.classes.WarningAlertContainer,
+          };
+        }
       case "ACCOUNT_REVIEW":
         return {
           header: text.accountReviewHeader,
@@ -283,6 +310,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   function getButton(status: PayoutStatus) {
     switch (status) {
       case "OVER_W9_THRESHOLD":
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY") return;
         return data.type === "SquatchJS2" ? (
           <sqm-scroll
             scroll-tag-name="sqm-tabs"

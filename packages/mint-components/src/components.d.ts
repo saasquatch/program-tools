@@ -2009,6 +2009,14 @@ export namespace Components {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl": string;
@@ -4633,6 +4641,14 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader": string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -5616,6 +5632,14 @@ export namespace Components {
         "termsAndConditions": string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -9118,6 +9142,14 @@ declare namespace LocalJSX {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl"?: string;
@@ -11718,6 +11750,14 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader"?: string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -12701,6 +12741,14 @@ declare namespace LocalJSX {
         "termsAndConditions"?: string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
