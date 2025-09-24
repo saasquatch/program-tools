@@ -78,6 +78,15 @@ export class PayoutStatusAlert {
   @Prop() verificationFailedInternalDescription: string =
     "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
   /**
+   * @uiName Account review alert header
+   */
+  @Prop() accountReviewHeader: string = "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+  /**
    * @uiName W9 payment threshold alert header
    */
   @Prop() w9RequiredHeader: string = "Your next payout is on hold";

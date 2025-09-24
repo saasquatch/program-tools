@@ -14,6 +14,7 @@ export type PayoutStatus =
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
   | "HOLD"
+  | "ACCOUNT_REVIEW"
   | "DONE";
 
 const GET_USER_STATUS = gql`
@@ -41,12 +42,6 @@ export function getStatus(data: UserQuery): PayoutStatus {
 
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
-  if (
-    account.holdReasons?.length === 1 &&
-    account.holdReasons?.includes("NEW_PAYEE_REVIEW")
-  ) {
-    return "DONE";
-  }
 
   const currentTaxDocument =
     data.user.impactConnection?.publisher?.currentTaxDocument;
@@ -60,6 +55,8 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "VERIFICATION:REVIEW";
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
+  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW"))
+    return "ACCOUNT_REVIEW";
   if (account.hold) return "HOLD";
   return "DONE";
 }

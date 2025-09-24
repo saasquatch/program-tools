@@ -99,6 +99,8 @@ export interface TaxAndCashDashboardProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    accountReviewHeader: string;
+    accountReviewDescription: string;
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
@@ -427,6 +429,27 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           alertType: "critical",
           icon: "exclamation-octagon",
           class: sheet.classes.ErrorHoldAlertContainer,
+        };
+      case "ACCOUNT_REVIEW":
+        return {
+          header: text.accountReviewHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.accountReviewDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "HOLD":
         return {
