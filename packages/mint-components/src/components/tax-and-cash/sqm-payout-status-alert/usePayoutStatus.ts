@@ -122,8 +122,15 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
 
   const onTermsClick = () => {
     let url = props.cashPayoutsPageUrl;
+
+    if (url.includes("#")) url = url.split("#")[0];
+
     if (status === "INFORMATION_REQUIRED") url += "#1";
-    else if (status === "OVER_W9_THRESHOLD") url += "#3";
+    else if (
+      status === "OVER_W9_THRESHOLD" &&
+      enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9"
+    )
+      url += "#3";
 
     window.history.pushState(null, "", url);
   };
