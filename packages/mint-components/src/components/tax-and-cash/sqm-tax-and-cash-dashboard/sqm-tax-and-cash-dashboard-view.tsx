@@ -790,7 +790,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        {!states.noFormNeeded && (
+        {(!states.noFormNeeded || states.status === "NOT_VERIFIED") && (
           <div class={sheet.classes.TaxDocumentsContainer}>
             <div>
               {states.loading ? (
@@ -819,17 +819,18 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         </span>
                       </div>
                     </span>
-                    {states.status !== "NOT_VERIFIED" && (
-                      <sl-button
-                        disabled={states.disabled || states.loading}
-                        onClick={callbacks.onClick}
-                        type="default"
-                        class={sheet.classes.NewFormButton}
-                        exportparts="base: primarybutton-base"
-                      >
-                        {text.newFormButton}
-                      </sl-button>
-                    )}
+                    {states.noFormNeeded &&
+                      states.status !== "NOT_VERIFIED" && (
+                        <sl-button
+                          disabled={states.disabled || states.loading}
+                          onClick={callbacks.onClick}
+                          type="default"
+                          class={sheet.classes.NewFormButton}
+                          exportparts="base: primarybutton-base"
+                        >
+                          {text.newFormButton}
+                        </sl-button>
+                      )}
                   </div>
                 </div>
               )}
