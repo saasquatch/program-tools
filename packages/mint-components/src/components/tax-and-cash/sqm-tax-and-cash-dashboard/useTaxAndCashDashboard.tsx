@@ -1,12 +1,16 @@
 import {
   useLocale,
   useParentQueryValue,
+  useQuery,
   useSetParent,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { vatLabels } from "../countries";
-import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
+import {
+  getStatus,
+  TenantSettingsQuery,
+} from "../sqm-payout-status-alert/usePayoutStatus";
 import {
   ImpactPublisher,
   TAX_CONTEXT_NAMESPACE,
@@ -23,6 +27,15 @@ import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
+import { gql } from "graphql-request";
+
+const GET_TAX_SETTING = gql`
+  query getTenantSettings {
+    tenantSettings {
+      enforceUsTaxCompliance
+    }
+  }
+`;
 
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
@@ -75,6 +88,11 @@ export const useTaxAndCashDashboard = (
     loading: veriffLoading,
     errors: veriffErrors,
   } = useVeriffApp();
+
+  const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
+    GET_TAX_SETTING,
+    {}
+  );
 
   const locale = useLocale();
 
@@ -136,6 +154,9 @@ export const useTaxAndCashDashboard = (
     };
   }, []);
 
+  const enforceUsTaxComplianceOption =
+    taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
+
   return {
     states: {
       dateSubmitted,
@@ -163,6 +184,7 @@ export const useTaxAndCashDashboard = (
       hasHold: !!publisher?.payoutsAccount?.hold,
       payoutStatus,
       veriffLoading,
+      enforceUsTaxComplianceOption,
     },
     callbacks: {
       onClick: () => setShowDialog(true),

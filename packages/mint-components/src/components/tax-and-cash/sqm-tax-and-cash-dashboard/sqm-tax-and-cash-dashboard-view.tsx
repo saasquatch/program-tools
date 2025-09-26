@@ -31,6 +31,7 @@ export interface TaxAndCashDashboardProps {
     errors?: {
       general?: boolean;
     };
+    enforceUsTaxComplianceOption?: string;
   };
   slots: {
     payoutDetailsCardSlot: VNode;
@@ -318,37 +319,63 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   function getAlert(status: PayoutStatus) {
     switch (status) {
       case "OVER_W9_THRESHOLD":
-        return {
-          header: text.w9RequiredHeader,
-          description: intl.formatMessage(
-            {
-              id: "w9RequiredDescription",
-              defaultMessage: text.w9RequiredDescription,
-            },
-            {
-              termsAndConditions: (
-                <a
-                  target="_blank"
-                  href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
-                >
-                  {text.termsAndConditions}
-                </a>
-              ),
-            }
-          ),
-          button: (
-            <sl-button
-              style={{ marginTop: "var(--sl-spacing-x-small)" }}
-              type="default"
-              onClick={callbacks.onNewFormClick}
-            >
-              {text.w9RequiredButtonText}
-            </sl-button>
-          ),
-          alertType: "info",
-          icon: "info-circle",
-          class: sheet.classes.WarningHoldAlertContainer,
-        };
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9") {
+          return {
+            header: text.w9RequiredHeader,
+            description: intl.formatMessage(
+              {
+                id: "w9RequiredDescription",
+                defaultMessage: text.w9RequiredDescription,
+              },
+              {
+                termsAndConditions: (
+                  <a
+                    target="_blank"
+                    href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                  >
+                    {text.termsAndConditions}
+                  </a>
+                ),
+              }
+            ),
+            button: (
+              <sl-button
+                style={{ marginTop: "var(--sl-spacing-x-small)" }}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.w9RequiredButtonText}
+              </sl-button>
+            ),
+            alertType: "info",
+            icon: "info-circle",
+            class: sheet.classes.WarningHoldAlertContainer,
+          };
+        } else {
+          return {
+            header: text.payoutHoldAlertHeader,
+            description: intl.formatMessage(
+              {
+                id: "payoutHoldAlertDescription",
+                defaultMessage: text.payoutHoldAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: null,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+            class: sheet.classes.WarningHoldAlertContainer,
+          };
+        }
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
