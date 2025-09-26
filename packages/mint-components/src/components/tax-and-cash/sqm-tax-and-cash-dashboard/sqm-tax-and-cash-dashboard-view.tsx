@@ -80,7 +80,6 @@ export interface TaxAndCashDashboardProps {
     indirectTaxColumnTitle: string;
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
-    taxAndPayoutsDescription: string;
     invoiceDescription: string;
     invoicePrevLabel: string;
     invoiceMoreLabel: string;
@@ -768,9 +767,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <h3 style={{ marginBottom: "0" }}>
             {text.bankingInformationSectionHeader}
           </h3>
-          <p class={sheet.classes.PageDescriptionText}>
-            {text.taxAndPayoutsDescription}
-          </p>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
             {!states.loading && (

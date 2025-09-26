@@ -377,13 +377,6 @@ export class TaxAndCashDashboard {
   @Prop() invoiceEmptyStateText: string =
     "Refer a friend to view the status of your invoices and rewards earned";
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
-   * @uiName Page description
-   */
-  @Prop() taxAndPayoutsDescription: string =
-    "Submit your tax documents and add your banking information to receive your rewards.";
-
-  /**
    * @uiName Replace tax form modal header
    */
   @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
