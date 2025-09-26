@@ -45,7 +45,7 @@ Feature: Comply Exchange Form
       | typeTaxForm | participantType       | header       | description                                                                                                             |
       | W9          | N/A                   | W-9 Tax Form | Participants based in the US need to submit a W-9 form.                                                                 |
       | W8-BEN      | individualParticipant | W-8 Tax Form | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W-8 form. |
-      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US who represent a business entity need to submit a W-8 form.                      |
+      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US working with a US Brand need to submit a W-8 form.                              |
 
   @minutia
   Scenario Outline: Participant completes Comply Exchange document and is directed to document summary page

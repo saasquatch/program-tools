@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.15.0] - 2025-09-24
+## [1.15.0] - 2025-09-29
 
 ### Added
 
@@ -18,6 +18,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added new W9 tax form submission alert with configurable header and description text
   - Added support for W9 form requirement status in tax and cash dashboard
 
+## [1.14.10] - 2025-09-23
+
+### Fixed
+
+- \<sqm-name-fields>
+  - Add sqm-portal-google-registration-form as valid parent
+
+## [1.14.9] - 2025-09-19
+
+### Changed
+
+- \<sqm-qr-code>
+  - Fixed embedded image to use the sharelink instead of url blob
 
 ## [1.14.8] - 2025-09-08
 
@@ -1255,6 +1268,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.0...HEAD
 [1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0
+[1.14.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.10
+[1.14.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.9
 [1.14.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.8
 [1.14.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.7
 [1.14.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.6
