@@ -49,7 +49,6 @@ export type TaskCardViewProps = {
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
-  console.log("buttonType ", content.buttonType);
   const style = {
     TaskCard: {
       display: "inline-block",
@@ -62,7 +61,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           content.borderColor || "var(--sqm-border-color)"
         }`,
         borderRadius: "var(--sqm-border-radius-normal)",
-        boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
+        boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.4)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: content.textColor || "var(--sqm-text)",
@@ -92,7 +91,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     NotStarted: {
       fontSize: "var(--sl-font-size-small)",
       padding: "var(--sl-spacing-medium)",
-      color: content.textColor || "var(--sl-color-primary-600)",
+      color: content.textColor || "var(--sqm-primary-color)",
       border: `var(--sqm-border-thickness, 1px) solid ${
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
@@ -112,14 +111,15 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     Ended: {
       fontSize: "var(--sl-font-size-small)",
       padding: "var(--sl-spacing-medium)",
-      color: content.textColor || "var(--sl-color-warning-600)",
+      color: content.textColor || "var(--sqm-warning-color-text)",
       border: `var(--sqm-border-thickness, 1px) solid ${
         content.borderColor || "var(--sl-color-neutral-200)"
       }`,
       borderRadius:
         "var(--sqm-border-radius-normal) var(--sqm-border-radius-normal) 0 0",
       borderBottom: "none",
-      background: content.backgroundColor || "var(--sl-color-warning-50)",
+      background:
+        content.backgroundColor || "var(--sqm-warning-color-background)",
       fontWeight: "var(--sl-font-weight-semibold)",
       lineHeight: "var(--sl-line-height-dense)",
       "& .icon": {
@@ -158,7 +158,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         marginRight: "var(--sl-spacing-xx-small)",
       },
       "& .end": {
-        color: content.textColor || "var(--sl-color-warning-500)",
+        color: content.textColor || "var(--sqm-warning-color-text)",
         fontWeight: "var(--sl-font-weight-semibold)",
         marginBottom: "var(--sl-spacing-xx-small)",
       },
@@ -168,7 +168,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     },
     Footer: {
       "&[data-subdue] .success": {
-        color: content.textColor || "var(--sl-color-primary-300)",
+        color: content.textColor || "var(--sqm-accent-color-text)",
       },
       "&[data-subdue] .neutral": {
         color: content.textColor || "var(--sqm-text)",
