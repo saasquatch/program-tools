@@ -806,7 +806,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               defaultMessage: text.taxDocumentSectionSubHeader,
                             },
                             {
-                              documentType: states.documentTypeString,
+                              documentType: states.documentTypeString || "W9",
                             }
                           )}
                         </h3>

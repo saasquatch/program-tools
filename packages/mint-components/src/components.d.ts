@@ -5889,11 +5889,6 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription": string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -12997,11 +12992,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
-        /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Tax document section header
          */
