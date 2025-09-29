@@ -58,7 +58,7 @@ export function CopyTextView(props: CopyTextViewProps) {
       "&::part(input)": {
         textOverflow: "ellipsis",
         width: "100%",
-        color: props.textColor || "var(--sqm-text)",
+        color: props.textColor || "var(--sl-input-color)",
       },
       "&::part(base)": {
         "--sl-input-border-radius":
@@ -69,8 +69,8 @@ export function CopyTextView(props: CopyTextViewProps) {
         "--sl-input-color-hover": "var(--sqm-input-color-hover)",
         "--sl-input-color-focus": "var(--sqm-input-color-focus)",
         "--sl-input-color-disabled": "var(--sqm-input-disabled-color)",
-        "--sl-input-background-color-focus": "var(--sqm-portal-background)",
-        "--sl-input-background-color-hover": "var(--sqm-portal-background)",
+        "--sl-input-background-color-focus": "var(--sqm-input-background)",
+        "--sl-input-background-color-hover": "var(--sqm-input-background)",
         cursor: "pointer",
         overflow: "visible",
         borderRadius:
