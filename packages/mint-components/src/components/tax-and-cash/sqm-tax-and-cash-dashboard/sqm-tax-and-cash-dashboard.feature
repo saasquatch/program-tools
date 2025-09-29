@@ -22,7 +22,6 @@ Feature: Tax And Cash Dashboard
     Given they submitted a tax form
     And their required tax document type is <requiredDocumentType>
     Then the Tax Form header displays "<documentType> tax form"
-
     Examples:
       | requiredDocumentType | documentType |
       | W9                   | W-9          |
@@ -31,29 +30,28 @@ Feature: Tax And Cash Dashboard
 
   @minutia @ui
   Scenario Outline: The date submitted and status of a Tax Form is displayed to the user
-    Given the Tax Document is currently <status>
-    When they view the Tax Document Submitted
-    Then they see a badge with <status> text and a respective <badgeVariant>
-    Then they see the message "<taxStatusMessage> on <dateSubmitted>"
+    Given the participant <mayHave> submitted a tax form
+    And it is currently <status>
+    When they view the tax document section
+    Then they see a <badgeVariant> with <statusText> text
+    Then they see the message <taxStatusMessage>
 
     Examples:
-      | status       | badgeVariant | taxStatusMessage                                           | dateSubmitted |
-      | ACTIVE       | success      | Submitted                                                  | Jan 17, 2024  |
-      | NOT_VERIFIED | neutral      | Awaiting Review. Submitted                                 | Jan 17, 2024  |
-      | NOT_ACTIVE   | danger       | Make sure your information is correct and submit new form. | Jan 17, 2024  |
+      | mayHave | status       | badgeVariant | statusText       | taxStatusMessage                                             |
+      | have    | ACTIVE       | success      | Active           | Submitted on {dateSubmitted}                                 |
+      | have    | NOT_VERIFIED | neutral      | Not Verified     | Awaiting review. Submitted on {dateSubmitted}                |
+      | have    | INACTIVE     | danger       | Invalid Tax Form | Make sure your information is correct and submit new form.   |
+      | haven't | N/A          | danger       | Required         | Your payouts are on hold until you submit a {type} tax form. |
 
   @minutia @ui
   Scenario: Status badge and text does not appear if participant is not required to submit tax form
     When a tax document is not required
-    Then tax document header does not include a document type
-    And the description text under the header displays "Tax documents are only required if you are based in the US. If your country of residence has changed, please contact Support"
-    And the "Submit new document" is not available
+    Then the tax document section is hidden
 
   @minutia
   Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
     When the participant <isRegistered> for indirect tax in their <country> and region <region>
     Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
-
     Examples:
       | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
       | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
@@ -73,7 +71,6 @@ Feature: Tax And Cash Dashboard
     Then the <registeredDetails> display with <subRegion>
     And they <doHaveIncomeTaxNumber> from step 2
     Then the indirect tax section displays <indirectTaxNumbers>
-
     Examples:
       | registeredDetails    | subRegion      | doHaveIncomeTaxNumber | indirectTaxNumbers            |
       | Registered in Spain, | Spain Proper   | true                  | VAT number, Income tax number |
@@ -83,7 +80,6 @@ Feature: Tax And Cash Dashboard
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the document has status <status>
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
-
     Examples:
       | status     | documentType | taxAlertHeader                                                              | taxAlertMessage                                                                                                           |
       | NOT_ACTIVE | W9           | Your W-9 tax form has personal information that doesn't match your profile. | Please resubmit a new W-9 form.                                                                                           |
@@ -116,7 +112,6 @@ Feature: Tax And Cash Dashboard
     Then a <color> banner appears
     And the alert has heading <heading>
     And the alert has description <description>
-
     Examples:
       | holdReason                  | color  | heading                            | description                                                                                                                                             |
       | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
@@ -124,7 +119,7 @@ Feature: Tax And Cash Dashboard
       | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
 
   @motivating
-  Scenario: User has hold reasons
+  Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
       | impactConnection                                                   |
       | { connected: true, publisher: { payoutsAccount: { hold: true } } } |
@@ -134,6 +129,7 @@ Feature: Tax And Cash Dashboard
       | IDV_CHECK_REQUIRED_INTERNAL |
       | IDV_CHECK_REVIEW_INTERNAL   |
       | IDV_CHECK_FAILED_INTERNAL   |
+      | NO_W9_DOCUMENT              |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
@@ -143,6 +139,26 @@ Feature: Tax And Cash Dashboard
       """
       Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to {support email}.
       """
+
+  @motivating
+  Scenario Outline: Alert displays when a user has gone over the tax limit and we require one to pay them out on the "" tax setting
+    Given a brand on the tax setting <type>
+    And a participant that selected US as their payout country
+    And USD as their payout currency
+    When they pass the $600 reward limit within a tax year
+    And the "NO_W9_DOCUMENT" QTP status gets added to their account
+    And they receive "W9" as their required tax form
+    Then they <maySee> a yellow alert
+    And it has heading "Your next payout is on hold"
+    And it has description  "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process."
+    When they click the "Submit W9" button
+    Then comply exchange opens on their page
+    When they submit the tax form
+    Then the banner disappears
+    Examples:
+      | type | maySee    |
+      | 5    | see       |
+      | 4    | don't see |
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax
@@ -157,7 +173,6 @@ Feature: Tax And Cash Dashboard
     And they are <brandPartnerType>
     And they are viewing the Payout section
     Then they <maySee> the "Edit Payout Information" button
-
     Examples:
       | brandPartnerType          | maySee     |
       | an existing brand partner | do not see |

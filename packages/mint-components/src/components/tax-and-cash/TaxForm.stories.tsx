@@ -1,21 +1,21 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
+import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
+import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
 import {
   ParticipantType,
   UseDocusignFormResult,
 } from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
+import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
+import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
+import LoadingView from "./sqm-tax-and-cash/LoadingView";
+import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "./subregions";
-import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
-import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
-import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
-import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
-import LoadingView from "./sqm-tax-and-cash/LoadingView";
 import { taxTypeToName } from "./utils";
-import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
 
 export default {
   title: "Components/Tax Form",
@@ -1410,6 +1410,29 @@ export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
           status: "ACTIVE",
           documentType: "W8BEN",
           documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardW9ThresholdReached = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "OVER_W9_THRESHOLD",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: null,
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
           notRegistered: true,

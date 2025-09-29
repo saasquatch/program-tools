@@ -55,7 +55,7 @@ export class RewardTableStatusCell {
   @Prop() payoutFailed: string =
     "Payout failed due to a fulfillment issue and is current being retried.";
   @Prop() payoutApproved: string =
-    "Reward approved for payout and was scheduled for payment based on your settings.";
+    "Reward was scheduled for payment based on your settings, barring any account holds.";
   @Prop() payoutCancelled: string =
     "If you think this is a mistake, contact our Support team.";
 

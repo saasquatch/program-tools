@@ -6,14 +6,30 @@ import { UserQuery } from "../sqm-tax-and-cash/data";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
+export type EnforceUsTaxComplianceOption =
+  | "NONE"
+  | "EXPLICIT_COUNTRY_CODE"
+  | "IMPLIED_COUNTRY_CODE"
+  | "ALL"
+  | "CASH_ONLY"
+  | "CASH_ONLY_DEFER_W9";
+
 export type PayoutStatus =
+  | "OVER_W9_THRESHOLD"
   | "INFORMATION_REQUIRED"
   | "VERIFICATION:REQUIRED"
   | "VERIFICATION:INTERNAL"
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
   | "HOLD"
+  | "ACCOUNT_REVIEW"
   | "DONE";
+
+export type TenantSettingsQuery = {
+  tenantSettings: {
+    enforceUsTaxCompliance: EnforceUsTaxComplianceOption;
+  };
+};
 
 const GET_USER_STATUS = gql`
   query getUserStatus {
@@ -35,17 +51,24 @@ const GET_USER_STATUS = gql`
   }
 `;
 
+const GET_TAX_SETTING = gql`
+  query getTenantSettings {
+    tenantSettings {
+      enforceUsTaxCompliance
+    }
+  }
+`;
+
 export function getStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
-  if (
-    account.holdReasons?.length === 1 &&
-    account.holdReasons?.includes("NEW_PAYEE_REVIEW")
-  ) {
-    return "DONE";
-  }
+
+  const currentTaxDocument =
+    data.user.impactConnection?.publisher?.currentTaxDocument;
+  if (account.holdReasons?.includes("NO_W9_DOCUMENT") && !currentTaxDocument)
+    return "OVER_W9_THRESHOLD";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
     return "VERIFICATION:REQUIRED";
   if (account.holdReasons?.includes("IDV_CHECK_REQUIRED_INTERNAL"))
@@ -54,6 +77,8 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "VERIFICATION:REVIEW";
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
+  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW"))
+    return "ACCOUNT_REVIEW";
   if (account.hold) return "HOLD";
   return "DONE";
 }
@@ -64,12 +89,19 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     GET_USER_STATUS,
     {}
   );
+  const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
+    GET_TAX_SETTING,
+    {}
+  );
   const {
     render,
     loading: veriffLoading,
     errors: veriffErrors,
   } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
+
+  const enforceUsTaxComplianceOption =
+    taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
 
   useEffect(() => {
     if (!data) return;
@@ -88,18 +120,33 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     };
   }, []);
 
+  const onTermsClick = () => {
+    let url = props.cashPayoutsPageUrl;
+
+    if (url.includes("#")) url = url.split("#")[0];
+
+    if (status === "INFORMATION_REQUIRED") url += "#1";
+    else if (
+      status === "OVER_W9_THRESHOLD" &&
+      enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9"
+    )
+      url += "#3";
+
+    window.history.pushState(null, "", url);
+  };
+
   return {
     states: {
       loading,
       veriffLoading,
       status,
       error: !!errors,
+      enforceUsTaxComplianceOption,
     },
     data: { type },
     text: props.getTextProps(),
     callbacks: {
-      onTermsClick: () =>
-        window.open(props.cashPayoutsPageUrl, "_blank").focus(),
+      onTermsClick,
       onClick: render,
     },
   };

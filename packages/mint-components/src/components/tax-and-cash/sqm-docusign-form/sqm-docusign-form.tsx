@@ -61,7 +61,7 @@ export class DocusignForm {
    * @uiWidget textArea
    */
   @Prop() taxFormDescriptionBusinessEntity: string =
-    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
+    "Participants residing outside of the US working with a US Brand need to submit a {documentType} form.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign session expired messag

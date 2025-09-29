@@ -2009,6 +2009,14 @@ export namespace Components {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl": string;
@@ -2050,6 +2058,10 @@ export namespace Components {
          */
         "supportLink": string;
         /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
+        /**
           * @uiName Verification failed internal alert description
          */
         "verificationFailedInternalDescription": string;
@@ -2085,6 +2097,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -4099,8 +4123,8 @@ export namespace Components {
          */
         "pendingUnhandled": string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -4617,6 +4641,14 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader": string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -4815,6 +4847,11 @@ export namespace Components {
          */
         "dashboard_replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -4835,6 +4872,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -4878,6 +4920,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -4941,6 +4988,24 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader": string;
         /**
           * @undocumented 
           * @uiType object
@@ -5559,8 +5624,22 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions": string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -5711,12 +5790,6 @@ export namespace Components {
          */
         "newFormButton": string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext": string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -5758,6 +5831,11 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -5774,6 +5852,11 @@ export namespace Components {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -5806,11 +5889,6 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription": string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -5819,6 +5897,10 @@ export namespace Components {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -5865,6 +5947,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmText {
     }
@@ -9043,6 +9137,14 @@ declare namespace LocalJSX {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl"?: string;
@@ -9084,6 +9186,10 @@ declare namespace LocalJSX {
          */
         "supportLink"?: string;
         /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
+        /**
           * @uiName Verification failed internal alert description
          */
         "verificationFailedInternalDescription"?: string;
@@ -9119,6 +9225,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -11111,8 +11229,8 @@ declare namespace LocalJSX {
          */
         "pendingUnhandled"?: string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax"?: string;
         /**
@@ -11627,6 +11745,14 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader"?: string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -11825,6 +11951,11 @@ declare namespace LocalJSX {
          */
         "dashboard_replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -11845,6 +11976,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -11888,6 +12024,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -11951,6 +12092,24 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -12569,8 +12728,22 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions"?: string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -12721,12 +12894,6 @@ declare namespace LocalJSX {
          */
         "newFormButton"?: string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext"?: string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -12768,6 +12935,11 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -12784,6 +12956,11 @@ declare namespace LocalJSX {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -12816,11 +12993,6 @@ declare namespace LocalJSX {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription"?: string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader"?: string;
@@ -12829,6 +13001,10 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -12875,6 +13051,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmText {
     }
