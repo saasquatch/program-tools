@@ -2098,15 +2098,15 @@ export namespace Components {
          */
         "verificationReviewInternalHeader": string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
          */
         "w9RequiredButtonText": string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
          */
         "w9RequiredDescription": string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
     }
@@ -4123,8 +4123,8 @@ export namespace Components {
          */
         "pendingUnhandled": string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -4989,19 +4989,19 @@ export namespace Components {
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_w9RequiredButtonText": string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_w9RequiredDescription": string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
@@ -5948,15 +5948,15 @@ export namespace Components {
          */
         "verificationReviewInternalHeader": string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
          */
         "w9RequiredButtonText": string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
          */
         "w9RequiredDescription": string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
     }
@@ -9226,15 +9226,15 @@ declare namespace LocalJSX {
          */
         "verificationReviewInternalHeader"?: string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
          */
         "w9RequiredButtonText"?: string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
          */
         "w9RequiredDescription"?: string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
     }
@@ -11229,8 +11229,8 @@ declare namespace LocalJSX {
          */
         "pendingUnhandled"?: string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax"?: string;
         /**
@@ -12093,19 +12093,19 @@ declare namespace LocalJSX {
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_w9RequiredButtonText"?: string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
         "dashboard_w9RequiredDescription"?: string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
          */
@@ -13052,15 +13052,15 @@ declare namespace LocalJSX {
          */
         "verificationReviewInternalHeader"?: string;
         /**
-          * @uiName W9 payment threshold alert button text
+          * @uiName W-9 payment threshold alert button text
          */
         "w9RequiredButtonText"?: string;
         /**
-          * @uiName W9 payment threshold alert description
+          * @uiName W-9 payment threshold alert description
          */
         "w9RequiredDescription"?: string;
         /**
-          * @uiName W9 payment threshold alert header
+          * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
     }

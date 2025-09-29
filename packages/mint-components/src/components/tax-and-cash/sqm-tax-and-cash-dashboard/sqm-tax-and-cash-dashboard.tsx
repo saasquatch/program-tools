@@ -75,7 +75,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() taxAlertHeaderNotActiveW9?: string =
-    "Your W9 tax form has personal information that doesn’t match your profile";
+    "Your W-9 tax form has personal information that doesn’t match your profile";
   /**
    * Part of the alert displayed at the top of the page.
    *
@@ -270,14 +270,14 @@ export class TaxAndCashDashboard {
    */
   @Prop() verificationRequiredButtonText: string = "Start Verification";
   /**
-   * @uiName W9 payment threshold alert header
+   * @uiName W-9 payment threshold alert header
    */
   @Prop() w9RequiredHeader: string = "Your next payout is on hold";
   /**
-   * @uiName W9 payment threshold alert description
+   * @uiName W-9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "You have surpassed the $600 threshold for a W9 tax form. To remove the hold, you need to submit a W9 tax form as outlined in our {termsAndConditions}. Please click 'Submit W9' to start the process.";
+    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
   /**
    * @uiName Account review alert header
    */
@@ -292,9 +292,9 @@ export class TaxAndCashDashboard {
    */
   @Prop() termsAndConditions: string = "Terms and Conditions";
   /**
-   * @uiName W9 payment threshold alert button text
+   * @uiName W-9 payment threshold alert button text
    */
-  @Prop() w9RequiredButtonText: string = "Submit W9";
+  @Prop() w9RequiredButtonText: string = "Submit W-9";
   /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
@@ -450,7 +450,7 @@ function useDemoTaxAndCashDashboard(
       states: {
         dateSubmitted: "today",
         documentType: "W9",
-        documentTypeString: "W9",
+        documentTypeString: "W-9",
         status: "ACTIVE",
         country: "United States",
         indirectTaxNumber: 55555555,

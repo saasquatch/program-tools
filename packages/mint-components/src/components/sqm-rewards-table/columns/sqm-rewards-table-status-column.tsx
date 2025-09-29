@@ -34,9 +34,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Prop() expiryText: string = "Expires on ";
 
   /**
-   * Displayed when a reward is pending due to W9 compliance.
+   * Displayed when a reward is pending due to W-9 compliance.
    *
-   * @uiName W9 pending text
+   * @uiName W-9 pending text
    */
   @Prop() pendingUsTax: string = "W-9 required";
 
