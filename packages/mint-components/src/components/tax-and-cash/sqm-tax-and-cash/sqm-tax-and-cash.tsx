@@ -9,6 +9,7 @@ import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "./data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
+import { intl } from "../../../global/global";
 
 /**
  * @uiName Tax and Cash
@@ -1290,7 +1291,22 @@ export class TaxAndCashMonolith {
         return (
           <ErrorView
             loadingErrorAlertHeader={this.loadingErrorAlertHeader}
-            loadingErrorAlertDescription={this.loadingErrorAlertDescription}
+            loadingErrorAlertDescription={intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: this.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {this.supportLink}
+                  </a>
+                ),
+              }
+            )}
           />
         );
     }

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.1] - 2025-09-29
+
+### Added
+
+- \<sqm-tax-and-cash>
+  - fix general loading error message
+
 ## [1.15.0] - 2025-09-29
 
 ### Added
@@ -1266,7 +1273,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.1...HEAD
+[1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
 [1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0
 [1.14.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.10
 [1.14.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.9
