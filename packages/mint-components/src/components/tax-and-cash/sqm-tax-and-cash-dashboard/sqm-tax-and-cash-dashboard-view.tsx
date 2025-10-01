@@ -325,6 +325,45 @@ const vanillaStyle = `
     text-decoration: underline;
     cursor: pointer;
   }
+
+  *::part(primarybutton-base),
+  sl-button[type="primary"]::part(base) {
+    font-family: var(--sqm-primary-font);
+    width: 100%;
+    background-color: var(--sqm-primary-button-background);
+    color: var(--sqm-primary-button-color);
+    border-color: var(--sqm-primary-button-color-border);
+    border-radius: var(--sqm-primary-button-radius);
+  }
+
+  *::part(primarybutton-base):hover,
+  sl-button[type="primary"]::part(base):hover{
+    background-color: var(--sqm-primary-button-background-hover);
+    border-color: var(--sqm-primary-button-border-color-hover);
+    color: var(--sqm-primary-button-color-hover);
+  }
+
+
+  *::part(primarybutton-base):focus,
+  sl-button[type="primary"]::part(base):focus {
+    box-shadow: none;
+  }
+
+  *::part(secondarybutton-base),
+  sl-button[type="secondary"]::part(base) {
+  font-family: var(--sqm-primary-font);
+    background-color: var(--sqm-secondary-button-background);
+    color: var(--sqm-secondary-button-color);
+    border-color: var(--sqm-secondary-button-color-border);
+    border-radius: var(--sqm-secondary-button-radius);
+  }
+
+  *::part(secondarybutton-base):hover,
+  sl-button[type="secondary"]::part(base):hover {
+    background-color: var(--sqm-secondary-button-background-hover);
+    color: var(--sqm-secondary-button-color-hover);
+    border-color: var(--sqm-secondary-button-border-color-hover);
+  }
 `;
 
 const sheet = createStyleSheet(style);
