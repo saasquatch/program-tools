@@ -750,6 +750,16 @@ html {
     config?.formFields?.disabledBackgroundColor || "#F4F4F5"
   };
 
+  sl-select::part(display-input),
+  sl-select::part(base),
+  sl-dropdown::part(display-input),
+  sl-dropdown::part(base),
+  sl-input::part(input)
+   {
+    color: var(--sqm-input-color);
+  }
+
+
   --sl-color-primary-100: var(--sqm-primary-color);
   --sl-color-primary-200: var(--sqm-primary-color);
   --sl-color-primary-300: var(--sqm-primary-color);
