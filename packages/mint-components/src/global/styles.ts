@@ -739,6 +739,11 @@ html {
   --sqm-input-border-color-hover: ${
     config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
   };
+  sl-menu-item::part(base):hover {
+    background-color: ${
+      config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
+    }; 
+  }
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
@@ -767,6 +772,8 @@ html {
   --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
   --sl-input-border-width: var(--sqm-border-thickness, 1px);
   --sl-input-border-style: solid;
+
+
 
 
 
