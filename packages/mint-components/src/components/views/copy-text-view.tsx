@@ -75,7 +75,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         overflow: "visible",
         borderRadius:
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
-        background: props.backgroundColor || "var(--sqm-portal-background)",
+        background: props.backgroundColor || "var(--sqm-input-background)",
         border: `var(--sqm-border-thickness) solid ${
           props.borderColor || "var(--sqm-input-border-color)"
         }`,
