@@ -1070,9 +1070,6 @@ sl-icon::part(base):hover {
   color: var(--sqm-accent-color-icon);
 }
 
-
-
-
 `,
   font: config?.main?.brandFont,
 });

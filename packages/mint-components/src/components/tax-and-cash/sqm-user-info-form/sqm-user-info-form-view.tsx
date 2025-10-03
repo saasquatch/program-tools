@@ -332,6 +332,15 @@ const vanillaStyle = `
       border:none;
     }
 
+    sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+
+
     sl-select::part(panel) {
       border-radius: var(--sqm-border-radius-normal);
     }
