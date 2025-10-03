@@ -528,7 +528,7 @@ html {
   --sl-input-height-large: 3.125rem;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
   --sl-input-border-radius-large: var(--sl-border-radius-medium);
-  --sl-input-font-family: var(--sl-font-sans);
+  --sl-input-font-family: var(--sqm-primary-font);
   --sl-input-font-weight: var(--sl-font-weight-normal);
   --sl-input-font-size-small: var(--sl-font-size-small);
   --sl-input-font-size-medium: var(--sl-font-size-medium);
