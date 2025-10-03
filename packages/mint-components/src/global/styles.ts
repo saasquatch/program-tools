@@ -755,16 +755,6 @@ html {
     color: var(--sqm-input-color);
   }
 
-  sl-menu-item::part(base):hover {
-    background-color: var(--sqm-input-border-color-hover) !important;
-    background: green !important;
-  }
-
-  sl-menu-item {
-    --sl-color-primary-500: green !important;
-  }
-
-
   --sl-color-primary-100: var(--sqm-primary-color);
   --sl-color-primary-200: var(--sqm-primary-color);
   --sl-color-primary-300: var(--sqm-primary-color);
@@ -787,9 +777,6 @@ html {
   --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
   --sl-input-border-width: var(--sqm-border-thickness, 1px);
   --sl-input-border-style: solid;
-
-
-
 
 
 /* --- Disabled State --- */
