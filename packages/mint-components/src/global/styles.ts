@@ -756,7 +756,7 @@ html {
   }
 
   sl-menu-item::part(base):hover {
-    background-color: var(--sqm-input-border-color-hover);
+    background-color: var(--sqm-input-border-color-hover) !important;
   }
 
 
@@ -825,7 +825,7 @@ body {
 }
 
 sl-spinner {
-  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-color-primary-500: var(--sqm-accent-color-icon);
   --sl-spinner-stroke-width: 4px;
 }
 
@@ -1061,11 +1061,6 @@ a {
   cursor: pointer;
 }
 
-
-*::part(menuitem-base):hover{
-  background-color: var(--sl-color-gray-200);
-  color: var(--sl-color-gray-700);
-}
 
 sl-icon::part(base) {
   color: var(--sqm-text);
