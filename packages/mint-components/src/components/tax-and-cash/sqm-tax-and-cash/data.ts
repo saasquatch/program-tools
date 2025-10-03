@@ -52,6 +52,15 @@ export const GET_USER = gql`
         email
         countryCode
         customFields
+        rewards(limit: 2000) {
+          data {
+            statuses
+            partnerFundsTransfer {
+              id
+              status
+            }
+          }
+        }
         managedIdentity {
           uid
           email
@@ -160,6 +169,15 @@ export type UserQuery = {
     countryCode?: string;
     customFields?: {
       [key: string]: any;
+    };
+    rewards: {
+      data: {
+        statuses: string[];
+        partnerFundsTransfer: {
+          id: string;
+          status: string;
+        };
+      }[];
     };
     managedIdentity?: {
       uid: string;

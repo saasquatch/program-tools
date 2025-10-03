@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.2] - 2025-10-03
+
+### Added
+
+- \<sqm-tax-and-cash-dashboard>
+  - Only show payout status alert if a reward has been redeemed and transferred
+
 ## [1.15.1] - 2025-09-29
 
 ### Added
@@ -1273,7 +1280,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.2...HEAD
+[1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
 [1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
 [1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0
 [1.14.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.10

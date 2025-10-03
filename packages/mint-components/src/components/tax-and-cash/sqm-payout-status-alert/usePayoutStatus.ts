@@ -46,6 +46,15 @@ const GET_USER_STATUS = gql`
             }
           }
         }
+        rewards(limit: 2000) {
+          data {
+            statuses
+            partnerFundsTransfer {
+              id
+              status
+            }
+          }
+        }
       }
     }
   }
@@ -62,6 +71,12 @@ const GET_TAX_SETTING = gql`
 export function getStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
+  const hasTransferredReward = data?.user?.rewards?.data?.find(
+    (reward) =>
+      reward.statuses.includes("REDEEMED") &&
+      reward.partnerFundsTransfer.status === "TRANSFERRED"
+  );
+
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
 
@@ -77,7 +92,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "VERIFICATION:REVIEW";
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
-  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW"))
+  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
     return "ACCOUNT_REVIEW";
   if (account.hold) return "HOLD";
   return "DONE";
