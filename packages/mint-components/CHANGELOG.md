@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- \<sqm-payout-status-alert>
 - \<sqm-tax-and-cash-dashboard>
   - Only show payout status alert if a reward has been redeemed and transferred
 
