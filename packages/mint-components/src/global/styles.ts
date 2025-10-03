@@ -825,7 +825,7 @@ body {
 }
 
 sl-spinner {
-  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-color-primary-500: var(--sqm-accent-color-icon);
   --sl-spinner-stroke-width: 4px;
 }
 
