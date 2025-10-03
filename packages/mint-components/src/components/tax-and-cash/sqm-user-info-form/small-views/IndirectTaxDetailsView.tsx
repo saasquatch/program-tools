@@ -119,6 +119,13 @@ const vanillaStyle = `
        padding: 0;
        box-sizing: border-box;
     }
+    sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+
+    sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
   `;
 
 export type TaxType =

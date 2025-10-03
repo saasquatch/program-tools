@@ -340,7 +340,6 @@ const vanillaStyle = `
       background-color: var(--sqm-input-border-color-hover);
     }
 
-
     sl-select::part(panel) {
       border-radius: var(--sqm-border-radius-normal);
     }
