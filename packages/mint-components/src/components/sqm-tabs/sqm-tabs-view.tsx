@@ -9,6 +9,10 @@ export type TabsViewProps = {
   };
 };
 
+// sl-tab-group {
+//   --sl-color-primary-500: var(--sqm-accent-color-icon);
+// }
+
 export const TabsView: FunctionalComponent<TabsViewProps> = ({
   content,
   placement,
@@ -30,9 +34,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
       font-family: var(--sqm-primary-font);
     }
 
-    sl-tab-group {
-      --sl-color-primary-500: var(--sqm-accent-color-icon);
-    }
+
 
     sl-tab-group::part(tabs) {
       border-bottom: 2px solid var(--sqm-border-color);

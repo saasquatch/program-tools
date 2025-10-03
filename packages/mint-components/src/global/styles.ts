@@ -757,6 +757,11 @@ html {
 
   sl-menu-item::part(base):hover {
     background-color: var(--sqm-input-border-color-hover) !important;
+    background: green !important;
+  }
+
+  sl-menu-item {
+    --sl-color-primary-500: green !important;
   }
 
 
