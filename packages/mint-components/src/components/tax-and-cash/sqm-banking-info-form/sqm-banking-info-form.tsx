@@ -474,10 +474,20 @@ export class BankingInfoForm {
       }
     );
 
+    const vanillaStyle = `
+      sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+    `;
+
     return (
       <Host>
         {/* Force it to de-render every time to avoid state issues with inputs */}
         <style type="text/css">{styleString}</style>
+        <style type="text/css">{vanillaStyle}</style>
         {props.states.isPartner && props.states.showVerification ? (
           <sl-dialog
             class={sheet.classes.Dialog}
