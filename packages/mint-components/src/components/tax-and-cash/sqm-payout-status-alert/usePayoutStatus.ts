@@ -46,7 +46,7 @@ const GET_USER_STATUS = gql`
             }
           }
         }
-        rewards(limit: 2000) {
+        rewards(limit: 1000) {
           data {
             statuses
             partnerFundsTransfer {

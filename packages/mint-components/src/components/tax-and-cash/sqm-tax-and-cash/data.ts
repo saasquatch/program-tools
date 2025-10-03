@@ -52,7 +52,7 @@ export const GET_USER = gql`
         email
         countryCode
         customFields
-        rewards(limit: 2000) {
+        rewards(limit: 1000) {
           data {
             statuses
             partnerFundsTransfer {
