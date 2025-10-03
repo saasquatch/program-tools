@@ -123,3 +123,16 @@ Feature: Cash payout status widget alert
     Then a "sqm:tax-form-updated" custom event is fired
     And the banner refreshes
 
+  @minutia
+  Scenario Outline: The banner is not shown for partners with the NEW_PAYEE_REVIEW hold reason unless a reward has created a PFT
+    Given a user has <holdReason> included in their holdReasons
+    And the user does not have other holdReasons
+    And the user <mayHave> a redemeed reward
+    And the reward <mayHave> partnerFundsTransfer data
+    And the partnerFundsTransfer status is <status>
+    Then the payout alert bannner <isShown>
+    Examples:
+      | holdReason       | mayHave       | status      | isShown      |
+      | NEW_PAYEE_REVIEW | has           | TRANSFERRED | is shown     |
+      | NEW_PAYEE_REVIEW | has           | OVERDUE     | is not shown |
+      | NEW_PAYEE_REVIEW | does not have | N/A         | is not shown |
