@@ -126,6 +126,13 @@ const vanillaStyle = `
     sl-menu-item::part(base):hover {
       background-color: var(--sqm-input-border-color-hover);
     }
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
+    }
   `;
 
 export type TaxType =

@@ -380,6 +380,14 @@ const vanillaStyle = `
     sl-checkbox::part(label){
       color: var(--sqm-text);
     }
+
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
+    }
 `;
 
 export const UserInfoFormView = (props: UserInfoFormViewProps) => {

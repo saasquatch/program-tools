@@ -49,6 +49,13 @@ const vanillaStyle = `
     sl-checkbox::part(control) {
         border-radius: 50%;
     }
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
+    }
   `;
 
 export const RadioCardView = ({
