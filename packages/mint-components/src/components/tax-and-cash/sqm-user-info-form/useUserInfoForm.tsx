@@ -250,8 +250,21 @@ export function useUserInfoForm(props: TaxForm) {
       currency: userData.currency,
     });
 
-    const nextStep = context.overrideNextStep || "/2";
+    const skipNextStep = getSkipNextStep(userData);
+
+    const nextStep = context.overrideNextStep || skipNextStep ? "/3" : "/2";
     setStep(nextStep);
+  }
+
+  // TODO: get from backend
+  const hasIndirectTax = false;
+  const brandCountry = "";
+
+  function getSkipNextStep(userData) {
+    if (userData.countryCode === "US") return true;
+    if (!hasIndirectTax) return true;
+    if (hasIndirectTax && userData.countryCode !== brandCountry) return true;
+    return false;
   }
 
   const hasStates = ["ES", "AU", "US", "CA"].includes(
