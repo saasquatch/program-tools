@@ -7,6 +7,87 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.2] - 2025-10-03
+
+### Added
+
+- \<sqm-payout-status-alert>
+- \<sqm-tax-and-cash-dashboard>
+  - Only show payout status alert if a reward has been redeemed and transferred
+
+## [1.15.1] - 2025-09-29
+
+### Added
+
+- \<sqm-tax-and-cash>
+  - fix general loading error message
+
+## [1.15.0] - 2025-09-29
+
+### Added
+
+- \<sqm-payout-status-alert>
+- \<sqm-tax-and-cash-dashboard>
+  - Added W9 tax threshold limit functionality to `<sqm-payout-status-alert>` and `<sqm-tax-and-cash-dashboard>` components
+  - Added new status `OVER_W9_THRESHOLD` to handle cases when users exceed $600 earnings threshold
+  - Added new W9 tax form submission alert with configurable header and description text
+  - Added support for W9 form requirement status in tax and cash dashboard
+
+## [1.14.10] - 2025-09-23
+
+### Fixed
+
+- \<sqm-name-fields>
+  - Add sqm-portal-google-registration-form as valid parent
+
+## [1.14.9] - 2025-09-19
+
+### Changed
+
+- \<sqm-qr-code>
+  - Fixed embedded image to use the sharelink instead of url blob
+
+## [1.14.8] - 2025-09-08
+
+### Added
+
+- \<sqm-portal-register>
+- \<sqm-portal-registration-form>
+- \<sqm-lead-form>
+  - Fixed canvas re-render error when adding non-form components to the forms
+
+## [Unreleased]
+
+## [1.14.7] - 2025-09-05
+
+### Added
+
+- \<sqm-lead-checkbox-field>
+  - checkbox input to be used within the `formData` slot of \<sqm-lead-form>
+
+### Changed
+
+-\<sqm-checkbox-field>
+
+- field now properly throws validation errors unless `checkboxOptional` is true
+
+## [1.14.6] - 2025-08-27
+
+### Added
+
+- \<sqm-lead-form>
+  - Submits user information to an assigned form key using the `formKey` prop
+  - supports additional fields using the `formData` slot
+- \<sqm-lead-input-field>, \<sqm-lead-dropdown-field>
+  - text and dropdown input to be used within the `formData` slot of \<sqm-lead-form>
+
+## [1.14.5] - 2025-07-30
+
+### Changed
+
+- \<sqm-coupon-code>
+  - Added a 1 minute retry on fetching the coupon code if the fuel tank code fails to load due to a syncing error
+
 ## [1.14.4] - 2025-07-10
 
 ### Changed
@@ -1200,7 +1281,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.14.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.2...HEAD
+[1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
+[1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
+[1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0
+[1.14.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.10
+[1.14.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.9
+[1.14.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.8
+[1.14.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.7
+[1.14.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.6
+[1.14.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.5
 [1.14.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.4
 [1.14.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.3
 [1.14.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.14.2

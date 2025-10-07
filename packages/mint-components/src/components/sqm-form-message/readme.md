@@ -1,7 +1,5 @@
 # sqm-form-message
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -25,6 +23,7 @@
  - [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
  - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
+ - [sqm-lead-form](../sqm-lead-form)
  - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
  - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
@@ -42,7 +41,6 @@
  - [sqm-referred-registration](../sqm-referred-registration)
  - [sqm-stencilbook](../sqm-stencilbook)
  - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
- - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
  - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
 ### Graph
@@ -56,6 +54,7 @@ graph TD;
   sqm-email-verification --> sqm-form-message
   sqm-indirect-tax-form --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
+  sqm-lead-form --> sqm-form-message
   sqm-payout-status-alert --> sqm-form-message
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
@@ -73,7 +72,6 @@ graph TD;
   sqm-referred-registration --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   sqm-tax-and-cash --> sqm-form-message
-  sqm-tax-and-cash-dashboard --> sqm-form-message
   sqm-user-info-form --> sqm-form-message
   style sqm-form-message fill:#f9f,stroke:#333,stroke-width:4px
 ```

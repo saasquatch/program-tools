@@ -41,6 +41,12 @@ export const VerifyIdentityFailedInternal = () => (
   ></sqm-payout-status-alert>
 );
 
+export const W9ThresholdReached = () => (
+  <sqm-payout-status-alert
+    demoData={{ states: { ...defaultProps, status: "OVER_W9_THRESHOLD" } }}
+  ></sqm-payout-status-alert>
+);
+
 export const Hold = () => (
   <sqm-payout-status-alert
     demoData={{ states: { ...defaultProps, status: "HOLD" } }}

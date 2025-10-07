@@ -1422,6 +1422,29 @@ export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
   );
 };
 
+export const TaxAndCashDashboardW9ThresholdReached = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "OVER_W9_THRESHOLD",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: null,
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: true,
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
 export const TaxAndCashDashboardNewTaxForm = () => {
   return (
     <sqm-tax-and-cash-dashboard

@@ -159,6 +159,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const publisher = userData?.user?.impactConnection?.publisher;
 
   useEffect(() => {
+    // reset redirect hash
+    window.location.hash = "";
+  }, []);
+
+  useEffect(() => {
     if (!publisher?.taxInformation?.indirectTaxCountryCode) return;
 
     const _option = getOption(

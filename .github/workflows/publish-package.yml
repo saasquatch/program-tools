@@ -8,24 +8,158 @@ on:
         required: true
         type: choice
         options:
+          - express-boilerplate
+          - integration-boilerplate-node
+          - logger
           - program-boilerplate
+          - program-test-suite
+          - publish-helper
 
-      increment:
+      increment-type:
         description: The version number to increment
         required: true
         type: choice
         options:
-          - major
-          - minor
-          - patch
           - prerelease
+          - patch
+          - minor
+          - major
 
 jobs:
   publish:
-    uses: saasquatch/workflows/.github/workflows/publish-npm-package.yml@0bb1620ff32b2bec5c6d877fcc162f617ab34d24
-    secrets: inherit
-    with:
-      increment-type: ${{ inputs.increment }}
-      working-directory: ${{ inputs.package }}
-      node-version-file: ${{ inputs.package }}/package.json
-      private-registry: true
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Generate Variables
+        id: vars
+        run: |
+          echo "dir=packages/${{ inputs.package }}" >> ${GITHUB_OUTPUT}
+
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "${{ steps.vars.outputs.dir }}/package.json"
+
+      - name: Setup .npmrc
+        id: npmrc
+        working-directory: ${{ steps.vars.outputs.dir }}
+        run: |
+          echo 'registry=https://registry.npmjs.org/' >> .npmrc
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
+          echo 'always-auth=true' >> .npmrc
+
+      # we could add this to devDependencies but we'd have to do it for every package
+      # so might as well just install it inside the action
+      - name: Install semver
+        id: npm-i-semver
+        run: |
+          npm i --no-save semver
+
+      - name: Install dependencies
+        id: npm-ci
+        working-directory: ${{ steps.vars.outputs.dir }}
+        run: npm ci
+
+      - name: Compute new tag
+        id: compute-tag
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const semver = require("semver");
+            const { readFileSync } = require("fs");
+            const { join } = require("path");
+
+            const incrementType = "${{ inputs.increment-type }}";
+
+            if (
+              !["major", "minor", "patch", "prerelease"].some(
+                (kind) => incrementType === kind,
+              )
+            ) {
+              throw new Error(`Invalid semver increment type "${incrementType}" specified`);
+            }
+
+            const workingDir = "${{ steps.vars.outputs.dir }}";
+            const packageJson = JSON.parse(
+              readFileSync(join(workingDir, "./package.json"), { encoding: "utf8" }),
+            );
+
+            const currentVersion = packageJson["version"];
+            const currentValid = semver.valid(currentVersion);
+
+            if (!currentValid) {
+              throw new Error(`Current package version "${currentVersion}" is invalid`);
+            }
+
+            const newVersion = semver.inc(currentVersion, incrementType);
+
+            console.log(`Increment type: ${incrementType}`);
+            console.log(`Previous version: ${currentVersion}`);
+            console.log(`New version: ${newVersion}`);
+
+            return newVersion;
+
+      - name: Extract package name
+        id: extract-package-name
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const { readFileSync } = require("fs");
+            const { join } = require("path");
+
+            const workingDir = "${{ steps.vars.outputs.dir }}";
+            const packageJson = JSON.parse(
+              readFileSync(join(workingDir, "./package.json"), { encoding: "utf8" }),
+            );
+
+            const packageName = packageJson["name"];
+            if (!packageName) {
+              throw new Error("Failed to extract package name from package.json");
+            }
+            return packageName;
+
+      - name: Write new version to file
+        working-directory: ${{ steps.vars.outputs.dir }}
+        run: |
+          jq '.version = "${{ steps.compute-tag.outputs.result }}"' package.json > package.json.tmp
+          jq '.version = "${{ steps.compute-tag.outputs.result }}"' package-lock.json > package-lock.tmp1.json
+          jq '.packages."".version = "${{ steps.compute-tag.outputs.result }}"' package-lock.tmp1.json > package-lock.json.tmp
+
+          mv package.json.tmp package.json
+          mv package-lock.json.tmp package-lock.json
+
+      # Package will be built during this step thanks to the `prepack` lifecycle script
+      - name: NPM Publish
+        id: publish
+        working-directory: ${{ steps.vars.outputs.dir }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+      - name: Commit and push changes
+        id: commit-and-push
+        uses: saasquatch/git-commit-action@v0.0.15
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          working-directory: ${{ steps.vars.outputs.dir }}
+          files: |
+            package.json
+            package-lock.json
+          message: "publish: ${{ steps.extract-package-name.outputs.result }} v${{ steps.compute-tag.outputs.result }}"
+          long-message: This commit was generated by GitHub Actions CI
+          tag: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-tag.outputs.result }}"
+          tag-message: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-tag.outputs.result }}"
+          repository: ${{ github.repository }}
+          branch: ${{ github.ref_name }}

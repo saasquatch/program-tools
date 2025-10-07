@@ -1,9 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TaxDocumentType } from "../data";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
-import { capitalizeFirstLetter } from "../../../utils/utils";
+import { TaxDocumentType } from "../data";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -32,6 +31,7 @@ export interface TaxAndCashDashboardProps {
     errors?: {
       general?: boolean;
     };
+    enforceUsTaxComplianceOption?: string;
   };
   slots: {
     payoutDetailsCardSlot: VNode;
@@ -47,9 +47,11 @@ export interface TaxAndCashDashboardProps {
     statusTextActive?: string;
     statusTextNotActive?: string;
     statusTextNotVerified?: string;
+    statusTextRequired?: string;
     badgeTextSubmittedOn?: string;
     badgeTextSubmittedOnW8?: string;
     badgeTextAwaitingReview?: string;
+    requiredTaxForm?: string;
     noTaxFormRequired?: string;
     taxAlertHeaderNotActive?: string;
     taxAlertHeaderNotActiveW9?: string;
@@ -70,7 +72,6 @@ export interface TaxAndCashDashboardProps {
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
-    noFormNeededSubtext?: string;
     notRegisteredForTax?: string;
     qstNumber?: string;
     subRegionTaxNumber: string;
@@ -79,7 +80,6 @@ export interface TaxAndCashDashboardProps {
     indirectTaxColumnTitle: string;
     earningsAfterTaxColumnTitle: string;
     dateColumnTitle: string;
-    taxAndPayoutsDescription: string;
     invoiceDescription: string;
     invoicePrevLabel: string;
     invoiceMoreLabel: string;
@@ -99,6 +99,12 @@ export interface TaxAndCashDashboardProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    accountReviewHeader: string;
+    accountReviewDescription: string;
+    w9RequiredHeader: string;
+    w9RequiredDescription: string;
+    w9RequiredButtonText: string;
+    termsAndConditions: string;
     cancelButton: string;
     supportLink: string;
     error: {
@@ -111,22 +117,51 @@ export interface TaxAndCashDashboardProps {
 }
 
 const style = {
-  DangerBadge: {
+  ErrorAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-icon)",
-      color: "var(--sl-color-white)",
+      backgroundColor: "var(--sl-color-red-100)",
+      borderTop: "none",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
     },
   },
-  SuccessBadge: {
+  WarningAlertContainer: {
     "&::part(base)": {
-      backgroundColor: "var(--sqm-success-color-icon)",
-      color: "var(--sl-color-white)",
+      backgroundColor: "var(--sl-color-yellow-100)",
+      borderTop: "none",
+      maxWidth: "600px",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-warning-500)",
     },
   },
-  WarningBadge: {
+  WarningHoldAlertContainer: {
+    marginLeft: "-20px",
     "&::part(base)": {
-      backgroundColor: "var(--sqm-warning-color-icon)",
-      color: "var(--sl-color-white)",
+      maxWidth: "850px",
+      border: "none",
+      backgroundColor: "transparent",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-warning-500)",
+    },
+  },
+  ErrorHoldAlertContainer: {
+    marginLeft: "-20px",
+    "&::part(base)": {
+      maxWidth: "850px",
+      border: "none",
+      backgroundColor: "transparent",
+    },
+    "& sl-icon::part(base)": {
+      color: "var(--sl-color-danger-500)",
+    },
+  },
+  ExpiringSoonAlertContainer: {
+    "&::part(base)": {
+      backgroundColor: "var(--sl-color-yellow-100)",
+      borderTop: "none",
     },
   },
   BankingInformationContainer: {
@@ -134,7 +169,7 @@ const style = {
   },
   IndirectTaxPreviewContainer: {
     marginTop: "var(--sl-spacing-x-large)",
-    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
+    borderTop: "1px solid var(--sl-color-neutral-200)",
   },
   IndirectTaxPreviewHeaderContainer: {
     marginTop: "var(--sl-spacing-large)",
@@ -143,7 +178,7 @@ const style = {
     display: "flex",
     gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-green-500)",
     },
   },
   IndirectTaxPreviewDetails: {
@@ -157,11 +192,11 @@ const style = {
     marginTop: "var(--sl-spacing-medium)",
   },
   NotRegisteredIndirectTaxText: {
-    color: "var(--sqm-text-subdued)",
+    color: "var(--sl-color-gray-500)",
   },
   TaxDocumentsContainer: {
     marginTop: "var(--sl-spacing-xx-large)",
-    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
+    borderTop: "1px solid var(--sl-color-neutral-200)",
   },
   TaxDocumentsSectionHeaderContainer: {
     marginTop: "var(--sl-spacing-x-large)",
@@ -178,7 +213,7 @@ const style = {
     "& p": {
       margin: "0",
       paddingTop: "2px",
-      color: "var(--sqm-text-subdued)",
+      color: "var(--sl-color-gray-500)",
     },
   },
   StatusAlert: {
@@ -213,7 +248,7 @@ const style = {
   },
   TaxDocSubtext: {
     margin: "0",
-    color: "var(--sqm-text-subdued)",
+    color: "var(--sl-color-neutral-500)",
     lineHeight: "var(--sl-spacing-medium)",
     fontSize: "var(--sl-font-size-small)",
     marginLeft: "1px",
@@ -234,71 +269,29 @@ const style = {
     gap: "6px",
   },
   DescriptionText: {
-    color: "var(--sqm-text-subdued)",
+    color: "var(--sl-color-gray-500)",
     fontSize: "var(--sl-font-size-x-small)",
+    marginBottom: "none",
     maxWidth: "492px",
   },
   PageDescriptionText: {
-    color: "var(--sqm-text-subdued)",
+    color: "var(--sl-color-neutral-500)",
     fontSize: "var(--sl-font-size-medium)",
     marginTop: "0",
-  },
-
-  WarningButton: {
-    "&::part(base)": {
-      marginTop: "20px",
-      borderColor: "var(--sqm-warning-color-border)",
-      color: "var(--sqm-warning-color-text)",
-      background: "var(--sqm-warning-color-background)",
-
-      "&:hover": {
-        background: "var(--sqm-warning-color-icon)",
-      },
-    },
-  },
-
-  ErrorButton: {
-    "&::part(base)": {
-      marginTop: "20px",
-      borderColor: "var(--sqm-danger-color-border)",
-      color: "var(--sqm-danger-color-text)",
-      background: "var(--sqm-danger-color-background)",
-
-      "&:hover": {
-        background: "var(--sqm-danger-color-icon)",
-      },
-    },
-  },
-
-  SuccessButton: {
-    "&::part(base)": {
-      marginTop: "20px",
-      borderColor: "var(--sqm-success-color-border)",
-      color: "var(--sqm-success-color-text)",
-      background: "var(--sqm-success-color-background)",
-
-      "&:hover": {
-        background: "var(--sqm-success-color-icon)",
-      },
-    },
   },
   Dialog: {
     "&::part(panel)": {
       maxWidth: "420px",
     },
-    "&::part(header)": {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      paddingTop: "var(--sl-spacing-large)",
-    },
     "&::part(close-button)": {
       marginBottom: "var(--sl-spacing-xx-large)",
     },
     "&::part(title)": {
-      fontSize: "var(--sl-font-size-large)",
+      fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "600",
-      padding: "0px var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      marginTop: "var(--sl-spacing-xxx-large)",
+      padding:
+        "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
@@ -316,56 +309,6 @@ const style = {
   DialogButton: { margin: "auto", width: "100%" },
 };
 
-const vanillaStyle = `
-  * {
-    font-family: var(--sqm-primary-font);
-    }
-  a {
-    color: inherit;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  *::part(primarybutton-base),
-  sl-button[type="primary"]::part(base) {
-    font-family: var(--sqm-primary-font);
-    width: 100%;
-    background-color: var(--sqm-primary-button-background);
-    color: var(--sqm-primary-button-color);
-    border-color: var(--sqm-primary-button-color-border);
-    border-radius: var(--sqm-primary-button-radius);
-  }
-
-  *::part(primarybutton-base):hover,
-  sl-button[type="primary"]::part(base):hover{
-    background-color: var(--sqm-primary-button-background-hover);
-    border-color: var(--sqm-primary-button-border-color-hover);
-    color: var(--sqm-primary-button-color-hover);
-  }
-
-
-  *::part(primarybutton-base):focus,
-  sl-button[type="primary"]::part(base):focus {
-    box-shadow: none;
-  }
-
-  *::part(secondarybutton-base),
-  sl-button[type="secondary"]::part(base) {
-  font-family: var(--sqm-primary-font);
-    background-color: var(--sqm-secondary-button-background);
-    color: var(--sqm-secondary-button-color);
-    border-color: var(--sqm-secondary-button-color-border);
-    border-radius: var(--sqm-secondary-button-radius);
-  }
-
-  *::part(secondarybutton-base):hover,
-  sl-button[type="secondary"]::part(base):hover {
-    background-color: var(--sqm-secondary-button-background-hover);
-    color: var(--sqm-secondary-button-color-hover);
-    border-color: var(--sqm-secondary-button-border-color-hover);
-  }
-`;
-
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
@@ -374,6 +317,64 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   function getAlert(status: PayoutStatus) {
     switch (status) {
+      case "OVER_W9_THRESHOLD":
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9") {
+          return {
+            header: text.w9RequiredHeader,
+            description: intl.formatMessage(
+              {
+                id: "w9RequiredDescription",
+                defaultMessage: text.w9RequiredDescription,
+              },
+              {
+                termsAndConditions: (
+                  <a
+                    target="_blank"
+                    href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                  >
+                    {text.termsAndConditions}
+                  </a>
+                ),
+              }
+            ),
+            button: (
+              <sl-button
+                style={{ marginTop: "var(--sl-spacing-x-small)" }}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.w9RequiredButtonText}
+              </sl-button>
+            ),
+            alertType: "info",
+            icon: "info-circle",
+            class: sheet.classes.WarningHoldAlertContainer,
+          };
+        } else {
+          return {
+            header: text.payoutHoldAlertHeader,
+            description: intl.formatMessage(
+              {
+                id: "payoutHoldAlertDescription",
+                defaultMessage: text.payoutHoldAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: null,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+            class: sheet.classes.WarningHoldAlertContainer,
+          };
+        }
       case "VERIFICATION:REQUIRED":
         return {
           header: text.verificationRequiredHeader,
@@ -392,6 +393,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:INTERNAL":
         return {
@@ -410,6 +413,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:REVIEW":
         return {
@@ -428,6 +433,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "VERIFICATION:FAILED":
         return {
@@ -446,6 +453,29 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           alertType: "error",
+          icon: "exclamation-octagon",
+          class: sheet.classes.ErrorHoldAlertContainer,
+        };
+      case "ACCOUNT_REVIEW":
+        return {
+          header: text.accountReviewHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.accountReviewDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       case "HOLD":
         return {
@@ -465,6 +495,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           ),
           buttonText: null,
           alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
         };
       default:
         return;
@@ -474,7 +506,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
   const statusMap = {
     NOT_VERIFIED: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge class={sheet.classes.WarningBadge} type="warning" pill>
+        <sl-badge type="warning" pill>
           {text.statusTextNotVerified}
         </sl-badge>
         <p>
@@ -492,7 +524,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     ),
     ACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge class={sheet.classes.SuccessBadge} type="success" pill>
+        <sl-badge type="success" pill>
           {text.statusTextActive}
         </sl-badge>
         <p>
@@ -513,18 +545,41 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     ),
     INACTIVE: (
       <div class={sheet.classes.TaxFormDetailsContainer}>
-        <sl-badge class={sheet.classes.DangerBadge} type="danger" pill>
+        <sl-badge type="danger" pill>
           {text.statusTextNotActive}
         </sl-badge>
         <p>{text.invalidForm}</p>
+      </div>
+    ),
+    undefined: (
+      <div class={sheet.classes.TaxFormDetailsContainer}>
+        <sl-badge type="danger" pill>
+          {text.statusTextRequired}
+        </sl-badge>
+        <p>
+          {intl.formatMessage(
+            {
+              id: `requiredTaxForm`,
+              defaultMessage: text.requiredTaxForm,
+            },
+            {
+              taxFormType: states.documentType,
+            }
+          )}
+        </p>
       </div>
     ),
   };
 
   const alertMap = {
     INACTIVE: (
-      <sqm-form-message type="error">
-        <p part="alert-title">
+      <sl-alert
+        exportparts="base: alert-base, icon:alert-icon"
+        type="danger"
+        open
+      >
+        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+        <strong>
           {intl.formatMessage(
             {
               id: `taxAlertHeaderNotActive`,
@@ -537,7 +592,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               documentType: states.documentTypeString,
             }
           )}
-        </p>
+        </strong>
+        <br />
         {intl.formatMessage(
           {
             id: `taxAlertMessage`,
@@ -550,7 +606,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             documentType: states.documentTypeString,
           }
         )}
-      </sqm-form-message>
+      </sl-alert>
     ),
   };
 
@@ -590,37 +646,51 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     }
   };
 
-  const alert = getAlert(states.payoutStatus);
+  const alertInfo = getAlert(states.payoutStatus);
 
   return (
     <div>
       <div>
         <style type="text/css">{styleString}</style>
-        <style type="text/css">{vanillaStyle}</style>
         {states.loadingError && (
-          <sqm-form-message type="error">
-            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
-            {intl.formatMessage(
-              {
-                id: "loadingErrorAlertDescription",
-                defaultMessage: text.error.loadingErrorAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
-                  >
-                    {text.supportLink}
-                  </a>
-                ),
-              }
-            )}
-          </sqm-form-message>
+          <div>
+            <sl-alert
+              exportparts="base: alert-base, icon:alert-icon"
+              type="danger"
+              open
+            >
+              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+              <strong>{text.error.loadingErrorAlertHeader}</strong>
+              <br />
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
+            </sl-alert>
+          </div>
         )}
         {states.errors?.general && (
-          <sqm-form-message type="error">
-            <p part="alert-title">{text.error.generalTitle}</p>
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            type="danger"
+            open
+            class={sheet.classes.ErrorAlertContainer}
+          >
+            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+            <strong>{text.error.generalTitle}</strong>
+            <br />
             {intl.formatMessage(
               {
                 id: "generalDescription",
@@ -637,27 +707,34 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 ),
               }
             )}
-          </sqm-form-message>
+          </sl-alert>
         )}
-
-        {alert && (
-          <sqm-form-message type={alert.alertType}>
-            <p part="alert-title">{alert.header}</p>
-            <p part="alert-description">{alert.description}</p>
-            {alert.buttonText && (
+        {alertInfo && (
+          <sl-alert
+            exportparts="base: alert-base, icon:alert-icon"
+            name={alertInfo?.alertType}
+            open
+            class={alertInfo?.class}
+          >
+            <sl-icon slot="icon" name={alertInfo?.icon}></sl-icon>
+            <strong>{alertInfo.header}</strong>
+            <p style={{ margin: "0" }}>{alertInfo.description}</p>
+            {alertInfo.buttonText && (
               <sl-button
-                class={
-                  sheet.classes[
-                    `${capitalizeFirstLetter(alert.alertType)}Button`
-                  ]
-                }
+                style={{ marginTop: "var(--sl-spacing-x-small)" }}
+                type="default"
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
-                {alert.buttonText}
+                {alertInfo.buttonText}
               </sl-button>
             )}
-          </sqm-form-message>
+            {alertInfo.button ? (
+              alertInfo.button
+            ) : (
+              <div style={{ display: "none" }}></div>
+            )}
+          </sl-alert>
         )}
         <sl-dialog
           label={text.replaceTaxFormModalHeader}
@@ -669,7 +746,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <sl-button
             slot="footer"
             type="primary"
-            exportparts="base: primarybutton-base"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormClick}
           >
@@ -677,8 +753,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           </sl-button>
           <sl-button
             slot="footer"
-            type="secondary"
-            exportparts="base: secondarybutton-base"
+            type="default"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormCancel}
           >
@@ -690,9 +765,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <h3 style={{ marginBottom: "0" }}>
             {text.bankingInformationSectionHeader}
           </h3>
-          <p class={sheet.classes.PageDescriptionText}>
-            {text.taxAndPayoutsDescription}
-          </p>
           <div class={sheet.classes.BankingInformationContainer}>
             {slots.payoutDetailsCardSlot}
             {!states.loading && (
@@ -703,37 +775,25 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {states.canEditPayoutInfo && (
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="secondary"
-                exportparts="base: secondarybutton-base"
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
-                style={{ marginTop: states.loading ? "12px" : "0px" }} //Need to add margin when loading because we are relying on the margin from the DescriptionText which is hidden when loading
               >
                 {text.editPaymentInformationButton}
               </sl-button>
             )}
           </div>
         </div>
-        <div class={sheet.classes.TaxDocumentsContainer}>
-          <div>
-            {states.loading ? (
-              <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-              </div>
-            ) : (
-              <div>
-                {states.noFormNeeded ? (
-                  <div>
-                    <h3
-                      class={sheet.classes.TaxDocumentsSectionHeaderContainer}
-                    >
-                      {text.taxDocumentSectionHeader}
-                    </h3>
-                    <p class={sheet.classes.TaxDocSubtext}>
-                      {text.noFormNeededSubtext}
-                    </p>
-                  </div>
-                ) : (
+        {(!states.noFormNeeded || states.status === "NOT_VERIFIED") && (
+          <div class={sheet.classes.TaxDocumentsContainer}>
+            <div>
+              {states.loading ? (
+                <div class={sheet.classes.TaxSectionSkeletonContainer}>
+                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                </div>
+              ) : (
+                <div>
                   <div>
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
@@ -744,7 +804,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               defaultMessage: text.taxDocumentSectionSubHeader,
                             },
                             {
-                              documentType: states.documentTypeString,
+                              documentType: states.documentTypeString || "W-9",
                             }
                           )}
                         </h3>
@@ -753,23 +813,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         </span>
                       </div>
                     </span>
-                    {states.status !== "NOT_VERIFIED" && (
-                      <sl-button
-                        style={{ marginTop: "20px" }}
-                        disabled={states.disabled || states.loading}
-                        onClick={callbacks.onClick}
-                        type="secondary"
-                        exportparts="base: secondarybutton-base"
-                      >
-                        {text.newFormButton}
-                      </sl-button>
-                    )}
+                    {states.noFormNeeded &&
+                      states.status !== "NOT_VERIFIED" && (
+                        <sl-button
+                          disabled={states.disabled || states.loading}
+                          onClick={callbacks.onClick}
+                          type="default"
+                          class={sheet.classes.NewFormButton}
+                          exportparts="base: primarybutton-base"
+                        >
+                          {text.newFormButton}
+                        </sl-button>
+                      )}
                   </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (

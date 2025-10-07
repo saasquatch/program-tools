@@ -97,6 +97,10 @@ import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/Payo
 import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
 import * as TaxFormSlots from "../tax-and-cash/sqm-user-info-form/small-views/SlotViews.stories";
 import * as EmailRegistration from "../views/EmailRegistration.stories";
+import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
+import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
+import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
+import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
 
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { CucumberAddon } from "./CucumberAddon";
@@ -199,6 +203,10 @@ const stories = [
   PayoutStatusAlert,
   QRCode,
   Text,
+  LeadForm,
+  LeadInputField,
+  LeadFormDropdownField,
+  LeadCheckboxField,
 ];
 
 /**
