@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
+import { FORM_STEPS, ImpactPublisher } from "../sqm-tax-and-cash/data";
 import { formatErrorMessage, validateBillingField } from "../utils";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 
@@ -69,6 +69,7 @@ export interface UserInfoFormViewProps {
       currencyCode: string;
       displayName: string;
     }[];
+    partnerData: ImpactPublisher;
   };
   callbacks: {
     setCurrencySearch: (c: any) => void;
@@ -296,7 +297,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   }
 
   function isDisabledInput(field: string) {
-    if (states.isPartner && !!states.formState[field]) return true;
+    if (states.isPartner && !!data.partnerData?.[field]) return true;
     return false;
   }
 

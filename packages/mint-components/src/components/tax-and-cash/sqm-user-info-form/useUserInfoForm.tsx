@@ -297,6 +297,7 @@ export function useUserInfoForm(props: TaxForm) {
       allCountries: countries,
       regionLabelEnum: regionObj?.labelEnum,
       regions: regionObj?.regions || [],
+      partnerData: data?.user?.impactConnection?.publisher,
     },
     states: {
       step: step?.replace("/", ""),
@@ -307,6 +308,7 @@ export function useUserInfoForm(props: TaxForm) {
       loading: loading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
+
       formState: {
         ...userFormContext,
         errors: formErrors,
