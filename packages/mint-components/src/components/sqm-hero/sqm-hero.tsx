@@ -31,9 +31,9 @@ export class Hero {
   @Prop() minHeight: number = 200;
 
   /**
-   * Add an image or select a color. Recommended image aspect ratio of 4:5
+   * Content background color or image (for use in the left column)
    *
-   * @uiName Background
+   * @uiName Content background
    * @uiWidget Background
    */
   @Prop() background?: string = "#f9fafb";
@@ -46,9 +46,9 @@ export class Hero {
   @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";
 
   /**
-   * Secondary background image or color (for use in the right column)
+   * Splash image or background color (for use in the right column)
    *
-   * @uiName Secondary background
+   * @uiName Splash image
    * @uiWidget Background
    */
   @Prop() secondaryBackground?: string;

@@ -1024,8 +1024,8 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Add an image or select a color. Recommended image aspect ratio of 4:5
-          * @uiName Background
+          * Content background color or image (for use in the left column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "background"?: string;
@@ -1054,8 +1054,8 @@ export namespace Components {
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Splash image or background color (for use in the right column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -8723,8 +8723,8 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Add an image or select a color. Recommended image aspect ratio of 4:5
-          * @uiName Background
+          * Content background color or image (for use in the left column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "background"?: string;
@@ -8753,8 +8753,8 @@ declare namespace LocalJSX {
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Splash image or background color (for use in the right column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
