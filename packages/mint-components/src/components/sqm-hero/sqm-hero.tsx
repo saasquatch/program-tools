@@ -36,7 +36,7 @@ export class Hero {
    * @uiName Content background
    * @uiWidget Background
    */
-  @Prop() background?: string = "#f9fafb";
+  @Prop() background?: string;
 
   /**
    * @uiName Padding size

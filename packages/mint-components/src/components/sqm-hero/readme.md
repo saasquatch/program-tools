@@ -9,7 +9,7 @@
 
 | Property               | Attribute                  | Description                                                             | Type                                       | Default     |
 | ---------------------- | -------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | ----------- |
-| `background`           | `background`               | Content background color or image (for use in the left column)          | `string`                                   | `"#f9fafb"` |
+| `background`           | `background`               | Content background color or image (for use in the left column)          | `string`                                   | `undefined` |
 | `columnToHideInMobile` | `column-to-hide-in-mobile` | Can only be used when two columns are present                           | `"primary" \| "secondary"`                 | `null`      |
 | `columns`              | `columns`                  |                                                                         | `1 \| 2`                                   | `1`         |
 | `minHeight`            | `min-height`               | Minimum height of each column including when they are stacked on mobile | `number`                                   | `200`       |
