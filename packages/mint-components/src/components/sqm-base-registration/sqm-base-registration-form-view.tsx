@@ -17,6 +17,7 @@ export interface BaseRegistrationFormViewProps {
     handleEmailSubmit: Function;
   };
   content: {
+    formData?: VNode;
     pageLabel?: string;
     googleButton?: VNode;
     secondaryButton?: VNode;
@@ -85,6 +86,7 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {content.formData}
         <sl-input
           exportparts="label: input-label, base: input-base"
           type="email"
