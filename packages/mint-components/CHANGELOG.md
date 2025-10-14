@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.3] - 2025-11-14
+
+### Added
+
+- \<sqm-portal-google-registration-form>
+  - Added missing metadata to component
+  - Added formData slot to base registration form view
+
 ## [1.15.2] - 2025-10-03
 
 ### Added
@@ -1281,7 +1289,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.3...HEAD
+[1.15.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.3
 [1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
 [1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
 [1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0
