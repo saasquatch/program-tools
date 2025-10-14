@@ -451,7 +451,6 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
-  console.log("dashboard", { props });
   // @ts-ignore
   return deepmerge(
     {

@@ -264,41 +264,8 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
 
   const finalProps = deepmerge(
     { ...demoRewardExchange, content: { text: props } },
-    // {
-    //   states: {
-    //     content: {
-    //       text: props,
-    //     },
-    //     redeemStage: "chooseReward",
-    //     amount: 0,
-    //     selectedStep: undefined,
-    //     selectedItem: undefined,
-    //     open: false,
-    //     exchangeError: false,
-    //     queryError: false,
-    //     loading: false,
-    //     noExchangeOptions: false,
-    //     // empty: EmptySlot(),
-    //   },
-
-    //   data: {
-    //     // shareCode: "SHARECODE123",
-    //     exchangeList: demoRewardExchange.data.exchangeList,
-    //   },
-    //   callbacks: {
-    //     exchangeReward: () => {},
-    //     setExchangeState: (_: ExchangeState) => {},
-    //     setStage: (_: Stages) => {},
-    //     resetState: () => {},
-    //     copyFuelTankCode: () => {},
-    //   },
-    //   refs: {
-    //     canvasRef: {},
-    //   },
-    // },
     props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
-  console.log({ finalProps });
   return finalProps;
 }
