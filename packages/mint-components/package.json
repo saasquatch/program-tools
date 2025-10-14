@@ -33,9 +33,13 @@
     "specs": "picklesdoc xlsx src docs --testers=2",
     "serve:package": "serve . --cors -l 5000",
     "start:raisins": "run-p start serve:package",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "@formatjs/intl": "1.8.4",
     "@formatjs/intl-pluralrules": "^1.5.8",
     "@formatjs/intl-relativetimeformat": "4.5.15",
