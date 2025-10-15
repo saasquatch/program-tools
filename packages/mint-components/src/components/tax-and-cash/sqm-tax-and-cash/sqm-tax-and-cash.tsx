@@ -1297,6 +1297,9 @@ export class TaxAndCashMonolith {
         return (
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}
+            stateController={
+              props["sqm-tax-and-cash-dashboard_stateController"] || "{}"
+            }
           ></sqm-tax-and-cash-dashboard>
         );
       case "/error":
