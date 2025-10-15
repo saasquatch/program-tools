@@ -31,9 +31,9 @@ export class Hero {
   @Prop() minHeight: number = 200;
 
   /**
-   * Content background color or image (for use in the left column)
+   * Splash image or background color (for use in the left column)
    *
-   * @uiName Content background
+   * @uiName Splash image
    * @uiWidget Background
    */
   @Prop() background?: string;
@@ -46,9 +46,9 @@ export class Hero {
   @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";
 
   /**
-   * Splash image or background color (for use in the right column)
+   * Content background color or image (for use in the right column)
    *
-   * @uiName Splash image
+   * @uiName Content background
    * @uiWidget Background
    */
   @Prop() secondaryBackground?: string;

@@ -1024,8 +1024,8 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Content background color or image (for use in the left column)
-          * @uiName Content background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
@@ -1054,8 +1054,8 @@ export namespace Components {
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
-          * Splash image or background color (for use in the right column)
-          * @uiName Splash image
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -8731,8 +8731,8 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Content background color or image (for use in the left column)
-          * @uiName Content background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
@@ -8761,8 +8761,8 @@ declare namespace LocalJSX {
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
-          * Splash image or background color (for use in the right column)
-          * @uiName Splash image
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
