@@ -5,10 +5,11 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                            | Type     | Default     |
-| -------- | --------- | ---------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `icon`   | `icon`    | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string` | `undefined` |
-| `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                              | `string` | `undefined` |
+| Property      | Attribute     | Description                                                                                                            | Type      | Default     |
+| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `icon`        | `icon`        | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string`  | `undefined` |
+| `transparent` | `transparent` |                                                                                                                        | `boolean` | `false`     |
+| `type`        | `type`        | Options include "success", "info", "warning", and "error"                                                              | `string`  | `undefined` |
 
 
 ## Dependencies
@@ -41,6 +42,7 @@
  - [sqm-referred-registration](../sqm-referred-registration)
  - [sqm-stencilbook](../sqm-stencilbook)
  - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
+ - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
  - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
 ### Graph
@@ -72,6 +74,7 @@ graph TD;
   sqm-referred-registration --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   sqm-tax-and-cash --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-form-message
   sqm-user-info-form --> sqm-form-message
   style sqm-form-message fill:#f9f,stroke:#333,stroke-width:4px
 ```

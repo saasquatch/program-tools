@@ -986,6 +986,10 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
+        /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type
          */
@@ -8691,6 +8695,10 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
         /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type

@@ -39,3 +39,33 @@ export const InfoAlert = () => {
     </sqm-form-message>
   );
 };
+
+export const SuccessAlertTransparent = () => {
+  return (
+    <sqm-form-message type="success" transparent={true}>
+      <p part="alert-title">This is the title</p>
+      <p part="alert-description">This is the description</p>
+    </sqm-form-message>
+  );
+};
+
+export const ErrorAlertTransparent = () => (
+  <sqm-form-message type="error" transparent={true}>
+    <p part="alert-title">This is the title</p>
+    <p part="alert-description">This is the description</p>
+  </sqm-form-message>
+);
+
+export const WarningAlertTransparent = () => (
+  <sqm-form-message type="warning" transparent={true}>
+    <p part="alert-title">This is the title</p>
+    <p part="alert-description">This is the description</p>
+  </sqm-form-message>
+);
+
+export const InfoAlertTransparent = () => (
+  <sqm-form-message type="info" transparent={true}>
+    <p part="alert-title">This is the title</p>
+    <p part="alert-description">This is the description</p>
+  </sqm-form-message>
+);

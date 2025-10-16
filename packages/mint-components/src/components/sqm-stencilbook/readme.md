@@ -242,6 +242,7 @@ graph TD;
   sqm-indirect-tax-form --> sqm-form-message
   sqm-docusign-form --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
+  sqm-tax-and-cash-dashboard --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column

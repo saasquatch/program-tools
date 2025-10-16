@@ -3,7 +3,6 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
-import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
 import {
@@ -452,8 +451,6 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
-  const stateController = parseStates(props.stateController);
-
   // @ts-ignore
   return deepmerge(
     {
@@ -503,7 +500,7 @@ function useDemoTaxAndCashDashboard(
         ),
       },
     },
-    stateController || props.demoData || {},
+    props.demoData || props.stateController || {},
     { arrayMerge: (_, a) => a }
   );
 }
