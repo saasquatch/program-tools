@@ -27,9 +27,13 @@ export function usePortalGoogleRegistrationForm(
     let errorMessage: string = null;
 
     formControls.forEach((control) => {
-      if (!control.name || control.name !== "/email") return;
+      if (!control.name) return;
 
       jsonpointer.set(formData, control.name, control.value);
+
+      // only validate email field
+      if (control.name !== "/email") return;
+
       if (control.required && !control.value)
         errorMessage = props.requiredFieldErrorMessage;
       if (typeof control.validationError === "function") {
