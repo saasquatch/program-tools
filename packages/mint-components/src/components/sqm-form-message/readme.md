@@ -8,7 +8,7 @@
 | Property      | Attribute     | Description                                                                                                            | Type      | Default     |
 | ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `icon`        | `icon`        | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string`  | `undefined` |
-| `transparent` | `transparent` |                                                                                                                        | `boolean` | `false`     |
+| `transparent` | `transparent` | Render the alert with transparent styles                                                                               | `boolean` | `false`     |
 | `type`        | `type`        | Options include "success", "info", "warning", and "error"                                                              | `string`  | `undefined` |
 
 

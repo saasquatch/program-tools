@@ -41,7 +41,7 @@ export function PortalContainerView(
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
       justifyContent: props.justifyContent,
-      backgroundColor: props.backgroundColor || "inherit",
+      backgroundColor: props.backgroundColor || "var(--sqm-portal-background)",
     },
   };
 
