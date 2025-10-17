@@ -526,7 +526,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -547,7 +547,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -568,7 +568,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -589,7 +589,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -610,7 +610,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
