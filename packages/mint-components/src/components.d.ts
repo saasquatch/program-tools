@@ -2052,6 +2052,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton": string;
+        /**
           * @uiName Error description
          */
         "errorDescription": string;
@@ -9332,6 +9336,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton"?: string;
         /**
           * @uiName Error description
          */

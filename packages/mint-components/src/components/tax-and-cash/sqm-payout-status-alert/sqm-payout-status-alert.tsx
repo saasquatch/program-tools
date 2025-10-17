@@ -26,6 +26,11 @@ export class PayoutStatusAlert {
   @Prop() informationRequiredHeader: string =
     "Payout and tax information required";
   /**
+   *
+   * @uiName Edit payment info button label
+   */
+  @Prop() editPaymentInformationButton: string = "Edit Payout Information";
+  /**
    * @uiName Info required alert description
    */
   @Prop() informationRequiredDescription: string =
@@ -234,6 +239,7 @@ function useDemoPayoutStatusAlert(
       callbacks: {
         onTermsClick: () => {},
         onClick: () => console.log("show"),
+        onPaymentInfoClick: () => {},
       },
     },
     props.demoData || {},

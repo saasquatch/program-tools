@@ -1,8 +1,18 @@
-import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  getEnvironmentSDK,
+  useParent,
+  useQuery,
+  useSetParent,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
-import { UserQuery } from "../sqm-tax-and-cash/data";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
+  UserQuery,
+} from "../sqm-tax-and-cash/data";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
@@ -133,6 +143,9 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
 
+  const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
+
   const enforceUsTaxComplianceOption =
     taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
 
@@ -168,6 +181,16 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     window.history.pushState(null, "", url);
   };
 
+  const onPaymentInfoClick = () => {
+    setContext({
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
+      hideSteps: true,
+    });
+
+    setStep("/4");
+  };
+
   return {
     states: {
       loading,
@@ -181,6 +204,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     callbacks: {
       onTermsClick,
       onClick: render,
+      onPaymentInfoClick,
     },
   };
 }

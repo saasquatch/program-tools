@@ -526,7 +526,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -547,7 +556,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -568,7 +586,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -589,7 +616,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
@@ -610,7 +646,16 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,

@@ -22,8 +22,10 @@ export interface PayoutStatusAlertViewProps {
   callbacks: {
     onClick: () => void;
     onTermsClick: () => void;
+    onPaymentInfoClick: () => void;
   };
   text: {
+    editPaymentInformationButton: string;
     informationRequiredHeader: string;
     informationRequiredDescription: string;
     informationRequiredButtonText: string;
@@ -330,7 +332,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -351,7 +353,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -372,7 +374,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -393,7 +395,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -414,7 +416,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: null,
+          buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -492,6 +494,13 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           </sl-button>
         );
       default:
+        if (alertDetails.buttonText)
+          return (
+            <sl-button type="default" onClick={callbacks.onPaymentInfoClick}>
+              {alertDetails.buttonText}
+            </sl-button>
+          );
+
         return;
     }
   }
