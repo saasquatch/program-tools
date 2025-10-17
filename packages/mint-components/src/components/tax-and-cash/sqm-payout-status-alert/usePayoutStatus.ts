@@ -21,8 +21,14 @@ export type PayoutStatus =
   | "VERIFICATION:INTERNAL"
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
+  | "NEW_PAYEE_REVIEW"
+  | "PAYMENT_HOLD_ON_CHANGE"
+  | "BENEFICIARY_NAME_INVALID"
+  | "BENEFICIARY_NAME_MISMATCH"
+  | "BANK_TAX_NAME_MISMATCH"
+  | "WITHDRAWAL_SETTINGS_INVALID"
+  | "PAYMENT_RETURNED"
   | "HOLD"
-  | "ACCOUNT_REVIEW"
   | "DONE";
 
 export type TenantSettingsQuery = {
@@ -93,7 +99,19 @@ export function getStatus(data: UserQuery): PayoutStatus {
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
-    return "ACCOUNT_REVIEW";
+    return "NEW_PAYEE_REVIEW";
+  if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
+    return "PAYMENT_HOLD_ON_CHANGE";
+  if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
+    return "BENEFICIARY_NAME_INVALID";
+  if (account.holdReasons?.includes("BENEFICIARY_NAME_MISMATCH"))
+    return "BENEFICIARY_NAME_MISMATCH";
+  if (account.holdReasons?.includes("BANK_TAX_NAME_MISMATCH"))
+    return "BANK_TAX_NAME_MISMATCH";
+  if (account.holdReasons?.includes("WITHDRAWAL_SETTINGS_INVALID"))
+    return "WITHDRAWAL_SETTINGS_INVALID";
+  if (account.holdReasons?.includes("PAYMENT_RETURNED"))
+    return "PAYMENT_RETURNED";
   if (account.hold) return "HOLD";
   return "DONE";
 }

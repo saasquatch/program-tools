@@ -2019,6 +2019,30 @@ export namespace Components {
          */
         "accountReviewHeader": string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription": string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader": string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader": string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl": string;
@@ -2055,6 +2079,22 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "paymentHoldOnChangeDescription": string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "paymentHoldOnChangeHeader": string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription": string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader": string;
         /**
           * @uiName Support link text
          */
@@ -2111,6 +2151,14 @@ export namespace Components {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -4675,10 +4723,34 @@ export namespace Components {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_bankNameMismatchDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_bankNameMismatchHeader": string;
+        /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_beneficiaryNameMismatchHeader": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
@@ -4804,6 +4876,22 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_paymentOnHoldDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_paymentOnHoldHeader": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_paymentReturnedDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_paymentReturnedHeader": string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -5008,6 +5096,14 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_w9RequiredHeader": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_withdrawalSettingsInvalidHeader": string;
         /**
           * @undocumented 
           * @uiType object
@@ -5663,9 +5759,33 @@ export namespace Components {
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription": string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader": string;
+        /**
           * @uiName Payout information section header
          */
         "bankingInformationSectionHeader": string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader": string;
         /**
           * @uiName Cancel button label
          */
@@ -5796,6 +5916,22 @@ export namespace Components {
           * @uiWidget textArea
          */
         "notRegisteredForTax": string;
+        /**
+          * @uiName Payment hold on change alert description
+         */
+        "paymentHoldOnChangeDescription": string;
+        /**
+          * @uiName Payment hold on change alert header
+         */
+        "paymentHoldOnChangeHeader": string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription": string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader": string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -5961,6 +6097,14 @@ export namespace Components {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader": string;
     }
     interface SqmText {
     }
@@ -9156,6 +9300,30 @@ declare namespace LocalJSX {
          */
         "accountReviewHeader"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription"?: string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader"?: string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader"?: string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl"?: string;
@@ -9192,6 +9360,22 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "paymentHoldOnChangeDescription"?: string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "paymentHoldOnChangeHeader"?: string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription"?: string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader"?: string;
         /**
           * @uiName Support link text
          */
@@ -9248,6 +9432,14 @@ declare namespace LocalJSX {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -11788,10 +11980,34 @@ declare namespace LocalJSX {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_bankNameMismatchDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_bankNameMismatchHeader"?: string;
+        /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_beneficiaryNameMismatchHeader"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
@@ -11917,6 +12133,22 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_paymentOnHoldDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_paymentOnHoldHeader"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_paymentReturnedDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_paymentReturnedHeader"?: string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -12121,6 +12353,14 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_w9RequiredHeader"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_withdrawalSettingsInvalidHeader"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -12776,9 +13016,33 @@ declare namespace LocalJSX {
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription"?: string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader"?: string;
+        /**
           * @uiName Payout information section header
          */
         "bankingInformationSectionHeader"?: string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader"?: string;
         /**
           * @uiName Cancel button label
          */
@@ -12909,6 +13173,22 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "notRegisteredForTax"?: string;
+        /**
+          * @uiName Payment hold on change alert description
+         */
+        "paymentHoldOnChangeDescription"?: string;
+        /**
+          * @uiName Payment hold on change alert header
+         */
+        "paymentHoldOnChangeHeader"?: string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription"?: string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader"?: string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -13074,6 +13354,14 @@ declare namespace LocalJSX {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader"?: string;
     }
     interface SqmText {
     }
