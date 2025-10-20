@@ -36,7 +36,6 @@ export function usePortalGoogleRegistrationForm(
       if (control.required && !value) {
         jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
       }
-      // errorMessage = props.requiredFieldErrorMessage;
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
         const validationError = validate({
