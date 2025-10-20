@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-input-field>
 - \<sqm-dropdown-field>
 - \<sqm-checkbox-field>
-  - Adds google registration form to valid parents and reorganizes imports
+  - Adds google registration form to valid parents
 
 ## [1.15.3] - 2025-10-14
 
