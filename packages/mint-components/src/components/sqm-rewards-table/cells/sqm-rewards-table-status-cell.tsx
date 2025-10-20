@@ -242,8 +242,7 @@ export class RewardTableStatusCell {
         ? this.deniedText
         : null;
 
-    // @ts-ignore
-    const getBadgeCSSClass = (badgeType: string): string => {
+    const getBadgeCSSClass = () => {
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;
@@ -258,7 +257,7 @@ export class RewardTableStatusCell {
       }
     };
 
-    const badgeCSSClass = getBadgeCSSClass(badgeType);
+    const badgeCSSClass = getBadgeCSSClass();
 
     return (
       <div style={{ display: "contents" }}>

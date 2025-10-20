@@ -279,7 +279,6 @@ function ColorToken({ type = "primary" }: { type?: string }) {
   return (
     <span
       style={{
-        // background: `var(--sl-color-${type}-500)`,
         width: "1em",
         marginRight: "2px",
         padding: "0 4px",

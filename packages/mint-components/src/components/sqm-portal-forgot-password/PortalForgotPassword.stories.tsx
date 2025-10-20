@@ -73,6 +73,8 @@ const successProps: PortalForgotPasswordViewProps = {
   content: {
     loginText: "Login",
     messageSlot: "Enter your email below to receive a password reset link.",
+    successAlertText:
+      "An email has been sent with instructions to reset your password.",
   },
 };
 

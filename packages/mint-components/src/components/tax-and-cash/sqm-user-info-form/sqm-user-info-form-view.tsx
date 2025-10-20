@@ -1,7 +1,6 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-// import { GeneralLoadingView } from "../TaxForm.stories";
 import { FORM_STEPS } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 import LoadingView from "../sqm-tax-and-cash/LoadingView";

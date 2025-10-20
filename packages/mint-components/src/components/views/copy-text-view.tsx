@@ -87,11 +87,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         color: props.textColor || "var(--sqm-text)",
       },
     },
-    inputErrorStyle: {
-      // "&::part(base)": {
-      //   border: "1px solid red",
-      // },
-    },
+    inputErrorStyle: {},
     ContainerDiv: {
       display: "flex",
       alignItems: "flex-start",
@@ -181,7 +177,6 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          // exportparts="base: input-base, input: input-field"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}

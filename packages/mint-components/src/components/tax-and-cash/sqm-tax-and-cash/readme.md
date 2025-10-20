@@ -190,6 +190,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-user-info-form](../sqm-user-info-form)
@@ -229,6 +233,7 @@ graph TD;
   sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
   sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
   sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
+  sqm-stencilbook --> sqm-tax-and-cash
   style sqm-tax-and-cash fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

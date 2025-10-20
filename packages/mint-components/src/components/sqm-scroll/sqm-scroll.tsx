@@ -1,7 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, Host, State } from "@stencil/core";
 import { useScroll } from "./useScroll";
-import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Scroll Button

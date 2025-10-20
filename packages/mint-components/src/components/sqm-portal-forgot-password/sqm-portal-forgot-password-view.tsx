@@ -29,12 +29,6 @@ export interface PortalForgotPasswordViewProps {
     border?: string;
     textColor?: string;
   };
-  // styles?: {
-  //   backgroundColor?: string;
-  //   borderRadius?: string;
-  //   border?: string;
-  //   textColor?: string;
-  // };
 }
 
 const vanillaStyle = `
@@ -105,9 +99,6 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
           >
             {content.submitLabel || "Reset Password"}
           </sl-button>
-          {/* <div class={sheet.classes.SecondaryButton}>
-            {content.secondaryButton}
-          </div> */}
           <sl-button
             type="secondary"
             exportparts="base: secondarybutton-base"

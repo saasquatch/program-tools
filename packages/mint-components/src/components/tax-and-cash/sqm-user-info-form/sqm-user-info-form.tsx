@@ -215,7 +215,6 @@ export class TaxForm {
     return (
       <UserInfoFormView
         data={props.data}
-        // @ts-ignore
         states={props.states}
         callbacks={{
           ...props.callbacks,
@@ -231,7 +230,6 @@ export class TaxForm {
 function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
-  // @ts-ignore
   return deepmerge(
     {
       setStep,

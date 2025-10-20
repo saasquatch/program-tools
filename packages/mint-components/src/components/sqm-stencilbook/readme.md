@@ -96,6 +96,7 @@
 - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
 - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
 - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
+- [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
 - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
 - [sqm-lead-input-field](../sqm-lead-form)
 - [sqm-lead-dropdown-field](../sqm-lead-form)
@@ -193,6 +194,7 @@ graph TD;
   sqm-stencilbook --> sqm-indirect-tax-form
   sqm-stencilbook --> sqm-docusign-form
   sqm-stencilbook --> sqm-tax-and-cash-dashboard
+  sqm-stencilbook --> sqm-tax-and-cash
   sqm-stencilbook --> sqm-payout-status-alert
   sqm-stencilbook --> sqm-lead-input-field
   sqm-stencilbook --> sqm-lead-dropdown-field
@@ -247,6 +249,12 @@ graph TD;
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
+  sqm-tax-and-cash --> sqm-user-info-form
+  sqm-tax-and-cash --> sqm-indirect-tax-form
+  sqm-tax-and-cash --> sqm-docusign-form
+  sqm-tax-and-cash --> sqm-banking-info-form
+  sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
+  sqm-tax-and-cash --> sqm-form-message
   sqm-payout-status-alert --> sqm-scroll
   sqm-payout-status-alert --> sqm-form-message
   sqm-lead-form --> sqm-form-message

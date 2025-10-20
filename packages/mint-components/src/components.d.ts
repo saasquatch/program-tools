@@ -6871,6 +6871,7 @@ export namespace Components {
     }
     interface SqmWidgetVerificationController {
         /**
+          * @undocumented 
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
           * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
          */
@@ -14551,6 +14552,7 @@ declare namespace LocalJSX {
     }
     interface SqmWidgetVerificationController {
         /**
+          * @undocumented 
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
           * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
          */
