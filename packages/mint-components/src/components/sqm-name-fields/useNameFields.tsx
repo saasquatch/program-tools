@@ -1,7 +1,7 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
 import {
-  RegistrationFormState,
   REGISTRATION_FORM_STATE_CONTEXT,
+  RegistrationFormState,
 } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { NameFields } from "./sqm-name-fields";
 
@@ -11,6 +11,7 @@ export function useNameFields(props: NameFields) {
   );
   return {
     states: {
+      optional: props.optional,
       registrationFormState,
       content: {
         lastNameLabel: props.lastNameLabel,

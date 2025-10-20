@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
+import { getProps } from "../../utils/utils";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { validateNewPassword } from "./passwordValidation";
 import {
@@ -10,7 +11,6 @@ import {
   PortalResetPasswordView,
 } from "./sqm-password-field-view";
 import { usePasswordField } from "./usePasswordField";
-import { getProps } from "../../utils/utils";
 
 export interface PasswordFieldViewDemoProps {
   initValue: string;
@@ -25,7 +25,7 @@ export interface PasswordFieldViewDemoProps {
 
 /**
  * @uiName Form Password Field
- * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
  * @exampleGroup Microsite Components
  * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
  */

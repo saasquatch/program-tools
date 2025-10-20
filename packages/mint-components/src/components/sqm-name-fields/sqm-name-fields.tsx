@@ -30,6 +30,12 @@ export class NameFields {
   @Prop() lastNameLabel: string = "Last Name";
 
   /**
+   * @uiName Optional
+   * @uiWidget
+   */
+  @Prop() optional: boolean = false;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -50,6 +56,7 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
   return deepmerge(
     {
       states: {
+        optional: props.optional,
         validationErrors: [],
         content: {
           firstNameLabel: props.firstNameLabel,

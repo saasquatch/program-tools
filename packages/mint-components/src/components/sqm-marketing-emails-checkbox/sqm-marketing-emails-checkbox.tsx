@@ -12,7 +12,7 @@ import { useCheckboxField } from "../sqm-checkbox-field/useCheckboxField";
 
 /**
  * @uiName Marketing Emails Checkbox Field
- * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
  * @requiredFeatures ["MARKETING_EMAILS"]
  */
 @Component({
