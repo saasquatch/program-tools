@@ -1873,6 +1873,11 @@ export namespace Components {
           * @uiName Last name label
          */
         "lastNameLabel": string;
+        /**
+          * @uiName Optional
+          * @uiWidget
+         */
+        "optional": boolean;
     }
     interface SqmNavigationMenu {
         /**
@@ -9001,6 +9006,11 @@ declare namespace LocalJSX {
           * @uiName Last name label
          */
         "lastNameLabel"?: string;
+        /**
+          * @uiName Optional
+          * @uiWidget
+         */
+        "optional"?: boolean;
     }
     interface SqmNavigationMenu {
         /**
