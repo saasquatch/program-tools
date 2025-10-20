@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.15.4] - 2025-10-20
 
+### Added
+
+- \<sqm-portal-google-registration-form>
+  - Enhanced two-step registration flow with improved validation
+  - Added support for additional form fields in registration process
+
+- \<sqm-name-fields>
+  - Added optional prop
+
 ### Updated
 
 - \<sqm-password-field>
@@ -16,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-input-field>
 - \<sqm-dropdown-field>
 - \<sqm-checkbox-field>
-  - Adds google registration form to valid parents
+  - Added google registration form to valid parents
 
 ## [1.15.3] - 2025-10-14
 
@@ -777,7 +786,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-change-password>
   - \<sqm-portal-email-verification>
   - \<sqm-portal-forgot-password>
-  - \<sqm-portal-frame>
   - \<sqm-portal-login>
   - \<sqm-portal-logout>
   - \<sqm-portal-profile>

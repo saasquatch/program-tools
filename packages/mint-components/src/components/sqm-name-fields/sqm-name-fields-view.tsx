@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
+import { createStyleSheet } from "../../styling/JSS";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface NameFieldsViewProps {
   states: {
+    optional: boolean;
     registrationFormState?: RegistrationFormState;
     content: {
       firstNameLabel: string;
@@ -52,7 +53,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/firstName"
         type="text"
         label={states.content.firstNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
@@ -74,7 +75,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/lastName"
         type="text"
         label={states.content.lastNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
