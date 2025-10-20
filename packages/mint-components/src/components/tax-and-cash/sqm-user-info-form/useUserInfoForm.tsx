@@ -96,6 +96,11 @@ export function useUserInfoForm(props: TaxForm) {
   const [formErrors, setErrors] = useState({});
 
   useEffect(() => {
+    // reset redirect hash
+    window.location.hash = "";
+  }, []);
+
+  useEffect(() => {
     const user = data?.user;
     if (!user || step !== "/1") return;
 

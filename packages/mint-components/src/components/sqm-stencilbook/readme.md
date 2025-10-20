@@ -1,7 +1,5 @@
 # sqm-stencilbook
 
-
-
 <!-- Auto Generated Below -->
 
 
@@ -99,6 +97,9 @@
 - [sqm-docusign-form](../tax-and-cash/sqm-docusign-form)
 - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
 - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
+- [sqm-lead-input-field](../sqm-lead-form)
+- [sqm-lead-dropdown-field](../sqm-lead-form)
+- [sqm-lead-form](../sqm-lead-form)
 
 ### Graph
 ```mermaid
@@ -193,6 +194,9 @@ graph TD;
   sqm-stencilbook --> sqm-docusign-form
   sqm-stencilbook --> sqm-tax-and-cash-dashboard
   sqm-stencilbook --> sqm-payout-status-alert
+  sqm-stencilbook --> sqm-lead-input-field
+  sqm-stencilbook --> sqm-lead-dropdown-field
+  sqm-stencilbook --> sqm-lead-form
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
   sqm-coupon-code --> sqm-form-message
@@ -245,6 +249,8 @@ graph TD;
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
   sqm-payout-status-alert --> sqm-scroll
   sqm-payout-status-alert --> sqm-form-message
+  sqm-lead-form --> sqm-form-message
+  sqm-lead-form --> sqm-lead-input-field
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

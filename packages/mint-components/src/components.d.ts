@@ -22,6 +22,10 @@ import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-fiel
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
 import { FraudStatus, ImpactConnection, Invoice, Referral, Referrer, Reward } from "./saasquatch";
+import { LeadCheckboxFieldViewProps } from "./components/sqm-lead-form/sqm-lead-checkbox-field-view";
+import { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
+import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
+import { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -583,6 +587,20 @@ export namespace Components {
          */
         "cancelledErrorText": string;
         /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText": string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText": string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -968,6 +986,10 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
+        /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type
          */
@@ -1006,8 +1028,8 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Add an image or select a color. Recommended image aspect ratio of 4:5
-          * @uiName Background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
@@ -1036,8 +1058,8 @@ export namespace Components {
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -1572,6 +1594,196 @@ export namespace Components {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
     }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel": string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName": string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional": boolean;
+        /**
+          * @uiName Multiple selection
+          * @default
+         */
+        "multiple": boolean;
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel": string;
+        /**
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
+         */
+        "formKey": string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel": string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel": string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel": string;
+        /**
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
+         */
+        "submitErrorDescription": string;
+        /**
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
+         */
+        "submitErrorHeader": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+        /**
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
+         */
+        "submitSuccessDescription": string;
+        /**
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
+         */
+        "submitSuccessHeader": string;
+        /**
+          * Optional support link text for error messages.
+          * @uiName Support link text
+         */
+        "supportLinkText": string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType": "text" | "date" | "tel";
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -2032,6 +2244,14 @@ export namespace Components {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl": string;
@@ -2069,9 +2289,21 @@ export namespace Components {
          */
         "informationRequiredHeader": string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Support link text
          */
         "supportLink": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -2108,6 +2340,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -4249,8 +4493,8 @@ export namespace Components {
          */
         "pendingUnhandled": string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -4912,6 +5156,14 @@ export namespace Components {
          */
         "continueButton": string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader": string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -5110,6 +5362,11 @@ export namespace Components {
          */
         "dashboard_replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -5130,6 +5387,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -5173,6 +5435,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -5236,6 +5503,24 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader": string;
         /**
           * @undocumented
          */
@@ -5862,8 +6147,22 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions": string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -6014,12 +6313,6 @@ export namespace Components {
          */
         "newFormButton": string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext": string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -6061,6 +6354,11 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @undocumented 
           * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
          */
@@ -6082,6 +6380,11 @@ export namespace Components {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -6114,11 +6417,6 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription": string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -6127,6 +6425,10 @@ export namespace Components {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -6173,6 +6475,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmText {
         /**
@@ -6774,6 +7088,30 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    interface HTMLSqmLeadCheckboxFieldElement extends Components.SqmLeadCheckboxField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadCheckboxFieldElement: {
+        prototype: HTMLSqmLeadCheckboxFieldElement;
+        new (): HTMLSqmLeadCheckboxFieldElement;
+    };
+    interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadDropdownFieldElement: {
+        prototype: HTMLSqmLeadDropdownFieldElement;
+        new (): HTMLSqmLeadDropdownFieldElement;
+    };
+    interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
+    }
+    var HTMLSqmLeadFormElement: {
+        prototype: HTMLSqmLeadFormElement;
+        new (): HTMLSqmLeadFormElement;
+    };
+    interface HTMLSqmLeadInputFieldElement extends Components.SqmLeadInputField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadInputFieldElement: {
+        prototype: HTMLSqmLeadInputFieldElement;
+        new (): HTMLSqmLeadInputFieldElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -7338,6 +7676,10 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-checkbox-field": HTMLSqmLeadCheckboxFieldElement;
+        "sqm-lead-dropdown-field": HTMLSqmLeadDropdownFieldElement;
+        "sqm-lead-form": HTMLSqmLeadFormElement;
+        "sqm-lead-input-field": HTMLSqmLeadInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -7955,6 +8297,20 @@ declare namespace LocalJSX {
          */
         "cancelledErrorText"?: string;
         /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText"?: string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -8340,6 +8696,10 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
+        /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type
          */
@@ -8379,8 +8739,8 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Add an image or select a color. Recommended image aspect ratio of 4:5
-          * @uiName Background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
@@ -8409,8 +8769,8 @@ declare namespace LocalJSX {
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -8939,6 +9299,196 @@ declare namespace LocalJSX {
     }
     interface SqmInvoiceTableDownloadColumn {
     }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel"?: string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * @uiName Multiple selection
+          * @default
+         */
+        "multiple"?: boolean;
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
+         */
+        "formKey"?: string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel"?: string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel"?: string;
+        /**
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
+         */
+        "submitErrorDescription"?: string;
+        /**
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
+         */
+        "submitErrorHeader"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+        /**
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
+         */
+        "submitSuccessDescription"?: string;
+        /**
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
+         */
+        "submitSuccessHeader"?: string;
+        /**
+          * Optional support link text for error messages.
+          * @uiName Support link text
+         */
+        "supportLinkText"?: string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType"?: "text" | "date" | "tel";
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -9399,6 +9949,14 @@ declare namespace LocalJSX {
     }
     interface SqmPayoutStatusAlert {
         /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl"?: string;
@@ -9436,9 +9994,21 @@ declare namespace LocalJSX {
          */
         "informationRequiredHeader"?: string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Support link text
          */
         "supportLink"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -9475,6 +10045,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -11594,8 +12176,8 @@ declare namespace LocalJSX {
          */
         "pendingUnhandled"?: string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax"?: string;
         /**
@@ -12255,6 +12837,14 @@ declare namespace LocalJSX {
          */
         "continueButton"?: string;
         /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader"?: string;
+        /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
@@ -12453,6 +13043,11 @@ declare namespace LocalJSX {
          */
         "dashboard_replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -12473,6 +13068,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -12516,6 +13116,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -12579,6 +13184,24 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader"?: string;
         /**
           * @undocumented
          */
@@ -13205,8 +13828,22 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions"?: string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -13357,12 +13994,6 @@ declare namespace LocalJSX {
          */
         "newFormButton"?: string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext"?: string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -13404,6 +14035,11 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
           * @undocumented 
           * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
          */
@@ -13425,6 +14061,11 @@ declare namespace LocalJSX {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -13457,11 +14098,6 @@ declare namespace LocalJSX {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription"?: string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader"?: string;
@@ -13470,6 +14106,10 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -13516,6 +14156,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmText {
         /**
@@ -13940,6 +14592,10 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-checkbox-field": SqmLeadCheckboxField;
+        "sqm-lead-dropdown-field": SqmLeadDropdownField;
+        "sqm-lead-form": SqmLeadForm;
+        "sqm-lead-input-field": SqmLeadInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -14069,6 +14725,10 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-checkbox-field": LocalJSX.SqmLeadCheckboxField & JSXBase.HTMLAttributes<HTMLSqmLeadCheckboxFieldElement>;
+            "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
+            "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
+            "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;

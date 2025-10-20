@@ -1,11 +1,16 @@
 import {
   useLocale,
   useParentQueryValue,
+  useQuery,
   useSetParent,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { DateTime } from "luxon";
 import { vatLabels } from "../countries";
+import {
+  getStatus,
+  TenantSettingsQuery,
+} from "../sqm-payout-status-alert/usePayoutStatus";
 import {
   ImpactPublisher,
   TAX_CONTEXT_NAMESPACE,
@@ -14,7 +19,6 @@ import {
   USER_QUERY_NAMESPACE,
   UserQuery,
 } from "../data";
-import { getStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
@@ -23,6 +27,15 @@ import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { taxTypeToName } from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
+import { gql } from "graphql-request";
+
+const GET_TAX_SETTING = gql`
+  query getTenantSettings {
+    tenantSettings {
+      enforceUsTaxCompliance
+    }
+  }
+`;
 
 function getCountryName(countryCode: string, locale: string) {
   if (!countryCode) return undefined;
@@ -76,11 +89,19 @@ export const useTaxAndCashDashboard = (
     errors: veriffErrors,
   } = useVeriffApp();
 
+  const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
+    GET_TAX_SETTING,
+    {}
+  );
+
   const locale = useLocale();
 
   useEffect(() => {
     // Clear override context once on submitted
     setContext({});
+
+    if (window.location.hash)
+      setStep(`/${window.location.hash.replace("#", "")}`);
   }, []);
 
   const {
@@ -133,6 +154,9 @@ export const useTaxAndCashDashboard = (
     };
   }, []);
 
+  const enforceUsTaxComplianceOption =
+    taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
+
   return {
     states: {
       dateSubmitted,
@@ -160,6 +184,7 @@ export const useTaxAndCashDashboard = (
       hasHold: !!publisher?.payoutsAccount?.hold,
       payoutStatus,
       veriffLoading,
+      enforceUsTaxComplianceOption,
     },
     callbacks: {
       onClick: () => setShowDialog(true),

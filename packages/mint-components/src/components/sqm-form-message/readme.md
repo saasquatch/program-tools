@@ -1,16 +1,15 @@
 # sqm-form-message
 
-
-
 <!-- Auto Generated Below -->
 
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                            | Type     | Default     |
-| -------- | --------- | ---------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `icon`   | `icon`    | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string` | `undefined` |
-| `type`   | `type`    | Options include "success", "info", "warning", and "error"                                                              | `string` | `undefined` |
+| Property      | Attribute     | Description                                                                                                            | Type      | Default     |
+| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `icon`        | `icon`        | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string`  | `undefined` |
+| `transparent` | `transparent` | Render the alert with transparent styles                                                                               | `boolean` | `false`     |
+| `type`        | `type`        | Options include "success", "info", "warning", and "error"                                                              | `string`  | `undefined` |
 
 
 ## Dependencies
@@ -25,6 +24,7 @@
  - [sqm-email-verification](../sqm-widget-verification/sqm-email-verification)
  - [sqm-indirect-tax-form](../tax-and-cash/sqm-indirect-tax-form)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
+ - [sqm-lead-form](../sqm-lead-form)
  - [sqm-payout-status-alert](../tax-and-cash/sqm-payout-status-alert)
  - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
@@ -56,6 +56,7 @@ graph TD;
   sqm-email-verification --> sqm-form-message
   sqm-indirect-tax-form --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
+  sqm-lead-form --> sqm-form-message
   sqm-payout-status-alert --> sqm-form-message
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message

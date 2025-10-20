@@ -7,6 +7,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
+import { getCountryObj } from "../utils";
 import {
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
@@ -31,7 +32,6 @@ import {
   UserFormContext,
   UserQuery,
 } from "../data";
-import { getCountryObj } from "../utils";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {
@@ -43,10 +43,20 @@ function getCurrentStep(user: UserQuery["user"]) {
     currentTaxDocument,
     withdrawalSettings,
     brandedSignup,
+    payoutsAccount,
   } = user.impactConnection.publisher;
 
   // If they do have a required document, look at current document
-  if (requiredTaxDocumentType && !currentTaxDocument) return "/3";
+  if (requiredTaxDocumentType && !currentTaxDocument) {
+    // Specific to custom CASH setting,
+    if (
+      payoutsAccount.hold &&
+      payoutsAccount.holdReasons.includes("NO_W9_DOCUMENT")
+    )
+      return "/dashboard";
+
+    return "/3";
+  }
 
   if (!withdrawalSettings && brandedSignup) return "/4";
 

@@ -332,6 +332,14 @@ const vanillaStyle = `
       border:none;
     }
 
+    sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+
     sl-select::part(panel) {
       border-radius: var(--sqm-border-radius-normal);
     }
@@ -371,6 +379,14 @@ const vanillaStyle = `
 
     sl-checkbox::part(label){
       color: var(--sqm-text);
+    }
+
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
     }
 `;
 

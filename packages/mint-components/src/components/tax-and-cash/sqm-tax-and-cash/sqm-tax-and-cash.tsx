@@ -5,17 +5,18 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
+import { ErrorView } from "./ErrorView";
+import LoadingView from "./LoadingView";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { extractProps } from "./extractProps";
-import LoadingView from "./LoadingView";
-import { useTaxAndCash } from "./useTaxAndCash";
+import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
+import { intl } from "../../../global/global";
 
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
- * @example 2FA Protected Tax and Cash Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -298,7 +299,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
-    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
+    "Participants residing outside of the US working with a US Brand need to submit a {documentType} form.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign session expired message
@@ -659,6 +660,21 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_statusTextNotVerified?: string = "Not Verified";
 
   /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() dashboard_statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() dashboard_requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
+
+  /**
    * Additional text displayed next to the tax form's status badge
    *
    * @uiName Active W-9 description
@@ -692,7 +708,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_taxAlertHeaderNotActiveW9?: string =
-    "Your W9 tax form has personal information that doesn’t match your profile";
+    "Your W-9 tax form has personal information that doesn’t match your profile";
   /**
    * Part of the alert displayed at the top of the page.
    *
@@ -1029,6 +1045,42 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_verificationRequiredButtonText: string =
     "Start Verification";
+  /**
+   * @uiName W-9 payment threshold alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W-9 payment threshold alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredDescription: string =
+    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+  /**
+   * @uiName Account review alert header
+   */
+  @Prop() dashboard_accountReviewHeader: string =
+    "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() dashboard_accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+
+  /**
+   * @uiName Terms and Conditions text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_termsAndConditions: string = "Terms and Conditions";
+
+  /**
+   * @uiName W-9 payment threshold alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredButtonText: string = "Submit W-9";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
@@ -1143,6 +1195,14 @@ export class TaxAndCashMonolith {
   @Prop() supportLink: string = "support team";
 
   /**
+   * Link text for Terms and Conditions
+   * @uiName Terms and Conditions text
+   * @uiGroup General Form Properties
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
+
+  /**
+   *
    * @undocumented
    * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
    * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
@@ -1207,59 +1267,65 @@ export class TaxAndCashMonolith {
       );
     }
 
-    const getStep = () => {
-      switch (props.step) {
-        case "/1":
-          return (
-            <sqm-user-info-form
-              {...this.getGeneralStepTextProps("step1_")}
-              {...extractProps(props, "sqm-user-info-form_")}
-            ></sqm-user-info-form>
-          );
-        case "/2":
-          return (
-            <sqm-indirect-tax-form
-              {...this.getGeneralStepTextProps("step2_")}
-              {...extractProps(props, "sqm-indirect-tax-form_")}
-            ></sqm-indirect-tax-form>
-          );
-        case "/3":
-          return (
-            <sqm-docusign-form
-              {...this.getGeneralStepTextProps("step3_")}
-              {...extractProps(props, "sqm-docusign-form_")}
-            ></sqm-docusign-form>
-          );
-        case "/4":
-          return (
-            <sqm-banking-info-form
-              {...this.getGeneralStepTextProps("step4_")}
-              {...extractProps(props, "sqm-banking-info-form_")}
-            ></sqm-banking-info-form>
-          );
-        case "/dashboard":
-          return (
-            <sqm-tax-and-cash-dashboard
-              {...this.getGeneralStepTextProps("dashboard_")}
-              {...extractProps(props, "sqm-tax-and-cash-dashboard_")}
-              stateController={
-                parseStates(this.stateController)["sqm-tax-and-cash-dashboard"]
+    switch (props.step) {
+      case "/1":
+        return (
+          <sqm-user-info-form
+            {...this.getGeneralStepTextProps("step1_")}
+          ></sqm-user-info-form>
+        );
+      case "/2":
+        return (
+          <sqm-indirect-tax-form
+            {...this.getGeneralStepTextProps("step2_")}
+          ></sqm-indirect-tax-form>
+        );
+      case "/3":
+        return (
+          <sqm-docusign-form
+            {...this.getGeneralStepTextProps("step3_")}
+          ></sqm-docusign-form>
+        );
+      case "/4":
+        return (
+          <sqm-banking-info-form
+            {...this.getGeneralStepTextProps("step4_")}
+          ></sqm-banking-info-form>
+        );
+      case "/dashboard":
+        return (
+          <sqm-tax-and-cash-dashboard
+            {...this.getGeneralStepTextProps("dashboard_")}
+            stateController={
+              props["sqm-tax-and-cash-dashboard_stateController"] || "{}"
+            }
+          ></sqm-tax-and-cash-dashboard>
+        );
+      case "/error":
+        return (
+          <ErrorView
+            loadingErrorAlertHeader={this.loadingErrorAlertHeader}
+            loadingErrorAlertDescription={intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: this.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {this.supportLink}
+                  </a>
+                ),
               }
-            ></sqm-tax-and-cash-dashboard>
-          );
-        case "/error":
-          return (
-            <sqm-form-message type="error">
-              <p part="alert-title">{this.loadingErrorAlertHeader}</p>
-              <p part="alert-description">
-                {this.loadingErrorAlertDescription}
-              </p>
-            </sqm-form-message>
-          );
-      }
-    };
+            )}
+          />
+        );
+    }
 
-    return getStep() || <LoadingView />;
+    return <LoadingView />;
   }
 }
 

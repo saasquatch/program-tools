@@ -96,11 +96,13 @@ const style = {
 
     "& sl-menu-item::part(base)": {
       flexDirection: "column",
+      color: "var(--sqm-input-color)"
     },
-
+    "& sl-menu-item::part(base):hover": {
+      backgroundColor: "var(--sqm-input-border-color-hover)",
+    },
     "& sl-menu-item::part(base):focus": {
       background: "var(--sqm-accent-color-background)",
-      color: "var(--sqm-text)",
     },
   },
   ProgressBar: {
@@ -282,6 +284,7 @@ const style = {
         color: "var(sqm-text-subdued)",
       },
     },
+    
   },
 
   SelectItem: {

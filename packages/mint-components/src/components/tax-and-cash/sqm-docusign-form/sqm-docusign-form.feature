@@ -28,7 +28,6 @@ Feature: Comply Exchange Form
     And their current tax document status is not "ACTIVE" or "NOT_VERIFIED"
     When the page loads
     Then the Comply Exchange iframe is displayed
-
     Examples:
       | publisherCountry | brandCountry     | currentDocument |
       | a non-US country | US               | null            |
@@ -42,12 +41,11 @@ Feature: Comply Exchange Form
     And are <participantType>
     Then the page header is <header>
     And the description is <description>
-
     Examples:
       | typeTaxForm | participantType       | header       | description                                                                                                             |
       | W9          | N/A                   | W-9 Tax Form | Participants based in the US need to submit a W-9 form.                                                                 |
       | W8-BEN      | individualParticipant | W-8 Tax Form | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W-8 form. |
-      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US who represent a business entity need to submit a W-8 form.                      |
+      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US working with a US Brand need to submit a W-8 form.                              |
 
   @minutia
   Scenario Outline: Participant completes Comply Exchange document and is directed to document summary page
@@ -57,7 +55,6 @@ Feature: Comply Exchange Form
     And a request is sent to mark the document as completed
     When the request <status>
     Then they <may> be redirected to step 4
-
     Examples:
       | status   | may      |
       | fails    | will not |

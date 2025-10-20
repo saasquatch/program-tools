@@ -528,7 +528,7 @@ html {
   --sl-input-height-large: 3.125rem;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
   --sl-input-border-radius-large: var(--sl-border-radius-medium);
-  --sl-input-font-family: var(--sl-font-sans);
+  --sl-input-font-family: var(--sqm-primary-font);
   --sl-input-font-weight: var(--sl-font-weight-normal);
   --sl-input-font-size-small: var(--sl-font-size-small);
   --sl-input-font-size-medium: var(--sl-font-size-medium);
@@ -739,11 +739,21 @@ html {
   --sqm-input-border-color-hover: ${
     config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
   };
+
   --sqm-input-label-font-size: inherit;
   --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
     config?.formFields?.disabledBackgroundColor || "#F4F4F5"
   };
+
+  sl-select::part(display-input),
+  sl-select::part(base),
+  sl-dropdown::part(display-input),
+  sl-dropdown::part(base),
+  sl-input::part(input)
+   {
+    color: var(--sqm-input-color);
+  }
 
   --sl-color-primary-100: var(--sqm-primary-color);
   --sl-color-primary-200: var(--sqm-primary-color);
@@ -767,7 +777,6 @@ html {
   --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
   --sl-input-border-width: var(--sqm-border-thickness, 1px);
   --sl-input-border-style: solid;
-
 
 
 /* --- Disabled State --- */
@@ -808,7 +817,7 @@ body {
 }
 
 sl-spinner {
-  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-color-primary-500: var(--sqm-accent-color-icon);
   --sl-spinner-stroke-width: 4px;
 }
 
@@ -1045,11 +1054,6 @@ a {
 }
 
 
-*::part(menuitem-base):hover{
-  background-color: var(--sl-color-gray-200);
-  color: var(--sl-color-gray-700);
-}
-
 sl-icon::part(base) {
   color: var(--sqm-text);
 }
@@ -1057,9 +1061,6 @@ sl-icon::part(base) {
 sl-icon::part(base):hover {
   color: var(--sqm-accent-color-icon);
 }
-
-
-
 
 `,
   font: config?.main?.brandFont,

@@ -161,7 +161,7 @@ export const DocusignIframe = ({
       setiFrameHeight(e.data + "px");
     }
 
-    if (e.data === "Complyexchange Thank you page Load") {
+    if (e.data === "Complyexchange Thank you page Load" && !states.loading) {
       callbacks.completeDocument();
     }
   }, []);

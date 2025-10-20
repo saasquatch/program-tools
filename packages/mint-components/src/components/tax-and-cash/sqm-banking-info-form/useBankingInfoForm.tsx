@@ -259,6 +259,11 @@ export function useBankingInfoForm(
     : _paymentMethodChecked;
 
   useEffect(() => {
+    // reset redirect hash
+    window.location.hash = "";
+  }, []);
+
+  useEffect(() => {
     if (!userData) return;
     if (!paymentOptions) return;
 

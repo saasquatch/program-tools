@@ -30,7 +30,7 @@ const style = {
     fontSize: "var(--sl-input-help-text-font-size-medium)",
   },
   FieldContainer: {
-    "margin-bottom": "var(--sl-spacing-large)",
+    "margin-bottom": "var(--sl-spacing-medium)",
   },
 };
 

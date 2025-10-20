@@ -33,7 +33,6 @@ Feature: Tax Form Flow
     When they complete filling out their indirect tax information
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
-
     Examples:
       | countryCode | brandCountry | stepX |
       | CA          | US           | 3     |
@@ -56,7 +55,6 @@ Feature: Tax Form Flow
     And participant current tax document has status <status>
     And participant <hasWithdrawalSettings>
     Then they proceed to <stepX>
-
     Examples:
       | hasTax                 | isConnected      | hasRequiredDoc             | hasCurrentTaxDoc          | status   | hasWithdrawalSettings             | stepX     |
       | does not have tax info | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
@@ -97,7 +95,6 @@ Feature: Tax Form Flow
     When they press "Continue"
     And the registered partner <hasExistingTaxDoc>
     Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
-
     Examples:
       | countryCode | brandCountry | hasExistingTaxDoc | stepX     |
       | CA          | US           | true              | dashboard |
@@ -115,7 +112,6 @@ Feature: Tax Form Flow
     And the brand is not in the US
     And the user selects a <country> not in the US
     Then they skip to step 4 Payout Details
-
     Examples:
       | brandCountry | country |
       | MX           | GB      |
@@ -128,12 +124,24 @@ Feature: Tax Form Flow
     When they view step 3
     Then the Comply Exchange iframe is displayed
     But no form is auto selected
-
     Examples:
       | brandCountry | country |
       | MX           | US      |
       | GB           | US      |
       | AUS          | US      |
+
+  @motivating
+  Scenario Outline: US based participants getting paid USD are exempt from submitting a W9 tax form with the "" tax setting
+    Given a brand using the tax setting "5"
+    And a user selects US in step 1
+    And they select <currency> in step 1
+    When they complete step 2
+    Then they <maySkip> step 3 (exempt from submitting a tax form)
+    Examples:
+      | currency | maySkip    |
+      | USD      | skips      |
+      | EUR      | don't skip |
+      | CAD      | don't skip |
 
   @minutia
   Scenario: Participant finishes tax form flow and skipped Comply Exchange form

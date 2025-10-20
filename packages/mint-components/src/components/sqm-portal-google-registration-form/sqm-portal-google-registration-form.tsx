@@ -12,6 +12,11 @@ import { usePortalRegistrationForm } from "../sqm-portal-registration-form/usePo
 import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
 import { createStyleSheet } from "../../styling/JSS";
 
+/**
+ * @uiName Google Registration
+ * @canvasRenderer always-replace
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ */
 @Component({
   tag: "sqm-portal-google-registration-form",
   shadow: true,
@@ -299,9 +304,7 @@ export class PortalGoogleRegistrationForm {
           hidePasswords: showRegistrationForm.mode === "google",
         }}
         callbacks={callbacks}
-        content={{
-          ...content,
-        }}
+        content={content}
         refs={refs}
       ></PortalRegistrationFormView>
     );
@@ -359,7 +362,7 @@ function useGoogleDemo(
 
   return deepmerge(
     {
-      emailValidationError: true,
+      emailValidationError: false,
       handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
       showRegistrationForm,
       handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),

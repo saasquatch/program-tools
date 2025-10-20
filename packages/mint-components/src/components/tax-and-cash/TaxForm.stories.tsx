@@ -1422,6 +1422,30 @@ export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
   );
 };
 
+export const TaxAndCashDashboardW9ThresholdReached = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "OVER_W9_THRESHOLD",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: null,
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: false,
+          showNewFormDialog: false,
+          hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
 export const TaxAndCashDashboardNewTaxForm = () => {
   return (
     <sqm-tax-and-cash-dashboard
@@ -1451,7 +1475,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "DONE",
+          payoutStatus: "HOLD",
           veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
@@ -1463,7 +1487,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
           indirectTaxNumber: "123456",
           country: "Slovania",
           showNewFormDialog: false,
-          hasHold: true,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>
