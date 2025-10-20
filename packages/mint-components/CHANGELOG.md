@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.15.3] - 2025-11-14
+## [1.15.4] - 2025-10-20
+
+### Updated
+
+- \<sqm-password-field>
+- \<sqm-marketing-emails-checkbox>
+- \<sqm-input-field>
+- \<sqm-dropdown-field>
+- \<sqm-checkbox-field>
+  - Adds google registration form to valid parents and reorganizes imports
+
+## [1.15.3] - 2025-10-14
 
 ### Added
 
@@ -1289,7 +1300,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.4...HEAD
+[1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
 [1.15.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.3
 [1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
 [1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
