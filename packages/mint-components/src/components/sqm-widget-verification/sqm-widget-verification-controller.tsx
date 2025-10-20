@@ -45,8 +45,9 @@ function useTemplateChildren({ parent, callback }) {
 })
 export class WidgetVerificationController {
   /**
-   * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false } }
-   * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true } }
+   * @undocumented
+   * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
+   * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    */
   @Prop() stateController: string = "{}";
 

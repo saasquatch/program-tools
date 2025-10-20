@@ -11,7 +11,7 @@ export namespace Components {
     interface SqbAuthTemplateSwitch {
         /**
           * @componentState { "title": "Sign up form", "slot": "logged-out", "props": { "overrideToken": false } }
-          * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
+          * @componentState { "title": "Referral & Reward info", "slot": "logged-in", "props": { "overrideToken": true } }
          */
         "stateController": string;
     }
@@ -134,7 +134,7 @@ declare namespace LocalJSX {
     interface SqbAuthTemplateSwitch {
         /**
           * @componentState { "title": "Sign up form", "slot": "logged-out", "props": { "overrideToken": false } }
-          * @componentState { "title": "Logged In", "slot": "logged-in", "props": { "overrideToken": true } }
+          * @componentState { "title": "Referral & Reward info", "slot": "logged-in", "props": { "overrideToken": true } }
          */
         "stateController"?: string;
     }
