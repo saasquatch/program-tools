@@ -304,8 +304,7 @@ export class PortalGoogleRegistrationForm {
           hidePasswords: showRegistrationForm.mode === "google",
         }}
         callbacks={callbacks}
-        // Show terms only on first screen
-        content={{ ...content, terms: null }}
+        content={content}
         refs={refs}
       ></PortalRegistrationFormView>
     );
