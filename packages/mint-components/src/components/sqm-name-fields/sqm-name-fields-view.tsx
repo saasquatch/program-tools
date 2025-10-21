@@ -5,6 +5,7 @@ import { RegistrationFormState } from "../sqm-portal-registration-form/useRegist
 
 export interface NameFieldsViewProps {
   states: {
+    optional: boolean;
     registrationFormState?: RegistrationFormState;
     content: {
       firstNameLabel: string;
@@ -77,7 +78,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/firstName"
         type="text"
         label={states.content.firstNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
@@ -99,7 +100,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/lastName"
         type="text"
         label={states.content.lastNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled

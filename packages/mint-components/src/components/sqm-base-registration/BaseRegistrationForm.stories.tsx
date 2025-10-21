@@ -10,7 +10,7 @@ export default {
 
 const defaultProps: BaseRegistrationFormViewProps = {
   states: {
-    error: "",
+    validationErrors: {},
   },
   callbacks: {
     handleEmailSubmit: () => console.log("Submit!"),
@@ -39,7 +39,7 @@ const defaultProps: BaseRegistrationFormViewProps = {
 const errorProps: BaseRegistrationFormViewProps = {
   ...defaultProps,
   states: {
-    error: "Something went wrong. Please try again.",
+    validationErrors: { error: "Something went wrong. Please try again." },
   },
 };
 

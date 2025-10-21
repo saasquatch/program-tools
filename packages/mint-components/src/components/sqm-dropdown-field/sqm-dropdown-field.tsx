@@ -13,7 +13,7 @@ import { useDropdownField } from "./useDropdownField";
 
 /**
  * @uiName Form Dropdown Field
- * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
  * @slots [{"name":"", "title":"Drop Down Option"}]
  * @exampleGroup Microsite Components
  * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
