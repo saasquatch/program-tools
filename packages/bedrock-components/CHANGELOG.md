@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2025-10-22
+
+### Added
+- **Component Editor Support**: Added `stateController` property to `sqb-auth-template-switch` component to enable editor state management
+  - Enables preview of "Sign up form" (logged-out) and "Referral & Reward info" (logged-in) states in the component editor
+  - Added editor state support with `overrideToken` functionality for demo environments
+
+### Changed
+- **Code Style**: Updated Prettier configuration to use double quotes instead of single quotes (`singleQuote: false`)
+- **Component Metadata**: Enhanced `sqb-conditional-section` and `sqb-program-section` components with `@validParents` annotations for better editor integration
+- **Component Examples**: Updated example documentation for `sqb-conditional-section` to use more descriptive naming ("Conditional Area" instead of "Conditional Section")
+
+### Updated
+- **Dependencies**: Upgraded `@raisins/stencil-docs-target` from `^1.1.0` to `^1.3.0`
+- **Auth Template Switch**: Enhanced authentication logic to support editor override tokens in demo environments
+- **Component Documentation**: Regenerated component documentation with updated property tables and editor state information
+
 ## [1.4.10] - 2025-03-18
 
 ### Updated
