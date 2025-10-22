@@ -59,33 +59,6 @@ const style = {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
   },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
-    },
-  },
-  WarningAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-yellow-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
-    },
-  },
-  InfoAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
-    },
-  },
   Dialog: {
     "&::part(panel)": {
       height: "600px",
@@ -102,6 +75,14 @@ const style = {
   },
 };
 
+const vanillaStyle = `
+  a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
@@ -114,9 +95,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         header: text.errorHeader,
         description: text.errorDescription,
         buttonText: null,
-        alertType: "critical",
-        icon: "exclamation-triangle",
-        class: sheet.classes.ErrorAlertContainer,
+        alertType: "error",
       };
 
     switch (status) {
@@ -126,8 +105,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           description: text.informationRequiredDescription,
           buttonText: text.informationRequiredButtonText,
           alertType: "info",
-          icon: "info-circle",
-          class: sheet.classes.InfoAlertContainer,
         };
       case "VERIFICATION:REQUIRED":
         return {
@@ -147,8 +124,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:INTERNAL":
         return {
@@ -167,8 +142,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:REVIEW":
         return {
@@ -187,8 +160,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:FAILED":
         return {
@@ -206,9 +177,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          alertType: "critical",
-          icon: "exclamation-octagon",
-          class: sheet.classes.ErrorAlertContainer,
+          alertType: "error",
         };
       case "OVER_W9_THRESHOLD":
         if (states.enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9") {
@@ -233,7 +202,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             buttonText: text.w9RequiredButtonText,
             alertType: "warning",
             icon: "exclamation-triangle",
-            class: sheet.classes.WarningAlertContainer,
           };
         } else {
           return {
@@ -257,7 +225,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             buttonText: null,
             alertType: "warning",
             icon: "exclamation-triangle",
-            class: sheet.classes.WarningAlertContainer,
           };
         }
       case "ACCOUNT_REVIEW":
@@ -279,7 +246,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "HOLD":
         return {
@@ -299,8 +265,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           ),
           buttonText: null,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       default:
         return;
@@ -327,30 +291,46 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         );
       case "INFORMATION_REQUIRED":
         return data.type === "SquatchJS2" ? (
-          <sqm-scroll
-            scroll-tag-name="sqm-tabs"
-            button-text={text.informationRequiredButtonText}
-            scroll-animation="smooth"
-          ></sqm-scroll>
+          <div style={{ paddingTop: "10px" }}>
+            <sqm-scroll
+              scroll-tag-name="sqm-tabs"
+              button-text={text.informationRequiredButtonText}
+              scroll-animation="smooth"
+            ></sqm-scroll>
+          </div>
         ) : data.type === "SquatchPortal" ? (
-          <sl-button type="default" onClick={callbacks.onTermsClick}>
-            {text.informationRequiredButtonText}
-          </sl-button>
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+              onClick={callbacks.onTermsClick}
+            >
+              {text.informationRequiredButtonText}
+            </sl-button>
+          </div>
         ) : (
           // Demo case
-          <sl-button type="default">
-            {text.informationRequiredButtonText}
-          </sl-button>
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+            >
+              {text.informationRequiredButtonText}
+            </sl-button>
+          </div>
         );
       case "VERIFICATION:REQUIRED":
         return (
-          <sl-button
-            type="default"
-            loading={states.veriffLoading}
-            onClick={callbacks.onClick}
-          >
-            {text.verificationRequiredButtonText}
-          </sl-button>
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+              loading={states.veriffLoading}
+              onClick={callbacks.onClick}
+            >
+              {text.verificationRequiredButtonText}
+            </sl-button>
+          </div>
         );
       default:
         return;
@@ -369,19 +349,12 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <sl-alert
-        exportparts="base: alert-base, icon:alert-icon"
-        type={alertDetails.alertType}
-        class={alertDetails.class}
-        open
-      >
-        <sl-icon slot="icon" name={alertDetails.icon}></sl-icon>
-        <strong>{alertDetails.header}</strong>
-        <p class={sheet.classes.AlertDescriptionText}>
-          {alertDetails.description}
-        </p>
+      <style type="text/css">{vanillaStyle}</style>
+      <sqm-form-message type={alertDetails.alertType}>
+        <p part="alert-title">{alertDetails.header}</p>
+        <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}
-      </sl-alert>
+      </sqm-form-message>
     </div>
   );
 }

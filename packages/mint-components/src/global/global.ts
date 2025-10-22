@@ -1,12 +1,15 @@
-import "@formatjs/intl-relativetimeformat/polyfill";
 import "@formatjs/intl-relativetimeformat/dist/locale-data/en";
+import "@formatjs/intl-relativetimeformat/polyfill";
 
-import "@formatjs/intl-pluralrules/polyfill";
-import "@formatjs/intl-pluralrules/dist/locale-data/en";
-import "babel-polyfill";
-import { useHost } from "@saasquatch/stencil-hooks";
-import { setUseHostImplementation } from "@saasquatch/component-boilerplate";
 import { createIntl, createIntlCache } from "@formatjs/intl";
+import "@formatjs/intl-pluralrules/dist/locale-data/en";
+import "@formatjs/intl-pluralrules/polyfill";
+import {
+  getEnvironmentSDK,
+  setUseHostImplementation,
+} from "@saasquatch/component-boilerplate";
+import { useHost } from "@saasquatch/stencil-hooks";
+import "babel-polyfill";
 import debugFn from "debug";
 setUseHostImplementation(useHost);
 
@@ -64,8 +67,8 @@ import {
   SlTag,
   SlTextarea,
   SlTooltip,
-  setBasePath,
   registerIconLibrary,
+  setBasePath,
 } from "@saasquatch/shoelace";
 
 try {
@@ -127,10 +130,36 @@ try {
 
 import { insertCSS } from "../insertcss";
 
-import CSS from "./styles";
+import { insertFont } from "../insertfont";
+import stylesV1 from "./styles.v1";
+import { parseBrandingConfig } from "./styles.v2";
 
-try {
-  insertCSS(CSS as any);
-} catch (error) {
-  debug(error);
+const applyStyles = (css: string, font: string) => {
+  try {
+    insertCSS(css);
+    insertFont(font);
+  } catch (error) {
+    debug(error);
+  }
+};
+
+if (getEnvironmentSDK().type === "None") {
+  window.addEventListener("message", ({ data }) => {
+    if (!data?.brandingConfig) return;
+
+    window.SquatchBrandingConfig = data.brandingConfig;
+    const { styles, font } = parseBrandingConfig(data.brandingConfig);
+    applyStyles(styles, font);
+  });
+}
+
+if (window.SquatchBrandingConfig) {
+  const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
+  applyStyles(styles, font);
+} else {
+  try {
+    insertCSS(stylesV1);
+  } catch (e) {
+    debug(e);
+  }
 }

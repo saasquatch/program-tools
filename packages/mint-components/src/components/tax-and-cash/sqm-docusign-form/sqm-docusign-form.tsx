@@ -4,7 +4,7 @@ import { Component, Element, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import {
   DocusignIframe,
   DocusignStatus,
@@ -231,7 +231,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
     {
       text: props.getTextProps(),
       states: {
-        step: "4",
+        step: "3",
         disabled: false,
         submitDisabled: false,
         loading: false,
@@ -273,7 +273,7 @@ const DemoDocusignIframe = ({ callbacks }) => {
       style={{
         width: "100%",
         height: "600px",
-        background: "#fafafa",
+        background: "inherit",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

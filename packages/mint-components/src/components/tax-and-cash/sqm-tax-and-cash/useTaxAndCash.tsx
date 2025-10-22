@@ -31,7 +31,7 @@ import {
   USER_QUERY_NAMESPACE,
   UserFormContext,
   UserQuery,
-} from "./data";
+} from "../data";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {

@@ -9,13 +9,14 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
  * @uiName Leaderboard
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @requiredFeatures ["LEADERBOARDS"]
  * @exampleGroup Leaderboard
- * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Points Earned Leaderboard - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
- * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
+ * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+ * @example Anonymous Leaderboard - <sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard>
  * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
  */
 @Component({
@@ -60,14 +61,6 @@ export class Leaderboard {
    * @uiName Rank Suffix
    */
   @Prop() rankSuffix: string;
-
-  /**
-   * Hide the viewer's leaderboard row if not in the top results.
-   *
-   * @uiName Hide viewing user
-   * @default
-   */
-  @Prop() hideViewer: boolean = false;
 
   /**
    * @uiName Viewing user text
@@ -123,6 +116,57 @@ export class Leaderboard {
   @Prop() maxRows: number = 10;
 
   /**
+   * Hide the viewer's leaderboard row if not in the top results.
+   *
+   * @uiName Hide viewing user
+   * @default
+   */
+  @Prop() hideViewer: boolean = false;
+
+  /**
+   * Changes the background color of the viewing user row in the leaderboard.
+   * @uiName Viewing User Highlight Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() viewingUserHighlightColor?: string;
+
+  /**
+   * Changes the text color of the viewing user row in the leaderboard.
+   * @uiName Viewing User Text Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() viewingUserHighlightTextColor?: string;
+  /**
+   * Changes the background color of the leaderboard.
+   * @uiName Background Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() background?: string;
+  /**
+   * Changes the border color of the table rows.
+   * @uiName Border Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+  /**
+   * Text color of the leaderboard.
+   * @uiName Text Color
+   * @uiWidget color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+  /**
+   * Leaderboard border radius in pixels.
+   * @uiName Border Radius
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: number;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -155,6 +199,12 @@ export class Leaderboard {
       showRank: this.showRank,
       rankSuffix: this.rankSuffix,
       width: this.width,
+      viewingUserHighlightColor: this.viewingUserHighlightColor,
+      viewingUserHighlightTextColor: this.viewingUserHighlightTextColor,
+      background: this.background,
+      borderColor: this.borderColor,
+      textColor: this.textColor,
+      borderRadius: this.borderRadius,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -238,6 +288,12 @@ function useLeaderboardDemo(
           hideNames: props.hideNames,
           rankSuffix: props.rankSuffix,
           width: props.width,
+          viewingUserHighlightColor: props.viewingUserHighlightColor,
+          viewingUserHighlightTextColor: props.viewingUserHighlightTextColor,
+          background: props.background,
+          borderColor: props.borderColor,
+          textColor: props.textColor,
+          borderRadius: props.borderRadius,
         },
       },
       data: {

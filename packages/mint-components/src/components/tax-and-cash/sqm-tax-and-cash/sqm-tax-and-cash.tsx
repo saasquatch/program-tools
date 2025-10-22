@@ -3,10 +3,11 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
 import { ErrorView } from "./ErrorView";
 import LoadingView from "./LoadingView";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
 import { intl } from "../../../global/global";
@@ -14,7 +15,8 @@ import { intl } from "../../../global/global";
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
- * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+ * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -1202,9 +1204,18 @@ export class TaxAndCashMonolith {
   /**
    *
    * @undocumented
-   * @uiType object
+   * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+   * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+   * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+   * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+   * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
    */
-  @Prop() demoData?: DemoData<UseTaxAndCashResultType>;
+  @Prop() stateController: string = "{}";
+
+  /**
+   * @undocumented
+   */
+  @Prop() demoData?: DemoData<TaxAndCashMonolith>;
 
   constructor() {
     withHooks(this);
@@ -1285,6 +1296,9 @@ export class TaxAndCashMonolith {
         return (
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}
+            stateController={
+              props["sqm-tax-and-cash-dashboard_stateController"] || "{}"
+            }
           ></sqm-tax-and-cash-dashboard>
         );
       case "/error":
@@ -1321,12 +1335,21 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
     initialValue: "/1",
   });
 
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-tax-and-cash"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
+
   return deepmerge(
     {
       step,
       setStep,
     },
-    props.demoData || {},
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
 }

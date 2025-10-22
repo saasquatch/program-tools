@@ -10,6 +10,7 @@ import { useShareLink } from "./useShareLink";
 /**
  * @uiName Share Link
  * @exampleGroup Sharing
+ * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
  */
 @Component({
@@ -52,6 +53,7 @@ export class ShareLink {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -67,12 +69,59 @@ export class ShareLink {
   copyButtonLabel: string = "Copy Link";
 
   /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * Border color of share link container
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button that is used (primary or secondary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
+
+  /**
    * Set the copy button style and placement
    *
-   * @uiName Style
+   * @uiName Button style
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
@@ -102,13 +151,19 @@ export class ShareLink {
 function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "https://www.example.com/sharelink/abc";
+
   return deepmerge(
     {
       copyString: copyString,
       tooltiptext: props.tooltiptext,
       textAlign: props.textAlign,
       buttonStyle: props.buttonStyle,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       copyButtonLabel: props.copyButtonLabel,
+      borderColor: props.borderColor,
       rewardStatus: "AVAILABLE",
       open,
       onClick: () => {

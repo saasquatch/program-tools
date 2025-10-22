@@ -1,35 +1,26 @@
 import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
-import portalTemplate from "../templates/Portal.html";
-import portalLeadSubmitTemplate from "../templates/PortalLeadSubmit.html";
-import taxAndCashTemplate from "../templates/TaxAndCash.html";
-import portalLeadSubmitTemplateWithDashboard from "../templates/PortalLeadSubmitWithDashboard.html";
-import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
+import activityTemplate from "../templates/Activity.html";
+import dashboardTemplate from "../templates/Dashboard.html";
+import editProfileTemplate from "../templates/EditProfile.html";
+import emailVerificationTemplate from "../templates/EmailVerification.html";
+import emailVerifiedTemplate from "../templates/EmailVerified.html";
+import forgotPasswordTemplate from "../templates/ForgotPassword.html";
+import leadSubmitTemplate from "../templates/LeadSubmit.html";
+import loginTemplate from "../templates/Login.html";
 import multiProgramTemplate from "../templates/MultiProgramPortal.html";
 import multiProgramTemplateWithDashboard from "../templates/MultiProgramPortalWithDashboard.html";
-import dashboardTemplate from "../templates/Dashboard.html";
-import leadSubmitTemplate from "../templates/LeadSubmit.html";
-import editProfileTemplate from "../templates/EditProfile.html";
-import activityTemplate from "../templates/Activity.html";
-import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
-import verifyEmailTemplate from "../templates/VerifyEmail.html";
-import taxPayoutReminderEmailTemplate from "../templates/TaxPayoutReminderEmail.html";
-import loginTemplate from "../templates/Login.html";
+import portalTemplate from "../templates/Portal.html";
+import portalLeadSubmitTemplate from "../templates/PortalLeadSubmit.html";
+import portalLeadSubmitTemplateWithDashboard from "../templates/PortalLeadSubmitWithDashboard.html";
+import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
 import registerTemplate from "../templates/Register.html";
-import forgotPasswordTemplate from "../templates/ForgotPassword.html";
 import resetPasswordTemplate from "../templates/ResetPassword.html";
-import emailVerifiedTemplate from "../templates/EmailVerified.html";
-import emailVerificationTemplate from "../templates/EmailVerification.html";
-
-import LoginReadme from "../components/sqm-portal-login/readme.md";
-import ReferralIframeReadme from "../components/sqm-referral-iframe/readme.md";
-import ForgotPasswordReadme from "../components/sqm-portal-forgot-password/readme.md";
-import RegisterReadme from "../components/sqm-portal-register/readme.md";
-import EditProfileReadme from "../components/sqm-portal-profile/readme.md";
-import ResetPasswordReadme from "../components/sqm-portal-reset-password/readme.md";
-import EmailVerificationReadme from "../components/sqm-portal-email-verification/readme.md";
-import EmailVerifiedReadme from "../components/sqm-portal-verify-email/readme.md";
+import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
+import taxAndCashTemplate from "../templates/TaxAndCash.html";
+import taxPayoutReminderEmailTemplate from "../templates/TaxPayoutReminderEmail.html";
+import verifyEmailTemplate from "../templates/VerifyEmail.html";
 
 import { DefaultTemplateView } from "../utils/DefaultTemplateView";
 import { TemplateView } from "../utils/TemplateView";
@@ -94,31 +85,17 @@ export const TaxAndCash = createHookStory(() => {
 
 export const Login = createHookStory(() => {
   const { states, callbacks } = useTemplate(loginTemplate);
-  return (
-    <TemplateView states={states} callbacks={callbacks} readme={LoginReadme} />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const ForgotPassword = createHookStory(() => {
   const { states, callbacks } = useTemplate(forgotPasswordTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={ForgotPasswordReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const Register = createHookStory(() => {
   const { states, callbacks } = useTemplate(registerTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={RegisterReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const Dashboard = createHookStory(() => {
@@ -128,13 +105,7 @@ export const Dashboard = createHookStory(() => {
 
 export const LeadSubmitIframe = createHookStory(() => {
   const { states, callbacks } = useTemplate(leadSubmitTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={ReferralIframeReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const Activity = createHookStory(() => {
@@ -144,46 +115,22 @@ export const Activity = createHookStory(() => {
 
 export const EditProfile = createHookStory(() => {
   const { states, callbacks } = useTemplate(editProfileTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={EditProfileReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const ResetPassword = createHookStory(() => {
   const { states, callbacks } = useTemplate(resetPasswordTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={ResetPasswordReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const EmailVerification = createHookStory(() => {
   const { states, callbacks } = useTemplate(emailVerificationTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={EmailVerificationReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const EmailVerified = createHookStory(() => {
   const { states, callbacks } = useTemplate(emailVerifiedTemplate);
-  return (
-    <TemplateView
-      states={states}
-      callbacks={callbacks}
-      readme={EmailVerifiedReadme}
-    />
-  );
+  return <TemplateView states={states} callbacks={callbacks} />;
 });
 
 export const Widget = createHookStory(() => {

@@ -69,6 +69,16 @@ export const WithPreviouslyCopiedCode = () => {
   );
 };
 
+export const WithPreviouslyCopiedCodeAndCustomColor = () => {
+  return (
+    <sqm-referral-codes textColor="red">
+      {pagination("pagination")}
+      {shareCodeWithPreviouslyCopied("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
 export const Empty = () => {
   return (
     <sqm-referral-codes

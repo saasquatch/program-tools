@@ -308,12 +308,13 @@ export const GeneralLoadingView = () => {
 
 export const GeneralErrorView = () => {
   return (
-    <ErrorView
-      loadingErrorAlertHeader={"There was a problem loading your form"}
-      loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact our support team."
-      }
-    />
+    <sqm-form-message type="error">
+      <p part="alert-title">There was a problem loading your form</p>
+      <p part="alert-description">
+        Please refresh the page and try again. If this problem continues,
+        contact our support team.
+      </p>
+    </sqm-form-message>
   );
 };
 
@@ -1435,9 +1436,10 @@ export const TaxAndCashDashboardW9ThresholdReached = () => {
           documentTypeString: taxTypeToName("W9"),
           dateSubmitted: "Jan 18th, 2025",
           noFormNeeded: false,
-          notRegistered: true,
+          notRegistered: false,
           showNewFormDialog: false,
           hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
         },
       }}
     ></sqm-tax-and-cash-dashboard>
@@ -1473,7 +1475,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "DONE",
+          payoutStatus: "HOLD",
           veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
@@ -1485,7 +1487,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
           indirectTaxNumber: "123456",
           country: "Slovania",
           showNewFormDialog: false,
-          hasHold: true,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>

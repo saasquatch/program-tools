@@ -400,6 +400,12 @@ export class TaxAndCashDashboard {
    */
   @Prop() demoData?: DemoData<UseTaxAndCashDashboardResult>;
 
+  /**
+   * @undocumented
+   * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
+   */
+  @Prop() stateController?: string = "{}";
+
   constructor() {
     withHooks(this);
   }
@@ -445,6 +451,7 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  // @ts-ignore
   return deepmerge(
     {
       states: {
@@ -453,16 +460,25 @@ function useDemoTaxAndCashDashboard(
         documentTypeString: "W-9",
         status: "ACTIVE",
         country: "United States",
-        indirectTaxNumber: 55555555,
+        indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
-        noFormNeeded: true,
+        noFormNeeded: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        showVerifyIdentity: false,
+
+        subRegion: "CA",
+        subRegionTaxNumber: undefined,
+        qstNumber: undefined,
+        isBusinessEntity: false,
+        province: undefined,
+        notRegistered: true,
+        loadingError: false,
+
         payoutStatus: "DONE",
         veriffLoading: false,
+        canEditPayoutInfo: true,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -472,8 +488,19 @@ function useDemoTaxAndCashDashboard(
         onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
+      slots: {
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card
+            demoData={{
+              states: {
+                badgeStatus: "nextPayout",
+              },
+            }}
+          ></sqm-payout-details-card>
+        ),
+      },
     },
-    props.demoData || {},
+    props.demoData || props.stateController || {},
     { arrayMerge: (_, a) => a }
   );
 }

@@ -7,6 +7,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-10-22
+
+### Added
+
+- **Complete Theming System Overhaul**
+  - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
+  - `parseBrandingConfig()` function for dynamic branding configuration parsing
+  - Extensive CSS custom properties system for consistent theming across all components
+  - Support for color shades, button configurations, form fields, widget sizing, and typography
+  - New font loading system with Google Fonts integration via `insertFont()` functionality
+  - Window message listeners for real-time branding configuration updates in editor environments
+
+- **Enhanced Component Editor Support**
+  - Editor state controllers for improved component editing experience
+  - Component state management improvements across all widgets
+  - Enhanced component placement and validation
+  - Improved accessibility and user experience in content editor environments
+
+- **New Development Dependencies**
+  - Added `http-server` for local development
+  - Updated `@raisins/stencil-docs-target` to version 1.3.0
+  - Enhanced development tooling and documentation generation
+
+### Changed
+
+- **Major Version Bump**: `@saasquatch/mint-components` updated from 1.15.4 to 2.0.0
+- **Global Styling Architecture**: Complete redesign of the global styles system for better theming support
+- **Component API Enhancements**: All components now support the new centralized theming system
+- **Template System**: Updated all component templates to work with the new theming configuration
+- **TypeScript Definitions**: Expanded type definitions to support the new branding and theming capabilities
+
+### Fixed
+
+- **Component Integration**: Resolved issues with component state management and editor integration
+- **Theming Consistency**: Fixed styling inconsistencies across components with the new unified theming system
+- **Template Rendering**: Improved template rendering performance and reliability
+- **Type Safety**: Enhanced TypeScript type definitions for better development experience
+
+### Breaking Changes
+
+- **Theming System**: Complete overhaul of the component theming system
+  - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
+  - Components now rely on the centralized `BrandingConfiguration` for styling
+  - Direct styling overrides may need to be migrated to the new theming API
+
+- **Global Styles**: Restructured global styles architecture
+  - Components now use CSS custom properties instead of traditional CSS variables
+  - Font loading system has been redesigned with new APIs
+  - Global style initialization now requires the new branding configuration system
+
+- **Component APIs**: Enhanced component state management
+  - Editor state controllers introduced for all components
+  - Component placement validation has been improved
+  - Some internal component APIs have been restructured for better editor integration
+
+- **Dependencies**: Updated core dependencies
+  - Development dependencies updated which may affect build processes
+
+### Migration Notes
+
+For users upgrading from 1.x to 2.0.0:
+
+1. **Theming Migration**: Update any custom theming to use the new `BrandingConfiguration` interface
+2. **CSS Updates**: Replace legacy CSS variables with the new CSS custom properties system
+3. **Font Loading**: Update font loading to use the new `insertFont()` system if customizing fonts
+4. **Editor Integration**: Update any custom editor integrations to work with the new state controllers
+5. **Build Process**: Review build configuration for compatibility with updated dependencies
+
+This major release represents a significant advancement in the theming capabilities and editor experience of mint-components, providing a more robust and flexible foundation for component customization and integration.
+
 ## [1.15.5] - 2025-10-21
 
 ### Fixed
@@ -1315,7 +1385,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.0...HEAD
+[2.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.0
+[1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5
 [1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
 [1.15.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.3
 [1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2

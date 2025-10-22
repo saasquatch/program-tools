@@ -20,6 +20,7 @@ interface CouponCodeProps {
   pendingErrorText: string;
   redeemedErrorText: string;
   genericErrorText: string;
+  buttonType?: "primary" | "secondary";
   codeSyncErrorText: string;
   codeSyncErrorRetryText: string;
 }
@@ -299,5 +300,6 @@ export function useCouponCode(props: CouponCodeProps): CouponCodeViewProps {
     dateAvailable,
     loading,
     errorType,
+    buttonType: props.buttonType || "primary",
   };
 }

@@ -1,15 +1,15 @@
-import { Config } from "@stencil/core";
-import { sass } from "@stencil/sass";
-import createDocxGenerator from "stencil-docx-docs";
+import plugin from "@raisins/stencil-docs-target";
 import alias from "@rollup/plugin-alias";
+import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
+import { Config } from "@stencil/core";
+import { OutputTarget } from "@stencil/core/internal";
+import { sass } from "@stencil/sass";
+import path from "path";
 import copy from "rollup-plugin-copy";
 import css from "rollup-plugin-css-only";
-import path from "path";
-import { OutputTarget } from "@stencil/core/internal";
-import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
-import { ShoelaceComponents } from "./shoelace-definitions";
 import { string } from "rollup-plugin-string";
-import plugin from "@raisins/stencil-docs-target";
+import createDocxGenerator from "stencil-docx-docs";
+import { ShoelaceComponents } from "./shoelace-definitions";
 
 const useDocx: OutputTarget = {
   type: "docs-custom",
@@ -77,7 +77,10 @@ export const config: Config = {
           {
             type: "www",
             serviceWorker: null, // disable service workers
-            copy: [{ src: "global/styles.ts" }],
+            copy: [
+              { src: "global/styles.v2.ts" },
+              { src: "global/styles.v1.ts" },
+            ],
           },
           useDocx,
           useGrapesjs,
@@ -88,7 +91,10 @@ export const config: Config = {
       : [
           {
             type: "dist",
-            copy: [{ src: "global/styles.ts" }],
+            copy: [
+              { src: "global/styles.v2.ts" },
+              { src: "global/styles.v1.ts" },
+            ],
           },
           {
             type: "stats",

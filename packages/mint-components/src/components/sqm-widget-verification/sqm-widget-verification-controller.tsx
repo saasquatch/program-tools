@@ -1,7 +1,7 @@
-import { useParentState } from "@saasquatch/component-boilerplate";
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
-import { Component, h, Host } from "@stencil/core";
+import { Component, h, Host, Prop } from "@stencil/core";
 import debugFn from "debug";
 import { VERIFICATION_PARENT_NAMESPACE } from "./keys";
 const debug = debugFn("sq:widget-verification");
@@ -38,14 +38,21 @@ function useTemplateChildren({ parent, callback }) {
 /**
  * @uiName Widget Verification Controller
  * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+ * @exampleGroup Tax and Cash
+ * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  * @canvasRenderer always-replace
- * @exampleGroup Widget Verification
- * @example Widget Verification Controller - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  */
 @Component({
   tag: "sqm-widget-verification-controller",
 })
 export class WidgetVerificationController {
+  /**
+   * @undocumented
+   * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
+   * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
+   */
+  @Prop() stateController: string = "{}";
+
   constructor() {
     withHooks(this);
   }
@@ -57,11 +64,15 @@ export class WidgetVerificationController {
       initialValue: false,
     });
 
+    const props = JSON.parse(this.stateController);
+    const demoIsAuth =
+      isDemo() && props["sqm-widget-verification-controller"]?.isAuth;
+
     const [container, setContainer] = useState<HTMLDivElement>(undefined);
     const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
     const updateTemplates = useCallback(() => {
-      const isAuth = context;
+      const isAuth = demoIsAuth || context;
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
       const template = Array.from(templates).find(
         (t) => t.slot === (isAuth ? "verified" : "not-verified")
@@ -126,7 +137,7 @@ export class WidgetVerificationController {
           target.style.height = "25px";
         });
       }
-    }, [container, slot, context]);
+    }, [container, slot, context, demoIsAuth]);
 
     useEffect(() => {
       if (!container || !slot) {
@@ -138,7 +149,7 @@ export class WidgetVerificationController {
       updateTemplates();
 
       return useTemplateChildren({ parent: slot, callback: updateTemplates });
-    }, [slot, container, context]);
+    }, [slot, container, context, demoIsAuth]);
 
     return (
       <Host>

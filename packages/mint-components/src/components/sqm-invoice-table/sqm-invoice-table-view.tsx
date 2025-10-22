@@ -11,7 +11,7 @@ const style = {
     fontSize: "var(--sl-font-size-small)",
     marginTop: "var(--sl-spacing-small)",
     margin: "0 0 var(--sl-spacing-large)",
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
   },
   Header: {
     fontSize: "var(--sl-font-size-large)",

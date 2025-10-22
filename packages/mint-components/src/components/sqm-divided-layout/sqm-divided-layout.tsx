@@ -8,6 +8,8 @@ import { getProps } from "../../utils/utils";
  * Spacing is left up to the child
  *
  * @uiName Divided Layout
+ * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
+ * @exampleGroup Layout
  * @slots [{"name":"", "title":"Layout Content"}]
  */
 @Component({
@@ -31,11 +33,26 @@ export class DividedLayout {
   @Prop() contentAreaWidth: string | null;
 
   /**
+   * @undocumented
    * Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
    * @uiName Border style
    */
-  @Prop() dividerStyle: string = "1px solid #EAEAEA";
+  @Prop() dividerStyle: string =
+    "var(--sqm-border-thickness) solid var(--sqm-border-color)";
 
+  /**
+   * Background color of the divider
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() backgroundColor?: string = "#FFFFFF";
+
+  /**
+   * Color of the divider (defaults to default text color if none is set)
+   * @uiName Border Color
+   * @uiWidget color
+   */
+  @Prop() borderColor?: string;
   constructor() {
     withHooks(this);
   }

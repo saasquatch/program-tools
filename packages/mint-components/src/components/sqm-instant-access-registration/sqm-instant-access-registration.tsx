@@ -11,9 +11,10 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
 
 /**
  * @uiName Instant Access Registration
+ * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
- * @example Instant Access Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+ * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({
@@ -125,7 +126,7 @@ export class InstantAccessRegistration {
    * @uiGroup Card style
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#ffffff";
+  @Prop() backgroundColor: string = "var(--sqm-portal-background)";
 
   /**
    * @undocumented

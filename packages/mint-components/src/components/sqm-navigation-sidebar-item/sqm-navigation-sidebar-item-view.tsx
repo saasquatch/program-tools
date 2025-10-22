@@ -12,30 +12,58 @@ export interface NavigationSidebarItemViewProps {
     icon: string;
     path: string;
   };
+  backgroundColor?: string;
+  backgroundHoverColor?: string;
+  textColor?: string;
+  textHoverColor?: string;
+  borderRadius?: number;
+  backgroundFocusedColor?: string;
+  textFocusedColor?: string;
+  padding?: string;
 }
 
 export function NavigationSidebarItemView(
   props: NavigationSidebarItemViewProps
 ) {
-  const { states, data } = props;
+  const { states, data, padding = "x-small" } = props;
+
+  const backgroundColor =
+    props.backgroundColor || "var(--sqm-portal-background)";
+
+  const backgroundHoverColor =
+    props.backgroundHoverColor || "var(--sqm-primary-button-background-hover)";
+
+  const backgroundFocusedColor =
+    props.backgroundFocusedColor || "var(--sqm-primary-button-background)";
+
+  const textFocusedColor =
+    props.textFocusedColor || "var(--sqm-primary-button-color)";
 
   const style = {
     ItemContainer: {
       display: "flex",
       "background-color": `${
-        states.active ? "var(--sl-color-gray-200)" : "var(--sl-color-white)"
+        states.active ? backgroundFocusedColor : backgroundColor
       }`,
-      "border-radius": "8px",
-      padding: "8px",
+      borderRadius: props.borderRadius
+        ? `${props.borderRadius}px`
+        : "var(--sqm-border-radius-normal)",
+      padding: `var(--sl-spacing-${padding})`,
+
       "text-decoration": "none",
-      color: "#454444",
+      color: states.active
+        ? textFocusedColor
+        : props.textColor || "var(--sqm-text)",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
         cursor: "pointer",
         background: states.active
-          ? "var(--sl-color-gray-300)"
-          : "var(--sl-color-gray-50)",
+          ? backgroundFocusedColor
+          : backgroundHoverColor,
+        color: states.active
+          ? textFocusedColor
+          : props.textHoverColor || "var(--sqm-primary-button-color-hover)",
       },
     },
     Label: {

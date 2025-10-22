@@ -60,6 +60,13 @@ sl-checkbox::part(label){
 sl-checkbox::part(base){
   align-items: start;
 }
+sl-checkbox[checked]::part(control){
+  background-color: var(--sqm-input-border-color-focus);
+}
+
+sl-checkbox[checked]::part(checked-icon){
+  color: var(--sqm-input-background);
+}
 `;
 
 jss.setup(preset());

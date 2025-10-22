@@ -9,9 +9,11 @@ import {
   PayoutStatusAlertViewProps,
 } from "./sqm-payout-status-alert-view";
 import { usePayoutStatus } from "./usePayoutStatus";
+import { parseStates } from "../../../utils/parseStates";
 
 /**
  * @uiName Payout Status Alert
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Tax and Cash
  * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
  */
@@ -132,6 +134,15 @@ export class PayoutStatusAlert {
 
   /**
    * @undocumented
+   * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+   */
+  @Prop() stateController?: string = "{}";
+
+  /**
+   * @undocumented
    * @uiType object
    */
   @Prop() demoData?: DemoData<PayoutStatusAlertViewProps>;
@@ -156,13 +167,21 @@ export class PayoutStatusAlert {
 function useDemoPayoutStatusAlert(
   props: PayoutStatusAlert
 ): PayoutStatusAlertViewProps {
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-payout-status-alert"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
   return deepmerge(
     {
       states: {
         error: false,
         status: "INFORMATION_REQUIRED",
         loading: false,
-        showVerifyIdentity: false,
+        veriffLoading: false,
       },
       data: { type: "SquatchAdmin" },
       text: props.getTextProps(),
@@ -171,7 +190,7 @@ function useDemoPayoutStatusAlert(
         onClick: () => console.log("show"),
       },
     },
-    props.demoData || {},
+    formatted || props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
