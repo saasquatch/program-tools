@@ -185,14 +185,25 @@ const referralsMonthQuery = (
   );
 };
 
-const referralsWeekQuery = (programId: string) => {
+const referralsWeekQuery = (
+  programId: string,
+  status?: "started" | "converted"
+) => {
   const programFilter =
     programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId };
 
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
   const filter = {
     ...programFilter,
+    ...convertedFilter,
     dateReferralStarted_timeframe: "this_week",
   };
   return debugQuery(
@@ -1147,8 +1158,8 @@ export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
   { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
-  { name: "referralsMonth", route: "/(referralsMonth)/:status?" }, // TODO: Add status
-  { name: "referralsWeek", route: "/(referralsWeek)/:status?" }, // TODO: Add status
+  { name: "referralsMonth", route: "/(referralsMonth)/:status?" },
+  { name: "referralsWeek", route: "/(referralsWeek)/:status?" },
   { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
   { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
   { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
