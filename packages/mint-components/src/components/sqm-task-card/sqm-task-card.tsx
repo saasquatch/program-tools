@@ -270,12 +270,12 @@ export class TaskCard {
 
   render() {
     const { props } = isDemo()
-      ? useDemoBigStat(this)
+      ? useDemoBigStat(getProps(this))
       : useBigStat({ ...getProps(this), programId: this.programId });
     const { value, loading } = props;
 
     const { states, callbacks } = isDemo()
-      ? useTaskCardDemo(this)
+      ? useTaskCardDemo(getProps(this))
       : useTaskCard(this);
     return (
       <TaskCardView
