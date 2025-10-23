@@ -7,11 +7,14 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                                        | Type     | Default     |
-| ---------- | ----------- | ------------------------------------------------------------------ | -------- | ----------- |
-| `height`   | `height`    |                                                                    | `number` | `60`        |
-| `imageUrl` | `image-url` |                                                                    | `string` | `undefined` |
-| `nextPage` | `next-page` | Page participants are navigated to after clicking the header logo. | `string` | `"/"`       |
+| Property        | Attribute         | Description                                                        | Type     | Default     |
+| --------------- | ----------------- | ------------------------------------------------------------------ | -------- | ----------- |
+| `height`        | `height`          |                                                                    | `number` | `60`        |
+| `imageUrl`      | `image-url`       |                                                                    | `string` | `undefined` |
+| `logoText`      | `logo-text`       |                                                                    | `string` | `undefined` |
+| `logoTextColor` | `logo-text-color` |                                                                    | `string` | `undefined` |
+| `logoTextSize`  | `logo-text-size`  |                                                                    | `string` | `"24px"`    |
+| `nextPage`      | `next-page`       | Page participants are navigated to after clicking the header logo. | `string` | `"/"`       |
 
 
 ## Shadow Parts

@@ -14,7 +14,20 @@ export class HeroImage {
    * @format url
    * @uiName Logo image
    */
-  @Prop() imageUrl: string;
+  @Prop() imageUrl?: string;
+  /**
+   * @uiName Logo text
+   */
+  @Prop() logoText?: string;
+  /**
+   * @uiName Logo text
+   */
+  @Prop() logoTextSize?: string = "24px";
+  /**
+   * @uiWidget color
+   * @uiName Logo text
+   */
+  @Prop() logoTextColor?: string;
 
   /**
    * Page participants are navigated to after clicking the header logo.
@@ -39,7 +52,18 @@ export class HeroImage {
     return (
       <Host>
         <a href={this.nextPage} part="sqm-link">
-          <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
+          {this.imageUrl ? (
+            <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
+          ) : (
+            <h3
+              style={{
+                fontSize: this.logoTextSize,
+                color: this.logoTextColor || "inherit",
+              }}
+            >
+              {this.logoText}
+            </h3>
+          )}
         </a>
       </Host>
     );

@@ -931,7 +931,20 @@ export namespace Components {
           * @format url
           * @uiName Logo image
          */
-        "imageUrl": string;
+        "imageUrl"?: string;
+        /**
+          * @uiName Logo text
+         */
+        "logoText"?: string;
+        /**
+          * @uiWidget color
+          * @uiName Logo text
+         */
+        "logoTextColor"?: string;
+        /**
+          * @uiName Logo text
+         */
+        "logoTextSize"?: string;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
@@ -8218,6 +8231,19 @@ declare namespace LocalJSX {
           * @uiName Logo image
          */
         "imageUrl"?: string;
+        /**
+          * @uiName Logo text
+         */
+        "logoText"?: string;
+        /**
+          * @uiWidget color
+          * @uiName Logo text
+         */
+        "logoTextColor"?: string;
+        /**
+          * @uiName Logo text
+         */
+        "logoTextSize"?: string;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
