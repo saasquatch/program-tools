@@ -571,7 +571,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <Fragment>
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="default"
+                type="primary"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -611,7 +611,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <Fragment>
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="default"
+                type="primary"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -651,7 +651,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <Fragment>
               <sl-button
                 disabled={states.disabled || states.loading}
-                type="default"
+                type="primary"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -720,7 +720,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           button: (
             <sl-button
               disabled={states.disabled || states.loading}
-              type="default"
+              type="primary"
               class={sheet.classes.EditBankDetailsButton}
               onClick={callbacks.onEditPayoutInfo}
             >

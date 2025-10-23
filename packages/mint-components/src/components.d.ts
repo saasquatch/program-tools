@@ -1025,13 +1025,13 @@ export namespace Components {
         "logoText"?: string;
         /**
           * @uiWidget color
-          * @uiName Logo text
+          * @uiName Logo text color
          */
         "logoTextColor"?: string;
         /**
-          * @uiName Logo text
+          * @uiName Logo text size
          */
-        "logoTextSize"?: string;
+        "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
@@ -8907,13 +8907,13 @@ declare namespace LocalJSX {
         "logoText"?: string;
         /**
           * @uiWidget color
-          * @uiName Logo text
+          * @uiName Logo text color
          */
         "logoTextColor"?: string;
         /**
-          * @uiName Logo text
+          * @uiName Logo text size
          */
-        "logoTextSize"?: string;
+        "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path

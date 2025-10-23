@@ -182,22 +182,19 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   };
 
   const onPaymentInfoClick = () => {
-    setContext({
-      overrideNextStep: "/dashboard",
-      overrideBackStep: "/dashboard",
-      hideSteps: true,
-    });
+    let url = props.cashPayoutsPageUrl;
 
-    setStep("/4");
+    url += "#4";
+
+    window.history.pushState(null, "", url);
   };
 
   const onNewFormClick = () => {
-    setContext({
-      overrideNextStep: "/dashboard",
-      overrideBackStep: "/dashboard",
-      hideSteps: true,
-    });
-    setStep("/3");
+    let url = props.cashPayoutsPageUrl;
+
+    url += "#3";
+
+    window.history.pushState(null, "", url);
   };
 
   return {

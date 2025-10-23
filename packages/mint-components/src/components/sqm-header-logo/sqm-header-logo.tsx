@@ -21,14 +21,14 @@ export class HeroImage {
    */
   @Prop() logoText?: string;
   /**
-   * @uiName Logo text
+   * @uiName Logo text size
    */
-  @Prop() logoTextSize?: string = "24px";
+  @Prop() logoTextSize?: number = 32;
   /**
    * @uiWidget color
-   * @uiName Logo text
+   * @uiName Logo text color
    */
-  @Prop() logoTextColor?: string;
+  @Prop() logoTextColor?: string = "#555555";
 
   /**
    * Page participants are navigated to after clicking the header logo.
@@ -58,8 +58,9 @@ export class HeroImage {
           ) : (
             <h3
               style={{
-                fontSize: this.logoTextSize,
-                color: this.logoTextColor || "inherit",
+                fontSize: `${this.logoTextSize}px`,
+                color: this.logoTextColor || "#555555",
+                textDecoration: "none",
               }}
             >
               {this.logoText}

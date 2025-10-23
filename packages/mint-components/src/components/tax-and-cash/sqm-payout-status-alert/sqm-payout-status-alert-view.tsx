@@ -299,7 +299,24 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
         };
@@ -319,7 +336,24 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
         };
@@ -339,7 +373,24 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
         };
@@ -359,7 +410,17 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            </Fragment>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
         };
@@ -383,17 +444,10 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             <Fragment>
               <sl-button
                 disabled={states.loading}
-                type="default"
+                type="primary"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
-              </sl-button>
-              <sl-button
-                disabled={states.loading}
-                type="default"
-                onClick={callbacks.onNewFormClick}
-              >
-                {text.newFormButton}
               </sl-button>
             </Fragment>
           ),
