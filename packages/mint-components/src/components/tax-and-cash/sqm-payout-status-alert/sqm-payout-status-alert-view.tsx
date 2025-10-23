@@ -282,7 +282,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "BENEFICIARY_NAME_INVALID":
         return {
@@ -303,7 +302,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "BENEFICIARY_NAME_MISMATCH":
         return {
@@ -324,7 +322,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "BANK_TAX_NAME_MISMATCH":
         return {
@@ -345,7 +342,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "WITHDRAWAL_SETTINGS_INVALID":
         return {
@@ -366,7 +362,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: text.editPaymentInformationButton,
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "PAYMENT_RETURNED":
         return {
@@ -404,7 +399,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
 
       case "HOLD":
