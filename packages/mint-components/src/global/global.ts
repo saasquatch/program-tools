@@ -152,7 +152,5 @@ if (getEnvironmentSDK().type === "None") {
   });
 }
 
-if (window.SquatchBrandingConfig) {
-  const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
-  applyStyles(styles, font);
-}
+const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
+applyStyles(styles, font);
