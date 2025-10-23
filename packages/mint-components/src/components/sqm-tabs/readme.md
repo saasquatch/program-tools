@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                               | Type                                     | Default     |
-| ----------- | ----------- | ----------------------------------------- | ---------------------------------------- | ----------- |
-| `placement` | `placement` | Used to specify the placement of the tabs | `"bottom" \| "left" \| "right" \| "top"` | `undefined` |
+| Property    | Attribute    | Description                               | Type                                     | Default     |
+| ----------- | ------------ | ----------------------------------------- | ---------------------------------------- | ----------- |
+| `placement` | `placement`  | Used to specify the placement of the tabs | `"bottom" \| "left" \| "right" \| "top"` | `undefined` |
+| `textColor` | `text-color` | Tab text color                            | `string`                                 | `undefined` |
 
 
 ----------------------------------------------

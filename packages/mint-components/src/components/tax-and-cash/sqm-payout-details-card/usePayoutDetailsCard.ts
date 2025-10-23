@@ -1,9 +1,9 @@
+import { useParentQueryValue } from "@saasquatch/component-boilerplate";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
-import { USER_QUERY_NAMESPACE, UserQuery } from "../sqm-tax-and-cash/data";
+import { USER_QUERY_NAMESPACE, UserQuery } from "../data";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
 import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";
-import { useParentQueryValue } from "@saasquatch/component-boilerplate";
 
 export function usePayoutDetailsCard(
   props: PayoutDetailsCard

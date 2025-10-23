@@ -11,9 +11,10 @@ import {
 
 /**
  * @uiName Instant Access Friend Registration
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
- * @example Instant Access Friend Registration - <sqm-referred-registration></sqm-referred-registration>
+ * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  */
 @Component({
@@ -46,7 +47,7 @@ export class ReferredRegistration {
    * @uiName Register button text
    */
   @Prop()
-  registerLabel: string = "Start Referring";
+  registerLabel: string = "Claim Your Reward";
 
   /**
    * Require your participants to enter their first and last name.
@@ -143,7 +144,7 @@ export class ReferredRegistration {
    * @uiGroup Card style
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#ffffff";
+  @Prop() backgroundColor: string;
 
   /**
    * @undocumented

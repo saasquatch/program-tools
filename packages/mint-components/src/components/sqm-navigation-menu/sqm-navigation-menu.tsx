@@ -12,6 +12,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Navigation Menu
+ * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
  */
 @Component({
   tag: "sqm-navigation-menu",

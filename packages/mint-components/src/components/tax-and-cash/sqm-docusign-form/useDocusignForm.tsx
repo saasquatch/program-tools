@@ -5,7 +5,7 @@ import {
   useParentValue,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
   TAX_CONTEXT_NAMESPACE,
@@ -13,11 +13,11 @@ import {
   TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { taxTypeToName, validTaxDocument } from "../utils";
 import { DocusignStatus } from "./docusign-iframe/DocusignIframe";
 import { DocusignForm } from "./sqm-docusign-form";
-import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 type CreateTaxDocumentQuery = {
   createImpactPublisherTaxDocument: {

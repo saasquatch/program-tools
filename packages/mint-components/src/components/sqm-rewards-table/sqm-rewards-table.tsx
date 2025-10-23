@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect, useReducer, useMemo } from "@saasquatch/universal-hooks";
+import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -15,10 +15,12 @@ import {
 import { useChildElements } from "../../tables/useChildElements";
 import mockRewardData from "./mockRewardData";
 
+import { Referral } from "../../saasquatch";
 import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**
  * @uiName Reward Table
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Rewards
  * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
  * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>

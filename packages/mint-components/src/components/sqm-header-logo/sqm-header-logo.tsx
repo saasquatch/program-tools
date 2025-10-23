@@ -3,6 +3,7 @@ import { Component, h, Host, Prop } from "@stencil/core";
 
 /**
  * @uiName Header Logo
+ * @validParents ["sqm-portal-frame","div","sqm-brand"]
  */
 @Component({
   tag: "sqm-header-logo",

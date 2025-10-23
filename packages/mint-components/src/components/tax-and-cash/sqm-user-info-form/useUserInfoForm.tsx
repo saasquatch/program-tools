@@ -1,4 +1,11 @@
 import {
+  useMutation,
+  useParent,
+  useParentQueryValue,
+  useParentValue,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
+import {
   useEffect,
   useMemo,
   useRef,
@@ -17,23 +24,16 @@ import {
   USER_QUERY_NAMESPACE,
   UserFormContext,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
+import { ADDRESS_REGIONS, AddressRegions } from "../subregions";
 import { objectIsFull, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
-import {
-  useMutation,
-  useParent,
-  useParentQueryValue,
-  useParentValue,
-  useUserIdentity,
-} from "@saasquatch/component-boilerplate";
-import { AddressRegions, ADDRESS_REGIONS } from "../subregions";
-import {
-  CONNECT_PARTNER,
-  ConnectPartnerResult,
-  useIndirectTaxForm,
-} from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { ImpactConnection } from "../../../saasquatch";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
+import {
+  ConnectPartnerResult,
+  CONNECT_PARTNER,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {

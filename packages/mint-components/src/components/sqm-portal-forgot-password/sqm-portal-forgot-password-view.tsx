@@ -6,6 +6,7 @@ import {
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { navigation } from "@saasquatch/component-boilerplate";
 
 export interface PortalForgotPasswordViewProps {
   states: {
@@ -18,24 +19,17 @@ export interface PortalForgotPasswordViewProps {
     submit: (event: any) => Promise<void>;
   };
   content: {
-    secondaryButton: any;
     messageSlot: any;
     emailLabel?: string;
     submitLabel?: string;
     successAlertText?: string;
+    loginText?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
+    border?: string;
+    textColor?: string;
   };
 }
-
-const style = {
-  Wrapper: AuthWrapper,
-  Column: { ...AuthColumn },
-  ButtonsContainer: AuthButtonsContainer,
-
-  SecondaryButton: {
-    cursor: "pointer",
-    width: "25%",
-  },
-};
 
 const vanillaStyle = `
 :host {
@@ -46,13 +40,32 @@ const vanillaStyle = `
 }
 `;
 
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
   const { states, callbacks, content } = props;
+
+  const style = {
+    FormWrapper: {
+      ...AuthWrapper,
+      background: content.backgroundColor || "var(--sqm-portal-background)",
+      borderRadius: content.borderRadius || "var(--sqm-border-radius-normal)",
+      border:
+        content.border ||
+        "var(--sqm-border-thickness) solid var(--sqm-border-color)",
+    },
+    Column: { ...AuthColumn },
+    ButtonsContainer: AuthButtonsContainer,
+
+    SecondaryButton: {
+      margin: "auto",
+      display: "block",
+      cursor: "pointer",
+    },
+  };
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
   return (
-    <div class={sheet.classes.Wrapper} part="sqm-base">
+    <div class={sheet.classes.FormWrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -86,9 +99,15 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
           >
             {content.submitLabel || "Reset Password"}
           </sl-button>
-          <div class={sheet.classes.SecondaryButton}>
-            {content.secondaryButton}
-          </div>
+          <sl-button
+            type="secondary"
+            exportparts="base: secondarybutton-base"
+            class={sheet.classes.SecondaryButton}
+            disabled={states.loading}
+            onClick={() => navigation.push(states.loginPath)}
+          >
+            {content.loginText}
+          </sl-button>
         </div>
       </sl-form>
     </div>

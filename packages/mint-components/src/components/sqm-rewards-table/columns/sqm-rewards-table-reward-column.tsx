@@ -1,12 +1,13 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { Reward } from "../../../saasquatch";
 import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Rewards Table Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
+ * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
  */
 @Component({
   tag: "sqm-rewards-table-reward-column",

@@ -5,8 +5,9 @@ import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { getFormMap } from "./formDefinitions";
 import { mockPaymentOptions } from "./mockData";
 import {
@@ -18,7 +19,6 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
-import { createStyleSheet } from "../../../styling/JSS";
 
 /**
  * @uiName Banking Information Form
@@ -474,10 +474,20 @@ export class BankingInfoForm {
       }
     );
 
+    const vanillaStyle = `
+      sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+    `;
+
     return (
       <Host>
         {/* Force it to de-render every time to avoid state issues with inputs */}
         <style type="text/css">{styleString}</style>
+        <style type="text/css">{vanillaStyle}</style>
         {props.states.isPartner && props.states.showVerification ? (
           <sl-dialog
             class={sheet.classes.Dialog}

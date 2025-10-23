@@ -1,24 +1,24 @@
-import { Component, h, Host, Prop, State, VNode } from "@stencil/core";
-import { withHooks } from "@saasquatch/stencil-hooks";
-import {
-  ExchangeState,
-  RewardExchangeProps,
-  Stages,
-  useRewardExchangeList,
-  ExchangeStep,
-} from "./useRewardExchangeList";
-import {
-  RewardExchangeViewProps,
-  RewardExchangeView,
-} from "./sqm-reward-exchange-list-view";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
-import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
+import { demoRewardExchange } from "./RewardExchangeListData";
+import {
+  RewardExchangeView,
+  RewardExchangeViewProps,
+} from "./sqm-reward-exchange-list-view";
+import {
+  RewardExchangeProps,
+  useRewardExchangeList,
+} from "./useRewardExchangeList";
 
 /**
  * @uiName Reward Exchange
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+ * @validChildren ["sqm-empty"]
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @exampleGroup Rewards
  * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
@@ -194,6 +194,14 @@ export class SqmRewardExchangeList {
   @Prop() costTitle: string = "Cost to Redeem";
 
   /**
+   * @componentState { "title": "Choose reward", "props": { "states": { "redeemStage": "chooseReward" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -245,40 +253,19 @@ function EmptySlot() {
 }
 
 function useRewardExchangeListDemo(props: RewardExchangeProps) {
-  return deepmerge(
-    {
-      states: {
-        content: {
-          text: props,
-        },
-        redeemStage: "chooseReward",
-        amount: 0,
-        selectedStep: undefined,
-        selectedItem: undefined,
-        open: false,
-        exchangeError: false,
-        queryError: false,
-        loading: false,
-        noExchangeOptions: false,
-        empty: EmptySlot(),
-      },
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-reward-exchange-list"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
 
-      data: {
-        shareCode: "SHARECODE123",
-        exchangeList: demoRewardExchange.data.exchangeList,
-      },
-      callbacks: {
-        exchangeReward: () => {},
-        setExchangeState: (_: ExchangeState) => {},
-        setStage: (_: Stages) => {},
-        resetState: () => {},
-        copyFuelTankCode: () => {},
-      },
-      refs: {
-        canvasRef: {},
-      },
-    },
-    props.demoData || {},
+  const finalProps = deepmerge(
+    { ...demoRewardExchange, content: { text: props } },
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
+  return finalProps;
 }

@@ -14,60 +14,66 @@ export interface ReferralCodesViewProps {
     loading: boolean;
   };
   titleText?: string;
+  textColor?: string;
 }
-
-const style = {
-  Wrapper: {
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    flexDirection: "column",
-    gap: "var(--sl-spacing-large)",
-  },
-
-  HeaderContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-  ShareCodeContainer: {
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-  ShareButtonContainer: {
-    width: "100%",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-
-  TitleText: {
-    color: "var(--sl-color-neutral-700)",
-    fontSize: "var(--sl-font-size-large)",
-    margin: "0",
-  },
-};
-
-const vanillaStyle = `
-:host {
-  display: block;
-}
-:host([hidden]): {
-  display: none;
-}
-`;
-
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
 
 export function ReferralCodesView(props: ReferralCodesViewProps) {
-  const { slots, titleText, states } = props;
+  const {
+    slots,
+    titleText,
+    states,
+    textColor = "var(--sqm-text-subdued)",
+  } = props;
+
+  const style = {
+    Wrapper: {
+      width: "100%",
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-large)",
+      color: textColor,
+    },
+
+    HeaderContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%",
+    },
+    ShareCodeContainer: {
+      width: "100%",
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      flexDirection: "column",
+    },
+    ShareButtonContainer: {
+      width: "100%",
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      flexDirection: "column",
+    },
+
+    TitleText: {
+      fontSize: "var(--sl-font-size-large)",
+      margin: "0",
+    },
+  };
+
+  const vanillaStyle = `
+    :host {
+      display: block;
+    }
+    :host([hidden]): {
+      display: none;
+    }
+  `;
+
+  const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
 
   const getSlotContent = (states: ReferralCodesViewProps["states"]) => {
     if (states.noCodes) {

@@ -14,6 +14,7 @@ import { useNameFields } from "./useNameFields";
  */
 @Component({
   tag: "sqm-name-fields",
+  shadow: true,
 })
 export class NameFields {
   @State()
@@ -28,6 +29,12 @@ export class NameFields {
    * @uiName Last name label
    */
   @Prop() lastNameLabel: string = "Last Name";
+
+  /**
+   * @uiName Optional
+   * @uiWidget
+   */
+  @Prop() optional: boolean = false;
 
   /**
    * @undocumented
@@ -50,6 +57,7 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
   return deepmerge(
     {
       states: {
+        optional: props.optional,
         validationErrors: [],
         content: {
           firstNameLabel: props.firstNameLabel,

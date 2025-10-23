@@ -5,6 +5,7 @@ export interface RouteProps {
 
 /**
  * @uiName Route
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
  * @slots [{"name":"","title":"Content"}]
  */
 @Component({

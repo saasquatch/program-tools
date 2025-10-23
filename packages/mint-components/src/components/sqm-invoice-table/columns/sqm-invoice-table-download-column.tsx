@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method } from "@stencil/core";
+import { Invoice } from "../../../saasquatch";
 import { InvoiceTableColumn } from "./InvoiceTableColumn";
 
 /**

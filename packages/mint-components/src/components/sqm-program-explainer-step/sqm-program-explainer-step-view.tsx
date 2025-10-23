@@ -6,6 +6,9 @@ export interface ProgramExplainerStepViewProps {
   description: string;
   textColor?: string;
   backgroundColor?: string;
+  borderRadius?: number;
+  iconBackgroundColor?: string;
+  iconColor?: string;
   imageUrl?: string;
   icon?: string;
 }
@@ -18,8 +21,11 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       width: "100%",
       padding: "var(--sl-spacing-x-large)",
       lineHeight: "var(--sl-line-height-dense)",
-      color: props.textColor || "var(--sl-color-neutral-900)",
-      background: props.backgroundColor || "var(--sl-color-primary-50)",
+      borderRadius: props.borderRadius
+        ? `${props.borderRadius}px`
+        : "var(--sqm-border-radius-normal)",
+      color: props.textColor || "var(--sqm-text)",
+      background: props.backgroundColor || "var(--sqm-accent-color-background)",
       "@media (max-width: 499px)": {
         flexDirection: "row",
         width: "auto",
@@ -32,6 +38,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       },
     },
     Header: {
+      color: props.textColor || "var(--sqm-text)",
       fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-bold)",
       marginTop: "var(--sl-spacing-x-large)",
@@ -40,6 +47,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       },
     },
     Description: {
+      color: props.textColor || "var(--sqm-text)",
       fontSize: "var(--sl-font-size-medium)",
       marginTop: "var(--sl-spacing-small)",
       "@media (max-width: 499px)": {
@@ -52,11 +60,14 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       borderRadius: "100%",
       objectFit: "cover",
       userSelect: "none",
-      background: "#FFF",
-      color: "var(--sl-color-primary-300)",
+      background: props.iconBackgroundColor || "var(--sl-color-white)",
+      color: props.iconColor || "var(--sqm-accent-color-icon)",
       fontSize: "26px",
       textAlign: "center",
       lineHeight: "72px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   };
 

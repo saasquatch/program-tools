@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { Reward } from "../../saasquatch";
 
 export default (count = 4, status = undefined) => {
   const data = [...Array(count)].map(() => getMockData(status)) as Reward[];

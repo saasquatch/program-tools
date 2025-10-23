@@ -38,6 +38,7 @@ const defaultProps: PortalRegistrationFormViewProps = {
         {" "}
         <NameFieldsView
           states={{
+            optional: false,
             registrationFormState: {
               validationErrors: undefined,
               disabled: true,

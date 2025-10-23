@@ -8,6 +8,8 @@ export default {
   title: "Components/Microsite Portal Register",
 };
 
+// TODO: Figure out if we can delete this component and it's stories since we have a duplicate
+
 const defaultProps: PortalRegistrationFormViewProps = {
   states: {
     error: "",
