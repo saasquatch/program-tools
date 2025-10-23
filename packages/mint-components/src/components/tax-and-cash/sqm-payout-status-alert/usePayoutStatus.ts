@@ -191,6 +191,15 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     setStep("/4");
   };
 
+  const onNewFormClick = () => {
+    setContext({
+      overrideNextStep: "/dashboard",
+      overrideBackStep: "/dashboard",
+      hideSteps: true,
+    });
+    setStep("/3");
+  };
+
   return {
     states: {
       loading,
@@ -205,6 +214,7 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       onTermsClick,
       onClick: render,
       onPaymentInfoClick,
+      onNewFormClick,
     },
   };
 }

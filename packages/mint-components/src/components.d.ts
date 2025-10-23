@@ -403,8 +403,6 @@ export namespace Components {
          */
         "brandFont": string;
     }
-    interface SqmBrandSelector {
-    }
     interface SqmCardFeed {
         /**
           * @uiName Column gap
@@ -2083,6 +2081,10 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton": string;
         /**
           * @uiName Payment on hold alert description
          */
@@ -4727,11 +4729,11 @@ export namespace Components {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Bank name mismatch alert description
          */
         "dashboard_bankNameMismatchDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Bank name mismatch alert header
          */
         "dashboard_bankNameMismatchHeader": string;
         /**
@@ -4740,19 +4742,19 @@ export namespace Components {
          */
         "dashboard_bankingInformationSectionHeader": string;
         /**
-          * @uiName Account review alert description
+          * @uiName Beneficiary name invalid description
          */
         "dashboard_beneficiaryNameInvalidDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Beneficiary name invalid alert header
          */
         "dashboard_beneficiaryNameInvalidHeader": string;
         /**
-          * @uiName Account review alert description
+          * @uiName Beneficiary name mismatch alert description
          */
         "dashboard_beneficiaryNameMismatchDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Beneficiary name mismatch alert header
          */
         "dashboard_beneficiaryNameMismatchHeader": string;
         /**
@@ -4881,19 +4883,19 @@ export namespace Components {
          */
         "dashboard_notRegisteredForTax": string;
         /**
-          * @uiName Account review alert description
+          * @uiName Payment on hold alert description
          */
         "dashboard_paymentOnHoldDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Payment on hold alert header
          */
         "dashboard_paymentOnHoldHeader": string;
         /**
-          * @uiName Account review alert description
+          * @uiName Payment returned alert description
          */
         "dashboard_paymentReturnedDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Payment returned alert header
          */
         "dashboard_paymentReturnedHeader": string;
         /**
@@ -5101,11 +5103,11 @@ export namespace Components {
          */
         "dashboard_w9RequiredHeader": string;
         /**
-          * @uiName Account review alert description
+          * @uiName Withdrawal settings invalid alert description
          */
         "dashboard_withdrawalSettingsInvalidDescription": string;
         /**
-          * @uiName Account review alert header
+          * @uiName Withdrawal settings invalid alert header
          */
         "dashboard_withdrawalSettingsInvalidHeader": string;
         /**
@@ -6481,12 +6483,6 @@ declare global {
         prototype: HTMLSqmBrandElement;
         new (): HTMLSqmBrandElement;
     };
-    interface HTMLSqmBrandSelectorElement extends Components.SqmBrandSelector, HTMLStencilElement {
-    }
-    var HTMLSqmBrandSelectorElement: {
-        prototype: HTMLSqmBrandSelectorElement;
-        new (): HTMLSqmBrandSelectorElement;
-    };
     interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
     }
     var HTMLSqmCardFeedElement: {
@@ -7225,7 +7221,6 @@ declare global {
         "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
-        "sqm-brand-selector": HTMLSqmBrandSelectorElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-close-button": HTMLSqmCloseButtonElement;
@@ -7692,8 +7687,6 @@ declare namespace LocalJSX {
           * @default "Nunito Sans"
          */
         "brandFont"?: string;
-    }
-    interface SqmBrandSelector {
     }
     interface SqmCardFeed {
         /**
@@ -9368,6 +9361,10 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton"?: string;
         /**
           * @uiName Payment on hold alert description
          */
@@ -11988,11 +11985,11 @@ declare namespace LocalJSX {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Bank name mismatch alert description
          */
         "dashboard_bankNameMismatchDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Bank name mismatch alert header
          */
         "dashboard_bankNameMismatchHeader"?: string;
         /**
@@ -12001,19 +11998,19 @@ declare namespace LocalJSX {
          */
         "dashboard_bankingInformationSectionHeader"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Beneficiary name invalid description
          */
         "dashboard_beneficiaryNameInvalidDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Beneficiary name invalid alert header
          */
         "dashboard_beneficiaryNameInvalidHeader"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Beneficiary name mismatch alert description
          */
         "dashboard_beneficiaryNameMismatchDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Beneficiary name mismatch alert header
          */
         "dashboard_beneficiaryNameMismatchHeader"?: string;
         /**
@@ -12142,19 +12139,19 @@ declare namespace LocalJSX {
          */
         "dashboard_notRegisteredForTax"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Payment on hold alert description
          */
         "dashboard_paymentOnHoldDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Payment on hold alert header
          */
         "dashboard_paymentOnHoldHeader"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Payment returned alert description
          */
         "dashboard_paymentReturnedDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Payment returned alert header
          */
         "dashboard_paymentReturnedHeader"?: string;
         /**
@@ -12362,11 +12359,11 @@ declare namespace LocalJSX {
          */
         "dashboard_w9RequiredHeader"?: string;
         /**
-          * @uiName Account review alert description
+          * @uiName Withdrawal settings invalid alert description
          */
         "dashboard_withdrawalSettingsInvalidDescription"?: string;
         /**
-          * @uiName Account review alert header
+          * @uiName Withdrawal settings invalid alert header
          */
         "dashboard_withdrawalSettingsInvalidHeader"?: string;
         /**
@@ -13715,7 +13712,6 @@ declare namespace LocalJSX {
         "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
-        "sqm-brand-selector": SqmBrandSelector;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
         "sqm-close-button": SqmCloseButton;
@@ -13849,7 +13845,6 @@ declare module "@stencil/core" {
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
-            "sqm-brand-selector": LocalJSX.SqmBrandSelector & JSXBase.HTMLAttributes<HTMLSqmBrandSelectorElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;

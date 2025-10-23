@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { Fragment, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { EnforceUsTaxComplianceOption, PayoutStatus } from "./usePayoutStatus";
@@ -23,9 +23,11 @@ export interface PayoutStatusAlertViewProps {
     onClick: () => void;
     onTermsClick: () => void;
     onPaymentInfoClick: () => void;
+    onNewFormClick: () => void;
   };
   text: {
     editPaymentInformationButton: string;
+    newFormButton: string;
     informationRequiredHeader: string;
     informationRequiredDescription: string;
     informationRequiredButtonText: string;
@@ -416,7 +418,24 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          buttonText: text.editPaymentInformationButton,
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningAlertContainer,
@@ -494,12 +513,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           </sl-button>
         );
       default:
-        if (alertDetails.buttonText)
-          return (
-            <sl-button type="default" onClick={callbacks.onPaymentInfoClick}>
-              {alertDetails.buttonText}
-            </sl-button>
-          );
+        if (alertDetails.button) return alertDetails.button;
 
         return;
     }

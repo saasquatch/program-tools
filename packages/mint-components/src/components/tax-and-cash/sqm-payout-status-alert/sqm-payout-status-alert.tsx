@@ -31,6 +31,10 @@ export class PayoutStatusAlert {
    */
   @Prop() editPaymentInformationButton: string = "Edit Payout Information";
   /**
+   * @uiName Submit new tax form button label
+   */
+  @Prop() newFormButton: string = "Submit new form";
+  /**
    * @uiName Info required alert description
    */
   @Prop() informationRequiredDescription: string =
@@ -240,6 +244,7 @@ function useDemoPayoutStatusAlert(
         onTermsClick: () => {},
         onClick: () => console.log("show"),
         onPaymentInfoClick: () => {},
+        onNewFormClick: () => {},
       },
     },
     props.demoData || {},

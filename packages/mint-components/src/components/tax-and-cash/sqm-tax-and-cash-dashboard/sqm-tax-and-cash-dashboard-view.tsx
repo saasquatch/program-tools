@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { Fragment, h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
@@ -527,14 +527,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <sl-button
-              disabled={states.disabled || states.loading}
-              type="default"
-              class={sheet.classes.EditBankDetailsButton}
-              onClick={callbacks.onEditPayoutInfo}
-            >
-              {text.editPaymentInformationButton}
-            </sl-button>
+            <Fragment>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -557,14 +567,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <sl-button
-              disabled={states.disabled || states.loading}
-              type="default"
-              class={sheet.classes.EditBankDetailsButton}
-              onClick={callbacks.onEditPayoutInfo}
-            >
-              {text.editPaymentInformationButton}
-            </sl-button>
+            <Fragment>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -587,14 +607,24 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <sl-button
-              disabled={states.disabled || states.loading}
-              type="default"
-              class={sheet.classes.EditBankDetailsButton}
-              onClick={callbacks.onEditPayoutInfo}
-            >
-              {text.editPaymentInformationButton}
-            </sl-button>
+            <Fragment>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",

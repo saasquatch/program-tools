@@ -1068,66 +1068,66 @@ export class TaxAndCashMonolith {
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Payment on hold alert header
    */
   @Prop() dashboard_paymentOnHoldHeader: string =
     "We are reviewing your new payout settings";
   /**
-   * @uiName Account review alert description
+   * @uiName Payment on hold alert description
    */
   @Prop() dashboard_paymentOnHoldDescription: string =
     "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Beneficiary name invalid alert header
    */
   @Prop() dashboard_beneficiaryNameInvalidHeader: string =
     "Your payment information does not match your tax form";
   /**
-   * @uiName Account review alert description
+   * @uiName Beneficiary name invalid description
    */
   @Prop() dashboard_beneficiaryNameInvalidDescription: string =
     "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Beneficiary name mismatch alert header
    */
   @Prop() dashboard_beneficiaryNameMismatchHeader: string =
     "Your payment information does not match your tax form";
   /**
-   * @uiName Account review alert description
+   * @uiName Beneficiary name mismatch alert description
    */
   @Prop() dashboard_beneficiaryNameMismatchDescription: string =
     "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Bank name mismatch alert header
    */
   @Prop() dashboard_bankNameMismatchHeader: string =
     "Your payment information does not match your tax form";
   /**
-   * @uiName Account review alert description
+   * @uiName Bank name mismatch alert description
    */
   @Prop() dashboard_bankNameMismatchDescription: string =
     "The bank name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Withdrawal settings invalid alert header
    */
   @Prop() dashboard_withdrawalSettingsInvalidHeader: string =
     "Your payment information includes invalid characters";
   /**
-   * @uiName Account review alert description
+   * @uiName Withdrawal settings invalid alert description
    */
   @Prop() dashboard_withdrawalSettingsInvalidDescription: string =
     "There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
-   * @uiName Account review alert header
+   * @uiName Payment returned alert header
    */
   @Prop() dashboard_paymentReturnedHeader: string = "Payout unsuccessful";
   /**
-   * @uiName Account review alert description
+   * @uiName Payment returned alert description
    */
   @Prop() dashboard_paymentReturnedDescription: string =
     "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.";

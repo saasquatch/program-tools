@@ -18,14 +18,22 @@ import {
   UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { objectIsFull } from "../utils";
+import { objectIsFull, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
 import {
+  useMutation,
   useParent,
   useParentQueryValue,
   useParentValue,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { AddressRegions, ADDRESS_REGIONS } from "../subregions";
+import {
+  CONNECT_PARTNER,
+  ConnectPartnerResult,
+  useIndirectTaxForm,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -68,9 +76,17 @@ export function useUserInfoForm(props: TaxForm) {
     USER_FORM_CONTEXT_NAMESPACE
   );
 
+  const user = useUserIdentity();
+
+  const [
+    connectImpactPartner,
+    { loading: connectLoading, errors: connectErrors },
+  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+
   const {
     data,
     loading,
+    refetch,
     errors: userError,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
@@ -200,6 +216,57 @@ export function useUserInfoForm(props: TaxForm) {
     }
   }, [currencySearch, currencies]);
 
+  async function connectPartner(formData) {
+    const vars = {
+      user: {
+        id: user.id,
+        accountId: user.accountId,
+      },
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      countryCode: formData.countryCode,
+      currency: formData.currency,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      postalCode: formData.postalCode,
+      phoneNumber: formData.phoneNumber,
+      phoneNumberCountryCode: formData.phoneNumberCountryCode,
+    } as Partial<ImpactConnection>;
+
+    const result = await connectImpactPartner({
+      vars,
+    });
+
+    if (!result || (result as Error)?.message) throw new Error();
+    if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
+      // Output backend errors to console for now
+      console.error(
+        "Failed to create Impact connection: ",
+        (result as ConnectPartnerResult).createImpactConnection.validationErrors
+      );
+
+      throw new Error();
+    }
+
+    await refetch();
+
+    const resultPublisher = (result as ConnectPartnerResult)
+      .createImpactConnection?.user?.impactConnection?.publisher;
+
+    const hasValidCurrentDocument =
+      validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+      resultPublisher?.currentTaxDocument;
+
+    // Fire form change event
+    window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+    return {
+      resultPublisher,
+      hasValidCurrentDocument,
+    };
+  }
+
   async function onSubmit(event: any) {
     let formControls = event.target.getFormControls();
 
@@ -252,6 +319,35 @@ export function useUserInfoForm(props: TaxForm) {
 
     const skipNextStep = getSkipNextStep(userData);
 
+    console.log({ skipNextStep });
+
+    if (skipNextStep) {
+      try {
+        const { resultPublisher, hasValidCurrentDocument } =
+          await connectPartner(formData);
+
+        if (
+          resultPublisher?.requiredTaxDocumentType &&
+          !hasValidCurrentDocument
+        ) {
+          // Go to docusign form
+          setStep("/3");
+        } else {
+          if (resultPublisher?.brandedSignup) {
+            // Go to banking information form
+            setStep("/4");
+          } else {
+            // Go right to the dashboard
+            setStep("/dashboard");
+          }
+        }
+        return;
+      } catch (e) {
+        setErrors({ general: true });
+        return;
+      }
+    }
+
     const nextStep = context.overrideNextStep || skipNextStep ? "/3" : "/2";
     setStep(nextStep);
   }
@@ -303,9 +399,9 @@ export function useUserInfoForm(props: TaxForm) {
       step: step?.replace("/", ""),
       hideState: !hasStates,
       hideSteps: !!context.hideSteps,
-      disabled: loading,
+      disabled: loading || connectLoading,
       loadingError: !!userError?.message,
-      loading: loading,
+      loading: loading || connectLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
 
