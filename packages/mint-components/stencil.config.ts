@@ -77,10 +77,7 @@ export const config: Config = {
           {
             type: "www",
             serviceWorker: null, // disable service workers
-            copy: [
-              { src: "global/styles.v2.ts" },
-              { src: "global/styles.v1.ts" },
-            ],
+            copy: [{ src: "global/styles.ts" }],
           },
           useDocx,
           useGrapesjs,
@@ -91,10 +88,7 @@ export const config: Config = {
       : [
           {
             type: "dist",
-            copy: [
-              { src: "global/styles.v2.ts" },
-              { src: "global/styles.v1.ts" },
-            ],
+            copy: [{ src: "global/styles.ts" }],
           },
           {
             type: "stats",
