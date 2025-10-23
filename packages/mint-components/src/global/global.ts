@@ -131,8 +131,7 @@ try {
 import { insertCSS } from "../insertcss";
 
 import { insertFont } from "../insertfont";
-import stylesV1 from "./styles.v1";
-import { parseBrandingConfig } from "./styles.v2";
+import { parseBrandingConfig } from "./styles";
 
 const applyStyles = (css: string, font: string) => {
   try {
@@ -153,13 +152,5 @@ if (getEnvironmentSDK().type === "None") {
   });
 }
 
-if (window.SquatchBrandingConfig) {
-  const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
-  applyStyles(styles, font);
-} else {
-  try {
-    insertCSS(stylesV1);
-  } catch (e) {
-    debug(e);
-  }
-}
+const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
+applyStyles(styles, font);

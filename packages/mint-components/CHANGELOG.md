@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-10-23
+
+### Changed
+
+- Removed applying v1 stylesheet in the case where `SquatchBrandingConfig` isn't set.
+
 ## [2.0.0] - 2025-10-22
 
 ### Added
@@ -1385,7 +1391,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.1...HEAD
+[2.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.1
 [2.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.0
 [1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5
 [1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
