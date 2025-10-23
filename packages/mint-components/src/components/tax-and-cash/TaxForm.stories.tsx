@@ -47,6 +47,7 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     },
   },
   data: {
+    partnerData: {} as any,
     regionLabelEnum: "STATE",
     regions: [],
     phoneCountries: [

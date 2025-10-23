@@ -260,7 +260,7 @@ export function useBankingInfoForm(
 
   useEffect(() => {
     // reset redirect hash
-    window.location.hash = "";
+    if (window.location.hash !== "#4") window.location.hash = "";
   }, []);
 
   useEffect(() => {

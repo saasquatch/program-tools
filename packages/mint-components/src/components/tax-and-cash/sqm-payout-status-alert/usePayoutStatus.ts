@@ -1,7 +1,17 @@
-import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  getEnvironmentSDK,
+  useParent,
+  useQuery,
+  useSetParent,
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { UserQuery } from "../data";
+import {
+  TAX_CONTEXT_NAMESPACE,
+  TAX_FORM_CONTEXT_NAMESPACE,
+  TaxContext,
+  UserQuery,
+} from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
@@ -21,8 +31,14 @@ export type PayoutStatus =
   | "VERIFICATION:INTERNAL"
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
+  | "NEW_PAYEE_REVIEW"
+  | "PAYMENT_HOLD_ON_CHANGE"
+  | "BENEFICIARY_NAME_INVALID"
+  | "BENEFICIARY_NAME_MISMATCH"
+  | "BANK_TAX_NAME_MISMATCH"
+  | "WITHDRAWAL_SETTINGS_INVALID"
+  | "PAYMENT_RETURNED"
   | "HOLD"
-  | "ACCOUNT_REVIEW"
   | "DONE";
 
 export type TenantSettingsQuery = {
@@ -93,7 +109,19 @@ export function getStatus(data: UserQuery): PayoutStatus {
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
-    return "ACCOUNT_REVIEW";
+    return "NEW_PAYEE_REVIEW";
+  if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
+    return "PAYMENT_HOLD_ON_CHANGE";
+  if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
+    return "BENEFICIARY_NAME_INVALID";
+  if (account.holdReasons?.includes("BENEFICIARY_NAME_MISMATCH"))
+    return "BENEFICIARY_NAME_MISMATCH";
+  if (account.holdReasons?.includes("BANK_TAX_NAME_MISMATCH"))
+    return "BANK_TAX_NAME_MISMATCH";
+  if (account.holdReasons?.includes("WITHDRAWAL_SETTINGS_INVALID"))
+    return "WITHDRAWAL_SETTINGS_INVALID";
+  if (account.holdReasons?.includes("PAYMENT_RETURNED"))
+    return "PAYMENT_RETURNED";
   if (account.hold) return "HOLD";
   return "DONE";
 }
@@ -114,6 +142,9 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     errors: veriffErrors,
   } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
+
+  const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
+  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const enforceUsTaxComplianceOption =
     taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
@@ -150,6 +181,22 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     window.history.pushState(null, "", url);
   };
 
+  const onPaymentInfoClick = () => {
+    let url = props.cashPayoutsPageUrl;
+
+    url += "#4";
+
+    window.history.pushState(null, "", url);
+  };
+
+  const onNewFormClick = () => {
+    let url = props.cashPayoutsPageUrl;
+
+    url += "#3";
+
+    window.history.pushState(null, "", url);
+  };
+
   return {
     states: {
       loading,
@@ -163,6 +210,8 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     callbacks: {
       onTermsClick,
       onClick: render,
+      onPaymentInfoClick,
+      onNewFormClick,
     },
   };
 }

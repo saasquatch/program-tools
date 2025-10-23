@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { Fragment, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { EnforceUsTaxComplianceOption, PayoutStatus } from "./usePayoutStatus";
@@ -22,8 +22,12 @@ export interface PayoutStatusAlertViewProps {
   callbacks: {
     onClick: () => void;
     onTermsClick: () => void;
+    onPaymentInfoClick: () => void;
+    onNewFormClick: () => void;
   };
   text: {
+    editPaymentInformationButton: string;
+    newFormButton: string;
     informationRequiredHeader: string;
     informationRequiredDescription: string;
     informationRequiredButtonText: string;
@@ -38,6 +42,18 @@ export interface PayoutStatusAlertViewProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    paymentHoldOnChangeHeader: string;
+    paymentHoldOnChangeDescription: string;
+    beneficiaryNameInvalidHeader: string;
+    beneficiaryNameInvalidDescription: string;
+    beneficiaryNameMismatchHeader: string;
+    beneficiaryNameMismatchDescription: string;
+    bankTaxNameMismatchHeader: string;
+    bankTaxNameMismatchDescription: string;
+    withdrawalSettingsInvalidHeader: string;
+    withdrawalSettingsInvalidDescription: string;
+    paymentReturnedHeader: string;
+    paymentReturnedDescription: string;
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
@@ -227,7 +243,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             icon: "exclamation-triangle",
           };
         }
-      case "ACCOUNT_REVIEW":
+      case "NEW_PAYEE_REVIEW":
         return {
           header: text.accountReviewHeader,
           description: intl.formatMessage(
@@ -247,6 +263,198 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           alertType: "warning",
           icon: "exclamation-triangle",
         };
+      case "PAYMENT_HOLD_ON_CHANGE":
+        return {
+          header: text.paymentHoldOnChangeHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentHoldOnChangeDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BENEFICIARY_NAME_INVALID":
+        return {
+          header: text.beneficiaryNameInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BENEFICIARY_NAME_MISMATCH":
+        return {
+          header: text.beneficiaryNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BANK_TAX_NAME_MISMATCH":
+        return {
+          header: text.bankTaxNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.bankTaxNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="default"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </Fragment>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "WITHDRAWAL_SETTINGS_INVALID":
+        return {
+          header: text.withdrawalSettingsInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.withdrawalSettingsInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            </Fragment>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "PAYMENT_RETURNED":
+        return {
+          header: text.paymentReturnedHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentReturnedDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <Fragment>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            </Fragment>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+
       case "HOLD":
         return {
           header: text.holdHeader,
@@ -333,6 +541,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           </div>
         );
       default:
+        if (alertDetails.button) return alertDetails.button;
+
         return;
     }
   }
