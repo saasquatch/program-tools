@@ -166,7 +166,7 @@ export class TaxAndCashDashboard {
    *
    * @uiName Edit payment info button label
    */
-  @Prop() editPaymentInformationButton: string = "Edit Payout Information";
+  @Prop() editPaymentInformationButton: string = "Edit payout information";
   /**
    * @uiName Not registered for indirect tax text
    * @uiWidget textArea
