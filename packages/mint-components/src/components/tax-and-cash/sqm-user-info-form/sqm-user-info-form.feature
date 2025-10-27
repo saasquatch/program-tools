@@ -296,3 +296,4 @@ Feature: Tax Form Step One
       | ES              | ES                | ES                     | is not |
       | CA              | US                | CA                     | is not |
       | US              | US                | CA                     | is     |
+      | US              | N/A               | N/A                    | is     |
