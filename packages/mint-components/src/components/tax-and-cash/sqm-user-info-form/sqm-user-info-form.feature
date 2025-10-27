@@ -293,7 +293,7 @@ Feature: Tax Form Step One
       | US              | N/A               | N/A                    | is     |
 
   @minutia
-  Scenario Outline: Participants with pre-existing partners can patch missing data
+  Scenario: Participants with pre-existing partners can patch missing data
     Given a user on the User Information form
     And they have a pre-existing partner with Impact
     But their partner is missing data for a form field
