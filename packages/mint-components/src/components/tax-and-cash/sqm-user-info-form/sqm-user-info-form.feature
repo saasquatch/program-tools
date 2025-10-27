@@ -275,3 +275,24 @@ Feature: Tax Form Step One
       | p@example.com    | null           | N/A          | p@example.com  |
       | p@example.com    | mi@example.com | not verified | p@example.com  |
       | p@example.com    | mi@example.com | verified     | mi@example.com |
+
+  @minutia
+  Scenario Outline: Indirect tax step is skipped if the user or the tenant do not qualify for indirect tax
+    Given the user has filled out values for all required fields
+    And the user has selected <userCountryCode>
+    And the tenant has selected <brandCountryCode>
+    And the tenant has indirect tax set up in <indirectTaxCountryCode>
+    When the user clicks the "Next" button
+    Then the publisher <mayBe> created
+    And step 2 <mayBe> skipped
+    Examples:
+      | userCountryCode | tenantCountryCode | indirectTaxCountryCode | mayBe  |
+      | UK              | UK                | UK                     | is not |
+      | UK              | DE                | DE                     | is     |
+      | DE              | DE                | DE                     | is     |
+      | CA              | CA                | N/A                    | is     |
+      | N/A             | CA                | N/A                    | is     |
+      | US              | AU                | AU                     | is     |
+      | ES              | ES                | ES                     | is not |
+      | CA              | US                | CA                     | is not |
+      | US              | US                | CA                     | is     |

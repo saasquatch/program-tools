@@ -113,11 +113,17 @@ Feature: Tax And Cash Dashboard
     And the alert has heading <heading>
     And the alert has description <description>
     Examples:
-      | holdReason                  | color  | heading                            | description                                                                                                                                             |
-      | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
-      | IDV_CHECK_REVIEW_INTERNAL   | yellow | Verification Under Review          | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                       |
-      | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
-
+      | holdReason                  | color  | heading                                               | description                                                                                                                                                                                                                                                                               |
+      | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress                              | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly.                                                                                                                                   |
+      | IDV_CHECK_REVIEW_INTERNAL   | yellow | Verification Under Review                             | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                                                                                                                                                         |
+      | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful                    | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                                                                                                                                                         |
+      | NEW_PAYEE_REVIEW            | yellow | Your account is under review                          | This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.   |
+      | PAYMENT_HOLD_ON_CHANGE      | yellow | We are reviewing your new payout settings             | Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours.                                                                                                                                                        |
+      | BENEFICIARY_NAME_INVALID    | yellow | Your payment information does not match your tax form | The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved. |
+      | BENEFICIARY_NAME_MISMATCH   | yellow | Your payment information does not match your tax form | The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved. |
+      | BANK_TAX_NAME_MISMATCH      | yellow | Your payment information does not match your tax form | The bank name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.        |
+      | WITHDRAWAL_SETTINGS_INVALID | yellow | Your payment information includes invalid characters  | There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.                                                                                         |
+      | PAYMENT_RETURNED            | yellow | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                        |
   @motivating
   Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
@@ -130,6 +136,13 @@ Feature: Tax And Cash Dashboard
       | IDV_CHECK_REVIEW_INTERNAL   |
       | IDV_CHECK_FAILED_INTERNAL   |
       | NO_W9_DOCUMENT              |
+      | NEW_PAYEE_REVIEW            |
+      | PAYMENT_HOLD_ON_CHANGE      |
+      | BENEFICIARY_NAME_INVALID    |
+      | BENEFICIARY_NAME_MISMATCH   |
+      | BANK_TAX_NAME_MISMATCH      |
+      | WITHDRAWAL_SETTINGS_INVALID |
+      | PAYMENT_RETURNED            |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
