@@ -451,7 +451,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               </sl-button>
             </Fragment>
           ),
-          alertType: "warning",
+          alertType: "error",
           icon: "exclamation-triangle",
         };
 

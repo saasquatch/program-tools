@@ -727,7 +727,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               {text.editPaymentInformationButton}
             </sl-button>
           ),
-          alertType: "warning",
+          alertType: "error",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
         };
