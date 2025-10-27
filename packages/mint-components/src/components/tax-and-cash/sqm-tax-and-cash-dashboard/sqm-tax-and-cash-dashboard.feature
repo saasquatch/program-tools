@@ -124,6 +124,7 @@ Feature: Tax And Cash Dashboard
       | BANK_TAX_NAME_MISMATCH      | yellow | Your payment information does not match your tax form | The bank name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.        |
       | WITHDRAWAL_SETTINGS_INVALID | yellow | Your payment information includes invalid characters  | There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.                                                                                         |
       | PAYMENT_RETURNED            | yellow | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                        |
+
   @motivating
   Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
