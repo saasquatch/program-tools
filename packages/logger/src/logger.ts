@@ -47,14 +47,6 @@ export function isLoggerInitialized(logger?: string): boolean {
 }
 
 /**
- * Convenience shorthand for getLogger().log
- */
-// @ts-ignore
-export const log: winston.LeveledLogMethod = (...args): winston.Logger => {
-  return getLogger().log(...args);
-};
-
-/**
  * Convenience shorthand for getLogger().info
  */
 // @ts-ignore
