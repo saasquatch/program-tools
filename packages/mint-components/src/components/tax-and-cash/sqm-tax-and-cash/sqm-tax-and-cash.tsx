@@ -1001,7 +1001,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationRequiredInternalHeader: string =
-    "Identity Verification in Progress";
+    "Identity verification in progress";
   /**
    * @uiName Verification required internal alert description
    * @uiGroup Dashboard Properties
@@ -1015,7 +1015,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationReviewInternalHeader: string =
-    "Identity Verification Under Review";
+    "Identity verification under review";
   /**
    * @uiName Verification review internal alert description
    * @uiGroup Dashboard Properties
@@ -1029,7 +1029,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_verificationFailedInternalHeader: string =
-    "Identity Verification Unsuccessful";
+    "Identity verification usuccessful";
   /**
    * @uiName Verification failed internal alert description
    * @uiGroup Dashboard Properties

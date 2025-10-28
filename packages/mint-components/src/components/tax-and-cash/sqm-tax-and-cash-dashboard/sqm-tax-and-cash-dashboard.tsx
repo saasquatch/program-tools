@@ -238,7 +238,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification required internal alert header
    */
   @Prop() verificationRequiredInternalHeader: string =
-    "Identity Verification in Progress";
+    "Identity verification in progress";
   /**
    * @uiName Verification required internal alert description
    */
@@ -248,7 +248,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification review internal alert header
    */
   @Prop() verificationReviewInternalHeader: string =
-    "Identity Verification Under Review";
+    "Identity verification under review";
   /**
    * @uiName Verification review internal alert description
    */
@@ -258,7 +258,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification failed internal alert header
    */
   @Prop() verificationFailedInternalHeader: string =
-    "Identity Verification Unsuccessful";
+    "Identity verification unsuccessful";
   /**
    * @uiName Verification failed internal alert description
    */
