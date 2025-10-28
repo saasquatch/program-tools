@@ -94,6 +94,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "VERIFICATION:FAILED";
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
     return "ACCOUNT_REVIEW";
+  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW")) return "DONE";
   if (account.hold) return "HOLD";
   return "DONE";
 }
