@@ -49,7 +49,6 @@ export function isLoggerInitialized(logger?: string): boolean {
 /**
  * Convenience shorthand for getLogger().info
  */
-// @ts-ignore
 export const info: winston.LeveledLogMethod = (...args): winston.Logger => {
   return getLogger().info(...args);
 };
@@ -57,7 +56,6 @@ export const info: winston.LeveledLogMethod = (...args): winston.Logger => {
 /**
  * Convenience shorthand for getLogger().warn
  */
-// @ts-ignore
 export const warn: winston.LeveledLogMethod = (...args): winston.Logger => {
   return getLogger().warn(...args);
 };
@@ -65,7 +63,6 @@ export const warn: winston.LeveledLogMethod = (...args): winston.Logger => {
 /**
  * Convenience shorthand for getLogger().error
  */
-// @ts-ignore
 export const error: winston.LeveledLogMethod = (...args): winston.Logger => {
   return getLogger().error(...args);
 };
