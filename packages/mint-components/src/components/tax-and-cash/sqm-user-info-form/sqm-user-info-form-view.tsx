@@ -744,7 +744,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || isDisabledInput("address")}
+                disabled={states.disabled || isDisabledInput("billingAddress")}
                 {...(formState.errors?.address
                   ? {
                       class: classes.ErrorInput,
@@ -770,7 +770,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || isDisabledInput("city")}
+                disabled={states.disabled || isDisabledInput("billingCity")}
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
@@ -789,7 +789,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="state"
                   name="/state"
                   value={formState.state}
-                  disabled={states.disabled || isDisabledInput("state")}
+                  disabled={states.disabled || isDisabledInput("billingState")}
                   {...(formState.errors?.state
                     ? {
                         class: classes.ErrorInput,
@@ -812,7 +812,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 id="postalCode"
                 name="/postalCode"
                 value={formState.postalCode}
-                disabled={states.disabled || isDisabledInput("postalCode")}
+                disabled={
+                  states.disabled || isDisabledInput("billingPostalCode")
+                }
                 {...(formState.errors?.postalCode
                   ? {
                       class: classes.ErrorInput,
