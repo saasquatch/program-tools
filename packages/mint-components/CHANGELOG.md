@@ -7,18 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.6] - 2025-10-28
+
+### Fixed
+
+- \<sqm-payout-status-alert>
+- \<sqm-tax-and-cash-dashboard>
+  - Fix warning banner display for NEW_PAYEE_REVIEW in a case where the banner should be hidden
+
 ## [1.15.5] - 2025-10-21
 
 ### Fixed
 
 - \<sqm-portal-google-registration-form>
   - Fix terms checkbox slot to show on both form steps
-  
+
 ## [1.15.4] - 2025-10-20
 
 ### Added
 
 - \<sqm-portal-google-registration-form>
+
   - Enhanced two-step registration flow with improved validation
   - Added support for additional form fields in registration process
 
@@ -1315,7 +1324,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.6...HEAD
+[1.15.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.6
+[1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5
 [1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
 [1.15.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.3
 [1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
