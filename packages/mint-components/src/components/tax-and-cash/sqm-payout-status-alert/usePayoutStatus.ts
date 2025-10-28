@@ -108,8 +108,10 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "VERIFICATION:REVIEW";
   if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
     return "VERIFICATION:FAILED";
+  // only show banner for NEW_PAYEE_REVIEW if a PFT was created
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
     return "NEW_PAYEE_REVIEW";
+  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW")) return "DONE";
   if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
     return "PAYMENT_HOLD_ON_CHANGE";
   if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
@@ -122,6 +124,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
     return "WITHDRAWAL_SETTINGS_INVALID";
   if (account.holdReasons?.includes("PAYMENT_RETURNED"))
     return "PAYMENT_RETURNED";
+
   if (account.hold) return "HOLD";
   return "DONE";
 }
