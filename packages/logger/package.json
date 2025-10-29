@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/logger",
-  "version": "1.5.2-0",
+  "version": "2.0.0",
   "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
   "private": false,
   "publishConfig": {
@@ -11,7 +11,7 @@
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "engines": {
-    "node": "^16 || ^18 || ^20 || ^22"
+    "node": "^20 || ^22 || ^24"
   },
   "files": [
     "dist"
@@ -32,12 +32,12 @@
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "16"
+    "@types/express": "^4",
+    "@types/node": "^20"
   },
   "peerDependencies": {
-    "express": "4",
-    "winston": ">=3.0.0 <3.12"
+    "express": "^4",
+    "winston": "^3"
   },
   "peerDependenciesMeta": {
     "express": {
