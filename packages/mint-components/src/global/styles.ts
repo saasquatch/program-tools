@@ -493,7 +493,7 @@ html {
   --sl-transition-fast: 150ms;
   --sl-transition-x-fast: 50ms;
   --sl-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  --sl-font-sans: "Nunito Sans", sans;
+  --sl-font-sans: var(--sqm-primary-font);
   --sl-font-serif: Georgia, "Times New Roman", serif;
   --sl-font-size-xx-small: 0.625rem;
   --sl-font-size-x-small: 0.75rem;

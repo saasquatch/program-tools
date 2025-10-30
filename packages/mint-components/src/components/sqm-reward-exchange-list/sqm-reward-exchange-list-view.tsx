@@ -96,7 +96,7 @@ const style = {
 
     "& sl-menu-item::part(base)": {
       flexDirection: "column",
-      color: "var(--sqm-input-color)"
+      color: "var(--sqm-input-color)",
     },
     "& sl-menu-item::part(base):hover": {
       backgroundColor: "var(--sqm-input-border-color-hover)",
@@ -273,18 +273,17 @@ const style = {
     },
 
     "& sl-menu-item[disabled]::part(label)": {
-      color: "var(sqm-text-subdued)",
+      color: "var(--sqm-text-subdued)",
     },
 
     "& sl-menu-item[disabled]": {
       "& .step-cost": {
-        color: "var(sqm-text-subdued)",
+        color: "var(--sqm-text-subdued)",
       },
       "& .step-value": {
-        color: "var(sqm-text-subdued)",
+        color: "var(--sqm-text-subdued)",
       },
     },
-    
   },
 
   SelectItem: {
