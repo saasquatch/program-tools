@@ -249,11 +249,12 @@ function useDemoPayoutStatusAlert(
         : { ...prev, [`${key}_stateController`]: states[key] },
     {}
   );
+
   return deepmerge(
     {
       states: {
         error: false,
-        status: "INFORMATION_REQUIRED",
+        status: props.demoData.states.status,
         loading: false,
         veriffLoading: false,
       },

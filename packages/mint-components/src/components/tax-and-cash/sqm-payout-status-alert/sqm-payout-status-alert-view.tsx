@@ -1,4 +1,4 @@
-import { Fragment, h } from "@stencil/core";
+import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { EnforceUsTaxComplianceOption, PayoutStatus } from "./usePayoutStatus";
@@ -67,6 +67,12 @@ export interface PayoutStatusAlertViewProps {
 }
 
 const style = {
+  ButtonContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    marginTop: "var(--sl-spacing-medium)",
+    flexWrap: "wrap",
+  },
   SkeletonOne: {
     width: "50%",
     height: "16px",
@@ -300,7 +306,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.loading}
                 type="primary"
@@ -315,7 +321,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -337,7 +343,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.loading}
                 type="primary"
@@ -352,7 +358,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -374,7 +380,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.loading}
                 type="primary"
@@ -389,7 +395,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -411,7 +417,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.loading}
                 type="primary"
@@ -419,7 +425,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               >
                 {text.editPaymentInformationButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -441,7 +447,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.loading}
                 type="primary"
@@ -449,7 +455,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               >
                 {text.editPaymentInformationButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "error",
           icon: "exclamation-triangle",
