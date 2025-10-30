@@ -335,12 +335,12 @@ export class TaxAndCashDashboard {
    * @uiName Withdrawal settings invalid alert header
    */
   @Prop() withdrawalSettingsInvalidHeader: string =
-    "Your payment information includes invalid characters";
+    "Your payment information is incomplete or includes invalid characters";
   /**
    * @uiName Withdrawal settings invalid alert description
    */
   @Prop() withdrawalSettingsInvalidDescription: string =
-    "There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.";
+    "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Payment returned alert header

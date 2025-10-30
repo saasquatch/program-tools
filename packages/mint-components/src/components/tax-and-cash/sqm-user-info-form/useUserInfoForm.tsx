@@ -3,6 +3,7 @@ import {
   useParent,
   useParentQueryValue,
   useParentValue,
+  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import {
@@ -34,6 +35,18 @@ import {
   ConnectPartnerResult,
   CONNECT_PARTNER,
 } from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { gql } from "graphql-request";
+
+const GET_INDIRECT_TAX_COUNTRY_CODE = gql`
+  query getIndirectTaxCountryCode {
+    tenant {
+      settings {
+        impactBrandCountryCode
+        impactBrandIndirectTaxCountryCode
+      }
+    }
+  }
+`;
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -82,6 +95,8 @@ export function useUserInfoForm(props: TaxForm) {
     connectImpactPartner,
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+
+  const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
 
   const {
     data,
@@ -352,9 +367,9 @@ export function useUserInfoForm(props: TaxForm) {
     setStep(nextStep);
   }
 
-  // TODO: get from backend
-  const hasIndirectTax = false;
-  const brandCountry = "";
+  const brandCountry = tenantData?.tenant?.settings?.impactBrandCountryCode;
+  const hasIndirectTax =
+    !!tenantData?.tenant?.settings?.impactBrandIndirectTaxCountryCode;
 
   function getSkipNextStep(userData) {
     if (userData.countryCode === "US") return true;
