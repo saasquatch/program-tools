@@ -27,6 +27,7 @@ export class HeroImage {
   /**
    * @uiWidget color
    * @uiName Logo text color
+   * @default #555555
    */
   @Prop() logoTextColor?: string = "#555555";
 
@@ -52,7 +53,11 @@ export class HeroImage {
   render() {
     return (
       <Host>
-        <a href={this.nextPage} part="sqm-link">
+        <a
+          href={this.nextPage}
+          part="sqm-link"
+          style={{ textDecoration: "none" }}
+        >
           {this.imageUrl ? (
             <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
           ) : (
@@ -60,7 +65,6 @@ export class HeroImage {
               style={{
                 fontSize: `${this.logoTextSize}px`,
                 color: this.logoTextColor || "#555555",
-                textDecoration: "none",
               }}
             >
               {this.logoText}

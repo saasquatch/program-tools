@@ -39,11 +39,9 @@ import { gql } from "graphql-request";
 
 const GET_INDIRECT_TAX_COUNTRY_CODE = gql`
   query getIndirectTaxCountryCode {
-    tenant {
-      settings {
-        impactBrandCountryCode
-        impactBrandIndirectTaxCountryCode
-      }
+    tenantSettings {
+      impactBrandCountryCode
+      impactBrandIndirectTaxCountryCode
     }
   }
 `;
@@ -367,14 +365,15 @@ export function useUserInfoForm(props: TaxForm) {
     setStep(nextStep);
   }
 
-  const brandCountry = tenantData?.tenant?.settings?.impactBrandCountryCode;
-  const hasIndirectTax =
-    !!tenantData?.tenant?.settings?.impactBrandIndirectTaxCountryCode;
+  const indirectTaxCountry =
+    tenantData?.tenantSettings?.impactBrandIndirectTaxCountryCode;
+  const hasIndirectTax = !!indirectTaxCountry;
 
   function getSkipNextStep(userData) {
-    if (userData.countryCode === "US") return true;
     if (!hasIndirectTax) return true;
-    if (hasIndirectTax && userData.countryCode !== brandCountry) return true;
+    if (userData.countryCode === "US") return true;
+    if (hasIndirectTax && userData.countryCode !== indirectTaxCountry)
+      return true;
     return false;
   }
 

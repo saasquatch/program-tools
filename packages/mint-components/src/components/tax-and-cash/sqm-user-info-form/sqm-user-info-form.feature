@@ -281,8 +281,8 @@ Feature: Tax Form Step One
     And step 2 <mayBe> skipped
     Examples:
       | userCountryCode | tenantCountryCode | indirectTaxCountryCode | mayBe  |
-      | UK              | UK                | UK                     | is not |
-      | UK              | DE                | DE                     | is     |
+      | GB              | GB                | GB                     | is not |
+      | GB              | DE                | DE                     | is     |
       | DE              | DE                | DE                     | is     |
       | CA              | CA                | N/A                    | is     |
       | N/A             | CA                | N/A                    | is     |

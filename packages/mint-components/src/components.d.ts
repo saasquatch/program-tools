@@ -1026,6 +1026,7 @@ export namespace Components {
         /**
           * @uiWidget color
           * @uiName Logo text color
+          * @default #555555
          */
         "logoTextColor"?: string;
         /**
@@ -8908,6 +8909,7 @@ declare namespace LocalJSX {
         /**
           * @uiWidget color
           * @uiName Logo text color
+          * @default #555555
          */
         "logoTextColor"?: string;
         /**
