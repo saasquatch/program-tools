@@ -1,4 +1,4 @@
-import { Fragment, h, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
@@ -339,6 +339,11 @@ const style = {
   SubduedText: {
     color: "var(--sqm-text-subdued)",
   },
+  ButtonContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    flexWrap: "wrap",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -568,7 +573,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
@@ -585,7 +590,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -608,7 +613,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
@@ -625,7 +630,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -648,7 +653,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             }
           ),
           button: (
-            <Fragment>
+            <div class={sheet.classes.ButtonContainer}>
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
@@ -665,7 +670,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               >
                 {text.newFormButton}
               </sl-button>
-            </Fragment>
+            </div>
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
