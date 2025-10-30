@@ -25,8 +25,9 @@ Feature: Header Logo
     @minutia
     Scenario: The header logo component displays text when no image url is provided
         Given a header logo component with the following props
-            | prop           | value          |
-            | logo-text      | Test Logo Text |
-            | logo-text-size | 24             |
+            | prop            | value          |
+            | logo-text       | Test Logo Text |
+            | logo-text-color | #555555        |
+            | logo-text-size  | 24             |
         When a user views the component
         Then they see their logo text "Test Logo Text" with font size 24px
