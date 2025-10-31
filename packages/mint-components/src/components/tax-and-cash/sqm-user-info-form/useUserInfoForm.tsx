@@ -332,8 +332,6 @@ export function useUserInfoForm(props: TaxForm) {
 
     const skipNextStep = getSkipNextStep(userData);
 
-    console.log({ skipNextStep });
-
     if (skipNextStep) {
       try {
         const { resultPublisher, hasValidCurrentDocument } =
