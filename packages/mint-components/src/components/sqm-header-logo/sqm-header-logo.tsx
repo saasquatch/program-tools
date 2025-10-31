@@ -22,6 +22,7 @@ export class HeroImage {
   @Prop() logoText?: string;
   /**
    * @uiName Logo text size
+   * @uiWidget number
    */
   @Prop() logoTextSize?: number = 32;
   /**
