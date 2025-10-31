@@ -500,6 +500,7 @@ export function useBankingInfoForm(
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
       onBack: () => {
+        // return to dashboard
         if (window.location.hash) {
           window.location.hash = "";
         } else {

@@ -185,6 +185,7 @@ export function useDocusignForm(props: DocusignForm) {
   };
 
   const progressStep = () => {
+    // return to dashboard
     if (window.location.hash) {
       window.location.hash = "";
     } else {
