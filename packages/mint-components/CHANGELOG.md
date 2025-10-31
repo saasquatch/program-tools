@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2025-10-29
+
+### Changed
+
+- Changed `--sl-font-sans` token to point at `--sqm-primary-font` in `styles.ts`
+
 ## [2.0.1] - 2025-10-23
 
 ### Changed
@@ -18,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Complete Theming System Overhaul**
+
   - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
   - `parseBrandingConfig()` function for dynamic branding configuration parsing
   - Extensive CSS custom properties system for consistent theming across all components
@@ -26,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Window message listeners for real-time branding configuration updates in editor environments
 
 - **Enhanced Component Editor Support**
+
   - Editor state controllers for improved component editing experience
   - Component state management improvements across all widgets
   - Enhanced component placement and validation
@@ -54,16 +62,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 - **Theming System**: Complete overhaul of the component theming system
+
   - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
   - Components now rely on the centralized `BrandingConfiguration` for styling
   - Direct styling overrides may need to be migrated to the new theming API
 
 - **Global Styles**: Restructured global styles architecture
+
   - Components now use CSS custom properties instead of traditional CSS variables
   - Font loading system has been redesigned with new APIs
   - Global style initialization now requires the new branding configuration system
 
 - **Component APIs**: Enhanced component state management
+
   - Editor state controllers introduced for all components
   - Component placement validation has been improved
   - Some internal component APIs have been restructured for better editor integration
@@ -89,12 +100,13 @@ This major release represents a significant advancement in the theming capabilit
 
 - \<sqm-portal-google-registration-form>
   - Fix terms checkbox slot to show on both form steps
-  
+
 ## [1.15.4] - 2025-10-20
 
 ### Added
 
 - \<sqm-portal-google-registration-form>
+
   - Enhanced two-step registration flow with improved validation
   - Added support for additional form fields in registration process
 
