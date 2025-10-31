@@ -13,7 +13,6 @@ Feature: Tax Form Step One
     And each field has label <label>
     And is input type <inputType>
     And they see a "Continue" button
-
     Examples:
       | label                        | inputType |
       | First name                   | text      |
@@ -201,7 +200,6 @@ Feature: Tax Form Step One
       """
       {fieldName} contains invalid characters.
       """
-
     # Note: SPACE and NUL mean the characters. Both are for documentation purposes.
     Examples:
       | fieldName | string                                               | may      |
@@ -229,7 +227,6 @@ Feature: Tax Form Step One
       """
       Phone number is invalid.
       """
-
     Examples:
       | string                                               | may      |
       | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will     |
@@ -242,7 +239,6 @@ Feature: Tax Form Step One
     When <country> is selected via the dropdown
     Then the "State" select menu updates to the valid states of that country
     And the "State" field's label changes to <label>
-
     Examples:
       | country       | label    |
       | Canada        | Province |
@@ -254,7 +250,6 @@ Feature: Tax Form Step One
   Scenario Outline: "State" field is hidden if there are no states for the selected country
     Given the "Country" field has value <country>
     Then the "State" select <isHidden>
-
     Examples:
       | country       | isHidden      |
       | Austria       | is hidden     |
@@ -269,9 +264,42 @@ Feature: Tax Form Step One
     And managed identity email <miEmail>
     And their managed identity is <verified>
     Then the prefilled email in the user info form is <email>
-
     Examples:
       | participantEmail | miEmail        | verified     | email          |
       | p@example.com    | null           | N/A          | p@example.com  |
       | p@example.com    | mi@example.com | not verified | p@example.com  |
       | p@example.com    | mi@example.com | verified     | mi@example.com |
+
+  @minutia
+  Scenario Outline: Indirect tax step is skipped if the user or the tenant do not qualify for indirect tax
+    Given the user has filled out values for all required fields
+    And the user has selected <userCountryCode>
+    And the tenant has selected <brandCountryCode>
+    And the tenant has indirect tax set up in <indirectTaxCountryCode>
+    When the user clicks the "Next" button
+    Then the publisher <mayBe> created
+    And step 2 <mayBe> skipped
+    Examples:
+      | userCountryCode | tenantCountryCode | indirectTaxCountryCode | mayBe  |
+      | GB              | GB                | GB                     | is not |
+      | GB              | DE                | DE                     | is     |
+      | DE              | DE                | DE                     | is     |
+      | CA              | CA                | N/A                    | is     |
+      | N/A             | CA                | N/A                    | is     |
+      | US              | AU                | AU                     | is     |
+      | ES              | ES                | ES                     | is not |
+      | CA              | US                | CA                     | is not |
+      | US              | US                | CA                     | is     |
+      | US              | N/A               | N/A                    | is     |
+
+  @minutia
+  Scenario: Participants with pre-existing partners can patch missing data
+    Given a user on the User Information form
+    And they have a pre-existing partner with Impact
+    But their partner is missing data for a form field
+    Then field without pre-filled data is not disabled
+    When they try to submit the form without providing the missing data
+    Then they see a field level validation error
+    When they complete the form with the missing data
+    And click "Continue"
+    Then the missing data is patched on the partner when they are upserted

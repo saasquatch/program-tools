@@ -259,11 +259,6 @@ export function useBankingInfoForm(
     : _paymentMethodChecked;
 
   useEffect(() => {
-    // reset redirect hash
-    window.location.hash = "";
-  }, []);
-
-  useEffect(() => {
     if (!userData) return;
     if (!paymentOptions) return;
 
@@ -465,8 +460,8 @@ export function useBankingInfoForm(
       setShowVerification(false);
     }
     await runMutation(formData, token);
-
     setShowModal(false);
+    window.location.hash = "";
   };
 
   const onVerification = async (token: string | null) => {
@@ -504,7 +499,14 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      onBack: () => setStep("/dashboard"),
+      onBack: () => {
+        // return to dashboard
+        if (window.location.hash) {
+          window.location.hash = "";
+        } else {
+          setStep("/dashboard");
+        }
+      },
       setCountrySearch,
       onVerification,
       onVerificationHide: () => onVerification(null),
