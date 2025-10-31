@@ -1,17 +1,7 @@
-import {
-  getEnvironmentSDK,
-  useParent,
-  useQuery,
-  useSetParent,
-} from "@saasquatch/component-boilerplate";
+import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import {
-  TAX_CONTEXT_NAMESPACE,
-  TAX_FORM_CONTEXT_NAMESPACE,
-  TaxContext,
-  UserQuery,
-} from "../data";
+import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
@@ -145,9 +135,6 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
     errors: veriffErrors,
   } = useVeriffApp();
   const [status, setStatus] = useState<PayoutStatus | undefined>(undefined);
-
-  const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
-  const setStep = useSetParent<string>(TAX_CONTEXT_NAMESPACE);
 
   const enforceUsTaxComplianceOption =
     taxSettingRes?.tenantSettings?.enforceUsTaxCompliance;
