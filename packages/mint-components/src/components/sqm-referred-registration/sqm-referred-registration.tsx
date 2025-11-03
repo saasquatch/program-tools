@@ -46,7 +46,7 @@ export class ReferredRegistration {
    * @uiName Register button text
    */
   @Prop()
-  registerLabel: string = "Start Referring";
+  registerLabel: string = "Claim Your Reward";
 
   /**
    * Require your participants to enter their first and last name.
