@@ -18,17 +18,17 @@ export class HeroImage {
   @Prop() imageUrl?: string;
   /**
    * @uiName Logo text
+   * This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
    */
   @Prop() logoText?: string;
   /**
-   * @uiName Logo text size
+   * @uiName Logo text size (in px)
    * @uiWidget number
    */
   @Prop() logoTextSize?: number = 32;
   /**
    * @uiWidget color
    * @uiName Logo text color
-   * @default #555555
    */
   @Prop() logoTextColor?: string =
     "var(--sqm-primary-color, var(--sqm-text, #555555))";
@@ -43,7 +43,7 @@ export class HeroImage {
   nextPage: string = "/";
 
   /**
-   * @uiName Logo height
+   * @uiName Logo height (in px)
    */
   @Prop() height: number = 60;
 
@@ -66,7 +66,7 @@ export class HeroImage {
             <h3
               style={{
                 fontSize: `${this.logoTextSize}px`,
-                color: this.logoTextColor || "#555555",
+                color: this.logoTextColor,
               }}
             >
               {this.logoText}
