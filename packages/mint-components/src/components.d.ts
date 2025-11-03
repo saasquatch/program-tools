@@ -1010,7 +1010,7 @@ export namespace Components {
     }
     interface SqmHeaderLogo {
         /**
-          * @uiName Logo height
+          * @uiName Logo height (in px)
          */
         "height": number;
         /**
@@ -1020,17 +1020,16 @@ export namespace Components {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Logo text
+          * @uiName Logo text This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
          */
         "logoText"?: string;
         /**
           * @uiWidget color
           * @uiName Logo text color
-          * @default #555555
          */
         "logoTextColor"?: string;
         /**
-          * @uiName Logo text size
+          * @uiName Logo text size (in px)
           * @uiWidget number
          */
         "logoTextSize"?: number;
@@ -8894,7 +8893,7 @@ declare namespace LocalJSX {
     }
     interface SqmHeaderLogo {
         /**
-          * @uiName Logo height
+          * @uiName Logo height (in px)
          */
         "height"?: number;
         /**
@@ -8904,17 +8903,16 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Logo text
+          * @uiName Logo text This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
          */
         "logoText"?: string;
         /**
           * @uiWidget color
           * @uiName Logo text color
-          * @default #555555
          */
         "logoTextColor"?: string;
         /**
-          * @uiName Logo text size
+          * @uiName Logo text size (in px)
           * @uiWidget number
          */
         "logoTextSize"?: number;
