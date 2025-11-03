@@ -1111,7 +1111,7 @@ export class TaxAndCashMonolith {
    * @uiName Bank name mismatch alert description
    */
   @Prop() dashboard_bankNameMismatchDescription: string =
-    "The bank name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+    "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Withdrawal settings invalid alert header
