@@ -31,7 +31,7 @@ export class HeroImage {
    * @default #555555
    */
   @Prop() logoTextColor?: string =
-    "var(--sqm-text, var(--sqm-primary-color, #555555))";
+    "var(--sqm-primary-color, var(--sqm-text, #555555))";
 
   /**
    * Page participants are navigated to after clicking the header logo.
