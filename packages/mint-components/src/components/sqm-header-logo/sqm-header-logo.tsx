@@ -30,7 +30,8 @@ export class HeroImage {
    * @uiName Logo text color
    * @default #555555
    */
-  @Prop() logoTextColor?: string = "#555555";
+  @Prop() logoTextColor?: string =
+    "var(--sqm-text, var(--sqm-primary-color, #555555))";
 
   /**
    * Page participants are navigated to after clicking the header logo.
