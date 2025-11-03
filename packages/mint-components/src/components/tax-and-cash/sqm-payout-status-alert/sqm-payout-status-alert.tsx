@@ -35,7 +35,7 @@ export class PayoutStatusAlert {
   /**
    * @uiName Submit new tax form button label
    */
-  @Prop() newFormButton: string = "Submit new form";
+  @Prop() newFormButton: string = "Submit new tax form";
   /**
    * @uiName Info required alert description
    */
@@ -117,7 +117,7 @@ export class PayoutStatusAlert {
    * @uiName Beneficiary name invalid description
    */
   @Prop() beneficiaryNameInvalidDescription: string =
-    "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Beneficiary name mismatch alert header
@@ -128,7 +128,7 @@ export class PayoutStatusAlert {
    * @uiName Beneficiary name mismatch alert description
    */
   @Prop() beneficiaryNameMismatchDescription: string =
-    "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Bank name mismatch alert header

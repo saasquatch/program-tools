@@ -821,13 +821,13 @@ export class TaxAndCashMonolith {
    * @uiName Submit new tax form button label
    * @uiGroup Dashboard Properties
    */
-  @Prop() dashboard_newFormButton: string = "Submit new form";
+  @Prop() dashboard_newFormButton: string = "Submit new tax form";
   /**
    * @uiName Edit payment info button label
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_editPaymentInformationButton: string =
-    "Edit Payout Information";
+    "Edit payout information";
   /**
    * @uiName Not registered for indirect tax text
    * @uiGroup Dashboard Properties
@@ -1089,7 +1089,7 @@ export class TaxAndCashMonolith {
    * @uiName Beneficiary name invalid description
    */
   @Prop() dashboard_beneficiaryNameInvalidDescription: string =
-    "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Beneficiary name mismatch alert header
@@ -1100,7 +1100,7 @@ export class TaxAndCashMonolith {
    * @uiName Beneficiary name mismatch alert description
    */
   @Prop() dashboard_beneficiaryNameMismatchDescription: string =
-    "The beneficiary name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
 
   /**
    * @uiName Bank name mismatch alert header

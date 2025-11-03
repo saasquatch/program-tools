@@ -1031,6 +1031,7 @@ export namespace Components {
         "logoTextColor"?: string;
         /**
           * @uiName Logo text size
+          * @uiWidget number
          */
         "logoTextSize"?: number;
         /**
@@ -8914,6 +8915,7 @@ declare namespace LocalJSX {
         "logoTextColor"?: string;
         /**
           * @uiName Logo text size
+          * @uiWidget number
          */
         "logoTextSize"?: number;
         /**
