@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.7] - 2025-11-3
+
+### Changed
+
+- \<sqm-referred-registration>
+  - Changed the default text for `registerLabel` to "Choose Your Reward"
+
 ## [1.15.6] - 2025-10-28
 
 ### Fixed
@@ -1324,7 +1331,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.7...HEAD
+[1.15.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.7
 [1.15.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.6
 [1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5
 [1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
