@@ -431,8 +431,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   }
 
   function isDisabledInput(field: string) {
-    if (states.isPartner && !!data.partnerData?.[field]) return true;
-    return false;
+   return states.isPartner && !!data.partnerData?.[field]
   }
 
   return (
