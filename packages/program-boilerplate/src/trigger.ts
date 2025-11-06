@@ -1,16 +1,14 @@
+import { getLogger as ssqtLogger } from "@saasquatch/logger";
 import Transaction from "./transaction";
-
 import {
-  ProgramTriggerResult,
-  ProgramTriggerBody,
+  Program,
   ProgramIntrospectionBody,
+  ProgramTriggerBody,
+  ProgramTriggerResult,
   ProgramValidationBody,
   ProgramVariableSchemaRequestBody,
-  Program,
-  TriggerType,
   ValidationResult,
 } from "./types/rpc";
-import { getLogger as ssqtLogger } from "@saasquatch/logger";
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -75,7 +73,7 @@ function handleProgramTrigger(
 ): ProgramTriggerResult {
   const transaction = new Transaction({ body });
 
-  const triggerType = body.activeTrigger.type as TriggerType;
+  const triggerType = body.activeTrigger.type;
   const handleTrigger: any = program[triggerType];
 
   try {
