@@ -5,6 +5,14 @@ export type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
 
 export type RSJsonNode = any;
 
+export type ProgramGoal = {
+  goalId: string;
+  programId?: string;
+  count: number;
+  firstDate: number;
+  lastDate: number;
+};
+
 /**
  * Defined in core under ProgramTriggerQuery.graphql
  */
@@ -14,13 +22,7 @@ export type User = {
   firstName?: string;
   lastName?: string;
   referredByReferral?: Referral;
-  programGoals: {
-    goalId: string;
-    programId?: string;
-    count: number;
-    firstDate: number;
-    lastDate: number;
-  }[];
+  programGoals: ProgramGoal[];
 
   [key: string]: any;
 };
