@@ -38,6 +38,11 @@ jobs:
         id: vars
         run: |
           echo "dir=packages/${{ inputs.package }}" >> ${GITHUB_OUTPUT}
+          if [ "${{ inputs.increment-type }}" = "prerelease" ]; then
+            echo "tag=next" >> ${GITHUB_OUTPUT}
+          else
+            echo "tag=latest" >> ${GITHUB_OUTPUT}
+          fi
 
       - name: Checkout
         id: checkout
@@ -145,7 +150,7 @@ jobs:
         working-directory: ${{ steps.vars.outputs.dir }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --provenance --access public
+        run: npm publish --provenance --access public --tag ${{ steps.vars.outputs.tag }}
 
       - name: Commit and push changes
         id: commit-and-push
