@@ -14,6 +14,14 @@ export type User = {
   firstName?: string;
   lastName?: string;
   referredByReferral?: Referral;
+  programGoals: {
+    goalId: string;
+    programId?: string;
+    count: number;
+    firstDate: number;
+    lastDate: number;
+  }[];
+
   [key: string]: any;
 };
 
