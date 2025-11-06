@@ -10,6 +10,34 @@ import {
   ValidationResult,
 } from "./types/rpc";
 
+function handleTriggerError(
+  triggerType: string,
+  e: unknown
+): { error: string; message?: unknown } {
+  const stack =
+    typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined;
+
+  const message =
+    typeof e === "object" && e !== null && "message" in e
+      ? e.message
+      : undefined;
+
+  const errorMes = {
+    error: `An error occurred in a webtask (${triggerType})`,
+    // consider not returning stack trace for security reasons
+    message:
+      typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined,
+  };
+
+  ssqtLogger("program-boilerplate").error({
+    message: errorMes.error,
+    ["error.message"]: message,
+    ["error.stack"]: stack,
+  });
+
+  return errorMes;
+}
+
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
  *
@@ -86,22 +114,8 @@ function handleProgramTrigger(
       code: 200,
     };
   } catch (e) {
-    const errorMes = {
-      error: "An error occurred in a webtask",
-      // consider not returning stack trace for security reasons
-      message: e.stack,
-    };
-
-    ssqtLogger("program-boilerplate").error({
-      message: errorMes.error,
-      ["error.message"]: e.message,
-      ["error.stack"]: e.stack,
-    });
-
-    return {
-      json: errorMes,
-      code: 500,
-    };
+    const errorMes = handleTriggerError(triggerType, e);
+    return { json: errorMes, code: 500 };
   }
 }
 
@@ -135,22 +149,8 @@ function handleProgramIntrospection(
       code: 200,
     };
   } catch (e) {
-    const errorMes = {
-      error: "An error occurred in a webtask",
-      // consider not returning stack trace for security reasons
-      message: e.stack,
-    };
-
-    ssqtLogger("program-boilerplate").error({
-      message: "Error ocurred in a webtask",
-      ["error.message"]: e.message,
-      ["error.stack"]: e.stack,
-    });
-
-    return {
-      json: errorMes,
-      code: 500,
-    };
+    const errorMes = handleTriggerError(body.messageType, e);
+    return { json: errorMes, code: 500 };
   }
 }
 
@@ -216,17 +216,7 @@ function handleProgramVariableSchemaRequest(
     try {
       newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
     } catch (e) {
-      const errorMes = {
-        error:
-          "An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)",
-        message: e.stack,
-      };
-
-      ssqtLogger("program-boilerplate").error({
-        message: errorMes.error,
-        ["error.message"]: e.message,
-        ["error.stack"]: e.stack,
-      });
+      handleTriggerError(body.messageType, e);
     }
 
     if (!newSchema) {
