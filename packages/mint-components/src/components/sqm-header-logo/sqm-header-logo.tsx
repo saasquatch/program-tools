@@ -17,8 +17,8 @@ export class HeroImage {
    */
   @Prop() imageUrl?: string;
   /**
-   * @uiName Logo text
    * This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
+   * @uiName Logo text
    */
   @Prop() logoText?: string;
   /**
