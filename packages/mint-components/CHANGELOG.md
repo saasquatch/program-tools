@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2025-11-12
+
+### Added
+
+- Added more valid parents for the following components
+  - \<sqm-hero-image>
+  - \<sqm-image>
+
 ## [2.0.2] - 2025-10-29
 
 ### Changed
