@@ -1,65 +1,45 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <title>Mint Components Stencilbook</title>
-  <script type="module" src="build/mint-components.esm.js"></script>
-  <script nomodule src="build/mint-components.js"></script>
-
-  <script>
-    const brandConfig = localStorage.getItem("localStorageBrandConfigKey");
-    if (brandConfig) {
-      const parsedConfig = JSON.parse(brandConfig);
-      window.SquatchBrandingConfig = parsedConfig;
-    }
-  </script>
-
-<body>
-  <sqm-portal-container
-    direction="column"
-    padding="small"
-    gap="xxx-large"
-    display="grid"
-    max-width="100%"
-    ><sqm-stat-container space="xxx-large" display="flex" slot
-        ><sqm-big-stat
-            flex-reverse="true"
-            alignment="left"
-            stat-type="/rewardBalance/CREDIT/POINT/value/global"
-            ><p>Points Balance</p></sqm-big-stat
-        ><sqm-big-stat
-            flex-reverse="true"
-            alignment="left"
-            stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
-            ><p>Giftcards Earned</p></sqm-big-stat
-        ><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"
-            ><p>Referrals</p></sqm-big-stat
-        ></sqm-stat-container
-    ><sqm-image
-        alignment="center"
-        slot
-        image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1762475328/tenant_ac52kfybp1tkr/fz34nzkgameagtrwwtqx.png"
-    ></sqm-image
-    ><sqm-program-explainer header="How it works" slot
-        ><sqm-program-explainer-step
-            description="Explore and use our product while earning points in the process!"
-            header="Earn points"
-            icon="cash-stack"
-        ></sqm-program-explainer-step
-        ><sqm-program-explainer-step
-            description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard"
-            header="Redeem rewards"
-            icon="people"
-        ></sqm-program-explainer-step></sqm-program-explainer
-    ><sqm-image
-        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png"
-        alignment="center"
-        slot
-    ></sqm-image>
-</sqm-portal-container>
-
-</body>
-
+<html>
+  <head>
+    <script>
+      !(function (a, b) {
+        a("squatch", "http://localhost:3333/squatch.min.js", b);
+      })(function (a, b, c) {
+        var d, e, f;
+        (c["_" + a] = {}),
+          (c[a] = {}),
+          (c[a].ready = function (b) {
+            c["_" + a].ready = c["_" + a].ready || [];
+            c["_" + a].ready.push(b);
+          }),
+          (e = document.createElement("script")),
+          (e.async = 1),
+          (e.src = b),
+          (f = document.getElementsByTagName("script")[0]),
+          f.parentNode.insertBefore(e, f);
+      }, this);
+    </script>
+    <script>
+      window.squatchTenant = "ac52kfybp1tkr";
+      window.squatchConfig = {
+        domain: "https://staging.referralsaasquatch.com",
+      };
+      window.squatchToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU";
+      window.widgetIdent = {
+        programId: "41863",
+        userId: "testuser",
+        accountId: "testuser",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU",
+        tenantAlias: "ac52kfybp1tkr",
+        engagementMedium: "EMBED",
+        appDomain: "https://staging.referralsaasquatch.com",
+      };
+    </script>
+  </head>
+  <body>
+    <impact-embed widget="p/41863/w/referrerWidget"
+      ><div>Loading...</div></impact-embed
+    >
+  </body>
 </html>

@@ -1305,22 +1305,24 @@ export class TaxAndCashMonolith {
         return (
           <ErrorView
             loadingErrorAlertHeader={this.loadingErrorAlertHeader}
-            loadingErrorAlertDescription={intl.formatMessage(
-              {
-                id: "loadingErrorAlertDescription",
-                defaultMessage: this.loadingErrorAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
-                  >
-                    {this.supportLink}
-                  </a>
-                ),
-              }
-            )}
+            loadingErrorAlertDescription={
+              intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: this.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {this.supportLink}
+                    </a>
+                  ),
+                }
+              ) as string
+            }
           />
         );
     }
