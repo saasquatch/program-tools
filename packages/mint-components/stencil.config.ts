@@ -28,6 +28,13 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
 
 export const config: Config = {
   namespace: "mint-components",
+  hydratedFlag: {
+    hydratedValue: "inherit!important",
+    initialValue: "hidden",
+    name: "hydrated",
+    property: "visibility",
+    selector: "class",
+  },
   devServer: {
     // startupTimeout: 0,
   },
