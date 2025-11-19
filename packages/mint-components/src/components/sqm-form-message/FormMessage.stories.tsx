@@ -72,7 +72,7 @@ export const InfoAlertTransparent = () => (
 
 export const Loading = () => {
   return (
-    <sqm-form-message type="success" loading="true">
+    <sqm-form-message type="success" loading={true}>
       <p part="alert-title">This is the title</p>
       <p part="alert-description">This is the description</p>
     </sqm-form-message>

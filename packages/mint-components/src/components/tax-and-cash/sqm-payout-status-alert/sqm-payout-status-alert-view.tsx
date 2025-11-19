@@ -51,10 +51,6 @@ export interface PayoutStatusAlertViewProps {
 }
 
 const style = {
-  SkeletonOne: {
-    width: "50%",
-    height: "16px",
-  },
   AlertDescriptionText: {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
@@ -337,10 +333,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     }
   }
 
-  if (states.loading) {
-    return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
-  }
-
   const alertDetails = getAlert(states.status);
   if (states.status === "DONE" || !alertDetails) {
     return <div></div>;
@@ -350,7 +342,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message type={alertDetails.alertType}>
+      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
         <p part="alert-title">{alertDetails.header}</p>
         <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}

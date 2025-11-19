@@ -26,7 +26,7 @@ export class FormMessage {
    *
    * @uiName Loading
    */
-  @Prop() loading: string;
+  @Prop() loading: boolean = false;
   /**
    * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
    *
@@ -47,7 +47,7 @@ export class FormMessage {
 
   render() {
     if (this.loading) {
-      return <sl-skeleton class="skeleton"></sl-skeleton>;
+      return <sqm-skeleton height="90px" width="100%"></sqm-skeleton>;
     }
 
     if (this.type === "error") {

@@ -221,11 +221,11 @@ export function WidgetEmailVerificationView(
   const renderLoadingSkeleton = () => {
     return (
       <div class={sheet.classes.Wrapper}>
-        <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-        <sl-skeleton class={sheet.classes.SkeletonThree}></sl-skeleton>
+        <sqm-skeleton height="16px" width="50%"></sqm-skeleton>
+        <sqm-skeleton height="16px" width="50%"></sqm-skeleton>
+        <sqm-skeleton height="16px" width="50%"></sqm-skeleton>
+        <sqm-skeleton height="34px" width="30%"></sqm-skeleton>
+        <sqm-skeleton height="24px" width="15%"></sqm-skeleton>
         <sl-button
           submit
           class={sheet.classes.ContinueButton}

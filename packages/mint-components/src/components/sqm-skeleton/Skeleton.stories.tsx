@@ -19,19 +19,3 @@ export const CustomHeight = () => {
 export const CustomWidthAndHeight = () => {
   return <sqm-skeleton width="150px" height="50px"></sqm-skeleton>;
 };
-
-export const CustomColors = () => {
-  return (
-    <div>
-      <style>
-        {`
-          sqm-skeleton::part(indicator) {
-            --sheen-color: red;
-            --color: blue;
-          }
-        `}
-      </style>
-      <sqm-skeleton></sqm-skeleton>
-    </div>
-  );
-};

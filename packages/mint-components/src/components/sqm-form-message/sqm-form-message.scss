@@ -69,14 +69,3 @@ sl-alert::part(base) {
 ::slotted(*[part="erroralert-text"]) {
   font-size: 14px;
 }
-
-.skeleton {
-  height: 90px;
-  width: 100%;
-  border-radius: var(--sqm-border-radius-normal);
-}
-
-.skeleton::part(indicator) {
-  --sheen-color: green !important;
-  border-radius: var(--sqm-border-radius-normal);
-}

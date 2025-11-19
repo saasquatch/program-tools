@@ -989,7 +989,7 @@ export namespace Components {
           * Loading state for the alert.
           * @uiName Loading
          */
-        "loading": string;
+        "loading": boolean;
         /**
           * Render the alert with transparent styles
          */
@@ -8727,7 +8727,7 @@ declare namespace LocalJSX {
           * Loading state for the alert.
           * @uiName Loading
          */
-        "loading"?: string;
+        "loading"?: boolean;
         /**
           * Render the alert with transparent styles
          */
