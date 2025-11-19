@@ -1,7 +1,5 @@
 import { h } from "@stencil/core";
 
-
-
 export function LoadingSlot() {
   return (
     <slot name="loading">
@@ -16,7 +14,7 @@ export function LoadingRow() {
   return (
     <sqm-table-row>
       <sqm-table-cell colspan={5}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
   );
@@ -25,22 +23,22 @@ export function LoadingRow() {
 export function LoadingSkeleton() {
   return (
     <div style={{ width: "100%" }}>
-      <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-      <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-      <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-      <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-      <sl-skeleton></sl-skeleton>
+      <sqm-skeleton style={{ marginBottom: "28px" }}></sqm-skeleton>
+      <sqm-skeleton style={{ marginBottom: "28px" }}></sqm-skeleton>
+      <sqm-skeleton style={{ marginBottom: "28px" }}></sqm-skeleton>
+      <sqm-skeleton style={{ marginBottom: "28px" }}></sqm-skeleton>
+      <sqm-skeleton></sqm-skeleton>
     </div>
   );
 }
-export function EmptySlot({ label }: { label: string; }) {
+export function EmptySlot({ label }: { label: string }) {
   return (
     <slot name="empty">
       <EmptySkeleton label={label} />
     </slot>
   );
 }
-export function EmptySkeleton({ label }: { label: string; }) {
+export function EmptySkeleton({ label }: { label: string }) {
   return (
     <div style={{ width: "100%" }}>
       <sqm-text>

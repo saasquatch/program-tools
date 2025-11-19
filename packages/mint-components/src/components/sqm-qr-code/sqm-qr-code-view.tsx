@@ -107,17 +107,7 @@ export function QrCodeView({
         />
       );
     } else if (loading) {
-      return (
-        <sl-skeleton
-          className={sheet.classes.LoadingSkeleton}
-          effect="sheen"
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "0px !important",
-          }}
-        ></sl-skeleton>
-      );
+      return <sqm-skeleton height="100px" width="100px"></sqm-skeleton>;
     } else if (qrLink) {
       return (
         <svg width="100" height="100">

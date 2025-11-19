@@ -586,8 +586,12 @@ html {
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-  --sqm-skeleton-background: hsl(240 5.9% 90%);
-  --sqm-skeleton-animation-background: hsl(240 4.8% 95.9%);
+  --sqm-skeleton-background: ${
+    config?.color?.loadingSkeleton?.background || "hsl(240 5.9% 90%)"
+  };
+  --sqm-skeleton-animation-background: ${
+    config?.color?.loadingSkeleton?.animationBackground || "hsl(240 4.8% 95.9%)"
+  };
   --sqm-text: ${
     config?.color?.textColorShades?.mainText || "hsl(240, 4%, 16%)"
   };
