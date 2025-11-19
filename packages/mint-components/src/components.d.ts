@@ -986,6 +986,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading": string;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -8701,6 +8706,11 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading"?: string;
         /**
           * Render the alert with transparent styles
          */

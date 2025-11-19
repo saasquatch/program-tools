@@ -20,6 +20,13 @@ export class FormMessage {
    * @uiName Alert type
    */
   @Prop() type: string;
+
+  /**
+   * Loading state for the alert.
+   *
+   * @uiName Loading
+   */
+  @Prop() loading: string;
   /**
    * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
    *
@@ -39,6 +46,10 @@ export class FormMessage {
   disconnectedCallback() {}
 
   render() {
+    if (this.loading) {
+      return <sl-skeleton class="skeleton"></sl-skeleton>;
+    }
+
     if (this.type === "error") {
       return (
         <sl-alert
