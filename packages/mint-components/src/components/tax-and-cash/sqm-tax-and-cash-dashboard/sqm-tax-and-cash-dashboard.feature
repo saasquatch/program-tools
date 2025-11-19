@@ -110,13 +110,21 @@ Feature: Tax And Cash Dashboard
     Given a user has <holdReason> included in their holdReasons
     And they complete the payout and tax form flow
     Then a <color> banner appears
+    And the alert has <buttons>
     And the alert has heading <heading>
     And the alert has description <description>
     Examples:
-      | holdReason                  | color  | heading                            | description                                                                                                                                             |
-      | IDV_CHECK_REQUIRED_INTERNAL | yellow | Verification In Progress           | Verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. |
-      | IDV_CHECK_REVIEW_INTERNAL   | yellow | Verification Under Review          | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                       |
-      | IDV_CHECK_FAILED_INTERNAL   | red    | Identity verification unsuccessful | Identity verification has failed. Our team is reviewing the report and will contact you with further information.                                       |
+      | holdReason                  | color  | buttons                                      | heading                                               | description                                                                                                                                                                                                                                                                                                |
+      | IDV_CHECK_REQUIRED_INTERNAL | yellow | N/A                                          | Identity verification in progress                     | Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly.                                                                                                                                           |
+      | IDV_CHECK_REVIEW_INTERNAL   | yellow | N/A                                          | Verification Under Review                             | Verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly.                                                                                                                                                                          |
+      | IDV_CHECK_FAILED_INTERNAL   | red    | N/A                                          | Identity verification unsuccessful                    | Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our support team.                                                                                                                                      |
+      | PAYMENT_HOLD_ON_CHANGE      | yellow | N/A                                          | We are reviewing your new payout settings             | Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours.                                                                                                                                                                         |
+      | BENEFICIARY_NAME_INVALID    | yellow | Edit payout information, Submit new tax form | Your payment information does not match your tax form | The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved. |
+      | BENEFICIARY_NAME_MISMATCH   | yellow | Edit payout information, Submit new tax form | Your payment information does not match your tax form | The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved. |
+      | BANK_TAX_NAME_MISMATCH      | yellow | Edit payout information, Submit new tax form | Your payment information does not match your tax form | The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.   |
+      | WITHDRAWAL_SETTINGS_INVALID | yellow | Edit payout information                      | Your payment information includes invalid characters  | There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.                                                                                                          |
+      | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
+
 
   @motivating
   Scenario: User has general hold reasons
@@ -130,6 +138,13 @@ Feature: Tax And Cash Dashboard
       | IDV_CHECK_REVIEW_INTERNAL   |
       | IDV_CHECK_FAILED_INTERNAL   |
       | NO_W9_DOCUMENT              |
+      | NEW_PAYEE_REVIEW            |
+      | PAYMENT_HOLD_ON_CHANGE      |
+      | BENEFICIARY_NAME_INVALID    |
+      | BENEFICIARY_NAME_MISMATCH   |
+      | BANK_TAX_NAME_MISMATCH      |
+      | WITHDRAWAL_SETTINGS_INVALID |
+      | PAYMENT_RETURNED            |
     And they have completed the payout and tax form flow
     Then a yellow warning banner appears with a header:
       """
@@ -198,7 +213,7 @@ Feature: Tax And Cash Dashboard
     Then a modal opens
     And they are prompted with the message:
       | Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout. |
-    And two buttons Submit new form and Cancel appear
-    And if they press Submit new form
+    And two buttons Submit new tax form and Cancel appear
+    And if they press Submit new tax form
     Then their current tax form is deleted
     And they are redirected to the Docusign page to sign a new form

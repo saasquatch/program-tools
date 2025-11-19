@@ -4,14 +4,14 @@ import { intl } from "../../global/global";
 import { PoweredByImg } from "./PoweredByImg";
 
 const vanillaStyle = `
-  :host{
+  :host {
     margin: 0 auto;
     width: 100%;
   }
-  a{
+  a {
     cursor:pointer;
     color: var(--sqm-text-subdued);
-    text-decoration: none ;
+    text-decoration: none;
   }
 `;
 type PortalFooterViewProps = {
