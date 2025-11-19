@@ -44,6 +44,7 @@
 graph TD;
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-change-password
   style sqm-portal-change-password fill:#f9f,stroke:#333,stroke-width:4px
 ```

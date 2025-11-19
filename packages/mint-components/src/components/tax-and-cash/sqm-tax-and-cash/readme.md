@@ -225,6 +225,7 @@ graph TD;
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash --> sqm-form-message
   sqm-user-info-form --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-indirect-tax-form --> sqm-form-message
   sqm-docusign-form --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification

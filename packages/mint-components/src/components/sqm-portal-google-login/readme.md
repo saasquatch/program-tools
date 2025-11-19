@@ -36,6 +36,7 @@
 graph TD;
   sqm-portal-google-login --> sqm-google-sign-in
   sqm-portal-google-login --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   style sqm-portal-google-login fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

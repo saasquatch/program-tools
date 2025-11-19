@@ -118,6 +118,7 @@ graph TD;
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
+  sqm-form-message --> sqm-skeleton
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell

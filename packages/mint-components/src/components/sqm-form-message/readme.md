@@ -8,6 +8,7 @@
 | Property      | Attribute     | Description                                                                                                            | Type      | Default     |
 | ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `icon`        | `icon`        | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string`  | `undefined` |
+| `loading`     | `loading`     | Loading state for the alert.                                                                                           | `boolean` | `false`     |
 | `transparent` | `transparent` | Render the alert with transparent styles                                                                               | `boolean` | `false`     |
 | `type`        | `type`        | Options include "success", "info", "warning", and "error"                                                              | `string`  | `undefined` |
 
@@ -45,9 +46,14 @@
  - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
  - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
+### Depends on
+
+- [sqm-skeleton](../sqm-skeleton)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-form-message --> sqm-skeleton
   sqm-banking-info-form --> sqm-form-message
   sqm-code-verification --> sqm-form-message
   sqm-coupon-code --> sqm-form-message

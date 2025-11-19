@@ -101,6 +101,7 @@
 - [sqm-lead-input-field](../sqm-lead-form)
 - [sqm-lead-dropdown-field](../sqm-lead-form)
 - [sqm-lead-form](../sqm-lead-form)
+- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
@@ -199,6 +200,8 @@ graph TD;
   sqm-stencilbook --> sqm-lead-input-field
   sqm-stencilbook --> sqm-lead-dropdown-field
   sqm-stencilbook --> sqm-lead-form
+  sqm-stencilbook --> sqm-skeleton
+  sqm-form-message --> sqm-skeleton
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
   sqm-coupon-code --> sqm-form-message
@@ -237,6 +240,7 @@ graph TD;
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-code-verification --> sqm-form-message
+  sqm-email-verification --> sqm-skeleton
   sqm-email-verification --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification
   sqm-banking-info-form --> sqm-form-message
