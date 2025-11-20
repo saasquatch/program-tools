@@ -4,6 +4,34 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "rollup-stubs/graphql-request.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "GraphQLClient"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "GraphQLClient",
+            "package": "graphql-request"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "GraphQLClient",
+          "declaration": {
+            "name": "GraphQLClient",
+            "module": "rollup-stubs/graphql-request.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/SqlReferralCode.ts",
       "declarations": [
         {
@@ -81,7 +109,7 @@
           "name": "SqlReferralCode",
           "declaration": {
             "name": "SqlReferralCode",
-            "module": "./SqlReferralCode.js"
+            "module": "./SqlReferralCode"
           }
         }
       ]
@@ -96,7 +124,7 @@
           "name": "sql-referral-code",
           "declaration": {
             "name": "SqlReferralCode",
-            "module": "/src/SqlReferralCode.js"
+            "module": "/src/SqlReferralCode"
           }
         }
       ]

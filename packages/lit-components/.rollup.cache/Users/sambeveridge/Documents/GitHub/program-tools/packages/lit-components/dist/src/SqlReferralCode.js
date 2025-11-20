@@ -6,7 +6,7 @@ import { property } from 'lit/decorators.js';
 // setImplementation(haunted);
 // @ts-ignore
 import { useQuery, useProgramId } from '@saasquatch/component-boilerplate';
-import { gql } from 'graphql-tag';
+import gql from 'graphql-tag';
 const MessageLinkQuery = gql `
   query getReferralCode($programId: ID) {
     user: viewer {

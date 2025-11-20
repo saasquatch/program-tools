@@ -1,0 +1,60 @@
+{
+  "name": "haunted",
+  "version": "6.1.0",
+  "description": "Hooks for web components",
+  "main": "lib/haunted.js",
+  "module": "lib/haunted.js",
+  "type": "module",
+  "customElements": "custom-elements.json",
+  "scripts": {
+    "build": "tsc",
+    "changeset": "changeset",
+    "analyze": "tsc; cem analyze",
+    "preversion": "tsc",
+    "test": "wtr",
+    "test:watch": "wtr --watch",
+    "start": "rocket start",
+    "docs": "rocket build"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewp/haunted.git"
+  },
+  "keywords": [
+    "haunted",
+    "lit",
+    "web-components"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/matthewp/haunted/issues"
+  },
+  "homepage": "https://github.com/matthewp/haunted#readme",
+  "typings": "lib/haunted.d.ts",
+  "devDependencies": {
+    "@changesets/cli": "^2.16.0",
+    "@custom-elements-manifest/analyzer": "^0.5.7",
+    "@matthewp/compile": "^3.0.0",
+    "@open-wc/testing": "^4.0.0",
+    "@rocket/cli": "^0.9.8",
+    "@rocket/launch": "^0.5.4",
+    "@rocket/search": "^0.4.1",
+    "@types/mocha": "^10.0.0",
+    "@web/dev-server-esbuild": "^1.0.0",
+    "@web/test-runner": "^0.20.0",
+    "cem-plugin-jsdoc-function": "^0.0.5",
+    "eleventy-plugin-helmet": "^0.2.2",
+    "rocket-preset-code-tabs": "^0.2.4",
+    "rocket-preset-custom-elements-manifest": "^0.1.7",
+    "rocket-preset-playground-elements": "^0.1.4",
+    "typescript": "^5.2.0"
+  },
+  "dependencies": {
+    "lit": "^3.0.0",
+    "lit-html": "^3.0.0"
+  }
+}

@@ -15,6 +15,7 @@ export default {
     { file: 'dist/src/index.js', format: 'es', sourcemap: true },
     { file: 'dist/src/sql-referral-code.js', format: 'cjs', sourcemap: true },
   ],
+  external: ['graphql-request', '@saasquatch/component-boilerplate',],
   plugins: [
     alias({
       entries: [
@@ -38,21 +39,25 @@ export default {
       preferBuiltins: false,
       extensions: ['.mjs', '.js', '.ts', '.json'],
     }),
-    // commonjs(),
-
+    // commonjs({ transformMixedEsModules: true }),
     // // compile TypeScript
-    typescript({ tsconfig: './tsconfig.json', sourceMap: true }),
-    copy({
-      targets: [
-        {
-          src: 'node_modules/haunted/**',
-          dest: 'dist/@saasquatch/universal-hooks',
-        },
-      ],
-      hook: 'writeBundle',
-      copyOnce: true,
-      verbose: true,
+    typescript({
+      tsconfig: './tsconfig.json',
+      sourceMap: true,
+      declaration: false, // disable .d.ts emission in rollup
+      declarationDir: null,
     }),
+    // copy({
+    //   targets: [
+    //     {
+    //       src: 'node_modules/haunted/**',
+    //       dest: 'dist/@saasquatch/universal-hooks',
+    //     },
+    //   ],
+    //   hook: 'writeBundle',
+    //   copyOnce: true,
+    //   verbose: true,
+    // }),
     // // after bundle is written, copy haunted into the dist path expected by consumers
     // copy({
     //   targets: [
