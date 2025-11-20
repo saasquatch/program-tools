@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <style>
+      body {
+        background: #fafafa;
+      }
+    </style>
+    <script>
+      window.squatchTenant = 'ac52kfybp1tkr';
+      window.squatchConfig = {
+        domain: 'https://staging.referralsaasquatch.com',
+      };
+      window.squatchToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU';
+      window.widgetIdent = {
+        programId: '41863',
+        userId: 'testuser',
+        accountId: 'testuser',
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU',
+        tenantAlias: 'ac52kfybp1tkr',
+        engagementMedium: 'EMBED',
+        appDomain: 'https://staging.referralsaasquatch.com',
+      };
+    </script>
+  </head>
+  <body>
+    <div id="demo"></div>
+
+    <script type="module">
+      import { html, render } from 'lit';
+      import '../dist/src/sql-referral-code.js';
+
+      const header = 'Hello World!';
+      render(
+        html`
+          <sql-referral-code .header=${header}>
+            some light-dom
+          </sql-referral-code>
+        `,
+        document.querySelector('#demo'),
+      );
+    </script>
+  </body>
+</html>

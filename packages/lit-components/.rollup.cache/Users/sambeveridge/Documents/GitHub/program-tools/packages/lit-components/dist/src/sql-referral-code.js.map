@@ -1,0 +1,1 @@
+{"version":3,"file":"sql-referral-code.js","sourceRoot":"","sources":["../../src/sql-referral-code.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEpD,MAAM,CAAC,cAAc,CAAC,MAAM,CAAC,mBAAmB,EAAE,eAAe,CAAC,CAAC","sourcesContent":["import { SqlReferralCode } from './SqlReferralCode';\n\nwindow.customElements.define('sql-referral-code', SqlReferralCode);\n"]}
