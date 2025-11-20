@@ -27,11 +27,13 @@
 ### Depends on
 
 - [sqm-empty](../sqm-empty)
+- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-referral-codes --> sqm-empty
+  sqm-referral-codes --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

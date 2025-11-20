@@ -16,6 +16,7 @@
 - [sqm-big-stat](../sqm-big-stat)
 - [sqm-stat-container](../sqm-stat-container)
 - [sqm-brand](../sqm-brand)
+- [sqm-skeleton](../sqm-skeleton)
 - [sqm-checkbox-field](../sqm-checkbox-field)
 - [sqm-portal-register](../sqm-portal-register)
 - [sqm-name-fields](../sqm-name-fields)
@@ -101,7 +102,6 @@
 - [sqm-lead-input-field](../sqm-lead-form)
 - [sqm-lead-dropdown-field](../sqm-lead-form)
 - [sqm-lead-form](../sqm-lead-form)
-- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
@@ -115,6 +115,7 @@ graph TD;
   sqm-stencilbook --> sqm-big-stat
   sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-brand
+  sqm-stencilbook --> sqm-skeleton
   sqm-stencilbook --> sqm-checkbox-field
   sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-name-fields
@@ -200,7 +201,6 @@ graph TD;
   sqm-stencilbook --> sqm-lead-input-field
   sqm-stencilbook --> sqm-lead-dropdown-field
   sqm-stencilbook --> sqm-lead-form
-  sqm-stencilbook --> sqm-skeleton
   sqm-form-message --> sqm-skeleton
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
@@ -216,39 +216,49 @@ graph TD;
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table --> sqm-skeleton
   sqm-invoice-table-download-column --> sqm-invoice-table-download-cell
   sqm-invoice-table-date-column --> sqm-invoice-table-date-cell
   sqm-invoice-table-data-column --> sqm-invoice-table-data-cell
   sqm-leaderboard --> sqm-empty
+  sqm-leaderboard --> sqm-skeleton
   sqm-payout-button-scroll --> sqm-scroll
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
   sqm-referral-codes --> sqm-empty
+  sqm-referral-codes --> sqm-skeleton
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-referral-table --> sqm-skeleton
   sqm-referral-table-user-column --> sqm-referral-table-user-cell
   sqm-referral-table-status-column --> sqm-referral-table-status-cell
   sqm-referral-table-date-column --> sqm-referral-table-date-cell
   sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   sqm-reward-exchange-list --> sqm-empty
+  sqm-reward-exchange-list --> sqm-skeleton
   sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
+  sqm-rewards-table --> sqm-skeleton
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
+  sqm-task-card --> sqm-skeleton
   sqm-code-verification --> sqm-form-message
   sqm-email-verification --> sqm-skeleton
   sqm-email-verification --> sqm-form-message
   sqm-banking-info-form --> sqm-code-verification
   sqm-banking-info-form --> sqm-form-message
+  sqm-payout-details-card --> sqm-skeleton
   sqm-user-info-form --> sqm-form-message
+  sqm-user-info-form --> sqm-skeleton
   sqm-indirect-tax-form --> sqm-form-message
   sqm-docusign-form --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-skeleton
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
@@ -259,6 +269,7 @@ graph TD;
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash --> sqm-form-message
+  sqm-tax-and-cash --> sqm-skeleton
   sqm-payout-status-alert --> sqm-scroll
   sqm-payout-status-alert --> sqm-form-message
   sqm-lead-form --> sqm-form-message

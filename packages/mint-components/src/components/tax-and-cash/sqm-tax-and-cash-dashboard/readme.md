@@ -104,6 +104,7 @@
 
 - [sqm-payout-details-card](../sqm-payout-details-card)
 - [sqm-form-message](../../sqm-form-message)
+- [sqm-skeleton](../../sqm-skeleton)
 - [sqm-invoice-table](../../sqm-invoice-table)
 - [sqm-invoice-table-download-column](../../sqm-invoice-table/columns)
 - [sqm-invoice-table-date-column](../../sqm-invoice-table/columns)
@@ -114,14 +115,17 @@
 graph TD;
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-skeleton
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
+  sqm-payout-details-card --> sqm-skeleton
   sqm-form-message --> sqm-skeleton
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

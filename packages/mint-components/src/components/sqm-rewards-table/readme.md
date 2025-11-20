@@ -31,6 +31,7 @@
 - [sqm-empty](../sqm-empty)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
+- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
@@ -38,6 +39,7 @@ graph TD;
   sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
+  sqm-rewards-table --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

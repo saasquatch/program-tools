@@ -214,6 +214,7 @@
 - [sqm-banking-info-form](../sqm-banking-info-form)
 - [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
 - [sqm-form-message](../../sqm-form-message)
+- [sqm-skeleton](../../sqm-skeleton)
 
 ### Graph
 ```mermaid
@@ -224,7 +225,9 @@ graph TD;
   sqm-tax-and-cash --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-tax-and-cash-dashboard
   sqm-tax-and-cash --> sqm-form-message
+  sqm-tax-and-cash --> sqm-skeleton
   sqm-user-info-form --> sqm-form-message
+  sqm-user-info-form --> sqm-skeleton
   sqm-form-message --> sqm-skeleton
   sqm-indirect-tax-form --> sqm-form-message
   sqm-docusign-form --> sqm-form-message
@@ -233,13 +236,16 @@ graph TD;
   sqm-code-verification --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-form-message
+  sqm-tax-and-cash-dashboard --> sqm-skeleton
   sqm-tax-and-cash-dashboard --> sqm-invoice-table
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-download-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-date-column
   sqm-tax-and-cash-dashboard --> sqm-invoice-table-data-column
+  sqm-payout-details-card --> sqm-skeleton
   sqm-invoice-table --> sqm-empty
   sqm-invoice-table --> sqm-table-row
   sqm-invoice-table --> sqm-table-cell
+  sqm-invoice-table --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
