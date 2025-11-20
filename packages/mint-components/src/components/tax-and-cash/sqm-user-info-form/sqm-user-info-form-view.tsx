@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { FORM_STEPS } from "../data";
+import { FORM_STEPS, ImpactPublisher } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 import LoadingView from "../sqm-tax-and-cash/LoadingView";
 import { formatErrorMessage, validateBillingField } from "../utils";
@@ -69,6 +69,7 @@ export interface UserInfoFormViewProps {
       currencyCode: string;
       displayName: string;
     }[];
+    partnerData: ImpactPublisher;
   };
   callbacks: {
     setCurrencySearch: (c: any) => void;
@@ -429,6 +430,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.state;
   }
 
+  function isDisabledInput(field: string) {
+   return states.isPartner && !!data.partnerData?.[field]
+  }
+
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -546,7 +551,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={
+                  states.disabled ||
+                  states.isUser ||
+                  isDisabledInput("firstName")
+                }
                 {...(formState.errors?.firstName
                   ? {
                       class: classes.ErrorInput,
@@ -564,7 +573,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.lastName}
                 label={text.lastName}
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={
+                  states.disabled ||
+                  states.isUser ||
+                  isDisabledInput("lastName")
+                }
                 {...(formState.errors?.lastName
                   ? {
                       class: classes.ErrorInput,
@@ -594,7 +607,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled || isDisabledInput("countryCode")}
                 {...(formState.errors?.countryCode
                   ? {
                       class: classes.ErrorInput,
@@ -640,7 +653,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     exportparts="label: input-label, base: input-base"
                     name="/phoneNumberCountryCode"
                     value={formState.phoneNumberCountryCode}
-                    disabled={states.disabled || states.isPartner}
+                    disabled={
+                      states.disabled ||
+                      isDisabledInput("phoneNumberCountryCode")
+                    }
                     ref={(el: HTMLFormElement) =>
                       (refs.phoneCountryRef.current = el)
                     }
@@ -699,7 +715,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                           text.error.fieldInvalidError
                         );
                     }}
-                    disabled={states.disabled || states.isPartner}
+                    disabled={states.disabled || isDisabledInput("phoneNumber")}
                     {...(formState.errors?.phoneNumber
                       ? {
                           class: classes.ErrorInput,
@@ -727,7 +743,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled || isDisabledInput("billingAddress")}
                 {...(formState.errors?.address
                   ? {
                       class: classes.ErrorInput,
@@ -753,7 +769,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled || isDisabledInput("billingCity")}
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
@@ -772,7 +788,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="state"
                   name="/state"
                   value={formState.state}
-                  disabled={states.disabled || states.isPartner}
+                  disabled={states.disabled || isDisabledInput("billingState")}
                   {...(formState.errors?.state
                     ? {
                         class: classes.ErrorInput,
@@ -795,7 +811,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 id="postalCode"
                 name="/postalCode"
                 value={formState.postalCode}
-                disabled={states.disabled || states.isPartner}
+                disabled={
+                  states.disabled || isDisabledInput("billingPostalCode")
+                }
                 {...(formState.errors?.postalCode
                   ? {
                       class: classes.ErrorInput,
@@ -814,7 +832,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.currency}
                 menu
                 value={formState.currency}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled || isDisabledInput("currency")}
                 helpText={text.currencyHelpText}
                 {...(formState.errors?.currency
                   ? {
@@ -860,7 +878,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;
                   }}
-                  disabled={states.isPartner ? false : states.disabled}
+                  disabled={states.disabled}
                   required
                   value={formState.allowBankingCollection}
                   id="allowBankingCollection"
@@ -880,7 +898,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             </div>
             <sl-button
               type="primary"
-              disabled={states.isPartner ? false : states.disabled}
+              disabled={states.disabled}
               submit
               exportparts="base: primarybutton-base"
             >
