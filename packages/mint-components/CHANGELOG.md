@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.3] - 2025-11-06
+## [2.0.4] - 2025-11-20
 
 ### Changed
 
@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-header-logo>
   - added optional props to fallback to text instead of an image for the logo
+
+## [2.0.3] - 2025-11-12
+
+### Added
+
+- Added more valid parents for the following components
+  - \<sqm-hero-image>
+  - \<sqm-image>
 
 ## [2.0.2] - 2025-10-29
 
@@ -1415,7 +1423,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.4...HEAD
+[2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4
 [2.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.3
 [2.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.2
 [2.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.1

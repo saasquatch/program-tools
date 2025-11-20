@@ -58,168 +58,89 @@ import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
-export { DemoData } from "./global/demo";
-export { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
-export { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
-export { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
-export { WidgetCodeVerificationViewProps } from "./components/sqm-widget-verification/sqm-code-verification/sqm-code-verification-view";
-export { CouponCodeViewProps } from "./components/sqm-coupon-code/sqm-coupon-code-view";
-export { UseDocusignFormResult } from "./components/tax-and-cash/sqm-docusign-form/useDocusignForm";
-export { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
-export { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
-export { WidgetEmailVerificationViewProps } from "./components/sqm-widget-verification/sqm-email-verification/sqm-email-verification-view";
-export { Spacing } from "./global/mixins";
-export { FunctionalComponent, VNode } from "@stencil/core";
-export { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
-export { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
-export { EmailRegistrationViewProps } from "./components/views/email-registration-view";
-export { GenericTableViewProps } from "./tables/GenericTableView";
-export { FraudStatus, ImpactConnection, Invoice, Referral, Referrer, Reward } from "./saasquatch";
-export { LeadCheckboxFieldViewProps } from "./components/sqm-lead-form/sqm-lead-checkbox-field-view";
-export { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
-export { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
-export { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
-export { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
-export { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
-export { CopyTextViewProps } from "./components/views/copy-text-view";
-export { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
-export { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
-export { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
-export { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
-export { UsePagination } from "./components/sqm-pagination/usePagination";
-export { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
-export { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
-export { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
-export { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
-export { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
-export { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
-export { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
-export { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
-export { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
-export { PortalRegistrationFormViewProps } from "./components/sqm-portal-registration-form/sqm-portal-registration-form-view";
-export { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
-export { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
-export { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
-export { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
-export { QRCodeViewProps } from "./components/sqm-qr-code/sqm-qr-code-view";
-export { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
-export { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
-export { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
-export { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
-export { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
-export { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-export { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
-export { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
-export { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
-    /**
-     * @undocumented 
-     */
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
         "renderLabel": (idx: any) => Promise<any>;
     }
-    /**
-     * @uiName Banking Information Form
-     * @exampleGroup Common Components
-     */
     interface SqmBankingInfoForm {
         /**
           * @uiName Agency code field label
-          * @default "Agency code"
          */
         "agencyCodeLabel": string;
         /**
           * Text for the back button in the form
           * @uiName Back button label
-          * @default "Back"
          */
         "backButton": string;
         /**
           * @uiName Bank account number field label
-          * @default "Bank account number"
          */
         "bankAccountNumberLabel": string;
         /**
           * @uiName Bank account type field label
-          * @default "Bank account type"
          */
         "bankAccountTypeLabel": string;
         /**
           * @uiName Bank address field label
-          * @default "Bank address"
          */
         "bankAddressLabel": string;
         /**
           * @uiName Bank city field label
-          * @default "Bank city"
          */
         "bankCityLabel": string;
         /**
           * @uiName Bank country field label
-          * @default "Bank country location"
          */
         "bankLocationLabel": string;
         /**
           * @uiName Bank name field label
-          * @default "Bank Name"
          */
         "bankNameLabel": string;
         /**
           * @uiName Bank postal code field label
-          * @default "Bank postal code"
          */
         "bankPostalCodeLabel": string;
         /**
           * @uiName Bank province/state field label
-          * @default "Bank province/state"
          */
         "bankStateLabel": string;
         /**
           * @uiName Beneficiary account field description
-          * @default "The beneficiary name of your bank account. Ensure this matches the name on your tax form."
          */
         "beneficiaryAccountNameDescription": string;
         /**
           * @uiName Beneficiary account field label
-          * @default "Account holder name"
          */
         "beneficiaryAccountNameLabel": string;
         /**
           * @uiName Branch code field label
-          * @default "Branch code"
          */
         "branchCodeLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
-          * @default "Business"
          */
         "businessSelectItemLabel": string;
         /**
           * @uiName Checking account option
-          * @default "Checking"
          */
         "checkingSelectItemLabel": string;
         /**
           * @uiName Classification CPF field label
-          * @default "Classification CPF"
          */
         "classificationCPFLabel": string;
         /**
           * @uiName Classification entity field label
-          * @default "Classification Entity"
          */
         "classificationEntityLabel": string;
         /**
           * Label text for the classification input field
           * @uiName Classification field label
-          * @default "Classification"
          */
         "classificationLabel": string;
         /**
           * @uiName Continue button label
-          * @default "Save"
          */
         "continueButton": string;
         /**
@@ -229,248 +150,194 @@ export namespace Components {
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
           * @uiName Direct to bank payout option
-          * @default "Directly to my bank account"
          */
         "directlyToBankAccount": string;
         /**
           * Default payment method to the participants’ bank account.
           * @uiName EFT withdrawal payment method
-          * @default "EFT withdrawal (free)"
          */
         "eftWithdrawalLabel": string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError": string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError": string;
         /**
           * One of three options listed for the classification field
           * @uiName Foreign classification option
-          * @default "Foreign"
          */
         "foreignSelectItemLabel": string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep": string;
         /**
           * @uiName FX Wire Processing fee text
-          * @default "FX Wire (Processing Fee {currency}{defaultFxFee}.00)"
          */
         "fxWireProcessingFeeLabel": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * @uiName IBAN field label
-          * @default "IBAN"
          */
         "ibanLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Individual classification option
-          * @default "Individual"
          */
         "individualSelectItemLabel": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact Support."
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Information modal button text
-          * @default "I understand, update my information"
          */
         "modalButtonText": string;
         /**
           * @uiName Information modal description text
-          * @default "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
          */
         "modalDescription": string;
         /**
           * @uiName Information modal title
-          * @default "Important Note"
          */
         "modalTitle": string;
         /**
           * @uiName Patronymic name field label
-          * @default "Patronymic name"
          */
         "patronymicNameLabel": string;
         /**
           * Displayed to participants who choose PayPal as their payout method
           * @uiName PayPal email field label
-          * @default "PayPal email"
          */
         "payPalInputLabel": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
-          * @default "15th of the month"
          */
         "paymentDayFifteenthOfMonthLabelText": string;
         /**
           * One of two payment day options
           * @uiName First of month payday option
-          * @default "1st of the month"
          */
         "paymentDayFirstOfMonthLabelText": string;
         /**
           * Let the participant choose what day of the month they’ll get paid
           * @uiName Payment day field label
-          * @default "Payment Day"
          */
         "paymentDaySelectLabel": string;
         /**
           * @uiName Payment method section header
-          * @default "Payment method"
          */
         "paymentMethod": string;
         /**
           * @uiName Payment method section description
-          * @default "Payouts will be sent from our referral program provider, impact.com."
          */
         "paymentMethodSubtext": string;
         /**
           * @uiName Payment schedule section header
-          * @default "Payment schedule"
          */
         "paymentSchedule": string;
         /**
           * @uiName Threshold balance payment schedule option
-          * @default "Pay me when my balance reaches a threshold"
          */
         "paymentScheduleBalanceThreshold": string;
         /**
           * @uiName Fixed day payment schedule option
-          * @default "Pay me on a fixed day of the month"
          */
         "paymentScheduleFixedDay": string;
         /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
-          * @default "Payment Threshold"
          */
         "paymentThresholdSelectLabel": string;
         /**
           * @uiName Routing code field label
-          * @default "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }"
          */
         "routingCodeLabel": string;
         /**
           * @uiName Savings account options
-          * @default "Savings"
          */
         "savingsSelectItemLabel": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * @uiName SWIFT code field label
-          * @default "SWIFT code"
          */
         "swiftCodeLabel": string;
         /**
           * @uiName Step 4 title
-          * @default "Payouts"
          */
         "taxAndPayouts": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription": string;
         /**
           * @uiName Taxpayer ID field label
-          * @default "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }"
          */
         "taxPayerIdLabel": string;
         /**
           * @uiName PayPal payout option
-          * @default "PayPal (2% processing fee capped to {feeCap})"
          */
         "toPayPalAccount": string;
         /**
           * @uiName Verify code widget header text
-          * @default "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com."
          */
         "verifyEmailDescriptionText": string;
         /**
           * Text for verify email dialog
           * @uiName Verify email header
-          * @default "Verify your email"
          */
         "verifyEmailHeaderText": string;
         /**
           * @uiName VO code field label
-          * @default "VO code"
          */
         "voCodeLabel": string;
     }
-    /**
-     * @uiName User Stat
-     * @validParents ["sqm-stat-container"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"","title":"Stat Text"}]
-     * @uiOrder ["statType", "programId", "*"]
-     * @slotEditor richText
-     * @exampleGroup Statistics
-     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
-     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
-     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
-     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
-     */
     interface SqmBigStat {
         /**
           * Controls the alignment of the flexbox
@@ -479,7 +346,6 @@ export namespace Components {
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
           * @uiGroup Additional Settings
-          * @default "center"
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -549,12 +415,6 @@ export namespace Components {
          */
         "statType": string;
     }
-    /**
-     * @uiName Brand Container
-     * @slots [{"name":"","title":"Branded Content"}]
-     * @exampleGroup Common Components
-     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
-     */
     interface SqmBrand {
         /**
           * Controls the primary brand color used in the Mint Components library.
@@ -572,49 +432,30 @@ export namespace Components {
     }
     interface SqmBrandSelector {
     }
-    /**
-     * @uiName Card Feed
-     * @slots [{"name":"","title":"Cards"}]
-     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-task-card"]
-     * @exampleGroup Rewards
-     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
-     */
     interface SqmCardFeed {
         /**
           * @uiName Column gap
           * @uiType number
-          * @default 24
          */
         "gap": number;
         /**
           * @uiName Card width
-          * @default 347
          */
         "width": number;
     }
-    /**
-     * @uiName Form Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
-     */
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "By signing up you agree to the {labelLink}"
          */
         "checkboxLabel": string;
         /**
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
-          * @default "https://example.com"
          */
         "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
-          * @default "Terms and Conditions"
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -625,7 +466,6 @@ export namespace Components {
         "checkboxName": string;
         /**
           * @uiName Optional
-          * @default false
          */
         "checkboxOptional"?: boolean;
         /**
@@ -635,19 +475,14 @@ export namespace Components {
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
           * @uiName Unchecked error message
-          * @default "Must be checked"
          */
         "errorMessage"?: string;
     }
-    /**
-     * @uiName Popup Widget Close Button
-     */
     interface SqmCloseButton {
         /**
           * @uiName Color
           * @uiWidget color
           * @uiType string
-          * @default "#000000"
          */
         "color": string;
     }
@@ -655,7 +490,6 @@ export namespace Components {
         /**
           * Link text displayed under verify button
           * @uiName Resend code text
-          * @default "Another code has been sent to {email}"
          */
         "codeResentSuccessfullyText": string;
         /**
@@ -666,13 +500,11 @@ export namespace Components {
         /**
           * Error text displayed under verification input
           * @uiName Invalid code text
-          * @default "Please check your code and try again. If you’re still having trouble, try resending your code."
          */
         "invalidCodeText": string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "networkErrorMessage": string;
         /**
@@ -682,45 +514,29 @@ export namespace Components {
         /**
           * The link that appears in the resend code link
           * @uiName Resend code label
-          * @default "Resend code"
          */
         "resendCodeLabel": string;
         /**
           * Text displayed under verify button
           * @uiName Resend code text
-          * @default "Didn't receive your code? {resendCodeLink}"
          */
         "resendCodeText": string;
         /**
           * @uiName Reverify code widget header text
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "reverifyCodeHeaderText": string;
         /**
           * @uiName Verify code widget header text
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "verifyCodeHeaderText": string;
         /**
           * @uiName Verify code button text
-          * @default "Verify"
          */
         "verifyText": string;
     }
-    /**
-     * @uiName Context Router
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface SqmContextRouter {
         "contextName": string;
     }
-    /**
-     * @uiName Coupon Code
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
-     */
     interface SqmCouponCode {
         /**
           * Background color of share link container
@@ -752,7 +568,6 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -762,7 +577,6 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -770,7 +584,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Cancelled code error message
           * @uiGroup Coupon code error
-          * @default "This code has been cancelled. Please reach out to the Support team for help resolving this issue."
          */
         "cancelledErrorText": string;
         /**
@@ -778,7 +591,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Code sync error retry message
           * @uiGroup Coupon code error
-          * @default "We're experiencing an issue generating your coupon code. If it doesn't appear shortly, please contact {supportEmail}. Retrying in {timeRemaining} seconds."
          */
         "codeSyncErrorRetryText": string;
         /**
@@ -786,24 +598,20 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Code sync error message
           * @uiGroup Coupon code error
-          * @default "We're still experiencing an issue generating your coupon code. Please contact {supportEmail} for assistance."
          */
         "codeSyncErrorText": string;
         /**
           * @uiName Copy button label
-          * @default "Copy Coupon"
          */
         "copyButtonLabel": string;
         /**
           * @uiName Coupon code label
-          * @default "Your coupon code:"
          */
         "couponCodeLabel": string;
         /**
           * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
           * @uiGroup Coupon code error
-          * @default "..."
          */
         "couponCodePlaceholder": string;
         /**
@@ -816,7 +624,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Expired code error message
           * @uiGroup Coupon code error
-          * @default "Looks like this code has expired. Please reach out to the Support team for help resolving this issue."
          */
         "expiredErrorText": string;
         /**
@@ -824,7 +631,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Code fulfillment error message
           * @uiGroup Coupon code error
-          * @default "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
          */
         "fullfillmentErrorText": string;
         /**
@@ -832,7 +638,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Code retrieval error message
           * @uiGroup Coupon code error
-          * @default "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
          */
         "genericErrorText": string;
         /**
@@ -840,7 +645,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Code pending error message
           * @uiGroup Coupon code error
-          * @default "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!"
          */
         "pendingErrorText": string;
         /**
@@ -854,7 +658,6 @@ export namespace Components {
           * @uiWidget textArea
           * @uiName Redeemed code error message
           * @uiGroup Coupon code error
-          * @default "Looks like you’ve already redeemed this code."
          */
         "redeemedErrorText": string;
         /**
@@ -863,7 +666,6 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -877,30 +679,19 @@ export namespace Components {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan": number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext": string;
     }
-    /**
-     * Shows it's children as either a row or a column, with a division in between them.
-     * Spacing is left up to the child
-     * @uiName Divided Layout
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
-     * @exampleGroup Layout
-     * @slots [{"name":"", "title":"Layout Content"}]
-     */
     interface SqmDividedLayout {
         /**
           * Background color of the divider
           * @uiName Background Color
           * @uiWidget color
-          * @default "#FFFFFF"
          */
         "backgroundColor"?: string;
         /**
@@ -925,20 +716,13 @@ export namespace Components {
         /**
           * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
-          * @default "var(--sqm-border-thickness) solid var(--sqm-border-color)"
          */
         "dividerStyle": string;
     }
-    /**
-     * @uiName DocuSign Document Submission
-     * @exampleGroup Tax and Cash Components
-     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
-     */
     interface SqmDocusignForm {
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
-          * @default "I represent a business"
          */
         "businessEntity": string;
         /**
@@ -950,144 +734,115 @@ export namespace Components {
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
           * @uiWidget textArea
-          * @default "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}."
          */
         "docusignError": string;
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign session expired messag
           * @uiWidget textArea
-          * @default "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue."
          */
         "docusignExpired": string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiWidget textArea
-          * @default "For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
          */
         "docusignSessionWarning": string;
         /**
           * Exit button text displayed at the end of the Comply Exchange form flow
           * @uiName Exit button text
-          * @default "Exit"
          */
         "exitButton": string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
-          * @default "I am an individual participant"
          */
         "individualParticipant": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Information modal button text
-          * @default "I understand"
          */
         "modalButtonText": string;
         /**
           * @uiName Information modal description text
-          * @default "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout."
          */
         "modalDescription": string;
         /**
           * @uiName Information modal title
-          * @default "Important Note"
          */
         "modalTitle": string;
         /**
           * @uiName Participant type field label
-          * @default "Participant type"
          */
         "participantType": string;
         /**
           * @uiName Refresh page button label
-          * @default "Refresh Page"
          */
         "refreshButton": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription": string;
         /**
           * @uiName Step 3 title
-          * @default "Tax form"
          */
         "taxForm": string;
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiWidget textArea
-          * @default "Participants based in the US need to submit a {documentType} form."
          */
         "taxFormDescription": string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiWidget textArea
-          * @default "Participants residing outside of the US working with a US Brand need to submit a {documentType} form."
          */
         "taxFormDescriptionBusinessEntity": string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiWidget textArea
-          * @default "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form."
          */
         "taxFormDescriptionIndividualParticipant": string;
         /**
           * Display the type of tax form that the participant must submit.
           * @uiName Tax form name
-          * @default "{documentType} Tax Form"
          */
         "taxFormLabel": string;
     }
-    /**
-     * @uiName Form Dropdown Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @slots [{"name":"", "title":"Drop Down Option"}]
-     * @exampleGroup Microsite Components
-     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
-     */
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -1096,7 +851,6 @@ export namespace Components {
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
           * @uiName Dropdown label
-          * @default "Select an option"
          */
         "dropdownLabel": string;
         /**
@@ -1112,13 +866,9 @@ export namespace Components {
         "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
-          * @default "Select an option"
          */
         "errorMessage": string;
     }
-    /**
-     * @uiName Microsite Edit Profile
-     */
     interface SqmEditProfile {
         /**
           * @uiName Cancel button text
@@ -1144,7 +894,6 @@ export namespace Components {
         "editprofiletext": string;
         /**
           * @uiName Empty field error message
-          * @default "Cannot be empty"
          */
         "fieldEmptyText": string;
         /**
@@ -1153,7 +902,6 @@ export namespace Components {
         "firstnametext": string;
         /**
           * @uiName Form error message
-          * @default "Please correct the errors below to update your profile."
          */
         "formErrorText": string;
         /**
@@ -1162,7 +910,6 @@ export namespace Components {
         "lastnametext": string;
         /**
           * @uiName Network error message
-          * @default "Network request failed."
          */
         "networkErrorMessage": string;
         /**
@@ -1175,9 +922,6 @@ export namespace Components {
          */
         "updatetext": string;
     }
-    /**
-     * @uiName Widget Verification Gate
-     */
     interface SqmEmailVerification {
         /**
           * @undocumented 
@@ -1186,44 +930,33 @@ export namespace Components {
         "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
         /**
           * @uiName Email input label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName Send code button text
-          * @default "Please enter a valid email"
          */
         "emailValidationErrorText": string;
         /**
           * @uiName Send code to email alert description
-          * @default "Please try again. If this problem continues, contact our program {supportLink}."
          */
         "sendCodeErrorDescription": string;
         /**
           * @uiName Send code to email alert header
-          * @default "There was an error sending your code"
          */
         "sendCodeErrorHeader": string;
         /**
           * @uiName Send code button text
-          * @default "Send code"
          */
         "sendCodeText": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * @uiName Verify email widget header text
-          * @default "Start by verifying your email. We’ll send you a code through our referral provider, impact.com."
          */
         "verifyEmailHeaderText": string;
     }
-    /**
-     * @uiName Empty State Content
-     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
-     */
     interface SqmEmpty {
         /**
           * @uiName Title
@@ -1233,7 +966,6 @@ export namespace Components {
           * @uiWidget ImageUpload
           * @format url
           * @uiName Image
-          * @default "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
          */
         "emptyStateImage"?: string;
         /**
@@ -1247,10 +979,6 @@ export namespace Components {
          */
         "supportText"?: string;
     }
-    /**
-     * @uiName Form Message
-     * @slots [{"name":"","title":"Message Content"}]
-     */
     interface SqmFormMessage {
         /**
           * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
@@ -1259,7 +987,6 @@ export namespace Components {
         "icon"?: string;
         /**
           * Render the alert with transparent styles
-          * @default false
          */
         "transparent"?: boolean;
         /**
@@ -1268,40 +995,22 @@ export namespace Components {
          */
         "type": string;
     }
-    /**
-     * @uiName Google Sign-In Button
-     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
-     * @undocumented 
-     */
     interface SqmGoogleSignIn {
-        /**
-          * @default null
-         */
         "googleButtonDiv": HTMLElement | null;
         /**
           * @uiName Button text
          */
         "text": string;
     }
-    /**
-     * @uiName GraphQL Client Provider
-     * @canvasRenderer always-replace
-     * @slots [{"name":"","title":"Provider Content"}]
-     */
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
          */
         "domain": string;
     }
-    /**
-     * @uiName Header Logo
-     * @validParents ["sqm-portal-frame","div","sqm-brand"]
-     */
     interface SqmHeaderLogo {
         /**
           * @uiName Logo height (in px)
-          * @default 60
          */
         "height": number;
         /**
@@ -1318,30 +1027,20 @@ export namespace Components {
         /**
           * @uiWidget color
           * @uiName Logo text color
-          * @default "var(--sqm-primary-color, var(--sqm-text, #555555))"
          */
         "logoTextColor"?: string;
         /**
           * @uiName Logo text size (in px)
           * @uiWidget number
-          * @default 32
          */
         "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
     }
-    /**
-     * @uiName Hero Layout
-     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
-     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
-     * @exampleGroup Layout
-     */
     interface SqmHero {
         /**
           * Splash image or background color (for use in the left column)
@@ -1354,27 +1053,23 @@ export namespace Components {
           * @uiName Hide the column in mobile view
           * @uiEnum ["primary", "secondary", "null"]
           * @uiEnumNames ["Primary", "Secondary", "None"]
-          * @default null
          */
         "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
           * @uiEnumNames ["One", "Two"]
-          * @default 1
          */
         "columns": 1 | 2;
         /**
           * Minimum height of each column including when they are stacked on mobile
           * @uiName Minimum height (in px)
-          * @default 200
          */
         "minHeight": number;
         /**
           * @uiName Padding size
           * @uiEnum ["none", "small", "medium","large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
-          * @default "large"
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
@@ -1388,17 +1083,9 @@ export namespace Components {
           * @uiName Wrap direction
           * @uiEnum ["wrap", "wrap-reverse"]
           * @uiEnumNames ["Wrap", "Wrap Reverse"]
-          * @default "wrap"
          */
         "wrapDirection": "wrap" | "wrap-reverse";
     }
-    /**
-     * @uiName Hero Image
-     * @validParents ["sqm-portal-container","sqm-brand", "div"]
-     * @exampleGroup Common Components
-     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
-     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
-     */
     interface SqmHeroImage {
         /**
           * @uiName Background color
@@ -1427,7 +1114,6 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -1445,14 +1131,12 @@ export namespace Components {
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
           * @uiGroup Style
-          * @default "top"
          */
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
           * @uiGroup Style
-          * @default 50
          */
         "imagePercentage": number;
         /**
@@ -1461,7 +1145,6 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "center"
          */
         "imagePos": "left" | "center" | "right";
         /**
@@ -1476,7 +1159,6 @@ export namespace Components {
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
           * @uiGroup Style
-          * @default "overlay"
          */
         "layout": "overlay" | "columns";
         /**
@@ -1489,7 +1171,6 @@ export namespace Components {
         /**
           * @uiName Overlay opacity
           * @uiGroup Style
-          * @default "0.75"
          */
         "overlayOpacity": string;
         /**
@@ -1498,7 +1179,6 @@ export namespace Components {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
           * @uiGroup Style
-          * @default "none"
          */
         "paddingImage": Spacing;
         /**
@@ -1507,7 +1187,6 @@ export namespace Components {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
           * @uiGroup Style
-          * @default "xxxx-large"
          */
         "paddingText": Spacing;
         /**
@@ -1518,25 +1197,15 @@ export namespace Components {
          */
         "textColor"?: string;
     }
-    /**
-     * @undocumented 
-     */
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
-    /**
-     * @uiName Image
-     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
-     */
     interface SqmImage {
         /**
           * @uiName Position alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
          */
         "alignment": "left" | "center" | "right";
         /**
@@ -1563,26 +1232,19 @@ export namespace Components {
          */
         "width"?: string;
     }
-    /**
-     * @uiName Indirect Tax Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmIndirectTaxForm {
         /**
           * @uiName Back button label
-          * @default "Back"
          */
         "backButton": string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiWidget textArea
-          * @default "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing."
          */
         "cannotChangeInfoAlert": string;
         /**
           * @uiName Continue button label
-          * @default "Continue"
          */
         "continueButton": string;
         /**
@@ -1592,172 +1254,139 @@ export namespace Components {
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError": string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * @uiName Step 2 title
-          * @default "Indirect Tax"
          */
         "indirectTax": string;
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiWidget textArea
-          * @default "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments."
          */
         "indirectTaxDescription": string;
         /**
           * Displayed with indirect tax registration options.
           * @uiName Indirect tax details section title
-          * @default "Indirect tax details"
          */
         "indirectTaxDetails": string;
         /**
           * @uiName Indirect tax number field label
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}"
          */
         "indirectTaxNumber": string;
         /**
           * @uiName Missing indirect tax number error message
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required"
          */
         "indirectTaxNumberError": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader": string;
         /**
           * Displayed to participants registered for indirect tax in Quebec, Canada.
           * @uiName QST tax checkbox
-          * @default "I am registered for QST Tax"
          */
         "isRegisteredQST": string;
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiWidget textArea
-          * @default "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me."
          */
         "isRegisteredSubRegionIncomeTax": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiWidget textArea
-          * @default "Not registered for indirect tax"
          */
         "notRegistered": string;
         /**
           * Participants based in the US are  considered not registered.
           * @uiName Not registered for indirect tax option description
-          * @default "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered."
          */
         "notRegisteredSubtext": string;
         /**
           * @uiName Registered for indirect tax option
           * @uiWidget textArea
-          * @default "Registered for indirect tax"
          */
         "otherRegion": string;
         /**
           * Selecting this option will display fields to enter indirect tax details.
           * @uiName Registered for indirect tax option description
-          * @default "If you’ve registered with your tax authority, add your information to stay tax compliant."
          */
         "otherRegionSubtext": string;
         /**
           * @uiName Province field label
-          * @default "Province"
          */
         "province": string;
         /**
           * Displayed to participants registered for QST.
           * @uiName QST number field label
-          * @default "QST number"
          */
         "qstNumber": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText": string;
         /**
           * @uiName Region of indirect tax field label
-          * @default "Country / region of indirect tax"
          */
         "selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
           * @uiName Sub-region of indirect tax field label
-          * @default "Sub-region"
          */
         "subRegion": string;
         /**
           * @uiName Income tax field label
-          * @default "Income tax number"
          */
         "subRegionTaxNumberLabel": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription": string;
     }
-    /**
-     * @uiName Form Input Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
-     */
     interface SqmInputField {
         /**
           * @undocumented 
@@ -1766,7 +1395,6 @@ export namespace Components {
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
           * @uiName Required error message
-          * @default "Cannot be empty"
          */
         "errorMessage": string;
         /**
@@ -1789,25 +1417,15 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
           * @uiEnumNames ["Text", "Date", "Phone Number"]
-          * @default "text"
          */
         "fieldType": "text" | "date" | "tel";
     }
-    /**
-     * @uiName Instant Access Registration
-     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
           * @uiWidget color
           * @uiGroup Card style
           * @uiType string
-          * @default "var(--sqm-portal-background)"
          */
         "backgroundColor": string;
         /**
@@ -1817,30 +1435,25 @@ export namespace Components {
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName First name field label
-          * @default "First Name"
          */
         "firstNameLabel": string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
-          * @default false
          */
         "hideBorder": boolean;
         /**
           * @undocumented 
           * @uiType boolean
-          * @default false
          */
         "includeCookies"?: boolean;
         /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
-          * @default false
          */
         "includeName": boolean;
         /**
@@ -1848,12 +1461,10 @@ export namespace Components {
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Please enter a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastNameLabel": string;
         /**
@@ -1861,7 +1472,6 @@ export namespace Components {
           * @uiName Network error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue."
          */
         "networkErrorMessage": string;
         /**
@@ -1869,7 +1479,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom": string;
         /**
@@ -1877,7 +1486,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft": string;
         /**
@@ -1885,7 +1493,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight": string;
         /**
@@ -1893,12 +1500,10 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop": string;
         /**
           * @uiName Register button text
-          * @default "Start Referring"
          */
         "registerLabel": string;
         /**
@@ -1906,18 +1511,9 @@ export namespace Components {
           * @uiName Required field message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage": string;
     }
-    /**
-     * @uiName Invoice Table
-     * @exampleGroup Invoices
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
-     */
     interface SqmInvoiceTable {
         /**
           * @undocumented 
@@ -1928,54 +1524,44 @@ export namespace Components {
   };
         /**
           * @uiName Invoice table description
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "description"?: string;
         /**
           * @uiName Empty invoice table header
-          * @default "View your invoice details"
          */
         "emptyStateHeader": string;
         /**
           * @uiName Empty invoice table description
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "emptyStateText": string;
         /**
           * @uiName Invoice table title
-          * @default "Invoices"
          */
         "header"?: string;
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName Invoice table next page button label
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * Number of invoices displayed per page
           * @uiName Invoices per page
-          * @default 4
          */
         "perPage": number;
         /**
           * @uiName Invoice table previous page button label
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -1986,17 +1572,12 @@ export namespace Components {
         "programId": string;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmInvoiceTableDataCell {
         "data": string;
     }
-    /**
-     * @uiName Invoice Table Data Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
@@ -2011,17 +1592,8 @@ export namespace Components {
     }
     interface SqmInvoiceTableDateCell {
         "date": number;
-        /**
-          * @default "en"
-         */
         "locale": string;
     }
-    /**
-     * @uiName Invoice Table Date Column
-     * @validParents ["sqm-invoice-table"]
-     * @exampleGroup Invoices
-     * @example Invoice Table Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
-     */
     interface SqmInvoiceTableDateColumn {
         /**
           * @uiName Column title
@@ -2033,34 +1605,23 @@ export namespace Components {
     interface SqmInvoiceTableDownloadCell {
         "downloadUrl": string;
     }
-    /**
-     * @uiName Invoice Table Download Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
     }
-    /**
-     * @uiName Lead Form Checkbox Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface SqmLeadCheckboxField {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "By signing up you agree to the {labelLink}"
          */
         "checkboxLabel": string;
         /**
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
-          * @default "https://example.com"
          */
         "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
-          * @default "Terms and Conditions"
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -2071,7 +1632,6 @@ export namespace Components {
         "checkboxName": string;
         /**
           * @uiName Optional
-          * @default false
          */
         "checkboxOptional"?: boolean;
         /**
@@ -2081,24 +1641,17 @@ export namespace Components {
         "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
         /**
           * @uiName Unchecked error message
-          * @default "Must be checked"
          */
         "errorMessage"?: string;
     }
-    /**
-     * @uiName Lead Form Dropdown Field
-     * @validParents ["sqm-lead-form"]
-     * @slots [{"name":"", "title":"Dropdown Option"}]
-     */
     interface SqmLeadDropdownField {
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DropdownFieldViewProps1>;
+        "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
           * @uiName Dropdown label
-          * @default "Select an option"
          */
         "dropdownLabel": string;
         /**
@@ -2119,22 +1672,15 @@ export namespace Components {
         "multiple": boolean;
         /**
           * @uiName Optional label
-          * @default "(optional)"
          */
         "optionalLabel": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please select a {dropdownLabel}"
          */
         "requiredFieldErrorMessage": string;
     }
-    /**
-     * @uiName Lead Form
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"}]
-     */
     interface SqmLeadForm {
         /**
           * @undocumented 
@@ -2143,96 +1689,77 @@ export namespace Components {
         "demoData"?: DemoData<LeadFormViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName First Name field label
-          * @default "First name"
          */
         "firstNameLabel": string;
         /**
           * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
           * @uiName Form key
-          * @default "lead-form"
          */
         "formKey": string;
         /**
           * The message to be displayed if the email used is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * @uiName Last Name field label
-          * @default "Last name"
          */
         "lastNameLabel": string;
         /**
           * The message to be displayed if a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage": string;
         /**
           * @uiName Header text
-          * @default "Refer your friend"
          */
         "pageLabel": string;
         /**
           * The message to be displayed if a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please enter a valid {fieldLabel}"
          */
         "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit another form button label
-          * @default "Refer Another Friend"
          */
         "resubmitFormLabel": string;
         /**
           * Description text shown if an error occurs.
           * @uiName Submit error description
-          * @default "Please try again later. If the problem continues, contact {supportLink}"
          */
         "submitErrorDescription": string;
         /**
           * Header text shown if an error occurs.
           * @uiName Submit error header
-          * @default "An error occurred while submitting"
          */
         "submitErrorHeader": string;
         /**
           * @uiName Submit button text
-          * @default "Submit"
          */
         "submitLabel": string;
         /**
           * Description text shown on successful lead submission.
           * @uiName Submit success description
-          * @default "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page."
          */
         "submitSuccessDescription": string;
         /**
           * Header text shown on successful lead submission.
           * @uiName Submit success header
-          * @default "Lead submitted"
          */
         "submitSuccessHeader": string;
         /**
           * Optional support link text for error messages.
           * @uiName Support link text
-          * @default "Support"
          */
         "supportLinkText": string;
     }
-    /**
-     * @uiName Lead Form Input Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface SqmLeadInputField {
         /**
           * @undocumented 
@@ -2259,39 +1786,23 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
           * @uiEnumNames ["Text", "Date", "Phone Number"]
-          * @default "text"
          */
         "fieldType": "text" | "date" | "tel";
         /**
           * @uiName Optional label
-          * @default "(optional)"
          */
         "optionalLabel": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please enter a {fieldLabel}"
          */
         "requiredFieldErrorMessage": string;
     }
-    /**
-     * @uiName Leaderboard
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @requiredFeatures ["LEADERBOARDS"]
-     * @exampleGroup Leaderboard
-     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Anonymous Leaderboard - <sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard>
-     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
-     */
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
           * @uiName Unknown user text
-          * @default "Anonymous User"
          */
         "anonymousUser": string;
         /**
@@ -2350,7 +1861,6 @@ export namespace Components {
         /**
           * Control the maximum amount of rows displayed on the leaderboard.
           * @uiName Maximum rows number
-          * @default 10
          */
         "maxRows": number;
         /**
@@ -2410,19 +1920,14 @@ export namespace Components {
         "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
-          * @default "You"
          */
         "viewingUserText": string;
         /**
           * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
           * @uiName Width
-          * @default "100%"
          */
         "width": string;
     }
-    /**
-     * @uiName Leaderboard Rank
-     */
     interface SqmLeaderboardRank {
         /**
           * @undocumented 
@@ -2454,7 +1959,6 @@ export namespace Components {
         /**
           * @uiName Rank text
           * @uiWidget textArea
-          * @default "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!"
          */
         "rankText": string;
         /**
@@ -2469,17 +1973,10 @@ export namespace Components {
          */
         "unrankedText": string;
     }
-    /**
-     * @uiName Link Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
-     */
     interface SqmLinkButton {
         /**
           * @uiName Button text
           * @uiType string
-          * @default "Click here"
          */
         "buttonText"?: string;
         /**
@@ -2490,17 +1987,9 @@ export namespace Components {
         "link": string;
         /**
           * @uiName Open link in new tab
-          * @default false
          */
         "openInNewTab": boolean;
     }
-    /**
-     * @uiName Sign out current user
-     * @exampleGroup Instant Access
-     * @compatibility Built for instant access
-     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
-     */
     interface SqmLogoutCurrentUser {
         /**
           * @required 
@@ -2510,37 +1999,27 @@ export namespace Components {
         /**
           * @required 
           * @uiName Error text
-          * @default "Error fetching email"
          */
         "emailErrorText": string;
         /**
           * @required 
           * @uiName Switch user button label
-          * @default "not you?"
          */
         "switchUserText": string;
         /**
           * @required 
           * @uiName User identification text
-          * @default "{email}"
          */
         "userIdentificationText": string;
     }
-    /**
-     * @uiName Marketing Emails Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface SqmMarketingEmailsCheckbox {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "I would like to receive marketing and promotional emails for this referral program"
          */
         "checkboxLabel": string;
         /**
-          * @undocumented 
-          * @default "marketingEmailOptIn"
+          * @undocumented
          */
         "checkboxName": string;
         /**
@@ -2549,12 +2028,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
-    /**
-     * @uiName Form Name Fields
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
-     */
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -2563,25 +2036,18 @@ export namespace Components {
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
           * @uiName First name label
-          * @default "First Name"
          */
         "firstNameLabel": string;
         /**
           * @uiName Last name label
-          * @default "Last Name"
          */
         "lastNameLabel": string;
         /**
           * @uiName Optional
-          * @uiWidget 
-          * @default false
+          * @uiWidget
          */
         "optional": boolean;
     }
-    /**
-     * @uiName Navigation Menu
-     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
-     */
     interface SqmNavigationMenu {
         /**
           * @undocumented 
@@ -2598,12 +2064,6 @@ export namespace Components {
          */
         "menuLabel": string;
     }
-    /**
-     * @uiName Microsite Sidebar
-     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
-     * @validChildren ["sqm-navigation-sidebar-item"]
-     * @slots [{"name":"", "title":"Sidebar Content"}]
-     */
     interface SqmNavigationSidebar {
         /**
           * @undocumented 
@@ -2615,16 +2075,9 @@ export namespace Components {
           * @uiWidget color
           * @format color
           * @uiGroup Style
-          * @default "var(--sqm-text, #444445)"
          */
         "mobileMenuColor"?: string;
     }
-    /**
-     * @uiName Microsite Sidebar Item
-     * @validParents ["sqm-navigation-sidebar"]
-     * @exampleGroup Microsite Components
-     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
-     */
     interface SqmNavigationSidebarItem {
         /**
           * Background color of the nav item
@@ -2673,7 +2126,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "x-small"
          */
         "padding"?: Spacing;
         /**
@@ -2703,9 +2155,6 @@ export namespace Components {
          */
         "textHoverColor"?: string;
     }
-    /**
-     * @uiName Pagination
-     */
     interface SqmPagination {
         /**
           * The type of the button that is used (primary or secondary).
@@ -2714,7 +2163,6 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "secondary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -2724,16 +2172,9 @@ export namespace Components {
         "demoData"?: DemoData<UsePagination>;
         /**
           * @uiName Pagination text
-          * @default "{currentPage} of {totalPages}"
          */
         "paginationText": string;
     }
-    /**
-     * @uiName Form Password Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
-     */
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -2743,49 +2184,38 @@ export namespace Components {
         /**
           * Disable live password validation
           * @uiName Disable validation
-          * @default false
          */
         "disableValidation": boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * Label for password field
           * @uiName Password label
-          * @default "Password"
          */
         "fieldLabel": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Payout Button Scroll
-     */
     interface SqmPayoutButtonScroll {
         /**
           * @undocumented 
@@ -2795,24 +2225,17 @@ export namespace Components {
         /**
           * Description text under payout button
           * @uiName Payout button description text
-          * @default "Check your payout settings to see when you’ll get paid out next"
          */
         "payoutButtonDescription": string;
         /**
           * @uiName Payout button text
-          * @default "Payouts & Tax Settings"
          */
         "payoutButtonText": string;
     }
-    /**
-     * @uiName Payout Details Card
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
-          * @default "Account"
          */
         "accountText": string;
         /**
@@ -2822,77 +2245,58 @@ export namespace Components {
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "payoutMissingInformationText": string;
         /**
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "statusBadgeText": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "thresholdPayoutText": string;
     }
-    /**
-     * @uiName Payout Status Alert
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Tax and Cash
-     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
-     */
     interface SqmPayoutStatusAlert {
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "accountReviewDescription": string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "accountReviewHeader": string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "bankTaxNameMismatchDescription": string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "bankTaxNameMismatchHeader": string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameInvalidDescription": string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameInvalidHeader": string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameMismatchDescription": string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameMismatchHeader": string;
         /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
-          * @default "/taxAndCash"
          */
         "cashPayoutsPageUrl": string;
         /**
@@ -2902,67 +2306,54 @@ export namespace Components {
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
           * @uiName Edit payment info button label
-          * @default "Edit Payout Information"
          */
         "editPaymentInformationButton": string;
         /**
           * @uiName Error description
-          * @default "There was an error with determining your payout status."
          */
         "errorDescription": string;
         /**
           * @uiName Error header
-          * @default "Could not determine payout status."
          */
         "errorHeader": string;
         /**
           * @uiName Payout on hold alert description
-          * @default "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our {supportLink}."
          */
         "holdDescription": string;
         /**
           * @uiName Payout on hold alert header
-          * @default "Your payouts and account are on hold"
          */
         "holdHeader": string;
         /**
           * @uiName Info required alert button text
-          * @default "Payouts & Tax Settings"
          */
         "informationRequiredButtonText": string;
         /**
           * @uiName Info required alert description
-          * @default "Submit your banking details and tax documents to receive your rewards."
          */
         "informationRequiredDescription": string;
         /**
           * @uiName Info required alert header
-          * @default "Payout and tax information required"
          */
         "informationRequiredHeader": string;
         /**
           * @uiName Submit new tax form button label
-          * @default "Submit new tax form"
          */
         "newFormButton": string;
         /**
           * @uiName Payment on hold alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "paymentHoldOnChangeDescription": string;
         /**
           * @uiName Payment on hold alert header
-          * @default "We are reviewing your new payout settings"
          */
         "paymentHoldOnChangeHeader": string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "paymentReturnedDescription": string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "paymentReturnedHeader": string;
         /**
@@ -2971,95 +2362,73 @@ export namespace Components {
           * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
           * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
           * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * @uiName Terms and Conditions text
-          * @default "Terms and Conditions"
          */
         "termsAndConditions": string;
         /**
           * @uiName Verification failed internal alert description
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "verificationFailedInternalDescription": string;
         /**
           * @uiName Verification failed internal alert header
-          * @default "Identity verification unsuccessful"
          */
         "verificationFailedInternalHeader": string;
         /**
           * @uiName Verification required alert button text
-          * @default "Start Verification"
          */
         "verificationRequiredButtonText": string;
         /**
           * @uiName Verification required alert description
-          * @default "It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "verificationRequiredDescription": string;
         /**
           * @uiName Verification required alert header
-          * @default "Verify your identity"
          */
         "verificationRequiredHeader": string;
         /**
           * @uiName Verification required internal alert description
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationRequiredInternalDescription": string;
         /**
           * @uiName Verification required internal alert header
-          * @default "Identity Verification in progress"
          */
         "verificationRequiredInternalHeader": string;
         /**
           * @uiName Verification review internal alert description
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationReviewInternalDescription": string;
         /**
           * @uiName Verification review internal alert header
-          * @default "Identity Verification under review"
          */
         "verificationReviewInternalHeader": string;
         /**
           * @uiName W-9 payment threshold alert button text
-          * @default "Submit W-9"
          */
         "w9RequiredButtonText": string;
         /**
           * @uiName W-9 payment threshold alert description
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "w9RequiredDescription": string;
         /**
           * @uiName W-9 payment threshold alert header
-          * @default "Your next payout is on hold"
          */
         "w9RequiredHeader": string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "withdrawalSettingsInvalidDescription": string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "withdrawalSettingsInvalidHeader": string;
     }
-    /**
-     * @uiName Popup Container
-     * @slots [{"name":"","title":"Content"}]
-     * @canvasRenderer always-replace
-     */
     interface SqmPopupContainer {
         /**
           * Display a close button on the popup
@@ -3097,14 +2466,9 @@ export namespace Components {
         /**
           * Text at the bottom of the popup
           * @uiName "Powered by" text
-          * @default "Powered By"
          */
         "poweredByText": string;
     }
-    /**
-     * @uiName Change Marketing Opt in Status
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface SqmPortalChangeMarketing {
         /**
           * @undocumented 
@@ -3113,52 +2477,40 @@ export namespace Components {
         "demoData"?: DemoData<ChangeMarketingViewProps>;
         /**
           * @uiName Email preferences header
-          * @default "Email preferences"
          */
         "emailPreferencesHeader": string;
         /**
           * @uiName Marketing checkbox label
-          * @default "I want to receive marketing emails and promotions for this referral program from impact.com"
          */
         "marketingCheckboxLabel": string;
         /**
           * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
           * @uiName Network request error message
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkRequestMessage": string;
         /**
           * @uiName Submit changes button text
-          * @default "Save"
          */
         "submitChangeButtonText": string;
         /**
           * @uiName Successful update message
-          * @default "Opt-in preference has been changed."
          */
         "successMessage": string;
     }
-    /**
-     * @uiName Microsite Password Change
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
-     */
     interface SqmPortalChangePassword {
         /**
           * Found in modal
           * @uiName Cancel button text
-          * @default "Cancel"
          */
         "cancelText": string;
         /**
           * Found in modal
           * @uiName Change password button text
-          * @default "Change Password"
          */
         "changePasswordButtonText": string;
         /**
           * Found in modal
           * @uiName Confirm password Label
-          * @default "Confirm New Password"
          */
         "confirmPasswordFieldLabel": string;
         /**
@@ -3168,81 +2520,61 @@ export namespace Components {
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * @uiName Invalid user session error message
-          * @default "Please log in again to change your password."
          */
         "invalidSessionErrorText": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * @uiName Change password modal header
-          * @default "Change Password"
          */
         "modalChangePasswordHeader": string;
         /**
           * @uiName Passwords don’t match error message
-          * @default "contain at least 1 lowercase character"
          */
         "nonMatchingPasswordErrorText": string;
         /**
           * Found in modal
           * @uiName New password field label
-          * @default "New Password"
          */
         "passwordFieldLabel": string;
         /**
           * @uiName Change password button text
-          * @default "Change your password..."
          */
         "portalChangePasswordButtonText": string;
         /**
           * Portal change password section header
           * @uiName Change password header
-          * @default "Password"
          */
         "portalChangePasswordHeader": string;
         /**
           * Successful password change message
           * @uiName Successful password change message
           * @uiWidget textArea
-          * @default "Your password has been updated."
          */
         "successMessage": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Container
-     * @slots [{"name":"", "title":"Widget Content"}]
-     * @exampleGroup Layout
-     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
-     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
-     */
     interface SqmPortalContainer {
         /**
           * @uiName Background color
@@ -3259,7 +2591,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["row", "column"]
           * @uiEnumNames ["Row", "Column"]
-          * @default "column"
          */
         "direction": "row" | "column";
         /**
@@ -3267,7 +2598,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
-          * @default "grid"
          */
         "display": "grid" | "flex";
         /**
@@ -3275,7 +2605,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["wrap", "nowrap"]
           * @uiEnumNames ["Wrap", "No Wrap"]
-          * @default "wrap"
          */
         "flexWrap"?: string;
         /**
@@ -3283,7 +2612,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "xxx-large"
          */
         "gap": Spacing;
         /**
@@ -3301,7 +2629,6 @@ export namespace Components {
     | "space-evenly";
         /**
           * @uiName Maximum width
-          * @default "100%"
          */
         "maxWidth"?: string;
         /**
@@ -3316,9 +2643,6 @@ export namespace Components {
          */
         "padding": Spacing;
     }
-    /**
-     * @uiName Microsite Email Verification
-     */
     interface SqmPortalEmailVerification {
         /**
           * @undocumented 
@@ -3327,56 +2651,44 @@ export namespace Components {
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
           * @uiName Email verification header text
-          * @default "Verify your email"
          */
         "emailVerificationHeader": string;
         /**
           * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your password. Please refresh the page."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath": string;
         /**
           * @uiName Re-send email button text
-          * @default "Re-send Email"
          */
         "resendEmailButtonText": string;
         /**
           * @uiName Email verification checking text
           * @uiWidget textArea
-          * @default "Checking verification status"
          */
         "verificationLoadingMessage": string;
         /**
           * @uiName Email verification resent text
           * @uiWidget textArea
-          * @default "Your verification email has been resent successfully"
          */
         "verificationResentMessage": string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
-          * @default "Checking verification status in {countdown}"
          */
         "verificationStatusMessage": string;
         /**
           * @uiName Email verification body text
           * @uiWidget textArea
-          * @default "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email will invalidate the previous email."
          */
         "verifyMessage": string;
     }
-    /**
-     * @uiName Footer
-     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
-     */
     interface SqmPortalFooter {
         /**
           * @uiName FAQ link
@@ -3390,12 +2702,10 @@ export namespace Components {
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
           * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
-          * @default false
          */
         "hidePoweredBy": boolean;
         /**
           * @uiName Hide support message
-          * @default false
          */
         "hideSupportText": boolean;
         /**
@@ -3403,7 +2713,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom": string;
         /**
@@ -3411,7 +2720,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft": string;
         /**
@@ -3419,7 +2727,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight": string;
         /**
@@ -3427,23 +2734,19 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop": string;
         /**
           * @uiName Powered By link
-          * @default "https://impact.com/advocate/"
          */
         "poweredByLink": string;
         /**
           * @uiName Support email
-          * @default "support@example.com"
          */
         "supportEmail": string;
         /**
           * @uiName Support message
           * @uiWidget textArea
-          * @default "For program support, contact {email}"
          */
         "supportText": string;
         /**
@@ -3455,26 +2758,20 @@ export namespace Components {
          */
         "termsText"?: string;
     }
-    /**
-     * @uiName Microsite Forgot Password
-     */
     interface SqmPortalForgotPassword {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @default "var(--sqm-portal-background, #ffffff)"
          */
         "backgroundColor": string;
         /**
           * @uiName Border style
           * @uiWidget textArea
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border": string;
         /**
           * @uiName Border radius
           * @uiWidget number
-          * @default "var(--sqm-border-radius-normal, 8px)"
          */
         "borderRadius": string;
         /**
@@ -3484,67 +2781,53 @@ export namespace Components {
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName Header text
           * @uiWidget textArea
-          * @default "Enter your email below to receive a password reset link."
          */
         "headerText": string;
         /**
           * @uiName Login redirect path
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath": string;
         /**
           * @uiName Sign in link text
-          * @default "Sign In"
          */
         "loginText": string;
         /**
           * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
           * @uiWidget pageSelect
-          * @default "/resetPassword"
          */
         "redirectPath": string;
         /**
           * @uiName Password reset button text
-          * @default "Request Password Reset"
          */
         "submitLabel": string;
         /**
           * @uiName Email verification sent text
-          * @default "If an account with that email exists, a password reset email will be sent."
          */
         "successAlertText": string;
     }
-    /**
-     * @uiName Microsite Frame
-     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
-     */
     interface SqmPortalFrame {
         /**
           * @uiName Background color
           * @uiWidget color
           * @uiType string
-          * @default "var(--sqm-portal-background, #fff)"
          */
         "backgroundColor": string;
         /**
           * Borders placed to seperate the header and footer from the body content.
           * @uiName Border
           * @uiType string
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border": string;
         /**
@@ -3557,18 +2840,13 @@ export namespace Components {
           * @uiName Header and Footer Background Color
           * @uiWidget color
           * @uiType string
-          * @default "var(--sqm-portal-background, #fff)"
          */
         "headerAndFooterBackgroundColor": string;
         /**
-          * @undocumented 
-          * @default false
+          * @undocumented
          */
         "notFullScreen"?: boolean;
     }
-    /**
-     * @uiName Microsite Login
-     */
     interface SqmPortalGoogleLogin {
         /**
           * @undocumented 
@@ -3577,86 +2855,67 @@ export namespace Components {
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName Forgot password text
-          * @default "Forgot Password?"
          */
         "forgotPasswordLabel": string;
         /**
           * Redirect participants to this page to reset their password
           * @uiName Forgot password redirect
           * @uiWidget pageSelect
-          * @default "/forgotPassword"
          */
         "forgotPasswordPath": string;
         /**
           * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
-          * @default "Your Google account has not registered on our platform. Please complete the registration process with your Google account."
          */
         "googleUserNotRegisteredError": string;
         /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
-          * @default "An error occurred while logging you in. Please refresh the page and try again."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Heading label
           * @uiWidget textArea
-          * @default "Sign in to your account"
          */
         "pageLabel": string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel": string;
         /**
           * @uiName Register CTA
-          * @default "Don't have an account?"
          */
         "registerCTA": string;
         /**
           * @uiName Register button text
-          * @default "Register"
          */
         "registerLabel": string;
         /**
           * Redirect participants to this page to start registration.
           * @uiName Register button redirect
           * @uiWidget pageSelect
-          * @default "/register"
          */
         "registerPath": string;
         /**
           * @uiName Submit button text
-          * @default "Sign In"
          */
         "submitLabel": string;
     }
-    /**
-     * @uiName Google Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword": boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel": string;
         /**
@@ -3671,24 +2930,20 @@ export namespace Components {
         "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation": boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form disabled message
           * @uiWidget textArea
-          * @default "The registration form is currently disabled."
          */
         "formDisabledErrorMessage": string;
         /**
@@ -3700,120 +2955,97 @@ export namespace Components {
         /**
           * Can be "signup_with", "signin_with", "continue_with", or "signin"
           * @uiName Google button text
-          * @default "signup_with"
          */
         "googleButtonText": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs": boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * Login Call-to-action
           * @uiName Login CTA
-          * @default "Already have an account?"
          */
         "loginCTA": string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel": string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel": string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel": string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Microsite Login
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
-     */
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -3822,90 +3054,68 @@ export namespace Components {
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName Forgot password text
-          * @default "Forgot Password?"
          */
         "forgotPasswordLabel": string;
         /**
           * Redirect participants to this page to reset their password
           * @uiName Forgot password redirect
           * @uiWidget pageSelect
-          * @default "/forgotPassword"
          */
         "forgotPasswordPath": string;
         /**
           * Displayed when the login fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while logging you in. Please refresh the page and try again."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Heading label
           * @uiWidget textArea
-          * @default "Sign in to your account"
          */
         "pageLabel": string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel": string;
         /**
           * @uiName Register CTA
-          * @default "Don't have an account?"
          */
         "registerCTA": string;
         /**
           * @uiName Register button text
-          * @default "Register"
          */
         "registerLabel": string;
         /**
           * Redirect participants to this page to start registration.
           * @uiName Register button redirect
           * @uiWidget pageSelect
-          * @default "/register"
          */
         "registerPath": string;
         /**
           * @uiName Submit button text
-          * @default "Sign In"
          */
         "submitLabel": string;
     }
-    /**
-     * @uiName Microsite Logout
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @compatibility Built for instant access
-     */
     interface SqmPortalLogout {
         /**
           * Redirect participants to this page when they log out.
           * @uiName Logout redirect path
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
     }
-    /**
-     * @uiName Microsite Participant Profile
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     */
     interface SqmPortalProfile {
         /**
           * @uiName Country field label
-          * @default "Country"
          */
         "countrytext": string;
         /**
@@ -3915,98 +3125,72 @@ export namespace Components {
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
           * @uiName Edit profile header
-          * @default "Edit your profile"
          */
         "editProfileHeader": string;
         /**
           * @uiName Edit profile sub header
-          * @default "Personal Information"
          */
         "editProfileSubHeader": string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailtext": string;
         /**
           * @uiName Field empty text
-          * @default "Field is required"
          */
         "fieldEmptyText": string;
         /**
           * @uiName First name label
-          * @default "First Name"
          */
         "firstnametext": string;
         /**
           * @uiName Form error message
-          * @default "Please correct the errors below to update your profile."
          */
         "formErrorText": string;
         /**
           * @uiName Hide country field
-          * @default false
          */
         "hideCountry": boolean;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastnametext": string;
         /**
           * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkRequestMessage": string;
         /**
           * @uiName Submission success text
-          * @default "Your profile has been successfully updated."
          */
         "submissionSuccessText": string;
         /**
           * @uiName Submit changes button text
-          * @default "Submit Changes"
          */
         "submitChangeButtonText": string;
     }
-    /**
-     * @uiName Microsite Protected Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
-     * @slots [{"name":"","title":"Route Content"}]
-     */
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
           * @uiName Unauthenticated participant redirect
-          * @default "/"
          */
         "redirectTo": string;
         /**
           * Redirect participants to this page when email verification is required but they have not verified their email.
           * @uiName Unverified participant redirect
-          * @default "/emailVerification"
          */
         "redirectToUnverified": string;
         /**
           * @uiName Require email verification
-          * @default false
          */
         "requireEmailVerification": boolean;
     }
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface SqmPortalRegister {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword": boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel": string;
         /**
@@ -4016,134 +3200,107 @@ export namespace Components {
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation": boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs": boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel": string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel": string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel": string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage": string;
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
-     */
     interface SqmPortalRegistrationForm {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword": boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel": string;
         /**
@@ -4153,24 +3310,20 @@ export namespace Components {
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation": boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form disabled message
           * @uiWidget textArea
-          * @default "The registration form is currently disabled."
          */
         "formDisabledErrorMessage": string;
         /**
@@ -4181,128 +3334,104 @@ export namespace Components {
         "formKey": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs": boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel": string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel": string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel": string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage": string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath": string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage": string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Microsite Reset Password
-     */
     interface SqmPortalResetPassword {
         /**
           * @uiName Reset code invalid error message
-          * @default "The password reset code is invalid or has expired, please try again."
          */
         "codeInvalidText": string;
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword": boolean;
         /**
           * @uiName Password confirmation field label
-          * @default "Confirm Password"
          */
         "confirmPasswordFieldLabel": string;
         /**
           * Button text displayed after a successful password reset.
           * @uiName Continue button text
-          * @default "Continue"
          */
         "continueButtonText": string;
         /**
@@ -4312,94 +3441,75 @@ export namespace Components {
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText": string;
         /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "failedPage": string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText": string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText": string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText": string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText": string;
         /**
           * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while resetting your password. Please refresh the page and try again."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Password field label
-          * @default "New Password"
          */
         "passwordFieldLabel": string;
         /**
           * @uiName Passwords don’t match error message Please make sure your passwords match
-          * @default "Passwords do not match."
          */
         "passwordMismatchText": string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
           * @uiWidget textArea
-          * @default "Password reset"
          */
         "passwordResetHeader": string;
         /**
           * @uiName Password reset button text
-          * @default "Reset Password"
          */
         "resetPasswordButtonText": string;
         /**
           * @uiName Reset password header text
-          * @default "Reset your password"
          */
         "resetPasswordHeader": string;
         /**
           * @uiName Reset success text
-          * @default "Your password has been reset and you are being redirected. If you are not redirected, please click Continue."
          */
         "resetSuccessText": string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText": string;
     }
-    /**
-     * @uiName Microsite Verify Email
-     */
     interface SqmPortalVerifyEmail {
         /**
           * @uiName Continue text
-          * @default "Continue"
          */
         "continueText": string;
         /**
@@ -4411,49 +3521,35 @@ export namespace Components {
           * Redirect participants to this page if verification fails due to an outdated verification attempt.
           * @uiName Failed verification redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "failedPage": string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "networkErrorMessage": string;
         /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage": string;
         /**
           * @uiName Verify email text
           * @uiWidget textArea
-          * @default "Verify your email"
          */
         "verifyEmailText": string;
         /**
           * @uiName Email verification invalid text
           * @uiWidget textArea
-          * @default "The email verification code is invalid or has expired, please try again."
          */
         "verifyInvalidText": string;
         /**
           * @uiName Email verification success text
           * @uiWidget textArea
-          * @default "Your email has been verified and you are being redirected. If you are not redirected, please click Continue."
          */
         "verifySuccessText": string;
     }
-    /**
-     * @uiName Program Explainer
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-program-explainer-step"]
-     * @exampleGroup Common Components
-     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
-     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
-     */
     interface SqmProgramExplainer {
         /**
           * @uiName Header background color
@@ -4472,12 +3568,6 @@ export namespace Components {
          */
         "textColor": string;
     }
-    /**
-     * @uiName Program Explainer Step
-     * @exampleGroup Common Components
-     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
-     * @validParents ["sqm-program-explainer"]
-     */
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background color
@@ -4531,27 +3621,14 @@ export namespace Components {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Microsite Program Menu
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @slots [{"name":"","title":"Menu Content"}]
-     * @canvasRenderer always-replace
-     */
     interface SqmProgramMenu {
     }
-    /**
-     * @uiName QR Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Sharing
-     * @example QR Code - <sqm-qr-code></sqm-qr-code>
-     */
     interface SqmQrCode {
         /**
           * @uiName QR code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
          */
         "alignment"?: "left" | "center" | "right";
         /**
@@ -4561,48 +3638,33 @@ export namespace Components {
         "demoData"?: DemoData<QRCodeViewProps>;
         /**
           * @uiName Download QR code text
-          * @default "Download"
          */
         "downloadCodeText"?: string;
         /**
           * @uiName Description for error banner
-          * @default "Please refresh this page and try again"
          */
         "errorDescriptionText"?: string;
         /**
           * @uiName Header for error banner
-          * @default "There was an error loading your QR code"
          */
         "errorHeaderText"?: string;
         /**
           * @uiName Hide title
-          * @default false
          */
         "hideTitle"?: boolean;
         /**
           * @uiName Print QR code text
-          * @default "Print"
          */
         "printCodeText"?: string;
         /**
           * @uiName Title
-          * @default "Share your QR code"
          */
         "titleText"?: string;
         /**
           * @uiName View QR code text
-          * @default "View QR code"
          */
         "viewCodeText"?: string;
     }
-    /**
-     * @uiName Referral Card
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
-     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
-     */
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -4626,13 +3688,11 @@ export namespace Components {
         /**
           * @uiName Hide border
           * @uiType boolean
-          * @default false
          */
         "hideBorder": boolean;
         /**
           * @uiName Limit width
           * @uiType boolean
-          * @default false
          */
         "limitWidth": boolean;
         /**
@@ -4640,7 +3700,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom": string;
         /**
@@ -4648,7 +3707,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft": string;
         /**
@@ -4656,7 +3714,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight": string;
         /**
@@ -4664,7 +3721,6 @@ export namespace Components {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop": string;
         /**
@@ -4679,16 +3735,9 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["start", "center", "end"]
           * @uiEnumNames ["Top", "Center", "Bottom"]
-          * @default "start"
          */
         "verticalAlignment": "start" | "center" | "end";
     }
-    /**
-     * @uiName Referral Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
-     * @exampleGroup Sharing
-     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
-     */
     interface SqmReferralCode {
         /**
           * Background color of share link container
@@ -4720,7 +3769,6 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -4730,12 +3778,10 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Code"
          */
         "copyButtonLabel"?: string;
         /**
@@ -4746,7 +3792,6 @@ export namespace Components {
         /**
           * Shown underneath single-use promo codes when the user has already copied the code
           * @uiName Notification text
-          * @default "You've copied this code before"
          */
         "notificationText": string;
         /**
@@ -4758,7 +3803,6 @@ export namespace Components {
         /**
           * Boolean used to show notification text below input
           * @uiName Show notification text
-          * @default false
          */
         "showNotificationText": boolean;
         /**
@@ -4768,7 +3812,6 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -4782,23 +3825,14 @@ export namespace Components {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan": number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext": string;
     }
-    /**
-     * @uiName Promo Codes
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Promo Codes Content"}]
-     * @exampleGroup Sharing
-     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
-     */
     interface SqmReferralCodes {
         /**
           * @undocumented 
@@ -4807,17 +3841,14 @@ export namespace Components {
         "demoData"?: DemoData<ReferralCodesViewProps>;
         /**
           * @uiName Empty State Description Text
-          * @default "Please contact our program support team to let them know you’re out of codes."
          */
         "emptyStateDescriptionText"?: string;
         /**
           * @uiName Empty State Header Text
-          * @default "Your new codes and links aren’t ready yet"
          */
         "emptyStateHeaderText"?: string;
         /**
           * @uiName Empty State Image URL
-          * @default "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
          */
         "emptyStateImageUrl"?: string;
         /**
@@ -4833,13 +3864,9 @@ export namespace Components {
         "textColor"?: string;
         /**
           * @uiName Title Text
-          * @default "Start sharing"
          */
         "titleText"?: string;
     }
-    /**
-     * @uiName Referral IFrame
-     */
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -4849,7 +3876,6 @@ export namespace Components {
         /**
           * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName IFrame height
-          * @default "100%"
          */
         "iframeHeight": string;
         /**
@@ -4861,18 +3887,9 @@ export namespace Components {
         /**
           * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName IFrame width
-          * @default "100%"
          */
         "iframeWidth": string;
     }
-    /**
-     * @uiName Referral Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
-     */
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -4884,33 +3901,27 @@ export namespace Components {
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName View More button text
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * Number of referrals displayed per page
           * @uiName Referrals per page
-          * @default 4
          */
         "perPage": number;
         /**
           * @uiName Previous button text
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -4927,17 +3938,12 @@ export namespace Components {
         "showReferrer"?: boolean;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmReferralTableCell {
         "innerTemplate": string;
     }
-    /**
-     * @uiName Referral Table Generic Column
-     * @validParents ["sqm-referral-table"]
-     */
     interface SqmReferralTableColumn {
         /**
           * @uiName Column title
@@ -4948,21 +3954,11 @@ export namespace Components {
     }
     interface SqmReferralTableDateCell {
         "date": number;
-        /**
-          * @default "en"
-         */
         "locale": string;
     }
-    /**
-     * @uiName Referral Table Date Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
-     */
     interface SqmReferralTableDateColumn {
         /**
           * @uiName Date column title
-          * @default "Date converted"
          */
         "columnTitle": string;
         /**
@@ -4970,7 +3966,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
           * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
-          * @default "dateConverted"
          */
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, options?: { locale: string; }) => Promise<any>;
@@ -4982,51 +3977,32 @@ export namespace Components {
         "expiringText": string;
         "fuelTankText": string;
         "hideDetails": boolean;
-        /**
-          * @default "en"
-         */
         "locale": string;
         "pendingForText": string;
         "rewardReceivedText": string;
         "rewards": Reward[];
-        /**
-          * @default "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
-         */
         "statusLongText": string;
-        /**
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-         */
         "statusText": string;
         "taxConnection": ImpactConnection;
     }
-    /**
-     * @uiName Referral Table Rewards Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
-     */
     interface SqmReferralTableRewardsColumn {
         /**
           * @uiName Reward column title
-          * @default "Rewards"
          */
         "columnTitle": string;
         /**
           * Shown in the dropdown details when a reward was denied.
           * @uiName Reward denied help text
-          * @default "Contact support if you think this is a mistake."
          */
         "deniedHelpText": string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text
-          * @default "Expiring in"
          */
         "expiringText": string;
         /**
           * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel tank code text
-          * @default "Your code is"
          */
         "fuelTankText": string;
         /**
@@ -5037,7 +4013,6 @@ export namespace Components {
         /**
           * Shown in the dropdown details when a reward is pending.
           * @uiName Reward pending text
-          * @default "{status} for {date}"
          */
         "pendingForText": string;
         "renderCell": (data: Referral, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -5046,21 +4021,18 @@ export namespace Components {
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward received text
-          * @default "Reward received on"
          */
         "rewardReceivedText": string;
         /**
           * Additional status text shown in the details drop down.
           * @uiName Reward status long text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
          */
         "statusLongText": string;
         /**
           * Text shown in the reward status badge.
           * @uiName Reward status text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
          */
         "statusText": string;
     }
@@ -5070,46 +4042,33 @@ export namespace Components {
         "statusSubText": string;
         "statusText": string;
     }
-    /**
-     * @uiName Referral Table Status Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
-     */
     interface SqmReferralTableStatusColumn {
         /**
           * @uiName Column title
-          * @default "Status"
          */
         "columnTitle": string;
         /**
           * @uiName Converted status text
-          * @default "Converted"
          */
         "convertedStatusText": string;
         /**
           * @uiName Denied status sub-text
-          * @default "Detected self-referral"
          */
         "deniedStatusSubText": string;
         /**
           * @uiName Denied status text
-          * @default "Denied"
          */
         "deniedStatusText": string;
         /**
           * @uiName In progress status text
-          * @default "In Progress"
          */
         "inProgressStatusText": string;
         /**
           * @uiName Pending review status sub-text
-          * @default "Awaiting review"
          */
         "pendingReviewStatusSubText": string;
         /**
           * @uiName Pending review status text
-          * @default "Pending"
          */
         "pendingReviewStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
@@ -5119,42 +4078,25 @@ export namespace Components {
     interface SqmReferralTableUserCell {
         "name": string;
     }
-    /**
-     * @uiName Referral Table User Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column>
-     */
     interface SqmReferralTableUserColumn {
         /**
           * Name displayed for unknown users
           * @uiName Anonymous user text
-          * @default "Anonymous User"
          */
         "anonymousUser": string;
         /**
           * @uiName User column title
-          * @default "Customer"
          */
         "columnTitle": string;
         /**
           * Name displayed for deleted users
           * @uiName Deleted user text
-          * @default "Deleted User"
          */
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
-    /**
-     * @uiName Instant Access Friend Registration
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
@@ -5170,12 +4112,10 @@ export namespace Components {
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel": string;
         /**
           * @uiName First name field label
-          * @default "First Name"
          */
         "firstNameLabel": string;
         /**
@@ -5183,7 +4123,6 @@ export namespace Components {
           * @uiName Fraud error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Our team will review this referral. If approved, you and your friend will receive your rewards. Need help? Reach out to our Support team."
          */
         "fraudErrorMessage": string;
         /**
@@ -5191,25 +4130,21 @@ export namespace Components {
           * @uiName Fraud error message title
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Looks like you tried referring yourself"
          */
         "fraudErrorMessageTitle": string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
-          * @default false
          */
         "hideBorder": boolean;
         /**
           * @undocumented 
           * @uiType boolean
-          * @default true
          */
         "includeCookies"?: boolean;
         /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
-          * @default false
          */
         "includeName": boolean;
         /**
@@ -5217,12 +4152,10 @@ export namespace Components {
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Please enter a valid email address"
          */
         "invalidEmailErrorMessage": string;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastNameLabel": string;
         /**
@@ -5230,7 +4163,6 @@ export namespace Components {
           * @uiName Network error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue."
          */
         "networkErrorMessage": string;
         /**
@@ -5238,7 +4170,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom": string;
         /**
@@ -5246,7 +4177,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft": string;
         /**
@@ -5254,7 +4184,6 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight": string;
         /**
@@ -5262,12 +4191,10 @@ export namespace Components {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop": string;
         /**
           * @uiName Register button text
-          * @default "Claim Your Reward"
          */
         "registerLabel": string;
         /**
@@ -5275,59 +4202,42 @@ export namespace Components {
           * @uiName Required field message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage": string;
     }
-    /**
-     * @uiName Reward Exchange
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-empty"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @exampleGroup Rewards
-     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
-     */
     interface SqmRewardExchangeList {
         /**
           * @uiName Back button text
-          * @default "Back"
          */
         "backText": string;
         /**
           * @uiName Cancel button text
-          * @default "Cancel"
          */
         "cancelText": string;
         /**
           * @uiName Choose amount progress title
-          * @default "Select"
          */
         "chooseAmountTitle": string;
         /**
           * @uiName Choose reward progress title
-          * @default "Rewards"
          */
         "chooseRewardTitle": string;
         /**
           * @uiName Confirmation progress title
-          * @default "Confirm"
          */
         "confirmationTitle": string;
         /**
           * @uiName Continue button text
-          * @default "Continue"
          */
         "continueText": string;
         /**
           * Displayed on the reward selection page.
           * @uiName Continue to confirmation button text
-          * @default "Continue to confirmation"
          */
         "continueToConfirmationText": string;
         /**
           * Shown in the confirmation state.
           * @uiName Cost row title
-          * @default "Cost to Redeem"
          */
         "costTitle": string;
         /**
@@ -5337,98 +4247,82 @@ export namespace Components {
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
           * @uiName Done text
-          * @default "Done"
          */
         "doneText": string;
         /**
           * Error message shown when reward is not available
           * @uiName Not available error
           * @uiWidget textArea
-          * @default "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }"
          */
         "notAvailableError": string;
         /**
           * @uiName Not enough error message
           * @uiWidget textArea
-          * @default "Not enough {sourceUnit} to redeem for this reward"
          */
         "notEnoughError": string;
         /**
           * @uiName Promo code text
-          * @default "Promo Code"
          */
         "promoCode": string;
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward list error message
           * @uiWidget textArea
-          * @default "Unable to load reward exchange list. Please try again"
          */
         "queryError": string;
         /**
           * @uiName Redeem button text
-          * @default "Redeem"
          */
         "redeemText": string;
         /**
           * Displayed as the header for the confirmation page.
           * @uiName Confirmation title text
-          * @default "Confirm and redeem"
          */
         "redeemTitle": string;
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption error message
           * @uiWidget textArea
-          * @default "An error occured trying to redeem this reward. Please try again"
          */
         "redemptionError": string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption success message
           * @uiWidget textArea
-          * @default "Redeemed {sourceValue} for {destinationValue}"
          */
         "redemptionSuccessText": string;
         /**
           * Shown in the confirmation state.
           * @uiName Reward amount row title
-          * @default "Reward Amount"
          */
         "rewardAmountTitle": string;
         /**
           * Shown in the confirmation state.
           * @uiName Reward row title
-          * @default "Reward"
          */
         "rewardNameTitle": string;
         /**
           * @uiName Reward redeemed text
-          * @default "Reward redeemed"
          */
         "rewardRedeemedText": string;
         /**
           * @uiName Reward title text
-          * @default "Choose a reward"
          */
         "rewardTitle": string;
         /**
           * @uiName Select amount text
           * @uiWidget textArea
-          * @default "Select amount to receive"
          */
         "selectText": string;
         /**
           * Set the number of placeholder cards to be shown in loading state.
           * @uiName Loading cards
-          * @default 8
          */
         "skeletonCardNum": number;
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward exchange amount text
           * @uiWidget textArea
-          * @default "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}"
          */
         "sourceAmountMessage": string;
         /**
@@ -5436,23 +4330,14 @@ export namespace Components {
           * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
-          * @default "{}"
          */
         "stateController": string;
         /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
-          * @default "Copied"
          */
         "tooltipText": string;
     }
-    /**
-     * @uiName Reward Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Rewards
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
-     */
     interface SqmRewardsTable {
         /**
           * @undocumented 
@@ -5464,32 +4349,26 @@ export namespace Components {
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Mobile hidden columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName View more button text
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * @uiName Rewards per page
-          * @default 4
          */
         "perPage": number;
         /**
           * @uiName Previous button text
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -5500,27 +4379,16 @@ export namespace Components {
         "programId": string;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmRewardsTableCustomerNoteCell {
-        /**
-          * @default "en"
-         */
         "locale": string;
         "note": string;
     }
-    /**
-     * @uiName Reward Table Customer Note Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
-     */
     interface SqmRewardsTableCustomerNoteColumn {
         /**
           * @uiName Column title
-          * @default "Note"
          */
         "columnTitle": string;
         "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
@@ -5528,21 +4396,11 @@ export namespace Components {
     }
     interface SqmRewardsTableDateCell {
         "date": number;
-        /**
-          * @default "en"
-         */
         "locale": string;
     }
-    /**
-     * @uiName Reward Table Date Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
-     */
     interface SqmRewardsTableDateColumn {
         /**
           * @uiName Date column title
-          * @default "Date received"
          */
         "columnTitle": string;
         /**
@@ -5550,7 +4408,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
           * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
-          * @default "dateGiven"
          */
         "dateShown": string;
         "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
@@ -5563,31 +4420,21 @@ export namespace Components {
         "redeemedText": string;
         "reward": Reward;
     }
-    /**
-     * @uiName Rewards Table Reward Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
-     */
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Remaining amount text
-          * @default "{availableAmount} remaining"
          */
         "availableText": string;
         /**
           * @uiName Reward column title
-          * @default "Reward"
          */
         "columnTitle": string;
         /**
           * @uiName Copied fuel tank text
-          * @default "Copied!"
          */
         "copyText": string;
         /**
           * @uiName Redeemed amount text
-          * @default "{redeemedAmount} redeemed"
          */
         "redeemedText": string;
         "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
@@ -5597,210 +4444,133 @@ export namespace Components {
         "anonymousUserText": string;
         "deletedReferralText": string;
         "deletedUserText": string;
-        /**
-          * @default "en"
-         */
         "locale": string;
         "referralText": string;
         "reward": Reward;
         "rewardExchangeText": string;
         "rewardSourceText": string;
     }
-    /**
-     * @uiName Reward Table Source Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
-     */
     interface SqmRewardsTableSourceColumn {
         /**
           * Name displayed for unknown users
           * @uiName Anonymous user text
-          * @default "Anonymous User"
          */
         "anonymousUser": string;
         /**
           * @uiName Soruce column title
-          * @default "Source"
          */
         "columnTitle": string;
         /**
           * Name displayed for deleted users
           * @uiName Deleted user text
-          * @default "Deleted User"
          */
         "deletedUser": string;
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral text
           * @uiWidget textArea
-          * @default "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
          */
         "referralText": string;
         "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward exchange label
-          * @default "Reward Exchange"
          */
         "rewardExchangeText": string;
         /**
           * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward source text
           * @uiWidget textArea
-          * @default "{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
          */
         "rewardSourceText": string;
     }
     interface SqmRewardsTableStatusCell {
-        /**
-          * @default "Detected self-referral"
-         */
         "deniedText": string;
-        /**
-          * @default "Expires"
-         */
         "expiryText": string;
-        /**
-          * @default "en"
-         */
         "locale": string;
-        /**
-          * @default "Reward was scheduled for payment based on your settings, barring any account holds."
-         */
         "payoutApproved": string;
-        /**
-          * @default "If you think this is a mistake, contact our Support team."
-         */
         "payoutCancelled": string;
-        /**
-          * @default "Payout failed due to a fulfillment issue and is current being retried."
-         */
         "payoutFailed": string;
-        /**
-          * @default "Invalid tax form. Submit a new form to receive your rewards."
-         */
         "pendingNewTaxForm": string;
-        /**
-          * @default "Complete your tax and cash payout setup to receive your rewards."
-         */
         "pendingPartnerCreation": string;
-        /**
-          * @default "Awaiting review"
-         */
         "pendingReviewText": string;
-        /**
-          * @default "Until"
-         */
         "pendingScheduled": string;
-        /**
-          * @default "Awaiting tax form review."
-         */
         "pendingTaxReview": string;
-        /**
-          * @default "Submit your tax documents to receive your rewards."
-         */
         "pendingTaxSubmission": string;
-        /**
-          * @default "Fulfillment error"
-         */
         "pendingUnhandled": string;
-        /**
-          * @default "W-9 required"
-         */
         "pendingUsTax": string;
         "reward": Reward;
         "statusText": string;
         "taxConnection": ImpactConnection;
     }
-    /**
-     * @uiName Reward Table Status Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
-     */
     interface SqmRewardsTableStatusColumn {
         /**
           * @uiName Column title
-          * @default "Status"
          */
         "columnTitle": string;
         /**
           * Displayed when denied for fraud.
           * @uiName Denied text
-          * @default "Detected self-referral"
          */
         "deniedText": string;
         /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix
-          * @default "Expires on "
          */
         "expiryText": string;
         /**
           * Displayed when reward payout is approved (based on Impact cash payout configuration).
           * @uiName Payout approved text
-          * @default "Reward was scheduled for payment based on your settings, barring any account holds."
          */
         "payoutApproved": string;
         /**
           * Displayed when reward payout was reversed (based on Impact cash payout configuration).
           * @uiName Payout cancelled text
-          * @default "If you think this is a mistake, contact our Support team."
          */
         "payoutCancelled": string;
         /**
           * Displayed when reward payout has failed (based on Impact cash payout configuration).
           * @uiName Payout failed text
-          * @default "Payout failed due to a fulfillment issue and is current being retried."
          */
         "payoutFailed": string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
-          * @default "Invalid tax form. Submit a new form to receive your rewards."
          */
         "pendingNewTaxForm": string;
         /**
           * Displayed when pending due to need to connect to an Impact partner
           * @uiName Pending partner creation text
-          * @default "Complete your tax and cash payout setup to receive your rewards."
          */
         "pendingPartnerCreation": string;
         /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
-          * @default "Awaiting review"
          */
         "pendingReviewText": string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix
-          * @default "Until"
          */
         "pendingScheduled": string;
         /**
           * Displayed when pending due to tax document review.
           * @uiName Pending tax review text
-          * @default "Awaiting tax form review."
          */
         "pendingTaxReview": string;
         /**
           * Displayed when pending due to lack of tax document submission.
           * @uiName Pending tax submission text
-          * @default "Submit your tax documents to receive your rewards."
          */
         "pendingTaxSubmission": string;
         /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text
-          * @default "Fulfillment error"
          */
         "pendingUnhandled": string;
         /**
           * Displayed when a reward is pending due to W-9 compliance.
           * @uiName W-9 pending text
-          * @default "W-9 required"
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -5808,15 +4578,9 @@ export namespace Components {
         /**
           * @uiName Reward status text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }"
          */
         "statusText": string;
     }
-    /**
-     * @uiName Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
-     * @slots [{"name":"","title":"Content"}]
-     */
     interface SqmRoute {
         /**
           * Page Path URL for this route.
@@ -5824,20 +4588,8 @@ export namespace Components {
          */
         "path": string;
     }
-    /**
-     * @uiName Router
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-route"]
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface SqmRouter {
     }
-    /**
-     * @uiName Scroll Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     */
     interface SqmScroll {
         /**
           * @uiName Button text
@@ -5880,7 +4632,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["smooth", "auto"]
           * @uiEnumNames ["Smooth", "Auto"]
-          * @default "smooth"
          */
         "scrollAnimation": "smooth" | "auto";
         /**
@@ -5901,24 +4652,6 @@ export namespace Components {
          */
         "size": string;
     }
-    /**
-     * @uiName Share Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
-     * @exampleGroup Sharing
-     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
-     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
-     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
-     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
-     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
-     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
-     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
-     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
-     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
-     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
-     */
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -5969,7 +4702,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
-          * @default "prefix"
          */
         "iconslot"?: "prefix" | "suffix";
         /**
@@ -6033,7 +4765,6 @@ export namespace Components {
           * @uiName Button style
           * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
           * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
-          * @default "default"
          */
         "type"?: | "primary"
     | "secondary"
@@ -6046,22 +4777,14 @@ export namespace Components {
         /**
           * Alert text shown if the share link is undefined
           * @uiName Undefined link text
-          * @default "Error: message link undefined!"
          */
         "undefinedLinkText"?: string;
         /**
           * Alert text shown if the user's device does not support native sharing
           * @uiName Unsupported platform text
-          * @default "Error: not on a supported device"
          */
         "unsupportedPlatformText"?: string;
     }
-    /**
-     * @uiName Share Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @exampleGroup Sharing
-     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
-     */
     interface SqmShareCode {
         /**
           * Background color of share link container
@@ -6093,7 +4816,6 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -6103,12 +4825,10 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Code"
          */
         "copyButtonLabel"?: string;
         /**
@@ -6129,7 +4849,6 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign": "left" | "center" | "right";
         /**
@@ -6143,22 +4862,14 @@ export namespace Components {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan": number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext": string;
     }
-    /**
-     * @uiName Share Link
-     * @exampleGroup Sharing
-     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
-     */
     interface SqmShareLink {
         /**
           * Background color of share link container
@@ -6190,7 +4901,6 @@ export namespace Components {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -6200,12 +4910,10 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Link"
          */
         "copyButtonLabel": string;
         /**
@@ -6226,7 +4934,6 @@ export namespace Components {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -6240,24 +4947,14 @@ export namespace Components {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan": number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext": string;
     }
-    /**
-     * @uiName Stat Container
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-big-stat"]
-     * @slots [{"name":"", "title":"Stats"}]
-     * @exampleGroup Statistics
-     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
-     */
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -6265,7 +4962,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @default "center"
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -6274,7 +4970,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
-          * @default "flex"
          */
         "display": "grid" | "flex";
         /**
@@ -6282,7 +4977,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "x-large"
          */
         "gap": Spacing;
         /**
@@ -6296,65 +4990,33 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "xxx-large"
          */
         "space": Spacing;
     }
-    /**
-     * For internal documentation
-     * @undocumented 
-     */
     interface SqmStencilbook {
     }
-    /**
-     * @uiName Tab
-     * @slots [{"name":"", "title":"Tab Content"}]
-     * @validParents ["sqm-tabs"]
-     * @exampleGroup Layout
-     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
-     */
     interface SqmTab {
         /**
           * @uiName Tab title
          */
         "header": string;
     }
-    /**
-     * @uiName Table Cell
-     * @slots [{"name":"", "title":"Cell Content"}]
-     */
     interface SqmTableCell {
         /**
           * @uiName Column span
-          * @default 1
          */
         "colspan": number;
         /**
           * @uiName Padding
-          * @default "15px 10px"
          */
         "padding": string;
     }
-    /**
-     * @uiName Table Row
-     * @slots [{"name":"", "title":"Row Content"}]
-     */
     interface SqmTableRow {
         /**
           * @uiName Border
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border": string;
     }
-    /**
-     * @uiName Tab Group
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-tab"]
-     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
-     * @exampleGroup Layout
-     * @canvasRenderer always-replace
-     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
-     */
     interface SqmTabs {
         /**
           * Used to specify the placement of the tabs
@@ -6372,11 +5034,6 @@ export namespace Components {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Task Card
-     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
-     * @validParents ["sqm-card-feed"]
-     */
     interface SqmTaskCard {
         /**
           * @uiName Card Background color
@@ -6404,7 +5061,6 @@ export namespace Components {
         /**
           * @uiName Button text
           * @uiGroup Button
-          * @default "Complete Action"
          */
         "buttonText": string;
         /**
@@ -6413,13 +5069,11 @@ export namespace Components {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
-          * @default "Title Text"
          */
         "cardTitle": string;
         /**
@@ -6427,7 +5081,6 @@ export namespace Components {
           * @uiName Completed count text
           * @uiGroup Task
           * @uiWidget textArea
-          * @default "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
          */
         "completedText": string;
         /**
@@ -6438,7 +5091,6 @@ export namespace Components {
         /**
           * @uiName Description
           * @uiGroup Task
-          * @default ""
          */
         "description": string;
         /**
@@ -6453,7 +5105,6 @@ export namespace Components {
           * Shown to users after the end of the task duration.
           * @uiName Ended date message
           * @uiGroup Task
-          * @default "Ended {endDate}"
          */
         "endedMessage": string;
         /**
@@ -6466,27 +5117,23 @@ export namespace Components {
           * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry date message
           * @uiGroup Task
-          * @default "Ends {endDate}"
          */
         "expiryMessage": string;
         /**
           * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
           * @uiName Repeat amount
           * @uiGroup Reward
-          * @default 0
          */
         "finite": number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal completion number
           * @uiGroup Goal
-          * @default 1
          */
         "goal": number;
         /**
           * @uiName Hide CTA button
           * @uiGroup Button
-          * @default false
          */
         "hideButton"?: boolean;
         /**
@@ -6507,7 +5154,6 @@ export namespace Components {
           * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress bar unit
           * @uiGroup Goal
-          * @default ""
          */
         "progressBarUnit": string;
         /**
@@ -6519,7 +5165,6 @@ export namespace Components {
         /**
           * @uiName Reward amount
           * @uiGroup Reward
-          * @default "0"
          */
         "rewardAmount": string;
         /**
@@ -6533,7 +5178,6 @@ export namespace Components {
         /**
           * @uiName Reward unit
           * @uiGroup Reward
-          * @default "Points"
          */
         "rewardUnit": string;
         /**
@@ -6546,7 +5190,6 @@ export namespace Components {
           * Shown to users before the start of the task duration.
           * @uiName Start date message
           * @uiGroup Task
-          * @default "Starts {startDate}"
          */
         "startsOnMessage": string;
         /**
@@ -6572,178 +5215,145 @@ export namespace Components {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Tax and Cash
-     * @exampleGroup Tax and Cash
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
-     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
-     */
     interface SqmTaxAndCash {
         /**
           * @uiName Back button label
           * @uiGroup General Form Properties
-          * @default "Back"
          */
         "backButton": string;
         /**
           * @uiName Cancel button label
           * @uiGroup General Form Properties
-          * @default "Cancel"
          */
         "cancelButton": string;
         /**
           * @uiName Continue button label
           * @uiGroup General Form Properties
-          * @default "Continue"
          */
         "continueButton": string;
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "dashboard_accountReviewDescription": string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "dashboard_accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
-          * @default "Account"
          */
         "dashboard_accountText": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Tax form in review description
           * @uiGroup Dashboard Properties
-          * @default "Awaiting review. Submitted on {dateSubmitted}."
          */
         "dashboard_badgeTextAwaitingReview"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Active W-9 description
           * @uiGroup Dashboard Properties
-          * @default "Submitted on {dateSubmitted}."
          */
         "dashboard_badgeTextSubmittedOn"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Active W-8 description
           * @uiGroup Dashboard Properties
-          * @default "Submitted on {dateSubmitted}. Valid for three years after submission."
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_bankNameMismatchDescription": string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_bankNameMismatchHeader": string;
         /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
-          * @default "Payout Information"
          */
         "dashboard_bankingInformationSectionHeader": string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_beneficiaryNameInvalidDescription": string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_beneficiaryNameInvalidHeader": string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_beneficiaryNameMismatchDescription": string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_beneficiaryNameMismatchHeader": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
           * @uiGroup Dashboard Properties
-          * @default "Date"
          */
         "dashboard_dateColumnTitle": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
-          * @default "Earnings after tax"
          */
         "dashboard_earningsAfterTaxColumnTitle": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
           * @uiGroup Dashboard Properties
-          * @default "Earnings"
          */
         "dashboard_earningsColumnTitle": string;
         /**
           * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
-          * @default "Edit payout information"
          */
         "dashboard_editPaymentInformationButton": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
-          * @default "Indirect tax"
          */
         "dashboard_indirectTaxColumnTitle": string;
         /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
-          * @default "{indirectTaxType} number: {indirectTaxNumber}"
          */
         "dashboard_indirectTaxDetails": string;
         /**
           * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
           * @uiName Canadian province of indirect tax
           * @uiGroup Dashboard Properties
-          * @default "Registered in {province}, {country}"
          */
         "dashboard_indirectTaxInfoCanada": string;
         /**
           * If the participant is registered for indirect tax, display the country they’re registered in.
           * @uiName Indirect tax country
           * @uiGroup Dashboard Properties
-          * @default "Registered in {country}"
          */
         "dashboard_indirectTaxInfoOtherCountry": string;
         /**
           * @uiName Indirect tax section header
           * @uiGroup Dashboard Properties
-          * @default "Indirect tax"
          */
         "dashboard_indirectTaxInfoSectionHeader": string;
         /**
           * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
           * @uiName Spanish region of indirect tax
           * @uiGroup Dashboard Properties
-          * @default "Registered in {country}, {subRegion}"
          */
         "dashboard_indirectTaxInfoSpain": string;
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "To make changes to your indirect tax information, please contact our {supportLink}."
          */
         "dashboard_indirectTaxTooltipSupport": string;
         /**
@@ -6751,56 +5361,47 @@ export namespace Components {
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Make sure your information is correct and submit new form."
          */
         "dashboard_invalidForm"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Invoice number column title
           * @uiGroup Dashboard Properties
-          * @default "Invoice"
          */
         "dashboard_invoiceColumnTitle": string;
         /**
           * @uiName Invoice table description
           * @uiGroup Dashboard Properties
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "dashboard_invoiceDescription": string;
         /**
           * @uiName Empty invoice table header
           * @uiGroup Dashboard Properties
-          * @default "View your invoice details"
          */
         "dashboard_invoiceEmptyStateHeader": string;
         /**
           * @uiName Empty invoice table description
           * @uiGroup Dashboard Properties
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "dashboard_invoiceEmptyStateText": string;
         /**
           * @uiName Invoice table title
           * @uiGroup Dashboard Properties
-          * @default "Invoices"
          */
         "dashboard_invoiceHeader": string;
         /**
           * @uiName Invoice table next page button label
           * @uiGroup Dashboard Properties
-          * @default "Next"
          */
         "dashboard_invoiceMoreLabel": string;
         /**
           * @uiName Invoice table previous page button label
           * @uiGroup Dashboard Properties
-          * @default "Prev"
          */
         "dashboard_invoicePrevLabel": string;
         /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
-          * @default "Submit new tax form"
          */
         "dashboard_newFormButton": string;
         /**
@@ -6808,34 +5409,28 @@ export namespace Components {
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Tax documents are only required if you are based in the US or joining the referral program of a US based brand."
          */
         "dashboard_noFormNeededSubtext": string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant."
          */
         "dashboard_notRegisteredForTax": string;
         /**
           * @uiName Payment on hold alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "dashboard_paymentOnHoldDescription": string;
         /**
           * @uiName Payment on hold alert header
-          * @default "We are reviewing your new payout settings"
          */
         "dashboard_paymentOnHoldHeader": string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "dashboard_paymentReturnedDescription": string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "dashboard_paymentReturnedHeader": string;
         /**
@@ -6843,7 +5438,6 @@ export namespace Components {
           * @uiName Payout from impact text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com."
          */
         "dashboard_payoutFromImpact": string;
         /**
@@ -6851,7 +5445,6 @@ export namespace Components {
           * @uiName Payout error message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com."
          */
         "dashboard_payoutHoldAlertDescription": string;
         /**
@@ -6859,77 +5452,65 @@ export namespace Components {
           * @uiName Payout error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your payout is on hold"
          */
         "dashboard_payoutHoldAlertHeader": string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "dashboard_payoutMissingInformationText": string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
-          * @default "QST number: {qstNumber}"
          */
         "dashboard_qstNumber": string;
         /**
           * @uiName Replace tax form modal body text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout."
          */
         "dashboard_replaceTaxFormModalBodyText": string;
         /**
           * @uiName Replace tax form modal header
           * @uiGroup Dashboard Properties
-          * @default "Replace existing tax form"
          */
         "dashboard_replaceTaxFormModalHeader": string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Required tax form description
-          * @default "Your payouts are on hold until you submit a {taxFormType} tax form."
          */
         "dashboard_requiredTaxForm"?: string;
         /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "dashboard_statusBadgeText": string;
         /**
           * @uiName Active tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Active"
          */
         "dashboard_statusTextActive"?: string;
         /**
           * @uiName Invalid tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Invalid Tax Form"
          */
         "dashboard_statusTextNotActive"?: string;
         /**
           * Displayed when the participant submitted their form but it is awaiting review.
           * @uiName Not verified tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Not Verified"
          */
         "dashboard_statusTextNotVerified"?: string;
         /**
           * Displayed when the participant has not submitted their required tax form.
           * @uiName Required tax form badge label
-          * @default "Required"
          */
         "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
-          * @default "Income tax number: {subRegionTaxNumber}"
          */
         "dashboard_subRegionTaxNumber": string;
         /**
@@ -6937,7 +5518,6 @@ export namespace Components {
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "{documentType} tax form is invalid"
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
@@ -6945,14 +5525,12 @@ export namespace Components {
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your W-9 tax form has personal information that doesn’t match your profile"
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message description
           * @uiGroup Dashboard Properties
-          * @default "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form."
          */
         "dashboard_taxAlertNotActiveMessageW8"?: string;
         /**
@@ -6960,47 +5538,40 @@ export namespace Components {
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Please resubmit a new {documentType} form."
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
           * @uiName Tax document section header
           * @uiGroup Dashboard Properties
-          * @default "Tax documents"
          */
         "dashboard_taxDocumentSectionHeader": string;
         /**
           * Displayed under the tax document section header.
           * @uiName Tax documents section description
           * @uiGroup Dashboard Properties
-          * @default "{documentType} tax form"
          */
         "dashboard_taxDocumentSectionSubHeader": string;
         /**
           * @uiName Terms and Conditions text
           * @uiGroup Dashboard Properties
-          * @default "Terms and Conditions"
          */
         "dashboard_termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "dashboard_thresholdPayoutText": string;
         /**
           * @uiName Verification failed internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationFailedInternalDescription": string;
         /**
           * @uiName Verification failed internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification usuccessful"
          */
         "dashboard_verificationFailedInternalHeader": string;
         /**
@@ -7008,7 +5579,6 @@ export namespace Components {
           * @uiName Verification required alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Start Verification"
          */
         "dashboard_verificationRequiredButtonText": string;
         /**
@@ -7016,7 +5586,6 @@ export namespace Components {
           * @uiName Verification required alert message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "dashboard_verificationRequiredDescription": string;
         /**
@@ -7024,66 +5593,56 @@ export namespace Components {
           * @uiName Verification required alert message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Verify your identity"
          */
         "dashboard_verificationRequiredHeader": string;
         /**
           * @uiName Verification required internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationRequiredInternalDescription": string;
         /**
           * @uiName Verification required internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification in progress"
          */
         "dashboard_verificationRequiredInternalHeader": string;
         /**
           * @uiName Verification review internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationReviewInternalDescription": string;
         /**
           * @uiName Verification review internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification under review"
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
           * @uiName W-9 payment threshold alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Submit W-9"
          */
         "dashboard_w9RequiredButtonText": string;
         /**
           * @uiName W-9 payment threshold alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "dashboard_w9RequiredDescription": string;
         /**
           * @uiName W-9 payment threshold alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your next payout is on hold"
          */
         "dashboard_w9RequiredHeader": string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "dashboard_withdrawalSettingsInvalidDescription": string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "dashboard_withdrawalSettingsInvalidHeader": string;
         /**
@@ -7094,20 +5653,17 @@ export namespace Components {
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError": string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError": string;
         /**
           * @uiName Setup progress
           * @uiGroup General Form Properties
-          * @default "Step {step} of {count}"
          */
         "formStep": string;
         /**
@@ -7115,7 +5671,6 @@ export namespace Components {
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
@@ -7123,14 +5678,12 @@ export namespace Components {
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * Displayed under a field that includes invalid characters (non-ASCII).
           * @uiName Invalid character error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} includes characters that aren't supported."
          */
         "invalidCharacterError": string;
         /**
@@ -7138,7 +5691,6 @@ export namespace Components {
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription": string;
         /**
@@ -7146,7 +5698,6 @@ export namespace Components {
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader": string;
         /**
@@ -7154,7 +5705,6 @@ export namespace Components {
           * @uiName Page load error message description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription": string;
         /**
@@ -7162,14 +5712,12 @@ export namespace Components {
           * @uiName Page load error message title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
-          * @default "Search for country.."
          */
         "searchForCountryText": string;
         /**
@@ -7179,105 +5727,88 @@ export namespace Components {
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
           * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
-          * @default "{}"
          */
         "stateController": string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
-          * @default "Address"
          */
         "step1_address": string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
-          * @default "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
          */
         "step1_allowBankingCollection": string;
         /**
           * @uiName City field label
           * @uiGroup Step 1 Properties
-          * @default "City"
          */
         "step1_city": string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
-          * @default "Country"
          */
         "step1_country": string;
         /**
           * @uiName Currency field label
           * @uiGroup Step 1 Properties
-          * @default "Currency"
          */
         "step1_currency": string;
         /**
           * @uiName Currency field help text
           * @uiGroup Step 1 Properties
-          * @default "Choose your preferred payout currency"
          */
         "step1_currencyHelpText": string;
         /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
-          * @default "Email"
          */
         "step1_email": string;
         /**
           * @uiName First name field label
           * @uiGroup Step 1 Properties
-          * @default "First name"
          */
         "step1_firstName": string;
         /**
           * @uiName Last name field label
           * @uiGroup Step 1 Properties
-          * @default "Last name"
          */
         "step1_lastName": string;
         /**
           * @uiName Step 1 title
           * @uiGroup Step 1 Properties
-          * @default "Personal Information"
          */
         "step1_personalInformation": string;
         /**
           * @uiName Phone number field label
           * @uiGroup Step 1 Properties
-          * @default "Phone number"
          */
         "step1_phoneNumber": string;
         /**
           * @uiName Postal code field label
           * @uiGroup Step 1 Properties
-          * @default "Postal code"
          */
         "step1_postalCode": string;
         /**
           * @uiName State field label for provinces
           * @uiGroup Step 1 Properties
-          * @default "Province"
          */
         "step1_province": string;
         /**
           * @uiName State field label for regions
           * @uiGroup Step 1 Properties
-          * @default "Region"
          */
         "step1_region": string;
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
-          * @default "Search for currency.."
          */
         "step1_searchForCurrencyText": string;
         /**
           * @uiName State field label for states
           * @uiGroup Step 1 Properties
-          * @default "State"
          */
         "step1_state": string;
         /**
@@ -7285,14 +5816,12 @@ export namespace Components {
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
-          * @default "terms and conditions"
          */
         "step1_termsAndConditionsLabel": string;
         /**
           * The link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions link
           * @uiGroup Step 1 Properties
-          * @default "https://terms.advocate.impact.com/PayoutTermsAndConditions.html"
          */
         "step1_termsAndConditionsLink": string;
         /**
@@ -7300,13 +5829,11 @@ export namespace Components {
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing."
          */
         "step2_cannotChangeInfoAlert": string;
         /**
           * @uiName Step 2 title
           * @uiGroup Step 2 Properties
-          * @default "Indirect Tax"
          */
         "step2_indirectTax": string;
         /**
@@ -7314,33 +5841,28 @@ export namespace Components {
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments."
          */
         "step2_indirectTaxDescription": string;
         /**
           * Displayed with indirect tax registration options.
           * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
-          * @default "Indirect tax details"
          */
         "step2_indirectTaxDetails": string;
         /**
           * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}"
          */
         "step2_indirectTaxNumber": string;
         /**
           * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required"
          */
         "step2_indirectTaxNumberError": string;
         /**
           * Displayed to participants registered for indirect tax in Quebec, Canada.
           * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
-          * @default "I am registered for QST Tax"
          */
         "step2_isRegisteredQST": string;
         /**
@@ -7348,74 +5870,63 @@ export namespace Components {
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me."
          */
         "step2_isRegisteredSubRegionIncomeTax": string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Not registered for indirect tax"
          */
         "step2_notRegistered": string;
         /**
           * Participants based in the US are  considered not registered.
           * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
-          * @default "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered."
          */
         "step2_notRegisteredSubtext": string;
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Registered for indirect tax"
          */
         "step2_otherRegion": string;
         /**
           * Selecting this option will display fields to enter indirect tax details.
           * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
-          * @default "If you’ve registered with your tax authority, add your information to stay tax compliant."
          */
         "step2_otherRegionSubtext": string;
         /**
           * @uiName Province field label
           * @uiGroup Step 2 Properties
-          * @default "Province"
          */
         "step2_province": string;
         /**
           * Displayed to participants registered for QST.
           * @uiName QST number field label
           * @uiGroup Step 2 Properties
-          * @default "QST number"
          */
         "step2_qstNumber": string;
         /**
           * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
-          * @default "Country / region of indirect tax"
          */
         "step2_selectedRegion": string;
         /**
           * Displayed to participants registered in Spain.
           * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
-          * @default "Sub-region"
          */
         "step2_subRegion": string;
         /**
           * @uiName Income tax field label
           * @uiGroup Step 2 Properties
-          * @default "Income Tax Number"
          */
         "step2_subRegionTaxNumberLabel": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
           * @uiGroup Step 3 Properties
-          * @default "I represent a business"
          */
         "step3_businessEntity": string;
         /**
@@ -7423,7 +5934,6 @@ export namespace Components {
           * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}."
          */
         "step3_docusignError": string;
         /**
@@ -7431,7 +5941,6 @@ export namespace Components {
           * @uiName Docusign session expired message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue."
          */
         "step3_docusignExpired": string;
         /**
@@ -7439,56 +5948,47 @@ export namespace Components {
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
          */
         "step3_docusignSessionWarning": string;
         /**
           * @uiName Exit button text
           * @uiGroup Step 3 Properties
-          * @default "Exit"
          */
         "step3_exitButton": string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
           * @uiGroup Step 3 Properties
-          * @default "I am an individual participant"
          */
         "step3_individualParticipant": string;
         /**
           * @uiName Information modal button text
           * @uiGroup Step 3 Properties
-          * @default "I understand"
          */
         "step3_modalButtonText": string;
         /**
           * @uiName Information modal description text
           * @uiGroup Step 3 Properties
-          * @default "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout."
          */
         "step3_modalDescription": string;
         /**
           * @uiName Information modal title
           * @uiGroup Step 3 Properties
-          * @default "Important Note"
          */
         "step3_modalTitle": string;
         /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
-          * @default "Participant type"
          */
         "step3_participantType": string;
         /**
           * @uiName Refresh page button label
           * @uiGroup Step 3 Properties
-          * @default "Refresh Page"
          */
         "step3_refreshButton": string;
         /**
           * @uiName Step 3 title
           * @uiGroup Step 3 Properties
-          * @default "Tax form"
          */
         "step3_taxForm": string;
         /**
@@ -7496,7 +5996,6 @@ export namespace Components {
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants based in the US need to submit a {documentType} form."
          */
         "step3_taxFormDescription": string;
         /**
@@ -7504,7 +6003,6 @@ export namespace Components {
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants residing outside of the US working with a US Brand need to submit a {documentType} form."
          */
         "step3_taxFormDescriptionBusinessEntity": string;
         /**
@@ -7512,407 +6010,338 @@ export namespace Components {
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form."
          */
         "step3_taxFormDescriptionIndividualParticipant": string;
         /**
           * Display the type of tax form that the participant must submit.
           * @uiName Tax form name
           * @uiGroup Step 3 Properties
-          * @default "{documentType} Tax Form"
          */
         "step3_taxFormLabel": string;
         /**
           * @uiName Agency code field label
           * @uiGroup Step 4 Properties
-          * @default "Agency code"
          */
         "step4_agencyCodeLabel": string;
         /**
           * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
-          * @default "Bank account number"
          */
         "step4_bankAccountNumberLabel": string;
         /**
           * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
-          * @default "Bank account type"
          */
         "step4_bankAccountTypeLabel": string;
         /**
           * @uiName Bank address field label
           * @uiGroup Step 4 Properties
-          * @default "Bank address"
          */
         "step4_bankAddressLabel": string;
         /**
           * @uiName Bank city field label
           * @uiGroup Step 4 Properties
-          * @default "Bank city"
          */
         "step4_bankCityLabel": string;
         /**
           * @uiName Bank country field label
           * @uiGroup Step 4 Properties
-          * @default "Bank country location"
          */
         "step4_bankLocationLabel": string;
         /**
           * @uiName Bank name field label
           * @uiGroup Step 4 Properties
-          * @default "Bank name"
          */
         "step4_bankNameLabel": string;
         /**
           * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
-          * @default "Bank postal code"
          */
         "step4_bankPostalCodeLabel": string;
         /**
           * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
-          * @default "Bank Province / State"
          */
         "step4_bankStateLabel": string;
         /**
           * @uiName Beneficiary account field description
           * @uiGroup Step 4 Properties
-          * @default "The beneficiary name of your bank account. Ensure this matches the name on your tax form."
          */
         "step4_beneficiaryAccountNameDescription": string;
         /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
-          * @default "Account holder name"
          */
         "step4_beneficiaryAccountNameLabel": string;
         /**
           * @uiName Branch code field label
           * @uiGroup Step 4 Properties
-          * @default "Branch code"
          */
         "step4_branchCodeLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
-          * @default "Business"
          */
         "step4_businessSelectItemLabel": string;
         /**
           * @uiName Checking account option
           * @uiGroup Step 4 Properties
-          * @default "Checking"
          */
         "step4_checkingSelectItemLabel": string;
         /**
           * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
-          * @default "Classification CPF"
          */
         "step4_classificationCPFLabel": string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
-          * @default "Classification entity"
          */
         "step4_classificationEntityLabel": string;
         /**
           * Label text for the classification input field
           * @uiName Classification field label
           * @uiGroup Step 4 Properties
-          * @default "Classification"
          */
         "step4_classificationLabel": string;
         /**
           * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
-          * @default "Directly to my bank account"
          */
         "step4_directlyToBankAccount": string;
         /**
           * Default payment method to the participants’ bank account.
           * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
-          * @default "EFT Withdrawal (free)"
          */
         "step4_eftWithdrawalLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
-          * @default "Foreign"
          */
         "step4_foreignSelectItemLabel": string;
         /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties
-          * @default "FX Wire (Processing Fee {currency}{defaultFxFee}.00)"
          */
         "step4_fxWireProcessingFeeLabel": string;
         /**
           * @uiName IBAN field label
           * @uiGroup Step 4 Properties
-          * @default "IBAN"
          */
         "step4_ibanLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Individual classification option
           * @uiGroup Step 4 Properties
-          * @default "Individual"
          */
         "step4_individualSelectItemLabel": string;
         /**
           * @uiName Information modal button text
           * @uiGroup Step 4 Properties
-          * @default "I understand, update my information"
          */
         "step4_modalButtonText": string;
         /**
           * @uiName Information modal description text
           * @uiGroup Step 4 Properties
-          * @default "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
          */
         "step4_modalDescription": string;
         /**
           * @uiName Information modal title
           * @uiGroup Step 4 Properties
-          * @default "Important Note"
          */
         "step4_modalTitle": string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
-          * @default "Patronymic name"
          */
         "step4_patronymicNameLabel": string;
         /**
           * Displayed to participants who choose PayPal as their payout method
           * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
-          * @default "PayPal email"
          */
         "step4_payPalInputLabel": string;
         /**
           * One of two payment day options
           * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
-          * @default "15th of the month"
          */
         "step4_paymentDayFifteenthOfMonthLabelText": string;
         /**
           * One of two payment day options
           * @uiName First of month payday option
           * @uiGroup Step 4 Properties
-          * @default "1st of the month"
          */
         "step4_paymentDayFirstOfMonthLabelText": string;
         /**
           * Let the participant choose what day of the month they’ll get paid
           * @uiName Payment day field label
           * @uiGroup Step 4 Properties
-          * @default "Payment Day"
          */
         "step4_paymentDaySelectLabel": string;
         /**
           * @uiName Payment method section header
           * @uiGroup Step 4 Properties
-          * @default "Payment method"
          */
         "step4_paymentMethod": string;
         /**
           * @uiName Payment method section description
           * @uiGroup Step 4 Properties
-          * @default "Payouts will be sent from our referral program provider, impact.com."
          */
         "step4_paymentMethodSubtext": string;
         /**
           * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
-          * @default "Payment schedule"
          */
         "step4_paymentSchedule": string;
         /**
           * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
-          * @default "Pay me when my balance reaches a threshold"
          */
         "step4_paymentScheduleBalanceThreshold": string;
         /**
           * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
-          * @default "Pay me on a fixed day of the month"
          */
         "step4_paymentScheduleFixedDay": string;
         /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
-          * @default "Payment threshold"
          */
         "step4_paymentThresholdSelectLabel": string;
         /**
           * @uiName Routing code field label
           * @uiGroup Step 4 Properties
-          * @default "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }"
          */
         "step4_routingCodeLabel": string;
         /**
           * Label text for the savings account type select item
           * @uiName Savings account options
           * @uiGroup Step 4 Properties
-          * @default "Savings"
          */
         "step4_savingsSelectItemLabel": string;
         /**
           * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
-          * @default "SWIFT code"
          */
         "step4_swiftCodeLabel": string;
         /**
           * @uiName Step 4 title
           * @uiGroup Step 4 Properties
-          * @default "Payouts"
          */
         "step4_taxAndPayouts": string;
         /**
           * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
-          * @default "Beneficiary INN"
          */
         "step4_taxPayerIdLabel": string;
         /**
           * @uiName PayPal payout option
           * @uiGroup Step 4 Properties
-          * @default "PayPal (2% processing fee capped to {feeCap})"
          */
         "step4_toPayPalAccount": string;
         /**
           * @uiName Verify code widget header text
           * @uiGroup Step 4 Properties
-          * @default "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com."
          */
         "step4_verifyEmailDescriptionText": string;
         /**
           * @uiName Text for verify email dialog
           * @uiGroup Step 4 Properties
-          * @default "Verify your email"
          */
         "step4_verifyEmailHeaderText": string;
         /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties
-          * @default "VO code"
          */
         "step4_voCodeLabel": string;
         /**
           * Link text for contacting support team
           * @uiName Suport link text
           * @uiGroup General Form Properties
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription": string;
         /**
           * Link text for Terms and Conditions
           * @uiName Terms and Conditions text
           * @uiGroup General Form Properties
-          * @default "Terms and Conditions"
          */
         "termsAndConditions": string;
     }
-    /**
-     * @uiName Tax and Cash Status Dashboard
-     */
     interface SqmTaxAndCashDashboard {
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "accountReviewDescription": string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
-          * @default "Account"
          */
         "accountText": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Tax form in review description
-          * @default "Awaiting review. Submitted on {dateSubmitted}."
          */
         "badgeTextAwaitingReview"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Active W-9 description
-          * @default "Submitted on {dateSubmitted}."
          */
         "badgeTextSubmittedOn"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Active W-8 description
-          * @default "Submitted on {dateSubmitted}. Valid for three years after submission."
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "bankTaxNameMismatchDescription": string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "bankTaxNameMismatchHeader": string;
         /**
           * @uiName Payout information section header
-          * @default "Payout information"
          */
         "bankingInformationSectionHeader": string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameInvalidDescription": string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameInvalidHeader": string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameMismatchDescription": string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameMismatchHeader": string;
         /**
           * @uiName Cancel button label
-          * @default "Cancel"
          */
         "cancelButton": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
-          * @default "Date"
          */
         "dateColumnTitle": string;
         /**
@@ -7923,387 +6352,314 @@ export namespace Components {
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
-          * @default "Earnings after tax"
          */
         "earningsAfterTaxColumnTitle": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
-          * @default "Earnings"
          */
         "earningsColumnTitle": string;
         /**
           * @uiName Edit payment info button label
-          * @default "Edit payout information"
          */
         "editPaymentInformationButton": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
-          * @default "Indirect tax"
          */
         "indirectTaxColumnTitle": string;
         /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
-          * @default "{indirectTaxType} number: {indirectTaxNumber}"
          */
         "indirectTaxDetails": string;
         /**
           * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
           * @uiName Canadian province of indirect tax
-          * @default "Registered in {province}, {country}"
          */
         "indirectTaxInfoCanada": string;
         /**
           * If the participant is registered for indirect tax, display the country they’re registered in.
           * @uiName Indirect tax country
-          * @default "Registered in {country}"
          */
         "indirectTaxInfoOtherCountry": string;
         /**
           * @uiName Indirect tax section header
-          * @default "Indirect tax"
          */
         "indirectTaxInfoSectionHeader": string;
         /**
           * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
           * @uiName Spanish region of indirect tax
-          * @default "Registered in {country}, {subRegion}"
          */
         "indirectTaxInfoSpain": string;
         /**
           * @uiName Indirect tax tooltip
           * @uiWidget textArea
-          * @default "To make changes to your indirect tax information, please contact our Support team."
          */
         "indirectTaxTooltipSupport": string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiWidget textArea
-          * @default "Make sure your information is correct and submit new form."
          */
         "invalidForm"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Invoice number column title
-          * @default "Invoice"
          */
         "invoiceColumnTitle": string;
         /**
           * @uiName Invoice table description
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "invoiceDescription": string;
         /**
           * @uiName Empty invoice table header
-          * @default "View your invoice details"
          */
         "invoiceEmptyStateHeader": string;
         /**
           * @uiName Empty invoice table description
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "invoiceEmptyStateText": string;
         /**
           * @uiName Invoice table title
-          * @default "Invoices"
          */
         "invoiceHeader": string;
         /**
           * @uiName Invoice table next page button label
-          * @default "Next"
          */
         "invoiceMoreLabel": string;
         /**
           * @uiName Invoice table previous page button label
-          * @default "Prev"
          */
         "invoicePrevLabel": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Submit new tax form button label
-          * @default "Submit new tax form"
          */
         "newFormButton": string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
-          * @default "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant."
          */
         "notRegisteredForTax": string;
         /**
           * @uiName Payment hold on change alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "paymentHoldOnChangeDescription": string;
         /**
           * @uiName Payment hold on change alert header
-          * @default "We are reviewing your new payout settings"
          */
         "paymentHoldOnChangeHeader": string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "paymentReturnedDescription": string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "paymentReturnedHeader": string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
           * @uiWidget textArea
-          * @default "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com."
          */
         "payoutFromImpact": string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
           * @uiWidget textArea
-          * @default "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com."
          */
         "payoutHoldAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message title
           * @uiWidget textArea
-          * @default "Your payout is on hold"
          */
         "payoutHoldAlertHeader": string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "payoutMissingInformationText": string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
-          * @default "QST number: {qstNumber}"
          */
         "qstNumber": string;
         /**
           * @uiName Replace tax form modal body text
-          * @default "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout."
          */
         "replaceTaxFormModalBodyText": string;
         /**
           * @uiName Replace tax form modal header
-          * @default "Replace existing tax form"
          */
         "replaceTaxFormModalHeader": string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Required tax form description
-          * @default "Your payouts are on hold until you submit a {taxFormType} tax form."
          */
         "requiredTaxForm"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * @uiName Payout status badge
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "statusBadgeText": string;
         /**
           * @uiName Active tax form badge label
-          * @default "Active"
          */
         "statusTextActive"?: string;
         /**
           * @uiName Invalid tax form badge label
-          * @default "Invalid Tax Form"
          */
         "statusTextNotActive"?: string;
         /**
           * Displayed when the participant submitted their form but it is awaiting review.
           * @uiName Not verified tax form badge label
-          * @default "Not Verified"
          */
         "statusTextNotVerified"?: string;
         /**
           * Displayed when the participant has not submitted their required tax form.
           * @uiName Required tax form badge label
-          * @default "Required"
          */
         "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
-          * @default "Income tax number: {subRegionTaxNumber}"
          */
         "subRegionTaxNumber": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiWidget textArea
-          * @default "{documentType} tax form is invalid"
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiWidget textArea
-          * @default "Your W-9 tax form has personal information that doesn’t match your profile"
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message description
-          * @default "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form."
          */
         "taxAlertNotActiveMessageW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiWidget textArea
-          * @default "Please resubmit a new {documentType} form."
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
           * @uiName Tax document section header
-          * @default "Tax documents"
          */
         "taxDocumentSectionHeader": string;
         /**
           * Displayed under the tax document section header.
           * @uiName Tax documents section description
-          * @default "{documentType} tax form"
          */
         "taxDocumentSectionSubHeader": string;
         /**
           * @uiName Terms and Conditions text
-          * @default "Terms and Conditions"
          */
         "termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "thresholdPayoutText": string;
         /**
           * @uiName Verification failed internal alert description
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "verificationFailedInternalDescription": string;
         /**
           * @uiName Verification failed internal alert header
-          * @default "Identity verification unsuccessful"
          */
         "verificationFailedInternalHeader": string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert button text
-          * @default "Start Verification"
          */
         "verificationRequiredButtonText": string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity
           * @uiName Verification required alert message description
           * @uiWidget textArea
-          * @default "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "verificationRequiredDescription": string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert message title
           * @uiWidget textArea
-          * @default "Verify your identity"
          */
         "verificationRequiredHeader": string;
         /**
           * @uiName Verification required internal alert description
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationRequiredInternalDescription": string;
         /**
           * @uiName Verification required internal alert header
-          * @default "Identity verification in progress"
          */
         "verificationRequiredInternalHeader": string;
         /**
           * @uiName Verification review internal alert description
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationReviewInternalDescription": string;
         /**
           * @uiName Verification review internal alert header
-          * @default "Identity verification under review"
          */
         "verificationReviewInternalHeader": string;
         /**
           * @uiName W-9 payment threshold alert button text
-          * @default "Submit W-9"
          */
         "w9RequiredButtonText": string;
         /**
           * @uiName W-9 payment threshold alert description
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "w9RequiredDescription": string;
         /**
           * @uiName W-9 payment threshold alert header
-          * @default "Your next payout is on hold"
          */
         "w9RequiredHeader": string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "withdrawalSettingsInvalidDescription": string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "withdrawalSettingsInvalidHeader": string;
     }
-    /**
-     * @uiName Text
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @slots [{"name":"", "title":"Text"}]
-     * @slotEditor richText
-     * @canvasRenderer always-replace
-     */
     interface SqmText {
         /**
           * Font size in pixels
@@ -8318,11 +6674,6 @@ export namespace Components {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Text Span
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
-     * @canvasRenderer always-replace
-     */
     interface SqmTextSpan {
         /**
           * Font size in pixels
@@ -8348,30 +6699,15 @@ export namespace Components {
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
-    /**
-     * @uiName Program Timeline
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-timeline-entry"]
-     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
-     * @exampleGroup Common Components
-     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
-     */
     interface SqmTimeline {
         /**
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
           * @uiEnumNames ["Gift", "Circle"]
-          * @default "gift"
          */
         "icon": "gift" | "circle";
     }
-    /**
-     * @uiName Program Timeline Entry
-     * @validParents ["sqm-timeline"]
-     * @exampleGroup Common Components
-     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
-     */
     interface SqmTimelineEntry {
         /**
           * @uiName Description
@@ -8408,14 +6744,6 @@ export namespace Components {
          */
         "unit": string;
     }
-    /**
-     * @uiName Titled Section
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
-     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
-     * @exampleGroup Layout
-     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
-     */
     interface SqmTitledSection {
         /**
           * Text value shown when there is no label slot declared.
@@ -8429,7 +6757,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "small"
          */
         "labelMargin": Spacing;
         /**
@@ -8438,7 +6765,6 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "none"
          */
         "padding": Spacing;
         /**
@@ -8446,49 +6772,37 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "left"
          */
         "textAlign": "left" | "center" | "right";
     }
-    /**
-     * @uiName User Information Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
-          * @default "Address"
          */
         "address": string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
-          * @default "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
          */
         "allowBankingCollection": string;
         /**
           * @uiName City field label
-          * @default "City"
          */
         "city": string;
         /**
           * @uiName Continue button label
-          * @default "Continue"
          */
         "continueButton": string;
         /**
           * @uiName Country field label
-          * @default "Country"
          */
         "country": string;
         /**
           * @uiName Currency field label
-          * @default "Currency"
          */
         "currency": string;
         /**
           * @uiName Currency field help text
-          * @default "Choose your preferred payout currency"
          */
         "currencyHelpText": string;
         /**
@@ -8498,156 +6812,126 @@ export namespace Components {
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "email": string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError": string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError": string;
         /**
           * @uiName First name field label
-          * @default "First name"
          */
         "firstName": string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle": string;
         /**
           * Displayed under Address or City fields that includes invalid characters (non-ASCII).
           * @uiName Invalid character error message
-          * @default "{fieldName} includes characters that aren't supported."
          */
         "invalidCharacterError": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader": string;
         /**
           * @uiName Last name field label
-          * @default "Last name"
          */
         "lastName": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription": string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader": string;
         /**
           * @uiName Step 1 title
-          * @default "Personal Information"
          */
         "personalInformation": string;
         /**
           * @uiName Phone number field label
-          * @default "Phone number"
          */
         "phoneNumber": string;
         /**
           * @uiName Postal code field label
-          * @default "Postal code"
          */
         "postalCode": string;
         /**
           * @uiName State field label
-          * @default "Province"
          */
         "province": string;
         /**
           * @uiName State field label
-          * @default "Region"
          */
         "region": string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText": string;
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
-          * @default "Search for currency.."
          */
         "searchForCurrencyText": string;
         /**
           * @uiName State field label
-          * @default "State"
          */
         "state": string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink": string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription": string;
         /**
           * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
-          * @default "terms and conditions"
          */
         "termsAndConditionsLabel": string;
         /**
           * The link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions link
-          * @default "https://terms.advocate.impact.com/PayoutTermsAndConditions.html"
          */
         "termsAndConditionsLink": string;
     }
-    /**
-     * @uiName User Name
-     * @exampleGroup Common Components
-     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
-     */
     interface SqmUserName {
         /**
           * @undocumented 
@@ -8656,195 +6940,135 @@ export namespace Components {
         "demoData"?: DemoData<UserNameViewProps>;
         /**
           * @uiName Unknown user name
-          * @default "Anonymous User"
          */
         "fallback": string;
         /**
           * Text displayed while the participant’s name is loading.
           * @uiName Loading text
-          * @default "..."
          */
         "loadingText": string;
     }
-    /**
-     * @uiName Widget Verification Flow
-     */
     interface SqmWidgetVerification {
         /**
           * Link text displayed under verify button
           * @uiName Resend code text
           * @uiGroup Code Verification Step
-          * @default "Another code has been sent to {email}"
          */
         "codeStep_codeResentSuccessfullyText": string;
         /**
           * Error text displayed under verification input
           * @uiName Invalid code text
           * @uiGroup Code Verification Step
-          * @default "Please check your code and try again. If you’re still having trouble, try resending your code."
          */
         "codeStep_invalidCodeText": string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
           * @uiGroup Code Verification Step
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "codeStep_networkErrorMessage": string;
         /**
           * The link that appears in the resend code link
           * @uiName Resend code label
           * @uiGroup Code Verification Step
-          * @default "Resend code"
          */
         "codeStep_resendCodeLabel": string;
         /**
           * Text displayed under verify button
           * @uiName Resend code text
           * @uiGroup Code Verification Step
-          * @default "Didn't receive your code? {resendCodeLink}"
          */
         "codeStep_resendCodeText": string;
         /**
           * @uiName Reverify code widget header text
           * @uiGroup Code Verification Step
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "codeStep_reverifyCodeHeaderText": string;
         /**
           * @uiName Verify code widget header text
           * @uiGroup Code Verification Step
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "codeStep_verifyCodeHeaderText": string;
         /**
           * @uiName Verify code button text
           * @uiGroup Code Verification Step
-          * @default "Verify"
          */
         "codeStep_verifyText": string;
         /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
-          * @default "Email"
          */
         "emailStep_emailLabel": string;
         /**
           * @uiName Send code button text
           * @uiGroup Email Verification Step
-          * @default "Please enter a valid email"
          */
         "emailStep_emailValidationErrorText": string;
         /**
           * @uiName Send code to email alert description
           * @uiGroup Email Verification Step
-          * @default "Please try again. If this problem continues, contact our program support team."
          */
         "emailStep_sendCodeErrorDescription": string;
         /**
           * @uiName Send code to email alert header
           * @uiGroup Email Verification Step
-          * @default "There was an error sending your code."
          */
         "emailStep_sendCodeErrorHeader": string;
         /**
           * @uiName Send code button text
           * @uiGroup Email Verification Step
-          * @default "Send code"
          */
         "emailStep_sendCodeText": string;
         /**
           * @uiName Verify email widget header text
           * @uiGroup Email Verification Step
-          * @default "Start by verifying your email. We’ll send you a code through our referral provider, impact.com."
          */
         "emailStep_verifyEmailHeaderText": string;
         /**
           * @uiName General verify widget description text
           * @uiGroup General Text
-          * @default "To get your cash paid out directly to your bank account, please complete your account setup"
          */
         "general_verifyEmailDescription": string;
         /**
           * @uiName General verify widget header text
           * @uiGroup General Text
-          * @default "Verify your email"
          */
         "general_verifyEmailHeader": string;
         /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
-          * @default "{}"
          */
         "stateController": string;
     }
-    /**
-     * @uiName Widget Verification Controller
-     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
-     * @exampleGroup Tax and Cash
-     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
-     * @canvasRenderer always-replace
-     */
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
           * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
-          * @default "{}"
          */
         "stateController": string;
     }
 }
-export interface SqmGoogleSignInCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLSqmGoogleSignInElement;
-}
 declare global {
-    /**
-     * @undocumented 
-     */
     interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
     }
     var HTMLRaisinsPlopTargetElement: {
         prototype: HTMLRaisinsPlopTargetElement;
         new (): HTMLRaisinsPlopTargetElement;
     };
-    /**
-     * @uiName Banking Information Form
-     * @exampleGroup Common Components
-     */
     interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
     }
     var HTMLSqmBankingInfoFormElement: {
         prototype: HTMLSqmBankingInfoFormElement;
         new (): HTMLSqmBankingInfoFormElement;
     };
-    /**
-     * @uiName User Stat
-     * @validParents ["sqm-stat-container"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"","title":"Stat Text"}]
-     * @uiOrder ["statType", "programId", "*"]
-     * @slotEditor richText
-     * @exampleGroup Statistics
-     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
-     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
-     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
-     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
-     */
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
-    /**
-     * @uiName Brand Container
-     * @slots [{"name":"","title":"Branded Content"}]
-     * @exampleGroup Common Components
-     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
-     */
     interface HTMLSqmBrandElement extends Components.SqmBrand, HTMLStencilElement {
     }
     var HTMLSqmBrandElement: {
@@ -8857,35 +7081,18 @@ declare global {
         prototype: HTMLSqmBrandSelectorElement;
         new (): HTMLSqmBrandSelectorElement;
     };
-    /**
-     * @uiName Card Feed
-     * @slots [{"name":"","title":"Cards"}]
-     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-task-card"]
-     * @exampleGroup Rewards
-     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
-     */
     interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
     }
     var HTMLSqmCardFeedElement: {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
-    /**
-     * @uiName Form Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
-     */
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmCheckboxFieldElement: {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
     };
-    /**
-     * @uiName Popup Widget Close Button
-     */
     interface HTMLSqmCloseButtonElement extends Components.SqmCloseButton, HTMLStencilElement {
     }
     var HTMLSqmCloseButtonElement: {
@@ -8898,239 +7105,120 @@ declare global {
         prototype: HTMLSqmCodeVerificationElement;
         new (): HTMLSqmCodeVerificationElement;
     };
-    /**
-     * @uiName Context Router
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
     var HTMLSqmContextRouterElement: {
         prototype: HTMLSqmContextRouterElement;
         new (): HTMLSqmContextRouterElement;
     };
-    /**
-     * @uiName Coupon Code
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
-     */
     interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
     }
     var HTMLSqmCouponCodeElement: {
         prototype: HTMLSqmCouponCodeElement;
         new (): HTMLSqmCouponCodeElement;
     };
-    /**
-     * Shows it's children as either a row or a column, with a division in between them.
-     * Spacing is left up to the child
-     * @uiName Divided Layout
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
-     * @exampleGroup Layout
-     * @slots [{"name":"", "title":"Layout Content"}]
-     */
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
-    /**
-     * @uiName DocuSign Document Submission
-     * @exampleGroup Tax and Cash Components
-     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
-     */
     interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
     }
     var HTMLSqmDocusignFormElement: {
         prototype: HTMLSqmDocusignFormElement;
         new (): HTMLSqmDocusignFormElement;
     };
-    /**
-     * @uiName Form Dropdown Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @slots [{"name":"", "title":"Drop Down Option"}]
-     * @exampleGroup Microsite Components
-     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
-     */
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
     var HTMLSqmDropdownFieldElement: {
         prototype: HTMLSqmDropdownFieldElement;
         new (): HTMLSqmDropdownFieldElement;
     };
-    /**
-     * @uiName Microsite Edit Profile
-     */
     interface HTMLSqmEditProfileElement extends Components.SqmEditProfile, HTMLStencilElement {
     }
     var HTMLSqmEditProfileElement: {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
-    /**
-     * @uiName Widget Verification Gate
-     */
     interface HTMLSqmEmailVerificationElement extends Components.SqmEmailVerification, HTMLStencilElement {
     }
     var HTMLSqmEmailVerificationElement: {
         prototype: HTMLSqmEmailVerificationElement;
         new (): HTMLSqmEmailVerificationElement;
     };
-    /**
-     * @uiName Empty State Content
-     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
-     */
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
     var HTMLSqmEmptyElement: {
         prototype: HTMLSqmEmptyElement;
         new (): HTMLSqmEmptyElement;
     };
-    /**
-     * @uiName Form Message
-     * @slots [{"name":"","title":"Message Content"}]
-     */
     interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
     }
     var HTMLSqmFormMessageElement: {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
-    interface HTMLSqmGoogleSignInElementEventMap {
-        "initComplete": any;
-    }
-    /**
-     * @uiName Google Sign-In Button
-     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
-     * @undocumented 
-     */
     interface HTMLSqmGoogleSignInElement extends Components.SqmGoogleSignIn, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLSqmGoogleSignInElementEventMap>(type: K, listener: (this: HTMLSqmGoogleSignInElement, ev: SqmGoogleSignInCustomEvent<HTMLSqmGoogleSignInElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLSqmGoogleSignInElementEventMap>(type: K, listener: (this: HTMLSqmGoogleSignInElement, ev: SqmGoogleSignInCustomEvent<HTMLSqmGoogleSignInElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLSqmGoogleSignInElement: {
         prototype: HTMLSqmGoogleSignInElement;
         new (): HTMLSqmGoogleSignInElement;
     };
-    /**
-     * @uiName GraphQL Client Provider
-     * @canvasRenderer always-replace
-     * @slots [{"name":"","title":"Provider Content"}]
-     */
     interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqmGraphqlClientProviderElement: {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
-    /**
-     * @uiName Header Logo
-     * @validParents ["sqm-portal-frame","div","sqm-brand"]
-     */
     interface HTMLSqmHeaderLogoElement extends Components.SqmHeaderLogo, HTMLStencilElement {
     }
     var HTMLSqmHeaderLogoElement: {
         prototype: HTMLSqmHeaderLogoElement;
         new (): HTMLSqmHeaderLogoElement;
     };
-    /**
-     * @uiName Hero Layout
-     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
-     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
-     * @exampleGroup Layout
-     */
     interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
     }
     var HTMLSqmHeroElement: {
         prototype: HTMLSqmHeroElement;
         new (): HTMLSqmHeroElement;
     };
-    /**
-     * @uiName Hero Image
-     * @validParents ["sqm-portal-container","sqm-brand", "div"]
-     * @exampleGroup Common Components
-     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
-     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
-     */
     interface HTMLSqmHeroImageElement extends Components.SqmHeroImage, HTMLStencilElement {
     }
     var HTMLSqmHeroImageElement: {
         prototype: HTMLSqmHeroImageElement;
         new (): HTMLSqmHeroImageElement;
     };
-    /**
-     * @undocumented 
-     */
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
         prototype: HTMLSqmHookStoryContainerElement;
         new (): HTMLSqmHookStoryContainerElement;
     };
-    /**
-     * @uiName Image
-     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
-     */
     interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
     }
     var HTMLSqmImageElement: {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
     };
-    /**
-     * @uiName Indirect Tax Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface HTMLSqmIndirectTaxFormElement extends Components.SqmIndirectTaxForm, HTMLStencilElement {
     }
     var HTMLSqmIndirectTaxFormElement: {
         prototype: HTMLSqmIndirectTaxFormElement;
         new (): HTMLSqmIndirectTaxFormElement;
     };
-    /**
-     * @uiName Form Input Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
-     */
     interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
     }
     var HTMLSqmInputFieldElement: {
         prototype: HTMLSqmInputFieldElement;
         new (): HTMLSqmInputFieldElement;
     };
-    /**
-     * @uiName Instant Access Registration
-     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface HTMLSqmInstantAccessRegistrationElement extends Components.SqmInstantAccessRegistration, HTMLStencilElement {
     }
     var HTMLSqmInstantAccessRegistrationElement: {
         prototype: HTMLSqmInstantAccessRegistrationElement;
         new (): HTMLSqmInstantAccessRegistrationElement;
     };
-    /**
-     * @uiName Invoice Table
-     * @exampleGroup Invoices
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
-     */
     interface HTMLSqmInvoiceTableElement extends Components.SqmInvoiceTable, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableElement: {
@@ -9143,10 +7231,6 @@ declare global {
         prototype: HTMLSqmInvoiceTableDataCellElement;
         new (): HTMLSqmInvoiceTableDataCellElement;
     };
-    /**
-     * @uiName Invoice Table Data Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface HTMLSqmInvoiceTableDataColumnElement extends Components.SqmInvoiceTableDataColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDataColumnElement: {
@@ -9159,12 +7243,6 @@ declare global {
         prototype: HTMLSqmInvoiceTableDateCellElement;
         new (): HTMLSqmInvoiceTableDateCellElement;
     };
-    /**
-     * @uiName Invoice Table Date Column
-     * @validParents ["sqm-invoice-table"]
-     * @exampleGroup Invoices
-     * @example Invoice Table Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
-     */
     interface HTMLSqmInvoiceTableDateColumnElement extends Components.SqmInvoiceTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDateColumnElement: {
@@ -9177,509 +7255,276 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadCellElement;
         new (): HTMLSqmInvoiceTableDownloadCellElement;
     };
-    /**
-     * @uiName Invoice Table Download Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface HTMLSqmInvoiceTableDownloadColumnElement extends Components.SqmInvoiceTableDownloadColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDownloadColumnElement: {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
-    /**
-     * @uiName Lead Form Checkbox Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface HTMLSqmLeadCheckboxFieldElement extends Components.SqmLeadCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmLeadCheckboxFieldElement: {
         prototype: HTMLSqmLeadCheckboxFieldElement;
         new (): HTMLSqmLeadCheckboxFieldElement;
     };
-    /**
-     * @uiName Lead Form Dropdown Field
-     * @validParents ["sqm-lead-form"]
-     * @slots [{"name":"", "title":"Dropdown Option"}]
-     */
     interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
     }
     var HTMLSqmLeadDropdownFieldElement: {
         prototype: HTMLSqmLeadDropdownFieldElement;
         new (): HTMLSqmLeadDropdownFieldElement;
     };
-    /**
-     * @uiName Lead Form
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"}]
-     */
     interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
     }
     var HTMLSqmLeadFormElement: {
         prototype: HTMLSqmLeadFormElement;
         new (): HTMLSqmLeadFormElement;
     };
-    /**
-     * @uiName Lead Form Input Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface HTMLSqmLeadInputFieldElement extends Components.SqmLeadInputField, HTMLStencilElement {
     }
     var HTMLSqmLeadInputFieldElement: {
         prototype: HTMLSqmLeadInputFieldElement;
         new (): HTMLSqmLeadInputFieldElement;
     };
-    /**
-     * @uiName Leaderboard
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @requiredFeatures ["LEADERBOARDS"]
-     * @exampleGroup Leaderboard
-     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Anonymous Leaderboard - <sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard>
-     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
-     */
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
         prototype: HTMLSqmLeaderboardElement;
         new (): HTMLSqmLeaderboardElement;
     };
-    /**
-     * @uiName Leaderboard Rank
-     */
     interface HTMLSqmLeaderboardRankElement extends Components.SqmLeaderboardRank, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
-    /**
-     * @uiName Link Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
-     */
     interface HTMLSqmLinkButtonElement extends Components.SqmLinkButton, HTMLStencilElement {
     }
     var HTMLSqmLinkButtonElement: {
         prototype: HTMLSqmLinkButtonElement;
         new (): HTMLSqmLinkButtonElement;
     };
-    /**
-     * @uiName Sign out current user
-     * @exampleGroup Instant Access
-     * @compatibility Built for instant access
-     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
-     */
     interface HTMLSqmLogoutCurrentUserElement extends Components.SqmLogoutCurrentUser, HTMLStencilElement {
     }
     var HTMLSqmLogoutCurrentUserElement: {
         prototype: HTMLSqmLogoutCurrentUserElement;
         new (): HTMLSqmLogoutCurrentUserElement;
     };
-    /**
-     * @uiName Marketing Emails Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface HTMLSqmMarketingEmailsCheckboxElement extends Components.SqmMarketingEmailsCheckbox, HTMLStencilElement {
     }
     var HTMLSqmMarketingEmailsCheckboxElement: {
         prototype: HTMLSqmMarketingEmailsCheckboxElement;
         new (): HTMLSqmMarketingEmailsCheckboxElement;
     };
-    /**
-     * @uiName Form Name Fields
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
-     */
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
     var HTMLSqmNameFieldsElement: {
         prototype: HTMLSqmNameFieldsElement;
         new (): HTMLSqmNameFieldsElement;
     };
-    /**
-     * @uiName Navigation Menu
-     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
-     */
     interface HTMLSqmNavigationMenuElement extends Components.SqmNavigationMenu, HTMLStencilElement {
     }
     var HTMLSqmNavigationMenuElement: {
         prototype: HTMLSqmNavigationMenuElement;
         new (): HTMLSqmNavigationMenuElement;
     };
-    /**
-     * @uiName Microsite Sidebar
-     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
-     * @validChildren ["sqm-navigation-sidebar-item"]
-     * @slots [{"name":"", "title":"Sidebar Content"}]
-     */
     interface HTMLSqmNavigationSidebarElement extends Components.SqmNavigationSidebar, HTMLStencilElement {
     }
     var HTMLSqmNavigationSidebarElement: {
         prototype: HTMLSqmNavigationSidebarElement;
         new (): HTMLSqmNavigationSidebarElement;
     };
-    /**
-     * @uiName Microsite Sidebar Item
-     * @validParents ["sqm-navigation-sidebar"]
-     * @exampleGroup Microsite Components
-     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
-     */
     interface HTMLSqmNavigationSidebarItemElement extends Components.SqmNavigationSidebarItem, HTMLStencilElement {
     }
     var HTMLSqmNavigationSidebarItemElement: {
         prototype: HTMLSqmNavigationSidebarItemElement;
         new (): HTMLSqmNavigationSidebarItemElement;
     };
-    /**
-     * @uiName Pagination
-     */
     interface HTMLSqmPaginationElement extends Components.SqmPagination, HTMLStencilElement {
     }
     var HTMLSqmPaginationElement: {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
     };
-    /**
-     * @uiName Form Password Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
-     */
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
     };
-    /**
-     * @uiName Payout Button Scroll
-     */
     interface HTMLSqmPayoutButtonScrollElement extends Components.SqmPayoutButtonScroll, HTMLStencilElement {
     }
     var HTMLSqmPayoutButtonScrollElement: {
         prototype: HTMLSqmPayoutButtonScrollElement;
         new (): HTMLSqmPayoutButtonScrollElement;
     };
-    /**
-     * @uiName Payout Details Card
-     * @exampleGroup Tax and Cash Components
-     */
     interface HTMLSqmPayoutDetailsCardElement extends Components.SqmPayoutDetailsCard, HTMLStencilElement {
     }
     var HTMLSqmPayoutDetailsCardElement: {
         prototype: HTMLSqmPayoutDetailsCardElement;
         new (): HTMLSqmPayoutDetailsCardElement;
     };
-    /**
-     * @uiName Payout Status Alert
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Tax and Cash
-     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
-     */
     interface HTMLSqmPayoutStatusAlertElement extends Components.SqmPayoutStatusAlert, HTMLStencilElement {
     }
     var HTMLSqmPayoutStatusAlertElement: {
         prototype: HTMLSqmPayoutStatusAlertElement;
         new (): HTMLSqmPayoutStatusAlertElement;
     };
-    /**
-     * @uiName Popup Container
-     * @slots [{"name":"","title":"Content"}]
-     * @canvasRenderer always-replace
-     */
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
     var HTMLSqmPopupContainerElement: {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
-    /**
-     * @uiName Change Marketing Opt in Status
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface HTMLSqmPortalChangeMarketingElement extends Components.SqmPortalChangeMarketing, HTMLStencilElement {
     }
     var HTMLSqmPortalChangeMarketingElement: {
         prototype: HTMLSqmPortalChangeMarketingElement;
         new (): HTMLSqmPortalChangeMarketingElement;
     };
-    /**
-     * @uiName Microsite Password Change
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
-     */
     interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
     }
     var HTMLSqmPortalChangePasswordElement: {
         prototype: HTMLSqmPortalChangePasswordElement;
         new (): HTMLSqmPortalChangePasswordElement;
     };
-    /**
-     * @uiName Container
-     * @slots [{"name":"", "title":"Widget Content"}]
-     * @exampleGroup Layout
-     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
-     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
-     */
     interface HTMLSqmPortalContainerElement extends Components.SqmPortalContainer, HTMLStencilElement {
     }
     var HTMLSqmPortalContainerElement: {
         prototype: HTMLSqmPortalContainerElement;
         new (): HTMLSqmPortalContainerElement;
     };
-    /**
-     * @uiName Microsite Email Verification
-     */
     interface HTMLSqmPortalEmailVerificationElement extends Components.SqmPortalEmailVerification, HTMLStencilElement {
     }
     var HTMLSqmPortalEmailVerificationElement: {
         prototype: HTMLSqmPortalEmailVerificationElement;
         new (): HTMLSqmPortalEmailVerificationElement;
     };
-    /**
-     * @uiName Footer
-     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
-     */
     interface HTMLSqmPortalFooterElement extends Components.SqmPortalFooter, HTMLStencilElement {
     }
     var HTMLSqmPortalFooterElement: {
         prototype: HTMLSqmPortalFooterElement;
         new (): HTMLSqmPortalFooterElement;
     };
-    /**
-     * @uiName Microsite Forgot Password
-     */
     interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalForgotPasswordElement: {
         prototype: HTMLSqmPortalForgotPasswordElement;
         new (): HTMLSqmPortalForgotPasswordElement;
     };
-    /**
-     * @uiName Microsite Frame
-     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
-     */
     interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
     }
     var HTMLSqmPortalFrameElement: {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
     };
-    /**
-     * @uiName Microsite Login
-     */
     interface HTMLSqmPortalGoogleLoginElement extends Components.SqmPortalGoogleLogin, HTMLStencilElement {
     }
     var HTMLSqmPortalGoogleLoginElement: {
         prototype: HTMLSqmPortalGoogleLoginElement;
         new (): HTMLSqmPortalGoogleLoginElement;
     };
-    /**
-     * @uiName Google Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface HTMLSqmPortalGoogleRegistrationFormElement extends Components.SqmPortalGoogleRegistrationForm, HTMLStencilElement {
     }
     var HTMLSqmPortalGoogleRegistrationFormElement: {
         prototype: HTMLSqmPortalGoogleRegistrationFormElement;
         new (): HTMLSqmPortalGoogleRegistrationFormElement;
     };
-    /**
-     * @uiName Microsite Login
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
-     */
     interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
     }
     var HTMLSqmPortalLoginElement: {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
     };
-    /**
-     * @uiName Microsite Logout
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @compatibility Built for instant access
-     */
     interface HTMLSqmPortalLogoutElement extends Components.SqmPortalLogout, HTMLStencilElement {
     }
     var HTMLSqmPortalLogoutElement: {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
     };
-    /**
-     * @uiName Microsite Participant Profile
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     */
     interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
     }
     var HTMLSqmPortalProfileElement: {
         prototype: HTMLSqmPortalProfileElement;
         new (): HTMLSqmPortalProfileElement;
     };
-    /**
-     * @uiName Microsite Protected Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
-     * @slots [{"name":"","title":"Route Content"}]
-     */
     interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
     }
     var HTMLSqmPortalProtectedRouteElement: {
         prototype: HTMLSqmPortalProtectedRouteElement;
         new (): HTMLSqmPortalProtectedRouteElement;
     };
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
     }
     var HTMLSqmPortalRegisterElement: {
         prototype: HTMLSqmPortalRegisterElement;
         new (): HTMLSqmPortalRegisterElement;
     };
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
-     */
     interface HTMLSqmPortalRegistrationFormElement extends Components.SqmPortalRegistrationForm, HTMLStencilElement {
     }
     var HTMLSqmPortalRegistrationFormElement: {
         prototype: HTMLSqmPortalRegistrationFormElement;
         new (): HTMLSqmPortalRegistrationFormElement;
     };
-    /**
-     * @uiName Microsite Reset Password
-     */
     interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalResetPasswordElement: {
         prototype: HTMLSqmPortalResetPasswordElement;
         new (): HTMLSqmPortalResetPasswordElement;
     };
-    /**
-     * @uiName Microsite Verify Email
-     */
     interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
     }
     var HTMLSqmPortalVerifyEmailElement: {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
-    /**
-     * @uiName Program Explainer
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-program-explainer-step"]
-     * @exampleGroup Common Components
-     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
-     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
-     */
     interface HTMLSqmProgramExplainerElement extends Components.SqmProgramExplainer, HTMLStencilElement {
     }
     var HTMLSqmProgramExplainerElement: {
         prototype: HTMLSqmProgramExplainerElement;
         new (): HTMLSqmProgramExplainerElement;
     };
-    /**
-     * @uiName Program Explainer Step
-     * @exampleGroup Common Components
-     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
-     * @validParents ["sqm-program-explainer"]
-     */
     interface HTMLSqmProgramExplainerStepElement extends Components.SqmProgramExplainerStep, HTMLStencilElement {
     }
     var HTMLSqmProgramExplainerStepElement: {
         prototype: HTMLSqmProgramExplainerStepElement;
         new (): HTMLSqmProgramExplainerStepElement;
     };
-    /**
-     * @uiName Microsite Program Menu
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @slots [{"name":"","title":"Menu Content"}]
-     * @canvasRenderer always-replace
-     */
     interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
     }
     var HTMLSqmProgramMenuElement: {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
-    /**
-     * @uiName QR Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Sharing
-     * @example QR Code - <sqm-qr-code></sqm-qr-code>
-     */
     interface HTMLSqmQrCodeElement extends Components.SqmQrCode, HTMLStencilElement {
     }
     var HTMLSqmQrCodeElement: {
         prototype: HTMLSqmQrCodeElement;
         new (): HTMLSqmQrCodeElement;
     };
-    /**
-     * @uiName Referral Card
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
-     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
-     */
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
         prototype: HTMLSqmReferralCardElement;
         new (): HTMLSqmReferralCardElement;
     };
-    /**
-     * @uiName Referral Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
-     * @exampleGroup Sharing
-     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
-     */
     interface HTMLSqmReferralCodeElement extends Components.SqmReferralCode, HTMLStencilElement {
     }
     var HTMLSqmReferralCodeElement: {
         prototype: HTMLSqmReferralCodeElement;
         new (): HTMLSqmReferralCodeElement;
     };
-    /**
-     * @uiName Promo Codes
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Promo Codes Content"}]
-     * @exampleGroup Sharing
-     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
-     */
     interface HTMLSqmReferralCodesElement extends Components.SqmReferralCodes, HTMLStencilElement {
     }
     var HTMLSqmReferralCodesElement: {
         prototype: HTMLSqmReferralCodesElement;
         new (): HTMLSqmReferralCodesElement;
     };
-    /**
-     * @uiName Referral IFrame
-     */
     interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
     }
     var HTMLSqmReferralIframeElement: {
         prototype: HTMLSqmReferralIframeElement;
         new (): HTMLSqmReferralIframeElement;
     };
-    /**
-     * @uiName Referral Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
-     */
     interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
     }
     var HTMLSqmReferralTableElement: {
@@ -9692,10 +7537,6 @@ declare global {
         prototype: HTMLSqmReferralTableCellElement;
         new (): HTMLSqmReferralTableCellElement;
     };
-    /**
-     * @uiName Referral Table Generic Column
-     * @validParents ["sqm-referral-table"]
-     */
     interface HTMLSqmReferralTableColumnElement extends Components.SqmReferralTableColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableColumnElement: {
@@ -9708,12 +7549,6 @@ declare global {
         prototype: HTMLSqmReferralTableDateCellElement;
         new (): HTMLSqmReferralTableDateCellElement;
     };
-    /**
-     * @uiName Referral Table Date Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
-     */
     interface HTMLSqmReferralTableDateColumnElement extends Components.SqmReferralTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableDateColumnElement: {
@@ -9726,12 +7561,6 @@ declare global {
         prototype: HTMLSqmReferralTableRewardsCellElement;
         new (): HTMLSqmReferralTableRewardsCellElement;
     };
-    /**
-     * @uiName Referral Table Rewards Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
-     */
     interface HTMLSqmReferralTableRewardsColumnElement extends Components.SqmReferralTableRewardsColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableRewardsColumnElement: {
@@ -9744,12 +7573,6 @@ declare global {
         prototype: HTMLSqmReferralTableStatusCellElement;
         new (): HTMLSqmReferralTableStatusCellElement;
     };
-    /**
-     * @uiName Referral Table Status Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
-     */
     interface HTMLSqmReferralTableStatusColumnElement extends Components.SqmReferralTableStatusColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableStatusColumnElement: {
@@ -9762,53 +7585,24 @@ declare global {
         prototype: HTMLSqmReferralTableUserCellElement;
         new (): HTMLSqmReferralTableUserCellElement;
     };
-    /**
-     * @uiName Referral Table User Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column>
-     */
     interface HTMLSqmReferralTableUserColumnElement extends Components.SqmReferralTableUserColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableUserColumnElement: {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
-    /**
-     * @uiName Instant Access Friend Registration
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface HTMLSqmReferredRegistrationElement extends Components.SqmReferredRegistration, HTMLStencilElement {
     }
     var HTMLSqmReferredRegistrationElement: {
         prototype: HTMLSqmReferredRegistrationElement;
         new (): HTMLSqmReferredRegistrationElement;
     };
-    /**
-     * @uiName Reward Exchange
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-empty"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @exampleGroup Rewards
-     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
-     */
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
         prototype: HTMLSqmRewardExchangeListElement;
         new (): HTMLSqmRewardExchangeListElement;
     };
-    /**
-     * @uiName Reward Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Rewards
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
-     */
     interface HTMLSqmRewardsTableElement extends Components.SqmRewardsTable, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableElement: {
@@ -9821,12 +7615,6 @@ declare global {
         prototype: HTMLSqmRewardsTableCustomerNoteCellElement;
         new (): HTMLSqmRewardsTableCustomerNoteCellElement;
     };
-    /**
-     * @uiName Reward Table Customer Note Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
-     */
     interface HTMLSqmRewardsTableCustomerNoteColumnElement extends Components.SqmRewardsTableCustomerNoteColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableCustomerNoteColumnElement: {
@@ -9839,12 +7627,6 @@ declare global {
         prototype: HTMLSqmRewardsTableDateCellElement;
         new (): HTMLSqmRewardsTableDateCellElement;
     };
-    /**
-     * @uiName Reward Table Date Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
-     */
     interface HTMLSqmRewardsTableDateColumnElement extends Components.SqmRewardsTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableDateColumnElement: {
@@ -9857,12 +7639,6 @@ declare global {
         prototype: HTMLSqmRewardsTableRewardCellElement;
         new (): HTMLSqmRewardsTableRewardCellElement;
     };
-    /**
-     * @uiName Rewards Table Reward Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
-     */
     interface HTMLSqmRewardsTableRewardColumnElement extends Components.SqmRewardsTableRewardColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableRewardColumnElement: {
@@ -9875,12 +7651,6 @@ declare global {
         prototype: HTMLSqmRewardsTableSourceCellElement;
         new (): HTMLSqmRewardsTableSourceCellElement;
     };
-    /**
-     * @uiName Reward Table Source Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
-     */
     interface HTMLSqmRewardsTableSourceColumnElement extends Components.SqmRewardsTableSourceColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableSourceColumnElement: {
@@ -9893,306 +7663,150 @@ declare global {
         prototype: HTMLSqmRewardsTableStatusCellElement;
         new (): HTMLSqmRewardsTableStatusCellElement;
     };
-    /**
-     * @uiName Reward Table Status Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
-     */
     interface HTMLSqmRewardsTableStatusColumnElement extends Components.SqmRewardsTableStatusColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableStatusColumnElement: {
         prototype: HTMLSqmRewardsTableStatusColumnElement;
         new (): HTMLSqmRewardsTableStatusColumnElement;
     };
-    /**
-     * @uiName Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
-     * @slots [{"name":"","title":"Content"}]
-     */
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
         prototype: HTMLSqmRouteElement;
         new (): HTMLSqmRouteElement;
     };
-    /**
-     * @uiName Router
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-route"]
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface HTMLSqmRouterElement extends Components.SqmRouter, HTMLStencilElement {
     }
     var HTMLSqmRouterElement: {
         prototype: HTMLSqmRouterElement;
         new (): HTMLSqmRouterElement;
     };
-    /**
-     * @uiName Scroll Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     */
     interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
     }
     var HTMLSqmScrollElement: {
         prototype: HTMLSqmScrollElement;
         new (): HTMLSqmScrollElement;
     };
-    /**
-     * @uiName Share Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
-     * @exampleGroup Sharing
-     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
-     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
-     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
-     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
-     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
-     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
-     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
-     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
-     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
-     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
-     */
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
         prototype: HTMLSqmShareButtonElement;
         new (): HTMLSqmShareButtonElement;
     };
-    /**
-     * @uiName Share Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @exampleGroup Sharing
-     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
-     */
     interface HTMLSqmShareCodeElement extends Components.SqmShareCode, HTMLStencilElement {
     }
     var HTMLSqmShareCodeElement: {
         prototype: HTMLSqmShareCodeElement;
         new (): HTMLSqmShareCodeElement;
     };
-    /**
-     * @uiName Share Link
-     * @exampleGroup Sharing
-     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
-     */
     interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
     }
     var HTMLSqmShareLinkElement: {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
-    /**
-     * @uiName Stat Container
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-big-stat"]
-     * @slots [{"name":"", "title":"Stats"}]
-     * @exampleGroup Statistics
-     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
-     */
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
         prototype: HTMLSqmStatContainerElement;
         new (): HTMLSqmStatContainerElement;
     };
-    /**
-     * For internal documentation
-     * @undocumented 
-     */
     interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
     }
     var HTMLSqmStencilbookElement: {
         prototype: HTMLSqmStencilbookElement;
         new (): HTMLSqmStencilbookElement;
     };
-    /**
-     * @uiName Tab
-     * @slots [{"name":"", "title":"Tab Content"}]
-     * @validParents ["sqm-tabs"]
-     * @exampleGroup Layout
-     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
-     */
     interface HTMLSqmTabElement extends Components.SqmTab, HTMLStencilElement {
     }
     var HTMLSqmTabElement: {
         prototype: HTMLSqmTabElement;
         new (): HTMLSqmTabElement;
     };
-    /**
-     * @uiName Table Cell
-     * @slots [{"name":"", "title":"Cell Content"}]
-     */
     interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
     }
     var HTMLSqmTableCellElement: {
         prototype: HTMLSqmTableCellElement;
         new (): HTMLSqmTableCellElement;
     };
-    /**
-     * @uiName Table Row
-     * @slots [{"name":"", "title":"Row Content"}]
-     */
     interface HTMLSqmTableRowElement extends Components.SqmTableRow, HTMLStencilElement {
     }
     var HTMLSqmTableRowElement: {
         prototype: HTMLSqmTableRowElement;
         new (): HTMLSqmTableRowElement;
     };
-    /**
-     * @uiName Tab Group
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-tab"]
-     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
-     * @exampleGroup Layout
-     * @canvasRenderer always-replace
-     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
-     */
     interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {
     }
     var HTMLSqmTabsElement: {
         prototype: HTMLSqmTabsElement;
         new (): HTMLSqmTabsElement;
     };
-    /**
-     * @uiName Task Card
-     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
-     * @validParents ["sqm-card-feed"]
-     */
     interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
     }
     var HTMLSqmTaskCardElement: {
         prototype: HTMLSqmTaskCardElement;
         new (): HTMLSqmTaskCardElement;
     };
-    /**
-     * @uiName Tax and Cash
-     * @exampleGroup Tax and Cash
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
-     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
-     */
     interface HTMLSqmTaxAndCashElement extends Components.SqmTaxAndCash, HTMLStencilElement {
     }
     var HTMLSqmTaxAndCashElement: {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
-    /**
-     * @uiName Tax and Cash Status Dashboard
-     */
     interface HTMLSqmTaxAndCashDashboardElement extends Components.SqmTaxAndCashDashboard, HTMLStencilElement {
     }
     var HTMLSqmTaxAndCashDashboardElement: {
         prototype: HTMLSqmTaxAndCashDashboardElement;
         new (): HTMLSqmTaxAndCashDashboardElement;
     };
-    /**
-     * @uiName Text
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @slots [{"name":"", "title":"Text"}]
-     * @slotEditor richText
-     * @canvasRenderer always-replace
-     */
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
         prototype: HTMLSqmTextElement;
         new (): HTMLSqmTextElement;
     };
-    /**
-     * @uiName Text Span
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
-     * @canvasRenderer always-replace
-     */
     interface HTMLSqmTextSpanElement extends Components.SqmTextSpan, HTMLStencilElement {
     }
     var HTMLSqmTextSpanElement: {
         prototype: HTMLSqmTextSpanElement;
         new (): HTMLSqmTextSpanElement;
     };
-    /**
-     * @uiName Program Timeline
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-timeline-entry"]
-     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
-     * @exampleGroup Common Components
-     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
-     */
     interface HTMLSqmTimelineElement extends Components.SqmTimeline, HTMLStencilElement {
     }
     var HTMLSqmTimelineElement: {
         prototype: HTMLSqmTimelineElement;
         new (): HTMLSqmTimelineElement;
     };
-    /**
-     * @uiName Program Timeline Entry
-     * @validParents ["sqm-timeline"]
-     * @exampleGroup Common Components
-     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
-     */
     interface HTMLSqmTimelineEntryElement extends Components.SqmTimelineEntry, HTMLStencilElement {
     }
     var HTMLSqmTimelineEntryElement: {
         prototype: HTMLSqmTimelineEntryElement;
         new (): HTMLSqmTimelineEntryElement;
     };
-    /**
-     * @uiName Titled Section
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
-     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
-     * @exampleGroup Layout
-     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
-     */
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
     var HTMLSqmTitledSectionElement: {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
-    /**
-     * @uiName User Information Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface HTMLSqmUserInfoFormElement extends Components.SqmUserInfoForm, HTMLStencilElement {
     }
     var HTMLSqmUserInfoFormElement: {
         prototype: HTMLSqmUserInfoFormElement;
         new (): HTMLSqmUserInfoFormElement;
     };
-    /**
-     * @uiName User Name
-     * @exampleGroup Common Components
-     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
-     */
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
         prototype: HTMLSqmUserNameElement;
         new (): HTMLSqmUserNameElement;
     };
-    /**
-     * @uiName Widget Verification Flow
-     */
     interface HTMLSqmWidgetVerificationElement extends Components.SqmWidgetVerification, HTMLStencilElement {
     }
     var HTMLSqmWidgetVerificationElement: {
         prototype: HTMLSqmWidgetVerificationElement;
         new (): HTMLSqmWidgetVerificationElement;
     };
-    /**
-     * @uiName Widget Verification Controller
-     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
-     * @exampleGroup Tax and Cash
-     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
-     * @canvasRenderer always-replace
-     */
     interface HTMLSqmWidgetVerificationControllerElement extends Components.SqmWidgetVerificationController, HTMLStencilElement {
     }
     var HTMLSqmWidgetVerificationControllerElement: {
@@ -10330,112 +7944,86 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    /**
-     * @undocumented 
-     */
     interface RaisinsPlopTarget {
     }
-    /**
-     * @uiName Banking Information Form
-     * @exampleGroup Common Components
-     */
     interface SqmBankingInfoForm {
         /**
           * @uiName Agency code field label
-          * @default "Agency code"
          */
         "agencyCodeLabel"?: string;
         /**
           * Text for the back button in the form
           * @uiName Back button label
-          * @default "Back"
          */
         "backButton"?: string;
         /**
           * @uiName Bank account number field label
-          * @default "Bank account number"
          */
         "bankAccountNumberLabel"?: string;
         /**
           * @uiName Bank account type field label
-          * @default "Bank account type"
          */
         "bankAccountTypeLabel"?: string;
         /**
           * @uiName Bank address field label
-          * @default "Bank address"
          */
         "bankAddressLabel"?: string;
         /**
           * @uiName Bank city field label
-          * @default "Bank city"
          */
         "bankCityLabel"?: string;
         /**
           * @uiName Bank country field label
-          * @default "Bank country location"
          */
         "bankLocationLabel"?: string;
         /**
           * @uiName Bank name field label
-          * @default "Bank Name"
          */
         "bankNameLabel"?: string;
         /**
           * @uiName Bank postal code field label
-          * @default "Bank postal code"
          */
         "bankPostalCodeLabel"?: string;
         /**
           * @uiName Bank province/state field label
-          * @default "Bank province/state"
          */
         "bankStateLabel"?: string;
         /**
           * @uiName Beneficiary account field description
-          * @default "The beneficiary name of your bank account. Ensure this matches the name on your tax form."
          */
         "beneficiaryAccountNameDescription"?: string;
         /**
           * @uiName Beneficiary account field label
-          * @default "Account holder name"
          */
         "beneficiaryAccountNameLabel"?: string;
         /**
           * @uiName Branch code field label
-          * @default "Branch code"
          */
         "branchCodeLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
-          * @default "Business"
          */
         "businessSelectItemLabel"?: string;
         /**
           * @uiName Checking account option
-          * @default "Checking"
          */
         "checkingSelectItemLabel"?: string;
         /**
           * @uiName Classification CPF field label
-          * @default "Classification CPF"
          */
         "classificationCPFLabel"?: string;
         /**
           * @uiName Classification entity field label
-          * @default "Classification Entity"
          */
         "classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
           * @uiName Classification field label
-          * @default "Classification"
          */
         "classificationLabel"?: string;
         /**
           * @uiName Continue button label
-          * @default "Save"
          */
         "continueButton"?: string;
         /**
@@ -10445,248 +8033,194 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<BankingInfoFormViewProps>;
         /**
           * @uiName Direct to bank payout option
-          * @default "Directly to my bank account"
          */
         "directlyToBankAccount"?: string;
         /**
           * Default payment method to the participants’ bank account.
           * @uiName EFT withdrawal payment method
-          * @default "EFT withdrawal (free)"
          */
         "eftWithdrawalLabel"?: string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError"?: string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Foreign classification option
-          * @default "Foreign"
          */
         "foreignSelectItemLabel"?: string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep"?: string;
         /**
           * @uiName FX Wire Processing fee text
-          * @default "FX Wire (Processing Fee {currency}{defaultFxFee}.00)"
          */
         "fxWireProcessingFeeLabel"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * @uiName IBAN field label
-          * @default "IBAN"
          */
         "ibanLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Individual classification option
-          * @default "Individual"
          */
         "individualSelectItemLabel"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact Support."
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Information modal button text
-          * @default "I understand, update my information"
          */
         "modalButtonText"?: string;
         /**
           * @uiName Information modal description text
-          * @default "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
          */
         "modalDescription"?: string;
         /**
           * @uiName Information modal title
-          * @default "Important Note"
          */
         "modalTitle"?: string;
         /**
           * @uiName Patronymic name field label
-          * @default "Patronymic name"
          */
         "patronymicNameLabel"?: string;
         /**
           * Displayed to participants who choose PayPal as their payout method
           * @uiName PayPal email field label
-          * @default "PayPal email"
          */
         "payPalInputLabel"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
-          * @default "15th of the month"
          */
         "paymentDayFifteenthOfMonthLabelText"?: string;
         /**
           * One of two payment day options
           * @uiName First of month payday option
-          * @default "1st of the month"
          */
         "paymentDayFirstOfMonthLabelText"?: string;
         /**
           * Let the participant choose what day of the month they’ll get paid
           * @uiName Payment day field label
-          * @default "Payment Day"
          */
         "paymentDaySelectLabel"?: string;
         /**
           * @uiName Payment method section header
-          * @default "Payment method"
          */
         "paymentMethod"?: string;
         /**
           * @uiName Payment method section description
-          * @default "Payouts will be sent from our referral program provider, impact.com."
          */
         "paymentMethodSubtext"?: string;
         /**
           * @uiName Payment schedule section header
-          * @default "Payment schedule"
          */
         "paymentSchedule"?: string;
         /**
           * @uiName Threshold balance payment schedule option
-          * @default "Pay me when my balance reaches a threshold"
          */
         "paymentScheduleBalanceThreshold"?: string;
         /**
           * @uiName Fixed day payment schedule option
-          * @default "Pay me on a fixed day of the month"
          */
         "paymentScheduleFixedDay"?: string;
         /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
-          * @default "Payment Threshold"
          */
         "paymentThresholdSelectLabel"?: string;
         /**
           * @uiName Routing code field label
-          * @default "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }"
          */
         "routingCodeLabel"?: string;
         /**
           * @uiName Savings account options
-          * @default "Savings"
          */
         "savingsSelectItemLabel"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * @uiName SWIFT code field label
-          * @default "SWIFT code"
          */
         "swiftCodeLabel"?: string;
         /**
           * @uiName Step 4 title
-          * @default "Payouts"
          */
         "taxAndPayouts"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Taxpayer ID field label
-          * @default "{country, select, AR {CUIT/CUIL} KR {Classification ID} other { Beneficiary INN } }"
          */
         "taxPayerIdLabel"?: string;
         /**
           * @uiName PayPal payout option
-          * @default "PayPal (2% processing fee capped to {feeCap})"
          */
         "toPayPalAccount"?: string;
         /**
           * @uiName Verify code widget header text
-          * @default "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com."
          */
         "verifyEmailDescriptionText"?: string;
         /**
           * Text for verify email dialog
           * @uiName Verify email header
-          * @default "Verify your email"
          */
         "verifyEmailHeaderText"?: string;
         /**
           * @uiName VO code field label
-          * @default "VO code"
          */
         "voCodeLabel"?: string;
     }
-    /**
-     * @uiName User Stat
-     * @validParents ["sqm-stat-container"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"","title":"Stat Text"}]
-     * @uiOrder ["statType", "programId", "*"]
-     * @slotEditor richText
-     * @exampleGroup Statistics
-     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
-     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
-     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
-     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
-     */
     interface SqmBigStat {
         /**
           * Controls the alignment of the flexbox
@@ -10695,7 +8229,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
           * @uiGroup Additional Settings
-          * @default "center"
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -10765,12 +8298,6 @@ declare namespace LocalJSX {
          */
         "statType"?: string;
     }
-    /**
-     * @uiName Brand Container
-     * @slots [{"name":"","title":"Branded Content"}]
-     * @exampleGroup Common Components
-     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
-     */
     interface SqmBrand {
         /**
           * Controls the primary brand color used in the Mint Components library.
@@ -10788,49 +8315,30 @@ declare namespace LocalJSX {
     }
     interface SqmBrandSelector {
     }
-    /**
-     * @uiName Card Feed
-     * @slots [{"name":"","title":"Cards"}]
-     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-task-card"]
-     * @exampleGroup Rewards
-     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
-     */
     interface SqmCardFeed {
         /**
           * @uiName Column gap
           * @uiType number
-          * @default 24
          */
         "gap"?: number;
         /**
           * @uiName Card width
-          * @default 347
          */
         "width"?: number;
     }
-    /**
-     * @uiName Form Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
-     */
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "By signing up you agree to the {labelLink}"
          */
         "checkboxLabel"?: string;
         /**
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
-          * @default "https://example.com"
          */
         "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
-          * @default "Terms and Conditions"
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -10841,7 +8349,6 @@ declare namespace LocalJSX {
         "checkboxName"?: string;
         /**
           * @uiName Optional
-          * @default false
          */
         "checkboxOptional"?: boolean;
         /**
@@ -10851,19 +8358,14 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
           * @uiName Unchecked error message
-          * @default "Must be checked"
          */
         "errorMessage"?: string;
     }
-    /**
-     * @uiName Popup Widget Close Button
-     */
     interface SqmCloseButton {
         /**
           * @uiName Color
           * @uiWidget color
           * @uiType string
-          * @default "#000000"
          */
         "color"?: string;
     }
@@ -10871,7 +8373,6 @@ declare namespace LocalJSX {
         /**
           * Link text displayed under verify button
           * @uiName Resend code text
-          * @default "Another code has been sent to {email}"
          */
         "codeResentSuccessfullyText"?: string;
         /**
@@ -10882,13 +8383,11 @@ declare namespace LocalJSX {
         /**
           * Error text displayed under verification input
           * @uiName Invalid code text
-          * @default "Please check your code and try again. If you’re still having trouble, try resending your code."
          */
         "invalidCodeText"?: string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "networkErrorMessage"?: string;
         /**
@@ -10898,45 +8397,29 @@ declare namespace LocalJSX {
         /**
           * The link that appears in the resend code link
           * @uiName Resend code label
-          * @default "Resend code"
          */
         "resendCodeLabel"?: string;
         /**
           * Text displayed under verify button
           * @uiName Resend code text
-          * @default "Didn't receive your code? {resendCodeLink}"
          */
         "resendCodeText"?: string;
         /**
           * @uiName Reverify code widget header text
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "reverifyCodeHeaderText"?: string;
         /**
           * @uiName Verify code widget header text
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "verifyCodeHeaderText"?: string;
         /**
           * @uiName Verify code button text
-          * @default "Verify"
          */
         "verifyText"?: string;
     }
-    /**
-     * @uiName Context Router
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface SqmContextRouter {
         "contextName"?: string;
     }
-    /**
-     * @uiName Coupon Code
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
-     */
     interface SqmCouponCode {
         /**
           * Background color of share link container
@@ -10968,7 +8451,6 @@ declare namespace LocalJSX {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -10978,7 +8460,6 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -10986,7 +8467,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Cancelled code error message
           * @uiGroup Coupon code error
-          * @default "This code has been cancelled. Please reach out to the Support team for help resolving this issue."
          */
         "cancelledErrorText"?: string;
         /**
@@ -10994,7 +8474,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Code sync error retry message
           * @uiGroup Coupon code error
-          * @default "We're experiencing an issue generating your coupon code. If it doesn't appear shortly, please contact {supportEmail}. Retrying in {timeRemaining} seconds."
          */
         "codeSyncErrorRetryText"?: string;
         /**
@@ -11002,24 +8481,20 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Code sync error message
           * @uiGroup Coupon code error
-          * @default "We're still experiencing an issue generating your coupon code. Please contact {supportEmail} for assistance."
          */
         "codeSyncErrorText"?: string;
         /**
           * @uiName Copy button label
-          * @default "Copy Coupon"
          */
         "copyButtonLabel"?: string;
         /**
           * @uiName Coupon code label
-          * @default "Your coupon code:"
          */
         "couponCodeLabel"?: string;
         /**
           * Display this text when the coupon code can’t be retrieved.
           * @uiName Coupon code placeholder
           * @uiGroup Coupon code error
-          * @default "..."
          */
         "couponCodePlaceholder"?: string;
         /**
@@ -11032,7 +8507,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Expired code error message
           * @uiGroup Coupon code error
-          * @default "Looks like this code has expired. Please reach out to the Support team for help resolving this issue."
          */
         "expiredErrorText"?: string;
         /**
@@ -11040,7 +8514,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Code fulfillment error message
           * @uiGroup Coupon code error
-          * @default "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
          */
         "fullfillmentErrorText"?: string;
         /**
@@ -11048,7 +8521,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Code retrieval error message
           * @uiGroup Coupon code error
-          * @default "We couldn't fetch your code. Please try again later or reach out to the Support team for help resolving this issue."
          */
         "genericErrorText"?: string;
         /**
@@ -11056,7 +8528,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Code pending error message
           * @uiGroup Coupon code error
-          * @default "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!"
          */
         "pendingErrorText"?: string;
         /**
@@ -11070,7 +8541,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
           * @uiName Redeemed code error message
           * @uiGroup Coupon code error
-          * @default "Looks like you’ve already redeemed this code."
          */
         "redeemedErrorText"?: string;
         /**
@@ -11079,7 +8549,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -11093,30 +8562,19 @@ declare namespace LocalJSX {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan"?: number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard.
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext"?: string;
     }
-    /**
-     * Shows it's children as either a row or a column, with a division in between them.
-     * Spacing is left up to the child
-     * @uiName Divided Layout
-     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
-     * @exampleGroup Layout
-     * @slots [{"name":"", "title":"Layout Content"}]
-     */
     interface SqmDividedLayout {
         /**
           * Background color of the divider
           * @uiName Background Color
           * @uiWidget color
-          * @default "#FFFFFF"
          */
         "backgroundColor"?: string;
         /**
@@ -11141,20 +8599,13 @@ declare namespace LocalJSX {
         /**
           * @undocumented Uses Shorthand CSS border syntax allowing specification of thickness, fill style and color.
           * @uiName Border style
-          * @default "var(--sqm-border-thickness) solid var(--sqm-border-color)"
          */
         "dividerStyle"?: string;
     }
-    /**
-     * @uiName DocuSign Document Submission
-     * @exampleGroup Tax and Cash Components
-     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
-     */
     interface SqmDocusignForm {
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
-          * @default "I represent a business"
          */
         "businessEntity"?: string;
         /**
@@ -11166,144 +8617,115 @@ declare namespace LocalJSX {
           * This appears inside the Docusign frame.
           * @uiName Docusign form error message
           * @uiWidget textArea
-          * @default "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}."
          */
         "docusignError"?: string;
         /**
           * This appears inside the Docusign frame.
           * @uiName Docusign session expired messag
           * @uiWidget textArea
-          * @default "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue."
          */
         "docusignExpired"?: string;
         /**
           * Remind participants their session will time out after 20 minutes of inactivity.
           * @uiName Docusign timed session message
           * @uiWidget textArea
-          * @default "For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
          */
         "docusignSessionWarning"?: string;
         /**
           * Exit button text displayed at the end of the Comply Exchange form flow
           * @uiName Exit button text
-          * @default "Exit"
          */
         "exitButton"?: string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
-          * @default "I am an individual participant"
          */
         "individualParticipant"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Information modal button text
-          * @default "I understand"
          */
         "modalButtonText"?: string;
         /**
           * @uiName Information modal description text
-          * @default "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout."
          */
         "modalDescription"?: string;
         /**
           * @uiName Information modal title
-          * @default "Important Note"
          */
         "modalTitle"?: string;
         /**
           * @uiName Participant type field label
-          * @default "Participant type"
          */
         "participantType"?: string;
         /**
           * @uiName Refresh page button label
-          * @default "Refresh Page"
          */
         "refreshButton"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription"?: string;
         /**
           * @uiName Step 3 title
-          * @default "Tax form"
          */
         "taxForm"?: string;
         /**
           * Displayed at the top of the page to participants based in the US.
           * @uiName W-9 tax form description
           * @uiWidget textArea
-          * @default "Participants based in the US need to submit a {documentType} form."
          */
         "taxFormDescription"?: string;
         /**
           * Displayed at the top of the page to participants representing a business.
           * @uiName W-8 BEN-E tax form description
           * @uiWidget textArea
-          * @default "Participants residing outside of the US working with a US Brand need to submit a {documentType} form."
          */
         "taxFormDescriptionBusinessEntity"?: string;
         /**
           * Displayed at the top of the page to individuals joining a US program who reside outside the country.
           * @uiName W-8 BEN tax form description
           * @uiWidget textArea
-          * @default "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form."
          */
         "taxFormDescriptionIndividualParticipant"?: string;
         /**
           * Display the type of tax form that the participant must submit.
           * @uiName Tax form name
-          * @default "{documentType} Tax Form"
          */
         "taxFormLabel"?: string;
     }
-    /**
-     * @uiName Form Dropdown Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @slots [{"name":"", "title":"Drop Down Option"}]
-     * @exampleGroup Microsite Components
-     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
-     */
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -11312,7 +8734,6 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
           * @uiName Dropdown label
-          * @default "Select an option"
          */
         "dropdownLabel"?: string;
         /**
@@ -11328,13 +8749,9 @@ declare namespace LocalJSX {
         "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
-          * @default "Select an option"
          */
         "errorMessage"?: string;
     }
-    /**
-     * @uiName Microsite Edit Profile
-     */
     interface SqmEditProfile {
         /**
           * @uiName Cancel button text
@@ -11360,7 +8777,6 @@ declare namespace LocalJSX {
         "editprofiletext"?: string;
         /**
           * @uiName Empty field error message
-          * @default "Cannot be empty"
          */
         "fieldEmptyText"?: string;
         /**
@@ -11369,7 +8785,6 @@ declare namespace LocalJSX {
         "firstnametext"?: string;
         /**
           * @uiName Form error message
-          * @default "Please correct the errors below to update your profile."
          */
         "formErrorText"?: string;
         /**
@@ -11378,7 +8793,6 @@ declare namespace LocalJSX {
         "lastnametext"?: string;
         /**
           * @uiName Network error message
-          * @default "Network request failed."
          */
         "networkErrorMessage"?: string;
         /**
@@ -11391,9 +8805,6 @@ declare namespace LocalJSX {
          */
         "updatetext"?: string;
     }
-    /**
-     * @uiName Widget Verification Gate
-     */
     interface SqmEmailVerification {
         /**
           * @undocumented 
@@ -11402,44 +8813,33 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<WidgetEmailVerificationViewProps>;
         /**
           * @uiName Email input label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName Send code button text
-          * @default "Please enter a valid email"
          */
         "emailValidationErrorText"?: string;
         /**
           * @uiName Send code to email alert description
-          * @default "Please try again. If this problem continues, contact our program {supportLink}."
          */
         "sendCodeErrorDescription"?: string;
         /**
           * @uiName Send code to email alert header
-          * @default "There was an error sending your code"
          */
         "sendCodeErrorHeader"?: string;
         /**
           * @uiName Send code button text
-          * @default "Send code"
          */
         "sendCodeText"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * @uiName Verify email widget header text
-          * @default "Start by verifying your email. We’ll send you a code through our referral provider, impact.com."
          */
         "verifyEmailHeaderText"?: string;
     }
-    /**
-     * @uiName Empty State Content
-     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
-     */
     interface SqmEmpty {
         /**
           * @uiName Title
@@ -11449,7 +8849,6 @@ declare namespace LocalJSX {
           * @uiWidget ImageUpload
           * @format url
           * @uiName Image
-          * @default "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
          */
         "emptyStateImage"?: string;
         /**
@@ -11463,10 +8862,6 @@ declare namespace LocalJSX {
          */
         "supportText"?: string;
     }
-    /**
-     * @uiName Form Message
-     * @slots [{"name":"","title":"Message Content"}]
-     */
     interface SqmFormMessage {
         /**
           * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
@@ -11475,7 +8870,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Render the alert with transparent styles
-          * @default false
          */
         "transparent"?: boolean;
         /**
@@ -11484,41 +8878,23 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
-    /**
-     * @uiName Google Sign-In Button
-     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
-     * @undocumented 
-     */
     interface SqmGoogleSignIn {
-        /**
-          * @default null
-         */
         "googleButtonDiv"?: HTMLElement | null;
-        "onInitComplete"?: (event: SqmGoogleSignInCustomEvent<any>) => void;
+        "onInitComplete"?: (event: CustomEvent<any>) => void;
         /**
           * @uiName Button text
          */
         "text"?: string;
     }
-    /**
-     * @uiName GraphQL Client Provider
-     * @canvasRenderer always-replace
-     * @slots [{"name":"","title":"Provider Content"}]
-     */
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
          */
         "domain"?: string;
     }
-    /**
-     * @uiName Header Logo
-     * @validParents ["sqm-portal-frame","div","sqm-brand"]
-     */
     interface SqmHeaderLogo {
         /**
           * @uiName Logo height (in px)
-          * @default 60
          */
         "height"?: number;
         /**
@@ -11535,30 +8911,20 @@ declare namespace LocalJSX {
         /**
           * @uiWidget color
           * @uiName Logo text color
-          * @default "var(--sqm-primary-color, var(--sqm-text, #555555))"
          */
         "logoTextColor"?: string;
         /**
           * @uiName Logo text size (in px)
           * @uiWidget number
-          * @default 32
          */
         "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
     }
-    /**
-     * @uiName Hero Layout
-     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
-     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
-     * @exampleGroup Layout
-     */
     interface SqmHero {
         /**
           * Splash image or background color (for use in the left column)
@@ -11571,27 +8937,23 @@ declare namespace LocalJSX {
           * @uiName Hide the column in mobile view
           * @uiEnum ["primary", "secondary", "null"]
           * @uiEnumNames ["Primary", "Secondary", "None"]
-          * @default null
          */
         "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
           * @uiEnumNames ["One", "Two"]
-          * @default 1
          */
         "columns"?: 1 | 2;
         /**
           * Minimum height of each column including when they are stacked on mobile
           * @uiName Minimum height (in px)
-          * @default 200
          */
         "minHeight"?: number;
         /**
           * @uiName Padding size
           * @uiEnum ["none", "small", "medium","large"]
           * @uiEnumNames ["None", "Small", "Medium", "Large"]
-          * @default "large"
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
@@ -11605,17 +8967,9 @@ declare namespace LocalJSX {
           * @uiName Wrap direction
           * @uiEnum ["wrap", "wrap-reverse"]
           * @uiEnumNames ["Wrap", "Wrap Reverse"]
-          * @default "wrap"
          */
         "wrapDirection"?: "wrap" | "wrap-reverse";
     }
-    /**
-     * @uiName Hero Image
-     * @validParents ["sqm-portal-container","sqm-brand", "div"]
-     * @exampleGroup Common Components
-     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
-     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
-     */
     interface SqmHeroImage {
         /**
           * @uiName Background color
@@ -11644,7 +8998,6 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -11662,14 +9015,12 @@ declare namespace LocalJSX {
           * @uiEnum ["top", "bottom"]
           * @uiEnumNames ["Top", "Bottom"]
           * @uiGroup Style
-          * @default "top"
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image percentage
           * @uiType number
           * @uiGroup Style
-          * @default 50
          */
         "imagePercentage"?: number;
         /**
@@ -11678,7 +9029,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "center"
          */
         "imagePos"?: "left" | "center" | "right";
         /**
@@ -11693,7 +9043,6 @@ declare namespace LocalJSX {
           * @uiEnum ["overlay", "columns"]
           * @uiEnumNames ["Overlay", "Two-column"]
           * @uiGroup Style
-          * @default "overlay"
          */
         "layout"?: "overlay" | "columns";
         /**
@@ -11706,7 +9055,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Overlay opacity
           * @uiGroup Style
-          * @default "0.75"
          */
         "overlayOpacity"?: string;
         /**
@@ -11715,7 +9063,6 @@ declare namespace LocalJSX {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
           * @uiGroup Style
-          * @default "none"
          */
         "paddingImage"?: Spacing;
         /**
@@ -11724,7 +9071,6 @@ declare namespace LocalJSX {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
           * @uiGroup Style
-          * @default "xxxx-large"
          */
         "paddingText"?: Spacing;
         /**
@@ -11735,25 +9081,15 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @undocumented 
-     */
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
-    /**
-     * @uiName Image
-     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
-     */
     interface SqmImage {
         /**
           * @uiName Position alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
          */
         "alignment"?: "left" | "center" | "right";
         /**
@@ -11780,26 +9116,19 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
-    /**
-     * @uiName Indirect Tax Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmIndirectTaxForm {
         /**
           * @uiName Back button label
-          * @default "Back"
          */
         "backButton"?: string;
         /**
           * Communicate that after this step, only Support can change personal and indirect tax information.
           * @uiName Submission confirmation alert
           * @uiWidget textArea
-          * @default "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing."
          */
         "cannotChangeInfoAlert"?: string;
         /**
           * @uiName Continue button label
-          * @default "Continue"
          */
         "continueButton"?: string;
         /**
@@ -11809,172 +9138,139 @@ declare namespace LocalJSX {
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError"?: string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * @uiName Step 2 title
-          * @default "Indirect Tax"
          */
         "indirectTax"?: string;
         /**
           * Displayed under the title of this step.
           * @uiName Step 2 description
           * @uiWidget textArea
-          * @default "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments."
          */
         "indirectTaxDescription"?: string;
         /**
           * Displayed with indirect tax registration options.
           * @uiName Indirect tax details section title
-          * @default "Indirect tax details"
          */
         "indirectTaxDetails"?: string;
         /**
           * @uiName Indirect tax number field label
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}"
          */
         "indirectTaxNumber"?: string;
         /**
           * @uiName Missing indirect tax number error message
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required"
          */
         "indirectTaxNumberError"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader"?: string;
         /**
           * Displayed to participants registered for indirect tax in Quebec, Canada.
           * @uiName QST tax checkbox
-          * @default "I am registered for QST Tax"
          */
         "isRegisteredQST"?: string;
         /**
           * Displayed to participants registered for indirect tax in Spain.
           * @uiName Spain income tax checkbox
           * @uiWidget textArea
-          * @default "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me."
          */
         "isRegisteredSubRegionIncomeTax"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiWidget textArea
-          * @default "Not registered for indirect tax"
          */
         "notRegistered"?: string;
         /**
           * Participants based in the US are  considered not registered.
           * @uiName Not registered for indirect tax option description
-          * @default "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered."
          */
         "notRegisteredSubtext"?: string;
         /**
           * @uiName Registered for indirect tax option
           * @uiWidget textArea
-          * @default "Registered for indirect tax"
          */
         "otherRegion"?: string;
         /**
           * Selecting this option will display fields to enter indirect tax details.
           * @uiName Registered for indirect tax option description
-          * @default "If you’ve registered with your tax authority, add your information to stay tax compliant."
          */
         "otherRegionSubtext"?: string;
         /**
           * @uiName Province field label
-          * @default "Province"
          */
         "province"?: string;
         /**
           * Displayed to participants registered for QST.
           * @uiName QST number field label
-          * @default "QST number"
          */
         "qstNumber"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText"?: string;
         /**
           * @uiName Region of indirect tax field label
-          * @default "Country / region of indirect tax"
          */
         "selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
           * @uiName Sub-region of indirect tax field label
-          * @default "Sub-region"
          */
         "subRegion"?: string;
         /**
           * @uiName Income tax field label
-          * @default "Income tax number"
          */
         "subRegionTaxNumberLabel"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription"?: string;
     }
-    /**
-     * @uiName Form Input Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
-     */
     interface SqmInputField {
         /**
           * @undocumented 
@@ -11983,7 +9279,6 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
           * @uiName Required error message
-          * @default "Cannot be empty"
          */
         "errorMessage"?: string;
         /**
@@ -12006,25 +9301,15 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
           * @uiEnumNames ["Text", "Date", "Phone Number"]
-          * @default "text"
          */
         "fieldType"?: "text" | "date" | "tel";
     }
-    /**
-     * @uiName Instant Access Registration
-     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
           * @uiWidget color
           * @uiGroup Card style
           * @uiType string
-          * @default "var(--sqm-portal-background)"
          */
         "backgroundColor"?: string;
         /**
@@ -12034,30 +9319,25 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName First name field label
-          * @default "First Name"
          */
         "firstNameLabel"?: string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
-          * @default false
          */
         "hideBorder"?: boolean;
         /**
           * @undocumented 
           * @uiType boolean
-          * @default false
          */
         "includeCookies"?: boolean;
         /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
-          * @default false
          */
         "includeName"?: boolean;
         /**
@@ -12065,12 +9345,10 @@ declare namespace LocalJSX {
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Please enter a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastNameLabel"?: string;
         /**
@@ -12078,7 +9356,6 @@ declare namespace LocalJSX {
           * @uiName Network error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue."
          */
         "networkErrorMessage"?: string;
         /**
@@ -12086,7 +9363,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom"?: string;
         /**
@@ -12094,7 +9370,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft"?: string;
         /**
@@ -12102,7 +9377,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight"?: string;
         /**
@@ -12110,12 +9384,10 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop"?: string;
         /**
           * @uiName Register button text
-          * @default "Start Referring"
          */
         "registerLabel"?: string;
         /**
@@ -12123,18 +9395,9 @@ declare namespace LocalJSX {
           * @uiName Required field message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage"?: string;
     }
-    /**
-     * @uiName Invoice Table
-     * @exampleGroup Invoices
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
-     */
     interface SqmInvoiceTable {
         /**
           * @undocumented 
@@ -12145,54 +9408,44 @@ declare namespace LocalJSX {
   };
         /**
           * @uiName Invoice table description
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "description"?: string;
         /**
           * @uiName Empty invoice table header
-          * @default "View your invoice details"
          */
         "emptyStateHeader"?: string;
         /**
           * @uiName Empty invoice table description
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "emptyStateText"?: string;
         /**
           * @uiName Invoice table title
-          * @default "Invoices"
          */
         "header"?: string;
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName Invoice table next page button label
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * Number of invoices displayed per page
           * @uiName Invoices per page
-          * @default 4
          */
         "perPage"?: number;
         /**
           * @uiName Invoice table previous page button label
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -12203,17 +9456,12 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmInvoiceTableDataCell {
         "data"?: string;
     }
-    /**
-     * @uiName Invoice Table Data Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
@@ -12226,17 +9474,8 @@ declare namespace LocalJSX {
     }
     interface SqmInvoiceTableDateCell {
         "date"?: number;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
     }
-    /**
-     * @uiName Invoice Table Date Column
-     * @validParents ["sqm-invoice-table"]
-     * @exampleGroup Invoices
-     * @example Invoice Table Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
-     */
     interface SqmInvoiceTableDateColumn {
         /**
           * @uiName Column title
@@ -12246,32 +9485,21 @@ declare namespace LocalJSX {
     interface SqmInvoiceTableDownloadCell {
         "downloadUrl"?: string;
     }
-    /**
-     * @uiName Invoice Table Download Column
-     * @validParents ["sqm-invoice-table"]
-     */
     interface SqmInvoiceTableDownloadColumn {
     }
-    /**
-     * @uiName Lead Form Checkbox Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface SqmLeadCheckboxField {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "By signing up you agree to the {labelLink}"
          */
         "checkboxLabel"?: string;
         /**
           * Used with link text if the checkbox label contains {labelLink}
           * @uiName Checkbox label link
-          * @default "https://example.com"
          */
         "checkboxLabelLink"?: string;
         /**
           * @uiName Checkbox label link lext
-          * @default "Terms and Conditions"
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -12282,7 +9510,6 @@ declare namespace LocalJSX {
         "checkboxName"?: string;
         /**
           * @uiName Optional
-          * @default false
          */
         "checkboxOptional"?: boolean;
         /**
@@ -12292,24 +9519,17 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
         /**
           * @uiName Unchecked error message
-          * @default "Must be checked"
          */
         "errorMessage"?: string;
     }
-    /**
-     * @uiName Lead Form Dropdown Field
-     * @validParents ["sqm-lead-form"]
-     * @slots [{"name":"", "title":"Dropdown Option"}]
-     */
     interface SqmLeadDropdownField {
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DropdownFieldViewProps1>;
+        "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
           * @uiName Dropdown label
-          * @default "Select an option"
          */
         "dropdownLabel"?: string;
         /**
@@ -12330,22 +9550,15 @@ declare namespace LocalJSX {
         "multiple"?: boolean;
         /**
           * @uiName Optional label
-          * @default "(optional)"
          */
         "optionalLabel"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please select a {dropdownLabel}"
          */
         "requiredFieldErrorMessage"?: string;
     }
-    /**
-     * @uiName Lead Form
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"}]
-     */
     interface SqmLeadForm {
         /**
           * @undocumented 
@@ -12354,96 +9567,77 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<LeadFormViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName First Name field label
-          * @default "First name"
          */
         "firstNameLabel"?: string;
         /**
           * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
           * @uiName Form key
-          * @default "lead-form"
          */
         "formKey"?: string;
         /**
           * The message to be displayed if the email used is invalid.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * @uiName Last Name field label
-          * @default "Last name"
          */
         "lastNameLabel"?: string;
         /**
           * The message to be displayed if a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage"?: string;
         /**
           * @uiName Header text
-          * @default "Refer your friend"
          */
         "pageLabel"?: string;
         /**
           * The message to be displayed if a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please enter a valid {fieldLabel}"
          */
         "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit another form button label
-          * @default "Refer Another Friend"
          */
         "resubmitFormLabel"?: string;
         /**
           * Description text shown if an error occurs.
           * @uiName Submit error description
-          * @default "Please try again later. If the problem continues, contact {supportLink}"
          */
         "submitErrorDescription"?: string;
         /**
           * Header text shown if an error occurs.
           * @uiName Submit error header
-          * @default "An error occurred while submitting"
          */
         "submitErrorHeader"?: string;
         /**
           * @uiName Submit button text
-          * @default "Submit"
          */
         "submitLabel"?: string;
         /**
           * Description text shown on successful lead submission.
           * @uiName Submit success description
-          * @default "Our team will contact your friend to see if they’re a good fit. In the meantime, you can track this referral on Activity page."
          */
         "submitSuccessDescription"?: string;
         /**
           * Header text shown on successful lead submission.
           * @uiName Submit success header
-          * @default "Lead submitted"
          */
         "submitSuccessHeader"?: string;
         /**
           * Optional support link text for error messages.
           * @uiName Support link text
-          * @default "Support"
          */
         "supportLinkText"?: string;
     }
-    /**
-     * @uiName Lead Form Input Field
-     * @validParents ["sqm-lead-form"]
-     */
     interface SqmLeadInputField {
         /**
           * @undocumented 
@@ -12470,39 +9664,23 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
           * @uiEnumNames ["Text", "Date", "Phone Number"]
-          * @default "text"
          */
         "fieldType"?: "text" | "date" | "tel";
         /**
           * @uiName Optional label
-          * @default "(optional)"
          */
         "optionalLabel"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Please enter a {fieldLabel}"
          */
         "requiredFieldErrorMessage"?: string;
     }
-    /**
-     * @uiName Leaderboard
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @requiredFeatures ["LEADERBOARDS"]
-     * @exampleGroup Leaderboard
-     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-     * @example Anonymous Leaderboard - <sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard>
-     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
-     */
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
           * @uiName Unknown user text
-          * @default "Anonymous User"
          */
         "anonymousUser"?: string;
         /**
@@ -12561,7 +9739,6 @@ declare namespace LocalJSX {
         /**
           * Control the maximum amount of rows displayed on the leaderboard.
           * @uiName Maximum rows number
-          * @default 10
          */
         "maxRows"?: number;
         /**
@@ -12621,19 +9798,14 @@ declare namespace LocalJSX {
         "viewingUserHighlightTextColor"?: string;
         /**
           * @uiName Viewing user text
-          * @default "You"
          */
         "viewingUserText"?: string;
         /**
           * Restrict the width of the leaderboard (Can be a pixel value or a percentage i.e. "500px", "33%", etc.)
           * @uiName Width
-          * @default "100%"
          */
         "width"?: string;
     }
-    /**
-     * @uiName Leaderboard Rank
-     */
     interface SqmLeaderboardRank {
         /**
           * @undocumented 
@@ -12665,7 +9837,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Rank text
           * @uiWidget textArea
-          * @default "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!"
          */
         "rankText"?: string;
         /**
@@ -12680,17 +9851,10 @@ declare namespace LocalJSX {
          */
         "unrankedText"?: string;
     }
-    /**
-     * @uiName Link Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Common Components
-     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
-     */
     interface SqmLinkButton {
         /**
           * @uiName Button text
           * @uiType string
-          * @default "Click here"
          */
         "buttonText"?: string;
         /**
@@ -12701,17 +9865,9 @@ declare namespace LocalJSX {
         "link"?: string;
         /**
           * @uiName Open link in new tab
-          * @default false
          */
         "openInNewTab"?: boolean;
     }
-    /**
-     * @uiName Sign out current user
-     * @exampleGroup Instant Access
-     * @compatibility Built for instant access
-     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
-     */
     interface SqmLogoutCurrentUser {
         /**
           * @required 
@@ -12721,37 +9877,27 @@ declare namespace LocalJSX {
         /**
           * @required 
           * @uiName Error text
-          * @default "Error fetching email"
          */
         "emailErrorText"?: string;
         /**
           * @required 
           * @uiName Switch user button label
-          * @default "not you?"
          */
         "switchUserText"?: string;
         /**
           * @required 
           * @uiName User identification text
-          * @default "{email}"
          */
         "userIdentificationText"?: string;
     }
-    /**
-     * @uiName Marketing Emails Checkbox Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface SqmMarketingEmailsCheckbox {
         /**
           * @uiName Checkbox label
           * @uiWidget textArea
-          * @default "I would like to receive marketing and promotional emails for this referral program"
          */
         "checkboxLabel"?: string;
         /**
-          * @undocumented 
-          * @default "marketingEmailOptIn"
+          * @undocumented
          */
         "checkboxName"?: string;
         /**
@@ -12760,12 +9906,6 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
-    /**
-     * @uiName Form Name Fields
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
-     */
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -12774,25 +9914,18 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
           * @uiName First name label
-          * @default "First Name"
          */
         "firstNameLabel"?: string;
         /**
           * @uiName Last name label
-          * @default "Last Name"
          */
         "lastNameLabel"?: string;
         /**
           * @uiName Optional
-          * @uiWidget 
-          * @default false
+          * @uiWidget
          */
         "optional"?: boolean;
     }
-    /**
-     * @uiName Navigation Menu
-     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
-     */
     interface SqmNavigationMenu {
         /**
           * @undocumented 
@@ -12809,12 +9942,6 @@ declare namespace LocalJSX {
          */
         "menuLabel"?: string;
     }
-    /**
-     * @uiName Microsite Sidebar
-     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
-     * @validChildren ["sqm-navigation-sidebar-item"]
-     * @slots [{"name":"", "title":"Sidebar Content"}]
-     */
     interface SqmNavigationSidebar {
         /**
           * @undocumented 
@@ -12826,16 +9953,9 @@ declare namespace LocalJSX {
           * @uiWidget color
           * @format color
           * @uiGroup Style
-          * @default "var(--sqm-text, #444445)"
          */
         "mobileMenuColor"?: string;
     }
-    /**
-     * @uiName Microsite Sidebar Item
-     * @validParents ["sqm-navigation-sidebar"]
-     * @exampleGroup Microsite Components
-     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
-     */
     interface SqmNavigationSidebarItem {
         /**
           * Background color of the nav item
@@ -12884,7 +10004,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "x-small"
          */
         "padding"?: Spacing;
         /**
@@ -12914,9 +10033,6 @@ declare namespace LocalJSX {
          */
         "textHoverColor"?: string;
     }
-    /**
-     * @uiName Pagination
-     */
     interface SqmPagination {
         /**
           * The type of the button that is used (primary or secondary).
@@ -12925,7 +10041,6 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "secondary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
@@ -12935,16 +10050,9 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UsePagination>;
         /**
           * @uiName Pagination text
-          * @default "{currentPage} of {totalPages}"
          */
         "paginationText"?: string;
     }
-    /**
-     * @uiName Form Password Field
-     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-     * @exampleGroup Microsite Components
-     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
-     */
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -12954,49 +10062,38 @@ declare namespace LocalJSX {
         /**
           * Disable live password validation
           * @uiName Disable validation
-          * @default false
          */
         "disableValidation"?: boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * Label for password field
           * @uiName Password label
-          * @default "Password"
          */
         "fieldLabel"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Payout Button Scroll
-     */
     interface SqmPayoutButtonScroll {
         /**
           * @undocumented 
@@ -13006,24 +10103,17 @@ declare namespace LocalJSX {
         /**
           * Description text under payout button
           * @uiName Payout button description text
-          * @default "Check your payout settings to see when you’ll get paid out next"
          */
         "payoutButtonDescription"?: string;
         /**
           * @uiName Payout button text
-          * @default "Payouts & Tax Settings"
          */
         "payoutButtonText"?: string;
     }
-    /**
-     * @uiName Payout Details Card
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
-          * @default "Account"
          */
         "accountText"?: string;
         /**
@@ -13033,77 +10123,58 @@ declare namespace LocalJSX {
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "payoutMissingInformationText"?: string;
         /**
           * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "statusBadgeText"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "thresholdPayoutText"?: string;
     }
-    /**
-     * @uiName Payout Status Alert
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Tax and Cash
-     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
-     */
     interface SqmPayoutStatusAlert {
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "accountReviewDescription"?: string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "accountReviewHeader"?: string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "bankTaxNameMismatchDescription"?: string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "bankTaxNameMismatchHeader"?: string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameInvalidDescription"?: string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameInvalidHeader"?: string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameMismatchDescription"?: string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameMismatchHeader"?: string;
         /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
-          * @default "/taxAndCash"
          */
         "cashPayoutsPageUrl"?: string;
         /**
@@ -13113,67 +10184,54 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
         /**
           * @uiName Edit payment info button label
-          * @default "Edit Payout Information"
          */
         "editPaymentInformationButton"?: string;
         /**
           * @uiName Error description
-          * @default "There was an error with determining your payout status."
          */
         "errorDescription"?: string;
         /**
           * @uiName Error header
-          * @default "Could not determine payout status."
          */
         "errorHeader"?: string;
         /**
           * @uiName Payout on hold alert description
-          * @default "Please check your inbox for an email from our referral provider, impact.com. It contains details on how to resolve this issue. If you need further assistance, feel free to reach out to our {supportLink}."
          */
         "holdDescription"?: string;
         /**
           * @uiName Payout on hold alert header
-          * @default "Your payouts and account are on hold"
          */
         "holdHeader"?: string;
         /**
           * @uiName Info required alert button text
-          * @default "Payouts & Tax Settings"
          */
         "informationRequiredButtonText"?: string;
         /**
           * @uiName Info required alert description
-          * @default "Submit your banking details and tax documents to receive your rewards."
          */
         "informationRequiredDescription"?: string;
         /**
           * @uiName Info required alert header
-          * @default "Payout and tax information required"
          */
         "informationRequiredHeader"?: string;
         /**
           * @uiName Submit new tax form button label
-          * @default "Submit new tax form"
          */
         "newFormButton"?: string;
         /**
           * @uiName Payment on hold alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "paymentHoldOnChangeDescription"?: string;
         /**
           * @uiName Payment on hold alert header
-          * @default "We are reviewing your new payout settings"
          */
         "paymentHoldOnChangeHeader"?: string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "paymentReturnedDescription"?: string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "paymentReturnedHeader"?: string;
         /**
@@ -13182,95 +10240,73 @@ declare namespace LocalJSX {
           * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
           * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
           * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * @uiName Terms and Conditions text
-          * @default "Terms and Conditions"
          */
         "termsAndConditions"?: string;
         /**
           * @uiName Verification failed internal alert description
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "verificationFailedInternalDescription"?: string;
         /**
           * @uiName Verification failed internal alert header
-          * @default "Identity verification unsuccessful"
          */
         "verificationFailedInternalHeader"?: string;
         /**
           * @uiName Verification required alert button text
-          * @default "Start Verification"
          */
         "verificationRequiredButtonText"?: string;
         /**
           * @uiName Verification required alert description
-          * @default "It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "verificationRequiredDescription"?: string;
         /**
           * @uiName Verification required alert header
-          * @default "Verify your identity"
          */
         "verificationRequiredHeader"?: string;
         /**
           * @uiName Verification required internal alert description
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationRequiredInternalDescription"?: string;
         /**
           * @uiName Verification required internal alert header
-          * @default "Identity Verification in progress"
          */
         "verificationRequiredInternalHeader"?: string;
         /**
           * @uiName Verification review internal alert description
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationReviewInternalDescription"?: string;
         /**
           * @uiName Verification review internal alert header
-          * @default "Identity Verification under review"
          */
         "verificationReviewInternalHeader"?: string;
         /**
           * @uiName W-9 payment threshold alert button text
-          * @default "Submit W-9"
          */
         "w9RequiredButtonText"?: string;
         /**
           * @uiName W-9 payment threshold alert description
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "w9RequiredDescription"?: string;
         /**
           * @uiName W-9 payment threshold alert header
-          * @default "Your next payout is on hold"
          */
         "w9RequiredHeader"?: string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "withdrawalSettingsInvalidDescription"?: string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "withdrawalSettingsInvalidHeader"?: string;
     }
-    /**
-     * @uiName Popup Container
-     * @slots [{"name":"","title":"Content"}]
-     * @canvasRenderer always-replace
-     */
     interface SqmPopupContainer {
         /**
           * Display a close button on the popup
@@ -13308,14 +10344,9 @@ declare namespace LocalJSX {
         /**
           * Text at the bottom of the popup
           * @uiName "Powered by" text
-          * @default "Powered By"
          */
         "poweredByText"?: string;
     }
-    /**
-     * @uiName Change Marketing Opt in Status
-     * @requiredFeatures ["MARKETING_EMAILS"]
-     */
     interface SqmPortalChangeMarketing {
         /**
           * @undocumented 
@@ -13324,52 +10355,40 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<ChangeMarketingViewProps>;
         /**
           * @uiName Email preferences header
-          * @default "Email preferences"
          */
         "emailPreferencesHeader"?: string;
         /**
           * @uiName Marketing checkbox label
-          * @default "I want to receive marketing emails and promotions for this referral program from impact.com"
          */
         "marketingCheckboxLabel"?: string;
         /**
           * Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
           * @uiName Network request error message
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkRequestMessage"?: string;
         /**
           * @uiName Submit changes button text
-          * @default "Save"
          */
         "submitChangeButtonText"?: string;
         /**
           * @uiName Successful update message
-          * @default "Opt-in preference has been changed."
          */
         "successMessage"?: string;
     }
-    /**
-     * @uiName Microsite Password Change
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
-     */
     interface SqmPortalChangePassword {
         /**
           * Found in modal
           * @uiName Cancel button text
-          * @default "Cancel"
          */
         "cancelText"?: string;
         /**
           * Found in modal
           * @uiName Change password button text
-          * @default "Change Password"
          */
         "changePasswordButtonText"?: string;
         /**
           * Found in modal
           * @uiName Confirm password Label
-          * @default "Confirm New Password"
          */
         "confirmPasswordFieldLabel"?: string;
         /**
@@ -13379,81 +10398,61 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * @uiName Invalid user session error message
-          * @default "Please log in again to change your password."
          */
         "invalidSessionErrorText"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * @uiName Change password modal header
-          * @default "Change Password"
          */
         "modalChangePasswordHeader"?: string;
         /**
           * @uiName Passwords don’t match error message
-          * @default "contain at least 1 lowercase character"
          */
         "nonMatchingPasswordErrorText"?: string;
         /**
           * Found in modal
           * @uiName New password field label
-          * @default "New Password"
          */
         "passwordFieldLabel"?: string;
         /**
           * @uiName Change password button text
-          * @default "Change your password..."
          */
         "portalChangePasswordButtonText"?: string;
         /**
           * Portal change password section header
           * @uiName Change password header
-          * @default "Password"
          */
         "portalChangePasswordHeader"?: string;
         /**
           * Successful password change message
           * @uiName Successful password change message
           * @uiWidget textArea
-          * @default "Your password has been updated."
          */
         "successMessage"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Container
-     * @slots [{"name":"", "title":"Widget Content"}]
-     * @exampleGroup Layout
-     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
-     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
-     */
     interface SqmPortalContainer {
         /**
           * @uiName Background color
@@ -13470,7 +10469,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["row", "column"]
           * @uiEnumNames ["Row", "Column"]
-          * @default "column"
          */
         "direction"?: "row" | "column";
         /**
@@ -13478,7 +10476,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
-          * @default "grid"
          */
         "display"?: "grid" | "flex";
         /**
@@ -13486,7 +10483,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["wrap", "nowrap"]
           * @uiEnumNames ["Wrap", "No Wrap"]
-          * @default "wrap"
          */
         "flexWrap"?: string;
         /**
@@ -13494,7 +10490,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "xxx-large"
          */
         "gap"?: Spacing;
         /**
@@ -13512,7 +10507,6 @@ declare namespace LocalJSX {
     | "space-evenly";
         /**
           * @uiName Maximum width
-          * @default "100%"
          */
         "maxWidth"?: string;
         /**
@@ -13527,9 +10521,6 @@ declare namespace LocalJSX {
          */
         "padding"?: Spacing;
     }
-    /**
-     * @uiName Microsite Email Verification
-     */
     interface SqmPortalEmailVerification {
         /**
           * @undocumented 
@@ -13538,56 +10529,44 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
           * @uiName Email verification header text
-          * @default "Verify your email"
          */
         "emailVerificationHeader"?: string;
         /**
           * Displayed when your verification email fails to send due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your password. Please refresh the page."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email.
           * @uiName Email redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath"?: string;
         /**
           * @uiName Re-send email button text
-          * @default "Re-send Email"
          */
         "resendEmailButtonText"?: string;
         /**
           * @uiName Email verification checking text
           * @uiWidget textArea
-          * @default "Checking verification status"
          */
         "verificationLoadingMessage"?: string;
         /**
           * @uiName Email verification resent text
           * @uiWidget textArea
-          * @default "Your verification email has been resent successfully"
          */
         "verificationResentMessage"?: string;
         /**
           * @uiName Email verification status text
           * @uiWidget textArea
-          * @default "Checking verification status in {countdown}"
          */
         "verificationStatusMessage"?: string;
         /**
           * @uiName Email verification body text
           * @uiWidget textArea
-          * @default "A verification email was sent to {email}. Please verify your email to continue to the portal. Resending an email will invalidate the previous email."
          */
         "verifyMessage"?: string;
     }
-    /**
-     * @uiName Footer
-     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
-     */
     interface SqmPortalFooter {
         /**
           * @uiName FAQ link
@@ -13601,12 +10580,10 @@ declare namespace LocalJSX {
           * @uiName Hide powered by Impact.com
           * @requiredFeatures ["CUSTOM_BRANDING"]
           * @featureTooltip <div>Integrate your brand identity further by removing impact.com’s branding from your widget. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Custom Branding feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Custom Branding can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan</div>
-          * @default false
          */
         "hidePoweredBy"?: boolean;
         /**
           * @uiName Hide support message
-          * @default false
          */
         "hideSupportText"?: boolean;
         /**
@@ -13614,7 +10591,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom"?: string;
         /**
@@ -13622,7 +10598,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft"?: string;
         /**
@@ -13630,7 +10605,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight"?: string;
         /**
@@ -13638,23 +10612,19 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop"?: string;
         /**
           * @uiName Powered By link
-          * @default "https://impact.com/advocate/"
          */
         "poweredByLink"?: string;
         /**
           * @uiName Support email
-          * @default "support@example.com"
          */
         "supportEmail"?: string;
         /**
           * @uiName Support message
           * @uiWidget textArea
-          * @default "For program support, contact {email}"
          */
         "supportText"?: string;
         /**
@@ -13666,26 +10636,20 @@ declare namespace LocalJSX {
          */
         "termsText"?: string;
     }
-    /**
-     * @uiName Microsite Forgot Password
-     */
     interface SqmPortalForgotPassword {
         /**
           * @uiName Background color
           * @uiWidget color
-          * @default "var(--sqm-portal-background, #ffffff)"
          */
         "backgroundColor"?: string;
         /**
           * @uiName Border style
           * @uiWidget textArea
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border"?: string;
         /**
           * @uiName Border radius
           * @uiWidget number
-          * @default "var(--sqm-border-radius-normal, 8px)"
          */
         "borderRadius"?: string;
         /**
@@ -13695,67 +10659,53 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName Header text
           * @uiWidget textArea
-          * @default "Enter your email below to receive a password reset link."
          */
         "headerText"?: string;
         /**
           * @uiName Login redirect path
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath"?: string;
         /**
           * @uiName Sign in link text
-          * @default "Sign In"
          */
         "loginText"?: string;
         /**
           * Displayed when the forgot password action fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they verify their email.
           * @uiName Email redirect
           * @uiWidget pageSelect
-          * @default "/resetPassword"
          */
         "redirectPath"?: string;
         /**
           * @uiName Password reset button text
-          * @default "Request Password Reset"
          */
         "submitLabel"?: string;
         /**
           * @uiName Email verification sent text
-          * @default "If an account with that email exists, a password reset email will be sent."
          */
         "successAlertText"?: string;
     }
-    /**
-     * @uiName Microsite Frame
-     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
-     */
     interface SqmPortalFrame {
         /**
           * @uiName Background color
           * @uiWidget color
           * @uiType string
-          * @default "var(--sqm-portal-background, #fff)"
          */
         "backgroundColor"?: string;
         /**
           * Borders placed to seperate the header and footer from the body content.
           * @uiName Border
           * @uiType string
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border"?: string;
         /**
@@ -13768,18 +10718,13 @@ declare namespace LocalJSX {
           * @uiName Header and Footer Background Color
           * @uiWidget color
           * @uiType string
-          * @default "var(--sqm-portal-background, #fff)"
          */
         "headerAndFooterBackgroundColor"?: string;
         /**
-          * @undocumented 
-          * @default false
+          * @undocumented
          */
         "notFullScreen"?: boolean;
     }
-    /**
-     * @uiName Microsite Login
-     */
     interface SqmPortalGoogleLogin {
         /**
           * @undocumented 
@@ -13788,86 +10733,67 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName Forgot password text
-          * @default "Forgot Password?"
          */
         "forgotPasswordLabel"?: string;
         /**
           * Redirect participants to this page to reset their password
           * @uiName Forgot password redirect
           * @uiWidget pageSelect
-          * @default "/forgotPassword"
          */
         "forgotPasswordPath"?: string;
         /**
           * @uiName Google account error message Displayed when user tries to sign in with Google account but has not registered.
-          * @default "Your Google account has not registered on our platform. Please complete the registration process with your Google account."
          */
         "googleUserNotRegisteredError"?: string;
         /**
           * @uiName Network error message Displayed when the login fails due to a network error. The participant can try refreshing the page.
-          * @default "An error occurred while logging you in. Please refresh the page and try again."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Heading label
           * @uiWidget textArea
-          * @default "Sign in to your account"
          */
         "pageLabel"?: string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel"?: string;
         /**
           * @uiName Register CTA
-          * @default "Don't have an account?"
          */
         "registerCTA"?: string;
         /**
           * @uiName Register button text
-          * @default "Register"
          */
         "registerLabel"?: string;
         /**
           * Redirect participants to this page to start registration.
           * @uiName Register button redirect
           * @uiWidget pageSelect
-          * @default "/register"
          */
         "registerPath"?: string;
         /**
           * @uiName Submit button text
-          * @default "Sign In"
          */
         "submitLabel"?: string;
     }
-    /**
-     * @uiName Google Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword"?: boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel"?: string;
         /**
@@ -13882,24 +10808,20 @@ declare namespace LocalJSX {
         "demoGoogleData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation"?: boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form disabled message
           * @uiWidget textArea
-          * @default "The registration form is currently disabled."
          */
         "formDisabledErrorMessage"?: string;
         /**
@@ -13911,120 +10833,97 @@ declare namespace LocalJSX {
         /**
           * Can be "signup_with", "signin_with", "continue_with", or "signin"
           * @uiName Google button text
-          * @default "signup_with"
          */
         "googleButtonText"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs"?: boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * Login Call-to-action
           * @uiName Login CTA
-          * @default "Already have an account?"
          */
         "loginCTA"?: string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel"?: string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel"?: string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel"?: string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Microsite Login
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
-     */
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -14033,90 +10932,68 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName Forgot password text
-          * @default "Forgot Password?"
          */
         "forgotPasswordLabel"?: string;
         /**
           * Redirect participants to this page to reset their password
           * @uiName Forgot password redirect
           * @uiWidget pageSelect
-          * @default "/forgotPassword"
          */
         "forgotPasswordPath"?: string;
         /**
           * Displayed when the login fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while logging you in. Please refresh the page and try again."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully login.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Heading label
           * @uiWidget textArea
-          * @default "Sign in to your account"
          */
         "pageLabel"?: string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel"?: string;
         /**
           * @uiName Register CTA
-          * @default "Don't have an account?"
          */
         "registerCTA"?: string;
         /**
           * @uiName Register button text
-          * @default "Register"
          */
         "registerLabel"?: string;
         /**
           * Redirect participants to this page to start registration.
           * @uiName Register button redirect
           * @uiWidget pageSelect
-          * @default "/register"
          */
         "registerPath"?: string;
         /**
           * @uiName Submit button text
-          * @default "Sign In"
          */
         "submitLabel"?: string;
     }
-    /**
-     * @uiName Microsite Logout
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @compatibility Built for instant access
-     */
     interface SqmPortalLogout {
         /**
           * Redirect participants to this page when they log out.
           * @uiName Logout redirect path
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
     }
-    /**
-     * @uiName Microsite Participant Profile
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     */
     interface SqmPortalProfile {
         /**
           * @uiName Country field label
-          * @default "Country"
          */
         "countrytext"?: string;
         /**
@@ -14126,98 +11003,72 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
           * @uiName Edit profile header
-          * @default "Edit your profile"
          */
         "editProfileHeader"?: string;
         /**
           * @uiName Edit profile sub header
-          * @default "Personal Information"
          */
         "editProfileSubHeader"?: string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailtext"?: string;
         /**
           * @uiName Field empty text
-          * @default "Field is required"
          */
         "fieldEmptyText"?: string;
         /**
           * @uiName First name label
-          * @default "First Name"
          */
         "firstnametext"?: string;
         /**
           * @uiName Form error message
-          * @default "Please correct the errors below to update your profile."
          */
         "formErrorText"?: string;
         /**
           * @uiName Hide country field
-          * @default false
          */
         "hideCountry"?: boolean;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastnametext"?: string;
         /**
           * @uiName Network request error message Displayed when the page fails to load due to a network error. The participant can try refreshing the page.
-          * @default "An error occurred while loading this page. Please refresh the page."
          */
         "networkRequestMessage"?: string;
         /**
           * @uiName Submission success text
-          * @default "Your profile has been successfully updated."
          */
         "submissionSuccessText"?: string;
         /**
           * @uiName Submit changes button text
-          * @default "Submit Changes"
          */
         "submitChangeButtonText"?: string;
     }
-    /**
-     * @uiName Microsite Protected Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
-     * @slots [{"name":"","title":"Route Content"}]
-     */
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
           * @uiName Unauthenticated participant redirect
-          * @default "/"
          */
         "redirectTo"?: string;
         /**
           * Redirect participants to this page when email verification is required but they have not verified their email.
           * @uiName Unverified participant redirect
-          * @default "/emailVerification"
          */
         "redirectToUnverified"?: string;
         /**
           * @uiName Require email verification
-          * @default false
          */
         "requireEmailVerification"?: boolean;
     }
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-     */
     interface SqmPortalRegister {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword"?: boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel"?: string;
         /**
@@ -14227,134 +11078,107 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation"?: boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs"?: boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel"?: string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel"?: string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel"?: string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage"?: string;
         /**
           * The page that participants are redirected to from the verification email.
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Microsite Registration
-     * @canvasRenderer always-replace
-     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
-     */
     interface SqmPortalRegistrationForm {
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword"?: boolean;
         /**
           * @uiName Confirm password field label
-          * @default "Confirm Password"
          */
         "confirmPasswordLabel"?: string;
         /**
@@ -14364,24 +11188,20 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalRegistrationFormViewProps>;
         /**
           * @uiName Disable password validation
-          * @default false
          */
         "disablePasswordValidation"?: boolean;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * The message to be displayed when the registration form is disabled.
           * @uiName Form disabled message
           * @uiWidget textArea
-          * @default "The registration form is currently disabled."
          */
         "formDisabledErrorMessage"?: string;
         /**
@@ -14392,128 +11212,104 @@ declare namespace LocalJSX {
         "formKey"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * Hides the email and password fields. Note: If you hide default inputs, you must add additional input fields. They must have the input name attributes "email" and "password" for this form to succeed.
           * @uiName Hide default fields
-          * @default false
          */
         "hideInputs"?: boolean;
         /**
           * The message to be displayed when the email used is invalid or blocked.
           * @uiName Invalid email message
           * @uiWidget textArea
-          * @default "Must be a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * @uiName Login button text
-          * @default "Sign in"
          */
         "loginLabel"?: string;
         /**
           * Redirect participants to this page after clicking the login button.
           * @uiName Login redirect
           * @uiWidget pageSelect
-          * @default "/login"
          */
         "loginPath"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * The message to be displayed when a the form submission fails unexpectedly.
           * @uiName Network error message
           * @uiWidget textArea
-          * @default "Network request failed."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page after they successfully register.
           * @uiName Registration redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Header text
-          * @default "Register"
          */
         "pageLabel"?: string;
         /**
           * @uiName Password field label
-          * @default "Password"
          */
         "passwordLabel"?: string;
         /**
           * The message to be displayed when password inputs do not match.
           * @uiName Password mismatch message
           * @uiWidget textArea
-          * @default "Passwords do not match."
          */
         "passwordMismatchErrorMessage"?: string;
         /**
           * Redirect participants to this page from their verification email
           * @uiName Email verification redirect
           * @uiWidget pageSelect
-          * @default "/verifyEmail"
          */
         "redirectPath"?: string;
         /**
           * The message to be displayed when a required field is not filled.
           * @uiName Required field message
           * @uiWidget textArea
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage"?: string;
         /**
           * @uiName Submit button text
-          * @default "Register"
          */
         "submitLabel"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Microsite Reset Password
-     */
     interface SqmPortalResetPassword {
         /**
           * @uiName Reset code invalid error message
-          * @default "The password reset code is invalid or has expired, please try again."
          */
         "codeInvalidText"?: string;
         /**
           * @uiName Show confirm password field
-          * @default false
          */
         "confirmPassword"?: boolean;
         /**
           * @uiName Password confirmation field label
-          * @default "Confirm Password"
          */
         "confirmPasswordFieldLabel"?: string;
         /**
           * Button text displayed after a successful password reset.
           * @uiName Continue button text
-          * @default "Continue"
          */
         "continueButtonText"?: string;
         /**
@@ -14523,94 +11319,75 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
           * @uiName Password requirement failed
-          * @default "Password must meet the following requirements:"
          */
         "doesNotMeetRequirementsText"?: string;
         /**
           * Redirect participants to this page if password reset fails due to an outdated reset attempt.
           * @uiName Failed reset redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "failedPage"?: string;
         /**
           * @uiName Missing number or symbol text
-          * @default "contain at least 1 number or symbol"
          */
         "hasErrorText"?: string;
         /**
           * @uiName Missing lowercase text
-          * @default "contain at least 1 lowercase character"
          */
         "lowercaseErrorText"?: string;
         /**
           * @uiName Password requirement met
-          * @default "Password has met all requirements"
          */
         "meetsRequirementsText"?: string;
         /**
           * @uiName Minimum length text
-          * @default "be a minimum of 8 characters"
          */
         "minErrorText"?: string;
         /**
           * Displayed when the password reset fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while resetting your password. Please refresh the page and try again."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page when they successfully reset their password.
           * @uiName Successful reset redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Password field label
-          * @default "New Password"
          */
         "passwordFieldLabel"?: string;
         /**
           * @uiName Passwords don’t match error message Please make sure your passwords match
-          * @default "Passwords do not match."
          */
         "passwordMismatchText"?: string;
         /**
           * Displayed after a successful password reset.
           * @uiName Successful password reset text
           * @uiWidget textArea
-          * @default "Password reset"
          */
         "passwordResetHeader"?: string;
         /**
           * @uiName Password reset button text
-          * @default "Reset Password"
          */
         "resetPasswordButtonText"?: string;
         /**
           * @uiName Reset password header text
-          * @default "Reset your password"
          */
         "resetPasswordHeader"?: string;
         /**
           * @uiName Reset success text
-          * @default "Your password has been reset and you are being redirected. If you are not redirected, please click Continue."
          */
         "resetSuccessText"?: string;
         /**
           * @uiName Missing uppercase text
-          * @default "contain at least 1 uppercase character"
          */
         "uppercaseErrorText"?: string;
     }
-    /**
-     * @uiName Microsite Verify Email
-     */
     interface SqmPortalVerifyEmail {
         /**
           * @uiName Continue text
-          * @default "Continue"
          */
         "continueText"?: string;
         /**
@@ -14622,49 +11399,35 @@ declare namespace LocalJSX {
           * Redirect participants to this page if verification fails due to an outdated verification attempt.
           * @uiName Failed verification redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "failedPage"?: string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "networkErrorMessage"?: string;
         /**
           * Redirect participants to this page when they successfully verify their email.
           * @uiName Successful verification redirect
           * @uiWidget pageSelect
-          * @default "/"
          */
         "nextPage"?: string;
         /**
           * @uiName Verify email text
           * @uiWidget textArea
-          * @default "Verify your email"
          */
         "verifyEmailText"?: string;
         /**
           * @uiName Email verification invalid text
           * @uiWidget textArea
-          * @default "The email verification code is invalid or has expired, please try again."
          */
         "verifyInvalidText"?: string;
         /**
           * @uiName Email verification success text
           * @uiWidget textArea
-          * @default "Your email has been verified and you are being redirected. If you are not redirected, please click Continue."
          */
         "verifySuccessText"?: string;
     }
-    /**
-     * @uiName Program Explainer
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-program-explainer-step"]
-     * @exampleGroup Common Components
-     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
-     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
-     */
     interface SqmProgramExplainer {
         /**
           * @uiName Header background color
@@ -14683,12 +11446,6 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Program Explainer Step
-     * @exampleGroup Common Components
-     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
-     * @validParents ["sqm-program-explainer"]
-     */
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background color
@@ -14742,27 +11499,14 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Microsite Program Menu
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-     * @slots [{"name":"","title":"Menu Content"}]
-     * @canvasRenderer always-replace
-     */
     interface SqmProgramMenu {
     }
-    /**
-     * @uiName QR Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
-     * @exampleGroup Sharing
-     * @example QR Code - <sqm-qr-code></sqm-qr-code>
-     */
     interface SqmQrCode {
         /**
           * @uiName QR code alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "center"
          */
         "alignment"?: "left" | "center" | "right";
         /**
@@ -14772,48 +11516,33 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<QRCodeViewProps>;
         /**
           * @uiName Download QR code text
-          * @default "Download"
          */
         "downloadCodeText"?: string;
         /**
           * @uiName Description for error banner
-          * @default "Please refresh this page and try again"
          */
         "errorDescriptionText"?: string;
         /**
           * @uiName Header for error banner
-          * @default "There was an error loading your QR code"
          */
         "errorHeaderText"?: string;
         /**
           * @uiName Hide title
-          * @default false
          */
         "hideTitle"?: boolean;
         /**
           * @uiName Print QR code text
-          * @default "Print"
          */
         "printCodeText"?: string;
         /**
           * @uiName Title
-          * @default "Share your QR code"
          */
         "titleText"?: string;
         /**
           * @uiName View QR code text
-          * @default "View QR code"
          */
         "viewCodeText"?: string;
     }
-    /**
-     * @uiName Referral Card
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
-     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
-     */
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -14837,13 +11566,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide border
           * @uiType boolean
-          * @default false
          */
         "hideBorder"?: boolean;
         /**
           * @uiName Limit width
           * @uiType boolean
-          * @default false
          */
         "limitWidth"?: boolean;
         /**
@@ -14851,7 +11578,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom"?: string;
         /**
@@ -14859,7 +11585,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft"?: string;
         /**
@@ -14867,7 +11592,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight"?: string;
         /**
@@ -14875,7 +11599,6 @@ declare namespace LocalJSX {
           * @uiGroup Padding
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop"?: string;
         /**
@@ -14890,16 +11613,9 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["start", "center", "end"]
           * @uiEnumNames ["Top", "Center", "Bottom"]
-          * @default "start"
          */
         "verticalAlignment"?: "start" | "center" | "end";
     }
-    /**
-     * @uiName Referral Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
-     * @exampleGroup Sharing
-     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
-     */
     interface SqmReferralCode {
         /**
           * Background color of share link container
@@ -14931,7 +11647,6 @@ declare namespace LocalJSX {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -14941,12 +11656,10 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Code"
          */
         "copyButtonLabel"?: string;
         /**
@@ -14957,7 +11670,6 @@ declare namespace LocalJSX {
         /**
           * Shown underneath single-use promo codes when the user has already copied the code
           * @uiName Notification text
-          * @default "You've copied this code before"
          */
         "notificationText"?: string;
         /**
@@ -14969,7 +11681,6 @@ declare namespace LocalJSX {
         /**
           * Boolean used to show notification text below input
           * @uiName Show notification text
-          * @default false
          */
         "showNotificationText"?: boolean;
         /**
@@ -14979,7 +11690,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -14993,23 +11703,14 @@ declare namespace LocalJSX {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan"?: number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext"?: string;
     }
-    /**
-     * @uiName Promo Codes
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Promo Codes Content"}]
-     * @exampleGroup Sharing
-     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
-     */
     interface SqmReferralCodes {
         /**
           * @undocumented 
@@ -15018,17 +11719,14 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<ReferralCodesViewProps>;
         /**
           * @uiName Empty State Description Text
-          * @default "Please contact our program support team to let them know you’re out of codes."
          */
         "emptyStateDescriptionText"?: string;
         /**
           * @uiName Empty State Header Text
-          * @default "Your new codes and links aren’t ready yet"
          */
         "emptyStateHeaderText"?: string;
         /**
           * @uiName Empty State Image URL
-          * @default "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
          */
         "emptyStateImageUrl"?: string;
         /**
@@ -15044,13 +11742,9 @@ declare namespace LocalJSX {
         "textColor"?: string;
         /**
           * @uiName Title Text
-          * @default "Start sharing"
          */
         "titleText"?: string;
     }
-    /**
-     * @uiName Referral IFrame
-     */
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -15060,7 +11754,6 @@ declare namespace LocalJSX {
         /**
           * Define the height of the iframe with any valid CSS height value. Example: 100px, 5rem, or auto.
           * @uiName IFrame height
-          * @default "100%"
          */
         "iframeHeight"?: string;
         /**
@@ -15072,18 +11765,9 @@ declare namespace LocalJSX {
         /**
           * Define the width of the iframe with any valid CSS width value. Example: 100px, 5rem, or auto.
           * @uiName IFrame width
-          * @default "100%"
          */
         "iframeWidth"?: string;
     }
-    /**
-     * @uiName Referral Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
-     * @exampleGroup Referrals
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
-     */
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -15095,33 +11779,27 @@ declare namespace LocalJSX {
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Hidden mobile columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName View More button text
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * Number of referrals displayed per page
           * @uiName Referrals per page
-          * @default 4
          */
         "perPage"?: number;
         /**
           * @uiName Previous button text
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -15138,17 +11816,12 @@ declare namespace LocalJSX {
         "showReferrer"?: boolean;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmReferralTableCell {
         "innerTemplate"?: string;
     }
-    /**
-     * @uiName Referral Table Generic Column
-     * @validParents ["sqm-referral-table"]
-     */
     interface SqmReferralTableColumn {
         /**
           * @uiName Column title
@@ -15157,21 +11830,11 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
     }
-    /**
-     * @uiName Referral Table Date Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
-     */
     interface SqmReferralTableDateColumn {
         /**
           * @uiName Date column title
-          * @default "Date converted"
          */
         "columnTitle"?: string;
         /**
@@ -15179,7 +11842,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
           * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
-          * @default "dateConverted"
          */
         "dateShown"?: ReferralDates;
     }
@@ -15188,51 +11850,32 @@ declare namespace LocalJSX {
         "expiringText"?: string;
         "fuelTankText"?: string;
         "hideDetails"?: boolean;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
         "pendingForText"?: string;
         "rewardReceivedText"?: string;
         "rewards"?: Reward[];
-        /**
-          * @default "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
-         */
         "statusLongText"?: string;
-        /**
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
-         */
         "statusText"?: string;
         "taxConnection"?: ImpactConnection;
     }
-    /**
-     * @uiName Referral Table Rewards Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
-     */
     interface SqmReferralTableRewardsColumn {
         /**
           * @uiName Reward column title
-          * @default "Rewards"
          */
         "columnTitle"?: string;
         /**
           * Shown in the dropdown details when a reward was denied.
           * @uiName Reward denied help text
-          * @default "Contact support if you think this is a mistake."
          */
         "deniedHelpText"?: string;
         /**
           * Shown in the dropdown details when a reward has an expiry date.
           * @uiName Reward expiring text
-          * @default "Expiring in"
          */
         "expiringText"?: string;
         /**
           * Shown in the dropdown details when a reward has an associated fuel tank code.
           * @uiName Fuel tank code text
-          * @default "Your code is"
          */
         "fuelTankText"?: string;
         /**
@@ -15243,27 +11886,23 @@ declare namespace LocalJSX {
         /**
           * Shown in the dropdown details when a reward is pending.
           * @uiName Reward pending text
-          * @default "{status} for {date}"
          */
         "pendingForText"?: string;
         /**
           * Shown in the dropdown details when a reward has been received.’
           * @uiName Reward received text
-          * @default "Reward received on"
          */
         "rewardReceivedText"?: string;
         /**
           * Additional status text shown in the details drop down.
           * @uiName Reward status long text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }"
          */
         "statusLongText"?: string;
         /**
           * Text shown in the reward status badge.
           * @uiName Reward status text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
          */
         "statusText"?: string;
     }
@@ -15273,85 +11912,55 @@ declare namespace LocalJSX {
         "statusSubText"?: string;
         "statusText"?: string;
     }
-    /**
-     * @uiName Referral Table Status Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
-     */
     interface SqmReferralTableStatusColumn {
         /**
           * @uiName Column title
-          * @default "Status"
          */
         "columnTitle"?: string;
         /**
           * @uiName Converted status text
-          * @default "Converted"
          */
         "convertedStatusText"?: string;
         /**
           * @uiName Denied status sub-text
-          * @default "Detected self-referral"
          */
         "deniedStatusSubText"?: string;
         /**
           * @uiName Denied status text
-          * @default "Denied"
          */
         "deniedStatusText"?: string;
         /**
           * @uiName In progress status text
-          * @default "In Progress"
          */
         "inProgressStatusText"?: string;
         /**
           * @uiName Pending review status sub-text
-          * @default "Awaiting review"
          */
         "pendingReviewStatusSubText"?: string;
         /**
           * @uiName Pending review status text
-          * @default "Pending"
          */
         "pendingReviewStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;
     }
-    /**
-     * @uiName Referral Table User Column
-     * @validParents ["sqm-referral-table"]
-     * @exampleGroup Referrals
-     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column>
-     */
     interface SqmReferralTableUserColumn {
         /**
           * Name displayed for unknown users
           * @uiName Anonymous user text
-          * @default "Anonymous User"
          */
         "anonymousUser"?: string;
         /**
           * @uiName User column title
-          * @default "Customer"
          */
         "columnTitle"?: string;
         /**
           * Name displayed for deleted users
           * @uiName Deleted user text
-          * @default "Deleted User"
          */
         "deletedUser"?: string;
     }
-    /**
-     * @uiName Instant Access Friend Registration
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @compatibility Built for instant access
-     * @exampleGroup Instant Access
-     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
-     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-     */
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
@@ -15367,12 +11976,10 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<EmailRegistrationViewProps>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "emailLabel"?: string;
         /**
           * @uiName First name field label
-          * @default "First Name"
          */
         "firstNameLabel"?: string;
         /**
@@ -15380,7 +11987,6 @@ declare namespace LocalJSX {
           * @uiName Fraud error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Our team will review this referral. If approved, you and your friend will receive your rewards. Need help? Reach out to our Support team."
          */
         "fraudErrorMessage"?: string;
         /**
@@ -15388,25 +11994,21 @@ declare namespace LocalJSX {
           * @uiName Fraud error message title
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Looks like you tried referring yourself"
          */
         "fraudErrorMessageTitle"?: string;
         /**
           * @uiName Hide border
           * @uiGroup Card style
-          * @default false
          */
         "hideBorder"?: boolean;
         /**
           * @undocumented 
           * @uiType boolean
-          * @default true
          */
         "includeCookies"?: boolean;
         /**
           * Require your participants to enter their first and last name.
           * @uiName Include name fields
-          * @default false
          */
         "includeName"?: boolean;
         /**
@@ -15414,12 +12016,10 @@ declare namespace LocalJSX {
           * @uiName Invalid email message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Please enter a valid email address"
          */
         "invalidEmailErrorMessage"?: string;
         /**
           * @uiName Last name field label
-          * @default "Last Name"
          */
         "lastNameLabel"?: string;
         /**
@@ -15427,7 +12027,6 @@ declare namespace LocalJSX {
           * @uiName Network error message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "There was a problem signing you in. Please wait a moment and try again. If this problem continues, contact Support for help resolving this issue."
          */
         "networkErrorMessage"?: string;
         /**
@@ -15435,7 +12034,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingBottom"?: string;
         /**
@@ -15443,7 +12041,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingLeft"?: string;
         /**
@@ -15451,7 +12048,6 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingRight"?: string;
         /**
@@ -15459,12 +12055,10 @@ declare namespace LocalJSX {
           * @uiGroup Card style
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "large"
          */
         "paddingTop"?: string;
         /**
           * @uiName Register button text
-          * @default "Claim Your Reward"
          */
         "registerLabel"?: string;
         /**
@@ -15472,59 +12066,42 @@ declare namespace LocalJSX {
           * @uiName Required field message
           * @uiWidget textArea
           * @uiGroup Error messages
-          * @default "Cannot be empty"
          */
         "requiredFieldErrorMessage"?: string;
     }
-    /**
-     * @uiName Reward Exchange
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-empty"]
-     * @slots [{"name":"empty", "title":"Empty State"}]
-     * @exampleGroup Rewards
-     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
-     */
     interface SqmRewardExchangeList {
         /**
           * @uiName Back button text
-          * @default "Back"
          */
         "backText"?: string;
         /**
           * @uiName Cancel button text
-          * @default "Cancel"
          */
         "cancelText"?: string;
         /**
           * @uiName Choose amount progress title
-          * @default "Select"
          */
         "chooseAmountTitle"?: string;
         /**
           * @uiName Choose reward progress title
-          * @default "Rewards"
          */
         "chooseRewardTitle"?: string;
         /**
           * @uiName Confirmation progress title
-          * @default "Confirm"
          */
         "confirmationTitle"?: string;
         /**
           * @uiName Continue button text
-          * @default "Continue"
          */
         "continueText"?: string;
         /**
           * Displayed on the reward selection page.
           * @uiName Continue to confirmation button text
-          * @default "Continue to confirmation"
          */
         "continueToConfirmationText"?: string;
         /**
           * Shown in the confirmation state.
           * @uiName Cost row title
-          * @default "Cost to Redeem"
          */
         "costTitle"?: string;
         /**
@@ -15534,98 +12111,82 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
           * @uiName Done text
-          * @default "Done"
          */
         "doneText"?: string;
         /**
           * Error message shown when reward is not available
           * @uiName Not available error
           * @uiWidget textArea
-          * @default "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }"
          */
         "notAvailableError"?: string;
         /**
           * @uiName Not enough error message
           * @uiWidget textArea
-          * @default "Not enough {sourceUnit} to redeem for this reward"
          */
         "notEnoughError"?: string;
         /**
           * @uiName Promo code text
-          * @default "Promo Code"
          */
         "promoCode"?: string;
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward list error message
           * @uiWidget textArea
-          * @default "Unable to load reward exchange list. Please try again"
          */
         "queryError"?: string;
         /**
           * @uiName Redeem button text
-          * @default "Redeem"
          */
         "redeemText"?: string;
         /**
           * Displayed as the header for the confirmation page.
           * @uiName Confirmation title text
-          * @default "Confirm and redeem"
          */
         "redeemTitle"?: string;
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption error message
           * @uiWidget textArea
-          * @default "An error occured trying to redeem this reward. Please try again"
          */
         "redemptionError"?: string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption success message
           * @uiWidget textArea
-          * @default "Redeemed {sourceValue} for {destinationValue}"
          */
         "redemptionSuccessText"?: string;
         /**
           * Shown in the confirmation state.
           * @uiName Reward amount row title
-          * @default "Reward Amount"
          */
         "rewardAmountTitle"?: string;
         /**
           * Shown in the confirmation state.
           * @uiName Reward row title
-          * @default "Reward"
          */
         "rewardNameTitle"?: string;
         /**
           * @uiName Reward redeemed text
-          * @default "Reward redeemed"
          */
         "rewardRedeemedText"?: string;
         /**
           * @uiName Reward title text
-          * @default "Choose a reward"
          */
         "rewardTitle"?: string;
         /**
           * @uiName Select amount text
           * @uiWidget textArea
-          * @default "Select amount to receive"
          */
         "selectText"?: string;
         /**
           * Set the number of placeholder cards to be shown in loading state.
           * @uiName Loading cards
-          * @default 8
          */
         "skeletonCardNum"?: number;
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward exchange amount text
           * @uiWidget textArea
-          * @default "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}"
          */
         "sourceAmountMessage"?: string;
         /**
@@ -15633,23 +12194,14 @@ declare namespace LocalJSX {
           * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
           * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
-          * @default "Copied"
          */
         "tooltipText"?: string;
     }
-    /**
-     * @uiName Reward Table
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @exampleGroup Rewards
-     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
-     */
     interface SqmRewardsTable {
         /**
           * @undocumented 
@@ -15661,32 +12213,26 @@ declare namespace LocalJSX {
         /**
           * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
           * @uiName Mobile hidden columns
-          * @default "0"
          */
         "hiddenColumns"?: string;
         /**
           * @uiName Hide column labels
-          * @default false
          */
         "hideLabels"?: boolean;
         /**
           * @uiName Tablet breakpoint
-          * @default 799
          */
         "mdBreakpoint"?: number;
         /**
           * @uiName View more button text
-          * @default "Next"
          */
         "moreLabel"?: string;
         /**
           * @uiName Rewards per page
-          * @default 4
          */
         "perPage"?: number;
         /**
           * @uiName Previous button text
-          * @default "Prev"
          */
         "prevLabel"?: string;
         /**
@@ -15697,47 +12243,26 @@ declare namespace LocalJSX {
         "programId"?: string;
         /**
           * @uiName Mobile breakpoint
-          * @default 599
          */
         "smBreakpoint"?: number;
     }
     interface SqmRewardsTableCustomerNoteCell {
-        /**
-          * @default "en"
-         */
         "locale"?: string;
         "note"?: string;
     }
-    /**
-     * @uiName Reward Table Customer Note Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
-     */
     interface SqmRewardsTableCustomerNoteColumn {
         /**
           * @uiName Column title
-          * @default "Note"
          */
         "columnTitle"?: string;
     }
     interface SqmRewardsTableDateCell {
         "date"?: number;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
     }
-    /**
-     * @uiName Reward Table Date Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
-     */
     interface SqmRewardsTableDateColumn {
         /**
           * @uiName Date column title
-          * @default "Date received"
          */
         "columnTitle"?: string;
         /**
@@ -15745,7 +12270,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
           * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
-          * @default "dateGiven"
          */
         "dateShown"?: string;
     }
@@ -15756,31 +12280,21 @@ declare namespace LocalJSX {
         "redeemedText"?: string;
         "reward"?: Reward;
     }
-    /**
-     * @uiName Rewards Table Reward Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
-     */
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Remaining amount text
-          * @default "{availableAmount} remaining"
          */
         "availableText"?: string;
         /**
           * @uiName Reward column title
-          * @default "Reward"
          */
         "columnTitle"?: string;
         /**
           * @uiName Copied fuel tank text
-          * @default "Copied!"
          */
         "copyText"?: string;
         /**
           * @uiName Redeemed amount text
-          * @default "{redeemedAmount} redeemed"
          */
         "redeemedText"?: string;
     }
@@ -15788,222 +12302,139 @@ declare namespace LocalJSX {
         "anonymousUserText"?: string;
         "deletedReferralText"?: string;
         "deletedUserText"?: string;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
         "referralText"?: string;
         "reward"?: Reward;
         "rewardExchangeText"?: string;
         "rewardSourceText"?: string;
     }
-    /**
-     * @uiName Reward Table Source Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
-     */
     interface SqmRewardsTableSourceColumn {
         /**
           * Name displayed for unknown users
           * @uiName Anonymous user text
-          * @default "Anonymous User"
          */
         "anonymousUser"?: string;
         /**
           * @uiName Soruce column title
-          * @default "Source"
          */
         "columnTitle"?: string;
         /**
           * Name displayed for deleted users
           * @uiName Deleted user text
-          * @default "Deleted User"
          */
         "deletedUser"?: string;
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral text
           * @uiWidget textArea
-          * @default "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
          */
         "referralText"?: string;
         /**
           * @uiName Reward exchange label
-          * @default "Reward Exchange"
          */
         "rewardExchangeText"?: string;
         /**
           * Shown when a reward has been created by a source other than a referral.
           * @uiName Reward source text
           * @uiWidget textArea
-          * @default "{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
          */
         "rewardSourceText"?: string;
     }
     interface SqmRewardsTableStatusCell {
-        /**
-          * @default "Detected self-referral"
-         */
         "deniedText"?: string;
-        /**
-          * @default "Expires"
-         */
         "expiryText"?: string;
-        /**
-          * @default "en"
-         */
         "locale"?: string;
-        /**
-          * @default "Reward was scheduled for payment based on your settings, barring any account holds."
-         */
         "payoutApproved"?: string;
-        /**
-          * @default "If you think this is a mistake, contact our Support team."
-         */
         "payoutCancelled"?: string;
-        /**
-          * @default "Payout failed due to a fulfillment issue and is current being retried."
-         */
         "payoutFailed"?: string;
-        /**
-          * @default "Invalid tax form. Submit a new form to receive your rewards."
-         */
         "pendingNewTaxForm"?: string;
-        /**
-          * @default "Complete your tax and cash payout setup to receive your rewards."
-         */
         "pendingPartnerCreation"?: string;
-        /**
-          * @default "Awaiting review"
-         */
         "pendingReviewText"?: string;
-        /**
-          * @default "Until"
-         */
         "pendingScheduled"?: string;
-        /**
-          * @default "Awaiting tax form review."
-         */
         "pendingTaxReview"?: string;
-        /**
-          * @default "Submit your tax documents to receive your rewards."
-         */
         "pendingTaxSubmission"?: string;
-        /**
-          * @default "Fulfillment error"
-         */
         "pendingUnhandled"?: string;
-        /**
-          * @default "W-9 required"
-         */
         "pendingUsTax"?: string;
         "reward"?: Reward;
         "statusText"?: string;
         "taxConnection"?: ImpactConnection;
     }
-    /**
-     * @uiName Reward Table Status Column
-     * @validParents ["sqm-rewards-table"]
-     * @exampleGroup Rewards
-     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
-     */
     interface SqmRewardsTableStatusColumn {
         /**
           * @uiName Column title
-          * @default "Status"
          */
         "columnTitle"?: string;
         /**
           * Displayed when denied for fraud.
           * @uiName Denied text
-          * @default "Detected self-referral"
          */
         "deniedText"?: string;
         /**
           * Text shown before the date of an expiring reward.
           * @uiName Expiry date prefix
-          * @default "Expires on "
          */
         "expiryText"?: string;
         /**
           * Displayed when reward payout is approved (based on Impact cash payout configuration).
           * @uiName Payout approved text
-          * @default "Reward was scheduled for payment based on your settings, barring any account holds."
          */
         "payoutApproved"?: string;
         /**
           * Displayed when reward payout was reversed (based on Impact cash payout configuration).
           * @uiName Payout cancelled text
-          * @default "If you think this is a mistake, contact our Support team."
          */
         "payoutCancelled"?: string;
         /**
           * Displayed when reward payout has failed (based on Impact cash payout configuration).
           * @uiName Payout failed text
-          * @default "Payout failed due to a fulfillment issue and is current being retried."
          */
         "payoutFailed"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
-          * @default "Invalid tax form. Submit a new form to receive your rewards."
          */
         "pendingNewTaxForm"?: string;
         /**
           * Displayed when pending due to need to connect to an Impact partner
           * @uiName Pending partner creation text
-          * @default "Complete your tax and cash payout setup to receive your rewards."
          */
         "pendingPartnerCreation"?: string;
         /**
           * Displayed when flagged for fraud.
           * @uiName Pending review text
-          * @default "Awaiting review"
          */
         "pendingReviewText"?: string;
         /**
           * Text shown before the available date of a pending reward.
           * @uiName Pending date prefix
-          * @default "Until"
          */
         "pendingScheduled"?: string;
         /**
           * Displayed when pending due to tax document review.
           * @uiName Pending tax review text
-          * @default "Awaiting tax form review."
          */
         "pendingTaxReview"?: string;
         /**
           * Displayed when pending due to lack of tax document submission.
           * @uiName Pending tax submission text
-          * @default "Submit your tax documents to receive your rewards."
          */
         "pendingTaxSubmission"?: string;
         /**
           * Displayed when fulfillment error occured when creating a reward.
           * @uiName Unhandled error text
-          * @default "Fulfillment error"
          */
         "pendingUnhandled"?: string;
         /**
           * Displayed when a reward is pending due to W-9 compliance.
           * @uiName W-9 pending text
-          * @default "W-9 required"
          */
         "pendingUsTax"?: string;
         /**
           * @uiName Reward status text
           * @uiWidget textArea
-          * @default "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }"
          */
         "statusText"?: string;
     }
-    /**
-     * @uiName Route
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
-     * @slots [{"name":"","title":"Content"}]
-     */
     interface SqmRoute {
         /**
           * Page Path URL for this route.
@@ -16011,20 +12442,8 @@ declare namespace LocalJSX {
          */
         "path"?: string;
     }
-    /**
-     * @uiName Router
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-route"]
-     * @slots [{"name":"","title":"Routes"}]
-     */
     interface SqmRouter {
     }
-    /**
-     * @uiName Scroll Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     */
     interface SqmScroll {
         /**
           * @uiName Button text
@@ -16067,7 +12486,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["smooth", "auto"]
           * @uiEnumNames ["Smooth", "Auto"]
-          * @default "smooth"
          */
         "scrollAnimation"?: "smooth" | "auto";
         /**
@@ -16088,24 +12506,6 @@ declare namespace LocalJSX {
          */
         "size"?: string;
     }
-    /**
-     * @uiName Share Button
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-     * @slots [{"name":"", "title":"Button Content"}]
-     * @slotEditor richText
-     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
-     * @exampleGroup Sharing
-     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
-     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
-     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
-     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
-     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
-     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
-     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
-     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
-     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
-     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
-     */
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -16156,7 +12556,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
-          * @default "prefix"
          */
         "iconslot"?: "prefix" | "suffix";
         /**
@@ -16220,7 +12619,6 @@ declare namespace LocalJSX {
           * @uiName Button style
           * @uiEnum ["primary", "secondary", "success", "info", "warning", "danger", "default", "text" ]
           * @uiEnumNames ["Primary", "Secondary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
-          * @default "default"
          */
         "type"?: | "primary"
     | "secondary"
@@ -16233,22 +12631,14 @@ declare namespace LocalJSX {
         /**
           * Alert text shown if the share link is undefined
           * @uiName Undefined link text
-          * @default "Error: message link undefined!"
          */
         "undefinedLinkText"?: string;
         /**
           * Alert text shown if the user's device does not support native sharing
           * @uiName Unsupported platform text
-          * @default "Error: not on a supported device"
          */
         "unsupportedPlatformText"?: string;
     }
-    /**
-     * @uiName Share Code
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @exampleGroup Sharing
-     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
-     */
     interface SqmShareCode {
         /**
           * Background color of share link container
@@ -16280,7 +12670,6 @@ declare namespace LocalJSX {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -16290,12 +12679,10 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Code"
          */
         "copyButtonLabel"?: string;
         /**
@@ -16316,7 +12703,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -16330,22 +12716,14 @@ declare namespace LocalJSX {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan"?: number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext"?: string;
     }
-    /**
-     * @uiName Share Link
-     * @exampleGroup Sharing
-     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
-     */
     interface SqmShareLink {
         /**
           * Background color of share link container
@@ -16377,7 +12755,6 @@ declare namespace LocalJSX {
           * @uiEnum ["icon", "button-outside", "button-below"]
           * @uiEnumNames ["Icon", "Button outside", "Button below"]
           * @uiGroup Style
-          * @default "icon"
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
@@ -16387,12 +12764,10 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
-          * @default "Copy Link"
          */
         "copyButtonLabel"?: string;
         /**
@@ -16413,7 +12788,6 @@ declare namespace LocalJSX {
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
           * @uiGroup Style
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
         /**
@@ -16427,24 +12801,14 @@ declare namespace LocalJSX {
         /**
           * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
-          * @default 1000
          */
         "tooltiplifespan"?: number;
         /**
           * Shown inside a tooltip after someone has successfully copied the link to their clipboard
           * @uiName Tooltip text
-          * @default "Copied to Clipboard"
          */
         "tooltiptext"?: string;
     }
-    /**
-     * @uiName Stat Container
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
-     * @validChildren ["sqm-big-stat"]
-     * @slots [{"name":"", "title":"Stats"}]
-     * @exampleGroup Statistics
-     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
-     */
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -16452,7 +12816,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @default "center"
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -16461,7 +12824,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["grid", "flex"]
           * @uiEnumNames ["Grid", "Flex"]
-          * @default "flex"
          */
         "display"?: "grid" | "flex";
         /**
@@ -16469,7 +12831,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "x-large"
          */
         "gap"?: Spacing;
         /**
@@ -16483,65 +12844,33 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "xxx-large"
          */
         "space"?: Spacing;
     }
-    /**
-     * For internal documentation
-     * @undocumented 
-     */
     interface SqmStencilbook {
     }
-    /**
-     * @uiName Tab
-     * @slots [{"name":"", "title":"Tab Content"}]
-     * @validParents ["sqm-tabs"]
-     * @exampleGroup Layout
-     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
-     */
     interface SqmTab {
         /**
           * @uiName Tab title
          */
         "header"?: string;
     }
-    /**
-     * @uiName Table Cell
-     * @slots [{"name":"", "title":"Cell Content"}]
-     */
     interface SqmTableCell {
         /**
           * @uiName Column span
-          * @default 1
          */
         "colspan"?: number;
         /**
           * @uiName Padding
-          * @default "15px 10px"
          */
         "padding"?: string;
     }
-    /**
-     * @uiName Table Row
-     * @slots [{"name":"", "title":"Row Content"}]
-     */
     interface SqmTableRow {
         /**
           * @uiName Border
-          * @default "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"
          */
         "border"?: string;
     }
-    /**
-     * @uiName Tab Group
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-tab"]
-     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
-     * @exampleGroup Layout
-     * @canvasRenderer always-replace
-     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
-     */
     interface SqmTabs {
         /**
           * Used to specify the placement of the tabs
@@ -16559,11 +12888,6 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Task Card
-     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
-     * @validParents ["sqm-card-feed"]
-     */
     interface SqmTaskCard {
         /**
           * @uiName Card Background color
@@ -16591,7 +12915,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Button text
           * @uiGroup Button
-          * @default "Complete Action"
          */
         "buttonText"?: string;
         /**
@@ -16600,13 +12923,11 @@ declare namespace LocalJSX {
           * @uiEnum ["primary", "secondary"]
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
-          * @default "primary"
          */
         "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
-          * @default "Title Text"
          */
         "cardTitle"?: string;
         /**
@@ -16614,7 +12935,6 @@ declare namespace LocalJSX {
           * @uiName Completed count text
           * @uiGroup Task
           * @uiWidget textArea
-          * @default "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
          */
         "completedText"?: string;
         /**
@@ -16625,7 +12945,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Description
           * @uiGroup Task
-          * @default ""
          */
         "description"?: string;
         /**
@@ -16640,7 +12959,6 @@ declare namespace LocalJSX {
           * Shown to users after the end of the task duration.
           * @uiName Ended date message
           * @uiGroup Task
-          * @default "Ended {endDate}"
          */
         "endedMessage"?: string;
         /**
@@ -16653,27 +12971,23 @@ declare namespace LocalJSX {
           * Displayed when a user views a task card after the reward duration interval.
           * @uiName Expiry date message
           * @uiGroup Task
-          * @default "Ends {endDate}"
          */
         "expiryMessage"?: string;
         /**
           * The number of times a task can be completed when repeatable.  Use zero for no limit (the default).
           * @uiName Repeat amount
           * @uiGroup Reward
-          * @default 0
          */
         "finite"?: number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal completion number
           * @uiGroup Goal
-          * @default 1
          */
         "goal"?: number;
         /**
           * @uiName Hide CTA button
           * @uiGroup Button
-          * @default false
          */
         "hideButton"?: boolean;
         /**
@@ -16694,7 +13008,6 @@ declare namespace LocalJSX {
           * The unit displayed to the right of steps and progress numbers on the progress bar. Ex: $ for dollars
           * @uiName Progress bar unit
           * @uiGroup Goal
-          * @default ""
          */
         "progressBarUnit"?: string;
         /**
@@ -16706,7 +13019,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Reward amount
           * @uiGroup Reward
-          * @default "0"
          */
         "rewardAmount"?: string;
         /**
@@ -16720,7 +13032,6 @@ declare namespace LocalJSX {
         /**
           * @uiName Reward unit
           * @uiGroup Reward
-          * @default "Points"
          */
         "rewardUnit"?: string;
         /**
@@ -16733,7 +13044,6 @@ declare namespace LocalJSX {
           * Shown to users before the start of the task duration.
           * @uiName Start date message
           * @uiGroup Task
-          * @default "Starts {startDate}"
          */
         "startsOnMessage"?: string;
         /**
@@ -16759,178 +13069,145 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Tax and Cash
-     * @exampleGroup Tax and Cash
-     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
-     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
-     */
     interface SqmTaxAndCash {
         /**
           * @uiName Back button label
           * @uiGroup General Form Properties
-          * @default "Back"
          */
         "backButton"?: string;
         /**
           * @uiName Cancel button label
           * @uiGroup General Form Properties
-          * @default "Cancel"
          */
         "cancelButton"?: string;
         /**
           * @uiName Continue button label
           * @uiGroup General Form Properties
-          * @default "Continue"
          */
         "continueButton"?: string;
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "dashboard_accountReviewDescription"?: string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "dashboard_accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
           * @uiGroup Dashboard Properties
-          * @default "Account"
          */
         "dashboard_accountText"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Tax form in review description
           * @uiGroup Dashboard Properties
-          * @default "Awaiting review. Submitted on {dateSubmitted}."
          */
         "dashboard_badgeTextAwaitingReview"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Active W-9 description
           * @uiGroup Dashboard Properties
-          * @default "Submitted on {dateSubmitted}."
          */
         "dashboard_badgeTextSubmittedOn"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Active W-8 description
           * @uiGroup Dashboard Properties
-          * @default "Submitted on {dateSubmitted}. Valid for three years after submission."
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_bankNameMismatchDescription"?: string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_bankNameMismatchHeader"?: string;
         /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
-          * @default "Payout Information"
          */
         "dashboard_bankingInformationSectionHeader"?: string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_beneficiaryNameInvalidDescription"?: string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_beneficiaryNameInvalidHeader"?: string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "dashboard_beneficiaryNameMismatchDescription"?: string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "dashboard_beneficiaryNameMismatchHeader"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
           * @uiGroup Dashboard Properties
-          * @default "Date"
          */
         "dashboard_dateColumnTitle"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
           * @uiGroup Dashboard Properties
-          * @default "Earnings after tax"
          */
         "dashboard_earningsAfterTaxColumnTitle"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
           * @uiGroup Dashboard Properties
-          * @default "Earnings"
          */
         "dashboard_earningsColumnTitle"?: string;
         /**
           * @uiName Edit payment info button label
           * @uiGroup Dashboard Properties
-          * @default "Edit payout information"
          */
         "dashboard_editPaymentInformationButton"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
           * @uiGroup Dashboard Properties
-          * @default "Indirect tax"
          */
         "dashboard_indirectTaxColumnTitle"?: string;
         /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
           * @uiGroup Dashboard Properties
-          * @default "{indirectTaxType} number: {indirectTaxNumber}"
          */
         "dashboard_indirectTaxDetails"?: string;
         /**
           * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
           * @uiName Canadian province of indirect tax
           * @uiGroup Dashboard Properties
-          * @default "Registered in {province}, {country}"
          */
         "dashboard_indirectTaxInfoCanada"?: string;
         /**
           * If the participant is registered for indirect tax, display the country they’re registered in.
           * @uiName Indirect tax country
           * @uiGroup Dashboard Properties
-          * @default "Registered in {country}"
          */
         "dashboard_indirectTaxInfoOtherCountry"?: string;
         /**
           * @uiName Indirect tax section header
           * @uiGroup Dashboard Properties
-          * @default "Indirect tax"
          */
         "dashboard_indirectTaxInfoSectionHeader"?: string;
         /**
           * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
           * @uiName Spanish region of indirect tax
           * @uiGroup Dashboard Properties
-          * @default "Registered in {country}, {subRegion}"
          */
         "dashboard_indirectTaxInfoSpain"?: string;
         /**
           * @uiName Indirect tax tooltip
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "To make changes to your indirect tax information, please contact our {supportLink}."
          */
         "dashboard_indirectTaxTooltipSupport"?: string;
         /**
@@ -16938,56 +13215,47 @@ declare namespace LocalJSX {
           * @uiName Invalid tax form description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Make sure your information is correct and submit new form."
          */
         "dashboard_invalidForm"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Invoice number column title
           * @uiGroup Dashboard Properties
-          * @default "Invoice"
          */
         "dashboard_invoiceColumnTitle"?: string;
         /**
           * @uiName Invoice table description
           * @uiGroup Dashboard Properties
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "dashboard_invoiceDescription"?: string;
         /**
           * @uiName Empty invoice table header
           * @uiGroup Dashboard Properties
-          * @default "View your invoice details"
          */
         "dashboard_invoiceEmptyStateHeader"?: string;
         /**
           * @uiName Empty invoice table description
           * @uiGroup Dashboard Properties
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "dashboard_invoiceEmptyStateText"?: string;
         /**
           * @uiName Invoice table title
           * @uiGroup Dashboard Properties
-          * @default "Invoices"
          */
         "dashboard_invoiceHeader"?: string;
         /**
           * @uiName Invoice table next page button label
           * @uiGroup Dashboard Properties
-          * @default "Next"
          */
         "dashboard_invoiceMoreLabel"?: string;
         /**
           * @uiName Invoice table previous page button label
           * @uiGroup Dashboard Properties
-          * @default "Prev"
          */
         "dashboard_invoicePrevLabel"?: string;
         /**
           * @uiName Submit new tax form button label
           * @uiGroup Dashboard Properties
-          * @default "Submit new tax form"
          */
         "dashboard_newFormButton"?: string;
         /**
@@ -16995,34 +13263,28 @@ declare namespace LocalJSX {
           * @uiName Tax form not required text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Tax documents are only required if you are based in the US or joining the referral program of a US based brand."
          */
         "dashboard_noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant."
          */
         "dashboard_notRegisteredForTax"?: string;
         /**
           * @uiName Payment on hold alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "dashboard_paymentOnHoldDescription"?: string;
         /**
           * @uiName Payment on hold alert header
-          * @default "We are reviewing your new payout settings"
          */
         "dashboard_paymentOnHoldHeader"?: string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "dashboard_paymentReturnedDescription"?: string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "dashboard_paymentReturnedHeader"?: string;
         /**
@@ -17030,7 +13292,6 @@ declare namespace LocalJSX {
           * @uiName Payout from impact text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com."
          */
         "dashboard_payoutFromImpact"?: string;
         /**
@@ -17038,7 +13299,6 @@ declare namespace LocalJSX {
           * @uiName Payout error message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com."
          */
         "dashboard_payoutHoldAlertDescription"?: string;
         /**
@@ -17046,77 +13306,65 @@ declare namespace LocalJSX {
           * @uiName Payout error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your payout is on hold"
          */
         "dashboard_payoutHoldAlertHeader"?: string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
           * @uiGroup Dashboard Properties
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "dashboard_payoutMissingInformationText"?: string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
           * @uiGroup Dashboard Properties
-          * @default "QST number: {qstNumber}"
          */
         "dashboard_qstNumber"?: string;
         /**
           * @uiName Replace tax form modal body text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout."
          */
         "dashboard_replaceTaxFormModalBodyText"?: string;
         /**
           * @uiName Replace tax form modal header
           * @uiGroup Dashboard Properties
-          * @default "Replace existing tax form"
          */
         "dashboard_replaceTaxFormModalHeader"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Required tax form description
-          * @default "Your payouts are on hold until you submit a {taxFormType} tax form."
          */
         "dashboard_requiredTaxForm"?: string;
         /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "dashboard_statusBadgeText"?: string;
         /**
           * @uiName Active tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Active"
          */
         "dashboard_statusTextActive"?: string;
         /**
           * @uiName Invalid tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Invalid Tax Form"
          */
         "dashboard_statusTextNotActive"?: string;
         /**
           * Displayed when the participant submitted their form but it is awaiting review.
           * @uiName Not verified tax form badge label
           * @uiGroup Dashboard Properties
-          * @default "Not Verified"
          */
         "dashboard_statusTextNotVerified"?: string;
         /**
           * Displayed when the participant has not submitted their required tax form.
           * @uiName Required tax form badge label
-          * @default "Required"
          */
         "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
-          * @default "Income tax number: {subRegionTaxNumber}"
          */
         "dashboard_subRegionTaxNumber"?: string;
         /**
@@ -17124,7 +13372,6 @@ declare namespace LocalJSX {
           * @uiName Inactive W-8 error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "{documentType} tax form is invalid"
          */
         "dashboard_taxAlertHeaderNotActiveW8"?: string;
         /**
@@ -17132,14 +13379,12 @@ declare namespace LocalJSX {
           * @uiName Inactive W-9 error message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your W-9 tax form has personal information that doesn’t match your profile"
          */
         "dashboard_taxAlertHeaderNotActiveW9"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message description
           * @uiGroup Dashboard Properties
-          * @default "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form."
          */
         "dashboard_taxAlertNotActiveMessageW8"?: string;
         /**
@@ -17147,47 +13392,40 @@ declare namespace LocalJSX {
           * @uiName Inactive W-9 error message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Please resubmit a new {documentType} form."
          */
         "dashboard_taxAlertNotActiveMessageW9"?: string;
         /**
           * @uiName Tax document section header
           * @uiGroup Dashboard Properties
-          * @default "Tax documents"
          */
         "dashboard_taxDocumentSectionHeader"?: string;
         /**
           * Displayed under the tax document section header.
           * @uiName Tax documents section description
           * @uiGroup Dashboard Properties
-          * @default "{documentType} tax form"
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
         /**
           * @uiName Terms and Conditions text
           * @uiGroup Dashboard Properties
-          * @default "Terms and Conditions"
          */
         "dashboard_termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
           * @uiGroup Dashboard Properties
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "dashboard_thresholdPayoutText"?: string;
         /**
           * @uiName Verification failed internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationFailedInternalDescription"?: string;
         /**
           * @uiName Verification failed internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification usuccessful"
          */
         "dashboard_verificationFailedInternalHeader"?: string;
         /**
@@ -17195,7 +13433,6 @@ declare namespace LocalJSX {
           * @uiName Verification required alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Start Verification"
          */
         "dashboard_verificationRequiredButtonText"?: string;
         /**
@@ -17203,7 +13440,6 @@ declare namespace LocalJSX {
           * @uiName Verification required alert message description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "dashboard_verificationRequiredDescription"?: string;
         /**
@@ -17211,66 +13447,56 @@ declare namespace LocalJSX {
           * @uiName Verification required alert message title
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Verify your identity"
          */
         "dashboard_verificationRequiredHeader"?: string;
         /**
           * @uiName Verification required internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationRequiredInternalDescription"?: string;
         /**
           * @uiName Verification required internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification in progress"
          */
         "dashboard_verificationRequiredInternalHeader"?: string;
         /**
           * @uiName Verification review internal alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "dashboard_verificationReviewInternalDescription"?: string;
         /**
           * @uiName Verification review internal alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Identity verification under review"
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
           * @uiName W-9 payment threshold alert button text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Submit W-9"
          */
         "dashboard_w9RequiredButtonText"?: string;
         /**
           * @uiName W-9 payment threshold alert description
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "dashboard_w9RequiredDescription"?: string;
         /**
           * @uiName W-9 payment threshold alert header
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
-          * @default "Your next payout is on hold"
          */
         "dashboard_w9RequiredHeader"?: string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "dashboard_withdrawalSettingsInvalidDescription"?: string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "dashboard_withdrawalSettingsInvalidHeader"?: string;
         /**
@@ -17281,20 +13507,17 @@ declare namespace LocalJSX {
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError"?: string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError"?: string;
         /**
           * @uiName Setup progress
           * @uiGroup General Form Properties
-          * @default "Step {step} of {count}"
          */
         "formStep"?: string;
         /**
@@ -17302,7 +13525,6 @@ declare namespace LocalJSX {
           * @uiName Form submission error message description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
@@ -17310,14 +13532,12 @@ declare namespace LocalJSX {
           * @uiName Form submission error message title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * Displayed under a field that includes invalid characters (non-ASCII).
           * @uiName Invalid character error message
           * @uiGroup General Form Properties
-          * @default "{fieldName} includes characters that aren't supported."
          */
         "invalidCharacterError"?: string;
         /**
@@ -17325,7 +13545,6 @@ declare namespace LocalJSX {
           * @uiName Participant is a partner alert description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription"?: string;
         /**
@@ -17333,7 +13552,6 @@ declare namespace LocalJSX {
           * @uiName Participant is a partner alert title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader"?: string;
         /**
@@ -17341,7 +13559,6 @@ declare namespace LocalJSX {
           * @uiName Page load error message description
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription"?: string;
         /**
@@ -17349,14 +13566,12 @@ declare namespace LocalJSX {
           * @uiName Page load error message title
           * @uiGroup General Form Properties
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
           * @uiGroup General Form Properties
-          * @default "Search for country.."
          */
         "searchForCountryText"?: string;
         /**
@@ -17366,105 +13581,88 @@ declare namespace LocalJSX {
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
           * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
-          * @default "Address"
          */
         "step1_address"?: string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
           * @uiGroup Step 1 Properties
-          * @default "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
          */
         "step1_allowBankingCollection"?: string;
         /**
           * @uiName City field label
           * @uiGroup Step 1 Properties
-          * @default "City"
          */
         "step1_city"?: string;
         /**
           * @uiName Country field label
           * @uiGroup Step 1 Properties
-          * @default "Country"
          */
         "step1_country"?: string;
         /**
           * @uiName Currency field label
           * @uiGroup Step 1 Properties
-          * @default "Currency"
          */
         "step1_currency"?: string;
         /**
           * @uiName Currency field help text
           * @uiGroup Step 1 Properties
-          * @default "Choose your preferred payout currency"
          */
         "step1_currencyHelpText"?: string;
         /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
-          * @default "Email"
          */
         "step1_email"?: string;
         /**
           * @uiName First name field label
           * @uiGroup Step 1 Properties
-          * @default "First name"
          */
         "step1_firstName"?: string;
         /**
           * @uiName Last name field label
           * @uiGroup Step 1 Properties
-          * @default "Last name"
          */
         "step1_lastName"?: string;
         /**
           * @uiName Step 1 title
           * @uiGroup Step 1 Properties
-          * @default "Personal Information"
          */
         "step1_personalInformation"?: string;
         /**
           * @uiName Phone number field label
           * @uiGroup Step 1 Properties
-          * @default "Phone number"
          */
         "step1_phoneNumber"?: string;
         /**
           * @uiName Postal code field label
           * @uiGroup Step 1 Properties
-          * @default "Postal code"
          */
         "step1_postalCode"?: string;
         /**
           * @uiName State field label for provinces
           * @uiGroup Step 1 Properties
-          * @default "Province"
          */
         "step1_province"?: string;
         /**
           * @uiName State field label for regions
           * @uiGroup Step 1 Properties
-          * @default "Region"
          */
         "step1_region"?: string;
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
           * @uiGroup Step 1 Properties
-          * @default "Search for currency.."
          */
         "step1_searchForCurrencyText"?: string;
         /**
           * @uiName State field label for states
           * @uiGroup Step 1 Properties
-          * @default "State"
          */
         "step1_state"?: string;
         /**
@@ -17472,14 +13670,12 @@ declare namespace LocalJSX {
           * @uiName Terms and conditions text
           * @uiGroup Step 1 Properties
           * @uiWidget textArea
-          * @default "terms and conditions"
          */
         "step1_termsAndConditionsLabel"?: string;
         /**
           * The link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions link
           * @uiGroup Step 1 Properties
-          * @default "https://terms.advocate.impact.com/PayoutTermsAndConditions.html"
          */
         "step1_termsAndConditionsLink"?: string;
         /**
@@ -17487,13 +13683,11 @@ declare namespace LocalJSX {
           * @uiName Submission confirmation alert
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Changes to your personal and indirect tax information can only be made through our {supportLink} after you complete this step. Make sure these are correct before continuing."
          */
         "step2_cannotChangeInfoAlert"?: string;
         /**
           * @uiName Step 2 title
           * @uiGroup Step 2 Properties
-          * @default "Indirect Tax"
          */
         "step2_indirectTax"?: string;
         /**
@@ -17501,33 +13695,28 @@ declare namespace LocalJSX {
           * @uiName Step 2 description
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Indirect taxes (e.g. VAT, HST, GST) are transaction based taxes often applied to goods and services. Service providers are typically required to register with their tax authority and collect these taxes on behalf governments."
          */
         "step2_indirectTaxDescription"?: string;
         /**
           * Displayed with indirect tax registration options.
           * @uiName Indirect tax details section title
           * @uiGroup Step 2 Properties
-          * @default "Indirect tax details"
          */
         "step2_indirectTaxDetails"?: string;
         /**
           * @uiName Indirect tax number field label
           * @uiGroup Step 2 Properties
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}"
          */
         "step2_indirectTaxNumber"?: string;
         /**
           * @uiName Missing indirect tax number error message
           * @uiGroup Step 2 Properties
-          * @default "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required"
          */
         "step2_indirectTaxNumberError"?: string;
         /**
           * Displayed to participants registered for indirect tax in Quebec, Canada.
           * @uiName QST tax checkbox
           * @uiGroup Step 2 Properties
-          * @default "I am registered for QST Tax"
          */
         "step2_isRegisteredQST"?: string;
         /**
@@ -17535,74 +13724,63 @@ declare namespace LocalJSX {
           * @uiName Spain income tax checkbox
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "I am an individual registered for Income Tax purposes in Spain, and withholding tax will apply to any payments made to me."
          */
         "step2_isRegisteredSubRegionIncomeTax"?: string;
         /**
           * @uiName Not registered for indirect tax option
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Not registered for indirect tax"
          */
         "step2_notRegistered"?: string;
         /**
           * Participants based in the US are  considered not registered.
           * @uiName Not registered for indirect tax option description
           * @uiGroup Step 2 Properties
-          * @default "If you’ve never set up indirect tax with your tax authority, then you’re likely not considered registered."
          */
         "step2_notRegisteredSubtext"?: string;
         /**
           * @uiName Registered for indirect tax option
           * @uiGroup Step 2 Properties
           * @uiWidget textArea
-          * @default "Registered for indirect tax"
          */
         "step2_otherRegion"?: string;
         /**
           * Selecting this option will display fields to enter indirect tax details.
           * @uiName Registered for indirect tax option description
           * @uiGroup Step 2 Properties
-          * @default "If you’ve registered with your tax authority, add your information to stay tax compliant."
          */
         "step2_otherRegionSubtext"?: string;
         /**
           * @uiName Province field label
           * @uiGroup Step 2 Properties
-          * @default "Province"
          */
         "step2_province"?: string;
         /**
           * Displayed to participants registered for QST.
           * @uiName QST number field label
           * @uiGroup Step 2 Properties
-          * @default "QST number"
          */
         "step2_qstNumber"?: string;
         /**
           * @uiName Region of indirect tax field label
           * @uiGroup Step 2 Properties
-          * @default "Country / region of indirect tax"
          */
         "step2_selectedRegion"?: string;
         /**
           * Displayed to participants registered in Spain.
           * @uiName Sub-region of indirect tax field label
           * @uiGroup Step 2 Properties
-          * @default "Sub-region"
          */
         "step2_subRegion"?: string;
         /**
           * @uiName Income tax field label
           * @uiGroup Step 2 Properties
-          * @default "Income Tax Number"
          */
         "step2_subRegionTaxNumberLabel"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Business representative participant type label
           * @uiGroup Step 3 Properties
-          * @default "I represent a business"
          */
         "step3_businessEntity"?: string;
         /**
@@ -17610,7 +13788,6 @@ declare namespace LocalJSX {
           * @uiName Docusign form error message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "There was a problem displaying this form. Please refresh the page. If this problem continues, contact our {supportLink}."
          */
         "step3_docusignError"?: string;
         /**
@@ -17618,7 +13795,6 @@ declare namespace LocalJSX {
           * @uiName Docusign session expired message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue."
          */
         "step3_docusignExpired"?: string;
         /**
@@ -17626,56 +13802,47 @@ declare namespace LocalJSX {
           * @uiName Docusign timed session message
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
          */
         "step3_docusignSessionWarning"?: string;
         /**
           * @uiName Exit button text
           * @uiGroup Step 3 Properties
-          * @default "Exit"
          */
         "step3_exitButton"?: string;
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
           * @uiName Individual participant type label
           * @uiGroup Step 3 Properties
-          * @default "I am an individual participant"
          */
         "step3_individualParticipant"?: string;
         /**
           * @uiName Information modal button text
           * @uiGroup Step 3 Properties
-          * @default "I understand"
          */
         "step3_modalButtonText"?: string;
         /**
           * @uiName Information modal description text
           * @uiGroup Step 3 Properties
-          * @default "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout."
          */
         "step3_modalDescription"?: string;
         /**
           * @uiName Information modal title
           * @uiGroup Step 3 Properties
-          * @default "Important Note"
          */
         "step3_modalTitle"?: string;
         /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
-          * @default "Participant type"
          */
         "step3_participantType"?: string;
         /**
           * @uiName Refresh page button label
           * @uiGroup Step 3 Properties
-          * @default "Refresh Page"
          */
         "step3_refreshButton"?: string;
         /**
           * @uiName Step 3 title
           * @uiGroup Step 3 Properties
-          * @default "Tax form"
          */
         "step3_taxForm"?: string;
         /**
@@ -17683,7 +13850,6 @@ declare namespace LocalJSX {
           * @uiName W-9 tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants based in the US need to submit a {documentType} form."
          */
         "step3_taxFormDescription"?: string;
         /**
@@ -17691,7 +13857,6 @@ declare namespace LocalJSX {
           * @uiName W-8 BEN-E tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants residing outside of the US working with a US Brand need to submit a {documentType} form."
          */
         "step3_taxFormDescriptionBusinessEntity"?: string;
         /**
@@ -17699,407 +13864,338 @@ declare namespace LocalJSX {
           * @uiName W-8 BEN tax form description
           * @uiGroup Step 3 Properties
           * @uiWidget textArea
-          * @default "Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form."
          */
         "step3_taxFormDescriptionIndividualParticipant"?: string;
         /**
           * Display the type of tax form that the participant must submit.
           * @uiName Tax form name
           * @uiGroup Step 3 Properties
-          * @default "{documentType} Tax Form"
          */
         "step3_taxFormLabel"?: string;
         /**
           * @uiName Agency code field label
           * @uiGroup Step 4 Properties
-          * @default "Agency code"
          */
         "step4_agencyCodeLabel"?: string;
         /**
           * @uiName Bank account number field label
           * @uiGroup Step 4 Properties
-          * @default "Bank account number"
          */
         "step4_bankAccountNumberLabel"?: string;
         /**
           * @uiName Bank account type field label
           * @uiGroup Step 4 Properties
-          * @default "Bank account type"
          */
         "step4_bankAccountTypeLabel"?: string;
         /**
           * @uiName Bank address field label
           * @uiGroup Step 4 Properties
-          * @default "Bank address"
          */
         "step4_bankAddressLabel"?: string;
         /**
           * @uiName Bank city field label
           * @uiGroup Step 4 Properties
-          * @default "Bank city"
          */
         "step4_bankCityLabel"?: string;
         /**
           * @uiName Bank country field label
           * @uiGroup Step 4 Properties
-          * @default "Bank country location"
          */
         "step4_bankLocationLabel"?: string;
         /**
           * @uiName Bank name field label
           * @uiGroup Step 4 Properties
-          * @default "Bank name"
          */
         "step4_bankNameLabel"?: string;
         /**
           * @uiName Bank postal code field label
           * @uiGroup Step 4 Properties
-          * @default "Bank postal code"
          */
         "step4_bankPostalCodeLabel"?: string;
         /**
           * @uiName Bank province/state field label
           * @uiGroup Step 4 Properties
-          * @default "Bank Province / State"
          */
         "step4_bankStateLabel"?: string;
         /**
           * @uiName Beneficiary account field description
           * @uiGroup Step 4 Properties
-          * @default "The beneficiary name of your bank account. Ensure this matches the name on your tax form."
          */
         "step4_beneficiaryAccountNameDescription"?: string;
         /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
-          * @default "Account holder name"
          */
         "step4_beneficiaryAccountNameLabel"?: string;
         /**
           * @uiName Branch code field label
           * @uiGroup Step 4 Properties
-          * @default "Branch code"
          */
         "step4_branchCodeLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
-          * @default "Business"
          */
         "step4_businessSelectItemLabel"?: string;
         /**
           * @uiName Checking account option
           * @uiGroup Step 4 Properties
-          * @default "Checking"
          */
         "step4_checkingSelectItemLabel"?: string;
         /**
           * @uiName Classification CPF field label
           * @uiGroup Step 4 Properties
-          * @default "Classification CPF"
          */
         "step4_classificationCPFLabel"?: string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
-          * @default "Classification entity"
          */
         "step4_classificationEntityLabel"?: string;
         /**
           * Label text for the classification input field
           * @uiName Classification field label
           * @uiGroup Step 4 Properties
-          * @default "Classification"
          */
         "step4_classificationLabel"?: string;
         /**
           * @uiName Direct to bank payout option
           * @uiGroup Step 4 Properties
-          * @default "Directly to my bank account"
          */
         "step4_directlyToBankAccount"?: string;
         /**
           * Default payment method to the participants’ bank account.
           * @uiName EFT withdrawal payment method
           * @uiGroup Step 4 Properties
-          * @default "EFT Withdrawal (free)"
          */
         "step4_eftWithdrawalLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Foreign classification option
           * @uiGroup Step 4 Properties
-          * @default "Foreign"
          */
         "step4_foreignSelectItemLabel"?: string;
         /**
           * @uiName FX Wire Processing fee text
           * @uiGroup Step 4 Properties
-          * @default "FX Wire (Processing Fee {currency}{defaultFxFee}.00)"
          */
         "step4_fxWireProcessingFeeLabel"?: string;
         /**
           * @uiName IBAN field label
           * @uiGroup Step 4 Properties
-          * @default "IBAN"
          */
         "step4_ibanLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Individual classification option
           * @uiGroup Step 4 Properties
-          * @default "Individual"
          */
         "step4_individualSelectItemLabel"?: string;
         /**
           * @uiName Information modal button text
           * @uiGroup Step 4 Properties
-          * @default "I understand, update my information"
          */
         "step4_modalButtonText"?: string;
         /**
           * @uiName Information modal description text
           * @uiGroup Step 4 Properties
-          * @default "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
          */
         "step4_modalDescription"?: string;
         /**
           * @uiName Information modal title
           * @uiGroup Step 4 Properties
-          * @default "Important Note"
          */
         "step4_modalTitle"?: string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
-          * @default "Patronymic name"
          */
         "step4_patronymicNameLabel"?: string;
         /**
           * Displayed to participants who choose PayPal as their payout method
           * @uiName PayPal email field label
           * @uiGroup Step 4 Properties
-          * @default "PayPal email"
          */
         "step4_payPalInputLabel"?: string;
         /**
           * One of two payment day options
           * @uiName Fifteenth of month payday option
           * @uiGroup Step 4 Properties
-          * @default "15th of the month"
          */
         "step4_paymentDayFifteenthOfMonthLabelText"?: string;
         /**
           * One of two payment day options
           * @uiName First of month payday option
           * @uiGroup Step 4 Properties
-          * @default "1st of the month"
          */
         "step4_paymentDayFirstOfMonthLabelText"?: string;
         /**
           * Let the participant choose what day of the month they’ll get paid
           * @uiName Payment day field label
           * @uiGroup Step 4 Properties
-          * @default "Payment Day"
          */
         "step4_paymentDaySelectLabel"?: string;
         /**
           * @uiName Payment method section header
           * @uiGroup Step 4 Properties
-          * @default "Payment method"
          */
         "step4_paymentMethod"?: string;
         /**
           * @uiName Payment method section description
           * @uiGroup Step 4 Properties
-          * @default "Payouts will be sent from our referral program provider, impact.com."
          */
         "step4_paymentMethodSubtext"?: string;
         /**
           * @uiName Payment schedule section header
           * @uiGroup Step 4 Properties
-          * @default "Payment schedule"
          */
         "step4_paymentSchedule"?: string;
         /**
           * @uiName Threshold balance payment schedule option
           * @uiGroup Step 4 Properties
-          * @default "Pay me when my balance reaches a threshold"
          */
         "step4_paymentScheduleBalanceThreshold"?: string;
         /**
           * @uiName Fixed day payment schedule option
           * @uiGroup Step 4 Properties
-          * @default "Pay me on a fixed day of the month"
          */
         "step4_paymentScheduleFixedDay"?: string;
         /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
           * @uiGroup Step 4 Properties
-          * @default "Payment threshold"
          */
         "step4_paymentThresholdSelectLabel"?: string;
         /**
           * @uiName Routing code field label
           * @uiGroup Step 4 Properties
-          * @default "{bankCountry, select, AU {BSB number} CA {Routing number} CZ {Bank code} HK {Clearing code} SG {Clearing code} US {ABA routing number} NZ {BSB number} ZA {Bank/Branch number} IN {IFSC} CNY {CNAPS} other {Routing code} }"
          */
         "step4_routingCodeLabel"?: string;
         /**
           * Label text for the savings account type select item
           * @uiName Savings account options
           * @uiGroup Step 4 Properties
-          * @default "Savings"
          */
         "step4_savingsSelectItemLabel"?: string;
         /**
           * @uiName SWIFT code field label
           * @uiGroup Step 4 Properties
-          * @default "SWIFT code"
          */
         "step4_swiftCodeLabel"?: string;
         /**
           * @uiName Step 4 title
           * @uiGroup Step 4 Properties
-          * @default "Payouts"
          */
         "step4_taxAndPayouts"?: string;
         /**
           * @uiName Taxpayer ID field label
           * @uiGroup Step 4 Properties
-          * @default "Beneficiary INN"
          */
         "step4_taxPayerIdLabel"?: string;
         /**
           * @uiName PayPal payout option
           * @uiGroup Step 4 Properties
-          * @default "PayPal (2% processing fee capped to {feeCap})"
          */
         "step4_toPayPalAccount"?: string;
         /**
           * @uiName Verify code widget header text
           * @uiGroup Step 4 Properties
-          * @default "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com."
          */
         "step4_verifyEmailDescriptionText"?: string;
         /**
           * @uiName Text for verify email dialog
           * @uiGroup Step 4 Properties
-          * @default "Verify your email"
          */
         "step4_verifyEmailHeaderText"?: string;
         /**
           * @uiName VO code field label
           * @uiGroup Step 4 Properties
-          * @default "VO code"
          */
         "step4_voCodeLabel"?: string;
         /**
           * Link text for contacting support team
           * @uiName Suport link text
           * @uiGroup General Form Properties
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
           * @uiGroup General Form Properties
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription"?: string;
         /**
           * Link text for Terms and Conditions
           * @uiName Terms and Conditions text
           * @uiGroup General Form Properties
-          * @default "Terms and Conditions"
          */
         "termsAndConditions"?: string;
     }
-    /**
-     * @uiName Tax and Cash Status Dashboard
-     */
     interface SqmTaxAndCashDashboard {
         /**
           * @uiName Account review alert description
-          * @default "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}."
          */
         "accountReviewDescription"?: string;
         /**
           * @uiName Account review alert header
-          * @default "Your account is under review"
          */
         "accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
-          * @default "Account"
          */
         "accountText"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Tax form in review description
-          * @default "Awaiting review. Submitted on {dateSubmitted}."
          */
         "badgeTextAwaitingReview"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Active W-9 description
-          * @default "Submitted on {dateSubmitted}."
          */
         "badgeTextSubmittedOn"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Active W-8 description
-          * @default "Submitted on {dateSubmitted}. Valid for three years after submission."
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
           * @uiName Bank name mismatch alert description
-          * @default "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "bankTaxNameMismatchDescription"?: string;
         /**
           * @uiName Bank name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "bankTaxNameMismatchHeader"?: string;
         /**
           * @uiName Payout information section header
-          * @default "Payout information"
          */
         "bankingInformationSectionHeader"?: string;
         /**
           * @uiName Beneficiary name invalid description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameInvalidDescription"?: string;
         /**
           * @uiName Beneficiary name invalid alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameInvalidHeader"?: string;
         /**
           * @uiName Beneficiary name mismatch alert description
-          * @default "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved."
          */
         "beneficiaryNameMismatchDescription"?: string;
         /**
           * @uiName Beneficiary name mismatch alert header
-          * @default "Your payment information does not match your tax form"
          */
         "beneficiaryNameMismatchHeader"?: string;
         /**
           * @uiName Cancel button label
-          * @default "Cancel"
          */
         "cancelButton"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
-          * @default "Date"
          */
         "dateColumnTitle"?: string;
         /**
@@ -18110,387 +14206,314 @@ declare namespace LocalJSX {
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings after tax column title
-          * @default "Earnings after tax"
          */
         "earningsAfterTaxColumnTitle"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Earnings column title
-          * @default "Earnings"
          */
         "earningsColumnTitle"?: string;
         /**
           * @uiName Edit payment info button label
-          * @default "Edit payout information"
          */
         "editPaymentInformationButton"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Indirect tax column title
-          * @default "Indirect tax"
          */
         "indirectTaxColumnTitle"?: string;
         /**
           * Displayed to participants who have submitted their indirect tax information.
           * @uiName Indirect tax details
-          * @default "{indirectTaxType} number: {indirectTaxNumber}"
          */
         "indirectTaxDetails"?: string;
         /**
           * If the participant is registered for indirect tax in Canada, display the province they’re registered in.
           * @uiName Canadian province of indirect tax
-          * @default "Registered in {province}, {country}"
          */
         "indirectTaxInfoCanada"?: string;
         /**
           * If the participant is registered for indirect tax, display the country they’re registered in.
           * @uiName Indirect tax country
-          * @default "Registered in {country}"
          */
         "indirectTaxInfoOtherCountry"?: string;
         /**
           * @uiName Indirect tax section header
-          * @default "Indirect tax"
          */
         "indirectTaxInfoSectionHeader"?: string;
         /**
           * If the participant is registered for indirect tax in Spain, display the region they’re registered in.
           * @uiName Spanish region of indirect tax
-          * @default "Registered in {country}, {subRegion}"
          */
         "indirectTaxInfoSpain"?: string;
         /**
           * @uiName Indirect tax tooltip
           * @uiWidget textArea
-          * @default "To make changes to your indirect tax information, please contact our Support team."
          */
         "indirectTaxTooltipSupport"?: string;
         /**
           * Additional text displayed next to the tax form's status badge.
           * @uiName Invalid tax form description
           * @uiWidget textArea
-          * @default "Make sure your information is correct and submit new form."
          */
         "invalidForm"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Invoice number column title
-          * @default "Invoice"
          */
         "invoiceColumnTitle"?: string;
         /**
           * @uiName Invoice table description
-          * @default "View and download your invoices to report your earnings and stay tax compliant."
          */
         "invoiceDescription"?: string;
         /**
           * @uiName Empty invoice table header
-          * @default "View your invoice details"
          */
         "invoiceEmptyStateHeader"?: string;
         /**
           * @uiName Empty invoice table description
-          * @default "Refer a friend to view the status of your invoices and rewards earned"
          */
         "invoiceEmptyStateText"?: string;
         /**
           * @uiName Invoice table title
-          * @default "Invoices"
          */
         "invoiceHeader"?: string;
         /**
           * @uiName Invoice table next page button label
-          * @default "Next"
          */
         "invoiceMoreLabel"?: string;
         /**
           * @uiName Invoice table previous page button label
-          * @default "Prev"
          */
         "invoicePrevLabel"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Submit new tax form button label
-          * @default "Submit new tax form"
          */
         "newFormButton"?: string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
-          * @default "Not registered for indirect tax. If you’ve previously registered with your tax authority, contact our {supportLink} to add your information to stay tax compliant."
          */
         "notRegisteredForTax"?: string;
         /**
           * @uiName Payment hold on change alert description
-          * @default "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours."
          */
         "paymentHoldOnChangeDescription"?: string;
         /**
           * @uiName Payment hold on change alert header
-          * @default "We are reviewing your new payout settings"
          */
         "paymentHoldOnChangeHeader"?: string;
         /**
           * @uiName Payment returned alert description
-          * @default "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct."
          */
         "paymentReturnedDescription"?: string;
         /**
           * @uiName Payment returned alert header
-          * @default "Payout unsuccessful"
          */
         "paymentReturnedHeader"?: string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
           * @uiWidget textArea
-          * @default "Your balance may take up to 24 hours to update. Payouts will be sent from our referral program provider, impact.com."
          */
         "payoutFromImpact"?: string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message description
           * @uiWidget textArea
-          * @default "Please contact our {supportLink} or check your inbox for an email from our referral program provider, impact.com."
          */
         "payoutHoldAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page when there’s been an issue preventing payouts.
           * @uiName Payout error message title
           * @uiWidget textArea
-          * @default "Your payout is on hold"
          */
         "payoutHoldAlertHeader"?: string;
         /**
           * Text displayed for existing publishers that do not have saved banking information.
           * @uiName Payout missing information subtext
-          * @default "Missing banking information, go to Impact.com to resolve."
          */
         "payoutMissingInformationText"?: string;
         /**
           * Displayed to participants registered in Quebec, Canada.
           * @uiName QST indirect tax details
-          * @default "QST number: {qstNumber}"
          */
         "qstNumber"?: string;
         /**
           * @uiName Replace tax form modal body text
-          * @default "Submitting a new tax form will remove your existing form. Make sure to sign and complete your new tax form to prevent any issues with your next payout."
          */
         "replaceTaxFormModalBodyText"?: string;
         /**
           * @uiName Replace tax form modal header
-          * @default "Replace existing tax form"
          */
         "replaceTaxFormModalHeader"?: string;
         /**
           * Additional text displayed next to the tax form's status badge
           * @uiName Required tax form description
-          * @default "Your payouts are on hold until you submit a {taxFormType} tax form."
          */
         "requiredTaxForm"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
-          * @default "{}"
          */
         "stateController"?: string;
         /**
           * @uiName Payout status badge
-          * @default "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }"
          */
         "statusBadgeText"?: string;
         /**
           * @uiName Active tax form badge label
-          * @default "Active"
          */
         "statusTextActive"?: string;
         /**
           * @uiName Invalid tax form badge label
-          * @default "Invalid Tax Form"
          */
         "statusTextNotActive"?: string;
         /**
           * Displayed when the participant submitted their form but it is awaiting review.
           * @uiName Not verified tax form badge label
-          * @default "Not Verified"
          */
         "statusTextNotVerified"?: string;
         /**
           * Displayed when the participant has not submitted their required tax form.
           * @uiName Required tax form badge label
-          * @default "Required"
          */
         "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
-          * @default "Income tax number: {subRegionTaxNumber}"
          */
         "subRegionTaxNumber"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message title
           * @uiWidget textArea
-          * @default "{documentType} tax form is invalid"
          */
         "taxAlertHeaderNotActiveW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message title
           * @uiWidget textArea
-          * @default "Your W-9 tax form has personal information that doesn’t match your profile"
          */
         "taxAlertHeaderNotActiveW9"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-8 error message description
-          * @default "Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form."
          */
         "taxAlertNotActiveMessageW8"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Inactive W-9 error message description
           * @uiWidget textArea
-          * @default "Please resubmit a new {documentType} form."
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
           * @uiName Tax document section header
-          * @default "Tax documents"
          */
         "taxDocumentSectionHeader"?: string;
         /**
           * Displayed under the tax document section header.
           * @uiName Tax documents section description
-          * @default "{documentType} tax form"
          */
         "taxDocumentSectionSubHeader"?: string;
         /**
           * @uiName Terms and Conditions text
-          * @default "Terms and Conditions"
          */
         "termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
-          * @default "Next payout occurs when balance is {thresholdBalance}"
          */
         "thresholdPayoutText"?: string;
         /**
           * @uiName Verification failed internal alert description
-          * @default "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}."
          */
         "verificationFailedInternalDescription"?: string;
         /**
           * @uiName Verification failed internal alert header
-          * @default "Identity verification unsuccessful"
          */
         "verificationFailedInternalHeader"?: string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert button text
-          * @default "Start Verification"
          */
         "verificationRequiredButtonText"?: string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity
           * @uiName Verification required alert message description
           * @uiWidget textArea
-          * @default "Complete your verification to start receiving your cash rewards. It should only take a few minutes verify. If you run in to an issue verifying your identity contact our {supportLink}."
          */
         "verificationRequiredDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page when the user needs to verify their identity.
           * @uiName Verification required alert message title
           * @uiWidget textArea
-          * @default "Verify your identity"
          */
         "verificationRequiredHeader"?: string;
         /**
           * @uiName Verification required internal alert description
-          * @default "Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationRequiredInternalDescription"?: string;
         /**
           * @uiName Verification required internal alert header
-          * @default "Identity verification in progress"
          */
         "verificationRequiredInternalHeader"?: string;
         /**
           * @uiName Verification review internal alert description
-          * @default "Identity verification requires further review due to a potential error. Our team is reviewing the information and will update you shortly. If you don't hear from us contact our {supportLink}."
          */
         "verificationReviewInternalDescription"?: string;
         /**
           * @uiName Verification review internal alert header
-          * @default "Identity verification under review"
          */
         "verificationReviewInternalHeader"?: string;
         /**
           * @uiName W-9 payment threshold alert button text
-          * @default "Submit W-9"
          */
         "w9RequiredButtonText"?: string;
         /**
           * @uiName W-9 payment threshold alert description
-          * @default "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form."
          */
         "w9RequiredDescription"?: string;
         /**
           * @uiName W-9 payment threshold alert header
-          * @default "Your next payout is on hold"
          */
         "w9RequiredHeader"?: string;
         /**
           * @uiName Withdrawal settings invalid alert description
-          * @default "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved."
          */
         "withdrawalSettingsInvalidDescription"?: string;
         /**
           * @uiName Withdrawal settings invalid alert header
-          * @default "Your payment information is incomplete or includes invalid characters"
          */
         "withdrawalSettingsInvalidHeader"?: string;
     }
-    /**
-     * @uiName Text
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-     * @slots [{"name":"", "title":"Text"}]
-     * @slotEditor richText
-     * @canvasRenderer always-replace
-     */
     interface SqmText {
         /**
           * Font size in pixels
@@ -18505,11 +14528,6 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
-    /**
-     * @uiName Text Span
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
-     * @canvasRenderer always-replace
-     */
     interface SqmTextSpan {
         /**
           * Font size in pixels
@@ -18535,30 +14553,15 @@ declare namespace LocalJSX {
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
-    /**
-     * @uiName Program Timeline
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-     * @validChildren ["sqm-timeline-entry"]
-     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
-     * @exampleGroup Common Components
-     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
-     */
     interface SqmTimeline {
         /**
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
           * @uiEnumNames ["Gift", "Circle"]
-          * @default "gift"
          */
         "icon"?: "gift" | "circle";
     }
-    /**
-     * @uiName Program Timeline Entry
-     * @validParents ["sqm-timeline"]
-     * @exampleGroup Common Components
-     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
-     */
     interface SqmTimelineEntry {
         /**
           * @uiName Description
@@ -18594,14 +14597,6 @@ declare namespace LocalJSX {
          */
         "unit"?: string;
     }
-    /**
-     * @uiName Titled Section
-     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
-     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
-     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
-     * @exampleGroup Layout
-     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
-     */
     interface SqmTitledSection {
         /**
           * Text value shown when there is no label slot declared.
@@ -18615,7 +14610,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "small"
          */
         "labelMargin"?: Spacing;
         /**
@@ -18624,7 +14618,6 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
           * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
-          * @default "none"
          */
         "padding"?: Spacing;
         /**
@@ -18632,49 +14625,37 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
           * @uiEnumNames ["Left", "Center", "Right"]
-          * @default "left"
          */
         "textAlign"?: "left" | "center" | "right";
     }
-    /**
-     * @uiName User Information Form
-     * @exampleGroup Tax and Cash Components
-     */
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
-          * @default "Address"
          */
         "address"?: string;
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
           * @uiName Terms and conditions checkbox
-          * @default "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
          */
         "allowBankingCollection"?: string;
         /**
           * @uiName City field label
-          * @default "City"
          */
         "city"?: string;
         /**
           * @uiName Continue button label
-          * @default "Continue"
          */
         "continueButton"?: string;
         /**
           * @uiName Country field label
-          * @default "Country"
          */
         "country"?: string;
         /**
           * @uiName Currency field label
-          * @default "Currency"
          */
         "currency"?: string;
         /**
           * @uiName Currency field help text
-          * @default "Choose your preferred payout currency"
          */
         "currencyHelpText"?: string;
         /**
@@ -18684,156 +14665,126 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UseUserInfoFormResult>;
         /**
           * @uiName Email field label
-          * @default "Email"
          */
         "email"?: string;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
-          * @default "{fieldName} is invalid"
          */
         "fieldInvalidError"?: string;
         /**
           * Displayed under a field that is missing required information.
           * @uiName Empty form field error message
-          * @default "{fieldName} is required"
          */
         "fieldRequiredError"?: string;
         /**
           * @uiName First name field label
-          * @default "First name"
          */
         "firstName"?: string;
         /**
           * @uiName Setup progress
-          * @default "Step {step} of {count}"
          */
         "formStep"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message description
           * @uiWidget textArea
-          * @default "Please review your information and try again. If this problem continues, contact our {supportLink}."
          */
         "generalErrorDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Form submission error message title
           * @uiWidget textArea
-          * @default "There was a problem submitting your information"
          */
         "generalErrorTitle"?: string;
         /**
           * Displayed under Address or City fields that includes invalid characters (non-ASCII).
           * @uiName Invalid character error message
-          * @default "{fieldName} includes characters that aren't supported."
          */
         "invalidCharacterError"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert description
           * @uiWidget textArea
-          * @default "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email."
          */
         "isPartnerAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
           * @uiName Participant is a partner alert title
           * @uiWidget textArea
-          * @default "An account with this email already exists with our referral program provider, impact.com"
          */
         "isPartnerAlertHeader"?: string;
         /**
           * @uiName Last name field label
-          * @default "Last name"
          */
         "lastName"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message description
           * @uiWidget textArea
-          * @default "Please refresh the page and try again. If this problem continues, contact our {supportLink}."
          */
         "loadingErrorAlertDescription"?: string;
         /**
           * Part of the alert displayed at the top of the page.
           * @uiName Page load error message title
           * @uiWidget textArea
-          * @default "There was a problem loading your form"
          */
         "loadingErrorAlertHeader"?: string;
         /**
           * @uiName Step 1 title
-          * @default "Personal Information"
          */
         "personalInformation"?: string;
         /**
           * @uiName Phone number field label
-          * @default "Phone number"
          */
         "phoneNumber"?: string;
         /**
           * @uiName Postal code field label
-          * @default "Postal code"
          */
         "postalCode"?: string;
         /**
           * @uiName State field label
-          * @default "Province"
          */
         "province"?: string;
         /**
           * @uiName State field label
-          * @default "Region"
          */
         "region"?: string;
         /**
           * Placeholder text displayed in the country search dropdown
           * @uiName Country field placeholder text
-          * @default "Search for country.."
          */
         "searchForCountryText"?: string;
         /**
           * Placeholder text displayed in the currency search dropdown
           * @uiName Currency field placeholder text
-          * @default "Search for currency.."
          */
         "searchForCurrencyText"?: string;
         /**
           * @uiName State field label
-          * @default "State"
          */
         "state"?: string;
         /**
           * @uiName Support link text
-          * @default "support team"
          */
         "supportLink"?: string;
         /**
           * Displayed at the top of the page on all set up steps.
           * @uiName Page description
-          * @default "Submit your tax documents and add your banking information to receive your rewards."
          */
         "taxAndPayoutsDescription"?: string;
         /**
           * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
-          * @default "terms and conditions"
          */
         "termsAndConditionsLabel"?: string;
         /**
           * The link that appears in the terms and conditions checkbox
           * @uiName Terms and conditions link
-          * @default "https://terms.advocate.impact.com/PayoutTermsAndConditions.html"
          */
         "termsAndConditionsLink"?: string;
     }
-    /**
-     * @uiName User Name
-     * @exampleGroup Common Components
-     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
-     */
     interface SqmUserName {
         /**
           * @undocumented 
@@ -18842,142 +14793,112 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<UserNameViewProps>;
         /**
           * @uiName Unknown user name
-          * @default "Anonymous User"
          */
         "fallback"?: string;
         /**
           * Text displayed while the participant’s name is loading.
           * @uiName Loading text
-          * @default "..."
          */
         "loadingText"?: string;
     }
-    /**
-     * @uiName Widget Verification Flow
-     */
     interface SqmWidgetVerification {
         /**
           * Link text displayed under verify button
           * @uiName Resend code text
           * @uiGroup Code Verification Step
-          * @default "Another code has been sent to {email}"
          */
         "codeStep_codeResentSuccessfullyText"?: string;
         /**
           * Error text displayed under verification input
           * @uiName Invalid code text
           * @uiGroup Code Verification Step
-          * @default "Please check your code and try again. If you’re still having trouble, try resending your code."
          */
         "codeStep_invalidCodeText"?: string;
         /**
           * Displayed when the email verification fails due to a network error. The participant can try refreshing the page.
           * @uiName Network error message
           * @uiGroup Code Verification Step
-          * @default "An error occurred while verifying your email. Please refresh the page and try again."
          */
         "codeStep_networkErrorMessage"?: string;
         /**
           * The link that appears in the resend code link
           * @uiName Resend code label
           * @uiGroup Code Verification Step
-          * @default "Resend code"
          */
         "codeStep_resendCodeLabel"?: string;
         /**
           * Text displayed under verify button
           * @uiName Resend code text
           * @uiGroup Code Verification Step
-          * @default "Didn't receive your code? {resendCodeLink}"
          */
         "codeStep_resendCodeText"?: string;
         /**
           * @uiName Reverify code widget header text
           * @uiGroup Code Verification Step
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "codeStep_reverifyCodeHeaderText"?: string;
         /**
           * @uiName Verify code widget header text
           * @uiGroup Code Verification Step
-          * @default "Enter the code sent to {email} from our referral provider, impact.com."
          */
         "codeStep_verifyCodeHeaderText"?: string;
         /**
           * @uiName Verify code button text
           * @uiGroup Code Verification Step
-          * @default "Verify"
          */
         "codeStep_verifyText"?: string;
         /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
-          * @default "Email"
          */
         "emailStep_emailLabel"?: string;
         /**
           * @uiName Send code button text
           * @uiGroup Email Verification Step
-          * @default "Please enter a valid email"
          */
         "emailStep_emailValidationErrorText"?: string;
         /**
           * @uiName Send code to email alert description
           * @uiGroup Email Verification Step
-          * @default "Please try again. If this problem continues, contact our program support team."
          */
         "emailStep_sendCodeErrorDescription"?: string;
         /**
           * @uiName Send code to email alert header
           * @uiGroup Email Verification Step
-          * @default "There was an error sending your code."
          */
         "emailStep_sendCodeErrorHeader"?: string;
         /**
           * @uiName Send code button text
           * @uiGroup Email Verification Step
-          * @default "Send code"
          */
         "emailStep_sendCodeText"?: string;
         /**
           * @uiName Verify email widget header text
           * @uiGroup Email Verification Step
-          * @default "Start by verifying your email. We’ll send you a code through our referral provider, impact.com."
          */
         "emailStep_verifyEmailHeaderText"?: string;
         /**
           * @uiName General verify widget description text
           * @uiGroup General Text
-          * @default "To get your cash paid out directly to your bank account, please complete your account setup"
          */
         "general_verifyEmailDescription"?: string;
         /**
           * @uiName General verify widget header text
           * @uiGroup General Text
-          * @default "Verify your email"
          */
         "general_verifyEmailHeader"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
-          * @default "{}"
          */
         "stateController"?: string;
     }
-    /**
-     * @uiName Widget Verification Controller
-     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
-     * @exampleGroup Tax and Cash
-     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
-     * @canvasRenderer always-replace
-     */
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
           * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
-          * @default "{}"
          */
         "stateController"?: string;
     }
@@ -19115,757 +15036,132 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            /**
-             * @undocumented 
-             */
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
-            /**
-             * @uiName Banking Information Form
-             * @exampleGroup Common Components
-             */
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
-            /**
-             * @uiName User Stat
-             * @validParents ["sqm-stat-container"]
-             * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-             * @slots [{"name":"","title":"Stat Text"}]
-             * @uiOrder ["statType", "programId", "*"]
-             * @slotEditor richText
-             * @exampleGroup Statistics
-             * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
-             * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
-             * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
-             * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
-             */
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
-            /**
-             * @uiName Brand Container
-             * @slots [{"name":"","title":"Branded Content"}]
-             * @exampleGroup Common Components
-             * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
-             */
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-brand-selector": LocalJSX.SqmBrandSelector & JSXBase.HTMLAttributes<HTMLSqmBrandSelectorElement>;
-            /**
-             * @uiName Card Feed
-             * @slots [{"name":"","title":"Cards"}]
-             * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
-             * @validChildren ["sqm-task-card"]
-             * @exampleGroup Rewards
-             * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
-             */
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
-            /**
-             * @uiName Form Checkbox Field
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @exampleGroup Microsite Components
-             * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
-             */
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
-            /**
-             * @uiName Popup Widget Close Button
-             */
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
             "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
-            /**
-             * @uiName Context Router
-             * @slots [{"name":"","title":"Routes"}]
-             */
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
-            /**
-             * @uiName Coupon Code
-             * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-             * @compatibility Built for instant access
-             * @exampleGroup Instant Access
-             * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
-             */
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
-            /**
-             * Shows it's children as either a row or a column, with a division in between them.
-             * Spacing is left up to the child
-             * @uiName Divided Layout
-             * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
-             * @exampleGroup Layout
-             * @slots [{"name":"", "title":"Layout Content"}]
-             */
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
-            /**
-             * @uiName DocuSign Document Submission
-             * @exampleGroup Tax and Cash Components
-             * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
-             */
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
-            /**
-             * @uiName Form Dropdown Field
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @slots [{"name":"", "title":"Drop Down Option"}]
-             * @exampleGroup Microsite Components
-             * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
-             */
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
-            /**
-             * @uiName Microsite Edit Profile
-             */
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
-            /**
-             * @uiName Widget Verification Gate
-             */
             "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
-            /**
-             * @uiName Empty State Content
-             * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
-             */
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
-            /**
-             * @uiName Form Message
-             * @slots [{"name":"","title":"Message Content"}]
-             */
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
-            /**
-             * @uiName Google Sign-In Button
-             * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
-             * @undocumented 
-             */
             "sqm-google-sign-in": LocalJSX.SqmGoogleSignIn & JSXBase.HTMLAttributes<HTMLSqmGoogleSignInElement>;
-            /**
-             * @uiName GraphQL Client Provider
-             * @canvasRenderer always-replace
-             * @slots [{"name":"","title":"Provider Content"}]
-             */
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
-            /**
-             * @uiName Header Logo
-             * @validParents ["sqm-portal-frame","div","sqm-brand"]
-             */
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
-            /**
-             * @uiName Hero Layout
-             * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
-             * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
-             * @exampleGroup Layout
-             */
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
-            /**
-             * @uiName Hero Image
-             * @validParents ["sqm-portal-container","sqm-brand", "div"]
-             * @exampleGroup Common Components
-             * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
-             * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
-             */
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
-            /**
-             * @undocumented 
-             */
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
-            /**
-             * @uiName Image
-             * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
-             * @exampleGroup Common Components
-             * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
-             */
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
-            /**
-             * @uiName Indirect Tax Form
-             * @exampleGroup Tax and Cash Components
-             */
             "sqm-indirect-tax-form": LocalJSX.SqmIndirectTaxForm & JSXBase.HTMLAttributes<HTMLSqmIndirectTaxFormElement>;
-            /**
-             * @uiName Form Input Field
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @exampleGroup Microsite Components
-             * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
-             */
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
-            /**
-             * @uiName Instant Access Registration
-             * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
-             * @compatibility Built for instant access
-             * @exampleGroup Instant Access
-             * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
-             * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-             */
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
-            /**
-             * @uiName Invoice Table
-             * @exampleGroup Invoices
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
-             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-             * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
-             */
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
             "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
-            /**
-             * @uiName Invoice Table Data Column
-             * @validParents ["sqm-invoice-table"]
-             */
             "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
-            /**
-             * @uiName Invoice Table Date Column
-             * @validParents ["sqm-invoice-table"]
-             * @exampleGroup Invoices
-             * @example Invoice Table Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
-             */
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
-            /**
-             * @uiName Invoice Table Download Column
-             * @validParents ["sqm-invoice-table"]
-             */
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
-            /**
-             * @uiName Lead Form Checkbox Field
-             * @validParents ["sqm-lead-form"]
-             */
             "sqm-lead-checkbox-field": LocalJSX.SqmLeadCheckboxField & JSXBase.HTMLAttributes<HTMLSqmLeadCheckboxFieldElement>;
-            /**
-             * @uiName Lead Form Dropdown Field
-             * @validParents ["sqm-lead-form"]
-             * @slots [{"name":"", "title":"Dropdown Option"}]
-             */
             "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
-            /**
-             * @uiName Lead Form
-             * @canvasRenderer always-replace
-             * @slots [{"name":"formData","title":"Additional Fields"}]
-             */
             "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
-            /**
-             * @uiName Lead Form Input Field
-             * @validParents ["sqm-lead-form"]
-             */
             "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
-            /**
-             * @uiName Leaderboard
-             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-             * @slots [{"name":"empty", "title":"Empty State"}]
-             * @requiredFeatures ["LEADERBOARDS"]
-             * @exampleGroup Leaderboard
-             * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-             * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-             * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
-             * @example Anonymous Leaderboard - <sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard>
-             * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
-             */
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
-            /**
-             * @uiName Leaderboard Rank
-             */
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
-            /**
-             * @uiName Link Button
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @exampleGroup Common Components
-             * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
-             */
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
-            /**
-             * @uiName Sign out current user
-             * @exampleGroup Instant Access
-             * @compatibility Built for instant access
-             * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
-             */
             "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
-            /**
-             * @uiName Marketing Emails Checkbox Field
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @requiredFeatures ["MARKETING_EMAILS"]
-             */
             "sqm-marketing-emails-checkbox": LocalJSX.SqmMarketingEmailsCheckbox & JSXBase.HTMLAttributes<HTMLSqmMarketingEmailsCheckboxElement>;
-            /**
-             * @uiName Form Name Fields
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @exampleGroup Microsite Components
-             * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
-             */
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
-            /**
-             * @uiName Navigation Menu
-             * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
-             */
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
-            /**
-             * @uiName Microsite Sidebar
-             * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
-             * @validChildren ["sqm-navigation-sidebar-item"]
-             * @slots [{"name":"", "title":"Sidebar Content"}]
-             */
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
-            /**
-             * @uiName Microsite Sidebar Item
-             * @validParents ["sqm-navigation-sidebar"]
-             * @exampleGroup Microsite Components
-             * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
-             */
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
-            /**
-             * @uiName Pagination
-             */
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
-            /**
-             * @uiName Form Password Field
-             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
-             * @exampleGroup Microsite Components
-             * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
-             */
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
-            /**
-             * @uiName Payout Button Scroll
-             */
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
-            /**
-             * @uiName Payout Details Card
-             * @exampleGroup Tax and Cash Components
-             */
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
-            /**
-             * @uiName Payout Status Alert
-             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
-             * @exampleGroup Tax and Cash
-             * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
-             */
             "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
-            /**
-             * @uiName Popup Container
-             * @slots [{"name":"","title":"Content"}]
-             * @canvasRenderer always-replace
-             */
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
-            /**
-             * @uiName Change Marketing Opt in Status
-             * @requiredFeatures ["MARKETING_EMAILS"]
-             */
             "sqm-portal-change-marketing": LocalJSX.SqmPortalChangeMarketing & JSXBase.HTMLAttributes<HTMLSqmPortalChangeMarketingElement>;
-            /**
-             * @uiName Microsite Password Change
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
-             */
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
-            /**
-             * @uiName Container
-             * @slots [{"name":"", "title":"Widget Content"}]
-             * @exampleGroup Layout
-             * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
-             * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
-             */
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
-            /**
-             * @uiName Microsite Email Verification
-             */
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
-            /**
-             * @uiName Footer
-             * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
-             */
             "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
-            /**
-             * @uiName Microsite Forgot Password
-             */
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
-            /**
-             * @uiName Microsite Frame
-             * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
-             */
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
-            /**
-             * @uiName Microsite Login
-             */
             "sqm-portal-google-login": LocalJSX.SqmPortalGoogleLogin & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleLoginElement>;
-            /**
-             * @uiName Google Registration
-             * @canvasRenderer always-replace
-             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-             */
             "sqm-portal-google-registration-form": LocalJSX.SqmPortalGoogleRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleRegistrationFormElement>;
-            /**
-             * @uiName Microsite Login
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
-             */
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
-            /**
-             * @uiName Microsite Logout
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-             * @compatibility Built for instant access
-             */
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
-            /**
-             * @uiName Microsite Participant Profile
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-             */
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
-            /**
-             * @uiName Microsite Protected Route
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
-             * @slots [{"name":"","title":"Route Content"}]
-             */
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
-            /**
-             * @uiName Microsite Registration
-             * @canvasRenderer always-replace
-             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
-             */
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
-            /**
-             * @uiName Microsite Registration
-             * @canvasRenderer always-replace
-             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
-             */
             "sqm-portal-registration-form": LocalJSX.SqmPortalRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalRegistrationFormElement>;
-            /**
-             * @uiName Microsite Reset Password
-             */
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
-            /**
-             * @uiName Microsite Verify Email
-             */
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
-            /**
-             * @uiName Program Explainer
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["sqm-program-explainer-step"]
-             * @exampleGroup Common Components
-             * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
-             * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
-             */
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
-            /**
-             * @uiName Program Explainer Step
-             * @exampleGroup Common Components
-             * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
-             * @validParents ["sqm-program-explainer"]
-             */
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
-            /**
-             * @uiName Microsite Program Menu
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
-             * @slots [{"name":"","title":"Menu Content"}]
-             * @canvasRenderer always-replace
-             */
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
-            /**
-             * @uiName QR Code
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
-             * @exampleGroup Sharing
-             * @example QR Code - <sqm-qr-code></sqm-qr-code>
-             */
             "sqm-qr-code": LocalJSX.SqmQrCode & JSXBase.HTMLAttributes<HTMLSqmQrCodeElement>;
-            /**
-             * @uiName Referral Card
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
-             * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
-             * @exampleGroup Referrals
-             * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
-             * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
-             */
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
-            /**
-             * @uiName Referral Code
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
-             * @exampleGroup Sharing
-             * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
-             */
             "sqm-referral-code": LocalJSX.SqmReferralCode & JSXBase.HTMLAttributes<HTMLSqmReferralCodeElement>;
-            /**
-             * @uiName Promo Codes
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
-             * @slots [{"name":"", "title":"Promo Codes Content"}]
-             * @exampleGroup Sharing
-             * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
-             */
             "sqm-referral-codes": LocalJSX.SqmReferralCodes & JSXBase.HTMLAttributes<HTMLSqmReferralCodesElement>;
-            /**
-             * @uiName Referral IFrame
-             */
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
-            /**
-             * @uiName Referral Table
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
-             * @exampleGroup Referrals
-             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-             * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
-             */
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
-            /**
-             * @uiName Referral Table Generic Column
-             * @validParents ["sqm-referral-table"]
-             */
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
             "sqm-referral-table-date-cell": LocalJSX.SqmReferralTableDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateCellElement>;
-            /**
-             * @uiName Referral Table Date Column
-             * @validParents ["sqm-referral-table"]
-             * @exampleGroup Referrals
-             * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
-             */
             "sqm-referral-table-date-column": LocalJSX.SqmReferralTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateColumnElement>;
             "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
-            /**
-             * @uiName Referral Table Rewards Column
-             * @validParents ["sqm-referral-table"]
-             * @exampleGroup Referrals
-             * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
-             */
             "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
             "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;
-            /**
-             * @uiName Referral Table Status Column
-             * @validParents ["sqm-referral-table"]
-             * @exampleGroup Referrals
-             * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
-             */
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
-            /**
-             * @uiName Referral Table User Column
-             * @validParents ["sqm-referral-table"]
-             * @exampleGroup Referrals
-             * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column>
-             */
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
-            /**
-             * @uiName Instant Access Friend Registration
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-             * @compatibility Built for instant access
-             * @exampleGroup Instant Access
-             * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
-             * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
-             */
             "sqm-referred-registration": LocalJSX.SqmReferredRegistration & JSXBase.HTMLAttributes<HTMLSqmReferredRegistrationElement>;
-            /**
-             * @uiName Reward Exchange
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["sqm-empty"]
-             * @slots [{"name":"empty", "title":"Empty State"}]
-             * @exampleGroup Rewards
-             * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
-             */
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
-            /**
-             * @uiName Reward Table
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @exampleGroup Rewards
-             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
-             * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
-             */
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
-            /**
-             * @uiName Reward Table Customer Note Column
-             * @validParents ["sqm-rewards-table"]
-             * @exampleGroup Rewards
-             * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
-             */
             "sqm-rewards-table-customer-note-column": LocalJSX.SqmRewardsTableCustomerNoteColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteColumnElement>;
             "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
-            /**
-             * @uiName Reward Table Date Column
-             * @validParents ["sqm-rewards-table"]
-             * @exampleGroup Rewards
-             * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
-             */
             "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
             "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;
-            /**
-             * @uiName Rewards Table Reward Column
-             * @validParents ["sqm-rewards-table"]
-             * @exampleGroup Rewards
-             * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
-             */
             "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
             "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
-            /**
-             * @uiName Reward Table Source Column
-             * @validParents ["sqm-rewards-table"]
-             * @exampleGroup Rewards
-             * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
-             */
             "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
             "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;
-            /**
-             * @uiName Reward Table Status Column
-             * @validParents ["sqm-rewards-table"]
-             * @exampleGroup Rewards
-             * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
-             */
             "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
-            /**
-             * @uiName Route
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
-             * @slots [{"name":"","title":"Content"}]
-             */
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
-            /**
-             * @uiName Router
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
-             * @validChildren ["sqm-route"]
-             * @slots [{"name":"","title":"Routes"}]
-             */
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
-            /**
-             * @uiName Scroll Button
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @slots [{"name":"", "title":"Button Content"}]
-             * @slotEditor richText
-             */
             "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
-            /**
-             * @uiName Share Button
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
-             * @slots [{"name":"", "title":"Button Content"}]
-             * @slotEditor richText
-             * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
-             * @exampleGroup Sharing
-             * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
-             * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
-             * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
-             * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
-             * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
-             * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
-             * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
-             * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
-             * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
-             * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
-             */
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
-            /**
-             * @uiName Share Code
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-             * @exampleGroup Sharing
-             * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
-             */
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
-            /**
-             * @uiName Share Link
-             * @exampleGroup Sharing
-             * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
-             * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
-             */
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
-            /**
-             * @uiName Stat Container
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
-             * @validChildren ["sqm-big-stat"]
-             * @slots [{"name":"", "title":"Stats"}]
-             * @exampleGroup Statistics
-             * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
-             */
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
-            /**
-             * For internal documentation
-             * @undocumented 
-             */
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
-            /**
-             * @uiName Tab
-             * @slots [{"name":"", "title":"Tab Content"}]
-             * @validParents ["sqm-tabs"]
-             * @exampleGroup Layout
-             * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
-             */
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
-            /**
-             * @uiName Table Cell
-             * @slots [{"name":"", "title":"Cell Content"}]
-             */
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
-            /**
-             * @uiName Table Row
-             * @slots [{"name":"", "title":"Row Content"}]
-             */
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
-            /**
-             * @uiName Tab Group
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["sqm-tab"]
-             * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
-             * @exampleGroup Layout
-             * @canvasRenderer always-replace
-             * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
-             */
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
-            /**
-             * @uiName Task Card
-             * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
-             * @validParents ["sqm-card-feed"]
-             */
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
-            /**
-             * @uiName Tax and Cash
-             * @exampleGroup Tax and Cash
-             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
-             * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
-             */
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
-            /**
-             * @uiName Tax and Cash Status Dashboard
-             */
             "sqm-tax-and-cash-dashboard": LocalJSX.SqmTaxAndCashDashboard & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashDashboardElement>;
-            /**
-             * @uiName Text
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
-             * @slots [{"name":"", "title":"Text"}]
-             * @slotEditor richText
-             * @canvasRenderer always-replace
-             */
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
-            /**
-             * @uiName Text Span
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
-             * @canvasRenderer always-replace
-             */
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
-            /**
-             * @uiName Program Timeline
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
-             * @validChildren ["sqm-timeline-entry"]
-             * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
-             * @exampleGroup Common Components
-             * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
-             */
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
-            /**
-             * @uiName Program Timeline Entry
-             * @validParents ["sqm-timeline"]
-             * @exampleGroup Common Components
-             * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
-             */
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
-            /**
-             * @uiName Titled Section
-             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
-             * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
-             * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
-             * @exampleGroup Layout
-             * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
-             */
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
-            /**
-             * @uiName User Information Form
-             * @exampleGroup Tax and Cash Components
-             */
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
-            /**
-             * @uiName User Name
-             * @exampleGroup Common Components
-             * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
-             */
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
-            /**
-             * @uiName Widget Verification Flow
-             */
             "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
-            /**
-             * @uiName Widget Verification Controller
-             * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
-             * @exampleGroup Tax and Cash
-             * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
-             * @canvasRenderer always-replace
-             */
             "sqm-widget-verification-controller": LocalJSX.SqmWidgetVerificationController & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationControllerElement>;
         }
     }
