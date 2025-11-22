@@ -1,0 +1,15 @@
+src/
+.eslintrc.json
+.prettierrc
+vite.config.ts
+tsconfig.json
+*.log
+node_modules/
+.git/
+.github/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store

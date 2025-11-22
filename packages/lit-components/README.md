@@ -1,76 +1,270 @@
-# \<sql-referral-code>
+# @saasquatch/lit-components
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+A high-performance web components library built with **Lit** and **Haunted** for modern, reactive component development.
+
+## Features
+
+- ⚡ **Lit** - Fast, lightweight web components with no overhead
+- 👻 **Haunted** - Functional state management with hooks for web components
+- 📦 **Vite** - Lightning-fast build tool and dev server
+- 🎯 **TypeScript** - Full type safety and excellent IDE support
+- 📚 **Tree-shakeable** - Only ship what you use
+- 🌍 **Fully compatible** - Works with any framework or vanilla JS
 
 ## Installation
 
 ```bash
-npm i sql-referral-code
+npm install @saasquatch/lit-components
 ```
 
-## Usage
+Or with yarn:
+
+```bash
+yarn add @saasquatch/lit-components
+```
+
+## Quick Start
+
+### Usage in HTML
 
 ```html
-<script type="module">
-  import 'sql-referral-code/sql-referral-code.js';
-</script>
-
-<sql-referral-code></sql-referral-code>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module">
+      import '@saasquatch/lit-components';
+    </script>
+  </head>
+  <body>
+    <lit-counter title="Counter Demo" counter="0"></lit-counter>
+  </body>
+</html>
 ```
 
-## Linting and formatting
+### Usage in JavaScript/TypeScript
 
-To scan the project for linting and formatting errors, run
+```typescript
+import { CounterComponent } from '@saasquatch/lit-components';
+
+// Create and customize the component
+const counter = document.createElement('lit-counter');
+counter.setAttribute('title', 'My Counter');
+counter.setAttribute('counter', '5');
+
+document.body.appendChild(counter);
+```
+
+### Usage in React
+
+```jsx
+import '@saasquatch/lit-components';
+
+export function App() {
+  return (
+    <div>
+      <lit-counter 
+        title="React Integration"
+        counter="0"
+      />
+    </div>
+  );
+}
+```
+
+### Usage in Vue
+
+```vue
+<template>
+  <div>
+    <lit-counter 
+      title="Vue Integration"
+      :counter="count"
+    />
+  </div>
+</template>
+
+<script>
+import '@saasquatch/lit-components';
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+    return { count };
+  }
+}
+</script>
+```
+
+## Available Components
+
+### CounterComponent (`<lit-counter>`)
+
+A simple counter component demonstrating Lit and Haunted integration.
+
+**Attributes:**
+- `title` (string) - The title displayed above the counter
+- `counter` (number) - The initial counter value
+
+**Example:**
+```html
+<lit-counter title="My Counter" counter="10"></lit-counter>
+```
+
+## Development
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Development Server
+
+Start the development server with hot module reloading:
+
+```bash
+npm run dev
+```
+
+### Build
+
+Build the library for production:
+
+```bash
+npm run build
+```
+
+Output files will be in the `dist/` directory.
+
+### Type Check
+
+Check TypeScript types without emitting files:
+
+```bash
+npm run type-check
+```
+
+### Lint
+
+Lint TypeScript files:
 
 ```bash
 npm run lint
 ```
 
-To automatically fix linting and formatting errors, run
+### Format
+
+Format code with Prettier:
 
 ```bash
 npm run format
 ```
 
-## Testing with Web Test Runner
+## Project Structure
 
-To execute a single test run:
+```
+src/
+├── components/              # Web components
+│   ├── CounterComponent.ts  # Example counter component
+│   └── ...                  # Add more components here
+├── index.ts                 # Entry point and exports
+└── examples.ts              # Usage examples
 
-```bash
-npm run test
+dist/                        # Built output (generated)
+├── index.js                 # Bundled JavaScript
+├── index.d.ts              # TypeScript declarations
+├── components/              # Component type definitions
+└── ...
+
+vite.config.ts              # Vite build configuration
+tsconfig.json               # TypeScript configuration
+package.json                # Package metadata
 ```
 
-To run the tests in interactive watch mode run:
+## Publishing to npm
 
-```bash
-npm run test:watch
+1. Update the version in `package.json`:
+   ```bash
+   npm version minor
+   ```
+
+2. Build the project:
+   ```bash
+   npm run build
+   ```
+
+3. Publish to npm:
+   ```bash
+   npm publish
+   ```
+
+## Creating New Components
+
+### Step 1: Create a new component file
+
+Create `src/components/MyComponent.ts`:
+
+```typescript
+import { LitElement, css, html } from 'lit';
+import { property } from 'lit/decorators.js';
+
+export class MyComponent extends LitElement {
+  static styles = css`
+    :host {
+      display: block;
+    }
+  `;
+
+  @property({ type: String }) title = 'Default Title';
+
+  render() {
+    return html`
+      <h2>${this.title}</h2>
+      <p>My custom component</p>
+    `;
+  }
+}
+
+customElements.define('my-component', MyComponent);
 ```
 
-## Demoing with Storybook
+### Step 2: Export from index.ts
 
-To run a local instance of Storybook for your component, run
+Update `src/index.ts`:
 
-```bash
-npm run storybook
+```typescript
+export { CounterComponent } from './components/CounterComponent';
+export { MyComponent } from './components/MyComponent';
 ```
 
-To build a production version of Storybook, run
+### Step 3: Build and test
 
 ```bash
-npm run storybook:build
+npm run build
+npm run dev
 ```
 
+## Browser Support
 
-## Tooling configs
+This library supports all modern browsers that support:
+- Web Components
+- ES2020+
+- CSS Custom Properties
 
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
+For older browser support, consider using polyfills.
 
-If you customize the configuration a lot, you can consider moving them to individual files.
+## License
 
-## Local Demo with `web-dev-server`
+MIT
 
-```bash
-npm start
-```
+## Contributing
 
-To run a local development server that serves the basic demo located in `demo/index.html`
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Resources
+
+- [Lit Documentation](https://lit.dev/)
+- [Haunted Documentation](https://github.com/matthewp/haunted)
+- [Web Components MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+

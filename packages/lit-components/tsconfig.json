@@ -1,22 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2021",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "lib": ["es2021", "dom", "DOM.Iterable"],
-    "strict": true,
-    "esModuleInterop": false,
+    "target": "ES2021",
+    "useDefineForClassFields": false,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "inlineSources": true,
-    "rootDir": "./",
+    "strict": true,
+    "resolveJsonModule": true,
     "declaration": true,
-    "incremental": true,
-    "skipLibCheck": true
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["**/*.ts", "rollup.config.js"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
