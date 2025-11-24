@@ -576,7 +576,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message loading={true} type={alertDetails.alertType}>
+      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
         <p part="alert-title">{alertDetails.header}</p>
         <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}

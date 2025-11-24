@@ -255,7 +255,7 @@ function useDemoPayoutStatusAlert(
       states: {
         error: false,
         status: props.demoData.states.status,
-        loading: false,
+        loading: true,
         veriffLoading: false,
       },
       data: { type: "SquatchAdmin" },
