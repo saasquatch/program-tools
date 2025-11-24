@@ -227,7 +227,7 @@ function useRewardsTableDemo(
       states: {
         hasPrev: false,
         hasNext: false,
-        loading: true,
+        loading: false,
         show: "rows",
       },
       callbacks: {

@@ -135,6 +135,7 @@ export function QrCodeView({
         {codeContent}
         <div class={sheet.classes.ButtonContainer}>
           <sl-button
+            loading={loading}
             size="small"
             exportparts="base: primarybutton-base"
             type="primary"
@@ -143,6 +144,7 @@ export function QrCodeView({
             {downloadCodeText}
           </sl-button>
           <sl-button
+            loading={loading}
             size="small"
             exportparts="base: secondarybutton-base"
             type="text"
