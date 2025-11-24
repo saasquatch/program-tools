@@ -41,8 +41,6 @@ export class Skeleton {
   }
   `;
   render() {
-    console.log("This is the height", this.height);
-
     return (
       <div>
         <style type="text/css">{this.vanillaStyle}</style>
