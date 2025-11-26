@@ -70,6 +70,10 @@ export function httpLogMiddleware(
       const method = req.method;
       const requestId = res.locals?.requestId;
 
+      const extraData = res.locals?.extraData as
+        | Record<string, any>
+        | undefined;
+
       const level =
         status >= 500
           ? "error"
@@ -80,7 +84,7 @@ export function httpLogMiddleware(
           : opts?.nonErrorLogLevel ?? "info";
 
       const message = { method, status, time, url: cleanUrl, requestId };
-      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message });
+      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message, extraData });
     });
 
     next();
