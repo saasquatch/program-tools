@@ -430,9 +430,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.state;
   }
 
-  function isDisabledInput(field: string) {
-   return states.isPartner && !!data.partnerData?.[field]
-  }
+
+    function isDisabledPartnerInput(field: string) {
+      return states.isPartner && !!data.partnerData?.[field];
+    }
+  
+    function isDisabledUserInput(field: string) {
+      return states.isUser && !!states.formState?.[field];
+    }
 
   return (
     <sl-form
@@ -553,8 +558,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.firstName}
                 disabled={
                   states.disabled ||
-                  states.isUser ||
-                  isDisabledInput("firstName")
+                  isDisabledUserInput("firstName") ||
+                  isDisabledPartnerInput("firstName")
                 }
                 {...(formState.errors?.firstName
                   ? {
@@ -575,8 +580,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.lastName}
                 disabled={
                   states.disabled ||
-                  states.isUser ||
-                  isDisabledInput("lastName")
+                  isDisabledUserInput("lastName") ||
+                  isDisabledPartnerInput("lastName")
                 }
                 {...(formState.errors?.lastName
                   ? {
@@ -607,7 +612,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
-                disabled={states.disabled || isDisabledInput("countryCode")}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("countryCode")
+                }
                 {...(formState.errors?.countryCode
                   ? {
                       class: classes.ErrorInput,
@@ -655,7 +662,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     value={formState.phoneNumberCountryCode}
                     disabled={
                       states.disabled ||
-                      isDisabledInput("phoneNumberCountryCode")
+                      isDisabledPartnerInput("phoneNumberCountryCode")
                     }
                     ref={(el: HTMLFormElement) =>
                       (refs.phoneCountryRef.current = el)
@@ -715,7 +722,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                           text.error.fieldInvalidError
                         );
                     }}
-                    disabled={states.disabled || isDisabledInput("phoneNumber")}
+                    disabled={
+                      states.disabled || isDisabledPartnerInput("phoneNumber")
+                    }
                     {...(formState.errors?.phoneNumber
                       ? {
                           class: classes.ErrorInput,
@@ -743,7 +752,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || isDisabledInput("billingAddress")}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("billingAddress")
+                }
                 {...(formState.errors?.address
                   ? {
                       class: classes.ErrorInput,
@@ -769,7 +780,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || isDisabledInput("billingCity")}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("billingCity")
+                }
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
@@ -788,7 +801,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="state"
                   name="/state"
                   value={formState.state}
-                  disabled={states.disabled || isDisabledInput("billingState")}
+                  disabled={
+                    states.disabled || isDisabledPartnerInput("billingState")
+                  }
                   {...(formState.errors?.state
                     ? {
                         class: classes.ErrorInput,
@@ -812,7 +827,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 name="/postalCode"
                 value={formState.postalCode}
                 disabled={
-                  states.disabled || isDisabledInput("billingPostalCode")
+                  states.disabled || isDisabledPartnerInput("billingPostalCode")
                 }
                 {...(formState.errors?.postalCode
                   ? {
@@ -832,7 +847,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.currency}
                 menu
                 value={formState.currency}
-                disabled={states.disabled || isDisabledInput("currency")}
+                disabled={states.disabled || isDisabledPartnerInput("currency")}
                 helpText={text.currencyHelpText}
                 {...(formState.errors?.currency
                   ? {
