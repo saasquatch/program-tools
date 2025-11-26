@@ -12,6 +12,11 @@ export type HttpLogMiddlewareOptions = {
 
 const HEALTHCHECK_ENDPOINTS = ["/healthz", "/livez", "/readyz"];
 
+// the URLs from express don't come with an origin
+// but it's necessary for `new URL()` to be able to parse
+// the path and query parameters
+const PHONY_ORIGIN = "http://localhost";
+
 const STRIP_PARAMS = [
   "itoken",
   "token",
@@ -45,9 +50,9 @@ export function httpLogMiddleware(
         return;
       }
 
-      const rawUrl = new URL(`http://localhost/${req.originalUrl}`);
+      const rawUrl = new URL(`${PHONY_ORIGIN}${req.originalUrl}`);
       STRIP_PARAMS.forEach((p) => rawUrl.searchParams.delete(p));
-      const cleanUrl = rawUrl.toString();
+      const cleanUrl = rawUrl.toString().replace(PHONY_ORIGIN, "");
 
       const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(cleanUrl ?? "");
       if (isHealthcheck && opts?.logHealthchecks === false) {
