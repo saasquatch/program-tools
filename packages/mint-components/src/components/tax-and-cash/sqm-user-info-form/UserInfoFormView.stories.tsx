@@ -304,6 +304,24 @@ export const UserAccount = () => {
   );
 };
 
+export const UserAccountMissingLastName = () => {
+  return (
+    <UserInfoFormView
+      {...baseProps}
+      states={{
+        ...baseProps.states,
+        isUser: true,
+        formState: {
+          ...baseProps.states.formState,
+          firstName: "Bob",
+          lastName: undefined,
+          email: "bob.johnson@example.com",
+        },
+      }}
+    />
+  );
+};
+
 export const CanadianAddress = () => {
   return (
     <UserInfoFormView
