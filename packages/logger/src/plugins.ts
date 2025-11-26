@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import winston from "winston";
-import { LogLevel } from "./config";
+import type { LogLevel } from "./config";
 import { LOG_TYPE_MARKER } from "./logger";
+import { URL } from "node:url";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
@@ -10,6 +11,16 @@ export type HttpLogMiddlewareOptions = {
 };
 
 const HEALTHCHECK_ENDPOINTS = ["/healthz", "/livez", "/readyz"];
+
+const STRIP_PARAMS = [
+  "itoken",
+  "token",
+  "jwt",
+  "auth",
+  "password",
+  "bearer",
+  "key",
+];
 
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
@@ -34,8 +45,11 @@ export function httpLogMiddleware(
         return;
       }
 
-      const url = req.originalUrl;
-      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(url ?? "");
+      const rawUrl = new URL(`http://localhost/${req.originalUrl}`);
+      STRIP_PARAMS.forEach((p) => rawUrl.searchParams.delete(p));
+      const cleanUrl = rawUrl.toString();
+
+      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(cleanUrl ?? "");
       if (isHealthcheck && opts?.logHealthchecks === false) {
         return;
       }
@@ -60,7 +74,7 @@ export function httpLogMiddleware(
           ? "debug"
           : opts?.nonErrorLogLevel ?? "info";
 
-      const message = { method, status, time, url, requestId };
+      const message = { method, status, time, url: cleanUrl, requestId };
       logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message });
     });
 
