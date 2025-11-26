@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import winston from "winston";
-import { LogLevel } from "./config";
+import type { LogLevel } from "./config";
 import { LOG_TYPE_MARKER } from "./logger";
+import { URL } from "node:url";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
@@ -10,6 +11,21 @@ export type HttpLogMiddlewareOptions = {
 };
 
 const HEALTHCHECK_ENDPOINTS = ["/healthz", "/livez", "/readyz"];
+
+// the URLs from express don't come with an origin
+// but it's necessary for `new URL()` to be able to parse
+// the path and query parameters
+const PHONY_ORIGIN = "http://localhost";
+
+const STRIP_PARAMS = [
+  "itoken",
+  "token",
+  "jwt",
+  "auth",
+  "password",
+  "bearer",
+  "key",
+];
 
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
@@ -34,8 +50,11 @@ export function httpLogMiddleware(
         return;
       }
 
-      const url = req.originalUrl;
-      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(url ?? "");
+      const rawUrl = new URL(`${PHONY_ORIGIN}${req.originalUrl}`);
+      STRIP_PARAMS.forEach((p) => rawUrl.searchParams.delete(p));
+      const cleanUrl = rawUrl.toString().replace(PHONY_ORIGIN, "");
+
+      const isHealthcheck = HEALTHCHECK_ENDPOINTS.includes(cleanUrl ?? "");
       if (isHealthcheck && opts?.logHealthchecks === false) {
         return;
       }
@@ -51,6 +70,10 @@ export function httpLogMiddleware(
       const method = req.method;
       const requestId = res.locals?.requestId;
 
+      const extraData = res.locals?.extraData as
+        | Record<string, any>
+        | undefined;
+
       const level =
         status >= 500
           ? "error"
@@ -60,8 +83,8 @@ export function httpLogMiddleware(
           ? "debug"
           : opts?.nonErrorLogLevel ?? "info";
 
-      const message = { method, status, time, url, requestId };
-      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message });
+      const message = { method, status, time, url: cleanUrl, requestId };
+      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message, extraData });
     });
 
     next();

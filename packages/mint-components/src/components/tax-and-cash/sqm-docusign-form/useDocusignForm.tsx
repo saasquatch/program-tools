@@ -185,13 +185,18 @@ export function useDocusignForm(props: DocusignForm) {
   };
 
   const progressStep = () => {
-    setStep(
-      context.overrideNextStep ||
-        !!publisher?.withdrawalSettings ||
-        !publisher?.brandedSignup
-        ? "/dashboard"
-        : "/4"
-    );
+    // return to dashboard
+    if (window.location.hash) {
+      window.location.hash = "";
+    } else {
+      setStep(
+        context.overrideNextStep ||
+          !!publisher?.withdrawalSettings ||
+          !publisher?.brandedSignup
+          ? "/dashboard"
+          : "/4"
+      );
+    }
   };
 
   const allLoading = userLoading || documentLoading || loading;

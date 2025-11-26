@@ -16,7 +16,7 @@ const PROGRAM_CONTEXT = "sq:program-id";
  * @uiName Program Section
  * @exampleGroup Advanced
  * @slots [{"name":"","title":"Section Content"}]
- * @validParents ["sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
+ * @validParents ["sqb-program-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
  * @example Program Section - <sqb-program-section>Add your program specific content here!</sqb-program-section>
  */
 @Component({
