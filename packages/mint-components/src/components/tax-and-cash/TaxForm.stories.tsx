@@ -1,21 +1,21 @@
 import { h } from "@stencil/core";
 import { StoryDemoData } from "../../global/demo";
+import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
+import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
 import {
   ParticipantType,
   UseDocusignFormResult,
 } from "./sqm-docusign-form/useDocusignForm";
 import { UseIndirectTaxFormResult } from "./sqm-indirect-tax-form/useIndirectTaxForm";
+import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
+import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
+import LoadingView from "./sqm-tax-and-cash/LoadingView";
+import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "./subregions";
-import { UseUserInfoFormResult } from "./sqm-user-info-form/useUserInfoForm";
-import { DocusignStatus } from "./sqm-docusign-form/docusign-iframe/DocusignIframe";
-import { BankingInfoFormViewProps } from "./sqm-banking-info-form/sqm-banking-info-form-view";
-import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard/sqm-tax-and-cash-dashboard-view";
-import LoadingView from "./sqm-tax-and-cash/LoadingView";
 import { taxTypeToName } from "./utils";
-import { ErrorView } from "./sqm-tax-and-cash/ErrorView";
 
 export default {
   title: "Components/Tax Form",
@@ -226,6 +226,7 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     formState: {
       paymentMethodChecked: "toBankAccount",
     },
+    showModal: false,
   },
   callbacks: {
     onVerificationHide: () => {},
@@ -235,6 +236,8 @@ const stepFourProps: StoryDemoData<BankingInfoFormViewProps> = {
     setPaymentScheduleChecked: () => {},
     onBack: async () => console.log("back"),
     setCountrySearch: () => {},
+    onModalOpen: () => {},
+    onModalClose: () => {},
   },
   refs: { formRef: { current: null } },
 };
@@ -257,12 +260,15 @@ const docusignFormProps: StoryDemoData<UseDocusignFormResult> = {
       errors: {},
       taxFormExpired: false,
     },
+    showModal: false,
   },
   callbacks: {
     onExit: () => {},
     completeDocument: async () => {},
     setParticipantType: (p) => console.log({ p }),
     setDocusignStatus: (status: DocusignStatus) => console.log(status),
+    onModalOpen: () => {},
+    onModalClose: () => {},
   },
 };
 
@@ -302,12 +308,13 @@ export const GeneralLoadingView = () => {
 
 export const GeneralErrorView = () => {
   return (
-    <ErrorView
-      loadingErrorAlertHeader={"There was a problem loading your form"}
-      loadingErrorAlertDescription={
-        "Please refresh the page and try again. If this problem continues, contact our support team."
-      }
-    />
+    <sqm-form-message type="error">
+      <p part="alert-title">There was a problem loading your form</p>
+      <p part="alert-description">
+        Please refresh the page and try again. If this problem continues,
+        contact our support team.
+      </p>
+    </sqm-form-message>
   );
 };
 
@@ -920,6 +927,21 @@ export const StepThreeDocusignDisabled = () => {
   );
 };
 
+export const StepThreeWithDocusignModalOpen = () => {
+  return (
+    <sqm-docusign-form
+      demoData={{
+        states: {
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          ...docusignFormProps.states,
+          showModal: true,
+        },
+      }}
+    ></sqm-docusign-form>
+  );
+};
+
 // STEP 4
 export const StepFourDefault = () => {
   return <sqm-banking-info-form></sqm-banking-info-form>;
@@ -1400,6 +1422,30 @@ export const TaxAndCashDashboardIdentityVerifcationFailedInternal = () => {
   );
 };
 
+export const TaxAndCashDashboardW9ThresholdReached = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "OVER_W9_THRESHOLD",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: null,
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          notRegistered: false,
+          showNewFormDialog: false,
+          hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
 export const TaxAndCashDashboardNewTaxForm = () => {
   return (
     <sqm-tax-and-cash-dashboard
@@ -1429,7 +1475,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "DONE",
+          payoutStatus: "HOLD",
           veriffLoading: false,
           canEditPayoutInfo: true,
           disabled: true,
@@ -1441,7 +1487,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
           indirectTaxNumber: "123456",
           country: "Slovania",
           showNewFormDialog: false,
-          hasHold: true,
+          hasHold: false,
         },
       }}
     ></sqm-tax-and-cash-dashboard>

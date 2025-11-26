@@ -1,13 +1,14 @@
 import { h } from "@stencil/core";
-import { createStyleSheet } from "../../../styling/JSS";
-import { PayoutStatus } from "./usePayoutStatus";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
+import { EnforceUsTaxComplianceOption, PayoutStatus } from "./usePayoutStatus";
 export interface PayoutStatusAlertViewProps {
   states: {
     error: boolean;
     loading: boolean;
     status: PayoutStatus;
     veriffLoading: boolean;
+    enforceUsTaxComplianceOption?: EnforceUsTaxComplianceOption;
   };
   data: {
     type:
@@ -35,9 +36,15 @@ export interface PayoutStatusAlertViewProps {
     verificationReviewInternalDescription: string;
     verificationFailedInternalHeader: string;
     verificationFailedInternalDescription: string;
+    accountReviewHeader: string;
+    accountReviewDescription: string;
+    w9RequiredHeader: string;
+    w9RequiredDescription: string;
+    w9RequiredButtonText: string;
     holdHeader: string;
     holdDescription: string;
     supportLink: string;
+    termsAndConditions: string;
     errorHeader: string;
     errorDescription: string;
   };
@@ -51,33 +58,6 @@ const style = {
   AlertDescriptionText: {
     margin: "0",
     marginBottom: "var(--sl-spacing-small)",
-  },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-red-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
-    },
-  },
-  WarningAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-yellow-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-danger-500)",
-    },
-  },
-  InfoAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sl-color-sky-100)",
-      borderTop: "none",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sl-color-blue-500)",
-    },
   },
   Dialog: {
     "&::part(panel)": {
@@ -95,6 +75,14 @@ const style = {
   },
 };
 
+const vanillaStyle = `
+  a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
@@ -107,9 +95,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
         header: text.errorHeader,
         description: text.errorDescription,
         buttonText: null,
-        alertType: "critical",
-        icon: "exclamation-triangle",
-        class: sheet.classes.ErrorAlertContainer,
+        alertType: "error",
       };
 
     switch (status) {
@@ -119,8 +105,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           description: text.informationRequiredDescription,
           buttonText: text.informationRequiredButtonText,
           alertType: "info",
-          icon: "info-circle",
-          class: sheet.classes.InfoAlertContainer,
         };
       case "VERIFICATION:REQUIRED":
         return {
@@ -140,8 +124,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:INTERNAL":
         return {
@@ -160,8 +142,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:REVIEW":
         return {
@@ -180,8 +160,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             }
           ),
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       case "VERIFICATION:FAILED":
         return {
@@ -199,9 +177,75 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               ),
             }
           ),
-          alertType: "critical",
-          icon: "exclamation-octagon",
-          class: sheet.classes.ErrorAlertContainer,
+          alertType: "error",
+        };
+      case "OVER_W9_THRESHOLD":
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY_DEFER_W9") {
+          return {
+            header: text.w9RequiredHeader,
+            description: intl.formatMessage(
+              {
+                id: "w9RequiredDescription",
+                defaultMessage: text.w9RequiredDescription,
+              },
+              {
+                termsAndConditions: (
+                  <a
+                    target="_blank"
+                    href={`https://terms.advocate.impact.com/PayoutTermsAndConditions.html`}
+                  >
+                    {text.termsAndConditions}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: text.w9RequiredButtonText,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+          };
+        } else {
+          return {
+            header: text.holdHeader,
+            description: intl.formatMessage(
+              {
+                id: "holdDescription",
+                defaultMessage: text.holdDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {text.supportLink}
+                  </a>
+                ),
+              }
+            ),
+            buttonText: null,
+            alertType: "warning",
+            icon: "exclamation-triangle",
+          };
+        }
+      case "ACCOUNT_REVIEW":
+        return {
+          header: text.accountReviewHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.accountReviewDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
         };
       case "HOLD":
         return {
@@ -221,8 +265,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           ),
           buttonText: null,
           alertType: "warning",
-          icon: "exclamation-triangle",
-          class: sheet.classes.WarningAlertContainer,
         };
       default:
         return;
@@ -231,32 +273,64 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
 
   function getButton(status: PayoutStatus) {
     switch (status) {
-      case "INFORMATION_REQUIRED":
+      case "OVER_W9_THRESHOLD":
+        if (states.enforceUsTaxComplianceOption === "CASH_ONLY") return;
         return data.type === "SquatchJS2" ? (
           <sqm-scroll
             scroll-tag-name="sqm-tabs"
-            button-text={text.informationRequiredButtonText}
+            button-text={text.w9RequiredButtonText}
             scroll-animation="smooth"
           ></sqm-scroll>
         ) : data.type === "SquatchPortal" ? (
           <sl-button type="default" onClick={callbacks.onTermsClick}>
-            {text.informationRequiredButtonText}
+            {text.w9RequiredButtonText}
           </sl-button>
         ) : (
           // Demo case
-          <sl-button type="default">
-            {text.informationRequiredButtonText}
-          </sl-button>
+          <sl-button type="default">{text.w9RequiredButtonText}</sl-button>
+        );
+      case "INFORMATION_REQUIRED":
+        return data.type === "SquatchJS2" ? (
+          <div style={{ paddingTop: "10px" }}>
+            <sqm-scroll
+              scroll-tag-name="sqm-tabs"
+              button-text={text.informationRequiredButtonText}
+              scroll-animation="smooth"
+            ></sqm-scroll>
+          </div>
+        ) : data.type === "SquatchPortal" ? (
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+              onClick={callbacks.onTermsClick}
+            >
+              {text.informationRequiredButtonText}
+            </sl-button>
+          </div>
+        ) : (
+          // Demo case
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+            >
+              {text.informationRequiredButtonText}
+            </sl-button>
+          </div>
         );
       case "VERIFICATION:REQUIRED":
         return (
-          <sl-button
-            type="default"
-            loading={states.veriffLoading}
-            onClick={callbacks.onClick}
-          >
-            {text.verificationRequiredButtonText}
-          </sl-button>
+          <div style={{ paddingTop: "10px" }}>
+            <sl-button
+              type="secondary"
+              exportparts="base: secondarybutton-base"
+              loading={states.veriffLoading}
+              onClick={callbacks.onClick}
+            >
+              {text.verificationRequiredButtonText}
+            </sl-button>
+          </div>
         );
       default:
         return;
@@ -275,19 +349,12 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   return (
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
-      <sl-alert
-        exportparts="base: alert-base, icon:alert-icon"
-        type={alertDetails.alertType}
-        class={alertDetails.class}
-        open
-      >
-        <sl-icon slot="icon" name={alertDetails.icon}></sl-icon>
-        <strong>{alertDetails.header}</strong>
-        <p class={sheet.classes.AlertDescriptionText}>
-          {alertDetails.description}
-        </p>
+      <style type="text/css">{vanillaStyle}</style>
+      <sqm-form-message type={alertDetails.alertType}>
+        <p part="alert-title">{alertDetails.header}</p>
+        <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}
-      </sl-alert>
+      </sqm-form-message>
     </div>
   );
 }

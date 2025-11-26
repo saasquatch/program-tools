@@ -1,9 +1,10 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
-import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { ImpactConnection, Reward } from "../../../saasquatch";
+import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -16,7 +17,7 @@ export class ReferralTableRewardsCell {
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward approved for payout and was scheduled for payment based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
   @Prop() fuelTankText: string;
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
@@ -49,7 +50,7 @@ export class ReferralTableRewardsCell {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
         },
         "&::part(base)": {
-          border: "1px solid var(--sqm-border-color)",
+          border: "var(--sqm-border-thickness) solid var(--sqm-border-color)",
           opacity: "1",
         },
         "&::part(summary-icon)": {
@@ -77,7 +78,7 @@ export class ReferralTableRewardsCell {
           maxWidth: "170px",
           whiteSpace: "pre-line",
           background: "var(--sqm-informative-color-icon)",
-          color: "var(--sqm-informative-color-text)",
+          color: "var(--sl-color-white)",
         },
       },
       DangerBadge: {
@@ -87,7 +88,7 @@ export class ReferralTableRewardsCell {
           maxWidth: "170px",
           whiteSpace: "pre-line",
           background: "var(--sqm-danger-color-icon)",
-          color: "var(--sqm-danger-color-text)",
+          color: "var(--sl-color-white)",
         },
       },
       WarningBadge: {
@@ -97,7 +98,7 @@ export class ReferralTableRewardsCell {
           maxWidth: "170px",
           whiteSpace: "pre-line",
           background: "var(--sqm-warning-color-icon)",
-          color: "var(--sqm-warning-color-text)",
+          color: "var(--sl-color-white)",
         },
       },
       SuccessBadge: {
@@ -107,7 +108,7 @@ export class ReferralTableRewardsCell {
           maxWidth: "170px",
           whiteSpace: "pre-line",
           background: "var(--sqm-success-color-icon)",
-          color: "var(--sqm-success-color-text)",
+          color: "var(--sl-color-white)",
         },
       },
     };
@@ -186,13 +187,18 @@ export class ReferralTableRewardsCell {
             return "PENDING_TAX_SUBMISSION";
 
           const status = taxConnection.publisher.currentTaxDocument.status;
-          if (status === "INACTIVE") return "PENDING_NEW_TAX_FORM";
+          if (
+            status === "INACTIVE" ||
+            status === "INVALID_W9_ELECTRONIC_DOCUMENT" ||
+            status === "INVALID_W9_ELECTRONIC_DOCUMENT_CHECK_INTERNAL"
+          )
+            return "PENDING_NEW_TAX_FORM";
           if (status === "NOT_VERIFIED") return "PENDING_TAX_REVIEW";
         }
         if (!taxConnection?.publisher?.withdrawalSettings)
           return "PENDING_PARTNER_CREATION";
       }
-      if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+      if (reward?.pendingReasons?.includes("MISSING_PAYOUT_CONFIGURATION")) {
         return "PENDING_PARTNER_CREATION";
       }
 

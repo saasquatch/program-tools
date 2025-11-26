@@ -4,7 +4,7 @@ import { Component, Element, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import {
   DocusignIframe,
   DocusignStatus,
@@ -61,7 +61,7 @@ export class DocusignForm {
    * @uiWidget textArea
    */
   @Prop() taxFormDescriptionBusinessEntity: string =
-    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
+    "Participants residing outside of the US working with a US Brand need to submit a {documentType} form.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign session expired messag
@@ -142,6 +142,22 @@ export class DocusignForm {
    * @uiName Exit button text
    */
   @Prop() exitButton: string = "Exit";
+
+  /**
+   * @uiName Information modal title
+   */
+  @Prop() modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   */
+  @Prop() modalDescription: string =
+    "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
+
+  /**
+   * @uiName Information modal button text
+   */
+  @Prop() modalButtonText: string = "I understand";
 
   /**
    * @undocumented
@@ -228,6 +244,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
           errors: {},
         },
         documentType: "W9",
+        showModal: false,
       },
       data: {
         taxForm: "W9",
@@ -238,6 +255,8 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         demo: {
           onSubmit: () => setStep("/4"),
           onBack: () => setStep("/3"),
+          onModalOpen: () => {},
+          onModalClose: () => {},
         },
         setParticipantType: (p) => console.log({ p }),
         setDocusignStatus: (status: DocusignStatus) => console.log(status),

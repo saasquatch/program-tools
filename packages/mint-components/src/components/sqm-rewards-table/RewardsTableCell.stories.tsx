@@ -1,8 +1,9 @@
 import { h } from "@stencil/core";
+import { ImpactConnection, Reward } from "../../saasquatch";
 import scenario1 from "./columns/sqm-rewards-table-date-column.feature";
 import scenario2 from "./columns/sqm-rewards-table-reward-column.feature";
-import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
 import scenario4 from "./columns/sqm-rewards-table-source-column.feature";
+import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
 
 const scenario = scenario1 + scenario2 + scenario3 + scenario4;
 
@@ -33,7 +34,7 @@ const rewardsData: Reward = {
   prettyAvailableNumber: "19",
   prettyRedeemedNumber: "0",
   statuses: ["AVAILABLE", "PENDING"],
-  pendingReasons: ["US_TAX", "PAYOUT_CONFIGURATION_MISSING"],
+  pendingReasons: ["US_TAX", "MISSING_PAYOUT_CONFIGURATION"],
   globalRewardKey: null,
   rewardSource: "MANUAL",
   prettyRedeemedCredit: "0 Points",
@@ -525,7 +526,7 @@ export const StatusCellPendingPartnerCreation = () => {
       statusText="Pending"
       reward={{
         ...rewardsData,
-        pendingReasons: ["PAYOUT_CONFIGURATION_MISSING"],
+        pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
       }}
     ></sqm-rewards-table-status-cell>
   );

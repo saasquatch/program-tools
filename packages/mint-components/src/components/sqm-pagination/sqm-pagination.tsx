@@ -11,8 +11,6 @@ import { UsePagination, usePagination } from "./usePagination";
 
 /**
  * @uiName Pagination
- * @exampleGroup Common Components
- * @example Promo Code Pagination - <sqm-pagination></sqm-pagination>
  */
 @Component({
   tag: "sqm-pagination",
@@ -28,15 +26,15 @@ export class Pagination {
   @Prop() paginationText: string = "{currentPage} of {totalPages}";
 
   /**
-   * The type of the button that is used (primary, secondary, or tertiary).
+   * The type of the button that is used (primary or secondary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "secondary";
+  buttonType?: "primary" | "secondary" = "secondary";
 
   /**
    * @undocumented

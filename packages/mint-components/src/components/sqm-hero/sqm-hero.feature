@@ -28,6 +28,18 @@ Feature: Hero Unit
         Then only a single column will be displayed
         And within it will be the login component
 
+    Scenario Outline: Hero layout can hide a column at 1023px or less
+        Given the user is viewing a hero unit with a "primary" and "secondary" column
+        And the "column-to-hide-in-mobile" is set to <columnToHide>
+        When the user views the hero unit at 1023px or less
+        Then the <columnToHide> column <isHidden>
+
+        Examples:
+            | column_to_hide | isHidden     |
+            | primary        | is hidden    |
+            | secondary      | is hidden    |
+            | none           | is not hidden|
+
     Scenario Outline: The hero unit supports single or dual column layouts
         Given a hero unit with prop "columns" having <columnValue>
         And it wraps <html>

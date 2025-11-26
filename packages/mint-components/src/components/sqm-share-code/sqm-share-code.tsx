@@ -9,7 +9,7 @@ import { useShareCode } from "./useShareCode";
 
 /**
  * @uiName Share Code
- * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
  * @exampleGroup Sharing
  * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
  */
@@ -106,18 +106,18 @@ export class ShareCode {
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
-   * The type of the button that is used (primary, secondary, or tertiary).
+   * The type of the button that is used (primary or secondary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of share link container
    * @uiName Border color
    * @uiWidget color
    * @format color

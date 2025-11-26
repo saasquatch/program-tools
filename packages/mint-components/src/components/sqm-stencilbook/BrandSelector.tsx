@@ -1,4 +1,5 @@
-import { Component, State, h, Host } from "@stencil/core";
+import { Component, h, Host, State } from "@stencil/core";
+import { BrandingConfiguration } from "../../saasquatch";
 import * as Themes from "./Themes";
 
 const LOCAL_STORAGE_BRAND_KEY = "localStorageBrandKey";
@@ -62,7 +63,7 @@ export class SqmBrandSelector {
 
   private updateBrand(brandName: string) {
     this.selectedBrand = brandName;
-    const configToSet: BrandingConfig =
+    const configToSet: BrandingConfiguration =
       Themes[brandName as keyof typeof Themes] || Themes.Netflix;
     const brandConfigString = JSON.stringify(configToSet);
 

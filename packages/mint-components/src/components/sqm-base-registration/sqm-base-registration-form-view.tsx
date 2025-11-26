@@ -11,12 +11,14 @@ import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface BaseRegistrationFormViewProps {
   states: {
-    error: string;
+    validationErrors: Record<string, string>;
   };
   callbacks: {
     handleEmailSubmit: Function;
   };
   content: {
+    formData?: VNode;
+    terms?: VNode;
     pageLabel?: string;
     googleButton?: VNode;
     secondaryButton?: VNode;
@@ -80,11 +82,7 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
         onSl-submit={callbacks.handleEmailSubmit}
         novalidate
       >
-        {states.error && (
-          <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
-          </sqm-form-message>
-        )}
+        {content.formData}
         <sl-input
           exportparts="label: input-label, base: input-base"
           type="email"
@@ -100,7 +98,16 @@ export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
               return content.invalidEmailErrorMessage;
             }
           }}
+          {...(states?.validationErrors?.email
+            ? {
+                class: sheet.classes.ErrorStyle,
+                helpText:
+                  states?.validationErrors?.email ||
+                  content.requiredFieldErrorMessage,
+              }
+            : [])}
         ></sl-input>
+        {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit

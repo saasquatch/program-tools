@@ -102,7 +102,9 @@ export function EmailRegistrationView(props: EmailRegistrationViewProps) {
       class={sheet.classes.Wrapper}
       style={{
         border: `${
-          content.hideBorder ? "none" : "1px solid var(--sqm-border-color)"
+          content.hideBorder
+            ? "none"
+            : "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)"
         }`,
         backgroundColor: content.backgroundColor,
         "padding-top": `var(--sl-spacing-${content.paddingTop})`,

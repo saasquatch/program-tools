@@ -1,4 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
+import { FraudStatus } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
 
 const style = {
@@ -15,7 +16,7 @@ const style = {
       maxWidth: "170px",
       whiteSpace: "pre-line",
       background: "var(--sqm-informative-color-icon)",
-      color: "var(--sqm-informative-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   DangerBadge: {
@@ -26,7 +27,7 @@ const style = {
       maxWidth: "170px",
       whiteSpace: "pre-line",
       background: "var(--sqm-danger-color-icon)",
-      color: "var(--sqm-danger-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   WarningBadge: {
@@ -37,7 +38,7 @@ const style = {
       maxWidth: "170px",
       whiteSpace: "pre-line",
       background: "var(--sqm-warning-color-icon)",
-      color: "var(--sqm-warning-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   SuccessBadge: {
@@ -48,7 +49,7 @@ const style = {
       maxWidth: "170px",
       whiteSpace: "pre-line",
       background: "var(--sqm-success-color-icon)",
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
 };

@@ -21,7 +21,7 @@ export interface CopyTextViewProps {
   backgroundColor?: string;
   textColor?: string;
   borderRadius?: string;
-  buttonType?: "primary" | "secondary" | "tertiary";
+  buttonType?: "primary" | "secondary";
   borderColor?: string;
   onClick?: () => void;
 }
@@ -52,33 +52,33 @@ const disabledStyles = `
 
 export function CopyTextView(props: CopyTextViewProps) {
   const { buttonStyle = "icon" } = props;
-
   const style = {
     HostBlock: HostBlock,
     inputStyle: {
       "&::part(input)": {
         textOverflow: "ellipsis",
         width: "100%",
-        color: props.textColor || "var(--sqm-text)",
+        color: props.textColor || "var(--sl-input-color)",
       },
       "&::part(base)": {
-        "--sl-input-border-radius": "var(--sqm-border-radius-normal)",
-        "--sl-input-background-color": "var(--sl-color-white)",
-        "--sl-input-color": "var(--sqm-text)",
-        "--sl-input-border-color": "#D6D8F0",
+        "--sl-input-border-radius":
+          `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
+        "--sl-input-border-color": "var(--sqm-border-color)",
         "--sl-input-border-color-hover": "#999999",
         "--sl-input-border-color-focus": "#999999",
         "--sl-input-color-hover": "var(--sqm-input-color-hover)",
         "--sl-input-color-focus": "var(--sqm-input-color-focus)",
         "--sl-input-color-disabled": "var(--sqm-input-disabled-color)",
-        "--sl-input-background-color-focus": "var(--sqm-portal-background)",
-        "--sl-input-background-color-hover": "var(--sqm-portal-background)",
+        "--sl-input-background-color-focus": "var(--sqm-input-background)",
+        "--sl-input-background-color-hover": "var(--sqm-input-background)",
         cursor: "pointer",
         overflow: "visible",
         borderRadius:
           `${props.borderRadius}px` || "var(--sqm-border-radius-normal)",
-        background: props.backgroundColor || "var(--sqm-portal-background)",
-        border: `1px solid ${props.borderColor || "#d4d4d8"}`,
+        background: props.backgroundColor || "var(--sqm-input-background)",
+        border: `var(--sqm-border-thickness) solid ${
+          props.borderColor || "var(--sqm-input-border-color)"
+        }`,
       },
       width: "100%",
     },
@@ -87,11 +87,7 @@ export function CopyTextView(props: CopyTextViewProps) {
         color: props.textColor || "var(--sqm-text)",
       },
     },
-    inputErrorStyle: {
-      "&::part(base)": {
-        border: "2px solid red",
-      },
-    },
+    inputErrorStyle: {},
     ContainerDiv: {
       display: "flex",
       alignItems: "flex-start",
@@ -181,7 +177,6 @@ export function CopyTextView(props: CopyTextViewProps) {
           class={`${sheet.classes.inputStyle} ${
             error ? sheet.classes.inputErrorStyle : ""
           }`}
-          exportparts="base: input-base, input: input-label"
           value={props.loading ? "Loading..." : inputText}
           readonly
           disabled={disabled}

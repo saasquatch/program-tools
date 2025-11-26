@@ -61,8 +61,8 @@
         <sqm-divided-layout
           direction="row"
           style="
-            border-top: 1px solid #eaeaea;
-            border-bottom: 1px solid #eaeaea;
+            border-top: var(--sqm-border-thickness, 1px) solid #eaeaea;
+            border-bottom: var(--sqm-border-thickness, 1px) solid #eaeaea;
           "
         >
           <sqm-navigation-sidebar>
@@ -224,12 +224,15 @@
                   step-3_individual-participant="I am an individual participant"
                   step-3_tax-form-description="Participants based in the US need to submit a {documentType} form."
                   step-3_tax-form-description-individual-participant="Participants residing outside of the US, joining the referral program of a US-based company, need to submit a {documentType} form."
-                  step-3_tax-form-description-business-entity="Participants residing outside of the US who represent a business entity need to submit a {documentType} form."
+                  step-3_tax-form-description-business-entity="Participants residing outside of the US working with a US Brand need to submit a {documentType} form."
                   step-3_docusign-expired="For your security and privacy, we automatically end your session after 20 minutes of inactivity. Please refresh and re-enter your tax information to continue."
                   step-3_docusign-session-warning="For your security, we automatically end your session when you have not interacted with the form after 20 minutes."
                   step-3_docusign-error="There was a problem displaying this form. Please refresh the page. If this problem continues, contact Support."
                   step-3_refresh-button="Refresh Page"
                   step-3_exit-button="Exit"
+                  step-3_modal-title="Important Note"
+                  step-3_modal-description="Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout."
+                  step-3_modal-button-text="I understand"
                   step-4_tax-and-payouts="Payouts"
                   step-4_directly-to-bank-account="Directly to my bank account"
                   step-4_to-pay-pal-account="PayPal (2% processing fee capped to {feeCap})"
@@ -244,7 +247,8 @@
                   step-4_payment-method-subtext="Payouts will be sent from our referral program provider, impact.com."
                   step-4_pay-pal-input-label="PayPal email"
                   step-4_bank-location-label="Bank country location"
-                  step-4_beneficiary-account-name-label="Beneficiary account name"
+                  step-4_beneficiary-account-name-label="Account holder name"
+                  step-4_beneficiary-account-name-description="The beneficiary name of your bank account. Ensure this matches the name on your tax form."
                   step-4_bank-account-type-label="Bank account type"
                   step-4_checking-select-item-label="Checking"
                   step-4_savings-select-item-label="Savings"
@@ -270,13 +274,16 @@
                   step-4_bank-postal-code-label="Bank postal code"
                   step-4_eft-withdrawal-label="EFT Withdrawal (free)"
                   step-4_fx-wire-processing-fee-label="FX Wire (Processing Fee {currency}{defaultFxFee}.00)"
+                  step-4_modal-title="Important Note"
+                  step-4_modal-description="Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
+                  step-4_modal-button-text="I understand, update my information"
                   dashboard_status-text-active="Active"
                   dashboard_status-text-not-active="Invalid Tax Form"
                   dashboard_status-text-not-verified="Not Verified"
                   dashboard_badge-text-submitted-on="Submitted on {dateSubmitted}."
                   dashboard_badge-text-submitted-on-w-8="Submitted on {dateSubmitted}. Valid for three years after submission."
                   dashboard_badge-text-awaiting-review="Awaiting review. Submitted on {dateSubmitted}."
-                  dashboard_tax-alert-header-not-active-w-9="Your W9 tax form has personal information that doesn’t match your profile"
+                  dashboard_tax-alert-header-not-active-w-9="Your W-9 tax form has personal information that doesn’t match your profile"
                   dashboard_tax-alert-header-not-active-w-8="{documentType} tax form is invalid"
                   dashboard_tax-alert-not-active-message-w-9="Please resubmit a new {documentType} form."
                   dashboard_tax-alert-not-active-message-w-8="Your tax form may have expired or has personal information that doesn’t match your profile. Please submit a new {documentType} form."

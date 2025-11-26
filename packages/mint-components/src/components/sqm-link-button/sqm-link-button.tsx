@@ -4,6 +4,7 @@ import { LinkButtonView } from "./sqm-link-button-view";
 
 /**
  * @uiName Link Button
+ * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Common Components
  * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
  */

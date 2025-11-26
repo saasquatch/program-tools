@@ -1,6 +1,14 @@
 import winston from "winston";
 import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "./logger";
 
+type HTTPMessage = {
+  method: string;
+  status: string;
+  time: BigInt | string;
+  url: string;
+  requestId?: string;
+};
+
 /**
  * JSON format logs to be consumed by upstream log processors
  */
@@ -40,12 +48,7 @@ export function prettyFormat(name: string): winston.Logform.Format {
  * Human-readable HTTP information to be placed in the
  * `message` field of the log
  */
-const friendlyHttpFormat = (message: {
-  method: string;
-  status: string;
-  time: BigInt;
-  url: string;
-}): string => {
+const friendlyHttpFormat = (message: HTTPMessage): string => {
   return [
     message.status,
     message.method,
@@ -60,9 +63,14 @@ const friendlyHttpFormat = (message: {
  */
 const formatHttpLog = winston.format((info) => {
   const newInfo = { ...info };
-  const message = newInfo.message;
   if (newInfo[LOG_TYPE_MARKER] === "HTTP") {
-    const micros = Number(newInfo.message.time);
+    // NOTE: it would of course be safer to validate this using a real
+    // schema validator like zod, but for a logging library we just
+    // don't want that kind of overhead. The HTTP log messages are generated
+    // using middleware from our own package so it's unlikely to be invalid
+    const message = newInfo.message as any as HTTPMessage;
+
+    const micros = Number(message.time);
     if (micros < 1000) {
       message.time = `${micros} μs`;
     } else {

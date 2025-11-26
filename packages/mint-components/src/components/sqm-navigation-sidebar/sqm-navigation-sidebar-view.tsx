@@ -82,7 +82,7 @@ export function NavigationSidebarView(
   .menu-items {
     display: none;
     padding: 20px;
-    border-right: 1px solid #eaeaea;
+    border-right: var(--sqm-border-thickness) solid var(--sqm-border-color);
     padding-top: 60px;
     background: var(--sqm-portal-background); 
     width: 100vw;

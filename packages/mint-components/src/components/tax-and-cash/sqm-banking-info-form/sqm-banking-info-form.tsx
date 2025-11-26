@@ -5,8 +5,9 @@ import { Component, Host, Prop, State, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 import { getProps } from "../../../utils/utils";
-import { TAX_CONTEXT_NAMESPACE } from "../sqm-tax-and-cash/data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { getFormMap } from "./formDefinitions";
 import { mockPaymentOptions } from "./mockData";
 import {
@@ -18,7 +19,6 @@ import {
   paypalFeeMap,
   useBankingInfoForm,
 } from "./useBankingInfoForm";
-import { createStyleSheet } from "../../../styling/JSS";
 
 /**
  * @uiName Banking Information Form
@@ -116,8 +116,12 @@ export class BankingInfoForm {
   /**
    * @uiName Beneficiary account field label
    */
-  @Prop() beneficiaryAccountNameLabel: string = "Beneficiary account name";
-
+  @Prop() beneficiaryAccountNameLabel: string = "Account holder name";
+  /**
+   * @uiName Beneficiary account field description
+   */
+  @Prop() beneficiaryAccountNameDescription: string =
+    "The beneficiary name of your bank account. Ensure this matches the name on your tax form.";
   /**
    * @uiName Bank account type field label
    */
@@ -331,6 +335,22 @@ export class BankingInfoForm {
     "Please refresh the page and try again. If this problem continues, contact Support.";
 
   /**
+   * @uiName Information modal title
+   */
+  @Prop() modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   */
+  @Prop() modalDescription: string =
+    "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped.";
+
+  /**
+   * @uiName Information modal button text
+   */
+  @Prop() modalButtonText: string = "I understand, update my information";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -454,10 +474,20 @@ export class BankingInfoForm {
       }
     );
 
+    const vanillaStyle = `
+      sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+    `;
+
     return (
       <Host>
         {/* Force it to de-render every time to avoid state issues with inputs */}
         <style type="text/css">{styleString}</style>
+        <style type="text/css">{vanillaStyle}</style>
         {props.states.isPartner && props.states.showVerification ? (
           <sl-dialog
             class={sheet.classes.Dialog}
@@ -711,6 +741,7 @@ function useDemoBankingInfoForm(
         currency,
         setCurrency,
         hasPayPal: true,
+        showModal: false,
       },
       callbacks: {
         onVerificationHide: () => {},
@@ -723,6 +754,8 @@ function useDemoBankingInfoForm(
         setCountrySearch: () => {},
         onBack: async () => setStep("/dashboard"),
         onVerification: () => {},
+        onModalOpen: () => {},
+        onModalClose: () => {},
       },
       text: props.getTextProps(),
       refs: {

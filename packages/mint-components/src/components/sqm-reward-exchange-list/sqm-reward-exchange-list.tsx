@@ -1,21 +1,19 @@
-import { Component, h, Host, Prop, State, VNode } from "@stencil/core";
-import { withHooks } from "@saasquatch/stencil-hooks";
-import {
-  ExchangeState,
-  RewardExchangeProps,
-  Stages,
-  useRewardExchangeList,
-  ExchangeStep,
-} from "./useRewardExchangeList";
-import {
-  RewardExchangeViewProps,
-  RewardExchangeView,
-} from "./sqm-reward-exchange-list-view";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
-import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
+import { demoRewardExchange } from "./RewardExchangeListData";
+import {
+  RewardExchangeView,
+  RewardExchangeViewProps,
+} from "./sqm-reward-exchange-list-view";
+import {
+  RewardExchangeProps,
+  useRewardExchangeList,
+} from "./useRewardExchangeList";
 
 /**
  * @uiName Reward Exchange
@@ -196,6 +194,14 @@ export class SqmRewardExchangeList {
   @Prop() costTitle: string = "Cost to Redeem";
 
   /**
+   * @componentState { "title": "Choose reward", "props": { "states": { "redeemStage": "chooseReward" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -247,40 +253,19 @@ function EmptySlot() {
 }
 
 function useRewardExchangeListDemo(props: RewardExchangeProps) {
-  return deepmerge(
-    {
-      states: {
-        content: {
-          text: props,
-        },
-        redeemStage: "chooseReward",
-        amount: 0,
-        selectedStep: undefined,
-        selectedItem: undefined,
-        open: false,
-        exchangeError: false,
-        queryError: false,
-        loading: false,
-        noExchangeOptions: false,
-        empty: EmptySlot(),
-      },
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-reward-exchange-list"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
 
-      data: {
-        shareCode: "SHARECODE123",
-        exchangeList: demoRewardExchange.data.exchangeList,
-      },
-      callbacks: {
-        exchangeReward: () => {},
-        setExchangeState: (_: ExchangeState) => {},
-        setStage: (_: Stages) => {},
-        resetState: () => {},
-        copyFuelTankCode: () => {},
-      },
-      refs: {
-        canvasRef: {},
-      },
-    },
-    props.demoData || {},
+  const finalProps = deepmerge(
+    { ...demoRewardExchange, content: { text: props } },
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
+  return finalProps;
 }

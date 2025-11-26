@@ -28,7 +28,6 @@ Feature: Comply Exchange Form
     And their current tax document status is not "ACTIVE" or "NOT_VERIFIED"
     When the page loads
     Then the Comply Exchange iframe is displayed
-
     Examples:
       | publisherCountry | brandCountry     | currentDocument |
       | a non-US country | US               | null            |
@@ -42,12 +41,11 @@ Feature: Comply Exchange Form
     And are <participantType>
     Then the page header is <header>
     And the description is <description>
-
     Examples:
       | typeTaxForm | participantType       | header       | description                                                                                                             |
       | W9          | N/A                   | W-9 Tax Form | Participants based in the US need to submit a W-9 form.                                                                 |
       | W8-BEN      | individualParticipant | W-8 Tax Form | Participants residing outside of the US, joining the referral program of a US-based company, need to submit a W-8 form. |
-      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US who represent a business entity need to submit a W-8 form.                      |
+      | W8-BEN-E    | businessEntity        | W-8 Tax Form | Participants residing outside of the US working with a US Brand need to submit a W-8 form.                              |
 
   @minutia
   Scenario Outline: Participant completes Comply Exchange document and is directed to document summary page
@@ -57,7 +55,6 @@ Feature: Comply Exchange Form
     And a request is sent to mark the document as completed
     When the request <status>
     Then they <may> be redirected to step 4
-
     Examples:
       | status   | may      |
       | fails    | will not |
@@ -112,3 +109,23 @@ Feature: Comply Exchange Form
       """
       Please review your information and try again. If this problem continues, contact Support.
       """
+
+  @minutia
+  Scenario: Information modal is shown when the docusign step is shown
+    Given a participant loads the Comply Exchange form
+    And they have a required tax document type
+    When the docusign step is shown
+    Then an information modal is shown
+    And the modal has a title
+      """
+      Important Note
+      """
+    And the modal has a description
+      """
+      Ensure the name you enter in your tax form matches the name on your bank account, also known as the beneficiary name.
+
+      Otherwise you will have to resubmit your form again and there will be delays receiving your payout.
+      """
+    And the modal has a button with text "I understand"
+    When the participant clicks the button
+    Then the modal is closed

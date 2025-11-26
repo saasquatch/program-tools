@@ -33,18 +33,17 @@ Feature: Tax Form Flow
     When they complete filling out their indirect tax information
     And press "Continue"
     Then they proceed to <stepX> depending on the <brandCountry> and participants <countryCode>
-
     Examples:
       | countryCode | brandCountry | stepX |
-      | CA          | US           |     3 |
-      | CA          | MX           |     4 |
-      | US          | CA           |     3 |
-      | US          | MX           |     3 |
-      | GB          | US           |     3 |
-      | GB          | MX           |     4 |
-      | EG          | US           |     3 |
-      | EG          | MX           |     4 |
-      | US          | US           |     3 |
+      | CA          | US           | 3     |
+      | CA          | MX           | 4     |
+      | US          | CA           | 3     |
+      | US          | MX           | 3     |
+      | GB          | US           | 3     |
+      | GB          | MX           | 4     |
+      | EG          | US           | 3     |
+      | EG          | MX           | 4     |
+      | US          | US           | 3     |
 
   @motivating
   Scenario Outline: Default form step is dependent on publisher connection status and saved publisher information
@@ -56,7 +55,6 @@ Feature: Tax Form Flow
     And participant current tax document has status <status>
     And participant <hasWithdrawalSettings>
     Then they proceed to <stepX>
-
     Examples:
       | hasTax                 | isConnected      | hasRequiredDoc             | hasCurrentTaxDoc          | status   | hasWithdrawalSettings             | stepX     |
       | does not have tax info | is not connected | n/a                        | n/a                       | n/a      | n/a                               | step 1    |
@@ -97,16 +95,15 @@ Feature: Tax Form Flow
     When they press "Continue"
     And the registered partner <hasExistingTaxDoc>
     Then they proceed to <stepX> depending on their <brandCountry> and participants <countryCode>
-
     Examples:
       | countryCode | brandCountry | hasExistingTaxDoc | stepX     |
       | CA          | US           | true              | dashboard |
       | CA          | MX           | n/a               | dashboard |
-      | US          | CA           | false             |         3 |
+      | US          | CA           | false             | 3         |
       | US          | MX           | true              | dashboard |
-      | GB          | US           | false             |         3 |
+      | GB          | US           | false             | 3         |
       | GB          | US           | true              | dashboard |
-      | ES          | US           | false             |         3 |
+      | ES          | US           | false             | 3         |
       | EG          | MX           | n/a               | dashboard |
 
   @minutia
@@ -115,7 +112,6 @@ Feature: Tax Form Flow
     And the brand is not in the US
     And the user selects a <country> not in the US
     Then they skip to step 4 Payout Details
-
     Examples:
       | brandCountry | country |
       | MX           | GB      |
@@ -128,12 +124,24 @@ Feature: Tax Form Flow
     When they view step 3
     Then the Comply Exchange iframe is displayed
     But no form is auto selected
-
     Examples:
       | brandCountry | country |
       | MX           | US      |
       | GB           | US      |
       | AUS          | US      |
+
+  @motivating
+  Scenario Outline: US based participants getting paid USD are exempt from submitting a W9 tax form with the "" tax setting
+    Given a brand using the tax setting "5"
+    And a user selects US in step 1
+    And they select <currency> in step 1
+    When they complete step 2
+    Then they <maySkip> step 3 (exempt from submitting a tax form)
+    Examples:
+      | currency | maySkip    |
+      | USD      | skips      |
+      | EUR      | don't skip |
+      | CAD      | don't skip |
 
   @minutia
   Scenario: Participant finishes tax form flow and skipped Comply Exchange form
@@ -227,3 +235,26 @@ Feature: Tax Form Flow
     And the request for the user returns with errors
     Then the form / dashboard is not shown
     And an error banner is shown
+
+  @motivating
+  Scenario Outline: sqm-tax-and-cash editor states
+    Given html loaded in a raisins editor
+    And the html includes "<sqm-tax-and-cash></sqm-tax-and-cash>"
+    When "sqm-tax-and-cash" is selected in the editor
+    Then a state dropdown appears with the following states
+      | state     |
+      | Step 1    |
+      | Step 2    |
+      | Step 3    |
+      | Step 4    |
+      | Dashboard |
+    When <state> is selected
+    Then "sqm-tax-and-cash" displays the <UI>
+
+    Examples:
+      | state     | UI                                  |
+      | Step 1    | user information form               |
+      | Step 2    | indirect tax form                   |
+      | Step 3    | complyexchange iframe               |
+      | Step 4    | banking/withdrawal information form |
+      | Dashboard | tax dashboard                       |

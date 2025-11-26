@@ -47,7 +47,7 @@ export class ReferredRegistration {
    * @uiName Register button text
    */
   @Prop()
-  registerLabel: string = "Start Referring";
+  registerLabel: string = "Claim Your Reward";
 
   /**
    * Require your participants to enter their first and last name.
@@ -144,7 +144,7 @@ export class ReferredRegistration {
    * @uiGroup Card style
    * @uiType string
    */
-  @Prop() backgroundColor: string = "#ffffff";
+  @Prop() backgroundColor: string;
 
   /**
    * @undocumented

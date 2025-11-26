@@ -28,15 +28,15 @@ export class PortalFrame {
    * @uiWidget color
    * @uiType string
    */
-  @Prop() backgroundColor: string = "var(--sqm-portal-background, #fff);";
+  @Prop() backgroundColor: string = "var(--sqm-portal-background, #fff)";
 
-  // TODO: Replace with border variable later
   /**
    * Borders placed to seperate the header and footer from the body content.
    * @uiName Border
    * @uiType string
    */
-  @Prop() border: string = "1px solid var(--sqm-text, #eaeaea);";
+  @Prop() border: string =
+    "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)";
 
   /**
    * Background color for the header and footer.
@@ -45,7 +45,7 @@ export class PortalFrame {
    * @uiType string
    */
   @Prop() headerAndFooterBackgroundColor: string =
-    "var(--sqm-portal-background, #fff);";
+    "var(--sqm-portal-background, #fff)";
 
   /**
    * @undocumented

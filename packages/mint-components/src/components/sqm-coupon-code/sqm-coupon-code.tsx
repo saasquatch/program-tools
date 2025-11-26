@@ -154,6 +154,32 @@ export class CouponCode {
     "Your code will be available on {unpendDate}. Mark your calendar and come back then to redeem your reward!";
 
   /**
+   * Display this message when the code fails to load before retrying.
+   *
+   * @uiWidget textArea
+   * @uiName Code sync error retry message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "code-sync-error-retry-text",
+  })
+  codeSyncErrorRetryText: string =
+    "We're experiencing an issue generating your coupon code. If it doesn't appear shortly, please contact {supportEmail}. Retrying in {timeRemaining} seconds.";
+
+  /**
+   * Display this message when the code fails to load after retrying.
+   *
+   * @uiWidget textArea
+   * @uiName Code sync error message
+   * @uiGroup Coupon code error
+   */
+  @Prop({
+    attribute: "code-sync-error-text",
+  })
+  codeSyncErrorText: string =
+    "We're still experiencing an issue generating your coupon code. Please contact {supportEmail} for assistance.";
+
+  /**
    * Display this message when the code fails to load due to an unspecified error.
    *
    * @uiWidget textArea
@@ -178,7 +204,7 @@ export class CouponCode {
   couponCodePlaceholder: string = "...";
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of share link container
    * @uiName Border color
    * @uiWidget color
    * @format color
@@ -212,7 +238,7 @@ export class CouponCode {
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * Background color of share link container
@@ -262,6 +288,8 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
       textColor: props.textColor,
       borderRadius: props.borderRadius,
       buttonType: props.buttonType,
+      codeSyncErrorText: props.codeSyncErrorText,
+      codeSyncErrorRetryText: props.codeSyncErrorRetryText,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

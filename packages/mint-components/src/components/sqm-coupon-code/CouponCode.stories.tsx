@@ -32,15 +32,7 @@ export const CouponCodeWithSecondaryButtonType = () => {
     ></sqm-coupon-code>
   );
 };
-export const CouponCodeWithTertiaryButtonType = () => {
-  return (
-    <sqm-coupon-code
-      tooltiptext="Copied to Clipboard"
-      buttonType="tertiary"
-      buttonStyle="button-outside"
-    ></sqm-coupon-code>
-  );
-};
+
 export const CustomTooltipText = () => {
   return <sqm-coupon-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-coupon-code>;
 };

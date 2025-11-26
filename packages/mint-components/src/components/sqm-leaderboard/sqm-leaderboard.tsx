@@ -9,7 +9,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
  * @uiName Leaderboard
- * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @slots [{"name":"empty", "title":"Empty State"}]
  * @requiredFeatures ["LEADERBOARDS"]
  * @exampleGroup Leaderboard

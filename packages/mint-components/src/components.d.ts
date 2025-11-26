@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
+import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BankingInfoFormViewProps } from "./components/tax-and-cash/sqm-banking-info-form/sqm-banking-info-form-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
@@ -21,6 +22,11 @@ import { UseIndirectTaxFormResult } from "./components/tax-and-cash/sqm-indirect
 import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { EmailRegistrationViewProps } from "./components/views/email-registration-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { FraudStatus, ImpactConnection, Invoice, Referral, Referrer, Reward } from "./saasquatch";
+import { LeadCheckboxFieldViewProps } from "./components/sqm-lead-form/sqm-lead-checkbox-field-view";
+import { DropdownFieldViewProps as DropdownFieldViewProps1 } from "./components/sqm-lead-form/sqm-lead-dropdown-field-view";
+import { LeadFormViewProps } from "./components/sqm-lead-form/sqm-lead-form-view";
+import { LeadInputFieldViewProps } from "./components/sqm-lead-form/sqm-lead-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { CopyTextViewProps } from "./components/views/copy-text-view";
@@ -50,7 +56,6 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
-import { UseTaxAndCashResultType } from "./components/tax-and-cash/sqm-tax-and-cash/useTaxAndCash";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -58,6 +63,21 @@ export namespace Components {
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
         "renderLabel": (idx: any) => Promise<any>;
+    }
+    interface SqmAssetCard {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AssetCardViewProps>;
+        /**
+          * @uiName Banner image
+         */
+        "imgUrl": string;
+        /**
+          * @uiName Banner title
+         */
+        "titleText": string;
     }
     interface SqmBankingInfoForm {
         /**
@@ -101,6 +121,10 @@ export namespace Components {
           * @uiName Bank province/state field label
          */
         "bankStateLabel": string;
+        /**
+          * @uiName Beneficiary account field description
+         */
+        "beneficiaryAccountNameDescription": string;
         /**
           * @uiName Beneficiary account field label
          */
@@ -218,6 +242,18 @@ export namespace Components {
          */
         "loadingErrorAlertHeader": string;
         /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription": string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle": string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel": string;
@@ -325,7 +361,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -336,7 +372,7 @@ export namespace Components {
         /**
           * Font size of the description text in pixels
           * @uiName Description font size
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionFontSize"?: number;
         /**
@@ -345,33 +381,34 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionTextColor"?: string;
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
           * @default 
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
         /**
           * Font size of the stat text in pixels
           * @uiName Stat font size
           * @uiType string
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statFontSize"?: number;
         /**
           * Font weight of the stat text
           * @uiName Stat font weight
-          * @uiGroup Style
+          * @uiGroup Additional Settings
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
@@ -382,7 +419,7 @@ export namespace Components {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statTextColor"?: string;
         /**
@@ -526,7 +563,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -557,7 +594,7 @@ export namespace Components {
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -565,6 +602,20 @@ export namespace Components {
           * @uiGroup Coupon code error
          */
         "cancelledErrorText": string;
+        /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText": string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText": string;
         /**
           * @uiName Copy button label
          */
@@ -655,13 +706,13 @@ export namespace Components {
     interface SqmDividedLayout {
         /**
           * Background color of the divider
-          * @uiName Divider Background Color
+          * @uiName Background Color
           * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
           * Color of the divider (defaults to default text color if none is set)
-          * @uiName Divider Background Color
+          * @uiName Border Color
           * @uiWidget color
          */
         "borderColor"?: string;
@@ -751,6 +802,18 @@ export namespace Components {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader": string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription": string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle": string;
         /**
           * @uiName Participant type field label
          */
@@ -939,6 +1002,10 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
+        /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type
          */
@@ -977,11 +1044,18 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
-          * @uiName Background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
+        /**
+          * Can only be used when two columns are present
+          * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
@@ -1000,8 +1074,8 @@ export namespace Components {
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -1035,14 +1109,14 @@ export namespace Components {
          */
         "buttonText"?: string;
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -1536,6 +1610,196 @@ export namespace Components {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
     }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel": string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName": string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional": boolean;
+        /**
+          * @uiName Multiple selection
+          * @default
+         */
+        "multiple": boolean;
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel": string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel": string;
+        /**
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
+         */
+        "formKey": string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage": string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel": string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage": string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel": string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel": string;
+        /**
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
+         */
+        "submitErrorDescription": string;
+        /**
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
+         */
+        "submitErrorHeader": string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel": string;
+        /**
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
+         */
+        "submitSuccessDescription": string;
+        /**
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
+         */
+        "submitSuccessHeader": string;
+        /**
+          * Optional support link text for error messages.
+          * @uiName Support link text
+         */
+        "supportLinkText": string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel": string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName": string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType": "text" | "date" | "tel";
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel": string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage": string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -1779,6 +2043,11 @@ export namespace Components {
           * @uiName Last name label
          */
         "lastNameLabel": string;
+        /**
+          * @uiName Optional
+          * @uiWidget
+         */
+        "optional": boolean;
     }
     interface SqmNavigationMenu {
         /**
@@ -1889,14 +2158,14 @@ export namespace Components {
     }
     interface SqmPagination {
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -1980,6 +2249,10 @@ export namespace Components {
          */
         "payoutMissingInformationText": string;
         /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
+        /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
          */
@@ -1991,6 +2264,14 @@ export namespace Components {
         "thresholdPayoutText": string;
     }
     interface SqmPayoutStatusAlert {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
         /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
@@ -2029,9 +2310,21 @@ export namespace Components {
          */
         "informationRequiredHeader": string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Support link text
          */
         "supportLink": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -2068,6 +2361,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3313,14 +3618,14 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of container
           * @uiName Border color
           * @uiWidget color
           * @format color
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container (in pixels)
+          * The border radius (in pixels)
           * @uiName Border Radius
           * @uiType number
          */
@@ -3412,14 +3717,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -3966,6 +4271,13 @@ export namespace Components {
          */
         "sourceAmountMessage": string;
         /**
+          * @componentState { "title": "Choose reward", "props": { "states": { "redeemStage": "chooseReward" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController": string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -4202,8 +4514,8 @@ export namespace Components {
          */
         "pendingUnhandled": string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax": string;
         "renderCell": (data: Reward, options?: { locale: string; taxConnection: ImpactConnection; }) => Promise<any>;
@@ -4228,19 +4540,6 @@ export namespace Components {
           * @uiName Button text
          */
         "buttonText": string;
-        /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType": | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
         /**
           * Draws a circle button.
           * @uiName Circle
@@ -4441,7 +4740,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -4465,14 +4764,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4526,7 +4825,7 @@ export namespace Components {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -4550,14 +4849,14 @@ export namespace Components {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -4712,11 +5011,11 @@ export namespace Components {
         /**
           * @uiName Button Style
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
@@ -4877,6 +5176,14 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "continueButton": string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -5076,6 +5383,11 @@ export namespace Components {
          */
         "dashboard_replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -5096,6 +5408,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -5139,6 +5456,11 @@ export namespace Components {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -5203,10 +5525,27 @@ export namespace Components {
          */
         "dashboard_verificationReviewInternalHeader": string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "dashboard_w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -5278,6 +5617,15 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "searchForCountryText": string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
+         */
+        "stateController": string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -5511,6 +5859,21 @@ export namespace Components {
          */
         "step3_individualParticipant": string;
         /**
+          * @uiName Information modal button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalDescription": string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalTitle": string;
+        /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
@@ -5598,6 +5961,11 @@ export namespace Components {
          */
         "step4_bankStateLabel": string;
         /**
+          * @uiName Beneficiary account field description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameDescription": string;
+        /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
@@ -5667,6 +6035,21 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel": string;
+        /**
+          * @uiName Information modal button text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalButtonText": string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalDescription": string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalTitle": string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
@@ -5785,8 +6168,22 @@ export namespace Components {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions": string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription": string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader": string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -5937,12 +6334,6 @@ export namespace Components {
          */
         "newFormButton": string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext": string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -5984,6 +6375,16 @@ export namespace Components {
          */
         "replaceTaxFormModalHeader": string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText": string;
@@ -6000,6 +6401,11 @@ export namespace Components {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -6032,11 +6438,6 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription": string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -6045,6 +6446,10 @@ export namespace Components {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader": string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions": string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -6091,6 +6496,18 @@ export namespace Components {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader": string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText": string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription": string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader": string;
     }
     interface SqmText {
         /**
@@ -6466,8 +6883,20 @@ export namespace Components {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader": string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+         */
+        "stateController": string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @undocumented 
+          * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
+          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
+         */
+        "stateController": string;
     }
 }
 declare global {
@@ -6476,6 +6905,12 @@ declare global {
     var HTMLRaisinsPlopTargetElement: {
         prototype: HTMLRaisinsPlopTargetElement;
         new (): HTMLRaisinsPlopTargetElement;
+    };
+    interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
+    }
+    var HTMLSqmAssetCardElement: {
+        prototype: HTMLSqmAssetCardElement;
+        new (): HTMLSqmAssetCardElement;
     };
     interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
     }
@@ -6680,6 +7115,30 @@ declare global {
     var HTMLSqmInvoiceTableDownloadColumnElement: {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
+    };
+    interface HTMLSqmLeadCheckboxFieldElement extends Components.SqmLeadCheckboxField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadCheckboxFieldElement: {
+        prototype: HTMLSqmLeadCheckboxFieldElement;
+        new (): HTMLSqmLeadCheckboxFieldElement;
+    };
+    interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadDropdownFieldElement: {
+        prototype: HTMLSqmLeadDropdownFieldElement;
+        new (): HTMLSqmLeadDropdownFieldElement;
+    };
+    interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
+    }
+    var HTMLSqmLeadFormElement: {
+        prototype: HTMLSqmLeadFormElement;
+        new (): HTMLSqmLeadFormElement;
+    };
+    interface HTMLSqmLeadInputFieldElement extends Components.SqmLeadInputField, HTMLStencilElement {
+    }
+    var HTMLSqmLeadInputFieldElement: {
+        prototype: HTMLSqmLeadInputFieldElement;
+        new (): HTMLSqmLeadInputFieldElement;
     };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
@@ -7211,6 +7670,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "raisins-plop-target": HTMLRaisinsPlopTargetElement;
+        "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-banking-info-form": HTMLSqmBankingInfoFormElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
@@ -7245,6 +7705,10 @@ declare global {
         "sqm-invoice-table-date-column": HTMLSqmInvoiceTableDateColumnElement;
         "sqm-invoice-table-download-cell": HTMLSqmInvoiceTableDownloadCellElement;
         "sqm-invoice-table-download-column": HTMLSqmInvoiceTableDownloadColumnElement;
+        "sqm-lead-checkbox-field": HTMLSqmLeadCheckboxFieldElement;
+        "sqm-lead-dropdown-field": HTMLSqmLeadDropdownFieldElement;
+        "sqm-lead-form": HTMLSqmLeadFormElement;
+        "sqm-lead-input-field": HTMLSqmLeadInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-link-button": HTMLSqmLinkButtonElement;
@@ -7338,6 +7802,21 @@ declare global {
 declare namespace LocalJSX {
     interface RaisinsPlopTarget {
     }
+    interface SqmAssetCard {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<AssetCardViewProps>;
+        /**
+          * @uiName Banner image
+         */
+        "imgUrl"?: string;
+        /**
+          * @uiName Banner title
+         */
+        "titleText"?: string;
+    }
     interface SqmBankingInfoForm {
         /**
           * @uiName Agency code field label
@@ -7380,6 +7859,10 @@ declare namespace LocalJSX {
           * @uiName Bank province/state field label
          */
         "bankStateLabel"?: string;
+        /**
+          * @uiName Beneficiary account field description
+         */
+        "beneficiaryAccountNameDescription"?: string;
         /**
           * @uiName Beneficiary account field label
          */
@@ -7497,6 +7980,18 @@ declare namespace LocalJSX {
          */
         "loadingErrorAlertHeader"?: string;
         /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle"?: string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel"?: string;
@@ -7604,7 +8099,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "right", "center"]
           * @uiEnumNames ["Left", "Right", "Center"]
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -7615,7 +8110,7 @@ declare namespace LocalJSX {
         /**
           * Font size of the description text in pixels
           * @uiName Description font size
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionFontSize"?: number;
         /**
@@ -7624,33 +8119,34 @@ declare namespace LocalJSX {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "descriptionTextColor"?: string;
         /**
           * Controls the order of the stat value & description column
           * @uiName Flex reverse
           * @default 
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "flexReverse"?: boolean;
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
           * @uiWidget programSelector
+          * @uiGroup Additional Settings
          */
         "programId"?: string;
         /**
           * Font size of the stat text in pixels
           * @uiName Stat font size
           * @uiType string
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statFontSize"?: number;
         /**
           * Font weight of the stat text
           * @uiName Stat font weight
-          * @uiGroup Style
+          * @uiGroup Additional Settings
           * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
           * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
@@ -7661,7 +8157,7 @@ declare namespace LocalJSX {
           * @uiWidget color
           * @uiType string
           * @format color
-          * @uiGroup Style
+          * @uiGroup Additional Settings
          */
         "statTextColor"?: string;
         /**
@@ -7805,7 +8301,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -7836,7 +8332,7 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * Display this message when the coupon code has been cancelled.
           * @uiWidget textArea
@@ -7844,6 +8340,20 @@ declare namespace LocalJSX {
           * @uiGroup Coupon code error
          */
         "cancelledErrorText"?: string;
+        /**
+          * Display this message when the code fails to load before retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error retry message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorRetryText"?: string;
+        /**
+          * Display this message when the code fails to load after retrying.
+          * @uiWidget textArea
+          * @uiName Code sync error message
+          * @uiGroup Coupon code error
+         */
+        "codeSyncErrorText"?: string;
         /**
           * @uiName Copy button label
          */
@@ -7934,13 +8444,13 @@ declare namespace LocalJSX {
     interface SqmDividedLayout {
         /**
           * Background color of the divider
-          * @uiName Divider Background Color
+          * @uiName Background Color
           * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
           * Color of the divider (defaults to default text color if none is set)
-          * @uiName Divider Background Color
+          * @uiName Border Color
           * @uiWidget color
          */
         "borderColor"?: string;
@@ -8030,6 +8540,18 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "loadingErrorAlertHeader"?: string;
+        /**
+          * @uiName Information modal button text
+         */
+        "modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+         */
+        "modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+         */
+        "modalTitle"?: string;
         /**
           * @uiName Participant type field label
          */
@@ -8218,6 +8740,10 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Render the alert with transparent styles
+         */
+        "transparent"?: boolean;
+        /**
           * Options include "success", "info", "warning", and "error"
           * @uiName Alert type
          */
@@ -8257,11 +8783,18 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * Can be an image url, colour or Shoelace variable.
-          * @uiName Background
+          * Splash image or background color (for use in the left column)
+          * @uiName Splash image
           * @uiWidget Background
          */
         "background"?: string;
+        /**
+          * Can only be used when two columns are present
+          * @uiName Hide the column in mobile view
+          * @uiEnum ["primary", "secondary", "null"]
+          * @uiEnumNames ["Primary", "Secondary", "None"]
+         */
+        "columnToHideInMobile"?: "primary" | "secondary" | null;
         /**
           * @uiName Columns
           * @uiEnum [1, 2]
@@ -8280,8 +8813,8 @@ declare namespace LocalJSX {
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
-          * Secondary background image or color (for use in the right column)
-          * @uiName Secondary background
+          * Content background color or image (for use in the right column)
+          * @uiName Content background
           * @uiWidget Background
          */
         "secondaryBackground"?: string;
@@ -8315,14 +8848,14 @@ declare namespace LocalJSX {
          */
         "buttonText"?: string;
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Description
           * @uiWidget textArea
@@ -8810,6 +9343,196 @@ declare namespace LocalJSX {
     }
     interface SqmInvoiceTableDownloadColumn {
     }
+    interface SqmLeadCheckboxField {
+        /**
+          * @uiName Checkbox label
+          * @uiWidget textArea
+         */
+        "checkboxLabel"?: string;
+        /**
+          * Used with link text if the checkbox label contains {labelLink}
+          * @uiName Checkbox label link
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link lext
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Checkbox name attribute
+          * @required
+         */
+        "checkboxName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadCheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
+    }
+    interface SqmLeadDropdownField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Dropdown name attribute
+          * @required
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "dropdownOptional"?: boolean;
+        /**
+          * @uiName Multiple selection
+          * @default
+         */
+        "multiple"?: boolean;
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
+    interface SqmLeadForm {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadFormViewProps>;
+        /**
+          * @uiName Email field label
+         */
+        "emailLabel"?: string;
+        /**
+          * @uiName First Name field label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * Key of the form to connect to. Create and manage forms in the /advocate dashboard under Data > Forms.
+          * @uiName Form key
+         */
+        "formKey"?: string;
+        /**
+          * The message to be displayed if the email used is invalid.
+          * @uiName Invalid email message
+          * @uiWidget textArea
+         */
+        "invalidEmailErrorMessage"?: string;
+        /**
+          * @uiName Last Name field label
+         */
+        "lastNameLabel"?: string;
+        /**
+          * The message to be displayed if a the form submission fails unexpectedly.
+          * @uiName Network error message
+          * @uiWidget textArea
+         */
+        "networkErrorMessage"?: string;
+        /**
+          * @uiName Header text
+         */
+        "pageLabel"?: string;
+        /**
+          * The message to be displayed if a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+        /**
+          * @uiName Submit another form button label
+         */
+        "resubmitFormLabel"?: string;
+        /**
+          * Description text shown if an error occurs.
+          * @uiName Submit error description
+         */
+        "submitErrorDescription"?: string;
+        /**
+          * Header text shown if an error occurs.
+          * @uiName Submit error header
+         */
+        "submitErrorHeader"?: string;
+        /**
+          * @uiName Submit button text
+         */
+        "submitLabel"?: string;
+        /**
+          * Description text shown on successful lead submission.
+          * @uiName Submit success description
+         */
+        "submitSuccessDescription"?: string;
+        /**
+          * Header text shown on successful lead submission.
+          * @uiName Submit success header
+         */
+        "submitSuccessHeader"?: string;
+        /**
+          * Optional support link text for error messages.
+          * @uiName Support link text
+         */
+        "supportLinkText"?: string;
+    }
+    interface SqmLeadInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<LeadInputFieldViewProps>;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel"?: string;
+        /**
+          * This name is used as the key for this form field on submission. The name must be unique within this specific form.
+          * @uiName Input name attribute
+          * @required
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Optional
+          * @default
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType"?: "text" | "date" | "tel";
+        /**
+          * @uiName Optional label
+         */
+        "optionalLabel"?: string;
+        /**
+          * The message to be displayed when a required field is not filled.
+          * @uiName Required field message
+          * @uiWidget textArea
+         */
+        "requiredFieldErrorMessage"?: string;
+    }
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -9053,6 +9776,11 @@ declare namespace LocalJSX {
           * @uiName Last name label
          */
         "lastNameLabel"?: string;
+        /**
+          * @uiName Optional
+          * @uiWidget
+         */
+        "optional"?: boolean;
     }
     interface SqmNavigationMenu {
         /**
@@ -9163,14 +9891,14 @@ declare namespace LocalJSX {
     }
     interface SqmPagination {
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @undocumented 
           * @uiType object
@@ -9254,6 +9982,10 @@ declare namespace LocalJSX {
          */
         "payoutMissingInformationText"?: string;
         /**
+          * @componentState { "title": "Loading", "props": { "states": { "loading": true } } }
+         */
+        "stateController"?: string;
+        /**
           * Badge text indicating payout status
           * @uiName Payout badge status text
          */
@@ -9265,6 +9997,14 @@ declare namespace LocalJSX {
         "thresholdPayoutText"?: string;
     }
     interface SqmPayoutStatusAlert {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
         /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
@@ -9303,9 +10043,21 @@ declare namespace LocalJSX {
          */
         "informationRequiredHeader"?: string;
         /**
+          * @undocumented 
+          * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+          * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Support link text
          */
         "supportLink"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * @uiName Verification failed internal alert description
          */
@@ -9342,6 +10094,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -10587,14 +11351,14 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of container
           * @uiName Border color
           * @uiWidget color
           * @format color
          */
         "borderColor"?: string;
         /**
-          * The border radius on the share link container (in pixels)
+          * The border radius (in pixels)
           * @uiName Border Radius
           * @uiType number
          */
@@ -10686,14 +11450,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11226,6 +11990,13 @@ declare namespace LocalJSX {
          */
         "sourceAmountMessage"?: string;
         /**
+          * @componentState { "title": "Choose reward", "props": { "states": { "redeemStage": "chooseReward" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Reward details", "props": { "states": { "redeemStage": "chooseAmount" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Confirm exchange", "props": { "states": { "redeemStage": "confirmation" } }, "dependencies": ["sqm-reward-exchange-list"] }
+          * @componentState { "title": "Exchange successful", "props": { "states": { "redeemStage": "success" } }, "dependencies": ["sqm-reward-exchange-list"] }
+         */
+        "stateController"?: string;
+        /**
           * Shown when a user copies a fuel tank code
           * @uiName Tooltip text
          */
@@ -11454,8 +12225,8 @@ declare namespace LocalJSX {
          */
         "pendingUnhandled"?: string;
         /**
-          * Displayed when a reward is pending due to W9 compliance.
-          * @uiName W9 pending text
+          * Displayed when a reward is pending due to W-9 compliance.
+          * @uiName W-9 pending text
          */
         "pendingUsTax"?: string;
         /**
@@ -11478,19 +12249,6 @@ declare namespace LocalJSX {
           * @uiName Button text
          */
         "buttonText"?: string;
-        /**
-          * @uiName Button type
-          * @uiType string
-          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
-          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
-         */
-        "buttonType"?: | "default"
-    | "primary"
-    | "success"
-    | "neutral"
-    | "warning"
-    | "danger"
-    | "text";
         /**
           * Draws a circle button.
           * @uiName Circle
@@ -11691,7 +12449,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -11715,14 +12473,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11776,7 +12534,7 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
-          * Border color of share link container (default is set to 1px solid transparent)
+          * Border color of share link container
           * @uiName Border color
           * @uiWidget color
           * @format color
@@ -11800,14 +12558,14 @@ declare namespace LocalJSX {
          */
         "buttonStyle"?: "icon" | "button-outside" | "button-below";
         /**
-          * The type of the button that is used (primary, secondary, or tertiary).
+          * The type of the button that is used (primary or secondary).
           * @uiName Button Type
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Copy button label
          */
@@ -11962,11 +12720,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Style
           * @uiType string
-          * @uiEnum ["primary", "secondary", "tertiary"]
-          * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+          * @uiEnum ["primary", "secondary"]
+          * @uiEnumNames ["Primary", "Secondary"]
           * @uiGroup Style
          */
-        "buttonType"?: "primary" | "secondary" | "tertiary";
+        "buttonType"?: "primary" | "secondary";
         /**
           * @uiName Title
           * @uiGroup Task
@@ -12127,6 +12885,14 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "continueButton"?: string;
+        /**
+          * @uiName Account review alert description
+         */
+        "dashboard_accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "dashboard_accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -12326,6 +13092,11 @@ declare namespace LocalJSX {
          */
         "dashboard_replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "dashboard_requiredTaxForm"?: string;
+        /**
           * @uiName Payout status badge
           * @uiGroup Dashboard Properties
          */
@@ -12346,6 +13117,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "dashboard_statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
           * @uiGroup Dashboard Properties
@@ -12389,6 +13165,11 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -12453,10 +13234,27 @@ declare namespace LocalJSX {
          */
         "dashboard_verificationReviewInternalHeader"?: string;
         /**
-          * @undocumented 
-          * @uiType object
+          * @uiName W-9 payment threshold alert button text
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
          */
-        "demoData"?: DemoData<UseTaxAndCashResultType>;
+        "dashboard_w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_w9RequiredHeader"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<TaxAndCashMonolith>;
         /**
           * Displayed under a field when it has an invalid entry.
           * @uiName Form field error message
@@ -12528,6 +13326,15 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "searchForCountryText"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+          * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+          * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+          * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
+         */
+        "stateController"?: string;
         /**
           * @uiName Address field label
           * @uiGroup Step 1 Properties
@@ -12761,6 +13568,21 @@ declare namespace LocalJSX {
          */
         "step3_individualParticipant"?: string;
         /**
+          * @uiName Information modal button text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 3 Properties
+         */
+        "step3_modalTitle"?: string;
+        /**
           * @uiName Participant type field label
           * @uiGroup Step 3 Properties
          */
@@ -12848,6 +13670,11 @@ declare namespace LocalJSX {
          */
         "step4_bankStateLabel"?: string;
         /**
+          * @uiName Beneficiary account field description
+          * @uiGroup Step 4 Properties
+         */
+        "step4_beneficiaryAccountNameDescription"?: string;
+        /**
           * @uiName Beneficiary account field label
           * @uiGroup Step 4 Properties
          */
@@ -12917,6 +13744,21 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_individualSelectItemLabel"?: string;
+        /**
+          * @uiName Information modal button text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalButtonText"?: string;
+        /**
+          * @uiName Information modal description text
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalDescription"?: string;
+        /**
+          * @uiName Information modal title
+          * @uiGroup Step 4 Properties
+         */
+        "step4_modalTitle"?: string;
         /**
           * @uiName Patronymic name field label
           * @uiGroup Step 4 Properties
@@ -13035,8 +13877,22 @@ declare namespace LocalJSX {
           * @uiGroup General Form Properties
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Link text for Terms and Conditions
+          * @uiName Terms and Conditions text
+          * @uiGroup General Form Properties
+         */
+        "termsAndConditions"?: string;
     }
     interface SqmTaxAndCashDashboard {
+        /**
+          * @uiName Account review alert description
+         */
+        "accountReviewDescription"?: string;
+        /**
+          * @uiName Account review alert header
+         */
+        "accountReviewHeader"?: string;
         /**
           * Shown before the participant’s bank account information.
           * @uiName Bank account field label
@@ -13187,12 +14043,6 @@ declare namespace LocalJSX {
          */
         "newFormButton"?: string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiWidget textArea
-         */
-        "noFormNeededSubtext"?: string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiWidget textArea
          */
@@ -13234,6 +14084,16 @@ declare namespace LocalJSX {
          */
         "replaceTaxFormModalHeader"?: string;
         /**
+          * Additional text displayed next to the tax form's status badge
+          * @uiName Required tax form description
+         */
+        "requiredTaxForm"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
+         */
+        "stateController"?: string;
+        /**
           * @uiName Payout status badge
          */
         "statusBadgeText"?: string;
@@ -13250,6 +14110,11 @@ declare namespace LocalJSX {
           * @uiName Not verified tax form badge label
          */
         "statusTextNotVerified"?: string;
+        /**
+          * Displayed when the participant has not submitted their required tax form.
+          * @uiName Required tax form badge label
+         */
+        "statusTextRequired"?: string;
         /**
           * @uiName Spain sub-region indirect tax number
          */
@@ -13282,11 +14147,6 @@ declare namespace LocalJSX {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed at the top of the page on all set up steps and on the dashboard.
-          * @uiName Page description
-         */
-        "taxAndPayoutsDescription"?: string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader"?: string;
@@ -13295,6 +14155,10 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * @uiName Terms and Conditions text
+         */
+        "termsAndConditions"?: string;
         /**
           * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
           * @uiName Payout schedule by threshold text
@@ -13341,6 +14205,18 @@ declare namespace LocalJSX {
           * @uiName Verification review internal alert header
          */
         "verificationReviewInternalHeader"?: string;
+        /**
+          * @uiName W-9 payment threshold alert button text
+         */
+        "w9RequiredButtonText"?: string;
+        /**
+          * @uiName W-9 payment threshold alert description
+         */
+        "w9RequiredDescription"?: string;
+        /**
+          * @uiName W-9 payment threshold alert header
+         */
+        "w9RequiredHeader"?: string;
     }
     interface SqmText {
         /**
@@ -13715,11 +14591,24 @@ declare namespace LocalJSX {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+          * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+         */
+        "stateController"?: string;
     }
     interface SqmWidgetVerificationController {
+        /**
+          * @undocumented 
+          * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
+          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
+         */
+        "stateController"?: string;
     }
     interface IntrinsicElements {
         "raisins-plop-target": RaisinsPlopTarget;
+        "sqm-asset-card": SqmAssetCard;
         "sqm-banking-info-form": SqmBankingInfoForm;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
@@ -13754,6 +14643,10 @@ declare namespace LocalJSX {
         "sqm-invoice-table-date-column": SqmInvoiceTableDateColumn;
         "sqm-invoice-table-download-cell": SqmInvoiceTableDownloadCell;
         "sqm-invoice-table-download-column": SqmInvoiceTableDownloadColumn;
+        "sqm-lead-checkbox-field": SqmLeadCheckboxField;
+        "sqm-lead-dropdown-field": SqmLeadDropdownField;
+        "sqm-lead-form": SqmLeadForm;
+        "sqm-lead-input-field": SqmLeadInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-link-button": SqmLinkButton;
@@ -13849,6 +14742,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
+            "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
@@ -13883,6 +14777,10 @@ declare module "@stencil/core" {
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            "sqm-lead-checkbox-field": LocalJSX.SqmLeadCheckboxField & JSXBase.HTMLAttributes<HTMLSqmLeadCheckboxFieldElement>;
+            "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
+            "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
+            "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;

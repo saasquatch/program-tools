@@ -74,3 +74,18 @@ Feature: Switch Templates based on Authentication status
       | isOrIsNot | templateType |
       | is        | "logged-in"  |
       | is not    | "logged-out" |
+
+
+  @motivating
+  Scenario: sqb-auth-template-switch editor states
+    Given html is loaded into a raisins editor
+    And the html includes "<sqb-auth-template-switch></sqb-auth-template-switch>"
+    When "sqb-auth-template-switch" is selected in the editor
+    Then the following states are displayed
+      | state      |
+      | Logged in  |
+      | Logged out |
+    When "Logged in" is selected
+    Then "sqb-auth-template-switch" displays whatever is slotted in the template slot "logged-in"
+    When "Logged out" is selected
+    Then "sqb-auth-template-switch" displays whatever is slotted in the template slot "logged-out"

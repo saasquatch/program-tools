@@ -3,6 +3,7 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { createStyleSheet } from "../../styling/JSS";
 import { BaseRegistrationFormView } from "../sqm-base-registration/sqm-base-registration-form-view";
 import {
   PortalRegistrationFormView,
@@ -10,8 +11,12 @@ import {
 } from "../sqm-portal-registration-form/sqm-portal-registration-form-view";
 import { usePortalRegistrationForm } from "../sqm-portal-registration-form/usePortalRegistrationForm";
 import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationForm";
-import { createStyleSheet } from "../../styling/JSS";
 
+/**
+ * @uiName Google Registration
+ * @canvasRenderer always-replace
+ * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ */
 @Component({
   tag: "sqm-portal-google-registration-form",
   shadow: true,
@@ -232,7 +237,7 @@ export class PortalGoogleRegistrationForm {
       handleGoogleInit,
       handleEmailSubmit,
       showRegistrationForm,
-      emailValidationError,
+      validationErrors,
     } = isDemo() ? useGoogleDemo(this) : usePortalGoogleRegistrationForm(this);
 
     const content = {
@@ -283,7 +288,7 @@ export class PortalGoogleRegistrationForm {
       return (
         <BaseRegistrationFormView
           states={{
-            error: emailValidationError,
+            validationErrors,
           }}
           callbacks={{ handleEmailSubmit }}
           content={content}
@@ -299,9 +304,7 @@ export class PortalGoogleRegistrationForm {
           hidePasswords: showRegistrationForm.mode === "google",
         }}
         callbacks={callbacks}
-        content={{
-          ...content,
-        }}
+        content={content}
         refs={refs}
       ></PortalRegistrationFormView>
     );
@@ -344,7 +347,7 @@ function useRegisterDemo(
 }
 
 type PortalGoogleResult = {
-  emailValidationError: boolean;
+  validationErrors: Record<string, string>;
   handleEmailSubmit: () => void;
   showRegistrationForm: { mode: string };
   handleGoogleInit: () => void;
@@ -359,7 +362,7 @@ function useGoogleDemo(
 
   return deepmerge(
     {
-      emailValidationError: true,
+      validationErrors: {},
       handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
       showRegistrationForm,
       handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),

@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { Reward } from "../../saasquatch";
 
 export default (count = 4, status = undefined) => {
   const data = [...Array(count)].map(() => getMockData(status)) as Reward[];
@@ -99,7 +100,7 @@ const getMockData = (status?: string): Reward => {
     randomRedeemed = Math.floor(Math.random() * randomValue);
     dateExpires = today.minus({ days: 1 }).toMillis();
   } else if (randomStatus === "PENDING") {
-    // pendingReason = ["PAYOUT_CONFIGURATION_MISSING"];
+    // pendingReason = ["MISSING_PAYOUT_CONFIGURATION"];
     const reason = pendingReasons[Math.floor(Math.random() * 3)];
     pendingReason = [reason];
     if (reason === "SCHEDULED") {

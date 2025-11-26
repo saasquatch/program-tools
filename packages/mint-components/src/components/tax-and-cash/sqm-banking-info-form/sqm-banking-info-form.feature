@@ -120,3 +120,14 @@ Feature: Banking Information Form
     And they are shown the `sqm-code-verification` component
     When they verify their 2FA code
     Then the withdrawal settings form tries to save their changes
+
+  @minutia
+  Scenario: Editing withdrawal settings opens a confirmation modal when the form is submitted
+    Given a user already has withdrawal settings
+    And the user has a verified email
+    When they submit the form
+    Then a confirmation modal is shown
+    And the modal contains the text "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped."
+    When they click the confirmation button
+    Then the modal is closed
+    And the `sqm-code-verification` component is shown

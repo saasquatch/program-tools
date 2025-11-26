@@ -31,8 +31,6 @@ export function BigStatView(props: BigStatViewProps) {
   const style = {
     Container: {
       display: "flex",
-      // height: "inherit",
-      // "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
         alignment === "left"

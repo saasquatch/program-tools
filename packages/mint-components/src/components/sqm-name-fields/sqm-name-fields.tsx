@@ -8,7 +8,7 @@ import { useNameFields } from "./useNameFields";
 
 /**
  * @uiName Form Name Fields
- * @validParents ["sqm-portal-register","sqm-portal-registration-form"]
+ * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
  * @exampleGroup Microsite Components
  * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
  */
@@ -31,6 +31,12 @@ export class NameFields {
   @Prop() lastNameLabel: string = "Last Name";
 
   /**
+   * @uiName Optional
+   * @uiWidget
+   */
+  @Prop() optional: boolean = false;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -51,6 +57,7 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
   return deepmerge(
     {
       states: {
+        optional: props.optional,
         validationErrors: [],
         content: {
           firstNameLabel: props.firstNameLabel,

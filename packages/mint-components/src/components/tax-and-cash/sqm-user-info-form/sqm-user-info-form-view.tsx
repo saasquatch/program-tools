@@ -1,10 +1,10 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { GeneralLoadingView } from "../TaxForm.stories";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { formatErrorMessage, validateBillingField } from "../utils";
+import { FORM_STEPS } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
+import LoadingView from "../sqm-tax-and-cash/LoadingView";
+import { formatErrorMessage, validateBillingField } from "../utils";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -124,16 +124,17 @@ const style = {
   FormWrapper: {},
   ErrorInput: {
     "&::part(base)": {
-      border: "1px solid var(--sqm-danger-color-icon)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-border)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sqm-danger-color-icon)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
   ErrorText: {
-    color: "var(--sqm-danger-color-icon)",
+    color: "var(--sqm-danger-color-text)",
     marginTop: "10px",
   },
   TextContainer: {
@@ -174,33 +175,7 @@ const style = {
       borderRadius: "50%",
     },
   },
-  AlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
-  PartnerAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   PageDescriptionText: {
     color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
@@ -212,7 +187,7 @@ const style = {
     gap: "4px",
     "& p": {
       fontSize: "var(--sl-font-size-small)",
-      color: "var(--sl-input-label-color)",
+      color: "var(--sqm-input-label-color)",
       fontWeight: "var(--sl-font-weight-semibold)",
     },
   },
@@ -261,7 +236,6 @@ const vanillaStyle = `
       min-width: 250px;
     }
 
-    /* Corrected: Target sl-button::part(base) for primary button */
     sl-button[type="primary"]::part(base){
         background-color: var(--sqm-primary-button-background);
         color: var(--sqm-primary-button-color);
@@ -277,7 +251,6 @@ const vanillaStyle = `
         box-shadow: none;
     }
 
-    /* Corrected: Target sl-button::part(base) for secondary button */
     sl-button[type="secondary"]::part(base){
         background-color: var(--sqm-secondary-button-background);
         color: var(--sqm-secondary-button-color);
@@ -289,13 +262,7 @@ const vanillaStyle = `
         background-color: var(--sqm-secondary-button-background-hover);
     }
 
-    /* Corrected: Target sl-button::part(base) for tertiary button */
-    sl-button[type="tertiary"]::part(base){
-        color: var(--sqm-text, var(--sl-color-neutral-800));
-        width: max-content;
-        display: flex;
-        margin: auto;
-    }
+
 
 *::part(primarybutton-base){
   background-color: var(--sqm-primary-button-background);
@@ -323,18 +290,18 @@ const vanillaStyle = `
   background-color: var(--sqm-secondary-button-background-hover);
 }
 
-*::part(tertiarybutton-base){
-  background-color: var(--sqm-tertiary-button-background);
-  color: var(--sqm-tertiary-button-color);
-  border-color: var(--sqm-tertiary-button-color-border);
-  border-radius: var(--sqm-tertiary-button-radius);
+*::part(secondarybutton-base){
+  background-color: var(--sqm-secondary-button-background);
+  color: var(--sqm-secondary-button-color);
+  border-color: var(--sqm-secondary-button-color-border);
+  border-radius: var(--sqm-secondary-button-radius);
   width: max-content;
   display: flex;
   margin: auto;
 }
 
-*::part(tertiarybutton-base):hover{
-  background: var(--sqm-tertiary-button-background-hover);
+*::part(secondarybutton-base):hover{
+  background: var(--sqm-secondary-button-background-hover);
 }
 
     sl-input::part(label),
@@ -352,7 +319,7 @@ const vanillaStyle = `
       background-color: var(--sqm-input-background, #fff);
       border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
       color: var(--sqm-input-color, white);
-      border-width: var(--sqm-border-width, 1px);
+      border-width: var(--sqm-border-thickness, 1px);
       border-style: solid; 
       border-color: var(--sqm-input-border-color, #ccc); 
     }
@@ -362,6 +329,14 @@ const vanillaStyle = `
       background: var(--sqm-input-background, inherit);
       color: var(--sqm-input-color, inherit);
       border:none;
+    }
+
+    sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+
+     sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
     }
 
     sl-select::part(panel) {
@@ -376,12 +351,6 @@ const vanillaStyle = `
     sl-select::part(base):focus, /* Corrected part name for sl-select */
     sl-textarea::part(base):focus { /* Corrected part name for sl-textarea */
       border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus, #007bff)); /* Added fallback for --sl-input-border-color-focus */
-    }
-
-    sl-input[disabled]::part(label),
-    sl-select[disabled]::part(label),
-    sl-textarea[disabled]::part(label){
-      color: var(--sqm-input-disabled-color, var(--sl-color-gray-600));
     }
 
     sl-input[disabled]::part(base),
@@ -405,6 +374,18 @@ const vanillaStyle = `
     sl-input::part(input):-webkit-autofill:focus {
       box-shadow: 0 0 0 50px var(--sqm-input-background, #fff) inset !important;
       -webkit-text-fill-color: var(--sqm-input-color, white) !important;
+    }
+
+    sl-checkbox::part(label){
+      color: var(--sqm-text);
+    }
+
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
     }
 `;
 
@@ -462,38 +443,32 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
       {states.loadingError && (
         <div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-            class={sheet.classes.AlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.loadingErrorAlertHeader}</strong>
-            <br />
-            {intl.formatMessage(
-              {
-                id: "loadingErrorAlertDescription",
-                defaultMessage: text.error.loadingErrorAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
-                  >
-                    {text.supportLink}
-                  </a>
-                ),
-              }
-            )}
-          </sl-alert>
-          <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
+            <p part="alert-description">
+              {intl.formatMessage(
+                {
+                  id: "loadingErrorAlertDescription",
+                  defaultMessage: text.error.loadingErrorAlertDescription,
+                },
+                {
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
+            </p>
+          </sqm-form-message>
         </div>
       )}
 
       {states.loading ? (
-        <GeneralLoadingView />
+        <LoadingView />
       ) : (
         <div>
           <div class={classes.TextContainer}>
@@ -517,61 +492,51 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           </div>
 
           {formState.errors?.general && (
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="warning"
-              open
-              class={sheet.classes.AlertContainer}
-            >
-              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-              <strong>{text.error.generalTitle}</strong>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "generalDescription",
-                  defaultMessage: text.error.generalDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {text.supportLink}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
+            <sqm-form-message type="error">
+              <p part="alert-title">{text.error.generalTitle}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "generalDescription",
+                    defaultMessage: text.error.generalDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {text.supportLink}
+                      </a>
+                    ),
+                  }
+                )}
+              </p>
+            </sqm-form-message>
           )}
 
           {(states.isPartner || states.isUser) && (
-            <sl-alert
-              type="primary"
-              open
-              class={sheet.classes.PartnerAlertContainer}
-              exportparts="base: alert-base, icon:alert-icon"
-            >
-              <sl-icon slot="icon" name="info-circle"></sl-icon>
-              <strong>{text.isPartnerAlertHeader}</strong>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "isPartnerAlertDescription",
-                  defaultMessage: text.isPartnerAlertDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {text.supportLink}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
+            <sqm-form-message type="info">
+              <p part="alert-title">{text.isPartnerAlertHeader}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "isPartnerAlertDescription",
+                    defaultMessage: text.isPartnerAlertDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {text.supportLink}
+                      </a>
+                    ),
+                  }
+                )}
+              </p>
+            </sqm-form-message>
           )}
 
           <div>
@@ -891,7 +856,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <div class={classes.CheckboxWrapper}>
                 <sl-checkbox
-                  exportparts="label: input-label, base: input-base"
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;

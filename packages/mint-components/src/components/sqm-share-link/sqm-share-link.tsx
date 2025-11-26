@@ -10,6 +10,7 @@ import { useShareLink } from "./useShareLink";
 /**
  * @uiName Share Link
  * @exampleGroup Sharing
+ * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
  */
 @Component({
@@ -77,7 +78,7 @@ export class ShareLink {
   @Prop() backgroundColor?: string;
 
   /**
-   * Border color of share link container (default is set to 1px solid transparent)
+   * Border color of share link container
    * @uiName Border color
    * @uiWidget color
    * @format color
@@ -103,15 +104,15 @@ export class ShareLink {
   @Prop() borderRadius?: string;
 
   /**
-   * The type of the button that is used (primary, secondary, or tertiary).
+   * The type of the button that is used (primary or secondary).
    * @uiName Button Type
    * @uiType string
-   * @uiEnum ["primary", "secondary", "tertiary"]
-   * @uiEnumNames ["Primary", "Secondary", "Tertiary"]
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
    */
   @Prop()
-  buttonType?: "primary" | "secondary" | "tertiary" = "primary";
+  buttonType?: "primary" | "secondary" = "primary";
 
   /**
    * Set the copy button style and placement
@@ -150,6 +151,7 @@ export class ShareLink {
 function useDemoShareLink(props: ShareLink): CopyTextViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "https://www.example.com/sharelink/abc";
+
   return deepmerge(
     {
       copyString: copyString,

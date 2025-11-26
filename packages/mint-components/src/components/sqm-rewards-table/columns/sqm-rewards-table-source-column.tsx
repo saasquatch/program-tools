@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { Reward } from "../../../saasquatch";
 import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 
@@ -7,7 +8,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Rewards Table Source Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-rext="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+ * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
  */
 @Component({
   tag: "sqm-rewards-table-source-column",

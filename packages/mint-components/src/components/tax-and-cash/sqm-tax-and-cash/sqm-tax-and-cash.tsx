@@ -1,19 +1,22 @@
+import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
+import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
+import { ErrorView } from "./ErrorView";
 import LoadingView from "./LoadingView";
-import { TAX_CONTEXT_NAMESPACE } from "./data";
+import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { extractProps } from "./extractProps";
 import { UseTaxAndCashResultType, useTaxAndCash } from "./useTaxAndCash";
-import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
-import { ErrorView } from "./ErrorView";
+import { intl } from "../../../global/global";
 
 /**
  * @uiName Tax and Cash
  * @exampleGroup Tax and Cash
- * @example Tax and Cash Multi Step Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+ * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -296,7 +299,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() step3_taxFormDescriptionBusinessEntity: string =
-    "Participants residing outside of the US who represent a business entity need to submit a {documentType} form.";
+    "Participants residing outside of the US working with a US Brand need to submit a {documentType} form.";
   /**
    * This appears inside the Docusign frame.
    * @uiName Docusign session expired message
@@ -332,6 +335,25 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 3 Properties
    */
   @Prop() step3_exitButton: string = "Exit";
+
+  /**
+   * @uiName Information modal title
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalDescription: string =
+    "Remember the name you enter in your tax form. It must exactly match the bank account holder name configured in the next step. {br}{br}Otherwise you will have to resubmit your form again and there will be delays receiving your payout.";
+
+  /**
+   * @uiName Information modal button text
+   * @uiGroup Step 3 Properties
+   */
+  @Prop() step3_modalButtonText: string = "I understand";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     STEP 4 PROPS:
@@ -421,9 +443,13 @@ export class TaxAndCashMonolith {
    * @uiName Beneficiary account field label
    * @uiGroup Step 4 Properties
    */
-  @Prop() step4_beneficiaryAccountNameLabel: string =
-    "Beneficiary account name";
-
+  @Prop() step4_beneficiaryAccountNameLabel: string = "Account holder name";
+  /**
+   * @uiName Beneficiary account field description
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_beneficiaryAccountNameDescription: string =
+    "The beneficiary name of your bank account. Ensure this matches the name on your tax form.";
   /**
    * @uiName Bank account type field label
    * @uiGroup Step 4 Properties
@@ -591,6 +617,25 @@ export class TaxAndCashMonolith {
   @Prop() step4_verifyEmailDescriptionText: string =
     "Verify your email to update your payment settings. Enter the code sent to {email} from our referral provider, impact.com.";
 
+  /**
+   * @uiName Information modal title
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalTitle: string = "Important Note";
+
+  /**
+   * @uiName Information modal description text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalDescription: string =
+    "Updating payment information places your account and payouts on hold for up to 48 hours while we verify your change. Payments scheduled during the hold period are skipped.";
+
+  /**
+   * @uiName Information modal button text
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_modalButtonText: string = "I understand, update my information";
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     DASHBOARD PROPS:
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -613,6 +658,21 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_statusTextNotVerified?: string = "Not Verified";
+
+  /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() dashboard_statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() dashboard_requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
 
   /**
    * Additional text displayed next to the tax form's status badge
@@ -648,7 +708,7 @@ export class TaxAndCashMonolith {
    * @uiWidget textArea
    */
   @Prop() dashboard_taxAlertHeaderNotActiveW9?: string =
-    "Your W9 tax form has personal information that doesn’t match your profile";
+    "Your W-9 tax form has personal information that doesn’t match your profile";
   /**
    * Part of the alert displayed at the top of the page.
    *
@@ -985,6 +1045,42 @@ export class TaxAndCashMonolith {
    */
   @Prop() dashboard_verificationRequiredButtonText: string =
     "Start Verification";
+  /**
+   * @uiName W-9 payment threshold alert header
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W-9 payment threshold alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredDescription: string =
+    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+  /**
+   * @uiName Account review alert header
+   */
+  @Prop() dashboard_accountReviewHeader: string =
+    "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() dashboard_accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+
+  /**
+   * @uiName Terms and Conditions text
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_termsAndConditions: string = "Terms and Conditions";
+
+  /**
+   * @uiName W-9 payment threshold alert button text
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_w9RequiredButtonText: string = "Submit W-9";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     GENERAL PROPS:
@@ -1099,11 +1195,27 @@ export class TaxAndCashMonolith {
   @Prop() supportLink: string = "support team";
 
   /**
+   * Link text for Terms and Conditions
+   * @uiName Terms and Conditions text
+   * @uiGroup General Form Properties
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
+
+  /**
    *
    * @undocumented
-   * @uiType object
+   * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+   * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
+   * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
+   * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
+   * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
    */
-  @Prop() demoData?: DemoData<UseTaxAndCashResultType>;
+  @Prop() stateController: string = "{}";
+
+  /**
+   * @undocumented
+   */
+  @Prop() demoData?: DemoData<TaxAndCashMonolith>;
 
   constructor() {
     withHooks(this);
@@ -1184,13 +1296,31 @@ export class TaxAndCashMonolith {
         return (
           <sqm-tax-and-cash-dashboard
             {...this.getGeneralStepTextProps("dashboard_")}
+            stateController={
+              props["sqm-tax-and-cash-dashboard_stateController"] || "{}"
+            }
           ></sqm-tax-and-cash-dashboard>
         );
       case "/error":
         return (
           <ErrorView
             loadingErrorAlertHeader={this.loadingErrorAlertHeader}
-            loadingErrorAlertDescription={this.loadingErrorAlertDescription}
+            loadingErrorAlertDescription={intl.formatMessage(
+              {
+                id: "loadingErrorAlertDescription",
+                defaultMessage: this.loadingErrorAlertDescription,
+              },
+              {
+                supportLink: (
+                  <a
+                    target="_blank"
+                    href={`mailto:advocate-support@impact.com`}
+                  >
+                    {this.supportLink}
+                  </a>
+                ),
+              }
+            )}
           />
         );
     }
@@ -1205,12 +1335,21 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
     initialValue: "/1",
   });
 
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-tax-and-cash"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
+
   return deepmerge(
     {
       step,
       setStep,
     },
-    props.demoData || {},
+    props.demoData || formatted || {},
     { arrayMerge: (_, a) => a }
   );
 }

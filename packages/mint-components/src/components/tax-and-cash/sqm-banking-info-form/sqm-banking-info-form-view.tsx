@@ -1,8 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { FORM_STEPS } from "../data";
 import { BankingInfoFormData } from "./useBankingInfoForm";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
 
 export interface BankingInfoFormViewProps {
   states: {
@@ -46,6 +46,7 @@ export interface BankingInfoFormViewProps {
     bankCountry?: string;
     countrySearch?: string;
     email?: string;
+    showModal: boolean;
   };
   slots?: {
     verificationDialogSlot?: VNode;
@@ -70,6 +71,8 @@ export interface BankingInfoFormViewProps {
     setCurrency?: (currency: string) => void;
     setCountrySearch: (c: any) => void;
     onVerification: (token: string) => void;
+    onModalOpen: () => void;
+    onModalClose: () => void;
   };
   text: {
     formStep: string;
@@ -95,6 +98,9 @@ export interface BankingInfoFormViewProps {
     supportLink: string;
     verifyEmailHeaderText: string;
     verifyEmailDescriptionText: string;
+    modalTitle: string;
+    modalDescription: string;
+    modalButtonText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -106,6 +112,12 @@ export interface BankingInfoFormViewProps {
 }
 
 const style = {
+  ModalTitleContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    alignItems: "center",
+  },
+
   FormWrapper: {
     display: "flex",
     justifyContent: "flex-start",
@@ -147,37 +159,11 @@ const style = {
     color: "var(--sqm-text-subdued)",
   },
 
-  AlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
   RadioContainer: {
     display: "flex",
     flexDirection: "column",
   },
-  PartnerAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   Checkbox: {
     "&::part(control)": {
       borderRadius: "50% !important",
@@ -189,8 +175,9 @@ const style = {
   InputContainer: {
     padding: "16px",
     margin: "16px 0px 16px 0px",
-    borderTop: "1px solid var(--sqm-border-color)",
-    borderBottom: "1px solid var(--sqm-border-color)",
+    borderTop: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
+    borderBottom:
+      "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     display: "flex",
     flexDirection: "column",
     width: "100%",
@@ -235,6 +222,29 @@ const style = {
     height: "26px",
     width: "26px",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+
+    "&::part(title)": {
+      fontSize: "var(--sl-font-size-large)",
+      fontWeight: "600",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
@@ -337,6 +347,31 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.showModal}
+        onSl-hide={callbacks.onModalClose}
+      >
+        <div class={classes.ModalTitleContainer} slot="label">
+          <sl-icon
+            name="info-circle"
+            style={{ color: "var(--sl-color-info-500)" }}
+          />
+          <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
+            {text.modalTitle}
+          </h2>
+        </div>
+        <p>{text.modalDescription}</p>
+        <sl-button
+          slot="footer"
+          type="primary"
+          class={sheet.classes.DialogButton}
+          submit
+          exportparts="base: primarybutton-base"
+        >
+          {text.modalButtonText}
+        </sl-button>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && (
@@ -356,15 +391,8 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
           </p>
         </div>
         {formState.errors?.general && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="warning"
-            open
-            class={sheet.classes.AlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.generalTitle}</strong>
-            <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.generalTitle}</p>
             {intl.formatMessage(
               {
                 id: "generalDescription",
@@ -381,19 +409,12 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
         {/* Don't show the warning if returning to edit */}
         {states.isPartner && !states.hideSteps && (
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="primary"
-            open
-            class={sheet.classes.PartnerAlertContainer}
-          >
-            <sl-icon slot="icon" name="info-circle"></sl-icon>
-            <strong>{text.isPartnerAlertHeader}</strong>
-            <br />
+          <sqm-form-message type="info">
+            <p part="alert-title">{text.isPartnerAlertHeader}</p>
             {intl.formatMessage(
               {
                 id: "isPartnerAlertDescription",
@@ -410,7 +431,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         )}
         <div>
           <h4>{text.paymentMethod}</h4>
@@ -426,7 +447,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label, base: input-base"
+                  exportparts="base: radio-base"
                   checked={formState.paymentMethodChecked === "toBankAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toBankAccount")
@@ -459,7 +480,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               {states.hasPayPal && (
                 <sl-radio
                   class={classes.Checkbox}
-                  exportparts="label: input-label, base: input-base"
+                  exportparts="base: radio-base"
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toPayPalAccount")
@@ -492,7 +513,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               </div>
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label, base: input-base"
+                exportparts="base: radio-base"
                 checked={
                   formState.paymentScheduleChecked === "BALANCE_THRESHOLD"
                 }
@@ -519,7 +540,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
               <sl-radio
                 class={classes.Checkbox}
-                exportparts="label: input-label, base: input-base"
+                exportparts="base: radio-base"
                 checked={formState.paymentScheduleChecked === "FIXED_DAY"}
                 onInput={() => callbacks.setPaymentScheduleChecked("FIXED_DAY")}
                 disabled={states.disabled}
@@ -547,7 +568,9 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
             type="primary"
             disabled={states.disabled || states.saveDisabled}
             loading={states.saveLoading}
-            submit
+            {...(states.hideSteps
+              ? { onClick: callbacks.onModalOpen }
+              : { submit: "submit" })}
             exportparts="base: primarybutton-base"
           >
             {text.continueButton}

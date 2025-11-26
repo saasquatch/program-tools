@@ -9,8 +9,9 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import JSONPointer from "jsonpointer";
+import JSONPointer, { set } from "jsonpointer";
 import { intl } from "../../../global/global";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
@@ -22,11 +23,10 @@ import {
   TaxCountry,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
-import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
-import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -224,6 +224,7 @@ export function useBankingInfoForm(
   >(undefined);
   const [countrySearch, setCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
+  const [showModal, setShowModal] = useState(false);
 
   const currency = userData?.user?.impactConnection?.publisher?.currency || "";
   const isPartner =
@@ -256,6 +257,11 @@ export function useBankingInfoForm(
   const paymentMethodChecked = !hasPayPal
     ? "toBankAccount"
     : _paymentMethodChecked;
+
+  useEffect(() => {
+    // reset redirect hash
+    window.location.hash = "";
+  }, []);
 
   useEffect(() => {
     if (!userData) return;
@@ -440,11 +446,13 @@ export function useBankingInfoForm(
 
     setErrors({ inputErrors: validationErrors });
     if (Object.keys(validationErrors).length) {
+      setShowModal(false);
       return;
     }
 
     let token = undefined;
     if (isPartner) {
+      setShowModal(false);
       setShowVerification(true);
       token = await new Promise((res: (arg: string) => void) => {
         const cb = (e: CustomEvent) => {
@@ -457,6 +465,8 @@ export function useBankingInfoForm(
       setShowVerification(false);
     }
     await runMutation(formData, token);
+
+    setShowModal(false);
   };
 
   const onVerification = async (token: string | null) => {
@@ -498,6 +508,8 @@ export function useBankingInfoForm(
       setCountrySearch,
       onVerification,
       onVerificationHide: () => onVerification(null),
+      onModalClose: () => setShowModal(false),
+      onModalOpen: () => setShowModal(true),
     },
     states: {
       showVerification,
@@ -533,6 +545,7 @@ export function useBankingInfoForm(
       bankCountry: formState.bankCountry,
       countrySearch,
       email: userData?.user?.email,
+      showModal,
     },
     refs: {
       formRef,

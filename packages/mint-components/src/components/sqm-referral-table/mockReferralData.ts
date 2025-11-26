@@ -102,7 +102,7 @@ const getMockData = () => {
               prettyValue: "1 Point",
               statuses: statuses[Math.floor(Math.random() * statuses.length)],
               // statuses: ["PENDING"],
-              // pendingReasons: ["US_TAX", "PAYOUT_CONFIGURATION_MISSING"],
+              // pendingReasons: ["US_TAX", "MISSING_PAYOUT_CONFIGURATION"],
               globalRewardKey: null,
               programRewardKey: "partnerReward",
               meta: {

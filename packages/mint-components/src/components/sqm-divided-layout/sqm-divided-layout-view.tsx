@@ -19,13 +19,17 @@ export function DividedLayoutView(
       return {
         "border-right": props.borderless
           ? "none"
-          : `1px solid ${props.borderColor || "var(--sqm-text)"}`,
+          : `var(--sqm-border-thickness) solid ${
+              props.borderColor || "var(--sqm-border-color)"
+            }`,
       };
     } else {
       return {
         "border-bottom": props.borderless
           ? "none"
-          : `1px solid ${props.borderColor || "var(--sqm-text)"}`,
+          : `var(--sqm-border-thickness) solid ${
+              props.borderColor || "var(--sqm-border-color)"
+            }`,
       };
     }
   };

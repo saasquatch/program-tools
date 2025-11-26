@@ -1,4 +1,4 @@
-name: Jest Tests
+name: Unit Tests
 
 on:
   push:
@@ -12,8 +12,6 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write
-      packages: write
 
     strategy:
       fail-fast: false
@@ -27,25 +25,30 @@ jobs:
           - express-boilerplate
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        id: setup-node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
 
-      # Run each of the test suites
-      - name: Setup private NPM registries
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IMPACT_PACKAGE_TOKEN: ${{ secrets.IMPACT_PACKAGE_TOKEN }}
+      - name: Install Dependencies
+        id: install-deps
+        working-directory: packages/${{ matrix.package }}
         run: |
-          cd packages/${{ matrix.package }}
-          echo "//npm.pkg.github.com/saasquatch/:_authToken=$GITHUB_TOKEN" >> ./.npmrc
-          echo "//npm.pkg.github.com/impactinc/:_authToken=$IMPACT_PACKAGE_TOKEN" >> ./.npmrc
-          echo "@saasquatch:registry=https://npm.pkg.github.com/saasquatch/" >> ./.npmrc
-          echo "@impactinc:registry=https://npm.pkg.github.com/impactinc/" >> ./.npmrc
+          npm ci
 
-      - run: cd packages/${{ matrix.package }} && npm ci
-      - run: cd packages/${{ matrix.package }} && npm run build --if-present
-      - run: cd packages/${{ matrix.package }} && npm test
+      - name: Build
+        id: build
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          npm run build --if-present
+
+      - name: Run Tests
+        id: run-tests
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          npm test

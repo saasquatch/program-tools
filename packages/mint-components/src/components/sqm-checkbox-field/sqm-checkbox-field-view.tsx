@@ -25,7 +25,6 @@ export interface CheckboxFieldViewProps {
 const style = {
   ErrorStyle: {
     "&::part(control)": {
-      background: "var(--sl-color-danger-10)",
       borderColor: "var(--sl-color-danger-500)",
       outline: "var(--sl-color-danger-500)",
     },
@@ -61,6 +60,13 @@ sl-checkbox::part(label){
 sl-checkbox::part(base){
   align-items: start;
 }
+sl-checkbox[checked]::part(control){
+  background-color: var(--sqm-input-border-color-focus);
+}
+
+sl-checkbox[checked]::part(checked-icon){
+  color: var(--sqm-input-background);
+}
 `;
 
 jss.setup(preset());
@@ -90,7 +96,18 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
         }
-        required={false}
+        validationError={({ value }: { value: string }) => {
+          if (!value && !content.checkboxOptional) {
+            return content.errorMessage;
+          }
+        }}
+        {...(states.registrationFormState?.validationErrors?.[
+          content.checkboxName
+        ]
+          ? {
+              class: sheet.classes.ErrorStyle,
+            }
+          : [])}
       >
         {intl.formatMessage(
           {
@@ -106,6 +123,9 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           }
         )}
       </sl-checkbox>
+      {validationErrors?.[content.checkboxName] && (
+        <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+      )}
     </div>
   );
 }

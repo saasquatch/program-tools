@@ -1,7 +1,7 @@
-import { isDemo } from '@saasquatch/component-boilerplate';
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, Host, h, Prop } from '@stencil/core';
-import { useConditionalSection, UseConditionalSection } from './useConditonalSection';
+import { isDemo } from "@saasquatch/component-boilerplate";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, Host, h, Prop } from "@stencil/core";
+import { useConditionalSection, UseConditionalSection } from "./useConditonalSection";
 
 /**
  * Only displayed for certain users. Hides content if not available.
@@ -9,11 +9,12 @@ import { useConditionalSection, UseConditionalSection } from './useConditonalSec
  * @uiName Conditional Section
  * @exampleGroup Advanced
  * @slots [{"name":"","title":"Section Content"}]
+ * @validParents ["sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
  * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
  * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
  */
 @Component({
-  tag: 'sqb-conditional-section',
+  tag: "sqb-conditional-section",
   shadow: true,
 })
 export class SqbConditionalSection {
@@ -34,7 +35,7 @@ export class SqbConditionalSection {
 
   render() {
     const props = isDemo() ? useDemoHook() : useConditionalSection({ expression: this.condition });
-    const display = props.shouldDisplay ? 'contents' : 'none';
+    const display = props.shouldDisplay ? "contents" : "none";
     return (
       <Host style={{ display }}>
         <slot />

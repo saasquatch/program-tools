@@ -10,7 +10,7 @@
 | Property              | Attribute               | Description                                                                                                          | Type                                                                                                                                                                                                                                                                                                       | Default                                                                        |
 | --------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | `backgroundColor`     | `background-color`      |                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                   | `"var(--sqm-portal-background, #ffffff)"`                                      |
-| `border`              | `border`                |                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                   | `"1px solid var(--sqm-border-color, #eaeaea)"`                                 |
+| `border`              | `border`                |                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                   | `"var(--sqm-border-thickness, 1px) solid var(--sqm-border-color, #eaeaea)"`    |
 | `borderRadius`        | `border-radius`         |                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                   | `"var(--sqm-border-radius-normal, 8px)"`                                       |
 | `demoData`            | --                      |                                                                                                                      | `{ states?: { error: string; loading: boolean; success: boolean; loginPath: string; }; content?: { messageSlot: any; emailLabel?: string; submitLabel?: string; successAlertText?: string; loginText?: string; backgroundColor?: string; borderRadius?: string; border?: string; textColor?: string; }; }` | `undefined`                                                                    |
 | `emailLabel`          | `email-label`           |                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                   | `"Email"`                                                                      |
@@ -25,6 +25,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-form-message](../sqm-form-message)
@@ -33,6 +37,7 @@
 ```mermaid
 graph TD;
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-stencilbook --> sqm-portal-forgot-password
   style sqm-portal-forgot-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

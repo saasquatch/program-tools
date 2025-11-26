@@ -1,6 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
+import { ImpactConnection, Reward } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
 
@@ -20,7 +21,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-informative-color-icon)",
-      color: "var(--sqm-informative-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   DangerBadge: {
@@ -30,7 +31,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-danger-color-icon)",
-      color: "var(--sqm-danger-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   WarningBadge: {
@@ -40,7 +41,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-warning-color-icon)",
-      color: "var(--sqm-warning-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
   SuccessBadge: {
@@ -50,7 +51,7 @@ const style = {
       textAlign: "center",
       whiteSpace: "pre-line",
       background: "var(--sqm-success-color-icon)",
-      color: "var(--sqm-success-color-text)",
+      color: "var(--sl-color-white)",
     },
   },
 
@@ -88,7 +89,7 @@ export class RewardTableStatusCell {
   @Prop() payoutFailed: string =
     "Payout failed due to a fulfillment issue and is current being retried.";
   @Prop() payoutApproved: string =
-    "Reward approved for payout and was scheduled for payment based on your settings.";
+    "Reward was scheduled for payment based on your settings, barring any account holds.";
   @Prop() payoutCancelled: string =
     "If you think this is a mistake, contact our Support team.";
 
@@ -156,7 +157,7 @@ export class RewardTableStatusCell {
       if (!taxConnection?.publisher?.withdrawalSettings)
         return this.pendingPartnerCreation;
     }
-    if (reward?.pendingReasons?.includes("PAYOUT_CONFIGURATION_MISSING")) {
+    if (reward?.pendingReasons?.includes("MISSING_PAYOUT_CONFIGURATION")) {
       return this.pendingPartnerCreation;
     }
 
@@ -241,16 +242,7 @@ export class RewardTableStatusCell {
         ? this.deniedText
         : null;
 
-    type ShoeLaceBadgeType =
-      | "primary"
-      | "danger"
-      | "warning"
-      | "success"
-      | "info";
-
-    // AL: badgeType arg? TODO
-    const getBadgeCSSClass = (rewardStatus: string): string => {
-      // const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
+    const getBadgeCSSClass = () => {
       switch (rewardStatus) {
         case "AVAILABLE":
           return sheet.classes.SuccessBadge;
@@ -265,7 +257,7 @@ export class RewardTableStatusCell {
       }
     };
 
-    const badgeCSSClass = getBadgeCSSClass(badgeType);
+    const badgeCSSClass = getBadgeCSSClass();
 
     return (
       <div style={{ display: "contents" }}>

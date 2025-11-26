@@ -52,7 +52,7 @@ const style = {
     gap: "10px",
     margin: "auto",
     textAlign: "center",
-    border: "1px solid var(--sqm-border-color)",
+    border: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     justifyContent: "center",
   },
   MessageContainer: {
@@ -161,7 +161,7 @@ export const DocusignIframe = ({
       setiFrameHeight(e.data + "px");
     }
 
-    if (e.data === "Complyexchange Thank you page Load") {
+    if (e.data === "Complyexchange Thank you page Load" && !states.loading) {
       callbacks.completeDocument();
     }
   }, []);

@@ -71,18 +71,16 @@
   --teal-7: #004551;
 } */
 
+import { BrandingConfiguration } from "../saasquatch";
+
 declare global {
   interface Window {
-    SquatchBrandingConfig: BrandingConfig | null;
+    SquatchBrandingConfig: BrandingConfiguration | null;
   }
 }
 
-console.log(
-  "The input hover color is ",
-  window.SquatchBrandingConfig.inputs?.hoverBorderColor
-);
-
-const style = `
+export const parseBrandingConfig = (config: BrandingConfiguration | null) => ({
+  styles: `
 /* vietnamese */
 @font-face {
   font-family: 'Nunito Sans';
@@ -495,7 +493,7 @@ html {
   --sl-transition-fast: 150ms;
   --sl-transition-x-fast: 50ms;
   --sl-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  --sl-font-sans: "Nunito Sans", sans;
+  --sl-font-sans: var(--sqm-primary-font);
   --sl-font-serif: Georgia, "Times New Roman", serif;
   --sl-font-size-xx-small: 0.625rem;
   --sl-font-size-x-small: 0.75rem;
@@ -530,7 +528,7 @@ html {
   --sl-input-height-large: 3.125rem;
   --sl-input-border-radius-small: var(--sl-border-radius-medium);
   --sl-input-border-radius-large: var(--sl-border-radius-medium);
-  --sl-input-font-family: var(--sl-font-sans);
+  --sl-input-font-family: var(--sqm-primary-font);
   --sl-input-font-weight: var(--sl-font-weight-normal);
   --sl-input-font-size-small: var(--sl-font-size-small);
   --sl-input-font-size-medium: var(--sl-font-size-medium);
@@ -554,7 +552,7 @@ html {
   --sl-input-help-text-color: var(--sl-color-gray-400);
   --sl-toggle-size: 1rem;
   --sl-overlay-background-color: #37415180;
-  --sl-panel-background-color: var(--sl-color-white);
+  --sl-panel-background-color: var(--sqm-portal-background);
   --sl-panel-border-color: var(--sl-color-gray-200);
   --sl-tooltip-border-radius: var(--sl-border-radius-medium);
   --sl-tooltip-background-color: var(--sl-color-gray-900);
@@ -582,188 +580,180 @@ html {
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
   --sqm-portal-background: ${
-    window.SquatchBrandingConfig?.color?.background || "#121212"
+    config?.color?.backgroundColor || "hsla(0, 0%, 100%, 1)"
   };
+  --sqm-primary-font: ${config?.main?.brandFont || "Nunito Sans"};
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 100%;
-  --sqm-skeleton-background: #eee;
-  --sqm-text: ${window.SquatchBrandingConfig?.font.textColor || "white"};
+  --sqm-skeleton-background: hsl(240, 4%, 91%);
+  --sqm-text: ${
+    config?.color?.textColorShades?.mainText || "hsl(240, 4%, 16%)"
+  };
   --sqm-text-subdued: ${
-    window.SquatchBrandingConfig?.font.secondaryTextColor || "#b3b3b3"
+    config?.color?.textColorShades?.subduedText || "hsl(240, 3%, 46%)"
   };
 
-  --sqm-primary-color: ${
-    window.SquatchBrandingConfig?.color?.primaryColor || "#1ed760"
-  };
+  --sqm-primary-color: ${config?.main?.brandColor || "hsl(0, 0%, 7%)"};
   --sqm-primary-button-background:${
-    window.SquatchBrandingConfig?.primaryButton?.buttonColor || "#1ed760"
+    config?.primaryButton?.buttonColor?.background || "hsl(0, 0%, 7%)"
   };
   --sqm-primary-button-background-hover: ${
-    window.SquatchBrandingConfig?.primaryButton?.hoverColor || "#1ed760"
+    config?.primaryButton?.buttonHoverColor?.background || "hsl(0, 0%, 25%)"
+  };
+  --sqm-primary-button-color-hover: ${
+    config?.primaryButton?.buttonHoverColor?.label || "hsla(0, 0%, 100%, 1)"
+  };
+  --sqm-primary-button-border-color-hover: ${
+    config?.primaryButton?.buttonHoverColor?.border || "hsl(0, 0%, 25%)"
   };
   --sqm-primary-button-color: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonTextColor || "#FFFFFF"
+    config?.primaryButton?.buttonColor?.label || "hsla(0, 0%, 100%, 1)"
   };
   --sqm-primary-button-color-border: ${
-    window.SquatchBrandingConfig?.primaryButton?.buttonBorderColor ||
-    "transparent"
+    config?.primaryButton?.buttonColor?.border || "hsl(0, 0%, 7%)"
   };
   --sqm-primary-button-radius: ${
-    window.SquatchBrandingConfig?.primaryButton?.borderRadius || "4px"
+    config?.primaryButton?.borderRadius
+      ? config?.primaryButton?.borderRadius + "px"
+      : "4px"
   };
-
-
   --sqm-secondary-button-background: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonColor || "#191414"
+    config?.secondaryButton?.buttonColor?.background || "hsl(0, 0%, 100%)"
   };
   --sqm-secondary-button-background-hover: ${
-    window.SquatchBrandingConfig?.secondaryButton?.hoverColor || "#282828"
+    config?.secondaryButton?.buttonHoverColor?.background || "hsl(0, 0%, 7%)"
   };
-
-  
+  --sqm-secondary-button-color-hover: ${
+    config?.secondaryButton?.buttonHoverColor?.label || "hsl(0, 0%, 100%)"
+  };
+  --sqm-secondary-button-border-color-hover: ${
+    config?.secondaryButton?.buttonHoverColor?.border || "hsl(0, 0%, 7%)"
+  };
   --sqm-secondary-button-color: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonTextColor || "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.label || "hsl(0, 0%, 7%)"
   };
   --sqm-secondary-button-color-border: ${
-    window.SquatchBrandingConfig?.secondaryButton?.buttonBorderColor ||
-    "#FFFFFF"
+    config?.secondaryButton?.buttonColor?.border || "hsl(0, 0%, 100%)"
   };
   --sqm-secondary-button-radius: ${
-    window.SquatchBrandingConfig?.secondaryButton?.borderRadius || "30px"
+    config?.secondaryButton?.borderRadius
+      ? config?.secondaryButton?.borderRadius + "px"
+      : "4px"
   };
 
-  --sqm-tertiary-button-background: transparent;
-  --sqm-tertiary-button-background-hover: var(--sqm-primary-color); 
-  --sqm-tertiary-button-color: var(--sqm-text); 
-  --sqm-tertiary-button-color-border: transparent; 
-  --sqm-tertiary-button-radius: 30px;
-  
   --sqm-border-radius-normal: ${
-    window.SquatchBrandingConfig?.border?.radius || "18px"
+    config?.border?.borderRadius ? config?.border?.borderRadius + "px" : "4px"
   }; 
-  --sqm-border-color: ${window.SquatchBrandingConfig?.border?.color || "white"};
+  --sqm-border-color: ${config?.border?.borderColor || "hsl(240, 4%, 91%)"};
 
   --sqm-border-thickness: ${
-    window.SquatchBrandingConfig?.border?.thickness || "1px"
+    config?.border?.borderThickness
+      ? config?.border?.borderThickness + "px"
+      : "1px"
   };
 
   --sqm-accent-color-icon: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.iconAndBadge ||
-    "#1ed760"
+    config?.color?.accentColorShades?.icon || "hsl(0, 0%, 7%)"
   };
   --sqm-accent-color-text: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.text || "#fff"
+    config?.color?.accentColorShades?.text || "hsl(0, 0%, 7%)"
   };    
   --sqm-accent-color-border: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.border || "#1ed760"
+    config?.color?.accentColorShades?.border || "hsl(240, 6%, 90%)"
   };
   --sqm-accent-color-background: ${
-    window.SquatchBrandingConfig?.color?.accentColorShades?.background ||
-    "#0d4a27"
+    config?.color?.accentColorShades?.background || "hsl(0, 0%, 93%)"
   };
 
   --sqm-success-color-icon: ${
-    window.SquatchBrandingConfig?.color?.success?.iconAndBadge ||
-    "var(--sl-color-success-600)"
+    config?.color?.success?.iconAndBadge || "hsl(142, 71%, 45%)"
   };
   --sqm-success-color-text: ${
-    window.SquatchBrandingConfig?.color?.success?.text ||
-    "var(--sl-color-success-950)"
+    config?.color?.success?.text || "hsl(164, 74%, 15%)"
   };
   --sqm-success-color-border: ${
-    window.SquatchBrandingConfig?.color?.success?.border ||
-    "var(--sl-color-success-400)"
+    config?.color?.success?.border || "hsl(141, 79%, 85%)"
   };
   --sqm-success-color-background: ${
-    window.SquatchBrandingConfig?.color?.success?.background ||
-    "var(--sl-color-success-300)"
+    config?.color?.success?.background || "hsl(141, 84%, 93%)"
   };
   
   --sqm-warning-color-icon: ${
-    window.SquatchBrandingConfig?.color?.warning?.iconAndBadge ||
-    "var(--sl-color-warning-600)"
+    config?.color?.warning?.iconAndBadge || "hsl(38, 92%, 50%)"
   };
   --sqm-warning-color-text: ${
-    window.SquatchBrandingConfig?.color?.warning?.text ||
-    "var(--sl-color-warning-950)"
+    config?.color?.warning?.text || "hsl(38, 70%, 24%)"
   };
   --sqm-warning-color-border: ${
-    window.SquatchBrandingConfig?.color?.warning?.border ||
-    "var(--sl-color-warning-400)"
+    config?.color?.warning?.border || "hsl(48, 97%, 85%)"
   };
   --sqm-warning-color-background: ${
-    window.SquatchBrandingConfig?.color?.warning?.background ||
-    "var(--sl-color-warning-300)"
+    config?.color?.warning?.background || "hsl(48, 97%, 85%)"
   };
 
   --sqm-danger-color-icon: ${
-    window.SquatchBrandingConfig?.color?.critical?.iconAndBadge ||
-    "var(--sl-color-danger-600)"
+    config?.color?.critical?.iconAndBadge || "hsl(0, 84%, 60%)"
   };
   --sqm-danger-color-text: ${
-    window.SquatchBrandingConfig?.color?.critical?.text ||
-    "var(--sl-color-danger-950)"
+    config?.color?.critical?.text || "hsl(0, 57%, 26%)"
   };
   --sqm-danger-color-border: ${
-    window.SquatchBrandingConfig?.color?.critical?.border ||
-    "var(--sl-color-danger-400)"
+    config?.color?.critical?.border || "hsl(0, 97%, 85%)"
   };
   --sqm-danger-color-background: ${
-    window.SquatchBrandingConfig?.color?.critical?.background ||
-    "var(--sl-color-danger-300)"
+    config?.color?.critical?.background || "hsl(0, 93%, 94%)"
   };
 
   --sqm-informative-color-icon: ${
-    window.SquatchBrandingConfig?.color?.informative?.iconAndBadge ||
-    "var(--sl-color-sky-600)"
+    config?.color?.informative?.iconAndBadge || "hsl(221, 83%, 53%)"
   };
   --sqm-informative-color-text: ${
-    window.SquatchBrandingConfig?.color?.informative?.text ||
-    "var(--sl-color-sky-950)"
+    config?.color?.informative?.text || "hsl(221, 75%, 20%)"
   };
   --sqm-informative-color-border: ${
-    window.SquatchBrandingConfig?.color?.informative?.border ||
-    "var(--sl-color-sky-400)"
+    config?.color?.informative?.border || "hsl(213, 97%, 85%)"
   };
   --sqm-informative-color-background: ${
-    window.SquatchBrandingConfig?.color?.informative?.background ||
-    "var(--sl-color-sky-300)"
+    config?.color?.informative?.background || "hsl(214, 95%, 93%)"
   };
 
   --sqm-input-background: ${
-    window.SquatchBrandingConfig?.inputs?.background || "#fff"
+    config?.formFields?.formFieldColor?.background || "hsla(0, 0%, 100%, 1)"
   };
   --sqm-input-border-color: ${
-    window.SquatchBrandingConfig?.inputs?.borderColor || "#eaeaea"
+    config?.formFields?.formFieldColor?.border || "hsl(240, 6%, 90%)"
   };
   --sqm-input-border-radius: ${
-    window.SquatchBrandingConfig?.inputs?.borderRadius || "4px"
+    config?.formFields?.borderRadius
+      ? config?.formFields?.borderRadius + "px"
+      : "4px"
   };
   --sqm-input-color: ${
-    window.SquatchBrandingConfig?.inputs?.textColor || "#000"
+    config?.formFields?.formFieldColor?.inputText || "hsl(0, 0%, 7%)"
   };
-  --sqm-input-label-color: ${
-    window.SquatchBrandingConfig?.inputs?.labelColor || "#000"
-  };
-  --sqm-border-width: ${
-    window.SquatchBrandingConfig?.inputs?.borderThickness || "1px"
-  };
+  --sqm-input-label-color: var(--sqm-text);
   --sqm-input-border-color-focus: ${
-    window.SquatchBrandingConfig?.inputs?.focusBorderColor || "#eaeaea"
+    config?.formFields?.selectedStateColor || "hsl(0, 0%, 7%)"
   };
   --sqm-input-border-color-hover: ${
-    window.SquatchBrandingConfig?.inputs?.hoverBorderColor || "#ccc"
+    config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
   };
-  --sqm-input-label-font-size: ${
-    window.SquatchBrandingConfig?.inputs?.labelFontSize || "18px"
-  };
-  --sqm-input-disabled-color: ${
-    window.SquatchBrandingConfig?.inputs?.labelFontSize || "#fff"
-  };
+
+  --sqm-input-label-font-size: inherit;
+  --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
-    window.SquatchBrandingConfig?.inputs?.disabledBackground || "#fff"
+    config?.formFields?.disabledBackgroundColor || "#F4F4F5"
   };
+
+  sl-select::part(display-input),
+  sl-select::part(base),
+  sl-dropdown::part(display-input),
+  sl-dropdown::part(base),
+  sl-input::part(input)
+   {
+    color: var(--sqm-input-color);
+  }
 
   --sl-color-primary-100: var(--sqm-primary-color);
   --sl-color-primary-200: var(--sqm-primary-color);
@@ -785,9 +775,8 @@ html {
   --sl-input-color: var(--sqm-input-color, var(--sqm-text), #333); 
   --sl-input-placeholder-color: var(--sqm-text-subdued, var(--sl-color-neutral-500));
   --sl-input-background-color-hover: var(--sqm-input-background, #ffffff);
-  --sl-input-border-width: var(--sqm-border-width, 1px);
+  --sl-input-border-width: var(--sqm-border-thickness, 1px);
   --sl-input-border-style: solid;
-
 
 
 /* --- Disabled State --- */
@@ -812,9 +801,7 @@ html {
 }
 
 body {
-  font-family: ${
-    window.SquatchBrandingConfig.font.font || "var(--sl-font-sans)"
-  };
+  font-family: var(--sqm-primary-font);
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-normal);
   letter-spacing: var(--sl-letter-spacing-small);
@@ -830,7 +817,7 @@ body {
 }
 
 sl-spinner {
-  --sl-color-primary-500: var(--sqm-accent-color-icon)
+  --sl-color-primary-500: var(--sqm-accent-color-icon);
   --sl-spinner-stroke-width: 4px;
 }
 
@@ -936,8 +923,9 @@ sl-details::part(summary) {
 
 *::part(primarybutton-base),
 sl-button[type="primary"]::part(base) {
+  font-family: var(--sqm-primary-font);
   width: 100%;
-  background-color: var(--sqm-primary-button-background) !important;
+  background-color: var(--sqm-primary-button-background);
   color: var(--sqm-primary-button-color);
   border-color: var(--sqm-primary-button-color-border);
   border-radius: var(--sqm-primary-button-radius);
@@ -946,6 +934,8 @@ sl-button[type="primary"]::part(base) {
 *::part(primarybutton-base):hover,
 sl-button[type="primary"]::part(base):hover{
   background-color: var(--sqm-primary-button-background-hover);
+  border-color: var(--sqm-primary-button-border-color-hover);
+  color: var(--sqm-primary-button-color-hover);
 }
 
 
@@ -956,6 +946,7 @@ sl-button[type="primary"]::part(base):focus {
 
 *::part(secondarybutton-base),
 sl-button[type="secondary"]::part(base) {
+font-family: var(--sqm-primary-font);
   background-color: var(--sqm-secondary-button-background);
   color: var(--sqm-secondary-button-color);
   border-color: var(--sqm-secondary-button-color-border);
@@ -965,33 +956,23 @@ sl-button[type="secondary"]::part(base) {
 *::part(secondarybutton-base):hover,
 sl-button[type="secondary"]::part(base):hover {
   background-color: var(--sqm-secondary-button-background-hover);
-}
-
-*::part(tertiarybutton-base){
-  background-color: var(--sqm-tertiary-button-background);
-  color: var(--sqm-tertiary-button-color);
-  border-color: var(--sqm-tertiary-button-color-border);
-  border-radius: var(--sqm-tertiary-button-radius);
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
-*::part(tertiarybutton-base):hover{
-  background: var(--sqm-tertiary-button-background-hover);
+  color: var(--sqm-secondary-button-color-hover);
+  border-color: var(--sqm-secondary-button-border-color-hover);
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
+  font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-semibold);
   color: var(--sqm-input-label-color, var(--sqm-text), black);
 }
 
 *::part(input-base), *::part(select-base), *::part(textarea-base){
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
-  border-width: var(--sqm-border-width, 1px);
+  border-width: var(--sqm-border-thickness, 1px);
 }
 
 *::part(input-base):hover, *::part(select-base):hover, *::part(textarea-base):hover{
@@ -1003,10 +984,11 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 sqm-name-fields::part(input-base) {
+  font-family: var(--sqm-primary-font);
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
-  border-width: var(--sqm-border-width, 1px);
+  border-width: var(--sqm-border-thickness, 1px);
 }
 
 sl-input::part(base):focus,
@@ -1035,17 +1017,42 @@ sl-textarea::part(textarea-label):focus {
   -webkit-text-fill-color: var(--sqm-input-color, white) !important;
 }
 
+*::part(input)::placeholder,
+*::part(select)::placeholder, 
+*::part(textarea)::placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-webkit-input-placeholder,
+*::part(select)::-webkit-input-placeholder,
+*::part(textarea)::-webkit-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-moz-placeholder,
+*::part(select)::-moz-placeholder,
+*::part(textarea)::-moz-placeholder {
+  font-family: var(--sqm-primary-font);
+  opacity: 1; /* Firefox adds an opacity to placeholders by default */
+  color: var(--sqm-text-subdued);
+}
+
+*::part(input)::-ms-input-placeholder,
+*::part(select)::-ms-input-placeholder,
+*::part(textarea)::-ms-input-placeholder {
+  font-family: var(--sqm-primary-font);
+  color: var(--sqm-text-subdued);
+}
+
 a {
+  font-family: var(--sqm-primary-font);
   color: inherit;
   text-decoration: underline;
   cursor: pointer;
 }
 
-
-*::part(menuitem-base):hover{
-  background-color: var(--sl-color-gray-200);
-  color: var(--sl-color-gray-700);
-}
 
 sl-icon::part(base) {
   color: var(--sqm-text);
@@ -1055,9 +1062,6 @@ sl-icon::part(base):hover {
   color: var(--sqm-accent-color-icon);
 }
 
-
-
-
-`;
-
-export default style;
+`,
+  font: config?.main?.brandFont,
+});

@@ -27,14 +27,14 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
 
     sl-tab::part(base) {
       color: ${textColor};
+      font-family: var(--sqm-primary-font);
     }
 
-    sl-tab-group {
-      --sl-color-primary-500: var(--sqm-accent-color-icon);
-    }
+
 
     sl-tab-group::part(tabs) {
       border-bottom: 2px solid var(--sqm-border-color);
+      font-family: var(--sqm-primary-font);
     }
   `;
 

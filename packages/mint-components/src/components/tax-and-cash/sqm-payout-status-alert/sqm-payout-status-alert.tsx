@@ -1,3 +1,4 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
@@ -8,10 +9,11 @@ import {
   PayoutStatusAlertViewProps,
 } from "./sqm-payout-status-alert-view";
 import { usePayoutStatus } from "./usePayoutStatus";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { parseStates } from "../../../utils/parseStates";
 
 /**
  * @uiName Payout Status Alert
+ * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Tax and Cash
  * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
  */
@@ -78,6 +80,28 @@ export class PayoutStatusAlert {
   @Prop() verificationFailedInternalDescription: string =
     "Identity verification has failed. Our team is reviewing the report and will contact you with further information. If you don't hear from us contact our {supportLink}.";
   /**
+   * @uiName Account review alert header
+   */
+  @Prop() accountReviewHeader: string = "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+  /**
+   * @uiName W-9 payment threshold alert header
+   */
+  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W-9 payment threshold alert description
+   */
+  @Prop() w9RequiredDescription: string =
+    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+  /**
+   * @uiName W-9 payment threshold alert button text
+   */
+  @Prop() w9RequiredButtonText: string = "Submit W-9";
+  /**
    * @uiName Payout on hold alert header
    */
   @Prop() holdHeader: string = "Your payouts and account are on hold";
@@ -89,11 +113,15 @@ export class PayoutStatusAlert {
   /**
    * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
    */
-  @Prop() cashPayoutsPageUrl: string = "/cash";
+  @Prop() cashPayoutsPageUrl: string = "/taxAndCash";
   /**
    * @uiName Support link text
    */
   @Prop() supportLink: string = "support team";
+  /**
+   * @uiName Terms and Conditions text
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
   /**
    * @uiName Error header
    */
@@ -103,6 +131,15 @@ export class PayoutStatusAlert {
    */
   @Prop() errorDescription: string =
     "There was an error with determining your payout status.";
+
+  /**
+   * @undocumented
+   * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Verification Required", "props": { "states": { "status": "VERIFICATION:REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Identity Verification", "props": { "states": { "status": "VERIFICATION:REVIEW" } }, "dependencies": ["sqm-payout-status-alert"] }
+   * @componentState { "title": "Account Hold", "props": { "states": { "status": "HOLD" } }, "dependencies": ["sqm-payout-status-alert"] }
+   */
+  @Prop() stateController?: string = "{}";
 
   /**
    * @undocumented
@@ -130,13 +167,21 @@ export class PayoutStatusAlert {
 function useDemoPayoutStatusAlert(
   props: PayoutStatusAlert
 ): PayoutStatusAlertViewProps {
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-payout-status-alert"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
   return deepmerge(
     {
       states: {
         error: false,
         status: "INFORMATION_REQUIRED",
         loading: false,
-        showVerifyIdentity: false,
+        veriffLoading: false,
       },
       data: { type: "SquatchAdmin" },
       text: props.getTextProps(),
@@ -145,7 +190,7 @@ function useDemoPayoutStatusAlert(
         onClick: () => console.log("show"),
       },
     },
-    props.demoData || {},
+    formatted || props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

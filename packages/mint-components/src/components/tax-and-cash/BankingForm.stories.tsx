@@ -24,8 +24,8 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     currency: "USD",
     loadingError: false,
     email: "test@example.com",
+    showModal: false,
   },
-
   callbacks: {
     onVerificationHide: () => {},
     onVerification: () => {},
@@ -34,6 +34,8 @@ const bankingFormProps: StoryDemoData<BankingInfoFormViewProps> = {
     setPaymentScheduleChecked: () => {},
     setCountrySearch: () => {},
     onBack: async () => console.log("back"),
+    onModalOpen: () => {},
+    onModalClose: () => {},
   },
   refs: { formRef: { current: null } },
 };
@@ -462,6 +464,20 @@ export const BankingInfoFormVerififyIdentityModal = () => {
             paymentScheduleChecked: "FIXED_DAY",
           },
           currency: "USD",
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const BankingInfoFormModalOpen = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...bankingFormProps,
+        states: {
+          ...bankingFormProps.states,
+          showModal: true,
         },
       }}
     ></sqm-banking-info-form>

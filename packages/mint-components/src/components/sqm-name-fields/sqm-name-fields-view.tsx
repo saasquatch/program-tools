@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
+import { createStyleSheet } from "../../styling/JSS";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface NameFieldsViewProps {
   states: {
+    optional: boolean;
     registrationFormState?: RegistrationFormState;
     content: {
       firstNameLabel: string;
@@ -39,14 +40,14 @@ const vanillaStyle = `
   background-color: var(--sqm-input-background, #fff);
   border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);
   color: var(--sqm-input-color, white);
-  border-width: var(--sqm-border-width, 1px);
+  border-width: var(--sqm-border-thickness, 1px);
 }
 
 sl-input::part(base):focus,
 sl-select::part(form-control-wrapper):focus,
 sl-textare::part(textarea-label):focus {
   border-color: none;
-  border: var(--sqm-input-focus-border, 1px solid var(--sl-input-border-color-focus));
+  border: var(--sqm-input-focus-border, var(--sqm-border-thickness) solid var(--sl-input-border-color-focus));
 }
 
 *::part(input-label):disabled, *::part(select-label):disabled, *::part(textarea-label):disabled{
@@ -77,7 +78,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/firstName"
         type="text"
         label={states.content.firstNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
@@ -99,7 +100,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/lastName"
         type="text"
         label={states.content.lastNameLabel}
-        required
+        required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled

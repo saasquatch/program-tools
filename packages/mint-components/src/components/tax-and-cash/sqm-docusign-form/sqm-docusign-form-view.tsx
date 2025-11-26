@@ -1,7 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { FORM_STEPS, TaxDocumentType } from "../sqm-tax-and-cash/data";
+import { FORM_STEPS, TaxDocumentType } from "../data";
 import { ParticipantType } from "./useDocusignForm";
 
 export interface DocusignFormViewProps {
@@ -14,6 +14,7 @@ export interface DocusignFormViewProps {
     participantTypeDisabled: boolean;
     loadingError?: boolean;
     showExitButton: boolean;
+    showModal: boolean;
     formState: {
       taxFormExpired: boolean;
       participantType: "individualParticipant" | "businessEntity" | undefined;
@@ -32,6 +33,8 @@ export interface DocusignFormViewProps {
   callbacks: {
     onExit: () => void;
     setParticipantType: (p: ParticipantType) => void;
+    onModalOpen: () => void;
+    onModalClose: () => void;
   };
   text: {
     exitButton: string;
@@ -48,6 +51,9 @@ export interface DocusignFormViewProps {
     participantType: string;
     taxAndPayoutsDescription: string;
     supportLink: string;
+    modalTitle: string;
+    modalDescription: string;
+    modalButtonText: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -59,6 +65,11 @@ export interface DocusignFormViewProps {
 }
 
 const style = {
+  ModalTitleContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-small)",
+    alignItems: "center",
+  },
   FormWrapper: {
     display: "flex",
     justifyContent: "flex-start",
@@ -99,33 +110,7 @@ const style = {
   BoldText: {
     fontWeight: "bold",
   },
-  ErrorAlertContainer: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-danger-color-background)",
-      border: "none",
-      padding: "0 16px",
-      color: "var(--sqm-danger-color-text)",
-      marginBottom: "16px",
-    },
 
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
-  InfoAlert: {
-    "&::part(base)": {
-      backgroundColor: "var(--sqm-informative-color-background)",
-      borderTop: "none",
-      padding: "0 16px",
-      border: "none",
-      color: "var(--sqm-informative-color-text)",
-      marginBottom: "16px",
-    },
-
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-informative-color-icon)",
-    },
-  },
   Container: {
     width: "100%",
     display: "flex",
@@ -149,26 +134,50 @@ const style = {
     color: "var(--sqm-text-subdued)",
     fontSize: "var(--sl-font-size-medium)",
   },
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "420px",
+    },
+
+    "&::part(title)": {
+      fontSize: "var(--sl-font-size-large)",
+      fontWeight: "600",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+      alignItems: "center",
+      flex: "1",
+    },
+  },
+  DialogButton: { margin: "auto", width: "100%" },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const vanillaStyle = `
-    :host{
-      display: block;   
-    }
-    * {
-       margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-    }
+  :host{
+    display: block;   
+  }
 
-    a {
-      cursor: pointer;
-      color: var(--sqm-text);
-      text-decoration: underline;
-    }
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
 
   `;
@@ -190,6 +199,41 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
         {styleString}
         {vanillaStyle}
       </style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.showModal}
+        onSl-hide={callbacks.onModalClose}
+      >
+        <div class={classes.ModalTitleContainer} slot="label">
+          <sl-icon
+            name="info-circle"
+            style={{ color: "var(--sqm-informative-color-icon)" }}
+          />
+          <h2 style={{ fontSize: "var(--sl-font-size-large)" }}>
+            {text.modalTitle}
+          </h2>
+        </div>
+        <p>
+          {intl.formatMessage(
+            {
+              id: "modalText",
+              defaultMessage: text.modalDescription,
+            },
+            {
+              br: <br />,
+            }
+          )}
+        </p>
+        <sl-button
+          slot="footer"
+          type="primary"
+          class={sheet.classes.DialogButton}
+          onClick={callbacks.onModalClose}
+          exportparts="base: primarybutton-base"
+        >
+          {text.modalButtonText}
+        </sl-button>
+      </sl-dialog>
       <div class={classes.TextContainer}>
         <div>
           {!states.hideSteps && (
@@ -211,15 +255,8 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
       </div>
       {states.loadingError && (
         <div>
-          <sl-alert
-            exportparts="base: alert-base, icon:alert-icon"
-            type="danger"
-            open
-            class={sheet.classes.ErrorAlertContainer}
-          >
-            <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-            <strong>{text.error.loadingErrorAlertHeader}</strong>
-            <br />
+          <sqm-form-message type="error">
+            <p part="alert-title">{text.error.loadingErrorAlertHeader}</p>
             {intl.formatMessage(
               {
                 id: "loadingErrorAlertDescription",
@@ -236,19 +273,12 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
                 ),
               }
             )}
-          </sl-alert>
+          </sqm-form-message>
         </div>
       )}
       {formState.errors?.general && (
-        <sl-alert
-          exportparts="base: alert-base, icon:alert-icon"
-          type="warning"
-          open
-          class={sheet.classes.ErrorAlertContainer}
-        >
-          <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-          <strong>{text.error.generalTitle}</strong>
-          <br />
+        <sqm-form-message type="error">
+          <p part="alert-title">{text.error.generalTitle}</p>
           {intl.formatMessage(
             {
               id: "generalDescription",
@@ -262,7 +292,7 @@ export const DocusignFormView = (props: DocusignFormViewProps) => {
               ),
             }
           )}
-        </sl-alert>
+        </sqm-form-message>
       )}
 
       <div>

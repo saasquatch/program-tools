@@ -33,6 +33,21 @@ export class TaxAndCashDashboard {
   @Prop() statusTextNotVerified?: string = "Not Verified";
 
   /**
+   * Displayed when the participant has not submitted their required tax form.
+   *
+   * @uiName Required tax form badge label
+   */
+  @Prop() statusTextRequired?: string = "Required";
+
+  /**
+   * Additional text displayed next to the tax form's status badge
+   *
+   * @uiName Required tax form description
+   */
+  @Prop() requiredTaxForm?: string =
+    "Your payouts are on hold until you submit a {taxFormType} tax form.";
+
+  /**
    * Additional text displayed next to the tax form's status badge
    *
    * @uiName Active W-9 description
@@ -60,7 +75,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() taxAlertHeaderNotActiveW9?: string =
-    "Your W9 tax form has personal information that doesn’t match your profile";
+    "Your W-9 tax form has personal information that doesn’t match your profile";
   /**
    * Part of the alert displayed at the top of the page.
    *
@@ -106,14 +121,6 @@ export class TaxAndCashDashboard {
    * @uiName Tax documents section description
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
-  /**
-   * No other statuses or badges will be displayed in the tax form section in this case.
-   *
-   * @uiName Tax form not required text
-   * @uiWidget textArea
-   */
-  @Prop() noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
 
   /**
    *
@@ -263,6 +270,32 @@ export class TaxAndCashDashboard {
    */
   @Prop() verificationRequiredButtonText: string = "Start Verification";
   /**
+   * @uiName W-9 payment threshold alert header
+   */
+  @Prop() w9RequiredHeader: string = "Your next payout is on hold";
+  /**
+   * @uiName W-9 payment threshold alert description
+   */
+  @Prop() w9RequiredDescription: string =
+    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+  /**
+   * @uiName Account review alert header
+   */
+  @Prop() accountReviewHeader: string = "Your account is under review";
+  /**
+   * @uiName Account review alert description
+   */
+  @Prop() accountReviewDescription: string =
+    "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+  /**
+   * @uiName Terms and Conditions text
+   */
+  @Prop() termsAndConditions: string = "Terms and Conditions";
+  /**
+   * @uiName W-9 payment threshold alert button text
+   */
+  @Prop() w9RequiredButtonText: string = "Submit W-9";
+  /**
    * Part of the alert displayed at the top of the page.
    * @uiName Form submission error message title
    * @uiWidget textArea
@@ -344,13 +377,6 @@ export class TaxAndCashDashboard {
   @Prop() invoiceEmptyStateText: string =
     "Refer a friend to view the status of your invoices and rewards earned";
   /**
-   * Displayed at the top of the page on all set up steps and on the dashboard.
-   * @uiName Page description
-   */
-  @Prop() taxAndPayoutsDescription: string =
-    "Submit your tax documents and add your banking information to receive your rewards.";
-
-  /**
    * @uiName Replace tax form modal header
    */
   @Prop() replaceTaxFormModalHeader: string = "Replace existing tax form";
@@ -373,6 +399,12 @@ export class TaxAndCashDashboard {
    * @uiType object
    */
   @Prop() demoData?: DemoData<UseTaxAndCashDashboardResult>;
+
+  /**
+   * @undocumented
+   * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
+   */
+  @Prop() stateController?: string = "{}";
 
   constructor() {
     withHooks(this);
@@ -419,24 +451,34 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  // @ts-ignore
   return deepmerge(
     {
       states: {
         dateSubmitted: "today",
         documentType: "W9",
-        documentTypeString: "W9",
+        documentTypeString: "W-9",
         status: "ACTIVE",
         country: "United States",
-        indirectTaxNumber: 55555555,
+        indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
-        noFormNeeded: true,
+        noFormNeeded: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        showVerifyIdentity: false,
+
+        subRegion: "CA",
+        subRegionTaxNumber: undefined,
+        qstNumber: undefined,
+        isBusinessEntity: false,
+        province: undefined,
+        notRegistered: true,
+        loadingError: false,
+
         payoutStatus: "DONE",
         veriffLoading: false,
+        canEditPayoutInfo: true,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -446,8 +488,19 @@ function useDemoTaxAndCashDashboard(
         onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
+      slots: {
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card
+            demoData={{
+              states: {
+                badgeStatus: "nextPayout",
+              },
+            }}
+          ></sqm-payout-details-card>
+        ),
+      },
     },
-    props.demoData || {},
+    props.demoData || props.stateController || {},
     { arrayMerge: (_, a) => a }
   );
 }
