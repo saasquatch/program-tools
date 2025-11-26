@@ -54,13 +54,13 @@ jobs:
         with:
           node-version-file: "${{ steps.vars.outputs.dir }}/package.json"
 
-      - name: Setup .npmrc
-        id: npmrc
-        working-directory: ${{ steps.vars.outputs.dir }}
-        run: |
-          echo 'registry=https://registry.npmjs.org/' >> .npmrc
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
-          echo 'always-auth=true' >> .npmrc
+      # - name: Setup .npmrc
+      #   id: npmrc
+      #   working-directory: ${{ steps.vars.outputs.dir }}
+      #   run: |
+      #     echo 'registry=https://registry.npmjs.org/' >> .npmrc
+      #     echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
+      #     echo 'always-auth=true' >> .npmrc
 
       # we could add this to devDependencies but we'd have to do it for every package
       # so might as well just install it inside the action
@@ -148,8 +148,6 @@ jobs:
       - name: NPM Publish
         id: publish
         working-directory: ${{ steps.vars.outputs.dir }}
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public --tag ${{ steps.vars.outputs.npmtag }}
 
       - name: Commit and push changes
