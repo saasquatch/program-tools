@@ -406,6 +406,7 @@ export function useUserInfoForm(props: TaxForm) {
       regionLabelEnum: regionObj?.labelEnum,
       regions: regionObj?.regions || [],
       partnerData: data?.user?.impactConnection?.publisher,
+      userData: data?.user,
     },
     states: {
       step: step?.replace("/", ""),

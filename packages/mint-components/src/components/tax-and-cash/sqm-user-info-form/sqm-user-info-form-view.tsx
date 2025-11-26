@@ -70,6 +70,15 @@ export interface UserInfoFormViewProps {
       displayName: string;
     }[];
     partnerData: ImpactPublisher;
+    userData?: {
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+      countryCode?: string;
+      customFields?: {
+        [key: string]: any;
+      };
+    };
   };
   callbacks: {
     setCurrencySearch: (c: any) => void;
@@ -430,15 +439,13 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.state;
   }
 
+  function isDisabledPartnerInput(field: string) {
+    return states.isPartner && !!data.partnerData?.[field];
+  }
 
-    function isDisabledPartnerInput(field: string) {
-      return states.isPartner && !!data.partnerData?.[field];
-    }
-  
-    function isDisabledUserInput(field: string) {
-      return states.isUser && !!states.formState?.[field];
-    }
-
+  function isDisabledUserInput(field: string) {
+    return states.isUser && !!data.userData?.[field];
+  }
   return (
     <sl-form
       class={classes.FormWrapper}
@@ -556,11 +563,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
-                disabled={
-                  states.disabled ||
-                  isDisabledUserInput("firstName") ||
-                  isDisabledPartnerInput("firstName")
-                }
+                disabled={states.disabled || isDisabledUserInput("firstName")}
                 {...(formState.errors?.firstName
                   ? {
                       class: classes.ErrorInput,
@@ -578,11 +581,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.lastName}
                 label={text.lastName}
-                disabled={
-                  states.disabled ||
-                  isDisabledUserInput("lastName") ||
-                  isDisabledPartnerInput("lastName")
-                }
+                disabled={states.disabled || isDisabledUserInput("lastName")}
                 {...(formState.errors?.lastName
                   ? {
                       class: classes.ErrorInput,

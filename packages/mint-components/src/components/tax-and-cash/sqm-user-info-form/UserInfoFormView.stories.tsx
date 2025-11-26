@@ -141,6 +141,7 @@ const baseProps: UserInfoFormViewProps = {
     allCurrencies: mockCurrencies,
     currencies: mockCurrencies,
     partnerData: undefined,
+    userData: undefined,
   },
   callbacks: {
     setCurrencySearch: (c) => console.log("setCurrencySearch", c),
@@ -300,6 +301,15 @@ export const UserAccount = () => {
           email: "bob.johnson@example.com",
         },
       }}
+      data={{
+        ...baseProps.data,
+        userData: {
+          firstName: "Bob",
+          lastName: "Johnson",
+          email: "bob.johnson@example.com",
+          countryCode: "US",
+        },
+      }}
     />
   );
 };
@@ -316,6 +326,15 @@ export const UserAccountMissingLastName = () => {
           firstName: "Bob",
           lastName: undefined,
           email: "bob.johnson@example.com",
+        },
+      }}
+      data={{
+        ...baseProps.data,
+        userData: {
+          firstName: "Bob",
+          lastName: undefined,
+          email: "bob.johnson@example.com",
+          countryCode: "US",
         },
       }}
     />
