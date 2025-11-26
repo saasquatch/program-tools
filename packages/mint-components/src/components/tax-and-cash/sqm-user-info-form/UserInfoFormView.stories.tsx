@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { h } from "@stencil/core";
 import {
   UserInfoFormView,
@@ -51,11 +50,11 @@ const mockPartnerData = {
   taxInformation: null,
   requiredTaxDocumentType: null,
   withdrawalSettings: {
-    paymentMethod: "PAYPAL",
+    paymentMethod: "PAYPAL" as const,
     paypalEmailAddress: null,
     bankCountry: null,
     bankAccountNumber: null,
-    paymentSchedulingType: "BALANCE_THRESHOLD",
+    paymentSchedulingType: "BALANCE_THRESHOLD" as const,
     paymentThreshold: null,
     paymentDay: null,
   },
@@ -248,7 +247,8 @@ export const WithGeneralError = () => {
         formState: {
           ...baseProps.states.formState,
           errors: {
-            general: true,
+            general:
+              "An error occurred. Please contact support for assistance.",
           },
         },
       }}
