@@ -1,6 +1,6 @@
-import { useContext, createContext } from 'haunted';
+import { setUseHostImplementation } from '@saasquatch/component-boilerplate';
+import { createContext, useContext } from 'haunted';
 import type { TemplateResult } from 'lit';
-
 /**
  * Context that stores the host element for the current component
  */
@@ -13,11 +13,13 @@ const HostContext = createContext<HTMLElement | null>(null);
  */
 export function useHost(): HTMLElement {
   const host = useContext(HostContext);
-  
+
   if (!host) {
-    throw new Error('useHost must be called within a Haunted component. Make sure the component is created with withHostProvider()');
+    throw new Error(
+      'useHost must be called within a Haunted component. Make sure the component is created with withHostProvider()'
+    );
   }
-  
+
   return host;
 }
 
@@ -30,6 +32,7 @@ export function withHostProvider(
   Component: (host: HTMLElement) => TemplateResult
 ): (host: HTMLElement) => TemplateResult {
   return (host: HTMLElement) => {
+    setUseHostImplementation(() => host);
     // Create a context provider that supplies the host
     return Component(host);
   };

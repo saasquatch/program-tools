@@ -7,3 +7,6 @@ dist/
 *.swp
 *.swo
 *~
+
+*storybook.log
+storybook-static

@@ -1,8 +1,8 @@
-import { useProgramId, useQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useUserIdentity, useProgramId, useQuery } from '@saasquatch/component-boilerplate';
 import { useState } from '@saasquatch/universal-hooks';
-import { gql } from 'graphql-request';
 import { css, html } from 'lit';
-import { useComponent } from '../hooks/useComponent';
+import { gql } from 'graphql-request';
+import { useComponent } from '../../hooks/useComponent';
 
 const MessageLinkQuery = gql`
   query getReferralCode($programId: ID) {
@@ -45,7 +45,13 @@ const styles = css`
   }
 `;
 
-const CounterComponent = useComponent((host: HTMLElement) => {
+declare global {
+  interface HTMLElementTagNameMap {
+    'lit-counter': HTMLElement;
+  }
+}
+
+export const CounterComponent = useComponent((host: HTMLElement) => {
   const title = host.getAttribute('title') || 'Counter';
   const initialCount = parseInt(host.getAttribute('initial-count') || '0', 10);
 
@@ -59,8 +65,6 @@ const CounterComponent = useComponent((host: HTMLElement) => {
   const user = useUserIdentity();
 
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
-  console.log({ host: useUserIdentity(), data });
-
   return html`
     <style>
       ${styles}
@@ -72,5 +76,3 @@ const CounterComponent = useComponent((host: HTMLElement) => {
     <button @click=${reset}>Reset</button>
   `;
 }, 'lit-counter');
-
-export { CounterComponent };
