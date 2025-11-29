@@ -161,6 +161,10 @@ export type ImpactPublisher = {
     balance: string;
   };
 };
+export type ImpactUser = {
+  firstName: string;
+  lastName: string;
+};
 export type UserQuery = {
   user: {
     firstName?: string;
@@ -186,10 +190,7 @@ export type UserQuery = {
     } | null;
     impactConnection: null | {
       connected: boolean;
-      user: {
-        firstName: string;
-        lastName: string;
-      } | null;
+      user: null | ImpactUser;
       publisher: null | ImpactPublisher;
     };
   };

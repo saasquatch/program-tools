@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { FORM_STEPS, ImpactPublisher } from "../data";
+import { FORM_STEPS, ImpactPublisher, ImpactUser } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 import LoadingView from "../sqm-tax-and-cash/LoadingView";
 import { formatErrorMessage, validateBillingField } from "../utils";
@@ -69,16 +69,8 @@ export interface UserInfoFormViewProps {
       currencyCode: string;
       displayName: string;
     }[];
-    partnerData: ImpactPublisher;
-    userData?: {
-      firstName?: string;
-      lastName?: string;
-      email?: string;
-      countryCode?: string;
-      customFields?: {
-        [key: string]: any;
-      };
-    };
+    partnerData?: ImpactPublisher;
+    userData?: ImpactUser;
   };
   callbacks: {
     setCurrencySearch: (c: any) => void;
