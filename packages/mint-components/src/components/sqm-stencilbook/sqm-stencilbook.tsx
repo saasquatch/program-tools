@@ -101,6 +101,7 @@ import * as LeadForm from "../sqm-lead-form/LeadForm.stories";
 import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
 import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
 import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
+import * as UserInfoFormView from "../tax-and-cash/sqm-user-info-form/UserInfoFormView.stories";
 
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { CucumberAddon } from "./CucumberAddon";
@@ -108,6 +109,7 @@ import { HookStoryAddon } from "./HookStoryAddon";
 import * as Themes from "./Themes";
 
 const stories = [
+  UserInfoFormView,
   InvoiceTable,
   InvoiceTableCells,
   UseInvoiceTableCells,
