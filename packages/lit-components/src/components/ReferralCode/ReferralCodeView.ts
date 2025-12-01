@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { ReferralCodeProps } from './ReferralCode';
+import { useReferralCode } from './useReferralCode';
 
 /**
  * Base static styles that don't change
@@ -42,7 +44,7 @@ const baseStyles = `
 /**
  * Generate dynamic styles based on props
  */
-const getDynamicStyles = (props: any) => `
+const getDynamicStyles = (props: ReferralCodeProps) => `
   sl-input::part(input) {
     text-overflow: ellipsis;
     width: 100%;
@@ -75,13 +77,13 @@ const getDynamicStyles = (props: any) => `
   }
 `;
 
-export function ReferralCodeView({ props, hookProps }: { props: any; hookProps: any }) {
+export function ReferralCodeView(props: ReferralCodeProps & ReturnType<typeof useReferralCode>) {
   const dynamicStyles = getDynamicStyles(props);
 
   const buttonStyle = props.buttonStyle || 'icon';
-  const error = !hookProps.loading && hookProps.error;
-  const inputText = error ? props.inputPlaceholderText : hookProps.copyString;
-  const disabled = error || hookProps.loading || hookProps.disabled;
+  const error = !props.loading && props.error;
+  const inputText = error ? props.inputPlaceholderText : props.copyString;
+  const disabled = error || props.loading || props.disabled;
   const tooltipPlacement =
     props.buttonStyle === 'button-below'
       ? 'bottom'
@@ -92,10 +94,10 @@ export function ReferralCodeView({ props, hookProps }: { props: any; hookProps: 
   const copyButton = html`
     <sl-tooltip
       trigger="manual"
-      content="${props.tooltiptext}"
+      content="${props.tooltipText}"
       placement="${tooltipPlacement}"
-      ?disabled="${hookProps.disabled}"
-      ?open="${hookProps.open}"
+      ?disabled="${props.disabled}"
+      ?open="${props.open}"
       skidding="${props.buttonStyle === 'icon' ? -5 : 0}"
       slot="suffix"
     >
@@ -103,7 +105,7 @@ export function ReferralCodeView({ props, hookProps }: { props: any; hookProps: 
         ? html`
             <sl-icon-button
               exportparts="base: icon-button-base"
-              @click="${() => hookProps.onClick?.()}"
+              @click="${() => props.onClick?.()}"
               name="files"
               ?disabled="${disabled}"
             ></sl-icon-button>
@@ -111,7 +113,7 @@ export function ReferralCodeView({ props, hookProps }: { props: any; hookProps: 
         : html`
             <sl-button
               exportparts="base: ${props.buttonType || 'primary'}button-base"
-              @click="${() => hookProps.onClick?.()}"
+              @click="${() => props.onClick?.()}"
               size="medium"
               style="${buttonStyle === 'button-below' ? 'width: 100%' : ''}"
               ?disabled="${disabled}"
@@ -133,7 +135,11 @@ export function ReferralCodeView({ props, hookProps }: { props: any; hookProps: 
         class="container-style"
         style="flex-direction: ${buttonStyle === 'button-below' ? 'column' : 'row'}"
       >
-        <sl-input value="${hookProps.loading ? 'Loading...' : inputText}" readonly ?disabled="${disabled}">
+        <sl-input
+          value="${props.loading ? 'Loading...' : inputText}"
+          readonly
+          ?disabled="${disabled}"
+        >
           ${buttonStyle === 'icon' ? copyButton : ''}
           ${error ? html` <p slot="help-text" class="error-text">${props.errorText}</p> ` : ''}
         </sl-input>

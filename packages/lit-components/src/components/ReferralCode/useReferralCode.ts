@@ -7,6 +7,7 @@ import {
 } from '@saasquatch/component-boilerplate';
 import { useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
+import { ReferralCodeProps } from './ReferralCode';
 
 const MessageLinkQuery = gql`
   query getReferralCode($programId: ID) {
@@ -34,7 +35,7 @@ export const SET_CODE_COPIED = gql`
   }
 `;
 
-export function useReferralCode(props) {
+export function useReferralCode(props: ReferralCodeProps) {
   const programId = useProgramId();
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
@@ -77,5 +78,7 @@ export function useReferralCode(props) {
     disabled: loading,
     loading,
     copyString: copyString,
+    error: '',
+    isCopied: false,
   };
 }

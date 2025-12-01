@@ -3,15 +3,33 @@ import { useComponent } from '../../hooks/useComponent';
 import { useReferralCode } from './useReferralCode';
 import { ReferralCodeView } from './ReferralCodeView';
 
+export interface ReferralCodeProps {
+  tooltipText: string;
+  showNotificationText: boolean;
+  notificationText: string;
+  tooltipLifespan: number;
+  textAlign: string;
+  copyButtonLabel: string;
+  buttonStyle: 'icon' | 'button-outside' | 'button-below';
+  buttonType: 'primary' | 'secondary';
+  backgroundColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  borderRadius?: number;
+  programId?: string;
+  inputPlaceholderText?: string;
+  errorText?: string;
+}
+
 declare global {
   interface HTMLElementTagNameMap {
     'sql-referral-code': HTMLElement;
   }
 }
 
-export const ReferralCode = useComponent(
-  (host: HTMLElement) => {
-    const props = {
+export const ReferralCode = useComponent<ReferralCodeProps>(
+  (host) => {
+    const props: ReferralCodeProps = {
       tooltipText: 'Copied to Clipboard',
       showNotificationText: false,
       notificationText: "You've copied this code before",
@@ -27,7 +45,7 @@ export const ReferralCode = useComponent(
 
     console.log({ props, hookProps });
 
-    return ReferralCodeView({ props, hookProps });
+    return ReferralCodeView({ ...props, ...hookProps });
   },
   'sql-referral-code',
   [
@@ -44,5 +62,5 @@ export const ReferralCode = useComponent(
     'border-radius',
     'button-type',
     'program-id',
-  ]
+  ] as const
 );

@@ -97,6 +97,7 @@ try {
   customElements.define('sl-icon-button', SlIconButton);
   customElements.define('sl-image-comparer', SlImageComparer);
   customElements.define('sl-include', SlInclude);
+  // @ts-expect-error shoelace types are wrong here
   customElements.define('sl-input', SlInput);
   customElements.define('sl-menu', SlMenu);
   customElements.define('sl-menu-item', SlMenuItem);
