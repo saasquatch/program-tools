@@ -306,8 +306,6 @@ export const UserAccount = () => {
         userData: {
           firstName: "Bob",
           lastName: "Johnson",
-          email: "bob.johnson@example.com",
-          countryCode: "US",
         },
       }}
     />
@@ -333,8 +331,6 @@ export const UserAccountMissingLastName = () => {
         userData: {
           firstName: "Bob",
           lastName: undefined,
-          email: "bob.johnson@example.com",
-          countryCode: "US",
         },
       }}
     />
