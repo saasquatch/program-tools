@@ -68,14 +68,81 @@
         appDomain: 'https://staging.referralsaasquatch.com',
       };
     </script>
+    <script type="module" src="./dist/index.js"></script>
+    <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components/dist/mint-components/mint-components.js"></script>
+    <link rel="stylesheet" href="./dist/style.css" />
   </head>
   <body>
     <h1>🚀 @saasquatch/lit-components</h1>
     <p>Web components built with Lit and Haunted for state management</p>
+    <sqm-portal-container
+      direction="column"
+      padding="xxx-large"
+      gap="xxx-large"
+      display="grid"
+      max-width="100%"
+    >
+      <sqm-text><h1>Activity</h1></sqm-text>
+      <sqm-stat-container alignment="left" space="xxxx-large" display="grid">
+        <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount">
+          <sqm-text><p>Referrals</p></sqm-text>
+        </sqm-big-stat>
+        <sqm-big-stat
+          flex-reverse="true"
+          alignment="left"
+          stat-type="/rewardsCountFiltered/AVAILABLE"
+        >
+          <sqm-text><p>Rewards Earned</p></sqm-text>
+        </sqm-big-stat>
+      </sqm-stat-container>
+      <sqm-referral-table
+        hidden-columns="0"
+        md-breakpoint="799"
+        more-label="Next"
+        per-page="4"
+        prev-label="Prev"
+        sm-breakpoint="599"
+      >
+        <sqm-referral-table-user-column
+          anonymous-user="Anonymous User"
+          column-title="Customer"
+          deleted-user="Deleted User"
+        ></sqm-referral-table-user-column>
+        <sqm-referral-table-rewards-column
+          column-title="Rewards"
+          expiring-text="Expiring in"
+          fuel-tank-text="Your code is"
+          pending-for-text="{status} for {date}"
+          reward-received-text="Reward received on"
+          status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
+          status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+        ></sqm-referral-table-rewards-column>
+        <sqm-referral-table-status-column
+          column-title="Status"
+          converted-status-text="Converted"
+          in-progress-status-text="In Progress"
+        ></sqm-referral-table-status-column>
+        <sqm-referral-table-date-column
+          column-title="Referred "
+          date-shown="dateReferralStarted"
+        ></sqm-referral-table-date-column>
+        <sqm-empty
+          slot="empty"
+          empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+          empty-state-header="View your referral details"
+          empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
+        ></sqm-empty> </sqm-referral-table
+      ><sql-referral-code
+        tooltip-text="Copied to Clipboard"
+        tooltip-lifespan="1000"
+        show-notification-text="true"
+        slot
+      ></sql-referral-code>
+    </sqm-portal-container>
 
     <div id="demo"></div>
 
-    <script type="module">
+    <!-- <script type="module">
       import { html, render } from 'lit';
       import './src/index.ts';
 
@@ -128,6 +195,6 @@ render(
       );
 
       console.log('✅ Lit Components demo loaded with hot reloading enabled');
-    </script>
+    </script> -->
   </body>
 </html>

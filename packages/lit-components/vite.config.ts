@@ -11,6 +11,9 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   root: './',
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  },
   server: {
     host: 'localhost',
     port: 5173,
@@ -38,12 +41,12 @@ export default defineConfig({
           ],
         }),
       ],
-      external: ['lit', 'haunted'],
+      // Don't externalize dependencies for browser usage
+      // If you need a version for npm that externalizes deps, use a separate build
+      external: [],
       output: {
-        globals: {
-          lit: 'lit',
-          haunted: 'haunted',
-        },
+        // Preserve module structure for tree-shaking
+        preserveModules: false,
       },
     },
   },

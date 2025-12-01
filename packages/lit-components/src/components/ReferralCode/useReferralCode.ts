@@ -36,7 +36,7 @@ export const SET_CODE_COPIED = gql`
 `;
 
 export function useReferralCode(props: ReferralCodeProps) {
-  const programId = useProgramId();
+  const programId = useProgramId() || props.programId;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 

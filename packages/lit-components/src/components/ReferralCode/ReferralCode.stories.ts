@@ -3,12 +3,16 @@ import { html } from 'lit';
 import '../../index';
 
 const setupGlobals = () => {
+  // @ts-expect-error setup globals
   window.squatchTenant = 'ac52kfybp1tkr';
+  // @ts-expect-error setup globals
   window.squatchConfig = {
     domain: 'https://staging.referralsaasquatch.com',
   };
+  // @ts-expect-error setup globals
   window.squatchToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU';
+  // @ts-expect-error setup globals
   window.widgetIdent = {
     programId: '41863',
     userId: 'testuser',

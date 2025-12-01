@@ -1,10 +1,11 @@
 {
   "name": "@saasquatch/lit-components",
-  "version": "0.0.0",
+  "version": "0.0.0-7",
   "description": "Web components built with Lit and Haunted for state management",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "raisins": "dist/docs/raisins.json",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -14,10 +15,13 @@
   "files": [
     "dist"
   ],
+  "author": "SaaSquatch",
+  "license": "MIT",
   "scripts": {
     "start": "vite",
     "dev": "vite",
-    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist && npm run generate:raisins",
+    "generate:raisins": "tsx scripts/generate-raisins.ts",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
@@ -31,12 +35,11 @@
     "haunted",
     "vite"
   ],
-  "author": "SaaSquatch",
-  "license": "MIT",
   "peerDependencies": {
     "lit": "^3.0.0"
   },
   "dependencies": {
+    "@raisins/schema": "^1.2.0",
     "@saasquatch/component-boilerplate": "^1.6.10-3",
     "@saasquatch/universal-hooks": "^1.0.1",
     "@shoelace-style/shoelace": "^2.20.1",
@@ -61,8 +64,14 @@
     "playwright": "^1.57.0",
     "prettier": "^3.3.2",
     "storybook": "^10.1.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.0",
     "vitest": "^4.0.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git",
+    "directory": "packages/lit-components"
   }
 }
