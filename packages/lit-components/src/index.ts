@@ -5,7 +5,7 @@
 
 // Export all components
 export { CounterComponent } from './components/CounterComponent';
-export * from './components/OtherComponent';
+export * from './components/ReferralCode';
 
 // Export hooks
 export { HostContext, useHost, withHostProvider } from './hooks/useHost';
@@ -23,6 +23,7 @@ import { useHost } from './hooks/useHost';
 
 // Shoelace setup
 import { registerIconLibrary, setBasePath } from '@shoelace-style/shoelace';
+import '@shoelace-style/shoelace/dist/themes/light.css';
 
 import {
   SlAlert,

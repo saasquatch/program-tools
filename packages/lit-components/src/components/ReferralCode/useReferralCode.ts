@@ -34,17 +34,12 @@ export const SET_CODE_COPIED = gql`
   }
 `;
 
-export function useReferralCode() {
-  const props = {
-    tooltiplifespan: 2000,
-    showNotificationText: true,
-  };
-
+export function useReferralCode(props) {
   const programId = useProgramId();
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
-  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
+  const { data, loading } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
   //   const [setCopied] = useMutation(SET_CODE_COPIED);
@@ -61,7 +56,7 @@ export function useReferralCode() {
     // Only if called from a user-initiated event
     navigator.clipboard.writeText(copyString);
     setOpen(true);
-    setTimeout(() => setOpen(false), props.tooltiplifespan);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
     sendLoadEvent({
       eventMeta: {
         programId,
@@ -79,7 +74,8 @@ export function useReferralCode() {
   return {
     onClick,
     open,
+    disabled: loading,
+    loading,
     copyString: copyString,
-    showNotificationText: props.showNotificationText,
   };
 }
