@@ -132,6 +132,10 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
         displayName: "USD",
       },
     ],
+    userData: {
+      firstName: "",
+      lastName: "",
+    },
   },
   refs: {
     formRef: { current: null },
