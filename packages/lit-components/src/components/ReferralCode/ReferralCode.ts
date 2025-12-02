@@ -9,6 +9,7 @@ export interface ReferralCodeProps {
    *
    * @uiName Tooltip text
    * @uiGroup Content
+   * @uiDefault "Copied to Clipboard"
    */
   tooltipText: string;
 
@@ -17,6 +18,7 @@ export interface ReferralCodeProps {
    *
    * @uiName Show notification
    * @uiGroup Content
+   * @uiDefault true
    */
   showNotificationText: boolean;
 
@@ -25,6 +27,7 @@ export interface ReferralCodeProps {
    *
    * @uiName Notification text
    * @uiGroup Content
+   * @uiDefault "You've copied this code before"
    */
   notificationText: string;
 
@@ -33,6 +36,7 @@ export interface ReferralCodeProps {
    *
    * @uiName Tooltip duration
    * @uiGroup Behavior
+   * @uiDefault 1000
    */
   tooltipLifespan: number;
 
@@ -43,6 +47,7 @@ export interface ReferralCodeProps {
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
    * @uiGroup Style
+   * @uiDefault "left"
    */
   textAlign: string;
 
@@ -51,6 +56,7 @@ export interface ReferralCodeProps {
    *
    * @uiName Copy button label
    * @uiGroup Content
+   * @uiDefault "Copy Code"
    */
   copyButtonLabel: string;
 
@@ -61,6 +67,7 @@ export interface ReferralCodeProps {
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button Outside", "Button Below"]
    * @uiGroup Style
+   * @uiDefault "icon"
    */
   buttonStyle: 'icon' | 'button-outside' | 'button-below';
 
@@ -71,6 +78,7 @@ export interface ReferralCodeProps {
    * @uiEnum ["primary", "secondary"]
    * @uiEnumNames ["Primary", "Secondary"]
    * @uiGroup Style
+   * @uiDefault "primary"
    */
   buttonType: 'primary' | 'secondary';
 
