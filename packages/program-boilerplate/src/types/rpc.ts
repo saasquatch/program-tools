@@ -1,5 +1,6 @@
 import { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate";
 import Transaction from "../transaction";
+import { Referral, RSJsonNode, User, UserEvent } from "./saasquatch";
 
 /********************************************************/
 /*                          API                         */
@@ -8,15 +9,23 @@ import Transaction from "../transaction";
 /**
  * The different trigger handlers the programs can export
  */
-export type TriggerType =
+export type ActiveTriggerType =
   | "AFTER_USER_CREATED_OR_UPDATED"
-  | "AFTER_USER_EVENT_PROCESSED"
-  | "REFERRAL"
-  | "PROGRAM_INTROSPECTION"
   | "SCHEDULED"
   | "REWARD_SCHEDULED"
-  | "PROGRAM_VALIDATION"
-  | "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST";
+  | "REFERRAL"
+  | "AFTER_USER_EVENT_PROCESSED";
+
+/**
+ * The different trigger handlers the programs can export
+ */
+export type TriggerType =
+  | ActiveTriggerType
+  | (
+      | "PROGRAM_INTROSPECTION"
+      | "PROGRAM_VALIDATION"
+      | "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST"
+    );
 
 /**
  * The Program type
@@ -37,13 +46,27 @@ export type Program = {
 /********************************************************/
 
 /**
- * A JSON request body for the PROGRAM_TRIGGER case. This type
- * may not be complete.
+ * A JSON request body for the PROGRAM_TRIGGER case. Defined in core under ProgramTriggerQuery.graphql
  */
 export type ProgramTriggerBody = {
   messageType: "PROGRAM_TRIGGER";
-  activeTrigger: any;
-  program: any;
+  activeTrigger: {
+    type: ActiveTriggerType;
+    time: number;
+    user: User;
+    // present for AFTER_USER_CREATED_OR_UPDATED
+    previous?: User;
+    // present for AFTER_USER_CREATED_OR_UPDATED and AFTER_USER_EVENT_PROCESSED
+    events?: UserEvent[];
+    // present for REFERRAL
+    referral?: Referral;
+    [key: string]: any;
+  };
+  program: {
+    id: string;
+    rules: RSJsonNode;
+    templateId: string;
+  };
   tenant: {
     impactBrandId: string | undefined | null;
     settings: {
@@ -222,4 +245,13 @@ export type ProgramRequirement = {
   queryVariables: {
     [key: string]: any;
   };
+};
+
+export type TriggerSchemaObject = {
+  type: ProgramTriggerBody["activeTrigger"]["type"];
+  time: ProgramTriggerBody["activeTrigger"]["time"];
+  user: ProgramTriggerBody["activeTrigger"]["user"];
+  previous?: User;
+  event?: UserEvent;
+  referral?: Referral;
 };
