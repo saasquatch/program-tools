@@ -25,6 +25,21 @@ Follow the prompts to:
 
 This will create a new file in the `.changeset` directory that will be used to automatically update the version and changelog when the changes are released.
 
+#### Releasing a New Version
+
+When changesets are merged to the `main` branch, the GitHub Actions workflow will automatically:
+
+1. Create or update a "Version Packages" pull request that:
+   - Bumps the version in `package.json`
+   - Updates `CHANGELOG.md` with all changeset summaries
+   - Removes the processed changeset files
+
+2. When you're ready to release, simply **merge the "Version Packages" PR** to `main`
+
+3. The workflow will then automatically:
+   - Publish the new version to npm
+   - Create a git tag for the release
+
 #### Manual Development Releases
 
 For development and testing purposes, you can manually publish prerelease versions:
