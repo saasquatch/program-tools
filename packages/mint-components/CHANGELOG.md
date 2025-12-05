@@ -7,6 +7,165 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] - 2025-12-05
+
+### Changed
+
+- \<sqm-name-fields>
+
+  - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
+
+## [2.0.5] - 2025-12-02
+
+### Changed
+
+- \<sqm-user-info-form-view>
+
+  - Fix bug that caused previously unset fields to be disabled
+
+## [2.0.4] - 2025-11-20
+
+### Changed
+
+- \<sqm-payout-status-alert>
+- \<sqm-tax-and-cash-dashboard>
+
+  - Added more descriptive copy for the different reasons a payout may be on hold
+
+- \<sqm-header-logo>
+  - added optional props to fallback to text instead of an image for the logo
+
+## [2.0.3] - 2025-11-12
+
+### Added
+
+- Added more valid parents for the following components
+  - \<sqm-hero-image>
+  - \<sqm-image>
+
+## [2.0.2] - 2025-10-29
+
+### Changed
+
+- Changed `--sl-font-sans` token to point at `--sqm-primary-font` in `styles.ts`
+
+## [2.0.1] - 2025-10-23
+
+### Changed
+
+- Removed applying v1 stylesheet in the case where `SquatchBrandingConfig` isn't set.
+
+## [2.0.0] - 2025-10-22
+
+### Added
+
+- **Complete Theming System Overhaul**
+
+  - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
+  - `parseBrandingConfig()` function for dynamic branding configuration parsing
+  - Extensive CSS custom properties system for consistent theming across all components
+  - Support for color shades, button configurations, form fields, widget sizing, and typography
+  - New font loading system with Google Fonts integration via `insertFont()` functionality
+  - Window message listeners for real-time branding configuration updates in editor environments
+
+- **Enhanced Component Editor Support**
+
+  - Editor state controllers for improved component editing experience
+  - Component state management improvements across all widgets
+  - Enhanced component placement and validation
+  - Improved accessibility and user experience in content editor environments
+
+- **New Development Dependencies**
+  - Added `http-server` for local development
+  - Updated `@raisins/stencil-docs-target` to version 1.3.0
+  - Enhanced development tooling and documentation generation
+
+### Changed
+
+- **Major Version Bump**: `@saasquatch/mint-components` updated from 1.15.4 to 2.0.0
+- **Global Styling Architecture**: Complete redesign of the global styles system for better theming support
+- **Component API Enhancements**: All components now support the new centralized theming system
+- **Template System**: Updated all component templates to work with the new theming configuration
+- **TypeScript Definitions**: Expanded type definitions to support the new branding and theming capabilities
+
+### Fixed
+
+- **Component Integration**: Resolved issues with component state management and editor integration
+- **Theming Consistency**: Fixed styling inconsistencies across components with the new unified theming system
+- **Template Rendering**: Improved template rendering performance and reliability
+- **Type Safety**: Enhanced TypeScript type definitions for better development experience
+
+### Breaking Changes
+
+- **Theming System**: Complete overhaul of the component theming system
+
+  - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
+  - Components now rely on the centralized `BrandingConfiguration` for styling
+  - Direct styling overrides may need to be migrated to the new theming API
+
+- **Global Styles**: Restructured global styles architecture
+
+  - Components now use CSS custom properties instead of traditional CSS variables
+  - Font loading system has been redesigned with new APIs
+  - Global style initialization now requires the new branding configuration system
+
+- **Component APIs**: Enhanced component state management
+
+  - Editor state controllers introduced for all components
+  - Component placement validation has been improved
+  - Some internal component APIs have been restructured for better editor integration
+
+- **Dependencies**: Updated core dependencies
+  - Development dependencies updated which may affect build processes
+
+### Migration Notes
+
+For users upgrading from 1.x to 2.0.0:
+
+1. **Theming Migration**: Update any custom theming to use the new `BrandingConfiguration` interface
+2. **CSS Updates**: Replace legacy CSS variables with the new CSS custom properties system
+3. **Font Loading**: Update font loading to use the new `insertFont()` system if customizing fonts
+4. **Editor Integration**: Update any custom editor integrations to work with the new state controllers
+5. **Build Process**: Review build configuration for compatibility with updated dependencies
+
+This major release represents a significant advancement in the theming capabilities and editor experience of mint-components, providing a more robust and flexible foundation for component customization and integration.
+
+## [1.15.5] - 2025-10-21
+
+### Fixed
+
+- \<sqm-portal-google-registration-form>
+  - Fix terms checkbox slot to show on both form steps
+
+## [1.15.4] - 2025-10-20
+
+### Added
+
+- \<sqm-portal-google-registration-form>
+
+  - Enhanced two-step registration flow with improved validation
+  - Added support for additional form fields in registration process
+
+- \<sqm-name-fields>
+  - Added optional prop
+
+### Updated
+
+- \<sqm-password-field>
+- \<sqm-marketing-emails-checkbox>
+- \<sqm-input-field>
+- \<sqm-dropdown-field>
+- \<sqm-checkbox-field>
+  - Added google registration form to valid parents
+
+## [1.15.3] - 2025-10-14
+
+### Added
+
+- \<sqm-portal-google-registration-form>
+  - Added missing metadata to component
+  - Added formData slot to base registration form view
+
 ## [1.15.2] - 2025-10-03
 
 ### Added
@@ -758,7 +917,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-change-password>
   - \<sqm-portal-email-verification>
   - \<sqm-portal-forgot-password>
-  - \<sqm-portal-frame>
   - \<sqm-portal-login>
   - \<sqm-portal-logout>
   - \<sqm-portal-profile>
@@ -1281,7 +1439,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.15.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.6...HEAD
+[2.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.6
+[2.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.5
+[2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4
+[2.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.3
+[2.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.2
+[2.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.1
+[2.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.0
+[1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5
+[1.15.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.4
+[1.15.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.3
 [1.15.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.2
 [1.15.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.1
 [1.15.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.0

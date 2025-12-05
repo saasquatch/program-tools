@@ -187,3 +187,145 @@ interface Invoice {
   indirectTax: string;
   netEarnings: string;
 }
+
+interface ColorShadeConfig {
+  text?: string;
+  icon?: string;
+  border?: string;
+  background?: string;
+  iconAndBadge?: string;
+}
+
+interface WidgetSizeDimension {
+  value?: number;
+  unit?: "PX" | "%";
+}
+
+interface WidgetSizeConfig {
+  minWidth?: WidgetSizeDimension;
+  maxWidth?: WidgetSizeDimension;
+}
+
+export interface BrandingConfiguration {
+  /**
+   * Defines all branding related styles.
+   */
+  main?: {
+    brandColor?: string;
+    brandFont?: string;
+  };
+  color?: {
+    backgroundColor?: string;
+    textColorShades?: {
+      mainText: string;
+      subduedText: string;
+    };
+    accentColorShades?: {
+      icon?: string;
+      text?: string;
+      border?: string;
+      background?: string;
+    };
+    success?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    warning?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    critical?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    informative?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+    };
+    neutral?: {
+      text?: string;
+      iconAndBadge?: string;
+      border?: string;
+      background?: string;
+      [k: string]: unknown;
+    };
+  };
+  primaryButton?: {
+    buttonColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    buttonHoverColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    borderRadius?: number;
+  };
+  secondaryButton?: {
+    buttonColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    buttonHoverColor?: {
+      background?: string;
+      label?: string;
+      border?: string;
+    };
+    borderRadius?: number;
+  };
+  /**
+   * Defines form field colors.
+   */
+  formFields?: {
+    formFieldColor?: {
+      background?: string;
+      inputText?: string;
+      border?: string;
+    };
+    borderRadius?: number;
+    disabledBackgroundColor?: string;
+    selectedStateColor?: string;
+    hoverStateColor?: string;
+  };
+  border?: {
+    borderRadius?: number;
+    borderThickness?: number;
+    borderColor?: string;
+  };
+  /**
+   * Defines widget dimensions.
+   */
+  widgetSize?: {
+    embeddedWidgets?: {
+      minWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+      maxWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+    };
+    popupWidgets?: {
+      minWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+      maxWidth?: {
+        value: number;
+        unit: "px" | "%";
+      };
+    };
+  };
+}

@@ -5,6 +5,8 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
 import {
@@ -16,8 +18,6 @@ import { useWidgetVerification } from "./useWidgetVerification";
 
 /**
  * @uiName Widget Verification Flow
- * @exampleGroup Widget Verification
- * @example Widget Verification Flow - <sqm-widget-verification></sqm-widget-verification>
  */
 @Component({
   tag: "sqm-widget-verification",
@@ -139,6 +139,13 @@ export class WidgetVerification {
   @Prop() codeStep_networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
+  /**
+   * @undocumented
+   * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
+   * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+   */
+  @Prop() stateController: string = "{}";
+
   constructor() {
     withHooks(this);
   }
@@ -150,11 +157,11 @@ export class WidgetVerification {
   }
 
   render() {
-    const { showCode, onVerification, loading } = isDemo()
-      ? useDemoWidgetVerificationInternal()
+    const props = isDemo()
+      ? useDemoWidgetVerificationInternal(this)
       : useWidgetVerification();
 
-    if (loading) return <sl-spinner></sl-spinner>;
+    if (props.loading) return <sl-spinner></sl-spinner>;
 
     const generalText = this.getStepTextProps("general_");
 
@@ -172,14 +179,16 @@ export class WidgetVerification {
         >
           {generalText.verifyEmailDescription}
         </p>
-        {showCode ? (
+        {props.showCode ? (
           <sqm-code-verification
-            onVerification={onVerification}
+            onVerification={props.onVerification}
             {...this.getStepTextProps("codeStep_")}
+            {...extractProps(props, "sqm-code-verification_")}
           ></sqm-code-verification>
         ) : (
           <sqm-email-verification
             {...this.getStepTextProps("emailStep_")}
+            {...extractProps(props, "sqm-email-verification_")}
           ></sqm-email-verification>
         )}
       </div>
@@ -187,7 +196,7 @@ export class WidgetVerification {
   }
 }
 
-function useDemoWidgetVerificationInternal() {
+function useDemoWidgetVerificationInternal(props: WidgetVerification) {
   const [showCode, setShowCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
@@ -198,9 +207,22 @@ function useDemoWidgetVerificationInternal() {
   });
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
+  const states = parseStates(props.stateController);
+  const formatted = Object.keys(states).reduce(
+    (prev, key) =>
+      key === "sqm-widget-verification"
+        ? { ...prev, ...states[key] }
+        : { ...prev, [`${key}_stateController`]: states[key] },
+    {}
+  );
+
   const onVerification = () => {
     setContext(true);
   };
 
-  return { showCode, onVerification, loading: false };
+  return deepmerge(
+    { showCode, onVerification, loading: false },
+    formatted || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

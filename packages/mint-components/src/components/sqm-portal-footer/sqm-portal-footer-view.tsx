@@ -4,13 +4,13 @@ import { intl } from "../../global/global";
 import { PoweredByImg } from "./PoweredByImg";
 
 const vanillaStyle = `
-  :host{
+  :host {
     margin: 0 auto;
     width: 100%;
   }
-  a{
+  a {
     cursor:pointer;
-    color: inherit;
+    color: var(--sqm-text-subdued);
     text-decoration: none;
   }
 `;
@@ -42,14 +42,14 @@ export function PortalFooterView(props: PortalFooterViewProps) {
       "flex-direction": "column",
       "align-items": "center",
       "font-size": "var(--sl-font-size-small)",
-      color: "var(--sl-color-gray-600)",
+      color: "var(--sqm-text-subdued)",
       "padding-top": `var(--sl-spacing-${props.paddingTop})`,
       "padding-right": `var(--sl-spacing-${props.paddingRight})`,
       "padding-bottom": `var(--sl-spacing-${props.paddingBottom})`,
       "padding-left": `var(--sl-spacing-${props.paddingLeft})`,
       "row-gap": `var(--sl-spacing-small)`,
       "& a:hover": {
-        color: "var(--sl-color-gray-900)",
+        color: "var(--sqm-text)",
       },
     },
 
@@ -59,7 +59,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
     },
 
     PoweredByLink: {
-      color: "var(--sl-color-gray-400)",
+      color: "var(--sqm-text-subdued)",
       "font-size": "var(--sl-font-size-small)",
       display: "flex",
       alignItems: "center",
@@ -68,7 +68,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
         shapeRendering: "geometricprecision",
       },
       "&:hover, &:hover *": {
-        color: "var(--sl-color-gray-900)",
+        color: "var(--sqm-text)",
       },
     },
   };

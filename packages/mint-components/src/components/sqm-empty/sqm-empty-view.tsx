@@ -30,11 +30,7 @@ export function EmptyStateView(props: EmptyStateViewProps) {
           <p part="header-text">{emptyStateHeader}</p>
         </sqm-text>
         <sqm-text slot="content">
-          <p
-            part="description-text"
-            innerHTML=""
-            style={{ color: "var(--sl-color-gray-500)" }}
-          >
+          <p part="description-text">
             {intl.formatMessage(
               {
                 id: "emptyStateText",

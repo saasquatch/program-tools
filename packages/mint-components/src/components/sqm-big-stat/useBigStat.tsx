@@ -1,17 +1,17 @@
-import { gql } from "graphql-request";
-import { pathToRegexp } from "path-to-regexp";
-import { useMemo } from "@saasquatch/universal-hooks";
 import {
-  useQuery,
-  useProgramId,
-  useUserIdentity,
   useLocale,
+  useProgramId,
+  useQuery,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
+import { useMemo } from "@saasquatch/universal-hooks";
 import debugFn from "debug";
+import { gql } from "graphql-request";
+import { pathToRegexp } from "path-to-regexp";
+import { useChildElements } from "../../tables/useChildElements";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
-import { useChildElements } from "../../tables/useChildElements";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -143,16 +143,28 @@ const customFieldsQuery = (
   );
 };
 
-const referralsMonthQuery = (programId: string) => {
+const referralsMonthQuery = (
+  programId: string,
+  status?: "started" | "converted"
+) => {
   const programFilter =
     programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId };
 
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
   const filter = {
     ...programFilter,
+    ...convertedFilter,
     dateReferralStarted_timeframe: "this_month",
   };
+
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
@@ -173,14 +185,25 @@ const referralsMonthQuery = (programId: string) => {
   );
 };
 
-const referralsWeekQuery = (programId: string) => {
+const referralsWeekQuery = (
+  programId: string,
+  status?: "started" | "converted"
+) => {
   const programFilter =
     programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId };
 
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
   const filter = {
     ...programFilter,
+    ...convertedFilter,
     dateReferralStarted_timeframe: "this_week",
   };
   return debugQuery(
@@ -692,6 +715,112 @@ const rewardsAssignedQuery = (
   );
 };
 
+const rewardsExpiredQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
+            ) {
+              ... on CreditRewardBalance {
+                prettyExpiredCredit
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback;
+      return {
+        value: arr?.[0]?.prettyAssignedCredit || 0,
+        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+      };
+    }
+  );
+};
+
+const rewardsCancelledQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  unit: string,
+  global = ""
+) => {
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
+            ) {
+              ... on CreditRewardBalance {
+                prettyCancelledCredit
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback;
+      return {
+        value: arr?.[0]?.prettyAssignedCredit || 0,
+        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+      };
+    }
+  );
+};
+
 const rewardsAvailableQuery = (
   programId: string,
   locale: string,
@@ -941,6 +1070,14 @@ export const queries: {
     label: "Rewards Pending",
     query: rewardsPendingQuery,
   },
+  rewardsExpired: {
+    label: "Rewards Expired",
+    query: rewardsExpiredQuery,
+  },
+  rewardsCancelled: {
+    label: "Rewards Cancelled",
+    query: rewardsCancelledQuery,
+  },
   rewardsRedeemed: {
     label: "Rewards Paid",
     query: rewardsRedeemedQuery,
@@ -1015,20 +1152,21 @@ export const queries: {
   },
 };
 
+// ! Any update to this should be reflected in StatPathBuilder.tsx in the saasquatch repo
 // this should be exposed in documentation somehow
 export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
   { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
-  { name: "referralsMonth", route: "/(referralsMonth)" },
-  { name: "referralsWeek", route: "/(referralsWeek)" },
+  { name: "referralsMonth", route: "/(referralsMonth)/:status?" },
+  { name: "referralsWeek", route: "/(referralsWeek)/:status?" },
   { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
   { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
   { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
   {
     name: "rewardsCountFiltered",
     route:
-      "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
+      "/(rewardsCountFiltered)/:statType([FUELTANK|INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
   },
   {
     name: "integrationRewardsCountFiltered",
@@ -1038,6 +1176,14 @@ export const StatPaths = [
   {
     name: "rewardsAssigned",
     route: "/(rewardsAssigned)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsExpired",
+    route: "/(rewardsExpired)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsCancelled",
+    route: "/(rewardsCancelled)/:statType/:unit/:global?",
   },
   {
     name: "rewardsPending",
@@ -1104,10 +1250,15 @@ export function useBigStat(props: BigStat): BigStatHook {
     return {
       props: {
         value: 0,
-        statvalue: "!!!",
+        statvalue: "-",
         flexReverse,
         alignment,
         loading: false,
+        statTextColor: props.statTextColor,
+        statFontSize: props.statFontSize,
+        descriptionTextColor: props.descriptionTextColor,
+        descriptionFontSize: props.descriptionFontSize,
+        statFontWeight: props.statFontWeight,
       },
       label: "BAD PROP TYPE",
     };
@@ -1147,6 +1298,11 @@ export function useBigStat(props: BigStat): BigStatHook {
       loading: stat?.loading,
       flexReverse,
       alignment,
+      statTextColor: props.statTextColor,
+      statFontSize: props.statFontSize,
+      descriptionTextColor: props.descriptionTextColor,
+      descriptionFontSize: props.descriptionFontSize,
+      statFontWeight: props.statFontWeight,
     },
     label,
   };

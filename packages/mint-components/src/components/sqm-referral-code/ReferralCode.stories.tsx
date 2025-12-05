@@ -22,6 +22,16 @@ export const ShowNotificationText = () => {
     ></sqm-referral-code>
   );
 };
+
+export const ShowNotificationTextRed = () => {
+  return (
+    <sqm-referral-code
+      textColor="red"
+      showNotificationText={true}
+      notificationText="You've copied this code before"
+    ></sqm-referral-code>
+  );
+};
 export const ShowNotificationTextWithButton = () => {
   return (
     <sqm-referral-code

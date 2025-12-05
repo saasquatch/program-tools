@@ -18,7 +18,7 @@ import {
   TaxContext,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
 import {
   INDIRECT_TAX_PROVINCES,
   INDIRECT_TAX_SPAIN_REGIONS,
@@ -100,8 +100,14 @@ export const useTaxAndCashDashboard = (
     // Clear override context once on submitted
     setContext({});
 
-    if (window.location.hash)
+    if (window.location.hash) {
+      setContext({
+        overrideNextStep: "/dashboard",
+        overrideBackStep: "/dashboard",
+        hideSteps: true,
+      });
       setStep(`/${window.location.hash.replace("#", "")}`);
+    }
   }, []);
 
   const {

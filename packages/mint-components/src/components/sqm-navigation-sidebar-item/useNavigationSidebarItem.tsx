@@ -14,7 +14,15 @@ export function useNavigationSidebarItem(
     data: {
       label: props.label,
       icon: props.icon,
-      path: props.path
+      path: props.path,
     },
+    backgroundColor: props.backgroundColor,
+    backgroundHoverColor: props.backgroundHoverColor,
+    textColor: props.textColor,
+    textHoverColor: props.textHoverColor,
+    borderRadius: props.borderRadius,
+    backgroundFocusedColor: props.backgroundFocusedColor,
+    textFocusedColor: props.textFocusedColor,
+    padding: props.padding,
   };
 }

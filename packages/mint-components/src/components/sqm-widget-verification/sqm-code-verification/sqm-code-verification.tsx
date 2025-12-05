@@ -4,12 +4,12 @@ import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
+import { VERIFICATION_PARENT_NAMESPACE } from "../keys";
 import {
   WidgetCodeVerificationView,
   WidgetCodeVerificationViewProps,
 } from "./sqm-code-verification-view";
 import { useWidgetCodeVerification } from "./useCodeVerification";
-import { SHOW_CODE_NAMESPACE, VERIFICATION_PARENT_NAMESPACE } from "../keys";
 
 @Component({
   tag: "sqm-code-verification",
@@ -99,10 +99,10 @@ function useDemoWidgetCodeVerification(
   return deepmerge(
     {
       states: {
+        initialiseLoading: false,
         loading: false,
         email: "test@example.com",
         emailResent,
-        resendError: false,
         verifyFailed: false,
       },
       refs: {

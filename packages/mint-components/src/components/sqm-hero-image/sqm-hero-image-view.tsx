@@ -19,6 +19,7 @@ export interface HeroImageViewProps {
   paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
+  buttonType?: "primary" | "secondary";
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {
@@ -26,6 +27,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     (props.header || props.description || props.buttonText) &&
       props.layout === "overlay"
   );
+
   // Dependent on props, not feasiable to move out
   const style = {
     Container: {
@@ -35,7 +37,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: "100%",
         height: "100%",
         position: "absolute",
-        background: props.overlayColor || "var(--sl-color-primary-900)",
+        background: props.overlayColor || "var(--sl-color-black)",
         opacity: props.overlayOpacity,
       },
     },
@@ -62,7 +64,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         props.paddingImage +
         "))",
       textAlign: "center",
-      color: props.textColor || "var(--sl-color-neutral-0)",
+      color: props.textColor || "var(--sqm-text)",
       lineHeight: "var(--sl-line-height-dense)",
       "@media (max-width: 599px)": {
         padding: "var(--sl-spacing-" + props.paddingText + ")",
@@ -73,7 +75,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       background: props.backgroundColor || "",
       flexDirection: props.imagePos === "right" ? "row-reverse" : "row",
       lineHeight: "var(--sl-line-height-dense)",
-      color: props.textColor || "var(--sl-color-neutral-900)",
+      color: props.textColor || "var(--sqm-text)",
       "& .image-area": {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
@@ -121,6 +123,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       marginTop: "var(--sl-spacing-medium)",
       "&::part(base)": {
         padding: "0 var(--sl-spacing-x-large)",
+        color: "var(--sqm-primary-button-color)",
+        backgroundColor: "var(--sqm-primary-button-background)",
+        border: "var(--sqm-primary-button-color-border)",
       },
       "@media (max-width: 599px)": {
         width: "100%",
@@ -162,6 +167,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <sl-button
               class={sheet.classes.Button}
               type="primary"
+              exportparts={`base: ${props.buttonType}button-base`}
               onClick={() =>
                 props.buttonNewTab
                   ? window.open(props.buttonLink)

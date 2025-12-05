@@ -1,8 +1,8 @@
 import { useState } from "@saasquatch/universal-hooks";
 import jsonpointer from "jsonpointer";
+import { jwtDecode } from "jwt-decode";
 import { useRegistrationForm } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { PortalGoogleRegistrationForm } from "./sqm-portal-google-registration-form";
-import { jwtDecode } from "jwt-decode";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -14,7 +14,6 @@ export type ValidationErrorFunction = (input: {
 export function usePortalGoogleRegistrationForm(
   props: PortalGoogleRegistrationForm
 ) {
-  const [emailValidationError, setEmailValidationError] = useState(null);
   const [registrationFormState, setRegistrationFormState] =
     useRegistrationForm();
   const [showRegistrationForm, setShowRegistrationForm] = useState({
@@ -24,32 +23,46 @@ export function usePortalGoogleRegistrationForm(
   const handleEmailSubmit = async (event: any) => {
     const formControls = event.target.getFormControls();
     let formData = {};
-    let errorMessage: string = null;
+    let validationErrors: Record<string, string> = {};
 
     formControls.forEach((control) => {
-      if (!control.name || control.name !== "/email") return;
+      if (!control.name) return;
 
-      jsonpointer.set(formData, control.name, control.value);
-      if (control.required && !control.value)
-        errorMessage = props.requiredFieldErrorMessage;
+      const key = control.name;
+      const value = control.value;
+
+      jsonpointer.set(formData, key, value);
+
+      if (control.required && !value) {
+        jsonpointer.set(validationErrors, key, props.requiredFieldErrorMessage);
+      }
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
         const validationError = validate({
           control,
-          key: "email",
-          value: control.value,
+          key,
+          value,
         });
-        if (validationError) errorMessage = validationError;
+
+        if (validationError)
+          jsonpointer.set(validationErrors, key, validationError);
       }
     });
 
-    if (errorMessage) {
-      setEmailValidationError(errorMessage);
+    if (Object.keys(validationErrors).length) {
+      // early return for validation errors
+      setRegistrationFormState({
+        ...registrationFormState,
+        loading: false,
+        error: "",
+        validationErrors,
+      });
       return;
     }
 
     setRegistrationFormState({
       ...registrationFormState,
+      validationErrors: {},
       initialData: {
         ...registrationFormState?.initialData,
         ...formData,
@@ -79,8 +92,9 @@ export function usePortalGoogleRegistrationForm(
   };
 
   return {
+    registrationFormState,
     showRegistrationForm,
-    emailValidationError,
+    validationErrors: registrationFormState.validationErrors,
     handleGoogleInit,
     handleEmailSubmit,
   };

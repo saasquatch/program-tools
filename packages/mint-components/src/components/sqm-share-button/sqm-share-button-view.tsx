@@ -21,6 +21,7 @@ export interface ShareButtonViewProps {
   pill?: boolean;
   type?:
     | "primary"
+    | "secondary"
     | "success"
     | "info"
     | "warning"
@@ -28,7 +29,7 @@ export interface ShareButtonViewProps {
     | "default"
     | "text";
   size?: "small" | "medium" | "large";
-
+  border?: string;
   icon?: string;
   hideicon?: boolean;
   hidetext?: boolean;
@@ -47,7 +48,11 @@ const medium = {
   facebook: { color: "#1877f2", text: "#fff", icon: "facebook" },
   twitter: { color: "#000000", text: "#fff", icon: "twitter-x" },
   email: { color: "#666666", text: "#fff", icon: "envelope" },
-  direct: { color: "var(--sl-color-primary-500)", text: "#fff", icon: "send" },
+  direct: {
+    color: "var(--sqm-primary-button-background)",
+    text: "var(--sqm-primary-button-color)",
+    icon: "send",
+  },
   linkedin: { color: "#0077b5", text: "#fff", icon: "linkedin" },
   sms: { color: "#34DA50", text: "#fff", icon: "chat" },
   fbmessenger: { color: "#0084ff", text: "#fff", icon: "messenger" },
@@ -71,15 +76,9 @@ const styleString = sheet.toString();
 
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
-	*::part(base) {
-	border: none;
-			--sl-focus-ring-color-primary: ${
-        props.backgroundcolor
-          ? props.backgroundcolor
-          : props.medium
-          ? medium[props.medium].color
-          : ""
-      }80!important;
+	sl-button::part(base) {
+	  border: ${props.border || "none"};
+    font-family: var(--sqm-primary-font);
 
 	background: ${
     props.backgroundcolor
@@ -95,28 +94,14 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       ? medium[props.medium].text
       : ""
   };
-	border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
+	border-radius: ${
+    props.borderradius
+      ? props.borderradius + "px"
+      : "var(--sqm-primary-button-radius)"
+  };
 	}
 
-	*::part(base):hover {
-		border-color: ${
-      props.backgroundcolor
-        ? props.backgroundcolor
-        : props.medium
-        ? medium[props.medium].color
-        : ""
-    }D1!important;
-	}
 
-	*::part(base):focus {
-		border-color: ${
-      props.backgroundcolor
-        ? props.backgroundcolor
-        : props.medium
-        ? medium[props.medium].color
-        : ""
-    }D1!important;
-	}
 
 	*::part(label) {
 		position: relative;
@@ -140,7 +125,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         type={props.type}
         onClick={!props.isPlainLink ? props.onClick : undefined}
         href={props.isPlainLink ? props.messageLink : undefined}
-        exportparts={`base: ${props.type}sharebutton-base`}
+        exportparts={`base: ${props.type}button-base`}
       >
         {!props.hideicon && (
           <sl-icon

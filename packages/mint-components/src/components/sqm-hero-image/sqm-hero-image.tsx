@@ -6,9 +6,10 @@ import { HeroImageView } from "./sqm-hero-image-view";
 
 /**
  * @uiName Hero Image
+ * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
  * @exampleGroup Common Components
- * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right" background-color="#F9F9F9"></sqm-hero-image>
- * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" background-color="#F9F9F9" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+ * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
+ * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
  */
 @Component({
   tag: "sqm-hero-image",
@@ -26,11 +27,13 @@ export class HeroImage {
    * @uiName Overlay color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() overlayColor?: string;
 
   /**
    * @uiName Overlay opacity
+   * @uiGroup Style
    */
   @Prop() overlayOpacity: string = "0.75";
 
@@ -38,6 +41,7 @@ export class HeroImage {
    * @uiName Text color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() textColor?: string;
 
@@ -45,6 +49,7 @@ export class HeroImage {
    * @uiName Background color
    * @uiWidget color
    * @format color
+   * @uiGroup Style
    */
   @Prop() backgroundColor?: string;
 
@@ -53,12 +58,14 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["overlay", "columns"]
    * @uiEnumNames ["Overlay", "Two-column"]
+   * @uiGroup Style
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
 
   /**
    * @uiName Image percentage
    * @uiType number
+   * @uiGroup Style
    */
   @Prop() imagePercentage: number = 50;
 
@@ -67,6 +74,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop() imagePos: "left" | "center" | "right" = "center";
 
@@ -75,6 +83,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["top", "bottom"]
    * @uiEnumNames ["Top", "Bottom"]
+   * @uiGroup Style
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
@@ -110,6 +119,7 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   * @uiGroup Style
    */
   @Prop() paddingText: Spacing = "xxxx-large";
 
@@ -118,8 +128,20 @@ export class HeroImage {
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
+   * @uiGroup Style
    */
   @Prop() paddingImage: Spacing = "none";
+
+  /**
+   * The type of the button that is used (primary or secondary).
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
 
   constructor() {
     withHooks(this);

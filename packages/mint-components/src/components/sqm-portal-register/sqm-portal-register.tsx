@@ -16,11 +16,11 @@ import { usePortalRegister } from "./usePortalRegister";
  */
 @Component({
   tag: "sqm-portal-register",
-  shadow: true,
+  shadow: false,
 })
 export class PortalRegister {
   @State()
-  ignored = true;
+  ignored = false;
 
   /**
    * Redirect participants to this page from their verification email

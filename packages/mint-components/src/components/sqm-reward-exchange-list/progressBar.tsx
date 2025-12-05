@@ -21,15 +21,15 @@ function Dot({
       <div
         style={{
           backgroundColor: completed
-            ? "var(--sl-color-success-500)"
+            ? "var(--sqm-success-color-icon)"
             : incomplete
-            ? "var(--sl-color-neutral-200)"
-            : "var(--sl-color-neutral-0)",
+            ? "var(--sqm-border-color)"
+            : "white",
           border: active
-            ? "1px solid var(--sl-color-success-500)"
+            ? "1px solid var(--sqm-success-color-border)"
             : incomplete
-            ? "1px solid var(--sl-color-neutral-200)"
-            : "1px solid var(--sl-color-success-500)",
+            ? "1px solid var(--sqm-border-color)"
+            : "1px solid var(--sqm-success-color-border)",
           borderRadius: "50%",
           width: "23px",
           height: "23px",
@@ -46,8 +46,8 @@ function Dot({
           <div
             style={{
               color: active
-                ? "var(--sl-color-success-500)"
-                : "var(--sl-color-neutral-50)",
+                ? "var(--sqm-success-color-border)"
+                : "var(--sqm-text-subdued)",
               width: "23px",
               lineHeight: "24px",
               textAlign: "center",
@@ -76,8 +76,8 @@ function ProgressLine({
         borderRadius: "4px",
         background:
           incomplete || active
-            ? "var(--sl-color-neutral-200)"
-            : "var(--sl-color-success-500)",
+            ? "var(--sqm-border-color)"
+            : "var(--sqm-success-color-icon)",
         position: "relative",
         bottom: "0",
         left: "0",

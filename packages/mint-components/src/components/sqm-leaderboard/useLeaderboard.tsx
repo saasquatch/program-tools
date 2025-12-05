@@ -28,6 +28,12 @@ export interface LeaderboardProps {
   maxRows: number;
   programId?: string;
   interval: string;
+  viewingUserHighlightColor?: string;
+  viewingUserHighlightTextColor?: string;
+  background?: string;
+  borderColor?: string;
+  textColor?: string;
+  borderRadius?: number;
   empty: VNode;
   demoProps?: LeaderboardViewProps;
 }

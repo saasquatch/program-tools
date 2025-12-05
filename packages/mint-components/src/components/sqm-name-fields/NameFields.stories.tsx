@@ -10,8 +10,9 @@ export default {
 };
 
 const props: NameFieldsViewProps = {
-  states: {
-    registrationFormState: {
+    states: {
+      optional: false,
+      registrationFormState: {
       validationErrors: undefined,
     },
     content: {
@@ -23,6 +24,7 @@ const props: NameFieldsViewProps = {
 
 const errorProps: NameFieldsViewProps = {
   states: {
+    optional: false,
     registrationFormState: {
       validationErrors: {
         firstName: "Cannot be empty",

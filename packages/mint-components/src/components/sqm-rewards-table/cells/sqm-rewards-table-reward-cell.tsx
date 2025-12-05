@@ -1,5 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
 import { intl } from "../../../global/global";
+import { Reward } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
 
 const style = {
@@ -181,11 +182,11 @@ export class RewardTableRewardsCell {
             height: "3px",
             width: "100%",
             margin: "var(--sl-spacing-xx-small) 0",
-            background: "var(--sl-color-neutral-200)",
+            background: "var(--sqm-border-color)",
             "&:after": {
               content: '""',
               display: "block",
-              background: "var(--sl-color-primary-300)",
+              background: "var(--sqm-accent-color-icon)",
               borderRadius: "100px",
               width: `${progress}%`,
               height: "100%",
@@ -201,11 +202,11 @@ export class RewardTableRewardsCell {
           },
           Text: {
             fontSize: "var(--sl-font-size-medium)",
-            color: "var(--sl-color-gray-800)",
+            color: "var(--sqm-text)",
           },
           Subtext: {
             fontSize: "var(--sl-font-size-small)",
-            color: "var(--sl-color-neutral-500)",
+            color: "var(--sqm-text-subdued)",
           },
         };
         const sheet = createStyleSheet(style);

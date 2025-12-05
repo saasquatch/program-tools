@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import JSONPointer, { set } from "jsonpointer";
 import { intl } from "../../../global/global";
+import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 import {
   FINANCE_NETWORK_SETTINGS_NAMESPACE,
   FinanceNetworkSetting,
@@ -22,11 +23,10 @@ import {
   TaxCountry,
   USER_QUERY_NAMESPACE,
   UserQuery,
-} from "../sqm-tax-and-cash/data";
+} from "../data";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { BankingInfoForm } from "./sqm-banking-info-form";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
-import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
-import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
 // Hardcoded in Impact backend
 export const paypalFeeMap = {
@@ -259,11 +259,6 @@ export function useBankingInfoForm(
     : _paymentMethodChecked;
 
   useEffect(() => {
-    // reset redirect hash
-    window.location.hash = "";
-  }, []);
-
-  useEffect(() => {
     if (!userData) return;
     if (!paymentOptions) return;
 
@@ -465,8 +460,8 @@ export function useBankingInfoForm(
       setShowVerification(false);
     }
     await runMutation(formData, token);
-
     setShowModal(false);
+    window.location.hash = "";
   };
 
   const onVerification = async (token: string | null) => {
@@ -504,7 +499,14 @@ export function useBankingInfoForm(
       setBankCountry: updateBankCountry,
       setPaymentMethodChecked,
       setPaymentScheduleChecked,
-      onBack: () => setStep("/dashboard"),
+      onBack: () => {
+        // return to dashboard
+        if (window.location.hash) {
+          window.location.hash = "";
+        } else {
+          setStep("/dashboard");
+        }
+      },
       setCountrySearch,
       onVerification,
       onVerificationHide: () => onVerification(null),

@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { Reward } from "../../saasquatch";
 import column from "./columns/referral-table-column.feature";
 import date from "./columns/referral-table-date-column.feature";
 import reward from "./columns/referral-table-rewards-column.feature";

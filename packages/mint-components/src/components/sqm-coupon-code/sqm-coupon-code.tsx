@@ -9,6 +9,7 @@ import { useCouponCode } from "./useCouponCode";
 
 /**
  * @uiName Coupon Code
+ * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
@@ -51,6 +52,7 @@ export class CouponCode {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    * @uiEnumNames ["Left", "Center", "Right"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "text-align",
@@ -72,6 +74,7 @@ export class CouponCode {
    * @uiType string
    * @uiEnum ["icon", "button-outside", "button-below"]
    * @uiEnumNames ["Icon", "Button outside", "Button below"]
+   * @uiGroup Style
    */
   @Prop({
     attribute: "copy-button-style",
@@ -201,6 +204,52 @@ export class CouponCode {
   couponCodePlaceholder: string = "...";
 
   /**
+   * Border color of share link container
+   * @uiName Border color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() borderColor?: string;
+
+  /**
+   * Color of the text and copy icon
+   * @uiName Text color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() textColor?: string;
+
+  /**
+   * The border radius on the share link container (in pixels)
+   * @uiName Border Radius
+   * @uiType number
+   * @uiGroup Style
+   */
+  @Prop() borderRadius?: string;
+
+  /**
+   * The type of the button (primary or secondary) that will be used to copy the link.
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["primary", "secondary"]
+   * @uiEnumNames ["Primary", "Secondary"]
+   * @uiGroup Style
+   */
+  @Prop()
+  buttonType?: "primary" | "secondary" = "primary";
+
+  /**
+   * Background color of share link container
+   * @uiName Background color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -234,6 +283,11 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
       error: false,
       couponCodePlaceholder: props.couponCodePlaceholder,
       couponCodeLabel: props.couponCodeLabel,
+      borderColor: props.borderColor,
+      backgroundColor: props.backgroundColor,
+      textColor: props.textColor,
+      borderRadius: props.borderRadius,
+      buttonType: props.buttonType,
       codeSyncErrorText: props.codeSyncErrorText,
       codeSyncErrorRetryText: props.codeSyncErrorRetryText,
       open,

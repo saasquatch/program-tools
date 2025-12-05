@@ -161,12 +161,12 @@ export class TaxAndCashDashboard {
   /**
    * @uiName Submit new tax form button label
    */
-  @Prop() newFormButton: string = "Submit new form";
+  @Prop() newFormButton: string = "Submit new tax form";
   /**
    *
    * @uiName Edit payment info button label
    */
-  @Prop() editPaymentInformationButton: string = "Edit Payout Information";
+  @Prop() editPaymentInformationButton: string = "Edit payout information";
   /**
    * @uiName Not registered for indirect tax text
    * @uiWidget textArea
@@ -238,7 +238,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification required internal alert header
    */
   @Prop() verificationRequiredInternalHeader: string =
-    "Identity Verification in Progress";
+    "Identity verification in progress";
   /**
    * @uiName Verification required internal alert description
    */
@@ -248,7 +248,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification review internal alert header
    */
   @Prop() verificationReviewInternalHeader: string =
-    "Identity Verification Under Review";
+    "Identity verification under review";
   /**
    * @uiName Verification review internal alert description
    */
@@ -258,7 +258,7 @@ export class TaxAndCashDashboard {
    * @uiName Verification failed internal alert header
    */
   @Prop() verificationFailedInternalHeader: string =
-    "Identity Verification Unsuccessful";
+    "Identity verification unsuccessful";
   /**
    * @uiName Verification failed internal alert description
    */
@@ -287,6 +287,71 @@ export class TaxAndCashDashboard {
    */
   @Prop() accountReviewDescription: string =
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
+  /**
+   * @uiName Payment hold on change alert header
+   */
+  @Prop() paymentHoldOnChangeHeader: string =
+    "We are reviewing your new payout settings";
+  /**
+   * @uiName Payment hold on change alert description
+   */
+  @Prop() paymentHoldOnChangeDescription: string =
+    "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours.";
+
+  /**
+   * @uiName Beneficiary name invalid alert header
+   */
+  @Prop() beneficiaryNameInvalidHeader: string =
+    "Your payment information does not match your tax form";
+  /**
+   * @uiName Beneficiary name invalid description
+   */
+  @Prop() beneficiaryNameInvalidDescription: string =
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+
+  /**
+   * @uiName Beneficiary name mismatch alert header
+   */
+  @Prop() beneficiaryNameMismatchHeader: string =
+    "Your payment information does not match your tax form";
+  /**
+   * @uiName Beneficiary name mismatch alert description
+   */
+  @Prop() beneficiaryNameMismatchDescription: string =
+    "The account holder (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+
+  /**
+   * @uiName Bank name mismatch alert header
+   */
+  @Prop() bankTaxNameMismatchHeader: string =
+    "Your payment information does not match your tax form";
+  /**
+   * @uiName Bank name mismatch alert description
+   */
+  @Prop() bankTaxNameMismatchDescription: string =
+    "The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.";
+
+  /**
+   * @uiName Withdrawal settings invalid alert header
+   */
+  @Prop() withdrawalSettingsInvalidHeader: string =
+    "Your payment information is incomplete or includes invalid characters";
+  /**
+   * @uiName Withdrawal settings invalid alert description
+   */
+  @Prop() withdrawalSettingsInvalidDescription: string =
+    "There are missing fields or invalid characters in your payment information. Please review your information and make sure it is correct. Your payouts are on hold until this is resolved.";
+
+  /**
+   * @uiName Payment returned alert header
+   */
+  @Prop() paymentReturnedHeader: string = "Payout unsuccessful";
+  /**
+   * @uiName Payment returned alert description
+   */
+  @Prop() paymentReturnedDescription: string =
+    "Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.";
+
   /**
    * @uiName Terms and Conditions text
    */
@@ -400,6 +465,12 @@ export class TaxAndCashDashboard {
    */
   @Prop() demoData?: DemoData<UseTaxAndCashDashboardResult>;
 
+  /**
+   * @undocumented
+   * @componentState { "title": "Payouts on hold", "props": { "states": { "payoutStatus": "HOLD" } }, "uiGroup": "Dashboard Properties" }
+   */
+  @Prop() stateController?: string = "{}";
+
   constructor() {
     withHooks(this);
   }
@@ -445,6 +516,7 @@ export class TaxAndCashDashboard {
 function useDemoTaxAndCashDashboard(
   props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
+  // @ts-ignore
   return deepmerge(
     {
       states: {
@@ -453,16 +525,25 @@ function useDemoTaxAndCashDashboard(
         documentTypeString: "W-9",
         status: "ACTIVE",
         country: "United States",
-        indirectTaxNumber: 55555555,
+        indirectTaxNumber: "55555555",
         indirectTaxType: "Indirect Tax",
-        noFormNeeded: true,
+        noFormNeeded: false,
         disabled: false,
         loading: false,
         showNewFormDialog: false,
         hasHold: false,
-        showVerifyIdentity: false,
+
+        subRegion: "CA",
+        subRegionTaxNumber: undefined,
+        qstNumber: undefined,
+        isBusinessEntity: false,
+        province: undefined,
+        notRegistered: true,
+        loadingError: false,
+
         payoutStatus: "DONE",
         veriffLoading: false,
+        canEditPayoutInfo: true,
       },
       callbacks: {
         onClick: () => console.debug("check step"),
@@ -472,8 +553,19 @@ function useDemoTaxAndCashDashboard(
         onVerifyClick: () => console.log("verify"),
       },
       text: props.getTextProps(),
+      slots: {
+        payoutDetailsCardSlot: (
+          <sqm-payout-details-card
+            demoData={{
+              states: {
+                badgeStatus: "nextPayout",
+              },
+            }}
+          ></sqm-payout-details-card>
+        ),
+      },
     },
-    props.demoData || {},
+    props.demoData || props.stateController || {},
     { arrayMerge: (_, a) => a }
   );
 }

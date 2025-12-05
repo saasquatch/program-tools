@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
 import { vatLabels } from "../../countries";
-import { TaxCountry } from "../../sqm-tax-and-cash/data";
+import { TaxCountry } from "../../data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
 import { formatErrorMessage } from "../../utils";
 
@@ -81,7 +81,7 @@ const style = {
     gap: "16px",
   },
   HR: {
-    border: "1px solid #E0E0E0",
+    border: "var(--sqm-border-thickness, 1px) solid var(--sqm-border-color)",
     margin: "10px 0",
   },
   Input: { maxWidth: "500px" },
@@ -96,12 +96,13 @@ const style = {
   ErrorInput: {
     maxWidth: "500px",
     "&::part(base)": {
-      border: "1px solid var(--sl-color-danger-500)",
+      border:
+        "var(--sqm-border-thickness, 1px) solid var(--sqm-danger-color-border)",
       borderRadius: "var(--sl-input-border-radius-medium)",
     },
 
     "&::part(help-text)": {
-      color: "var(--sl-color-danger-500)",
+      color: "var(--sqm-danger-color-text)",
     },
   },
 };
@@ -117,6 +118,20 @@ const vanillaStyle = `
        margin: 0;
        padding: 0;
        box-sizing: border-box;
+    }
+    sl-menu-item::part(base) {
+      color: var(--sqm-input-color);
+    }
+
+    sl-menu-item::part(base):hover {
+      background-color: var(--sqm-input-border-color-hover);
+    }
+    sl-checkbox[checked]::part(control){
+      background-color: var(--sqm-input-border-color-focus);
+    }
+
+    sl-checkbox[checked]::part(checked-icon){
+      color: var(--sqm-input-background);
     }
   `;
 
