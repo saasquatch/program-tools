@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] - 2025-12-05
+
+### Changed
+
+- \<sqm-name-fields>
+
+  - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
+
 ## [2.0.5] - 2025-12-02
 
 ### Changed
@@ -1431,7 +1439,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.5...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.6...HEAD
+[2.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.6
 [2.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.5
 [2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4
 [2.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.3
