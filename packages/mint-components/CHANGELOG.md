@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] - 2025-12-05
+
+### Changed
+
+- \<sqm-tax-and-cash-dashboard-view>
+
+  - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
+  - Added ICU string for text prop indirectTaxTooltipSupport
+
+- \<sqm-tax-and-cash-dashboard>
+
+  - Updated text prop indirectTaxTooltipSupport to handle ICU string
+
 ## [2.0.5] - 2025-12-02
 
 ### Changed

@@ -353,6 +353,7 @@ const style = {
     "&::part(panel)": {
       boxShadow: "none",
       border: "none",
+      marginTop: "var(--sl-spacing-x-small)",
     },
   },
   DropdownContent: {
@@ -957,7 +958,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
     if (!trigger || !panel) return;
 
-    let hideTimeout;
+    let hideTimeout: ReturnType<typeof setTimeout> | undefined;
 
     const show = () => {
       clearTimeout(hideTimeout);
@@ -972,6 +973,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     trigger.addEventListener("mouseleave", scheduleHide);
     panel.addEventListener("mouseenter", show);
     panel.addEventListener("mouseleave", scheduleHide);
+
+    return () => {
+      trigger.removeEventListener("mouseenter", show);
+      trigger.removeEventListener("mouseleave", scheduleHide);
+      panel.removeEventListener("mouseenter", show);
+      panel.removeEventListener("mouseleave", scheduleHide);
+      clearTimeout(hideTimeout);
+    };
   };
 
   return (
