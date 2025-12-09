@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.7] - 2025-12-09
+
+- \<sqm-tax-and-cash-dashboard-view>
+
+  - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
+  - Added ICU string for text prop indirectTaxTooltipSupport
+
+- \<sqm-tax-and-cash-dashboard>
+
+  - Updated text prop indirectTaxTooltipSupport to handle ICU string
+
 ## [2.0.6] - 2025-12-05
 
 ### Changed
@@ -1439,7 +1450,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.7...HEAD
+[2.0.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.7
 [2.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.6
 [2.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.5
 [2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4
