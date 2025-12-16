@@ -1,5 +1,5 @@
 export const rewardEmailQuery = `
-  query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $referralId: ID!) {
+  query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $referralId: ID!, $eventId: ID, $fetchEvent: Boolean!) {
     reward(id:$rewardId) {
       ...AllFlatRewardFields
     }
@@ -22,6 +22,16 @@ export const rewardEmailQuery = `
         redirectUrl {
           url
         }
+      }
+    }
+
+    userEvents(filter: {id_eq: $eventId}) @include(if: $fetchEvent) {
+      data {
+        id
+        dateReceived
+        dateTriggered
+        dateProcessed
+        fields
       }
     }
 
@@ -66,7 +76,7 @@ export const rewardEmailQuery = `
   }
 `;
 
-export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
+export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!, $eventId: ID, $fetchEvent: Boolean!) {
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
@@ -79,6 +89,16 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     sms:messageLink(programId:$programId,shareMedium:SMS)
     linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN)
     fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER)
+  }
+
+  userEvents(filter: {id_eq: $eventId}) @include(if: $fetchEvent) {
+    data {
+      id
+      dateReceived
+      dateTriggered
+      dateProcessed
+      fields
+    }
   }
 
   referral(id:$referralId) {

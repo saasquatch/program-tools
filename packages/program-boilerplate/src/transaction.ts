@@ -244,17 +244,21 @@ export default class Transaction {
     user,
     referralId,
     rewardId,
+    eventId,
   }: {
     emailKey: string;
     user: User;
     referralId: string;
     rewardId?: string;
+    eventId?: string;
   }) {
     const variables = {
       userId: user.id,
       accountId: user.accountId,
       programId: this.context.body.program.id,
       referralId: referralId,
+      eventId: eventId,
+      fetchEvent: !!eventId,
     };
 
     const queryVariables = rewardId ? { ...variables, rewardId } : variables;
@@ -306,6 +310,7 @@ export default class Transaction {
     status,
     overrideProperties,
     dynamicProperties,
+    eventId,
   }: {
     emailKey: string;
     rewardKey: string;
@@ -314,6 +319,7 @@ export default class Transaction {
     status?: string;
     overrideProperties?: any;
     dynamicProperties?: any;
+    eventId?: string;
   }) {
     const { rewardId } = this.generateReferralReward({
       rewardKey,
@@ -326,7 +332,13 @@ export default class Transaction {
       dynamicProperties,
     });
 
-    this.generateReferralEmail({ emailKey, user, referralId, rewardId });
+    this.generateReferralEmail({
+      emailKey,
+      user,
+      referralId,
+      rewardId,
+      eventId,
+    });
   }
 
   generateRefunds() {
