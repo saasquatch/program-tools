@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.8] - 2025-01-06
+
+- \<sqm-payout-status-alert>
+
+  - Fix value of status demo data for content editor testing
+
 ## [2.0.7] - 2025-12-09
 
 - \<sqm-tax-and-cash-dashboard-view>
