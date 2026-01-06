@@ -111,6 +111,8 @@ const styleString = sheet.toString();
 export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   const { text, states, data, callbacks } = props;
 
+  console.log("test 123456");
+
   function getAlert(status: PayoutStatus) {
     if (states.error)
       return {
@@ -558,6 +560,8 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   const alertDetails = getAlert(states.status);
+
+  console.log("status is ", states.status, alertDetails);
   if (states.status === "DONE" || !alertDetails) {
     return <div></div>;
   }
