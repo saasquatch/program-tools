@@ -11,8 +11,6 @@ const defaultProps = {
   veriffLoading: false,
 };
 
-export const Test = () => <sqm-payout-status-alert></sqm-payout-status-alert>;
-
 export const InformationRequired = () => (
   <sqm-payout-status-alert
     demoData={{ states: defaultProps }}
