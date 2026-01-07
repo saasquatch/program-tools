@@ -52,7 +52,7 @@ jobs:
         id: setup-node
         uses: actions/setup-node@v4
         with:
-          node-version-file: "${{ steps.vars.outputs.dir }}/package.json"
+          node-version: 24
           registry-url: "https://registry.npmjs.org"
 
       # we could add this to devDependencies but we'd have to do it for every package
