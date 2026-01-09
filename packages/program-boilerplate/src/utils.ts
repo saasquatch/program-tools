@@ -253,7 +253,7 @@ export function getTriggerSchema(
  * @returns string[] a deduplicated list of user custom fields found in the input expression(s)
  */
 export function getUserCustomFieldsFromJsonata(
-  jsonataExpressions: string | string[]
+  jsonataExpressions: string | string[],
 ): string[] {
   let userCustomFields: string[] = [];
   if (typeof jsonataExpressions === "string") {
@@ -287,7 +287,7 @@ export function getUserCustomFieldsFromJsonata(
 }
 
 export function getRewardUnitsFromJsonata(
-  expr: jsonata.ExprNode | undefined
+  expr: jsonata.ExprNode | undefined,
 ): string[] | undefined {
   if (expr === undefined) {
     return undefined;
@@ -300,12 +300,12 @@ export function getRewardUnitsFromJsonata(
   if (expr.type === "condition") {
     const lhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.then isn't present in the AST typedef for some reason
-      expr.then
+      expr.then,
     );
 
     const rhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.else isn't present in the AST typedef for some reason
-      expr.else
+      expr.else,
     );
 
     if (lhs !== undefined || rhs !== undefined) {
