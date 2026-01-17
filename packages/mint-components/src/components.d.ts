@@ -3087,10 +3087,6 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
-          * @uiName Register CTA
-         */
-        "registerCTA": string;
-        /**
           * @uiName Register button text
          */
         "registerLabel": string;
@@ -10964,10 +10960,6 @@ declare namespace LocalJSX {
           * @uiName Password field label
          */
         "passwordLabel"?: string;
-        /**
-          * @uiName Register CTA
-         */
-        "registerCTA"?: string;
         /**
           * @uiName Register button text
          */

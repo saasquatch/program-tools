@@ -104,7 +104,7 @@ const loadingProps: PortalRegistrationFormViewProps = {
 };
 
 export const Default = () => (
-  <PortalRegistrationFormView {...defaultProps}></PortalRegistrationFormView>
+  <sqm-portal-google-registration-form></sqm-portal-google-registration-form>
 );
 
 export const RegisterWithError = () => (

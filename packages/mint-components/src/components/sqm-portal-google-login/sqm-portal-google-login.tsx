@@ -175,7 +175,7 @@ function useLoginDemo(props: PortalGoogleLogin): Partial<PortalLoginViewProps> {
   return deepmerge(
     {
       states: {
-        error: "",
+        error: props.demoData?.states?.error || "",
         loading: false,
         forgotPasswordPath: "/forgotPassword",
         registerPath: "/register",
