@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.9] - 2025-01-19
+
+- \<sqm-portal-login>
+
+  - Remove unused `registerCTA` prop
+
 ## [2.0.8] - 2025-01-06
 
 - \<sqm-payout-status-alert>

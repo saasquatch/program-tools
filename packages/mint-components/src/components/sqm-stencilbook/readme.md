@@ -52,6 +52,8 @@
 - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
 - [sqm-navigation-menu](../sqm-navigation-menu)
 - [sqm-portal-frame](../sqm-portal-frame)
+- [sqm-portal-google-registration-form](../sqm-portal-google-registration-form)
+- [sqm-portal-google-login](../sqm-portal-google-login)
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-program-explainer](../sqm-program-explainer)
 - [sqm-program-menu](../sqm-program-menu)
@@ -150,6 +152,8 @@ graph TD;
   sqm-stencilbook --> sqm-portal-forgot-password
   sqm-stencilbook --> sqm-navigation-menu
   sqm-stencilbook --> sqm-portal-frame
+  sqm-stencilbook --> sqm-portal-google-registration-form
+  sqm-stencilbook --> sqm-portal-google-login
   sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-program-explainer
   sqm-stencilbook --> sqm-program-menu
@@ -220,6 +224,11 @@ graph TD;
   sqm-payout-button-scroll --> sqm-scroll
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-portal-google-registration-form --> sqm-google-sign-in
+  sqm-portal-google-registration-form --> sqm-form-message
+  sqm-portal-google-registration-form --> sqm-password-field
+  sqm-portal-google-login --> sqm-google-sign-in
+  sqm-portal-google-login --> sqm-form-message
   sqm-referral-codes --> sqm-empty
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
