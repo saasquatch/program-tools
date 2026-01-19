@@ -26,6 +26,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-google-sign-in](../sqm-google-sign-in)
@@ -36,6 +40,7 @@
 graph TD;
   sqm-portal-google-login --> sqm-google-sign-in
   sqm-portal-google-login --> sqm-form-message
+  sqm-stencilbook --> sqm-portal-google-login
   style sqm-portal-google-login fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
