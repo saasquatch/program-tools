@@ -28,6 +28,7 @@ import {
   StatusCellPendingPartnerCreation,
   StatusCellPendingTaxReview,
   StatusCellPendingTaxSubmission,
+  StatusCellPayoutProcessing,
 } from "./RewardsTableCell.stories";
 import scenario from "./rewards-table.feature";
 
@@ -193,6 +194,13 @@ const r_payout_sent = [
   <SourceCellReferral />,
   <DateCell />,
 ];
+
+const r_payout_processing = [
+  <RewardsCellCreditFull />,
+  <StatusCellPayoutProcessing />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
 const r_payout_failed = [
   <RewardsCellCreditRedeemed />,
   <StatusCellPayoutFailed />,
@@ -242,6 +250,7 @@ export const RewardsTable = () => {
         r_pending_partner_creation,
         r_pending_tax_submission,
         r_pending_tax_review,
+        r_payout_processing,
       ])}
     ></GenericTableView>
   );

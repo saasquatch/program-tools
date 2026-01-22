@@ -89,9 +89,11 @@ export class RewardTableStatusCell {
   @Prop() payoutFailed: string =
     "Payout failed due to a fulfillment issue and is current being retried.";
   @Prop() payoutApproved: string =
-    "Reward was scheduled for payment based on your settings, barring any account holds.";
+    "Payout approved and scheduled for payment based on your settings.";
   @Prop() payoutCancelled: string =
     "If you think this is a mistake, contact our Support team.";
+  @Prop() payoutProcessing: string =
+    "Processing until {date}. Payout is then scheduled based your settings.";
 
   rewardStatus(reward: Reward): string {
     const hasExpired = reward.statuses?.includes("EXPIRED");
@@ -104,13 +106,22 @@ export class RewardTableStatusCell {
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
 
     const partnerTransferStatus = reward.partnerFundsTransfer?.status;
-    if (
-      partnerTransferStatus === "TRANSFERRED" ||
-      partnerTransferStatus === "NOT_YET_DUE"
-    )
-      return "PAYOUT_APPROVED";
-    if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
-    if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+
+    if (reward.partnerFundsTransfer) {
+      if (reward.partnerFundsTransfer.dateScheduled > Date.now()) {
+        return "PROCESSING";
+      }
+
+      if (
+        partnerTransferStatus === "TRANSFERRED" ||
+        partnerTransferStatus === "NOT_YET_DUE" ||
+        reward.partnerFundsTransfer.dateScheduled < Date.now()
+      )
+        return "PAYOUT_APPROVED";
+
+      if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
+      if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+    }
 
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
@@ -170,6 +181,7 @@ export class RewardTableStatusCell {
         return "success";
       case "REDEEMED":
       case "PAYOUT_APPROVED":
+      case "PROCESSING":
         return "primary";
       case "PENDING":
       case "PENDING_REVIEW":
@@ -197,6 +209,8 @@ export class RewardTableStatusCell {
         return this.pendingTaxSubmission;
       case "PENDING_PARTNER_CREATION":
         return this.pendingPartnerCreation;
+      case "PROCESSING":
+        return this.payoutProcessing;
     }
   }
 
@@ -248,6 +262,7 @@ export class RewardTableStatusCell {
           return sheet.classes.SuccessBadge;
         case "REDEEMED":
         case "PAYOUT_APPROVED":
+        case "PROCESSING":
           return sheet.classes.RedeemBadge;
         case "PENDING":
         case "PENDING_REVIEW":

@@ -4487,6 +4487,7 @@ export namespace Components {
         "payoutApproved": string;
         "payoutCancelled": string;
         "payoutFailed": string;
+        "payoutProcessing": string;
         "pendingNewTaxForm": string;
         "pendingPartnerCreation": string;
         "pendingReviewText": string;
@@ -12339,6 +12340,7 @@ declare namespace LocalJSX {
         "payoutApproved"?: string;
         "payoutCancelled"?: string;
         "payoutFailed"?: string;
+        "payoutProcessing"?: string;
         "pendingNewTaxForm"?: string;
         "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;

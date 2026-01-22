@@ -213,6 +213,7 @@ export class ReferralTableRewardsCell {
       switch (state) {
         case "REDEEMED":
         case "PAYOUT_APPROVED":
+        case "PROCESSING":
           return "primary";
         case "DENIED":
         case "EXPIRED":

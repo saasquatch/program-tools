@@ -45,6 +45,7 @@ const rewardsData: Reward = {
   rewardRedemptionTransactions: {
     data: null,
   },
+  partnerFundsTransfer: null,
 };
 
 const taxConnection: ImpactConnection = {
@@ -443,6 +444,17 @@ const payoutCancelled = {
   statuses: ["PAYOUT_CANCELLED"],
   dateCancelled: 1355612521321,
 };
+
+const processing = {
+  partnerFundsTransfer: {
+    id: "123",
+    status: null,
+    dateCreated: 1355612521321,
+    dateScheduled: 2779257600000,
+    dateTransferred: null,
+  },
+};
+
 const us_tax = {
   pendingReasons: ["US_TAX"],
 };
@@ -547,6 +559,15 @@ export const StatusCellPayoutFailed = () => {
     <sqm-rewards-table-status-cell
       statusText="Payout Failed"
       reward={{ ...rewardsData, ...payoutFailed }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPayoutProcessing = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Processing"
+      reward={{ ...rewardsData, ...processing }}
     ></sqm-rewards-table-status-cell>
   );
 };
