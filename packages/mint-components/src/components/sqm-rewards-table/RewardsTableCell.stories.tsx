@@ -297,15 +297,6 @@ export const RewardsCellFueltankLong = () => {
   );
 };
 
-export const CashReward = () => {
-  return (
-    <sqm-rewards-table-reward-cell
-      reward={{ ...cashReward }}
-      availableText="{availableAmount} remaining"
-    ></sqm-rewards-table-reward-cell>
-  );
-};
-
 export const SourceCellManual = () => {
   return (
     <sqm-rewards-table-source-cell
@@ -535,26 +526,6 @@ export const StatusCellExpired = () => {
 const pending = {
   statuses: ["PENDING"],
 };
-const payoutSent = {
-  statuses: ["PAYOUT_SENT"],
-};
-const payoutFailed = {
-  statuses: ["PAYOUT_FAILED"],
-};
-const payoutCancelled = {
-  statuses: ["PAYOUT_CANCELLED"],
-  dateCancelled: 1355612521321,
-};
-
-const processing = {
-  partnerFundsTransfer: {
-    id: "123",
-    status: null,
-    dateCreated: 1355612521321,
-    dateScheduled: 2779257600000,
-    dateTransferred: null,
-  },
-};
 
 const us_tax = {
   pendingReasons: ["US_TAX"],
@@ -572,112 +543,6 @@ export const StatusCellPending = () => {
     <sqm-rewards-table-status-cell
       statusText="Pending"
       reward={{ ...rewardsData, ...pending }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPendingTaxReview = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Pending"
-      reward={{ ...rewardsData }}
-      taxConnection={{
-        ...taxConnection,
-        publisher: {
-          requiredTaxDocumentType: "W8BEN",
-          currentTaxDocument: {
-            status: "",
-          },
-          ...taxConnection.publisher,
-        },
-      }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPendingNewTaxForm = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Pending"
-      reward={{ ...rewardsData }}
-      taxConnection={{
-        ...taxConnection,
-        publisher: {
-          ...taxConnection.publisher,
-          requiredTaxDocumentType: "W8BEN",
-          currentTaxDocument: {
-            status: "INACTIVE",
-            type: "W8BEN",
-            dateCreated: 321321487,
-          },
-        },
-      }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPendingTaxSubmission = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Pending"
-      reward={{ ...rewardsData }}
-      taxConnection={{
-        ...taxConnection,
-        publisher: {
-          ...taxConnection.publisher,
-          requiredTaxDocumentType: "W8BEN",
-          currentTaxDocument: null,
-        },
-      }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPendingPartnerCreation = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Pending"
-      reward={{
-        ...rewardsData,
-        pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
-      }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPayoutSent = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Payout Sent"
-      reward={{ ...rewardsData, ...payoutSent }}
-      taxConnection={taxConnection}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPayoutFailed = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Payout Failed"
-      reward={{ ...rewardsData, ...payoutFailed }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPayoutProcessing = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Processing"
-      reward={{ ...cashReward, ...processing }}
-    ></sqm-rewards-table-status-cell>
-  );
-};
-
-export const StatusCellPayoutCancelled = () => {
-  return (
-    <sqm-rewards-table-status-cell
-      statusText="Payout Cancelled"
-      reward={{ ...rewardsData, ...payoutCancelled }}
     ></sqm-rewards-table-status-cell>
   );
 };

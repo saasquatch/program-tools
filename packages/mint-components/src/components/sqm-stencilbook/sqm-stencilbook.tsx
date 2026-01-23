@@ -72,8 +72,10 @@ import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRe
 import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
-import * as RewardsTable from "../sqm-rewards-table/RewardsTable.stories";
+import * as RewardsTable from "../sqm-rewards-table/TaxAndCashRewardsTable.stories";
+import * as TaxAndCashRewardsTable from "../sqm-rewards-table/RewardsTable.stories";
 import * as RewardsTableCell from "../sqm-rewards-table/RewardsTableCell.stories";
+import * as TaxAndCashRewardsTableCell from "../sqm-rewards-table/TaxAndCashRewardsTableCell.stories";
 import * as UseRewardsTable from "../sqm-rewards-table/UseRewardsTable.stories";
 import * as Router from "../sqm-router/Router.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
@@ -211,6 +213,8 @@ const stories = [
   LeadInputField,
   LeadFormDropdownField,
   LeadCheckboxField,
+  TaxAndCashRewardsTableCell,
+  TaxAndCashRewardsTable,
 ];
 
 /**
