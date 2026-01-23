@@ -29,6 +29,7 @@ import {
   StatusCellPendingTaxReview,
   StatusCellPendingTaxSubmission,
   StatusCellPayoutProcessing,
+  CashReward,
 } from "./RewardsTableCell.stories";
 import scenario from "./rewards-table.feature";
 
@@ -196,7 +197,7 @@ const r_payout_sent = [
 ];
 
 const r_payout_processing = [
-  <RewardsCellCreditFull />,
+  <CashReward />,
   <StatusCellPayoutProcessing />,
   <SourceCellReferral />,
   <DateCell />,
