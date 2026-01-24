@@ -178,7 +178,6 @@ export class RewardTableStatusCell {
   }
 
   getBadgeType(rewardStatus: string) {
-    console.log("rewardStatus", rewardStatus);
     switch (rewardStatus) {
       case "AVAILABLE":
         return "success";
