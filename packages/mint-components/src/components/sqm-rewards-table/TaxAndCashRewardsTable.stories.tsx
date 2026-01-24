@@ -2,7 +2,6 @@ import { h } from "@stencil/core";
 import { GenericTableView } from "../../tables/GenericTableView";
 import { SourceCellReferral, DateCell } from "./RewardsTableCell.stories";
 import {
-  // Existing Imports
   StatusCellPayoutSent,
   StatusCellPayoutFailed,
   StatusCellPendingNewTaxForm,
@@ -11,7 +10,6 @@ import {
   StatusCellPendingTaxSubmission,
   StatusCellPayoutProcessing,
   CashReward,
-  // New Imports added
   StatusCellPendingW9,
   StatusCellPayoutCancelled,
 } from "./TaxAndCashRewardsTableCell.stories";
