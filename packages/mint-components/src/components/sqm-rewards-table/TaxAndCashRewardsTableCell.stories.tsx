@@ -48,13 +48,8 @@ const cashReward = {
       name: "Referral Program With Objectives",
     },
   },
-  partnerFundsTransfer: {
-    id: "693503" as const,
-    status: "TRANSFERRED" as const,
-    dateScheduled: 1768583958000,
-    dateTransferred: 1768583958000,
-    dateCreated: 1767979159000,
-  },
+  partnerFundsTransfer: null,
+
   user: {
     id: "8da2c67e05e3e56de7ea638c2705017945211621c80e1cd4b4aac0e423d1cdb2",
     accountId:
@@ -71,25 +66,7 @@ const cashReward = {
   referral: null,
   description: null,
   statuses: ["REDEEMED"],
-  // rewardRedemptionTransactions: {
-  //   data: [
-  //     {
-  //       exchangedRewards: {
-  //         data: [],
-  //       },
-  //       redeemedRewards: {
-  //         data: [
-  //           {
-  //             prettyValue: "$599.00",
-  //           },
-  //         ],
-  //       },
-  //       creditRedeemed: 59900,
-  //       prettyRedeemedCredit: "$599.00",
-  //       dateRedeemed: 1757630737115,
-  //     },
-  //   ],
-  // },
+
   rewardRedemptionTransactions: {
     data: null,
   },
@@ -97,8 +74,12 @@ const cashReward = {
   pendingReasons: [],
 };
 
+const pending = {
+  statuses: ["PENDING"],
+};
+
 const payoutSent = {
-  statuses: ["PAYOUT_SENT"],
+  statuses: ["PAYOUT_APPROVED"],
 };
 const payoutFailed = {
   statuses: ["PAYOUT_FAILED"],
@@ -108,7 +89,7 @@ const payoutCancelled = {
   dateCancelled: 1355612521321,
 };
 
-const processing = {
+const processingPFT = {
   partnerFundsTransfer: {
     id: "123",
     status: null,
@@ -148,7 +129,7 @@ export const StatusCellPendingTaxReview = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Pending"
-      reward={{ ...cashReward }}
+      reward={{ ...cashReward, ...pending, pendingReasons: ["US_TAX"] }}
       taxConnection={{
         ...taxConnection,
         publisher: {
@@ -167,12 +148,20 @@ export const StatusCellPendingNewTaxForm = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Pending"
-      reward={{ ...cashReward }}
+      reward={{
+        ...cashReward,
+        statuses: ["PENDING"],
+        pendingReasons: ["US_TAX"],
+      }}
       taxConnection={{
-        ...taxConnection,
+        connected: true,
+        taxHandlingEnabled: true,
         publisher: {
-          ...taxConnection.publisher,
           requiredTaxDocumentType: "W8BEN",
+          withdrawalSettings: {
+            paymentMethod: "BANK_TRANSFER",
+          },
+          payoutsAccount: null,
           currentTaxDocument: {
             status: "INACTIVE",
             type: "W8BEN",
@@ -188,7 +177,7 @@ export const StatusCellPendingTaxSubmission = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Pending"
-      reward={{ ...cashReward }}
+      reward={{ ...cashReward, ...pending, pendingReasons: ["US_TAX"] }}
       taxConnection={{
         ...taxConnection,
         publisher: {
@@ -207,7 +196,29 @@ export const StatusCellPendingPartnerCreation = () => {
       statusText="Pending"
       reward={{
         ...cashReward,
-        pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
+        ...pending,
+        pendingReasons: ["US_TAX"],
+      }}
+      taxConnection={{
+        ...taxConnection,
+        connected: false,
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingW9 = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{
+        ...cashReward,
+        ...pending,
+        pendingReasons: ["US_TAX"],
+      }}
+      taxConnection={{
+        ...taxConnection,
+        taxHandlingEnabled: false,
       }}
     ></sqm-rewards-table-status-cell>
   );
@@ -217,7 +228,16 @@ export const StatusCellPayoutSent = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Payout Sent"
-      reward={{ ...cashReward, ...payoutSent }}
+      reward={{
+        ...cashReward,
+        partnerFundsTransfer: {
+          id: "transfer-123",
+          status: "TRANSFERRED",
+          dateScheduled: 1640995200000,
+          dateTransferred: 1640995200000,
+          dateCreated: 1640995200000,
+        },
+      }}
       taxConnection={taxConnection}
     ></sqm-rewards-table-status-cell>
   );
@@ -227,7 +247,16 @@ export const StatusCellPayoutFailed = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Payout Failed"
-      reward={{ ...cashReward, ...payoutFailed }}
+      reward={{
+        ...cashReward,
+        partnerFundsTransfer: {
+          id: "transfer-failed",
+          status: "OVERDUE",
+          dateScheduled: 1640995200000,
+          dateTransferred: null,
+          dateCreated: 1640995200000,
+        },
+      }}
     ></sqm-rewards-table-status-cell>
   );
 };
@@ -236,7 +265,7 @@ export const StatusCellPayoutProcessing = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Processing"
-      reward={{ ...cashReward, ...processing }}
+      reward={{ ...cashReward, ...processingPFT }}
     ></sqm-rewards-table-status-cell>
   );
 };
@@ -245,7 +274,16 @@ export const StatusCellPayoutCancelled = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Payout Cancelled"
-      reward={{ ...cashReward, ...payoutCancelled }}
+      reward={{
+        ...cashReward,
+        partnerFundsTransfer: {
+          id: "transfer-reversed",
+          status: "REVERSED",
+          dateScheduled: 1640995200000,
+          dateTransferred: null,
+          dateCreated: 1640995200000,
+        },
+      }}
     ></sqm-rewards-table-status-cell>
   );
 };

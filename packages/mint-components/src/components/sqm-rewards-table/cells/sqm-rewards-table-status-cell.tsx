@@ -108,6 +108,9 @@ export class RewardTableStatusCell {
     const partnerTransferStatus = reward.partnerFundsTransfer?.status;
 
     if (reward.partnerFundsTransfer) {
+      if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+      if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
+
       if (reward.partnerFundsTransfer.dateScheduled > Date.now()) {
         return "PROCESSING";
       }
@@ -115,12 +118,11 @@ export class RewardTableStatusCell {
       if (
         partnerTransferStatus === "TRANSFERRED" ||
         partnerTransferStatus === "NOT_YET_DUE" ||
-        reward.partnerFundsTransfer.dateScheduled < Date.now()
+        (reward.partnerFundsTransfer.dateScheduled < Date.now() &&
+          partnerTransferStatus !== "OVERDUE" &&
+          partnerTransferStatus !== "REVERSED")
       )
         return "PAYOUT_APPROVED";
-
-      if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
-      if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
     }
 
     if (reward.dateCancelled) return "CANCELLED";
@@ -176,6 +178,7 @@ export class RewardTableStatusCell {
   }
 
   getBadgeType(rewardStatus: string) {
+    console.log("rewardStatus", rewardStatus);
     switch (rewardStatus) {
       case "AVAILABLE":
         return "success";
