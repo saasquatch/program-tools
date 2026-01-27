@@ -212,7 +212,19 @@ export class RewardTableStatusCell {
       case "PENDING_PARTNER_CREATION":
         return this.pendingPartnerCreation;
       case "PROCESSING":
-        return this.payoutProcessing;
+        return intl.formatMessage(
+          {
+            id: "payoutProcessingText",
+            defaultMessage: this.payoutProcessing,
+          },
+          {
+            date: DateTime.fromMillis(
+              this.reward.partnerFundsTransfer.dateScheduled
+            )
+              ?.setLocale(luxonLocale(luxonLocale(this.locale)))
+              .toLocaleString(DateTime.DATE_MED),
+          }
+        );
     }
   }
 

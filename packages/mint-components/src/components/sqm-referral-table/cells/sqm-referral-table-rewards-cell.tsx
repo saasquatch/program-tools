@@ -161,6 +161,7 @@ export class ReferralTableRewardsCell {
         "PENDING_NEW_TAX_FORM",
         "PENDING_TAX_SUBMISSION",
         "PENDING_PARTNER_CREATION",
+        "PROCESSING",
       ];
 
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
@@ -173,18 +174,18 @@ export class ReferralTableRewardsCell {
       const partnerFundsStatus = reward.partnerFundsTransfer?.status;
 
       if (reward.partnerFundsTransfer) {
+        if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
+        if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
+
         if (reward.partnerFundsTransfer.dateScheduled > Date.now()) {
           return "PROCESSING";
         }
-
         if (
           partnerFundsStatus === "TRANSFERRED" ||
           partnerFundsStatus === "NOT_YET_DUE" ||
           reward.partnerFundsTransfer.dateScheduled < Date.now()
         )
           return "PAYOUT_APPROVED";
-        else if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
-        else if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
       }
 
       if (reward?.pendingReasons?.includes("US_TAX")) {
