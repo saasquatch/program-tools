@@ -145,6 +145,8 @@ const customFieldsQuery = (
 
 const referralsMonthQuery = (
   programId: string,
+    // locale
+  _: string,
   status?: "started" | "converted"
 ) => {
   const programFilter =
@@ -187,6 +189,8 @@ const referralsMonthQuery = (
 
 const referralsWeekQuery = (
   programId: string,
+    // locale
+  _: string,
   status?: "started" | "converted"
 ) => {
   const programFilter =
