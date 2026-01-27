@@ -67,6 +67,8 @@ import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
+import * as TaxAndCashReferralTable from "../sqm-referral-table/TaxAndCashReferralTable.stories";
+import * as TaxAndCashReferralTableRewardsCell from "../sqm-referral-table/TaxAndCashReferralTableRewardsCell.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
 import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRewardsCell.stories";
 import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.stories";
@@ -215,6 +217,8 @@ const stories = [
   LeadCheckboxField,
   TaxAndCashRewardsTableCell,
   TaxAndCashRewardsTable,
+  TaxAndCashReferralTableRewardsCell,
+  TaxAndCashReferralTable,
 ];
 
 /**
