@@ -17,11 +17,11 @@ export class ReferralTableRewardsCell {
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {date}. Payout is then scheduled based your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
   @Prop() fuelTankText: string;
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
-  @Prop() pendingForText: string;
+  @Prop() pendingForText: string = "{status} for {date}";
   @Prop() deniedHelpText: string;
   @Prop() locale: string = "en";
   render() {
@@ -260,6 +260,7 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
+
       const statusText = intl.formatMessage(
         {
           id: "statusLongMessage",
@@ -267,6 +268,11 @@ export class ReferralTableRewardsCell {
         },
         {
           status: state,
+          scheduledPayoutDate: reward.partnerFundsTransfer
+            ? DateTime.fromMillis(reward.partnerFundsTransfer.dateScheduled)
+                ?.setLocale(luxonLocale(luxonLocale(this.locale)))
+                .toLocaleString(DateTime.DATE_MED)
+            : null,
         }
       );
 
