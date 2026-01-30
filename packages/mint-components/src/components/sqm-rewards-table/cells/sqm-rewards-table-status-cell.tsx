@@ -221,7 +221,7 @@ export class RewardTableStatusCell {
             date: DateTime.fromMillis(
               this.reward.partnerFundsTransfer.dateScheduled
             )
-              ?.setLocale(luxonLocale(luxonLocale(this.locale)))
+              ?.setLocale(luxonLocale(this.locale))
               .toLocaleString(DateTime.DATE_MED),
           }
         );
