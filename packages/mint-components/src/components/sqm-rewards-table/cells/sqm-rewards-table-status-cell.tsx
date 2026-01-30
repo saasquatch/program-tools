@@ -93,7 +93,7 @@ export class RewardTableStatusCell {
   @Prop() payoutCancelled: string =
     "If you think this is a mistake, contact our Support team.";
   @Prop() payoutProcessing: string =
-    "Processing until {date}. Payout is then scheduled based your settings.";
+    "Processing until {date}. Payout is then scheduled based on your settings.";
 
   rewardStatus(reward: Reward): string {
     const hasExpired = reward.statuses?.includes("EXPIRED");
