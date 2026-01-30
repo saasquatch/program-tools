@@ -270,7 +270,7 @@ export class ReferralTableRewardsCell {
           status: state,
           scheduledPayoutDate: reward.partnerFundsTransfer
             ? DateTime.fromMillis(reward.partnerFundsTransfer.dateScheduled)
-                ?.setLocale(luxonLocale(luxonLocale(this.locale)))
+                ?.setLocale(luxonLocale(this.locale))
                 .toLocaleString(DateTime.DATE_MED)
             : null,
         }
