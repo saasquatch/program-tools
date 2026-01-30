@@ -1,13 +1,13 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.10.1",
+  "version": "3.10.2-0",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "files": [
     "dist/"
   ],
   "engines": {
-    "node": "^18 || ^20 || ^22"
+    "node": "^20 || ^22 || ^24"
   },
   "scripts": {
     "build": "tsc --declaration",
@@ -28,27 +28,27 @@
     "source-map": "^0.7.4"
   },
   "devDependencies": {
-    "@types/express": "^4.17.11",
-    "@types/node": "^13.13.50",
+    "@types/express": "^4.17.25",
+    "@types/node": "^24.10.0",
     "@types/supertest": "^2.0.11",
-    "jest": "^26.6.3",
-    "jest-cucumber": "^3.0.1",
+    "jest": "^30.2.0",
+    "jest-cucumber": "^4.5.0",
     "prettier": "^2.2.1",
     "source-map": "^0.7.4",
     "supertest": "^6.1.3",
-    "ts-jest": "^26.5.5",
-    "ts-node": "^9.1.1",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
     "typedoc": "^0.17.8",
-    "typescript": "^3.9.9"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@saasquatch/jsonata-paths-extractor": "^1.0.1",
-    "@saasquatch/logger": "^1.5.1",
+    "@saasquatch/logger": "^2.0.0",
     "@saasquatch/schema": "^2.0.0",
     "bson-objectid": "^1.3.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "jsonata": "^1.8.4",
-    "winston": "^3.3.3"
+    "winston": "^3.18.3"
   }
 }
