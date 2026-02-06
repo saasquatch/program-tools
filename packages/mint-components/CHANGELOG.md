@@ -7,12 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.10] - 2026-01-27
+
+### Fixed
+
+- \<sqm-name-fields>
+  - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
+
+## [2.0.9] - 2026-01-19
+
+- \<sqm-portal-login>
+  - Remove unused `registerCTA` prop
+
+## [2.0.8] - 2026-01-06
+
+- \<sqm-payout-status-alert>
+  - Fix value of status demo data for content editor testing
+
+## [2.0.7] - 2025-12-09
+
+- \<sqm-tax-and-cash-dashboard-view>
+  - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
+  - Added ICU string for text prop indirectTaxTooltipSupport
+
+- \<sqm-tax-and-cash-dashboard>
+  - Updated text prop indirectTaxTooltipSupport to handle ICU string
+
 ## [2.0.6] - 2025-12-05
 
 ### Changed
 
 - \<sqm-name-fields>
-
   - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
 
 ## [2.0.5] - 2025-12-02
@@ -20,7 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - \<sqm-user-info-form-view>
-
   - Fix bug that caused previously unset fields to be disabled
 
 ## [2.0.4] - 2025-11-20
@@ -29,7 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-payout-status-alert>
 - \<sqm-tax-and-cash-dashboard>
-
   - Added more descriptive copy for the different reasons a payout may be on hold
 
 - \<sqm-header-logo>
@@ -60,7 +83,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Complete Theming System Overhaul**
-
   - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
   - `parseBrandingConfig()` function for dynamic branding configuration parsing
   - Extensive CSS custom properties system for consistent theming across all components
@@ -69,7 +91,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Window message listeners for real-time branding configuration updates in editor environments
 
 - **Enhanced Component Editor Support**
-
   - Editor state controllers for improved component editing experience
   - Component state management improvements across all widgets
   - Enhanced component placement and validation
@@ -98,19 +119,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 - **Theming System**: Complete overhaul of the component theming system
-
   - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
   - Components now rely on the centralized `BrandingConfiguration` for styling
   - Direct styling overrides may need to be migrated to the new theming API
 
 - **Global Styles**: Restructured global styles architecture
-
   - Components now use CSS custom properties instead of traditional CSS variables
   - Font loading system has been redesigned with new APIs
   - Global style initialization now requires the new branding configuration system
 
 - **Component APIs**: Enhanced component state management
-
   - Editor state controllers introduced for all components
   - Component placement validation has been improved
   - Some internal component APIs have been restructured for better editor integration
@@ -142,7 +160,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - \<sqm-portal-google-registration-form>
-
   - Enhanced two-step registration flow with improved validation
   - Added support for additional form fields in registration process
 
@@ -397,7 +414,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Changed
 
 - \<sqm-leaderboard>
-
   - Removed unused isEssentials prop
 
 ## [1.10.2] - 2024-10-29
@@ -405,17 +421,13 @@ This major release represents a significant advancement in the theming capabilit
 ### Changed
 
 - \<sqm-user-info-form>
-
   - Removed hard coded widths and inline styling to ensure the view is responsive
 
 - \<sqm-portal-container>
-
   - Added new `flexWrap` prop to optionally apply the flex-wrap css property
 
 - \<sqm-leaderboard>
-
   - Added the following props:
-
     - width
     - rankSuffix
     - hideNames
@@ -472,11 +484,9 @@ This major release represents a significant advancement in the theming capabilit
 ### Fixed
 
 - \<sqm-banking-info-form>
-
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
 
 - \<sqm-user-info-form>
-
   - Added missing prop for terms and conditions link
 
 ## [1.9.1] - 2024-05-17
@@ -498,7 +508,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - Added `input-base` css parts to inputs to the following components:
-
   - \<sqm-checkbox-field>
   - \<sqm-dropdown-field>
   - \<sqm-edit-profile>
@@ -1080,7 +1089,6 @@ This major release represents a significant advancement in the theming capabilit
 - Checkbox and dropdown components added for use in \<sqm-portal-register>
 
 - Added Components:
-
   - \<sqm-checkbox-field>
     - Required by default but can be optional
     - Allows for a link in checkbox text to support behaviour like linking out to terms and conditions
@@ -1099,7 +1107,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - Added Components:
-
   - \<sqm-brand>
     - Takes in a brand colour via prop and creates a colour palette from it.
     - Sets shoelace colour variables from brand palette for child components
@@ -1439,7 +1446,11 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.6...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.10...HEAD
+[2.0.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.10
+[2.0.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.9
+[2.0.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.8
+[2.0.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.7
 [2.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.6
 [2.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.5
 [2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4

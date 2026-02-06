@@ -50,6 +50,7 @@ import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
 import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgotPassword.stories";
 import * as PortalFrame from "../sqm-portal-frame/PortalFrame.stories";
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
+import * as PortalGoogleLoginFormStories from "../sqm-portal-google-login/GoogleLoginForm.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
@@ -199,6 +200,7 @@ const stories = [
   ChangeMarketing,
   BaseRegistrationForm,
   PortalGoogleRegistrationFormStories,
+  PortalGoogleLoginFormStories,
   WidgetEmailVerification,
   WidgetCodeVerification,
   PayoutButtonScroll,

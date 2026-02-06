@@ -558,6 +558,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   const alertDetails = getAlert(states.status);
+
   if (states.status === "DONE" || !alertDetails) {
     return <div></div>;
   }

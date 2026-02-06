@@ -254,7 +254,7 @@ function useDemoPayoutStatusAlert(
     {
       states: {
         error: false,
-        status: props.demoData.states.status,
+        status: states.status,
         loading: false,
         veriffLoading: false,
       },
