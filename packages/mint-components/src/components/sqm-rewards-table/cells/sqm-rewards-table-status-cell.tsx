@@ -183,10 +183,10 @@ export class RewardTableStatusCell {
         return "success";
       case "REDEEMED":
       case "PAYOUT_APPROVED":
-      case "PROCESSING":
         return "primary";
       case "PENDING":
       case "PENDING_REVIEW":
+      case "PROCESSING":
         return "warning";
       default:
         return "danger";
@@ -219,11 +219,11 @@ export class RewardTableStatusCell {
           },
           {
             date: DateTime.fromMillis(
-              this.reward.partnerFundsTransfer.dateScheduled
+              this.reward.partnerFundsTransfer.dateScheduled,
             )
               ?.setLocale(luxonLocale(this.locale))
               .toLocaleString(DateTime.DATE_MED),
-          }
+          },
         );
     }
   }
@@ -236,7 +236,7 @@ export class RewardTableStatusCell {
       { id: "statusMessage", defaultMessage: this.statusText },
       {
         status: rewardStatus,
-      }
+      },
     );
 
     const badgeType = this.getBadgeType(rewardStatus);
@@ -267,8 +267,8 @@ export class RewardTableStatusCell {
       rewardStatus === "PENDING_REVIEW"
         ? this.pendingReviewText
         : rewardStatus === "DENIED"
-        ? this.deniedText
-        : null;
+          ? this.deniedText
+          : null;
 
     const getBadgeCSSClass = () => {
       switch (rewardStatus) {
@@ -318,7 +318,7 @@ export class RewardTableStatusCell {
 
       const taxReason = prop.getTaxPendingReasons(
         prop.reward,
-        prop.taxConnection
+        prop.taxConnection,
       );
 
       return [

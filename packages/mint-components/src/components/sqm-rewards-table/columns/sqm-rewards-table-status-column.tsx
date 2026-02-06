@@ -25,7 +25,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
 
   /**
    * Text shown before the date of an expiring reward.
@@ -132,7 +132,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Method()
   async renderCell(
     data: Reward,
-    options?: { locale: string; taxConnection: ImpactConnection }
+    options?: { locale: string; taxConnection: ImpactConnection },
   ) {
     return (
       <sqm-rewards-table-status-cell
