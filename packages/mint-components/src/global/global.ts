@@ -19,7 +19,7 @@ export const intl = createIntl(
   {
     locale: "en",
   },
-  cache
+  cache,
 );
 
 import {
