@@ -276,10 +276,10 @@ export class RewardTableStatusCell {
           return sheet.classes.SuccessBadge;
         case "REDEEMED":
         case "PAYOUT_APPROVED":
-        case "PROCESSING":
           return sheet.classes.RedeemBadge;
         case "PENDING":
         case "PENDING_REVIEW":
+        case "PROCESSING":
           return sheet.classes.WarningBadge;
         default:
           return sheet.classes.DangerBadge;

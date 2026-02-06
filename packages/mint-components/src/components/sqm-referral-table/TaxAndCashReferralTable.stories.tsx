@@ -52,12 +52,6 @@ const taxAndCashTableProps = {
         <DateCell />,
         <PayoutApproved />,
       ],
-      [
-        <sqm-referral-table-user-cell name="Payout Processing User"></sqm-referral-table-user-cell>,
-        <ConvertedStatus />,
-        <DateCell />,
-        <PayoutProcessing />,
-      ],
 
       [
         <sqm-referral-table-user-cell name="Payout Failed User"></sqm-referral-table-user-cell>,
@@ -77,6 +71,12 @@ const taxAndCashTableProps = {
         <ConvertedStatus />,
         <DateCell />,
         <PendingTaxReview />,
+      ],
+      [
+        <sqm-referral-table-user-cell name="Payout Processing User"></sqm-referral-table-user-cell>,
+        <ConvertedStatus />,
+        <DateCell />,
+        <PayoutProcessing />,
       ],
       [
         <sqm-referral-table-user-cell name="New Tax Form User"></sqm-referral-table-user-cell>,

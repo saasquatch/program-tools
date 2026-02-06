@@ -24,7 +24,7 @@ const rewardsTableProps = (
   loading = false,
   prev = "Prev",
   next = "Next",
-  hidden = ""
+  hidden = "",
 ) => ({
   states: {
     hasPrev: false,
@@ -32,8 +32,8 @@ const rewardsTableProps = (
     show: empty
       ? ("empty" as const)
       : loading
-      ? ("loading" as const)
-      : ("rows" as const),
+        ? ("loading" as const)
+        : ("rows" as const),
     namespace: "sqm-rewards-table",
   },
   data: {
@@ -141,8 +141,8 @@ export const RewardsTable = () => {
         r_pending_tax_review,
         r_pending_partner_creation,
         r_pending_w9,
-        r_payout_sent,
         r_payout_processing,
+        r_payout_sent,
         r_payout_failed,
         r_payout_cancelled,
       ])}

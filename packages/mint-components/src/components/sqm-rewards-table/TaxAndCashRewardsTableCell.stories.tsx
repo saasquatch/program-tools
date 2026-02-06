@@ -264,7 +264,7 @@ export const StatusCellPayoutFailed = () => {
 export const StatusCellPayoutProcessing = () => {
   return (
     <sqm-rewards-table-status-cell
-      statusText="Processing"
+      statusText="Payment Processing"
       reward={{ ...cashReward, ...processingPFT }}
     ></sqm-rewards-table-status-cell>
   );
