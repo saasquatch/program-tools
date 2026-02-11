@@ -108,7 +108,7 @@ Feature: Reward Table Status Column
       | DENIED             | Unlucky!          | danger     |
 
   @minutia @ui
-  Scenario: Expiry status date text can be configured
+  Scenario Outline: Expiry status date text can be configured
     Given the "expiry-text" prop has <value>
     And a user with an available reward with an expiry date
     When they view the reward table
@@ -118,3 +118,19 @@ Feature: Reward Table Status Column
       | value         | text                           |
       | Expires       | Expires <localized date>       |
       | Redeem before | Redeem before <localized date> |
+
+  @motivating
+  Scenario: Payout-related reward statuses are determined by the state of the Paid Funds Transfer
+    Given a user has a reward with a connected Paid Funds Transfer (PFT)
+    When the PFT is in <pftState>
+    Then the reward's status is <status>
+    And the status is displayed in a <pillColour> pill with <text>
+    And under the pill is <description>
+
+    Examples:
+      | pftState                                           | status              | text             | pillColour | description                                                                     |
+      | transfer date is in the future                     | PAYOUT_PROCESSING   | Processing       | warning    | Processing until <localized date>. Payout is then scheduled based your settings.|
+      | successfully transferred to payment provider       | PAYOUT_TRANSFERRED  | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.               |
+      | approved but payout scheduled date not yet arrived | PAYOUT_NOT_YET_DUE  | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.               |
+      | failed due to fulfillment issue and retrying       | PAYOUT_OVERDUE      | Payout Failed    | danger     | Payout failed due to a fulfillment issue and is current being retried.          |
+      | reversed or cancelled after being processed        | PAYOUT_REVERSED     | Payout Cancelled | danger     | If you think this is a mistake, contact our Support team.                       |

@@ -6,6 +6,8 @@ Feature: Referral Table Reward Column
     Given the status column is included in the referral table
     And at least one referral exists
 
+
+
   @motivating @ui
   Scenario Outline: The referral reward and its status are shown for each referral
     Then for each referral reward there exists a reward cell
@@ -101,3 +103,20 @@ Feature: Referral Table Reward Column
     And the component has "deniedHelpText" configured
     When the reward cell is clicked
     Then the expanded details display the denied help text next to the denial date
+
+  @minutia
+  Scenario: Payout-related reward statuses are determined by the state of the Paid Funds Transfer
+    Given a reward exists
+    And the reward has a connected Paid Funds Transfer (PFT)
+    When the PFT is in <pftState>
+    Then the reward's status is <status>
+    And the status text displays <text>
+    And the status is displayed in a <pillColour> pill
+
+    Examples:
+      | pftState                                           | status              | text               | pillColour |
+      | transfer date is in the future                     | PAYOUT_PROCESSING   | Payment Processing | primary    |
+      | successfully transferred to payment provider       | PAYOUT_TRANSFERRED  | Payout Approved    | primary    |
+      | approved but payout scheduled date not yet arrived | PAYOUT_NOT_YET_DUE  | Payout Approved    | primary    |
+      | failed due to fulfillment issue and retrying       | PAYOUT_OVERDUE      | Payout Failed      | danger     |
+      | reversed or cancelled after being processed        | PAYOUT_REVERSED     | Payout Cancelled   | danger     |
