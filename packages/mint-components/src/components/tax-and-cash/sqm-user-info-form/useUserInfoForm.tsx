@@ -161,8 +161,8 @@ export function useUserInfoForm(props: TaxForm) {
       // Initialise with user information
       setUserFormContext({
         email,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user.impactConnection.user.firstName || user.firstName,
+        lastName: user.impactConnection.user.lastName || user.lastName,
         countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
         phoneNumberCountryCode:

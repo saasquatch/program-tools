@@ -80,6 +80,9 @@ const GET_REWARDS = gql`
             partnerFundsTransfer {
               id
               status
+              dateScheduled
+              dateCreated
+              dateTransferred
             }
             statuses
             pendingReasons
@@ -175,7 +178,7 @@ const GET_IMPACT_TAX = gql`
 export function useRewardsTable(
   props: RewardsTable,
   emptyElement: VNode,
-  loadingElement: VNode
+  loadingElement: VNode,
 ): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
@@ -207,13 +210,13 @@ export function useRewardsTable(
       rows: [],
       loading: false,
       page: 0,
-    }
+    },
   );
 
   const { data: impactTaxData, loading: taxLoading } = useQuery<GetImpactTax>(
     GET_IMPACT_TAX,
     {},
-    !user?.jwt
+    !user?.jwt,
   );
 
   const {
@@ -231,7 +234,7 @@ export function useRewardsTable(
       rewardFilter,
       locale,
     },
-    !user?.jwt
+    !user?.jwt,
   );
 
   const tick = useRerenderListener();
@@ -243,17 +246,17 @@ export function useRewardsTable(
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
+      (component) => component.slot !== "loading" && component.slot !== "empty",
     );
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
+      tryMethod(c, () => c.renderLabel()),
     );
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h))
+        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h)),
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
@@ -281,10 +284,10 @@ export function useRewardsTable(
     states.loading || content.loading || taxLoading
       ? "loading"
       : // 2 - Empty if empty
-      isEmpty
-      ? "empty"
-      : // 3 - Then show rows
-        "rows";
+        isEmpty
+        ? "empty"
+        : // 3 - Then show rows
+          "rows";
 
   return {
     states: {
@@ -321,7 +324,7 @@ export function useRewardsTable(
 }
 export async function tryMethod(
   c: HTMLElement,
-  callback: () => Promise<string>
+  callback: () => Promise<string>,
 ): Promise<string | VNode> {
   const tag = c.tagName.toLowerCase();
   await customElements.whenDefined(tag);

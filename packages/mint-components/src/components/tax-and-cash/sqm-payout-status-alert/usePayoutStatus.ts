@@ -58,6 +58,9 @@ const GET_USER_STATUS = gql`
             partnerFundsTransfer {
               id
               status
+              dateScheduled
+              dateCreated
+              dateTransferred
             }
           }
         }
@@ -80,7 +83,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
   const hasTransferredReward = data?.user?.rewards?.data?.find(
     (reward) =>
       reward.statuses.includes("REDEEMED") &&
-      reward.partnerFundsTransfer.status === "TRANSFERRED"
+      reward.partnerFundsTransfer.status === "TRANSFERRED",
   );
 
   if (!data.user?.impactConnection?.connected || !account)
@@ -123,11 +126,11 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
   const { type } = getEnvironmentSDK();
   const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
-    {}
+    {},
   );
   const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
     GET_TAX_SETTING,
-    {}
+    {},
   );
   const {
     render,
