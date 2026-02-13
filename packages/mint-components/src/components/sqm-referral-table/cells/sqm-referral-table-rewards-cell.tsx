@@ -187,7 +187,9 @@ export class ReferralTableRewardsCell {
           partnerFundsStatus === "TRANSFERRED" ||
           partnerFundsStatus === "NOT_YET_DUE" ||
           (reward.partnerFundsTransfer.dateScheduled &&
-            reward.partnerFundsTransfer.dateScheduled < Date.now())
+            reward.partnerFundsTransfer.dateScheduled < Date.now() &&
+            partnerFundsStatus !== "OVERDUE" &&
+            partnerFundsStatus !== "REVERSED")
         )
           return "PAYOUT_APPROVED";
       }

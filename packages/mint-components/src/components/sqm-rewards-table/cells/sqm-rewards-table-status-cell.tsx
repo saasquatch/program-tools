@@ -87,7 +87,7 @@ export class RewardTableStatusCell {
   @Prop() pendingReviewText: string = "Awaiting review";
   @Prop() deniedText: string = "Detected self-referral";
   @Prop() payoutFailed: string =
-    "Payout failed due to a fulfillment issue and is current being retried.";
+    "Payout failed due to a fulfillment issue and is currently being retried.";
   @Prop() payoutApproved: string =
     "Payout approved and scheduled for payment based on your settings.";
   @Prop() payoutCancelled: string =
