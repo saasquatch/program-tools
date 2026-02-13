@@ -177,13 +177,17 @@ export class ReferralTableRewardsCell {
         if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
         if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
 
-        if (reward.partnerFundsTransfer.dateScheduled > Date.now()) {
+        if (
+          reward.partnerFundsTransfer.dateScheduled &&
+          reward.partnerFundsTransfer.dateScheduled > Date.now()
+        ) {
           return "PROCESSING";
         }
         if (
           partnerFundsStatus === "TRANSFERRED" ||
           partnerFundsStatus === "NOT_YET_DUE" ||
-          reward.partnerFundsTransfer.dateScheduled < Date.now()
+          (reward.partnerFundsTransfer.dateScheduled &&
+            reward.partnerFundsTransfer.dateScheduled < Date.now())
         )
           return "PAYOUT_APPROVED";
       }
@@ -268,7 +272,7 @@ export class ReferralTableRewardsCell {
         },
         {
           status: state,
-          scheduledPayoutDate: reward.partnerFundsTransfer
+          scheduledPayoutDate: reward.partnerFundsTransfer?.dateScheduled
             ? DateTime.fromMillis(reward.partnerFundsTransfer.dateScheduled)
                 ?.setLocale(luxonLocale(this.locale))
                 .toLocaleString(DateTime.DATE_MED)

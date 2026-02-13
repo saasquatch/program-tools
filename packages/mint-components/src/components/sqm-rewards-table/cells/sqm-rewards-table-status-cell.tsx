@@ -111,14 +111,18 @@ export class RewardTableStatusCell {
       if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
       if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
 
-      if (reward.partnerFundsTransfer.dateScheduled > Date.now()) {
+      if (
+        reward.partnerFundsTransfer.dateScheduled &&
+        reward.partnerFundsTransfer.dateScheduled > Date.now()
+      ) {
         return "PROCESSING";
       }
 
       if (
         partnerTransferStatus === "TRANSFERRED" ||
         partnerTransferStatus === "NOT_YET_DUE" ||
-        (reward.partnerFundsTransfer.dateScheduled < Date.now() &&
+        (reward.partnerFundsTransfer.dateScheduled &&
+          reward.partnerFundsTransfer.dateScheduled < Date.now() &&
           partnerTransferStatus !== "OVERDUE" &&
           partnerTransferStatus !== "REVERSED")
       )
