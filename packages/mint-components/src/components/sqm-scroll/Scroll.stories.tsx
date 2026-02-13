@@ -1,18 +1,18 @@
-import { h } from "@stencil/core";
+import { html } from "lit";
 
 export default {
   title: "Components/Scroll",
 };
 
 export const ScrollTag = () => {
-  return (
-    <div style={{ position: "relative", height: "2000px" }}>
+  return html`
+    <div style="position: relative; height: 2000px">
       <sqm-scroll
         scroll-tag-name="sqm-text"
         button-text="Scroll"
         scroll-animation="smooth"
       ></sqm-scroll>
-      <div style={{ position: "absolute", bottom: "0" }}>
+      <div style="position: absolute; bottom: 0">
         <sqm-text slot="label">
           <h3>Earn more rewards</h3>
           <p>
@@ -23,18 +23,18 @@ export const ScrollTag = () => {
         </sqm-text>
       </div>
     </div>
-  );
+  `;
 };
 
 export const ScrollId = () => {
-  return (
-    <div style={{ position: "relative", height: "2000px" }}>
+  return html`
+    <div style="position: relative; height: 2000px">
       <sqm-scroll
         button-text="Scroll"
         scroll-id="my-id"
         scroll-animation="smooth"
       ></sqm-scroll>
-      <div style={{ position: "absolute", bottom: "0" }}>
+      <div style="position: absolute; bottom: 0">
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
           <p>
@@ -45,18 +45,18 @@ export const ScrollId = () => {
         </sqm-text>
       </div>
     </div>
-  );
+  `;
 };
 
 export const ScrollAutoAnimation = () => {
-  return (
-    <div style={{ position: "relative", height: "2000px" }}>
+  return html`
+    <div style="position: relative; height: 2000px">
       <sqm-scroll
         button-text="Scroll"
         scroll-id="my-id"
         scroll-animation="auto"
       ></sqm-scroll>
-      <div style={{ position: "absolute", bottom: "0" }}>
+      <div style="position: absolute; bottom: 0">
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
           <p>
@@ -67,20 +67,18 @@ export const ScrollAutoAnimation = () => {
         </sqm-text>
       </div>
     </div>
-  );
+  `;
 };
 
 export const ScrollTabGroup = () => {
-  return (
-    <div style={{ position: "relative", height: "2000px" }}>
+  return html`
+    <div style="position: relative; height: 2000px">
       <sqm-scroll
         button-text="Redeem rewards"
         scroll-id="tab-3"
         scroll-animation="smooth"
       ></sqm-scroll>
-      <div
-        style={{ position: "absolute", bottom: "0" }}
-        innerHTML={`
+      <div style="position: absolute; bottom: 0">
               <sqm-tabs>
               <sqm-tab header="Leaderboard">
                 <sqm-hero-image
@@ -105,22 +103,19 @@ export const ScrollTabGroup = () => {
                 <sqm-reward-exchange-list></sqm-reward-exchange-list>
               </sqm-tab>
             </sqm-tabs>
-      `}
-      ></div>
+      </div>
     </div>
-  );
+  `;
 };
 
 export const ScrollTabGroupInner = () => {
-  return (
-    <div style={{ position: "relative", height: "2000px" }}>
+  return html`
+    <div style="position: relative; height: 2000px">
       <sqm-scroll
         button-text="Redeem rewards"
         scroll-tag-name="sqm-reward-exchange-list"
       ></sqm-scroll>
-      <div
-        style={{ position: "absolute", bottom: "0" }}
-        innerHTML={`
+      <div style="position: absolute; bottom: 0">
               <sqm-tabs>
               <sqm-tab header="Leaderboard">
                 <sqm-hero-image
@@ -145,84 +140,83 @@ export const ScrollTabGroupInner = () => {
                 <sqm-reward-exchange-list></sqm-reward-exchange-list>
               </sqm-tab>
             </sqm-tabs>
-      `}
-      ></div>
+      </div>
     </div>
-  );
+  `;
 };
 
 export const ShoelaceProps = () => {
-  return (
+  return html`
     <div>
-      <div style={{ display: "flex", gap: "60px" }}>
-        <div style={{ textAlign: "center" }}>
+      <div style="display: flex; gap: 60px">
+        <div style="text-align: center">
           <h3>Type:</h3>
           <sqm-scroll button-type="primary">Primary</sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll button-type="success">Success</sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll button-type="neutral">Neutral</sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll button-type="warning">Warning</sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll button-type="danger">Danger</sqm-scroll>
         </div>
-        <div style={{ textAlign: "center" }}>
+        <div style="text-align: center">
           <h3>Outline:</h3>
           <sqm-scroll outline button-type="primary">
             Primary
           </sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll outline button-type="success">
             Success
           </sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll outline button-type="neutral">
             Neutral
           </sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll outline button-type="warning">
             Warning
           </sqm-scroll>
-          <br />
+          <br>
           <sqm-scroll outline button-type="danger">
             Danger
           </sqm-scroll>
         </div>
       </div>
-      <br /> <hr />
+      <br> <hr>
       <h3>Text:</h3>
       <sqm-scroll button-type="text">Text</sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
       <h3>Size:</h3>
       <sqm-scroll size="small">Small</sqm-scroll>
-      <br />
+      <br>
       <sqm-scroll size="medium">Medium</sqm-scroll>
-      <br />
+      <br>
       <sqm-scroll size="large">Large</sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
       <h3>Pill:</h3>
       <sqm-scroll pill>Button</sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
       <h3>Icon:</h3>
-      <sqm-scroll button-type="primary" iconName="facebook">
+      <sqm-scroll button-type="primary" icon-name="facebook">
         Icon Name
       </sqm-scroll>
-      <br />
-      <sqm-scroll iconName="gear" iconSlot="prefix">
+      <br>
+      <sqm-scroll icon-name="gear" icon-slot="prefix">
         Icon Slot Prefix
       </sqm-scroll>
-      <br />
-      <sqm-scroll iconName="gear" iconSlot="suffix">
+      <br>
+      <sqm-scroll icon-name="gear" icon-slot="suffix">
         Icon Slot Suffix
       </sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
       <h3>Circle:</h3>
       <sqm-scroll circle>X</sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
       <h3>Mobile Friendly:</h3>
       <sqm-scroll mobile>Button</sqm-scroll>
-      <br /> <hr />
+      <br> <hr>
     </div>
-  );
+  `;
 };

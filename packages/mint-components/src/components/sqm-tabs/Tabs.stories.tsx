@@ -1,46 +1,35 @@
-import { h } from "@stencil/core";
-import scenario from "./tabs.feature";
+import { html } from "lit";
+
 export default {
   title: "Components/Tabs",
-  parameters: {
-    scenario,
-  },
 };
 
-export const SimpleTabs = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const SimpleTabs = () => html`
+  <div style="max-width: 700px; margin: auto">
      <sqm-tabs>
         <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
         <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
       </sqm-tabs>
-    `}
-  ></div>
-);
+  </div>
+`;
 
-export const CustomColor = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const CustomColor = () => html`
+  <div style="max-width: 700px; margin: auto">
      <sqm-tabs text-color="red">
         <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
         <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
       </sqm-tabs>
-    `}
-  ></div>
-);
+  </div>
+`;
 
-export const ManyTabs = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const ManyTabs = () => html`
+  <div style="max-width: 700px; margin: auto">
      <sqm-tabs>
         <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
-        <sqm-tab header="Advanced">This is the advanced tab</sqm-tab> 
+        <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
         <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
         <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
@@ -51,27 +40,21 @@ export const ManyTabs = () => (
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
         <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
       </sqm-tabs>
-    `}
-  ></div>
-);
+  </div>
+`;
 
-export const SingleTab = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const SingleTab = () => html`
+  <div style="max-width: 700px; margin: auto">
      <sqm-tabs>
         <sqm-tab header="Redeem">
           <sqm-reward-exchange-list></sqm-reward-exchange-list>
         </sqm-tab>
       </sqm-tabs>
-    `}
-  ></div>
-);
+  </div>
+`;
 
-export const ReferralProgram = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const ReferralProgram = () => html`
+  <div style="max-width: 700px; margin: auto">
     <sqm-tabs>
     <sqm-tab header="Leaderboard">
       <sqm-leaderboard></sqm-leaderboard>
@@ -150,15 +133,12 @@ export const ReferralProgram = () => (
         </sqm-empty
       ></sqm-rewards-table>
     </sqm-tab>
-  </sqm-tabs>  
-    `}
-  ></div>
-);
+  </sqm-tabs>
+  </div>
+`;
 
-export const LoyaltyProgram = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const LoyaltyProgram = () => html`
+  <div style="max-width: 700px; margin: auto">
     <sqm-tabs placement="top">
     <sqm-tab header="Leaderboard">
       <sqm-hero-image
@@ -249,15 +229,12 @@ export const LoyaltyProgram = () => (
     <sqm-tab header="Redeem">
       <sqm-reward-exchange-list></sqm-reward-exchange-list>
     </sqm-tab>
-  </sqm-tabs>  
-    `}
-  ></div>
-);
+  </sqm-tabs>
+  </div>
+`;
 
-export const BottomTabs = () => (
-  <div
-    style={{ maxWidth: "700px", margin: "auto" }}
-    innerHTML={`
+export const BottomTabs = () => html`
+  <div style="max-width: 700px; margin: auto">
     <sqm-tabs placement="bottom">
     <sqm-tab header="Leaderboard">
       <sqm-hero-image
@@ -348,15 +325,12 @@ export const BottomTabs = () => (
     <sqm-tab header="Redeem">
       <sqm-reward-exchange-list></sqm-reward-exchange-list>
     </sqm-tab>
-  </sqm-tabs>  
-    `}
-  ></div>
-);
+  </sqm-tabs>
+  </div>
+`;
 
-export const LeftTabs = () => (
-  <div
-    style={{ maxWidth: "900px", margin: "auto" }}
-    innerHTML={`
+export const LeftTabs = () => html`
+  <div style="max-width: 900px; margin: auto">
     <sqm-tabs placement="left">
     <sqm-tab header="Leaderboard">
       <sqm-hero-image
@@ -447,15 +421,12 @@ export const LeftTabs = () => (
     <sqm-tab header="Redeem">
       <sqm-reward-exchange-list></sqm-reward-exchange-list>
     </sqm-tab>
-  </sqm-tabs>  
-    `}
-  ></div>
-);
+  </sqm-tabs>
+  </div>
+`;
 
-export const RightTabs = () => (
-  <div
-    style={{ maxWidth: "900px", margin: "auto" }}
-    innerHTML={`
+export const RightTabs = () => html`
+  <div style="max-width: 900px; margin: auto">
     <sqm-tabs placement="right">
     <sqm-tab header="Leaderboard">
       <sqm-hero-image
@@ -546,7 +517,6 @@ export const RightTabs = () => (
     <sqm-tab header="Redeem">
       <sqm-reward-exchange-list></sqm-reward-exchange-list>
     </sqm-tab>
-  </sqm-tabs>  
-    `}
-  ></div>
-);
+  </sqm-tabs>
+  </div>
+`;

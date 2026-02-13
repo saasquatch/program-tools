@@ -1,21 +1,21 @@
-import { h } from "@stencil/core";
+import { html } from "lit";
 
 export default {
   title: "Tests/User Name",
 };
 
 export const DemoData = () => {
-  return (
+  return html`
     <sqm-user-name
-      demoData={{
+      .demoData=${{
         loading: false,
         loadingText: "...",
         username: "Test Testerson",
       }}
     ></sqm-user-name>
-  );
+  `;
 };
 
 export const Username = () => {
-  return <sqm-user-name></sqm-user-name>;
+  return html`<sqm-user-name></sqm-user-name>`;
 };

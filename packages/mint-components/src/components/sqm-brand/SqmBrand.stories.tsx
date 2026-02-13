@@ -1,16 +1,12 @@
-import { h } from "@stencil/core";
-import scenario from "./sqm-brand.feature";
+import { html } from "lit";
 
 export default {
   title: "Components/Brand",
-  parameters: {
-    scenario,
-  },
 };
 
-const SampleComponents = () => (
-  <div style={{ padding: "10px", border: "5px solid #EEE" }}>
-    <div style={{ display: "flex", gap: "5px", padding: "5px" }}>
+const SampleComponents = () => html`
+  <div style="padding: 10px; border: 5px solid #EEE">
+    <div style="display: flex; gap: 5px; padding: 5px">
       <sl-button type="default">Default</sl-button>
       <sl-button type="primary">Primary</sl-button>
       <sl-button type="success">Success</sl-button>
@@ -18,7 +14,7 @@ const SampleComponents = () => (
       <sl-button type="warning">Warning</sl-button>
       <sl-button type="danger">Danger</sl-button>
     </div>
-    <div style={{ display: "flex", gap: "5px", padding: "5px" }}>
+    <div style="display: flex; gap: 5px; padding: 5px">
       <sl-badge type="primary">Primary</sl-badge>
       <sl-badge type="success">Success</sl-badge>
       <sl-badge type="neutral">Neutral</sl-badge>
@@ -28,108 +24,100 @@ const SampleComponents = () => (
     <div class="color-palette">
       <div class="color-palette__name">
         Primary
-        <br />
+        <br>
         <code>
-          --sl-color-primary-<em>{`{n}`}</em>
+          --sl-color-primary-<em>{n}</em>
         </code>
       </div>
-      <div style={{ display: "flex", gap: "5px" }}>
-        <ColorSwatch depth={50} />
-        <ColorSwatch depth={100} />
-        <ColorSwatch depth={200} />
-        <ColorSwatch depth={300} />
-        <ColorSwatch depth={400} />
-        <ColorSwatch depth={500} />
-        <ColorSwatch depth={600} />
-        <ColorSwatch depth={700} />
-        <ColorSwatch depth={800} />
-        <ColorSwatch depth={900} />
-        <ColorSwatch depth={950} />
+      <div style="display: flex; gap: 5px">
+        ${ColorSwatch({ depth: 50 })}
+        ${ColorSwatch({ depth: 100 })}
+        ${ColorSwatch({ depth: 200 })}
+        ${ColorSwatch({ depth: 300 })}
+        ${ColorSwatch({ depth: 400 })}
+        ${ColorSwatch({ depth: 500 })}
+        ${ColorSwatch({ depth: 600 })}
+        ${ColorSwatch({ depth: 700 })}
+        ${ColorSwatch({ depth: 800 })}
+        ${ColorSwatch({ depth: 900 })}
+        ${ColorSwatch({ depth: 950 })}
       </div>
     </div>
   </div>
-);
+`;
 export const Examples = () => {
-  return (
+  return html`
     <div>
-      <SampleComponents />
+      ${SampleComponents()}
       <sqm-brand brand-color="#FF0000">
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-color="#00FF00">
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-color="#0000FF">
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-color="#000000">
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
     </div>
-  );
+  `;
 };
 
 export const Nested = () => {
-  return (
+  return html`
     <div>
-      Default <SampleComponents />
+      Default ${SampleComponents()}
       <sqm-brand brand-color="#FF0000">
         Red:
-        <SampleComponents />
+        ${SampleComponents()}
         <sqm-brand brand-color="#00FF00">
           Green:
-          <SampleComponents />
+          ${SampleComponents()}
           <sqm-brand brand-color="#0000FF">
             Blue:
-            <SampleComponents />
+            ${SampleComponents()}
             <sqm-brand brand-color="#000000">
               Black:
-              <SampleComponents />
+              ${SampleComponents()}
             </sqm-brand>
           </sqm-brand>
         </sqm-brand>
       </sqm-brand>
     </div>
-  );
+  `;
 };
 function ColorSwatch({ depth }: { depth: number }) {
-  return (
+  return html`
     <div
-      style={{
-        backgroundColor: `var(--sl-color-primary-${depth})`,
-        color: `var(--sl-color-neutral-${1000 - depth})`,
-        width: "50px",
-        height: "50px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style="background-color: var(--sl-color-primary-${depth}); color: var(--sl-color-neutral-${1000 - depth}); width: 50px; height: 50px; display: flex; justify-content: center; align-items: center"
     >
-      {depth}
+      ${depth}
     </div>
-  );
+  `;
 }
 
 export const Fonts = () => {
-  return (
+  return html`
     <div>
-      <SampleComponents />
+      ${SampleComponents()}
       <sqm-brand brand-font="Roboto">
         Roboto
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-font="Open Sans">
         Open Sans
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-font="Lato">
         Lato
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
       <sqm-brand brand-font="Oswald">
         Oswald
-        <SampleComponents />
+        ${SampleComponents()}
       </sqm-brand>
     </div>
-  );
+  `;
 };

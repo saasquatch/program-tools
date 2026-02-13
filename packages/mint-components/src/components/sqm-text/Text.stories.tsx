@@ -1,21 +1,21 @@
-import { h } from "@stencil/core";
+import { html } from "lit";
 
 export default {
   title: "Components/Text",
 };
 
 export const PurpleText = () => {
-  return (
-    <sqm-text textColor="slateblue">
+  return html`
+    <sqm-text text-color="slateblue">
       <p>This is the text component</p>
     </sqm-text>
-  );
+  `;
 };
 
 export const CustomFontSize = () => {
-  return (
-    <sqm-text fontSize={36}>
+  return html`
+    <sqm-text font-size="36">
       <p>This is the text component</p>
     </sqm-text>
-  );
+  `;
 };

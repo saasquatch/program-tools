@@ -11,3 +11,91 @@ index 8e21dfb..63c663e 100644
      System.import(url.href);
    };
  
+diff --git a/node_modules/@stencil/core/testing/index.js b/node_modules/@stencil/core/testing/index.js
+index 2ece03f..20a3ddf 100644
+--- a/node_modules/@stencil/core/testing/index.js
++++ b/node_modules/@stencil/core/testing/index.js
+@@ -750,12 +750,11 @@ async function addE2EListener(e, t, r, s) {
+   eventName: r,
+   callback: s
+  });
+- const i = t.executionContext();
+- await i.evaluate(((e, t, r) => {
++ await t.evaluate(((e, t, r) => {
+   e.addEventListener(r, (e => {
+    window.stencilOnEvent(t, window.stencilSerializeEvent(e));
+   }));
+- }), t, n, r);
++ }), n, r);
+ }
+ 
+ function browserContextEvents() {
+@@ -844,10 +843,10 @@ async function findAll(e, t, r) {
+  const s = [], {lightSelector: n, shadowSelector: i} = getSelector(r), o = await t.$$(n);
+  if (0 === o.length) return s;
+  if (i) for (let t = 0; t < o.length; t++) {
+-  const r = o[t].executionContext(), n = await r.evaluateHandle(((e, t) => {
++  const n = await o[t].evaluateHandle(((e, t) => {
+    if (!e.shadowRoot) throw new Error(`shadow root does not exist for element: ${e.tagName.toLowerCase()}`);
+    return e.shadowRoot.querySelectorAll(t);
+-  }), o[t], i);
++  }), i);
+   await o[t].dispose();
+   const a = await n.getProperties();
+   await n.dispose();
+@@ -3134,8 +3133,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+   this._validate();
+   let e = !1;
+   try {
+-   const t = this._elmHandle.executionContext();
+-   e = await t.evaluate((e => new Promise((t => {
++   e = await this._elmHandle.evaluate((e => new Promise((t => {
+     window.requestAnimationFrame((() => {
+      if (e.isConnected) {
+       const r = window.getComputedStyle(e);
+@@ -3144,7 +3142,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+       })) : t(!1);
+      } else t(!1);
+     }));
+-   }))), this._elmHandle);
++   }))));
+   } catch (e) {}
+   return e;
+  }
+@@ -3183,8 +3181,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+  }
+  async getProperty(e) {
+   this._validate();
+-  const t = this._elmHandle.executionContext();
+-  return await t.evaluate(((e, t) => e[t]), this._elmHandle, e);
++  return await this._elmHandle.evaluate(((e, t) => e[t]), e);
+  }
+  setProperty(e, t) {
+   this._queueAction({
+@@ -3340,7 +3337,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+  }
+  async e2eRunActions() {
+   if (0 === this._queuedActions.length) return;
+-  const e = this._elmHandle.executionContext(), t = await e.evaluate(((e, t) => e.componentOnReady().then((() => {
++  const t = await this._elmHandle.evaluate(((e, t) => e.componentOnReady().then((() => {
+    let r = null;
+    return t.forEach((t => {
+     if (t.methodName) r = e[t.methodName].apply(e, t.methodArgs); else if (t.setPropertyName) e[t.setPropertyName] = t.setPropertyValue; else if (t.setAttributeName) e.setAttribute(t.setAttributeName, t.setAttributeValue); else if (t.removeAttribute) e.removeAttribute(t.removeAttribute); else if (t.toggleAttributeName) "boolean" == typeof t.toggleAttributeForce ? e.toggleAttribute(t.toggleAttributeName, t.toggleAttributeForce) : e.toggleAttribute(t.toggleAttributeName); else if (t.classAdd) e.classList.add(t.classAdd); else if (t.classRemove) e.classList.remove(t.classRemove); else if (t.classToggle) e.classList.toggle(t.classToggle); else if (t.eventName) {
+@@ -3351,14 +3348,14 @@ class E2EElement extends index_cjs.MockHTMLElement {
+      e.dispatchEvent(s);
+     }
+    })), r && "function" == typeof r.then ? r.then((e => e)) : r;
+-  }))), this._elmHandle, this._queuedActions);
++  }))), this._queuedActions);
+   return this._queuedActions.length = 0, t;
+  }
+  async e2eSync() {
+-  const e = this._elmHandle.executionContext(), {outerHTML: t, shadowRootHTML: r} = await e.evaluate((e => ({
++  const {outerHTML: t, shadowRootHTML: r} = await this._elmHandle.evaluate((e => ({
+    outerHTML: e.outerHTML,
+    shadowRootHTML: e.shadowRoot ? e.shadowRoot.innerHTML : null
+-  })), this._elmHandle);
++  })));
+   "string" == typeof r ? (this.shadowRoot = index_cjs.parseHtmlToFragment(r), this.shadowRoot.host = this) : this.shadowRoot = null;
+   const s = index_cjs.parseHtmlToFragment(t).firstElementChild;
+   for (this.nodeName = s.nodeName, this.attributes = index_cjs.cloneAttributes(s.attributes); this.childNodes.length > 0; ) this.removeChild(this.childNodes[0]);
