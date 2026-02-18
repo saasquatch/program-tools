@@ -109,6 +109,14 @@ export class RewardTableStatusColumn implements RewardTableColumn {
     "Payout failed due to a fulfillment issue and is currently being retried.";
 
   /**
+   * Displayed when a reward payout is processing.
+   *
+   * @uiName Payout processing text
+   */
+  @Prop() payoutProcessing: string =
+    "Processing until {date}. Payout is then scheduled based on your settings.";
+
+  /**
    * Displayed when reward payout was reversed (based on Impact cash payout configuration).
    *
    * @uiName Payout cancelled text
@@ -146,6 +154,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         pendingReviewText={this.pendingReviewText}
         payoutFailed={this.payoutFailed}
         payoutApproved={this.payoutApproved}
+        payoutProcessing={this.payoutProcessing}
         payoutCancelled={this.payoutCancelled}
         deniedText={this.deniedText}
         locale={options?.locale}
