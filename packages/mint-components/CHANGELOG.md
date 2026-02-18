@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.11] - 2026-02-16
+## [2.1.0] - 2026-02-16
 
 ### Updated
 
@@ -1455,8 +1455,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.11...HEAD
-[2.0.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.11
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.0...HEAD
+[2.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.0
 [2.0.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.10
 [2.0.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.9
 [2.0.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.8
