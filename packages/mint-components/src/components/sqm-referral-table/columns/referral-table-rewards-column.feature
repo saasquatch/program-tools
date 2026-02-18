@@ -115,7 +115,7 @@ Feature: Referral Table Reward Column
 
     Examples:
       | pftState                                           | status              | text               | pillColour |
-      | transfer date is in the future                     | PAYOUT_PROCESSING   | Payment Processing | primary    |
+      | transfer date is in the future | PROCESSING | Payment Processing | primary |
       | successfully transferred to payment provider       | PAYOUT_TRANSFERRED  | Payout Approved    | primary    |
       | approved but payout scheduled date not yet arrived | PAYOUT_NOT_YET_DUE  | Payout Approved    | primary    |
       | failed due to fulfillment issue and retrying       | PAYOUT_OVERDUE      | Payout Failed      | danger     |
