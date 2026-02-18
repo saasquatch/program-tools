@@ -68,10 +68,10 @@ Feature: Referral Table Reward Column
 
     Examples: Payout States
       | status             | detailMessage                                                              |
-      | Payout Approved    | Processing until {date}. Payout is then scheduled based your settings.     |
+      | Payout Approved    | Processing until {date}. Payout is then scheduled based on your settings.  |
       | Payout Failed      | Payout failed due to a fulfillment issue and is currently being retried.   |
       | Payout Cancelled   | If you think this is a mistake, contact our Support team.                  |
-      | Processing         | Processing until {date}. Payout is then scheduled based your settings.     |
+      | Processing         | Processing until {date}. Payout is then scheduled based on your settings.  |
 
     Examples: Tax Compliance States
       | status                   | detailMessage                                                      |
