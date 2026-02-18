@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { ImpactConnection, Reward } from "../../saasquatch";
+import { ImpactConnection } from "../../saasquatch";
 
 export default {
   title: "Components/Tax And Cash Rewards Table Cell",
