@@ -14,7 +14,7 @@
 | `locale`                 | `locale`                   |             | `string`           | `"en"`                                                                        |
 | `payoutApproved`         | `payout-approved`          |             | `string`           | `"Payout approved and scheduled for payment based on your settings."`         |
 | `payoutCancelled`        | `payout-cancelled`         |             | `string`           | `"If you think this is a mistake, contact our Support team."`                 |
-| `payoutFailed`           | `payout-failed`            |             | `string`           | `"Payout failed due to a fulfillment issue and is current being retried."`    |
+| `payoutFailed`           | `payout-failed`            |             | `string`           | `"Payout failed due to a fulfillment issue and is currently being retried."`  |
 | `payoutProcessing`       | `payout-processing`        |             | `string`           | `"Processing until {date}. Payout is then scheduled based on your settings."` |
 | `pendingNewTaxForm`      | `pending-new-tax-form`     |             | `string`           | `"Invalid tax form. Submit a new form to receive your rewards."`              |
 | `pendingPartnerCreation` | `pending-partner-creation` |             | `string`           | `"Complete your tax and cash payout setup to receive your rewards."`          |
