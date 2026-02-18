@@ -34,7 +34,7 @@ Feature: Reward Table Status Column
       | PAYOUT_NOT_YET_DUE       | Payout Approved  | primary    |
       | PAYOUT_OVERDUE           | Payout Failed    | danger     |
       | PAYOUT_REVERSED          | Payout Cancelled | danger     |
-      | PAYOUT_PROCESSING        | Processing       | warning    |
+      | PROCESSING               | Processing       | warning    |
       | PENDING_TAX_REVIEW       | Pending          | warning    |
       | PENDING_NEW_TAX_FORM     | Pending          | warning    |
       | PENDING_TAX_SUBMISSION   | Pending          | warning    |
