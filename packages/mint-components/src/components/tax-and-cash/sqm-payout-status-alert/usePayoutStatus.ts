@@ -83,7 +83,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
   const hasTransferredReward = data?.user?.rewards?.data?.find(
     (reward) =>
       reward.statuses.includes("REDEEMED") &&
-      reward.partnerFundsTransfer.status === "TRANSFERRED",
+      reward.partnerFundsTransfer?.status === "TRANSFERRED",
   );
 
   if (!data.user?.impactConnection?.connected || !account)
