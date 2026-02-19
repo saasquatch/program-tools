@@ -15,13 +15,13 @@ export class ReferralTableRewardsCell {
   @Prop() taxConnection: ImpactConnection;
   @Prop() hideDetails: boolean;
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
   @Prop() statusLongText: string =
-    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Reward was scheduled for payment based on your settings, barring any account holds.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
+    "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }";
   @Prop() fuelTankText: string;
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
-  @Prop() pendingForText: string;
+  @Prop() pendingForText: string = "{status} for {date}";
   @Prop() deniedHelpText: string;
   @Prop() locale: string = "en";
   render() {
@@ -144,7 +144,7 @@ export class ReferralTableRewardsCell {
 
     const getState = (
       reward: Reward,
-      taxConnection: ImpactConnection
+      taxConnection: ImpactConnection,
     ): string => {
       const possibleStates = [
         "REDEEMED",
@@ -161,6 +161,7 @@ export class ReferralTableRewardsCell {
         "PENDING_NEW_TAX_FORM",
         "PENDING_TAX_SUBMISSION",
         "PENDING_PARTNER_CREATION",
+        "PROCESSING",
       ];
 
       if (reward.referral?.fraudData?.moderationStatus !== "APPROVED") {
@@ -171,13 +172,27 @@ export class ReferralTableRewardsCell {
       }
 
       const partnerFundsStatus = reward.partnerFundsTransfer?.status;
-      if (
-        partnerFundsStatus === "NOT_YET_DUE" ||
-        partnerFundsStatus === "TRANSFERRED"
-      ) {
-        return "PAYOUT_APPROVED";
-      } else if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
-      else if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
+
+      if (reward.partnerFundsTransfer) {
+        if (partnerFundsStatus === "REVERSED") return "PAYOUT_CANCELLED";
+        if (partnerFundsStatus === "OVERDUE") return "PAYOUT_FAILED";
+
+        if (
+          reward.partnerFundsTransfer.dateScheduled &&
+          reward.partnerFundsTransfer.dateScheduled > Date.now()
+        ) {
+          return "PROCESSING";
+        }
+        if (
+          partnerFundsStatus === "TRANSFERRED" ||
+          partnerFundsStatus === "NOT_YET_DUE" ||
+          (reward.partnerFundsTransfer.dateScheduled &&
+            reward.partnerFundsTransfer.dateScheduled < Date.now() &&
+            partnerFundsStatus !== "OVERDUE" &&
+            partnerFundsStatus !== "REVERSED")
+        )
+          return "PAYOUT_APPROVED";
+      }
 
       if (reward?.pendingReasons?.includes("US_TAX")) {
         if (!taxConnection?.taxHandlingEnabled) return "PENDING";
@@ -205,7 +220,7 @@ export class ReferralTableRewardsCell {
       if (reward.statuses.length === 1) return reward.statuses[0];
 
       return possibleStates.find(
-        (state) => reward.statuses.includes(state) && state
+        (state) => reward.statuses.includes(state) && state,
       );
     };
 
@@ -226,6 +241,7 @@ export class ReferralTableRewardsCell {
         case "PENDING_NEW_TAX_FORM":
         case "PENDING_TAX_SUBMISSION":
         case "PENDING_PARTNER_CREATION":
+        case "PROCESSING":
           return "warning";
         case "AVAILABLE":
           return "success";
@@ -248,8 +264,9 @@ export class ReferralTableRewardsCell {
         { id: "statusShortMessage", defaultMessage: this.statusText },
         {
           status: state,
-        }
+        },
       );
+
       const statusText = intl.formatMessage(
         {
           id: "statusLongMessage",
@@ -257,7 +274,12 @@ export class ReferralTableRewardsCell {
         },
         {
           status: state,
-        }
+          scheduledPayoutDate: reward.partnerFundsTransfer?.dateScheduled
+            ? DateTime.fromMillis(reward.partnerFundsTransfer.dateScheduled)
+                ?.setLocale(luxonLocale(this.locale))
+                .toLocaleString(DateTime.DATE_MED)
+            : null,
+        },
       );
 
       return (
@@ -288,7 +310,7 @@ export class ReferralTableRewardsCell {
                     {
                       status: badgeText,
                       date: getTimeDiff(reward.dateScheduledFor),
-                    }
+                    },
                   )}
                 </sl-badge>
               ) : (
@@ -326,6 +348,11 @@ export class ReferralTableRewardsCell {
               </div>
             )}
             {state === "PAYOUT_APPROVED" && (
+              <div>
+                <TextSpanView type="p">{statusText}</TextSpanView>
+              </div>
+            )}
+            {state === "PROCESSING" && (
               <div>
                 <TextSpanView type="p">{statusText}</TextSpanView>
               </div>

@@ -67,13 +67,17 @@ import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
+import * as TaxAndCashReferralTable from "../sqm-referral-table/TaxAndCashReferralTable.stories";
+import * as TaxAndCashReferralTableRewardsCell from "../sqm-referral-table/TaxAndCashReferralTableRewardsCell.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
 import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRewardsCell.stories";
 import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
 import * as RewardsTable from "../sqm-rewards-table/RewardsTable.stories";
+import * as TaxAndCashRewardsTable from "../sqm-rewards-table/TaxAndCashRewardsTable.stories";
 import * as RewardsTableCell from "../sqm-rewards-table/RewardsTableCell.stories";
+import * as TaxAndCashRewardsTableCell from "../sqm-rewards-table/TaxAndCashRewardsTableCell.stories";
 import * as UseRewardsTable from "../sqm-rewards-table/UseRewardsTable.stories";
 import * as Router from "../sqm-router/Router.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
@@ -211,6 +215,10 @@ const stories = [
   LeadInputField,
   LeadFormDropdownField,
   LeadCheckboxField,
+  TaxAndCashRewardsTableCell,
+  TaxAndCashRewardsTable,
+  TaxAndCashReferralTableRewardsCell,
+  TaxAndCashReferralTable,
 ];
 
 /**

@@ -60,6 +60,9 @@ const GET_REFERRER_DATA = gql`
             partnerFundsTransfer {
               id
               status
+              dateScheduled
+              dateCreated
+              dateTransferred
             }
             meta {
               status
@@ -168,6 +171,9 @@ const GET_REFERRAL_DATA = gql`
               partnerFundsTransfer {
                 id
                 status
+                dateScheduled
+                dateCreated
+                dateTransferred
               }
               referral {
                 dateModerated
@@ -275,7 +281,7 @@ export type ReferralDates =
 export function useReferralTable(
   props: ReferralTable,
   emptyElement: VNode,
-  loadingElement: VNode
+  loadingElement: VNode,
 ): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
@@ -306,7 +312,7 @@ export function useReferralTable(
       rows: [],
       loading: false,
       page: 0,
-    }
+    },
   );
 
   const locale = useLocale();
@@ -322,7 +328,7 @@ export function useReferralTable(
       rewardFilter,
       locale,
     },
-    !props.showReferrer || !user?.jwt
+    !props.showReferrer || !user?.jwt,
   );
 
   const referrerData = referrerResponse?.viewer?.referredByReferral;
@@ -332,7 +338,7 @@ export function useReferralTable(
   const { data: taxResponse, loading: taxLoading } = useQuery<GetImpactTax>(
     GET_IMPACT_TAX,
     {},
-    !user?.jwt
+    !user?.jwt,
   );
 
   const taxConnection = taxResponse?.viewer?.impactConnection;
@@ -353,7 +359,7 @@ export function useReferralTable(
       rewardFilter,
       locale,
     },
-    (props.showReferrer && referrerLoading && !referrerResponse) || !user?.jwt
+    (props.showReferrer && referrerLoading && !referrerResponse) || !user?.jwt,
   );
 
   useEffect(() => {
@@ -380,18 +386,18 @@ export function useReferralTable(
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
+      (component) => component.slot !== "loading" && component.slot !== "empty",
     );
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(async (c: any) =>
-      tryMethod(c, () => c.renderLabel())
+      tryMethod(c, () => c.renderLabel()),
     );
 
     // show the referrer row before any other rows
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderReferrerCell(referrerData, locale, h))
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale, h)),
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -399,7 +405,7 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h))
+        tryMethod(c, () => c.renderCell(r, { locale, taxConnection }, h)),
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
@@ -408,7 +414,7 @@ export function useReferralTable(
     const rows =
       cellsPromise &&
       [referrerRow, ...(await Promise.all(cellsPromise))].filter(
-        (value) => value
+        (value) => value,
       );
 
     setContent({ rows });
@@ -430,10 +436,10 @@ export function useReferralTable(
     states.loading || content.loading || taxLoading
       ? "loading"
       : // 2 - Empty if empty
-      isEmpty
-      ? "empty"
-      : // 3 - Then show rows
-        "rows";
+        isEmpty
+        ? "empty"
+        : // 3 - Then show rows
+          "rows";
 
   return {
     states: {
@@ -484,7 +490,7 @@ export function generateUserError(e: any) {
 
 export async function tryMethod(
   c: HTMLElement,
-  callback: () => Promise<string | VNode[]>
+  callback: () => Promise<string | VNode[]>,
 ): Promise<string | VNode[]> {
   const tag = c.tagName.toLowerCase();
   await customElements.whenDefined(tag);
