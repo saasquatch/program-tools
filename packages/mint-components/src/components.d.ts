@@ -4531,6 +4531,11 @@ export namespace Components {
          */
         "payoutFailed": string;
         /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing": string;
+        /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
          */
@@ -12383,6 +12388,11 @@ declare namespace LocalJSX {
           * @uiName Payout failed text
          */
         "payoutFailed"?: string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
