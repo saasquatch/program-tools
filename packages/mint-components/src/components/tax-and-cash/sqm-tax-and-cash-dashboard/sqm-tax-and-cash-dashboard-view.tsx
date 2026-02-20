@@ -184,6 +184,7 @@ const style = {
     marginBottom: "var(--sl-spacing-xx-small)",
     margin: "0",
     display: "flex",
+    alignItems: "center",
     gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {
       color: "var(--sqm-text)",
@@ -255,6 +256,9 @@ const style = {
     display: "flex",
     textAlign: "center",
     width: "250px",
+    "&::part(body)": {
+      pointerEvents: "auto",
+    },
   },
   ToolTip: {
     top: "6px",
@@ -333,6 +337,43 @@ const style = {
     display: "flex",
     gap: "var(--sl-spacing-medium)",
     flexWrap: "wrap",
+  },
+  DropdownTooltipContainer: {
+    top: "-4px",
+    "&::part(panel)": {
+      boxShadow: "none",
+      border: "none",
+      marginTop: "var(--sl-spacing-x-small)",
+    },
+  },
+  DropdownContent: {
+    padding: "var(--sl-spacing-xxx-small) var(--sl-spacing-x-small)",
+    fontSize: "var(--sl-font-size-small)",
+    fontFamily: "var(--sl-font-sans)",
+    fontWeight: "var(--sl-font-weight-normal)",
+    lineHeight: "var(--sl-line-height-dense)",
+    minWidth: "225px",
+    backgroundColor: "var(--sl-color-gray-900)",
+    color: "var(--sl-color-white)",
+    borderRadius: "var(--sl-border-radius-medium)",
+    position: "relative",
+    marginLeft: "5px",
+  },
+  DropdownArrow: {
+    position: "absolute",
+    left: "-5px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "0",
+    height: "0",
+    borderTop: "5px solid transparent",
+    borderBottom: "5px solid transparent",
+    borderRight: "5px solid var(--sl-color-gray-900)",
+    zIndex: "1",
+  },
+  DropdownLink: {
+    color: "var(--sl-color-white)",
+    textDecoration: "underline",
   },
 };
 
@@ -899,6 +940,39 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   const alertInfo = getAlert(states.payoutStatus);
 
+  const dropdownHover = (el) => {
+    if (!el) return;
+
+    const trigger = el.querySelector('[slot="trigger"]');
+    const panel = el.shadowRoot?.querySelector(".dropdown__panel");
+
+    if (!trigger || !panel) return;
+
+    let hideTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const show = () => {
+      clearTimeout(hideTimeout);
+      el.show();
+    };
+
+    const scheduleHide = () => {
+      hideTimeout = setTimeout(() => el.hide(), 100);
+    };
+
+    trigger.addEventListener("mouseenter", show);
+    trigger.addEventListener("mouseleave", scheduleHide);
+    panel.addEventListener("mouseenter", show);
+    panel.addEventListener("mouseleave", scheduleHide);
+
+    return () => {
+      trigger.removeEventListener("mouseenter", show);
+      trigger.removeEventListener("mouseleave", scheduleHide);
+      panel.removeEventListener("mouseenter", show);
+      panel.removeEventListener("mouseleave", scheduleHide);
+      clearTimeout(hideTimeout);
+    };
+  };
+
   return (
     <div>
       <div>
@@ -1099,14 +1173,39 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <div>
               <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
                 {text.indirectTaxInfoSectionHeader}
-                <sl-tooltip
-                  trigger="hover"
+                <sl-dropdown
                   placement="right"
-                  content={text.indirectTaxTooltipSupport}
-                  class={sheet.classes.TooltipContainer}
+                  distance={1}
+                  ref={dropdownHover}
+                  class={sheet.classes.DropdownTooltipContainer}
                 >
-                  <sl-icon name="info-circle" class={sheet.classes.ToolTip} />
-                </sl-tooltip>
+                  <sl-icon
+                    slot="trigger"
+                    name="info-circle"
+                    class={sheet.classes.ToolTip}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <div class={sheet.classes.DropdownContent}>
+                    <div class={sheet.classes.DropdownArrow}></div>
+                    {intl.formatMessage(
+                      {
+                        id: "indirectTaxTooltipSupport",
+                        defaultMessage: text.indirectTaxTooltipSupport,
+                      },
+                      {
+                        supportLink: (
+                          <a
+                            target="_blank"
+                            href={`mailto:advocate-support@impact.com`}
+                            class={sheet.classes.DropdownLink}
+                          >
+                            {text.supportLink}
+                          </a>
+                        ),
+                      }
+                    )}
+                  </div>
+                </sl-dropdown>
               </h3>
               <div class={sheet.classes.IndirectTaxPreviewDetails}>
                 <span>

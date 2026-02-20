@@ -8,7 +8,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is current being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
+ * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
  */
 @Component({
   tag: "sqm-rewards-table-status-column",
@@ -25,7 +25,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiWidget textArea
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }";
 
   /**
    * Text shown before the date of an expiring reward.
@@ -106,7 +106,15 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiName Payout failed text
    */
   @Prop() payoutFailed: string =
-    "Payout failed due to a fulfillment issue and is current being retried.";
+    "Payout failed due to a fulfillment issue and is currently being retried.";
+
+  /**
+   * Displayed when a reward payout is processing.
+   *
+   * @uiName Payout processing text
+   */
+  @Prop() payoutProcessing: string =
+    "Processing until {date}. Payout is then scheduled based on your settings.";
 
   /**
    * Displayed when reward payout was reversed (based on Impact cash payout configuration).
@@ -132,7 +140,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Method()
   async renderCell(
     data: Reward,
-    options?: { locale: string; taxConnection: ImpactConnection }
+    options?: { locale: string; taxConnection: ImpactConnection },
   ) {
     return (
       <sqm-rewards-table-status-cell
@@ -146,6 +154,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         pendingReviewText={this.pendingReviewText}
         payoutFailed={this.payoutFailed}
         payoutApproved={this.payoutApproved}
+        payoutProcessing={this.payoutProcessing}
         payoutCancelled={this.payoutCancelled}
         deniedText={this.deniedText}
         locale={options?.locale}

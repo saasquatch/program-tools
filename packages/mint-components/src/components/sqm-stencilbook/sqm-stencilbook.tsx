@@ -50,6 +50,7 @@ import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
 import * as PortalForgotPassword from "../sqm-portal-forgot-password/PortalForgotPassword.stories";
 import * as PortalFrame from "../sqm-portal-frame/PortalFrame.stories";
 import * as PortalGoogleRegistrationFormStories from "../sqm-portal-google-registration-form/PortalGoogleRegistrationForm.stories";
+import * as PortalGoogleLoginFormStories from "../sqm-portal-google-login/GoogleLoginForm.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
 import * as PortalProfile from "../sqm-portal-profile/PortalProfile.stories";
 import * as PortalRegister from "../sqm-portal-register/PortalRegister.stories";
@@ -66,13 +67,17 @@ import * as ReferralCode from "../sqm-referral-code/ReferralCode.stories";
 import * as ReferralCodes from "../sqm-referral-codes/ReferralCodes.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as ReferralTable from "../sqm-referral-table/ReferralTable.stories";
+import * as TaxAndCashReferralTable from "../sqm-referral-table/TaxAndCashReferralTable.stories";
+import * as TaxAndCashReferralTableRewardsCell from "../sqm-referral-table/TaxAndCashReferralTableRewardsCell.stories";
 import * as ReferralTableCell from "../sqm-referral-table/ReferralTableCell.stories";
 import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRewardsCell.stories";
 import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
 import * as RewardsTable from "../sqm-rewards-table/RewardsTable.stories";
+import * as TaxAndCashRewardsTable from "../sqm-rewards-table/TaxAndCashRewardsTable.stories";
 import * as RewardsTableCell from "../sqm-rewards-table/RewardsTableCell.stories";
+import * as TaxAndCashRewardsTableCell from "../sqm-rewards-table/TaxAndCashRewardsTableCell.stories";
 import * as UseRewardsTable from "../sqm-rewards-table/UseRewardsTable.stories";
 import * as Router from "../sqm-router/Router.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
@@ -102,6 +107,7 @@ import * as LeadInputField from "../sqm-lead-form/LeadInputField.stories";
 import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.stories";
 import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
 import * as Skeleton from "../sqm-skeleton/Skeleton.stories";
+import * as UserInfoFormView from "../tax-and-cash/sqm-user-info-form/UserInfoFormView.stories";
 
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { CucumberAddon } from "./CucumberAddon";
@@ -109,6 +115,7 @@ import { HookStoryAddon } from "./HookStoryAddon";
 import * as Themes from "./Themes";
 
 const stories = [
+  UserInfoFormView,
   InvoiceTable,
   InvoiceTableCells,
   UseInvoiceTableCells,
@@ -198,6 +205,7 @@ const stories = [
   ChangeMarketing,
   BaseRegistrationForm,
   PortalGoogleRegistrationFormStories,
+  PortalGoogleLoginFormStories,
   WidgetEmailVerification,
   WidgetCodeVerification,
   PayoutButtonScroll,
@@ -209,6 +217,10 @@ const stories = [
   LeadFormDropdownField,
   LeadCheckboxField,
   Skeleton,
+  TaxAndCashRewardsTableCell,
+  TaxAndCashRewardsTable,
+  TaxAndCashReferralTableRewardsCell,
+  TaxAndCashReferralTable,
 ];
 
 /**

@@ -986,11 +986,6 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * Loading state for the alert.
-          * @uiName Loading
-         */
-        "loading": boolean;
-        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -3092,10 +3087,6 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
-          * @uiName Register CTA
-         */
-        "registerCTA": string;
-        /**
           * @uiName Register button text
          */
         "registerLabel": string;
@@ -4496,6 +4487,7 @@ export namespace Components {
         "payoutApproved": string;
         "payoutCancelled": string;
         "payoutFailed": string;
+        "payoutProcessing": string;
         "pendingNewTaxForm": string;
         "pendingPartnerCreation": string;
         "pendingReviewText": string;
@@ -4538,6 +4530,11 @@ export namespace Components {
           * @uiName Payout failed text
          */
         "payoutFailed": string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing": string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -4959,16 +4956,6 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
-    }
-    interface SqmSkeleton {
-        /**
-          * @uiName Height (in pixels or %)
-         */
-        "height"?: string;
-        /**
-          * @uiName Width (in pixels or %)
-         */
-        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -7720,12 +7707,6 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
-    interface HTMLSqmSkeletonElement extends Components.SqmSkeleton, HTMLStencilElement {
-    }
-    var HTMLSqmSkeletonElement: {
-        prototype: HTMLSqmSkeletonElement;
-        new (): HTMLSqmSkeletonElement;
-    };
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
@@ -7944,7 +7925,6 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
-        "sqm-skeleton": HTMLSqmSkeletonElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
@@ -8890,11 +8870,6 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
-        /**
-          * Loading state for the alert.
-          * @uiName Loading
-         */
-        "loading"?: boolean;
         /**
           * Render the alert with transparent styles
          */
@@ -10992,10 +10967,6 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
-          * @uiName Register CTA
-         */
-        "registerCTA"?: string;
-        /**
           * @uiName Register button text
          */
         "registerLabel"?: string;
@@ -12374,6 +12345,7 @@ declare namespace LocalJSX {
         "payoutApproved"?: string;
         "payoutCancelled"?: string;
         "payoutFailed"?: string;
+        "payoutProcessing"?: string;
         "pendingNewTaxForm"?: string;
         "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;
@@ -12416,6 +12388,11 @@ declare namespace LocalJSX {
           * @uiName Payout failed text
          */
         "payoutFailed"?: string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -12835,16 +12812,6 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
-    }
-    interface SqmSkeleton {
-        /**
-          * @uiName Height (in pixels or %)
-         */
-        "height"?: string;
-        /**
-          * @uiName Width (in pixels or %)
-         */
-        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -15049,7 +15016,6 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
-        "sqm-skeleton": SqmSkeleton;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
@@ -15183,7 +15149,6 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
-            "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;

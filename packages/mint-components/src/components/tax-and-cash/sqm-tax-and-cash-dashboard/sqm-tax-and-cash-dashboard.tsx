@@ -150,7 +150,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() indirectTaxTooltipSupport: string =
-    "To make changes to your indirect tax information, please contact our Support team.";
+    "To make changes to your indirect tax information, please contact our {supportLink}.";
   /**
    * Displayed to participants who have submitted their indirect tax information.
    *

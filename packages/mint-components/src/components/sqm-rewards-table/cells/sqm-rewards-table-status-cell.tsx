@@ -87,11 +87,13 @@ export class RewardTableStatusCell {
   @Prop() pendingReviewText: string = "Awaiting review";
   @Prop() deniedText: string = "Detected self-referral";
   @Prop() payoutFailed: string =
-    "Payout failed due to a fulfillment issue and is current being retried.";
+    "Payout failed due to a fulfillment issue and is currently being retried.";
   @Prop() payoutApproved: string =
-    "Reward was scheduled for payment based on your settings, barring any account holds.";
+    "Payout approved and scheduled for payment based on your settings.";
   @Prop() payoutCancelled: string =
     "If you think this is a mistake, contact our Support team.";
+  @Prop() payoutProcessing: string =
+    "Processing until {date}. Payout is then scheduled based on your settings.";
 
   rewardStatus(reward: Reward): string {
     const hasExpired = reward.statuses?.includes("EXPIRED");
@@ -104,13 +106,28 @@ export class RewardTableStatusCell {
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
 
     const partnerTransferStatus = reward.partnerFundsTransfer?.status;
-    if (
-      partnerTransferStatus === "TRANSFERRED" ||
-      partnerTransferStatus === "NOT_YET_DUE"
-    )
-      return "PAYOUT_APPROVED";
-    if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
-    if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+
+    if (reward.partnerFundsTransfer) {
+      if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
+      if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
+
+      if (
+        reward.partnerFundsTransfer.dateScheduled &&
+        reward.partnerFundsTransfer.dateScheduled > Date.now()
+      ) {
+        return "PROCESSING";
+      }
+
+      if (
+        partnerTransferStatus === "TRANSFERRED" ||
+        partnerTransferStatus === "NOT_YET_DUE" ||
+        (reward.partnerFundsTransfer.dateScheduled &&
+          reward.partnerFundsTransfer.dateScheduled < Date.now() &&
+          partnerTransferStatus !== "OVERDUE" &&
+          partnerTransferStatus !== "REVERSED")
+      )
+        return "PAYOUT_APPROVED";
+    }
 
     if (reward.dateCancelled) return "CANCELLED";
     if (hasExpired) return "EXPIRED";
@@ -173,6 +190,7 @@ export class RewardTableStatusCell {
         return "primary";
       case "PENDING":
       case "PENDING_REVIEW":
+      case "PROCESSING":
         return "warning";
       default:
         return "danger";
@@ -197,6 +215,20 @@ export class RewardTableStatusCell {
         return this.pendingTaxSubmission;
       case "PENDING_PARTNER_CREATION":
         return this.pendingPartnerCreation;
+      case "PROCESSING":
+        return intl.formatMessage(
+          {
+            id: "payoutProcessingText",
+            defaultMessage: this.payoutProcessing,
+          },
+          {
+            date: DateTime.fromMillis(
+              this.reward.partnerFundsTransfer.dateScheduled,
+            )
+              ?.setLocale(luxonLocale(this.locale))
+              .toLocaleString(DateTime.DATE_MED),
+          },
+        );
     }
   }
 
@@ -208,7 +240,7 @@ export class RewardTableStatusCell {
       { id: "statusMessage", defaultMessage: this.statusText },
       {
         status: rewardStatus,
-      }
+      },
     );
 
     const badgeType = this.getBadgeType(rewardStatus);
@@ -239,8 +271,8 @@ export class RewardTableStatusCell {
       rewardStatus === "PENDING_REVIEW"
         ? this.pendingReviewText
         : rewardStatus === "DENIED"
-        ? this.deniedText
-        : null;
+          ? this.deniedText
+          : null;
 
     const getBadgeCSSClass = () => {
       switch (rewardStatus) {
@@ -251,6 +283,7 @@ export class RewardTableStatusCell {
           return sheet.classes.RedeemBadge;
         case "PENDING":
         case "PENDING_REVIEW":
+        case "PROCESSING":
           return sheet.classes.WarningBadge;
         default:
           return sheet.classes.DangerBadge;
@@ -289,7 +322,7 @@ export class RewardTableStatusCell {
 
       const taxReason = prop.getTaxPendingReasons(
         prop.reward,
-        prop.taxConnection
+        prop.taxConnection,
       );
 
       return [

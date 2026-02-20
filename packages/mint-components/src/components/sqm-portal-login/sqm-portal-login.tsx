@@ -86,11 +86,6 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
-   * @uiName Register CTA
-   */
-  @Prop() registerCTA: string = "Don't have an account?";
-
-  /**
    * @undocumented
    * @uiType object
    */
