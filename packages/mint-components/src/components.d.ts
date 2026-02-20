@@ -34,7 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
-import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
