@@ -4,7 +4,63 @@
 
 Mint components for the SaaSquatch content platform. Built with Stencil.
 
-# About Stencil
+## Contributing
+
+### Version Management with Changesets
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+
+#### Adding a Changeset
+
+When you make changes that should be included in the next release, create a changeset:
+
+```bash
+npm run changeset
+```
+
+Follow the prompts to:
+
+1. Select the type of change (major, minor, or patch)
+2. Provide a summary of your changes
+
+This will create a new file in the `.changeset` directory that will be used to automatically update the version and changelog when the changes are released.
+
+#### Releasing a New Version
+
+When changesets are merged to the `main` branch, the GitHub Actions workflow will automatically:
+
+1. Create or update a "Version Packages" pull request that:
+   - Bumps the version in `package.json`
+   - Updates `CHANGELOG.md` with all changeset summaries
+   - Removes the processed changeset files
+
+2. When you're ready to release, simply **merge the "Version Packages" PR** to `main`
+
+3. The workflow will then automatically:
+   - Publish the new version to npm
+   - Create a git tag for the release
+
+#### Manual Development Releases
+
+For development and testing purposes, you can manually publish prerelease versions:
+
+1. Update the version in `package.json` to a prerelease format:
+
+   ```text
+   x.y.z-prerelease_number
+   ```
+
+   For example: `1.2.3-prerelease_1`, `1.2.3-prerelease_2`, etc.
+
+2. Publish with the `next` tag:
+
+   ```bash
+   npm publish --tag next
+   ```
+
+This allows you to test changes without affecting the stable release channel.
+
+## About Stencil
 
 Stencil is a compiler for building fast web apps using Web Components.
 
