@@ -68,7 +68,7 @@ export function useLeaderboardRank(
 
   return {
     data: {
-      rank: fullRankText,
+      rank: fullRankText as string,
     },
   };
 }

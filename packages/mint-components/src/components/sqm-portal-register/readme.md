@@ -50,6 +50,7 @@
 graph TD;
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-register
   style sqm-portal-register fill:#f9f,stroke:#333,stroke-width:4px
 ```

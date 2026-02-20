@@ -877,14 +877,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <sl-card class={sheet.classes.Card}>
                 <div class={sheet.classes.CardLayout}>
                   <div>
-                    <sl-skeleton
+                    <sqm-skeleton
                       style={{
-                        width: "100px",
-                        height: "100px",
                         margin: "9px",
-                        "--border-radius": "var(--sqm-border-radius-normal)",
                       }}
-                    ></sl-skeleton>
+                      width="100px"
+                      height="100px"
+                    ></sqm-skeleton>
                   </div>
 
                   <div
@@ -892,15 +891,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       margin:
                         "var(--sl-spacing-small) var(--sl-spacing-small) 0 0",
                       width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "var(--sl-spacing-small)",
                     }}
                   >
-                    <sl-skeleton
-                      style={{ marginBottom: "var(--sl-spacing-small)" }}
-                    ></sl-skeleton>
-                    <sl-skeleton
-                      style={{ marginBottom: "var(--sl-spacing-small)" }}
-                    ></sl-skeleton>
-                    <sl-skeleton style={{ width: "45%" }}></sl-skeleton>
+                    <sqm-skeleton></sqm-skeleton>
+                    <sqm-skeleton></sqm-skeleton>
+                    <sqm-skeleton width="45%"></sqm-skeleton>
                   </div>
                 </div>
               </sl-card>

@@ -45,6 +45,7 @@
 ```mermaid
 graph TD;
   sqm-coupon-code --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-coupon-code
   style sqm-coupon-code fill:#f9f,stroke:#333,stroke-width:4px
 ```

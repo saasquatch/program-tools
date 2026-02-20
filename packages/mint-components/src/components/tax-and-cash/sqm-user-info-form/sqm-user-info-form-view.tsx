@@ -525,7 +525,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           )}
 
           {(states.isPartner || states.isUser) && (
-            <sqm-form-message type="info">
+            <sqm-form-message loading={states.loading} type="info">
               <p part="alert-title">{text.isPartnerAlertHeader}</p>
               <p part="alert-description">
                 {intl.formatMessage(

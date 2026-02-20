@@ -34,6 +34,7 @@
 ```mermaid
 graph TD;
   sqm-portal-profile --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   style sqm-portal-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

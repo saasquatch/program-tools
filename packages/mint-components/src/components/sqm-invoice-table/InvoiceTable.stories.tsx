@@ -18,27 +18,27 @@ const loadingElement = (
   <div slot="loading" style={{ display: "contents" }}>
     <sqm-table-row>
       <sqm-table-cell colspan={6}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
     <sqm-table-row>
       <sqm-table-cell colspan={6}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
     <sqm-table-row>
       <sqm-table-cell colspan={6}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
     <sqm-table-row>
       <sqm-table-cell colspan={6}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
     <sqm-table-row>
       <sqm-table-cell colspan={6}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
   </div>
