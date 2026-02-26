@@ -57,6 +57,7 @@ graph TD;
   sqm-portal-google-registration-form --> sqm-google-sign-in
   sqm-portal-google-registration-form --> sqm-form-message
   sqm-portal-google-registration-form --> sqm-password-field
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-google-registration-form
   style sqm-portal-google-registration-form fill:#f9f,stroke:#333,stroke-width:4px
 ```

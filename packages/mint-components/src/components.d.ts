@@ -986,6 +986,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading": boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -4957,6 +4962,16 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
+    }
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -7707,6 +7722,12 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
+    interface HTMLSqmSkeletonElement extends Components.SqmSkeleton, HTMLStencilElement {
+    }
+    var HTMLSqmSkeletonElement: {
+        prototype: HTMLSqmSkeletonElement;
+        new (): HTMLSqmSkeletonElement;
+    };
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
@@ -7925,6 +7946,7 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-skeleton": HTMLSqmSkeletonElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
@@ -8870,6 +8892,11 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading"?: boolean;
         /**
           * Render the alert with transparent styles
          */
@@ -12813,6 +12840,16 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
+    }
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -15016,6 +15053,7 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
+        "sqm-skeleton": SqmSkeleton;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
@@ -15149,6 +15187,7 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
