@@ -67,6 +67,7 @@
 graph TD;
   sqm-payout-status-alert --> sqm-scroll
   sqm-payout-status-alert --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-payout-status-alert
   style sqm-payout-status-alert fill:#f9f,stroke:#333,stroke-width:4px
 ```

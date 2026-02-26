@@ -42,11 +42,13 @@
 ### Depends on
 
 - [sqm-empty](../sqm-empty)
+- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-leaderboard --> sqm-empty
+  sqm-leaderboard --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

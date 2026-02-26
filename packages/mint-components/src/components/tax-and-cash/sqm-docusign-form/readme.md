@@ -50,6 +50,7 @@
 ```mermaid
 graph TD;
   sqm-docusign-form --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-docusign-form
   sqm-tax-and-cash --> sqm-docusign-form
   style sqm-docusign-form fill:#f9f,stroke:#333,stroke-width:4px

@@ -4,8 +4,8 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 let globalPromise: null | Promise<any | Error> = null;
 

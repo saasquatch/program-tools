@@ -272,7 +272,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
           </sqm-form-message>
         )}
         {states.isPartner && (
-          <sqm-form-message type="info">
+          <sqm-form-message loading={states.loading} type="info">
             <p part="alert-title">{text.isPartnerAlertHeader}</p>
             {intl.formatMessage(
               {

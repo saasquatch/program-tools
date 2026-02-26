@@ -123,7 +123,7 @@ function LoadingRow() {
   return (
     <sqm-table-row>
       <sqm-table-cell colspan={5}>
-        <sl-skeleton></sl-skeleton>
+        <sqm-skeleton></sqm-skeleton>
       </sqm-table-cell>
     </sqm-table-row>
   );

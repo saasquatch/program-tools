@@ -240,16 +240,6 @@ const style = {
   EditBankDetailsButton: {
     marginTop: "var(--sl-spacing-large)",
   },
-  SkeletonOne: {
-    width: "15%",
-    height: "10px",
-  },
-  SkeletonTwo: {
-    width: "25%",
-    height: "24px",
-    top: "var(--sl-spacing-small)",
-    marginBottom: "var(--sl-spacing-x-small)",
-  },
   TaxSectionSkeletonContainer: {
     display: "flex",
     flexDirection: "column",
@@ -1050,6 +1040,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         )}
         {alertInfo && (
           <sqm-form-message
+            loading={states.loading}
             exportparts="base: alert-base, icon:alert-icon"
             type={alertInfo?.alertType}
             class={alertInfo?.class}
@@ -1129,8 +1120,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <div>
               {states.loading ? (
                 <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                  <sqm-skeleton width="15%" height="10px"></sqm-skeleton>
+                  <sqm-skeleton width="25%" height="24px"></sqm-skeleton>
                 </div>
               ) : (
                 <div>
@@ -1175,8 +1166,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
             <div class={sheet.classes.TaxSectionSkeletonContainer}>
-              <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-              <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+              <sqm-skeleton width="15%" height="10px"></sqm-skeleton>
+              <sqm-skeleton width="25%" height="24px"></sqm-skeleton>
             </div>
           ) : (
             <div>

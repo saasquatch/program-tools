@@ -24,9 +24,14 @@
  - [sqm-stencilbook](../../sqm-stencilbook)
  - [sqm-tax-and-cash-dashboard](../sqm-tax-and-cash-dashboard)
 
+### Depends on
+
+- [sqm-skeleton](../../sqm-skeleton)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-payout-details-card --> sqm-skeleton
   sqm-stencilbook --> sqm-payout-details-card
   sqm-tax-and-cash-dashboard --> sqm-payout-details-card
   style sqm-payout-details-card fill:#f9f,stroke:#333,stroke-width:4px

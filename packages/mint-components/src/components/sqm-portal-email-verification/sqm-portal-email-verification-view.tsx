@@ -41,7 +41,7 @@ const style = {
   },
   ButtonLinkLoading: {
     fontSize: "14px",
-    color: "var(--sl-color-gray-500)",
+    color: "var(--sqm-text-subdued)",
     opacity: "0.6",
     display: "inline-block !important",
     textDecoration: "underline",
@@ -114,7 +114,7 @@ export function PortalEmailVerificationView(
           )}
         </TextSpanView>
         {
-          <p style={{ color: "var(--sl-color-gray-500)", fontSize: "14px" }}>
+          <p style={{ color: "var(--sqm-text-subdued)", fontSize: "14px" }}>
             {intl.formatMessage(
               {
                 id: `verificationStatus`,
@@ -132,16 +132,14 @@ export function PortalEmailVerificationView(
             )}
           </p>
         }
-        <a
-          class={
-            states.loading
-              ? sheet.classes.ButtonLinkLoading
-              : sheet.classes.ButtonLink
-          }
+        <sl-button
+          type="primary"
+          exportparts="base: primarybutton-base"
           onClick={callbacks.submit}
+          loading={states.loading}
         >
           {resendEmailButtonText}
-        </a>
+        </sl-button>
       </sl-form>
     </div>
   );

@@ -37,6 +37,7 @@
 ```mermaid
 graph TD;
   sqm-instant-access-registration --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   style sqm-instant-access-registration fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
