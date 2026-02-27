@@ -1,6 +1,6 @@
 @author:derek @owner:derek
 Feature: Reward Table Source Column
-    Shows the source of each reward
+  Shows the source of each reward
 
   @motivating @ui
   Scenario Outline: The title of the source column is configurable
@@ -71,14 +71,14 @@ Feature: Reward Table Source Column
       | last.name  | first.name |
 
   @motivating @ui
-  Scenario Outline: The source column displays referral as "Anonymous User" if the referral user has no names
+  Scenario Outline: The source column displays referral as "Your Friend" if the referral user has no names
     Given a user with a referral reward
     And that reward has <rewardSource>
     And the <referralUser> has no first name
     And the <referralUser> has no last name
     When they view the rewards table
     Then then source displays <sourceText>
-    And under it displays "Anonymous User"
+    And under it displays "Your Friend"
 
     Examples:
       | rewardSource  | referralUser  | sourceText  |

@@ -8,7 +8,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
  * @uiName Reward Table Source Column
  * @validParents ["sqm-rewards-table"]
  * @exampleGroup Rewards
- * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Anonymous User" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+ * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
  */
 @Component({
   tag: "sqm-rewards-table-source-column",
@@ -25,7 +25,7 @@ export class RewardTableUserColumn implements RewardTableColumn {
    *
    * @uiName Anonymous user text
    */
-  @Prop() anonymousUser: string = "Anonymous User";
+  @Prop() anonymousUser: string = "Your Friend";
   /**
    * Name displayed for deleted users
    *

@@ -433,7 +433,7 @@ export const SourceCellAnonymousUser = () => {
     <sqm-rewards-table-source-cell
       reward={{ ...rewardsData, ...referral(anon) }}
       referralText="Referral to"
-      anonymousUserText="Anonymous User"
+      anonymousUserText="Your Friend"
     ></sqm-rewards-table-source-cell>
   );
 };
