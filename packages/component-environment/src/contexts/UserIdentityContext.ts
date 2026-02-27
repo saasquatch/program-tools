@@ -122,7 +122,9 @@ function _getInitialValue(): UserIdentity | undefined {
       // Portals can have the jwt provided as a URL parameter, so look for that first
       const searchParams = new URLSearchParams(document.location.search);
       if (searchParams.has("jwt")) {
-        return userIdentityFromJwt(searchParams.get("jwt")!);
+        const identity = userIdentityFromJwt(searchParams.get("jwt")!);
+        localStorage.setItem(USER_CONTEXT_NAME, JSON.stringify(identity));
+        return identity;
       }
 
       // Look for user identity in local storage
