@@ -32,6 +32,7 @@ export interface BankingInfoFormViewProps {
         inputErrors?: {
           [field: string]: {
             type: "required" | "invalid";
+            errorCode?: string;
           };
         };
       };
@@ -105,6 +106,7 @@ export interface BankingInfoFormViewProps {
       generalTitle: string;
       generalDescription: string;
     };
+    errorMessages?: { [field: string]: string };
   };
   refs: {
     formRef: any;

@@ -49,6 +49,131 @@ const ACH_PAYMENT_METHOD = 3;
 const WIRE_PAYMENT_METHOD = 5;
 const PAYPAL_PAYMENT_METHOD = 7;
 
+/**
+ * Maps GraphQL validation error field names to form field names.
+ *
+ * The Impact API returns UpperCamelCase field names (e.g. `BankAccountNumber`).
+ * The GraphQL layer in `UserServiceImpl.java` converts these to lowerCamelCase
+ * via `CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, errorDto.field)`.
+ *
+ * Most converted field names already match the form field names exactly
+ * (e.g. `bankAccountNumber`, `swiftCode`, `routingCode`). Only entries
+ * where the GraphQL field name differs from the form field name need
+ * to be listed here.
+ */
+const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
+  // bankProvinceState → form uses bankState
+  bankProvinceState: "bankState",
+};
+
+/**
+ * Maps Impact API error messages (from validationErrors[].message) to short,
+ * readable frontend error codes used in the ICU select props.
+ *
+ * The Impact API returns human-readable English messages (e.g. "Invalid Routing Code").
+ * The GraphQL layer passes these through unchanged. The keys below match those messages
+ * to short frontend codes used in the ICU `{errorCode, select, ...}` props.
+ *
+ * If a message doesn't match any key here, it passes through as-is to the ICU select's
+ * `other` branch, which displays it directly via `{errorCode}`.
+ */
+const API_MESSAGE_TO_FRONTEND: Record<string, string> = {
+  // Beneficiary account name
+  "Beneficiary name is empty": "empty",
+  "Contains invalid characters": "invalidCharacters",
+  "Name is purely numeric": "numeric",
+  "Name exceeds 70 characters": "tooLong",
+  "CNY currency account with non-English characters": "nonEnglish",
+  "Beneficiary name does not match tax document": "nameMismatch",
+  "Business beneficiary name does not match tax document":
+    "businessNameMismatch",
+  "Payee name does not match tax document": "payeeMismatch",
+  "Business payee name does not match tax document": "businessPayeeMismatch",
+
+  // Bank account number
+  "Account number is empty": "empty",
+  "Account number invalid & country is UK": "invalidUk",
+  "Account number invalid & country is not UK": "invalid",
+
+  // IBAN
+  "IBAN is empty": "ibanEmpty",
+  "IBAN contains non-alphanumeric chars": "ibanAlphanumeric",
+  "IBAN fails obfuscation or IBAN validation": "ibanInvalid",
+  'UK GBP account but IBAN doesn\'t start with "GB"': "ibanCountryMismatch",
+
+  // Routing code
+  "Empty or invalid routing code & country is Australia": "invalidBsb",
+  "Empty or invalid routing code & country is UK": "invalidSortCode",
+  "Empty routing code (other countries)": "empty",
+  "Invalid routing code (other countries)": "invalid",
+
+  // SWIFT / BIC
+  "SWIFT/BIC code is empty": "empty",
+  "SWIFT/BIC contains non-alphanumeric chars": "alphanumeric",
+  "SWIFT/BIC fails obfuscation or BIC validation": "invalid",
+
+  // Bank account type
+  "Account type is null": "empty",
+
+  // Bank name
+  "Bank name is empty": "empty",
+
+  // Tax payer ID
+  "Tax payer ID is empty (generic)": "empty",
+  "Tax payer ID is empty (Argentina)": "emptyAr",
+  "Tax payer ID is empty (South Korea)": "emptyKr",
+  "Tax payer ID not alphanumeric (generic)": "alphanumeric",
+  "Tax payer ID not alphanumeric (Argentina)": "alphanumericAr",
+  "Tax payer ID not alphanumeric (South Korea)": "alphanumericKr",
+  "Argentina ID not 11 chars, or South Korea individual ID not 13 / business ID not 10 chars":
+    "invalid",
+  "Argentina-specific invalid length": "invalidAr",
+  "South Korea-specific invalid length": "invalidKr",
+  "KZT currency and tax payer ID not 12 chars": "invalidKzt",
+  "Classification is CNPJ and tax payer ID length < 14": "cnpjTooShort",
+  "Classification is CPF and tax payer ID length < 11": "cpfTooShort",
+
+  // Patronymic name
+  "Individual classification & patronymic name is empty": "empty",
+  "Patronymic name is not alphanumeric": "alphanumeric",
+
+  // VO code
+  "VO code is empty": "empty",
+  "VO code is not alphanumeric": "alphanumeric",
+
+  // Agency code
+  "Agency code is empty": "empty",
+  "Agency code is not alphanumeric": "alphanumeric",
+  "Agency code length < 5": "tooShort",
+
+  // Bank address fields
+  "Bank address is empty": "empty",
+  "Bank city is empty": "empty",
+  "Bank province/state is empty": "empty",
+  "Bank postal code is empty": "empty",
+
+  // Branch code / name
+  "Branch code invalid": "invalid",
+  "Branch name is empty": "empty",
+
+  // Classification code
+  "Classification code is empty (non-KZT)": "empty",
+  "Empty or not exactly 2 chars (KZT currency)": "invalidKzt",
+
+  // PayPal
+  "PayPal email is empty": "empty",
+  "Currency not eligible for PayPal": "unsupportedCurrency",
+  "Email format is invalid": "invalidEmail",
+  "PayPal OAuth state is not SUCCESS": "verificationIncomplete",
+
+  // Payment schedule
+  "Balance threshold schedule with zero threshold": "empty",
+  "PayPal threshold not in allowed list, or bank threshold is invalid":
+    "invalid",
+  "Fixed-day schedule without a specific day": "empty",
+  "Fixed-day schedule with day not in [1, 15]": "invalid",
+};
+
 export type BankingInfoFormData = {
   // Fields that are auto-filled
   bankCountry?: string;
@@ -390,11 +515,15 @@ export function useBankingInfoForm(
 
         const mappedValidationErrors = validationErrors?.reduce(
           (agg, error) => {
+            const formField =
+              API_FIELD_TO_FORM_FIELD[error.field] || error.field;
+            const errorCode =
+              API_MESSAGE_TO_FRONTEND[error.message] || error.message;
             return {
               ...agg,
-
-              [error.field]: {
+              [formField]: {
                 type: "invalid",
+                errorCode,
               },
             };
           },
