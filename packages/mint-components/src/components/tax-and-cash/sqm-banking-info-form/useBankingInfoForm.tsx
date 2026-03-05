@@ -67,111 +67,109 @@ const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
 };
 
 /**
- * Maps Impact API error messages (from validationErrors[].message) to short,
+ * Maps Impact API error code paths (from validationErrors[].errorPath) to short,
  * readable frontend error codes used in the ICU select props.
  *
- * The Impact API returns human-readable English messages (e.g. "Invalid Routing Code").
- * The GraphQL layer passes these through unchanged. The keys below match those messages
+ * The Impact API returns a stable dot-delimited error path (e.g.
+ * "withdrawal.settings.error.routingcode") alongside the human-readable message.
+ * The GraphQL layer exposes this as `errorPath`. The keys below match those paths
  * to short frontend codes used in the ICU `{errorCode, select, ...}` props.
- *
- * If a message doesn't match any key here, it passes through as-is to the ICU select's
- * `other` branch, which displays it directly via `{errorCode}`.
  */
-const API_MESSAGE_TO_FRONTEND: Record<string, string> = {
+const API_ERROR_PATH_TO_FRONTEND: Record<string, string> = {
   // Beneficiary account name
-  "Beneficiary name is empty": "empty",
-  "Contains invalid characters": "invalidCharacters",
-  "Name is purely numeric": "numeric",
-  "Name exceeds 70 characters": "tooLong",
-  "CNY currency account with non-English characters": "nonEnglish",
-  "Beneficiary name does not match tax document": "nameMismatch",
-  "Business beneficiary name does not match tax document":
+  "withdrawal.settings.error.empty_beneficiaryname": "empty",
+  "withdrawal.settings.error.invalid_character_beneficiaryname":
+    "invalidCharacters",
+  "withdrawal.settings.error.numeric_beneficiaryname": "numeric",
+  "withdrawal_settings.error.beneficiaryname.size": "tooLong",
+  "withdrawal.settings.error.non_english_beneficiaryname": "nonEnglish",
+  "withdrawal_settings.error.business_beneficiaryname_match":
     "businessNameMismatch",
-  "Payee name does not match tax document": "payeeMismatch",
-  "Business payee name does not match tax document": "businessPayeeMismatch",
+  "withdrawal_settings.error.beneficiaryname_match": "nameMismatch",
+  "withdrawal_settings.error.business_checkpayeename_match":
+    "businessPayeeMismatch",
+  "withdrawal_settings.error.checkpayeename_match": "payeeMismatch",
 
   // Bank account number
-  "Account number is empty": "empty",
-  "Account number invalid & country is UK": "invalidUk",
-  "Account number invalid & country is not UK": "invalid",
+  "withdrawal.settings.error.accountnumber.empty": "empty",
+  "withdrawal.settings.error.accountnumber.uk": "invalidUk",
+  "withdrawal.settings.error.bankaccount.invalid": "invalid",
 
   // IBAN
-  "IBAN is empty": "ibanEmpty",
-  "IBAN contains non-alphanumeric chars": "ibanAlphanumeric",
-  "IBAN fails obfuscation or IBAN validation": "ibanInvalid",
-  'UK GBP account but IBAN doesn\'t start with "GB"': "ibanCountryMismatch",
+  "withdrawal.settings.error.iban": "ibanEmpty",
+  "withdrawal.settings.error.iban.alphanumeric": "ibanAlphanumeric",
+  "withdrawal.settings.error.iban.invalid": "ibanInvalid",
+  "withdrawal.settings.error.iban.uk.country.mismatch": "ibanCountryMismatch",
 
   // Routing code
-  "Empty or invalid routing code & country is Australia": "invalidBsb",
-  "Empty or invalid routing code & country is UK": "invalidSortCode",
-  "Empty routing code (other countries)": "empty",
-  "Invalid routing code (other countries)": "invalid",
+  "withdrawal.settings.error.bsbNumber": "invalidBsb",
+  "withdrawal.settings.error.sortcode": "invalidSortCode",
+  "withdrawal.settings.error.routingNumber": "empty",
+  "withdrawal.settings.error.routingcode": "invalid",
 
   // SWIFT / BIC
-  "SWIFT/BIC code is empty": "empty",
-  "SWIFT/BIC contains non-alphanumeric chars": "alphanumeric",
-  "SWIFT/BIC fails obfuscation or BIC validation": "invalid",
+  "withdrawal.settings.error.bic": "empty",
+  "withdrawal.settings.error.bic.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.bic.invalid": "invalid",
 
   // Bank account type
-  "Account type is null": "empty",
+  "global.error.invalid.accounttype": "empty",
 
   // Bank name
-  "Bank name is empty": "empty",
+  "withdrawal.settings.error.bankName": "empty",
 
   // Tax payer ID
-  "Tax payer ID is empty (generic)": "empty",
-  "Tax payer ID is empty (Argentina)": "emptyAr",
-  "Tax payer ID is empty (South Korea)": "emptyKr",
-  "Tax payer ID not alphanumeric (generic)": "alphanumeric",
-  "Tax payer ID not alphanumeric (Argentina)": "alphanumericAr",
-  "Tax payer ID not alphanumeric (South Korea)": "alphanumericKr",
-  "Argentina ID not 11 chars, or South Korea individual ID not 13 / business ID not 10 chars":
-    "invalid",
-  "Argentina-specific invalid length": "invalidAr",
-  "South Korea-specific invalid length": "invalidKr",
-  "KZT currency and tax payer ID not 12 chars": "invalidKzt",
-  "Classification is CNPJ and tax payer ID length < 14": "cnpjTooShort",
-  "Classification is CPF and tax payer ID length < 11": "cpfTooShort",
+  "withdrawal.settings.error.taxPayerId": "empty",
+  "withdrawal.settings.error.taxPayerId.ar": "emptyAr",
+  "withdrawal.settings.error.taxPayerId.kr": "emptyKr",
+  "withdrawal.settings.error.taxPayerId.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.taxPayerId.alphanumeric.ar": "alphanumericAr",
+  "withdrawal.settings.error.taxPayerId.alphanumeric.kr": "alphanumericKr",
+  "withdrawal.settings.error.taxPayerId.invalid": "invalid",
+  "withdrawal.settings.error.taxPayerId.invalid.ar": "invalidAr",
+  "withdrawal.settings.error.taxPayerId.invalid.kr": "invalidKr",
+  "withdrawal.settings.error.taxPayerId.invalid.kzt": "invalidKzt",
+  "withdrawal.settings.error.taxPayerId.cnpj": "cnpjTooShort",
+  "withdrawal.settings.error.taxPayerId.cpf": "cpfTooShort",
 
   // Patronymic name
-  "Individual classification & patronymic name is empty": "empty",
-  "Patronymic name is not alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.patronymicName": "empty",
+  "withdrawal.settings.error.patronymicName.alphanumeric": "alphanumeric",
 
   // VO code
-  "VO code is empty": "empty",
-  "VO code is not alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.voCode": "empty",
+  "withdrawal.settings.error.voCode.alphanumeric": "alphanumeric",
 
   // Agency code
-  "Agency code is empty": "empty",
-  "Agency code is not alphanumeric": "alphanumeric",
-  "Agency code length < 5": "tooShort",
+  "withdrawal.settings.error.agencyCode": "empty",
+  "withdrawal.settings.error.agencyCode.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.agencyCode.length": "tooShort",
 
   // Bank address fields
-  "Bank address is empty": "empty",
-  "Bank city is empty": "empty",
-  "Bank province/state is empty": "empty",
-  "Bank postal code is empty": "empty",
+  "withdrawal.settings.error.bankAddress": "empty",
+  "withdrawal.settings.error.bankCity": "empty",
+  "withdrawal.settings.error.bankProvinceState": "empty",
+  "withdrawal.settings.error.bankPostalCode": "empty",
 
   // Branch code / name
-  "Branch code invalid": "invalid",
-  "Branch name is empty": "empty",
+  "withdrawal.settings.error.branchCode": "invalid",
+  "withdrawal.settings.error.branchName": "empty",
 
   // Classification code
-  "Classification code is empty (non-KZT)": "empty",
-  "Empty or not exactly 2 chars (KZT currency)": "invalidKzt",
+  "withdrawal.settings.error.classificationCode.invalid": "empty",
+  "withdrawal.settings.error.classificationCode.invalid.kzt": "invalidKzt",
 
   // PayPal
-  "PayPal email is empty": "empty",
-  "Currency not eligible for PayPal": "unsupportedCurrency",
-  "Email format is invalid": "invalidEmail",
-  "PayPal OAuth state is not SUCCESS": "verificationIncomplete",
+  "payment.error.email": "empty",
+  "payment.error.paypal_not_supported": "unsupportedCurrency",
+  "payment.error.email.invalid": "invalidEmail",
+  "payment.error.paypal_verification_incomplete": "verificationIncomplete",
 
   // Payment schedule
-  "Balance threshold schedule with zero threshold": "empty",
-  "PayPal threshold not in allowed list, or bank threshold is invalid":
-    "invalid",
-  "Fixed-day schedule without a specific day": "empty",
-  "Fixed-day schedule with day not in [1, 15]": "invalid",
+  "payment.error.no_threshold": "empty",
+  "payment.error.invalid_threshold": "invalid",
+  "payment.error.no_dayOfMonth": "empty",
+  "payment.error.invalid_dayOfMonth": "invalid",
 };
 
 export type BankingInfoFormData = {
@@ -226,7 +224,11 @@ export function getFormInputs({ bitset, formMap }) {
 type SetImpactPublisherWithdrawalSettingsResult = {
   setImpactPublisherWithdrawalSettings: {
     success: boolean;
-    validationErrors: { field: string; message: string }[];
+    validationErrors: {
+      field: string;
+      message: string;
+      errorPath: string;
+    }[];
   };
 };
 type SetImpactPublisherWithdrawalSettingsInput = {
@@ -245,7 +247,11 @@ type UpdateImpactPublisherWithdrawalSettingsInput =
 type UpdateImpactPublisherWithdrawalSettingsResult = {
   updateImpactPublisherWithdrawalSettings: {
     success: boolean;
-    validationErrors: { field: string; message: string }[];
+    validationErrors: {
+      field: string;
+      message: string;
+      errorPath: string;
+    }[];
   };
 };
 
@@ -260,6 +266,7 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
+        errorPath
       }
     }
   }
@@ -276,6 +283,7 @@ const UPDATE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
+        errorPath
       }
     }
   }
@@ -518,7 +526,7 @@ export function useBankingInfoForm(
             const formField =
               API_FIELD_TO_FORM_FIELD[error.field] || error.field;
             const errorCode =
-              API_MESSAGE_TO_FRONTEND[error.message] || error.message;
+              API_ERROR_PATH_TO_FRONTEND[error.errorPath] || error.errorPath;
             return {
               ...agg,
               [formField]: {
