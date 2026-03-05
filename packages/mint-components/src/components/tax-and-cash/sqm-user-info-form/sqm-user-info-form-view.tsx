@@ -5,6 +5,7 @@ import { FORM_STEPS, ImpactPublisher, ImpactUser } from "../data";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 import LoadingView from "../sqm-tax-and-cash/LoadingView";
 import { formatErrorMessage, validateBillingField } from "../utils";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 
 export interface UserInfoFormViewProps {
   states: {
@@ -438,9 +439,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   function isDisabledUserInput(field: string) {
     return states.isUser && !!data.userData?.[field];
   }
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
   return (
     <sl-form
       class={classes.FormWrapper}
+      {...sensitiveAttrs}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
       novalidate
@@ -553,6 +556,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-input
                 class="ErrorInput"
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 value={formState.firstName}
                 label={text.firstName}
                 disabled={states.disabled || isDisabledUserInput("firstName")}
@@ -571,6 +575,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               />
               <sl-input
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 value={formState.lastName}
                 label={text.lastName}
                 disabled={states.disabled || isDisabledUserInput("lastName")}
@@ -589,6 +594,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               />
               <sl-input
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 value={formState.email}
                 label={text.email}
                 disabled={true}
@@ -600,6 +606,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-select
                 id="countryCode"
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
@@ -620,6 +627,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
+                  {...sensitiveAttrs}
                   placeholder={text.searchForCountryText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
@@ -649,6 +657,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <sl-select
                     id="phoneNumberCountryCode"
                     exportparts="label: input-label, base: input-base"
+                    {...sensitiveAttrs}
                     name="/phoneNumberCountryCode"
                     value={formState.phoneNumberCountryCode}
                     disabled={
@@ -671,6 +680,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   >
                     <sl-input
                       class={classes.SearchInput}
+                      {...sensitiveAttrs}
                       placeholder={text.searchForCountryText}
                       onKeyDown={(e) => {
                         // Stop shoelace intercepting key presses
@@ -702,6 +712,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-select>
                   <sl-input
                     exportparts="label: input-label, base: input-base"
+                    {...sensitiveAttrs}
                     id="phoneNumber"
                     name="/phoneNumber"
                     value={formState.phoneNumber}
@@ -731,6 +742,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </div>
               <sl-input
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 label={text.address}
                 id="address"
                 name="/address"
@@ -759,6 +771,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               ></sl-input>
               <sl-input
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 label={text.city}
                 id="city"
                 name="/city"
@@ -789,6 +802,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 <sl-select
                   label={regionLabel}
                   exportparts="label: input-label, base: input-base"
+                  {...sensitiveAttrs}
                   id="state"
                   name="/state"
                   value={formState.state}
@@ -814,6 +828,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-input
                 label={text.postalCode}
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 id="postalCode"
                 name="/postalCode"
                 value={formState.postalCode}
@@ -834,6 +849,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               <sl-select
                 id="currency"
                 exportparts="label: input-label, base: input-base"
+                {...sensitiveAttrs}
                 name="/currency"
                 label={text.currency}
                 menu
@@ -854,6 +870,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               >
                 <sl-input
                   class={classes.SearchInput}
+                  {...sensitiveAttrs}
                   placeholder={text.searchForCurrencyText}
                   onKeyDown={(e) => {
                     // Stop shoelace intercepting key presses
@@ -880,6 +897,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
 
               <div class={classes.CheckboxWrapper}>
                 <sl-checkbox
+                  {...sensitiveAttrs}
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
                     e.target.value = e.target.checked;

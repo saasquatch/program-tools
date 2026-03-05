@@ -3,6 +3,10 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { ErrorStyles } from "../../global/mixins";
+import {
+  sensitiveMaskAttrs,
+  shouldMaskSensitiveField,
+} from "../../utils/posthogMasking";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface InputFieldViewProps {
@@ -40,6 +44,9 @@ const styleString = sheet.toString();
 export function InputFieldView(props: InputFieldViewProps) {
   const { states, content } = props;
   const validationErrors = states?.registrationFormState?.validationErrors;
+  const shouldMask =
+    content.fieldType === "tel" || shouldMaskSensitiveField(content.fieldName);
+  const maskAttrs = sensitiveMaskAttrs(shouldMask);
 
   return (
     <div class={sheet.classes.FieldContainer} part="sqm-base">
@@ -52,6 +59,7 @@ export function InputFieldView(props: InputFieldViewProps) {
         name={`/${content.fieldName}`}
         type={content.fieldType}
         label={content.fieldLabel}
+        {...maskAttrs}
         {...(!content.fieldOptional ? { required: true } : [])}
         disabled={
           states.registrationFormState?.loading ||
