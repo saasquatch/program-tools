@@ -900,6 +900,12 @@ const rewardsBalanceQuery = (
         $unit: String!
         $locale: RSLocale
       ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: $format
+        )
         viewer: viewer {
           ... on User {
             rewardBalanceDetails(
@@ -924,6 +930,7 @@ const rewardsBalanceQuery = (
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
+      const fallback = res.data?.fallback
       const balance = arr?.[0];
       const totalEarned = balance
         ? (balance.totalAssignedCredit || 0) +
@@ -957,7 +964,7 @@ const rewardsBalanceQuery = (
 
       return {
         value: totalEarned,
-        statvalue: result?.data?.formatRewardPrettyValue,
+        statvalue: result?.data?.formatRewardPrettyValue || fallback,
       };
     }
   );
