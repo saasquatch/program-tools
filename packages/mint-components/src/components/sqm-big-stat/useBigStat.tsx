@@ -947,11 +947,15 @@ const rewardsBalanceQuery = (
           }
         `,
         {
-        value: totalEarned,
-        unit,
-        locale,
-        format: formatType,
-      });
+          value: totalEarned,
+          unit,
+          locale,
+          format: formatType,
+        },
+        {
+          skip: res.loading,
+        }
+      );
 
       return {
         value: totalEarned,
