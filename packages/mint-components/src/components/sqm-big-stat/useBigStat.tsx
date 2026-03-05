@@ -952,9 +952,7 @@ const rewardsBalanceQuery = (
           locale,
           format: formatType,
         },
-        {
-          skip: res.loading,
-        }
+        res.loading
       );
 
       return {
