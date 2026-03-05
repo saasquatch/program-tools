@@ -765,8 +765,8 @@ const rewardsExpiredQuery = (
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
       return {
-        value: arr?.[0]?.prettyAssignedCredit || 0,
-        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+        value: arr?.[0]?.prettyExpiredCredit || 0,
+        statvalue: arr?.[0]?.prettyExpiredCredit || fallback,
       };
     }
   );
@@ -818,8 +818,8 @@ const rewardsCancelledQuery = (
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
       return {
-        value: arr?.[0]?.prettyAssignedCredit || 0,
-        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+        value: arr?.[0]?.prettyCancelledCredit || 0,
+        statvalue: arr?.[0]?.prettyCancelledCredit || fallback,
       };
     }
   );
@@ -890,14 +890,16 @@ const rewardsBalanceQuery = (
   format = "prettyValue",
   global = ""
 ) => {
+  const formatType = parseRewardValueFormat[format] ?? "UNIT_FORMATTED";
+
   return debugQuery(
     gql`
       query (
         $programId: ID
         $type: RewardType!
         $unit: String!
-        $format: RewardValueFormatType!
         $locale: RSLocale
+        $format: RewardValueFormatType!
       ) {
         fallback: formatRewardPrettyValue(
           value: 0
@@ -913,7 +915,8 @@ const rewardsBalanceQuery = (
               locale: $locale
             ) {
               ... on CreditRewardBalance {
-                prettyAvailableValue(formatType: $format)
+                totalAssignedCredit
+                totalPendingCredit
               }
             }
           }
@@ -922,18 +925,47 @@ const rewardsBalanceQuery = (
     `,
     {
       programId: !global && programId !== "classic" ? programId : null,
-
       type,
       unit,
-      format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
       locale,
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
+      const balance = arr?.[0];
+      const totalEarned = balance
+        ? (balance.totalAssignedCredit || 0) +
+          (balance.totalPendingCredit || 0) 
+        : 0;
+
+      const result = useQuery(
+        gql`
+          query (
+            $value: Int!
+            $unit: String!
+            $locale: RSLocale
+            $format: RewardValueFormatType!
+          ) {
+            formatRewardPrettyValue(
+              value: $value
+              unit: $unit
+              locale: $locale
+              formatType: $format
+            )
+          }
+        `,
+        {
+          value: totalEarned,
+          unit,
+          locale,
+          format: formatType,
+        },
+        res.loading
+      );
+
       return {
-        value: arr?.[0]?.prettyAvailableValue || 0,
-        statvalue: arr?.[0]?.prettyAvailableValue || fallback,
+        value: totalEarned,
+        statvalue: result?.data?.formatRewardPrettyValue || fallback,
       };
     }
   );
