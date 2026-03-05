@@ -899,6 +899,7 @@ const rewardsBalanceQuery = (
         $type: RewardType!
         $unit: String!
         $locale: RSLocale
+        $format: RewardValueFormatType!
       ) {
         fallback: formatRewardPrettyValue(
           value: 0
@@ -930,7 +931,7 @@ const rewardsBalanceQuery = (
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      const fallback = res.data?.fallback
+      const fallback = res.data?.fallback;
       const balance = arr?.[0];
       const totalEarned = balance
         ? (balance.totalAssignedCredit || 0) +
