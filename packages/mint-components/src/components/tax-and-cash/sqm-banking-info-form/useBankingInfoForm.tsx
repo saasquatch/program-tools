@@ -49,6 +49,129 @@ const ACH_PAYMENT_METHOD = 3;
 const WIRE_PAYMENT_METHOD = 5;
 const PAYPAL_PAYMENT_METHOD = 7;
 
+/**
+ * Maps GraphQL validation error field names to form field names.
+ *
+ * The Impact API returns UpperCamelCase field names (e.g. `BankAccountNumber`).
+ * The GraphQL layer in `UserServiceImpl.java` converts these to lowerCamelCase
+ * via `CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, errorDto.field)`.
+ *
+ * Most converted field names already match the form field names exactly
+ * (e.g. `bankAccountNumber`, `swiftCode`, `routingCode`). Only entries
+ * where the GraphQL field name differs from the form field name need
+ * to be listed here.
+ */
+const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
+  // bankProvinceState → form uses bankState
+  bankProvinceState: "bankState",
+};
+
+/**
+ * Maps Impact API error code paths (from validationErrors[].errorPath) to short,
+ * readable frontend error codes used in the ICU select props.
+ *
+ * The Impact API returns a stable dot-delimited error path (e.g.
+ * "withdrawal.settings.error.routingcode") alongside the human-readable message.
+ * The GraphQL layer exposes this as `errorPath`. The keys below match those paths
+ * to short frontend codes used in the ICU `{errorCode, select, ...}` props.
+ */
+const API_ERROR_PATH_TO_FRONTEND: Record<string, string> = {
+  // Beneficiary account name
+  "withdrawal.settings.error.empty_beneficiaryname": "empty",
+  "withdrawal.settings.error.invalid_character_beneficiaryname":
+    "invalidCharacters",
+  "withdrawal.settings.error.numeric_beneficiaryname": "numeric",
+  "withdrawal_settings.error.beneficiaryname.size": "tooLong",
+  "withdrawal.settings.error.non_english_beneficiaryname": "nonEnglish",
+  "withdrawal_settings.error.business_beneficiaryname_match":
+    "businessNameMismatch",
+  "withdrawal_settings.error.beneficiaryname_match": "nameMismatch",
+  "withdrawal_settings.error.business_checkpayeename_match":
+    "businessPayeeMismatch",
+  "withdrawal_settings.error.checkpayeename_match": "payeeMismatch",
+
+  // Bank account number
+  "withdrawal.settings.error.accountnumber.empty": "empty",
+  "withdrawal.settings.error.accountnumber.uk": "invalidUk",
+  "withdrawal.settings.error.bankaccount.invalid": "invalid",
+
+  // IBAN
+  "withdrawal.settings.error.iban": "ibanEmpty",
+  "withdrawal.settings.error.iban.alphanumeric": "ibanAlphanumeric",
+  "withdrawal.settings.error.iban.invalid": "ibanInvalid",
+  "withdrawal.settings.error.iban.uk.country.mismatch": "ibanCountryMismatch",
+
+  // Routing code
+  "withdrawal.settings.error.bsbNumber": "invalidBsb",
+  "withdrawal.settings.error.sortcode": "invalidSortCode",
+  "withdrawal.settings.error.routingNumber": "empty",
+  "withdrawal.settings.error.routingcode": "invalid",
+
+  // SWIFT / BIC
+  "withdrawal.settings.error.bic": "empty",
+  "withdrawal.settings.error.bic.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.bic.invalid": "invalid",
+
+  // Bank account type
+  "global.error.invalid.accounttype": "empty",
+
+  // Bank name
+  "withdrawal.settings.error.bankName": "empty",
+
+  // Tax payer ID
+  "withdrawal.settings.error.taxPayerId": "empty",
+  "withdrawal.settings.error.taxPayerId.ar": "emptyAr",
+  "withdrawal.settings.error.taxPayerId.kr": "emptyKr",
+  "withdrawal.settings.error.taxPayerId.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.taxPayerId.alphanumeric.ar": "alphanumericAr",
+  "withdrawal.settings.error.taxPayerId.alphanumeric.kr": "alphanumericKr",
+  "withdrawal.settings.error.taxPayerId.invalid": "invalid",
+  "withdrawal.settings.error.taxPayerId.invalid.ar": "invalidAr",
+  "withdrawal.settings.error.taxPayerId.invalid.kr": "invalidKr",
+  "withdrawal.settings.error.taxPayerId.invalid.kzt": "invalidKzt",
+  "withdrawal.settings.error.taxPayerId.cnpj": "cnpjTooShort",
+  "withdrawal.settings.error.taxPayerId.cpf": "cpfTooShort",
+
+  // Patronymic name
+  "withdrawal.settings.error.patronymicName": "empty",
+  "withdrawal.settings.error.patronymicName.alphanumeric": "alphanumeric",
+
+  // VO code
+  "withdrawal.settings.error.voCode": "empty",
+  "withdrawal.settings.error.voCode.alphanumeric": "alphanumeric",
+
+  // Agency code
+  "withdrawal.settings.error.agencyCode": "empty",
+  "withdrawal.settings.error.agencyCode.alphanumeric": "alphanumeric",
+  "withdrawal.settings.error.agencyCode.length": "tooShort",
+
+  // Bank address fields
+  "withdrawal.settings.error.bankAddress": "empty",
+  "withdrawal.settings.error.bankCity": "empty",
+  "withdrawal.settings.error.bankProvinceState": "empty",
+  "withdrawal.settings.error.bankPostalCode": "empty",
+
+  // Branch code / name
+  "withdrawal.settings.error.branchCode": "invalid",
+  "withdrawal.settings.error.branchName": "empty",
+
+  // Classification code
+  "withdrawal.settings.error.classificationCode.invalid": "empty",
+  "withdrawal.settings.error.classificationCode.invalid.kzt": "invalidKzt",
+
+  // PayPal
+  "payment.error.email": "empty",
+  "payment.error.paypal_not_supported": "unsupportedCurrency",
+  "payment.error.email.invalid": "invalidEmail",
+  "payment.error.paypal_verification_incomplete": "verificationIncomplete",
+
+  // Payment schedule
+  "payment.error.no_threshold": "empty",
+  "payment.error.invalid_threshold": "invalid",
+  "payment.error.no_dayOfMonth": "empty",
+  "payment.error.invalid_dayOfMonth": "invalid",
+};
+
 export type BankingInfoFormData = {
   // Fields that are auto-filled
   bankCountry?: string;
@@ -101,7 +224,11 @@ export function getFormInputs({ bitset, formMap }) {
 type SetImpactPublisherWithdrawalSettingsResult = {
   setImpactPublisherWithdrawalSettings: {
     success: boolean;
-    validationErrors: { field: string; message: string }[];
+    validationErrors: {
+      field: string;
+      message: string;
+      errorPath: string;
+    }[];
   };
 };
 type SetImpactPublisherWithdrawalSettingsInput = {
@@ -120,7 +247,11 @@ type UpdateImpactPublisherWithdrawalSettingsInput =
 type UpdateImpactPublisherWithdrawalSettingsResult = {
   updateImpactPublisherWithdrawalSettings: {
     success: boolean;
-    validationErrors: { field: string; message: string }[];
+    validationErrors: {
+      field: string;
+      message: string;
+      errorPath: string;
+    }[];
   };
 };
 
@@ -135,6 +266,7 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
+        errorPath
       }
     }
   }
@@ -151,6 +283,7 @@ const UPDATE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
+        errorPath
       }
     }
   }
@@ -390,11 +523,15 @@ export function useBankingInfoForm(
 
         const mappedValidationErrors = validationErrors?.reduce(
           (agg, error) => {
+            const formField =
+              API_FIELD_TO_FORM_FIELD[error.field] || error.field;
+            const errorCode =
+              API_ERROR_PATH_TO_FRONTEND[error.errorPath] || error.errorPath;
             return {
               ...agg,
-
-              [error.field]: {
+              [formField]: {
                 type: "invalid",
+                errorCode,
               },
             };
           },

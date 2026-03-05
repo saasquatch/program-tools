@@ -350,6 +350,197 @@ export class BankingInfoForm {
    */
   @Prop() modalButtonText: string = "I understand, update my information";
 
+  // ──────────────────────────────────────────────────────────────────
+  // Per-field validation error messages
+  // Each prop uses ICU select on {errorCode} to pick the right message.
+  // Error codes are short frontend keys mapped from the API error codes.
+  // The `other` branch displays the raw API message directly via {errorCode},
+  // which is already human-readable English (e.g. "Invalid Routing Code").
+  // ──────────────────────────────────────────────────────────────────
+
+  /**
+   * Error messages for the beneficiary / account holder name field.
+   * Supports error codes: empty, invalidCharacters, numeric, tooLong,
+   * nonEnglish, businessNameMismatch, nameMismatch, businessPayeeMismatch, payeeMismatch
+   * @uiName Beneficiary account name error
+   * @uiWidget textArea
+   */
+  @Prop() beneficiaryAccountNameError: string =
+    "{errorCode, select, empty {Account holder name is required} invalidCharacters {Account holder name contains invalid characters} numeric {Account holder name cannot be purely numeric} tooLong {Account holder name must be 70 characters or fewer} nonEnglish {Account holder name must contain only English characters for this currency} businessNameMismatch {Beneficiary name must match the name on your tax document} nameMismatch {Beneficiary name must match the name on your tax document} businessPayeeMismatch {Payee name must match the name on your tax document} payeeMismatch {Payee name must match the name on your tax document} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank account number / IBAN field.
+   * Supports error codes: empty, invalidUk, invalid, ibanEmpty,
+   * ibanAlphanumeric, ibanInvalid, ibanCountryMismatch
+   * @uiName Bank account number / IBAN error
+   * @uiWidget textArea
+   */
+  @Prop() bankAccountNumberError: string =
+    "{errorCode, select, empty {Account number is required} invalidUk {Please enter a valid UK account number} invalid {Account number is invalid} ibanEmpty {IBAN is required} ibanAlphanumeric {IBAN must contain only letters and numbers} ibanInvalid {IBAN is invalid} ibanCountryMismatch {UK accounts must use an IBAN starting with GB} other {{errorCode}}}";
+
+  /**
+   * Error messages for the routing code / sort code / BSB field.
+   * Supports error codes: invalidBsb, invalidSortCode, empty, invalid
+   * @uiName Routing code error
+   * @uiWidget textArea
+   */
+  @Prop() routingCodeError: string =
+    "{errorCode, select, invalidBsb {Please enter a valid BSB number} invalidSortCode {Please enter a valid sort code} empty {Routing number is required} invalid {Routing number is invalid} other {{errorCode}}}";
+
+  /**
+   * Error messages for the SWIFT / BIC code field.
+   * Supports error codes: empty, alphanumeric, invalid
+   * @uiName SWIFT code error
+   * @uiWidget textArea
+   */
+  @Prop() swiftCodeError: string =
+    "{errorCode, select, empty {SWIFT/BIC code is required} alphanumeric {SWIFT/BIC code must contain only letters and numbers} invalid {SWIFT/BIC code is invalid} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank account type field.
+   * Supports error codes: empty
+   * @uiName Bank account type error
+   * @uiWidget textArea
+   */
+  @Prop() bankAccountTypeError: string =
+    "{errorCode, select, empty {Bank account type is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank name field.
+   * Supports error codes: empty
+   * @uiName Bank name error
+   * @uiWidget textArea
+   */
+  @Prop() bankNameError: string =
+    "{errorCode, select, empty {Bank name is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the tax payer ID / classification entity field.
+   * Supports error codes: empty, emptyAr, emptyKr, alphanumeric, alphanumericAr,
+   * alphanumericKr, invalid, invalidAr, invalidKr, invalidKzt, cnpjTooShort, cpfTooShort
+   * @uiName Tax payer ID error
+   * @uiWidget textArea
+   */
+  @Prop() taxPayerIdError: string =
+    "{errorCode, select, empty {Tax payer ID is required} emptyAr {CUIT/CUIL is required} emptyKr {Classification ID is required} alphanumeric {Tax payer ID must contain only letters and numbers} alphanumericAr {CUIT/CUIL must contain only letters and numbers} alphanumericKr {Classification ID must contain only letters and numbers} invalid {Tax payer ID is invalid} invalidAr {CUIT/CUIL must be 11 characters} invalidKr {Classification ID length is invalid} invalidKzt {Tax payer ID must be 12 characters for KZT} cnpjTooShort {CNPJ must be at least 14 characters} cpfTooShort {CPF must be at least 11 characters} other {{errorCode}}}";
+
+  /**
+   * Error messages for the patronymic name field.
+   * Supports error codes: empty, alphanumeric
+   * @uiName Patronymic name error
+   * @uiWidget textArea
+   */
+  @Prop() patronymicNameError: string =
+    "{errorCode, select, empty {Patronymic name is required} alphanumeric {Patronymic name must contain only letters and numbers} other {{errorCode}}}";
+
+  /**
+   * Error messages for the VO code field.
+   * Supports error codes: empty, alphanumeric
+   * @uiName VO code error
+   * @uiWidget textArea
+   */
+  @Prop() voCodeError: string =
+    "{errorCode, select, empty {VO code is required} alphanumeric {VO code must contain only letters and numbers} other {{errorCode}}}";
+
+  /**
+   * Error messages for the agency code field.
+   * Supports error codes: empty, alphanumeric, tooShort
+   * @uiName Agency code error
+   * @uiWidget textArea
+   */
+  @Prop() agencyCodeError: string =
+    "{errorCode, select, empty {Agency code is required} alphanumeric {Agency code must contain only letters and numbers} tooShort {Agency code must be at least 5 characters} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank address field.
+   * Supports error codes: empty
+   * @uiName Bank address error
+   * @uiWidget textArea
+   */
+  @Prop() bankAddressError: string =
+    "{errorCode, select, empty {Bank address is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank city field.
+   * Supports error codes: empty
+   * @uiName Bank city error
+   * @uiWidget textArea
+   */
+  @Prop() bankCityError: string =
+    "{errorCode, select, empty {Bank city is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank province/state field.
+   * Supports error codes: empty
+   * @uiName Bank province/state error
+   * @uiWidget textArea
+   */
+  @Prop() bankStateError: string =
+    "{errorCode, select, empty {Bank province/state is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the bank postal code field.
+   * Supports error codes: empty
+   * @uiName Bank postal code error
+   * @uiWidget textArea
+   */
+  @Prop() bankPostalCodeError: string =
+    "{errorCode, select, empty {Bank postal code is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the branch code field.
+   * Supports error codes: invalid
+   * @uiName Branch code error
+   * @uiWidget textArea
+   */
+  @Prop() branchCodeError: string =
+    "{errorCode, select, invalid {Branch code is invalid} other {{errorCode}}}";
+
+  /**
+   * Error messages for the branch name field.
+   * Supports error codes: empty
+   * @uiName Branch name error
+   * @uiWidget textArea
+   */
+  @Prop() branchNameError: string =
+    "{errorCode, select, empty {Branch name is required} other {{errorCode}}}";
+
+  /**
+   * Error messages for the classification code field.
+   * Supports error codes: empty, invalidKzt
+   * @uiName Classification code error
+   * @uiWidget textArea
+   */
+  @Prop() classificationCodeError: string =
+    "{errorCode, select, empty {Classification code is required} invalidKzt {Classification code must be exactly 2 characters} other {{errorCode}}}";
+
+  /**
+   * Error messages for the PayPal email field.
+   * Supports error codes: empty, unsupportedCurrency, invalidEmail, verificationIncomplete
+   * @uiName PayPal email error
+   * @uiWidget textArea
+   */
+  @Prop() paypalEmailError: string =
+    "{errorCode, select, empty {PayPal email is required} unsupportedCurrency {PayPal is not supported for this currency} invalidEmail {Please enter a valid email address} verificationIncomplete {PayPal verification is not complete} other {{errorCode}}}";
+
+  /**
+   * Error messages for the payment threshold field.
+   * Supports error codes: empty, invalid
+   * @uiName Payment threshold error
+   * @uiWidget textArea
+   */
+  @Prop() paymentThresholdError: string =
+    "{errorCode, select, empty {Payment threshold is required} invalid {Payment threshold is invalid} other {{errorCode}}}";
+
+  /**
+   * Error messages for the payment day field.
+   * Supports error codes: empty, invalid
+   * @uiName Payment day error
+   * @uiWidget textArea
+   */
+  @Prop() paymentDayError: string =
+    "{errorCode, select, empty {Payment day is required} invalid {Payment day must be the 1st or the 15th} other {{errorCode}}}";
+
   /**
    * @undocumented
    * @uiType object
@@ -373,6 +564,28 @@ export class BankingInfoForm {
         loadingErrorAlertDescription: props.loadingErrorAlertDescription,
         loadingErrorAlertHeader: props.loadingErrorAlertHeader,
       },
+      errorMessages: {
+        beneficiaryAccountName: props.beneficiaryAccountNameError,
+        bankAccountNumber: props.bankAccountNumberError,
+        routingCode: props.routingCodeError,
+        swiftCode: props.swiftCodeError,
+        bankAccountType: props.bankAccountTypeError,
+        bankName: props.bankNameError,
+        taxPayerId: props.taxPayerIdError,
+        patronymicName: props.patronymicNameError,
+        voCode: props.voCodeError,
+        agencyCode: props.agencyCodeError,
+        bankAddress: props.bankAddressError,
+        bankCity: props.bankCityError,
+        bankState: props.bankStateError,
+        bankPostalCode: props.bankPostalCodeError,
+        branchCode: props.branchCodeError,
+        branchName: props.branchNameError,
+        beneficiaryClassification: props.classificationCodeError,
+        paypalEmailAddress: props.paypalEmailError,
+        paymentThreshold: props.paymentThresholdError,
+        paymentDay: props.paymentDayError,
+      },
     };
   }
 
@@ -389,10 +602,32 @@ export class BankingInfoForm {
     function getValidationErrorMessage({
       type,
       label,
+      errorCode,
+      fieldName,
     }: {
       type: "required" | "invalid";
       label: string;
+      errorCode?: string;
+      fieldName?: string;
     }) {
+      // If we have a specific error code from the API, try to use
+      // the per-field ICU error message template for a rich message
+      if (type === "invalid" && errorCode && fieldName) {
+        const errorTemplate = props.text.errorMessages?.[fieldName];
+        if (errorTemplate) {
+          return intl.formatMessage(
+            {
+              id: `fieldError-${fieldName}-${errorCode}`,
+              defaultMessage: errorTemplate,
+            },
+            {
+              errorCode,
+              fieldName: label,
+            }
+          );
+        }
+      }
+
       if (type === "required") {
         return intl.formatMessage(
           {
@@ -525,6 +760,8 @@ export class BankingInfoForm {
                   helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.bankCountry?.type,
                     label: props.text.bankLocationLabel,
+                    errorCode: errors?.inputErrors?.bankCountry?.errorCode,
+                    fieldName: "bankCountry",
                   }),
                 })}
               >
@@ -578,6 +815,8 @@ export class BankingInfoForm {
                   helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.paymentThreshold?.type,
                     label: props.text.paymentThresholdSelectLabel,
+                    errorCode: errors?.inputErrors?.paymentThreshold?.errorCode,
+                    fieldName: "paymentThreshold",
                   }),
                 })}
               >
@@ -601,6 +840,8 @@ export class BankingInfoForm {
                   helpText: getValidationErrorMessage({
                     type: errors?.inputErrors?.paymentDay?.type,
                     label: props.text.paymentDaySelectLabel,
+                    errorCode: errors?.inputErrors?.paymentDay?.errorCode,
+                    fieldName: "paymentDay",
                   }),
                 })}
               >
@@ -629,6 +870,10 @@ export class BankingInfoForm {
                     type: props.states.formState?.errors?.inputErrors
                       ?.paypalEmailAddress?.type,
                     label: props.text.payPalInputLabel,
+                    errorCode:
+                      props.states.formState?.errors?.inputErrors
+                        ?.paypalEmailAddress?.errorCode,
+                    fieldName: "paypalEmailAddress",
                   }),
                 })}
               ></sl-input>
