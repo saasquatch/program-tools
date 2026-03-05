@@ -910,8 +910,6 @@ const rewardsBalanceQuery = (
               ... on CreditRewardBalance {
                 totalAssignedCredit
                 totalPendingCredit
-                totalExpiredCredit
-                totalCancelledCredit
               }
             }
           }
@@ -929,9 +927,7 @@ const rewardsBalanceQuery = (
       const balance = arr?.[0];
       const totalEarned = balance
         ? (balance.totalAssignedCredit || 0) +
-          (balance.totalPendingCredit || 0) +
-          (balance.totalExpiredCredit || 0) +
-          (balance.totalCancelledCredit || 0)
+          (balance.totalPendingCredit || 0) 
         : 0;
 
       const result = useQuery(
