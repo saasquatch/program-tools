@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-03-09
+
+### Fixed
+
+- \<sqm-big-stat>
+  - Fix expired rewards query reading `prettyAssignedCredit` instead of `prettyExpiredCredit`
+  - Fix cancelled rewards query reading `prettyAssignedCredit` instead of `prettyCancelledCredit`
+  - Fix earned rewards balance calculation to use sum of `totalAssignedCredit` and `totalPendingCredit`
+
 ## [2.1.1] - 2026-02-26
 
 ### Updated
@@ -1461,7 +1470,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.2...HEAD
+[2.1.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.2
 [2.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.1
 [2.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.0
 [2.0.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.10
