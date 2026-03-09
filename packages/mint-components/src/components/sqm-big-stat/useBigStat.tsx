@@ -928,6 +928,7 @@ const rewardsBalanceQuery = (
       type,
       unit,
       locale,
+      format: formatType,
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
