@@ -35,6 +35,7 @@ export type UserEvent = {
   id: string;
   fields: RSJsonNode;
   isModification: boolean;
+  convertedTotalAmountPostDiscount?: number | null;
   dateTriggered?: number;
   dateReceived?: number;
   dateProcessed?: number;
