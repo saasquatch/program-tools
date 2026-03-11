@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 import { FORM_STEPS } from "../data";
 import { BankingInfoFormData } from "./useBankingInfoForm";
 
@@ -290,6 +291,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
   } = props;
 
   const { classes } = sheet;
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
 
   const getLoadingSkeleton = (
     checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
@@ -339,6 +341,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
   return (
     <sl-form
       class={classes.FormWrapper}
+      {...sensitiveAttrs}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
       novalidate
@@ -448,6 +451,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 <sl-radio
                   class={classes.Checkbox}
                   exportparts="base: radio-base"
+                  {...sensitiveAttrs}
                   checked={formState.paymentMethodChecked === "toBankAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toBankAccount")
@@ -481,6 +485,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                 <sl-radio
                   class={classes.Checkbox}
                   exportparts="base: radio-base"
+                  {...sensitiveAttrs}
                   checked={formState.paymentMethodChecked === "toPayPalAccount"}
                   onInput={() =>
                     callbacks.setPaymentMethodChecked("toPayPalAccount")
@@ -514,6 +519,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <sl-radio
                 class={classes.Checkbox}
                 exportparts="base: radio-base"
+                {...sensitiveAttrs}
                 checked={
                   formState.paymentScheduleChecked === "BALANCE_THRESHOLD"
                 }
@@ -541,6 +547,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
               <sl-radio
                 class={classes.Checkbox}
                 exportparts="base: radio-base"
+                {...sensitiveAttrs}
                 checked={formState.paymentScheduleChecked === "FIXED_DAY"}
                 onInput={() => callbacks.setPaymentScheduleChecked("FIXED_DAY")}
                 disabled={states.disabled}
