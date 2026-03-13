@@ -149,7 +149,7 @@ export class HeroImage {
    *
    * @uiName Minimum height (px)
    */
-  @Prop() minHeight?: number;
+  @Prop() minHeight?: number = 400;
 
   /**
    * Alt text for the hero image (columns layout). Leave empty for decorative images.
