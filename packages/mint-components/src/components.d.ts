@@ -1131,6 +1131,11 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -1166,6 +1171,11 @@ export namespace Components {
           * @uiGroup Style
          */
         "layout": "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -9039,6 +9049,11 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -9074,6 +9089,11 @@ declare namespace LocalJSX {
           * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
