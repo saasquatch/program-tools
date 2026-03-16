@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-03-16
+
+### Fixed
+
+- Now using correct property name for "beneficiaryTaxPayerId" on tax form
+
 ## [2.1.2] - 2026-03-09
 
 ### Fixed
@@ -1470,7 +1476,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.3...HEAD
+[2.1.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.3
 [2.1.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.2
 [2.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.1
 [2.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.0
