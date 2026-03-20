@@ -1,44 +1,23 @@
-<html>
-  <head>
-    <script>
-      !(function (a, b) {
-        a("squatch", "https://fast.ssqt.io/squatch-js@2", b);
-      })(function (a, b, c) {
-        var d, e, f;
-        ((c["_" + a] = {}),
-          (c[a] = {}),
-          (c[a].ready = function (b) {
-            c["_" + a].ready = c["_" + a].ready || [];
-            c["_" + a].ready.push(b);
-          }),
-          (e = document.createElement("script")),
-          (e.async = 1),
-          (e.src = b),
-          (f = document.getElementsByTagName("script")[0]),
-          f.parentNode.insertBefore(e, f));
-      }, this);
-    </script>
-    <script>
-      window.squatchTenant = "ac52kfybp1tkr";
-      window.squatchConfig = {
-        domain: "https://staging.referralsaasquatch.com",
-      };
-      // window.squatchToken =
-      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU";
-      // window.widgetIdent = {
-      //   programId: "47218",
-      //   userId: "testuser",
-      //   accountId: "testuser",
-      //   token:
-      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoidGVzdHVzZXIiLCJhY2NvdW50SWQiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20ifX0.tegzTaLms4g47rwcWoyhk1WW4hqB16PulQV9zouJNfU",
-      //   tenantAlias: "ac52kfybp1tkr",
-      //   engagementMedium: "POPUP",
-      //   appDomain: "https://staging.referralsaasquatch.com",
-      // };
-    </script>
-  </head>
-  <body>
-   
-    <!-- <impact-popup widget="p/47218/w/friendWidget" id="squatchModal"></impact-popup> -->
-  </body>
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Mint Components Stencilbook</title>
+  <script type="module" src="build/mint-components.esm.js"></script>
+  <script nomodule src="build/mint-components.js"></script>
+
+  <script>
+    const brandConfig = localStorage.getItem("localStorageBrandConfigKey");
+    if (brandConfig) {
+      const parsedConfig = JSON.parse(brandConfig);
+      window.SquatchBrandingConfig = parsedConfig;
+    }
+  </script>
+
+<body>
+  <sqm-stencilbook></sqm-stencilbook>
+</body>
+
 </html>
