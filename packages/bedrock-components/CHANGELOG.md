@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Disabled Stencil hydration flag (`hydratedFlag: null`) to prevent unstyled content flash when loading alongside mint-components
+
 ## [1.5.1] - 2025-11-03
 
 ### Changed

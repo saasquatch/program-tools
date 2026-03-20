@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Improved loading states for:
+  - \<sqm-coupon-code>
+  - \<sqm-edit-profile>
+  - \<sqm-empty>
+  - \<sqm-form-message>
+  - \<sqm-instant-access-registration>
+  - \<sqm-invoice-table>
+  - \<sqm-lead-form>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-leaderboard>
+  - \<sqm-navigation-menu>
+  - \<sqm-portal-container>
+  - \<sqm-portal-email-verification>
+  - \<sqm-qr-code>
+  - \<sqm-referral-codes>
+  - \<sqm-task-card>
+  - \<sqm-indirect-tax-form>
+  - \<sqm-payout-details-card>
+  - \<sqm-payout-status-alert>
+  - \<sqm-tax-and-cash-dashboard>
+  - \<sqm-tax-and-cash>
+  - \<sqm-user-info-form>
+
 ## [2.1.0] - 2026-02-19
 
 ### Updated
