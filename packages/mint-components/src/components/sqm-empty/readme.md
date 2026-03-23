@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property           | Attribute            | Description | Type     | Default                                                                                                  |
-| ------------------ | -------------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| `emptyStateHeader` | `empty-state-header` |             | `string` | `undefined`                                                                                              |
-| `emptyStateImage`  | `empty-state-image`  |             | `string` | `"https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"` |
-| `emptyStateText`   | `empty-state-text`   |             | `string` | `undefined`                                                                                              |
-| `supportText`      | `support-text`       |             | `string` | `undefined`                                                                                              |
+| Property           | Attribute            | Description | Type     | Default     |
+| ------------------ | -------------------- | ----------- | -------- | ----------- |
+| `emptyStateHeader` | `empty-state-header` |             | `string` | `undefined` |
+| `emptyStateImage`  | `empty-state-image`  |             | `string` | `undefined` |
+| `emptyStateText`   | `empty-state-text`   |             | `string` | `undefined` |
+| `supportText`      | `support-text`       |             | `string` | `undefined` |
 
 
 ## Dependencies
