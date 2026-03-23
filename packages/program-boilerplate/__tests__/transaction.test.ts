@@ -22,7 +22,7 @@ describe("Transaction class", () => {
         },
       },
       activeTrigger: {
-        type: "AFTER_USER_EVENT_PROCESSED",
+        type: "AFTER_USER_EVENT_PROCESSED" as const,
         time: 1619483037813,
         user: {
           id: "reffererID",
@@ -44,16 +44,17 @@ describe("Transaction class", () => {
       },
     },
   };
-  const testUser = {
+  const testUser: any = {
     id: "reffererID",
     accountId: "reffererACCOUNTID",
+    programGoals: [] as any[],
     referredByReferral: {
       id: "referralID",
     },
   };
-  let transaction = new Transaction(testContext);
+  let transaction = new Transaction(testContext as any);
   beforeEach(() => {
-    transaction = new Transaction(testContext);
+    transaction = new Transaction(testContext as any);
   });
 
   describe("#fireProgramEvalAnalytics", () => {
@@ -250,6 +251,8 @@ describe("Transaction class", () => {
               referralId: referralId,
               programId: "testProgramId",
               rewardId: rewardId,
+              eventId: undefined,
+              fetchEvent: false,
             },
             query: rewardEmailQuery,
           },
@@ -279,6 +282,8 @@ describe("Transaction class", () => {
               accountId: "reffererACCOUNTID",
               referralId: referralId,
               programId: "testProgramId",
+              eventId: undefined,
+              fetchEvent: false,
             },
             query: nonRewardEmailQueryForReferralPrograms,
           },
@@ -394,6 +399,8 @@ describe("Transaction class", () => {
             referralId: referralId,
             programId: "testProgramId",
             rewardId: rewardMutation.data.rewardId,
+            eventId: undefined,
+            fetchEvent: false,
           },
           query: rewardEmailQuery,
         },
