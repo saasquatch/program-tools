@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.4] - 2026-03-23
+
+### Fixed
+
+- \<sqm-empty>
+  - Fix image upload not clearing on sqm-empty
+
 ## [2.1.3] - 2026-03-16
 
 ### Fixed
@@ -1476,7 +1483,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.4...HEAD
+[2.1.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.4
 [2.1.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.3
 [2.1.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.2
 [2.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.1
