@@ -107,7 +107,7 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    expect(getTriggerSchema(programTriggerBody as any)).toStrictEqual(expectedOutput);
   });
 
   test("it converts REFERRAL triggers", () => {
@@ -149,7 +149,7 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    expect(getTriggerSchema(programTriggerBody as any)).toStrictEqual(expectedOutput);
   });
 
   test("it converts AFTER_USER_EVENT_PROCESSED triggers", () => {
@@ -265,7 +265,7 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    expect(getTriggerSchema(programTriggerBody as any)).toStrictEqual(expectedOutput);
   });
 
   test("it converts SCHEDULED triggers", () => {
@@ -305,7 +305,7 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    expect(getTriggerSchema(programTriggerBody as any)).toStrictEqual(expectedOutput);
   });
 
   test("it converts REWARD_SCHEDULED triggers", () => {
@@ -345,7 +345,7 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    expect(getTriggerSchema(programTriggerBody as any)).toStrictEqual(expectedOutput);
   });
 
   test("throw error on unexpected trigger type", () => {
@@ -373,8 +373,8 @@ describe("#getTriggerSchema", () => {
     };
 
     expect(() => {
-      getTriggerSchema(programTriggerBody);
-    }).toThrowError("Trigger type did not match expected options");
+      getTriggerSchema(programTriggerBody as any);
+    }).toThrow("Trigger type did not match expected options");
   });
 });
 

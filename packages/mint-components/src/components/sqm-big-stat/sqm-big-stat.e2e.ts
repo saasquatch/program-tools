@@ -8,10 +8,10 @@ function statFunctions(page: Readonly<E2EPage>) {
     dontExpectElement: async (selector: string) =>
       expect((await page.find(selector))?.id).toBeUndefined(),
     hasStat: async (stat: E2EElement) => {
-      expect(stat.innerHTML).not.toEqual("!!!");
+      expect(stat.innerHTML).not.toEqual("-");
     },
     hasInvalidStat: async (stat: E2EElement) => {
-      expect(stat.innerHTML).toEqual("!!!");
+      expect(stat.innerHTML).toEqual("-");
     },
   };
 }
@@ -121,7 +121,7 @@ describe("sqm-big-stat", () => {
     });
   });
 
-  test("No props returns !!!", async () => {
+  test("No props returns -", async () => {
     const html = getHTML(`<sqm-big-stat></sqm-big-stat>`);
     const page = await newE2EPage();
     const { expectElement, hasInvalidStat } = statFunctions(page);
@@ -150,7 +150,7 @@ describe("sqm-big-stat", () => {
     page.close();
   });
 
-  test("/programGoals/count returns !!!", async () => {
+  test("/programGoals/count returns -", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/programGoals/count"></sqm-big-stat>`
     );
@@ -168,7 +168,7 @@ describe("sqm-big-stat", () => {
     page.close();
   });
 
-  test("/programGoals/conversionCount returns !!!", async () => {
+  test("/programGoals/conversionCount returns -", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/programGoals/conversionCount"></sqm-big-stat>`
     );
@@ -185,7 +185,7 @@ describe("sqm-big-stat", () => {
     hasInvalidStat(stat);
     page.close();
   });
-  test("/programGoals/count/My-Goal/referrals returns !!!", async () => {
+  test("/programGoals/count/My-Goal/referrals returns -", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/programGoals/count/My-Goal/referrals"></sqm-big-stat>`
     );

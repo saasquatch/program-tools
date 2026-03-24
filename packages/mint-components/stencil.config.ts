@@ -28,6 +28,9 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
 
 export const config: Config = {
   namespace: "mint-components",
+  testing: {
+    browserArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
+  },
   devServer: {
     // startupTimeout: 0,
   },

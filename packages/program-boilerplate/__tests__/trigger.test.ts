@@ -69,7 +69,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         PROGRAM_INTROSPECTION: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(spy.mock.calls[0]).toEqual([
         testBody.template,
         testBody.program.rules,
@@ -91,7 +91,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         PROGRAM_INTROSPECTION: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(spy.mock.calls[0]).toEqual([
         testBody.template,
         testBody.program.rules,
@@ -100,7 +100,7 @@ describe("triggerProgram", () => {
       ]);
       expect(result).toStrictEqual({
         json: {
-          error: "An error occurred in a webtask",
+          error: "An error occurred in a webtask (PROGRAM_INTROSPECTION)",
           message: undefined,
         },
         code: 500,
@@ -112,7 +112,7 @@ describe("triggerProgram", () => {
     const testBody = {
       messageType: "PROGRAM_TRIGGER" as "PROGRAM_TRIGGER",
       ids: ["123", "456"],
-      activeTrigger: { type: "AFTER_USER_EVENT_PROCESSED" },
+      activeTrigger: { type: "AFTER_USER_EVENT_PROCESSED" as const, time: 0, user: { id: "test", accountId: "test", programGoals: [] } },
       program: {
         id: "programName",
         test: "program",
@@ -130,7 +130,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         AFTER_USER_EVENT_PROCESSED: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(spy.mock.calls[0][0]).toBeInstanceOf(Transaction);
       expect(spy.mock.calls[0][0].context).toStrictEqual({ body: testBody });
       expect(result).toStrictEqual({
@@ -152,10 +152,10 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         AFTER_USER_EVENT_PROCESSED: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(result).toStrictEqual({
         json: {
-          error: "An error occurred in a webtask",
+          error: "An error occurred in a webtask (AFTER_USER_EVENT_PROCESSED)",
           message: undefined,
         },
         code: 500,
@@ -220,7 +220,7 @@ describe("triggerProgram", () => {
           rule3: spy3,
         },
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect((spy1 as jest.Mock).mock.calls[0]).toEqual([
         { test: "rule1" },
         testBody.program,
@@ -277,7 +277,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(spy.mock.calls[0]).toEqual([
         testBody.schema,
         testBody.triggerType,
@@ -300,7 +300,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: spy,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(result).toStrictEqual({
         code: 204,
         json: {},
@@ -311,7 +311,7 @@ describe("triggerProgram", () => {
       const spyingProgram = {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: undefined,
       };
-      const result = triggerProgram(testBody, spyingProgram);
+      const result = triggerProgram(testBody as any, spyingProgram);
       expect(result).toStrictEqual({
         json: {},
         code: 204,

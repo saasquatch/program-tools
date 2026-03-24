@@ -15,7 +15,7 @@ describe("#timeboxExpression", () => {
         error = e;
         throw e;
       }
-    }).toThrowError();
+    }).toThrow();
     expect(error!.code === "U1001" || error!.code === "U1002").toBe(true);
   }, 7000);
 });
@@ -28,7 +28,7 @@ describe("#safeJsonata", () => {
   test("infinite loops do not throw, but still exit", () => {
     expect(() => {
       safeJsonata(infExpr, undefined);
-    }).not.toThrowError();
+    }).not.toThrow();
   }, 7000);
 
   test("jsonata is evaluated as normal", () => {
