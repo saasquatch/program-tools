@@ -119,6 +119,7 @@ export interface TaxAndCashDashboardProps {
     termsAndConditions: string;
     cancelButton: string;
     supportLink: string;
+    taxDocumentNotRequiredAndSubmittedDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -434,7 +435,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.termsAndConditions}
                   </a>
                 ),
-              }
+              },
             ),
             button: (
               <sl-button
@@ -466,7 +467,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             ),
             buttonText: null,
             alertType: "warning",
@@ -488,7 +489,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
@@ -509,7 +510,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -529,7 +530,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -549,7 +550,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "error",
           icon: "exclamation-octagon",
@@ -569,7 +570,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -590,7 +591,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -611,7 +612,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -651,7 +652,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -691,7 +692,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -731,7 +732,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <sl-button
@@ -761,7 +762,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <sl-button
@@ -792,7 +793,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -819,7 +820,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -840,7 +841,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -866,7 +867,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               taxFormType: states.documentType,
-            }
+            },
           )}
         </p>
       </div>
@@ -892,7 +893,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               documentType: states.documentTypeString,
-            }
+            },
           )}
         </strong>
         <br />
@@ -906,7 +907,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           },
           {
             documentType: states.documentTypeString,
-          }
+          },
         )}
       </sl-alert>
     ),
@@ -922,7 +923,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: "Canada",
           province: states.province,
-        }
+        },
       );
     } else if (states.subRegion) {
       return intl.formatMessage(
@@ -933,7 +934,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: states.country,
           subRegion: states.subRegion,
-        }
+        },
       );
     } else {
       return intl.formatMessage(
@@ -943,7 +944,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         },
         {
           country: states.country,
-        }
+        },
       );
     }
   };
@@ -1015,7 +1016,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </sl-alert>
           </div>
@@ -1044,7 +1045,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sl-alert>
         )}
@@ -1145,7 +1146,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                             },
                             {
                               documentType: states.documentTypeString || "W-9",
-                            }
+                            },
                           )}
                         </h3>
                         <span class={sheet.classes.StatusAlert}>
@@ -1172,6 +1173,31 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           </div>
         )}
 
+        {states.noFormNeeded && states.status === "ACTIVE" && (
+          <div class={sheet.classes.TaxDocumentsContainer}>
+            <div>
+              {states.loading ? (
+                <div class={sheet.classes.TaxSectionSkeletonContainer}>
+                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                </div>
+              ) : (
+                <div>
+                  <div>
+                    <span class={sheet.classes.TaxFormDetailsContainer}>
+                      <div class={sheet.classes.StatusContainer}>
+                        <h3>{text.taxDocumentSectionHeader}</h3>
+                        <span class={sheet.classes.StatusAlert}>
+                          {text.taxDocumentNotRequiredAndSubmittedDescription}
+                        </span>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
             <div class={sheet.classes.TaxSectionSkeletonContainer}>
@@ -1211,7 +1237,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                             {text.supportLink}
                           </a>
                         ),
-                      }
+                      },
                     )}
                   </div>
                 </sl-dropdown>
@@ -1234,7 +1260,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               {text.supportLink}
                             </a>
                           ),
-                        }
+                        },
                       )}
                     </span>
                   ) : (
@@ -1252,7 +1278,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         {
                           indirectTaxType: states.indirectTaxType,
                           indirectTaxNumber: states.indirectTaxNumber,
-                        }
+                        },
                       )}
                     </span>
                     <span>
@@ -1264,7 +1290,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             qstNumber: states.qstNumber,
-                          }
+                          },
                         )}
                       {states.subRegionTaxNumber &&
                         intl.formatMessage(
@@ -1274,7 +1300,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             subRegionTaxNumber: states.subRegionTaxNumber,
-                          }
+                          },
                         )}
                     </span>
                   </div>

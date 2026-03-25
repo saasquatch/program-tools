@@ -1499,6 +1499,32 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
   );
 };
 
+export const TaxAndCashDashboardNoTaxFormRequiredAndPreviouslySubmitted =
+  () => {
+    return (
+      <sqm-tax-and-cash-dashboard
+        demoData={{
+          ...dashboardProps,
+          states: {
+            payoutStatus: "BENEFICIARY_NAME_INVALID",
+            veriffLoading: false,
+            canEditPayoutInfo: true,
+            disabled: true,
+            status: "ACTIVE",
+            documentType: "W9",
+            documentTypeString: taxTypeToName("W9"),
+            dateSubmitted: "Jan 18th, 2025",
+            noFormNeeded: true,
+            indirectTaxNumber: "123456",
+            country: "USA",
+            showNewFormDialog: false,
+            hasHold: false,
+          },
+        }}
+      ></sqm-tax-and-cash-dashboard>
+    );
+  };
+
 export const TaxAndCashDashboardLoading = () => {
   return (
     <sqm-tax-and-cash-dashboard

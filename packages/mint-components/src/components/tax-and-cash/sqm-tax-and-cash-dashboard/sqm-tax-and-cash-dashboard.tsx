@@ -121,7 +121,13 @@ export class TaxAndCashDashboard {
    * @uiName Tax documents section description
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
-
+  /**
+   * Displayed under the tax document section header.
+   *
+   * @uiName Tax document description when form is previously submitted but no longer required
+   */
+  @Prop() taxDocumentNotRequiredAndSubmittedDescription: string =
+    "You previously submitted a tax form.";
   /**
    *
    * @uiName Indirect tax section header
@@ -183,7 +189,6 @@ export class TaxAndCashDashboard {
    */
   @Prop() subRegionTaxNumber: string =
     "Income tax number: {subRegionTaxNumber}";
-
   /**
    * @uiName Payout status badge
    */
@@ -514,7 +519,7 @@ export class TaxAndCashDashboard {
   }
 }
 function useDemoTaxAndCashDashboard(
-  props: TaxAndCashDashboard
+  props: TaxAndCashDashboard,
 ): UseTaxAndCashDashboardResult {
   // @ts-ignore
   return deepmerge(
@@ -566,6 +571,6 @@ function useDemoTaxAndCashDashboard(
       },
     },
     props.demoData || props.stateController || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }
