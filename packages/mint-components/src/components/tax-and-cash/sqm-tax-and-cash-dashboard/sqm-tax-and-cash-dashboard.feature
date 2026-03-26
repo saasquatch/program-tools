@@ -228,18 +228,21 @@ Feature: Tax And Cash Dashboard
   Scenario Outline: Tax document section is still shown when a user has a previously submitted form, even if a tax form is no longer required
     Given the user previously submitted a <submittedFormType> tax form
     And the brand's tax setting is <taxSetting>
-    And <requiredTaxDocumentType> is the required tax document type
     And the user has hold reason <holdReason>
+    And <requiredTaxDocumentType> is the required tax document type
     Then the tax document section is displayed showing <displayedFormType>
     And the Submit new form button is displayed
 
     Examples:
-      | submittedFormType | taxSetting         | requiredTaxDocumentType | holdReason                | displayedFormType |
-      | W9                | CASH_ONLY          | W9                      | none                      | W-9               |
-      | W8-BEN            | CASH_ONLY          | W8BEN                   | none                      | W-8               |
-      | W8-BEN            | CASH_ONLY          | W8BEN                   | BENEFICIARY_NAME_MISMATCH | W-8               |
-      | W9                | CASH_ONLY_DEFER_W9 | null                    | none                      | W-9               |
-      | W8-BEN            | CASH_ONLY_DEFER_W9 | null                    | none                      | W-9               |
-      | W9                | CASH_ONLY_DEFER_W9 | null                    | BENEFICIARY_NAME_MISMATCH | W-9               |
-      | W9                | CASH_ONLY_DEFER_W9 | null                    | BENEFICIARY_NAME_INVALID  | W-9               |
-      | W9                | CASH_ONLY_DEFER_W9 | null                    | BANK_TAX_NAME_MISMATCH    | W-9               |
+      | submittedFormType | taxSetting         | holdReason                     | requiredTaxDocumentType | displayedFormType |
+      | W9                | CASH_ONLY          | none                           | W9                      | W-9               |
+      | W8-BEN            | CASH_ONLY          | none                           | W8-BEN                  | W8-BEN            |
+      | W8-BEN            | CASH_ONLY          | BENEFICIARY_NAME_MISMATCH      | W8-BEN                  | W8-BEN            |
+      | W9                | CASH_ONLY_DEFER_W9 | none                           | null                    | W-9               |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | none                           | null                    | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | NO_W9_DOCUMENT                 | W9                      | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | INVALID_W9_ELECTRONIC_DOCUMENT | W9                      | W-9               |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | NO_W8_DOCUMENT                 | W8-BEN                  | W8-BEN            |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | INVALID_W8_ELECTRONIC_DOCUMENT | W8-BEN                  | W8-BEN            |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | BENEFICIARY_NAME_MISMATCH      | null                    | W-9               |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | BANK_TAX_NAME_MISMATCH         | null                    | W-9               |
