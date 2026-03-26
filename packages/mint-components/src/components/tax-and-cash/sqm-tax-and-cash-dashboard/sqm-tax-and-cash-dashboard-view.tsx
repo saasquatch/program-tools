@@ -119,7 +119,6 @@ export interface TaxAndCashDashboardProps {
     termsAndConditions: string;
     cancelButton: string;
     supportLink: string;
-    taxDocumentNotRequiredAndSubmittedDescription: string;
     error: {
       generalTitle: string;
       generalDescription: string;
@@ -1125,7 +1124,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        {(!states.noFormNeeded || states.status === "NOT_VERIFIED") && (
+        {(!states.noFormNeeded || !!states.status) && (
           <div class={sheet.classes.TaxDocumentsContainer}>
             <div>
               {states.loading ? (
@@ -1154,7 +1153,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         </span>
                       </div>
                     </span>
-                    {!states.noFormNeeded &&
+                    {(!states.noFormNeeded || !!states.status) &&
                       states.status !== "NOT_VERIFIED" && (
                         <sl-button
                           disabled={states.disabled || states.loading}
@@ -1166,32 +1165,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           {text.newFormButton}
                         </sl-button>
                       )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {states.noFormNeeded && states.status === "ACTIVE" && (
-          <div class={sheet.classes.TaxDocumentsContainer}>
-            <div>
-              {states.loading ? (
-                <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
-                </div>
-              ) : (
-                <div>
-                  <div>
-                    <span class={sheet.classes.TaxFormDetailsContainer}>
-                      <div class={sheet.classes.StatusContainer}>
-                        <h3>{text.taxDocumentSectionHeader}</h3>
-                        <span class={sheet.classes.StatusAlert}>
-                          {text.taxDocumentNotRequiredAndSubmittedDescription}
-                        </span>
-                      </div>
-                    </span>
                   </div>
                 </div>
               )}

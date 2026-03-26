@@ -1499,7 +1499,7 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
   );
 };
 
-export const TaxAndCashDashboardNoTaxFormRequiredAndPreviouslySubmitted =
+export const TaxAndCashDashboardNoTaxFormRequiredAndBeneficiaryNameInvalid =
   () => {
     return (
       <sqm-tax-and-cash-dashboard

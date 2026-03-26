@@ -6583,11 +6583,6 @@ export namespace Components {
          */
         "taxAlertNotActiveMessageW9"?: string;
         /**
-          * Displayed under the tax document section header.
-          * @uiName Tax document description when form is previously submitted but no longer required
-         */
-        "taxDocumentNotRequiredAndSubmittedDescription": string;
-        /**
           * @uiName Tax document section header
          */
         "taxDocumentSectionHeader": string;
@@ -14443,11 +14438,6 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "taxAlertNotActiveMessageW9"?: string;
-        /**
-          * Displayed under the tax document section header.
-          * @uiName Tax document description when form is previously submitted but no longer required
-         */
-        "taxDocumentNotRequiredAndSubmittedDescription"?: string;
         /**
           * @uiName Tax document section header
          */

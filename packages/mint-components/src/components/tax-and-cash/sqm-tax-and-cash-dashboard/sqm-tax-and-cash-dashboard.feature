@@ -22,6 +22,7 @@ Feature: Tax And Cash Dashboard
     Given they submitted a tax form
     And their required tax document type is <requiredDocumentType>
     Then the Tax Form header displays "<documentType> tax form"
+
     Examples:
       | requiredDocumentType | documentType |
       | W9                   | W-9          |
@@ -52,15 +53,16 @@ Feature: Tax And Cash Dashboard
   Scenario Outline: Indirect Tax section shows details if participant is registered for indirect tax
     When the participant <isRegistered> for indirect tax in their <country> and region <region>
     Then the Indirect Tax section will display <registeredDetails>, <indirectTaxType>, and <indirectTaxNumber>
+
     Examples:
       | isRegistered | country          | region           | registeredDetails                                                                                                                                             | indirectTaxType        | indirectTaxNumber |
-      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    | 123456            |
-      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    | 345213            |
-      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    | 345213            |
-      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               | 345213, 12312     |
-      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    | 321413            |
-      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number | 345213, 12345     |
-      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number | 345213, 12345     |
+      | true         | Australia        | n/a              | Registered in Australia.                                                                                                                                      | GST                    |            123456 |
+      | true         | Canada           | Ontario          | Registered in Ontario, Canada.                                                                                                                                | GST                    |            345213 |
+      | true         | Canada           | British Columbia | Registered in British Columbia, Canada.                                                                                                                       | HST                    |            345213 |
+      | true         | Canada           | Quebec           | Registered in Quebec, Canada.                                                                                                                                 | GST, QST               |     345213, 12312 |
+      | true         | United Kingdom   | n/a              | Registered in United Kingdom.                                                                                                                                 | VAT                    |            321413 |
+      | true         | Spain            | Spain Proper     | Registered in Spain, Spain Proper.                                                                                                                            | VAT, Income tax number |     345213, 12345 |
+      | true         | Spain            | Canary Islands   | Registered in Spain, Canary Islands.                                                                                                                          | VAT, Income tax number |     345213, 12345 |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | United States    | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
       | false        | Papua New Guinea | n/a              | Not registered. Only participants representing a company in countries that enforce indirect tax (e.g. GST, HST, VAT) must add their indirect tax information. |                        | N/A               |
@@ -71,6 +73,7 @@ Feature: Tax And Cash Dashboard
     Then the <registeredDetails> display with <subRegion>
     And they <doHaveIncomeTaxNumber> from step 2
     Then the indirect tax section displays <indirectTaxNumbers>
+
     Examples:
       | registeredDetails    | subRegion      | doHaveIncomeTaxNumber | indirectTaxNumbers            |
       | Registered in Spain, | Spain Proper   | true                  | VAT number, Income tax number |
@@ -80,6 +83,7 @@ Feature: Tax And Cash Dashboard
   Scenario Outline: A Danger Alert is displayed if the users tax form is invalid
     Given the document has status <status>
     Then a danger alert indicating the <documentType> with a <taxAlertHeader> and <taxAlertMessage> appears
+
     Examples:
       | status     | documentType | taxAlertHeader                                                              | taxAlertMessage                                                                                                           |
       | NOT_ACTIVE | W9           | Your W-9 tax form has personal information that doesn't match your profile. | Please resubmit a new W-9 form.                                                                                           |
@@ -113,6 +117,7 @@ Feature: Tax And Cash Dashboard
     And the alert has <buttons>
     And the alert has heading <heading>
     And the alert has description <description>
+
     Examples:
       | holdReason                  | color  | buttons                                      | heading                                               | description                                                                                                                                                                                                                                                                                                |
       | IDV_CHECK_REQUIRED_INTERNAL | yellow | N/A                                          | Identity verification in progress                     | Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly.                                                                                                                                           |
@@ -124,7 +129,6 @@ Feature: Tax And Cash Dashboard
       | BANK_TAX_NAME_MISMATCH      | yellow | Edit payout information, Submit new tax form | Your payment information does not match your tax form | The bank account (beneficiary) name in your payment information does not match what was submitted in your tax form. Please review and update your payment information or tax form so that they match exactly and do not include any invalid characters. Your payouts are on hold until this is resolved.   |
       | WITHDRAWAL_SETTINGS_INVALID | yellow | Edit payout information                      | Your payment information includes invalid characters  | There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.                                                                                                          |
       | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
-
 
   @motivating
   Scenario: User has general hold reasons
@@ -170,10 +174,11 @@ Feature: Tax And Cash Dashboard
     Then comply exchange opens on their page
     When they submit the tax form
     Then the banner disappears
+
     Examples:
       | type | maySee    |
-      | 5    | see       |
-      | 4    | don't see |
+      |    5 | see       |
+      |    4 | don't see |
 
   @minutia @ui
   Scenario: Invoices table is available for participants regsistered for Indirect Tax
@@ -188,6 +193,7 @@ Feature: Tax And Cash Dashboard
     And they are <brandPartnerType>
     And they are viewing the Payout section
     Then they <maySee> the "Edit Payout Information" button
+
     Examples:
       | brandPartnerType          | maySee     |
       | an existing brand partner | do not see |
@@ -217,3 +223,23 @@ Feature: Tax And Cash Dashboard
     And if they press Submit new tax form
     Then their current tax form is deleted
     And they are redirected to the Docusign page to sign a new form
+
+  @minutia @ui
+  Scenario Outline: Tax document section is still shown when a user has a previously submitted form, even if a tax form is no longer required
+    Given the user previously submitted a <submittedFormType> tax form
+    And the brand's tax setting is <taxSetting>
+    And <requiredTaxDocumentType> is the required tax document type
+    And the user has hold reason <holdReason>
+    Then the tax document section is displayed showing <displayedFormType>
+    And the Submit new form button is displayed
+
+    Examples:
+      | submittedFormType | taxSetting         | requiredTaxDocumentType | holdReason                | displayedFormType |
+      | W9                | CASH_ONLY          | W9                      | none                      | W-9               |
+      | W8-BEN            | CASH_ONLY          | W8BEN                   | none                      | W-8               |
+      | W8-BEN            | CASH_ONLY          | W8BEN                   | BENEFICIARY_NAME_MISMATCH | W-8               |
+      | W9                | CASH_ONLY_DEFER_W9 | null                    | none                      | W-9               |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | null                    | none                      | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | null                    | BENEFICIARY_NAME_MISMATCH | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | null                    | BENEFICIARY_NAME_INVALID  | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | null                    | BANK_TAX_NAME_MISMATCH    | W-9               |

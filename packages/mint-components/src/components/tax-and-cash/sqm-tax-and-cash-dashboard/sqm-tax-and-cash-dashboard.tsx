@@ -122,13 +122,6 @@ export class TaxAndCashDashboard {
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
   /**
-   * Displayed under the tax document section header.
-   *
-   * @uiName Tax document description when form is previously submitted but no longer required
-   */
-  @Prop() taxDocumentNotRequiredAndSubmittedDescription: string =
-    "You previously submitted a tax form.";
-  /**
    *
    * @uiName Indirect tax section header
    */
