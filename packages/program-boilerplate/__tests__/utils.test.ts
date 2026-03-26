@@ -1,13 +1,14 @@
+import jsonata from "jsonata";
 import { rewardScheduleQuery } from "../src/queries";
+import type { ProgramTriggerBody } from "../src/types/rpc";
 import {
   getGoalAnalyticTimestamp,
+  getRewardUnitsFromJsonata,
   getTriggerSchema,
   inferType,
   numToEquality,
   setRewardSchedule,
-  getRewardUnitsFromJsonata,
 } from "../src/utils";
-import jsonata from "jsonata";
 
 describe("#inferType", () => {
   test("Booleans are inferred", () => {
@@ -70,10 +71,14 @@ describe("#numToEquality", () => {
 describe("#getTriggerSchema", () => {
   test("it converts AFTER_USER_CREATED_OR_UPDATED triggers", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
       ids: ["123", "345", "456"],
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       tenant: {
         impactBrandId: null,
         settings: {
@@ -81,15 +86,24 @@ describe("#getTriggerSchema", () => {
         },
       },
       activeTrigger: {
-        type: "AFTER_USER_CREATED_OR_UPDATED",
+        type: "AFTER_USER_CREATED_OR_UPDATED" as const,
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
-        previous: "testValue",
+        previous: {
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
+          customFields: {
+            test: 321,
+          },
+        },
       },
     };
 
@@ -98,12 +112,21 @@ describe("#getTriggerSchema", () => {
         type: "AFTER_USER_CREATED_OR_UPDATED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
-        previous: "testValue",
+        previous: {
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
+          customFields: {
+            test: 321,
+          },
+        },
       },
     ];
 
@@ -112,9 +135,13 @@ describe("#getTriggerSchema", () => {
 
   test("it converts REFERRAL triggers", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       ids: ["123", "345", "456"],
       tenant: {
         impactBrandId: null,
@@ -126,12 +153,13 @@ describe("#getTriggerSchema", () => {
         type: "REFERRAL",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
-        referral: "testValue",
       },
     };
 
@@ -140,12 +168,14 @@ describe("#getTriggerSchema", () => {
         type: "REFERRAL",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
-        referral: "testValue",
+        referral: undefined,
       },
     ];
 
@@ -154,9 +184,13 @@ describe("#getTriggerSchema", () => {
 
   test("it converts AFTER_USER_EVENT_PROCESSED triggers", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       ids: ["123", "345", "456"],
       tenant: {
         impactBrandId: null,
@@ -168,7 +202,9 @@ describe("#getTriggerSchema", () => {
         type: "AFTER_USER_EVENT_PROCESSED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -176,27 +212,27 @@ describe("#getTriggerSchema", () => {
         events: [
           {
             key: "subscription",
-            id: 1,
+            id: "1",
             dateTriggered: 1619483037800,
-            isModification: undefined,
+            isModification: false,
             fields: {
               key: "value1",
             },
           },
           {
             key: "purchase",
-            id: 2,
+            id: "2",
             dateTriggered: 1619483037830,
-            isModification: undefined,
+            isModification: false,
             fields: {
               key: "value2",
             },
           },
           {
             key: "ride",
-            id: 3,
+            id: "3",
             dateTriggered: 1619483037860,
-            isModification: undefined,
+            isModification: false,
             fields: {
               key: "value3",
             },
@@ -210,16 +246,18 @@ describe("#getTriggerSchema", () => {
         type: "AFTER_USER_EVENT_PROCESSED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
         event: {
           key: "subscription",
-          id: 1,
+          id: "1",
           dateTriggered: 1619483037800,
-          isModification: undefined,
+          isModification: false,
           fields: {
             key: "value1",
           },
@@ -229,16 +267,18 @@ describe("#getTriggerSchema", () => {
         type: "AFTER_USER_EVENT_PROCESSED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
         event: {
           key: "purchase",
-          id: 2,
+          id: "2",
           dateTriggered: 1619483037830,
-          isModification: undefined,
+          isModification: false,
           fields: {
             key: "value2",
           },
@@ -248,16 +288,18 @@ describe("#getTriggerSchema", () => {
         type: "AFTER_USER_EVENT_PROCESSED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
         },
         event: {
           key: "ride",
-          id: 3,
+          id: "3",
           dateTriggered: 1619483037860,
-          isModification: undefined,
+          isModification: false,
           fields: {
             key: "value3",
           },
@@ -270,9 +312,13 @@ describe("#getTriggerSchema", () => {
 
   test("it converts SCHEDULED triggers", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       ids: ["123", "345", "456"],
       tenant: {
         impactBrandId: null,
@@ -284,7 +330,9 @@ describe("#getTriggerSchema", () => {
         type: "SCHEDULED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -297,7 +345,9 @@ describe("#getTriggerSchema", () => {
         type: "SCHEDULED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -310,9 +360,13 @@ describe("#getTriggerSchema", () => {
 
   test("it converts REWARD_SCHEDULED triggers", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       ids: ["123", "345", "456"],
       tenant: {
         impactBrandId: null,
@@ -324,7 +378,9 @@ describe("#getTriggerSchema", () => {
         type: "REWARD_SCHEDULED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -337,7 +393,9 @@ describe("#getTriggerSchema", () => {
         type: "REWARD_SCHEDULED",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -350,9 +408,13 @@ describe("#getTriggerSchema", () => {
 
   test("throw error on unexpected trigger type", () => {
     const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
-    const programTriggerBody = {
+    const programTriggerBody: ProgramTriggerBody = {
       messageType,
-      program: "programTestValue",
+      program: {
+        id: "programid",
+        rules: {},
+        templateId: "",
+      },
       ids: ["123", "345", "456"],
       tenant: {
         impactBrandId: null,
@@ -361,10 +423,13 @@ describe("#getTriggerSchema", () => {
         },
       },
       activeTrigger: {
+        // @ts-expect-error -- intentionally wrong for testing
         type: "NOTVALID",
         time: 1619483037813,
         user: {
-          id: "refferer",
+          id: "referrer",
+          accountId: "referrer",
+          programGoals: [],
           customFields: {
             test: 123,
           },
@@ -374,7 +439,7 @@ describe("#getTriggerSchema", () => {
 
     expect(() => {
       getTriggerSchema(programTriggerBody);
-    }).toThrowError("Trigger type did not match expected options");
+    }).toThrow("Trigger type did not match expected options");
   });
 });
 
