@@ -286,7 +286,8 @@ export function useReferralTable(
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
-  const programId = props.programId ?? programIdContext;
+  const programId =
+    props.programId === "GLOBAL" ? null : (props.programId ?? programIdContext);
   // If no program ID, shows all programs
   const referralFilter = programId
     ? programId === "classic"
