@@ -1,4 +1,4 @@
-import { h, Component, State, Prop, Host } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "sqm-skeleton",
