@@ -1,5 +1,5 @@
 import { rewardScheduleQuery } from "./queries";
-import { ProgramTriggerBody, TriggerType } from "./types/rpc";
+import { ProgramTriggerBody, TriggerSchemaObject } from "./types/rpc";
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 import jsonata from "jsonata";
 
@@ -191,16 +191,20 @@ export function numToEquality(num: number): string {
 /**
  * Converts a trigger context into the relevant information for the specified trigger type.
  * @param body the body of the trigger
- * @return object[] The transformed data that is relevant for the trigger type
+ * @return TriggerSchemaObject[] The transformed data that is relevant for the trigger type
  */
-export function getTriggerSchema(body: ProgramTriggerBody): object[] {
+export function getTriggerSchema(
+  body: ProgramTriggerBody
+): TriggerSchemaObject[] {
   const activeTrigger = body.activeTrigger;
-  const triggerType = activeTrigger.type as TriggerType;
+  const triggerType = activeTrigger.type;
+
   const standardData = {
     type: activeTrigger.type,
     time: activeTrigger.time,
     user: activeTrigger.user,
   };
+
   switch (triggerType) {
     case "AFTER_USER_CREATED_OR_UPDATED":
       return [
@@ -217,14 +221,10 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
         },
       ];
     case "AFTER_USER_EVENT_PROCESSED":
-      let contexts: object[] = [];
-      activeTrigger.events.forEach((event: any) => {
-        contexts.push({
-          ...standardData,
-          event,
-        });
-      });
-      return contexts;
+      return (activeTrigger.events ?? []).map((event) => ({
+        ...standardData,
+        event,
+      }));
     case "SCHEDULED":
       return [
         {
@@ -249,7 +249,7 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
  * @returns string[] a deduplicated list of user custom fields found in the input expression(s)
  */
 export function getUserCustomFieldsFromJsonata(
-  jsonataExpressions: string | string[],
+  jsonataExpressions: string | string[]
 ): string[] {
   let userCustomFields: string[] = [];
   if (typeof jsonataExpressions === "string") {
@@ -283,7 +283,7 @@ export function getUserCustomFieldsFromJsonata(
 }
 
 export function getRewardUnitsFromJsonata(
-  expr: jsonata.ExprNode | undefined,
+  expr: jsonata.ExprNode | undefined
 ): string[] | undefined {
   if (expr === undefined) {
     return undefined;
@@ -296,12 +296,12 @@ export function getRewardUnitsFromJsonata(
   if (expr.type === "condition") {
     const lhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.then isn't present in the AST typedef for some reason
-      expr.then,
+      expr.then
     );
 
     const rhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.else isn't present in the AST typedef for some reason
-      expr.else,
+      expr.else
     );
 
     if (lhs !== undefined || rhs !== undefined) {
