@@ -1,7 +1,13 @@
-const UPLOAD_MARKER = "/image/upload/";
-
 // Max image dimension to deliver (retina-safe for 4K/DPR 2x displays)
 const MAX_IMAGE_WIDTH = 3840;
+
+function tryParseUrl(url: string): URL | null {
+  try {
+    return new URL(url);
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Adds Cloudinary auto-format and auto-quality transformations to a Cloudinary URL.
@@ -19,17 +25,20 @@ export function optimizeCloudinaryUrl(
 ): string {
   if (!url) return url;
 
-  if (!url.includes("res.cloudinary.com")) return url;
+  const parsed = tryParseUrl(url);
+  if (!parsed) return url;
 
-  const uploadIndex = url.indexOf(UPLOAD_MARKER);
-  if (uploadIndex === -1) return url;
+  if (parsed.hostname !== "res.cloudinary.com") return url;
 
-  const insertionPoint = uploadIndex + UPLOAD_MARKER.length;
-  const base = url.slice(0, insertionPoint);
-  const rest = url.slice(insertionPoint);
+  const pathSegments = parsed.pathname.split("/");
+  const uploadIndex = pathSegments.indexOf("upload");
+  if (uploadIndex === -1 || pathSegments[uploadIndex - 1] !== "image") {
+    return url;
+  }
 
-  // Don't double-transform if f_ or q_ are already present
-  const existingParts = rest.split("/")[0].split(",");
+  // The segment immediately after "upload" is either a transform string or a version/path
+  const querySegment = pathSegments[uploadIndex + 1] || "";
+  const existingParts = querySegment.split(",");
   if (existingParts.some((p) => p.startsWith("f_") || p.startsWith("q_"))) {
     return url;
   }
@@ -47,5 +56,9 @@ export function optimizeCloudinaryUrl(
   }
   transforms.push("f_auto", "q_auto");
 
-  return `${base}${transforms.join(",")}/${rest}`;
+  // Insert the new transform segment right after "upload"
+  pathSegments.splice(uploadIndex + 1, 0, transforms.join(","));
+  parsed.pathname = pathSegments.join("/");
+
+  return parsed.toString();
 }

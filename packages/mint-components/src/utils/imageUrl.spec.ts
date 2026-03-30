@@ -39,4 +39,8 @@ describe("optimizeCloudinaryUrl", () => {
       "https://res.cloudinary.com/saasquatch/video/upload/v1644000278/squatch-assets/demo.mp4";
     expect(optimizeCloudinaryUrl(videoUrl)).toBe(videoUrl);
   });
+
+  it("returns invalid URLs unchanged", () => {
+    expect(optimizeCloudinaryUrl("not-a-url")).toBe("not-a-url");
+  });
 });
