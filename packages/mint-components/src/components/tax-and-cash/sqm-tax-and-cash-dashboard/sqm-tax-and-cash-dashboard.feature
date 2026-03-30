@@ -238,11 +238,11 @@ Feature: Tax And Cash Dashboard
       | W9                | CASH_ONLY          | none                           | W9                      | W-9               |
       | W8-BEN            | CASH_ONLY          | none                           | W8-BEN                  | W8-BEN            |
       | W8-BEN            | CASH_ONLY          | BENEFICIARY_NAME_MISMATCH      | W8-BEN                  | W8-BEN            |
-      | W9                | CASH_ONLY_DEFER_W9 | none                           | null                    | W-9               |
-      | W8-BEN            | CASH_ONLY_DEFER_W9 | none                           | null                    | W-9               |
+      | W9                | CASH_ONLY_DEFER_W9 | none                           | null                    | null              |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | none                           | null                    | null              |
       | W9                | CASH_ONLY_DEFER_W9 | NO_W9_DOCUMENT                 | W9                      | W-9               |
       | W9                | CASH_ONLY_DEFER_W9 | INVALID_W9_ELECTRONIC_DOCUMENT | W9                      | W-9               |
       | W8-BEN            | CASH_ONLY_DEFER_W9 | NO_W8_DOCUMENT                 | W8-BEN                  | W8-BEN            |
       | W8-BEN            | CASH_ONLY_DEFER_W9 | INVALID_W8_ELECTRONIC_DOCUMENT | W8-BEN                  | W8-BEN            |
-      | W8-BEN            | CASH_ONLY_DEFER_W9 | BENEFICIARY_NAME_MISMATCH      | null                    | W-9               |
-      | W8-BEN            | CASH_ONLY_DEFER_W9 | BANK_TAX_NAME_MISMATCH         | null                    | W-9               |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | BENEFICIARY_NAME_MISMATCH      | null                    | null              |
+      | W8-BEN            | CASH_ONLY_DEFER_W9 | BANK_TAX_NAME_MISMATCH         | null                    | null              |

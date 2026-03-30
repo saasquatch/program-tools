@@ -122,6 +122,12 @@ export class TaxAndCashDashboard {
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
   /**
+   * Displayed under the tax document section header.
+   *
+   * @uiName Tax documents section description
+   */
+  @Prop() taxDocumentSectionSubHeaderNoDocument: string = "Tax form";
+  /**
    *
    * @uiName Indirect tax section header
    */

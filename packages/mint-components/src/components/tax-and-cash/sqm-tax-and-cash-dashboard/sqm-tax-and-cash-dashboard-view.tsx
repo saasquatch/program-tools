@@ -69,6 +69,7 @@ export interface TaxAndCashDashboardProps {
     indirectTaxDetails?: string;
     taxDocumentSectionHeader?: string;
     taxDocumentSectionSubHeader?: string;
+    taxDocumentSectionSubHeaderNoDocument?: string;
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
@@ -834,7 +835,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {
               id: `badgeTextSubmittedOn`,
               defaultMessage:
-                states.documentType === "W9"
+                states.documentType === "W9" || !states.documentType
                   ? text.badgeTextSubmittedOn
                   : text.badgeTextSubmittedOnW8,
             },
@@ -1138,15 +1139,18 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
                         <h3>
-                          {intl.formatMessage(
-                            {
-                              id: "section-subheader",
-                              defaultMessage: text.taxDocumentSectionSubHeader,
-                            },
-                            {
-                              documentType: states.documentTypeString || "W-9",
-                            },
-                          )}
+                          {states.documentType
+                            ? intl.formatMessage(
+                                {
+                                  id: "section-subheader",
+                                  defaultMessage:
+                                    text.taxDocumentSectionSubHeader,
+                                },
+                                {
+                                  documentType: states.documentTypeString,
+                                },
+                              )
+                            : text.taxDocumentSectionSubHeaderNoDocument}
                         </h3>
                         <span class={sheet.classes.StatusAlert}>
                           {statusMap[states.status]}

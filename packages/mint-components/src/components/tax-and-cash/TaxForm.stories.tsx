@@ -1511,7 +1511,7 @@ export const TaxAndCashDashboardNoTaxFormRequiredAndBeneficiaryNameInvalid =
             canEditPayoutInfo: true,
             disabled: true,
             status: "ACTIVE",
-            documentType: "W9",
+            documentType: undefined,
             documentTypeString: taxTypeToName("W9"),
             dateSubmitted: "Jan 18th, 2025",
             noFormNeeded: true,
@@ -1524,6 +1524,161 @@ export const TaxAndCashDashboardNoTaxFormRequiredAndBeneficiaryNameInvalid =
       ></sqm-tax-and-cash-dashboard>
     );
   };
+
+export const TaxAndCashDashboardNoTaxFormRequiredAndBeneficiaryNameInvalidUS =
+  () => {
+    return (
+      <sqm-tax-and-cash-dashboard
+        demoData={{
+          ...dashboardProps,
+          states: {
+            payoutStatus: "BENEFICIARY_NAME_INVALID",
+            veriffLoading: false,
+            canEditPayoutInfo: true,
+            disabled: true,
+            status: "ACTIVE",
+            documentType: undefined,
+            documentTypeString: taxTypeToName("W9"),
+            dateSubmitted: "Jan 18th, 2025",
+            noFormNeeded: true,
+            indirectTaxNumber: "123456",
+            country: "USA",
+            showNewFormDialog: false,
+            hasHold: true,
+            enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+          },
+        }}
+      ></sqm-tax-and-cash-dashboard>
+    );
+  };
+
+export const TaxAndCashDashboardNoDocumentType = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: false,
+          status: "ACTIVE",
+          documentType: undefined,
+          documentTypeString: "",
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
+          country: "United Kingdom",
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardNoDocumentTypeNoFormNeeded = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: false,
+          status: undefined,
+          documentType: undefined,
+          documentTypeString: "",
+          dateSubmitted: undefined,
+          noFormNeeded: true,
+          indirectTaxNumber: "123456",
+          country: "United Kingdom",
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardFallbackDocumentTypeW9 = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W9",
+          documentTypeString: taxTypeToName("W9"),
+          dateSubmitted: "Mar 15, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
+          country: "USA",
+          showNewFormDialog: false,
+          hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardFallbackDocumentTypeW8BEN = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: false,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Feb 20, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "654321",
+          country: "Canada",
+          showNewFormDialog: false,
+          hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardDeferW9NoDocumentType = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          disabled: false,
+          status: undefined,
+          documentType: undefined,
+          documentTypeString: "",
+          dateSubmitted: undefined,
+          noFormNeeded: true,
+          indirectTaxNumber: "123456",
+          country: "USA",
+          showNewFormDialog: false,
+          hasHold: false,
+          enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
 
 export const TaxAndCashDashboardLoading = () => {
   return (
