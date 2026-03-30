@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.5] - 2026-03-30
+
 ### Updated
 
 - Improved loading states for:
@@ -31,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-tax-and-cash-dashboard>
   - \<sqm-tax-and-cash>
   - \<sqm-user-info-form>
-  
+
 ## [2.1.4] - 2026-03-23
 
 ### Fixed
