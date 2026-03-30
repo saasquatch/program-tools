@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface HeroImageViewProps {
   layout: "overlay" | "columns";
@@ -50,7 +51,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       objectFit: "cover",
     },
     Background: {
-      backgroundImage: `url(${props.imageUrl})`,
+      backgroundImage: `url(${optimizeCloudinaryUrl(props.imageUrl)})`,
       backgroundSize: "cover",
       backgroundPosition: props.imagePos || "center",
       display: "flex",
@@ -194,7 +195,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
           <div class="image-area">
             <img
               class={sheet.classes.Image}
-              src={props.imageUrl}
+              src={optimizeCloudinaryUrl(props.imageUrl)}
               alt={props.imageAlt || ""}
               loading="eager"
               decoding="async"

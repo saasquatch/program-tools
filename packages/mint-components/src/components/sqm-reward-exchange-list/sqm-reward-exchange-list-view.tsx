@@ -2,6 +2,7 @@ import { getAssetPath, h, VNode } from "@stencil/core";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 import { CopyTextView } from "../views/copy-text-view";
 import { ProgressBar } from "./progressBar";
 import { CheckmarkFilled, Gift } from "./SVGs";
@@ -579,10 +580,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                               ? "image subdued"
                               : "image"
                           }
-                          src={
+                          src={optimizeCloudinaryUrl(
                             item?.imageUrl ||
-                            getAssetPath("./assets/Reward-image.png")
-                          }
+                              getAssetPath("./assets/Reward-image.png"),
+                          )}
+                          decoding="async"
                         />
                       </div>
                       <div
@@ -620,7 +622,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                               sourceValue: item.prettySourceValue,
                               sourceMinValue: item.prettySourceMinValue,
                               sourceMaxValue: item.prettySourceMaxValue,
-                            }
+                            },
                           )}
                         </div>
                         {item.unavailableReasonCode && (
@@ -642,7 +644,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                                 sourceValue:
                                   item.prettySourceValue ||
                                   item.prettySourceMinValue,
-                              }
+                              },
                             )}
                           </div>
                         )}
@@ -683,10 +685,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class="wrapper">
             <img
               class="image"
-              src={
+              src={optimizeCloudinaryUrl(
                 selectedItem?.imageUrl ||
-                getAssetPath("./assets/Reward-image.png")
-              }
+                  getAssetPath("./assets/Reward-image.png"),
+              )}
+              decoding="async"
             />
             <div class="text">
               <div class="title">{selectedItem?.name ?? ""}</div>
@@ -746,10 +749,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <div class="reward-title">{selectedItem?.name}</div>
               <img
                 class="image"
-                src={
+                src={optimizeCloudinaryUrl(
                   selectedItem?.imageUrl ||
-                  getAssetPath("./assets/Reward-image.png")
-                }
+                    getAssetPath("./assets/Reward-image.png"),
+                )}
+                decoding="async"
               />
             </div>
           </div>
