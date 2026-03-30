@@ -125,7 +125,7 @@ export function LeadFormView(props: LeadFormViewProps) {
       },
       {
         fieldLabel,
-      }
+      },
     );
 
   return (
@@ -172,12 +172,9 @@ export function LeadFormView(props: LeadFormViewProps) {
           novalidate
         >
           {states.error && (
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="error"
-            >
+            <sqm-form-message type="error">
               <p part="alert-title">{content.submitErrorHeader}</p>
-              <p part="alert-text">
+              <p part="alert-description">
                 {intl.formatMessage(
                   {
                     id: "submitErrorDescription",
@@ -192,10 +189,10 @@ export function LeadFormView(props: LeadFormViewProps) {
                         {content.supportLinkText}
                       </a>
                     ),
-                  }
+                  },
                 )}
               </p>
-            </sl-alert>
+            </sqm-form-message>
           )}
           <div class={sheet.classes.NameFieldWrapper}>
             <sqm-lead-input-field

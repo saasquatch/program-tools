@@ -1,48 +1,23 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Impact Quality Assurance</title>
-    <script
-      src="https://fast-staging.ssqt.io/npm/@saasquatch/mint-components@1.11.1-46/dist/mint-components/mint-components.esm.min.js"
-      type="module"
-    ></script>
-    <script>
-      !(function (a, b) {
-        // a("squatch", "https://fast.ssqt.io/squatch-js@2.8.2", b);
-        a("squatch", "https://fast.ssqt.io/squatch-js@2.8.3-10", b);
-      })(function (a, b, c) {
-        var d, e, f;
-        ((c["_" + a] = {}),
-          (c[a] = {}),
-          (c[a].ready = function (b) {
-            c["_" + a].ready = c["_" + a].ready || [];
-            c["_" + a].ready.push(b);
-          }),
-          (e = document.createElement("script")),
-          (e.async = 1),
-          (e.src = b),
-          (f = document.getElementsByTagName("script")[0]),
-          f.parentNode.insertBefore(e, f));
-      }, this);
-    </script>
-    <script>
-      window.squatchTenant = "ac52kfybp1tkr";
-      window.squatchConfig = {
-        domain: "https://staging.referralsaasquatch.com",
-      };
-      window.impactToken =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IklSTVhzWXk2WVlxcTQ2OTQzN21HOEVSUXQ4UW9LRkJhRzEifQ.eyJ1c2VyIjp7ImlkIjoiMGM2YmUwZTcxMGViMDk1OTU2ODMxYTkyOTUxODVlMmU5N2VmMTQzMDhjN2UzNjFmYjBlYzY0NTE0NjUwY2NhOCIsImFjY291bnRJZCI6IjBjNmJlMGU3MTBlYjA5NTk1NjgzMWE5Mjk1MTg1ZTJlOTdlZjE0MzA4YzdlMzYxZmIwZWM2NDUxNDY1MGNjYTgiLCJlbWFpbCI6ImRlcmVrLnNpZW1lbnMrbm93OTJAaW1wYWN0LmNvbSJ9fQ.KOORz1aOIVRPR6PdF3Ss0D1AW19EYTX97WnA6fOVXaI";
-    </script>
-  </head>
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
 
-  <body style="padding: 50px">
-    <!-- <impact-embed widget="p/47250/w/referrerWidget"></impact-embed> -->
-    <impact-embed widget="p/47240/w/referrerWidget"></impact-embed>
-    <!-- <impact-embed widget="p/47240/w/referrerWidget"></impact-embed> -->
-    <!-- <impact-popup widget="p/47233/w/referrerWidget"
-      ><button>OPen</button></impact-popup
-    > -->
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Mint Components Stencilbook</title>
+  <script type="module" src="build/mint-components.esm.js"></script>
+  <script nomodule src="build/mint-components.js"></script>
+
+  <script>
+    const brandConfig = localStorage.getItem("localStorageBrandConfigKey");
+    if (brandConfig) {
+      const parsedConfig = JSON.parse(brandConfig);
+      window.SquatchBrandingConfig = parsedConfig;
+    }
+  </script>
+
+<body>
+  <sqm-stencilbook></sqm-stencilbook>
+</body>
+
 </html>
