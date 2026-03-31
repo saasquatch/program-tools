@@ -1100,6 +1100,31 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
     ></sqm-tax-and-cash-dashboard>
   );
 };
+
+export const TaxAndCashDashboardNotActiveW8Form = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          veriffLoading: false,
+          noFormNeeded: false,
+          canEditPayoutInfo: true,
+          status: "INACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          country: "United Kingdom",
+          indirectTaxType: "VAT",
+          indirectTaxNumber: "123456",
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
 export const TaxAndCashDashboardNotVerifiedW9Form = () => {
   return (
     <sqm-tax-and-cash-dashboard

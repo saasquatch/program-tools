@@ -878,6 +878,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     INACTIVE: (
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
+        class={sheet.classes.ErrorHoldAlertContainer}
         type="danger"
         open
       >
