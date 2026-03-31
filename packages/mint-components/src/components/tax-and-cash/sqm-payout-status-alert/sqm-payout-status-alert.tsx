@@ -170,7 +170,7 @@ export class PayoutStatusAlert {
    * @uiName W-9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+    "You have surpassed the $2000 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
   /**
    * @uiName W-9 payment threshold alert button text
    */
@@ -239,7 +239,7 @@ export class PayoutStatusAlert {
 }
 
 function useDemoPayoutStatusAlert(
-  props: PayoutStatusAlert
+  props: PayoutStatusAlert,
 ): PayoutStatusAlertViewProps {
   const states = parseStates(props.stateController);
   const formatted = Object.keys(states).reduce(
@@ -247,7 +247,7 @@ function useDemoPayoutStatusAlert(
       key === "sqm-payout-status-alert"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {}
+    {},
   );
 
   return deepmerge(
@@ -267,7 +267,7 @@ function useDemoPayoutStatusAlert(
         onNewFormClick: () => {},
       },
     },
-    formatted || props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || formatted || {},
+    { arrayMerge: (_, a) => a },
   );
 }

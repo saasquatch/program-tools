@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.6] - 2026-03-31
+
+- \<sqm-tax-and-cash-dashboard>
+  - Update tax section to always display if there's data for tax form status
+  - Fix INVALID tax form alert when no tax form type is available
+  - Update "w9RequiredDescription" threshold text from $600 to $2000
+- \<sqm-payout-status-alert>
+  - Update "w9RequiredDescription" threshold text from $600 to $2000
+
 ## [2.1.4] - 2026-03-23
 
 ### Fixed
