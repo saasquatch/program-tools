@@ -893,7 +893,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   : text.taxAlertHeaderNotActiveW8,
             },
             {
-              documentType: states.documentTypeString,
+              documentType: states.documentTypeString || "Your",
             },
           )}
         </strong>
@@ -907,7 +907,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 : text.taxAlertNotActiveMessageW8,
           },
           {
-            documentType: states.documentTypeString,
+            documentType: states.documentTypeString || "tax",
           },
         )}
       </sl-alert>
