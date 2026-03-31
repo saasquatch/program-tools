@@ -281,7 +281,7 @@ export class TaxAndCashDashboard {
    * @uiName W-9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+    "You have surpassed the $2000 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
   /**
    * @uiName Account review alert header
    */

@@ -893,7 +893,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   : text.taxAlertHeaderNotActiveW8,
             },
             {
-              documentType: states.documentTypeString || "Your",
+              documentType: states.documentType || "Your",
             },
           )}
         </strong>

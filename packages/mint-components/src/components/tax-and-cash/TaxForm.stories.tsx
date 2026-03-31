@@ -1083,9 +1083,8 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "DONE",
           veriffLoading: false,
-          noFormNeeded: false,
+          noFormNeeded: true,
           canEditPayoutInfo: true,
           status: "INACTIVE",
           documentType: "W9",
@@ -1094,6 +1093,7 @@ export const TaxAndCashDashboardNotActiveW9Form = () => {
           indirectTaxType: "VAT",
           indirectTaxNumber: "123456",
           showNewFormDialog: false,
+          payoutStatus: "OVER_W9_THRESHOLD",
           hasHold: false,
         },
       }}
