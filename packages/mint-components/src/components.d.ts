@@ -34,7 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
-import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
@@ -986,6 +986,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading": boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -1126,6 +1131,11 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -1161,6 +1171,11 @@ export namespace Components {
           * @uiGroup Style
          */
         "layout": "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -4957,6 +4972,16 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
+    }
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -7712,6 +7737,12 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
+    interface HTMLSqmSkeletonElement extends Components.SqmSkeleton, HTMLStencilElement {
+    }
+    var HTMLSqmSkeletonElement: {
+        prototype: HTMLSqmSkeletonElement;
+        new (): HTMLSqmSkeletonElement;
+    };
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
@@ -7930,6 +7961,7 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-skeleton": HTMLSqmSkeletonElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
@@ -8876,6 +8908,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading"?: boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -9017,6 +9054,11 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -9052,6 +9094,11 @@ declare namespace LocalJSX {
           * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -12818,6 +12865,16 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
+    }
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -15026,6 +15083,7 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
+        "sqm-skeleton": SqmSkeleton;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
@@ -15159,6 +15217,7 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;

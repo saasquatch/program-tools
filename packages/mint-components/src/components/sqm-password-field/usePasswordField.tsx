@@ -9,6 +9,17 @@ import {
   REGISTRATION_FORM_STATE_CONTEXT,
 } from "../sqm-portal-registration-form/useRegistrationFormState";
 
+export interface PasswordFieldViewDemoProps {
+  initValue: string;
+  states: {
+    enableValidation: boolean;
+    registrationFormState: RegistrationFormState;
+    content: {
+      fieldLabel: string;
+    };
+  };
+}
+
 export function usePasswordField(
   props: PortalPasswordField
 ): PortalPasswordFieldViewProps {

@@ -87,6 +87,7 @@ function useDemoQRCode(props: QrCode): QRCodeViewProps {
       hideTitle: props.hideTitle,
       showDialog: () => setDialog(true),
       hideDialog: () => setDialog(false),
+      loading: true,
       titleText: props.titleText,
       viewCodeText: props.viewCodeText,
       downloadCodeText: props.downloadCodeText,

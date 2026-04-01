@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface ProgramExplainerStepViewProps {
   header: string;
@@ -92,8 +93,12 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
         {props.imageUrl ? (
           <img
             class={sheet.classes.Media}
-            src={props.imageUrl}
+            src={optimizeCloudinaryUrl(props.imageUrl, {
+              width: 128,
+              height: 128,
+            })}
             part="sqm-media"
+            decoding="async"
           />
         ) : (
           <div class={sheet.classes.Media} part="sqm-media">

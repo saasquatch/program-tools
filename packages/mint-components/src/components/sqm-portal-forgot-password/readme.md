@@ -37,6 +37,7 @@
 ```mermaid
 graph TD;
   sqm-portal-forgot-password --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-forgot-password
   style sqm-portal-forgot-password fill:#f9f,stroke:#333,stroke-width:4px
 ```

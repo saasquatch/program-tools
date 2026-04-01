@@ -184,7 +184,8 @@ export function useRewardsTable(
   const programIdContext = useProgramId();
   const locale = useLocale();
   // Default to context, overriden by props
-  const programId = props.programId ?? programIdContext;
+  const resolvedProgramId = props.programId ?? programIdContext;
+  const programId = resolvedProgramId === "GLOBAL" ? null : resolvedProgramId;
 
   const rewardFilter = {
     userId_eq: user?.id,

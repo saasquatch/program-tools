@@ -46,9 +46,14 @@
 
  - [sqm-stencilbook](../sqm-stencilbook)
 
+### Depends on
+
+- [sqm-skeleton](../sqm-skeleton)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-task-card --> sqm-skeleton
   sqm-stencilbook --> sqm-task-card
   style sqm-task-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.7] - 2026-04-01
+
+- Added optimization for Cloudinary hosted images
+- Fixed issue when clicking expired email verification links
+
 ## [2.1.6] - 2026-03-31
 
 - \<sqm-tax-and-cash-dashboard>
@@ -15,6 +20,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Update "w9RequiredDescription" threshold text from $600 to $2000
 - \<sqm-payout-status-alert>
   - Update "w9RequiredDescription" threshold text from $600 to $2000
+
+## [2.1.5] - 2026-03-30
+
+### Updated
+
+- Improved loading states for:
+  - \<sqm-coupon-code>
+  - \<sqm-edit-profile>
+  - \<sqm-empty>
+  - \<sqm-form-message>
+  - \<sqm-instant-access-registration>
+  - \<sqm-invoice-table>
+  - \<sqm-lead-form>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-leaderboard>
+  - \<sqm-navigation-menu>
+  - \<sqm-portal-container>
+  - \<sqm-portal-email-verification>
+  - \<sqm-qr-code>
+  - \<sqm-referral-codes>
+  - \<sqm-task-card>
+  - \<sqm-indirect-tax-form>
+  - \<sqm-payout-details-card>
+  - \<sqm-payout-status-alert>
+  - \<sqm-tax-and-cash-dashboard>
+  - \<sqm-tax-and-cash>
+  - \<sqm-user-info-form>
 
 ## [2.1.4] - 2026-03-23
 
@@ -1492,7 +1524,10 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.7...HEAD
+[2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
+[2.1.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
+[2.1.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
 [2.1.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.4
 [2.1.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.3
 [2.1.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.2

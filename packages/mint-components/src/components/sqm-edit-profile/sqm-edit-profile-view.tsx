@@ -61,7 +61,11 @@ const EditProfileView = (props: EditProfileViewProps) => {
         <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
           <div class="FormSection">
             {states.formState.error && (
-              <sqm-form-message type="error" exportparts="erroralert-icon">
+              <sqm-form-message
+                loading={states.loading}
+                type="error"
+                exportparts="erroralert-icon"
+              >
                 <div part="erroralert-text">{states.formState.error}</div>
               </sqm-form-message>
             )}

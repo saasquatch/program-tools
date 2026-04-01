@@ -88,6 +88,7 @@ graph TD;
   sqm-banking-info-form --> sqm-code-verification
   sqm-banking-info-form --> sqm-form-message
   sqm-code-verification --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-banking-info-form
   sqm-tax-and-cash --> sqm-banking-info-form
   style sqm-banking-info-form fill:#f9f,stroke:#333,stroke-width:4px

@@ -125,7 +125,7 @@ export function LeadFormView(props: LeadFormViewProps) {
       },
       {
         fieldLabel,
-      }
+      },
     );
 
   return (
@@ -137,7 +137,7 @@ export function LeadFormView(props: LeadFormViewProps) {
             {styleString}
           </style>
           <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-          <sqm-form-message exportparts="success-icon">
+          <sqm-form-message loading={states.loading} exportparts="success-icon">
             <b>{content.submitSuccessHeader}</b>
             <br />
             <div part="successalert-text">
@@ -172,32 +172,27 @@ export function LeadFormView(props: LeadFormViewProps) {
           novalidate
         >
           {states.error && (
-            <sl-alert
-              exportparts="base: alert-base, icon:alert-icon"
-              type="danger"
-              class={sheet.classes.ErrorAlertContainer}
-              open
-            >
-              <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-              <b>{content.submitErrorHeader}</b>
-              <br />
-              {intl.formatMessage(
-                {
-                  id: "submitErrorDescription",
-                  defaultMessage: content.submitErrorDescription,
-                },
-                {
-                  supportLink: (
-                    <a
-                      target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
-                    >
-                      {content.supportLinkText}
-                    </a>
-                  ),
-                }
-              )}
-            </sl-alert>
+            <sqm-form-message type="error">
+              <p part="alert-title">{content.submitErrorHeader}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "submitErrorDescription",
+                    defaultMessage: content.submitErrorDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {content.supportLinkText}
+                      </a>
+                    ),
+                  },
+                )}
+              </p>
+            </sqm-form-message>
           )}
           <div class={sheet.classes.NameFieldWrapper}>
             <sqm-lead-input-field

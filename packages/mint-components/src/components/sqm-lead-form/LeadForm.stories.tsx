@@ -106,7 +106,7 @@ export const Default = () => <LeadFormView {...defaultProps} />;
 
 export const LeadSubmitSuccess = () => <LeadFormView {...successProps} />;
 
-export const LeadSubmitWithError = () => <LeadFormView {...errorProps} />;
+export const LeadSubmitWithErrors = () => <LeadFormView {...errorProps} />;
 
 export const LeadSubmitLoading = () => <LeadFormView {...loadingProps} />;
 

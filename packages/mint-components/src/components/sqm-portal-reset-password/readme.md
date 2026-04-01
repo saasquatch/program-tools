@@ -43,6 +43,7 @@
 graph TD;
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-reset-password --> sqm-password-field
+  sqm-form-message --> sqm-skeleton
   style sqm-portal-reset-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
