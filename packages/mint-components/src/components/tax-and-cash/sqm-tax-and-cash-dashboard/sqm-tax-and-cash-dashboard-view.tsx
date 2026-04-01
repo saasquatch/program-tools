@@ -69,6 +69,7 @@ export interface TaxAndCashDashboardProps {
     indirectTaxDetails?: string;
     taxDocumentSectionHeader?: string;
     taxDocumentSectionSubHeader?: string;
+    taxDocumentSectionSubHeaderNoDocument?: string;
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
@@ -424,7 +425,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.termsAndConditions}
                   </a>
                 ),
-              }
+              },
             ),
             button: (
               <sl-button
@@ -456,7 +457,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             ),
             buttonText: null,
             alertType: "warning",
@@ -478,7 +479,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
@@ -499,7 +500,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -519,7 +520,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -539,7 +540,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "error",
           icon: "exclamation-octagon",
@@ -559,7 +560,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -580,7 +581,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -601,7 +602,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -641,7 +642,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -681,7 +682,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <div class={sheet.classes.ButtonContainer}>
@@ -721,7 +722,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <sl-button
@@ -751,7 +752,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           button: (
             <sl-button
@@ -782,7 +783,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
@@ -809,7 +810,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -824,13 +825,13 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {
               id: `badgeTextSubmittedOn`,
               defaultMessage:
-                states.documentType === "W9"
+                states.documentType === "W9" || !states.documentType
                   ? text.badgeTextSubmittedOn
                   : text.badgeTextSubmittedOnW8,
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -856,7 +857,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               taxFormType: states.documentType,
-            }
+            },
           )}
         </p>
       </div>
@@ -867,6 +868,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     INACTIVE: (
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
+        class={sheet.classes.ErrorHoldAlertContainer}
         type="danger"
         open
       >
@@ -881,8 +883,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   : text.taxAlertHeaderNotActiveW8,
             },
             {
-              documentType: states.documentTypeString,
-            }
+              documentType: states.documentType || "Your",
+            },
           )}
         </strong>
         <br />
@@ -895,8 +897,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 : text.taxAlertNotActiveMessageW8,
           },
           {
-            documentType: states.documentTypeString,
-          }
+            documentType: states.documentTypeString || "tax",
+          },
         )}
       </sl-alert>
     ),
@@ -912,7 +914,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: "Canada",
           province: states.province,
-        }
+        },
       );
     } else if (states.subRegion) {
       return intl.formatMessage(
@@ -923,7 +925,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: states.country,
           subRegion: states.subRegion,
-        }
+        },
       );
     } else {
       return intl.formatMessage(
@@ -933,7 +935,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         },
         {
           country: states.country,
-        }
+        },
       );
     }
   };
@@ -1005,7 +1007,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </sl-alert>
           </div>
@@ -1034,7 +1036,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sl-alert>
         )}
@@ -1115,7 +1117,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        {(!states.noFormNeeded || states.status === "NOT_VERIFIED") && (
+        {(!states.noFormNeeded || !!states.status) && (
           <div class={sheet.classes.TaxDocumentsContainer}>
             <div>
               {states.loading ? (
@@ -1129,22 +1131,25 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
                         <h3>
-                          {intl.formatMessage(
-                            {
-                              id: "section-subheader",
-                              defaultMessage: text.taxDocumentSectionSubHeader,
-                            },
-                            {
-                              documentType: states.documentTypeString || "W-9",
-                            }
-                          )}
+                          {states.documentType
+                            ? intl.formatMessage(
+                                {
+                                  id: "section-subheader",
+                                  defaultMessage:
+                                    text.taxDocumentSectionSubHeader,
+                                },
+                                {
+                                  documentType: states.documentTypeString,
+                                },
+                              )
+                            : text.taxDocumentSectionSubHeaderNoDocument}
                         </h3>
                         <span class={sheet.classes.StatusAlert}>
                           {statusMap[states.status]}
                         </span>
                       </div>
                     </span>
-                    {!states.noFormNeeded &&
+                    {(!states.noFormNeeded || !!states.status) &&
                       states.status !== "NOT_VERIFIED" && (
                         <sl-button
                           disabled={states.disabled || states.loading}
@@ -1162,7 +1167,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             </div>
           </div>
         )}
-
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
             <div class={sheet.classes.TaxSectionSkeletonContainer}>
@@ -1202,7 +1206,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                             {text.supportLink}
                           </a>
                         ),
-                      }
+                      },
                     )}
                   </div>
                 </sl-dropdown>
@@ -1225,7 +1229,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               {text.supportLink}
                             </a>
                           ),
-                        }
+                        },
                       )}
                     </span>
                   ) : (
@@ -1243,7 +1247,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         {
                           indirectTaxType: states.indirectTaxType,
                           indirectTaxNumber: states.indirectTaxNumber,
-                        }
+                        },
                       )}
                     </span>
                     <span>
@@ -1255,7 +1259,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             qstNumber: states.qstNumber,
-                          }
+                          },
                         )}
                       {states.subRegionTaxNumber &&
                         intl.formatMessage(
@@ -1265,7 +1269,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             subRegionTaxNumber: states.subRegionTaxNumber,
-                          }
+                          },
                         )}
                     </span>
                   </div>

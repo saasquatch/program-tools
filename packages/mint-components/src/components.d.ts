@@ -6617,6 +6617,11 @@ export namespace Components {
          */
         "taxDocumentSectionSubHeader": string;
         /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument": string;
+        /**
           * @uiName Terms and Conditions text
          */
         "termsAndConditions": string;
@@ -14504,6 +14509,11 @@ declare namespace LocalJSX {
           * @uiName Tax documents section description
          */
         "taxDocumentSectionSubHeader"?: string;
+        /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument"?: string;
         /**
           * @uiName Terms and Conditions text
          */

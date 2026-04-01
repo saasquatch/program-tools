@@ -69,6 +69,7 @@ Feature: Cash payout status widget alert
     And the alert has <buttons>
     And the alert has heading <heading>
     And the alert has description <description>
+
     Examples:
       | holdReason                  | color  | buttons                                      | heading                                               | description                                                                                                                                                                                                                                                                                                |
       | IDV_CHECK_REQUIRED_INTERNAL | yellow | N/A                                          | Identity verification in progress                     | Identity verification submission has been received. Our system is currently performing additional checks and analyzing the results. You will be updated shortly. If you don't hear from us contact our support team.                                                                                       |
@@ -81,8 +82,6 @@ Feature: Cash payout status widget alert
       | WITHDRAWAL_SETTINGS_INVALID | yellow | Edit payout information                      | Your payment information includes invalid characters  | There are invalid characters in your payment information. Please review your information and make sure it is correct with no invalid characters. Your payouts are on hold until this is resolved.                                                                                                          |
       | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
 
-
-
   @motivating
   Scenario Outline: Alert displays when a user has gone over the tax limit and we require one to pay them out on the "" tax setting
     Given a brand on the <type> tax setting
@@ -93,14 +92,15 @@ Feature: Cash payout status widget alert
     And they receive "W9" as their required tax form
     Then they <maySee> a yellow banner
     And it has heading "Your next payout is on hold"
-    And it has description "You have surpassed the $600 threshold requiring a W9 form or have multiple accounts with impact.com. To remove the hold, please submit your W9 form."
+    And it has description "You have surpassed the $2000 threshold requiring a W9 form or have multiple accounts with impact.com. To remove the hold, please submit your W9 form."
     When they click the "Submit W9" button
     #Ideally this would actually just open the tax form for them to complete, if its not a technical nightmare lets try to do it
     Then the page scrolls/redirects to the payouts and tax form
+
     Examples:
       | type | maySee    |
-      | 5    | see       |
-      | 4    | don't see |
+      |    5 | see       |
+      |    4 | don't see |
 
   @motivating
   Scenario: User has general hold reasons
@@ -140,6 +140,7 @@ Feature: Cash payout status widget alert
     And the reward <mayHave> partnerFundsTransfer data
     And the partnerFundsTransfer status is <status>
     Then the payout alert bannner <isShown>
+
     Examples:
       | holdReason       | mayHave       | status      | isShown      |
       | NEW_PAYEE_REVIEW | has           | TRANSFERRED | is shown     |
