@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { ErrorStyles } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
+import { sensitiveMaskAttrs } from "../../utils/posthogMasking";
 import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 
 export interface NameFieldsViewProps {
@@ -67,6 +68,7 @@ const styleString = sheet.toString();
 export function NameFieldsView(props: NameFieldsViewProps) {
   const { states } = props;
   const validationErrors = states?.registrationFormState?.validationErrors;
+  const maskAttrs = sensitiveMaskAttrs(true);
   return (
     <div class={sheet.classes.FieldsContainer}>
       <style type="text/css">
@@ -78,6 +80,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/firstName"
         type="text"
         label={states.content.firstNameLabel}
+        {...maskAttrs}
         required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
@@ -100,6 +103,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         name="/lastName"
         type="text"
         label={states.content.lastNameLabel}
+        {...maskAttrs}
         required={!states.optional}
         disabled={
           states.registrationFormState?.loading ||
