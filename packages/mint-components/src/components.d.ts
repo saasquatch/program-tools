@@ -34,6 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
+import { PartnerInfoModalViewProps } from "./components/sqm-partner-info-modal/sqm-partner-info-modal-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
@@ -2309,6 +2310,65 @@ export namespace Components {
           * @uiName Pagination text
          */
         "paginationText": string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel": string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalViewProps>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner": string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner": string;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText": string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalBrandHeader": string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder": string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel": string;
     }
     interface SqmPasswordField {
         /**
@@ -7497,6 +7557,12 @@ declare global {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
     };
+    interface HTMLSqmPartnerInfoModalElement extends Components.SqmPartnerInfoModal, HTMLStencilElement {
+    }
+    var HTMLSqmPartnerInfoModalElement: {
+        prototype: HTMLSqmPartnerInfoModalElement;
+        new (): HTMLSqmPartnerInfoModalElement;
+    };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
     var HTMLSqmPasswordFieldElement: {
@@ -8021,6 +8087,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-pagination": HTMLSqmPaginationElement;
+        "sqm-partner-info-modal": HTMLSqmPartnerInfoModalElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
@@ -10346,6 +10413,65 @@ declare namespace LocalJSX {
           * @uiName Pagination text
          */
         "paginationText"?: string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel"?: string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalViewProps>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner"?: string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner"?: string;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText"?: string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalBrandHeader"?: string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder"?: string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -15263,6 +15389,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-pagination": SqmPagination;
+        "sqm-partner-info-modal": SqmPartnerInfoModal;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
@@ -15397,6 +15524,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
+            "sqm-partner-info-modal": LocalJSX.SqmPartnerInfoModal & JSXBase.HTMLAttributes<HTMLSqmPartnerInfoModalElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
