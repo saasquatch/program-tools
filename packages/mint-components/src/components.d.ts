@@ -65,6 +65,12 @@ export namespace Components {
     }
     interface SqmBankingInfoForm {
         /**
+          * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
+          * @uiName Agency code error
+          * @uiWidget textArea
+         */
+        "agencyCodeError": string;
+        /**
           * @uiName Agency code field label
          */
         "agencyCodeLabel": string;
@@ -74,17 +80,41 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Error messages for the bank account number / IBAN field. Supports error codes: empty, invalidUk, invalid, ibanEmpty, ibanAlphanumeric, ibanInvalid, ibanCountryMismatch
+          * @uiName Bank account number / IBAN error
+          * @uiWidget textArea
+         */
+        "bankAccountNumberError": string;
+        /**
           * @uiName Bank account number field label
          */
         "bankAccountNumberLabel": string;
+        /**
+          * Error messages for the bank account type field. Supports error codes: empty
+          * @uiName Bank account type error
+          * @uiWidget textArea
+         */
+        "bankAccountTypeError": string;
         /**
           * @uiName Bank account type field label
          */
         "bankAccountTypeLabel": string;
         /**
+          * Error messages for the bank address field. Supports error codes: empty
+          * @uiName Bank address error
+          * @uiWidget textArea
+         */
+        "bankAddressError": string;
+        /**
           * @uiName Bank address field label
          */
         "bankAddressLabel": string;
+        /**
+          * Error messages for the bank city field. Supports error codes: empty
+          * @uiName Bank city error
+          * @uiWidget textArea
+         */
+        "bankCityError": string;
         /**
           * @uiName Bank city field label
          */
@@ -94,13 +124,31 @@ export namespace Components {
          */
         "bankLocationLabel": string;
         /**
+          * Error messages for the bank name field. Supports error codes: empty
+          * @uiName Bank name error
+          * @uiWidget textArea
+         */
+        "bankNameError": string;
+        /**
           * @uiName Bank name field label
          */
         "bankNameLabel": string;
         /**
+          * Error messages for the bank postal code field. Supports error codes: empty
+          * @uiName Bank postal code error
+          * @uiWidget textArea
+         */
+        "bankPostalCodeError": string;
+        /**
           * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel": string;
+        /**
+          * Error messages for the bank province/state field. Supports error codes: empty
+          * @uiName Bank province/state error
+          * @uiWidget textArea
+         */
+        "bankStateError": string;
         /**
           * @uiName Bank province/state field label
          */
@@ -110,13 +158,31 @@ export namespace Components {
          */
         "beneficiaryAccountNameDescription": string;
         /**
+          * Error messages for the beneficiary / account holder name field. Supports error codes: empty, invalidCharacters, numeric, tooLong, nonEnglish, businessNameMismatch, nameMismatch, businessPayeeMismatch, payeeMismatch
+          * @uiName Beneficiary account name error
+          * @uiWidget textArea
+         */
+        "beneficiaryAccountNameError": string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel": string;
         /**
+          * Error messages for the branch code field. Supports error codes: invalid
+          * @uiName Branch code error
+          * @uiWidget textArea
+         */
+        "branchCodeError": string;
+        /**
           * @uiName Branch code field label
          */
         "branchCodeLabel": string;
+        /**
+          * Error messages for the branch name field. Supports error codes: empty
+          * @uiName Branch name error
+          * @uiWidget textArea
+         */
+        "branchNameError": string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
@@ -130,6 +196,12 @@ export namespace Components {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel": string;
+        /**
+          * Error messages for the classification code field. Supports error codes: empty, invalidKzt
+          * @uiName Classification code error
+          * @uiWidget textArea
+         */
+        "classificationCodeError": string;
         /**
           * @uiName Classification entity field label
          */
@@ -238,6 +310,12 @@ export namespace Components {
          */
         "modalTitle": string;
         /**
+          * Error messages for the patronymic name field. Supports error codes: empty, alphanumeric
+          * @uiName Patronymic name error
+          * @uiWidget textArea
+         */
+        "patronymicNameError": string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel": string;
@@ -246,6 +324,12 @@ export namespace Components {
           * @uiName PayPal email field label
          */
         "payPalInputLabel": string;
+        /**
+          * Error messages for the payment day field. Supports error codes: empty, invalid
+          * @uiName Payment day error
+          * @uiWidget textArea
+         */
+        "paymentDayError": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
@@ -282,10 +366,28 @@ export namespace Components {
          */
         "paymentScheduleFixedDay": string;
         /**
+          * Error messages for the payment threshold field. Supports error codes: empty, invalid
+          * @uiName Payment threshold error
+          * @uiWidget textArea
+         */
+        "paymentThresholdError": string;
+        /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel": string;
+        /**
+          * Error messages for the PayPal email field. Supports error codes: empty, unsupportedCurrency, invalidEmail, verificationIncomplete
+          * @uiName PayPal email error
+          * @uiWidget textArea
+         */
+        "paypalEmailError": string;
+        /**
+          * Error messages for the routing code / sort code / BSB field. Supports error codes: invalidBsb, invalidSortCode, empty, invalid
+          * @uiName Routing code error
+          * @uiWidget textArea
+         */
+        "routingCodeError": string;
         /**
           * @uiName Routing code field label
          */
@@ -304,6 +406,12 @@ export namespace Components {
          */
         "supportLink": string;
         /**
+          * Error messages for the SWIFT / BIC code field. Supports error codes: empty, alphanumeric, invalid
+          * @uiName SWIFT code error
+          * @uiWidget textArea
+         */
+        "swiftCodeError": string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
@@ -316,6 +424,12 @@ export namespace Components {
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Error messages for the tax payer ID / classification entity field. Supports error codes: empty, emptyAr, emptyKr, alphanumeric, alphanumericAr, alphanumericKr, invalid, invalidAr, invalidKr, invalidKzt, cnpjTooShort, cpfTooShort
+          * @uiName Tax payer ID error
+          * @uiWidget textArea
+         */
+        "taxPayerIdError": string;
         /**
           * @uiName Taxpayer ID field label
          */
@@ -333,6 +447,12 @@ export namespace Components {
           * @uiName Verify email header
          */
         "verifyEmailHeaderText": string;
+        /**
+          * Error messages for the VO code field. Supports error codes: empty, alphanumeric
+          * @uiName VO code error
+          * @uiWidget textArea
+         */
+        "voCodeError": string;
         /**
           * @uiName VO code field label
          */
@@ -7987,6 +8107,12 @@ declare namespace LocalJSX {
     }
     interface SqmBankingInfoForm {
         /**
+          * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
+          * @uiName Agency code error
+          * @uiWidget textArea
+         */
+        "agencyCodeError"?: string;
+        /**
           * @uiName Agency code field label
          */
         "agencyCodeLabel"?: string;
@@ -7996,17 +8122,41 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * Error messages for the bank account number / IBAN field. Supports error codes: empty, invalidUk, invalid, ibanEmpty, ibanAlphanumeric, ibanInvalid, ibanCountryMismatch
+          * @uiName Bank account number / IBAN error
+          * @uiWidget textArea
+         */
+        "bankAccountNumberError"?: string;
+        /**
           * @uiName Bank account number field label
          */
         "bankAccountNumberLabel"?: string;
+        /**
+          * Error messages for the bank account type field. Supports error codes: empty
+          * @uiName Bank account type error
+          * @uiWidget textArea
+         */
+        "bankAccountTypeError"?: string;
         /**
           * @uiName Bank account type field label
          */
         "bankAccountTypeLabel"?: string;
         /**
+          * Error messages for the bank address field. Supports error codes: empty
+          * @uiName Bank address error
+          * @uiWidget textArea
+         */
+        "bankAddressError"?: string;
+        /**
           * @uiName Bank address field label
          */
         "bankAddressLabel"?: string;
+        /**
+          * Error messages for the bank city field. Supports error codes: empty
+          * @uiName Bank city error
+          * @uiWidget textArea
+         */
+        "bankCityError"?: string;
         /**
           * @uiName Bank city field label
          */
@@ -8016,13 +8166,31 @@ declare namespace LocalJSX {
          */
         "bankLocationLabel"?: string;
         /**
+          * Error messages for the bank name field. Supports error codes: empty
+          * @uiName Bank name error
+          * @uiWidget textArea
+         */
+        "bankNameError"?: string;
+        /**
           * @uiName Bank name field label
          */
         "bankNameLabel"?: string;
         /**
+          * Error messages for the bank postal code field. Supports error codes: empty
+          * @uiName Bank postal code error
+          * @uiWidget textArea
+         */
+        "bankPostalCodeError"?: string;
+        /**
           * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel"?: string;
+        /**
+          * Error messages for the bank province/state field. Supports error codes: empty
+          * @uiName Bank province/state error
+          * @uiWidget textArea
+         */
+        "bankStateError"?: string;
         /**
           * @uiName Bank province/state field label
          */
@@ -8032,13 +8200,31 @@ declare namespace LocalJSX {
          */
         "beneficiaryAccountNameDescription"?: string;
         /**
+          * Error messages for the beneficiary / account holder name field. Supports error codes: empty, invalidCharacters, numeric, tooLong, nonEnglish, businessNameMismatch, nameMismatch, businessPayeeMismatch, payeeMismatch
+          * @uiName Beneficiary account name error
+          * @uiWidget textArea
+         */
+        "beneficiaryAccountNameError"?: string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel"?: string;
         /**
+          * Error messages for the branch code field. Supports error codes: invalid
+          * @uiName Branch code error
+          * @uiWidget textArea
+         */
+        "branchCodeError"?: string;
+        /**
           * @uiName Branch code field label
          */
         "branchCodeLabel"?: string;
+        /**
+          * Error messages for the branch name field. Supports error codes: empty
+          * @uiName Branch name error
+          * @uiWidget textArea
+         */
+        "branchNameError"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
@@ -8052,6 +8238,12 @@ declare namespace LocalJSX {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel"?: string;
+        /**
+          * Error messages for the classification code field. Supports error codes: empty, invalidKzt
+          * @uiName Classification code error
+          * @uiWidget textArea
+         */
+        "classificationCodeError"?: string;
         /**
           * @uiName Classification entity field label
          */
@@ -8160,6 +8352,12 @@ declare namespace LocalJSX {
          */
         "modalTitle"?: string;
         /**
+          * Error messages for the patronymic name field. Supports error codes: empty, alphanumeric
+          * @uiName Patronymic name error
+          * @uiWidget textArea
+         */
+        "patronymicNameError"?: string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel"?: string;
@@ -8168,6 +8366,12 @@ declare namespace LocalJSX {
           * @uiName PayPal email field label
          */
         "payPalInputLabel"?: string;
+        /**
+          * Error messages for the payment day field. Supports error codes: empty, invalid
+          * @uiName Payment day error
+          * @uiWidget textArea
+         */
+        "paymentDayError"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
@@ -8204,10 +8408,28 @@ declare namespace LocalJSX {
          */
         "paymentScheduleFixedDay"?: string;
         /**
+          * Error messages for the payment threshold field. Supports error codes: empty, invalid
+          * @uiName Payment threshold error
+          * @uiWidget textArea
+         */
+        "paymentThresholdError"?: string;
+        /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel"?: string;
+        /**
+          * Error messages for the PayPal email field. Supports error codes: empty, unsupportedCurrency, invalidEmail, verificationIncomplete
+          * @uiName PayPal email error
+          * @uiWidget textArea
+         */
+        "paypalEmailError"?: string;
+        /**
+          * Error messages for the routing code / sort code / BSB field. Supports error codes: invalidBsb, invalidSortCode, empty, invalid
+          * @uiName Routing code error
+          * @uiWidget textArea
+         */
+        "routingCodeError"?: string;
         /**
           * @uiName Routing code field label
          */
@@ -8226,6 +8448,12 @@ declare namespace LocalJSX {
          */
         "supportLink"?: string;
         /**
+          * Error messages for the SWIFT / BIC code field. Supports error codes: empty, alphanumeric, invalid
+          * @uiName SWIFT code error
+          * @uiWidget textArea
+         */
+        "swiftCodeError"?: string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
@@ -8238,6 +8466,12 @@ declare namespace LocalJSX {
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Error messages for the tax payer ID / classification entity field. Supports error codes: empty, emptyAr, emptyKr, alphanumeric, alphanumericAr, alphanumericKr, invalid, invalidAr, invalidKr, invalidKzt, cnpjTooShort, cpfTooShort
+          * @uiName Tax payer ID error
+          * @uiWidget textArea
+         */
+        "taxPayerIdError"?: string;
         /**
           * @uiName Taxpayer ID field label
          */
@@ -8255,6 +8489,12 @@ declare namespace LocalJSX {
           * @uiName Verify email header
          */
         "verifyEmailHeaderText"?: string;
+        /**
+          * Error messages for the VO code field. Supports error codes: empty, alphanumeric
+          * @uiName VO code error
+          * @uiWidget textArea
+         */
+        "voCodeError"?: string;
         /**
           * @uiName VO code field label
          */

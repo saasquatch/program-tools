@@ -11,6 +11,8 @@ export function getFormMap({
   getValidationErrorMessage: (props: {
     type: "required" | "invalid";
     label: string;
+    errorCode?: string;
+    fieldName?: string;
   }) => string;
   bankCountry?: string;
 }) {
@@ -32,6 +34,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryAccountName?.type,
               label: props.text.beneficiaryAccountNameLabel,
+              errorCode: errors?.inputErrors?.beneficiaryAccountName?.errorCode,
+              fieldName: "beneficiaryAccountName",
             }),
           })}
         ></sl-input>
@@ -50,6 +54,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankAccountType?.type,
               label: props.text.bankAccountTypeLabel,
+              errorCode: errors?.inputErrors?.bankAccountType?.errorCode,
+              fieldName: "bankAccountType",
             }),
           })}
         >
@@ -77,6 +83,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankAccountNumber?.type,
               label: props.text.bankAccountNumberLabel,
+              errorCode: errors?.inputErrors?.bankAccountNumber?.errorCode,
+              fieldName: "bankAccountNumber",
             }),
           })}
         ></sl-input>
@@ -97,6 +105,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankAccountNumber?.type,
               label: props.text.ibanLabel,
+              errorCode: errors?.inputErrors?.bankAccountNumber?.errorCode,
+              fieldName: "bankAccountNumber",
             }),
           })}
         ></sl-input>
@@ -117,6 +127,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.swiftCode?.type,
               label: props.text.swiftCodeLabel,
+              errorCode: errors?.inputErrors?.swiftCode?.errorCode,
+              fieldName: "swiftCode",
             }),
           })}
         ></sl-input>
@@ -152,6 +164,8 @@ export function getFormMap({
                   bankCountry,
                 }
               ),
+              errorCode: errors?.inputErrors?.routingCode?.errorCode,
+              fieldName: "routingCode",
             }),
           })}
         ></sl-input>
@@ -171,6 +185,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankName?.type,
               label: props.text.bankNameLabel,
+              errorCode: errors?.inputErrors?.bankName?.errorCode,
+              fieldName: "bankName",
             }),
           })}
         ></sl-input>
@@ -189,6 +205,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationLabel,
+              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              fieldName: "beneficiaryClassification",
             }),
           })}
         >
@@ -222,6 +240,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryTaxPayerId?.type,
               label: props.text.taxPayerIdLabel,
+              errorCode: errors?.inputErrors?.taxPayerId?.errorCode,
+              fieldName: "taxPayerId",
             }),
           })}
         ></sl-input>,
@@ -240,6 +260,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationCPFLabel,
+              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              fieldName: "beneficiaryClassification",
             }),
           })}
         >
@@ -262,6 +284,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.patronymicName?.type,
               label: props.text.patronymicNameLabel,
+              errorCode: errors?.inputErrors?.patronymicName?.errorCode,
+              fieldName: "patronymicName",
             }),
           })}
         ></sl-input>
@@ -280,6 +304,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.voCode?.type,
               label: props.text.voCodeLabel,
+              errorCode: errors?.inputErrors?.voCode?.errorCode,
+              fieldName: "voCode",
             }),
           })}
         ></sl-input>
@@ -299,6 +325,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.agencyCode?.type,
               label: props.text.agencyCodeLabel,
+              errorCode: errors?.inputErrors?.agencyCode?.errorCode,
+              fieldName: "agencyCode",
             }),
           })}
         ></sl-input>
@@ -318,6 +346,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankAddress?.type,
               label: props.text.bankAddressLabel,
+              errorCode: errors?.inputErrors?.bankAddress?.errorCode,
+              fieldName: "bankAddress",
             }),
           })}
         ></sl-input>,
@@ -333,6 +363,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankCity?.type,
               label: props.text.bankCityLabel,
+              errorCode: errors?.inputErrors?.bankCity?.errorCode,
+              fieldName: "bankCity",
             }),
           })}
         ></sl-input>,
@@ -348,6 +380,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankState?.type,
               label: props.text.bankStateLabel,
+              errorCode: errors?.inputErrors?.bankState?.errorCode,
+              fieldName: "bankState",
             }),
           })}
         ></sl-input>,
@@ -363,6 +397,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.bankPostalCode?.type,
               label: props.text.bankPostalCodeLabel,
+              errorCode: errors?.inputErrors?.bankPostalCode?.errorCode,
+              fieldName: "bankPostalCode",
             }),
           })}
         ></sl-input>,
@@ -382,6 +418,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.branchCode?.type,
               label: props.text.branchCodeLabel,
+              errorCode: errors?.inputErrors?.branchCode?.errorCode,
+              fieldName: "branchCode",
             }),
           })}
         ></sl-input>
@@ -400,6 +438,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationLabel,
+              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              fieldName: "beneficiaryClassification",
             }),
           })}
         >
