@@ -25,13 +25,13 @@ const triggerSteps: StepDefinitions = ({ when }) => {
   // prettier-ignore
   const regexString = `^(?:the )?"?(${triggerTypes.join("|")})"?(?: trigger)? runs$`;
 
-  when(new RegExp(regexString), (type: types.rpc.TriggerType) => {
+  when(new RegExp(regexString), (triggerType: types.rpc.TriggerType) => {
     const currentState = getWorld().state.current ?? {};
     const { template, rules, programRewards } = currentState;
 
     let body: any;
 
-    switch (type) {
+    switch (triggerType) {
       case "PROGRAM_INTROSPECTION":
         body = getIntrospectionJson(
           template,
@@ -49,10 +49,15 @@ const triggerSteps: StepDefinitions = ({ when }) => {
         );
         break;
 
+      case "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST":
+        throw new Error(
+          "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST is not implemented in the test library"
+        );
+
       default:
         body = getProgramTriggerJson(
           {
-            type,
+            type: triggerType,
             user: getWorld().state.current.user,
             rules: getWorld().state.current.rules,
             time: getWorld().state.current.time,
@@ -61,7 +66,7 @@ const triggerSteps: StepDefinitions = ({ when }) => {
         );
     }
 
-    switch (type) {
+    switch (triggerType) {
       case "AFTER_USER_CREATED_OR_UPDATED":
         body = deepmerge(
           body,

@@ -114,7 +114,7 @@ export const FullRewardsTable = () => (
       redeemed-text="{redeemedAmount} redeemed"
     ></sqm-rewards-table-reward-column>
     <sqm-rewards-table-source-column
-      anonymous-user="Anonymous User"
+      anonymous-user="Your Friend"
       column-title="Source"
       deleted-user="Deleted User"
       referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
@@ -170,7 +170,7 @@ export const MockDataTable = () => {
             redeemed-text="{redeemedAmount} redeemed"
           ></sqm-rewards-table-reward-column>
           <sqm-rewards-table-source-column
-            anonymous-user="Anonymous User"
+            anonymous-user="Your Friend"
             column-title="Source"
             deleted-user="Deleted User"
             referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"

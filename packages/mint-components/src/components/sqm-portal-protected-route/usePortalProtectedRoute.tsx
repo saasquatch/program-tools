@@ -3,7 +3,7 @@ import {
   navigation,
   useCurrentPage,
 } from "@saasquatch/component-boilerplate";
-import { useEffect } from "haunted";
+import { useEffect } from "@saasquatch/universal-hooks";
 
 interface PortalProtectedRouteProps {
   redirectTo: string;
@@ -40,6 +40,6 @@ export function usePortalProtectedRoute({
       });
     }
   }, []);
-  
+
   return !!userIdent;
 }

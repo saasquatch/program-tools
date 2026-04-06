@@ -28,12 +28,15 @@
 
 ### Depends on
 
+- [sqm-skeleton](../../sqm-skeleton)
 - [sqm-form-message](../../sqm-form-message)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-email-verification --> sqm-skeleton
   sqm-email-verification --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-email-verification
   sqm-widget-verification --> sqm-email-verification
   style sqm-email-verification fill:#f9f,stroke:#333,stroke-width:4px

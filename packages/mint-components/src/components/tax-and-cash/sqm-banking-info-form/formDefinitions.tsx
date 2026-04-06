@@ -232,13 +232,13 @@ export function getFormMap({
             }
           )}
           type="text"
-          name="/taxPayerId"
-          id="taxPayerId"
-          key="taxPayerId"
-          {...(errors?.inputErrors?.taxPayerId && {
+          name="/beneficiaryTaxPayerId"
+          id="beneficiaryTaxPayerId"
+          key="beneficiaryTaxPayerId"
+          {...(errors?.inputErrors?.beneficiaryTaxPayerId && {
             class: "error-input",
             helpText: getValidationErrorMessage({
-              type: errors?.inputErrors?.taxPayerId?.type,
+              type: errors?.inputErrors?.beneficiaryTaxPayerId?.type,
               label: props.text.taxPayerIdLabel,
               errorCode: errors?.inputErrors?.taxPayerId?.errorCode,
               fieldName: "taxPayerId",

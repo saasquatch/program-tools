@@ -4,8 +4,8 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { sanitizeUrlPath } from "../../utils/utils";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 let globalPromise: null | Promise<any | Error> = null;
 
@@ -97,7 +97,7 @@ export function usePortalVerifyEmail({
         errors?.response?.errors?.[0]?.extensions?.message ||
         errors?.response?.errors?.[0]?.message ||
         ((errors?.message || !validEmail) && networkErrorMessage),
-      success: completed && (verified || validEmail),
+      success: completed && successful && (verified || validEmail),
     },
     data: {
       oobCode,

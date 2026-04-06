@@ -121,7 +121,12 @@ export class TaxAndCashDashboard {
    * @uiName Tax documents section description
    */
   @Prop() taxDocumentSectionSubHeader: string = "{documentType} tax form";
-
+  /**
+   * Displayed under the tax document section header.
+   *
+   * @uiName Tax documents section description
+   */
+  @Prop() taxDocumentSectionSubHeaderNoDocument: string = "Tax form";
   /**
    *
    * @uiName Indirect tax section header
@@ -183,7 +188,6 @@ export class TaxAndCashDashboard {
    */
   @Prop() subRegionTaxNumber: string =
     "Income tax number: {subRegionTaxNumber}";
-
   /**
    * @uiName Payout status badge
    */
@@ -277,7 +281,7 @@ export class TaxAndCashDashboard {
    * @uiName W-9 payment threshold alert description
    */
   @Prop() w9RequiredDescription: string =
-    "You have surpassed the $600 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
+    "You have surpassed the $2000 threshold requiring a W-9 form or have multiple accounts with impact.com. To remove the hold, please submit your W-9 form.";
   /**
    * @uiName Account review alert header
    */
@@ -514,7 +518,7 @@ export class TaxAndCashDashboard {
   }
 }
 function useDemoTaxAndCashDashboard(
-  props: TaxAndCashDashboard
+  props: TaxAndCashDashboard,
 ): UseTaxAndCashDashboardResult {
   // @ts-ignore
   return deepmerge(
@@ -566,6 +570,6 @@ function useDemoTaxAndCashDashboard(
       },
     },
     props.demoData || props.stateController || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

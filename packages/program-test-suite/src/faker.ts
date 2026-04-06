@@ -1,6 +1,7 @@
 import { types } from "@saasquatch/program-boilerplate";
 import * as faker from "faker";
 import { TenantFlavor } from "./types";
+import { randomBytes } from "crypto";
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
@@ -47,7 +48,7 @@ export function getIntrospectionJson(
 }
 
 type ProgramTriggerInfo = {
-  type: types.rpc.TriggerType;
+  type: types.rpc.ActiveTriggerType;
   time?: number;
   user: any;
   rules: any;
@@ -67,6 +68,7 @@ export function getProgramTriggerJson(
     program: {
       id: "r1",
       rules: info.rules,
+      templateId: randomBytes(8).toString("hex"),
     },
     tenant: {
       impactBrandId: flavor === "impact" ? "12345" : undefined,

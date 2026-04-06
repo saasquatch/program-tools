@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface HeroImageViewProps {
   layout: "overlay" | "columns";
@@ -20,6 +21,8 @@ export interface HeroImageViewProps {
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
   buttonType?: "primary" | "secondary";
+  minHeight?: number;
+  imageAlt?: string;
 }
 
 export function HeroImageView(props: HeroImageViewProps, children: VNode) {
@@ -48,7 +51,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       objectFit: "cover",
     },
     Background: {
-      backgroundImage: `url(${props.imageUrl})`,
+      backgroundImage: `url(${optimizeCloudinaryUrl(props.imageUrl)})`,
       backgroundSize: "cover",
       backgroundPosition: props.imagePos || "center",
       display: "flex",
@@ -76,6 +79,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       flexDirection: props.imagePos === "right" ? "row-reverse" : "row",
       lineHeight: "var(--sl-line-height-dense)",
       color: props.textColor || "var(--sqm-text)",
+      minHeight: props.minHeight ? props.minHeight + "px" : undefined,
       "& .image-area": {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
@@ -83,6 +87,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        minHeight: props.minHeight ? props.minHeight + "px" : undefined,
         "@media (max-width: 599px)": {
           width: "100%",
         },
@@ -190,7 +195,12 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
           <div class="image-area">
             <img
               class={sheet.classes.Image}
-              src={props.imageUrl}
+              src={optimizeCloudinaryUrl(props.imageUrl)}
+              alt={props.imageAlt || ""}
+              loading="eager"
+              decoding="async"
+              // @ts-ignore - fetchpriority is valid but not yet in JSX types
+              fetchpriority="high"
               part="sqm-columns-image"
             ></img>
           </div>

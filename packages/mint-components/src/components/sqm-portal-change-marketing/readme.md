@@ -31,6 +31,7 @@
 ```mermaid
 graph TD;
   sqm-portal-change-marketing --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-change-marketing
   style sqm-portal-change-marketing fill:#f9f,stroke:#333,stroke-width:4px
 ```

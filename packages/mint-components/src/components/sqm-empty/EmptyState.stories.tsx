@@ -47,7 +47,7 @@ const defaultElements = {
           return (
             <tr>
               <td>
-                <sl-skeleton></sl-skeleton>
+                <sqm-skeleton></sqm-skeleton>
               </td>
             </tr>
           );

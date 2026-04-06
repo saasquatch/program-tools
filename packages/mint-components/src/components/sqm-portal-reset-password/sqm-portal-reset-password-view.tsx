@@ -5,8 +5,8 @@ import {
   AuthWrapper,
 } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
-import { PasswordFieldViewDemoProps } from "../sqm-password-field/sqm-password-field";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { PasswordFieldViewDemoProps } from "../sqm-password-field/usePasswordField";
 
 export interface PortalResetPasswordViewProps {
   states: {

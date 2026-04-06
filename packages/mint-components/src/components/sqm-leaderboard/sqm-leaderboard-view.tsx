@@ -142,11 +142,11 @@ export function LeaderboardView(props: LeaderboardViewProps) {
           {vanillaStyle}
         </style>
         <table>
-          {[...Array(10)].map(() => {
+          {[...Array(5)].map(() => {
             return (
               <tr>
                 <td>
-                  <sl-skeleton></sl-skeleton>
+                  <sqm-skeleton></sqm-skeleton>
                 </td>
               </tr>
             );
