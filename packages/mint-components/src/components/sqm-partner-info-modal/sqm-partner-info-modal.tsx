@@ -8,6 +8,7 @@ import {
   PartnerInfoModalView,
   PartnerInfoModalViewProps,
 } from "./sqm-partner-info-modal-view";
+import { usePartnerInfoModal } from "./usePartnerInfoModal";
 
 /**
  * @uiName Partner Info Modal
@@ -20,6 +21,14 @@ import {
   shadow: true,
 })
 export class PartnerInfoModal {
+  /**
+   * Brand name shown in the modal header
+   *
+   * @uiName Brand name
+   */
+  @Prop()
+  brandName: string = "";
+
   /**
    * Header text when user has no existing partner
    *
@@ -110,9 +119,15 @@ export class PartnerInfoModal {
   }
   disconnectedCallback() {}
 
+  getTextProps() {
+    return getProps(this);
+  }
+
   render() {
     // AL: TODO add usePartnerInfoModal
-    const props = useDemoPartnerInfoModal(this);
+    const props = isDemo()
+      ? useDemoPartnerInfoModal(this)
+      : usePartnerInfoModal(this);
 
     return <PartnerInfoModalView {...props} />;
   }

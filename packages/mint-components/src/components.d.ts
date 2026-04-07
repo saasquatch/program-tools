@@ -2313,6 +2313,11 @@ export namespace Components {
     }
     interface SqmPartnerInfoModal {
         /**
+          * Brand name shown in the modal header
+          * @uiName Brand name
+         */
+        "brandName": string;
+        /**
           * @uiName Confirm button label
          */
         "confirmButtonLabel": string;
@@ -10415,6 +10420,11 @@ declare namespace LocalJSX {
         "paginationText"?: string;
     }
     interface SqmPartnerInfoModal {
+        /**
+          * Brand name shown in the modal header
+          * @uiName Brand name
+         */
+        "brandName"?: string;
         /**
           * @uiName Confirm button label
          */

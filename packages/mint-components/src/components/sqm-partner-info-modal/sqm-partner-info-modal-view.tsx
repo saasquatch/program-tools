@@ -106,7 +106,7 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
   return (
     <sl-dialog
       class={sheet.classes.Dialog}
-      open={true}
+      open={states.open}
       noHeader={false}
       label={intl.formatMessage(
         {
