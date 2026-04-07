@@ -9,7 +9,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import JSONPointer, { set } from "jsonpointer";
+import JSONPointer from "jsonpointer";
 import { intl } from "../../../global/global";
 import { VERIFICATION_EVENT_KEY } from "../../sqm-widget-verification/keys";
 import {
@@ -51,15 +51,6 @@ const PAYPAL_PAYMENT_METHOD = 7;
 
 /**
  * Maps GraphQL validation error field names to form field names.
- *
- * The Impact API returns UpperCamelCase field names (e.g. `BankAccountNumber`).
- * The GraphQL layer in `UserServiceImpl.java` converts these to lowerCamelCase
- * via `CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, errorDto.field)`.
- *
- * Most converted field names already match the form field names exactly
- * (e.g. `bankAccountNumber`, `swiftCode`, `routingCode`). Only entries
- * where the GraphQL field name differs from the form field name need
- * to be listed here.
  */
 const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
   // bankProvinceState → form uses bankState
@@ -69,11 +60,6 @@ const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
 /**
  * Maps Impact API error code paths (from validationErrors[].errorPath) to short,
  * readable frontend error codes used in the ICU select props.
- *
- * The Impact API returns a stable dot-delimited error path (e.g.
- * "withdrawal.settings.error.routingcode") alongside the human-readable message.
- * The GraphQL layer exposes this as `errorPath`. The keys below match those paths
- * to short frontend codes used in the ICU `{errorCode, select, ...}` props.
  */
 const API_ERROR_PATH_TO_FRONTEND: Record<string, string> = {
   // Beneficiary account name
@@ -309,7 +295,7 @@ function parseImpactThreshold(threshold: string) {
 }
 
 export function useBankingInfoForm(
-  props: BankingInfoForm
+  props: BankingInfoForm,
 ): BankingInfoFormViewProps {
   const host = useHost();
   const locale = useLocale();
@@ -326,7 +312,7 @@ export function useBankingInfoForm(
     loading: paymentOptionsLoading,
     errors: paymentOptionsError,
   } = useParentQueryValue<FinanceNetworkSettingsQuery>(
-    FINANCE_NETWORK_SETTINGS_NAMESPACE
+    FINANCE_NETWORK_SETTINGS_NAMESPACE,
   );
   const {
     data: userData,
@@ -335,11 +321,11 @@ export function useBankingInfoForm(
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
   const [saveWithdrawalSettings] =
     useMutation<SetImpactPublisherWithdrawalSettingsResult>(
-      SAVE_WITHDRAWAL_SETTINGS
+      SAVE_WITHDRAWAL_SETTINGS,
     );
   const [updateWithdrawalSettings] =
     useMutation<UpdateImpactPublisherWithdrawalSettingsResult>(
-      UPDATE_WITHDRAWAL_SETTINGS
+      UPDATE_WITHDRAWAL_SETTINGS,
     );
 
   const [showVerification, setShowVerification] = useState(false);
@@ -377,14 +363,14 @@ export function useBankingInfoForm(
       {
         currency: currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || 0,
-      }
+      },
     ),
   };
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
 
   const hasPayPal = !!paymentOptions?.find(
-    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD
+    (option) => option.defaultFinancePaymentMethodId === PAYPAL_PAYMENT_METHOD,
   );
 
   const paymentMethodChecked = !hasPayPal
@@ -415,7 +401,7 @@ export function useBankingInfoForm(
         paypalEmailAddress: withdrawalSettings.paypalEmailAddress,
         paymentSchedulingType: withdrawalSettings.paymentSchedulingType,
         paymentThreshold: parseImpactThreshold(
-          withdrawalSettings.paymentThreshold
+          withdrawalSettings.paymentThreshold,
         ),
         paymentDay: withdrawalSettings.paymentDay,
       };
@@ -438,7 +424,7 @@ export function useBankingInfoForm(
     setPaymentMethodChecked(
       initialData.paymentMethod === "PAYPAL"
         ? "toPayPalAccount"
-        : "toBankAccount"
+        : "toBankAccount",
     );
     setCurrentPaymentOption(currentPaymentOption);
     setPaymentScheduleChecked(initialData.paymentSchedulingType);
@@ -452,8 +438,8 @@ export function useBankingInfoForm(
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
-        ) || []
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [countrySearch, countries]);
@@ -535,7 +521,7 @@ export function useBankingInfoForm(
               },
             };
           },
-          {}
+          {},
         );
 
         setErrors({
@@ -606,12 +592,12 @@ export function useBankingInfoForm(
       new CustomEvent(VERIFICATION_EVENT_KEY, {
         detail: { token },
         bubbles: false,
-      })
+      }),
     );
   };
 
   function setPaymentMethodChecked(
-    paymentMethod: "toBankAccount" | "toPayPalAccount"
+    paymentMethod: "toBankAccount" | "toPayPalAccount",
   ) {
     _setPaymentMethodChecked(paymentMethod);
 
@@ -623,7 +609,7 @@ export function useBankingInfoForm(
       setCurrentPaymentOption(currentPaymentOption);
     } else if (paymentMethod === "toBankAccount") {
       const currentPaymentOption = paymentOptions?.find(
-        (paymentOption) => paymentOption.countryCode === formState.bankCountry
+        (paymentOption) => paymentOption.countryCode === formState.bankCountry,
       );
       setCurrentPaymentOption(currentPaymentOption);
     }
