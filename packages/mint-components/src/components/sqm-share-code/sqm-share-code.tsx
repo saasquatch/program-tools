@@ -160,7 +160,6 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
       borderRadius: props.borderRadius,
       borderColor: props.borderColor,
       buttonType: props.buttonType,
-      rewardStatus: "AVAILABLE",
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
@@ -171,6 +170,6 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

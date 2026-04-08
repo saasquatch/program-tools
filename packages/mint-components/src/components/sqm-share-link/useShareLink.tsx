@@ -6,21 +6,37 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useState } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { CopyTextViewProps } from "../views/copy-text-view";
 import {
-  ReferralCodeContext,
   REFERRAL_CODES_NAMESPACE,
+  ReferralCodeContext,
   SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
+import { ShareLinkViewProps } from "./sqm-share-link-view";
 
-interface ShareLinkProps {
+export interface ShareLinkProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
   linkOverride?: string;
+  customizeUrl?: boolean;
+  customizeUrlText?: string;
+  customizeLinkLabel?: string;
+  saveLabelText?: string;
+  cancelLabelText?: string;
+  successMessage?: string;
+  textAlign?: "left" | "center" | "right";
+  buttonStyle?: "icon" | "button-outside" | "button-below";
+  backgroundColor?: string;
+  textColor?: string;
+  borderRadius?: string;
+  buttonType?: "primary" | "secondary";
+  copyButtonLabel?: string;
+  borderColor?: string;
 }
+
+const MAX_EDITS = 5;
 
 const MessageLinkQuery = gql`
   query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -42,23 +58,85 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
+const ADD_SHARE_LINK_CODE = gql`
+  mutation ($addShareLinkCodeInput: AddShareLinkCodeInput!) {
+    addShareLinkCode(addShareLinkCodeInput: $addShareLinkCodeInput) {
+      linkCode {
+        linkCode
+        shortUrl
+        referralCode {
+          code
+        }
+      }
+    }
+  }
+`;
+
+// TODO: Replace with actual validation query when backend is ready
+const VALIDATE_LINK_CODE = gql`
+  query validateLinkCode($linkCode: String!, $programId: ID) {
+    validateShareLinkCode(linkCode: $linkCode, programId: $programId) {
+      valid
+      message
+    }
+  }
+`;
+
+// TODO: Replace with actual edit count query when backend is ready
+const SHARE_LINK_EDIT_COUNT = gql`
+  query shareLinkEditCount($programId: ID) {
+    viewer {
+      ... on User {
+        shareLinkCodeCount(programId: $programId)
+      }
+    }
+  }
+`;
+
+function parseDomainPrefix(url: string): string {
+  try {
+    const parsed = new URL(url);
+    return parsed.origin + "/";
+  } catch {
+    return url;
+  }
+}
+
+function parsePathSuffix(url: string): string {
+  try {
+    const parsed = new URL(url);
+    // Remove leading slash
+    return parsed.pathname.slice(1) + parsed.search + parsed.hash;
+  } catch {
+    return "";
+  }
+}
+
+export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
   const contextData = useParentValue<ReferralCodeContext>(
-    REFERRAL_CODES_NAMESPACE
+    REFERRAL_CODES_NAMESPACE,
   );
 
-  const { data } = useQuery(
+  const { data, refetch } = useQuery(
     MessageLinkQuery,
     { programId, engagementMedium },
-    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
+    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined,
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
+  const [setCopied] = useMutation(SET_CODE_COPIED);
+  const [addShareLinkCode, { loading: isSaving }] =
+    useMutation(ADD_SHARE_LINK_CODE);
 
-  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
+  // TODO: Wire up when backend query is ready
+  const { data: editCountData } = useQuery(
+    SHARE_LINK_EDIT_COUNT,
+    { programId },
+    !user?.jwt || !props.customizeUrl,
+  );
 
   const copyString =
     (contextData?.shareLink || data?.user?.shareLink) ??
@@ -66,6 +144,21 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
     "...";
 
   const [open, setOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState("");
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+
+  const domainPrefix = parseDomainPrefix(copyString);
+
+  // TODO: Replace with actual data from editCountData when backend is ready
+  const editCount = editCountData?.viewer?.shareLinkCodeCount ?? 0;
+  const editsRemaining = Math.max(0, MAX_EDITS - editCount);
+  const limitReached = editsRemaining <= 0;
 
   async function onClick() {
     if (contextData) {
@@ -92,5 +185,87 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
     });
   }
 
-  return { ...props, onClick, open, copyString: copyString };
+  function onCustomizeClick() {
+    if (limitReached) return;
+    setIsEditing(true);
+    setEditValue(parsePathSuffix(copyString));
+    setValidationError(null);
+  }
+
+  function onEditValueChange(value: string) {
+    setEditValue(value);
+    setValidationError(null);
+
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+
+    if (!value) {
+      setIsValidating(false);
+      return;
+    }
+
+    setIsValidating(true);
+    debounceTimerRef.current = setTimeout(async () => {
+      // TODO: Call actual validation query when backend is ready
+      setIsValidating(false);
+    }, 2000);
+  }
+
+  async function onSave() {
+    if (!editValue || validationError || isValidating) return;
+
+    try {
+      await addShareLinkCode({
+        addShareLinkCodeInput: {
+          userId: user?.id,
+          accountId: user?.accountId,
+          programId,
+          linkCode: editValue,
+        },
+      });
+
+      setIsEditing(false);
+      setShowSuccess(true);
+      await refetch();
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (e) {
+      setValidationError(
+        e?.message || "Failed to save custom link. Please try again.",
+      );
+    }
+  }
+
+  function onCancel() {
+    setIsEditing(false);
+    setEditValue("");
+    setValidationError(null);
+    setIsValidating(false);
+  }
+
+  return {
+    copyTextViewProps: {
+      ...props,
+      onClick,
+      open,
+      copyString,
+    },
+    customizeUrl: props.customizeUrl ?? false,
+    customizeLinkLabel: props.customizeLinkLabel ?? "Customize Link",
+    saveLabelText: props.saveLabelText ?? "Save",
+    cancelLabelText: props.cancelLabelText ?? "Cancel",
+    successMessage: props.successMessage ?? "Link updated successfully",
+    isEditing,
+    editValue,
+    domainPrefix,
+    editsRemaining,
+    maxEdits: MAX_EDITS,
+    limitReached,
+    validationError,
+    isValidating,
+    isSaving,
+    showSuccess,
+    onCustomizeClick,
+    onEditValueChange,
+    onSave,
+    onCancel,
+  };
 }

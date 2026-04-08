@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { CopyTextView } from "../views/copy-text-view";
+import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
 import scenario from "./ShareLink.feature";
 
 export default {
@@ -92,23 +93,142 @@ export const CustomStyles = () => {
 };
 
 export const CustomStylesWithDemoHooks = () => {
-  const props = {
-    copyString: "https://noah.example.com",
-    open: false,
-    tooltiptext: "Copied!",
-    backgroundColor: "#1ed760",
-    borderRadius: "30px",
-    textColor: "red",
-    buttonType: "primary" as const,
-    borderColor: "#121212",
-  };
   return (
     <sqm-share-link
-      demoData={{ ...props }}
+      demoData={{
+        copyTextViewProps: {
+          copyString: "https://noah.example.com",
+          open: false,
+          tooltiptext: "Copied!",
+          backgroundColor: "#1ed760",
+          borderRadius: "30px",
+          textColor: "red",
+          buttonType: "primary" as const,
+          borderColor: "#121212",
+        },
+      }}
       backgroundColor="#1ed760"
     ></sqm-share-link>
   );
 };
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;
+};
+
+// Customize URL stories
+
+const noopFn = () => {};
+
+const defaultCustomizeProps: ShareLinkViewProps = {
+  copyTextViewProps: {
+    copyString: "https://ssqt.co/abc123",
+    open: false,
+    tooltiptext: "Copied!",
+  },
+  customizeUrl: true,
+  customizeLinkLabel: "Customize Link",
+  saveLabelText: "Save",
+  cancelLabelText: "Cancel",
+  successMessage: "Link updated successfully",
+  isEditing: false,
+  editValue: "",
+  domainPrefix: "https://ssqt.co/",
+  editsRemaining: 3,
+  maxEdits: 5,
+  limitReached: false,
+  validationError: null,
+  isValidating: false,
+  isSaving: false,
+  showSuccess: false,
+  onCustomizeClick: noopFn,
+  onEditValueChange: noopFn,
+  onSave: noopFn,
+  onCancel: noopFn,
+};
+
+export const CustomizeUrlDefault = () => {
+  return <ShareLinkView {...defaultCustomizeProps} />;
+};
+
+export const CustomizeUrlEditing = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        isEditing: true,
+        editValue: "abc123",
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlCustomized = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        copyTextViewProps: {
+          ...defaultCustomizeProps.copyTextViewProps,
+          copyString: "https://ssqt.co/shirleylam",
+        },
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlLimitReached = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        copyTextViewProps: {
+          ...defaultCustomizeProps.copyTextViewProps,
+          copyString: "https://ssqt.co/shirleylam",
+        },
+        editsRemaining: 0,
+        limitReached: true,
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlValidationError = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        isEditing: true,
+        editValue: "invalid link!",
+        validationError: "This link code is already taken.",
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlSaving = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        isEditing: true,
+        editValue: "shirleylam",
+        isSaving: true,
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlSuccess = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        copyTextViewProps: {
+          ...defaultCustomizeProps.copyTextViewProps,
+          copyString: "https://ssqt.co/shirleylam",
+        },
+        showSuccess: true,
+      }}
+    />
+  );
 };

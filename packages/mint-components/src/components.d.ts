@@ -54,6 +54,7 @@ import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-re
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
+import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
@@ -4930,20 +4931,50 @@ export namespace Components {
          */
         "buttonType"?: "primary" | "secondary";
         /**
+          * Text for the cancel button in editing mode
+          * @uiName Cancel button label
+          * @uiType string
+         */
+        "cancelLabelText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
         /**
+          * Text shown below the share link input to trigger customization
+          * @uiName Customize link label
+          * @uiType string
+         */
+        "customizeLinkLabel"?: string;
+        /**
+          * Enable users to customize their referral link
+          * @uiName Customize URL
+          * @uiType boolean
+         */
+        "customizeUrl"?: boolean;
+        /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<ShareLinkViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Text for the save button in editing mode
+          * @uiName Save button label
+          * @uiType string
+         */
+        "saveLabelText"?: string;
+        /**
+          * Message shown briefly after successfully saving a custom link
+          * @uiName Success message
+          * @uiType string
+         */
+        "successMessage"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment
@@ -12823,20 +12854,50 @@ declare namespace LocalJSX {
          */
         "buttonType"?: "primary" | "secondary";
         /**
+          * Text for the cancel button in editing mode
+          * @uiName Cancel button label
+          * @uiType string
+         */
+        "cancelLabelText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
         /**
+          * Text shown below the share link input to trigger customization
+          * @uiName Customize link label
+          * @uiType string
+         */
+        "customizeLinkLabel"?: string;
+        /**
+          * Enable users to customize their referral link
+          * @uiName Customize URL
+          * @uiType boolean
+         */
+        "customizeUrl"?: boolean;
+        /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<ShareLinkViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Text for the save button in editing mode
+          * @uiName Save button label
+          * @uiType string
+         */
+        "saveLabelText"?: string;
+        /**
+          * Message shown briefly after successfully saving a custom link
+          * @uiName Success message
+          * @uiType string
+         */
+        "successMessage"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment
