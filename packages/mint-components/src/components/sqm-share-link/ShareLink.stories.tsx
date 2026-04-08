@@ -140,6 +140,9 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   isValidating: false,
   isSaving: false,
   showSuccess: false,
+  characterLimit: 15,
+  charactersRemaining: 15,
+  editLimitText: "You can edit your link up to 5 times.",
   onCustomizeClick: noopFn,
   onEditValueChange: noopFn,
   onSave: noopFn,
@@ -156,7 +159,8 @@ export const CustomizeUrlEditing = () => {
       {...{
         ...defaultCustomizeProps,
         isEditing: true,
-        editValue: "abc123",
+        editValue: "nvoiwb18",
+        charactersRemaining: 7,
       }}
     />
   );
@@ -198,8 +202,51 @@ export const CustomizeUrlValidationError = () => {
       {...{
         ...defaultCustomizeProps,
         isEditing: true,
-        editValue: "invalid link!",
-        validationError: "This link code is already taken.",
+        editValue: "nvoiwb18",
+        charactersRemaining: 7,
+        validationError: {
+          code: "LINK_TAKEN",
+          title: "This link is already taken",
+          description:
+            "Try adding numbers, a dash or underscore to create a unique link.",
+        },
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlInvalidSymbols = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        isEditing: true,
+        editValue: "nvoiwb18",
+        charactersRemaining: 7,
+        validationError: {
+          code: "INVALID_SYMBOLS",
+          title: "Please use only letters, numbers, dashes and underscores",
+          description:
+            "Special symbols can break the link when sharing.",
+        },
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlRestrictedWord = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        isEditing: true,
+        editValue: "nvoiwb18",
+        charactersRemaining: 7,
+        validationError: {
+          code: "RESTRICTED_WORD",
+          title: "Please try a different link",
+          description: "This link contains a restricted word.",
+        },
       }}
     />
   );

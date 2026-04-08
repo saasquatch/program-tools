@@ -174,9 +174,77 @@ export class ShareLink {
   successMessage?: string = "Link updated successfully";
 
   /**
+   * Title text shown when the custom link is already taken
+   *
+   * @uiName Link taken error title
+   * @uiType string
+   */
+  @Prop()
+  linkTakenErrorTitle?: string = "This link is already taken";
+
+  /**
+   * Description text shown when the custom link is already taken
+   *
+   * @uiName Link taken error description
+   * @uiType string
+   */
+  @Prop()
+  linkTakenErrorDescription?: string =
+    "Try adding numbers, a dash or underscore to create a unique link.";
+
+  /**
+   * Title text shown when the link contains invalid symbols
+   *
+   * @uiName Invalid symbols error title
+   * @uiType string
+   */
+  @Prop()
+  invalidSymbolsErrorTitle?: string =
+    "Please use only letters, numbers, dashes and underscores";
+
+  /**
+   * Description text shown when the link contains invalid symbols
+   *
+   * @uiName Invalid symbols error description
+   * @uiType string
+   */
+  @Prop()
+  invalidSymbolsErrorDescription?: string =
+    "Special symbols can break the link when sharing.";
+
+  /**
+   * Title text shown when the link contains a restricted word
+   *
+   * @uiName Restricted word error title
+   * @uiType string
+   */
+  @Prop()
+  restrictedWordErrorTitle?: string = "Please try a different link";
+
+  /**
+   * Description text shown when the link contains a restricted word
+   *
+   * @uiName Restricted word error description
+   * @uiType string
+   */
+  @Prop()
+  restrictedWordErrorDescription?: string =
+    "This link contains a restricted word.";
+
+  /**
+   * Text describing the edit limit
+   *
+   * @uiName Edit limit text
+   * @uiType string
+   */
+  @Prop()
+  editLimitText?: string = "You can edit your link up to 5 times.";
+
+  /**
    * @undocumented
    * @uiType object
    */
+
   @Prop() demoData?: DemoData<ShareLinkViewProps>;
 
   constructor() {
@@ -220,11 +288,11 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
-    customizeUrl: props.customizeUrl ?? false,
-    customizeLinkLabel: props.customizeLinkLabel ?? "Customize Link",
-    saveLabelText: props.saveLabelText ?? "Save",
-    cancelLabelText: props.cancelLabelText ?? "Cancel",
-    successMessage: props.successMessage ?? "Link updated successfully",
+    customizeUrl: props.customizeUrl,
+    customizeLinkLabel: props.customizeLinkLabel,
+    saveLabelText: props.saveLabelText,
+    cancelLabelText: props.cancelLabelText,
+    successMessage: props.successMessage,
     isEditing,
     editValue,
     domainPrefix,
@@ -235,6 +303,9 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     isValidating: false,
     isSaving: false,
     showSuccess,
+    characterLimit: 15,
+    charactersRemaining: 15 - editValue.length,
+    editLimitText: props.editLimitText ?? "You can edit your link up to 5 times.",
     onCustomizeClick: () => {
       setIsEditing(true);
       setEditValue("sharelink/abc");

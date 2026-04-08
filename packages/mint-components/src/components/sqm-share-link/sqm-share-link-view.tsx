@@ -2,6 +2,18 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 
+export type ValidationErrorCode =
+  | "LINK_TAKEN"
+  | "INVALID_SYMBOLS"
+  | "RESTRICTED_WORD"
+  | null;
+
+export interface ValidationErrorInfo {
+  code: ValidationErrorCode;
+  title: string;
+  description: string;
+}
+
 export interface ShareLinkViewProps {
   copyTextViewProps: CopyTextViewProps;
   customizeUrl: boolean;
@@ -15,10 +27,13 @@ export interface ShareLinkViewProps {
   editsRemaining: number;
   maxEdits: number;
   limitReached: boolean;
-  validationError: string | null;
+  validationError: ValidationErrorInfo | null;
   isValidating: boolean;
   isSaving: boolean;
   showSuccess: boolean;
+  characterLimit: number;
+  charactersRemaining: number;
+  editLimitText: string;
   onCustomizeClick: () => void;
   onEditValueChange: (value: string) => void;
   onSave: () => void;
@@ -50,13 +65,14 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     isValidating,
     isSaving,
     showSuccess,
+    characterLimit,
+    charactersRemaining,
+    editLimitText,
     onCustomizeClick,
     onEditValueChange,
     onSave,
     onCancel,
   } = props;
-
-  console.log({ customizeUrl });
 
   const style = {
     Container: {
@@ -140,6 +156,43 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       fontSize: "var(--sl-font-size-small)",
       color: "var(--sqm-danger-color-text, #dc2626)",
     },
+    ErrorBanner: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "var(--sl-spacing-small)",
+      padding: "var(--sl-spacing-small) var(--sl-spacing-medium)",
+      borderRadius: "var(--sqm-border-radius-normal, 4px)",
+      fontSize: "var(--sl-font-size-small)",
+      lineHeight: "1.4",
+    },
+    ErrorBannerLinkTaken: {
+      background: "var(--sl-color-primary-50, #eff6ff)",
+      color: "var(--sl-color-neutral-900)",
+    },
+    ErrorBannerInvalidSymbols: {
+      background: "#fef9c3",
+      color: "var(--sl-color-neutral-900)",
+    },
+    ErrorBannerRestrictedWord: {
+      background: "#fef9c3",
+      color: "var(--sl-color-neutral-900)",
+    },
+    ErrorBannerIcon: {
+      flexShrink: "0",
+      marginTop: "2px",
+    },
+    ErrorBannerContent: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "2px",
+    },
+    ErrorBannerTitle: {
+      fontWeight: "600",
+      margin: "0",
+    },
+    ErrorBannerDescription: {
+      margin: "0",
+    },
     SuccessText: {
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
@@ -150,7 +203,22 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       gap: "var(--sl-spacing-medium)",
       alignItems: "center",
     },
-    ActionButton: {
+    SaveButton: {
+      cursor: "pointer",
+      fontFamily: "var(--sl-font-sans)",
+      fontSize: "var(--sl-font-size-small)",
+      fontWeight: "600",
+      padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
+      borderRadius: "var(--sqm-border-radius-normal, 4px)",
+      border: "1px solid var(--sl-color-neutral-900)",
+      background: "var(--sl-color-neutral-900)",
+      color: "#fff",
+      "&:disabled": {
+        opacity: "0.5",
+        cursor: "default",
+      },
+    },
+    CancelButton: {
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
       fontWeight: "600",
@@ -159,17 +227,27 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       border: "none",
       padding: "0",
       fontFamily: "var(--sl-font-sans)",
-    },
-    SaveButton: {
-      color: "var(--sl-color-neutral-900)",
-    },
-    CancelButton: {
       color: "var(--sl-color-neutral-500)",
     },
   };
 
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
+
+  const errorBannerClass = validationError
+    ? validationError.code === "LINK_TAKEN"
+      ? sheet.classes.ErrorBannerLinkTaken
+      : validationError.code === "INVALID_SYMBOLS"
+        ? sheet.classes.ErrorBannerInvalidSymbols
+        : sheet.classes.ErrorBannerRestrictedWord
+    : "";
+
+  const errorIcon =
+    validationError?.code === "LINK_TAKEN"
+      ? "info-circle"
+      : "exclamation-triangle";
+
+  const showCharactersRemaining = charactersRemaining <= 7;
 
   // Editing state
   if (isEditing) {
@@ -179,7 +257,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           {styleString}
           {vanillaStyle}
         </style>
-        <p class={sheet.classes.EditLabel}>Enter your custom referral link:</p>
+        <p class={sheet.classes.EditLabel}>Enter your link</p>
         <div class={sheet.classes.EditInputWrapper}>
           <span class={sheet.classes.DomainPrefix}>{domainPrefix}</span>
           <input
@@ -190,19 +268,34 @@ export function ShareLinkView(props: ShareLinkViewProps) {
               onEditValueChange((e.target as HTMLInputElement).value)
             }
             disabled={isSaving}
+            maxLength={characterLimit}
           />
         </div>
+        <p class={sheet.classes.HelperText}>
+          {editLimitText}
+          {showCharactersRemaining &&
+            ` Characters remaining: ${charactersRemaining}`}
+        </p>
         {validationError && (
-          <p class={sheet.classes.ErrorText}>{validationError}</p>
+          <div class={`${sheet.classes.ErrorBanner} ${errorBannerClass}`}>
+            <sl-icon
+              class={sheet.classes.ErrorBannerIcon}
+              name={errorIcon}
+            />
+            <div class={sheet.classes.ErrorBannerContent}>
+              <p class={sheet.classes.ErrorBannerTitle}>
+                {validationError.title}
+              </p>
+              <p class={sheet.classes.ErrorBannerDescription}>
+                {validationError.description}
+              </p>
+            </div>
+          </div>
         )}
         {isValidating && <p class={sheet.classes.HelperText}>Validating...</p>}
-        <p class={sheet.classes.HelperText}>
-          You have max {maxEdits} edits. You have {editsRemaining} changes
-          remaining
-        </p>
         <div class={sheet.classes.ActionRow}>
           <button
-            class={`${sheet.classes.ActionButton} ${sheet.classes.SaveButton}`}
+            class={sheet.classes.SaveButton}
             onClick={onSave}
             disabled={
               isSaving || isValidating || !!validationError || !editValue
@@ -211,7 +304,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             {isSaving ? "Saving..." : saveLabelText}
           </button>
           <button
-            class={`${sheet.classes.ActionButton} ${sheet.classes.CancelButton}`}
+            class={sheet.classes.CancelButton}
             onClick={onCancel}
             disabled={isSaving}
           >

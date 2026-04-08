@@ -4958,11 +4958,53 @@ export namespace Components {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Text describing the edit limit
+          * @uiName Edit limit text
+          * @uiType string
+         */
+        "editLimitText"?: string;
+        /**
+          * Description text shown when the link contains invalid symbols
+          * @uiName Invalid symbols error description
+          * @uiType string
+         */
+        "invalidSymbolsErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains invalid symbols
+          * @uiName Invalid symbols error title
+          * @uiType string
+         */
+        "invalidSymbolsErrorTitle"?: string;
+        /**
+          * Description text shown when the custom link is already taken
+          * @uiName Link taken error description
+          * @uiType string
+         */
+        "linkTakenErrorDescription"?: string;
+        /**
+          * Title text shown when the custom link is already taken
+          * @uiName Link taken error title
+          * @uiType string
+         */
+        "linkTakenErrorTitle"?: string;
+        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Description text shown when the link contains a restricted word
+          * @uiName Restricted word error description
+          * @uiType string
+         */
+        "restrictedWordErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains a restricted word
+          * @uiName Restricted word error title
+          * @uiType string
+         */
+        "restrictedWordErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label
@@ -12881,11 +12923,53 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Text describing the edit limit
+          * @uiName Edit limit text
+          * @uiType string
+         */
+        "editLimitText"?: string;
+        /**
+          * Description text shown when the link contains invalid symbols
+          * @uiName Invalid symbols error description
+          * @uiType string
+         */
+        "invalidSymbolsErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains invalid symbols
+          * @uiName Invalid symbols error title
+          * @uiType string
+         */
+        "invalidSymbolsErrorTitle"?: string;
+        /**
+          * Description text shown when the custom link is already taken
+          * @uiName Link taken error description
+          * @uiType string
+         */
+        "linkTakenErrorDescription"?: string;
+        /**
+          * Title text shown when the custom link is already taken
+          * @uiName Link taken error title
+          * @uiType string
+         */
+        "linkTakenErrorTitle"?: string;
+        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Description text shown when the link contains a restricted word
+          * @uiName Restricted word error description
+          * @uiType string
+         */
+        "restrictedWordErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains a restricted word
+          * @uiName Restricted word error title
+          * @uiType string
+         */
+        "restrictedWordErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label

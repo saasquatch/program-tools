@@ -13,7 +13,11 @@ import {
   ReferralCodeContext,
   SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
-import { ShareLinkViewProps } from "./sqm-share-link-view";
+import {
+  ShareLinkViewProps,
+  ValidationErrorCode,
+  ValidationErrorInfo,
+} from "./sqm-share-link-view";
 
 export interface ShareLinkProps {
   programId?: string;
@@ -34,9 +38,17 @@ export interface ShareLinkProps {
   buttonType?: "primary" | "secondary";
   copyButtonLabel?: string;
   borderColor?: string;
+  linkTakenErrorTitle?: string;
+  linkTakenErrorDescription?: string;
+  invalidSymbolsErrorTitle?: string;
+  invalidSymbolsErrorDescription?: string;
+  restrictedWordErrorTitle?: string;
+  restrictedWordErrorDescription?: string;
+  editLimitText?: string;
 }
 
 const MAX_EDITS = 5;
+const CHARACTER_LIMIT = 15;
 
 const MessageLinkQuery = gql`
   query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -146,7 +158,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState("");
-  const [validationError, setValidationError] = useState<string | null>(null);
+  const [validationError, setValidationError] =
+    useState<ValidationErrorInfo | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
@@ -159,6 +172,33 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const editCount = editCountData?.viewer?.shareLinkCodeCount ?? 0;
   const editsRemaining = Math.max(0, MAX_EDITS - editCount);
   const limitReached = editsRemaining <= 0;
+
+  function mapErrorCodeToInfo(
+    errorCode: ValidationErrorCode,
+  ): ValidationErrorInfo | null {
+    if (!errorCode) return null;
+    const errorMap: Record<
+      NonNullable<ValidationErrorCode>,
+      ValidationErrorInfo
+    > = {
+      LINK_TAKEN: {
+        code: "LINK_TAKEN",
+        title: props.linkTakenErrorTitle,
+        description: props.linkTakenErrorDescription,
+      },
+      INVALID_SYMBOLS: {
+        code: "INVALID_SYMBOLS",
+        title: props.invalidSymbolsErrorTitle,
+        description: props.invalidSymbolsErrorDescription,
+      },
+      RESTRICTED_WORD: {
+        code: "RESTRICTED_WORD",
+        title: props.restrictedWordErrorTitle,
+        description: props.restrictedWordErrorDescription,
+      },
+    };
+    return errorMap[errorCode];
+  }
 
   async function onClick() {
     if (contextData) {
@@ -193,12 +233,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   }
 
   function onEditValueChange(value: string) {
-    setEditValue(value);
+    const trimmed = value.slice(0, CHARACTER_LIMIT);
+    setEditValue(trimmed);
     setValidationError(null);
 
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
 
-    if (!value) {
+    if (!trimmed) {
       setIsValidating(false);
       return;
     }
@@ -206,6 +247,10 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     setIsValidating(true);
     debounceTimerRef.current = setTimeout(async () => {
       // TODO: Call actual validation query when backend is ready
+      // Example: const result = await validateLinkCode({ linkCode: trimmed, programId });
+      // if (!result?.validateShareLinkCode?.valid) {
+      //   setValidationError(mapErrorCodeToInfo(result.validateShareLinkCode.errorCode));
+      // }
       setIsValidating(false);
     }, 2000);
   }
@@ -228,8 +273,14 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       await refetch();
       setTimeout(() => setShowSuccess(false), 3000);
     } catch (e) {
+      const errorCode = e?.extensions?.code as ValidationErrorCode;
       setValidationError(
-        e?.message || "Failed to save custom link. Please try again.",
+        mapErrorCodeToInfo(errorCode) ?? {
+          code: null,
+          title: "Error",
+          description:
+            e?.message || "Failed to save custom link. Please try again.",
+        },
       );
     }
   }
@@ -248,11 +299,11 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       open,
       copyString,
     },
-    customizeUrl: props.customizeUrl ?? false,
-    customizeLinkLabel: props.customizeLinkLabel ?? "Customize Link",
-    saveLabelText: props.saveLabelText ?? "Save",
-    cancelLabelText: props.cancelLabelText ?? "Cancel",
-    successMessage: props.successMessage ?? "Link updated successfully",
+    customizeUrl: props.customizeUrl,
+    customizeLinkLabel: props.customizeLinkLabel,
+    saveLabelText: props.saveLabelText,
+    cancelLabelText: props.cancelLabelText,
+    successMessage: props.successMessage,
     isEditing,
     editValue,
     domainPrefix,
@@ -263,6 +314,9 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     isValidating,
     isSaving,
     showSuccess,
+    characterLimit: CHARACTER_LIMIT,
+    charactersRemaining: CHARACTER_LIMIT - editValue.length,
+    editLimitText: props.editLimitText,
     onCustomizeClick,
     onEditValueChange,
     onSave,
