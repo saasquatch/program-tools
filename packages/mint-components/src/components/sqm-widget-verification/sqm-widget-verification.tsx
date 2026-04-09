@@ -165,6 +165,10 @@ export class WidgetVerification {
 
     if (props.loading) return <sl-spinner></sl-spinner>;
 
+    if (props.showPartnerModal) {
+      return <sqm-partner-info-modal></sqm-partner-info-modal>;
+    }
+
     const generalText = this.getStepTextProps("general_");
 
     return (
@@ -223,7 +227,7 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
   };
 
   return deepmerge(
-    { showCode, onVerification, loading: false },
+    { showCode, showPartnerModal: false, onVerification, onPartnerModalComplete: () => {}, loading: false },
     formatted || {},
     { arrayMerge: (_, a) => a }
   );

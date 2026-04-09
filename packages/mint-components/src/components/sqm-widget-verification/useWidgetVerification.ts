@@ -42,6 +42,7 @@ export function useWidgetVerification() {
   });
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
   const [loading, setLoading] = useState(true);
+  const [showPartnerModal, setShowPartnerModal] = useState(false);
   const [fetch] = useLazyQuery(USER_LOOKUP);
 
   useEffect(() => {
@@ -63,8 +64,13 @@ export function useWidgetVerification() {
   }, []);
 
   const onVerification = () => {
+    setShowPartnerModal(true);
+  };
+
+  const onPartnerModalComplete = () => {
+    setShowPartnerModal(false);
     setContext(true);
   };
 
-  return { showCode, onVerification, loading };
+  return { showCode, showPartnerModal, onVerification, onPartnerModalComplete, loading };
 }
