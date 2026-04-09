@@ -191,7 +191,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumber: string =
-    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number} other {Tax number}}";
   /**
    * @uiName Province field label
    * @uiGroup Step 2 Properties
@@ -202,7 +202,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Step 2 Properties
    */
   @Prop() step2_indirectTaxNumberError: string =
-    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number} other {Tax number}} is required";
 
   /**
    * Displayed to participants registered for QST.
@@ -853,7 +853,7 @@ export class TaxAndCashMonolith {
    */
   @Prop()
   dashboard_statusBadgeText: string =
-    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} other {Failed} }";
   /**
    * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
    * @uiName Payout schedule by threshold text

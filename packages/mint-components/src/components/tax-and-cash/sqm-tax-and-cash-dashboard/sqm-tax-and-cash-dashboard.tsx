@@ -193,7 +193,7 @@ export class TaxAndCashDashboard {
    */
   @Prop()
   statusBadgeText: string =
-    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} }";
+    "{badgeText, select, payoutToday {Payout Today} nextPayout {Next Payout} other {Failed} }";
   /**
    * Display participants' payout preference on the payout information card, indicating the balance at which they want to get paid.
    * @uiName Payout schedule by threshold text
