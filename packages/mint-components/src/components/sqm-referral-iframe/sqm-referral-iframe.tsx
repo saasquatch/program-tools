@@ -38,6 +38,11 @@ export class SqmReferralIframe {
    */
   @Prop() iframeWidth: string = "100%";
   /**
+   * Override the default parameter name used in the iframe
+   * @uiName Referral code parameter name
+   */
+  @Prop() codeParam: string = "rsCode";
+  /**
    * @undocumented
    * @uiType object
    */
@@ -96,6 +101,6 @@ function useReferralIframeDemo(props: SqmReferralIframe) {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }
