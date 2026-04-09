@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \<sqm-referral-iframe>
-  - AAdded prop to configure query parameter of referral code
+  - Added prop to configure query parameter of referral code
 - Fixed issue with ICU messages missing required `other` clause
 
 ## [2.1.7] - 2026-04-01
