@@ -413,7 +413,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           {text.termsAndConditionsLabel}
         </a>
       ),
-    }
+    },
   );
 
   let regionLabel = undefined;
@@ -431,7 +431,14 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.state;
   }
 
+  // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "000000" and the phoneNumberCountryCode to "DZ"
   function isDisabledPartnerInput(field: string) {
+    if (
+      data.partnerData.phoneNumber === "0000000" &&
+      (field === "phoneNumber" || field === "phoneNumberCountryCode")
+    ) {
+      return false;
+    }
     return states.isPartner && !!data.partnerData?.[field];
   }
 
@@ -469,7 +476,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </p>
           </sqm-form-message>
@@ -489,7 +496,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       id: "formStep",
                       defaultMessage: text.formStep,
                     },
-                    { step: states.step, count: FORM_STEPS }
+                    { step: states.step, count: FORM_STEPS },
                   )}
                 </p>
               )}
@@ -518,7 +525,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         {text.supportLink}
                       </a>
                     ),
-                  }
+                  },
                 )}
               </p>
             </sqm-form-message>
@@ -542,7 +549,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         {text.supportLink}
                       </a>
                     ),
-                  }
+                  },
                 )}
               </p>
             </sqm-form-message>
@@ -561,7 +568,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.firstName,
-                        formState.errors.firstName
+                        formState.errors.firstName,
                       ),
                     }
                   : {})}
@@ -579,7 +586,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.lastName,
-                        formState.errors.lastName
+                        formState.errors.lastName,
                       ),
                     }
                   : {})}
@@ -611,7 +618,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.country,
-                        formState.errors.countryCode
+                        formState.errors.countryCode,
                       ),
                     }
                   : {})}
@@ -710,7 +717,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       validateBillingField(/[a-zA-Z]+/, value) &&
                         formatErrorMessage(
                           text.phoneNumber,
-                          text.error.fieldInvalidError
+                          text.error.fieldInvalidError,
                         );
                     }}
                     disabled={
@@ -721,7 +728,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                           class: classes.ErrorInput,
                           helpText: formatErrorMessage(
                             text.phoneNumber,
-                            formState.errors.phoneNumber
+                            formState.errors.phoneNumber,
                           ),
                         }
                       : {})}
@@ -740,7 +747,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !validateBillingField(/^[\x20-\xFF]+$/, value) &&
                   formatErrorMessage(
                     text.address,
-                    text.error.invalidCharacterError
+                    text.error.invalidCharacterError,
                   )
                 }
                 disabled={
@@ -751,7 +758,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.address,
-                        formState.errors.address
+                        formState.errors.address,
                       ),
                     }
                   : {})}
@@ -768,7 +775,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !validateBillingField(/^[\x20-\xFF]+$/, value) &&
                   formatErrorMessage(
                     text.city,
-                    text.error.invalidCharacterError
+                    text.error.invalidCharacterError,
                   )
                 }
                 disabled={
@@ -779,7 +786,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.city,
-                        formState.errors.city
+                        formState.errors.city,
                       ),
                     }
                   : {})}
@@ -800,7 +807,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         class: classes.ErrorInput,
                         helpText: formatErrorMessage(
                           text.state,
-                          formState.errors.state
+                          formState.errors.state,
                         ),
                       }
                     : {})}
@@ -825,7 +832,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.postalCode,
-                        formState.errors.postalCode
+                        formState.errors.postalCode,
                       ),
                     }
                   : {})}
@@ -845,7 +852,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.currency,
-                        formState.errors.currency
+                        formState.errors.currency,
                       ),
                     }
                   : {})}
@@ -896,7 +903,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   <p class={classes.ErrorText}>
                     {formatErrorMessage(
                       text.termsAndConditionsLabel,
-                      formState.errors.allowBankingCollection
+                      formState.errors.allowBankingCollection,
                     )}
                   </p>
                 )}

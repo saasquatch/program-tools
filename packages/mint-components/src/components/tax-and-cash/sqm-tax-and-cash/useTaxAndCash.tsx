@@ -44,7 +44,24 @@ function getCurrentStep(user: UserQuery["user"]) {
     withdrawalSettings,
     brandedSignup,
     payoutsAccount,
+    billingAddress,
+    phoneNumber,
+    billingCity,
+    billingPostalCode,
+    billingState,
   } = user.impactConnection.publisher;
+  console.log(phoneNumber, "phone number in getCurrentStep");
+
+  // Early partner creation does not collect these fields
+  if (
+    !billingAddress ||
+    !billingCity ||
+    !billingPostalCode ||
+    !billingState ||
+    !phoneNumber
+  ) {
+    return "/1";
+  }
 
   // If they do have a required document, look at current document
   if (requiredTaxDocumentType && !currentTaxDocument) {
@@ -97,7 +114,7 @@ export function useTaxAndCash() {
     {
       namespace: CURRENCIES_NAMESPACE,
       initialValue: [],
-    }
+    },
   );
 
   const [_countriesContext, _setCountriesContext] = useParentState<
@@ -158,7 +175,7 @@ export function useTaxAndCash() {
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
           const currency = currenciesData?.currencies?.data?.find(
-            (currency) => currency.currencyCode === settings.currency
+            (currency) => currency.currencyCode === settings.currency,
           );
           // Currency not in supported list
           if (!currency) return agg;
@@ -176,7 +193,7 @@ export function useTaxAndCash() {
 
           return [...agg, currency];
         },
-        []
+        [],
       );
     return allValidCurrencies;
   }, [financeNetworkData, countryCode]);
@@ -194,9 +211,9 @@ export function useTaxAndCash() {
       new Set(
         paymentOptions
           ?.map((option) => option.countryCode)
-          .filter((value) => value)
+          .filter((value) => value),
       ),
-    [paymentOptions]
+    [paymentOptions],
   );
 
   const _topCountries = ["CA", "GB", "US"];
@@ -205,7 +222,7 @@ export function useTaxAndCash() {
     () =>
       Array.from(availableCountries)
         .map((countryCode) =>
-          getCountryObj({ countryCode, locale: intlLocale })
+          getCountryObj({ countryCode, locale: intlLocale }),
         )
         .sort(sortByName)
         .reduce((prev, countryObj) => {
@@ -213,7 +230,7 @@ export function useTaxAndCash() {
             return [countryObj, ...prev];
           return [...prev, countryObj];
         }, []),
-    [availableCountries]
+    [availableCountries],
   );
 
   useEffect(() => {

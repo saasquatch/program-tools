@@ -104,6 +104,7 @@
 - [sqm-lead-input-field](../sqm-lead-form)
 - [sqm-lead-dropdown-field](../sqm-lead-form)
 - [sqm-lead-form](../sqm-lead-form)
+- [sqm-partner-info-modal](../sqm-partner-info-modal)
 
 ### Graph
 ```mermaid
@@ -205,6 +206,7 @@ graph TD;
   sqm-stencilbook --> sqm-lead-input-field
   sqm-stencilbook --> sqm-lead-dropdown-field
   sqm-stencilbook --> sqm-lead-form
+  sqm-stencilbook --> sqm-partner-info-modal
   sqm-form-message --> sqm-skeleton
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field

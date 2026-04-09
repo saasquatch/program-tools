@@ -149,9 +149,15 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
+        // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "000000" and the phoneNumberCountryCode to "DZ"
         phoneNumberCountryCode:
-          user.impactConnection.publisher.phoneNumberCountryCode,
-        phoneNumber: user.impactConnection.publisher.phoneNumber,
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumberCountryCode,
+        phoneNumber:
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumber,
         address: user.impactConnection.publisher.billingAddress,
         city: user.impactConnection.publisher.billingCity,
         state: user.impactConnection.publisher.billingState,
