@@ -36,7 +36,16 @@ export class PartnerInfoModal {
    * @uiWidget textArea
    */
   @Prop()
-  modalBrandHeader: string = "Welcome to {brandName} Program!";
+  modalHeader: string = "Let's get you ready for rewards";
+
+  /**
+   * Header text when user has an existing partner
+   *
+   * @uiName Existing partner header
+   * @uiWidget textArea
+   */
+  @Prop()
+  modalHeaderExistingPartner: string = "We found an existing account";
 
   /**
    * Description for new partner setup
@@ -46,7 +55,7 @@ export class PartnerInfoModal {
    */
   @Prop()
   descriptionNewPartner: string =
-    "We just need a bit more information about you before you start earning cash!";
+    "Confirm your country and currency now to get your future rewards faster.";
 
   /**
    * Description for existing partner confirmation
@@ -56,7 +65,17 @@ export class PartnerInfoModal {
    */
   @Prop()
   descriptionExistingPartner: string =
-    "We noticed you are already an Impact.com partner, please confirm your information.";
+    "We found an account with this email on our referral program provider, impact.com. Please confirm your country and currency now to get your future rewards faster.";
+
+  /**
+   * Support description for existing partner confirmation
+   *
+   * @uiName Existing partner support description
+   * @uiWidget textArea
+   */
+  @Prop()
+  supportDescriptionExistingPartner: string =
+    "If this is a mistake, please contact Support or sign up for this referral program with a different email.";
 
   /**
    * @uiName Country label
@@ -140,22 +159,6 @@ function useDemoPartnerInfoModal(
   const [currency, setCurrency] = useState("");
   const [error, setError] = useState("");
 
-  const demoCountries = [
-    { countryCode: "US", displayName: "United States" },
-    { countryCode: "CA", displayName: "Canada" },
-    { countryCode: "GB", displayName: "United Kingdom" },
-    { countryCode: "AU", displayName: "Australia" },
-    { countryCode: "DE", displayName: "Germany" },
-  ];
-
-  const demoCurrencies = [
-    { currencyCode: "USD", displayName: "US Dollar" },
-    { currencyCode: "CAD", displayName: "Canadian Dollar" },
-    { currencyCode: "GBP", displayName: "British Pound" },
-    { currencyCode: "EUR", displayName: "Euro" },
-    { currencyCode: "AUD", displayName: "Australian Dollar" },
-  ];
-
   return deepmerge(
     {
       states: {
@@ -168,8 +171,8 @@ function useDemoPartnerInfoModal(
         currency,
         error,
         success: false,
-        filteredCountries: demoCountries,
-        filteredCurrencies: demoCurrencies,
+        filteredCountries: [],
+        filteredCurrencies: [],
       },
       callbacks: {
         onCountryChange: (e: any) => {
@@ -183,8 +186,8 @@ function useDemoPartnerInfoModal(
           const value = e?.detail?.item?.__value;
           if (value) setCurrency(value);
         },
-        onCountrySearch: () => {},
-        onCurrencySearch: () => {},
+        setCountrySearch: () => {},
+        setCurrencySearch: () => {},
         onSubmit: () => {
           if (!countryCode || !currency) {
             setError(props.missingFieldsErrorText);
@@ -195,7 +198,7 @@ function useDemoPartnerInfoModal(
         onClose: () => {},
       },
       text: {
-        modalBrandHeader: props.modalBrandHeader,
+        modalHeader: props.modalHeader,
         descriptionNewPartner: props.descriptionNewPartner,
         descriptionExistingPartner: props.descriptionExistingPartner,
         countryLabel: props.countryLabel,
@@ -204,6 +207,9 @@ function useDemoPartnerInfoModal(
         confirmButtonLabel: props.confirmButtonLabel,
         searchCountryPlaceholder: props.searchCountryPlaceholder,
         searchCurrencyPlaceholder: props.searchCurrencyPlaceholder,
+        supportDescriptionExistingPartner:
+          props.supportDescriptionExistingPartner,
+        modalHeaderExistingPartner: props.modalHeaderExistingPartner,
       },
     },
     props.demoData || {},

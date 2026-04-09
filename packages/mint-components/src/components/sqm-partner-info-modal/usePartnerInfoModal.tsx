@@ -4,7 +4,7 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { PartnerInfoModal } from "./sqm-partner-info-modal";
 import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
@@ -12,11 +12,13 @@ import { ConnectPartnerResult } from "../tax-and-cash/sqm-indirect-tax-form/useI
 import { validTaxDocument } from "../tax-and-cash/utils";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
 
+// new field under impactConnection:{ resolvedByEmail: boolean } - determines if connection came from managed identity
 export const GET_USER_PARTNER_INFO = gql`
   query getUserPartnerInfo {
     user: viewer {
       ... on User {
         id
+        accountId
         firstName
         lastName
         email
@@ -25,8 +27,18 @@ export const GET_USER_PARTNER_INFO = gql`
         impactConnection {
           connected
           publisher {
+            phoneNumber
+            phoneNumberCountryCode
             countryCode
             currency
+            requiredTaxDocumentType
+            currentTaxDocument {
+              type
+              status
+            }
+            withdrawalSettings {
+              paymentMethod
+            }
           }
         }
       }
@@ -111,22 +123,25 @@ type TenantSettingsQuery = {
 export function usePartnerInfoModal(
   props: PartnerInfoModal,
 ): PartnerInfoModalViewProps {
-  const user = useUserIdentity();
   const locale = useLocale();
 
   const {
     data: userData,
     loading: userLoading,
     refetch,
-  } = useQuery(GET_USER_PARTNER_INFO, {}, !user?.jwt);
+  } = useQuery(GET_USER_PARTNER_INFO, {});
 
-  const { data: currenciesData } = useQuery(
+  const user = userData?.user;
+
+  const { data: currenciesData, loading: currenciesLoading } = useQuery(
     GET_CURRENCIES,
     { variables: { locale } },
-    !user?.jwt,
   );
 
-  const { data: countriesData } = useQuery(GET_COUNTRIES, {}, !user?.jwt);
+  const { data: countriesData, loading: countriesLoading } = useQuery(
+    GET_COUNTRIES,
+    {},
+  );
 
   const { data: tenantSettingsData } = useQuery<TenantSettingsQuery>(
     GET_BRAND_NAME,
@@ -138,15 +153,65 @@ export function usePartnerInfoModal(
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
 
-  const [countryCode, setCountryCode] = useState("");
-  const [currency, setCurrency] = useState("");
+  const [countryCode, setCountryCode] = useState(
+    user?.impactConnection?.publisher?.countryCode || "",
+  );
+  const [currency, setCurrency] = useState(
+    user?.impactConnection?.publisher?.currency || "",
+  );
+
+  console.log(countryCode, currency, "initial country and currency state"); // TEMP
+  const [countrySearch, setCountrySearch] = useState("");
+  const [currencySearch, setCurrencySearch] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState(
+    countriesData?.impactPayoutCountries?.data || [],
+  );
+  const [filteredCurrencies, setFilteredCurrencies] = useState(
+    currenciesData?.currencies?.data || [],
+  );
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  console.log(user, "user identity in create partner modal"); // TEMP
-  console.log(userData, "user data from partner info query"); // TEMP
+  const countries = countriesData?.impactPayoutCountries?.data || [];
+  const currencies = currenciesData?.currencies?.data || [];
 
-  const impactConnection = userData?.user?.impactConnection;
+  console.log(user, "user data from partner info query"); // TEMP
+
+  useEffect(() => {
+    if (userData && user.impactConnection?.publisher) {
+      setCountryCode(user.impactConnection.publisher.countryCode);
+      setCurrency(user.impactConnection.publisher.currency);
+    }
+  }, [userData]);
+
+  useEffect(() => {
+    if (!countries?.length) return;
+    if (countrySearch.trim() === "") {
+      setFilteredCountries(countries || []);
+    } else {
+      setFilteredCountries(
+        countries.filter((c) =>
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
+        ) || [],
+      );
+    }
+  }, [countrySearch, countries]);
+
+  useEffect(() => {
+    if (!currencies?.length) return;
+    if (currencySearch.trim() === "") {
+      setFilteredCurrencies(currencies || []);
+    } else {
+      setFilteredCurrencies(
+        currencies.filter((c) =>
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase()),
+        ) || [],
+      );
+    }
+  }, [currencySearch, currencies]);
+
+  const impactConnection = user?.impactConnection;
 
   function onCountryChange(e: any) {
     const value = e.detail?.item?.__value;
@@ -170,15 +235,16 @@ export function usePartnerInfoModal(
     }
     setError("");
 
-    // AL TODO: How to create impact connection if we dont have address, postalCode, and city?
     try {
       const vars = {
         user: {
           id: user.id,
           accountId: user.accountId,
         },
-        firstName: userData.user.firstName,
-        lastName: userData.user.lastName,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        // phoneNumber: null,
+        // phoneNumberCountryCode: null,
         countryCode,
         currency,
       };
@@ -211,7 +277,6 @@ export function usePartnerInfoModal(
         return;
       }
 
-      // Success
       window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
 
       await refetch();
@@ -222,27 +287,35 @@ export function usePartnerInfoModal(
     }
   }
 
-  const shouldShow = !success && !userLoading && !impactConnection?.connected;
+  console.log(success, "success state in partner info modal");
+
+  const showModal =
+    !success &&
+    !userLoading &&
+    (!impactConnection?.connected || !impactConnection?.publisher);
+
+  console.log(showModal, "showModal condition in partner info modal"); // TEMP
 
   return {
     states: {
-      open: shouldShow,
-      loading: userLoading,
+      open: showModal,
+      loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
-      isExistingPartner: !!impactConnection?.connected,
+      isExistingPartner:
+        impactConnection?.connected || impactConnection?.publisher,
       countryCode,
       currency,
       error,
       success,
       brandName: tenantSettingsData?.tenantSettings?.companyName || "",
-      filteredCountries: countriesData?.impactPayoutCountries?.data || [],
-      filteredCurrencies: currenciesData?.currencies?.data || [],
+      filteredCountries: filteredCountries || [],
+      filteredCurrencies: filteredCurrencies || [],
     },
     callbacks: {
       onCountryChange,
       onCurrencyChange,
-      onCountrySearch: () => {},
-      onCurrencySearch: () => {},
+      setCurrencySearch,
+      setCountrySearch,
       onSubmit,
       onClose: () => setSuccess(true),
     },

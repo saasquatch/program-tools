@@ -29,18 +29,21 @@ const demoCurrencies = [
 const noopCallbacks = {
   onCountryChange: (e: any) => console.log("Country changed:", e),
   onCurrencyChange: (e: any) => console.log("Currency changed:", e),
-  onCountrySearch: (v: string) => console.log("Country search:", v),
-  onCurrencySearch: (v: string) => console.log("Currency search:", v),
+  setCountrySearch: (v: string) => console.log("Country search:", v),
+  setCurrencySearch: (v: string) => console.log("Currency search:", v),
   onSubmit: () => console.log("Submit"),
   onClose: () => console.log("Close"),
 };
 
 const defaultText = {
-  modalBrandHeader: "Welcome to {brandName} Program!",
+  modalHeader: "Let's get you ready for rewards",
+  modalHeaderExistingPartner: "We found an existing account",
   descriptionNewPartner:
-    "We just need a bit more information about you before you start earning cash!",
+    "Confirm your country and currency now to get your future rewards faster.",
   descriptionExistingPartner:
     "We noticed you are already an Impact.com partner, please confirm your information.",
+  supportDescriptionExistingPartner:
+    "If this is a mistake, please contact Support or sign up for this referral program with a different email.",
   countryLabel: "Country",
   currencyLabel: "Currency",
   submitButtonLabel: "Submit",

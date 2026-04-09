@@ -2356,7 +2356,13 @@ export namespace Components {
           * @uiName New partner header
           * @uiWidget textArea
          */
-        "modalBrandHeader": string;
+        "modalHeader": string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner": string;
         /**
           * @uiName Network error text
           * @uiWidget textArea
@@ -2374,6 +2380,12 @@ export namespace Components {
           * @uiName Submit button label
          */
         "submitButtonLabel": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner": string;
     }
     interface SqmPasswordField {
         /**
@@ -10464,7 +10476,13 @@ declare namespace LocalJSX {
           * @uiName New partner header
           * @uiWidget textArea
          */
-        "modalBrandHeader"?: string;
+        "modalHeader"?: string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner"?: string;
         /**
           * @uiName Network error text
           * @uiWidget textArea
@@ -10482,6 +10500,12 @@ declare namespace LocalJSX {
           * @uiName Submit button label
          */
         "submitButtonLabel"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner"?: string;
     }
     interface SqmPasswordField {
         /**
