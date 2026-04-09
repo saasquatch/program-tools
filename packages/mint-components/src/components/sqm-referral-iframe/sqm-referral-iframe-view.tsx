@@ -46,7 +46,7 @@ export function ReferralIframeView(props: ReferralIframeViewProps) {
       <style type="text/css">{styleString}</style>
       <iframe
         class={sheet.classes.IFrame}
-        src={`${content.iframeSrc}?${content.codeParam}=${data.shareCode}`}
+        src={`${content.iframeSrc}?${encodeURIComponent(content.codeParam)}=${data.shareCode}`}
       ></iframe>
     </div>
   );
