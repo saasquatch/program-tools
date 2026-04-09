@@ -252,7 +252,7 @@ const SAVE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
-        errorPath
+        code
       }
     }
   }
@@ -269,7 +269,7 @@ const UPDATE_WITHDRAWAL_SETTINGS = gql`
       validationErrors {
         field
         message
-        errorPath
+        code
       }
     }
   }
