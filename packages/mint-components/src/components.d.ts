@@ -4958,6 +4958,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+          * @uiName Edit limit reached text
+          * @uiType string
+         */
+        "editLimitReachedText"?: string;
+        /**
           * Text describing the edit limit
           * @uiName Edit limit text
           * @uiType string
@@ -5017,6 +5023,12 @@ export namespace Components {
           * @uiType string
          */
         "successMessage"?: string;
+        /**
+          * Display text for the support link in the edit limit reached message
+          * @uiName Support link text
+          * @uiType string
+         */
+        "supportLinkText"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment
@@ -12923,6 +12935,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+          * @uiName Edit limit reached text
+          * @uiType string
+         */
+        "editLimitReachedText"?: string;
+        /**
           * Text describing the edit limit
           * @uiName Edit limit text
           * @uiType string
@@ -12982,6 +13000,12 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "successMessage"?: string;
+        /**
+          * Display text for the support link in the edit limit reached message
+          * @uiName Support link text
+          * @uiType string
+         */
+        "supportLinkText"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment

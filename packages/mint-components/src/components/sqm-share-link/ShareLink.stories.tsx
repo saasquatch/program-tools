@@ -143,6 +143,9 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   characterLimit: 15,
   charactersRemaining: 15,
   editLimitText: "You can edit your link up to 5 times.",
+  editLimitReachedText:
+    "5 edit limit reached. To make more changes, please contact {supportLink}.",
+  supportLinkText: "Support",
   onCustomizeClick: noopFn,
   onEditValueChange: noopFn,
   onSave: noopFn,
@@ -173,7 +176,7 @@ export const CustomizeUrlCustomized = () => {
         ...defaultCustomizeProps,
         copyTextViewProps: {
           ...defaultCustomizeProps.copyTextViewProps,
-          copyString: "https://ssqt.co/shirleylam",
+          copyString: "https://ssqt.co/bobtesterson",
         },
       }}
     />
@@ -187,7 +190,7 @@ export const CustomizeUrlLimitReached = () => {
         ...defaultCustomizeProps,
         copyTextViewProps: {
           ...defaultCustomizeProps.copyTextViewProps,
-          copyString: "https://ssqt.co/shirleylam",
+          copyString: "https://ssqt.co/bobtesterson",
         },
         editsRemaining: 0,
         limitReached: true,
@@ -258,7 +261,7 @@ export const CustomizeUrlSaving = () => {
       {...{
         ...defaultCustomizeProps,
         isEditing: true,
-        editValue: "shirleylam",
+        editValue: "bobtesterson",
         isSaving: true,
       }}
     />
@@ -272,7 +275,7 @@ export const CustomizeUrlSuccess = () => {
         ...defaultCustomizeProps,
         copyTextViewProps: {
           ...defaultCustomizeProps.copyTextViewProps,
-          copyString: "https://ssqt.co/shirleylam",
+          copyString: "https://ssqt.co/bobtesterson",
         },
         showSuccess: true,
       }}

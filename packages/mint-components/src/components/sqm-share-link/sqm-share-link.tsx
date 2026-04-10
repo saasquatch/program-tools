@@ -241,6 +241,25 @@ export class ShareLink {
   editLimitText?: string = "You can edit your link up to 5 times.";
 
   /**
+   * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+   *
+   * @uiName Edit limit reached text
+   * @uiType string
+   */
+  @Prop()
+  editLimitReachedText?: string =
+    "5 edit limit reached. To make more changes, please contact {supportLink}.";
+
+  /**
+   * Display text for the support link in the edit limit reached message
+   *
+   * @uiName Support link text
+   * @uiType string
+   */
+  @Prop()
+  supportLinkText?: string = "Support";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -305,7 +324,10 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     showSuccess,
     characterLimit: 15,
     charactersRemaining: 15 - editValue.length,
-    editLimitText: props.editLimitText ?? "You can edit your link up to 5 times.",
+    editLimitText: props.editLimitText,
+    editLimitReachedText:
+      props.editLimitReachedText,
+    supportLinkText: props.supportLinkText,
     onCustomizeClick: () => {
       setIsEditing(true);
       setEditValue("sharelink/abc");

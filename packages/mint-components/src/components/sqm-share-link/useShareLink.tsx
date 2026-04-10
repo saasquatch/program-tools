@@ -45,6 +45,8 @@ export interface ShareLinkProps {
   restrictedWordErrorTitle?: string;
   restrictedWordErrorDescription?: string;
   editLimitText?: string;
+  editLimitReachedText?: string;
+  supportLinkText?: string;
 }
 
 const MAX_EDITS = 5;
@@ -317,6 +319,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     characterLimit: CHARACTER_LIMIT,
     charactersRemaining: CHARACTER_LIMIT - editValue.length,
     editLimitText: props.editLimitText,
+    editLimitReachedText: props.editLimitReachedText,
+    supportLinkText: props.supportLinkText,
     onCustomizeClick,
     onEditValueChange,
     onSave,

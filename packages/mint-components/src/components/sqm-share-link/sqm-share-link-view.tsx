@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { intl } from "../../global/global";
 import { createStyleSheet } from "../../styling/JSS";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 
@@ -34,6 +35,8 @@ export interface ShareLinkViewProps {
   characterLimit: number;
   charactersRemaining: number;
   editLimitText: string;
+  editLimitReachedText: string;
+  supportLinkText: string;
   onCustomizeClick: () => void;
   onEditValueChange: (value: string) => void;
   onSave: () => void;
@@ -68,6 +71,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     characterLimit,
     charactersRemaining,
     editLimitText,
+    editLimitReachedText,
+    supportLinkText,
     onCustomizeClick,
     onEditValueChange,
     onSave,
@@ -166,8 +171,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       lineHeight: "1.4",
     },
     ErrorBannerLinkTaken: {
-      background: "var(--sl-color-primary-50, #eff6ff)",
-      color: "var(--sl-color-neutral-900)",
+      background: "var(--sqm-informative-color-background)",
+      color: "var(--sqm-informative-color-text)",
     },
     ErrorBannerInvalidSymbols: {
       background: "#fef9c3",
@@ -187,7 +192,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       gap: "2px",
     },
     ErrorBannerTitle: {
-      fontWeight: "600",
+      fontWeight: "bold",
       margin: "0",
     },
     ErrorBannerDescription: {
@@ -334,6 +339,23 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           onClick={limitReached ? undefined : onCustomizeClick}
         >
           {customizeLinkLabel}
+        </p>
+      )}
+      {customizeUrl && limitReached && (
+        <p class={sheet.classes.HelperText}>
+          {intl.formatMessage(
+            {
+              id: "editLimitReached",
+              defaultMessage: editLimitReachedText,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href="https://example.com">
+                  {supportLinkText}
+                </a>
+              ),
+            },
+          )}
         </p>
       )}
     </div>
