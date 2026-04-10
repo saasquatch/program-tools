@@ -434,7 +434,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "000000" and the phoneNumberCountryCode to "DZ"
   function isDisabledPartnerInput(field: string) {
     if (
-      data.partnerData.phoneNumber === "0000000" &&
+      data.partnerData?.phoneNumber === "0000000" &&
       (field === "phoneNumber" || field === "phoneNumberCountryCode")
     ) {
       return false;
@@ -530,8 +530,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </p>
             </sqm-form-message>
           )}
-
-          {(states.isPartner || states.isUser) && (
+          {/* AL: Don't need to show this anymore due to early partner creation */}
+          {/* {(states.isPartner || states.isUser) && (
             <sqm-form-message loading={states.loading} type="info">
               <p part="alert-title">{text.isPartnerAlertHeader}</p>
               <p part="alert-description">
@@ -553,7 +553,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 )}
               </p>
             </sqm-form-message>
-          )}
+          )} */}
 
           <div>
             <div class={classes.InputContainer}>

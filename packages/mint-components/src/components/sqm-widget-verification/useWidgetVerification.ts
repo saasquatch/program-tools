@@ -25,6 +25,9 @@ const USER_LOOKUP = gql`
           email
           emailVerified
         }
+        impactConnection {
+          connected
+        }
       }
     }
   }
@@ -51,8 +54,19 @@ export function useWidgetVerification() {
         const res = await fetch({});
         if (!res || res instanceof Error) throw new Error();
 
-        if (res?.viewer?.emailVerified) setContext(true);
-        else if (res?.viewer?.managedIdentity?.emailVerified) setContext(true);
+        // Flow changed to send email -> verify code -> show early partner creation modal
+        const emailVerified =
+          res?.viewer?.emailVerified ||
+          res?.viewer?.managedIdentity?.emailVerified;
+        const isConnected = res?.viewer?.impactConnection?.connected;
+
+        if (isConnected) {
+          // Partner already created, show widget content
+          setContext(true);
+        } else if (emailVerified) {
+          // Email verified but no partner yet, show partner modal
+          setShowPartnerModal(true);
+        }
       } catch (e) {
         console.error("Could not fetch user information:", e);
       } finally {

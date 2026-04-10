@@ -34,7 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
-import { PartnerInfoModalViewProps } from "./components/sqm-partner-info-modal/sqm-partner-info-modal-view";
+import { PartnerInfoModalResult } from "./components/sqm-partner-info-modal/usePartnerInfoModal";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
@@ -2333,7 +2333,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PartnerInfoModalViewProps>;
+        "demoData"?: DemoData<PartnerInfoModalResult>;
         /**
           * Description for existing partner confirmation
           * @uiName Existing partner description
@@ -2376,6 +2376,13 @@ export namespace Components {
           * @uiName Search currency placeholder
          */
         "searchCurrencyPlaceholder": string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+          * @componentState { "title": "Connected (hidden)", "props": { "states": { "open": false } } }
+         */
+        "stateController": string;
         /**
           * @uiName Submit button label
          */
@@ -7224,6 +7231,78 @@ export namespace Components {
          */
         "codeStep_verifyText": string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel": string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel": string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner": string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner": string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText": string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader": string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder": string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel": string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner": string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -7267,6 +7346,7 @@ export namespace Components {
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @componentState { "title": "Step 3: Create Partner", "props": { "showPartnerModal": true }, "dependencies": ["sqm-partner-info-modal"], "uiGroup": "Partner Creation Step" }
          */
         "stateController": string;
     }
@@ -10453,7 +10533,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<PartnerInfoModalViewProps>;
+        "demoData"?: DemoData<PartnerInfoModalResult>;
         /**
           * Description for existing partner confirmation
           * @uiName Existing partner description
@@ -10496,6 +10576,13 @@ declare namespace LocalJSX {
           * @uiName Search currency placeholder
          */
         "searchCurrencyPlaceholder"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+          * @componentState { "title": "Connected (hidden)", "props": { "states": { "open": false } } }
+         */
+        "stateController"?: string;
         /**
           * @uiName Submit button label
          */
@@ -15319,6 +15406,78 @@ declare namespace LocalJSX {
          */
         "codeStep_verifyText"?: string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel"?: string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel"?: string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner"?: string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner"?: string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText"?: string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader"?: string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder"?: string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel"?: string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner"?: string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -15362,6 +15521,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @componentState { "title": "Step 3: Create Partner", "props": { "showPartnerModal": true }, "dependencies": ["sqm-partner-info-modal"], "uiGroup": "Partner Creation Step" }
          */
         "stateController"?: string;
     }

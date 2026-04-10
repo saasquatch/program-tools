@@ -37,11 +37,9 @@ const style = {
     gap: "var(--sl-spacing-medium)",
     position: "relative",
     flexDirection: "column",
-    maxWidth: "320px",
   },
   ContinueButton: {
     width: "100%",
-    maxWidth: "100px",
   },
   SkeletonOne: {
     width: "50%",
@@ -214,7 +212,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function WidgetEmailVerificationView(
-  props: WidgetEmailVerificationViewProps
+  props: WidgetEmailVerificationViewProps,
 ) {
   const { states, callbacks, text } = props;
 
@@ -259,7 +257,7 @@ export function WidgetEmailVerificationView(
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           )}
         </sqm-form-message>
       )}

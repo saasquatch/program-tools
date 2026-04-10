@@ -2,6 +2,7 @@ import {
   useLocale,
   useMutation,
   useQuery,
+  useSetParent,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
@@ -11,6 +12,7 @@ import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
 import { ConnectPartnerResult } from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { validTaxDocument } from "../tax-and-cash/utils";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
+import { VERIFICATION_PARENT_NAMESPACE } from "../sqm-widget-verification/keys";
 
 // new field under impactConnection:{ resolvedByEmail: boolean } - determines if connection came from managed identity
 export const GET_USER_PARTNER_INFO = gql`
@@ -124,6 +126,7 @@ export function usePartnerInfoModal(
   props: PartnerInfoModal,
 ): PartnerInfoModalViewProps {
   const locale = useLocale();
+  const setVerificationContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
   const {
     data: userData,
@@ -281,6 +284,7 @@ export function usePartnerInfoModal(
 
       await refetch();
       setSuccess(true);
+      setVerificationContext(true);
     } catch (e) {
       console.error("Partner creation error:", e);
       setError(props.networkErrorText);
@@ -301,8 +305,7 @@ export function usePartnerInfoModal(
       open: showModal,
       loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
-      isExistingPartner:
-        impactConnection?.connected || impactConnection?.publisher,
+      isExistingPartner: impactConnection?.publisher,
       countryCode,
       currency,
       error,
@@ -322,3 +325,5 @@ export function usePartnerInfoModal(
     text: props.getTextProps(),
   };
 }
+
+export type PartnerInfoModalResult = ReturnType<typeof usePartnerInfoModal>;

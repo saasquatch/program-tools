@@ -51,7 +51,7 @@ const style = {
         "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
     },
     "&::part(body)": {
-      padding: "var(--sl-spacing-small) var(--sl-spacing-x-large)",
+      padding: "0 var(--sl-spacing-x-large)",
       fontSize: "var(--sl-font-size-small)",
       overflow: "visible",
     },
@@ -59,8 +59,6 @@ const style = {
       display: "flex",
       flexDirection: "column",
       gap: "var(--sl-spacing-small)",
-      padding:
-        "var(--sl-spacing-small) var(--sl-spacing-x-large) var(--sl-spacing-x-large)",
     },
     "&::part(overlay)": {
       background: "rgba(0, 0, 0, 0.5)",

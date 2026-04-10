@@ -3,12 +3,16 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import {
   PartnerInfoModalView,
   PartnerInfoModalViewProps,
 } from "./sqm-partner-info-modal-view";
-import { usePartnerInfoModal } from "./usePartnerInfoModal";
+import {
+  PartnerInfoModalResult,
+  usePartnerInfoModal,
+} from "./usePartnerInfoModal";
 
 /**
  * @uiName Partner Info Modal
@@ -129,9 +133,17 @@ export class PartnerInfoModal {
 
   /**
    * @undocumented
+   * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+   * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+   * @componentState { "title": "Connected (hidden)", "props": { "states": { "open": false } } }
+   */
+  @Prop() stateController: string = "{}";
+
+  /**
+   * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<PartnerInfoModalViewProps>;
+  @Prop() demoData?: DemoData<PartnerInfoModalResult>;
 
   constructor() {
     withHooks(this);
@@ -159,6 +171,10 @@ function useDemoPartnerInfoModal(
   const [currency, setCurrency] = useState("");
   const [error, setError] = useState("");
 
+  const parsed = parseStates(props.stateController);
+  const stateOverride = parsed?.["sqm-partner-info-modal"] || parsed || {};
+
+  // @ts-ignore
   return deepmerge(
     {
       states: {
@@ -212,7 +228,7 @@ function useDemoPartnerInfoModal(
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
       },
     },
-    props.demoData || {},
+    props.demoData || stateOverride,
     { arrayMerge: (_, a) => a },
   );
 }
