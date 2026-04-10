@@ -161,43 +161,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       fontSize: "var(--sl-font-size-small)",
       color: "var(--sqm-danger-color-text, #dc2626)",
     },
-    ErrorBanner: {
-      display: "flex",
-      alignItems: "flex-start",
-      gap: "var(--sl-spacing-small)",
-      padding: "var(--sl-spacing-small) var(--sl-spacing-medium)",
-      borderRadius: "var(--sqm-border-radius-normal, 4px)",
-      fontSize: "var(--sl-font-size-small)",
-      lineHeight: "1.4",
-    },
-    ErrorBannerLinkTaken: {
-      background: "var(--sqm-informative-color-background)",
-      color: "var(--sqm-informative-color-text)",
-    },
-    ErrorBannerInvalidSymbols: {
-      background: "#fef9c3",
-      color: "var(--sl-color-neutral-900)",
-    },
-    ErrorBannerRestrictedWord: {
-      background: "#fef9c3",
-      color: "var(--sl-color-neutral-900)",
-    },
-    ErrorBannerIcon: {
-      flexShrink: "0",
-      marginTop: "2px",
-    },
-    ErrorBannerContent: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "2px",
-    },
-    ErrorBannerTitle: {
-      fontWeight: "bold",
-      margin: "0",
-    },
-    ErrorBannerDescription: {
-      margin: "0",
-    },
+
     SuccessText: {
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
@@ -239,18 +203,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const errorBannerClass = validationError
-    ? validationError.code === "LINK_TAKEN"
-      ? sheet.classes.ErrorBannerLinkTaken
-      : validationError.code === "INVALID_SYMBOLS"
-        ? sheet.classes.ErrorBannerInvalidSymbols
-        : sheet.classes.ErrorBannerRestrictedWord
-    : "";
-
-  const errorIcon =
-    validationError?.code === "LINK_TAKEN"
-      ? "info-circle"
-      : "exclamation-triangle";
+  const errorMessageType =
+    validationError?.code === "LINK_TAKEN" ? "info" : "warning";
 
   const showCharactersRemaining = charactersRemaining <= 7;
 
@@ -282,20 +236,10 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             ` Characters remaining: ${charactersRemaining}`}
         </p>
         {validationError && (
-          <div class={`${sheet.classes.ErrorBanner} ${errorBannerClass}`}>
-            <sl-icon
-              class={sheet.classes.ErrorBannerIcon}
-              name={errorIcon}
-            />
-            <div class={sheet.classes.ErrorBannerContent}>
-              <p class={sheet.classes.ErrorBannerTitle}>
-                {validationError.title}
-              </p>
-              <p class={sheet.classes.ErrorBannerDescription}>
-                {validationError.description}
-              </p>
-            </div>
-          </div>
+          <sqm-form-message type={errorMessageType}>
+            <p part="alert-title">{validationError.title}</p>
+            {validationError.description}
+          </sqm-form-message>
         )}
         {isValidating && <p class={sheet.classes.HelperText}>Validating...</p>}
         <div class={sheet.classes.ActionRow}>
