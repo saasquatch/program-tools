@@ -109,11 +109,14 @@ const GET_LINK_DOMAIN = gql`
 
 // TODO: Replace with actual edit count query when backend is ready
 const SHARE_LINK_EDIT_COUNT = gql`
-  query shareLinkEditCount($programId: ID) {
+  query shareLinkEditCount {
     viewer {
       ... on User {
-        shareLinkCodes(programId: $programId) {
+        shareLinkCodes {
           totalCount
+          data {
+            isVanity
+          }
         }
       }
     }
@@ -167,7 +170,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   // TODO: Wire up when backend query is ready
   const { data: editCountData } = useQuery(
     SHARE_LINK_EDIT_COUNT,
-    { programId },
+    {},
     !user?.jwt || !props.customizeUrl,
   );
 
@@ -191,9 +194,16 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const hasPrimaryLinkDomain =
     linkDomainData?.tenantSettings?.primaryLinkDomain != null;
-  const customizeDisabled = !hasPrimaryLinkDomain;
 
-  const editCount = editCountData?.viewer?.shareLinkCodes?.totalCount ?? 0;
+  // TODO: change this back
+  // const customizeDisabled = !hasPrimaryLinkDomain;
+  const customizeDisabled = false;
+
+  const vanityCount =
+    editCountData?.viewer?.shareLinkCodes?.data?.filter(
+      (code: { isVanity: boolean }) => code.isVanity,
+    ).length ?? 0;
+  const editCount = vanityCount;
   const editsRemaining = Math.max(0, MAX_EDITS - editCount);
   const limitReached = editsRemaining <= 0;
 
@@ -252,7 +262,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   function onCustomizeClick() {
     if (limitReached || customizeDisabled) return;
     setIsEditing(true);
-    setEditValue(parsePathSuffix(copyString));
+    setEditValue(editCount === 0 ? "" : parsePathSuffix(copyString));
     setValidationError(null);
   }
 

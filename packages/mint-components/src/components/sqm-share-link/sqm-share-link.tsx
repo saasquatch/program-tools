@@ -324,7 +324,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     isEditing,
     editValue,
     domainPrefix,
-    editsRemaining: 3,
+    editsRemaining: 5,
     maxEdits: 5,
     limitReached: false,
     validationError: null,
@@ -342,7 +342,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
       props.customizeDisabledTooltip ?? "Link customization is not available.",
     onCustomizeClick: () => {
       setIsEditing(true);
-      setEditValue("sharelink/abc");
+      setEditValue("");
     },
     onEditValueChange: (value: string) => {
       setEditValue(value);
