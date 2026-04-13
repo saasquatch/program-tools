@@ -4941,6 +4941,12 @@ export namespace Components {
          */
         "copyButtonLabel": string;
         /**
+          * Tooltip text shown when link customization is disabled
+          * @uiName Customize disabled tooltip
+          * @uiType string
+         */
+        "customizeDisabledTooltip"?: string;
+        /**
           * Text shown below the share link input to trigger customization
           * @uiName Customize link label
           * @uiType string
@@ -12917,6 +12923,12 @@ declare namespace LocalJSX {
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
+        /**
+          * Tooltip text shown when link customization is disabled
+          * @uiName Customize disabled tooltip
+          * @uiType string
+         */
+        "customizeDisabledTooltip"?: string;
         /**
           * Text shown below the share link input to trigger customization
           * @uiName Customize link label

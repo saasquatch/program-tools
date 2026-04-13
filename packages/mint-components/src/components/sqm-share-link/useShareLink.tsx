@@ -47,6 +47,7 @@ export interface ShareLinkProps {
   editLimitText?: string;
   editLimitReachedText?: string;
   supportLinkText?: string;
+  customizeDisabledTooltip?: string;
 }
 
 const MAX_EDITS = 5;
@@ -96,12 +97,24 @@ const VALIDATE_LINK_CODE = gql`
   }
 `;
 
+const GET_LINK_DOMAIN = gql`
+  query getLinkDomain {
+    tenantSettings {
+      primaryLinkDomain {
+        host
+      }
+    }
+  }
+`;
+
 // TODO: Replace with actual edit count query when backend is ready
 const SHARE_LINK_EDIT_COUNT = gql`
   query shareLinkEditCount($programId: ID) {
     viewer {
       ... on User {
-        shareLinkCodeCount(programId: $programId)
+        shareLinkCodes(programId: $programId) {
+          totalCount
+        }
       }
     }
   }
@@ -145,6 +158,12 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const [addShareLinkCode, { loading: isSaving }] =
     useMutation(ADD_SHARE_LINK_CODE);
 
+  const { data: linkDomainData } = useQuery(
+    GET_LINK_DOMAIN,
+    {},
+    !user?.jwt || !props.customizeUrl,
+  );
+
   // TODO: Wire up when backend query is ready
   const { data: editCountData } = useQuery(
     SHARE_LINK_EDIT_COUNT,
@@ -170,8 +189,11 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const domainPrefix = parseDomainPrefix(copyString);
 
-  // TODO: Replace with actual data from editCountData when backend is ready
-  const editCount = editCountData?.viewer?.shareLinkCodeCount ?? 0;
+  const hasPrimaryLinkDomain =
+    linkDomainData?.tenantSettings?.primaryLinkDomain != null;
+  const customizeDisabled = !hasPrimaryLinkDomain;
+
+  const editCount = editCountData?.viewer?.shareLinkCodes?.totalCount ?? 0;
   const editsRemaining = Math.max(0, MAX_EDITS - editCount);
   const limitReached = editsRemaining <= 0;
 
@@ -228,7 +250,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   }
 
   function onCustomizeClick() {
-    if (limitReached) return;
+    if (limitReached || customizeDisabled) return;
     setIsEditing(true);
     setEditValue(parsePathSuffix(copyString));
     setValidationError(null);
@@ -267,6 +289,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
           accountId: user?.accountId,
           programId,
           linkCode: editValue,
+          // makeShareLinkCodePrimaryForReferralCode: true,
         },
       });
 
@@ -321,6 +344,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     editLimitText: props.editLimitText,
     editLimitReachedText: props.editLimitReachedText,
     supportLinkText: props.supportLinkText,
+    customizeDisabled,
+    customizeDisabledTooltip: props.customizeDisabledTooltip,
     onCustomizeClick,
     onEditValueChange,
     onSave,

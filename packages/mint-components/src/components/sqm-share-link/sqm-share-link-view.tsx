@@ -37,6 +37,8 @@ export interface ShareLinkViewProps {
   editLimitText: string;
   editLimitReachedText: string;
   supportLinkText: string;
+  customizeDisabled: boolean;
+  customizeDisabledTooltip: string;
   onCustomizeClick: () => void;
   onEditValueChange: (value: string) => void;
   onSave: () => void;
@@ -73,6 +75,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     editLimitText,
     editLimitReachedText,
     supportLinkText,
+    customizeDisabled,
+    customizeDisabledTooltip,
     onCustomizeClick,
     onEditValueChange,
     onSave,
@@ -273,7 +277,13 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       </style>
       <CopyTextView {...copyTextViewProps} />
       {showSuccess && <p class={sheet.classes.SuccessText}>{successMessage}</p>}
-      {customizeUrl && (
+      {customizeUrl && (customizeDisabled ? (
+        <sl-tooltip content={customizeDisabledTooltip}>
+          <p class={sheet.classes.CustomizeLinkDisabled}>
+            {customizeLinkLabel}
+          </p>
+        </sl-tooltip>
+      ) : (
         <p
           class={
             limitReached
@@ -284,7 +294,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         >
           {customizeLinkLabel}
         </p>
-      )}
+      ))}
       {customizeUrl && limitReached && (
         <p class={sheet.classes.HelperText}>
           {intl.formatMessage(

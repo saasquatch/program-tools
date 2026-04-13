@@ -146,6 +146,8 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   editLimitReachedText:
     "5 edit limit reached. To make more changes, please contact {supportLink}.",
   supportLinkText: "Support",
+  customizeDisabled: false,
+  customizeDisabledTooltip: "Link customization is not available.",
   onCustomizeClick: noopFn,
   onEditValueChange: noopFn,
   onSave: noopFn,
@@ -194,6 +196,17 @@ export const CustomizeUrlLimitReached = () => {
         },
         editsRemaining: 0,
         limitReached: true,
+      }}
+    />
+  );
+};
+
+export const CustomizeUrlDisabled = () => {
+  return (
+    <ShareLinkView
+      {...{
+        ...defaultCustomizeProps,
+        customizeDisabled: true,
       }}
     />
   );

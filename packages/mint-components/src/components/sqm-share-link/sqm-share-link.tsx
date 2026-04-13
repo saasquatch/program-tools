@@ -260,6 +260,15 @@ export class ShareLink {
   supportLinkText?: string = "Support";
 
   /**
+   * Tooltip text shown when link customization is disabled
+   *
+   * @uiName Customize disabled tooltip
+   * @uiType string
+   */
+  @Prop()
+  customizeDisabledTooltip?: string = "Link customization is not available.";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -328,6 +337,9 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     editLimitReachedText:
       props.editLimitReachedText,
     supportLinkText: props.supportLinkText,
+    customizeDisabled: false,
+    customizeDisabledTooltip:
+      props.customizeDisabledTooltip ?? "Link customization is not available.",
     onCustomizeClick: () => {
       setIsEditing(true);
       setEditValue("sharelink/abc");
