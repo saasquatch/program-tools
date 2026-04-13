@@ -278,7 +278,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       <CopyTextView {...copyTextViewProps} />
       {showSuccess && <p class={sheet.classes.SuccessText}>{successMessage}</p>}
       {customizeUrl && (customizeDisabled ? (
-        <sl-tooltip content={customizeDisabledTooltip}>
+        <sl-tooltip content={customizeDisabledTooltip} placement="top" style={{ display: "inline-block", width: "fit-content" }}>
           <p class={sheet.classes.CustomizeLinkDisabled}>
             {customizeLinkLabel}
           </p>
