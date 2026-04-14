@@ -118,6 +118,10 @@ export namespace Components {
          */
         "branchCodeLabel": string;
         /**
+          * @uiName Branch name field label
+         */
+        "branchNameLabel": string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
          */
@@ -130,6 +134,10 @@ export namespace Components {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel": string;
+        /**
+          * @uiName Classification code field label
+         */
+        "classificationCodeLabel": string;
         /**
           * @uiName Classification entity field label
          */
@@ -6111,6 +6119,11 @@ export namespace Components {
          */
         "step4_branchCodeLabel": string;
         /**
+          * @uiName Branch name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchNameLabel": string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
@@ -6126,6 +6139,11 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel": string;
+        /**
+          * @uiName Classification code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCodeLabel": string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
@@ -8045,6 +8063,10 @@ declare namespace LocalJSX {
          */
         "branchCodeLabel"?: string;
         /**
+          * @uiName Branch name field label
+         */
+        "branchNameLabel"?: string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
          */
@@ -8057,6 +8079,10 @@ declare namespace LocalJSX {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel"?: string;
+        /**
+          * @uiName Classification code field label
+         */
+        "classificationCodeLabel"?: string;
         /**
           * @uiName Classification entity field label
          */
@@ -14009,6 +14035,11 @@ declare namespace LocalJSX {
          */
         "step4_branchCodeLabel"?: string;
         /**
+          * @uiName Branch name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchNameLabel"?: string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
@@ -14024,6 +14055,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel"?: string;
+        /**
+          * @uiName Classification code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCodeLabel"?: string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
