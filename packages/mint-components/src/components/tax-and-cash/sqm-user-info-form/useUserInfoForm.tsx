@@ -33,7 +33,9 @@ import { ImpactConnection } from "../../../saasquatch";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import {
   ConnectPartnerResult,
+  CompletePartnerResult,
   CONNECT_PARTNER,
+  COMPLETE_PARTNER,
 } from "../sqm-indirect-tax-form/useIndirectTaxForm";
 import { gql } from "graphql-request";
 
@@ -94,6 +96,11 @@ export function useUserInfoForm(props: TaxForm) {
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
 
+  const [
+    completeImpactPartner,
+    { loading: completeLoading, errors: completeErrors },
+  ] = useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
+
   const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
 
   const {
@@ -131,6 +138,7 @@ export function useUserInfoForm(props: TaxForm) {
 
   useEffect(() => {
     const user = data?.user;
+    console.log(user, "data from user query namesapce");
     if (!user || step !== "/1") return;
 
     // If form already filled out, skip initialising it
@@ -255,17 +263,31 @@ export function useUserInfoForm(props: TaxForm) {
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
 
-    const result = await connectImpactPartner({
-      vars,
-    });
+    //AL: TODO completePartnerMutation might change
+    // if user already has an impact connection, call completeImpactPartner to update their information instead of connectPartner
+    const userData = data?.user;
+    let result = null;
+    let connectionResult;
+    if (userData?.impactConnection?.connected) {
+      console.log(vars, "values for completeImpactPartner");
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
 
     if (!result || (result as Error)?.message) throw new Error();
-    if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
-      // Output backend errors to console for now
+    if (!connectionResult?.success) {
       console.error(
         "Failed to create Impact connection: ",
-        (result as ConnectPartnerResult).createImpactConnection
-          .validationErrors,
+        connectionResult?.validationErrors,
       );
 
       throw new Error();
@@ -273,8 +295,7 @@ export function useUserInfoForm(props: TaxForm) {
 
     await refetch();
 
-    const resultPublisher = (result as ConnectPartnerResult)
-      .createImpactConnection?.user?.impactConnection?.publisher;
+    const resultPublisher = connectionResult?.user?.impactConnection?.publisher;
 
     const hasValidCurrentDocument =
       validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
@@ -421,9 +442,9 @@ export function useUserInfoForm(props: TaxForm) {
       step: step?.replace("/", ""),
       hideState: !hasStates,
       hideSteps: !!context.hideSteps,
-      disabled: loading || connectLoading,
+      disabled: loading || connectLoading || completeLoading,
       loadingError: !!userError?.message,
-      loading: loading || connectLoading,
+      loading: loading || connectLoading || completeLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
 
