@@ -3,6 +3,7 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import {
   PartnerInfoModalContentView,
@@ -17,7 +18,7 @@ import {
 /**
  * @uiName Partner Info Modal
  * @exampleGroup Tax and Cash
- * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqb-program-section", "sqb-conditional-section"]
+ * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
  * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
  */
 @Component({
@@ -180,6 +181,10 @@ function useDemoPartnerInfoModal(
   const [currency, setCurrency] = useState("");
   const [error, setError] = useState("");
 
+  const parsed = parseStates(props.stateController);
+  const stateOverride =
+    parsed?.["sqm-partner-info-modal"] || parsed || {};
+
   // @ts-ignore
   return deepmerge(
     {
@@ -234,7 +239,7 @@ function useDemoPartnerInfoModal(
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
       },
     },
-    props.demoData || props.stateController || {},
+    props.demoData || stateOverride,
     { arrayMerge: (_, a) => a },
   );
 }

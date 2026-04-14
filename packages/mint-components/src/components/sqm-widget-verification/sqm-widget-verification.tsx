@@ -268,6 +268,15 @@ export class WidgetVerification {
 
     if (props.loading) return <sl-spinner></sl-spinner>;
 
+    // for handling state previews in content editor
+    const partnerState =
+      typeof props["sqm-partner-info-modal_stateController"] === "string"
+        ? parseStates(props["sqm-partner-info-modal_stateController"])
+        : props["sqm-partner-info-modal_stateController"];
+    if (props.showPartnerModal && partnerState?.states?.open === false) {
+      return <div></div>;
+    }
+
     const style = {
       Dialog: {
         "&::part(panel)": {
@@ -309,9 +318,9 @@ export class WidgetVerification {
           <sqm-partner-info-modal
             inModal
             {...partnerText}
-            stateController={JSON.stringify(
-              props["sqm-partner-info-modal_stateController"] || {},
-            )}
+            stateController={
+              props["sqm-partner-info-modal_stateController"] || "{}"
+            }
           ></sqm-partner-info-modal>
         );
       }

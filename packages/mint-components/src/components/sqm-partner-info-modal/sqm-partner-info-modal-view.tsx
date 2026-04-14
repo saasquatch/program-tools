@@ -49,31 +49,21 @@ const style = {
       fontSize: "var(--sl-font-size-small)",
       overflow: "visible",
     },
-    "&::part(footer)": {
-      display: "flex",
-      flexDirection: "column",
-      padding:
-        "0 var(--sl-spacing-large) var(--sl-spacing-large) var(--sl-spacing-large)",
-    },
     "&::part(overlay)": {
-      background: "rgba(0, 0, 0, 0.5)",
+      background: "var(--sl-overlay-background-color)",
     },
   },
   DialogTitle: {
     fontSize: "var(--sl-font-size-x-large)",
     fontWeight: "600",
-    padding: "var(--sl-spacing-x-large) 0 0 0",
+    padding: "var(--sl-spacing-large) 0 0 0",
     margin: "0",
   },
   FormFields: {
     display: "flex",
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
-    marginTop: "var(--sl-spacing-medium)",
-
-    "& > *": {
-      flex: 1,
-    },
+    marginTop: "var(--sl-spacing-large)",
   },
   ErrorMessage: {
     color: "var(--sqm-danger-color-text, #d32f2f)",
@@ -98,7 +88,7 @@ const style = {
   },
   SubmitButton: {
     width: "100%",
-    marginTop: "var(--sl-spacing-small)",
+    marginTop: "var(--sl-spacing-large)",
   },
 };
 
@@ -122,102 +112,110 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
     ? text.confirmButtonLabel
     : text.submitButtonLabel;
 
-  return [
-    <style type="text/css">{styleString}</style>,
-    description,
-    <div class={sheet.classes.FormFields}>
-      <sl-select
-        key={`country-${states.countryCode}`}
-        exportparts="label: input-label, base: input-base"
-        label={text.countryLabel}
-        value={states.countryCode}
-        disabled={states.submitting || !!states.isExistingPartner}
-        required
-        hoist
-        onSl-select={callbacks.onCountryChange}
-      >
-        <sl-input
-          class={sheet.classes.SearchInput}
-          placeholder={text.searchCountryPlaceholder}
-          onKeyDown={(e: any) => e.stopPropagation()}
-          onSl-input={(e: any) => {
-            callbacks.setCountrySearch(e.target?.value);
-          }}
-        />
-        {states.filteredCountries?.map((c) => (
-          <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
-        ))}
-      </sl-select>
+  return (
+    <div>
+      <style type="text/css"> {styleString}</style>
+      <div class={sheet.classes.FormFields}>
+        {description}
+        <sl-select
+          key={`country-${states.countryCode}`}
+          exportparts="label: input-label, base: input-base"
+          label={text.countryLabel}
+          value={states.countryCode}
+          disabled={states.submitting || !!states.isExistingPartner}
+          required
+          hoist
+          onSl-select={callbacks.onCountryChange}
+        >
+          <sl-input
+            class={sheet.classes.SearchInput}
+            placeholder={text.searchCountryPlaceholder}
+            onKeyDown={(e: any) => e.stopPropagation()}
+            onSl-input={(e: any) => {
+              callbacks.setCountrySearch(e.target?.value);
+            }}
+          />
+          {states.filteredCountries?.map((c) => (
+            <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
+          ))}
+        </sl-select>
 
-      <sl-select
-        key={`currency-${states.currency}`}
-        exportparts="label: input-label, base: input-base"
-        label={text.currencyLabel}
-        value={states.currency}
-        disabled={states.submitting || !!states.isExistingPartner}
-        required
-        hoist
-        onSl-select={callbacks.onCurrencyChange}
+        <sl-select
+          key={`currency-${states.currency}`}
+          exportparts="label: input-label, base: input-base"
+          label={text.currencyLabel}
+          value={states.currency}
+          disabled={states.submitting || !!states.isExistingPartner}
+          required
+          hoist
+          onSl-select={callbacks.onCurrencyChange}
+        >
+          <sl-input
+            class={sheet.classes.SearchInput}
+            placeholder={text.searchCurrencyPlaceholder}
+            onKeyDown={(e: any) => e.stopPropagation()}
+            onSl-input={(e: any) =>
+              callbacks.setCurrencySearch(e.target?.value)
+            }
+          />
+          {states.filteredCurrencies?.map((c) => (
+            <sl-menu-item value={c.currencyCode}>{c.currencyCode}</sl-menu-item>
+          ))}
+        </sl-select>
+      </div>
+      {states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>}
+      <sl-button
+        slot="footer"
+        type="primary"
+        loading={states.submitting}
+        disabled={states.submitting || !states.countryCode || !states.currency}
+        onClick={callbacks.onSubmit}
+        class={sheet.classes.SubmitButton}
+        exportparts="base: primarybutton-base"
       >
-        <sl-input
-          class={sheet.classes.SearchInput}
-          placeholder={text.searchCurrencyPlaceholder}
-          onKeyDown={(e: any) => e.stopPropagation()}
-          onSl-input={(e: any) => callbacks.setCurrencySearch(e.target?.value)}
-        />
-        {states.filteredCurrencies?.map((c) => (
-          <sl-menu-item value={c.currencyCode}>{c.currencyCode}</sl-menu-item>
-        ))}
-      </sl-select>
-    </div>,
-    states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>,
-    <sl-button
-      slot="footer"
-      type="primary"
-      loading={states.submitting}
-      disabled={states.submitting || !states.countryCode || !states.currency}
-      onClick={callbacks.onSubmit}
-      class={sheet.classes.SubmitButton}
-      exportparts="base: primarybutton-base"
-    >
-      {buttonLabel}
-    </sl-button>,
-  ];
+        {buttonLabel}
+      </sl-button>
+    </div>
+  );
 }
 
 export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
-  const { states, text } = props;
+  const { states, text, callbacks } = props;
   const sheet = createStyleSheet(style);
+  const styleString = sheet.toString();
 
   console.log(states, "partner info modal states"); // TEMP
 
   if (!states.open) return <div></div>;
 
   return (
-    <sl-dialog
-      class={sheet.classes.Dialog}
-      open={states.open}
-      noHeader
-      label={
-        states.isExistingPartner
-          ? text.modalHeaderExistingPartner
-          : text.modalHeader
-      }
-      onSl-request-close={(e: any) => {
-        e.preventDefault();
-      }}
-      onSl-hide={(e: any) => {
-        if (e.target?.tagName === "SL-DIALOG") {
-          e.preventDefault();
+    <div>
+      <style type="text/css"> {styleString}</style>
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.open}
+        noHeader
+        label={
+          states.isExistingPartner
+            ? text.modalHeaderExistingPartner
+            : text.modalHeader
         }
-      }}
-    >
-      <h2 class={sheet.classes.DialogTitle}>
-        {states.isExistingPartner
-          ? text.modalHeaderExistingPartner
-          : text.modalHeader}
-      </h2>
-      <PartnerInfoModalContentView {...props} />
-    </sl-dialog>
+        onSl-request-close={(e: any) => {
+          e.preventDefault();
+        }}
+        onSl-hide={(e: any) => {
+          if (e.target?.tagName === "SL-DIALOG") {
+            e.preventDefault();
+          }
+        }}
+      >
+        <h2 class={sheet.classes.DialogTitle}>
+          {states.isExistingPartner
+            ? text.modalHeaderExistingPartner
+            : text.modalHeader}
+        </h2>
+        <PartnerInfoModalContentView {...props} />
+      </sl-dialog>
+    </div>
   );
 }
