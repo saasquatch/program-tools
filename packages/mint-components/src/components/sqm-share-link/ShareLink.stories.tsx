@@ -221,7 +221,7 @@ export const CustomizeUrlValidationError = () => {
         editValue: "nvoiwb18",
         charactersRemaining: 7,
         validationError: {
-          code: "LINK_TAKEN",
+          code: "EXISTING_CODE_CONFLICT",
           title: "This link is already taken",
           description:
             "Try adding numbers, a dash or underscore to create a unique link.",
@@ -231,7 +231,7 @@ export const CustomizeUrlValidationError = () => {
   );
 };
 
-export const CustomizeUrlInvalidSymbols = () => {
+export const CustomizeUrlInvalidCharacters = () => {
   return (
     <ShareLinkView
       {...{
@@ -240,17 +240,17 @@ export const CustomizeUrlInvalidSymbols = () => {
         editValue: "nvoiwb18",
         charactersRemaining: 7,
         validationError: {
-          code: "INVALID_SYMBOLS",
+          code: "INVALID_CHARACTERS",
           title: "Please use only letters, numbers, dashes and underscores",
           description:
-            "Special symbols can break the link when sharing.",
+            "Special characters can break the link when sharing.",
         },
       }}
     />
   );
 };
 
-export const CustomizeUrlRestrictedWord = () => {
+export const CustomizeUrlProfanity = () => {
   return (
     <ShareLinkView
       {...{
@@ -259,7 +259,7 @@ export const CustomizeUrlRestrictedWord = () => {
         editValue: "nvoiwb18",
         charactersRemaining: 7,
         validationError: {
-          code: "RESTRICTED_WORD",
+          code: "PROFANITY",
           title: "Please try a different link",
           description: "This link contains a restricted word.",
         },

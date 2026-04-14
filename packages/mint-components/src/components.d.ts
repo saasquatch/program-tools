@@ -4976,47 +4976,47 @@ export namespace Components {
          */
         "editLimitText"?: string;
         /**
-          * Description text shown when the link contains invalid symbols
-          * @uiName Invalid symbols error description
-          * @uiType string
-         */
-        "invalidSymbolsErrorDescription"?: string;
-        /**
-          * Title text shown when the link contains invalid symbols
-          * @uiName Invalid symbols error title
-          * @uiType string
-         */
-        "invalidSymbolsErrorTitle"?: string;
-        /**
           * Description text shown when the custom link is already taken
-          * @uiName Link taken error description
+          * @uiName Existing code conflict error description
           * @uiType string
          */
-        "linkTakenErrorDescription"?: string;
+        "existingCodeConflictErrorDescription"?: string;
         /**
           * Title text shown when the custom link is already taken
-          * @uiName Link taken error title
+          * @uiName Existing code conflict error title
           * @uiType string
          */
-        "linkTakenErrorTitle"?: string;
+        "existingCodeConflictErrorTitle"?: string;
+        /**
+          * Description text shown when the link contains invalid characters
+          * @uiName Invalid characters error description
+          * @uiType string
+         */
+        "invalidCharactersErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains invalid characters
+          * @uiName Invalid characters error title
+          * @uiType string
+         */
+        "invalidCharactersErrorTitle"?: string;
+        /**
+          * Description text shown when the link contains profanity
+          * @uiName Profanity error description
+          * @uiType string
+         */
+        "profanityErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains profanity
+          * @uiName Profanity error title
+          * @uiType string
+         */
+        "profanityErrorTitle"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * Description text shown when the link contains a restricted word
-          * @uiName Restricted word error description
-          * @uiType string
-         */
-        "restrictedWordErrorDescription"?: string;
-        /**
-          * Title text shown when the link contains a restricted word
-          * @uiName Restricted word error title
-          * @uiType string
-         */
-        "restrictedWordErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label
@@ -12959,47 +12959,47 @@ declare namespace LocalJSX {
          */
         "editLimitText"?: string;
         /**
-          * Description text shown when the link contains invalid symbols
-          * @uiName Invalid symbols error description
-          * @uiType string
-         */
-        "invalidSymbolsErrorDescription"?: string;
-        /**
-          * Title text shown when the link contains invalid symbols
-          * @uiName Invalid symbols error title
-          * @uiType string
-         */
-        "invalidSymbolsErrorTitle"?: string;
-        /**
           * Description text shown when the custom link is already taken
-          * @uiName Link taken error description
+          * @uiName Existing code conflict error description
           * @uiType string
          */
-        "linkTakenErrorDescription"?: string;
+        "existingCodeConflictErrorDescription"?: string;
         /**
           * Title text shown when the custom link is already taken
-          * @uiName Link taken error title
+          * @uiName Existing code conflict error title
           * @uiType string
          */
-        "linkTakenErrorTitle"?: string;
+        "existingCodeConflictErrorTitle"?: string;
+        /**
+          * Description text shown when the link contains invalid characters
+          * @uiName Invalid characters error description
+          * @uiType string
+         */
+        "invalidCharactersErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains invalid characters
+          * @uiName Invalid characters error title
+          * @uiType string
+         */
+        "invalidCharactersErrorTitle"?: string;
+        /**
+          * Description text shown when the link contains profanity
+          * @uiName Profanity error description
+          * @uiType string
+         */
+        "profanityErrorDescription"?: string;
+        /**
+          * Title text shown when the link contains profanity
+          * @uiName Profanity error title
+          * @uiType string
+         */
+        "profanityErrorTitle"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
-        /**
-          * Description text shown when the link contains a restricted word
-          * @uiName Restricted word error description
-          * @uiType string
-         */
-        "restrictedWordErrorDescription"?: string;
-        /**
-          * Title text shown when the link contains a restricted word
-          * @uiName Restricted word error title
-          * @uiType string
-         */
-        "restrictedWordErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label

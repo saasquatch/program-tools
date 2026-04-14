@@ -39,12 +39,12 @@ export interface ShareLinkProps {
   buttonType?: "primary" | "secondary";
   copyButtonLabel?: string;
   borderColor?: string;
-  linkTakenErrorTitle?: string;
-  linkTakenErrorDescription?: string;
-  invalidSymbolsErrorTitle?: string;
-  invalidSymbolsErrorDescription?: string;
-  restrictedWordErrorTitle?: string;
-  restrictedWordErrorDescription?: string;
+  existingCodeConflictErrorTitle?: string;
+  existingCodeConflictErrorDescription?: string;
+  invalidCharactersErrorTitle?: string;
+  invalidCharactersErrorDescription?: string;
+  profanityErrorTitle?: string;
+  profanityErrorDescription?: string;
   editLimitText?: string;
   editLimitReachedText?: string;
   supportLinkText?: string;
@@ -213,20 +213,20 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       NonNullable<ValidationErrorCode>,
       ValidationErrorInfo
     > = {
-      LINK_TAKEN: {
-        code: "LINK_TAKEN",
-        title: props.linkTakenErrorTitle,
-        description: props.linkTakenErrorDescription,
+      EXISTING_CODE_CONFLICT: {
+        code: "EXISTING_CODE_CONFLICT",
+        title: props.existingCodeConflictErrorTitle,
+        description: props.existingCodeConflictErrorDescription,
       },
-      INVALID_SYMBOLS: {
-        code: "INVALID_SYMBOLS",
-        title: props.invalidSymbolsErrorTitle,
-        description: props.invalidSymbolsErrorDescription,
+      INVALID_CHARACTERS: {
+        code: "INVALID_CHARACTERS",
+        title: props.invalidCharactersErrorTitle,
+        description: props.invalidCharactersErrorDescription,
       },
-      RESTRICTED_WORD: {
-        code: "RESTRICTED_WORD",
-        title: props.restrictedWordErrorTitle,
-        description: props.restrictedWordErrorDescription,
+      PROFANITY: {
+        code: "PROFANITY",
+        title: props.profanityErrorTitle,
+        description: props.profanityErrorDescription,
       },
     };
     return errorMap[errorCode];

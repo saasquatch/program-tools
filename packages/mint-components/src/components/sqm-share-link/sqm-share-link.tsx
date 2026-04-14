@@ -176,59 +176,59 @@ export class ShareLink {
   /**
    * Title text shown when the custom link is already taken
    *
-   * @uiName Link taken error title
+   * @uiName Existing code conflict error title
    * @uiType string
    */
   @Prop()
-  linkTakenErrorTitle?: string = "This link is already taken";
+  existingCodeConflictErrorTitle?: string = "This link is already taken";
 
   /**
    * Description text shown when the custom link is already taken
    *
-   * @uiName Link taken error description
+   * @uiName Existing code conflict error description
    * @uiType string
    */
   @Prop()
-  linkTakenErrorDescription?: string =
+  existingCodeConflictErrorDescription?: string =
     "Try adding numbers, a dash or underscore to create a unique link.";
 
   /**
-   * Title text shown when the link contains invalid symbols
+   * Title text shown when the link contains invalid characters
    *
-   * @uiName Invalid symbols error title
+   * @uiName Invalid characters error title
    * @uiType string
    */
   @Prop()
-  invalidSymbolsErrorTitle?: string =
+  invalidCharactersErrorTitle?: string =
     "Please use only letters, numbers, dashes and underscores";
 
   /**
-   * Description text shown when the link contains invalid symbols
+   * Description text shown when the link contains invalid characters
    *
-   * @uiName Invalid symbols error description
+   * @uiName Invalid characters error description
    * @uiType string
    */
   @Prop()
-  invalidSymbolsErrorDescription?: string =
-    "Special symbols can break the link when sharing.";
+  invalidCharactersErrorDescription?: string =
+    "Special characters can break the link when sharing.";
 
   /**
-   * Title text shown when the link contains a restricted word
+   * Title text shown when the link contains profanity
    *
-   * @uiName Restricted word error title
+   * @uiName Profanity error title
    * @uiType string
    */
   @Prop()
-  restrictedWordErrorTitle?: string = "Please try a different link";
+  profanityErrorTitle?: string = "Please try a different link";
 
   /**
-   * Description text shown when the link contains a restricted word
+   * Description text shown when the link contains profanity
    *
-   * @uiName Restricted word error description
+   * @uiName Profanity error description
    * @uiType string
    */
   @Prop()
-  restrictedWordErrorDescription?: string =
+  profanityErrorDescription?: string =
     "This link contains a restricted word.";
 
   /**

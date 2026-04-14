@@ -4,9 +4,9 @@ import { createStyleSheet } from "../../styling/JSS";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 
 export type ValidationErrorCode =
-  | "LINK_TAKEN"
-  | "INVALID_SYMBOLS"
-  | "RESTRICTED_WORD"
+  | "EXISTING_CODE_CONFLICT"
+  | "INVALID_CHARACTERS"
+  | "PROFANITY"
   | null;
 
 export interface ValidationErrorInfo {
@@ -208,7 +208,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   const styleString = sheet.toString();
 
   const errorMessageType =
-    validationError?.code === "LINK_TAKEN" ? "info" : "warning";
+    validationError?.code === "EXISTING_CODE_CONFLICT" ? "info" : "warning";
 
   const showCharactersRemaining = charactersRemaining <= 7;
 
