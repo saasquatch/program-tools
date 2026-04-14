@@ -2347,6 +2347,11 @@ export namespace Components {
          */
         "descriptionNewPartner": string;
         /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal": boolean;
+        /**
           * @uiName Missing fields error text
           * @uiWidget textArea
          */
@@ -7343,6 +7348,11 @@ export namespace Components {
          */
         "general_verifyEmailHeader": string;
         /**
+          * @uiName General widget header text with partner creation
+          * @uiGroup General Text
+         */
+        "general_widgetHeaderWithPartnerCreation": string;
+        /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
@@ -10546,6 +10556,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "descriptionNewPartner"?: string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal"?: boolean;
         /**
           * @uiName Missing fields error text
           * @uiWidget textArea
@@ -15517,6 +15532,11 @@ declare namespace LocalJSX {
           * @uiGroup General Text
          */
         "general_verifyEmailHeader"?: string;
+        /**
+          * @uiName General widget header text with partner creation
+          * @uiGroup General Text
+         */
+        "general_widgetHeaderWithPartnerCreation"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }

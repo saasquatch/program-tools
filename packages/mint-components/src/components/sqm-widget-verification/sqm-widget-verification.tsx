@@ -32,6 +32,12 @@ export class WidgetVerification {
                   GENERAL PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
+   * @uiName General widget header text with partner creation
+   * @uiGroup General Text
+   */
+  @Prop()
+  general_widgetHeaderWithPartnerCreation = "Let's get you ready for rewards";
+  /**
    * @uiName General verify widget header text
    * @uiGroup General Text
    */
@@ -262,24 +268,10 @@ export class WidgetVerification {
 
     if (props.loading) return <sl-spinner></sl-spinner>;
 
-    if (props.showPartnerModal) {
-      return (
-        <sqm-partner-info-modal
-          {...this.getStepTextProps("createPartnerStep_")}
-        ></sqm-partner-info-modal>
-      );
-    }
-
     const style = {
       Dialog: {
         "&::part(panel)": {
           maxWidth: "480px",
-        },
-        "&::part(title)": {
-          fontSize: "var(--sl-font-size-x-large)",
-          fontWeight: "600",
-          padding:
-            "var(--sl-spacing-x-large) var(--sl-spacing-x-large) 0 var(--sl-spacing-x-large)",
         },
         "&::part(body)": {
           padding: "0 var(--sl-spacing-x-large)",
@@ -294,74 +286,72 @@ export class WidgetVerification {
         "&::part(overlay)": {
           background: "rgba(0, 0, 0, 0.5)",
         },
-        "&::part(close-button)": {
-          display: "none",
-        },
+      },
+      DialogTitle: {
+        fontSize: "var(--sl-font-size-x-large)",
+        fontWeight: "600",
+        padding: "var(--sl-spacing-x-large) 0 0 0",
+        margin: "0",
       },
     };
 
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const generalText = this.getStepTextProps("general_");
+    // const generalText = this.getStepTextProps("general_");
+    const partnerText = this.getStepTextProps("createPartnerStep_");
+
+    const dialogLabel = this.general_widgetHeaderWithPartnerCreation;
+
+    const renderStepContent = () => {
+      if (props.showPartnerModal) {
+        return (
+          <sqm-partner-info-modal
+            inModal
+            {...partnerText}
+            stateController={JSON.stringify(
+              props["sqm-partner-info-modal_stateController"] || {},
+            )}
+          ></sqm-partner-info-modal>
+        );
+      }
+      if (props.showCode) {
+        return (
+          <sqm-code-verification
+            onVerification={props.onVerification}
+            {...this.getStepTextProps("codeStep_")}
+            {...extractProps(props, "sqm-code-verification_")}
+          ></sqm-code-verification>
+        );
+      }
+      return (
+        <sqm-email-verification
+          {...this.getStepTextProps("emailStep_")}
+          {...extractProps(props, "sqm-email-verification_")}
+        ></sqm-email-verification>
+      );
+    };
 
     return (
       <div>
         <style type="text/css">{styleString}</style>
-        <h3 style={{ fontSize: "24px", margin: "0" }}>
-          {generalText.verifyEmailHeader}
-        </h3>
-        <p
-          style={{
-            color: "var(--sl-color-neutral-500)",
-            fontSize: "var(--sl-font-size-medium)",
-            margin: "0",
+        <sl-dialog
+          class={sheet.classes.Dialog}
+          noHeader
+          open={true}
+          label={dialogLabel}
+          onSl-request-close={(e: any) => {
+            e.preventDefault();
+          }}
+          onSl-hide={(e: any) => {
+            if (e.target?.tagName === "SL-DIALOG") {
+              e.preventDefault();
+            }
           }}
         >
-          {generalText.verifyEmailDescription}
-        </p>
-        {props.showCode ? (
-          <sl-dialog
-            class={sheet.classes.Dialog}
-            noHeader={false}
-            open={props.showCode}
-            label={"Let's get your started for rewards"}
-            onSl-request-close={(e: any) => {
-              e.preventDefault();
-            }}
-            onSl-hide={(e: any) => {
-              if (e.target?.tagName === "SL-DIALOG") {
-                e.preventDefault();
-              }
-            }}
-          >
-            <sqm-code-verification
-              onVerification={props.onVerification}
-              {...this.getStepTextProps("codeStep_")}
-              {...extractProps(props, "sqm-code-verification_")}
-            ></sqm-code-verification>
-          </sl-dialog>
-        ) : (
-          <sl-dialog
-            class={sheet.classes.Dialog}
-            noHeader={false}
-            open={!props.showCode}
-            label={"Let's get your started for rewards"}
-            onSl-request-close={(e: any) => {
-              e.preventDefault();
-            }}
-            onSl-hide={(e: any) => {
-              if (e.target?.tagName === "SL-DIALOG") {
-                e.preventDefault();
-              }
-            }}
-          >
-            <sqm-email-verification
-              {...this.getStepTextProps("emailStep_")}
-              {...extractProps(props, "sqm-email-verification_")}
-            ></sqm-email-verification>
-          </sl-dialog>
-        )}
+          <h2 class={sheet.classes.DialogTitle}>{dialogLabel}</h2>
+          {renderStepContent()}
+        </sl-dialog>
       </div>
     );
   }

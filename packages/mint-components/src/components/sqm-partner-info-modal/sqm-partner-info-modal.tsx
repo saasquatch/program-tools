@@ -3,9 +3,9 @@ import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import {
+  PartnerInfoModalContentView,
   PartnerInfoModalView,
   PartnerInfoModalViewProps,
 } from "./sqm-partner-info-modal-view";
@@ -132,6 +132,12 @@ export class PartnerInfoModal {
   missingFieldsErrorText: string = "Please select both a country and currency.";
 
   /**
+   * Used to render in another modal.
+   * @undocumented
+   */
+  @Prop() inModal: boolean = false;
+
+  /**
    * @undocumented
    * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
    * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
@@ -155,10 +161,13 @@ export class PartnerInfoModal {
   }
 
   render() {
-    // AL: TODO add usePartnerInfoModal
     const props = isDemo()
       ? useDemoPartnerInfoModal(this)
       : usePartnerInfoModal(this);
+
+    if (this.inModal) {
+      return <PartnerInfoModalContentView {...props} />;
+    }
 
     return <PartnerInfoModalView {...props} />;
   }
@@ -170,9 +179,6 @@ function useDemoPartnerInfoModal(
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
   const [error, setError] = useState("");
-
-  const parsed = parseStates(props.stateController);
-  const stateOverride = parsed?.["sqm-partner-info-modal"] || parsed || {};
 
   // @ts-ignore
   return deepmerge(
@@ -228,7 +234,7 @@ function useDemoPartnerInfoModal(
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
       },
     },
-    props.demoData || stateOverride,
+    props.demoData || props.stateController || {},
     { arrayMerge: (_, a) => a },
   );
 }

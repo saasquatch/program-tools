@@ -29,6 +29,7 @@ export const GET_USER_PARTNER_INFO = gql`
         impactConnection {
           connected
           publisher {
+            id
             phoneNumber
             phoneNumberCountryCode
             countryCode
