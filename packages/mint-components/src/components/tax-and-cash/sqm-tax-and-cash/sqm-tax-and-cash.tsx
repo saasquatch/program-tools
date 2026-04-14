@@ -558,11 +558,23 @@ export class TaxAndCashMonolith {
   @Prop() step4_branchCodeLabel: string = "Branch code";
 
   /**
+   * @uiName Branch name field label
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_branchNameLabel: string = "Branch name";
+
+  /**
    * Label text for the classification input field
    * @uiName Classification field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationLabel: string = "Classification";
+
+  /**
+   * @uiName Classification code field label
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_classificationCodeLabel: string = "KBE code";
 
   /**
    * @uiName Taxpayer ID field label

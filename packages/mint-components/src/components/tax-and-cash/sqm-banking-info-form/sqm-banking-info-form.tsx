@@ -211,10 +211,20 @@ export class BankingInfoForm {
   @Prop() branchCodeLabel: string = "Branch code";
 
   /**
+   * @uiName Branch name field label
+   */
+  @Prop() branchNameLabel: string = "Branch name";
+
+  /**
    * Label text for the classification input field
    * @uiName Classification field label
    */
   @Prop() classificationLabel: string = "Classification";
+
+  /**
+   * @uiName Classification code field label
+   */
+  @Prop() classificationCodeLabel: string = "KBE code";
 
   /**
    * @uiName Taxpayer ID field label

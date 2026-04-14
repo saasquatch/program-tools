@@ -79,6 +79,8 @@ export type BankingInfoFormData = {
   bankCity?: string;
   bankState?: string;
   branchCode?: string;
+  branchName?: string;
+  classificationCode?: string;
   // TODO These fields aren't settable in the mutation
   bankName?: string;
   patronymicName?: string;

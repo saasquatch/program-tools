@@ -415,5 +415,43 @@ export function getFormMap({
         </sl-select>
       ),
     },
+    15: {
+      input: (
+        <sl-input
+          required
+          label={props.text.branchNameLabel}
+          name="/branchName"
+          id="branchName"
+          key="branchName"
+          type="text"
+          {...(errors?.inputErrors?.branchName && {
+            class: "error-input",
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.branchName?.type,
+              label: props.text.branchNameLabel,
+            }),
+          })}
+        ></sl-input>
+      ),
+    },
+    16: {
+      input: (
+        <sl-input
+          required
+          label={props.text.classificationCodeLabel}
+          name="/classificationCode"
+          id="classificationCode"
+          key="classificationCode"
+          type="text"
+          {...(errors?.inputErrors?.classificationCode && {
+            class: "error-input",
+            helpText: getValidationErrorMessage({
+              type: errors?.inputErrors?.classificationCode?.type,
+              label: props.text.classificationCodeLabel,
+            }),
+          })}
+        ></sl-input>
+      ),
+    },
   };
 }
