@@ -1,5 +1,6 @@
 import {
   useEngagementMedium,
+  useLazyQuery,
   useMutation,
   useParentValue,
   useProgramId,
@@ -87,12 +88,11 @@ const ADD_SHARE_LINK_CODE = gql`
   }
 `;
 
-// TODO: Replace with actual validation query when backend is ready
 const VALIDATE_LINK_CODE = gql`
-  query validateLinkCode($linkCode: String!, $programId: ID) {
-    validateShareLinkCode(linkCode: $linkCode, programId: $programId) {
+  query validateLinkCode($linkCode: String!) {
+    validateLinkCode(linkCode: $linkCode) {
       valid
-      message
+      invalidReason
     }
   }
 `;
@@ -107,7 +107,6 @@ const GET_LINK_DOMAIN = gql`
   }
 `;
 
-// TODO: Replace with actual edit count query when backend is ready
 const SHARE_LINK_EDIT_COUNT = gql`
   query shareLinkEditCount {
     viewer {
@@ -161,13 +160,14 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const [addShareLinkCode, { loading: isSaving }] =
     useMutation(ADD_SHARE_LINK_CODE);
 
+  const [validateLinkCode] = useLazyQuery(VALIDATE_LINK_CODE);
+
   const { data: linkDomainData } = useQuery(
     GET_LINK_DOMAIN,
     {},
     !user?.jwt || !props.customizeUrl,
   );
 
-  // TODO: Wire up when backend query is ready
   const { data: editCountData } = useQuery(
     SHARE_LINK_EDIT_COUNT,
     {},
@@ -195,9 +195,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const hasPrimaryLinkDomain =
     linkDomainData?.tenantSettings?.primaryLinkDomain != null;
 
-  // TODO: change this back
-  // const customizeDisabled = !hasPrimaryLinkDomain;
-  const customizeDisabled = false;
+  const customizeDisabled = !hasPrimaryLinkDomain;
 
   const vanityCount =
     editCountData?.viewer?.shareLinkCodes?.data?.filter(
@@ -280,11 +278,16 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
     setIsValidating(true);
     debounceTimerRef.current = setTimeout(async () => {
-      // TODO: Call actual validation query when backend is ready
-      // Example: const result = await validateLinkCode({ linkCode: trimmed, programId });
-      // if (!result?.validateShareLinkCode?.valid) {
-      //   setValidationError(mapErrorCodeToInfo(result.validateShareLinkCode.errorCode));
-      // }
+      try {
+        const result = await validateLinkCode({ linkCode: trimmed });
+        if (!result?.validateLinkCode?.valid) {
+          const reason = result?.validateLinkCode
+            ?.invalidReason as ValidationErrorCode;
+          setValidationError(mapErrorCodeToInfo(reason));
+        }
+      } catch {
+        // Validation query failed — don't block the user
+      }
       setIsValidating(false);
     }, 2000);
   }
