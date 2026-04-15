@@ -168,7 +168,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     !user?.jwt || !props.customizeUrl,
   );
 
-  const { data: editCountData } = useQuery(
+  const { data: editCountData, refetch: refetchEditCount } = useQuery(
     SHARE_LINK_EDIT_COUNT,
     {},
     !user?.jwt || !props.customizeUrl,
@@ -302,13 +302,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
           accountId: user?.accountId,
           programId,
           linkCode: editValue,
-          // makeShareLinkCodePrimaryForReferralCode: true,
+          makeShareLinkCodePrimaryForReferralCode: true,
         },
       });
 
       setIsEditing(false);
       setShowSuccess(true);
-      await refetch();
+      await Promise.all([refetch(), refetchEditCount()]);
       setTimeout(() => setShowSuccess(false), 3000);
     } catch (e) {
       const errorCode = e?.extensions?.code as ValidationErrorCode;
