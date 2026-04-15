@@ -129,7 +129,6 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   customizeLinkLabel: "Customize Link",
   saveLabelText: "Save",
   cancelLabelText: "Cancel",
-  successMessage: "Link updated successfully",
   isEditing: false,
   editValue: "",
   domainPrefix: "https://ssqt.co/",
@@ -139,8 +138,8 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   validationError: null,
   isValidating: false,
   isSaving: false,
-  showSuccess: false,
   characterLimit: 15,
+  minCharacters: 3,
   charactersRemaining: 15,
   editLimitText: "You can edit your link up to 5 times.",
   editLimitReachedText:
@@ -281,17 +280,3 @@ export const CustomizeUrlSaving = () => {
   );
 };
 
-export const CustomizeUrlSuccess = () => {
-  return (
-    <ShareLinkView
-      {...{
-        ...defaultCustomizeProps,
-        copyTextViewProps: {
-          ...defaultCustomizeProps.copyTextViewProps,
-          copyString: "https://ssqt.co/bobtesterson",
-        },
-        showSuccess: true,
-      }}
-    />
-  );
-};

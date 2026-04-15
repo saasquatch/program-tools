@@ -5,6 +5,7 @@ import {
   useParentValue,
   useProgramId,
   useQuery,
+  useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useRef, useState } from "@saasquatch/universal-hooks";
@@ -30,7 +31,6 @@ export interface ShareLinkProps {
   customizeLinkLabel?: string;
   saveLabelText?: string;
   cancelLabelText?: string;
-  successMessage?: string;
   textAlign?: "left" | "center" | "right";
   buttonStyle?: "icon" | "button-outside" | "button-below";
   backgroundColor?: string;
@@ -53,6 +53,7 @@ export interface ShareLinkProps {
 
 const MAX_EDITS = 5;
 const CHARACTER_LIMIT = 15;
+const MIN_CHARACTERS = 3;
 
 const MessageLinkQuery = gql`
   query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
@@ -162,6 +163,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const [validateLinkCode] = useLazyQuery(VALIDATE_LINK_CODE);
 
+  const { refresh } = useRefreshDispatcher();
+
   const { data: linkDomainData } = useQuery(
     GET_LINK_DOMAIN,
     {},
@@ -185,7 +188,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const [validationError, setValidationError] =
     useState<ValidationErrorInfo | null>(null);
   const [isValidating, setIsValidating] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
@@ -271,7 +273,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
 
-    if (!trimmed) {
+    if (!trimmed || trimmed.length < MIN_CHARACTERS) {
       setIsValidating(false);
       return;
     }
@@ -293,7 +295,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   }
 
   async function onSave() {
-    if (!editValue || validationError || isValidating) return;
+    if (!editValue || editValue.length < MIN_CHARACTERS || validationError || isValidating) return;
 
     try {
       await addShareLinkCode({
@@ -307,9 +309,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       });
 
       setIsEditing(false);
-      setShowSuccess(true);
       await Promise.all([refetch(), refetchEditCount()]);
-      setTimeout(() => setShowSuccess(false), 3000);
+      refresh();
     } catch (e) {
       const errorCode = e?.extensions?.code as ValidationErrorCode;
       setValidationError(
@@ -341,7 +342,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     customizeLinkLabel: props.customizeLinkLabel,
     saveLabelText: props.saveLabelText,
     cancelLabelText: props.cancelLabelText,
-    successMessage: props.successMessage,
     isEditing,
     editValue,
     domainPrefix,
@@ -351,8 +351,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     validationError,
     isValidating,
     isSaving,
-    showSuccess,
     characterLimit: CHARACTER_LIMIT,
+    minCharacters: MIN_CHARACTERS,
     charactersRemaining: CHARACTER_LIMIT - editValue.length,
     editLimitText: props.editLimitText,
     editLimitReachedText: props.editLimitReachedText,

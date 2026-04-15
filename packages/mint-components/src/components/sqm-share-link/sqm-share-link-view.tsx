@@ -21,7 +21,6 @@ export interface ShareLinkViewProps {
   customizeLinkLabel: string;
   saveLabelText: string;
   cancelLabelText: string;
-  successMessage: string;
   isEditing: boolean;
   editValue: string;
   domainPrefix: string;
@@ -31,8 +30,8 @@ export interface ShareLinkViewProps {
   validationError: ValidationErrorInfo | null;
   isValidating: boolean;
   isSaving: boolean;
-  showSuccess: boolean;
   characterLimit: number;
+  minCharacters: number;
   charactersRemaining: number;
   editLimitText: string;
   editLimitReachedText: string;
@@ -59,7 +58,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     customizeLinkLabel,
     saveLabelText,
     cancelLabelText,
-    successMessage,
     isEditing,
     editValue,
     domainPrefix,
@@ -69,8 +67,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     validationError,
     isValidating,
     isSaving,
-    showSuccess,
     characterLimit,
+    minCharacters,
     charactersRemaining,
     editLimitText,
     editLimitReachedText,
@@ -166,11 +164,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       color: "var(--sqm-danger-color-text, #dc2626)",
     },
 
-    SuccessText: {
-      margin: "0",
-      fontSize: "var(--sl-font-size-small)",
-      color: "var(--sl-color-success-600, #16a34a)",
-    },
     ActionRow: {
       display: "flex",
       gap: "var(--sl-spacing-medium)",
@@ -251,7 +244,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             class={sheet.classes.SaveButton}
             onClick={onSave}
             disabled={
-              isSaving || isValidating || !!validationError || !editValue
+              isSaving || isValidating || !!validationError || !editValue || editValue.length < minCharacters
             }
           >
             {isSaving ? "Saving..." : saveLabelText}
@@ -276,7 +269,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         {vanillaStyle}
       </style>
       <CopyTextView {...copyTextViewProps} />
-      {showSuccess && <p class={sheet.classes.SuccessText}>{successMessage}</p>}
       {customizeUrl && (customizeDisabled ? (
         <sl-tooltip content={customizeDisabledTooltip} placement="top" style={{ display: "inline-block", width: "fit-content" }}>
           <p class={sheet.classes.CustomizeLinkDisabled}>

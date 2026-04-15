@@ -5024,12 +5024,6 @@ export namespace Components {
          */
         "saveLabelText"?: string;
         /**
-          * Message shown briefly after successfully saving a custom link
-          * @uiName Success message
-          * @uiType string
-         */
-        "successMessage"?: string;
-        /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
@@ -13006,12 +13000,6 @@ declare namespace LocalJSX {
           * @uiType string
          */
         "saveLabelText"?: string;
-        /**
-          * Message shown briefly after successfully saving a custom link
-          * @uiName Success message
-          * @uiType string
-         */
-        "successMessage"?: string;
         /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text

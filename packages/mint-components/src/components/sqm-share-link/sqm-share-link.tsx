@@ -165,15 +165,6 @@ export class ShareLink {
   cancelLabelText?: string = "Cancel";
 
   /**
-   * Message shown briefly after successfully saving a custom link
-   *
-   * @uiName Success message
-   * @uiType string
-   */
-  @Prop()
-  successMessage?: string = "Link updated successfully";
-
-  /**
    * Title text shown when the custom link is already taken
    *
    * @uiName Existing code conflict error title
@@ -293,7 +284,6 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
   const copyString = "https://www.example.com/sharelink/abc";
   const domainPrefix = "https://www.example.com/";
 
@@ -320,7 +310,6 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     customizeLinkLabel: props.customizeLinkLabel,
     saveLabelText: props.saveLabelText,
     cancelLabelText: props.cancelLabelText,
-    successMessage: props.successMessage,
     isEditing,
     editValue,
     domainPrefix,
@@ -330,8 +319,8 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     validationError: null,
     isValidating: false,
     isSaving: false,
-    showSuccess,
     characterLimit: 15,
+    minCharacters: 3,
     charactersRemaining: 15 - editValue.length,
     editLimitText: props.editLimitText,
     editLimitReachedText:
@@ -349,8 +338,6 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     },
     onSave: () => {
       setIsEditing(false);
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
     },
     onCancel: () => {
       setIsEditing(false);
