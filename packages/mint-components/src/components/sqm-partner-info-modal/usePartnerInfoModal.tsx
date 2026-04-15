@@ -5,7 +5,7 @@ import {
   useSetParent,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useMemo, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { PartnerInfoModal } from "./sqm-partner-info-modal";
 import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
@@ -13,6 +13,10 @@ import { ConnectPartnerResult } from "../tax-and-cash/sqm-indirect-tax-form/useI
 import { validTaxDocument } from "../tax-and-cash/utils";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
 import { VERIFICATION_PARENT_NAMESPACE } from "../sqm-widget-verification/keys";
+import {
+  GET_FINANCE_NETWORK_SETTINGS,
+  FinanceNetworkSettingsQuery,
+} from "../tax-and-cash/data";
 
 // new field under impactConnection:{ resolvedByEmail: boolean } - determines if connection came from managed identity
 export const GET_USER_PARTNER_INFO = gql`
@@ -152,17 +156,46 @@ export function usePartnerInfoModal(
     {},
   );
 
+  const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
+    GET_FINANCE_NETWORK_SETTINGS,
+    {
+      variables: { filter: {} },
+    },
+  );
+
   const [
     connectImpactPartner,
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
 
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode || "",
+    user?.impactConnection?.publisher?.countryCode || "US",
   );
   const [currency, setCurrency] = useState(
     user?.impactConnection?.publisher?.currency || "",
   );
+
+  const countries = countriesData?.impactPayoutCountries?.data || [];
+
+  // copied from useTaxAndCash for displaying currencies based on country - could be in helper?
+  const currencies = useMemo(() => {
+    const allValidCurrencies =
+      financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
+        (agg, settings) => {
+          const currency = currenciesData?.currencies?.data?.find(
+            (c) => c.currencyCode === settings.currency,
+          );
+          if (!currency) return agg;
+          if (agg.find((c) => c.currencyCode === settings.currency)) return agg;
+          if (countryCode && settings.countryCode !== countryCode) return agg;
+          return [...agg, currency];
+        },
+        [],
+      );
+    return (allValidCurrencies || []).sort((a, b) =>
+      a.displayName.localeCompare(b.displayName),
+    );
+  }, [financeNetworkData, currenciesData, countryCode]);
 
   console.log(countryCode, currency, "initial country and currency state"); // TEMP
   const [countrySearch, setCountrySearch] = useState("");
@@ -171,16 +204,11 @@ export function usePartnerInfoModal(
     countriesData?.impactPayoutCountries?.data || [],
   );
   const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currenciesData?.currencies?.data || [],
+    currencies || [],
   );
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
-  const countries = countriesData?.impactPayoutCountries?.data || [];
-  const currencies = currenciesData?.currencies?.data || [];
-
-  console.log(user, "user data from partner info query"); // TEMP
 
   useEffect(() => {
     if (userData && user.impactConnection?.publisher) {
@@ -292,14 +320,14 @@ export function usePartnerInfoModal(
     }
   }
 
-  console.log(success, "success state in partner info modal");
-
   const showModal =
     !success &&
     !userLoading &&
     (!impactConnection?.connected || !impactConnection?.publisher);
 
   console.log(showModal, "showModal condition in partner info modal"); // TEMP
+
+  console.log(filteredCurrencies, "filtered curricneis");
 
   return {
     states: {

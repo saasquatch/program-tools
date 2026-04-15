@@ -138,7 +138,6 @@ export function useUserInfoForm(props: TaxForm) {
 
   useEffect(() => {
     const user = data?.user;
-    console.log(user, "data from user query namesapce");
     if (!user || step !== "/1") return;
 
     // If form already filled out, skip initialising it

@@ -159,7 +159,9 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
             }
           />
           {states.filteredCurrencies?.map((c) => (
-            <sl-menu-item value={c.currencyCode}>{c.currencyCode}</sl-menu-item>
+            <sl-menu-item value={c.currencyCode}>
+              {c.currencyCode} - {c.displayName}
+            </sl-menu-item>
           ))}
         </sl-select>
       </div>
