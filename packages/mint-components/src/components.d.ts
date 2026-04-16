@@ -4934,6 +4934,8 @@ export namespace Components {
           * Text for the cancel button in editing mode
           * @uiName Cancel button label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "cancelLabelText"?: string;
         /**
@@ -4944,18 +4946,24 @@ export namespace Components {
           * Tooltip text shown when link customization is disabled
           * @uiName Customize disabled tooltip
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeDisabledTooltip"?: string;
         /**
           * Text shown below the share link input to trigger customization
           * @uiName Customize link label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeLinkLabel"?: string;
         /**
           * Enable users to customize their referral link
           * @uiName Customize URL
           * @uiType boolean
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeUrl"?: boolean;
         /**
@@ -4967,48 +4975,64 @@ export namespace Components {
           * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
           * @uiName Edit limit reached text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "editLimitReachedText"?: string;
         /**
           * Text describing the edit limit
           * @uiName Edit limit text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "editLimitText"?: string;
         /**
           * Description text shown when the custom link is already taken
           * @uiName Existing code conflict error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "existingCodeConflictErrorDescription"?: string;
         /**
           * Title text shown when the custom link is already taken
           * @uiName Existing code conflict error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "existingCodeConflictErrorTitle"?: string;
         /**
           * Description text shown when the link contains invalid characters
           * @uiName Invalid characters error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "invalidCharactersErrorDescription"?: string;
         /**
           * Title text shown when the link contains invalid characters
           * @uiName Invalid characters error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "invalidCharactersErrorTitle"?: string;
         /**
           * Description text shown when the link contains profanity
           * @uiName Profanity error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "profanityErrorDescription"?: string;
         /**
           * Title text shown when the link contains profanity
           * @uiName Profanity error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "profanityErrorTitle"?: string;
         /**
@@ -5021,12 +5045,16 @@ export namespace Components {
           * Text for the save button in editing mode
           * @uiName Save button label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "saveLabelText"?: string;
         /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "supportLinkText"?: string;
         /**
@@ -12911,6 +12939,8 @@ declare namespace LocalJSX {
           * Text for the cancel button in editing mode
           * @uiName Cancel button label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "cancelLabelText"?: string;
         /**
@@ -12921,18 +12951,24 @@ declare namespace LocalJSX {
           * Tooltip text shown when link customization is disabled
           * @uiName Customize disabled tooltip
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeDisabledTooltip"?: string;
         /**
           * Text shown below the share link input to trigger customization
           * @uiName Customize link label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeLinkLabel"?: string;
         /**
           * Enable users to customize their referral link
           * @uiName Customize URL
           * @uiType boolean
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "customizeUrl"?: boolean;
         /**
@@ -12944,48 +12980,64 @@ declare namespace LocalJSX {
           * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
           * @uiName Edit limit reached text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "editLimitReachedText"?: string;
         /**
           * Text describing the edit limit
           * @uiName Edit limit text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "editLimitText"?: string;
         /**
           * Description text shown when the custom link is already taken
           * @uiName Existing code conflict error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "existingCodeConflictErrorDescription"?: string;
         /**
           * Title text shown when the custom link is already taken
           * @uiName Existing code conflict error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "existingCodeConflictErrorTitle"?: string;
         /**
           * Description text shown when the link contains invalid characters
           * @uiName Invalid characters error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "invalidCharactersErrorDescription"?: string;
         /**
           * Title text shown when the link contains invalid characters
           * @uiName Invalid characters error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "invalidCharactersErrorTitle"?: string;
         /**
           * Description text shown when the link contains profanity
           * @uiName Profanity error description
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "profanityErrorDescription"?: string;
         /**
           * Title text shown when the link contains profanity
           * @uiName Profanity error title
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "profanityErrorTitle"?: string;
         /**
@@ -12998,12 +13050,16 @@ declare namespace LocalJSX {
           * Text for the save button in editing mode
           * @uiName Save button label
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "saveLabelText"?: string;
         /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
+          * @uiGroup Customize Vanity Link
+          * @requiredFlavor impact
          */
         "supportLinkText"?: string;
         /**

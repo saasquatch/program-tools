@@ -133,6 +133,8 @@ export class ShareLink {
    *
    * @uiName Customize URL
    * @uiType boolean
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   customizeUrl?: boolean = false;
@@ -142,6 +144,8 @@ export class ShareLink {
    *
    * @uiName Customize link label
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   customizeLinkLabel?: string = "Customize Link";
@@ -151,6 +155,8 @@ export class ShareLink {
    *
    * @uiName Save button label
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   saveLabelText?: string = "Save";
@@ -160,6 +166,8 @@ export class ShareLink {
    *
    * @uiName Cancel button label
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   cancelLabelText?: string = "Cancel";
@@ -169,6 +177,8 @@ export class ShareLink {
    *
    * @uiName Existing code conflict error title
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   existingCodeConflictErrorTitle?: string = "This link is already taken";
@@ -178,6 +188,8 @@ export class ShareLink {
    *
    * @uiName Existing code conflict error description
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   existingCodeConflictErrorDescription?: string =
@@ -188,6 +200,8 @@ export class ShareLink {
    *
    * @uiName Invalid characters error title
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   invalidCharactersErrorTitle?: string =
@@ -198,6 +212,8 @@ export class ShareLink {
    *
    * @uiName Invalid characters error description
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   invalidCharactersErrorDescription?: string =
@@ -208,6 +224,8 @@ export class ShareLink {
    *
    * @uiName Profanity error title
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   profanityErrorTitle?: string = "Please try a different link";
@@ -217,6 +235,8 @@ export class ShareLink {
    *
    * @uiName Profanity error description
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   profanityErrorDescription?: string =
@@ -227,6 +247,8 @@ export class ShareLink {
    *
    * @uiName Edit limit text
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   editLimitText?: string = "You can edit your link up to 5 times.";
@@ -236,6 +258,8 @@ export class ShareLink {
    *
    * @uiName Edit limit reached text
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   editLimitReachedText?: string =
@@ -246,6 +270,8 @@ export class ShareLink {
    *
    * @uiName Support link text
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   supportLinkText?: string = "Support";
@@ -255,6 +281,8 @@ export class ShareLink {
    *
    * @uiName Customize disabled tooltip
    * @uiType string
+   * @uiGroup Customize Vanity Link
+   * @requiredFlavor impact
    */
   @Prop()
   customizeDisabledTooltip?: string = "Link customization is not available.";
