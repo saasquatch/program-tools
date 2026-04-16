@@ -56,14 +56,10 @@ const CHARACTER_LIMIT = 15;
 const MIN_CHARACTERS = 3;
 
 const MessageLinkQuery = gql`
-  query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
+  query ($programId: ID) {
     user: viewer {
       ... on User {
-        shareLink(
-          programId: $programId
-          engagementMedium: $engagementMedium
-          shareMedium: DIRECT
-        )
+        shareLink(programId: $programId)
       }
     }
   }
@@ -123,22 +119,16 @@ const SHARE_LINK_EDIT_COUNT = gql`
   }
 `;
 
-function parseDomainPrefix(url: string): string {
+function parseShareUrl(url: string) {
   try {
     const parsed = new URL(url);
-    return parsed.origin + "/";
+    return {
+      url: parsed.origin + parsed.pathname,
+      domain: parsed.origin + "/",
+      path: parsed.pathname.slice(1),
+    };
   } catch {
-    return url;
-  }
-}
-
-function parsePathSuffix(url: string): string {
-  try {
-    const parsed = new URL(url);
-    // Remove leading slash
-    return parsed.pathname.slice(1) + parsed.search + parsed.hash;
-  } catch {
-    return "";
+    return { url, domain: url, path: "" };
   }
 }
 
@@ -153,7 +143,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const { data, refetch } = useQuery(
     MessageLinkQuery,
-    { programId, engagementMedium },
+    { programId },
     !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined,
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
@@ -177,10 +167,15 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     !user?.jwt || !props.customizeUrl,
   );
 
-  const copyString =
+  const {
+    url: copyString,
+    domain: domainPrefix,
+    path: pathSuffix,
+  } = parseShareUrl(
     (contextData?.shareLink || data?.user?.shareLink) ??
-    // Shown during loading
-    "...";
+      // Shown during loading
+      "...",
+  );
 
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -191,8 +186,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
-
-  const domainPrefix = parseDomainPrefix(copyString);
 
   const hasPrimaryLinkDomain =
     linkDomainData?.tenantSettings?.primaryLinkDomain != null;
@@ -262,7 +255,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   function onCustomizeClick() {
     if (limitReached || customizeDisabled) return;
     setIsEditing(true);
-    setEditValue(editCount === 0 ? "" : parsePathSuffix(copyString));
+    setEditValue(editCount === 0 ? "" : pathSuffix);
     setValidationError(null);
   }
 
@@ -295,7 +288,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   }
 
   async function onSave() {
-    if (!editValue || editValue.length < MIN_CHARACTERS || validationError || isValidating) return;
+    if (
+      !editValue ||
+      editValue.length < MIN_CHARACTERS ||
+      validationError ||
+      isValidating
+    )
+      return;
 
     try {
       await addShareLinkCode({
