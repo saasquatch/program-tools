@@ -131,6 +131,7 @@ export function usePartnerInfoModal(
   props: PartnerInfoModal,
 ): PartnerInfoModalViewProps {
   const locale = useLocale();
+
   const setVerificationContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
   const {
@@ -168,9 +169,12 @@ export function usePartnerInfoModal(
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
 
+  // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode || "US",
+    user?.impactConnection?.publisher?.countryCode ||
+      locale.replace(/^.*_/, ""),
   );
+
   const [currency, setCurrency] = useState(
     user?.impactConnection?.publisher?.currency || "",
   );
@@ -206,6 +210,8 @@ export function usePartnerInfoModal(
   const [filteredCurrencies, setFilteredCurrencies] = useState(
     currencies || [],
   );
+
+  console.log(userData, "userData partner info modal");
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);

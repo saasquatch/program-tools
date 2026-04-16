@@ -118,7 +118,6 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
       <div class={sheet.classes.FormFields}>
         {description}
         <sl-select
-          key={`country-${states.countryCode}`}
           exportparts="label: input-label, base: input-base"
           label={text.countryLabel}
           value={states.countryCode}
@@ -141,7 +140,6 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
         </sl-select>
 
         <sl-select
-          key={`currency-${states.currency}`}
           exportparts="label: input-label, base: input-base"
           label={text.currencyLabel}
           value={states.currency}

@@ -17,6 +17,36 @@ import {
 import { useWidgetVerification } from "./useWidgetVerification";
 import { createStyleSheet } from "../../styling/JSS";
 
+const style = {
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "480px",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+      overflow: "visible",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+    },
+    "&::part(overlay)": {
+      background: "rgba(0, 0, 0, 0.5)",
+    },
+  },
+  DialogTitle: {
+    fontSize: "var(--sl-font-size-x-large)",
+    fontWeight: "600",
+    padding: "var(--sl-spacing-x-large) 0 0 0",
+    margin: "0",
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
 /**
  * @uiName Widget Verification Flow
  * @exampleGroup Widget Verification
@@ -276,36 +306,6 @@ export class WidgetVerification {
     if (props.showPartnerModal && partnerState?.states?.open === false) {
       return <div></div>;
     }
-
-    const style = {
-      Dialog: {
-        "&::part(panel)": {
-          maxWidth: "480px",
-        },
-        "&::part(body)": {
-          padding: "0 var(--sl-spacing-x-large)",
-          fontSize: "var(--sl-font-size-small)",
-          overflow: "visible",
-        },
-        "&::part(footer)": {
-          display: "flex",
-          flexDirection: "column",
-          gap: "var(--sl-spacing-small)",
-        },
-        "&::part(overlay)": {
-          background: "rgba(0, 0, 0, 0.5)",
-        },
-      },
-      DialogTitle: {
-        fontSize: "var(--sl-font-size-x-large)",
-        fontWeight: "600",
-        padding: "var(--sl-spacing-x-large) 0 0 0",
-        margin: "0",
-      },
-    };
-
-    const sheet = createStyleSheet(style);
-    const styleString = sheet.toString();
 
     // const generalText = this.getStepTextProps("general_");
     const partnerText = this.getStepTextProps("createPartnerStep_");

@@ -49,15 +49,20 @@ function getCurrentStep(user: UserQuery["user"]) {
     billingCity,
     billingPostalCode,
     billingState,
+    countryCode,
   } = user.impactConnection.publisher;
-  console.log(phoneNumber, "phone number in getCurrentStep");
+  console.log(
+    user.impactConnection.publisher,
+    "publisher data in useTaxAndCash to determine step",
+  );
 
   // Early partner creation does not collect these fields
+  const stateRequired = ["ES", "AU", "US", "CA"].includes(countryCode);
   if (
     !billingAddress ||
     !billingCity ||
     !billingPostalCode ||
-    !billingState ||
+    (stateRequired && !billingState) ||
     !phoneNumber
   ) {
     return "/1";
