@@ -62,7 +62,7 @@ export function TextSpanView(props: TextSpanViewProps, children: VNode) {
   `;
 
   return (
-    <span class={sheet.classes[type]} part="sqm-base">
+    <span class={sheet.classes[type]} part="sqm-text-span-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}
