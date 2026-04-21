@@ -161,14 +161,3 @@ export const Closed = () => {
   };
   return <PartnerInfoModalView {...props} />;
 };
-
-export const FullStackDemo = () => {
-  return (
-    <sqm-partner-info-modal
-      brand-name="Acme"
-      header-new-partner="Welcome to {brandName} Program!"
-      description-new-partner="We just need a bit more information about you before you start earning cash!"
-      submit-button-label="Submit"
-    ></sqm-partner-info-modal>
-  );
-};

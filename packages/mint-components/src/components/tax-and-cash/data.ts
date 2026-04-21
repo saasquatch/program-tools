@@ -71,6 +71,7 @@ export const GET_USER = gql`
         }
         impactConnection {
           connected
+          connectionStatus
           user {
             firstName
             lastName
@@ -194,6 +195,7 @@ export type UserQuery = {
     impactConnection: null | {
       connected: boolean;
       user: null | ImpactUser;
+      connectionStatus: "NOT_STARTED" | "STARTED" | "COMPLETED";
       publisher: null | ImpactPublisher;
     };
   };

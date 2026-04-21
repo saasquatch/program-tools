@@ -104,7 +104,6 @@
 - [sqm-lead-input-field](../sqm-lead-form)
 - [sqm-lead-dropdown-field](../sqm-lead-form)
 - [sqm-lead-form](../sqm-lead-form)
-- [sqm-partner-info-modal](../sqm-partner-info-modal)
 - [sqm-widget-verification](../sqm-widget-verification)
 
 ### Graph
@@ -207,7 +206,6 @@ graph TD;
   sqm-stencilbook --> sqm-lead-input-field
   sqm-stencilbook --> sqm-lead-dropdown-field
   sqm-stencilbook --> sqm-lead-form
-  sqm-stencilbook --> sqm-partner-info-modal
   sqm-stencilbook --> sqm-widget-verification
   sqm-form-message --> sqm-skeleton
   sqm-portal-register --> sqm-form-message

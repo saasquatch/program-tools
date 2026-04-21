@@ -184,8 +184,6 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(states, "partner info modal states"); // TEMP
-
   if (!states.open) return <div></div>;
 
   return (

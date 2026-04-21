@@ -56,6 +56,10 @@ export type ConnectPartnerResult = {
   };
 };
 
+export type StartImpactConnectionResult = {
+  startImpactConnection: ConnectPartnerResult["createImpactConnection"];
+};
+
 export type CompletePartnerResult = {
   completeImpactConnection: ConnectPartnerResult["createImpactConnection"];
 };

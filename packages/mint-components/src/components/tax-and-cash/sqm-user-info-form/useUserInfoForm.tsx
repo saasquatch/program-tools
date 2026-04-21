@@ -267,7 +267,7 @@ export function useUserInfoForm(props: TaxForm) {
     const userData = data?.user;
     let result = null;
     let connectionResult;
-    if (userData?.impactConnection?.connected) {
+    if (userData?.impactConnection?.connectionStatus === "STARTED") {
       console.log(vars, "values for completeImpactPartner");
       result = await completeImpactPartner({
         vars,

@@ -44,27 +44,12 @@ function getCurrentStep(user: UserQuery["user"]) {
     withdrawalSettings,
     brandedSignup,
     payoutsAccount,
-    billingAddress,
-    phoneNumber,
-    billingCity,
-    billingPostalCode,
-    billingState,
-    countryCode,
   } = user.impactConnection.publisher;
   console.log(
-    user.impactConnection.publisher,
-    "publisher data in useTaxAndCash to determine step",
+    user.impactConnection,
+    "publisher data in useTaxAndCash to determine step new new",
   );
-
-  // Early partner creation does not collect these fields
-  const stateRequired = ["ES", "AU", "US", "CA"].includes(countryCode);
-  if (
-    !billingAddress ||
-    !billingCity ||
-    !billingPostalCode ||
-    (stateRequired && !billingState) ||
-    !phoneNumber
-  ) {
+  if (user.impactConnection.connectionStatus === "STARTED") {
     return "/1";
   }
 

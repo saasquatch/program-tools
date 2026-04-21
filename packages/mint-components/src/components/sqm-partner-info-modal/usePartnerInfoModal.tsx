@@ -3,14 +3,15 @@ import {
   useMutation,
   useQuery,
   useSetParent,
-  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { PartnerInfoModal } from "./sqm-partner-info-modal";
 import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
-import { ConnectPartnerResult } from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
-import { validTaxDocument } from "../tax-and-cash/utils";
+import {
+  ConnectPartnerResult,
+  StartImpactConnectionResult,
+} from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
 import { VERIFICATION_PARENT_NAMESPACE } from "../sqm-widget-verification/keys";
 import {
@@ -32,20 +33,11 @@ export const GET_USER_PARTNER_INFO = gql`
         customFields
         impactConnection {
           connected
+          connectionStatus
           publisher {
             id
-            phoneNumber
-            phoneNumberCountryCode
             countryCode
             currency
-            requiredTaxDocumentType
-            currentTaxDocument {
-              type
-              status
-            }
-            withdrawalSettings {
-              paymentMethod
-            }
           }
         }
       }
@@ -78,6 +70,33 @@ export const GET_CURRENCIES = gql`
 export const CONNECT_PARTNER = gql`
   mutation createImpactConnection($vars: ImpactConnectionInput!) {
     createImpactConnection(impactConnectionInput: $vars) {
+      success
+      validationErrors {
+        field
+        message
+      }
+      user {
+        id
+        accountId
+        impactConnection {
+          connected
+          publisher {
+            brandedSignup
+            requiredTaxDocumentType
+            currentTaxDocument {
+              type
+              status
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const START_IMPACT_CONNECTION = gql`
+  mutation startImpactConnection($vars: ImpactConnectionInput!) {
+    startImpactConnection(impactConnectionInput: $vars) {
       success
       validationErrors {
         field
@@ -165,9 +184,9 @@ export function usePartnerInfoModal(
   );
 
   const [
-    connectImpactPartner,
+    startImpactConnection,
     { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  ] = useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
 
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
@@ -201,7 +220,6 @@ export function usePartnerInfoModal(
     );
   }, [financeNetworkData, currenciesData, countryCode]);
 
-  console.log(countryCode, currency, "initial country and currency state"); // TEMP
   const [countrySearch, setCountrySearch] = useState("");
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(
@@ -217,11 +235,11 @@ export function usePartnerInfoModal(
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (userData && user.impactConnection?.publisher) {
-      setCountryCode(user.impactConnection.publisher.countryCode);
-      setCurrency(user.impactConnection.publisher.currency);
-    }
-  }, [userData]);
+    const publisher = user?.impactConnection?.publisher;
+    if (!userData || !publisher) return;
+    setCountryCode(publisher.countryCode);
+    setCurrency(publisher.currency);
+  }, [userData, user]);
 
   useEffect(() => {
     if (!countries?.length) return;
@@ -287,15 +305,15 @@ export function usePartnerInfoModal(
         currency,
       };
 
-      const result = await connectImpactPartner({ vars });
+      const result = await startImpactConnection({ vars });
 
       if (!result || (result as Error)?.message) {
         setError(props.networkErrorText);
         return;
       }
 
-      const connectionResult = (result as ConnectPartnerResult)
-        .createImpactConnection;
+      const connectionResult = (result as StartImpactConnectionResult)
+        .startImpactConnection;
 
       console.log(
         result,
@@ -329,11 +347,7 @@ export function usePartnerInfoModal(
   const showModal =
     !success &&
     !userLoading &&
-    (!impactConnection?.connected || !impactConnection?.publisher);
-
-  console.log(showModal, "showModal condition in partner info modal"); // TEMP
-
-  console.log(filteredCurrencies, "filtered curricneis");
+    impactConnection?.connectionStatus === "NOT_STARTED";
 
   return {
     states: {

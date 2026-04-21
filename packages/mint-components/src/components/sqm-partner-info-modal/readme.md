@@ -32,13 +32,11 @@
 
 ### Used by
 
- - [sqm-stencilbook](../sqm-stencilbook)
  - [sqm-widget-verification](../sqm-widget-verification)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-partner-info-modal
   sqm-widget-verification --> sqm-partner-info-modal
   style sqm-partner-info-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
