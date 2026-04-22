@@ -239,10 +239,9 @@ export const CustomizeUrlInvalidCharacters = () => {
         editValue: "nvoiwb18",
         charactersRemaining: 7,
         validationError: {
-          code: "INVALID_CHARACTERS",
+          code: "INVALID_CHARACTER",
           title: "Please use only letters, numbers, dashes and underscores",
-          description:
-            "Special characters can break the link when sharing.",
+          description: "Special characters can break the link when sharing.",
         },
       }}
     />
@@ -258,7 +257,7 @@ export const CustomizeUrlProfanity = () => {
         editValue: "nvoiwb18",
         charactersRemaining: 7,
         validationError: {
-          code: "PROFANITY",
+          code: "BLOCKED_WORD",
           title: "Please try a different link",
           description: "This link contains a restricted word.",
         },
@@ -279,4 +278,3 @@ export const CustomizeUrlSaving = () => {
     />
   );
 };
-

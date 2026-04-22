@@ -5,8 +5,8 @@ import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
 
 export type ValidationErrorCode =
   | "EXISTING_CODE_CONFLICT"
-  | "INVALID_CHARACTERS"
-  | "PROFANITY"
+  | "INVALID_CHARACTER"
+  | "BLOCKED_WORD"
   | null;
 
 export interface ValidationErrorInfo {
@@ -85,7 +85,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     Container: {
       display: "flex",
       flexDirection: "column",
-      gap: "var(--sl-spacing-x-small)",
+      gap: "var(--sl-spacing-xx-small)",
       width: "100%",
     },
     CustomizeLinkText: {
@@ -95,6 +95,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       cursor: "pointer",
       color: "var(--sl-color-neutral-900)",
       textAlign: "left" as const,
+      padding: "var(--sl-spacing-small)",
       "&:hover": {
         textDecoration: "underline",
       },
@@ -106,6 +107,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       color: "var(--sl-color-neutral-400)",
       cursor: "default",
       textAlign: "left" as const,
+      padding: "var(--sl-spacing-small)",
     },
     EditContainer: {
       display: "flex",
@@ -195,6 +197,11 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       fontFamily: "var(--sl-font-sans)",
       color: "var(--sl-color-neutral-500)",
     },
+    LimitReachedContainer: {
+      display: "flex",
+      alignItems: "center",
+      gap: "var(--sl-spacing-x-small)",
+    },
   };
 
   const sheet = createStyleSheet(style);
@@ -203,7 +210,15 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   const errorMessageType =
     validationError?.code === "EXISTING_CODE_CONFLICT" ? "info" : "warning";
 
-  const showCharactersRemaining = charactersRemaining <= 7;
+  const showCharactersRemaining = charactersRemaining <= 14;
+
+  console.log(
+    customizeUrl,
+    limitReached,
+    customizeDisabled,
+    validationError,
+    "customize URL state",
+  );
 
   // Editing state
   if (isEditing) {
@@ -223,6 +238,9 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             onInput={(e: Event) =>
               onEditValueChange((e.target as HTMLInputElement).value)
             }
+            onKeyDown={(e: KeyboardEvent) => {
+              if (e.key === "/" || e.key === "@") e.preventDefault();
+            }}
             disabled={isSaving}
             maxLength={characterLimit}
           />
@@ -233,7 +251,10 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             ` Characters remaining: ${charactersRemaining}`}
         </p>
         {validationError && (
-          <sqm-form-message type={errorMessageType}>
+          <sqm-form-message
+            type={errorMessageType}
+            style={{ paddingBottom: "var(--sl-spacing-xx-small)" }}
+          >
             <p part="alert-title">{validationError.title}</p>
             {validationError.description}
           </sqm-form-message>
@@ -244,7 +265,11 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             class={sheet.classes.SaveButton}
             onClick={onSave}
             disabled={
-              isSaving || isValidating || !!validationError || !editValue || editValue.length < minCharacters
+              isSaving ||
+              isValidating ||
+              !!validationError ||
+              !editValue ||
+              editValue.length < minCharacters
             }
           >
             {isSaving ? "Saving..." : saveLabelText}
@@ -269,41 +294,51 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         {vanillaStyle}
       </style>
       <CopyTextView {...copyTextViewProps} />
-      {customizeUrl && (customizeDisabled ? (
-        <sl-tooltip content={customizeDisabledTooltip} placement="top" style={{ display: "inline-block", width: "fit-content" }}>
-          <p class={sheet.classes.CustomizeLinkDisabled}>
-            {customizeLinkLabel}
-          </p>
-        </sl-tooltip>
-      ) : (
-        <p
-          class={
-            limitReached
-              ? sheet.classes.CustomizeLinkDisabled
-              : sheet.classes.CustomizeLinkText
-          }
-          onClick={limitReached ? undefined : onCustomizeClick}
-        >
-          {customizeLinkLabel}
-        </p>
-      ))}
-      {customizeUrl && limitReached && (
-        <p class={sheet.classes.HelperText}>
-          {intl.formatMessage(
-            {
-              id: "editLimitReached",
-              defaultMessage: editLimitReachedText,
-            },
-            {
-              supportLink: (
-                <a target="_blank" href="https://example.com">
-                  {supportLinkText}
-                </a>
-              ),
-            },
-          )}
-        </p>
-      )}
+      {customizeUrl &&
+        (customizeDisabled ? (
+          <sl-tooltip
+            content={customizeDisabledTooltip}
+            placement="top"
+            style={{ display: "inline-block", width: "fit-content" }}
+          >
+            <p class={sheet.classes.CustomizeLinkDisabled}>
+              {customizeLinkLabel}
+            </p>
+          </sl-tooltip>
+        ) : (
+          <div class={sheet.classes.LimitReachedContainer}>
+            <p
+              class={
+                limitReached
+                  ? sheet.classes.CustomizeLinkDisabled
+                  : sheet.classes.CustomizeLinkText
+              }
+              onClick={limitReached ? undefined : onCustomizeClick}
+            >
+              {customizeLinkLabel}
+            </p>
+            {customizeUrl && limitReached && (
+              <p class={sheet.classes.HelperText}>
+                {intl.formatMessage(
+                  {
+                    id: "editLimitReached",
+                    defaultMessage: editLimitReachedText,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href="https://help.impact.com/other/readme/get-help-and-support"
+                      >
+                        {supportLinkText}
+                      </a>
+                    ),
+                  },
+                )}
+              </p>
+            )}
+          </div>
+        ))}
     </div>
   );
 }

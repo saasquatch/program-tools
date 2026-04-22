@@ -213,13 +213,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
         title: props.existingCodeConflictErrorTitle,
         description: props.existingCodeConflictErrorDescription,
       },
-      INVALID_CHARACTERS: {
-        code: "INVALID_CHARACTERS",
+      INVALID_CHARACTER: {
+        code: "INVALID_CHARACTER",
         title: props.invalidCharactersErrorTitle,
         description: props.invalidCharactersErrorDescription,
       },
-      PROFANITY: {
-        code: "PROFANITY",
+      BLOCKED_WORD: {
+        code: "BLOCKED_WORD",
         title: props.profanityErrorTitle,
         description: props.profanityErrorDescription,
       },
@@ -278,6 +278,11 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
         if (!result?.validateLinkCode?.valid) {
           const reason = result?.validateLinkCode
             ?.invalidReason as ValidationErrorCode;
+
+          console.log(
+            reason,
+            "validation error reason from validateLinkCode query",
+          );
           setValidationError(mapErrorCodeToInfo(reason));
         }
       } catch {
@@ -312,6 +317,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       refresh();
     } catch (e) {
       const errorCode = e?.extensions?.code as ValidationErrorCode;
+
+      console.log(errorCode, "errorCode from addSharelInkCodeMutation");
       setValidationError(
         mapErrorCodeToInfo(errorCode) ?? {
           code: null,
@@ -329,6 +336,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     setValidationError(null);
     setIsValidating(false);
   }
+
+  console.log(validationError, "validation error state"); // TEMP --- IGNORE ---
 
   return {
     copyTextViewProps: {
