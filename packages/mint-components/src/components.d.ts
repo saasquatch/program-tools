@@ -2313,6 +2313,11 @@ export namespace Components {
     }
     interface SqmPartnerInfoModal {
         /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection": string;
+        /**
           * Brand name shown in the modal header
           * @uiName Brand name
          */
@@ -2398,6 +2403,17 @@ export namespace Components {
           * @uiWidget textArea
          */
         "supportDescriptionExistingPartner": string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmPasswordField {
         /**
@@ -10523,6 +10539,11 @@ declare namespace LocalJSX {
     }
     interface SqmPartnerInfoModal {
         /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection"?: string;
+        /**
           * Brand name shown in the modal header
           * @uiName Brand name
          */
@@ -10608,6 +10629,17 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "supportDescriptionExistingPartner"?: string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmPasswordField {
         /**

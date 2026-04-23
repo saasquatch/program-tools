@@ -29,6 +29,7 @@ const demoCurrencies = [
 const noopCallbacks = {
   onCountryChange: (e: any) => console.log("Country changed:", e),
   onCurrencyChange: (e: any) => console.log("Currency changed:", e),
+  onCheckboxChange: (e: any) => console.log("Checkbox changed:", e),
   setCountrySearch: (v: string) => console.log("Country search:", v),
   setCurrencySearch: (v: string) => console.log("Currency search:", v),
   onSubmit: () => console.log("Submit"),
@@ -50,6 +51,12 @@ const defaultText = {
   confirmButtonLabel: "Confirm",
   searchCountryPlaceholder: "Search for a country",
   searchCurrencyPlaceholder: "Search for a currency",
+  bankingCollectionText: "",
+  allowBankingCollection:
+    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information",
+  termsAndConditionsLabel: "terms and conditions",
+  termsAndConditionsLink:
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html",
 };
 
 const defaultProps: PartnerInfoModalViewProps = {
@@ -65,6 +72,9 @@ const defaultProps: PartnerInfoModalViewProps = {
     brandName: "Test Brand",
     filteredCountries: demoCountries,
     filteredCurrencies: demoCurrencies,
+    allowBankingCollection: false,
+    checkboxError: "",
+    disabled: false,
   },
   callbacks: noopCallbacks,
   text: defaultText,

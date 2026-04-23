@@ -188,6 +188,8 @@ export function usePartnerInfoModal(
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
 
+  const [allowBankingCollection, setAllowBankingCollection] = useState(false);
+  const [checkboxError, setCheckboxError] = useState("");
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
     user?.impactConnection?.publisher?.countryCode ||
@@ -284,12 +286,23 @@ export function usePartnerInfoModal(
     setError("");
   }
 
+  function onCheckboxChange(e: any) {
+    const checked = e.target.checked;
+    setAllowBankingCollection(checked);
+    if (checked) setCheckboxError("");
+  }
+
   async function onSubmit() {
+    if (!allowBankingCollection) {
+      setCheckboxError(props.missingFieldsErrorText);
+      return;
+    }
     if (!countryCode || !currency) {
       setError(props.missingFieldsErrorText);
       return;
     }
     setError("");
+    setCheckboxError("");
 
     try {
       const vars = {
@@ -362,10 +375,14 @@ export function usePartnerInfoModal(
       brandName: tenantSettingsData?.tenantSettings?.companyName || "",
       filteredCountries: filteredCountries || [],
       filteredCurrencies: filteredCurrencies || [],
+      allowBankingCollection,
+      checkboxError,
+      disabled: userLoading || connectLoading,
     },
     callbacks: {
       onCountryChange,
       onCurrencyChange,
+      onCheckboxChange,
       setCurrencySearch,
       setCountrySearch,
       onSubmit,

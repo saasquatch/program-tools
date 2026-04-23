@@ -83,6 +83,24 @@ export class PartnerInfoModal {
     "If this is a mistake, please contact Support or sign up for this referral program with a different email.";
 
   /**
+   * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+   * @uiName Terms and conditions checkbox
+   */
+  @Prop() allowBankingCollection: string =
+    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
+  /**
+   * The link text that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions text
+   * @uiWidget textArea
+   */
+  @Prop() termsAndConditionsLabel: string = "terms and conditions";
+  /**
+   * The link that appears in the terms and conditions checkbox
+   * @uiName Terms and conditions link
+   */
+  @Prop() termsAndConditionsLink: string =
+    "https://terms.advocate.impact.com/PayoutTermsAndConditions.html";
+  /**
    * @uiName Country label
    */
   @Prop()
@@ -180,17 +198,17 @@ function useDemoPartnerInfoModal(
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
   const [error, setError] = useState("");
+  const [allowBankingCollection, setAllowBankingCollection] = useState(false);
 
   const parsed = parseStates(props.stateController);
-  const stateOverride =
-    parsed?.["sqm-partner-info-modal"] || parsed || {};
+  const stateOverride = parsed?.["sqm-partner-info-modal"] || parsed || {};
 
   // @ts-ignore
   return deepmerge(
     {
       states: {
         brandName: "Test Brand",
-        open: true,
+        open: false,
         loading: false,
         submitting: false,
         isExistingPartner: false,
@@ -200,6 +218,9 @@ function useDemoPartnerInfoModal(
         success: false,
         filteredCountries: [],
         filteredCurrencies: [],
+        allowBankingCollection,
+        checkboxError: "",
+        disabled: false,
       },
       callbacks: {
         onCountryChange: (e: any) => {
@@ -212,6 +233,9 @@ function useDemoPartnerInfoModal(
         onCurrencyChange: (e: any) => {
           const value = e?.detail?.item?.__value;
           if (value) setCurrency(value);
+        },
+        onCheckboxChange: (e: any) => {
+          setAllowBankingCollection(e.target.checked);
         },
         setCountrySearch: () => {},
         setCurrencySearch: () => {},

@@ -885,7 +885,8 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 ))}
               </sl-select>
 
-              <div class={classes.CheckboxWrapper}>
+              {/* <div class={classes.CheckboxWrapper}>
+              AL: FLAGGED FOR DELETION
                 <sl-checkbox
                   checked={formState.allowBankingCollection === true}
                   onSl-change={(e) => {
@@ -907,7 +908,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     )}
                   </p>
                 )}
-              </div>
+              </div> */}
             </div>
             <sl-button
               type="primary"

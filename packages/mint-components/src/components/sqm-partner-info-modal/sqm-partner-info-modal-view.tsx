@@ -15,10 +15,14 @@ export interface PartnerInfoModalViewProps {
     brandName: string;
     filteredCountries: { countryCode: string; displayName: string }[];
     filteredCurrencies: { currencyCode: string; displayName: string }[];
+    allowBankingCollection: boolean;
+    checkboxError: string;
+    disabled: boolean;
   };
   callbacks: {
     onCountryChange: (e: any) => void;
     onCurrencyChange: (e: any) => void;
+    onCheckboxChange: (e: any) => void;
     setCurrencySearch: (c: any) => void;
     setCountrySearch: (c: any) => void;
     onSubmit: () => void;
@@ -36,6 +40,9 @@ export interface PartnerInfoModalViewProps {
     searchCurrencyPlaceholder: string;
     supportDescriptionExistingPartner: string;
     modalHeaderExistingPartner: string;
+    allowBankingCollection: string;
+    termsAndConditionsLabel: string;
+    termsAndConditionsLink: string;
   };
 }
 
@@ -86,6 +93,11 @@ const style = {
       margin: "0",
     },
   },
+  CheckboxWrapper: {
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+  },
   SubmitButton: {
     width: "100%",
     marginTop: "var(--sl-spacing-large)",
@@ -111,6 +123,20 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
   const buttonLabel = states.isExistingPartner
     ? text.confirmButtonLabel
     : text.submitButtonLabel;
+
+  const bankingCollectionText = intl.formatMessage(
+    {
+      id: "bankingCollectionText",
+      defaultMessage: text.allowBankingCollection,
+    },
+    {
+      termsAndConditionsLink: (
+        <a href={text.termsAndConditionsLink} target="_blank">
+          {text.termsAndConditionsLabel}
+        </a>
+      ),
+    },
+  );
 
   return (
     <div>
@@ -162,13 +188,34 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
             </sl-menu-item>
           ))}
         </sl-select>
+        <div class={sheet.classes.CheckboxWrapper}>
+          <sl-checkbox
+            checked={states.allowBankingCollection === true}
+            onSl-change={callbacks.onCheckboxChange}
+            disabled={states.submitting}
+            required
+            value={states.allowBankingCollection}
+            id="allowBankingCollection"
+            name="/allowBankingCollection"
+          >
+            {bankingCollectionText}
+          </sl-checkbox>
+          {states.checkboxError && (
+            <p class={sheet.classes.ErrorMessage}>{states.checkboxError}</p>
+          )}
+        </div>
       </div>
       {states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>}
       <sl-button
         slot="footer"
         type="primary"
         loading={states.submitting}
-        disabled={states.submitting || !states.countryCode || !states.currency}
+        disabled={
+          states.submitting ||
+          !states.countryCode ||
+          !states.currency ||
+          !states.allowBankingCollection
+        }
         onClick={callbacks.onSubmit}
         class={sheet.classes.SubmitButton}
         exportparts="base: primarybutton-base"
