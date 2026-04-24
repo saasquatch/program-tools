@@ -87,7 +87,7 @@ export const CustomizeUrlEnabled = createHookStory(() => {
         programId: "klip-referral-program",
         tooltiptext: "Copied to clipboard",
         tooltiplifespan: 1000,
-        customizeUrl: true,
+        allowCustomization: true,
       })}
     />
   );

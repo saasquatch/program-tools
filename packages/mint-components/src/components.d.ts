@@ -4890,6 +4890,14 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
+          * Let advocates customize their share links up to 5 times.
+          * @uiName Allow customization
+          * @uiType boolean
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "allowCustomization"?: boolean;
+        /**
           * Background color of share link container
           * @uiName Background color
           * @uiWidget color
@@ -4934,7 +4942,7 @@ export namespace Components {
           * Text for the cancel button in editing mode
           * @uiName Cancel button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "cancelLabelText"?: string;
@@ -4946,95 +4954,75 @@ export namespace Components {
           * Tooltip text shown when link customization is disabled
           * @uiName Customize disabled tooltip
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "customizeDisabledTooltip"?: string;
         /**
-          * Text shown below the share link input to trigger customization
-          * @uiName Customize link label
+          * Displayed below the share link.
+          * @uiName Customize link button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "customizeLinkLabel"?: string;
-        /**
-          * Enable users to customize their referral link
-          * @uiName Customize URL
-          * @uiType boolean
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "customizeUrl"?: boolean;
+        "customizeLinkButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
-          * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+          * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
           * @uiName Edit limit reached text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "editLimitReachedText"?: string;
         /**
-          * Text describing the edit limit
+          * Subtext shown while the user is customizing their URL.
           * @uiName Edit limit text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "editLimitText"?: string;
+        "editsRemaining"?: number;
         /**
-          * Description text shown when the custom link is already taken
-          * @uiName Existing code conflict error description
-          * @uiType string
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "existingCodeConflictErrorDescription"?: string;
-        /**
-          * Title text shown when the custom link is already taken
-          * @uiName Existing code conflict error title
-          * @uiType string
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "existingCodeConflictErrorTitle"?: string;
-        /**
-          * Description text shown when the link contains invalid characters
+          * Description text shown when the link contains invalid special characters.
           * @uiName Invalid characters error description
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "invalidCharactersErrorDescription"?: string;
         /**
-          * Title text shown when the link contains invalid characters
+          * Title of the error message shown when the link contains invalid special characters.
           * @uiName Invalid characters error title
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "invalidCharactersErrorTitle"?: string;
         /**
-          * Description text shown when the link contains profanity
-          * @uiName Profanity error description
+          * Description text shown when the link has already been taken
+          * @uiName Link taken error message
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "profanityErrorDescription"?: string;
+        "linkTakenErrorDescription"?: string;
         /**
-          * Title text shown when the link contains profanity
-          * @uiName Profanity error title
+          * Title of the error message shown when the link has already been taken
+          * @uiName Link taken error title
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "profanityErrorTitle"?: string;
+        "linkTakenErrorTitle"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -5042,10 +5030,27 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * Description text shown when the link contains profanity or brand names.
+          * @uiName Restricted words error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains profanity or brand names.
+          * @uiName Restricted words error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorTitle"?: string;
+        /**
           * Text for the save button in editing mode
           * @uiName Save button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "saveLabelText"?: string;
@@ -5053,7 +5058,7 @@ export namespace Components {
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "supportLinkText"?: string;
@@ -12895,6 +12900,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
+          * Let advocates customize their share links up to 5 times.
+          * @uiName Allow customization
+          * @uiType boolean
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "allowCustomization"?: boolean;
+        /**
           * Background color of share link container
           * @uiName Background color
           * @uiWidget color
@@ -12939,7 +12952,7 @@ declare namespace LocalJSX {
           * Text for the cancel button in editing mode
           * @uiName Cancel button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "cancelLabelText"?: string;
@@ -12951,95 +12964,75 @@ declare namespace LocalJSX {
           * Tooltip text shown when link customization is disabled
           * @uiName Customize disabled tooltip
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "customizeDisabledTooltip"?: string;
         /**
-          * Text shown below the share link input to trigger customization
-          * @uiName Customize link label
+          * Displayed below the share link.
+          * @uiName Customize link button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "customizeLinkLabel"?: string;
-        /**
-          * Enable users to customize their referral link
-          * @uiName Customize URL
-          * @uiType boolean
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "customizeUrl"?: boolean;
+        "customizeLinkButtonLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
-          * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+          * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
           * @uiName Edit limit reached text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "editLimitReachedText"?: string;
         /**
-          * Text describing the edit limit
+          * Subtext shown while the user is customizing their URL.
           * @uiName Edit limit text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "editLimitText"?: string;
+        "editsRemaining"?: number;
         /**
-          * Description text shown when the custom link is already taken
-          * @uiName Existing code conflict error description
-          * @uiType string
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "existingCodeConflictErrorDescription"?: string;
-        /**
-          * Title text shown when the custom link is already taken
-          * @uiName Existing code conflict error title
-          * @uiType string
-          * @uiGroup Customize Vanity Link
-          * @requiredFlavor impact
-         */
-        "existingCodeConflictErrorTitle"?: string;
-        /**
-          * Description text shown when the link contains invalid characters
+          * Description text shown when the link contains invalid special characters.
           * @uiName Invalid characters error description
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "invalidCharactersErrorDescription"?: string;
         /**
-          * Title text shown when the link contains invalid characters
+          * Title of the error message shown when the link contains invalid special characters.
           * @uiName Invalid characters error title
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "invalidCharactersErrorTitle"?: string;
         /**
-          * Description text shown when the link contains profanity
-          * @uiName Profanity error description
+          * Description text shown when the link has already been taken
+          * @uiName Link taken error message
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "profanityErrorDescription"?: string;
+        "linkTakenErrorDescription"?: string;
         /**
-          * Title text shown when the link contains profanity
-          * @uiName Profanity error title
+          * Title of the error message shown when the link has already been taken
+          * @uiName Link taken error title
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
-        "profanityErrorTitle"?: string;
+        "linkTakenErrorTitle"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -13047,10 +13040,27 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * Description text shown when the link contains profanity or brand names.
+          * @uiName Restricted words error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains profanity or brand names.
+          * @uiName Restricted words error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorTitle"?: string;
+        /**
           * Text for the save button in editing mode
           * @uiName Save button label
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "saveLabelText"?: string;
@@ -13058,7 +13068,7 @@ declare namespace LocalJSX {
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
-          * @uiGroup Customize Vanity Link
+          * @uiGroup Customizable Vanity Link
           * @requiredFlavor impact
          */
         "supportLinkText"?: string;

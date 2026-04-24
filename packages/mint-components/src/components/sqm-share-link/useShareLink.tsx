@@ -26,9 +26,9 @@ export interface ShareLinkProps {
   tooltiptext: string;
   tooltiplifespan: number;
   linkOverride?: string;
-  customizeUrl?: boolean;
+  allowCustomization?: boolean;
   customizeUrlText?: string;
-  customizeLinkLabel?: string;
+  customizeLinkButtonLabel?: string;
   saveLabelText?: string;
   cancelLabelText?: string;
   textAlign?: "left" | "center" | "right";
@@ -39,12 +39,12 @@ export interface ShareLinkProps {
   buttonType?: "primary" | "secondary";
   copyButtonLabel?: string;
   borderColor?: string;
-  existingCodeConflictErrorTitle?: string;
-  existingCodeConflictErrorDescription?: string;
+  linkTakenErrorTitle?: string;
+  linkTakenErrorDescription?: string;
   invalidCharactersErrorTitle?: string;
   invalidCharactersErrorDescription?: string;
-  profanityErrorTitle?: string;
-  profanityErrorDescription?: string;
+  restrictedWordsErrorTitle?: string;
+  restrictedWordsErrorDescription?: string;
   editLimitText?: string;
   editLimitReachedText?: string;
   supportLinkText?: string;
@@ -158,13 +158,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { data: linkDomainData } = useQuery(
     GET_LINK_DOMAIN,
     {},
-    !user?.jwt || !props.customizeUrl,
+    !user?.jwt || !props.allowCustomization,
   );
 
   const { data: editCountData, refetch: refetchEditCount } = useQuery(
     SHARE_LINK_EDIT_COUNT,
     {},
-    !user?.jwt || !props.customizeUrl,
+    !user?.jwt || !props.allowCustomization,
   );
 
   const {
@@ -210,8 +210,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     > = {
       EXISTING_CODE_CONFLICT: {
         code: "EXISTING_CODE_CONFLICT",
-        title: props.existingCodeConflictErrorTitle,
-        description: props.existingCodeConflictErrorDescription,
+        title: props.linkTakenErrorTitle,
+        description: props.linkTakenErrorDescription,
       },
       INVALID_CHARACTER: {
         code: "INVALID_CHARACTER",
@@ -220,8 +220,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       },
       BLOCKED_WORD: {
         code: "BLOCKED_WORD",
-        title: props.profanityErrorTitle,
-        description: props.profanityErrorDescription,
+        title: props.restrictedWordsErrorTitle,
+        description: props.restrictedWordsErrorDescription,
       },
     };
     return errorMap[errorCode];
@@ -346,8 +346,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       open,
       copyString,
     },
-    customizeUrl: props.customizeUrl,
-    customizeLinkLabel: props.customizeLinkLabel,
+    allowCustomization: props.allowCustomization,
+    customizeLinkLabel: props.customizeLinkButtonLabel,
     saveLabelText: props.saveLabelText,
     cancelLabelText: props.cancelLabelText,
     isEditing,

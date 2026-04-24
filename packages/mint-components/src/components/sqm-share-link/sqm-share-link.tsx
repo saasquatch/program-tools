@@ -129,136 +129,56 @@ export class ShareLink {
   buttonStyle?: "icon" | "button-outside" | "button-below" = "icon";
 
   /**
-   * Enable users to customize their referral link
+   * Let advocates customize their share links up to 5 times.
    *
-   * @uiName Customize URL
+   * @uiName Allow customization
    * @uiType boolean
-   * @uiGroup Customize Vanity Link
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
-  customizeUrl?: boolean = false;
-
-  /**
-   * Text shown below the share link input to trigger customization
-   *
-   * @uiName Customize link label
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  customizeLinkLabel?: string = "Customize Link";
-
-  /**
-   * Text for the save button in editing mode
-   *
-   * @uiName Save button label
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  saveLabelText?: string = "Save";
+  allowCustomization?: boolean = false;
 
   /**
    * Text for the cancel button in editing mode
    *
    * @uiName Cancel button label
    * @uiType string
-   * @uiGroup Customize Vanity Link
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
   cancelLabelText?: string = "Cancel";
 
   /**
-   * Title text shown when the custom link is already taken
+   * Tooltip text shown when link customization is disabled
    *
-   * @uiName Existing code conflict error title
+   * @uiName Customize disabled tooltip
    * @uiType string
-   * @uiGroup Customize Vanity Link
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
-  existingCodeConflictErrorTitle?: string = "This link is already taken";
+  customizeDisabledTooltip?: string = "Link customization is not available.";
 
   /**
-   * Description text shown when the custom link is already taken
+   * Displayed below the share link.
    *
-   * @uiName Existing code conflict error description
+   * @uiName Customize link button label
    * @uiType string
-   * @uiGroup Customize Vanity Link
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
-  existingCodeConflictErrorDescription?: string =
-    "Try adding numbers, a dash or underscore to create a unique link.";
+  customizeLinkButtonLabel?: string = "Customize Link";
 
   /**
-   * Title text shown when the link contains invalid characters
-   *
-   * @uiName Invalid characters error title
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  invalidCharactersErrorTitle?: string =
-    "Please use only letters, numbers, dashes and underscores";
-
-  /**
-   * Description text shown when the link contains invalid characters
-   *
-   * @uiName Invalid characters error description
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  invalidCharactersErrorDescription?: string =
-    "Special characters can break the link when sharing.";
-
-  /**
-   * Title text shown when the link contains profanity
-   *
-   * @uiName Profanity error title
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  profanityErrorTitle?: string = "Please try a different link";
-
-  /**
-   * Description text shown when the link contains profanity
-   *
-   * @uiName Profanity error description
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  profanityErrorDescription?: string =
-    "This link contains a restricted word.";
-
-  /**
-   * Text describing the edit limit
-   *
-   * @uiName Edit limit text
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  editLimitText?: string = "You can edit your link up to 5 times.";
-
-  /**
-   * Message shown when the edit limit has been reached. Use {supportLink} as a placeholder for the support link.
+   * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
    *
    * @uiName Edit limit reached text
    * @uiType string
-   * @uiGroup Customize Vanity Link
+   * @uiWidget textarea
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
@@ -266,26 +186,111 @@ export class ShareLink {
     "5 edit limit reached. To make more changes, please contact {supportLink}.";
 
   /**
+   * Subtext shown while the user is customizing their URL.
+   *
+   * @uiName Edit limit text
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  editLimitText?: string =
+    "You can edit your link up to {editsRemaining} more times.";
+
+  /**
+   * Description text shown when the link contains invalid special characters.
+   *
+   * @uiName Invalid characters error description
+   * @uiType string
+   * @uiWidget textarea
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  invalidCharactersErrorDescription?: string =
+    "Special characters can break the link when sharing.";
+
+  /**
+   * Title of the error message shown when the link contains invalid special characters.
+   *
+   * @uiName Invalid characters error title
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  invalidCharactersErrorTitle?: string =
+    "Please use only letters, numbers, dashes and underscores";
+
+  /**
+   * Description text shown when the link has already been taken
+   *
+   * @uiName Link taken error message
+   * @uiType string
+   * @uiWidget textarea
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  linkTakenErrorDescription?: string =
+    "Try adding numbers, a dash or underscore to create a unique link.";
+
+  /**
+   * Title of the error message shown when the link has already been taken
+   *
+   * @uiName Link taken error title
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  linkTakenErrorTitle?: string = "This link is already taken";
+
+  /**
+   * Description text shown when the link contains profanity or brand names.
+   *
+   * @uiName Restricted words error description
+   * @uiType string
+   * @uiWidget textarea
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  restrictedWordsErrorDescription?: string =
+    "This link contains a restricted word.";
+
+  /**
+   * Title of the error message shown when the link contains profanity or brand names.
+   *
+   * @uiName Restricted words error title
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  restrictedWordsErrorTitle?: string = "Please try a different link";
+
+  /**
+   * Text for the save button in editing mode
+   *
+   * @uiName Save button label
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  saveLabelText?: string = "Save";
+
+  /**
    * Display text for the support link in the edit limit reached message
    *
    * @uiName Support link text
    * @uiType string
-   * @uiGroup Customize Vanity Link
+   * @uiGroup Customizable Vanity Link
    * @requiredFlavor impact
    */
   @Prop()
   supportLinkText?: string = "Support";
-
-  /**
-   * Tooltip text shown when link customization is disabled
-   *
-   * @uiName Customize disabled tooltip
-   * @uiType string
-   * @uiGroup Customize Vanity Link
-   * @requiredFlavor impact
-   */
-  @Prop()
-  customizeDisabledTooltip?: string = "Link customization is not available.";
 
   /**
    * @undocumented
@@ -293,6 +298,9 @@ export class ShareLink {
    */
 
   @Prop() demoData?: DemoData<ShareLinkViewProps>;
+
+  @Prop()
+  editsRemaining?: number;
 
   constructor() {
     withHooks(this);
@@ -334,8 +342,8 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
-    customizeUrl: props.customizeUrl,
-    customizeLinkLabel: props.customizeLinkLabel,
+    allowCustomization: props.allowCustomization,
+    customizeLinkLabel: props.customizeLinkButtonLabel,
     saveLabelText: props.saveLabelText,
     cancelLabelText: props.cancelLabelText,
     isEditing,
@@ -351,8 +359,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     minCharacters: 3,
     charactersRemaining: 15 - editValue.length,
     editLimitText: props.editLimitText,
-    editLimitReachedText:
-      props.editLimitReachedText,
+    editLimitReachedText: props.editLimitReachedText,
     supportLinkText: props.supportLinkText,
     customizeDisabled: false,
     customizeDisabledTooltip:

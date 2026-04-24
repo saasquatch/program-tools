@@ -17,7 +17,7 @@ export interface ValidationErrorInfo {
 
 export interface ShareLinkViewProps {
   copyTextViewProps: CopyTextViewProps;
-  customizeUrl: boolean;
+  allowCustomization: boolean;
   customizeLinkLabel: string;
   saveLabelText: string;
   cancelLabelText: string;
@@ -54,7 +54,7 @@ const vanillaStyle = `
 export function ShareLinkView(props: ShareLinkViewProps) {
   const {
     copyTextViewProps,
-    customizeUrl,
+    allowCustomization,
     customizeLinkLabel,
     saveLabelText,
     cancelLabelText,
@@ -212,13 +212,15 @@ export function ShareLinkView(props: ShareLinkViewProps) {
 
   const showCharactersRemaining = charactersRemaining <= 14;
 
-  console.log(
-    customizeUrl,
-    limitReached,
-    customizeDisabled,
-    validationError,
-    "customize URL state",
+  const editLimitMessage = intl.formatMessage(
+    {
+      id: "editLimitText",
+      defaultMessage: editLimitText,
+    },
+    { editsRemaining },
   );
+
+  console.log(domainPrefix, "domain prefix");
 
   // Editing state
   if (isEditing) {
@@ -246,7 +248,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           />
         </div>
         <p class={sheet.classes.HelperText}>
-          {editLimitText}
+          {editLimitMessage}
           {showCharactersRemaining &&
             ` Characters remaining: ${charactersRemaining}`}
         </p>
@@ -294,7 +296,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         {vanillaStyle}
       </style>
       <CopyTextView {...copyTextViewProps} />
-      {customizeUrl &&
+      {allowCustomization &&
         (customizeDisabled ? (
           <sl-tooltip
             content={customizeDisabledTooltip}
@@ -317,7 +319,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             >
               {customizeLinkLabel}
             </p>
-            {customizeUrl && limitReached && (
+            {allowCustomization && limitReached && (
               <p class={sheet.classes.HelperText}>
                 {intl.formatMessage(
                   {

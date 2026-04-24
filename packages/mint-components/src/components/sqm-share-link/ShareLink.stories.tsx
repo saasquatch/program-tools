@@ -125,7 +125,7 @@ const defaultCustomizeProps: ShareLinkViewProps = {
     open: false,
     tooltiptext: "Copied!",
   },
-  customizeUrl: true,
+  allowCustomization: true,
   customizeLinkLabel: "Customize Link",
   saveLabelText: "Save",
   cancelLabelText: "Cancel",
