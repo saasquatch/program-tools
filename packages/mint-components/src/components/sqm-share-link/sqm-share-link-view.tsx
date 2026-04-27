@@ -95,7 +95,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       cursor: "pointer",
       color: "var(--sl-color-neutral-900)",
       textAlign: "left" as const,
-      padding: "var(--sl-spacing-small)",
       "&:hover": {
         textDecoration: "underline",
       },
@@ -107,7 +106,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       color: "var(--sl-color-neutral-400)",
       cursor: "default",
       textAlign: "left" as const,
-      padding: "var(--sl-spacing-small)",
     },
     EditContainer: {
       display: "flex",
@@ -193,9 +191,11 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       cursor: "pointer",
       background: "none",
       border: "none",
-      padding: "0",
       fontFamily: "var(--sl-font-sans)",
       color: "var(--sl-color-neutral-500)",
+      "&::part(label)": {
+        padding: "0",
+      },
     },
     LimitReachedContainer: {
       display: "flex",
@@ -276,13 +276,14 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           >
             {isSaving ? "Saving..." : saveLabelText}
           </button>
-          <button
+          <sl-button
+            type="text"
             class={sheet.classes.CancelButton}
             onClick={onCancel}
             disabled={isSaving}
           >
             {cancelLabelText}
-          </button>
+          </sl-button>
         </div>
       </div>
     );
@@ -332,7 +333,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
                         target="_blank"
                         href="https://help.impact.com/other/readme/get-help-and-support"
                       >
-                        {supportLinkText}
+                        <p>{supportLinkText}</p>
                       </a>
                     ),
                   },
