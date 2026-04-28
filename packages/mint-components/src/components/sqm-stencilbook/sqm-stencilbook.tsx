@@ -108,6 +108,7 @@ import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.s
 import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
 import * as Skeleton from "../sqm-skeleton/Skeleton.stories";
 import * as UserInfoFormView from "../tax-and-cash/sqm-user-info-form/UserInfoFormView.stories";
+import * as UserAttribute from "../sqm-user-attribute/UserAttribute.stories";
 
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 import { CucumberAddon } from "./CucumberAddon";
@@ -221,6 +222,7 @@ const stories = [
   TaxAndCashRewardsTable,
   TaxAndCashReferralTableRewardsCell,
   TaxAndCashReferralTable,
+  UserAttribute,
 ];
 
 /**
