@@ -147,6 +147,7 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   supportLinkText: "Support",
   customizeDisabled: false,
   customizeDisabledTooltip: "Link customization is not available.",
+  minCharactersText: "Minimum 3 characters",
   onCustomizeClick: noopFn,
   onEditValueChange: noopFn,
   onSave: noopFn,

@@ -195,7 +195,7 @@ export class ShareLink {
    */
   @Prop()
   editLimitText?: string =
-    "You can edit your link up to {editsRemaining} more times.";
+    "You can edit your link up to {editsRemaining} more time(s).";
 
   /**
    * Description text shown when the link contains invalid special characters.
@@ -282,6 +282,15 @@ export class ShareLink {
   saveLabelText?: string = "Save";
 
   /**
+   * @uiName Min characters text
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  minCharactersText?: string = "Minimum 3 characters.";
+
+  /**
    * Display text for the support link in the edit limit reached message
    *
    * @uiName Support link text
@@ -361,6 +370,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     editLimitText: props.editLimitText,
     editLimitReachedText: props.editLimitReachedText,
     supportLinkText: props.supportLinkText,
+    minCharactersText: props.minCharactersText,
     customizeDisabled: false,
     customizeDisabledTooltip:
       props.customizeDisabledTooltip ?? "Link customization is not available.",

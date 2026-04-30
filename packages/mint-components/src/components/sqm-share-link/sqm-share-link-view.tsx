@@ -35,6 +35,7 @@ export interface ShareLinkViewProps {
   charactersRemaining: number;
   editLimitText: string;
   editLimitReachedText: string;
+  minCharactersText: string;
   supportLinkText: string;
   customizeDisabled: boolean;
   customizeDisabledTooltip: string;
@@ -79,6 +80,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     onEditValueChange,
     onSave,
     onCancel,
+    minCharactersText,
   } = props;
 
   const style = {
@@ -89,6 +91,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       width: "100%",
     },
     CustomizeLinkText: {
+      paddingTop: "var(--sl-spacing-xx-small)",
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
       fontWeight: "600",
@@ -100,6 +103,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       },
     },
     CustomizeLinkDisabled: {
+      paddingTop: "var(--sl-spacing-xx-small)",
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
       fontWeight: "600",
@@ -154,6 +158,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       color: "var(--sl-color-neutral-500)",
     },
     HelperText: {
+      paddingTop: "var(--sl-spacing-xx-small)",
       margin: "0",
       fontSize: "var(--sl-font-size-small)",
       color: "var(--sl-color-neutral-500)",
@@ -220,8 +225,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     { editsRemaining },
   );
 
-  console.log(domainPrefix, "domain prefix");
-
   // Editing state
   if (isEditing) {
     return (
@@ -248,7 +251,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           />
         </div>
         <p class={sheet.classes.HelperText}>
-          {editLimitMessage}
+          {editLimitMessage} {charactersRemaining > 12 && minCharactersText}
           {showCharactersRemaining &&
             ` Characters remaining: ${charactersRemaining}`}
         </p>
@@ -333,7 +336,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
                         target="_blank"
                         href="https://help.impact.com/other/readme/get-help-and-support"
                       >
-                        <p>{supportLinkText}</p>
+                        {supportLinkText}
                       </a>
                     ),
                   },

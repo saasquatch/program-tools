@@ -5024,6 +5024,13 @@ export namespace Components {
          */
         "linkTakenErrorTitle"?: string;
         /**
+          * @uiName Min characters text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "minCharactersText"?: string;
+        /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
@@ -13033,6 +13040,13 @@ declare namespace LocalJSX {
           * @requiredFlavor impact
          */
         "linkTakenErrorTitle"?: string;
+        /**
+          * @uiName Min characters text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "minCharactersText"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID

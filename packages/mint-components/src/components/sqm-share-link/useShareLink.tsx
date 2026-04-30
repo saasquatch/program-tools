@@ -49,6 +49,7 @@ export interface ShareLinkProps {
   editLimitReachedText?: string;
   supportLinkText?: string;
   customizeDisabledTooltip?: string;
+  minCharactersText?: string;
 }
 
 const MAX_EDITS = 5;
@@ -278,11 +279,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
         if (!result?.validateLinkCode?.valid) {
           const reason = result?.validateLinkCode
             ?.invalidReason as ValidationErrorCode;
-
-          console.log(
-            reason,
-            "validation error reason from validateLinkCode query",
-          );
           setValidationError(mapErrorCodeToInfo(reason));
         }
       } catch {
@@ -318,7 +314,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     } catch (e) {
       const errorCode = e?.extensions?.code as ValidationErrorCode;
 
-      console.log(errorCode, "errorCode from addSharelInkCodeMutation");
       setValidationError(
         mapErrorCodeToInfo(errorCode) ?? {
           code: null,
@@ -337,8 +332,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     setIsValidating(false);
   }
 
-  console.log(validationError, "validation error state"); // TEMP --- IGNORE ---
-
   return {
     copyTextViewProps: {
       ...props,
@@ -346,6 +339,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       open,
       copyString,
     },
+    minCharactersText: props.minCharactersText,
     allowCustomization: props.allowCustomization,
     customizeLinkLabel: props.customizeLinkButtonLabel,
     saveLabelText: props.saveLabelText,
