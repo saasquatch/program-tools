@@ -10,9 +10,7 @@ export function UserAttributeView(props: UserAttributeViewProps) {
   return (
     props.value && (
       <Host>
-        <p exportparts="sqm-base">
-          {props.loading ? props.loadingText : props.value}
-        </p>
+        <p part="sqm-base">{props.loading ? props.loadingText : props.value}</p>
       </Host>
     )
   );

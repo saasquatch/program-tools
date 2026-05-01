@@ -6827,6 +6827,7 @@ export namespace Components {
         /**
           * The custom field key to display.
           * @uiName Custom field key
+          * @uiWidget customFieldSelector
          */
         "value": string;
     }
@@ -14748,6 +14749,7 @@ declare namespace LocalJSX {
         /**
           * The custom field key to display.
           * @uiName Custom field key
+          * @uiWidget customFieldSelector
          */
         "value"?: string;
     }

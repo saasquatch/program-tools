@@ -29,6 +29,7 @@ export class UserAttribute {
   /**
    * The custom field key to display.
    * @uiName Custom field key
+   * @uiWidget customFieldSelector
    */
   @Prop() value: string;
   /**
