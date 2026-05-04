@@ -21,6 +21,7 @@ const props: ReferralIframeViewProps = {
       iframeSrc: "https://example.com",
       iframeHeight: "100%",
       iframeWidth: "100%",
+      codeParam: "rsCode",
     },
   },
 };
