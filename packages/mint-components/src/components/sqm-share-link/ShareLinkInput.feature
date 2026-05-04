@@ -124,7 +124,7 @@ Feature: Widget/Microsite Customize Link Editor
 
     Examples:
       | slug          | mayContain      | result       | state    | maySee |
-      | ab            | doesn't contain | AVAILABLE    | enabled  | see    |
+      | ab            | doesn't contain | INVALID_CHAR | disabled | see    |
       | invalid slug! | contains        | INVALID_CHAR | disabled | see    |
       | my@link       | contains        | INVALID_CHAR | disabled | see    |
   # Character limit (3-15)
@@ -171,7 +171,7 @@ Feature: Widget/Microsite Customize Link Editor
     And the user clicks "Save" again
     Then the request is resent with the same slug
     And the save succeeds
-    And the error banner dissapears
+    And the error banner disappears
 
   Scenario: Slug becomes taken between validation and save
     Given the user validates slug "popular-slug" as available
