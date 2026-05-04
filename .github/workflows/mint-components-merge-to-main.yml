@@ -1,4 +1,4 @@
-name: mint-components merge to master branch
+name: Mint Components Release
 on:
   push:
     branches: [master]
@@ -14,39 +14,55 @@ permissions:
   issues: read
 
 jobs:
-  deploy_storybook:
+  release:
     runs-on: ubuntu-latest
-    name: Deploy Storybook to Github Pages
+    name: Release Mint Components
     defaults:
       run:
         working-directory: packages/mint-components
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          registry-url: https://registry.npmjs.org
 
       - name: Install packages
         run: npm ci
 
-      - name: Build
+      - name: Build package
         run: npm run build
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create release pull request or publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-            # Runs `npm i` after changeset to make sure that `package-lock.json` files are also updated
-            # Without this change only `package.json` files are updated, without `package-lock.json` changes.
-            version: npm run version
-            # Runs changesets on publish - will create tags and deploy to NPM
-            publish: npm run release
-            title: "mint-components - Version Packages"
+          version: cd packages/mint-components && npm run version
+          publish: cd packages/mint-components && npm run release
+          title: "mint-components - Version Packages"
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Build docs site
+        if: steps.changesets.outputs.published == 'true'
+        run: NODE_ENV=dev npm run build
+
+      - name: Authenticate with Google Cloud
+        if: steps.changesets.outputs.published == 'true'
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: "access_token"
+          workload_identity_provider: "projects/167728399658/locations/global/workloadIdentityPools/github/providers/github"
+          service_account: "github-static-site-actions@static-site-proxy.iam.gserviceaccount.com"
+
+      - name: Setup GCP
+        if: steps.changesets.outputs.published == 'true'
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy docs to bucket
+        if: steps.changesets.outputs.published == 'true'
+        run: gsutil -m rsync -d -r www/ gs://stencilbook_static_saasquatch/mint-components/production/

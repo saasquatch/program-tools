@@ -35,7 +35,7 @@
     "start:raisins": "run-p start serve:package",
     "postinstall": "patch-package",
     "changeset": "changeset",
-    "version": "changeset version",
+    "version": "changeset version && npm install",
     "release": "changeset publish"
   },
   "devDependencies": {

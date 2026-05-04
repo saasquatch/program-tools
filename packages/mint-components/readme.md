@@ -27,38 +27,38 @@ This will create a new file in the `.changeset` directory that will be used to a
 
 #### Releasing a New Version
 
-When changesets are merged to the `main` branch, the GitHub Actions workflow will automatically:
+When changesets are merged to the `master` branch, the mint-components release workflow will automatically:
 
 1. Create or update a "Version Packages" pull request that:
    - Bumps the version in `package.json`
+   - Updates `package-lock.json`
    - Updates `CHANGELOG.md` with all changeset summaries
    - Removes the processed changeset files
 
-2. When you're ready to release, simply **merge the "Version Packages" PR** to `main`
+2. When you're ready to release, simply **merge the "Version Packages" PR** to `master`
 
 3. The workflow will then automatically:
    - Publish the new version to npm
+   - Deploy the production Stencilbook site for mint-components
    - Create a git tag for the release
+
+mint-components releases are driven by the mint-specific Changesets workflow rather than the generic `publish-package` workflow.
 
 #### Manual Development Releases
 
-For development and testing purposes, you can manually publish prerelease versions:
+For development and testing purposes, use the `Mint Components Prerelease` GitHub Actions workflow from the branch you want to publish.
 
-1. Update the version in `package.json` to a prerelease format:
+The workflow supports three modes:
 
-   ```text
-   x.y.z-prerelease_number
-   ```
+1. `enter` - starts prerelease mode for a tag such as `next`
+2. `continue` - publishes the next prerelease from the current branch state
+3. `exit` - leaves prerelease mode and publishes the final stable release
 
-   For example: `1.2.3-prerelease_1`, `1.2.3-prerelease_2`, etc.
+Changesets will generate SemVer-valid prerelease versions such as `1.2.3-0`, `1.2.3-1`, and so on.
 
-2. Publish with the `next` tag:
+The selected branch in the workflow dispatch UI becomes the release branch for that run. Stable releases should still flow through `master`; prerelease runs are best kept on a working branch until you are ready to exit prerelease mode.
 
-   ```bash
-   npm publish --tag next
-   ```
-
-This allows you to test changes without affecting the stable release channel.
+This allows you to test prerelease builds without affecting the stable release channel on `master`.
 
 ## About Stencil
 
