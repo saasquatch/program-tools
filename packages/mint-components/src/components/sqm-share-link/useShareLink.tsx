@@ -187,6 +187,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
+  const latestValidationValueRef = useRef<string>("");
 
   const hasPrimaryLinkDomain =
     linkDomainData?.tenantSettings?.primaryLinkDomain != null;
@@ -264,6 +265,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     const trimmed = value.slice(0, CHARACTER_LIMIT);
     setEditValue(trimmed);
     setValidationError(null);
+    latestValidationValueRef.current = trimmed;
 
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
 
@@ -274,8 +276,11 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
     setIsValidating(true);
     debounceTimerRef.current = setTimeout(async () => {
+      const requestedValue = trimmed;
       try {
-        const result = await validateLinkCode({ linkCode: trimmed });
+        const result = await validateLinkCode({ linkCode: requestedValue });
+        // Discard stale responses if the user has continued typing
+        if (latestValidationValueRef.current !== requestedValue) return;
         if (!result?.validateLinkCode?.valid) {
           const reason = result?.validateLinkCode
             ?.invalidReason as ValidationErrorCode;
@@ -283,8 +288,11 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
         }
       } catch {
         // Validation query failed — don't block the user
+        if (latestValidationValueRef.current !== requestedValue) return;
       }
-      setIsValidating(false);
+      if (latestValidationValueRef.current === requestedValue) {
+        setIsValidating(false);
+      }
     }, 500);
   }
 
@@ -330,6 +338,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     setEditValue("");
     setValidationError(null);
     setIsValidating(false);
+    latestValidationValueRef.current = "";
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
   }
 
   return {

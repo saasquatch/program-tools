@@ -63,7 +63,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     editValue,
     domainPrefix,
     editsRemaining,
-    maxEdits,
     limitReached,
     validationError,
     isValidating,

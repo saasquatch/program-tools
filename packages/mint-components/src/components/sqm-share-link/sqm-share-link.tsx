@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Fragment, Prop, h } from "@stencil/core";
+import { Component, Prop, h } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
@@ -307,9 +307,6 @@ export class ShareLink {
    */
 
   @Prop() demoData?: DemoData<ShareLinkViewProps>;
-
-  @Prop()
-  editsRemaining?: number;
 
   constructor() {
     withHooks(this);
