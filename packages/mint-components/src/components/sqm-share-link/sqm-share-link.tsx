@@ -282,6 +282,17 @@ export class ShareLink {
   saveLabelText?: string = "Save";
 
   /**
+   * Text for the save button while saving is in progress
+   *
+   * @uiName Saving button label
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  savingLabelText?: string = "Saving...";
+
+  /**
    * @uiName Min characters text
    * @uiType string
    * @uiGroup Customizable Vanity Link
@@ -351,6 +362,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     allowCustomization: props.allowCustomization,
     customizeLinkLabel: props.customizeLinkButtonLabel,
     saveLabelText: props.saveLabelText,
+    savingLabelText: props.savingLabelText,
     cancelLabelText: props.cancelLabelText,
     isEditing,
     editValue,

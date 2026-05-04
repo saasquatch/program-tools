@@ -20,6 +20,7 @@ export interface ShareLinkViewProps {
   allowCustomization: boolean;
   customizeLinkLabel: string;
   saveLabelText: string;
+  savingLabelText: string;
   cancelLabelText: string;
   isEditing: boolean;
   editValue: string;
@@ -58,6 +59,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     allowCustomization,
     customizeLinkLabel,
     saveLabelText,
+    savingLabelText,
     cancelLabelText,
     isEditing,
     editValue,
@@ -276,7 +278,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
               editValue.length < minCharacters
             }
           >
-            {isSaving ? "Saving..." : saveLabelText}
+            {isSaving ? savingLabelText : saveLabelText}
           </button>
           <sl-button
             type="text"
