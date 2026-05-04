@@ -3881,6 +3881,11 @@ export namespace Components {
     }
     interface SqmReferralIframe {
         /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -11921,6 +11926,11 @@ declare namespace LocalJSX {
         "titleText"?: string;
     }
     interface SqmReferralIframe {
+        /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam"?: string;
         /**
           * @undocumented 
           * @uiType object

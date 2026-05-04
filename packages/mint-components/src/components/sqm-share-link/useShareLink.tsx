@@ -285,7 +285,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
         // Validation query failed — don't block the user
       }
       setIsValidating(false);
-    }, 2000);
+    }, 500);
   }
 
   async function onSave() {
