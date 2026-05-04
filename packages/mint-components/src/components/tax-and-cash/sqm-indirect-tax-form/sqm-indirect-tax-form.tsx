@@ -86,7 +86,7 @@ export class IndirectTaxForm {
    * @uiName Indirect tax number field label
    */
   @Prop() indirectTaxNumber: string =
-    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}}";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number} other {Tax number}}";
 
   /**
    * Displayed to participants registered for QST.
@@ -132,7 +132,7 @@ export class IndirectTaxForm {
    * @uiName Missing indirect tax number error message
    */
   @Prop() indirectTaxNumberError: string =
-    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number}} is required";
+    "{taxType, select, GST {GST number} HST {HST number} VAT {VAT number} CT {CT number} SST {SST number} GENERAL {Indirect tax number} other {Tax number}} is required";
 
   /**
    * Placeholder text displayed in the country search dropdown
