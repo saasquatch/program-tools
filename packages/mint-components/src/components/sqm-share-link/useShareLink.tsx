@@ -32,6 +32,9 @@ export interface ShareLinkProps {
   saveLabelText?: string;
   savingLabelText?: string;
   cancelLabelText?: string;
+  editLabelText?: string;
+  charactersRemainingText?: string;
+  validatingLabelText?: string;
   textAlign?: "left" | "center" | "right";
   buttonStyle?: "icon" | "button-outside" | "button-below";
   backgroundColor?: string;
@@ -356,6 +359,9 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     saveLabelText: props.saveLabelText,
     savingLabelText: props.savingLabelText,
     cancelLabelText: props.cancelLabelText,
+    editLabelText: props.editLabelText,
+    charactersRemainingText: props.charactersRemainingText,
+    validatingLabelText: props.validatingLabelText,
     isEditing,
     editValue,
     domainPrefix,

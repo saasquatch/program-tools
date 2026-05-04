@@ -22,6 +22,9 @@ export interface ShareLinkViewProps {
   saveLabelText: string;
   savingLabelText: string;
   cancelLabelText: string;
+  editLabelText: string;
+  charactersRemainingText: string;
+  validatingLabelText: string;
   isEditing: boolean;
   editValue: string;
   domainPrefix: string;
@@ -61,6 +64,9 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     saveLabelText,
     savingLabelText,
     cancelLabelText,
+    editLabelText,
+    charactersRemainingText,
+    validatingLabelText,
     isEditing,
     editValue,
     domainPrefix,
@@ -234,7 +240,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           {styleString}
           {vanillaStyle}
         </style>
-        <p class={sheet.classes.EditLabel}>Enter your link</p>
+        <p class={sheet.classes.EditLabel}>{editLabelText}</p>
         <div class={sheet.classes.EditInputWrapper}>
           <span class={sheet.classes.DomainPrefix}>{domainPrefix}</span>
           <input
@@ -254,7 +260,13 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         <p class={sheet.classes.HelperText}>
           {editLimitMessage} {charactersRemaining > 12 && minCharactersText}
           {showCharactersRemaining &&
-            ` Characters remaining: ${charactersRemaining}`}
+            ` ${intl.formatMessage(
+              {
+                id: "charactersRemainingText",
+                defaultMessage: charactersRemainingText,
+              },
+              { charactersRemaining },
+            )}`}
         </p>
         {validationError && (
           <sqm-form-message
@@ -265,7 +277,9 @@ export function ShareLinkView(props: ShareLinkViewProps) {
             {validationError.description}
           </sqm-form-message>
         )}
-        {isValidating && <p class={sheet.classes.HelperText}>Validating...</p>}
+        {isValidating && (
+          <p class={sheet.classes.HelperText}>{validatingLabelText}</p>
+        )}
         <div class={sheet.classes.ActionRow}>
           <button
             class={sheet.classes.SaveButton}

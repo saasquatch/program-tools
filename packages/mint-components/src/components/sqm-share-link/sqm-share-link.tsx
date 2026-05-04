@@ -293,6 +293,40 @@ export class ShareLink {
   savingLabelText?: string = "Saving...";
 
   /**
+   * Label shown above the link input while editing
+   *
+   * @uiName Edit input label
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  editLabelText?: string = "Enter your link";
+
+  /**
+   * Text shown when nearing the character limit. Use {charactersRemaining} as a placeholder for the count.
+   *
+   * @uiName Characters remaining text
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  charactersRemainingText?: string =
+    "Characters remaining: {charactersRemaining}";
+
+  /**
+   * Text shown while the link is being validated
+   *
+   * @uiName Validating label
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  validatingLabelText?: string = "Validating...";
+
+  /**
    * @uiName Min characters text
    * @uiType string
    * @uiGroup Customizable Vanity Link
@@ -364,6 +398,9 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     saveLabelText: props.saveLabelText,
     savingLabelText: props.savingLabelText,
     cancelLabelText: props.cancelLabelText,
+    editLabelText: props.editLabelText,
+    charactersRemainingText: props.charactersRemainingText,
+    validatingLabelText: props.validatingLabelText,
     isEditing,
     editValue,
     domainPrefix,
