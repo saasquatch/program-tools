@@ -22,16 +22,31 @@ export class UserAttribute {
   @State() ignored = true;
 
   /**
-   * Text displayed while the participant’s name is loading.
-   * @uiName Loading text
-   */
-  @Prop() loadingText: string = "...";
-  /**
    * The custom field key to display.
    * @uiName Custom field key
    * @uiWidget customFieldSelector
    */
   @Prop() value: string;
+
+  /**
+   * Font size in pixels.
+   * @uiName Font size
+   * @uiGroup Style
+   */
+  @Prop() fontsize?: string;
+  /**
+   * @uiName Color
+   * @uiWidget color
+   * @format color
+   * @uiGroup Style
+   */
+  @Prop() color?: string;
+  /**
+   * @uiName Font weight
+   * @uiGroup Style
+   */
+  @Prop() fontweight?: string;
+
   /**
    * @undocumented
    * @uiType object

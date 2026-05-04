@@ -20,11 +20,11 @@ export function useUserAttribute(props: UserAttribute): UserAttributeViewProps {
   const customFields = res.data?.viewer?.customFields;
   const value = customFields?.[props.value];
 
-  console.log("customFields", customFields, "value", value);
-
   return {
-    loadingText: props.loadingText,
     loading,
     value,
+    fontsize: props.fontsize,
+    color: props.color,
+    fontweight: props.fontweight,
   };
 }

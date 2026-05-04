@@ -6815,15 +6815,28 @@ export namespace Components {
     }
     interface SqmUserAttribute {
         /**
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "color"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserAttributeViewProps>;
         /**
-          * Text displayed while the participant’s name is loading.
-          * @uiName Loading text
+          * Font size in pixels.
+          * @uiName Font size
+          * @uiGroup Style
          */
-        "loadingText": string;
+        "fontsize"?: string;
+        /**
+          * @uiName Font weight
+          * @uiGroup Style
+         */
+        "fontweight"?: string;
         /**
           * The custom field key to display.
           * @uiName Custom field key
@@ -14737,15 +14750,28 @@ declare namespace LocalJSX {
     }
     interface SqmUserAttribute {
         /**
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "color"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<UserAttributeViewProps>;
         /**
-          * Text displayed while the participant’s name is loading.
-          * @uiName Loading text
+          * Font size in pixels.
+          * @uiName Font size
+          * @uiGroup Style
          */
-        "loadingText"?: string;
+        "fontsize"?: string;
+        /**
+          * @uiName Font weight
+          * @uiGroup Style
+         */
+        "fontweight"?: string;
         /**
           * The custom field key to display.
           * @uiName Custom field key
