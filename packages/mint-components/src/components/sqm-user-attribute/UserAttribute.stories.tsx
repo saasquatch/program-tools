@@ -4,11 +4,22 @@ export default {
   title: "Components/User Attribute",
 };
 
-export const DemoData = () => {
+export const Default = () => {
   return (
     <sqm-user-attribute
       demoData={{
         loading: false,
+        value: "impact.com",
+      }}
+    ></sqm-user-attribute>
+  );
+};
+
+export const Loading = () => {
+  return (
+    <sqm-user-attribute
+      demoData={{
+        loading: true,
         value: "impact.com",
       }}
     ></sqm-user-attribute>
