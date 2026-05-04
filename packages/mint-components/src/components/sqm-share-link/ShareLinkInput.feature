@@ -124,7 +124,7 @@ Feature: Widget/Microsite Customize Link Editor
 
     Examples:
       | slug          | mayContain      | result       | state    | maySee |
-      | ab            | doesn't contain | AVAILABLE    | enabled  | see    |
+      | ab            | doesn't contain | INVALID_CHAR | disabled | see    |
       | invalid slug! | contains        | INVALID_CHAR | disabled | see    |
       | my@link       | contains        | INVALID_CHAR | disabled | see    |
   # Character limit (3-15)
