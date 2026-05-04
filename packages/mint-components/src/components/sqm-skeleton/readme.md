@@ -31,6 +31,7 @@
  - [sqm-task-card](../sqm-task-card)
  - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
  - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
+ - [sqm-user-attribute](../sqm-user-attribute)
  - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
 ### Graph
@@ -50,6 +51,7 @@ graph TD;
   sqm-task-card --> sqm-skeleton
   sqm-tax-and-cash --> sqm-skeleton
   sqm-tax-and-cash-dashboard --> sqm-skeleton
+  sqm-user-attribute --> sqm-skeleton
   sqm-user-info-form --> sqm-skeleton
   style sqm-skeleton fill:#f9f,stroke:#333,stroke-width:4px
 ```

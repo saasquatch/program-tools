@@ -11,7 +11,7 @@ import { useUserAttribute } from "./useUserAttribute";
 
 /**
  * @uiName User Attribute
- * @exampleGroup Advanced Components
+ * @exampleGroup Advanced
  * @example User Attribute - <sqm-user-attribute value="firstName" loading-text="..."></sqm-user-attribute>
  */
 @Component({
