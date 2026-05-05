@@ -3,18 +3,9 @@ name: Mint Components Prerelease
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: Prerelease mode to run
-        required: true
-        default: enter
-        type: choice
-        options:
-          - enter
-          - continue
-          - exit
       tag:
-        description: npm dist-tag and prerelease identifier
-        required: false
+        description: npm dist-tag to publish under (e.g. next, beta)
+        required: true
         default: next
         type: string
 
@@ -44,52 +35,42 @@ jobs:
       - name: Install packages
         run: npm ci
 
-      - name: Validate prerelease state
+      - name: Validate prerelease tag
         run: |
-          mode="${{ github.event.inputs.mode }}"
-
-          if [[ "$mode" == "enter" && -f .changeset/pre.json ]]; then
-            echo "Prerelease mode is already active. Use 'continue' or 'exit'."
+          tag="${{ github.event.inputs.tag }}"
+          if [[ "$tag" == "latest" ]]; then
+            echo "Refusing to publish a prerelease under the 'latest' dist-tag. Choose a different tag (e.g. next, beta)."
             exit 1
           fi
 
-          if [[ "$mode" != "enter" && ! -f .changeset/pre.json ]]; then
-            echo "Prerelease mode is not active. Use 'enter' first."
+      - name: Validate prerelease version
+        id: package-version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+          # Require SemVer prerelease form: x.y.z-<identifier>. Plain x.y.z is rejected.
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-[0-9A-Za-z.-]+$ ]]; then
+            echo "package.json version '$version' is not a prerelease. Expected SemVer prerelease form like x.y.z-a (e.g. 2.2.0-1, 2.2.0-beta.0). Bump the version manually before running this workflow."
             exit 1
           fi
 
-      - name: Enter prerelease mode
-        if: ${{ github.event.inputs.mode == 'enter' }}
-        run: npx changeset pre enter "${{ github.event.inputs.tag }}"
-
-      - name: Exit prerelease mode
-        if: ${{ github.event.inputs.mode == 'exit' }}
-        run: npx changeset pre exit
-
-      - name: Version package
-        run: npm run version
+          if git rev-parse "@saasquatch/mint-components@$version" >/dev/null 2>&1; then
+            echo "Tag @saasquatch/mint-components@$version already exists. Bump the version manually."
+            exit 1
+          fi
 
       - name: Build package
         run: npm run build
 
       - name: Publish package
-        run: npm run release
+        run: npm publish --tag "${{ github.event.inputs.tag }}"
         env:
           NPM_CONFIG_PROVENANCE: true
 
-      - name: Capture package version
-        id: package-version
-        run: echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
-
-      - name: Commit prerelease changes
+      - name: Tag prerelease
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          if [[ -n "$(git status --short)" ]]; then
-            git add -A .
-            git commit -m "chore: prerelease @saasquatch/mint-components@${{ steps.package-version.outputs.version }}"
-          fi
-
-      - name: Push branch and tags
-        run: git push origin HEAD:${{ github.ref_name }} --follow-tags
+          git tag "@saasquatch/mint-components@${{ steps.package-version.outputs.version }}"
+          git push origin "@saasquatch/mint-components@${{ steps.package-version.outputs.version }}"

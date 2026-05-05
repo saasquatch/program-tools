@@ -48,17 +48,20 @@ mint-components releases are driven by the mint-specific Changesets workflow rat
 
 For development and testing purposes, use the `Mint Components Prerelease` GitHub Actions workflow from the branch you want to publish.
 
-The workflow supports three modes:
+Prereleases are driven manually (not by `changeset pre enter/exit`):
 
-1. `enter` - starts prerelease mode for a tag such as `next`
-2. `continue` - publishes the next prerelease from the current branch state
-3. `exit` - leaves prerelease mode and publishes the final stable release
+1. On your working branch, edit `version` in [packages/mint-components/package.json](./package.json) to a SemVer prerelease form: `x.y.z-<identifier>` — for example `2.2.0-1`, `2.2.0-beta.0`, or `2.2.0-next.3`. Plain `x.y.z` is rejected by the workflow.
+2. Commit and push the version bump to your branch.
+3. Run the **Mint Components Prerelease** workflow from that branch and supply the `tag` input (npm dist-tag), e.g. `next` or `beta`. The dist-tag `latest` is rejected so prereleases can never replace the stable channel.
 
-Changesets will generate SemVer-valid prerelease versions such as `1.2.3-next.0`, `1.2.3-next.1`, and so on.
+The workflow will:
 
-The selected branch in the workflow dispatch UI becomes the release branch for that run. Stable releases should still flow through `master`; prerelease runs are best kept on a working branch until you are ready to exit prerelease mode.
+- Validate the version is a prerelease and the tag is not `latest`
+- Verify a matching git tag does not already exist
+- Build and publish via `npm publish --tag <tag>`
+- Create and push a `@saasquatch/mint-components@<version>` git tag
 
-This allows you to test prerelease builds without affecting the stable release channel on `master`.
+Stable releases continue to flow through `master` via the Changesets "Version Packages" PR. When the next stable release is cut, `changeset version` will compute the next stable version from changesets and overwrite any manual prerelease version in `package.json` — that is intentional.
 
 ## About Stencil
 
