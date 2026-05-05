@@ -4952,6 +4952,14 @@ export namespace Components {
          */
         "cancelLabelText"?: string;
         /**
+          * Text shown when nearing the character limit. Use {charactersRemaining} as a placeholder for the count.
+          * @uiName Characters remaining text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "charactersRemainingText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
@@ -4977,6 +4985,14 @@ export namespace Components {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Label shown above the link input while editing
+          * @uiName Edit input label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLabelText"?: string;
+        /**
           * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
           * @uiName Edit limit reached text
           * @uiType string
@@ -4993,7 +5009,6 @@ export namespace Components {
           * @requiredFlavor impact
          */
         "editLimitText"?: string;
-        "editsRemaining"?: number;
         /**
           * Description text shown when the link contains invalid special characters.
           * @uiName Invalid characters error description
@@ -5067,6 +5082,14 @@ export namespace Components {
          */
         "saveLabelText"?: string;
         /**
+          * Text for the save button while saving is in progress
+          * @uiName Saving button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "savingLabelText"?: string;
+        /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
@@ -5101,6 +5124,14 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
+        /**
+          * Text shown while the link is being validated
+          * @uiName Validating label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "validatingLabelText"?: string;
     }
     interface SqmSkeleton {
         /**
@@ -12974,6 +13005,14 @@ declare namespace LocalJSX {
          */
         "cancelLabelText"?: string;
         /**
+          * Text shown when nearing the character limit. Use {charactersRemaining} as a placeholder for the count.
+          * @uiName Characters remaining text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "charactersRemainingText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
@@ -12999,6 +13038,14 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
+          * Label shown above the link input while editing
+          * @uiName Edit input label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLabelText"?: string;
+        /**
           * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
           * @uiName Edit limit reached text
           * @uiType string
@@ -13015,7 +13062,6 @@ declare namespace LocalJSX {
           * @requiredFlavor impact
          */
         "editLimitText"?: string;
-        "editsRemaining"?: number;
         /**
           * Description text shown when the link contains invalid special characters.
           * @uiName Invalid characters error description
@@ -13089,6 +13135,14 @@ declare namespace LocalJSX {
          */
         "saveLabelText"?: string;
         /**
+          * Text for the save button while saving is in progress
+          * @uiName Saving button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "savingLabelText"?: string;
+        /**
           * Display text for the support link in the edit limit reached message
           * @uiName Support link text
           * @uiType string
@@ -13123,6 +13177,14 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
+        /**
+          * Text shown while the link is being validated
+          * @uiName Validating label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "validatingLabelText"?: string;
     }
     interface SqmSkeleton {
         /**
