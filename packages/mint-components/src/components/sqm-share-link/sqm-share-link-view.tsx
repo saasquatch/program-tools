@@ -148,16 +148,13 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       lineHeight: "var(--sl-input-height-medium)",
     },
     EditInput: {
-      flex: "1",
-      border: "none",
-      outline: "none",
-      padding: "0 var(--sl-spacing-medium) 0 0",
-      fontSize: "var(--sl-font-size-medium)",
-      fontFamily: "var(--sl-font-sans)",
-      color: "var(--sl-input-color)",
-      background: "transparent",
-      lineHeight: "var(--sl-input-height-medium)",
-      minWidth: "0",
+      "&::part(base)": {
+        border: "none",
+        borderRadius: "0",
+      },
+      "&::part(input)": {
+        margin: 0,
+      },
     },
     EditLabel: {
       margin: "0",
@@ -243,7 +240,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         <p class={sheet.classes.EditLabel}>{editLabelText}</p>
         <div class={sheet.classes.EditInputWrapper}>
           <span class={sheet.classes.DomainPrefix}>{domainPrefix}</span>
-          <input
+          <sl-input
             class={sheet.classes.EditInput}
             type="text"
             value={editValue}
