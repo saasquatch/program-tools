@@ -53,6 +53,7 @@ interface CurrentTaxDocument {
 }
 interface ImpactConnection {
   connected: boolean;
+  connectionStatus?: "NOT_STARTED" | "STARTED" | "COMPLETED";
   taxHandlingEnabled: boolean;
   publisher: null | {
     requiredTaxDocumentType: null | "W9" | "W8BEN" | "W8BENE";

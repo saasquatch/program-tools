@@ -84,6 +84,9 @@ const style = {
       borderRadius: "0",
     },
   },
+  SelectMenu: {
+    maxHeight: "300px",
+  },
   DescriptionContainer: {
     display: "flex",
     flexDirection: "column",
@@ -144,7 +147,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
       <div class={sheet.classes.FormFields}>
         {description}
         <sl-select
-          exportparts="label: input-label, base: input-base"
+          exportparts="label: input-label, base: input-base, menu: select-menu"
           label={text.countryLabel}
           value={states.countryCode}
           disabled={states.submitting || !!states.isExistingPartner}
@@ -160,9 +163,11 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
               callbacks.setCountrySearch(e.target?.value);
             }}
           />
-          {states.filteredCountries?.map((c) => (
-            <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
-          ))}
+          <div class={sheet.classes.SelectMenu}>
+            {states.filteredCountries?.map((c) => (
+              <sl-menu-item value={c.countryCode}>{c.displayName}</sl-menu-item>
+            ))}
+          </div>
         </sl-select>
 
         <sl-select

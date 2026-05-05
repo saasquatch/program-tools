@@ -12,7 +12,8 @@ import {
   PendingTaxReview,
   PendingNewTaxForm,
   PendingTaxSubmission,
-  PendingPartnerCreation,
+  PartnerNotCreatedSetupNotStarted,
+  PartnerCreatedSetupStartedButIncomplete,
   PendingW9,
   CashReward,
 } from "./TaxAndCashReferralTableRewardsCell.stories";
@@ -94,7 +95,7 @@ const taxAndCashTableProps = {
         <sqm-referral-table-user-cell name="Partner Creation User"></sqm-referral-table-user-cell>,
         <ConvertedStatus />,
         <DateCell />,
-        <PendingPartnerCreation />,
+        <PartnerNotCreatedSetupNotStarted />,
       ],
       [
         <sqm-referral-table-user-cell name="Missing W9 User"></sqm-referral-table-user-cell>,

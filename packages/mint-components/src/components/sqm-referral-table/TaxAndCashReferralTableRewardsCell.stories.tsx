@@ -231,7 +231,26 @@ export const PendingTaxSubmission = () => {
   );
 };
 
-export const PendingPartnerCreation = () => {
+export const PartnerNotCreatedSetupNotStarted = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        {
+          ...cashReward,
+          statuses: ["PENDING"],
+          pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
+        },
+      ]}
+      taxConnection={{
+        ...taxConnection,
+        connected: false,
+      }}
+      {...defaultProps}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PartnerCreatedSetupStartedButIncomplete = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={[

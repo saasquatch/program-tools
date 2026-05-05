@@ -192,8 +192,7 @@ export function usePartnerInfoModal(
   const [checkboxError, setCheckboxError] = useState("");
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode ||
-      locale.replace(/^.*_/, ""),
+    user?.impactConnection?.publisher?.countryCode || "",
   );
 
   const [currency, setCurrency] = useState(
@@ -230,8 +229,6 @@ export function usePartnerInfoModal(
   const [filteredCurrencies, setFilteredCurrencies] = useState(
     currencies || [],
   );
-
-  console.log(userData, "userData partner info modal");
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);

@@ -102,6 +102,7 @@ const processingPFT = {
 const taxConnection: ImpactConnection = {
   connected: true,
   taxHandlingEnabled: true,
+  connectionStatus: "NOT_STARTED",
   publisher: {
     requiredTaxDocumentType: "W8BEN",
     currentTaxDocument: {
@@ -190,7 +191,24 @@ export const StatusCellPendingTaxSubmission = () => {
   );
 };
 
-export const StatusCellPendingPartnerCreation = () => {
+export const StatusCellPartnerCreatedSetupStartedButIncomplete = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{
+        ...cashReward,
+        ...pending,
+        pendingReasons: ["US_TAX"],
+      }}
+      taxConnection={{
+        ...taxConnection,
+        connected: false,
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPartnerNotCreatedSetupNotStarted = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Pending"
