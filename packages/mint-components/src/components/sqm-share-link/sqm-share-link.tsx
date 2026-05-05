@@ -347,6 +347,30 @@ export class ShareLink {
   supportLinkText?: string = "Support";
 
   /**
+   * Title shown when saving fails with an unknown error
+   *
+   * @uiName Save error title
+   * @uiType string
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  saveErrorTitle?: string = "Error";
+
+  /**
+   * Description shown when saving fails with an unknown error
+   *
+   * @uiName Save error description
+   * @uiType string
+   * @uiWidget textarea
+   * @uiGroup Customizable Vanity Link
+   * @requiredFlavor impact
+   */
+  @Prop()
+  saveErrorDescription?: string =
+    "Failed to save custom link. Please try again.";
+
+  /**
    * @undocumented
    * @uiType object
    */

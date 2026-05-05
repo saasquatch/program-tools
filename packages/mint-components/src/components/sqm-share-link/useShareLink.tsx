@@ -54,6 +54,8 @@ export interface ShareLinkProps {
   supportLinkText?: string;
   customizeDisabledTooltip?: string;
   minCharactersText?: string;
+  saveErrorTitle?: string;
+  saveErrorDescription?: string;
 }
 
 const MAX_EDITS = 5;
@@ -329,9 +331,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
       setValidationError(
         mapErrorCodeToInfo(errorCode) ?? {
           code: null,
-          title: "Error",
-          description:
-            e?.message || "Failed to save custom link. Please try again.",
+          title: props.saveErrorTitle,
+          description: e?.message || props.saveErrorDescription,
         },
       );
     }
