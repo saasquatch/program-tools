@@ -42,28 +42,26 @@ When changesets are merged to the `master` branch, the mint-components release w
    - Deploy the production Stencilbook site for mint-components
    - Create a git tag for the release
 
-mint-components releases are driven by the mint-specific Changesets workflow rather than the generic `publish-package` workflow.
+mint-components stable releases use the mint-specific **Mint Components Release** workflow (Changesets), and prereleases use the shared **Publish Package** workflow.
 
-**Local `npm publish` is blocked.** A `prepublishOnly` script in `package.json` aborts publishes that aren't running in CI (where `CI=true`). All publishes must go through the **Mint Components Release** or **Mint Components Prerelease** GitHub Actions workflows.
+**Local `npm publish` is blocked.** A `prepublishOnly` script in `package.json` aborts publishes that aren't running in CI (where `CI=true`). All publishes must go through the GitHub Actions workflows below.
 
-#### Manual Development Releases
+#### Manual Development Releases (Prereleases)
 
-For development and testing purposes, use the `Mint Components Prerelease` GitHub Actions workflow from the branch you want to publish.
+For development and testing purposes, use the shared **Publish Package** GitHub Actions workflow:
 
-Prereleases are driven manually (not by `changeset pre enter/exit`):
-
-1. On your working branch, edit `version` in [packages/mint-components/package.json](./package.json) to a SemVer prerelease form: `x.y.z-<identifier>` — for example `2.2.0-1`, `2.2.0-beta.0`, or `2.2.0-next.3`. Plain `x.y.z` is rejected by the workflow.
-2. Commit and push the version bump to your branch.
-3. Run the **Mint Components Prerelease** workflow from that branch and supply the `tag` input (npm dist-tag), e.g. `next` or `beta`. The dist-tag `latest` is rejected so prereleases can never replace the stable channel.
+1. Run the workflow from the branch you want to publish.
+2. Set `package` to `mint-components`.
+3. Set `increment-type` to `prerelease`. The workflow rejects `patch` / `minor` / `major` for mint-components — stable releases must go through the **Mint Components Release** (Changesets) workflow.
 
 The workflow will:
 
-- Validate the version is a prerelease and the tag is not `latest`
-- Verify a matching git tag does not already exist
-- Build and publish via `npm publish --tag <tag>`
-- Create and push a `@saasquatch/mint-components@<version>` git tag
+- Compute the next semver from `package.json` (e.g. `2.1.8` → `2.1.9-0` for `prerelease`)
+- Build mint-components automatically via the `prepack` lifecycle script
+- Publish to npm with `--access public --provenance`, tagged `next` for prereleases or `latest` for stable
+- Commit the version bump and create a signed `@saasquatch/mint-components@<version>` git tag via `saasquatch/git-commit-action`
 
-Stable releases continue to flow through `master` via the Changesets "Version Packages" PR. When the next stable release is cut, `changeset version` will compute the next stable version from changesets and overwrite any manual prerelease version in `package.json` — that is intentional.
+Stable releases should still flow through `master` via the Changesets "Version Packages" PR. When the next stable Changesets release runs, `changeset version` will compute the next stable version from changesets and overwrite any manual prerelease version in `package.json` — that is intentional.
 
 ## About Stencil
 

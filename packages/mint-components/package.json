@@ -34,10 +34,11 @@
     "serve:package": "serve . --cors -l 5000",
     "start:raisins": "run-p start serve:package",
     "postinstall": "patch-package",
+    "prepack": "npm run build",
     "changeset": "changeset",
     "version": "changeset version && npm install",
     "release": "changeset publish",
-    "prepublishOnly": "node -e \"if(!process.env.CI)throw new Error('Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release or Mint Components Prerelease GitHub Actions workflow.')\""
+    "prepublishOnly": "node -e \"if(!process.env.CI)throw new Error('Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release (stable) or Publish Package (prerelease) GitHub Actions workflow.')\""
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",

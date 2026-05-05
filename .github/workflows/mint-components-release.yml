@@ -9,7 +9,6 @@ on:
 permissions:
   id-token: write
   contents: write
-  packages: write
   pull-requests: write
   issues: read
 
@@ -22,23 +21,20 @@ jobs:
         working-directory: packages/mint-components
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 53b83 = v6.3.0
         with:
-          node-version: 20.x
+          node-version: 24
           registry-url: https://registry.npmjs.org
 
       - name: Install packages
         run: npm ci
 
-      - name: Build package
-        run: npm run build
-
       - name: Create release pull request or publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # 6a0a8 = v1.7.0
         with:
           version: cd packages/mint-components && npm run version
           publish: cd packages/mint-components && npm run release
@@ -53,7 +49,7 @@ jobs:
 
       - name: Authenticate with Google Cloud
         if: steps.changesets.outputs.published == 'true'
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # 7c6bc = v3
         with:
           token_format: "access_token"
           workload_identity_provider: "projects/167728399658/locations/global/workloadIdentityPools/github/providers/github"
@@ -61,7 +57,7 @@ jobs:
 
       - name: Setup GCP
         if: steps.changesets.outputs.published == 'true'
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # aa548 = v3.0.1
 
       - name: Deploy docs to bucket
         if: steps.changesets.outputs.published == 'true'
