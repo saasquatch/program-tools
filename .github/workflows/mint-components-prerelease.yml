@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: npm dist-tag to publish under (e.g. next, beta)
+        description: npm dist-tag to publish under (default is 'next')
         required: true
         default: next
         type: string
