@@ -4,24 +4,15 @@ import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { getProps } from "../../utils/utils";
-import { RegistrationFormState } from "../sqm-portal-registration-form/useRegistrationFormState";
 import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,
   PortalResetPasswordView,
 } from "./sqm-password-field-view";
-import { usePasswordField } from "./usePasswordField";
-
-export interface PasswordFieldViewDemoProps {
-  initValue: string;
-  states: {
-    enableValidation: boolean;
-    registrationFormState: RegistrationFormState;
-    content: {
-      fieldLabel: string;
-    };
-  };
-}
+import {
+  PasswordFieldViewDemoProps,
+  usePasswordField,
+} from "./usePasswordField";
 
 /**
  * @uiName Form Password Field

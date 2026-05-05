@@ -1,11 +1,11 @@
 import Transaction from "../src/transaction";
 import { triggerProgram } from "../src/trigger";
 import {
+  Program,
+  ProgramTriggerBody,
+  ProgramVariableSchemaResult,
   RequirementValidationHandler,
   TriggerType,
-  ProgramVariableSchemaResult,
-  ProgramTriggerBody,
-  Program,
 } from "../src/types/rpc";
 
 describe("triggerProgram", () => {
@@ -65,7 +65,7 @@ describe("triggerProgram", () => {
     const newTemplate = { template: {} };
 
     test("PROGRAM_INTROSPECTION", () => {
-      const spy = jest.fn((...args) => newTemplate);
+      const spy = jest.fn(() => newTemplate);
       const spyingProgram = {
         PROGRAM_INTROSPECTION: spy,
       };
@@ -83,7 +83,7 @@ describe("triggerProgram", () => {
     });
 
     test("PROGRAM_INTROSPECTION errors", () => {
-      const spy = jest.fn((...args) => {
+      const spy = jest.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;
@@ -100,7 +100,7 @@ describe("triggerProgram", () => {
       ]);
       expect(result).toStrictEqual({
         json: {
-          error: "An error occurred in a webtask",
+          error: "An error occurred in a webtask (PROGRAM_INTROSPECTION)",
           message: undefined,
         },
         code: 500,
@@ -109,13 +109,22 @@ describe("triggerProgram", () => {
   });
 
   describe("body has messageType PROGRAM_TRIGGER", () => {
-    const testBody = {
-      messageType: "PROGRAM_TRIGGER" as "PROGRAM_TRIGGER",
+    const testBody: ProgramTriggerBody = {
+      messageType: "PROGRAM_TRIGGER" as const,
       ids: ["123", "456"],
-      activeTrigger: { type: "AFTER_USER_EVENT_PROCESSED" },
+      activeTrigger: {
+        type: "AFTER_USER_EVENT_PROCESSED" as const,
+        time: 1,
+        user: {
+          accountId: "accountId",
+          id: "id",
+          programGoals: [],
+        },
+      },
       program: {
         id: "programName",
-        test: "program",
+        rules: {},
+        templateId: "",
       },
       tenant: {
         impactBrandId: null,
@@ -144,7 +153,7 @@ describe("triggerProgram", () => {
     });
 
     test("PROGRAM_TRIGGER errors", () => {
-      const spy = jest.fn((...args) => {
+      const spy = jest.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;
@@ -155,7 +164,7 @@ describe("triggerProgram", () => {
       const result = triggerProgram(testBody, spyingProgram);
       expect(result).toStrictEqual({
         json: {
-          error: "An error occurred in a webtask",
+          error: "An error occurred in a webtask (AFTER_USER_EVENT_PROCESSED)",
           message: undefined,
         },
         code: 500,
@@ -292,7 +301,7 @@ describe("triggerProgram", () => {
     });
 
     test("PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST errors", () => {
-      const spy = jest.fn((...args) => {
+      const spy = jest.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;

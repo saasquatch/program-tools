@@ -80,7 +80,7 @@ export const ReferralProgram = () => (
       <sqm-referral-table>
         <sqm-referral-table-user-column
           column-title="User"
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           deleted-user="Deleted User"
         >
         </sqm-referral-table-user-column>
@@ -123,7 +123,7 @@ export const ReferralProgram = () => (
         >
         </sqm-rewards-table-reward-column>
         <sqm-rewards-table-source-column
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           column-title="Source"
           deleted-user="Deleted User"
           referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
@@ -176,7 +176,7 @@ export const LoyaltyProgram = () => (
       <sqm-referral-table>
         <sqm-referral-table-user-column
           column-title="User"
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           deleted-user="Deleted User"
         >
         </sqm-referral-table-user-column>
@@ -219,7 +219,7 @@ export const LoyaltyProgram = () => (
         >
         </sqm-rewards-table-reward-column>
         <sqm-rewards-table-source-column
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           column-title="Source"
           deleted-user="Deleted User"
           referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
@@ -275,7 +275,7 @@ export const BottomTabs = () => (
       <sqm-referral-table
         ><sqm-referral-table-user-column
           column-title="User"
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           deleted-user="Deleted User"
         >
         </sqm-referral-table-user-column>
@@ -318,7 +318,7 @@ export const BottomTabs = () => (
         >
         </sqm-rewards-table-reward-column>
         <sqm-rewards-table-source-column
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           column-title="Source"
           deleted-user="Deleted User"
           referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
@@ -374,7 +374,7 @@ export const LeftTabs = () => (
       <sqm-referral-table
         ><sqm-referral-table-user-column
           column-title="User"
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           deleted-user="Deleted User"
         >
         </sqm-referral-table-user-column>
@@ -417,7 +417,7 @@ export const LeftTabs = () => (
         >
         </sqm-rewards-table-reward-column>
         <sqm-rewards-table-source-column
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           column-title="Source"
           deleted-user="Deleted User"
           referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"
@@ -473,7 +473,7 @@ export const RightTabs = () => (
       <sqm-referral-table
         ><sqm-referral-table-user-column
           column-title="User"
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           deleted-user="Deleted User"
         >
         </sqm-referral-table-user-column>
@@ -516,7 +516,7 @@ export const RightTabs = () => (
         >
         </sqm-rewards-table-reward-column>
         <sqm-rewards-table-source-column
-          anonymous-user="Anonymous User"
+          anonymous-user="Your Friend"
           column-title="Source"
           deleted-user="Deleted User"
           referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}"

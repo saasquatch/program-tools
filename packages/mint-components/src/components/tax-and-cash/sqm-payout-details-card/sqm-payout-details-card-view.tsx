@@ -174,12 +174,16 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   const renderLoadingSkeleton = () => {
     return (
       <div class={classes.CardContainer}>
-        <div class={classes.StatusContainer}>
-          <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
-          <sl-skeleton class={classes.SkeletonTwo}></sl-skeleton>
+        <div class={classes.StatusContainer} style={{ display: "block" }}>
+          <sqm-skeleton
+            style={{ marginBottom: "var(--sl-spacing-medium)" }}
+            width="25%"
+            height="16px"
+          ></sqm-skeleton>
+          <sqm-skeleton width="25%" height="24px"></sqm-skeleton>
         </div>
-        <sl-skeleton class={classes.SkeletonThree}></sl-skeleton>
-        <sl-skeleton class={classes.SkeletonOne}></sl-skeleton>
+        <sqm-skeleton width="50%" height="34px"></sqm-skeleton>
+        <sqm-skeleton width="25%" height="16px"></sqm-skeleton>
       </div>
     );
   };

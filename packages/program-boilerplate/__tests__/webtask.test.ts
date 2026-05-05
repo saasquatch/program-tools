@@ -39,8 +39,8 @@ describe("webtask express wrapper functionality", () => {
     },
   };
 
-  const successSpy = jest.fn((...args) => newTemplate);
-  const errorSpy = jest.fn((...args) => {
+  const successSpy = jest.fn(() => newTemplate);
+  const errorSpy = jest.fn(() => {
     const error = new Error();
     error.stack = "message";
     throw error;
@@ -68,7 +68,7 @@ describe("webtask express wrapper functionality", () => {
         .post("/test-endpoint")
         .send(testErrorBody);
       expect(response.body).toStrictEqual({
-        error: "An error occurred in a webtask",
+        error: "An error occurred in a webtask (AFTER_USER_EVENT_PROCESSED)",
         message: "message",
       });
       expect(response.status).toBe(500);

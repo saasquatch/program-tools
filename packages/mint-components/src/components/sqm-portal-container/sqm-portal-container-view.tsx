@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
@@ -55,12 +55,14 @@ export function PortalContainerView(
   const styleString = sheet.toString();
 
   return (
-    <div class={sheet.classes.Container} part={"sqm-base"}>
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-      </style>
-      {children}
-    </div>
+    <Host>
+      <div class={sheet.classes.Container} part={"sqm-base"}>
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+        </style>
+        {children}
+      </div>
+    </Host>
   );
 }

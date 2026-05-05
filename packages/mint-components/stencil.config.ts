@@ -28,6 +28,13 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
 
 export const config: Config = {
   namespace: "mint-components",
+  hydratedFlag: {
+    hydratedValue: "inherit!important",
+    initialValue: "hidden",
+    name: "hydrated",
+    property: "visibility",
+    selector: "class",
+  },
   devServer: {
     // startupTimeout: 0,
   },
@@ -65,6 +72,16 @@ export const config: Config = {
     },
     {
       components: ["sqm-referral-code", "sqm-referral-codes", "sqm-pagination"],
+    },
+    {
+      components: [
+        "sqm-portal-login",
+        "sqm-portal-register",
+        "sqm-portal-registration-form",
+        "sqm-portal-forgot-password",
+        "sqm-portal-verify-email",
+        "sqm-portal-google-login",
+      ],
     },
   ],
   outputTargets:

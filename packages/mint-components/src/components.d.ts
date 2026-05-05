@@ -34,7 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
-import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
@@ -986,6 +986,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading": boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -1126,6 +1131,11 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -1161,6 +1171,11 @@ export namespace Components {
           * @uiGroup Style
          */
         "layout": "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -3865,6 +3880,11 @@ export namespace Components {
     }
     interface SqmReferralIframe {
         /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4487,6 +4507,7 @@ export namespace Components {
         "payoutApproved": string;
         "payoutCancelled": string;
         "payoutFailed": string;
+        "payoutProcessing": string;
         "pendingNewTaxForm": string;
         "pendingPartnerCreation": string;
         "pendingReviewText": string;
@@ -4529,6 +4550,11 @@ export namespace Components {
           * @uiName Payout failed text
          */
         "payoutFailed": string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing": string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -4950,6 +4976,16 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
+    }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -6586,6 +6622,11 @@ export namespace Components {
          */
         "taxDocumentSectionSubHeader": string;
         /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument": string;
+        /**
           * @uiName Terms and Conditions text
          */
         "termsAndConditions": string;
@@ -7701,6 +7742,12 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
+    interface HTMLSqmSkeletonElement extends Components.SqmSkeleton, HTMLStencilElement {
+    }
+    var HTMLSqmSkeletonElement: {
+        prototype: HTMLSqmSkeletonElement;
+        new (): HTMLSqmSkeletonElement;
+    };
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
@@ -7919,6 +7966,7 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-skeleton": HTMLSqmSkeletonElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
@@ -8865,6 +8913,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading"?: boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -9006,6 +9059,11 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -9041,6 +9099,11 @@ declare namespace LocalJSX {
           * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -11739,6 +11802,11 @@ declare namespace LocalJSX {
     }
     interface SqmReferralIframe {
         /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -12339,6 +12407,7 @@ declare namespace LocalJSX {
         "payoutApproved"?: string;
         "payoutCancelled"?: string;
         "payoutFailed"?: string;
+        "payoutProcessing"?: string;
         "pendingNewTaxForm"?: string;
         "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;
@@ -12381,6 +12450,11 @@ declare namespace LocalJSX {
           * @uiName Payout failed text
          */
         "payoutFailed"?: string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -12800,6 +12874,16 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
+    }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -14436,6 +14520,11 @@ declare namespace LocalJSX {
          */
         "taxDocumentSectionSubHeader"?: string;
         /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument"?: string;
+        /**
           * @uiName Terms and Conditions text
          */
         "termsAndConditions"?: string;
@@ -15004,6 +15093,7 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
+        "sqm-skeleton": SqmSkeleton;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
@@ -15137,6 +15227,7 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;

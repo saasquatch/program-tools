@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop } from "@stencil/core";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 /**
  * @uiName Header Logo
@@ -61,7 +62,13 @@ export class HeroImage {
           style={{ textDecoration: "none" }}
         >
           {this.imageUrl ? (
-            <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
+            <img
+              style={{ height: `${this?.height}px` }}
+              src={optimizeCloudinaryUrl(this?.imageUrl, {
+                height: this?.height ? this.height * 2 : undefined,
+              })}
+              decoding="async"
+            />
           ) : (
             <h3
               style={{

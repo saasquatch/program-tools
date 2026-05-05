@@ -310,13 +310,15 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               <sl-button
                 disabled={states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
               </sl-button>
               <sl-button
                 disabled={states.loading}
-                type="default"
+                type="secondary"
+                exportparts="base: secondarybutton-base"
                 onClick={callbacks.onNewFormClick}
               >
                 {text.newFormButton}
@@ -347,13 +349,15 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               <sl-button
                 disabled={states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
               </sl-button>
               <sl-button
                 disabled={states.loading}
-                type="default"
+                type="secondary"
+                exportparts="base: secondarybutton-base"
                 onClick={callbacks.onNewFormClick}
               >
                 {text.newFormButton}
@@ -384,13 +388,15 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               <sl-button
                 disabled={states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
               </sl-button>
               <sl-button
                 disabled={states.loading}
-                type="default"
+                type="secondary"
+                exportparts="base: secondarybutton-base"
                 onClick={callbacks.onNewFormClick}
               >
                 {text.newFormButton}
@@ -421,6 +427,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               <sl-button
                 disabled={states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
@@ -451,6 +458,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
               <sl-button
                 disabled={states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onPaymentInfoClick}
               >
                 {text.editPaymentInformationButton}
@@ -496,12 +504,18 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             scroll-animation="smooth"
           ></sqm-scroll>
         ) : data.type === "SquatchPortal" ? (
-          <sl-button type="default" onClick={callbacks.onTermsClick}>
+          <sl-button
+            type="primary"
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onTermsClick}
+          >
             {text.w9RequiredButtonText}
           </sl-button>
         ) : (
           // Demo case
-          <sl-button type="default">{text.w9RequiredButtonText}</sl-button>
+          <sl-button type="primary" exportparts="base: primarybutton-base">
+            {text.w9RequiredButtonText}
+          </sl-button>
         );
       case "INFORMATION_REQUIRED":
         return data.type === "SquatchJS2" ? (
@@ -553,10 +567,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     }
   }
 
-  if (states.loading) {
-    return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
-  }
-
   const alertDetails = getAlert(states.status);
 
   if (states.status === "DONE" || !alertDetails) {
@@ -567,7 +577,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message type={alertDetails.alertType}>
+      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
         <p part="alert-title">{alertDetails.header}</p>
         <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}

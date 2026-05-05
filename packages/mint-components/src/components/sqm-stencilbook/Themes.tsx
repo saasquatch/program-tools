@@ -26,6 +26,10 @@ export const Netflix: BrandingConfiguration = {
     borderThickness: 1,
   },
   color: {
+    loadingSkeleton: {
+      background: "#272727",
+      animationBackground: "#E50914",
+    },
     textColorShades: {
       mainText: "white",
       subduedText: "#B3B3B3",
@@ -118,6 +122,10 @@ export const Amazon: BrandingConfiguration = {
   },
   color: {
     backgroundColor: "#ffffff",
+    loadingSkeleton: {
+      background: "hsl(240 4.8% 95.9%)",
+      animationBackground: "#FF9900",
+    },
     textColorShades: {
       mainText: "#2f2f2f",
       subduedText: "#565959",
@@ -207,6 +215,10 @@ export const Spotify: BrandingConfiguration = {
     borderThickness: 1,
   },
   color: {
+    loadingSkeleton: {
+      background: "#282928",
+      animationBackground: "#1ed760",
+    },
     textColorShades: {
       mainText: "white",
       subduedText: "white",

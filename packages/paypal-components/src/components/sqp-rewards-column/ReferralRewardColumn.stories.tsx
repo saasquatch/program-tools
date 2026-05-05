@@ -90,7 +90,7 @@ export const FullReferralTable = () => (
   >
     <sqm-referral-table-user-column
       column-title="User"
-      anonymous-user="Anonymous User"
+      anonymous-user="Your Friend"
       deleted-user="Deleted User"
     ></sqm-referral-table-user-column>
     <sqm-referral-table-status-column
@@ -143,7 +143,7 @@ export const MockDataTable = () => {
         >
           <sqm-referral-table-user-column
             column-title="User"
-            anonymous-user="Anonymous User"
+            anonymous-user="Your Friend"
             deleted-user="Deleted User"
           ></sqm-referral-table-user-column>
           <sqm-referral-table-status-column

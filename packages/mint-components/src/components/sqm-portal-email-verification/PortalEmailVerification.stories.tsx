@@ -16,7 +16,7 @@ const defaultCallbacks = {
   submit: async (e) => await e,
 };
 
-const defaultContent = {
+const defaultContent: PortalEmailVerificationViewProps["content"] = {
   email: "email@example.com",
   verifyMessage:
     "A verification email was sent to {email}. Please verify your email to continue to the portal.",
@@ -24,6 +24,7 @@ const defaultContent = {
   resendEmailButtonText: "Re-send Email",
   verificationStatusMessage: "Checking verification status in {countdown}",
   verificationLoadingMessage: "Checking verification status",
+  verificationResentMessage: "Verification email resent to {email}",
 };
 
 const defaultStates = {

@@ -43,6 +43,7 @@
 ```mermaid
 graph TD;
   sqm-referred-registration --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-referred-registration
   style sqm-referred-registration fill:#f9f,stroke:#333,stroke-width:4px
 ```

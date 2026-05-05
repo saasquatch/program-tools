@@ -58,6 +58,9 @@ export const GET_USER = gql`
             partnerFundsTransfer {
               id
               status
+              dateScheduled
+              dateCreated
+              dateTransferred
             }
           }
         }

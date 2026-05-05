@@ -314,7 +314,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             style={{ opacity: taskComplete || taskUnavailable ? "0.45" : "1" }}
           >
             {states.loading ? (
-              <sl-skeleton style={{ width: "22%", margin: "0" }} />
+              <sqm-skeleton style={{ width: "22%", margin: "0" }} />
             ) : (
               <div>
                 {showComplete && (
@@ -333,7 +333,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </div>
 
           {states.loading ? (
-            <sl-skeleton
+            <sqm-skeleton
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
@@ -355,7 +355,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             </div>
           )}
           {states.loading ? (
-            <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
+            <sqm-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
             content.description && (
               <Details
@@ -365,7 +365,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             )
           )}
           {content.showProgressBar && states.loading ? (
-            <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
+            <sqm-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
             content.showProgressBar && (
               <ProgressBarView
@@ -382,7 +382,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             data-subdue={taskComplete || taskUnavailable}
           >
             {states.loading ? (
-              <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
+              <sqm-skeleton style={{ width: "25%", marginLeft: "auto" }} />
             ) : (
               <div style={{ display: "contents" }}>
                 <span class="text">

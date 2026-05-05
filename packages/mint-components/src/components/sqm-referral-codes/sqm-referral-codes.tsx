@@ -131,7 +131,7 @@ function LoadingSlot() {
   );
 }
 function LoadingRow() {
-  return <sl-skeleton style={{ width: "100%" }}></sl-skeleton>;
+  return <sqm-skeleton></sqm-skeleton>;
 }
 
 function useDemoReferralCodes(props: ReferralCodes) {

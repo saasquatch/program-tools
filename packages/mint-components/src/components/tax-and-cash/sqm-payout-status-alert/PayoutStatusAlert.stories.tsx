@@ -31,7 +31,12 @@ export const VerifyIdentityRequiredInternal = () => (
 
 export const VerifyIdentityReviewInternal = () => (
   <sqm-payout-status-alert
-    demoData={{ states: { ...defaultProps, status: "VERIFICATION:REVIEW" } }}
+    demoData={{
+      states: {
+        ...defaultProps,
+        status: "VERIFICATION:REVIEW",
+      },
+    }}
   ></sqm-payout-status-alert>
 );
 
@@ -43,7 +48,13 @@ export const VerifyIdentityFailedInternal = () => (
 
 export const W9ThresholdReached = () => (
   <sqm-payout-status-alert
-    demoData={{ states: { ...defaultProps, status: "OVER_W9_THRESHOLD" } }}
+    demoData={{
+      states: {
+        ...defaultProps,
+        enforceUsTaxComplianceOption: "CASH_ONLY_DEFER_W9",
+        status: "OVER_W9_THRESHOLD",
+      },
+    }}
   ></sqm-payout-status-alert>
 );
 
