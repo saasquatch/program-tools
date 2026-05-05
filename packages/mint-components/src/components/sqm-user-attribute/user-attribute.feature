@@ -34,11 +34,9 @@ Feature: User Attribute
 
     Examples:
       | prop         | value       | cssProperty |
-      | "fontsize"   | "24px"      | font-size   |
-      | "fontsize"   | "2rem"      | font-size   |
-      | "color"      | "#E91E63" | color       |
-      | "fontweight" | "bold"      | font-weight |
-      | "fontweight" | "700"       | font-weight |
+      | fontSize     | 24          | font-size   |
+      | color        | #E91E63   | color       |
+      | fontWeight   | 700         | font-weight |
 
   @minutia
   Scenario: Style props are optional and default to no custom styling
