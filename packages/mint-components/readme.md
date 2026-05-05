@@ -44,6 +44,8 @@ When changesets are merged to the `master` branch, the mint-components release w
 
 mint-components releases are driven by the mint-specific Changesets workflow rather than the generic `publish-package` workflow.
 
+**Local `npm publish` is blocked.** A `prepublishOnly` script in `package.json` aborts publishes that aren't running in CI (where `CI=true`). All publishes must go through the **Mint Components Release** or **Mint Components Prerelease** GitHub Actions workflows.
+
 #### Manual Development Releases
 
 For development and testing purposes, use the `Mint Components Prerelease` GitHub Actions workflow from the branch you want to publish.

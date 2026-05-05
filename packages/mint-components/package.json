@@ -36,7 +36,8 @@
     "postinstall": "patch-package",
     "changeset": "changeset",
     "version": "changeset version && npm install",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "prepublishOnly": "node -e \"if(!process.env.CI)throw new Error('Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release or Mint Components Prerelease GitHub Actions workflow.')\""
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
