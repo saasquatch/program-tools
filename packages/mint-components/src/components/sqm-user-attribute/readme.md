@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property     | Attribute    | Description                      | Type                                                                                             | Default     |
-| ------------ | ------------ | -------------------------------- | ------------------------------------------------------------------------------------------------ | ----------- |
-| `color`      | `color`      |                                  | `string`                                                                                         | `undefined` |
-| `demoData`   | --           |                                  | `{ loading?: boolean; value?: string; fontsize?: string; color?: string; fontweight?: string; }` | `undefined` |
-| `fontsize`   | `fontsize`   | Font size in pixels.             | `string`                                                                                         | `undefined` |
-| `fontweight` | `fontweight` |                                  | `string`                                                                                         | `undefined` |
-| `value`      | `value`      | The custom field key to display. | `string`                                                                                         | `undefined` |
+| Property     | Attribute     | Description                      | Type                                                                                             | Default     |
+| ------------ | ------------- | -------------------------------- | ------------------------------------------------------------------------------------------------ | ----------- |
+| `color`      | `color`       |                                  | `string`                                                                                         | `undefined` |
+| `demoData`   | --            |                                  | `{ loading?: boolean; value?: string; fontSize?: number; color?: string; fontWeight?: number; }` | `undefined` |
+| `fontSize`   | `font-size`   | Number in pixels.                | `number`                                                                                         | `undefined` |
+| `fontWeight` | `font-weight` | Font weight                      | `number`                                                                                         | `undefined` |
+| `value`      | `value`       | The custom field key to display. | `string`                                                                                         | `undefined` |
 
 
 ## Dependencies

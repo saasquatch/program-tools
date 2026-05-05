@@ -23,8 +23,8 @@ export function useUserAttribute(props: UserAttribute): UserAttributeViewProps {
   return {
     loading,
     value,
-    fontsize: props.fontsize,
+    fontSize: props.fontSize,
     color: props.color,
-    fontweight: props.fontweight,
+    fontWeight: props.fontWeight,
   };
 }

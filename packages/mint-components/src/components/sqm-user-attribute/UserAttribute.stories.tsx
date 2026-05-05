@@ -32,9 +32,9 @@ export const WithCustomStyles = () => {
       demoData={{
         loading: false,
         value: "impact.com",
-        fontsize: "24px",
+        fontSize: 24,
         color: "#4CAF50",
-        fontweight: "bold",
+        fontWeight: 700,
       }}
     ></sqm-user-attribute>
   );

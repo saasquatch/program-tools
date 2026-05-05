@@ -3,9 +3,9 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface UserAttributeViewProps {
   loading: boolean;
   value: string;
-  fontsize?: string;
+  fontSize?: number;
   color?: string;
-  fontweight?: string;
+  fontWeight?: number;
 }
 
 export function UserAttributeView(props: UserAttributeViewProps) {
@@ -13,8 +13,8 @@ export function UserAttributeView(props: UserAttributeViewProps) {
     P: {
       margin: "0",
       padding: "0",
-      fontSize: props.fontsize || "inherit",
-      fontWeight: props.fontweight || "inherit",
+      fontSize: props.fontSize ? `${props.fontSize}px` : "inherit",
+      fontWeight: props.fontWeight || "inherit",
       color: props.color || "var(--sqm-text)",
     },
   };
@@ -27,7 +27,9 @@ export function UserAttributeView(props: UserAttributeViewProps) {
     props.value && (
       <Host>
         <style>{styleString}</style>
-        <p part="sqm-base">{props.loading ? loadingSkeleton : props.value}</p>
+        <p class={sheet.classes.P} part="sqm-base">
+          {props.loading ? loadingSkeleton : props.value}
+        </p>
       </Host>
     )
   );

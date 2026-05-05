@@ -29,11 +29,11 @@ export class UserAttribute {
   @Prop() value: string;
 
   /**
-   * Font size in pixels.
+   * Number in pixels.
    * @uiName Font size
    * @uiGroup Style
    */
-  @Prop() fontsize?: string;
+  @Prop() fontSize?: number;
   /**
    * @uiName Color
    * @uiWidget color
@@ -42,10 +42,13 @@ export class UserAttribute {
    */
   @Prop() color?: string;
   /**
+   * Font weight
    * @uiName Font weight
    * @uiGroup Style
+   * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+   * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
    */
-  @Prop() fontweight?: string;
+  @Prop() fontWeight?: number;
 
   /**
    * @undocumented
@@ -69,6 +72,9 @@ function useCustomFieldsDemo(props: UserAttribute): UserAttributeViewProps {
     {
       loading: false,
       value: "Custom Field Value",
+      fontSize: props.fontSize,
+      color: props.color,
+      fontWeight: props.fontWeight,
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a },

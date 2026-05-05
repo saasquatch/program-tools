@@ -6827,16 +6827,19 @@ export namespace Components {
          */
         "demoData"?: DemoData<UserAttributeViewProps>;
         /**
-          * Font size in pixels.
+          * Number in pixels.
           * @uiName Font size
           * @uiGroup Style
          */
-        "fontsize"?: string;
+        "fontSize"?: number;
         /**
+          * Font weight
           * @uiName Font weight
           * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
-        "fontweight"?: string;
+        "fontWeight"?: number;
         /**
           * The custom field key to display.
           * @uiName Custom field key
@@ -14762,16 +14765,19 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<UserAttributeViewProps>;
         /**
-          * Font size in pixels.
+          * Number in pixels.
           * @uiName Font size
           * @uiGroup Style
          */
-        "fontsize"?: string;
+        "fontSize"?: number;
         /**
+          * Font weight
           * @uiName Font weight
           * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
          */
-        "fontweight"?: string;
+        "fontWeight"?: number;
         /**
           * The custom field key to display.
           * @uiName Custom field key
