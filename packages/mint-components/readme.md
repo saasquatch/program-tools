@@ -54,7 +54,7 @@ The workflow supports three modes:
 2. `continue` - publishes the next prerelease from the current branch state
 3. `exit` - leaves prerelease mode and publishes the final stable release
 
-Changesets will generate SemVer-valid prerelease versions such as `1.2.3-0`, `1.2.3-1`, and so on.
+Changesets will generate SemVer-valid prerelease versions such as `1.2.3-next.0`, `1.2.3-next.1`, and so on.
 
 The selected branch in the workflow dispatch UI becomes the release branch for that run. Stable releases should still flow through `master`; prerelease runs are best kept on a working branch until you are ready to exit prerelease mode.
 
