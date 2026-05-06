@@ -23,7 +23,7 @@ interface PortalContainerViewProps {
 
 export function PortalContainerView(
   props: PortalContainerViewProps,
-  children: VNode
+  children: VNode,
 ) {
   const style = {
     Container: {
@@ -55,14 +55,12 @@ export function PortalContainerView(
   const styleString = sheet.toString();
 
   return (
-    <Host>
-      <div class={sheet.classes.Container} part={"sqm-base"}>
-        <style type="text/css">
-          {vanillaStyle}
-          {styleString}
-        </style>
-        {children}
-      </div>
-    </Host>
+    <div class={sheet.classes.Container} part={"sqm-base"}>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
+      {children}
+    </div>
   );
 }

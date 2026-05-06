@@ -234,6 +234,7 @@ graph TD;
   sqm-portal-google-registration-form --> sqm-password-field
   sqm-portal-google-login --> sqm-google-sign-in
   sqm-portal-google-login --> sqm-form-message
+  sqm-share-link --> sqm-form-message
   sqm-referral-codes --> sqm-empty
   sqm-referral-codes --> sqm-skeleton
   sqm-referral-table --> sqm-empty

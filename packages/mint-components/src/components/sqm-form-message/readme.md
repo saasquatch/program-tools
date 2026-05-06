@@ -41,6 +41,7 @@
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
  - [sqm-qr-code](../sqm-qr-code)
  - [sqm-referred-registration](../sqm-referred-registration)
+ - [sqm-share-link](../sqm-share-link)
  - [sqm-stencilbook](../sqm-stencilbook)
  - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
  - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
@@ -78,6 +79,7 @@ graph TD;
   sqm-portal-verify-email --> sqm-form-message
   sqm-qr-code --> sqm-form-message
   sqm-referred-registration --> sqm-form-message
+  sqm-share-link --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   sqm-tax-and-cash --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-form-message
