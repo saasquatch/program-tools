@@ -4899,6 +4899,7 @@ export namespace Components {
           * @uiName Allow customization
           * @uiType boolean
           * @uiGroup Customizable Vanity Link
+          * @uiWidget CustomLinkSwitch
           * @requiredFlavor impact
          */
         "allowCustomization"?: boolean;
@@ -5073,6 +5074,23 @@ export namespace Components {
           * @requiredFlavor impact
          */
         "restrictedWordsErrorTitle"?: string;
+        /**
+          * Description shown when saving fails with an unknown error
+          * @uiName Save error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorDescription"?: string;
+        /**
+          * Title shown when saving fails with an unknown error
+          * @uiName Save error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label
@@ -12952,6 +12970,7 @@ declare namespace LocalJSX {
           * @uiName Allow customization
           * @uiType boolean
           * @uiGroup Customizable Vanity Link
+          * @uiWidget CustomLinkSwitch
           * @requiredFlavor impact
          */
         "allowCustomization"?: boolean;
@@ -13126,6 +13145,23 @@ declare namespace LocalJSX {
           * @requiredFlavor impact
          */
         "restrictedWordsErrorTitle"?: string;
+        /**
+          * Description shown when saving fails with an unknown error
+          * @uiName Save error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorDescription"?: string;
+        /**
+          * Title shown when saving fails with an unknown error
+          * @uiName Save error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorTitle"?: string;
         /**
           * Text for the save button in editing mode
           * @uiName Save button label

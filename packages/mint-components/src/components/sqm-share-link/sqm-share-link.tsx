@@ -134,6 +134,7 @@ export class ShareLink {
    * @uiName Allow customization
    * @uiType boolean
    * @uiGroup Customizable Vanity Link
+   * @uiWidget CustomLinkSwitch
    * @requiredFlavor impact
    */
   @Prop()
