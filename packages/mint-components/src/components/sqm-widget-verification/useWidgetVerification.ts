@@ -2,7 +2,6 @@ import {
   useLazyQuery,
   useParentState,
   useSetParent,
-  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
@@ -11,7 +10,6 @@ import {
   PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
   SHOW_PARTNER_MODAL_NAMESPACE,
-  VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
 
