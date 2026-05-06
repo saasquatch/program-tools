@@ -315,8 +315,8 @@ export function usePartnerInfoModal(
       window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
 
       await refetch();
+      setPartnerCreated?.(true);
       setSuccess(true);
-      setPartnerCreated(true);
     } catch (e) {
       console.error("Partner creation error:", e);
       setError(props.networkErrorText);
