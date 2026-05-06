@@ -91,15 +91,11 @@ export function useUserInfoForm(props: TaxForm) {
 
   const user = useUserIdentity();
 
-  const [
-    connectImpactPartner,
-    { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [connectImpactPartner, { loading: connectLoading }] =
+    useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
 
-  const [
-    completeImpactPartner,
-    { loading: completeLoading, errors: completeErrors },
-  ] = useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
 
   const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
 
@@ -262,8 +258,8 @@ export function useUserInfoForm(props: TaxForm) {
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
 
-    //AL: TODO completePartnerMutation might change
-    // if user already has an impact connection, call completeImpactPartner to update their information instead of connectPartner
+    // If the partner has already been started call completeImpactPartner to
+    // update the remaining details. Otherwise create a new connection.
     const userData = data?.user;
     let result = null;
     let connectionResult;

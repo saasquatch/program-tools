@@ -8,7 +8,9 @@ import { useState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
+  PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
+  SHOW_PARTNER_MODAL_NAMESPACE,
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
@@ -34,18 +36,21 @@ const USER_LOOKUP = gql`
 `;
 
 export function useWidgetVerification() {
-  const userIdentity = useUserIdentity();
-  const [showCode, setShowCode] = useParentState<boolean>({
+  const [showCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
   });
-  const [email, setEmail] = useParentState<string | undefined>({
-    namespace: VERIFICATION_EMAIL_NAMESPACE,
-    initialValue: userIdentity?.email,
-  });
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
   const [loading, setLoading] = useState(true);
-  const [showPartnerModal, setShowPartnerModal] = useState(false);
+  const [showPartnerModal, setShowPartnerModal] = useParentState<boolean>({
+    namespace: SHOW_PARTNER_MODAL_NAMESPACE,
+    initialValue: false,
+  });
+
+  const [partnerCreated, setPartnerCreated] = useParentState<boolean>({
+    namespace: PARTNER_CREATED_NAMESPACE,
+    initialValue: false,
+  });
   const [fetch] = useLazyQuery(USER_LOOKUP);
 
   useEffect(() => {
@@ -83,8 +88,19 @@ export function useWidgetVerification() {
 
   const onPartnerModalComplete = () => {
     setShowPartnerModal(false);
+    setPartnerCreated(false);
     setContext(true);
   };
 
-  return { showCode, showPartnerModal, onVerification, onPartnerModalComplete, loading };
+  useEffect(() => {
+    if (partnerCreated) onPartnerModalComplete();
+  }, [partnerCreated]);
+
+  return {
+    showCode,
+    showPartnerModal,
+    onVerification,
+    onPartnerModalComplete,
+    loading,
+  };
 }

@@ -12,7 +12,6 @@ export interface PartnerInfoModalViewProps {
     currency: string;
     error: string;
     success: boolean;
-    brandName: string;
     filteredCountries: { countryCode: string; displayName: string }[];
     filteredCurrencies: { currencyCode: string; displayName: string }[];
     allowBankingCollection: boolean;
@@ -209,13 +208,11 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
       {states.error && (
         <div class={sheet.classes.ErrorMessage}>
           <sqm-form-message class={sheet.classes.ErrorMessage} type="error">
-            {/* <p part="alert-title">{text.error.loadingErrorAlertHeader}</p> */}
             <p part="alert-description">{states.error}</p>
           </sqm-form-message>
         </div>
       )}
 
-      {/* {states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>} */}
       <sl-button
         slot="footer"
         type="primary"

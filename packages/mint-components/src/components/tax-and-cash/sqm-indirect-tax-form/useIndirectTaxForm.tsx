@@ -158,14 +158,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
-  const [
-    connectImpactPartner,
-    { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
-  const [
-    completeImpactPartner,
-    { loading: completeLoading, errors: completeErrors },
-  ] = useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
+  const [connectImpactPartner, { loading: connectLoading }] =
+    useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
   const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
   const {
     data: userData,
@@ -283,10 +279,11 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       withholdingTaxId: formData.subRegionTaxNumber,
     } as ImpactConnectionInput;
 
-    //AL: TODO completePartnerMutation might change
+    // If the partner has already been started call completeImpactConnection
+    // to fill in the remaining details. Otherwise create from scratch.
     let result = null;
     let connectionResult;
-    if (userData?.user?.impactConnection?.connected) {
+    if (userData?.user?.impactConnection?.connectionStatus === "STARTED") {
       result = await completeImpactPartner({
         vars,
       });

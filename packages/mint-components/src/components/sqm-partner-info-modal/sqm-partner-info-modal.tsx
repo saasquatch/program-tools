@@ -27,14 +27,6 @@ import {
 })
 export class PartnerInfoModal {
   /**
-   * Brand name shown in the modal header
-   *
-   * @uiName Brand name
-   */
-  @Prop()
-  brandName: string = "";
-
-  /**
    * Header text when user has no existing partner
    *
    * @uiName New partner header
@@ -207,7 +199,6 @@ function useDemoPartnerInfoModal(
   return deepmerge(
     {
       states: {
-        brandName: "Test Brand",
         open: false,
         loading: false,
         submitting: false,

@@ -10,7 +10,7 @@ import { PartnerInfoModal } from "./sqm-partner-info-modal";
 import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
 import { StartImpactConnectionResult } from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
-import { VERIFICATION_PARENT_NAMESPACE } from "../sqm-widget-verification/keys";
+import { PARTNER_CREATED_NAMESPACE } from "../sqm-widget-verification/keys";
 import {
   GET_FINANCE_NETWORK_SETTINGS,
   FinanceNetworkSettingsQuery,
@@ -117,14 +117,6 @@ const START_IMPACT_CONNECTION = gql`
   }
 `;
 
-const GET_BRAND_NAME = gql`
-  query getTenantSettings {
-    tenantSettings {
-      companyName
-    }
-  }
-`;
-
 export type TaxCountry = {
   countryCode: string;
   displayName: string;
@@ -136,18 +128,12 @@ export type CountriesQuery = {
   };
 };
 
-type TenantSettingsQuery = {
-  tenantSettings: {
-    companyName: string;
-  };
-};
-
 export function usePartnerInfoModal(
   props: PartnerInfoModal,
 ): PartnerInfoModalViewProps {
   const locale = useLocale();
 
-  const setVerificationContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
+  const setPartnerCreated = useSetParent(PARTNER_CREATED_NAMESPACE);
 
   const {
     data: userData,
@@ -167,11 +153,6 @@ export function usePartnerInfoModal(
     {},
   );
 
-  const { data: tenantSettingsData } = useQuery<TenantSettingsQuery>(
-    GET_BRAND_NAME,
-    {},
-  );
-
   const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
     GET_FINANCE_NETWORK_SETTINGS,
     {
@@ -179,10 +160,8 @@ export function usePartnerInfoModal(
     },
   );
 
-  const [
-    startImpactConnection,
-    { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
+  const [startImpactConnection, { loading: connectLoading }] =
+    useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
 
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
   // No pre-filled country, use locale to determine countryCode instead
@@ -294,6 +273,11 @@ export function usePartnerInfoModal(
     }
     setError("");
 
+    if (!user) {
+      setError(props.networkErrorText);
+      return;
+    }
+
     try {
       const vars = {
         user: {
@@ -332,7 +316,7 @@ export function usePartnerInfoModal(
 
       await refetch();
       setSuccess(true);
-      setVerificationContext(true);
+      setPartnerCreated(true);
     } catch (e) {
       console.error("Partner creation error:", e);
       setError(props.networkErrorText);
@@ -349,12 +333,11 @@ export function usePartnerInfoModal(
       open: showModal,
       loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
-      isExistingPartner: impactConnection?.publisher,
+      isExistingPartner: !!impactConnection?.publisher,
       countryCode,
       currency,
       error,
       success,
-      brandName: tenantSettingsData?.tenantSettings?.companyName || "",
       filteredCountries: filteredCountries || [],
       filteredCurrencies: filteredCurrencies || [],
       allowBankingCollection,

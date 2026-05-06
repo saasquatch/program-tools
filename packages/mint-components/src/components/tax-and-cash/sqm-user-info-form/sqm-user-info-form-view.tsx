@@ -431,7 +431,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       regionLabel = text.state;
   }
 
-  // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "000000" and the phoneNumberCountryCode to "DZ"
+  // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "0000000" and the phoneNumberCountryCode to "DZ"
   function isDisabledPartnerInput(field: string) {
     if (
       data.partnerData?.phoneNumber === "0000000" &&
@@ -530,30 +530,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               </p>
             </sqm-form-message>
           )}
-          {/* AL: Don't need to show this anymore due to early partner creation */}
-          {/* {(states.isPartner || states.isUser) && (
-            <sqm-form-message loading={states.loading} type="info">
-              <p part="alert-title">{text.isPartnerAlertHeader}</p>
-              <p part="alert-description">
-                {intl.formatMessage(
-                  {
-                    id: "isPartnerAlertDescription",
-                    defaultMessage: text.isPartnerAlertDescription,
-                  },
-                  {
-                    supportLink: (
-                      <a
-                        target="_blank"
-                        href={`mailto:advocate-support@impact.com`}
-                      >
-                        {text.supportLink}
-                      </a>
-                    ),
-                  },
-                )}
-              </p>
-            </sqm-form-message>
-          )} */}
 
           <div>
             <div class={classes.InputContainer}>
@@ -884,31 +860,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
-
-              {/* <div class={classes.CheckboxWrapper}>
-              AL: FLAGGED FOR DELETION
-                <sl-checkbox
-                  checked={formState.allowBankingCollection === true}
-                  onSl-change={(e) => {
-                    e.target.value = e.target.checked;
-                  }}
-                  disabled={states.disabled}
-                  required
-                  value={formState.allowBankingCollection}
-                  id="allowBankingCollection"
-                  name="/allowBankingCollection"
-                >
-                  {bankingCollectionText}
-                </sl-checkbox>
-                {formState.errors?.allowBankingCollection && (
-                  <p class={classes.ErrorText}>
-                    {formatErrorMessage(
-                      text.termsAndConditionsLabel,
-                      formState.errors.allowBankingCollection,
-                    )}
-                  </p>
-                )}
-              </div> */}
             </div>
             <sl-button
               type="primary"

@@ -67,19 +67,6 @@ export class WidgetVerification {
    */
   @Prop()
   general_widgetHeaderWithPartnerCreation = "Let's get you ready for rewards";
-  /**
-   * @uiName General verify widget header text
-   * @uiGroup General Text
-   */
-  @Prop()
-  general_verifyEmailHeader = "Verify your email";
-  /**
-   * @uiName General verify widget description text
-   * @uiGroup General Text
-   */
-  @Prop()
-  general_verifyEmailDescription =
-    "To get your cash paid out directly to your bank account, please complete your account setup";
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                   EMAIL STEP PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -307,7 +294,6 @@ export class WidgetVerification {
       return <div></div>;
     }
 
-    // const generalText = this.getStepTextProps("general_");
     const partnerText = this.getStepTextProps("createPartnerStep_");
 
     const dialogLabel = this.general_widgetHeaderWithPartnerCreation;
