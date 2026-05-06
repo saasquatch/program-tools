@@ -73,7 +73,6 @@ const defaultProps: PartnerInfoModalViewProps = {
     filteredCountries: demoCountries,
     filteredCurrencies: demoCurrencies,
     allowBankingCollection: false,
-    checkboxError: "",
     disabled: false,
   },
   callbacks: noopCallbacks,

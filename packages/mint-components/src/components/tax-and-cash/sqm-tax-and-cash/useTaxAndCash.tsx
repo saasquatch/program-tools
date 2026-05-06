@@ -45,10 +45,6 @@ function getCurrentStep(user: UserQuery["user"]) {
     brandedSignup,
     payoutsAccount,
   } = user.impactConnection.publisher;
-  console.log(
-    user.impactConnection,
-    "publisher data in useTaxAndCash to determine step new new",
-  );
   if (user.impactConnection.connectionStatus === "STARTED") {
     return "/1";
   }

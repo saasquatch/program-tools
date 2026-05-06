@@ -16,7 +16,6 @@ export interface PartnerInfoModalViewProps {
     filteredCountries: { countryCode: string; displayName: string }[];
     filteredCurrencies: { currencyCode: string; displayName: string }[];
     allowBankingCollection: boolean;
-    checkboxError: string;
     disabled: boolean;
   };
   callbacks: {
@@ -73,8 +72,6 @@ const style = {
     marginTop: "var(--sl-spacing-large)",
   },
   ErrorMessage: {
-    color: "var(--sqm-danger-color-text, #d32f2f)",
-    fontSize: "var(--sl-font-size-small)",
     marginTop: "var(--sl-spacing-x-small)",
   },
   SearchInput: {
@@ -187,11 +184,13 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
               callbacks.setCurrencySearch(e.target?.value)
             }
           />
-          {states.filteredCurrencies?.map((c) => (
-            <sl-menu-item value={c.currencyCode}>
-              {c.currencyCode} - {c.displayName}
-            </sl-menu-item>
-          ))}
+          <div class={sheet.classes.SelectMenu}>
+            {states.filteredCurrencies?.map((c) => (
+              <sl-menu-item value={c.currencyCode}>
+                {c.currencyCode} - {c.displayName}
+              </sl-menu-item>
+            ))}
+          </div>
         </sl-select>
         <div class={sheet.classes.CheckboxWrapper}>
           <sl-checkbox
@@ -205,12 +204,18 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           >
             {bankingCollectionText}
           </sl-checkbox>
-          {states.checkboxError && (
-            <p class={sheet.classes.ErrorMessage}>{states.checkboxError}</p>
-          )}
         </div>
       </div>
-      {states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>}
+      {states.error && (
+        <div class={sheet.classes.ErrorMessage}>
+          <sqm-form-message class={sheet.classes.ErrorMessage} type="error">
+            {/* <p part="alert-title">{text.error.loadingErrorAlertHeader}</p> */}
+            <p part="alert-description">{states.error}</p>
+          </sqm-form-message>
+        </div>
+      )}
+
+      {/* {states.error && <p class={sheet.classes.ErrorMessage}>{states.error}</p>} */}
       <sl-button
         slot="footer"
         type="primary"

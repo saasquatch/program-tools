@@ -219,7 +219,6 @@ function useDemoPartnerInfoModal(
         filteredCountries: [],
         filteredCurrencies: [],
         allowBankingCollection,
-        checkboxError: "",
         disabled: false,
       },
       callbacks: {

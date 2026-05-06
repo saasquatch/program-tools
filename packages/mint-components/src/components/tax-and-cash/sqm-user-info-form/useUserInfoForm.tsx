@@ -156,7 +156,7 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
-        // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "000000" and the phoneNumberCountryCode to "DZ"
+        // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "0000000" and the phoneNumberCountryCode to "DZ"
         phoneNumberCountryCode:
           user.impactConnection.publisher.phoneNumber === "0000000"
             ? null
@@ -268,7 +268,6 @@ export function useUserInfoForm(props: TaxForm) {
     let result = null;
     let connectionResult;
     if (userData?.impactConnection?.connectionStatus === "STARTED") {
-      console.log(vars, "values for completeImpactPartner");
       result = await completeImpactPartner({
         vars,
       });

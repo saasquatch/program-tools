@@ -8,10 +8,7 @@ import { useEffect, useMemo, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { PartnerInfoModal } from "./sqm-partner-info-modal";
 import { PartnerInfoModalViewProps } from "./sqm-partner-info-modal-view";
-import {
-  ConnectPartnerResult,
-  StartImpactConnectionResult,
-} from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
+import { StartImpactConnectionResult } from "../tax-and-cash/sqm-indirect-tax-form/useIndirectTaxForm";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../tax-and-cash/eventKeys";
 import { VERIFICATION_PARENT_NAMESPACE } from "../sqm-widget-verification/keys";
 import {
@@ -19,7 +16,6 @@ import {
   FinanceNetworkSettingsQuery,
 } from "../tax-and-cash/data";
 
-// new field under impactConnection:{ resolvedByEmail: boolean } - determines if connection came from managed identity
 export const GET_USER_PARTNER_INFO = gql`
   query getUserPartnerInfo {
     user: viewer {
@@ -189,7 +185,6 @@ export function usePartnerInfoModal(
   ] = useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
 
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
-  const [checkboxError, setCheckboxError] = useState("");
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
     user?.impactConnection?.publisher?.countryCode || "",
@@ -286,12 +281,11 @@ export function usePartnerInfoModal(
   function onCheckboxChange(e: any) {
     const checked = e.target.checked;
     setAllowBankingCollection(checked);
-    if (checked) setCheckboxError("");
   }
 
   async function onSubmit() {
     if (!allowBankingCollection) {
-      setCheckboxError(props.missingFieldsErrorText);
+      setError(props.missingFieldsErrorText);
       return;
     }
     if (!countryCode || !currency) {
@@ -299,7 +293,6 @@ export function usePartnerInfoModal(
       return;
     }
     setError("");
-    setCheckboxError("");
 
     try {
       const vars = {
@@ -309,8 +302,6 @@ export function usePartnerInfoModal(
         },
         firstName: user.firstName,
         lastName: user.lastName,
-        // phoneNumber: null,
-        // phoneNumberCountryCode: null,
         countryCode,
         currency,
       };
@@ -324,12 +315,6 @@ export function usePartnerInfoModal(
 
       const connectionResult = (result as StartImpactConnectionResult)
         .startImpactConnection;
-
-      console.log(
-        result,
-        connectionResult,
-        "result and connectionResult from creating partner from modal",
-      );
 
       if (!connectionResult?.success) {
         const validationMsg = connectionResult?.validationErrors
@@ -373,7 +358,6 @@ export function usePartnerInfoModal(
       filteredCountries: filteredCountries || [],
       filteredCurrencies: filteredCurrencies || [],
       allowBankingCollection,
-      checkboxError,
       disabled: userLoading || connectLoading,
     },
     callbacks: {
