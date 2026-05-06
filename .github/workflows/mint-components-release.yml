@@ -34,10 +34,11 @@ jobs:
 
       - name: Create release pull request or publish to npm
         id: changesets
-        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # 6a0a8 = v1.7.0
+        uses: changesets/action@001cd79f0a536e733315164543a727bdf2d70aff # 001cd = v1.5.1
         with:
-          version: cd packages/mint-components && npm run version
-          publish: cd packages/mint-components && npm run release
+          cwd: packages/mint-components
+          version: npm run version
+          publish: npm run release
           title: "mint-components - Version Packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
