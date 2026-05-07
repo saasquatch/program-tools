@@ -58,21 +58,21 @@ Feature: Reward Table Status Column
       | expired reward                       | <localized date>         |
       | cancelled reward                     | <localized date>         |
       | pending reward with a scheduled date | Until <localized date>   |
-      
+
     Examples: Tax & Payout Rewards
-      | reward                                                       | text                                                                            |
-      | pending reward due to W9                                     | W-9 required                                                                    |
-      | pending reward due to fulfillment error | Fulfillment error |
-      | reward pending review of referral                            | Awaiting review                                                                 |
-      | pending reward due to no connected Impact partner            | Complete your tax and cash payout setup to receive your rewards.                |
-      | pending reward due to an invalid tax document                | Invalid tax form. Submit a new form to receive your rewards.                    |
-      | pending reward due to user required to submit a tax document | Submit your tax documents to receive your rewards.                              |
-      | pending reward due to tax document being in review           | Awaiting tax form review.                                                       |
-      | reward whose payout is processing | Processing until <localized date>. Payout is then scheduled based on your settings. |
-      | reward whose payout failed        | Payout failed due to a fulfillment issue and is currently being retried.            |
-      | reward whose payout was approved                             | Payout approved and scheduled for payment based on your settings.               |
-      | reward whose payout was cancelled                            | If you think this is a mistake, contact our Support team.                       |
-      | cancelled reward from denied referral                        | Detected self-referral                                                          |
+      | reward                                                       | text                                                                                |
+      | pending reward due to W9                                     | W-9 required                                                                        |
+      | pending reward due to fulfillment error                      | Fulfillment error                                                                   |
+      | reward pending review of referral                            | Awaiting review                                                                     |
+      | pending reward due to no connected Impact partner            | Complete your tax and cash payout setup to receive your rewards.                    |
+      | pending reward due to an invalid tax document                | Invalid tax form. Submit a new form to receive your rewards.                        |
+      | pending reward due to user required to submit a tax document | Submit your tax documents to receive your rewards.                                  |
+      | pending reward due to tax document being in review           | Awaiting tax form review.                                                           |
+      | reward whose payout is processing                            | Processing until <localized date>. Payout is then scheduled based on your settings. |
+      | reward whose payout failed                                   | Payout failed due to a fulfillment issue and is currently being retried.            |
+      | reward whose payout was approved                             | Payout approved and scheduled for payment based on your settings.                   |
+      | reward whose payout was cancelled                            | If you think this is a mistake, contact our Support team.                           |
+      | cancelled reward from denied referral                        | Detected self-referral                                                              |
 
   @minutia
   Scenario Outline: Tax-related reward statuses are based on the user's Impact tax connection
@@ -128,9 +128,9 @@ Feature: Reward Table Status Column
     And under the pill is <description>
 
     Examples:
-      | pftState                                           | status              | text             | pillColour | description                                                                     |
-      | transfer date is in the future | PROCESSING | Processing | warning | Processing until <localized date>. Payout is then scheduled based on your settings. |
-      | successfully transferred to payment provider       | PAYOUT_TRANSFERRED  | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.               |
-      | approved but payout scheduled date not yet arrived | PAYOUT_NOT_YET_DUE  | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.               |
-      | failed due to fulfillment issue and retrying | PAYOUT_OVERDUE | Payout Failed | danger | Payout failed due to a fulfillment issue and is currently being retried. |
-      | reversed or cancelled after being processed        | PAYOUT_REVERSED     | Payout Cancelled | danger     | If you think this is a mistake, contact our Support team.                       |
+      | pftState                                           | status             | text             | pillColour | description                                                                         |
+      | transfer date is in the future                     | PROCESSING         | Processing       | warning    | Processing until <localized date>. Payout is then scheduled based on your settings. |
+      | successfully transferred to payment provider       | PAYOUT_TRANSFERRED | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.                   |
+      | approved but payout scheduled date not yet arrived | PAYOUT_NOT_YET_DUE | Payout Approved  | primary    | Payout approved and scheduled for payment based on your settings.                   |
+      | failed due to fulfillment issue and retrying       | PAYOUT_OVERDUE     | Payout Failed    | danger     | Payout failed due to a fulfillment issue and is currently being retried.            |
+      | reversed or cancelled after being processed        | PAYOUT_REVERSED    | Payout Cancelled | danger     | If you think this is a mistake, contact our Support team.                           |

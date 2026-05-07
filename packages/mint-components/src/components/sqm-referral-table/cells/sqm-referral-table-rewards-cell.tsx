@@ -347,7 +347,7 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
-            {state === "PAYOUT_APPROVED" && (
+            {state === "" && (
               <div>
                 <TextSpanView type="p">{statusText}</TextSpanView>
               </div>

@@ -93,7 +93,6 @@ export interface UserInfoFormViewProps {
     region: string;
     postalCode: string;
     currency: string;
-    currencyHelpText: string;
     allowBankingCollection: string;
     personalInformation: string;
     continueButton: string;
@@ -822,7 +821,6 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 menu
                 value={formState.currency}
                 disabled={states.disabled || isDisabledPartnerInput("currency")}
-                helpText={text.currencyHelpText}
                 {...(formState.errors?.currency
                   ? {
                       class: classes.ErrorInput,

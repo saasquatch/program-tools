@@ -305,3 +305,103 @@ export const StatusCellPayoutCancelled = () => {
     ></sqm-rewards-table-status-cell>
   );
 };
+
+export const StatusCellCancelled = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Cancelled"
+      reward={{
+        ...cashReward,
+        statuses: ["CANCELLED"],
+        dateCancelled: 1640995200000,
+        partnerFundsTransfer: null,
+      }}
+      taxConnection={taxConnection}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPFTNoWithdrawalSettings = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{
+        ...cashReward,
+        partnerFundsTransfer: {
+          id: "transfer-pending-setup",
+          status: "NOT_YET_DUE",
+          dateScheduled: 2779257600000,
+          dateTransferred: null,
+          dateCreated: 1640995200000,
+        },
+      }}
+      taxConnection={{
+        connected: true,
+        taxHandlingEnabled: true,
+        connectionStatus: "COMPLETED",
+        publisher: {
+          requiredTaxDocumentType: "W9",
+          currentTaxDocument: null,
+          withdrawalSettings: null,
+          payoutsAccount: null,
+        },
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellNotConnectedExistingTaxForm = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{
+        ...cashReward,
+        ...pending,
+        pendingReasons: ["US_TAX"],
+      }}
+      taxConnection={{
+        connected: false,
+        taxHandlingEnabled: true,
+        connectionStatus: "NOT_STARTED",
+        publisher: {
+          requiredTaxDocumentType: "W9",
+          currentTaxDocument: {
+            status: "ACTIVE",
+            type: "W9",
+            dateCreated: 1640995200000,
+          },
+          withdrawalSettings: null,
+          payoutsAccount: null,
+        },
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellExistingPartnerTaxFormNoWithdrawalSettings = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{
+        ...cashReward,
+        ...pending,
+        pendingReasons: ["MISSING_PAYOUT_CONFIGURATION"],
+      }}
+      taxConnection={{
+        connected: true,
+        taxHandlingEnabled: true,
+        connectionStatus: "COMPLETED",
+        publisher: {
+          requiredTaxDocumentType: "W9",
+          currentTaxDocument: {
+            status: "ACTIVE",
+            type: "W9",
+            dateCreated: 1640995200000,
+          },
+          withdrawalSettings: null,
+          payoutsAccount: null,
+        },
+      }}
+    ></sqm-rewards-table-status-cell>
+  );
+};

@@ -2318,11 +2318,6 @@ export namespace Components {
          */
         "allowBankingCollection": string;
         /**
-          * Brand name shown in the modal header
-          * @uiName Brand name
-         */
-        "brandName": string;
-        /**
           * @uiName Confirm button label
          */
         "confirmButtonLabel": string;
@@ -6008,11 +6003,6 @@ export namespace Components {
          */
         "step1_currency": string;
         /**
-          * @uiName Currency field help text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyHelpText": string;
-        /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
@@ -7059,10 +7049,6 @@ export namespace Components {
          */
         "currency": string;
         /**
-          * @uiName Currency field help text
-         */
-        "currencyHelpText": string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -7353,16 +7339,6 @@ export namespace Components {
           * @uiGroup Email Verification Step
          */
         "emailStep_verifyEmailHeaderText": string;
-        /**
-          * @uiName General verify widget description text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailDescription": string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader": string;
         /**
           * @uiName General widget header text with partner creation
           * @uiGroup General Text
@@ -10543,11 +10519,6 @@ declare namespace LocalJSX {
           * @uiName Terms and conditions checkbox
          */
         "allowBankingCollection"?: string;
-        /**
-          * Brand name shown in the modal header
-          * @uiName Brand name
-         */
-        "brandName"?: string;
         /**
           * @uiName Confirm button label
          */
@@ -14210,11 +14181,6 @@ declare namespace LocalJSX {
          */
         "step1_currency"?: string;
         /**
-          * @uiName Currency field help text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyHelpText"?: string;
-        /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
@@ -15260,10 +15226,6 @@ declare namespace LocalJSX {
          */
         "currency"?: string;
         /**
-          * @uiName Currency field help text
-         */
-        "currencyHelpText"?: string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -15554,16 +15516,6 @@ declare namespace LocalJSX {
           * @uiGroup Email Verification Step
          */
         "emailStep_verifyEmailHeaderText"?: string;
-        /**
-          * @uiName General verify widget description text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailDescription"?: string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader"?: string;
         /**
           * @uiName General widget header text with partner creation
           * @uiGroup General Text

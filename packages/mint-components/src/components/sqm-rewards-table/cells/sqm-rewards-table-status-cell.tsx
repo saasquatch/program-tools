@@ -101,16 +101,25 @@ export class RewardTableStatusCell {
     const integrationOrFueltankReward =
       reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
+    // AL: TODO Scott said we should change this to use pendingReasons instead of fraudStatus
     const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     if (fraudStatus === "DENIED") return "DENIED";
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
 
     const partnerTransferStatus = reward.partnerFundsTransfer?.status;
-
+    console.log(this.reward, "reward in status cell");
     if (reward.partnerFundsTransfer) {
       if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
       if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
+    }
 
+    // pft can now be created before withdrawal settings exist
+    const needsPayoutSetup =
+      this.taxConnection?.connected &&
+      !this.taxConnection?.publisher?.withdrawalSettings;
+    if (needsPayoutSetup) return "PENDING";
+
+    if (reward.partnerFundsTransfer) {
       if (
         reward.partnerFundsTransfer.dateScheduled &&
         reward.partnerFundsTransfer.dateScheduled > Date.now()
@@ -171,10 +180,21 @@ export class RewardTableStatusCell {
         if (status === "INACTIVE") return this.pendingNewTaxForm;
         if (status === "NOT_VERIFIED") return this.pendingTaxReview;
       }
-      if (!taxConnection?.publisher?.withdrawalSettings)
+      if (!taxConnection?.publisher?.withdrawalSettings) {
         return this.pendingPartnerCreation;
+      }
     }
     if (reward?.pendingReasons?.includes("MISSING_PAYOUT_CONFIGURATION")) {
+      return this.pendingPartnerCreation;
+    }
+
+    // Fallback: when rewardStatus() forced PENDING because the user is
+    // connected but hasn't set up withdrawal settings (no pendingReasons
+    // were returned by the API, e.g. for credit rewards with a PFT).
+    if (
+      taxConnection?.connected &&
+      !taxConnection?.publisher?.withdrawalSettings
+    ) {
       return this.pendingPartnerCreation;
     }
 

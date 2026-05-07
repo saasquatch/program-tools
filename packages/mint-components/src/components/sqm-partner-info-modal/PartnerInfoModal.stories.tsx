@@ -65,11 +65,10 @@ const defaultProps: PartnerInfoModalViewProps = {
     loading: false,
     submitting: false,
     isExistingPartner: false,
-    countryCode: "",
-    currency: "",
+    countryCode: null,
+    currency: null,
     error: "",
     success: false,
-    brandName: "Test Brand",
     filteredCountries: demoCountries,
     filteredCurrencies: demoCurrencies,
     allowBankingCollection: false,
@@ -115,6 +114,19 @@ export const ExistingPartnerConfirm = () => {
       isExistingPartner: true,
       countryCode: "CA",
       currency: "CAD",
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
+
+export const ExistingPartnerEmpty = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      isExistingPartner: true,
+      countryCode: "",
+      currency: "",
     },
   };
   return <PartnerInfoModalView {...props} />;

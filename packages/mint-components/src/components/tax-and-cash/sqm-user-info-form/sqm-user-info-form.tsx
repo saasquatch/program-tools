@@ -66,11 +66,6 @@ export class TaxForm {
    * @uiName Currency field label
    */
   @Prop() currency: string = "Currency";
-
-  /**
-   * @uiName Currency field help text
-   */
-  @Prop() currencyHelpText: string = "Choose your preferred payout currency";
   /**
    * @uiName Setup progress
    */
@@ -275,6 +270,6 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

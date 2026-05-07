@@ -288,6 +288,7 @@ graph TD;
   sqm-widget-verification --> sqm-partner-info-modal
   sqm-widget-verification --> sqm-code-verification
   sqm-widget-verification --> sqm-email-verification
+  sqm-partner-info-modal --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -166,7 +166,8 @@ export function usePartnerInfoModal(
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode || "",
+    user?.impactConnection?.publisher?.countryCode ||
+      locale.replace(/^.*_/, ""),
   );
 
   const [currency, setCurrency] = useState(

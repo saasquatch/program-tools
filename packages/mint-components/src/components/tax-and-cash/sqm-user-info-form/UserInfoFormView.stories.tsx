@@ -79,7 +79,6 @@ const defaultText = {
   region: "Region",
   postalCode: "Postal Code",
   currency: "Currency",
-  currencyHelpText: "Select your preferred currency for payouts",
   allowBankingCollection: "I agree to the {termsAndConditionsLink}",
   personalInformation: "Personal Information",
   continueButton: "Continue",

@@ -97,6 +97,11 @@ const style = {
     justifyContent: "flex-start",
     flexDirection: "column",
   },
+  Checkbox: {
+    "&::part(label)": {
+      fontSize: "var(--sl-font-size-small)",
+    },
+  },
   SubmitButton: {
     width: "100%",
     marginTop: "var(--sl-spacing-large)",
@@ -146,7 +151,10 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           exportparts="label: input-label, base: input-base, menu: select-menu"
           label={text.countryLabel}
           value={states.countryCode}
-          disabled={states.submitting || !!states.isExistingPartner}
+          disabled={
+            states.submitting ||
+            (!!states.countryCode && states.isExistingPartner)
+          }
           required
           hoist
           onSl-select={callbacks.onCountryChange}
@@ -170,7 +178,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           exportparts="label: input-label, base: input-base"
           label={text.currencyLabel}
           value={states.currency}
-          disabled={states.submitting || !!states.isExistingPartner}
+          disabled={states.submitting || !!states.currency}
           required
           hoist
           onSl-select={callbacks.onCurrencyChange}
@@ -193,6 +201,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
         </sl-select>
         <div class={sheet.classes.CheckboxWrapper}>
           <sl-checkbox
+            class={sheet.classes.Checkbox}
             checked={states.allowBankingCollection === true}
             onSl-change={callbacks.onCheckboxChange}
             disabled={states.submitting}

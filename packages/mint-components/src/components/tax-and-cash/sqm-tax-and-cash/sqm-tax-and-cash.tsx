@@ -92,12 +92,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_currency: string = "Currency";
   /**
-   * @uiName Currency field help text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_currencyHelpText: string =
-    "Choose your preferred payout currency";
-  /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
@@ -1385,7 +1379,7 @@ export class TaxAndCashMonolith {
                       {this.supportLink}
                     </a>
                   ),
-                }
+                },
               ) as string
             }
           />
@@ -1408,7 +1402,7 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
       key === "sqm-tax-and-cash"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {}
+    {},
   );
 
   return deepmerge(
@@ -1417,6 +1411,6 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
       setStep,
     },
     props.demoData || formatted || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }
