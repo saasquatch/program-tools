@@ -24,6 +24,13 @@
 | `submitLabel`                  | `submit-label`                     |                                                                   | `string`                                                                                                                                                                                                                                                                              | `"Sign In"`                                                                                                                    |
 
 
+## Shadow Parts
+
+| Part                     | Description |
+| ------------------------ | ----------- |
+| `"forgot-password-link"` |             |
+
+
 ## Dependencies
 
 ### Used by

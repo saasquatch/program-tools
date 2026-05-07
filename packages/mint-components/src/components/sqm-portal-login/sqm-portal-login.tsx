@@ -116,7 +116,10 @@ export class PortalLogin {
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a onClick={() => navigation.push(states.forgotPasswordPath)}>
+          <a
+            part="forgot-password-link"
+            onClick={() => navigation.push(states.forgotPasswordPath)}
+          >
             {this.forgotPasswordLabel}
           </a>
         </slot>
@@ -172,6 +175,6 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }
