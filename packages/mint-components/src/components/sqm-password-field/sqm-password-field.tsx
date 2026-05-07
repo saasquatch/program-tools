@@ -22,7 +22,6 @@ import {
  */
 @Component({
   tag: "sqm-password-field",
-  shadow: true,
 })
 export class PortalPasswordField {
   @State()

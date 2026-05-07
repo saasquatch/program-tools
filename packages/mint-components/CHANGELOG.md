@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.11] - 2026-05-06
+
+### Fixed
+
+- \<sqm-password-field>
+  - Added ability to customize share links when enabled in the editor
+
 ## [2.1.10] - 2026-05-06
 
 ### Fixed
@@ -1547,7 +1554,8 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.10...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.11...HEAD
+[2.1.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.11
 [2.1.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.10
 [2.1.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.8
 [2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.7
