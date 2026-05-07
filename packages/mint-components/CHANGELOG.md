@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - \<sqm-password-field>
-  - Added ability to customize share links when enabled in the editor
+  - Fixed issue where password field was changed to render in the shadow dom
 
 ## [2.1.10] - 2026-05-06
 
