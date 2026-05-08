@@ -146,6 +146,7 @@ interface Reward {
       }
     ];
   };
+  rewardedCash?: boolean;
 }
 
 interface ReferralVariables {

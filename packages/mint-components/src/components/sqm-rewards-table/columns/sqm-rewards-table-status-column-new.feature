@@ -43,25 +43,72 @@ Feature: Reward Table Status Column
   Scenario: Status precedence ladder
     Given a reward, its referral fraud state, the user's Impact tax connection
     Then the displayed status is determined in the following order:
-      | order | rule                                                                                                               | resulting status   | resulting description                                                          |
-      |     1 | referral.fraudData.moderationStatus is "DENIED"                                                                    | DENIED             | Detected self-referral                                                         |
-      |     2 | referral.fraudData.moderationStatus is "PENDING"                                                                   | PENDING_REVIEW     | Awaiting review                                                                |
-      |     3 | partnerFundsTransfer.status is "REVERSED"                                                                          | PAYOUT_CANCELLED   | If you think this is a mistake, contact our Support team.                      |
-      |     4 | partnerFundsTransfer.status is "OVERDUE"                                                                           | PAYOUT_FAILED      | Payout failed due to a fulfillment issue and is currently being retried.       |
-      |     5 | impactConnection is connected AND publisher.withdrawalSettings is missing                                          | PENDING            | Complete your tax and cash payout setup to receive your rewards.               |
-      |     6 | reward.pendingReasons includes "MISSING_PAYOUT_CONFIGURATION" AND publisher.withdrawalSettings is missing          | PENDING            | Complete your tax and cash payout setup to receive your rewards.               |
-      |     7 | partnerFundsTransfer.dateScheduled is in the future                                                                | PROCESSING         | Processing until Jan 1, 2026. Payout is then scheduled based on your settings. |
-      |     8 | partnerFundsTransfer.status is "TRANSFERRED" / "NOT_YET_DUE", or dateScheduled has passed without REVERSED/OVERDUE | PAYOUT_APPROVED    | Payout approved and scheduled for payment based on your settings.              |
-      |     9 | reward.dateCancelled is set                                                                                        | CANCELLED          | Jan 1, 2026                                                                    |
-      |    10 | reward.statuses includes "EXPIRED"                                                                                 | EXPIRED            | Jan 1, 2026                                                                    |
-      |    11 | reward.statuses includes "PENDING"                                                                                 | PENDING            | Until Jan 1, 2026                                                              |
-      |    12 | reward.type is "CREDIT" AND statuses includes "REDEEMED"                                                           | REDEEMED           | Jan 1, 2026                                                                    |
-      |    13 | reward.type is "CREDIT"                                                                                            | AVAILABLE          | Expires Jan 1, 2026                                                            |
-      |    14 | reward.type is "PCT_DISCOUNT" AND statuses includes "AVAILABLE"                                                    | AVAILABLE          | Expires Jan 1, 2026                                                            |
-      |    15 | reward.type is "INTEGRATION" / "FUELTANK" AND statuses includes "PENDING"                                          | PENDING            | Until Jan 1, 2026                                                              |
-      |    16 | reward.type is "INTEGRATION" / "FUELTANK" AND statuses includes "CANCELLED"                                        | CANCELLED          | Jan 1, 2026                                                                    |
-      |    17 | reward.type is "INTEGRATION" / "FUELTANK" AND statuses includes "AVAILABLE"                                        | AVAILABLE          | Expires Jan 1, 2026                                                            |
-      |    18 | none of the above                                                                                                  | "" (no badge text) | (no description)                                                               |
+      | order | rule                                                                                                               | resulting status   | resulting badge text | resulting description                                                          |
+      |     1 | referral.fraudData.moderationStatus is "DENIED"                                                                    | DENIED             | Denied               | Detected self-referral                                                         |
+      |     2 | referral.fraudData.moderationStatus is "PENDING"                                                                   | PENDING_REVIEW     | Pending              | Awaiting review                                                                |
+      |     3 | reward.rewardedCash is true AND impactConnection is NOT connected                                                  | PENDING            | Pending              | Complete your cash payout setup to receive your rewards.                       |
+      |     4 | reward.rewardedCash is true AND impactConnection is connected AND publisher.withdrawalSettings is missing          | PENDING            | Pending              | Complete your cash payout setup to receive your rewards.                       |
+      |     5 | partnerFundsTransfer.status is "REVERSED"                                                                          | PAYOUT_CANCELLED   | Payout Cancelled     | If you think this is a mistake, contact our Support team.                      |
+      |     6 | partnerFundsTransfer.status is "OVERDUE"                                                                           | PAYOUT_FAILED      | Payout Failed        | Payout failed due to a fulfillment issue and is currently being retried.       |
+      |     7 | reward.pendingReasons includes "MISSING_PAYOUT_CONFIGURATION" AND publisher.withdrawalSettings is missing          | PENDING            | Pending              | Complete your cash payout setup to receive your rewards.                       |
+      |     8 | partnerFundsTransfer.dateScheduled is in the future                                                                | PROCESSING         | Payment Processing   | Processing until Jan 1, 2026. Payout is then scheduled based on your settings. |
+      |     9 | partnerFundsTransfer.status is "TRANSFERRED" / "NOT_YET_DUE", or dateScheduled has passed without REVERSED/OVERDUE | PAYOUT_APPROVED    | Payout Approved      | Payout approved and scheduled for payment based on your settings.              |
+      |    10 | reward.dateCancelled is set                                                                                        | CANCELLED          | Cancelled            | Jan 1, 2026                                                                    |
+      |    11 | reward.statuses includes "EXPIRED"                                                                                 | EXPIRED            | Expired              | Jan 1, 2026                                                                    |
+      |    12 | reward.statuses includes "PENDING"                                                                                 | PENDING            | Pending              | Until Jan 1, 2026                                                              |
+      |    16 | none of the above                                                                                                  | "" (no badge text) | (no badge text)      | (no description)                                                               |
+    But for rewards where reward.rewardedCash is false (non-cash rewards, e.g. CREDIT/POINTS, PCT_DISCOUNT, INTEGRATION, FUELTANK), the following non-cash-only rules are inserted between rule 12 and rule 13, in this order:
+      | order | rule                          | resulting status | resulting badge text | resulting description |
+      |    13 | statuses includes "REDEEMED"  | REDEEMED         | Redeemed             | Jan 1, 2026           |
+      |    14 | statuses includes "AVAILABLE" | AVAILABLE        | Available            | Expires Jan 1, 2026   |
+      |    15 | statuses includes "CANCELLED" | CANCELLED        | Cancelled            | Jan 1, 2026           |
+
+  @motivating
+  Scenario: PENDING description precedence ladder
+    Given a PENDING reward, its pendingReasons, and the user's Impact tax connection
+    Then the description shown under the Pending pill is determined in the following order:
+      | order | rule                                                                                                                                    | resulting status | resulting badge text | resulting description                                            |
+      |     1 | pendingReasons includes "US_TAX" AND impactConnection.taxHandlingEnabled is false                                                       | PENDING          | Pending              | W-9 required                                                     |
+      |     2 | pendingReasons includes "US_TAX" AND impactConnection is NOT connected                                                                  | PENDING          | Pending              | Complete your tax and cash payout setup to receive your rewards. |
+      |     3 | pendingReasons includes "US_TAX" AND publisher.requiredTaxDocumentType is set AND publisher.currentTaxDocument is missing               | PENDING          | Pending              | Submit your tax documents to receive your rewards.               |
+      |     4 | pendingReasons includes "US_TAX" AND publisher.requiredTaxDocumentType is set AND publisher.currentTaxDocument.status is "INACTIVE"     | PENDING          | Pending              | Invalid tax form. Submit a new form to receive your rewards.     |
+      |     5 | pendingReasons includes "US_TAX" AND publisher.requiredTaxDocumentType is set AND publisher.currentTaxDocument.status is "NOT_VERIFIED" | PENDING          | Pending              | Awaiting tax form review.                                        |
+      |     6 | pendingReasons includes "US_TAX" AND publisher.withdrawalSettings is missing                                                            | PENDING          | Pending              | Complete your tax and cash payout setup to receive your rewards. |
+      |     7 | pendingReasons includes "MISSING_PAYOUT_CONFIGURATION"                                                                                  | PENDING          | Pending              | Complete your tax and cash payout setup to receive your rewards. |
+
+  @motivating @ui
+  Scenario Outline: Payout descriptions for PFT-derived statuses
+    Given a reward whose computed status is <status>
+    When the cell is rendered
+    Then the description line shows <description>
+
+    Examples:
+      | status           | description                                                                         |
+      | PAYOUT_APPROVED  | Payout approved and scheduled for payment based on your settings.                   |
+      | PAYOUT_FAILED    | Payout failed due to a fulfillment issue and is currently being retried.            |
+      | PAYOUT_CANCELLED | If you think this is a mistake, contact our Support team.                           |
+      | PROCESSING       | Processing until <localized date>. Payout is then scheduled based on your settings. |
+
+  @motivating @ui
+  Scenario Outline: US_TAX pending reason resolves based on the tax connection state
+    Given the user has a PENDING reward whose pendingReasons include "US_TAX"
+    And the user's impactConnection.taxHandlingEnabled is <taxHandlingEnabled>
+    And the user's impactConnection.connected is <connected>
+    And the user's publisher.requiredTaxDocumentType is <requiredTaxDocumentType>
+    And the user's publisher.currentTaxDocument is <currentTaxDocument>
+    And the user's publisher.currentTaxDocument.status is <currentTaxDocumentStatus>
+    And the user's publisher.withdrawalSettings is <withdrawalSettings>
+    Then the badge is shown in a <pillColour> pill with text <badgeText>
+    And the description line shows <description>
+
+    Examples:
+      | taxHandlingEnabled | connected | requiredTaxDocumentType | currentTaxDocument | currentTaxDocumentStatus | withdrawalSettings | badgeText | pillColour | description                                                      |
+      | false              | true      | W9                      | present            | ACTIVE                   | present            | Pending   | warning    | W-9 required                                                     |
+      | true               | false     | -                       | -                  | -                        | -                  | Pending   | warning    | Complete your tax and cash payout setup to receive your rewards. |
+      | true               | true      | W9                      | missing            | -                        | present            | Pending   | warning    | Submit your tax documents to receive your rewards.               |
+      | true               | true      | W9                      | present            | INACTIVE                 | present            | Pending   | warning    | Invalid tax form. Submit a new form to receive your rewards.     |
+      | true               | true      | W9                      | present            | NOT_VERIFIED             | present            | Pending   | warning    | Awaiting tax form review.                                        |
+      | true               | true      | W9                      | present            | ACTIVE                   | missing            | Pending   | warning    | Complete your tax and cash payout setup to receive your rewards. |
   # ============================================================
   # 3. STATUS → BADGE COLOUR MAPPING
   # ============================================================
@@ -73,18 +120,19 @@ Feature: Reward Table Status Column
     Then the badge is shown in a <pillColour> pill with <text>
 
     Examples:
-      | status           | text             | pillColour |
-      | AVAILABLE        | Available        | success    |
-      | REDEEMED         | Redeemed         | primary    |
-      | PAYOUT_APPROVED  | Payout Approved  | primary    |
-      | PENDING          | Pending          | warning    |
-      | PENDING_REVIEW   | Pending          | warning    |
-      | PROCESSING       | Processing       | warning    |
-      | CANCELLED        | Cancelled        | danger     |
-      | EXPIRED          | Expired          | danger     |
-      | DENIED           | Denied           | danger     |
-      | PAYOUT_FAILED    | Payout Failed    | danger     |
-      | PAYOUT_CANCELLED | Payout Cancelled | danger     |
+      | status           | text               | pillColour |
+      | AVAILABLE        | Available          | success    |
+      | REDEEMED         | Redeemed           | primary    |
+      | PAYOUT_APPROVED  | Payout Approved    | primary    |
+      | PENDING          | Pending            | warning    |
+      | PENDING_REVIEW   | Pending            | warning    |
+      | PROCESSING       | Payment Processing | warning    |
+      | CANCELLED        | Cancelled          | danger     |
+      | EXPIRED          | Expired            | danger     |
+      | DENIED           | Denied             | danger     |
+      | PAYOUT_FAILED    | Payout Failed      | danger     |
+      | PAYOUT_CANCELLED | Payout Cancelled   | danger     |
+      | (other / "")     | Not available      | danger     |
   # ============================================================
   # 4. DESCRIPTION LINE PRECEDENCE
   # The description under the badge is selected in this order:
@@ -120,58 +168,14 @@ Feature: Reward Table Status Column
       | EXPIRED   | dateExpires   | <localized date>         |
       | CANCELLED | dateCancelled | <localized date>         |
       | REDEEMED  | dateRedeemed  | <localized date>         |
-
-  @motivating @ui
-  Scenario Outline: Payout descriptions for PFT-derived statuses
-    Given a reward whose computed status is <status>
-    When the cell is rendered
-    Then the description line shows <description>
-
-    Examples:
-      | status           | description                                                                         |
-      | PAYOUT_APPROVED  | Payout approved and scheduled for payment based on your settings.                   |
-      | PAYOUT_FAILED    | Payout failed due to a fulfillment issue and is currently being retried.            |
-      | PAYOUT_CANCELLED | If you think this is a mistake, contact our Support team.                           |
-      | PROCESSING       | Processing until <localized date>. Payout is then scheduled based on your settings. |
   # ============================================================
-  # 5. PENDING DESCRIPTION RESOLUTION (getTaxPendingReasons)
-  # When the computed status is PENDING the description is the first
-  # non-empty value of:
-  #   a) tax/payout reason (getTaxPendingReasons)
-  #   b) reward.pendingReasons mapped through pendingCodeMap, joined by ", "
+  # 5. PENDING DESCRIPTION PRECEDENCE
+  # Once the status precedence ladder in § 2 has produced PENDING, the
+  # description shown under the "Pending" pill is determined by the
+  # following ordered ladder (mirrors getTaxPendingReasons + the
+  # pendingCodeMap fallback). All rules render a warning pill with text
+  # "Pending"; only the description varies.
   # ============================================================
-
-  @motivating @ui
-  Scenario Outline: US_TAX pending reason resolves based on the tax connection state
-    Given the user has a PENDING reward whose pendingReasons include "US_TAX"
-    And the user's impactConnection.taxHandlingEnabled is <taxHandlingEnabled>
-    And the user's impactConnection.connected is <connected>
-    And the user's publisher.requiredTaxDocumentType is <requiredTaxDocumentType>
-    And the user's publisher.currentTaxDocument is <currentTaxDocument>
-    And the user's publisher.currentTaxDocument.status is <currentTaxDocumentStatus>
-    And the user's publisher.withdrawalSettings is <withdrawalSettings>
-    Then the description line shows <description>
-
-    Examples:
-      | taxHandlingEnabled | connected | requiredTaxDocumentType | currentTaxDocument | currentTaxDocumentStatus | withdrawalSettings | description                                                      |
-      | false              | true      | W9                      | present            | ACTIVE                   | present            | W-9 required                                                     |
-      | true               | false     | -                       | -                  | -                        | -                  | Complete your tax and cash payout setup to receive your rewards. |
-      | true               | true      | W9                      | missing            | -                        | present            | Submit your tax documents to receive your rewards.               |
-      | true               | true      | W9                      | present            | INACTIVE                 | present            | Invalid tax form. Submit a new form to receive your rewards.     |
-      | true               | true      | W9                      | present            | NOT_VERIFIED             | present            | Awaiting tax form review.                                        |
-      | true               | true      | W9                      | present            | ACTIVE                   | missing            | Complete your tax and cash payout setup to receive your rewards. |
-
-  @motivating @ui
-  Scenario: MISSING_PAYOUT_CONFIGURATION pending reason shows the partner-creation prompt
-    Given the user has a PENDING reward whose pendingReasons include "MISSING_PAYOUT_CONFIGURATION"
-    And the user is connected with publisher.withdrawalSettings missing
-    Then the description line shows "Complete your tax and cash payout setup to receive your rewards."
-
-  @motivating @ui
-  Scenario: Connected user without withdrawal settings shows the partner-creation prompt as a fallback
-    Given the user has a PENDING reward whose pendingReasons array is empty
-    And the user is connected with publisher.withdrawalSettings missing
-    Then the description line shows "Complete your tax and cash payout setup to receive your rewards."
 
   @motivating @ui
   Scenario Outline: Generic pendingReasons codes are mapped via pendingCodeMap

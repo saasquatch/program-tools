@@ -81,7 +81,7 @@ export class RewardTableStatusCell {
   @Prop() pendingTaxSubmission: string =
     "Submit your tax documents to receive your rewards.";
   @Prop() pendingPartnerCreation: string =
-    "Complete your tax and cash payout setup to receive your rewards.";
+    "Complete your cash payout setup to receive your rewards.";
   @Prop() pendingScheduled: string = "Until";
   @Prop() pendingUnhandled: string = "Fulfillment error";
   @Prop() pendingReviewText: string = "Awaiting review";
@@ -101,25 +101,30 @@ export class RewardTableStatusCell {
     const integrationOrFueltankReward =
       reward.type === "INTEGRATION" || reward.type === "FUELTANK";
 
-    // AL: TODO Scott said we should change this to use pendingReasons instead of fraudStatus
+    // AL: TODO Scott said we should change this to use pendingReasons instead of fraudStatus - probably dont want to change this for backwards compatibility
     const fraudStatus = reward.referral?.fraudData?.moderationStatus;
     if (fraudStatus === "DENIED") return "DENIED";
     if (fraudStatus === "PENDING") return "PENDING_REVIEW";
 
-    const partnerTransferStatus = reward.partnerFundsTransfer?.status;
+    const isCashReward = reward.rewardedCash;
+
     console.log(this.reward, "reward in status cell");
+
+    // pft can now be created before withdrawal settings exist
+    if (isCashReward) {
+      if (
+        !this.taxConnection?.connected ||
+        (this.taxConnection?.connected &&
+          !this.taxConnection?.publisher?.withdrawalSettings)
+      )
+        return "PENDING";
+    }
+
+    const partnerTransferStatus = reward.partnerFundsTransfer?.status;
+
     if (reward.partnerFundsTransfer) {
       if (partnerTransferStatus === "REVERSED") return "PAYOUT_CANCELLED";
       if (partnerTransferStatus === "OVERDUE") return "PAYOUT_FAILED";
-    }
-
-    // pft can now be created before withdrawal settings exist
-    const needsPayoutSetup =
-      this.taxConnection?.connected &&
-      !this.taxConnection?.publisher?.withdrawalSettings;
-    if (needsPayoutSetup) return "PENDING";
-
-    if (reward.partnerFundsTransfer) {
       if (
         reward.partnerFundsTransfer.dateScheduled &&
         reward.partnerFundsTransfer.dateScheduled > Date.now()
@@ -191,11 +196,13 @@ export class RewardTableStatusCell {
     // Fallback: when rewardStatus() forced PENDING because the user is
     // connected but hasn't set up withdrawal settings (no pendingReasons
     // were returned by the API, e.g. for credit rewards with a PFT).
-    if (
-      taxConnection?.connected &&
-      !taxConnection?.publisher?.withdrawalSettings
-    ) {
-      return this.pendingPartnerCreation;
+    if (reward.rewardedCash) {
+      if (
+        !taxConnection?.connected ||
+        (taxConnection?.connected &&
+          !taxConnection?.publisher?.withdrawalSettings)
+      )
+        return this.pendingPartnerCreation;
     }
 
     return "";
