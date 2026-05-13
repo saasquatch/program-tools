@@ -213,6 +213,7 @@ export interface BrandingConfiguration {
   main?: {
     brandColor?: string;
     brandFont?: string;
+    customFontUrl?: string;
   };
   color?: {
     backgroundColor?: string;

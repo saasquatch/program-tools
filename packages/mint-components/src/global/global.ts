@@ -133,10 +133,10 @@ import { insertCSS } from "../insertcss";
 import { insertFont } from "../insertfont";
 import { parseBrandingConfig } from "./styles";
 
-const applyStyles = (css: string, font: string) => {
+const applyStyles = (css: string, font: string, customFontUrl?: string) => {
   try {
     insertCSS(css);
-    insertFont(font);
+    insertFont(font, customFontUrl);
   } catch (error) {
     debug(error);
   }
@@ -147,10 +147,14 @@ if (getEnvironmentSDK().type === "None") {
     if (!data?.brandingConfig) return;
 
     window.SquatchBrandingConfig = data.brandingConfig;
-    const { styles, font } = parseBrandingConfig(data.brandingConfig);
-    applyStyles(styles, font);
+    const { styles, font, customFontUrl } = parseBrandingConfig(
+      data.brandingConfig
+    );
+    applyStyles(styles, font, customFontUrl);
   });
 }
 
-const { styles, font } = parseBrandingConfig(window.SquatchBrandingConfig);
-applyStyles(styles, font);
+const { styles, font, customFontUrl } = parseBrandingConfig(
+  window.SquatchBrandingConfig
+);
+applyStyles(styles, font, customFontUrl);
