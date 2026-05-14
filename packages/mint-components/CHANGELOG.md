@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+<!--
+  Entries from version 2.1.8 and earlier were authored manually.
+
+  Starting with the first release after 2.1.8, this changelog is generated
+  automatically by Changesets (https://github.com/changesets/changesets)
+  using the @changesets/changelog-github formatter.
+-->
+
+<!-- Changesets-generated entries appear above this line. -->
+
+---
+
+The format below is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]

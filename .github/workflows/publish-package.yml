@@ -11,6 +11,7 @@ on:
           - express-boilerplate
           - integration-boilerplate-node
           - logger
+          - mint-components
           - program-boilerplate
           - program-test-suite
           - publish-helper
@@ -34,6 +35,12 @@ jobs:
       id-token: write
 
     steps:
+      - name: Enforce mint-components prerelease-only policy
+        if: inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
+        run: |
+          echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
+          exit 1
+
       - name: Generate Variables
         id: vars
         run: |
