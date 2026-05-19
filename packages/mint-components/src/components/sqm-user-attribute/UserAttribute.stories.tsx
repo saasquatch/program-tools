@@ -1,7 +1,11 @@
 import { h } from "@stencil/core";
+import scenario from "./user-attribute.feature";
 
 export default {
   title: "Components/User Attribute",
+  parameters: {
+    scenario,
+  },
 };
 
 export const Default = () => {
