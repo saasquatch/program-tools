@@ -2,10 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+<!--
+  Entries from version 2.1.8 and earlier were authored manually.
+
+  Starting with the first release after 2.1.8, this changelog is generated
+  automatically by Changesets (https://github.com/changesets/changesets)
+  using the @changesets/changelog-github formatter.
+-->
+
+<!-- Changesets-generated entries appear above this line. -->
+
+---
+
+The format below is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.11] - 2026-05-06
+
+### Fixed
+
+- \<sqm-password-field>
+  - Added ability to customize share links when enabled in the editor
+
+## [2.1.10] - 2026-05-06
+
+### Fixed
+
+- \<sqm-share-link>
+  - Added ability to customize share links when enabled in the editor
+
+### Updated
+
+- Bumped stencil-docs-target version
 
 ## [2.1.8] - 2026-04-09
 
@@ -1536,7 +1566,9 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.8...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.11...HEAD
+[2.1.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.11
+[2.1.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.10
 [2.1.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.8
 [2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.7
 [2.1.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.6
