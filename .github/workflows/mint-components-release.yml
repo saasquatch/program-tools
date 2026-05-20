@@ -49,9 +49,18 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           VERSION=$(jq -r '.version' package.json)
-          npm view "@saasquatch/mint-components@$VERSION" version &>/dev/null \
-            && echo "should-publish=false" >> $GITHUB_OUTPUT \
-            || echo "should-publish=true" >> $GITHUB_OUTPUT
+          OUTPUT=$(npm view "@saasquatch/mint-components@$VERSION" version 2>&1) && {
+            echo "should-publish=false" >> $GITHUB_OUTPUT
+            echo "Version $VERSION is already published"
+            exit 0
+          }
+          if echo "$OUTPUT" | grep -q "E404"; then
+            echo "should-publish=true" >> $GITHUB_OUTPUT
+            echo "Version $VERSION not found on npm, publishing"
+          else
+            echo "::error::npm view failed unexpectedly: $OUTPUT"
+            exit 1
+          fi
 
   publish:
     needs: version

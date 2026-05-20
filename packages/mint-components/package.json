@@ -43,7 +43,7 @@
     "changeset": "changeset",
     "version": "changeset version && npm install",
     "release": "changeset publish",
-    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release (stable) or Publish Package (prerelease) GitHub Actions workflow. && exit 1; fi"
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo 'Error: Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release (stable) or Publish Package (prerelease) GitHub Actions workflow.' && exit 1; fi"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",

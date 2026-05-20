@@ -29,14 +29,9 @@ on:
   workflow_call:
     inputs:
       package:
-        description: The package to publish
+        description: "The package to publish (must be one of: express-boilerplate, integration-boilerplate-node, logger, mint-components, program-boilerplate, program-test-suite, publish-helper)"
         required: true
         type: string
-      increment-type:
-        description: The version number to increment (leave empty to publish current version as-is)
-        required: false
-        type: string
-        default: ""
       npm-tag:
         description: The npm dist-tag to publish with
         required: false
@@ -52,7 +47,7 @@ jobs:
       id-token: write
 
     env:
-      VERSIONING: ${{ inputs.increment-type != '' }}
+      VERSIONING: ${{ github.event_name == 'workflow_dispatch' }}
 
     steps:
       - name: Enforce mint-components prerelease-only policy
