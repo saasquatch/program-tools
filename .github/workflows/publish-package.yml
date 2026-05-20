@@ -56,6 +56,13 @@ jobs:
           echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
           exit 1
 
+      - name: Validate package input
+        run: |
+          case "${{ inputs.package }}" in
+            express-boilerplate|integration-boilerplate-node|logger|mint-components|program-boilerplate|program-test-suite|publish-helper) ;;
+            *) echo "::error::Invalid package '${{ inputs.package }}'."; exit 1 ;;
+          esac
+
       - name: Generate Variables
         id: vars
         run: |
