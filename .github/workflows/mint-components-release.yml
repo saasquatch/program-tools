@@ -13,9 +13,11 @@ permissions:
   issues: read
 
 jobs:
-  release:
+  version:
     runs-on: ubuntu-latest
-    name: Release Mint Components
+    name: Version Mint Components
+    outputs:
+      should-publish: ${{ steps.check-publish.outputs.should-publish }}
     defaults:
       run:
         working-directory: packages/mint-components
@@ -32,24 +34,68 @@ jobs:
       - name: Install packages
         run: npm ci
 
-      - name: Create release pull request or publish to npm
+      - name: Create release pull request
         id: changesets
         uses: changesets/action@001cd79f0a536e733315164543a727bdf2d70aff # 001cd = v1.5.1
         with:
           cwd: packages/mint-components
           version: npm run version
-          publish: npm run release
           title: "mint-components - Version Packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+
+      - name: Check if version needs publishing
+        id: check-publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          OUTPUT=$(npm view "@saasquatch/mint-components@$VERSION" version 2>&1) && {
+            echo "should-publish=false" >> $GITHUB_OUTPUT
+            echo "Version $VERSION is already published"
+            exit 0
+          }
+          if echo "$OUTPUT" | grep -q "E404"; then
+            echo "should-publish=true" >> $GITHUB_OUTPUT
+            echo "Version $VERSION not found on npm, publishing"
+          else
+            echo "::error::npm view failed unexpectedly: $OUTPUT"
+            exit 1
+          fi
+
+  publish:
+    needs: version
+    if: needs.version.outputs.should-publish == 'true'
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package: mint-components
+      npm-tag: latest
+    permissions:
+      contents: write
+      id-token: write
+
+  deploy-docs:
+    needs: publish
+    runs-on: ubuntu-latest
+    name: Deploy Docs
+    defaults:
+      run:
+        working-directory: packages/mint-components
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 53b83 = v6.3.0
+        with:
+          node-version: 24
+
+      - name: Install packages
+        run: npm ci
 
       - name: Build docs site
-        if: steps.changesets.outputs.published == 'true'
         run: NODE_ENV=dev npm run build
 
       - name: Authenticate with Google Cloud
-        if: steps.changesets.outputs.published == 'true'
         uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # 7c6bc = v3
         with:
           token_format: "access_token"
@@ -57,9 +103,7 @@ jobs:
           service_account: "github-static-site-actions@static-site-proxy.iam.gserviceaccount.com"
 
       - name: Setup GCP
-        if: steps.changesets.outputs.published == 'true'
         uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # aa548 = v3.0.1
 
       - name: Deploy docs to bucket
-        if: steps.changesets.outputs.published == 'true'
         run: gsutil -m rsync -d -r www/ gs://stencilbook_static_saasquatch/mint-components/production/
