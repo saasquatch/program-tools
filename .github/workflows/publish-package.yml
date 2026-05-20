@@ -26,6 +26,23 @@ on:
           - minor
           - major
 
+  workflow_call:
+    inputs:
+      package:
+        description: The package to publish
+        required: true
+        type: string
+      increment-type:
+        description: The version number to increment (leave empty to publish current version as-is)
+        required: false
+        type: string
+        default: ""
+      npm-tag:
+        description: The npm dist-tag to publish with
+        required: false
+        type: string
+        default: latest
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -34,9 +51,12 @@ jobs:
       contents: write
       id-token: write
 
+    env:
+      VERSIONING: ${{ inputs.increment-type != '' }}
+
     steps:
       - name: Enforce mint-components prerelease-only policy
-        if: inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
+        if: github.event_name == 'workflow_dispatch' && inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
         run: |
           echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
           exit 1
@@ -45,11 +65,7 @@ jobs:
         id: vars
         run: |
           echo "dir=packages/${{ inputs.package }}" >> ${GITHUB_OUTPUT}
-          if [ "${{ inputs.increment-type }}" = "prerelease" ]; then
-            echo "npmtag=next" >> ${GITHUB_OUTPUT}
-          else
-            echo "npmtag=latest" >> ${GITHUB_OUTPUT}
-          fi
+          echo "npmtag=${{ inputs.npm-tag || (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}" >> ${GITHUB_OUTPUT}
 
       - name: Checkout
         id: checkout
@@ -65,6 +81,7 @@ jobs:
       # we could add this to devDependencies but we'd have to do it for every package
       # so might as well just install it inside the action
       - name: Install semver
+        if: env.VERSIONING == 'true'
         id: npm-i-semver
         run: |
           npm i --no-save semver
@@ -75,6 +92,7 @@ jobs:
         run: npm ci
 
       - name: Compute new version
+        if: env.VERSIONING == 'true'
         id: compute-version
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
@@ -115,6 +133,7 @@ jobs:
             return newVersion;
 
       - name: Extract package name
+        if: env.VERSIONING == 'true'
         id: extract-package-name
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
@@ -135,6 +154,7 @@ jobs:
             return packageName;
 
       - name: Write new version to file
+        if: env.VERSIONING == 'true'
         working-directory: ${{ steps.vars.outputs.dir }}
         run: |
           jq '.version = "${{ steps.compute-version.outputs.result }}"' package.json > package.json.tmp
@@ -151,6 +171,7 @@ jobs:
         run: npm publish --provenance --access public --tag ${{ steps.vars.outputs.npmtag }}
 
       - name: Commit and push changes
+        if: env.VERSIONING == 'true'
         id: commit-and-push
         uses: saasquatch/git-commit-action@v0.0.15
         env:
