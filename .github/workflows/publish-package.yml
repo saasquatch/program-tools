@@ -57,17 +57,27 @@ jobs:
           exit 1
 
       - name: Validate package input
+        env:
+          PACKAGE: ${{ inputs.package }}
         run: |
-          case "${{ inputs.package }}" in
+          case "$PACKAGE" in
             express-boilerplate|integration-boilerplate-node|logger|mint-components|program-boilerplate|program-test-suite|publish-helper) ;;
-            *) echo "::error::Invalid package '${{ inputs.package }}'."; exit 1 ;;
+            *) echo "::error::Invalid package '${PACKAGE}'."; exit 1 ;;
           esac
 
       - name: Generate Variables
         id: vars
+        env:
+          PACKAGE: ${{ inputs.package }}
+          NPM_TAG: ${{ inputs.npm-tag || (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}
         run: |
-          echo "dir=packages/${{ inputs.package }}" >> ${GITHUB_OUTPUT}
-          echo "npmtag=${{ inputs.npm-tag || (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}" >> ${GITHUB_OUTPUT}
+          # Validate npm-tag is a safe dist-tag value (alphanumeric, hyphens, dots)
+          if [[ ! "$NPM_TAG" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "::error::Invalid npm-tag '${NPM_TAG}'. Must be alphanumeric with hyphens/dots only."
+            exit 1
+          fi
+          echo "dir=packages/${PACKAGE}" >> ${GITHUB_OUTPUT}
+          echo "npmtag=${NPM_TAG}" >> ${GITHUB_OUTPUT}
 
       - name: Checkout
         id: checkout
