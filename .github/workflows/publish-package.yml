@@ -84,7 +84,7 @@ jobs:
         if: env.VERSIONING == 'true'
         id: npm-i-semver
         run: |
-          npm i --no-save semver
+          npm i --no-save semver@7.8.0
 
       - name: Install dependencies
         id: npm-ci
