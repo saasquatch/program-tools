@@ -2399,6 +2399,11 @@ export namespace Components {
          */
         "supportDescriptionExistingPartner": string;
         /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink": string;
+        /**
           * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text
           * @uiWidget textArea
@@ -10600,6 +10605,11 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "supportDescriptionExistingPartner"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink"?: string;
         /**
           * The link text that appears in the terms and conditions checkbox
           * @uiName Terms and conditions text

@@ -45,6 +45,7 @@ const defaultText = {
     "We noticed you are already an Impact.com partner, please confirm your information.",
   supportDescriptionExistingPartner:
     "If this is a mistake, please contact Support or sign up for this referral program with a different email.",
+  supportLink: "Support",
   countryLabel: "Country",
   currencyLabel: "Currency",
   submitButtonLabel: "Submit",
@@ -181,4 +182,29 @@ export const Closed = () => {
     },
   };
   return <PartnerInfoModalView {...props} />;
+};
+
+export const SQMComponentExistingPartner = () => {
+  return (
+    <sqm-partner-info-modal
+      support-link="Support"
+      support-description-existing-partner="If this is a mistake, please contact {supportLink} or sign up for this referral program with a different email."
+      allow-banking-collection="I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information"
+      terms-and-conditions-label="terms and conditions"
+      terms-and-conditions-link="https://terms.advocate.impact.com/PayoutTermsAndConditions.html"
+      demoData={{
+        states: { open: true, isExistingPartner: true } as any,
+      }}
+    ></sqm-partner-info-modal>
+  );
+};
+
+export const SQMComponentNewPartner = () => {
+  return (
+    <sqm-partner-info-modal
+      demoData={{
+        states: { open: true, isExistingPartner: false } as any,
+      }}
+    ></sqm-partner-info-modal>
+  );
 };

@@ -37,6 +37,7 @@ export interface PartnerInfoModalViewProps {
     searchCountryPlaceholder: string;
     searchCurrencyPlaceholder: string;
     supportDescriptionExistingPartner: string;
+    supportLink: string;
     modalHeaderExistingPartner: string;
     allowBankingCollection: string;
     termsAndConditionsLabel: string;
@@ -113,10 +114,24 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
+  const supportMessage = intl.formatMessage(
+    {
+      id: "supportDescriptionExistingPartner",
+      defaultMessage: text.supportDescriptionExistingPartner,
+    },
+    {
+      supportLink: (
+        <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+          {text.supportLink}
+        </a>
+      ),
+    },
+  );
+
   const description = states.isExistingPartner ? (
     <span class={sheet.classes.DescriptionContainer}>
       <p>{text.descriptionExistingPartner}</p>
-      <p>{text.supportDescriptionExistingPartner}</p>
+      <p>{supportMessage}</p>
     </span>
   ) : (
     <p class={sheet.classes.DescriptionContainer}>

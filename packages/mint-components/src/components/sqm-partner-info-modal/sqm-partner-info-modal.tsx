@@ -72,7 +72,15 @@ export class PartnerInfoModal {
    */
   @Prop()
   supportDescriptionExistingPartner: string =
-    "If this is a mistake, please contact Support or sign up for this referral program with a different email.";
+    "If this is a mistake, please contact {supportLink} or sign up for this referral program with a different email.";
+
+  /**
+   * Support description for existing partner confirmation
+   *
+   * @uiName Existing partner support description
+   */
+  @Prop()
+  supportLink: string = "Support";
 
   /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
@@ -250,6 +258,7 @@ function useDemoPartnerInfoModal(
         searchCurrencyPlaceholder: props.searchCurrencyPlaceholder,
         supportDescriptionExistingPartner:
           props.supportDescriptionExistingPartner,
+        supportLink: props.supportLink,
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
       },
     },
