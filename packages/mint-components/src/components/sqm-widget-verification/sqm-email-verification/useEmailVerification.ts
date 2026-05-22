@@ -87,8 +87,8 @@ export function useUpsertUserEmail() {
 export function useWidgetEmailVerification(
   props: WidgetEmailVerification
 ): WidgetEmailVerificationViewProps {
-  const [_, setShowCode] = useParent(SHOW_CODE_NAMESPACE);
-  const [email, setEmail] = useParent<string>(VERIFICATION_EMAIL_NAMESPACE);
+  const [_, setShowCode] = useParent<boolean>(SHOW_CODE_NAMESPACE);
+  const [_email, setEmail] = useParent<string>(VERIFICATION_EMAIL_NAMESPACE);
   const [emailExists, setEmailExists] = useState(false);
 
   const [error, setError] = useState(false);
@@ -121,27 +121,40 @@ export function useWidgetEmailVerification(
     if (!data?.viewer) return;
 
     setLoading(true);
-    const toAddress = data.viewer.email;
+    setMutationError(false);
+    setError(false);
+
+
+    let toAddress = data.viewer.email;
     if (!toAddress) {
-      // If no email on the user, set one
-      const formData = e.detail.formData;
-      const newEmail = formData.get("email").toString();
+      const formData = e.detail?.formData;
+      const newEmail = formData?.get("email")?.toString() ?? "";
 
       if (!emailRegex.test(newEmail)) {
         setError(true);
+        setLoading(false);
         return;
       }
 
-      const result = await upsertUserEmail(newEmail);
-      if (!result || !result.user.email) setError(true);
+      const upsertResult = await upsertUserEmail(newEmail);
+      if (!upsertResult || !upsertResult.upsertUser?.email) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+      toAddress = upsertResult.upsertUser.email;
     }
 
     // UI should not allow this call til initialisation is done
-    if (!initialized) return;
+    if (!initialized) {
+      setLoading(false);
+      return;
+    }
 
     const result = await sendEmail();
-    if (!result || !result.success) setMutationError(true);
-    else {
+    if (!result || !result.success) {
+      setMutationError(true);
+    } else {
       // This is used to let the code verification widget know an email was already sent
       setEmail(toAddress);
       setShowCode(true);

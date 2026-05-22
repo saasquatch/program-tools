@@ -10,6 +10,7 @@ import {
   PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
   SHOW_PARTNER_MODAL_NAMESPACE,
+  VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
 
@@ -38,6 +39,12 @@ export function useWidgetVerification() {
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
   });
+
+  useParentState<string | undefined>({
+    namespace: VERIFICATION_EMAIL_NAMESPACE,
+    initialValue: undefined,
+  });
+  
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
   const [loading, setLoading] = useState(true);
   const [showPartnerModal, setShowPartnerModal] = useParentState<boolean>({

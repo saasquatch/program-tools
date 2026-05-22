@@ -13,6 +13,7 @@ Feature: Tax Form Step One
     And each field has label <label>
     And is input type <inputType>
     And they see a "Continue" button
+
     Examples:
       | label                        | inputType |
       | First name                   | text      |
@@ -114,7 +115,6 @@ Feature: Tax Form Step One
       | CAN         | USD, AUD, EUR, GBP, CAN |
       | IND         | USD, AUD, EUR, GBP, INR |
 
-
   @minutia
   Scenario: Currency select is searchable
     When they press the Currency select
@@ -201,19 +201,20 @@ Feature: Tax Form Step One
       {fieldName} contains invalid characters.
       """
     # Note: SPACE and NUL mean the characters. Both are for documentation purposes.
+
     Examples:
       | fieldName | string                                               | may      |
       | Address   | SPACE                                                | will not |
       | Address   | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
-      | Address   | 0123456789                                           | will not |
-      | Address   | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | Address   |                                           0123456789 | will not |
+      | Address   | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
       | Address   | æùíöêø                                               | will not |
       | Address   | ぁ ㍿ ・                                             | will     |
       | Address   | NUL                                                  | will     |
       | City      | SPACE                                                | will not |
       | City      | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
-      | City      | 0123456789                                           | will not |
-      | City      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | City      |                                           0123456789 | will not |
+      | City      | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
       | City      | æùíöêø                                               | will not |
       | City      | ぁ ㍿ ・                                             | will     |
       | City      | NUL                                                  | will     |
@@ -227,11 +228,12 @@ Feature: Tax Form Step One
       """
       Phone number is invalid.
       """
+
     Examples:
       | string                                               | may      |
       | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will     |
-      | 0123456789                                           | will not |
-      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      |                                           0123456789 | will not |
+      | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
 
   @minutia
   Scenario Outline: "State" field changes based on country selected
@@ -239,6 +241,7 @@ Feature: Tax Form Step One
     When <country> is selected via the dropdown
     Then the "State" select menu updates to the valid states of that country
     And the "State" field's label changes to <label>
+
     Examples:
       | country       | label    |
       | Canada        | Province |
@@ -250,6 +253,7 @@ Feature: Tax Form Step One
   Scenario Outline: "State" field is hidden if there are no states for the selected country
     Given the "Country" field has value <country>
     Then the "State" select <isHidden>
+
     Examples:
       | country       | isHidden      |
       | Austria       | is hidden     |
@@ -264,6 +268,7 @@ Feature: Tax Form Step One
     And managed identity email <miEmail>
     And their managed identity is <verified>
     Then the prefilled email in the user info form is <email>
+
     Examples:
       | participantEmail | miEmail        | verified     | email          |
       | p@example.com    | null           | N/A          | p@example.com  |
@@ -279,6 +284,7 @@ Feature: Tax Form Step One
     When the user clicks the "Next" button
     Then the publisher <mayBe> created
     And step 2 <mayBe> skipped
+
     Examples:
       | userCountryCode | tenantCountryCode | indirectTaxCountryCode | mayBe  |
       | GB              | GB                | GB                     | is not |
@@ -303,3 +309,123 @@ Feature: Tax Form Step One
     When they complete the form with the missing data
     And click "Continue"
     Then the missing data is patched on the partner when they are upserted
+  # -----------------------------------------------------------------------------
+  # Flows where the publisher / partner link was established in the
+  # sqm-partner-info-modal *before* the user reaches the User Information form.
+  #
+  # The modal can leave the user in one of two states:
+  #   (A) "Modal-created publisher" — the user had no Impact connection before
+  #       opening the modal, completed it, and a brand-new publisher was created
+  #       with ONLY countryCode + currency populated (the only two fields the
+  #       modal collects). No other publisher fields are filled in yet.
+  #   (B) "Linked to existing partner" — the modal detected an existing Impact
+  #       partner matching the user, showed the existing-partner confirmation
+  #       variant (with country/currency pre-filled by the existing publisher),
+  #       and the user confirmed the link. The existing publisher may or may
+  #       not already have the remaining fields populated.
+  # -----------------------------------------------------------------------------
+
+  @motivating
+  Scenario: Modal-created publisher pre-fills country and currency only
+    Given the user had no Impact connection before opening sqm-partner-info-modal
+    And they completed the modal and a new publisher was created
+    And the new publisher only has the following fields populated
+      | countryCode |
+      | currency    |
+    When they navigate to the User Information form
+    Then the "Country" field is autofilled with the publisher's countryCode
+    And the "Currency" field is autofilled with the publisher's currency
+    And the "Country" and "Currency" fields are disabled
+    And the firstName, lastName, and email fields are autofilled from the participant / managed identity
+    And the firstName, lastName, and email fields are disabled per existing rules
+    But all remaining publisher-derived fields (phoneNumberCountryCode, phoneNumber, billingAddress, billingCity, billingState, billingPostalCode) are empty and enabled
+    And the user can fill in the missing fields and click "Continue"
+    And on submit the missing fields are patched onto the existing publisher (no new publisher is created)
+
+  @motivating
+  Scenario: Linked existing partner whose user-info form is already complete skips the form entirely
+    # When the pre-existing partner has previously filled out and saved their
+    # full User Information form, a brand-new user connecting to that partner
+    # inherits the saved data and is bounced past step 1 — they should never
+    # see the User Information form at all.
+    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
+    And the pre-existing partner has already filled out and saved their User Information form
+    And the existing publisher therefore has every required field populated
+      | countryCode            |
+      | currency               |
+      | phoneNumberCountryCode |
+      | phoneNumber            |
+      | billingAddress         |
+      | billingCity            |
+      | billingState           |
+      | billingPostalCode      |
+    When the new user enters the tax-and-cash flow
+    Then the User Information form (step 1) is skipped entirely
+    And the user is taken directly to the next applicable step (tax form, or banking if tax form is not required)
+    And no fields from step 1 need to be re-entered or re-submitted
+    And no new publisher is created and no patch request is sent for step 1 data
+
+  @motivating
+  Scenario: Linked existing partner with only country and currency populated still requires the rest
+    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
+    And the existing publisher only has the following fields populated
+      | countryCode |
+      | currency    |
+    When they navigate to the User Information form
+    Then the "Country" field is autofilled and disabled
+    And the "Currency" field is autofilled and disabled
+    But the phoneNumberCountryCode, phoneNumber, billingAddress, billingCity, billingState, and billingPostalCode fields are empty and enabled
+    When they try to submit without providing the missing fields
+    Then they see a field-level validation error for each missing required field
+    When they complete the missing fields and click "Continue"
+    Then the missing data is patched onto the existing publisher (no new publisher is created)
+
+  @minutia
+  Scenario Outline: Field is editable when the linked partner has no value for it, and disabled when it does
+    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
+    And the existing publisher's <field> value is <publisherValue>
+    When they navigate to the User Information form
+    Then the <field> field is <state>
+    And the <field> field's prefilled value is <displayedValue>
+
+    Examples:
+      | field                  | publisherValue | state    | displayedValue          |
+      | countryCode            | US             | disabled | US                      |
+      | countryCode            | (empty)        | enabled  | (empty / default to US) |
+      | currency               | USD            | disabled | USD                     |
+      | currency               | (empty)        | enabled  | (empty)                 |
+      | phoneNumber            |     5551234567 | disabled |              5551234567 |
+      | phoneNumber            | (empty)        | enabled  | (empty)                 |
+      | phoneNumberCountryCode | US             | disabled | US                      |
+      | phoneNumberCountryCode | (empty)        | enabled  | (empty / default to US) |
+      | billingAddress         |    123 Main St | disabled |             123 Main St |
+      | billingAddress         | (empty)        | enabled  | (empty)                 |
+      | billingCity            | Seattle        | disabled | Seattle                 |
+      | billingCity            | (empty)        | enabled  | (empty)                 |
+      | billingState           | WA             | disabled | WA                      |
+      | billingState           | (empty)        | enabled  | (empty)                 |
+      | billingPostalCode      |          98101 | disabled |                   98101 |
+      | billingPostalCode      | (empty)        | enabled  | (empty)                 |
+
+  @minutia
+  Scenario: The "0000000" / "DZ" placeholder phone values from publisher-creation are treated as empty
+    # The Impact API substitutes phoneNumber "0000000" and phoneNumberCountryCode "DZ"
+    # when a publisher is created without phone data (see useUserInfoForm.tsx).
+    Given the user reaches the User Information form via either entry path (modal-created or linked existing)
+    And the linked publisher's phoneNumber is "0000000"
+    And the linked publisher's phoneNumberCountryCode is "DZ"
+    Then the "Phone number" field is empty and enabled
+    And the "Extension" (phoneNumberCountryCode) field is empty and enabled
+    And the user must provide a real phone number before "Continue" will succeed
+
+  @minutia
+  Scenario: Country and Currency stay locked even though only the modal set them
+    # Disambiguates from "Selecting a country clears the currency value": once a
+    # publisher exists (via either modal path), the form should NOT allow the
+    # user to change country/currency on this step. This avoids accidental
+    # divergence between the publisher record and the form submission.
+    Given the user reaches the User Information form via either entry path (modal-created or linked existing)
+    And the linked publisher has a countryCode and currency
+    Then the "Country" field is disabled
+    And the "Currency" field is disabled
+    And the "country clears currency" behaviour does not apply (neither can be changed on this step)
