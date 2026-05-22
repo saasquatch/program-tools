@@ -268,9 +268,6 @@ const rewardsCountFilteredQuery = (
   global = "",
 ) => {
   const statusFilter = status ? { status } : null;
-  console.log(statusFilter, "status filter ");
-  // When EARNED is selected in the content editor, the status variable is passed as null
-  // before it was querying statuses_eq: $statusFilter so it was not filtering anything based on status
 
   return debugQuery(
     gql`
@@ -320,14 +317,14 @@ const integrationRewardsCountFilteredQuery = (
 
   return debugQuery(
     gql`
-      query ($programId: ID, $statusFilter: RewardStatusFilterInput) {
+      query ($programId: ID, ${statusFilter ? "$statusFilter: RewardStatusFilterInput" : ""}) {
         viewer {
           ... on User {
             rewards(
               filter: {
                 programId_eq: $programId
                 type_eq: INTEGRATION
-                statuses_eq: $statusFilter
+                ${statusFilter ? "statuses_eq: $statusFilter" : "statuses_nin: [{status: CANCELLED}, {status: EXPIRED}]"}
               }
             ) {
               totalCount
