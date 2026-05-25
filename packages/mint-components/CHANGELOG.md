@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.13
+
+### Patch Changes
+
+- [#499](https://github.com/saasquatch/program-tools/pull/499) [`0f45046`](https://github.com/saasquatch/program-tools/commit/0f45046f5d56d9803d2c134790ce86c9501c450a) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update rewardsCountFilteredQuery and integrationRewardsCountFilteredQuery to do conditional querying if EARNED status is passed
+
 ## 2.1.12
 
 ### Patch Changes
