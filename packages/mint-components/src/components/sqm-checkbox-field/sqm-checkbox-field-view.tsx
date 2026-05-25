@@ -91,7 +91,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
-        {...(!content.checkboxOptional ? { required: false } : [])}
+        {...(!content.checkboxOptional ? { required: true } : [])}
         disabled={
           states.registrationFormState?.loading ||
           states.registrationFormState?.disabled
