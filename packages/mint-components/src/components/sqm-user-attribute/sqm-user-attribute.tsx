@@ -12,7 +12,7 @@ import { useUserAttribute } from "./useUserAttribute";
 /**
  * @uiName User Attribute
  * @exampleGroup Advanced
- * @example User Attribute - <sqm-user-attribute value="firstName"></sqm-user-attribute>
+ * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
  */
 @Component({
   tag: "sqm-user-attribute",
@@ -77,6 +77,6 @@ function useCustomFieldsDemo(props: UserAttribute): UserAttributeViewProps {
       fontWeight: props.fontWeight,
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }
