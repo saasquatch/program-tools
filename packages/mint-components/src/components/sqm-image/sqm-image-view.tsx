@@ -1,5 +1,6 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface ImageViewProps {
   imageUrl: string;
@@ -46,8 +47,9 @@ export function ImageView(props: ImageViewProps) {
       <div class={sheet.classes.Container} part="sqm-base">
         <img
           part="sqm-image"
-          src={props.imageUrl}
+          src={optimizeCloudinaryUrl(props.imageUrl)}
           class={sheet.classes.Image}
+          decoding="async"
         />
       </div>
     </div>

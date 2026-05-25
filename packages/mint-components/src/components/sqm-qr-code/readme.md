@@ -24,12 +24,15 @@
 
 ### Depends on
 
+- [sqm-skeleton](../sqm-skeleton)
 - [sqm-form-message](../sqm-form-message)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-qr-code --> sqm-skeleton
   sqm-qr-code --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   style sqm-qr-code fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

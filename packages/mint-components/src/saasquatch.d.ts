@@ -216,6 +216,10 @@ export interface BrandingConfiguration {
   };
   color?: {
     backgroundColor?: string;
+    loadingSkeleton?: {
+      background?: string;
+      animationBackground?: string;
+    };
     textColorShades?: {
       mainText: string;
       subduedText: string;

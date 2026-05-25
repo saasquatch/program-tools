@@ -32,6 +32,7 @@
 - [sqm-empty](../sqm-empty)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
+- [sqm-skeleton](../sqm-skeleton)
 
 ### Graph
 ```mermaid
@@ -39,6 +40,7 @@ graph TD;
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-referral-table --> sqm-skeleton
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text

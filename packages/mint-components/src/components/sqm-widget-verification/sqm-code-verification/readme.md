@@ -37,6 +37,7 @@
 ```mermaid
 graph TD;
   sqm-code-verification --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-banking-info-form --> sqm-code-verification
   sqm-stencilbook --> sqm-code-verification
   sqm-widget-verification --> sqm-code-verification

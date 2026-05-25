@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
@@ -23,7 +23,7 @@ interface PortalContainerViewProps {
 
 export function PortalContainerView(
   props: PortalContainerViewProps,
-  children: VNode
+  children: VNode,
 ) {
   const style = {
     Container: {

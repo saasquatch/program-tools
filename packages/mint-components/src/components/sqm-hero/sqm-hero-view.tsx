@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { isMobile, isValidColor } from "../../utilities";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface HeroProps {
   states: {
@@ -36,7 +37,7 @@ const parseBackground = (provided_bg: string) => {
     if (isValidColor(provided_bg)) {
       return provided_bg;
     } else {
-      return `url(${provided_bg})`;
+      return `url(${optimizeCloudinaryUrl(provided_bg)})`;
     }
   } else {
     return "var(--sqm-portal-background)";
@@ -106,12 +107,12 @@ export function HeroView(props: HeroProps) {
     ColumnWrapper: {
       "&:first-of-type": {
         background: `no-repeat center/cover ${parseBackground(
-          states.background
+          states.background,
         )}`,
       },
       "&:last-of-type": {
         background: `no-repeat center/cover ${parseBackground(
-          secondaryBackground
+          secondaryBackground,
         )}`,
       },
       "@media screen and (min-width: 650px)": { flex: "1 1 0" },
@@ -123,7 +124,7 @@ export function HeroView(props: HeroProps) {
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
-        states.background
+        states.background,
       )}`,
       minHeight: `${states.minHeight}px`,
     },

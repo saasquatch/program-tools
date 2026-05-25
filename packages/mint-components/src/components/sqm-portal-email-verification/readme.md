@@ -30,6 +30,7 @@
 ```mermaid
 graph TD;
   sqm-portal-email-verification --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   style sqm-portal-email-verification fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

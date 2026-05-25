@@ -3,9 +3,8 @@ import {
   useTick,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useRef } from "@saasquatch/universal-hooks";
+import { useEffect, useRef } from "@saasquatch/universal-hooks";
 import { SlMenu, SlMenuItem } from "@saasquatch/shoelace";
-import { useEffect } from "haunted";
 import { NavigationMenu } from "./sqm-navigation-menu";
 import { NavigationMenuViewProps } from "./sqm-navigation-menu-view";
 

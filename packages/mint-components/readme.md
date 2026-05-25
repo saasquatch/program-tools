@@ -4,7 +4,66 @@
 
 Mint components for the SaaSquatch content platform. Built with Stencil.
 
-# About Stencil
+## Contributing
+
+### Version Management with Changesets
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
+
+#### Adding a Changeset
+
+When you make changes that should be included in the next release, create a changeset:
+
+```bash
+npm run changeset
+```
+
+Follow the prompts to:
+
+1. Select the type of change (major, minor, or patch)
+2. Provide a summary of your changes
+
+This will create a new file in the `.changeset` directory that will be used to automatically update the version and changelog when the changes are released.
+
+#### Releasing a New Version
+
+When changesets are merged to the `master` branch, the mint-components release workflow will automatically:
+
+1. Create or update a "Version Packages" pull request that:
+   - Bumps the version in `package.json`
+   - Updates `package-lock.json`
+   - Updates `CHANGELOG.md` with all changeset summaries
+   - Removes the processed changeset files
+
+2. When you're ready to release, simply **merge the "Version Packages" PR** to `master`
+
+3. The workflow will then automatically:
+   - Publish the new version to npm
+   - Deploy the production Stencilbook site for mint-components
+   - Create a git tag for the release
+
+mint-components stable releases use the mint-specific **Mint Components Release** workflow (Changesets), and prereleases use the shared **Publish Package** workflow.
+
+**Local `npm publish` is blocked.** A `prepublishOnly` script in `package.json` aborts publishes that aren't running in CI (where `CI=true`). All publishes must go through the GitHub Actions workflows below.
+
+#### Manual Development Releases (Prereleases)
+
+For development and testing purposes, use the shared **Publish Package** GitHub Actions workflow:
+
+1. Run the workflow from the branch you want to publish.
+2. Set `package` to `mint-components`.
+3. Set `increment-type` to `prerelease`. The workflow rejects `patch` / `minor` / `major` for mint-components — stable releases must go through the **Mint Components Release** (Changesets) workflow.
+
+The workflow will:
+
+- Compute the next semver from `package.json` (e.g. `2.1.8` → `2.1.9-0` for `prerelease`)
+- Build mint-components automatically via the `prepack` lifecycle script
+- Publish to npm with `--access public --provenance`, tagged `next` for prereleases or `latest` for stable
+- Commit the version bump and create a signed `@saasquatch/mint-components@<version>` git tag via `saasquatch/git-commit-action`
+
+Stable releases should still flow through `master` via the Changesets "Version Packages" PR. When the next stable Changesets release runs, `changeset version` will compute the next stable version from changesets and overwrite any manual prerelease version in `package.json` — that is intentional.
+
+## About Stencil
 
 Stencil is a compiler for building fast web apps using Web Components.
 

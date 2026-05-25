@@ -17,10 +17,16 @@
 | `nextPage`            | `next-page`             | Redirect participants to this page after they successfully login.                                   | `string`                                                                                                                                                                                                                                                                              | `"/"`                                                                              |
 | `pageLabel`           | `page-label`            |                                                                                                     | `string`                                                                                                                                                                                                                                                                              | `"Sign in to your account"`                                                        |
 | `passwordLabel`       | `password-label`        |                                                                                                     | `string`                                                                                                                                                                                                                                                                              | `"Password"`                                                                       |
-| `registerCTA`         | `register-c-t-a`        |                                                                                                     | `string`                                                                                                                                                                                                                                                                              | `"Don't have an account?"`                                                         |
 | `registerLabel`       | `register-label`        |                                                                                                     | `string`                                                                                                                                                                                                                                                                              | `"Register"`                                                                       |
 | `registerPath`        | `register-path`         | Redirect participants to this page to start registration.                                           | `string`                                                                                                                                                                                                                                                                              | `"/register"`                                                                      |
 | `submitLabel`         | `submit-label`          |                                                                                                     | `string`                                                                                                                                                                                                                                                                              | `"Sign In"`                                                                        |
+
+
+## Shadow Parts
+
+| Part                     | Description |
+| ------------------------ | ----------- |
+| `"forgot-password-link"` |             |
 
 
 ## Dependencies
@@ -37,6 +43,7 @@
 ```mermaid
 graph TD;
   sqm-portal-login --> sqm-form-message
+  sqm-form-message --> sqm-skeleton
   sqm-stencilbook --> sqm-portal-login
   style sqm-portal-login fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop } from "@stencil/core";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 /**
  * @uiName Header Logo
@@ -15,7 +16,23 @@ export class HeroImage {
    * @format url
    * @uiName Logo image
    */
-  @Prop() imageUrl: string;
+  @Prop() imageUrl?: string;
+  /**
+   * This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
+   * @uiName Logo text
+   */
+  @Prop() logoText?: string;
+  /**
+   * @uiName Logo text size (in px)
+   * @uiWidget number
+   */
+  @Prop() logoTextSize?: number = 32;
+  /**
+   * @uiWidget color
+   * @uiName Logo text color
+   */
+  @Prop() logoTextColor?: string =
+    "var(--sqm-primary-color, var(--sqm-text, #555555))";
 
   /**
    * Page participants are navigated to after clicking the header logo.
@@ -27,7 +44,7 @@ export class HeroImage {
   nextPage: string = "/";
 
   /**
-   * @uiName Logo height
+   * @uiName Logo height (in px)
    */
   @Prop() height: number = 60;
 
@@ -39,8 +56,29 @@ export class HeroImage {
   render() {
     return (
       <Host>
-        <a href={this.nextPage} part="sqm-link">
-          <img style={{ height: `${this?.height}px` }} src={this?.imageUrl} />
+        <a
+          href={this.nextPage}
+          part="sqm-link"
+          style={{ textDecoration: "none" }}
+        >
+          {this.imageUrl ? (
+            <img
+              style={{ height: `${this?.height}px` }}
+              src={optimizeCloudinaryUrl(this?.imageUrl, {
+                height: this?.height ? this.height * 2 : undefined,
+              })}
+              decoding="async"
+            />
+          ) : (
+            <h3
+              style={{
+                fontSize: `${this.logoTextSize}px`,
+                color: this.logoTextColor,
+              }}
+            >
+              {this.logoText}
+            </h3>
+          )}
         </a>
       </Host>
     );

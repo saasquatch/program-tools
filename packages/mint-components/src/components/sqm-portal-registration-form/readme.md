@@ -46,6 +46,7 @@
 graph TD;
   sqm-portal-registration-form --> sqm-form-message
   sqm-portal-registration-form --> sqm-password-field
+  sqm-form-message --> sqm-skeleton
   style sqm-portal-registration-form fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

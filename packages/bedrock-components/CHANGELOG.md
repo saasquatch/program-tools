@@ -7,19 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2026-04-01
+
+### Changed
+
+- Disabled Stencil hydration flag (`hydratedFlag: null`) to prevent unstyled content flash when loading alongside mint-components
+
+## [1.5.2] - 2026-02-26
+
+### Updated
+
+- Bumped `@component-boilerplate` version
+
+## [1.5.1] - 2025-11-03
+
+### Changed
+
+- \<sqb-conditional-section> - Updated validParents list to allow `sqb-auth-template-switch` and `sqb-conditional-section` as parents.
+
 ## [1.5.0] - 2025-10-22
 
 ### Added
+
 - **Component Editor Support**: Added `stateController` property to `sqb-auth-template-switch` component to enable editor state management
   - Enables preview of "Sign up form" (logged-out) and "Referral & Reward info" (logged-in) states in the component editor
   - Added editor state support with `overrideToken` functionality for demo environments
 
 ### Changed
+
 - **Code Style**: Updated Prettier configuration to use double quotes instead of single quotes (`singleQuote: false`)
 - **Component Metadata**: Enhanced `sqb-conditional-section` and `sqb-program-section` components with `@validParents` annotations for better editor integration
 - **Component Examples**: Updated example documentation for `sqb-conditional-section` to use more descriptive naming ("Conditional Area" instead of "Conditional Section")
 
 ### Updated
+
 - **Dependencies**: Upgraded `@raisins/stencil-docs-target` from `^1.1.0` to `^1.3.0`
 - **Auth Template Switch**: Enhanced authentication logic to support editor override tokens in demo environments
 - **Component Documentation**: Regenerated component documentation with updated property tables and editor state information
@@ -215,7 +236,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.4.10...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.5.3...HEAD
+[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.3
+[1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.2
+[1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.1
+[1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.0
 [1.4.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.10
 [1.4.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.9
 [1.4.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.4.8

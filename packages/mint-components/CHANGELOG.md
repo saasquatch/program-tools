@@ -1,11 +1,190 @@
 # Changelog
 
+## 2.1.12
+
+### Patch Changes
+
+- [#500](https://github.com/saasquatch/program-tools/pull/500) [`041abce`](https://github.com/saasquatch/program-tools/commit/041abce56e60a40c93bdfe2b670aeb564dd8eec9) Thanks [@00salmon](https://github.com/00salmon)! - Fixes issue with the checkbox not properly being set as required in registration forms
+
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+<!--
+  Entries from version 2.1.8 and earlier were authored manually.
+
+  Starting with the first release after 2.1.8, this changelog is generated
+  automatically by Changesets (https://github.com/changesets/changesets)
+  using the @changesets/changelog-github formatter.
+-->
+
+<!-- Changesets-generated entries appear above this line. -->
+
+---
+
+The format below is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.1.11] - 2026-05-06
+
+### Fixed
+
+- \<sqm-password-field>
+  - Added ability to customize share links when enabled in the editor
+
+## [2.1.10] - 2026-05-06
+
+### Fixed
+
+- \<sqm-share-link>
+  - Added ability to customize share links when enabled in the editor
+
+### Updated
+
+- Bumped stencil-docs-target version
+
+## [2.1.8] - 2026-04-09
+
+### Fixed
+
+- \<sqm-referral-iframe>
+  - Added prop to configure query parameter of referral code
+- Fixed issue with ICU messages missing required `other` clause
+
+## [2.1.7] - 2026-04-01
+
+### Updated
+
+- Added optimization for Cloudinary hosted images
+- Fixed issue when clicking expired email verification links
+
+## [2.1.6] - 2026-03-31
+
+### Updated
+
+- \<sqm-tax-and-cash-dashboard>
+  - Update tax section to always display if there's data for tax form status
+  - Fix INVALID tax form alert when no tax form type is available
+  - Update "w9RequiredDescription" threshold text from $600 to $2000
+- \<sqm-payout-status-alert>
+  - Update "w9RequiredDescription" threshold text from $600 to $2000
+
+## [2.1.5] - 2026-03-30
+
+### Updated
+
+- Improved loading states for:
+  - \<sqm-coupon-code>
+  - \<sqm-edit-profile>
+  - \<sqm-empty>
+  - \<sqm-form-message>
+  - \<sqm-instant-access-registration>
+  - \<sqm-invoice-table>
+  - \<sqm-lead-form>
+  - \<sqm-leaderboard-rank>
+  - \<sqm-leaderboard>
+  - \<sqm-navigation-menu>
+  - \<sqm-portal-container>
+  - \<sqm-portal-email-verification>
+  - \<sqm-qr-code>
+  - \<sqm-referral-codes>
+  - \<sqm-task-card>
+  - \<sqm-indirect-tax-form>
+  - \<sqm-payout-details-card>
+  - \<sqm-payout-status-alert>
+  - \<sqm-tax-and-cash-dashboard>
+  - \<sqm-tax-and-cash>
+  - \<sqm-user-info-form>
+
+## [2.1.4] - 2026-03-23
+
+### Fixed
+
+- \<sqm-empty>
+  - Fix image upload not clearing on sqm-empty
+
+## [2.1.3] - 2026-03-16
+
+### Fixed
+
+- Now using correct property name for "beneficiaryTaxPayerId" on tax form
+
+## [2.1.2] - 2026-03-09
+
+### Fixed
+
+- \<sqm-big-stat>
+  - Fix expired rewards query reading `prettyAssignedCredit` instead of `prettyExpiredCredit`
+  - Fix cancelled rewards query reading `prettyAssignedCredit` instead of `prettyCancelledCredit`
+  - Fix earned rewards balance calculation to use sum of `totalAssignedCredit` and `totalPendingCredit`
+
+## [2.1.1] - 2026-02-26
+
+### Updated
+
+- Bumped `@component-boilerplate` version
+
+## [2.1.0] - 2026-02-19
+
+### Updated
+
+- \<sqm-rewards-table>
+- \<sqm-referral-table>
+  - Added new reward status based on state of payouts
+    - Payment Processing
+
+## [2.0.10] - 2026-01-27
+
+### Fixed
+
+- \<sqm-name-fields>
+  - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
+
+## [2.0.9] - 2026-01-19
+
+- \<sqm-portal-login>
+  - Remove unused `registerCTA` prop
+
+## [2.0.8] - 2026-01-06
+
+- \<sqm-payout-status-alert>
+  - Fix value of status demo data for content editor testing
+
+## [2.0.7] - 2025-12-09
+
+- \<sqm-tax-and-cash-dashboard-view>
+
+  - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
+  - Added ICU string for text prop indirectTaxTooltipSupport
+
+- \<sqm-tax-and-cash-dashboard>
+  - Updated text prop indirectTaxTooltipSupport to handle ICU string
+
+## [2.0.6] - 2025-12-05
+
+### Changed
+
+- \<sqm-name-fields>
+  - Remove `shadow: true` from name fields so that they can be picked up by shoelace form
+
+## [2.0.5] - 2025-12-02
+
+### Changed
+
+- \<sqm-user-info-form-view>
+  - Fix bug that caused previously unset fields to be disabled
+
+## [2.0.4] - 2025-11-20
+
+### Changed
+
+- \<sqm-payout-status-alert>
+- \<sqm-tax-and-cash-dashboard>
+
+  - Added more descriptive copy for the different reasons a payout may be on hold
+
+- \<sqm-header-logo>
+  - added optional props to fallback to text instead of an image for the logo
 
 ## [2.0.3] - 2025-11-12
 
@@ -369,7 +548,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Changed
 
 - \<sqm-leaderboard>
-
   - Removed unused isEssentials prop
 
 ## [1.10.2] - 2024-10-29
@@ -448,7 +626,6 @@ This major release represents a significant advancement in the theming capabilit
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
 
 - \<sqm-user-info-form>
-
   - Added missing prop for terms and conditions link
 
 ## [1.9.1] - 2024-05-17
@@ -1052,7 +1229,6 @@ This major release represents a significant advancement in the theming capabilit
 - Checkbox and dropdown components added for use in \<sqm-portal-register>
 
 - Added Components:
-
   - \<sqm-checkbox-field>
     - Required by default but can be optional
     - Allows for a link in checkbox text to support behaviour like linking out to terms and conditions
@@ -1071,7 +1247,6 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - Added Components:
-
   - \<sqm-brand>
     - Takes in a brand colour via prop and creates a colour palette from it.
     - Sets shoelace colour variables from brand palette for child components
@@ -1411,7 +1586,27 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.0.1...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.11...HEAD
+[2.1.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.11
+[2.1.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.10
+[2.1.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.8
+[2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.7
+[2.1.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.6
+[2.1.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
+[2.1.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.4
+[2.1.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.3
+[2.1.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.2
+[2.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.1
+[2.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.0
+[2.0.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.10
+[2.0.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.9
+[2.0.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.8
+[2.0.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.7
+[2.0.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.6
+[2.0.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.5
+[2.0.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.4
+[2.0.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.3
+[2.0.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.2
 [2.0.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.1
 [2.0.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.0.0
 [1.15.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.15.5

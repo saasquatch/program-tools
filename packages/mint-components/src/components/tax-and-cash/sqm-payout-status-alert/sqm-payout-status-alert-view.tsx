@@ -22,8 +22,12 @@ export interface PayoutStatusAlertViewProps {
   callbacks: {
     onClick: () => void;
     onTermsClick: () => void;
+    onPaymentInfoClick: () => void;
+    onNewFormClick: () => void;
   };
   text: {
+    editPaymentInformationButton: string;
+    newFormButton: string;
     informationRequiredHeader: string;
     informationRequiredDescription: string;
     informationRequiredButtonText: string;
@@ -38,6 +42,18 @@ export interface PayoutStatusAlertViewProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    paymentHoldOnChangeHeader: string;
+    paymentHoldOnChangeDescription: string;
+    beneficiaryNameInvalidHeader: string;
+    beneficiaryNameInvalidDescription: string;
+    beneficiaryNameMismatchHeader: string;
+    beneficiaryNameMismatchDescription: string;
+    bankTaxNameMismatchHeader: string;
+    bankTaxNameMismatchDescription: string;
+    withdrawalSettingsInvalidHeader: string;
+    withdrawalSettingsInvalidDescription: string;
+    paymentReturnedHeader: string;
+    paymentReturnedDescription: string;
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
@@ -51,6 +67,12 @@ export interface PayoutStatusAlertViewProps {
 }
 
 const style = {
+  ButtonContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    marginTop: "var(--sl-spacing-medium)",
+    flexWrap: "wrap",
+  },
   SkeletonOne: {
     width: "50%",
     height: "16px",
@@ -227,7 +249,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             icon: "exclamation-triangle",
           };
         }
-      case "ACCOUNT_REVIEW":
+      case "NEW_PAYEE_REVIEW":
         return {
           header: text.accountReviewHeader,
           description: intl.formatMessage(
@@ -247,6 +269,206 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           alertType: "warning",
           icon: "exclamation-triangle",
         };
+      case "PAYMENT_HOLD_ON_CHANGE":
+        return {
+          header: text.paymentHoldOnChangeHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentHoldOnChangeDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BENEFICIARY_NAME_INVALID":
+        return {
+          header: text.beneficiaryNameInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                exportparts="base: primarybutton-base"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="secondary"
+                exportparts="base: secondarybutton-base"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BENEFICIARY_NAME_MISMATCH":
+        return {
+          header: text.beneficiaryNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                exportparts="base: primarybutton-base"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="secondary"
+                exportparts="base: secondarybutton-base"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "BANK_TAX_NAME_MISMATCH":
+        return {
+          header: text.bankTaxNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.bankTaxNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                exportparts="base: primarybutton-base"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.loading}
+                type="secondary"
+                exportparts="base: secondarybutton-base"
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "WITHDRAWAL_SETTINGS_INVALID":
+        return {
+          header: text.withdrawalSettingsInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.withdrawalSettingsInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                exportparts="base: primarybutton-base"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+        };
+      case "PAYMENT_RETURNED":
+        return {
+          header: text.paymentReturnedHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentReturnedDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            }
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.loading}
+                type="primary"
+                exportparts="base: primarybutton-base"
+                onClick={callbacks.onPaymentInfoClick}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "error",
+          icon: "exclamation-triangle",
+        };
+
       case "HOLD":
         return {
           header: text.holdHeader,
@@ -282,12 +504,18 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             scroll-animation="smooth"
           ></sqm-scroll>
         ) : data.type === "SquatchPortal" ? (
-          <sl-button type="default" onClick={callbacks.onTermsClick}>
+          <sl-button
+            type="primary"
+            exportparts="base: primarybutton-base"
+            onClick={callbacks.onTermsClick}
+          >
             {text.w9RequiredButtonText}
           </sl-button>
         ) : (
           // Demo case
-          <sl-button type="default">{text.w9RequiredButtonText}</sl-button>
+          <sl-button type="primary" exportparts="base: primarybutton-base">
+            {text.w9RequiredButtonText}
+          </sl-button>
         );
       case "INFORMATION_REQUIRED":
         return data.type === "SquatchJS2" ? (
@@ -333,15 +561,14 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           </div>
         );
       default:
+        if (alertDetails.button) return alertDetails.button;
+
         return;
     }
   }
 
-  if (states.loading) {
-    return <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>;
-  }
-
   const alertDetails = getAlert(states.status);
+
   if (states.status === "DONE" || !alertDetails) {
     return <div></div>;
   }
@@ -350,7 +577,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message type={alertDetails.alertType}>
+      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
         <p part="alert-title">{alertDetails.header}</p>
         <p part="alert-description">{alertDetails.description}</p>
         {getButton(states.status)}

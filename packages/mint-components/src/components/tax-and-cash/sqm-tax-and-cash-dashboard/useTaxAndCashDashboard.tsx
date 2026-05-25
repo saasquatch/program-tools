@@ -100,8 +100,14 @@ export const useTaxAndCashDashboard = (
     // Clear override context once on submitted
     setContext({});
 
-    if (window.location.hash)
+    if (window.location.hash) {
+      setContext({
+        overrideNextStep: "/dashboard",
+        overrideBackStep: "/dashboard",
+        hideSteps: true,
+      });
       setStep(`/${window.location.hash.replace("#", "")}`);
+    }
   }, []);
 
   const {

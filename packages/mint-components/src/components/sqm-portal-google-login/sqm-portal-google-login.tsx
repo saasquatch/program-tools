@@ -130,7 +130,10 @@ export class PortalGoogleLogin {
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a onClick={() => navigation.push(states.forgotPasswordPath)}>
+          <a
+            part="forgot-password-link"
+            onClick={() => navigation.push(states.forgotPasswordPath)}
+          >
             {this.forgotPasswordLabel}
           </a>
         </slot>
@@ -175,7 +178,7 @@ function useLoginDemo(props: PortalGoogleLogin): Partial<PortalLoginViewProps> {
   return deepmerge(
     {
       states: {
-        error: "",
+        error: props.demoData?.states?.error || "",
         loading: false,
         forgotPasswordPath: "/forgotPassword",
         registerPath: "/register",
@@ -194,6 +197,6 @@ function useLoginDemo(props: PortalGoogleLogin): Partial<PortalLoginViewProps> {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

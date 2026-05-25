@@ -1,8 +1,8 @@
 import { h, VNode } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 import { TaxDocumentType } from "../data";
+import { PayoutStatus } from "../sqm-payout-status-alert/usePayoutStatus";
 
 export interface TaxAndCashDashboardProps {
   states: {
@@ -69,6 +69,7 @@ export interface TaxAndCashDashboardProps {
     indirectTaxDetails?: string;
     taxDocumentSectionHeader?: string;
     taxDocumentSectionSubHeader?: string;
+    taxDocumentSectionSubHeaderNoDocument?: string;
     newFormButton?: string;
     editPaymentInformationButton?: string;
     invalidForm?: string;
@@ -101,6 +102,18 @@ export interface TaxAndCashDashboardProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    paymentHoldOnChangeHeader: string;
+    paymentHoldOnChangeDescription: string;
+    beneficiaryNameInvalidHeader: string;
+    beneficiaryNameInvalidDescription: string;
+    beneficiaryNameMismatchHeader: string;
+    beneficiaryNameMismatchDescription: string;
+    bankTaxNameMismatchHeader: string;
+    bankTaxNameMismatchDescription: string;
+    withdrawalSettingsInvalidHeader: string;
+    withdrawalSettingsInvalidDescription: string;
+    paymentReturnedHeader: string;
+    paymentReturnedDescription: string;
     w9RequiredHeader: string;
     w9RequiredDescription: string;
     w9RequiredButtonText: string;
@@ -172,6 +185,7 @@ const style = {
     marginBottom: "var(--sl-spacing-xx-small)",
     margin: "0",
     display: "flex",
+    alignItems: "center",
     gap: "var(--sl-spacing-x-small)",
     "&::part(base)": {
       color: "var(--sqm-text)",
@@ -227,16 +241,6 @@ const style = {
   EditBankDetailsButton: {
     marginTop: "var(--sl-spacing-large)",
   },
-  SkeletonOne: {
-    width: "15%",
-    height: "10px",
-  },
-  SkeletonTwo: {
-    width: "25%",
-    height: "24px",
-    top: "var(--sl-spacing-small)",
-    marginBottom: "var(--sl-spacing-x-small)",
-  },
   TaxSectionSkeletonContainer: {
     display: "flex",
     flexDirection: "column",
@@ -253,6 +257,9 @@ const style = {
     display: "flex",
     textAlign: "center",
     width: "250px",
+    "&::part(body)": {
+      pointerEvents: "auto",
+    },
   },
   ToolTip: {
     top: "6px",
@@ -327,6 +334,48 @@ const style = {
   SubduedText: {
     color: "var(--sqm-text-subdued)",
   },
+  ButtonContainer: {
+    display: "flex",
+    gap: "var(--sl-spacing-medium)",
+    flexWrap: "wrap",
+  },
+  DropdownTooltipContainer: {
+    top: "-4px",
+    "&::part(panel)": {
+      boxShadow: "none",
+      border: "none",
+      marginTop: "var(--sl-spacing-x-small)",
+    },
+  },
+  DropdownContent: {
+    padding: "var(--sl-spacing-xxx-small) var(--sl-spacing-x-small)",
+    fontSize: "var(--sl-font-size-small)",
+    fontFamily: "var(--sl-font-sans)",
+    fontWeight: "var(--sl-font-weight-normal)",
+    lineHeight: "var(--sl-line-height-dense)",
+    minWidth: "225px",
+    backgroundColor: "var(--sl-color-gray-900)",
+    color: "var(--sl-color-white)",
+    borderRadius: "var(--sl-border-radius-medium)",
+    position: "relative",
+    marginLeft: "5px",
+  },
+  DropdownArrow: {
+    position: "absolute",
+    left: "-5px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "0",
+    height: "0",
+    borderTop: "5px solid transparent",
+    borderBottom: "5px solid transparent",
+    borderRight: "5px solid var(--sl-color-gray-900)",
+    zIndex: "1",
+  },
+  DropdownLink: {
+    color: "var(--sl-color-white)",
+    textDecoration: "underline",
+  },
 };
 
 const sheet = createStyleSheet(style);
@@ -376,7 +425,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.termsAndConditions}
                   </a>
                 ),
-              }
+              },
             ),
             button: (
               <sl-button
@@ -408,7 +457,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             ),
             buttonText: null,
             alertType: "warning",
@@ -430,7 +479,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: text.verificationRequiredButtonText,
           alertType: "warning",
@@ -451,7 +500,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -471,7 +520,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "warning",
           icon: "exclamation-triangle",
@@ -491,13 +540,13 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           alertType: "error",
           icon: "exclamation-octagon",
           class: sheet.classes.ErrorHoldAlertContainer,
         };
-      case "ACCOUNT_REVIEW":
+      case "NEW_PAYEE_REVIEW":
         return {
           header: text.accountReviewHeader,
           description: intl.formatMessage(
@@ -511,13 +560,215 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
         };
+      case "PAYMENT_HOLD_ON_CHANGE":
+        return {
+          header: text.paymentHoldOnChangeHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentHoldOnChangeDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          buttonText: null,
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "BENEFICIARY_NAME_INVALID":
+        return {
+          header: text.beneficiaryNameInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="primary"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "BENEFICIARY_NAME_MISMATCH":
+        return {
+          header: text.beneficiaryNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.beneficiaryNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="primary"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "BANK_TAX_NAME_MISMATCH":
+        return {
+          header: text.bankTaxNameMismatchHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.bankTaxNameMismatchDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          button: (
+            <div class={sheet.classes.ButtonContainer}>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="primary"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onEditPayoutInfo}
+              >
+                {text.editPaymentInformationButton}
+              </sl-button>
+              <sl-button
+                disabled={states.disabled || states.loading}
+                type="default"
+                class={sheet.classes.EditBankDetailsButton}
+                onClick={callbacks.onNewFormClick}
+              >
+                {text.newFormButton}
+              </sl-button>
+            </div>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "WITHDRAWAL_SETTINGS_INVALID":
+        return {
+          header: text.withdrawalSettingsInvalidHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.withdrawalSettingsInvalidDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="default"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
+          alertType: "warning",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "PAYMENT_RETURNED":
+        return {
+          header: text.paymentReturnedHeader,
+          description: intl.formatMessage(
+            {
+              id: "accountReviewDescription",
+              defaultMessage: text.paymentReturnedDescription,
+            },
+            {
+              supportLink: (
+                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                  {text.supportLink}
+                </a>
+              ),
+            },
+          ),
+          button: (
+            <sl-button
+              disabled={states.disabled || states.loading}
+              type="primary"
+              class={sheet.classes.EditBankDetailsButton}
+              onClick={callbacks.onEditPayoutInfo}
+            >
+              {text.editPaymentInformationButton}
+            </sl-button>
+          ),
+          alertType: "error",
+          icon: "exclamation-triangle",
+          class: sheet.classes.WarningHoldAlertContainer,
+        };
+
       case "HOLD":
         return {
           header: text.payoutHoldAlertHeader,
@@ -532,13 +783,14 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   {text.supportLink}
                 </a>
               ),
-            }
+            },
           ),
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
         };
+
       default:
         return;
     }
@@ -558,7 +810,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -573,13 +825,13 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             {
               id: `badgeTextSubmittedOn`,
               defaultMessage:
-                states.documentType === "W9"
+                states.documentType === "W9" || !states.documentType
                   ? text.badgeTextSubmittedOn
                   : text.badgeTextSubmittedOnW8,
             },
             {
               dateSubmitted: states.dateSubmitted,
-            }
+            },
           )}
         </p>
       </div>
@@ -605,7 +857,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               taxFormType: states.documentType,
-            }
+            },
           )}
         </p>
       </div>
@@ -616,6 +868,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
     INACTIVE: (
       <sl-alert
         exportparts="base: alert-base, icon:alert-icon"
+        class={sheet.classes.ErrorHoldAlertContainer}
         type="danger"
         open
       >
@@ -630,8 +883,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   : text.taxAlertHeaderNotActiveW8,
             },
             {
-              documentType: states.documentTypeString,
-            }
+              documentType: states.documentType || "Your",
+            },
           )}
         </strong>
         <br />
@@ -644,8 +897,8 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 : text.taxAlertNotActiveMessageW8,
           },
           {
-            documentType: states.documentTypeString,
-          }
+            documentType: states.documentTypeString || "tax",
+          },
         )}
       </sl-alert>
     ),
@@ -661,7 +914,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: "Canada",
           province: states.province,
-        }
+        },
       );
     } else if (states.subRegion) {
       return intl.formatMessage(
@@ -672,7 +925,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {
           country: states.country,
           subRegion: states.subRegion,
-        }
+        },
       );
     } else {
       return intl.formatMessage(
@@ -682,12 +935,45 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         },
         {
           country: states.country,
-        }
+        },
       );
     }
   };
 
   const alertInfo = getAlert(states.payoutStatus);
+
+  const dropdownHover = (el) => {
+    if (!el) return;
+
+    const trigger = el.querySelector('[slot="trigger"]');
+    const panel = el.shadowRoot?.querySelector(".dropdown__panel");
+
+    if (!trigger || !panel) return;
+
+    let hideTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const show = () => {
+      clearTimeout(hideTimeout);
+      el.show();
+    };
+
+    const scheduleHide = () => {
+      hideTimeout = setTimeout(() => el.hide(), 100);
+    };
+
+    trigger.addEventListener("mouseenter", show);
+    trigger.addEventListener("mouseleave", scheduleHide);
+    panel.addEventListener("mouseenter", show);
+    panel.addEventListener("mouseleave", scheduleHide);
+
+    return () => {
+      trigger.removeEventListener("mouseenter", show);
+      trigger.removeEventListener("mouseleave", scheduleHide);
+      panel.removeEventListener("mouseenter", show);
+      panel.removeEventListener("mouseleave", scheduleHide);
+      clearTimeout(hideTimeout);
+    };
+  };
 
   return (
     <div>
@@ -721,7 +1007,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </sl-alert>
           </div>
@@ -750,12 +1036,13 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sl-alert>
         )}
         {alertInfo && (
           <sqm-form-message
+            loading={states.loading}
             exportparts="base: alert-base, icon:alert-icon"
             type={alertInfo?.alertType}
             class={alertInfo?.class}
@@ -830,13 +1117,13 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             )}
           </div>
         </div>
-        {(!states.noFormNeeded || states.status === "NOT_VERIFIED") && (
+        {(!states.noFormNeeded || !!states.status) && (
           <div class={sheet.classes.TaxDocumentsContainer}>
             <div>
               {states.loading ? (
                 <div class={sheet.classes.TaxSectionSkeletonContainer}>
-                  <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-                  <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+                  <sqm-skeleton width="15%" height="10px"></sqm-skeleton>
+                  <sqm-skeleton width="25%" height="24px"></sqm-skeleton>
                 </div>
               ) : (
                 <div>
@@ -844,22 +1131,25 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                     <span class={sheet.classes.TaxFormDetailsContainer}>
                       <div class={sheet.classes.StatusContainer}>
                         <h3>
-                          {intl.formatMessage(
-                            {
-                              id: "section-subheader",
-                              defaultMessage: text.taxDocumentSectionSubHeader,
-                            },
-                            {
-                              documentType: states.documentTypeString || "W-9",
-                            }
-                          )}
+                          {states.documentType
+                            ? intl.formatMessage(
+                                {
+                                  id: "section-subheader",
+                                  defaultMessage:
+                                    text.taxDocumentSectionSubHeader,
+                                },
+                                {
+                                  documentType: states.documentTypeString,
+                                },
+                              )
+                            : text.taxDocumentSectionSubHeaderNoDocument}
                         </h3>
                         <span class={sheet.classes.StatusAlert}>
                           {statusMap[states.status]}
                         </span>
                       </div>
                     </span>
-                    {states.noFormNeeded &&
+                    {(!states.noFormNeeded || !!states.status) &&
                       states.status !== "NOT_VERIFIED" && (
                         <sl-button
                           disabled={states.disabled || states.loading}
@@ -877,25 +1167,49 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             </div>
           </div>
         )}
-
         <div class={sheet.classes.IndirectTaxPreviewContainer}>
           {states.loading ? (
             <div class={sheet.classes.TaxSectionSkeletonContainer}>
-              <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-              <sl-skeleton class={sheet.classes.SkeletonTwo}></sl-skeleton>
+              <sqm-skeleton width="15%" height="10px"></sqm-skeleton>
+              <sqm-skeleton width="25%" height="24px"></sqm-skeleton>
             </div>
           ) : (
             <div>
               <h3 class={sheet.classes.IndirectTaxPreviewHeaderContainer}>
                 {text.indirectTaxInfoSectionHeader}
-                <sl-tooltip
-                  trigger="hover"
+                <sl-dropdown
                   placement="right"
-                  content={text.indirectTaxTooltipSupport}
-                  class={sheet.classes.TooltipContainer}
+                  distance={1}
+                  ref={dropdownHover}
+                  class={sheet.classes.DropdownTooltipContainer}
                 >
-                  <sl-icon name="info-circle" class={sheet.classes.ToolTip} />
-                </sl-tooltip>
+                  <sl-icon
+                    slot="trigger"
+                    name="info-circle"
+                    class={sheet.classes.ToolTip}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <div class={sheet.classes.DropdownContent}>
+                    <div class={sheet.classes.DropdownArrow}></div>
+                    {intl.formatMessage(
+                      {
+                        id: "indirectTaxTooltipSupport",
+                        defaultMessage: text.indirectTaxTooltipSupport,
+                      },
+                      {
+                        supportLink: (
+                          <a
+                            target="_blank"
+                            href={`mailto:advocate-support@impact.com`}
+                            class={sheet.classes.DropdownLink}
+                          >
+                            {text.supportLink}
+                          </a>
+                        ),
+                      },
+                    )}
+                  </div>
+                </sl-dropdown>
               </h3>
               <div class={sheet.classes.IndirectTaxPreviewDetails}>
                 <span>
@@ -915,7 +1229,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                               {text.supportLink}
                             </a>
                           ),
-                        }
+                        },
                       )}
                     </span>
                   ) : (
@@ -933,7 +1247,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         {
                           indirectTaxType: states.indirectTaxType,
                           indirectTaxNumber: states.indirectTaxNumber,
-                        }
+                        },
                       )}
                     </span>
                     <span>
@@ -945,7 +1259,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             qstNumber: states.qstNumber,
-                          }
+                          },
                         )}
                       {states.subRegionTaxNumber &&
                         intl.formatMessage(
@@ -955,7 +1269,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           },
                           {
                             subRegionTaxNumber: states.subRegionTaxNumber,
-                          }
+                          },
                         )}
                     </span>
                   </div>

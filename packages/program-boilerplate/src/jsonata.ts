@@ -64,7 +64,7 @@ export function safeJsonata(expression: string, inputData: any) {
     return jsonataQuery.evaluate(inputData);
   } catch (e) {
     ssqtLogger("program-boilerplate").warn(
-      `Failed to evaluate JSONata expression: ${e.message}`
+      `Failed to evaluate JSONata expression: ${(e as any).message}`
     );
   }
 }

@@ -14,7 +14,6 @@ import { useNameFields } from "./useNameFields";
  */
 @Component({
   tag: "sqm-name-fields",
-  shadow: true,
 })
 export class NameFields {
   @State()

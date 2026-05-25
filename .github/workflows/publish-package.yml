@@ -11,6 +11,7 @@ on:
           - express-boilerplate
           - integration-boilerplate-node
           - logger
+          - mint-components
           - program-boilerplate
           - program-test-suite
           - publish-helper
@@ -25,6 +26,18 @@ on:
           - minor
           - major
 
+  workflow_call:
+    inputs:
+      package:
+        description: "The package to publish (must be one of: express-boilerplate, integration-boilerplate-node, logger, mint-components, program-boilerplate, program-test-suite, publish-helper)"
+        required: true
+        type: string
+      npm-tag:
+        description: The npm dist-tag to publish with
+        required: false
+        type: string
+        default: latest
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -33,45 +46,67 @@ jobs:
       contents: write
       id-token: write
 
+    env:
+      VERSIONING: ${{ github.event_name == 'workflow_dispatch' }}
+
     steps:
+      - name: Enforce mint-components prerelease-only policy
+        if: github.event_name == 'workflow_dispatch' && inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
+        run: |
+          echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
+          exit 1
+
+      - name: Validate package input
+        env:
+          PACKAGE: ${{ inputs.package }}
+        run: |
+          case "$PACKAGE" in
+            express-boilerplate|integration-boilerplate-node|logger|mint-components|program-boilerplate|program-test-suite|publish-helper) ;;
+            *) echo "::error::Invalid package '${PACKAGE}'."; exit 1 ;;
+          esac
+
       - name: Generate Variables
         id: vars
+        env:
+          PACKAGE: ${{ inputs.package }}
+          NPM_TAG: ${{ inputs.npm-tag || (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}
         run: |
-          echo "dir=packages/${{ inputs.package }}" >> ${GITHUB_OUTPUT}
+          # Validate npm-tag is a safe dist-tag value (alphanumeric, hyphens, dots)
+          if [[ ! "$NPM_TAG" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "::error::Invalid npm-tag '${NPM_TAG}'. Must be alphanumeric with hyphens/dots only."
+            exit 1
+          fi
+          echo "dir=packages/${PACKAGE}" >> ${GITHUB_OUTPUT}
+          echo "npmtag=${NPM_TAG}" >> ${GITHUB_OUTPUT}
 
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
 
       - name: Setup NodeJS
         id: setup-node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 53b83 = v6.3.0
         with:
-          node-version-file: "${{ steps.vars.outputs.dir }}/package.json"
-
-      - name: Setup .npmrc
-        id: npmrc
-        working-directory: ${{ steps.vars.outputs.dir }}
-        run: |
-          echo 'registry=https://registry.npmjs.org/' >> .npmrc
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
-          echo 'always-auth=true' >> .npmrc
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
 
       # we could add this to devDependencies but we'd have to do it for every package
       # so might as well just install it inside the action
       - name: Install semver
+        if: env.VERSIONING == 'true'
         id: npm-i-semver
         run: |
-          npm i --no-save semver
+          npm i --no-save semver@7.8.0
 
       - name: Install dependencies
         id: npm-ci
         working-directory: ${{ steps.vars.outputs.dir }}
         run: npm ci
 
-      - name: Compute new tag
-        id: compute-tag
-        uses: actions/github-script@v7
+      - name: Compute new version
+        if: env.VERSIONING == 'true'
+        id: compute-version
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
           result-encoding: string
           script: |
@@ -110,8 +145,9 @@ jobs:
             return newVersion;
 
       - name: Extract package name
+        if: env.VERSIONING == 'true'
         id: extract-package-name
-        uses: actions/github-script@v7
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
           result-encoding: string
           script: |
@@ -130,11 +166,12 @@ jobs:
             return packageName;
 
       - name: Write new version to file
+        if: env.VERSIONING == 'true'
         working-directory: ${{ steps.vars.outputs.dir }}
         run: |
-          jq '.version = "${{ steps.compute-tag.outputs.result }}"' package.json > package.json.tmp
-          jq '.version = "${{ steps.compute-tag.outputs.result }}"' package-lock.json > package-lock.tmp1.json
-          jq '.packages."".version = "${{ steps.compute-tag.outputs.result }}"' package-lock.tmp1.json > package-lock.json.tmp
+          jq '.version = "${{ steps.compute-version.outputs.result }}"' package.json > package.json.tmp
+          jq '.version = "${{ steps.compute-version.outputs.result }}"' package-lock.json > package-lock.tmp1.json
+          jq '.packages."".version = "${{ steps.compute-version.outputs.result }}"' package-lock.tmp1.json > package-lock.json.tmp
 
           mv package.json.tmp package.json
           mv package-lock.json.tmp package-lock.json
@@ -143,11 +180,10 @@ jobs:
       - name: NPM Publish
         id: publish
         working-directory: ${{ steps.vars.outputs.dir }}
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --provenance --access public
+        run: npm publish --provenance --access public --tag ${{ steps.vars.outputs.npmtag }}
 
       - name: Commit and push changes
+        if: env.VERSIONING == 'true'
         id: commit-and-push
         uses: saasquatch/git-commit-action@v0.0.15
         env:
@@ -157,9 +193,9 @@ jobs:
           files: |
             package.json
             package-lock.json
-          message: "publish: ${{ steps.extract-package-name.outputs.result }} v${{ steps.compute-tag.outputs.result }}"
+          message: "publish: ${{ steps.extract-package-name.outputs.result }} v${{ steps.compute-version.outputs.result }}"
           long-message: This commit was generated by GitHub Actions CI
-          tag: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-tag.outputs.result }}"
-          tag-message: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-tag.outputs.result }}"
+          tag: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-version.outputs.result }}"
+          tag-message: "${{ steps.extract-package-name.outputs.result }}@${{ steps.compute-version.outputs.result }}"
           repository: ${{ github.repository }}
           branch: ${{ github.ref_name }}

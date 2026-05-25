@@ -1,10 +1,11 @@
 import {
+  nonRewardEmailQueryForNonReferralPrograms,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQuery,
   rewardEmailQueryForNonReferralPrograms,
-  nonRewardEmailQueryForNonReferralPrograms,
 } from "../src/queries";
 import Transaction from "../src/transaction";
+import { Referral } from "../src/types/saasquatch";
 
 describe("Transaction class", () => {
   const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
@@ -13,6 +14,8 @@ describe("Transaction class", () => {
       messageType,
       program: {
         id: "testProgramId",
+        rules: {},
+        templateId: "",
       },
       ids: ["123", "345", "456"],
       tenant: {
@@ -22,20 +25,22 @@ describe("Transaction class", () => {
         },
       },
       activeTrigger: {
-        type: "AFTER_USER_EVENT_PROCESSED",
+        type: "AFTER_USER_EVENT_PROCESSED" as const,
         time: 1619483037813,
         user: {
-          id: "reffererID",
-          accountId: "reffererACCOUNTID",
+          id: "referrerID",
+          accountId: "referrerACCOUNTID",
           customFields: {
             test: 123,
           },
+          programGoals: [],
         },
         events: [
           {
             key: "subscription",
-            id: 1,
+            id: "1",
             dateTriggered: 1619483037800,
+            isModification: false,
             fields: {
               key: "value1",
             },
@@ -45,12 +50,26 @@ describe("Transaction class", () => {
     },
   };
   const testUser = {
-    id: "reffererID",
-    accountId: "reffererACCOUNTID",
-    referredByReferral: {
+    id: "referrerID",
+    accountId: "referrerACCOUNTID",
+    programGoals: [],
+    referredByReferral: <Referral>{
       id: "referralID",
+      fraudFlags: [],
+      isFraudExempt: false,
+      referrerUser: {
+        id: "referredID",
+        accountId: "referredACCOUNTID",
+        programGoals: [],
+        rewards: {
+          totalCount: 0,
+          data: [],
+        },
+      },
+      rewards: [],
     },
   };
+
   let transaction = new Transaction(testContext);
   beforeEach(() => {
     transaction = new Transaction(testContext);
@@ -64,8 +83,8 @@ describe("Transaction class", () => {
           eventType: "PROGRAM_EVALUATED",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             programType: "ACQUISITION",
           },
@@ -95,8 +114,8 @@ describe("Transaction class", () => {
             analyticsKey: "testAnalyticsKey",
             analyticsDedupeId: "testDedupKey",
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             isConversion: false,
           },
@@ -114,8 +133,8 @@ describe("Transaction class", () => {
           type: "CREATE_REWARD",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: rewardKey,
             rewardId: rewardId,
@@ -150,8 +169,8 @@ describe("Transaction class", () => {
           type: "CREATE_REWARD",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: rewardKey,
             rewardId: rewardId,
@@ -181,14 +200,14 @@ describe("Transaction class", () => {
           type: "SEND_EMAIL",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: emailKey,
             rewardId: rewardId,
             queryVariables: {
-              userId: "reffererID",
-              accountId: "reffererACCOUNTID",
+              userId: "referrerID",
+              accountId: "referrerACCOUNTID",
               rewardId: rewardId,
               programId: "testProgramId",
             },
@@ -205,14 +224,14 @@ describe("Transaction class", () => {
           type: "SEND_EMAIL",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: emailKey,
             rewardId: undefined,
             queryVariables: {
-              userId: "reffererID",
-              accountId: "reffererACCOUNTID",
+              userId: "referrerID",
+              accountId: "referrerACCOUNTID",
               programId: "testProgramId",
             },
             query: nonRewardEmailQueryForNonReferralPrograms,
@@ -238,15 +257,17 @@ describe("Transaction class", () => {
           type: "SEND_EMAIL",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: emailKey,
             rewardId: rewardId,
             referralId: undefined,
             queryVariables: {
-              userId: "reffererID",
-              accountId: "reffererACCOUNTID",
+              eventId: undefined,
+              fetchEvent: false,
+              userId: "referrerID",
+              accountId: "referrerACCOUNTID",
               referralId: referralId,
               programId: "testProgramId",
               rewardId: rewardId,
@@ -268,15 +289,17 @@ describe("Transaction class", () => {
           type: "SEND_EMAIL",
           data: {
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             key: emailKey,
             rewardId: undefined,
             referralId,
             queryVariables: {
-              userId: "reffererID",
-              accountId: "reffererACCOUNTID",
+              eventId: undefined,
+              fetchEvent: false,
+              userId: "referrerID",
+              accountId: "referrerACCOUNTID",
               referralId: referralId,
               programId: "testProgramId",
             },
@@ -302,26 +325,26 @@ describe("Transaction class", () => {
       const [rewardMutation, emailMutation] = transaction.mutations;
       expect(rewardMutation.type).toBe("CREATE_REWARD");
       expect(rewardMutation.data.user).toStrictEqual({
-        id: "reffererID",
-        accountId: "reffererACCOUNTID",
+        id: "referrerID",
+        accountId: "referrerACCOUNTID",
       });
       expect(rewardMutation.data.key).toBe(rewardKey);
       expect(rewardMutation.data.user).toStrictEqual({
-        id: "reffererID",
-        accountId: "reffererACCOUNTID",
+        id: "referrerID",
+        accountId: "referrerACCOUNTID",
       });
       expect(emailMutation).toStrictEqual({
         type: "SEND_EMAIL",
         data: {
           user: {
-            id: "reffererID",
-            accountId: "reffererACCOUNTID",
+            id: "referrerID",
+            accountId: "referrerACCOUNTID",
           },
           key: emailKey,
           rewardId: rewardMutation.data.rewardId,
           queryVariables: {
-            userId: "reffererID",
-            accountId: "reffererACCOUNTID",
+            userId: "referrerID",
+            accountId: "referrerACCOUNTID",
             rewardId: rewardMutation.data.rewardId,
             programId: "testProgramId",
           },
@@ -357,8 +380,8 @@ describe("Transaction class", () => {
       const [rewardMutation, emailMutation] = transaction.mutations;
       expect(rewardMutation.type).toBe("CREATE_REWARD");
       expect(rewardMutation.data.user).toStrictEqual({
-        id: "reffererID",
-        accountId: "reffererACCOUNTID",
+        id: "referrerID",
+        accountId: "referrerACCOUNTID",
       });
       expect(rewardMutation.data.key).toBe(rewardKey);
       expect(rewardMutation.data.referralId).toBe(referralId);
@@ -374,23 +397,25 @@ describe("Transaction class", () => {
         unit: "CAD",
       });
       expect(rewardMutation.data.user).toStrictEqual({
-        id: "reffererID",
-        accountId: "reffererACCOUNTID",
+        id: "referrerID",
+        accountId: "referrerACCOUNTID",
       });
 
       expect(emailMutation).toStrictEqual({
         type: "SEND_EMAIL",
         data: {
           user: {
-            id: "reffererID",
-            accountId: "reffererACCOUNTID",
+            id: "referrerID",
+            accountId: "referrerACCOUNTID",
           },
           key: emailKey,
           rewardId: rewardMutation.data.rewardId,
           referralId: undefined,
           queryVariables: {
-            userId: "reffererID",
-            accountId: "reffererACCOUNTID",
+            eventId: undefined,
+            fetchEvent: false,
+            userId: "referrerID",
+            accountId: "referrerACCOUNTID",
             referralId: referralId,
             programId: "testProgramId",
             rewardId: rewardMutation.data.rewardId,
@@ -498,8 +523,8 @@ describe("Transaction class", () => {
             analyticsKey: "testAnalyticsKey",
             analyticsDedupeId: "testDedupKey",
             user: {
-              id: "reffererID",
-              accountId: "reffererACCOUNTID",
+              id: "referrerID",
+              accountId: "referrerACCOUNTID",
             },
             isConversion: false,
           },
@@ -534,8 +559,8 @@ describe("Transaction class", () => {
               analyticsKey: "testAnalyticsKey",
               analyticsDedupeId: "testDedupKey",
               user: {
-                id: "reffererID",
-                accountId: "reffererACCOUNTID",
+                id: "referrerID",
+                accountId: "referrerACCOUNTID",
               },
               isConversion: false,
             },

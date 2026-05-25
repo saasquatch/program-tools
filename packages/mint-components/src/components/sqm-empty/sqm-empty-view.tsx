@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { intl } from "../../global/global";
+import { optimizeCloudinaryUrl } from "../../utils/imageUrl";
 
 export interface EmptyStateViewProps {
   emptyStateImage: string;
@@ -20,7 +21,11 @@ export function EmptyStateView(props: EmptyStateViewProps) {
 
   return (
     <sqm-portal-container padding="large" gap="medium" part="sqm-base">
-      <img style={{ height: "100px", margin: "auto" }} src={emptyStateImage} />
+      <img
+        style={{ height: "100px", margin: "auto" }}
+        src={optimizeCloudinaryUrl(emptyStateImage, { height: 200 })}
+        decoding="async"
+      />
       <sqm-titled-section
         style={{ maxHeight: "400px" }}
         label-margin="xxx-small"
@@ -52,7 +57,7 @@ export function EmptyStateView(props: EmptyStateViewProps) {
                     {supportText}
                   </a>
                 ),
-              }
+              },
             )}
           </p>
         </sqm-text>

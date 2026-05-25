@@ -34,7 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
-import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
 import { ChangeMarketingViewProps } from "./components/sqm-portal-change-marketing/sqm-portal-change-marketing-view";
@@ -54,6 +54,7 @@ import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-re
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
+import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
@@ -455,7 +456,7 @@ export namespace Components {
          */
         "checkboxLabelLink"?: string;
         /**
-          * @uiName Checkbox label link lext
+          * @uiName Checkbox label link text
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -986,6 +987,11 @@ export namespace Components {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading": boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -1010,7 +1016,7 @@ export namespace Components {
     }
     interface SqmHeaderLogo {
         /**
-          * @uiName Logo height
+          * @uiName Logo height (in px)
          */
         "height": number;
         /**
@@ -1018,7 +1024,22 @@ export namespace Components {
           * @format url
           * @uiName Logo image
          */
-        "imageUrl": string;
+        "imageUrl"?: string;
+        /**
+          * This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
+          * @uiName Logo text
+         */
+        "logoText"?: string;
+        /**
+          * @uiWidget color
+          * @uiName Logo text color
+         */
+        "logoTextColor"?: string;
+        /**
+          * @uiName Logo text size (in px)
+          * @uiWidget number
+         */
+        "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
@@ -1111,6 +1132,11 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -1146,6 +1172,11 @@ export namespace Components {
           * @uiGroup Style
          */
         "layout": "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -2257,6 +2288,30 @@ export namespace Components {
          */
         "accountReviewHeader": string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription": string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader": string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader": string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl": string;
@@ -2265,6 +2320,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton": string;
         /**
           * @uiName Error description
          */
@@ -2293,6 +2352,26 @@ export namespace Components {
           * @uiName Info required alert header
          */
         "informationRequiredHeader": string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton": string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "paymentHoldOnChangeDescription": string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "paymentHoldOnChangeHeader": string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription": string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader": string;
         /**
           * @undocumented 
           * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
@@ -2357,6 +2436,14 @@ export namespace Components {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader": string;
     }
     interface SqmPopupContainer {
         /**
@@ -3015,10 +3102,6 @@ export namespace Components {
           * @uiName Password field label
          */
         "passwordLabel": string;
-        /**
-          * @uiName Register CTA
-         */
-        "registerCTA": string;
         /**
           * @uiName Register button text
          */
@@ -3798,6 +3881,11 @@ export namespace Components {
     }
     interface SqmReferralIframe {
         /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -4420,6 +4508,7 @@ export namespace Components {
         "payoutApproved": string;
         "payoutCancelled": string;
         "payoutFailed": string;
+        "payoutProcessing": string;
         "pendingNewTaxForm": string;
         "pendingPartnerCreation": string;
         "pendingReviewText": string;
@@ -4462,6 +4551,11 @@ export namespace Components {
           * @uiName Payout failed text
          */
         "payoutFailed": string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing": string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -4801,6 +4895,15 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
+          * Let advocates customize their share links up to 5 times.
+          * @uiName Allow customization
+          * @uiType boolean
+          * @uiGroup Customizable Vanity Link
+          * @uiWidget CustomLinkSwitch
+          * @requiredFlavor impact
+         */
+        "allowCustomization"?: boolean;
+        /**
           * Background color of share link container
           * @uiName Background color
           * @uiWidget color
@@ -4842,20 +4945,176 @@ export namespace Components {
          */
         "buttonType"?: "primary" | "secondary";
         /**
+          * Text for the cancel button in editing mode
+          * @uiName Cancel button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "cancelLabelText"?: string;
+        /**
+          * Text shown when nearing the character limit. Use {charactersRemaining} as a placeholder for the count.
+          * @uiName Characters remaining text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "charactersRemainingText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel": string;
         /**
+          * Tooltip text shown when link customization is disabled
+          * @uiName Customize disabled tooltip
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "customizeDisabledTooltip"?: string;
+        /**
+          * Displayed below the share link.
+          * @uiName Customize link button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "customizeLinkButtonLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<ShareLinkViewProps>;
+        /**
+          * Label shown above the link input while editing
+          * @uiName Edit input label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLabelText"?: string;
+        /**
+          * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
+          * @uiName Edit limit reached text
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLimitReachedText"?: string;
+        /**
+          * Subtext shown while the user is customizing their URL.
+          * @uiName Edit limit text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLimitText"?: string;
+        /**
+          * Description text shown when the link contains invalid special characters.
+          * @uiName Invalid characters error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "invalidCharactersErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains invalid special characters.
+          * @uiName Invalid characters error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "invalidCharactersErrorTitle"?: string;
+        /**
+          * Description text shown when the link has already been taken
+          * @uiName Link taken error message
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "linkTakenErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link has already been taken
+          * @uiName Link taken error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "linkTakenErrorTitle"?: string;
+        /**
+          * @uiName Min characters text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "minCharactersText"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Description text shown when the link contains profanity or brand names.
+          * @uiName Restricted words error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains profanity or brand names.
+          * @uiName Restricted words error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorTitle"?: string;
+        /**
+          * Description shown when saving fails with an unknown error
+          * @uiName Save error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorDescription"?: string;
+        /**
+          * Title shown when saving fails with an unknown error
+          * @uiName Save error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorTitle"?: string;
+        /**
+          * Text for the save button in editing mode
+          * @uiName Save button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveLabelText"?: string;
+        /**
+          * Text for the save button while saving is in progress
+          * @uiName Saving button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "savingLabelText"?: string;
+        /**
+          * Display text for the support link in the edit limit reached message
+          * @uiName Support link text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "supportLinkText"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment
@@ -4883,6 +5142,24 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
+        /**
+          * Text shown while the link is being validated
+          * @uiName Validating label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "validatingLabelText"?: string;
+    }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -5193,10 +5470,34 @@ export namespace Components {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "dashboard_bankNameMismatchDescription": string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "dashboard_bankNameMismatchHeader": string;
+        /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader": string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "dashboard_beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "dashboard_beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "dashboard_beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "dashboard_beneficiaryNameMismatchHeader": string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
@@ -5322,6 +5623,22 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax": string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "dashboard_paymentOnHoldDescription": string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "dashboard_paymentOnHoldHeader": string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "dashboard_paymentReturnedDescription": string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "dashboard_paymentReturnedHeader": string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -5526,6 +5843,14 @@ export namespace Components {
           * @uiWidget textArea
          */
         "dashboard_w9RequiredHeader": string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "dashboard_withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "dashboard_withdrawalSettingsInvalidHeader": string;
         /**
           * @undocumented
          */
@@ -6189,9 +6514,33 @@ export namespace Components {
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription": string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader": string;
+        /**
           * @uiName Payout information section header
          */
         "bankingInformationSectionHeader": string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription": string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader": string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription": string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader": string;
         /**
           * @uiName Cancel button label
          */
@@ -6323,6 +6672,22 @@ export namespace Components {
          */
         "notRegisteredForTax": string;
         /**
+          * @uiName Payment hold on change alert description
+         */
+        "paymentHoldOnChangeDescription": string;
+        /**
+          * @uiName Payment hold on change alert header
+         */
+        "paymentHoldOnChangeHeader": string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription": string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader": string;
+        /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
           * @uiWidget textArea
@@ -6431,6 +6796,11 @@ export namespace Components {
          */
         "taxDocumentSectionSubHeader": string;
         /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument": string;
+        /**
           * @uiName Terms and Conditions text
          */
         "termsAndConditions": string;
@@ -6492,6 +6862,14 @@ export namespace Components {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader": string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription": string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader": string;
     }
     interface SqmText {
         /**
@@ -7538,6 +7916,12 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
+    interface HTMLSqmSkeletonElement extends Components.SqmSkeleton, HTMLStencilElement {
+    }
+    var HTMLSqmSkeletonElement: {
+        prototype: HTMLSqmSkeletonElement;
+        new (): HTMLSqmSkeletonElement;
+    };
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
@@ -7756,6 +8140,7 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-skeleton": HTMLSqmSkeletonElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
@@ -8171,7 +8556,7 @@ declare namespace LocalJSX {
          */
         "checkboxLabelLink"?: string;
         /**
-          * @uiName Checkbox label link lext
+          * @uiName Checkbox label link text
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -8702,6 +9087,11 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
+          * Loading state for the alert.
+          * @uiName Loading
+         */
+        "loading"?: boolean;
+        /**
           * Render the alert with transparent styles
          */
         "transparent"?: boolean;
@@ -8727,7 +9117,7 @@ declare namespace LocalJSX {
     }
     interface SqmHeaderLogo {
         /**
-          * @uiName Logo height
+          * @uiName Logo height (in px)
          */
         "height"?: number;
         /**
@@ -8736,6 +9126,21 @@ declare namespace LocalJSX {
           * @uiName Logo image
          */
         "imageUrl"?: string;
+        /**
+          * This text will be used as the logo only if no Logo image is selected above. The image takes precedence.
+          * @uiName Logo text
+         */
+        "logoText"?: string;
+        /**
+          * @uiWidget color
+          * @uiName Logo text color
+         */
+        "logoTextColor"?: string;
+        /**
+          * @uiName Logo text size (in px)
+          * @uiWidget number
+         */
+        "logoTextSize"?: number;
         /**
           * Page participants are navigated to after clicking the header logo.
           * @uiName Redirect path
@@ -8828,6 +9233,11 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Alt text for the hero image (columns layout). Leave empty for decorative images.
+          * @uiName Image alt text
+         */
+        "imageAlt"?: string;
+        /**
           * @uiName Image mobile position
           * @uiType string
           * @uiEnum ["top", "bottom"]
@@ -8863,6 +9273,11 @@ declare namespace LocalJSX {
           * @uiGroup Style
          */
         "layout"?: "overlay" | "columns";
+        /**
+          * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+          * @uiName Minimum height (px)
+         */
+        "minHeight"?: number;
         /**
           * @uiName Overlay color
           * @uiWidget color
@@ -9968,6 +10383,30 @@ declare namespace LocalJSX {
          */
         "accountReviewHeader"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription"?: string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader"?: string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader"?: string;
+        /**
           * @uiName Cash & Payouts Microsite Page (only set if alert is used in a microsite)
          */
         "cashPayoutsPageUrl"?: string;
@@ -9976,6 +10415,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PayoutStatusAlertViewProps>;
+        /**
+          * @uiName Edit payment info button label
+         */
+        "editPaymentInformationButton"?: string;
         /**
           * @uiName Error description
          */
@@ -10004,6 +10447,26 @@ declare namespace LocalJSX {
           * @uiName Info required alert header
          */
         "informationRequiredHeader"?: string;
+        /**
+          * @uiName Submit new tax form button label
+         */
+        "newFormButton"?: string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "paymentHoldOnChangeDescription"?: string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "paymentHoldOnChangeHeader"?: string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription"?: string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Payout Info Required", "props": { "states": { "status": "INFORMATION_REQUIRED" } }, "dependencies": ["sqm-payout-status-alert"] }
@@ -10068,6 +10531,14 @@ declare namespace LocalJSX {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader"?: string;
     }
     interface SqmPopupContainer {
         /**
@@ -10726,10 +11197,6 @@ declare namespace LocalJSX {
           * @uiName Password field label
          */
         "passwordLabel"?: string;
-        /**
-          * @uiName Register CTA
-         */
-        "registerCTA"?: string;
         /**
           * @uiName Register button text
          */
@@ -11509,6 +11976,11 @@ declare namespace LocalJSX {
     }
     interface SqmReferralIframe {
         /**
+          * Override the default parameter name used in the iframe
+          * @uiName Referral code parameter name
+         */
+        "codeParam"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -12109,6 +12581,7 @@ declare namespace LocalJSX {
         "payoutApproved"?: string;
         "payoutCancelled"?: string;
         "payoutFailed"?: string;
+        "payoutProcessing"?: string;
         "pendingNewTaxForm"?: string;
         "pendingPartnerCreation"?: string;
         "pendingReviewText"?: string;
@@ -12151,6 +12624,11 @@ declare namespace LocalJSX {
           * @uiName Payout failed text
          */
         "payoutFailed"?: string;
+        /**
+          * Displayed when a reward payout is processing.
+          * @uiName Payout processing text
+         */
+        "payoutProcessing"?: string;
         /**
           * Displayed when pending due to requiring a new tax document
           * @uiName Pending new tax form text
@@ -12488,6 +12966,15 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
+          * Let advocates customize their share links up to 5 times.
+          * @uiName Allow customization
+          * @uiType boolean
+          * @uiGroup Customizable Vanity Link
+          * @uiWidget CustomLinkSwitch
+          * @requiredFlavor impact
+         */
+        "allowCustomization"?: boolean;
+        /**
           * Background color of share link container
           * @uiName Background color
           * @uiWidget color
@@ -12529,20 +13016,176 @@ declare namespace LocalJSX {
          */
         "buttonType"?: "primary" | "secondary";
         /**
+          * Text for the cancel button in editing mode
+          * @uiName Cancel button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "cancelLabelText"?: string;
+        /**
+          * Text shown when nearing the character limit. Use {charactersRemaining} as a placeholder for the count.
+          * @uiName Characters remaining text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "charactersRemainingText"?: string;
+        /**
           * @uiName Copy button label
          */
         "copyButtonLabel"?: string;
         /**
+          * Tooltip text shown when link customization is disabled
+          * @uiName Customize disabled tooltip
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "customizeDisabledTooltip"?: string;
+        /**
+          * Displayed below the share link.
+          * @uiName Customize link button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "customizeLinkButtonLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<CopyTextViewProps>;
+        "demoData"?: DemoData<ShareLinkViewProps>;
+        /**
+          * Label shown above the link input while editing
+          * @uiName Edit input label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLabelText"?: string;
+        /**
+          * Message shown when the URL has been edited 5 times. To display a clickable link, use {supportLink} as a placeholder.
+          * @uiName Edit limit reached text
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLimitReachedText"?: string;
+        /**
+          * Subtext shown while the user is customizing their URL.
+          * @uiName Edit limit text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "editLimitText"?: string;
+        /**
+          * Description text shown when the link contains invalid special characters.
+          * @uiName Invalid characters error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "invalidCharactersErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains invalid special characters.
+          * @uiName Invalid characters error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "invalidCharactersErrorTitle"?: string;
+        /**
+          * Description text shown when the link has already been taken
+          * @uiName Link taken error message
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "linkTakenErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link has already been taken
+          * @uiName Link taken error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "linkTakenErrorTitle"?: string;
+        /**
+          * @uiName Min characters text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "minCharactersText"?: string;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
           * @uiWidget programSelector
          */
         "programId"?: string;
+        /**
+          * Description text shown when the link contains profanity or brand names.
+          * @uiName Restricted words error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorDescription"?: string;
+        /**
+          * Title of the error message shown when the link contains profanity or brand names.
+          * @uiName Restricted words error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "restrictedWordsErrorTitle"?: string;
+        /**
+          * Description shown when saving fails with an unknown error
+          * @uiName Save error description
+          * @uiType string
+          * @uiWidget textarea
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorDescription"?: string;
+        /**
+          * Title shown when saving fails with an unknown error
+          * @uiName Save error title
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveErrorTitle"?: string;
+        /**
+          * Text for the save button in editing mode
+          * @uiName Save button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "saveLabelText"?: string;
+        /**
+          * Text for the save button while saving is in progress
+          * @uiName Saving button label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "savingLabelText"?: string;
+        /**
+          * Display text for the support link in the edit limit reached message
+          * @uiName Support link text
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "supportLinkText"?: string;
         /**
           * Change the text alignment
           * @uiName Share link alignment
@@ -12570,6 +13213,24 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
+        /**
+          * Text shown while the link is being validated
+          * @uiName Validating label
+          * @uiType string
+          * @uiGroup Customizable Vanity Link
+          * @requiredFlavor impact
+         */
+        "validatingLabelText"?: string;
+    }
+    interface SqmSkeleton {
+        /**
+          * @uiName Height (in pixels or %)
+         */
+        "height"?: string;
+        /**
+          * @uiName Width (in pixels or %)
+         */
+        "width"?: string;
     }
     interface SqmStatContainer {
         /**
@@ -12880,10 +13541,34 @@ declare namespace LocalJSX {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "dashboard_bankNameMismatchDescription"?: string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "dashboard_bankNameMismatchHeader"?: string;
+        /**
           * @uiName Payout information section header
           * @uiGroup Dashboard Properties
          */
         "dashboard_bankingInformationSectionHeader"?: string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "dashboard_beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "dashboard_beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "dashboard_beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "dashboard_beneficiaryNameMismatchHeader"?: string;
         /**
           * Part of the Invoice table displayed at the bottom of the page.
           * @uiName Date column title
@@ -13009,6 +13694,22 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_notRegisteredForTax"?: string;
+        /**
+          * @uiName Payment on hold alert description
+         */
+        "dashboard_paymentOnHoldDescription"?: string;
+        /**
+          * @uiName Payment on hold alert header
+         */
+        "dashboard_paymentOnHoldHeader"?: string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "dashboard_paymentReturnedDescription"?: string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "dashboard_paymentReturnedHeader"?: string;
         /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
@@ -13213,6 +13914,14 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "dashboard_w9RequiredHeader"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "dashboard_withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "dashboard_withdrawalSettingsInvalidHeader"?: string;
         /**
           * @undocumented
          */
@@ -13876,9 +14585,33 @@ declare namespace LocalJSX {
          */
         "badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Bank name mismatch alert description
+         */
+        "bankTaxNameMismatchDescription"?: string;
+        /**
+          * @uiName Bank name mismatch alert header
+         */
+        "bankTaxNameMismatchHeader"?: string;
+        /**
           * @uiName Payout information section header
          */
         "bankingInformationSectionHeader"?: string;
+        /**
+          * @uiName Beneficiary name invalid description
+         */
+        "beneficiaryNameInvalidDescription"?: string;
+        /**
+          * @uiName Beneficiary name invalid alert header
+         */
+        "beneficiaryNameInvalidHeader"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert description
+         */
+        "beneficiaryNameMismatchDescription"?: string;
+        /**
+          * @uiName Beneficiary name mismatch alert header
+         */
+        "beneficiaryNameMismatchHeader"?: string;
         /**
           * @uiName Cancel button label
          */
@@ -14010,6 +14743,22 @@ declare namespace LocalJSX {
          */
         "notRegisteredForTax"?: string;
         /**
+          * @uiName Payment hold on change alert description
+         */
+        "paymentHoldOnChangeDescription"?: string;
+        /**
+          * @uiName Payment hold on change alert header
+         */
+        "paymentHoldOnChangeHeader"?: string;
+        /**
+          * @uiName Payment returned alert description
+         */
+        "paymentReturnedDescription"?: string;
+        /**
+          * @uiName Payment returned alert header
+         */
+        "paymentReturnedHeader"?: string;
+        /**
           * Displayed under the payout details card.
           * @uiName Payout from impact text
           * @uiWidget textArea
@@ -14118,6 +14867,11 @@ declare namespace LocalJSX {
          */
         "taxDocumentSectionSubHeader"?: string;
         /**
+          * Displayed under the tax document section header.
+          * @uiName Tax documents section description
+         */
+        "taxDocumentSectionSubHeaderNoDocument"?: string;
+        /**
           * @uiName Terms and Conditions text
          */
         "termsAndConditions"?: string;
@@ -14179,6 +14933,14 @@ declare namespace LocalJSX {
           * @uiName W-9 payment threshold alert header
          */
         "w9RequiredHeader"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert description
+         */
+        "withdrawalSettingsInvalidDescription"?: string;
+        /**
+          * @uiName Withdrawal settings invalid alert header
+         */
+        "withdrawalSettingsInvalidHeader"?: string;
     }
     interface SqmText {
         /**
@@ -14678,6 +15440,7 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
+        "sqm-skeleton": SqmSkeleton;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
@@ -14811,6 +15574,7 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;

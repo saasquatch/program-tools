@@ -1,5 +1,5 @@
 import { rewardScheduleQuery } from "./queries";
-import { ProgramTriggerBody, TriggerType } from "./types/rpc";
+import { ProgramTriggerBody, TriggerSchemaObject } from "./types/rpc";
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 import jsonata from "jsonata";
 
@@ -191,16 +191,20 @@ export function numToEquality(num: number): string {
 /**
  * Converts a trigger context into the relevant information for the specified trigger type.
  * @param body the body of the trigger
- * @return object[] The transformed data that is relevant for the trigger type
+ * @return TriggerSchemaObject[] The transformed data that is relevant for the trigger type
  */
-export function getTriggerSchema(body: ProgramTriggerBody): object[] {
+export function getTriggerSchema(
+  body: ProgramTriggerBody
+): TriggerSchemaObject[] {
   const activeTrigger = body.activeTrigger;
-  const triggerType = activeTrigger.type as TriggerType;
+  const triggerType = activeTrigger.type;
+
   const standardData = {
     type: activeTrigger.type,
     time: activeTrigger.time,
     user: activeTrigger.user,
   };
+
   switch (triggerType) {
     case "AFTER_USER_CREATED_OR_UPDATED":
       return [
@@ -217,20 +221,10 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
         },
       ];
     case "AFTER_USER_EVENT_PROCESSED":
-      let contexts: object[] = [];
-      activeTrigger.events.forEach((event: any) => {
-        contexts.push({
-          ...standardData,
-          event: {
-            key: event.key,
-            id: event.id,
-            isModification: event.isModification,
-            dateTriggered: event.dateTriggered,
-            fields: event.fields,
-          },
-        });
-      });
-      return contexts;
+      return (activeTrigger.events ?? []).map((event) => ({
+        ...standardData,
+        event,
+      }));
     case "SCHEDULED":
       return [
         {

@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
   "title": "Mint Components",
-  "version": "2.0.3",
+  "version": "2.1.12",
   "description": "A minimal design library with components for referral and loyalty experiences. Built with Shoelace components by Saasquatch.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Mint.svg",
   "raisins": "docs/raisins.json",
@@ -14,6 +14,11 @@
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "files": [
     "dist/",
     "grapesjs/",
@@ -33,10 +38,17 @@
     "specs": "picklesdoc xlsx src docs --testers=2",
     "serve:package": "serve . --cors -l 5000",
     "start:raisins": "run-p start serve:package",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "prepack": "npm run build",
+    "changeset": "changeset",
+    "version": "changeset version && npm install",
+    "release": "changeset publish",
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo 'Error: Direct npm publish is disabled for @saasquatch/mint-components. Publish via the Mint Components Release (stable) or Publish Package (prerelease) GitHub Actions workflow.' && exit 1; fi"
   },
   "devDependencies": {
-    "@formatjs/intl": "1.8.4",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.7",
+    "@formatjs/intl": "^3.1.8",
     "@formatjs/intl-pluralrules": "^1.5.8",
     "@formatjs/intl-relativetimeformat": "4.5.15",
     "@formatjs/intl-utils": "^2.2.5",
@@ -71,8 +83,8 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@raisins/stencil-docs-target": "^1.2.0",
-    "@saasquatch/component-boilerplate": "^1.6.9",
+    "@raisins/stencil-docs-target": "^1.2.1",
+    "@saasquatch/component-boilerplate": "^1.6.10",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.2",

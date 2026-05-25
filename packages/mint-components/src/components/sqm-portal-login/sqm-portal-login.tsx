@@ -86,11 +86,6 @@ export class PortalLogin {
     "An error occurred while logging you in. Please refresh the page and try again.";
 
   /**
-   * @uiName Register CTA
-   */
-  @Prop() registerCTA: string = "Don't have an account?";
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -121,7 +116,10 @@ export class PortalLogin {
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a onClick={() => navigation.push(states.forgotPasswordPath)}>
+          <a
+            part="forgot-password-link"
+            onClick={() => navigation.push(states.forgotPasswordPath)}
+          >
             {this.forgotPasswordLabel}
           </a>
         </slot>
@@ -177,6 +175,6 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

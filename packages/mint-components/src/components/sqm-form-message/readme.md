@@ -8,6 +8,7 @@
 | Property      | Attribute     | Description                                                                                                            | Type      | Default     |
 | ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `icon`        | `icon`        | Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon | `string`  | `undefined` |
+| `loading`     | `loading`     | Loading state for the alert.                                                                                           | `boolean` | `false`     |
 | `transparent` | `transparent` | Render the alert with transparent styles                                                                               | `boolean` | `false`     |
 | `type`        | `type`        | Options include "success", "info", "warning", and "error"                                                              | `string`  | `undefined` |
 
@@ -40,14 +41,20 @@
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
  - [sqm-qr-code](../sqm-qr-code)
  - [sqm-referred-registration](../sqm-referred-registration)
+ - [sqm-share-link](../sqm-share-link)
  - [sqm-stencilbook](../sqm-stencilbook)
  - [sqm-tax-and-cash](../tax-and-cash/sqm-tax-and-cash)
  - [sqm-tax-and-cash-dashboard](../tax-and-cash/sqm-tax-and-cash-dashboard)
  - [sqm-user-info-form](../tax-and-cash/sqm-user-info-form)
 
+### Depends on
+
+- [sqm-skeleton](../sqm-skeleton)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-form-message --> sqm-skeleton
   sqm-banking-info-form --> sqm-form-message
   sqm-code-verification --> sqm-form-message
   sqm-coupon-code --> sqm-form-message
@@ -72,6 +79,7 @@ graph TD;
   sqm-portal-verify-email --> sqm-form-message
   sqm-qr-code --> sqm-form-message
   sqm-referred-registration --> sqm-form-message
+  sqm-share-link --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   sqm-tax-and-cash --> sqm-form-message
   sqm-tax-and-cash-dashboard --> sqm-form-message

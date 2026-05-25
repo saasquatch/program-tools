@@ -6,6 +6,7 @@ import { HeroImageView } from "./sqm-hero-image-view";
 
 /**
  * @uiName Hero Image
+ * @uiOrder ["image-url", "image-alt", "min-height", "layout", "header", "description", "button-text", "button-link", "button-new-tab", "*"]
  * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
  * @exampleGroup Common Components
  * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
@@ -142,6 +143,20 @@ export class HeroImage {
    */
   @Prop()
   buttonType?: "primary" | "secondary" = "primary";
+
+  /**
+   * Minimum height of the component in pixels. Reserves vertical space to prevent layout shift while the image loads.
+   *
+   * @uiName Minimum height (px)
+   */
+  @Prop() minHeight?: number = 400;
+
+  /**
+   * Alt text for the hero image (columns layout). Leave empty for decorative images.
+   *
+   * @uiName Image alt text
+   */
+  @Prop() imageAlt?: string = "";
 
   constructor() {
     withHooks(this);

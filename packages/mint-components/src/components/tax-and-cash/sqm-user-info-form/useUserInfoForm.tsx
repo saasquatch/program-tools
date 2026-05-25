@@ -1,7 +1,10 @@
 import {
+  useMutation,
   useParent,
   useParentQueryValue,
   useParentValue,
+  useQuery,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import {
   useEffect,
@@ -24,8 +27,24 @@ import {
   UserQuery,
 } from "../data";
 import { ADDRESS_REGIONS, AddressRegions } from "../subregions";
-import { objectIsFull } from "../utils";
+import { objectIsFull, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
+import { ImpactConnection } from "../../../saasquatch";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
+import {
+  ConnectPartnerResult,
+  CONNECT_PARTNER,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { gql } from "graphql-request";
+
+const GET_INDIRECT_TAX_COUNTRY_CODE = gql`
+  query getIndirectTaxCountryCode {
+    tenantSettings {
+      impactBrandCountryCode
+      impactBrandIndirectTaxCountryCode
+    }
+  }
+`;
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -65,12 +84,22 @@ export function useUserInfoForm(props: TaxForm) {
   const countries = useParentValue<TaxCountry[]>(SORTED_COUNTRIES_NAMESPACE);
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
-    USER_FORM_CONTEXT_NAMESPACE
+    USER_FORM_CONTEXT_NAMESPACE,
   );
+
+  const user = useUserIdentity();
+
+  const [
+    connectImpactPartner,
+    { loading: connectLoading, errors: connectErrors },
+  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+
+  const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
 
   const {
     data,
     loading,
+    refetch,
     errors: userError,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
@@ -78,20 +107,20 @@ export function useUserInfoForm(props: TaxForm) {
   const currencies = useMemo(
     () =>
       [...(_currencies || [])].sort((a, b) =>
-        a.displayName.localeCompare(b.displayName)
+        a.displayName.localeCompare(b.displayName),
       ),
-    [_currencies]
+    [_currencies],
   );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [phoneCountrySearch, setPhoneCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
   const [filteredPhoneCountries, setFilteredPhoneCountries] = useState(
-    countries || []
+    countries || [],
   );
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currencies || []
+    currencies || [],
   );
   const [formErrors, setErrors] = useState({});
 
@@ -132,8 +161,8 @@ export function useUserInfoForm(props: TaxForm) {
       // Initialise with user information
       setUserFormContext({
         email,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user.impactConnection?.user?.firstName || user.firstName,
+        lastName: user.impactConnection?.user?.lastName || user.lastName,
         countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
         phoneNumberCountryCode:
@@ -168,8 +197,8 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
-        ) || []
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [countrySearch, countries]);
@@ -181,8 +210,10 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredPhoneCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(phoneCountrySearch.toLowerCase())
-        ) || []
+          c.displayName
+            .toLowerCase()
+            .includes(phoneCountrySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [phoneCountrySearch, countries]);
@@ -194,11 +225,63 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredCurrencies(
         currencies.filter((c) =>
-          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase())
-        ) || []
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [currencySearch, currencies]);
+
+  async function connectPartner(formData) {
+    const vars = {
+      user: {
+        id: user.id,
+        accountId: user.accountId,
+      },
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      countryCode: formData.countryCode,
+      currency: formData.currency,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      postalCode: formData.postalCode,
+      phoneNumber: formData.phoneNumber,
+      phoneNumberCountryCode: formData.phoneNumberCountryCode,
+    } as Partial<ImpactConnection>;
+
+    const result = await connectImpactPartner({
+      vars,
+    });
+
+    if (!result || (result as Error)?.message) throw new Error();
+    if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
+      // Output backend errors to console for now
+      console.error(
+        "Failed to create Impact connection: ",
+        (result as ConnectPartnerResult).createImpactConnection
+          .validationErrors,
+      );
+
+      throw new Error();
+    }
+
+    await refetch();
+
+    const resultPublisher = (result as ConnectPartnerResult)
+      .createImpactConnection?.user?.impactConnection?.publisher;
+
+    const hasValidCurrentDocument =
+      validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+      resultPublisher?.currentTaxDocument;
+
+    // Fire form change event
+    window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+    return {
+      resultPublisher,
+      hasValidCurrentDocument,
+    };
+  }
 
   async function onSubmit(event: any) {
     let formControls = event.target.getFormControls();
@@ -250,12 +333,53 @@ export function useUserInfoForm(props: TaxForm) {
       currency: userData.currency,
     });
 
-    const nextStep = context.overrideNextStep || "/2";
+    const skipNextStep = getSkipNextStep(userData);
+
+    if (skipNextStep) {
+      try {
+        const { resultPublisher, hasValidCurrentDocument } =
+          await connectPartner(formData);
+
+        if (
+          resultPublisher?.requiredTaxDocumentType &&
+          !hasValidCurrentDocument
+        ) {
+          // Go to docusign form
+          setStep("/3");
+        } else {
+          if (resultPublisher?.brandedSignup) {
+            // Go to banking information form
+            setStep("/4");
+          } else {
+            // Go right to the dashboard
+            setStep("/dashboard");
+          }
+        }
+        return;
+      } catch (e) {
+        setErrors({ general: true });
+        return;
+      }
+    }
+
+    const nextStep = context.overrideNextStep || skipNextStep ? "/3" : "/2";
     setStep(nextStep);
   }
 
+  const indirectTaxCountry =
+    tenantData?.tenantSettings?.impactBrandIndirectTaxCountryCode;
+  const hasIndirectTax = !!indirectTaxCountry;
+
+  function getSkipNextStep(userData) {
+    if (!hasIndirectTax) return true;
+    if (userData.countryCode === "US") return true;
+    if (hasIndirectTax && userData.countryCode !== indirectTaxCountry)
+      return true;
+    return false;
+  }
+
   const hasStates = ["ES", "AU", "US", "CA"].includes(
-    userFormContext.countryCode
+    userFormContext.countryCode,
   );
   const regionObj = hasStates
     ? ADDRESS_REGIONS[userFormContext?.countryCode]
@@ -284,16 +408,19 @@ export function useUserInfoForm(props: TaxForm) {
       allCountries: countries,
       regionLabelEnum: regionObj?.labelEnum,
       regions: regionObj?.regions || [],
+      partnerData: data?.user?.impactConnection?.publisher,
+      userData: data?.user?.impactConnection?.user,
     },
     states: {
       step: step?.replace("/", ""),
       hideState: !hasStates,
       hideSteps: !!context.hideSteps,
-      disabled: loading,
+      disabled: loading || connectLoading,
       loadingError: !!userError?.message,
-      loading: loading,
+      loading: loading || connectLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
+
       formState: {
         ...userFormContext,
         errors: formErrors,
