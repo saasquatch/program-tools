@@ -10,10 +10,14 @@ import { gql } from 'graphql-request';
 import { ShareLinkProps } from './ShareLink';
 
 const ShareLinkQuery = gql`
-  query getShareLink($programId: ID) {
+  query getShareLink($programId: ID, $engagementMedium: UserEngagementMedium!) {
     user: viewer {
       ... on User {
-        shareLink(programId: $programId)
+        shareLink(
+          programId: $programId
+          engagementMedium: $engagementMedium
+          shareMedium: DIRECT
+        )
       }
     }
   }
@@ -29,7 +33,7 @@ export function useShareLink(props: ShareLinkProps) {
   const programId = useProgramId() || props.programId;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
-  const { data, loading } = useQuery(ShareLinkQuery, { programId }, !user?.jwt);
+  const { data, loading } = useQuery(ShareLinkQuery, { programId, engagementMedium }, !user?.jwt);
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const copyString = data?.user?.shareLink ?? '...';
