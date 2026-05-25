@@ -19,6 +19,26 @@ export const Default = () => {
   );
 };
 
+/* 
+ Verifies that an sqm-user-attribute with no valid value
+ collapses completely and does not create extra space
+ (e.g. a double gap) in a flex layout.
+ */
+export const InvalidValue = () => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div style={{ background: "#e0e0e0", padding: "8px" }}>Above</div>
+      <sqm-user-attribute
+        demoData={{
+          loading: false,
+          value: null,
+        }}
+      ></sqm-user-attribute>
+      <div style={{ background: "#e0e0e0", padding: "8px" }}>Below</div>
+    </div>
+  );
+};
+
 export const Loading = () => {
   return (
     <sqm-user-attribute

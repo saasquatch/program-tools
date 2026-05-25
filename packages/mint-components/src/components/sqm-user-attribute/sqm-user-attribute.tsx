@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Host, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
@@ -63,6 +63,9 @@ export class UserAttribute {
 
   render() {
     const props = isDemo() ? useCustomFieldsDemo(this) : useUserAttribute(this);
+    if (props.value == null) {
+      return <Host style={{ display: "none" }}></Host>;
+    }
     return <UserAttributeView {...props} />;
   }
 }
