@@ -153,17 +153,6 @@ export function usePartnerInfoModal(
     {},
   );
 
-  const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
-    GET_FINANCE_NETWORK_SETTINGS,
-    {
-      variables: { filter: {} },
-    },
-  );
-
-  const [startImpactConnection, { loading: connectLoading }] =
-    useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
-
-  const [allowBankingCollection, setAllowBankingCollection] = useState(false);
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
     user?.impactConnection?.publisher?.countryCode ||
@@ -174,27 +163,44 @@ export function usePartnerInfoModal(
     user?.impactConnection?.publisher?.currency || "",
   );
 
+  const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
+    GET_FINANCE_NETWORK_SETTINGS,
+    {
+      variables: { filter: countryCode ? { countryCode_eq: countryCode } : {} },
+    },
+  );
+
+  const [startImpactConnection, { loading: connectLoading }] =
+    useMutation<StartImpactConnectionResult>(START_IMPACT_CONNECTION);
+
+  const [allowBankingCollection, setAllowBankingCollection] = useState(false);
+
   const countries = countriesData?.impactPayoutCountries?.data || [];
 
-  // copied from useTaxAndCash for displaying currencies based on country - could be in helper?
-  const currencies = useMemo(() => {
+  const _currencies = useMemo(() => {
     const allValidCurrencies =
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
-          const currency = currenciesData?.currencies?.data?.find(
-            (c) => c.currencyCode === settings.currency,
+          const c = currenciesData?.currencies?.data?.find(
+            (cur) => cur.currencyCode === settings.currency,
           );
-          if (!currency) return agg;
-          if (agg.find((c) => c.currencyCode === settings.currency)) return agg;
-          if (countryCode && settings.countryCode !== countryCode) return agg;
-          return [...agg, currency];
+          if (!c) return agg;
+          if (agg.find((cur) => cur.currencyCode === settings.currency))
+            return agg;
+          return [...agg, c];
         },
         [],
       );
-    return (allValidCurrencies || []).sort((a, b) =>
-      a.displayName.localeCompare(b.displayName),
-    );
-  }, [financeNetworkData, currenciesData, countryCode]);
+    return allValidCurrencies || [];
+  }, [financeNetworkData, currenciesData]);
+
+  const currencies = useMemo(
+    () =>
+      [..._currencies].sort((a, b) =>
+        a.displayName.localeCompare(b.displayName),
+      ),
+    [_currencies],
+  );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [currencySearch, setCurrencySearch] = useState("");

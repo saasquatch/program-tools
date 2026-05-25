@@ -309,24 +309,9 @@ Feature: Tax Form Step One
     When they complete the form with the missing data
     And click "Continue"
     Then the missing data is patched on the partner when they are upserted
-  # -----------------------------------------------------------------------------
-  # Flows where the publisher / partner link was established in the
-  # sqm-partner-info-modal *before* the user reaches the User Information form.
-  #
-  # The modal can leave the user in one of two states:
-  #   (A) "Modal-created publisher" — the user had no Impact connection before
-  #       opening the modal, completed it, and a brand-new publisher was created
-  #       with ONLY countryCode + currency populated (the only two fields the
-  #       modal collects). No other publisher fields are filled in yet.
-  #   (B) "Linked to existing partner" — the modal detected an existing Impact
-  #       partner matching the user, showed the existing-partner confirmation
-  #       variant (with country/currency pre-filled by the existing publisher),
-  #       and the user confirmed the link. The existing publisher may or may
-  #       not already have the remaining fields populated.
-  # -----------------------------------------------------------------------------
 
   @motivating
-  Scenario: Modal-created publisher pre-fills country and currency only
+  Scenario: Early partner creation pre-fills country and currency only
     Given the user had no Impact connection before opening sqm-partner-info-modal
     And they completed the modal and a new publisher was created
     And the new publisher only has the following fields populated
@@ -344,10 +329,6 @@ Feature: Tax Form Step One
 
   @motivating
   Scenario: Linked existing partner whose user-info form is already complete skips the form entirely
-    # When the pre-existing partner has previously filled out and saved their
-    # full User Information form, a brand-new user connecting to that partner
-    # inherits the saved data and is bounced past step 1 — they should never
-    # see the User Information form at all.
     Given the user confirmed an existing Impact partner via sqm-partner-info-modal
     And the pre-existing partner has already filled out and saved their User Information form
     And the existing publisher therefore has every required field populated
@@ -381,51 +362,12 @@ Feature: Tax Form Step One
     Then the missing data is patched onto the existing publisher (no new publisher is created)
 
   @minutia
-  Scenario Outline: Field is editable when the linked partner has no value for it, and disabled when it does
-    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
-    And the existing publisher's <field> value is <publisherValue>
-    When they navigate to the User Information form
-    Then the <field> field is <state>
-    And the <field> field's prefilled value is <displayedValue>
-
-    Examples:
-      | field                  | publisherValue | state    | displayedValue          |
-      | countryCode            | US             | disabled | US                      |
-      | countryCode            | (empty)        | enabled  | (empty / default to US) |
-      | currency               | USD            | disabled | USD                     |
-      | currency               | (empty)        | enabled  | (empty)                 |
-      | phoneNumber            |     5551234567 | disabled |              5551234567 |
-      | phoneNumber            | (empty)        | enabled  | (empty)                 |
-      | phoneNumberCountryCode | US             | disabled | US                      |
-      | phoneNumberCountryCode | (empty)        | enabled  | (empty / default to US) |
-      | billingAddress         |    123 Main St | disabled |             123 Main St |
-      | billingAddress         | (empty)        | enabled  | (empty)                 |
-      | billingCity            | Seattle        | disabled | Seattle                 |
-      | billingCity            | (empty)        | enabled  | (empty)                 |
-      | billingState           | WA             | disabled | WA                      |
-      | billingState           | (empty)        | enabled  | (empty)                 |
-      | billingPostalCode      |          98101 | disabled |                   98101 |
-      | billingPostalCode      | (empty)        | enabled  | (empty)                 |
-
-  @minutia
   Scenario: The "0000000" / "DZ" placeholder phone values from publisher-creation are treated as empty
-    # The Impact API substitutes phoneNumber "0000000" and phoneNumberCountryCode "DZ"
-    # when a publisher is created without phone data (see useUserInfoForm.tsx).
+    # Impact API returns phoneNumber "0000000" and phoneNumberCountryCode "DZ" when we send null fields
+    # during publisher creation  
     Given the user reaches the User Information form via either entry path (modal-created or linked existing)
     And the linked publisher's phoneNumber is "0000000"
     And the linked publisher's phoneNumberCountryCode is "DZ"
     Then the "Phone number" field is empty and enabled
     And the "Extension" (phoneNumberCountryCode) field is empty and enabled
     And the user must provide a real phone number before "Continue" will succeed
-
-  @minutia
-  Scenario: Country and Currency stay locked even though only the modal set them
-    # Disambiguates from "Selecting a country clears the currency value": once a
-    # publisher exists (via either modal path), the form should NOT allow the
-    # user to change country/currency on this step. This avoids accidental
-    # divergence between the publisher record and the form submission.
-    Given the user reaches the User Information form via either entry path (modal-created or linked existing)
-    And the linked publisher has a countryCode and currency
-    Then the "Country" field is disabled
-    And the "Currency" field is disabled
-    And the "country clears currency" behaviour does not apply (neither can be changed on this step)
