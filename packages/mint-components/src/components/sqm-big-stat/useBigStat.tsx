@@ -28,7 +28,7 @@ type Goal = {
 const debugQuery = (
   query: Parameters<typeof useQuery>[0],
   variables: unknown,
-  getStat: (res: QueryData<any>) => { value: number; statvalue: string }
+  getStat: (res: QueryData<any>) => { value: number; statvalue: string },
 ) => {
   const res = useQuery(query, variables);
   if (!res?.data && !res.loading) {
@@ -42,7 +42,7 @@ const referralsCountQuery = (
   programId: string,
   // locale
   _: string,
-  status?: "started" | "converted"
+  status?: "started" | "converted",
 ) => {
   const programFilter =
     programId === "classic"
@@ -53,8 +53,8 @@ const referralsCountQuery = (
     status && status == "converted"
       ? { dateConverted_exists: true }
       : status && status == "started"
-      ? { dateConverted_exists: false }
-      : {};
+        ? { dateConverted_exists: false }
+        : {};
 
   const queryFilter = { ...programFilter, ...convertedFilter };
 
@@ -75,7 +75,7 @@ const referralsCountQuery = (
     (res) => ({
       value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -83,7 +83,7 @@ const programGoalsQuery = (
   programId: string,
   locale: string,
   metricType: string,
-  goalId: string
+  goalId: string,
 ) => {
   // Confirm this behaviour
   if (programId === "classic") return null;
@@ -106,13 +106,13 @@ const programGoalsQuery = (
     { programId, metricType, goalId, locale },
     (res) => {
       const goal = res.data?.viewer?.programGoals?.filter(
-        (goal: Goal) => goal.goalId === goalId && goal.programId === programId
+        (goal: Goal) => goal.goalId === goalId && goal.programId === programId,
       );
       return {
         value: goal?.[0]?.[metricType] || 0,
         statvalue: goal?.[0]?.[metricType]?.toString() || 0,
       };
-    }
+    },
   );
 };
 
@@ -120,7 +120,7 @@ const customFieldsQuery = (
   _programId: string,
   locale: string,
   fieldName: string,
-  goalId: string
+  goalId: string,
 ) => {
   return debugQuery(
     gql`
@@ -139,15 +139,15 @@ const customFieldsQuery = (
         value: customField || 0,
         statvalue: customField?.toString() || "0",
       };
-    }
+    },
   );
 };
 
 const referralsMonthQuery = (
   programId: string,
-    // locale
+  // locale
   _: string,
-  status?: "started" | "converted"
+  status?: "started" | "converted",
 ) => {
   const programFilter =
     programId === "classic"
@@ -158,8 +158,8 @@ const referralsMonthQuery = (
     status && status == "converted"
       ? { dateConverted_exists: true }
       : status && status == "started"
-      ? { dateConverted_exists: false }
-      : {};
+        ? { dateConverted_exists: false }
+        : {};
 
   const filter = {
     ...programFilter,
@@ -183,15 +183,15 @@ const referralsMonthQuery = (
     (res) => ({
       value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
 const referralsWeekQuery = (
   programId: string,
-    // locale
+  // locale
   _: string,
-  status?: "started" | "converted"
+  status?: "started" | "converted",
 ) => {
   const programFilter =
     programId === "classic"
@@ -202,8 +202,8 @@ const referralsWeekQuery = (
     status && status == "converted"
       ? { dateConverted_exists: true }
       : status && status == "started"
-      ? { dateConverted_exists: false }
-      : {};
+        ? { dateConverted_exists: false }
+        : {};
 
   const filter = {
     ...programFilter,
@@ -226,7 +226,7 @@ const referralsWeekQuery = (
     (res) => ({
       value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -234,7 +234,7 @@ const rewardsCountQuery = (
   programId: string,
   // locale
   _: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -254,7 +254,7 @@ const rewardsCountQuery = (
     (res) => ({
       value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -265,7 +265,7 @@ const rewardsCountFilteredQuery = (
   type?: string,
   unit?: string,
   status?: string,
-  global = ""
+  global = "",
 ) => {
   const statusFilter = status ? { status } : null;
 
@@ -275,7 +275,7 @@ const rewardsCountFilteredQuery = (
         $programId: ID
         $unit: String
         $type: RewardType
-        $statusFilter: RewardStatusFilterInput
+        ${statusFilter ? "$statusFilter: RewardStatusFilterInput" : ""}
       ) {
         viewer {
           ... on User {
@@ -284,7 +284,7 @@ const rewardsCountFilteredQuery = (
                 programId_eq: $programId
                 type_eq: $type
                 unit_eq: $unit
-                statuses_eq: $statusFilter
+                ${statusFilter ? "statuses_eq: $statusFilter" : "statuses_nin: [{status: CANCELLED}, {status: EXPIRED}]"}
               }
             ) {
               totalCount
@@ -302,7 +302,7 @@ const rewardsCountFilteredQuery = (
     (res) => ({
       value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -311,20 +311,20 @@ const integrationRewardsCountFilteredQuery = (
   // locale
   _: string,
   status?: string,
-  global = ""
+  global = "",
 ) => {
   const statusFilter = status ? { status } : null;
 
   return debugQuery(
     gql`
-      query ($programId: ID, $statusFilter: RewardStatusFilterInput) {
+      query ($programId: ID, ${statusFilter ? "$statusFilter: RewardStatusFilterInput" : ""}) {
         viewer {
           ... on User {
             rewards(
               filter: {
                 programId_eq: $programId
                 type_eq: INTEGRATION
-                statuses_eq: $statusFilter
+                ${statusFilter ? "statuses_eq: $statusFilter" : "statuses_nin: [{status: CANCELLED}, {status: EXPIRED}]"}
               }
             ) {
               totalCount
@@ -340,7 +340,7 @@ const integrationRewardsCountFilteredQuery = (
     (res) => ({
       value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -348,7 +348,7 @@ const rewardsMonthQuery = (
   programId: string,
   // locale
   _: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -373,7 +373,7 @@ const rewardsMonthQuery = (
     (res) => ({
       value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -381,7 +381,7 @@ const rewardsWeekQuery = (
   programId: string,
   // locale
   _: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -406,7 +406,7 @@ const rewardsWeekQuery = (
     (res) => ({
       value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
-    })
+    }),
   );
 };
 
@@ -415,7 +415,7 @@ const rewardsPendingQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -459,7 +459,7 @@ const rewardsPendingQuery = (
         value: arr?.[0]?.prettyPendingCredit || 0,
         statvalue: arr?.[0]?.prettyPendingCredit || fallback,
       };
-    }
+    },
   );
 };
 
@@ -468,7 +468,7 @@ const rewardsRedeemedQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -512,7 +512,7 @@ const rewardsRedeemedQuery = (
         value: arr?.[0]?.prettyRedeemedCredit || 0,
         statvalue: arr?.[0]?.prettyRedeemedCredit || fallback,
       };
-    }
+    },
   );
 };
 
@@ -521,7 +521,7 @@ const rewardsRedeemedWeekQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -556,7 +556,7 @@ const rewardsRedeemedWeekQuery = (
       const fallback = 0;
       const redeemedTotal = rewardData?.reduce(
         (total, reward) => (total += reward.redeemedCredit),
-        fallback
+        fallback,
       );
 
       if (redeemedTotal !== undefined) {
@@ -587,7 +587,7 @@ const rewardsRedeemedWeekQuery = (
         value: fallback,
         statvalue: "...",
       };
-    }
+    },
   );
 };
 
@@ -596,7 +596,7 @@ const rewardsRedeemedMonthQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -631,7 +631,7 @@ const rewardsRedeemedMonthQuery = (
       const fallback = 0;
       const redeemedTotal = rewardData?.reduce(
         (total, reward) => (total += reward.redeemedCredit),
-        fallback
+        fallback,
       );
 
       if (redeemedTotal !== undefined) {
@@ -662,7 +662,7 @@ const rewardsRedeemedMonthQuery = (
         value: fallback,
         statvalue: "...",
       };
-    }
+    },
   );
 };
 
@@ -671,7 +671,7 @@ const rewardsAssignedQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -715,7 +715,7 @@ const rewardsAssignedQuery = (
         value: arr?.[0]?.prettyAssignedCredit || 0,
         statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
       };
-    }
+    },
   );
 };
 
@@ -724,7 +724,7 @@ const rewardsExpiredQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -768,7 +768,7 @@ const rewardsExpiredQuery = (
         value: arr?.[0]?.prettyExpiredCredit || 0,
         statvalue: arr?.[0]?.prettyExpiredCredit || fallback,
       };
-    }
+    },
   );
 };
 
@@ -777,7 +777,7 @@ const rewardsCancelledQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -821,7 +821,7 @@ const rewardsCancelledQuery = (
         value: arr?.[0]?.prettyCancelledCredit || 0,
         statvalue: arr?.[0]?.prettyCancelledCredit || fallback,
       };
-    }
+    },
   );
 };
 
@@ -830,7 +830,7 @@ const rewardsAvailableQuery = (
   locale: string,
   type: string,
   unit: string,
-  global = ""
+  global = "",
 ) => {
   return debugQuery(
     gql`
@@ -874,7 +874,7 @@ const rewardsAvailableQuery = (
         value: arr?.[0]?.prettyAvailableValue || 0,
         statvalue: arr?.[0]?.prettyAvailableValue || fallback,
       };
-    }
+    },
   );
 };
 
@@ -888,7 +888,7 @@ const rewardsBalanceQuery = (
   type: string,
   unit: string,
   format = "prettyValue",
-  global = ""
+  global = "",
 ) => {
   const formatType = parseRewardValueFormat[format] ?? "UNIT_FORMATTED";
 
@@ -935,8 +935,7 @@ const rewardsBalanceQuery = (
       const fallback = res.data?.fallback;
       const balance = arr?.[0];
       const totalEarned = balance
-        ? (balance.totalAssignedCredit || 0) +
-          (balance.totalPendingCredit || 0) 
+        ? (balance.totalAssignedCredit || 0) + (balance.totalPendingCredit || 0)
         : 0;
 
       const result = useQuery(
@@ -961,14 +960,14 @@ const rewardsBalanceQuery = (
           locale,
           format: formatType,
         },
-        res.loading
+        res.loading,
       );
 
       return {
         value: totalEarned,
         statvalue: result?.data?.formatRewardPrettyValue || fallback,
       };
-    }
+    },
   );
 };
 
@@ -994,7 +993,7 @@ const trafficQuery = () => {
         value: traffic || fallback,
         statvalue: traffic || fallback,
       };
-    }
+    },
   );
 };
 
@@ -1054,7 +1053,7 @@ const userStatsQuery = (_programId, _locale, statId) => {
         value: stat || fallback,
         statvalue: stat || fallback,
       };
-    }
+    },
   );
 };
 
@@ -1086,7 +1085,7 @@ const payoutBalanceQuery = () => {
         value: balance || fallback,
         statvalue: balanceText,
       };
-    }
+    },
   );
 };
 // functions are of the form (programId: string, ...args: string) => string
@@ -1262,7 +1261,7 @@ export const StatPaths = [
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
-  pathToRegexp(pattern.route)
+  pathToRegexp(pattern.route),
 );
 
 export function useBigStat(props: BigStat): BigStatHook {
@@ -1280,7 +1279,7 @@ export function useBigStat(props: BigStat): BigStatHook {
   const userIdent = useUserIdentity();
   const re = useMemo(
     () => StatPatterns.find((re) => re.exec(statType)),
-    [statType]
+    [statType],
   );
 
   if (!re?.exec(statType)) {
@@ -1318,7 +1317,7 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   // Retrieve all key values in order including undefined
   const queryArgs = keys.map((_, i) =>
-    allQueryArgs[i + 1] ? decodeURIComponent(allQueryArgs[i + 1]) : undefined
+    allQueryArgs[i + 1] ? decodeURIComponent(allQueryArgs[i + 1]) : undefined,
   );
   //  remove query name from list
   queryArgs.shift();
