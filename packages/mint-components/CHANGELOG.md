@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.12
+
+### Patch Changes
+
+- [#500](https://github.com/saasquatch/program-tools/pull/500) [`041abce`](https://github.com/saasquatch/program-tools/commit/041abce56e60a40c93bdfe2b670aeb564dd8eec9) Thanks [@00salmon](https://github.com/00salmon)! - Fixes issue with the checkbox not properly being set as required in registration forms
+
 All notable changes to this project will be documented in this file.
 
 <!--
@@ -155,6 +161,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.7] - 2025-12-09
 
 - \<sqm-tax-and-cash-dashboard-view>
+
   - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
   - Added ICU string for text prop indirectTaxTooltipSupport
 
@@ -181,6 +188,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-payout-status-alert>
 - \<sqm-tax-and-cash-dashboard>
+
   - Added more descriptive copy for the different reasons a payout may be on hold
 
 - \<sqm-header-logo>
@@ -211,6 +219,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Complete Theming System Overhaul**
+
   - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
   - `parseBrandingConfig()` function for dynamic branding configuration parsing
   - Extensive CSS custom properties system for consistent theming across all components
@@ -219,6 +228,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Window message listeners for real-time branding configuration updates in editor environments
 
 - **Enhanced Component Editor Support**
+
   - Editor state controllers for improved component editing experience
   - Component state management improvements across all widgets
   - Enhanced component placement and validation
@@ -247,16 +257,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 - **Theming System**: Complete overhaul of the component theming system
+
   - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
   - Components now rely on the centralized `BrandingConfiguration` for styling
   - Direct styling overrides may need to be migrated to the new theming API
 
 - **Global Styles**: Restructured global styles architecture
+
   - Components now use CSS custom properties instead of traditional CSS variables
   - Font loading system has been redesigned with new APIs
   - Global style initialization now requires the new branding configuration system
 
 - **Component APIs**: Enhanced component state management
+
   - Editor state controllers introduced for all components
   - Component placement validation has been improved
   - Some internal component APIs have been restructured for better editor integration
@@ -288,6 +301,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - \<sqm-portal-google-registration-form>
+
   - Enhanced two-step registration flow with improved validation
   - Added support for additional form fields in registration process
 
@@ -549,13 +563,17 @@ This major release represents a significant advancement in the theming capabilit
 ### Changed
 
 - \<sqm-user-info-form>
+
   - Removed hard coded widths and inline styling to ensure the view is responsive
 
 - \<sqm-portal-container>
+
   - Added new `flexWrap` prop to optionally apply the flex-wrap css property
 
 - \<sqm-leaderboard>
+
   - Added the following props:
+
     - width
     - rankSuffix
     - hideNames
@@ -612,6 +630,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Fixed
 
 - \<sqm-banking-info-form>
+
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
 
 - \<sqm-user-info-form>
@@ -636,6 +655,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - Added `input-base` css parts to inputs to the following components:
+
   - \<sqm-checkbox-field>
   - \<sqm-dropdown-field>
   - \<sqm-edit-profile>

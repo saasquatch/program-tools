@@ -464,7 +464,7 @@ export namespace Components {
          */
         "checkboxLabelLink"?: string;
         /**
-          * @uiName Checkbox label link lext
+          * @uiName Checkbox label link text
          */
         "checkboxLabelLinkText"?: string;
         /**
@@ -8582,7 +8582,7 @@ declare namespace LocalJSX {
          */
         "checkboxLabelLink"?: string;
         /**
-          * @uiName Checkbox label link lext
+          * @uiName Checkbox label link text
          */
         "checkboxLabelLinkText"?: string;
         /**
