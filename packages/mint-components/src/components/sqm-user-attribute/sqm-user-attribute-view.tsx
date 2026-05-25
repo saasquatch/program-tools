@@ -23,8 +23,10 @@ export function UserAttributeView(props: UserAttributeViewProps) {
   const loadingSkeleton = (
     <sqm-skeleton width="200px" height="20px"></sqm-skeleton>
   );
+  const hasValue =
+    props.value !== null && props.value !== undefined && props.value !== "";
   return (
-    props.value && (
+    hasValue && (
       <Host>
         <style>{styleString}</style>
         <p class={sheet.classes.P} part="sqm-base">
