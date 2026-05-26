@@ -86,9 +86,9 @@ jobs:
               "prerelease",
             ];
 
-            const package = process.env.PACKAGE;
-            if (!allowedPackages.includes(package)) {
-              throw new Error(`"${package}" is not in the list of allowed packages`);
+            const pkg = process.env.PACKAGE;
+            if (!allowedPackages.includes(pkg)) {
+              throw new Error(`"${pkg}" is not in the list of allowed packages`);
             }
 
             const incrementType = process.env.INCREMENT_TYPE;
