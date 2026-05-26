@@ -19,7 +19,7 @@ import { useCheckboxField } from "./useCheckboxField";
  */
 @Component({
   tag: "sqm-checkbox-field",
-  shadow: true,
+  shadow: false,
 })
 export class CheckboxField {
   @State()
@@ -46,7 +46,7 @@ export class CheckboxField {
   @Prop() checkboxLabelLink?: string = "https://example.com";
 
   /**
-   * @uiName Checkbox label link lext
+   * @uiName Checkbox label link text
    */
   @Prop() checkboxLabelLinkText?: string = "Terms and Conditions";
 
