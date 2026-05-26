@@ -7019,7 +7019,7 @@ export namespace Components {
           * @uiName Custom field key
           * @uiWidget customFieldSelector
          */
-        "value": string;
+        "value": string | number;
     }
     interface SqmUserInfoForm {
         /**
@@ -15130,7 +15130,7 @@ declare namespace LocalJSX {
           * @uiName Custom field key
           * @uiWidget customFieldSelector
          */
-        "value"?: string;
+        "value"?: string | number;
     }
     interface SqmUserInfoForm {
         /**
