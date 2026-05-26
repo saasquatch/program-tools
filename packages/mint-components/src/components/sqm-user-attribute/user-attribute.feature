@@ -21,10 +21,11 @@ Feature: User Attribute
     And nothing is displayed
 
   @motivating
-  Scenario: A loading skeleton is shown while data is loading
+  Scenario: Nothing is rendered while user data is loading
     Given the component is loading user data
     When the component is rendered
-    Then a loading skeleton is displayed
+    Then component is not rendered
+    And nothing is displayed
 
   @motivating
   Scenario Outline: Optional styling props can be applied to customize the text appearance
