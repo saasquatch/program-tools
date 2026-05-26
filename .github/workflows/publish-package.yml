@@ -56,11 +56,6 @@ jobs:
         run: |
           npm i --no-save semver@7.8.0
 
-      - name: Install dependencies
-        id: npm-ci
-        working-directory: ${{ env.WORKING_DIR }}
-        run: npm ci
-
       - name: Compute new version
         id: compute-version
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
@@ -68,8 +63,8 @@ jobs:
           result-encoding: string
           script: |
             const semver = require("semver");
-            const { readFileSync } = require("fs");
-            const { join } = require("path");
+            const { readFileSync } = require("node:fs");
+            const { join } = require("node:path");
 
             const allowedPackages = [
               "express-boilerplate",
@@ -122,8 +117,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { readFileSync } = require("fs");
-            const { join } = require("path");
+            const { readFileSync } = require("node:fs");
+            const { join } = require("node:path");
 
             const workingDir = process.env.WORKING_DIR;
             const packageJson = JSON.parse(
@@ -135,6 +130,11 @@ jobs:
               throw new Error("Failed to extract package name from package.json");
             }
             return packageName;
+
+      - name: Install dependencies
+        id: npm-ci
+        working-directory: ${{ env.WORKING_DIR }}
+        run: npm ci --ignore-scripts --allow-git=none
 
       - name: Write new version to file
         working-directory: ${{ env.WORKING_DIR }}
