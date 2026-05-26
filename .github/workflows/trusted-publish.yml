@@ -1,0 +1,53 @@
+name: Trusted Publisher Workflow
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "packages/mint-components/**"
+  workflow_dispatch:
+    inputs:
+      package:
+        description: The package to publish
+        required: true
+        type: choice
+        options:
+          - express-boilerplate
+          - integration-boilerplate-node
+          - logger
+          - mint-components
+          - program-boilerplate
+          - program-test-suite
+          - publish-helper
+
+      increment-type:
+        description: The version number to increment
+        required: true
+        type: choice
+        options:
+          - prerelease
+          - patch
+          - minor
+          - major
+
+permissions: {}
+
+jobs:
+  publish-package:
+    if: github.event_name == 'workflow_dispatch' && !(inputs.package == 'mint-components' && inputs.increment-type != 'prerelease')
+    uses: ./.github/workflows/publish-package.yml
+    with:
+      package: ${{ inputs.package }}
+      increment-type: ${{ inputs.increment-type }}
+    permissions:
+      contents: write
+      id-token: write
+
+  mint-components-release:
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/mint-components-release.yml
+    permissions:
+      contents: write # Push commits to edit version numbers/changelogs
+      id-token: write # GCP workload identity federation
+      pull-requests: write # Open a PR
+      issues: read # ??

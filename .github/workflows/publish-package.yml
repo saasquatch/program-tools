@@ -1,42 +1,19 @@
 name: Publish Package
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       package:
         description: The package to publish
         required: true
-        type: choice
-        options:
-          - express-boilerplate
-          - integration-boilerplate-node
-          - logger
-          - mint-components
-          - program-boilerplate
-          - program-test-suite
-          - publish-helper
+        # type: choice isn't supported by workflow_call
+        type: string
 
       increment-type:
-        description: The version number to increment
+        description: The version number to increment (prerelease, patch, minor, or major)
         required: true
-        type: choice
-        options:
-          - prerelease
-          - patch
-          - minor
-          - major
-
-  workflow_call:
-    inputs:
-      package:
-        description: "The package to publish (must be one of: express-boilerplate, integration-boilerplate-node, logger, mint-components, program-boilerplate, program-test-suite, publish-helper)"
-        required: true
+        # type: choice isn't supported by workflow_call
         type: string
-      npm-tag:
-        description: The npm dist-tag to publish with
-        required: false
-        type: string
-        default: latest
 
 jobs:
   publish:
@@ -47,41 +24,24 @@ jobs:
       id-token: write
 
     env:
-      VERSIONING: ${{ github.event_name == 'workflow_dispatch' }}
+      PACKAGE: ${{ inputs.package }}
+      INCREMENT_TYPE: ${{ inputs.increment-type }}
+      VERSIONING: ${{ inputs.package != 'mint-components' }}
+      NPM_TAG: ${{ (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}
+      WORKING_DIR: packages/${{ inputs.package }}
 
     steps:
       - name: Enforce mint-components prerelease-only policy
-        if: github.event_name == 'workflow_dispatch' && inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
+        if: inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
         run: |
           echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
           exit 1
 
-      - name: Validate package input
-        env:
-          PACKAGE: ${{ inputs.package }}
-        run: |
-          case "$PACKAGE" in
-            express-boilerplate|integration-boilerplate-node|logger|mint-components|program-boilerplate|program-test-suite|publish-helper) ;;
-            *) echo "::error::Invalid package '${PACKAGE}'."; exit 1 ;;
-          esac
-
-      - name: Generate Variables
-        id: vars
-        env:
-          PACKAGE: ${{ inputs.package }}
-          NPM_TAG: ${{ inputs.npm-tag || (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}
-        run: |
-          # Validate npm-tag is a safe dist-tag value (alphanumeric, hyphens, dots)
-          if [[ ! "$NPM_TAG" =~ ^[a-zA-Z0-9._-]+$ ]]; then
-            echo "::error::Invalid npm-tag '${NPM_TAG}'. Must be alphanumeric with hyphens/dots only."
-            exit 1
-          fi
-          echo "dir=packages/${PACKAGE}" >> ${GITHUB_OUTPUT}
-          echo "npmtag=${NPM_TAG}" >> ${GITHUB_OUTPUT}
-
       - name: Checkout
         id: checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Setup NodeJS
         id: setup-node
@@ -100,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         id: npm-ci
-        working-directory: ${{ steps.vars.outputs.dir }}
+        working-directory: ${{ env.WORKING_DIR }}
         run: npm ci
 
       - name: Compute new version
@@ -114,7 +74,22 @@ jobs:
             const { readFileSync } = require("fs");
             const { join } = require("path");
 
-            const incrementType = "${{ inputs.increment-type }}";
+            const allowedPackages = [
+              "express-boilerplate",
+              "integration-boilerplate-node",
+              "logger",
+              "mint-components",
+              "program-boilerplate",
+              "program-test-suite",
+              "publish-helper",
+            ];
+
+            const package = process.env.PACKAGE;
+            if (!allowedPackages.includes(package)) {
+              throw new Error(`"${package}" is not in the list of allowed packages.`);
+            }
+
+            const incrementType = process.env.INCREMENT_TYPE;
 
             if (
               !["major", "minor", "patch", "prerelease"].some(
@@ -124,7 +99,7 @@ jobs:
               throw new Error(`Invalid semver increment type "${incrementType}" specified`);
             }
 
-            const workingDir = "${{ steps.vars.outputs.dir }}";
+            const workingDir = process.env.WORKING_DIR;
             const packageJson = JSON.parse(
               readFileSync(join(workingDir, "./package.json"), { encoding: "utf8" }),
             );
@@ -154,7 +129,7 @@ jobs:
             const { readFileSync } = require("fs");
             const { join } = require("path");
 
-            const workingDir = "${{ steps.vars.outputs.dir }}";
+            const workingDir = process.env.WORKING_DIR;
             const packageJson = JSON.parse(
               readFileSync(join(workingDir, "./package.json"), { encoding: "utf8" }),
             );
@@ -167,11 +142,13 @@ jobs:
 
       - name: Write new version to file
         if: env.VERSIONING == 'true'
-        working-directory: ${{ steps.vars.outputs.dir }}
+        working-directory: ${{ env.WORKING_DIR }}
+        env:
+          NEW_VERSION: ${{ steps.compute-version.outputs.result }}
         run: |
-          jq '.version = "${{ steps.compute-version.outputs.result }}"' package.json > package.json.tmp
-          jq '.version = "${{ steps.compute-version.outputs.result }}"' package-lock.json > package-lock.tmp1.json
-          jq '.packages."".version = "${{ steps.compute-version.outputs.result }}"' package-lock.tmp1.json > package-lock.json.tmp
+          jq ".version = \"${NEW_VERSION}\"" package.json > package.json.tmp
+          jq ".version = \"${NEW_VERSION}\"" package-lock.json > package-lock.tmp1.json
+          jq ".packages.\"\".version = \"${NEW_VERSION}\"" package-lock.tmp1.json > package-lock.json.tmp
 
           mv package.json.tmp package.json
           mv package-lock.json.tmp package-lock.json
@@ -179,8 +156,8 @@ jobs:
       # Package will be built during this step thanks to the `prepack` lifecycle script
       - name: NPM Publish
         id: publish
-        working-directory: ${{ steps.vars.outputs.dir }}
-        run: npm publish --provenance --access public --tag ${{ steps.vars.outputs.npmtag }}
+        working-directory: ${{ env.WORKING_DIR }}
+        run: npm publish --provenance --access public --tag "${NPM_TAG}"
 
       - name: Commit and push changes
         if: env.VERSIONING == 'true'
@@ -189,7 +166,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          working-directory: ${{ steps.vars.outputs.dir }}
+          working-directory: ${{ env.WORKING_DIR }}
           files: |
             package.json
             package-lock.json

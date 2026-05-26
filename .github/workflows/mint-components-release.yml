@@ -1,29 +1,29 @@
 name: Mint Components Release
 on:
-  push:
-    branches: [master]
-    paths:
-      - "packages/mint-components/**"
-  workflow_dispatch:
+  workflow_call:
 
-permissions:
-  id-token: write
-  contents: write
-  pull-requests: write
-  issues: read
+permissions: {}
 
 jobs:
   version:
     runs-on: ubuntu-latest
     name: Version Mint Components
-    outputs:
-      should-publish: ${{ steps.check-publish.outputs.should-publish }}
+
+    permissions:
+      contents: write # Push commits to edit version numbers/changelogs
+      id-token: write # GCP workload identity federation
+      pull-requests: write # Open a PR
+      issues: read # ??
+
     defaults:
       run:
         working-directory: packages/mint-components
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 53b83 = v6.3.0
@@ -32,57 +32,38 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install packages
-        run: npm ci
+        run: npm ci --ignore-scripts --allow-git=none
 
-      - name: Create release pull request
+      - name: Create release pull request or publish to npm
         id: changesets
         uses: changesets/action@001cd79f0a536e733315164543a727bdf2d70aff # 001cd = v1.5.1
         with:
           cwd: packages/mint-components
           version: npm run version
+          publish: npm run release
           title: "mint-components - Version Packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check if version needs publishing
-        id: check-publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
-        run: |
-          VERSION=$(jq -r '.version' package.json)
-          OUTPUT=$(npm view "@saasquatch/mint-components@$VERSION" version 2>&1) && {
-            echo "should-publish=false" >> $GITHUB_OUTPUT
-            echo "Version $VERSION is already published"
-            exit 0
-          }
-          if echo "$OUTPUT" | grep -q "E404"; then
-            echo "should-publish=true" >> $GITHUB_OUTPUT
-            echo "Version $VERSION not found on npm, publishing"
-          else
-            echo "::error::npm view failed unexpectedly: $OUTPUT"
-            exit 1
-          fi
-
-  publish:
-    needs: version
-    if: needs.version.outputs.should-publish == 'true'
-    uses: ./.github/workflows/publish-package.yml
-    with:
-      package: mint-components
-      npm-tag: latest
-    permissions:
-      contents: write
-      id-token: write
+          NPM_CONFIG_PROVENANCE: true
 
   deploy-docs:
     needs: publish
     runs-on: ubuntu-latest
     name: Deploy Docs
+
+    permissions:
+      contents: read
+      id-token: write # GCP workload identity federation
+
     defaults:
       run:
         working-directory: packages/mint-components
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # de0fa = v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 53b83 = v6.3.0
@@ -90,7 +71,7 @@ jobs:
           node-version: 24
 
       - name: Install packages
-        run: npm ci
+        run: npm ci --ignore-scripts --allow-git=none
 
       - name: Build docs site
         run: NODE_ENV=dev npm run build
