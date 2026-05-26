@@ -40,8 +40,8 @@ jobs:
       package: ${{ inputs.package }}
       increment-type: ${{ inputs.increment-type }}
     permissions:
-      contents: write
-      id-token: write
+      contents: write # Create commit & tag for edited version number in package.json etc
+      id-token: write # GCP workload identity federation
 
   mint-components-release:
     if: github.event_name == 'push'
@@ -50,4 +50,3 @@ jobs:
       contents: write # Push commits to edit version numbers/changelogs
       id-token: write # GCP workload identity federation
       pull-requests: write # Open a PR
-      issues: read # ??
