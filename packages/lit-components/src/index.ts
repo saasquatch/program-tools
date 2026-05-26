@@ -115,25 +115,20 @@ import { setUseHostImplementation } from '@saasquatch/component-boilerplate';
 // Re-export useHost for component-boilerplate compatibility
 import { useHost } from './hooks/useHost';
 
-// Shoelace setup
-import { registerIconLibrary, setBasePath } from '@shoelace-style/shoelace';
-import '@shoelace-style/shoelace/dist/themes/light.css';
+// UI adapter layer: configure Shoelace as the default UI implementation.
+// To swap to a different framework, replace the next three statements with
+// the corresponding bootstrap import and `setUI(<otherAdapter>)` call.
+// Consumers can also call `setUI()` from this package's public API before
+// any component renders to override the implementation at runtime.
+import './ui/shoelace/bootstrap';
+import { shoelaceUI } from './ui/shoelace';
+import { setUI } from './ui';
+setUI(shoelaceUI);
 
-// Always set base path and icon library to ensure this version takes precedence
-// Use autoloader to handle component dependencies automatically
-import('@shoelace-style/shoelace/dist/shoelace-autoloader.js');
-
-// Set base path to Shoelace CDN for asset loading (this version: 2.20.1)
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/');
-
-// Register icon library (will override if already set)
-try {
-  registerIconLibrary('default', {
-    resolver: (name) => `https://fast.ssqt.io/npm/bootstrap-icons@1.11.3/icons/${name}.svg`,
-  });
-} catch (e) {
-  // Icon library already registered, that's ok
-}
+// Re-export the UI adapter contract so downstream consumers can plug in
+// their own implementation without forking this package.
+export { setUI, getUI, UI } from './ui';
+export type { UIComponents } from './ui/types';
 
 // Set Haunted as the implementation for universal-hooks
 setImplementation(haunted);
