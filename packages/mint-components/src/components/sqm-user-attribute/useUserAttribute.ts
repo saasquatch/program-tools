@@ -1,8 +1,8 @@
 import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { DateTime } from "luxon";
-import { UserAttribute } from "./sqm-user-attribute";
-import { UserAttributeViewProps } from "./sqm-user-attribute-view";
+import type { UserAttribute } from "./sqm-user-attribute";
+import type { UserAttributeViewProps } from "./sqm-user-attribute-view";
 
 const GET_CUSTOM_FIELDS = gql`
   query getCustomFields {
