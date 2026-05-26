@@ -1,18 +1,72 @@
 # Changelog
 
+## 2.1.13
+
+### Patch Changes
+
+- [#499](https://github.com/saasquatch/program-tools/pull/499) [`0f45046`](https://github.com/saasquatch/program-tools/commit/0f45046f5d56d9803d2c134790ce86c9501c450a) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update rewardsCountFilteredQuery and integrationRewardsCountFilteredQuery to do conditional querying if EARNED status is passed
+
+## 2.1.12
+
+### Patch Changes
+
+- [#500](https://github.com/saasquatch/program-tools/pull/500) [`041abce`](https://github.com/saasquatch/program-tools/commit/041abce56e60a40c93bdfe2b670aeb564dd8eec9) Thanks [@00salmon](https://github.com/00salmon)! - Fixes issue with the checkbox not properly being set as required in registration forms
+
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+<!--
+  Entries from version 2.1.8 and earlier were authored manually.
+
+  Starting with the first release after 2.1.8, this changelog is generated
+  automatically by Changesets (https://github.com/changesets/changesets)
+  using the @changesets/changelog-github formatter.
+-->
+
+<!-- Changesets-generated entries appear above this line. -->
+
+---
+
+The format below is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.1.11] - 2026-05-06
+
+### Fixed
+
+- \<sqm-password-field>
+  - Added ability to customize share links when enabled in the editor
+
+## [2.1.10] - 2026-05-06
+
+### Fixed
+
+- \<sqm-share-link>
+  - Added ability to customize share links when enabled in the editor
+
+### Updated
+
+- Bumped stencil-docs-target version
+
+## [2.1.8] - 2026-04-09
+
+### Fixed
+
+- \<sqm-referral-iframe>
+  - Added prop to configure query parameter of referral code
+- Fixed issue with ICU messages missing required `other` clause
+
 ## [2.1.7] - 2026-04-01
+
+### Updated
 
 - Added optimization for Cloudinary hosted images
 - Fixed issue when clicking expired email verification links
 
 ## [2.1.6] - 2026-03-31
+
+### Updated
 
 - \<sqm-tax-and-cash-dashboard>
   - Update tax section to always display if there's data for tax form status
@@ -105,6 +159,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.7] - 2025-12-09
 
 - \<sqm-tax-and-cash-dashboard-view>
+
   - Replaced sl-tooltip with custom sl-dropdown to handle clickable tooltip content
   - Added ICU string for text prop indirectTaxTooltipSupport
 
@@ -131,6 +186,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-payout-status-alert>
 - \<sqm-tax-and-cash-dashboard>
+
   - Added more descriptive copy for the different reasons a payout may be on hold
 
 - \<sqm-header-logo>
@@ -161,6 +217,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Complete Theming System Overhaul**
+
   - New `BrandingConfiguration` TypeScript interface with comprehensive theming options
   - `parseBrandingConfig()` function for dynamic branding configuration parsing
   - Extensive CSS custom properties system for consistent theming across all components
@@ -169,6 +226,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Window message listeners for real-time branding configuration updates in editor environments
 
 - **Enhanced Component Editor Support**
+
   - Editor state controllers for improved component editing experience
   - Component state management improvements across all widgets
   - Enhanced component placement and validation
@@ -197,16 +255,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 - **Theming System**: Complete overhaul of the component theming system
+
   - Old theme variables and custom CSS may need to be updated to work with the new CSS custom properties system
   - Components now rely on the centralized `BrandingConfiguration` for styling
   - Direct styling overrides may need to be migrated to the new theming API
 
 - **Global Styles**: Restructured global styles architecture
+
   - Components now use CSS custom properties instead of traditional CSS variables
   - Font loading system has been redesigned with new APIs
   - Global style initialization now requires the new branding configuration system
 
 - **Component APIs**: Enhanced component state management
+
   - Editor state controllers introduced for all components
   - Component placement validation has been improved
   - Some internal component APIs have been restructured for better editor integration
@@ -238,6 +299,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - \<sqm-portal-google-registration-form>
+
   - Enhanced two-step registration flow with improved validation
   - Added support for additional form fields in registration process
 
@@ -499,13 +561,17 @@ This major release represents a significant advancement in the theming capabilit
 ### Changed
 
 - \<sqm-user-info-form>
+
   - Removed hard coded widths and inline styling to ensure the view is responsive
 
 - \<sqm-portal-container>
+
   - Added new `flexWrap` prop to optionally apply the flex-wrap css property
 
 - \<sqm-leaderboard>
+
   - Added the following props:
+
     - width
     - rankSuffix
     - hideNames
@@ -562,6 +628,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Fixed
 
 - \<sqm-banking-info-form>
+
   - Fixes issue with form selecting "Bank Account" as default payment method when editting banking information.
 
 - \<sqm-user-info-form>
@@ -586,6 +653,7 @@ This major release represents a significant advancement in the theming capabilit
 ### Added
 
 - Added `input-base` css parts to inputs to the following components:
+
   - \<sqm-checkbox-field>
   - \<sqm-dropdown-field>
   - \<sqm-edit-profile>
@@ -1524,9 +1592,12 @@ This major release represents a significant advancement in the theming capabilit
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.7...HEAD
-[2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
-[2.1.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@2.1.11...HEAD
+[2.1.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.11
+[2.1.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.10
+[2.1.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.8
+[2.1.7]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.7
+[2.1.6]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.6
 [2.1.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.5
 [2.1.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.4
 [2.1.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%402.1.3

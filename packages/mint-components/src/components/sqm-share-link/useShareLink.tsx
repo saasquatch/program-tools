@@ -1,36 +1,72 @@
 import {
   useEngagementMedium,
+  useLazyQuery,
   useMutation,
   useParentValue,
   useProgramId,
   useQuery,
+  useRefreshDispatcher,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useState } from "@saasquatch/universal-hooks";
+import { useRef, useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { CopyTextViewProps } from "../views/copy-text-view";
 import {
-  ReferralCodeContext,
   REFERRAL_CODES_NAMESPACE,
+  ReferralCodeContext,
   SET_CODE_COPIED,
 } from "../sqm-referral-codes/useReferralCodes";
+import {
+  ShareLinkViewProps,
+  ValidationErrorCode,
+  ValidationErrorInfo,
+} from "./sqm-share-link-view";
 
-interface ShareLinkProps {
+export interface ShareLinkProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
   linkOverride?: string;
+  allowCustomization?: boolean;
+  customizeUrlText?: string;
+  customizeLinkButtonLabel?: string;
+  saveLabelText?: string;
+  savingLabelText?: string;
+  cancelLabelText?: string;
+  editLabelText?: string;
+  charactersRemainingText?: string;
+  validatingLabelText?: string;
+  textAlign?: "left" | "center" | "right";
+  buttonStyle?: "icon" | "button-outside" | "button-below";
+  backgroundColor?: string;
+  textColor?: string;
+  borderRadius?: string;
+  buttonType?: "primary" | "secondary";
+  copyButtonLabel?: string;
+  borderColor?: string;
+  linkTakenErrorTitle?: string;
+  linkTakenErrorDescription?: string;
+  invalidCharactersErrorTitle?: string;
+  invalidCharactersErrorDescription?: string;
+  restrictedWordsErrorTitle?: string;
+  restrictedWordsErrorDescription?: string;
+  editLimitText?: string;
+  editLimitReachedText?: string;
+  supportLinkText?: string;
+  customizeDisabledTooltip?: string;
+  minCharactersText?: string;
+  saveErrorTitle?: string;
+  saveErrorDescription?: string;
 }
 
+const MAX_EDITS = 5;
+const CHARACTER_LIMIT = 15;
+const MIN_CHARACTERS = 3;
+
 const MessageLinkQuery = gql`
-  query ($programId: ID, $engagementMedium: UserEngagementMedium!) {
+  query ($programId: ID) {
     user: viewer {
       ... on User {
-        shareLink(
-          programId: $programId
-          engagementMedium: $engagementMedium
-          shareMedium: DIRECT
-        )
+        shareLink(programId: $programId)
       }
     }
   }
@@ -42,30 +78,162 @@ const WIDGET_ENGAGEMENT_EVENT = gql`
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
+const ADD_SHARE_LINK_CODE = gql`
+  mutation ($addShareLinkCodeInput: AddShareLinkCodeInput!) {
+    addShareLinkCode(addShareLinkCodeInput: $addShareLinkCodeInput) {
+      linkCode {
+        linkCode
+        shortUrl
+        referralCode {
+          code
+        }
+      }
+    }
+  }
+`;
+
+const VALIDATE_LINK_CODE = gql`
+  query validateLinkCode($linkCode: String!) {
+    validateLinkCode(linkCode: $linkCode) {
+      valid
+      invalidReason
+    }
+  }
+`;
+
+const GET_LINK_DOMAIN = gql`
+  query getLinkDomain {
+    tenantSettings {
+      primaryLinkDomain {
+        host
+      }
+    }
+  }
+`;
+
+const SHARE_LINK_EDIT_COUNT = gql`
+  query shareLinkEditCount {
+    viewer {
+      ... on User {
+        shareLinkCodes {
+          totalCount
+          data {
+            isVanity
+          }
+        }
+      }
+    }
+  }
+`;
+
+function parseShareUrl(url: string) {
+  try {
+    const parsed = new URL(url);
+    return {
+      url: parsed.origin + parsed.pathname,
+      domain: parsed.origin + "/",
+      path: parsed.pathname.slice(1),
+    };
+  } catch {
+    return { url, domain: url, path: "" };
+  }
+}
+
+export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
   const engagementMedium = useEngagementMedium();
 
   const contextData = useParentValue<ReferralCodeContext>(
-    REFERRAL_CODES_NAMESPACE
+    REFERRAL_CODES_NAMESPACE,
   );
 
-  const { data } = useQuery(
+  const { data, refetch } = useQuery(
     MessageLinkQuery,
-    { programId, engagementMedium },
-    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
+    { programId },
+    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined,
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
+  const [setCopied] = useMutation(SET_CODE_COPIED);
+  const [addShareLinkCode, { loading: isSaving }] =
+    useMutation(ADD_SHARE_LINK_CODE);
 
-  const [setCopied, copiedRes] = useMutation(SET_CODE_COPIED);
+  const [validateLinkCode] = useLazyQuery(VALIDATE_LINK_CODE);
 
-  const copyString =
+  const { refresh } = useRefreshDispatcher();
+
+  const { data: linkDomainData } = useQuery(
+    GET_LINK_DOMAIN,
+    {},
+    !user?.jwt || !props.allowCustomization,
+  );
+
+  const { data: editCountData, refetch: refetchEditCount } = useQuery(
+    SHARE_LINK_EDIT_COUNT,
+    {},
+    !user?.jwt || !props.allowCustomization,
+  );
+
+  const {
+    url: copyString,
+    domain: domainPrefix,
+    path: pathSuffix,
+  } = parseShareUrl(
     (contextData?.shareLink || data?.user?.shareLink) ??
-    // Shown during loading
-    "...";
+      // Shown during loading
+      "...",
+  );
 
   const [open, setOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState("");
+  const [validationError, setValidationError] =
+    useState<ValidationErrorInfo | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  const latestValidationValueRef = useRef<string>("");
+
+  const hasPrimaryLinkDomain =
+    linkDomainData?.tenantSettings?.primaryLinkDomain != null;
+
+  const customizeDisabled = !hasPrimaryLinkDomain;
+
+  const vanityCount =
+    editCountData?.viewer?.shareLinkCodes?.data?.filter(
+      (code: { isVanity: boolean }) => code.isVanity,
+    ).length ?? 0;
+  const editCount = vanityCount;
+  const editsRemaining = Math.max(0, MAX_EDITS - editCount);
+  const limitReached = editsRemaining <= 0;
+
+  function mapErrorCodeToInfo(
+    errorCode: ValidationErrorCode,
+  ): ValidationErrorInfo | null {
+    if (!errorCode) return null;
+    const errorMap: Record<
+      NonNullable<ValidationErrorCode>,
+      ValidationErrorInfo
+    > = {
+      EXISTING_CODE_CONFLICT: {
+        code: "EXISTING_CODE_CONFLICT",
+        title: props.linkTakenErrorTitle,
+        description: props.linkTakenErrorDescription,
+      },
+      INVALID_CHARACTER: {
+        code: "INVALID_CHARACTER",
+        title: props.invalidCharactersErrorTitle,
+        description: props.invalidCharactersErrorDescription,
+      },
+      BLOCKED_WORD: {
+        code: "BLOCKED_WORD",
+        title: props.restrictedWordsErrorTitle,
+        description: props.restrictedWordsErrorDescription,
+      },
+    };
+    return errorMap[errorCode];
+  }
 
   async function onClick() {
     if (contextData) {
@@ -92,5 +260,129 @@ export function useShareLink(props: ShareLinkProps): CopyTextViewProps {
     });
   }
 
-  return { ...props, onClick, open, copyString: copyString };
+  function onCustomizeClick() {
+    if (limitReached || customizeDisabled) return;
+    setIsEditing(true);
+    setEditValue(editCount === 0 ? "" : pathSuffix);
+    setValidationError(null);
+  }
+
+  function onEditValueChange(value: string) {
+    const trimmed = value.slice(0, CHARACTER_LIMIT);
+    setEditValue(trimmed);
+    setValidationError(null);
+    latestValidationValueRef.current = trimmed;
+
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+
+    if (!trimmed || trimmed.length < MIN_CHARACTERS) {
+      setIsValidating(false);
+      return;
+    }
+
+    setIsValidating(true);
+    debounceTimerRef.current = setTimeout(async () => {
+      const requestedValue = trimmed;
+      try {
+        const result = await validateLinkCode({ linkCode: requestedValue });
+        // Discard stale responses if the user has continued typing
+        if (latestValidationValueRef.current !== requestedValue) return;
+        if (!result?.validateLinkCode?.valid) {
+          const reason = result?.validateLinkCode
+            ?.invalidReason as ValidationErrorCode;
+          setValidationError(mapErrorCodeToInfo(reason));
+        }
+      } catch {
+        // Validation query failed — don't block the user
+        if (latestValidationValueRef.current !== requestedValue) return;
+      }
+      if (latestValidationValueRef.current === requestedValue) {
+        setIsValidating(false);
+      }
+    }, 500);
+  }
+
+  async function onSave() {
+    if (
+      !editValue ||
+      editValue.length < MIN_CHARACTERS ||
+      validationError ||
+      isValidating
+    )
+      return;
+
+    try {
+      await addShareLinkCode({
+        addShareLinkCodeInput: {
+          userId: user?.id,
+          accountId: user?.accountId,
+          programId,
+          linkCode: editValue,
+          makeShareLinkCodePrimaryForReferralCode: true,
+        },
+      });
+
+      setIsEditing(false);
+      await Promise.all([refetch(), refetchEditCount()]);
+      refresh();
+    } catch (e) {
+      const errorCode = e?.extensions?.code as ValidationErrorCode;
+
+      setValidationError(
+        mapErrorCodeToInfo(errorCode) ?? {
+          code: null,
+          title: props.saveErrorTitle,
+          description: e?.message || props.saveErrorDescription,
+        },
+      );
+    }
+  }
+
+  function onCancel() {
+    setIsEditing(false);
+    setEditValue("");
+    setValidationError(null);
+    setIsValidating(false);
+    latestValidationValueRef.current = "";
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+  }
+
+  return {
+    copyTextViewProps: {
+      ...props,
+      onClick,
+      open,
+      copyString,
+    },
+    minCharactersText: props.minCharactersText,
+    allowCustomization: props.allowCustomization,
+    customizeLinkLabel: props.customizeLinkButtonLabel,
+    saveLabelText: props.saveLabelText,
+    savingLabelText: props.savingLabelText,
+    cancelLabelText: props.cancelLabelText,
+    editLabelText: props.editLabelText,
+    charactersRemainingText: props.charactersRemainingText,
+    validatingLabelText: props.validatingLabelText,
+    isEditing,
+    editValue,
+    domainPrefix,
+    editsRemaining,
+    maxEdits: MAX_EDITS,
+    limitReached,
+    validationError,
+    isValidating,
+    isSaving,
+    characterLimit: CHARACTER_LIMIT,
+    minCharacters: MIN_CHARACTERS,
+    charactersRemaining: CHARACTER_LIMIT - editValue.length,
+    editLimitText: props.editLimitText,
+    editLimitReachedText: props.editLimitReachedText,
+    supportLinkText: props.supportLinkText,
+    customizeDisabled,
+    customizeDisabledTooltip: props.customizeDisabledTooltip,
+    onCustomizeClick,
+    onEditValueChange,
+    onSave,
+    onCancel,
+  };
 }
