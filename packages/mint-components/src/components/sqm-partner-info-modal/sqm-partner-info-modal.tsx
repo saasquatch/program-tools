@@ -148,7 +148,7 @@ export class PartnerInfoModal {
    * @uiWidget textArea
    */
   @Prop()
-  missingFieldsErrorText: string = "Please select both a country and currency.";
+  missingFieldsErrorText: string = "Please fill out all fields.";
 
   /**
    * Used to render in another modal.
@@ -193,7 +193,7 @@ export class PartnerInfoModal {
 }
 
 function useDemoPartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
@@ -263,6 +263,6 @@ function useDemoPartnerInfoModal(
       },
     },
     props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }

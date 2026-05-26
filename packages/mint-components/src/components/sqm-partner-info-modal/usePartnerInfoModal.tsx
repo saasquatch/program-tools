@@ -129,7 +129,7 @@ export type CountriesQuery = {
 };
 
 export function usePartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const locale = useLocale();
 
@@ -145,29 +145,28 @@ export function usePartnerInfoModal(
 
   const { data: currenciesData, loading: currenciesLoading } = useQuery(
     GET_CURRENCIES,
-    { variables: { locale } },
+    { variables: { locale } }
   );
 
   const { data: countriesData, loading: countriesLoading } = useQuery(
     GET_COUNTRIES,
-    {},
+    {}
   );
 
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode ||
-      locale.replace(/^.*_/, ""),
+    user?.impactConnection?.publisher?.countryCode || locale.replace(/^.*_/, "")
   );
 
   const [currency, setCurrency] = useState(
-    user?.impactConnection?.publisher?.currency || "",
+    user?.impactConnection?.publisher?.currency || ""
   );
 
   const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
     GET_FINANCE_NETWORK_SETTINGS,
     {
       variables: { filter: countryCode ? { countryCode_eq: countryCode } : {} },
-    },
+    }
   );
 
   const [startImpactConnection, { loading: connectLoading }] =
@@ -182,14 +181,14 @@ export function usePartnerInfoModal(
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
           const c = currenciesData?.currencies?.data?.find(
-            (cur) => cur.currencyCode === settings.currency,
+            (cur) => cur.currencyCode === settings.currency
           );
           if (!c) return agg;
           if (agg.find((cur) => cur.currencyCode === settings.currency))
             return agg;
           return [...agg, c];
         },
-        [],
+        []
       );
     return allValidCurrencies || [];
   }, [financeNetworkData, currenciesData]);
@@ -197,18 +196,18 @@ export function usePartnerInfoModal(
   const currencies = useMemo(
     () =>
       [..._currencies].sort((a, b) =>
-        a.displayName.localeCompare(b.displayName),
+        a.displayName.localeCompare(b.displayName)
       ),
-    [_currencies],
+    [_currencies]
   );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(
-    countriesData?.impactPayoutCountries?.data || [],
+    countriesData?.impactPayoutCountries?.data || []
   );
   const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currencies || [],
+    currencies || []
   );
 
   const [error, setError] = useState("");
@@ -228,8 +227,8 @@ export function usePartnerInfoModal(
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
-        ) || [],
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
       );
     }
   }, [countrySearch, countries]);
@@ -241,8 +240,8 @@ export function usePartnerInfoModal(
     } else {
       setFilteredCurrencies(
         currencies.filter((c) =>
-          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase()),
-        ) || [],
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase())
+        ) || []
       );
     }
   }, [currencySearch, currencies]);
@@ -314,7 +313,7 @@ export function usePartnerInfoModal(
         setError(validationMsg || props.networkErrorText);
         console.error(
           "Failed to create Impact connection:",
-          connectionResult?.validationErrors,
+          connectionResult?.validationErrors
         );
         return;
       }
@@ -329,6 +328,8 @@ export function usePartnerInfoModal(
       setError(props.networkErrorText);
     }
   }
+
+  console.log(impactConnection, "impactconnect ion modal");
 
   const showModal =
     !success &&
