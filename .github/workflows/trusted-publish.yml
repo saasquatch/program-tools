@@ -34,7 +34,7 @@ permissions: {}
 
 jobs:
   publish-package:
-    if: github.event_name == 'workflow_dispatch' && !(inputs.package == 'mint-components' && inputs.increment-type != 'prerelease')
+    if: github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/publish-package.yml
     with:
       package: ${{ inputs.package }}
