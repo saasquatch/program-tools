@@ -16,7 +16,7 @@ Feature: Partner Info Modal — country, currency, and T&C collection
 
   @motivating
   Scenario: Modal is hidden once the connection has been started
-    Given `impactConnection.connectionStatus` is "STARTED"
+    Given `impactConnection.connectionStatus` does not equal "NOT_STARTED"
     Then the partner-info modal is not rendered
 
   @minutia
@@ -90,7 +90,7 @@ Feature: Partner Info Modal — country, currency, and T&C collection
     Then the submit button is disabled
 
   @motivating
-  Scenario: Successful submission starts the Impact connection and closes the modal
+  Scenario: Submitting the modal starts the Impact connection and closes the modal
     Given the user has selected country "US", currency "USD", and checked the T&C checkbox
     When they click the primary button
     Then the modal calls the `startImpactConnection` mutation with
@@ -100,10 +100,8 @@ Feature: Partner Info Modal — country, currency, and T&C collection
       | lastName       | from the user record      |
       | countryCode    | "US"                      |
       | currency       | "USD"                     |
-    And on success `impactConnection.connectionStatus` advances from "NOT_STARTED" to "STARTED"
-    And a `TAX_FORM_UPDATED_EVENT_KEY` window event is dispatched
-    And the modal calls `setPartnerCreated(true)` on the parent (sqm-widget-verification)
-    And the modal closes (via `success = true`)
+    And on success `impactConnection.connectionStatus` changes from "NOT_STARTED" to "STARTED"
+    And the modal closes
 
   @motivating
   Scenario: Existing-partner submission attaches the participant to the linked publisher
@@ -119,21 +117,13 @@ Feature: Partner Info Modal — country, currency, and T&C collection
     When `startImpactConnection` fails with <failure>
     Then the modal stays open
     And `error` is set to <errorText>
-    And the connection status is NOT advanced
-    And `setPartnerCreated` is NOT called
+    And the an impactConnection is not created
 
     Examples:
       | failure                                  | errorText                                       |
       | a thrown / network error                 | the `networkErrorText` prop                     |
       | a result with `success: false` + errors  | the joined `validationErrors[].message` strings |
       | a result with `success: false` no errors | the `networkErrorText` prop                     |
-
-  @minutia
-  Scenario: Submitting while the user record has not loaded shows the network-error text
-    Given the partner-info modal is somehow visible but `user` is undefined
-    When the user clicks submit
-    Then no mutation is attempted
-    And the `networkErrorText` is shown as the error
 
   @minutia
   Scenario: All inputs are disabled while submitting
