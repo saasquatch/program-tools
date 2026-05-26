@@ -32,7 +32,10 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install packages
-        run: npm ci --ignore-scripts --allow-git=none
+        run: |
+          npm ci --ignore-scripts --allow-git=none
+          # allow post-install patching of packages without allowing all other (potentially malicious) scripts
+          npm x patch-packages
 
       - name: Create release pull request or publish to npm
         id: changesets
@@ -70,11 +73,12 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install packages
-        run: npm ci --ignore-scripts --allow-git=none
-
       - name: Build docs site
-        run: NODE_ENV=dev npm run build
+        run: |
+          npm ci --ignore-scripts --allow-git=none
+          # allow post-install patching of packages without allowing all other (potentially malicious) scripts
+          npm x patch-packages
+          NODE_ENV=dev npm run build
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # 7c6bc = v3
