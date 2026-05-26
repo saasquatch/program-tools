@@ -158,11 +158,12 @@ export class PartnerInfoModal {
 
   /**
    * @undocumented
+   * @componentState { "title": "Connected (hidden)", "default": true, "props": { "states": { "open": false } } }
    * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
    * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
-   * @componentState { "title": "Connected (hidden)", "props": { "states": { "open": false } } }
    */
-  @Prop() stateController: string = "{}";
+  @Prop() stateController: string =
+    '{"sqm-partner-info-modal":{"states":{"open":false}}}';
 
   /**
    * @undocumented
