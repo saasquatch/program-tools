@@ -26,7 +26,6 @@ jobs:
     env:
       PACKAGE: ${{ inputs.package }}
       INCREMENT_TYPE: ${{ inputs.increment-type }}
-      VERSIONING: ${{ inputs.package != 'mint-components' }}
       NPM_TAG: ${{ (inputs.increment-type == 'prerelease' && 'next') || 'latest' }}
       WORKING_DIR: packages/${{ inputs.package }}
 
@@ -53,7 +52,6 @@ jobs:
       # we could add this to devDependencies but we'd have to do it for every package
       # so might as well just install it inside the action
       - name: Install semver
-        if: env.VERSIONING == 'true'
         id: npm-i-semver
         run: |
           npm i --no-save semver@7.8.0
@@ -64,7 +62,6 @@ jobs:
         run: npm ci
 
       - name: Compute new version
-        if: env.VERSIONING == 'true'
         id: compute-version
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
@@ -120,7 +117,6 @@ jobs:
             return newVersion;
 
       - name: Extract package name
-        if: env.VERSIONING == 'true'
         id: extract-package-name
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
         with:
@@ -141,7 +137,6 @@ jobs:
             return packageName;
 
       - name: Write new version to file
-        if: env.VERSIONING == 'true'
         working-directory: ${{ env.WORKING_DIR }}
         env:
           NEW_VERSION: ${{ steps.compute-version.outputs.result }}
@@ -160,7 +155,6 @@ jobs:
         run: npm publish --provenance --access public --tag "${NPM_TAG}"
 
       - name: Commit and push changes
-        if: env.VERSIONING == 'true'
         id: commit-and-push
         uses: saasquatch/git-commit-action@v0.0.15
         env:
