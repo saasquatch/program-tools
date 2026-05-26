@@ -50,7 +50,6 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
 
   deploy-docs:
-    needs: publish
     runs-on: ubuntu-latest
     name: Deploy Docs
 
