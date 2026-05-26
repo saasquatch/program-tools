@@ -26,7 +26,7 @@ export class UserAttribute {
    * @uiName Custom field key
    * @uiWidget customFieldSelector
    */
-  @Prop() value: string;
+  @Prop() value: string | number;
 
   /**
    * Number in pixels.

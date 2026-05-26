@@ -19,7 +19,7 @@ export function useUserAttribute(props: UserAttribute): UserAttributeViewProps {
   const res = useQuery(GET_CUSTOM_FIELDS, {}, !user?.jwt);
   const loading = res.loading;
   const customFields = res.data?.viewer?.customFields;
-  let value = customFields?.[props.value];
+  let value = customFields?.[props.value as string];
 
   if (props.value === "lastSeenDate" && typeof value === "number") {
     value = DateTime.fromMillis(value).toLocaleString(DateTime.DATE_MED);
