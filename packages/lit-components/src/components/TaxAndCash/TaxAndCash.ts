@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { TaxAndCashView } from './TaxAndCashView';
-import { useTaxAndCash } from './useTaxAndCash';
+import { useDemoTaxAndCash, useTaxAndCash } from './useTaxAndCash';
 
 export interface TaxAndCashProps {
   programId?: string;
@@ -34,7 +35,7 @@ export const TaxAndCash = useComponent<TaxAndCashProps>(
       step: parseStep(rawProps.step),
     };
 
-    const hookProps = useTaxAndCash(props);
+    const hookProps = isDemo() ? useDemoTaxAndCash(props) : useTaxAndCash(props);
 
     return TaxAndCashView({ ...props, ...hookProps });
   },

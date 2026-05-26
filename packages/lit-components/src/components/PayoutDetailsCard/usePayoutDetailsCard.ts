@@ -32,3 +32,15 @@ export function usePayoutDetailsCard(props: PayoutDetailsCardProps) {
     payoutMethod: details?.payoutMethod || 'Not configured',
   };
 }
+
+export function useDemoPayoutDetailsCard(
+  _props: PayoutDetailsCardProps
+): ReturnType<typeof usePayoutDetailsCard> {
+  return {
+    loading: false,
+    nextPayoutDate: 'March 14, 2024',
+    availableBalance: '$100.00',
+    currency: 'USD',
+    payoutMethod: 'Bank transfer',
+  };
+}

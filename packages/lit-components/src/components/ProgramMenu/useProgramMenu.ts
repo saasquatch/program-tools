@@ -38,3 +38,25 @@ export function useProgramMenu(props: ProgramMenuProps) {
 
   return { programs, selected, loading, onSelect };
 }
+
+export function useDemoProgramMenu(props: ProgramMenuProps): ReturnType<typeof useProgramMenu> {
+  const [selected, setSelected] = useState(props.programId || 'demo-program-1');
+  const programs = [
+    {
+      programId: 'demo-program-1',
+      program: { name: 'Referral Program' },
+      shareLink: 'https://example.com/referral',
+    },
+    {
+      programId: 'demo-program-2',
+      program: { name: 'Partner Program' },
+      shareLink: 'https://example.com/partner',
+    },
+  ];
+
+  function onSelect(programId: string) {
+    setSelected(programId);
+  }
+
+  return { programs, selected, loading: false, onSelect };
+}

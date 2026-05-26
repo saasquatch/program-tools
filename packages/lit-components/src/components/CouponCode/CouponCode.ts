@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { CouponCodeView } from './CouponCodeView';
-import { useCouponCode } from './useCouponCode';
+import { useCouponCode, useDemoCouponCode } from './useCouponCode';
 
 export interface CouponCodeProps {
   tooltipText: string;
@@ -50,7 +51,7 @@ export const CouponCode = useComponent<CouponCodeProps>(
       ...getProps(host),
     };
 
-    const hookProps = useCouponCode(props);
+    const hookProps = isDemo() ? useDemoCouponCode(props) : useCouponCode(props);
 
     return CouponCodeView({ ...props, ...hookProps });
   },

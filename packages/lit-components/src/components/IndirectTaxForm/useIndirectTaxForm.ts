@@ -30,3 +30,21 @@ export function useIndirectTaxForm(props: IndirectTaxFormProps) {
 
   return { taxId, setTaxId, country, setCountry, error, loading, success, onSubmit };
 }
+
+export function useDemoIndirectTaxForm(
+  _props: IndirectTaxFormProps
+): ReturnType<typeof useIndirectTaxForm> {
+  const [taxId, setTaxId] = useState('VAT-123456789');
+  const [country, setCountry] = useState('United States');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+    setSuccess(true);
+  }
+
+  return { taxId, setTaxId, country, setCountry, error, loading, success, onSubmit };
+}

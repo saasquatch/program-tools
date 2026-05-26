@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ShareCodeView } from './ShareCodeView';
-import { useShareCode } from './useShareCode';
+import { useDemoShareCode, useShareCode } from './useShareCode';
 
 export interface ShareCodeProps {
   tooltipText: string;
@@ -35,7 +36,7 @@ export const ShareCode = useComponent<ShareCodeProps>(
       ...getProps(host),
     };
 
-    const hookProps = useShareCode(props);
+    const hookProps = isDemo() ? useDemoShareCode(props) : useShareCode(props);
 
     return ShareCodeView({ ...props, ...hookProps });
   },

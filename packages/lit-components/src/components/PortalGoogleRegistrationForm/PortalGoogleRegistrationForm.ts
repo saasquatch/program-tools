@@ -1,8 +1,10 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalGoogleRegistrationFormView } from './PortalGoogleRegistrationFormView';
 import {
   type PortalGoogleRegistrationFormHookResult,
+  useDemoPortalGoogleRegistrationForm,
   usePortalGoogleRegistrationForm,
 } from './usePortalGoogleRegistrationForm';
 
@@ -130,7 +132,9 @@ export const PortalGoogleRegistrationForm = useComponent<PortalGoogleRegistratio
       Record<keyof PortalGoogleRegistrationFormProps, unknown>
     >;
     const props = getDefaultProps(rawProps);
-    const hookProps = usePortalGoogleRegistrationForm(props) as PortalGoogleRegistrationFormHookResult;
+    const hookProps = (isDemo()
+      ? useDemoPortalGoogleRegistrationForm(props)
+      : usePortalGoogleRegistrationForm(props)) as PortalGoogleRegistrationFormHookResult;
 
     return PortalGoogleRegistrationFormView({ ...props, ...hookProps });
   },

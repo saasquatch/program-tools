@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalChangeMarketingView } from './PortalChangeMarketingView';
-import { usePortalChangeMarketing } from './usePortalChangeMarketing';
+import { useDemoPortalChangeMarketing, usePortalChangeMarketing } from './usePortalChangeMarketing';
 
 export interface PortalChangeMarketingProps {
   headerText: string;
@@ -32,7 +33,7 @@ export const PortalChangeMarketing = useComponent<PortalChangeMarketingProps>(
       unsubscribeLabel: rawProps.unsubscribeLabel || 'Unsubscribe',
     };
 
-    const hookProps = usePortalChangeMarketing(props);
+    const hookProps = isDemo() ? useDemoPortalChangeMarketing(props) : usePortalChangeMarketing(props);
 
     return PortalChangeMarketingView({ ...props, ...hookProps });
   },

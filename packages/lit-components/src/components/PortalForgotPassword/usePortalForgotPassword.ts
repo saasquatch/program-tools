@@ -40,3 +40,28 @@ export function usePortalForgotPassword(props: PortalForgotPasswordProps) {
 
   return { email, setEmail, error, loading, success, onSubmit, onBack };
 }
+
+export function useDemoPortalForgotPassword(_props: PortalForgotPasswordProps): ReturnType<typeof usePortalForgotPassword> {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    if (!email) {
+      setError('Email is required');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    setSuccess(true);
+    setLoading(false);
+  }
+
+  function onBack() {
+    console.log('Demo back to login');
+  }
+
+  return { email, setEmail, error, loading, success, onSubmit, onBack };
+}

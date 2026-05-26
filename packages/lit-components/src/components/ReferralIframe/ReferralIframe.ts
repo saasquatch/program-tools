@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ReferralIframeView } from './ReferralIframeView';
-import { useReferralIframe } from './useReferralIframe';
+import { useDemoReferralIframe, useReferralIframe } from './useReferralIframe';
 
 export interface ReferralIframeProps {
   iframeUrl?: string;
@@ -25,7 +26,7 @@ export const ReferralIframe = useComponent<ReferralIframeProps>(
       ...getProps(host),
     };
 
-    const hookProps = useReferralIframe(props);
+    const hookProps = isDemo() ? useDemoReferralIframe(props) : useReferralIframe(props);
 
     return ReferralIframeView({ ...props, ...hookProps });
   },

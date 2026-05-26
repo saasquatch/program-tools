@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PayoutButtonScrollView } from './PayoutButtonScrollView';
-import { usePayoutButton } from './usePayoutButtonScroll';
+import { useDemoPayoutButton, usePayoutButton } from './usePayoutButtonScroll';
 
 export interface PayoutButtonScrollProps {
   buttonText: string;
@@ -30,7 +31,7 @@ export const PayoutButtonScroll = useComponent<PayoutButtonScrollProps>(
       disabled: parseBoolean(rawProps.disabled, false),
     };
 
-    const hookProps = usePayoutButton(props);
+    const hookProps = isDemo() ? useDemoPayoutButton(props) : usePayoutButton(props);
 
     return PayoutButtonScrollView({ ...props, ...hookProps });
   },

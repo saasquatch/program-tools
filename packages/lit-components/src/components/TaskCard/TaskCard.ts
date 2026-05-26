@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { TaskCardView } from './TaskCardView';
-import { useTaskCard } from './useTaskCard';
+import { useDemoTaskCard, useTaskCard } from './useTaskCard';
 
 export interface TaskCardProps {
   rewardAmount?: string;
@@ -66,7 +67,7 @@ export const TaskCard = useComponent<TaskCardProps>(
       cardStatus: parseStatus(rawProps.cardStatus),
     };
 
-    const hookProps = useTaskCard(props);
+    const hookProps = isDemo() ? useDemoTaskCard(props) : useTaskCard(props);
 
     return TaskCardView({ ...props, ...hookProps });
   },

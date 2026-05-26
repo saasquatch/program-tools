@@ -24,3 +24,12 @@ export function useReferralIframe(props: ReferralIframeProps) {
 
   return { url, loading };
 }
+
+export function useDemoReferralIframe(props: ReferralIframeProps) {
+  const shareLink = 'https://www.example.com/sharelink/abc';
+  const url = props.iframeUrl
+    ? `${props.iframeUrl}${props.iframeUrl.includes('?') ? '&' : '?'}shareLink=${encodeURIComponent(shareLink)}`
+    : '';
+
+  return { url, loading: false };
+}

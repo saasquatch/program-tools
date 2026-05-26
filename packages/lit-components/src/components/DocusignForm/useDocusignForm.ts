@@ -45,3 +45,11 @@ export function useDocusignForm(props: DocusignFormProps) {
 
   return { docusignUrl, loading, signed };
 }
+
+export function useDemoDocusignForm(props: DocusignFormProps): ReturnType<typeof useDocusignForm> {
+  return {
+    docusignUrl: props.iframeUrl || 'https://example.com/demo-docusign',
+    loading: false,
+    signed: false,
+  };
+}

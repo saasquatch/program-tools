@@ -11,3 +11,7 @@ export function usePortalProtectedRoute(props: PortalProtectedRouteProps) {
 
   return { isAuthenticated };
 }
+
+export function useDemoPortalProtectedRoute(_props: PortalProtectedRouteProps) {
+  return { isAuthenticated: true };
+}

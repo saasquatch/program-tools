@@ -1,4 +1,4 @@
-import { isDemo, useMutation, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useMutation, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import { PortalLoginProps } from './PortalLogin';
@@ -18,7 +18,6 @@ const LOGIN_MUTATION = gql`
 export function usePortalLogin(props: PortalLoginProps) {
   const [loginMutation] = useMutation(LOGIN_MUTATION);
   const user = useUserIdentity();
-  const demoMode = isDemo();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,7 +25,6 @@ export function usePortalLogin(props: PortalLoginProps) {
 
   void loginMutation;
   void user;
-  void demoMode;
   void props;
 
   async function onSubmit(event: Event) {
@@ -74,6 +72,36 @@ export function usePortalLogin(props: PortalLoginProps) {
     setPassword,
     error,
     loading,
+    onSubmit,
+    onForgotPassword,
+    onRegister,
+  };
+}
+
+export function useDemoPortalLogin(_props: PortalLoginProps): ReturnType<typeof usePortalLogin> {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    console.log('Demo login submit');
+  }
+
+  function onForgotPassword() {
+    console.log('Demo forgot password');
+  }
+
+  function onRegister() {
+    console.log('Demo register');
+  }
+
+  return {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error: '',
+    loading: false,
     onSubmit,
     onForgotPassword,
     onRegister,

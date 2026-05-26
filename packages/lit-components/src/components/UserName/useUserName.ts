@@ -23,3 +23,7 @@ export function useUserName(props: UserNameProps) {
 
   return { displayName, loading };
 }
+
+export function useDemoUserName(_props: UserNameProps) {
+  return { displayName: 'Jane Doe', loading: false };
+}

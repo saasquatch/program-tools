@@ -58,3 +58,36 @@ export function useBankingInfoForm(props: BankingInfoFormProps) {
     onSubmit,
   };
 }
+
+export function useDemoBankingInfoForm(
+  _props: BankingInfoFormProps
+): ReturnType<typeof useBankingInfoForm> {
+  const [accountName, setAccountName] = useState('Jane Doe');
+  const [bankName, setBankName] = useState('Demo Bank');
+  const [accountNumber, setAccountNumber] = useState('****1234');
+  const [routingNumber, setRoutingNumber] = useState('110000000');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+    setSuccess(true);
+  }
+
+  return {
+    accountName,
+    setAccountName,
+    bankName,
+    setBankName,
+    accountNumber,
+    setAccountNumber,
+    routingNumber,
+    setRoutingNumber,
+    error,
+    loading,
+    success,
+    onSubmit,
+  };
+}

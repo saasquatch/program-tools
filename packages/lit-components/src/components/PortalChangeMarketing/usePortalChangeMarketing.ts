@@ -36,3 +36,16 @@ export function usePortalChangeMarketing(_props: PortalChangeMarketingProps) {
 
   return { subscribed, loading, saving, onToggle };
 }
+
+export function useDemoPortalChangeMarketing(_props: PortalChangeMarketingProps): ReturnType<typeof usePortalChangeMarketing> {
+  const [subscribed, setSubscribed] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  async function onToggle() {
+    setSaving(true);
+    setSubscribed(!subscribed);
+    setSaving(false);
+  }
+
+  return { subscribed, loading: false, saving, onToggle };
+}

@@ -33,3 +33,20 @@ export function useInstantAccessRegistration(props: InstantAccessRegistrationPro
 
   return { email, setEmail, error, loading, success, onSubmit };
 }
+
+export function useDemoInstantAccessRegistration(
+  _props: InstantAccessRegistrationProps
+): ReturnType<typeof useInstantAccessRegistration> {
+  const [email, setEmail] = useState('jane@example.com');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+    setSuccess(true);
+  }
+
+  return { email, setEmail, error, loading, success, onSubmit };
+}

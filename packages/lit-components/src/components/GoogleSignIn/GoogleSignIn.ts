@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { GoogleSignInView } from './GoogleSignInView';
-import { useGoogleSignIn } from './useGoogleSignIn';
+import { useDemoGoogleSignIn, useGoogleSignIn } from './useGoogleSignIn';
 
 export interface GoogleSignInProps {
   text: string;
@@ -22,7 +23,7 @@ export const GoogleSignIn = useComponent<GoogleSignInProps>(
       clientId: rawProps.clientId || undefined,
     };
 
-    const hookProps = useGoogleSignIn(host, props);
+    const hookProps = isDemo() ? useDemoGoogleSignIn(host, props) : useGoogleSignIn(host, props);
 
     return GoogleSignInView({ ...props, ...hookProps });
   },

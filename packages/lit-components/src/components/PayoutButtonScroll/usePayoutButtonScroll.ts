@@ -18,3 +18,9 @@ export function usePayoutButton(props: PayoutButtonScrollProps) {
 
   return { onClick };
 }
+
+export function useDemoPayoutButton(_props: PayoutButtonScrollProps): ReturnType<typeof usePayoutButton> {
+  return {
+    onClick: () => undefined,
+  };
+}

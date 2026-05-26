@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { UserNameView } from './UserNameView';
-import { useUserName } from './useUserName';
+import { useDemoUserName, useUserName } from './useUserName';
 
 export interface UserNameProps {
   fallbackText: string;
@@ -20,7 +21,7 @@ export const UserName = useComponent<UserNameProps>(
       ...getProps(host),
     };
 
-    const hookProps = useUserName(props);
+    const hookProps = isDemo() ? useDemoUserName(props) : useUserName(props);
 
     return UserNameView({ ...props, ...hookProps });
   },

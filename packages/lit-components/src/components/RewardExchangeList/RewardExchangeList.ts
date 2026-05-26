@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { RewardExchangeListView } from './RewardExchangeListView';
-import { useRewardExchangeList } from './useRewardExchangeList';
+import { useDemoRewardExchangeList, useRewardExchangeList } from './useRewardExchangeList';
 
 export interface RewardExchangeItem {
   id: string;
@@ -33,7 +34,7 @@ export const RewardExchangeList = useComponent<RewardExchangeListProps>(
       ...getProps(host),
     };
 
-    const hookProps = useRewardExchangeList(props);
+    const hookProps = isDemo() ? useDemoRewardExchangeList(props) : useRewardExchangeList(props);
 
     return RewardExchangeListView({ ...props, ...hookProps });
   },

@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalLogoutView } from './PortalLogoutView';
-import { usePortalLogout } from './usePortalLogout';
+import { useDemoPortalLogout, usePortalLogout } from './usePortalLogout';
 
 export interface PortalLogoutProps {
   redirectUrl: string;
@@ -20,7 +21,7 @@ export const PortalLogout = useComponent<PortalLogoutProps>(
       redirectUrl: rawProps.redirectUrl || '/login',
     };
 
-    usePortalLogout(props);
+    isDemo() ? useDemoPortalLogout(props) : usePortalLogout(props);
 
     return PortalLogoutView();
   },

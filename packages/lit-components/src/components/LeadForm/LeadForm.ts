@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { LeadFormView } from './LeadFormView';
-import { useLeadForm } from './useLeadForm';
+import { useDemoLeadForm, useLeadForm } from './useLeadForm';
 
 export interface LeadFormProps {
   headerText: string;
@@ -26,7 +27,7 @@ export const LeadForm = useComponent<LeadFormProps>(
       programId: rawProps.programId || undefined,
     };
 
-    const hookProps = useLeadForm(props);
+    const hookProps = isDemo() ? useDemoLeadForm(props) : useLeadForm(props);
 
     return LeadFormView({ ...props, ...hookProps });
   },

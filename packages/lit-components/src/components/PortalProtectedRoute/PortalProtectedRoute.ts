@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalProtectedRouteView } from './PortalProtectedRouteView';
-import { usePortalProtectedRoute } from './usePortalProtectedRoute';
+import { useDemoPortalProtectedRoute, usePortalProtectedRoute } from './usePortalProtectedRoute';
 
 export interface PortalProtectedRouteProps {
   redirectUrl: string;
@@ -20,7 +21,7 @@ export const PortalProtectedRoute = useComponent<PortalProtectedRouteProps>(
       redirectUrl: rawProps.redirectUrl || '/login',
     };
 
-    const hookProps = usePortalProtectedRoute(props);
+    const hookProps = isDemo() ? useDemoPortalProtectedRoute(props) : usePortalProtectedRoute(props);
 
     return PortalProtectedRouteView({ ...props, ...hookProps });
   },

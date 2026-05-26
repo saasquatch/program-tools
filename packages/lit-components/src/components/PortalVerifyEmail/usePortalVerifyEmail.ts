@@ -14,3 +14,9 @@ export function usePortalVerifyEmail(_props: PortalVerifyEmailProps) {
 
   return { status, token };
 }
+
+export function useDemoPortalVerifyEmail(_props: PortalVerifyEmailProps): ReturnType<typeof usePortalVerifyEmail> {
+  const [status] = useState<'verifying' | 'success' | 'error'>('success');
+
+  return { status, token: 'demo-token' };
+}

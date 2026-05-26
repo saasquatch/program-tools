@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { EditProfileView } from './EditProfileView';
-import { useEditProfile } from './useEditProfile';
+import { useDemoEditProfile, useEditProfile } from './useEditProfile';
 
 export interface EditProfileProps {
   headerText: string;
@@ -28,7 +29,7 @@ export const EditProfile = useComponent<EditProfileProps>(
       successMessage: rawProps.successMessage || 'Profile updated successfully!',
     };
 
-    const hookProps = useEditProfile(props);
+    const hookProps = isDemo() ? useDemoEditProfile(props) : useEditProfile(props);
 
     return EditProfileView({ ...props, ...hookProps });
   },

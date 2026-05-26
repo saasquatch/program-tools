@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ReferralTableView } from './ReferralTableView';
-import { useReferralTable } from './useReferralTable';
+import { useDemoReferralTable, useReferralTable } from './useReferralTable';
 
 export interface ReferralTableProps {
   perPage: number;
@@ -56,7 +57,7 @@ export const ReferralTable = useComponent<ReferralTableProps>(
       emptyStateImage: typeof rawProps.emptyStateImage === 'string' ? rawProps.emptyStateImage : undefined,
     };
 
-    const hookProps = useReferralTable(props);
+    const hookProps = isDemo() ? useDemoReferralTable(props) : useReferralTable(props);
 
     return ReferralTableView({ ...props, ...hookProps });
   },

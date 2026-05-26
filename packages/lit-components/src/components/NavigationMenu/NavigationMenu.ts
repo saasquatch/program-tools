@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { NavigationMenuView } from './NavigationMenuView';
-import { useNavigationMenu } from './useNavigationMenu';
+import { useDemoNavigationMenu, useNavigationMenu } from './useNavigationMenu';
 
 export interface NavigationMenuProps {
   menuStyle?: 'tabs' | 'dropdown';
@@ -20,7 +21,7 @@ export const NavigationMenu = useComponent<NavigationMenuProps>(
       ...getProps(host),
     };
 
-    const hookProps = useNavigationMenu(props);
+    const hookProps = isDemo() ? useDemoNavigationMenu(props) : useNavigationMenu(props);
 
     return NavigationMenuView({ ...props, ...hookProps });
   },

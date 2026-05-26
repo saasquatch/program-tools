@@ -1,4 +1,4 @@
-import { isDemo, useQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useEffect, useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import { PortalProfileProps } from './PortalProfile';
@@ -18,7 +18,7 @@ const PROFILE_QUERY = gql`
 
 export function usePortalProfile(props: PortalProfileProps) {
   const user = useUserIdentity();
-  const shouldSkipQuery = !user?.jwt || isDemo();
+  const shouldSkipQuery = !user?.jwt;
   const { data, loading } = useQuery(PROFILE_QUERY, {}, shouldSkipQuery);
 
   const [firstName, setFirstName] = useState('');
@@ -69,6 +69,40 @@ export function usePortalProfile(props: PortalProfileProps) {
     error,
     success,
     loading,
+    saving,
+    onSubmit,
+  };
+}
+
+export function useDemoPortalProfile(_props: PortalProfileProps): ReturnType<typeof usePortalProfile> {
+  const [firstName, setFirstName] = useState('Joe');
+  const [lastName, setLastName] = useState('Smith');
+  const [email, setEmail] = useState('jsmith@example.com');
+  const [country, setCountry] = useState('CA');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setSaving(true);
+    setError('');
+    setSuccess(true);
+    setSaving(false);
+  }
+
+  return {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    country,
+    setCountry,
+    error,
+    success,
+    loading: false,
     saving,
     onSubmit,
   };

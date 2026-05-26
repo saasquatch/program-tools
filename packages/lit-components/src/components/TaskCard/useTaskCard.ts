@@ -34,3 +34,19 @@ export function useTaskCard(props: TaskCardProps): TaskCardHookResult {
 
   return { progress, isComplete, isExpired, onClick };
 }
+
+export function useDemoTaskCard(props: TaskCardProps): TaskCardHookResult {
+  const current = Number(props.progressCurrent) || 3;
+  const goal = Math.max(Number(props.progressGoal) || 5, 1);
+  const progress = Math.min((current / goal) * 100, 100);
+  const isComplete = props.cardStatus === 'complete' || current >= goal;
+  const isExpired = props.cardStatus === 'expired';
+
+  function onClick() {
+    if (props.buttonLink) {
+      window.open(props.buttonLink, '_blank');
+    }
+  }
+
+  return { progress, isComplete, isExpired, onClick };
+}

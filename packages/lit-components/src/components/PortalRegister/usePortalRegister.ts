@@ -57,3 +57,33 @@ export function usePortalRegister(props: PortalRegisterProps) {
     onLogin,
   };
 }
+
+export function useDemoPortalRegister(props: PortalRegisterProps): ReturnType<typeof usePortalRegister> {
+  const [email, setEmail] = useState('jane@example.com');
+  const [password, setPassword] = useState('Password123!');
+  const [confirmPassword, setConfirmPassword] = useState('Password123!');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+  }
+
+  function onLogin() {
+    setError('');
+  }
+
+  return {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword: props.showConfirmPassword ? confirmPassword : '',
+    setConfirmPassword,
+    error,
+    loading,
+    onSubmit,
+    onLogin,
+  };
+}

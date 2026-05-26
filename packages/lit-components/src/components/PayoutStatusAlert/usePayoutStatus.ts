@@ -49,3 +49,14 @@ export function usePayoutStatus(props: PayoutStatusAlertProps) {
 
   return { status, loading, variant: getVariant(), text: getText() };
 }
+
+export function useDemoPayoutStatus(
+  props: PayoutStatusAlertProps
+): ReturnType<typeof usePayoutStatus> {
+  return {
+    status: 'PENDING',
+    loading: false,
+    variant: 'warning',
+    text: props.pendingText,
+  };
+}

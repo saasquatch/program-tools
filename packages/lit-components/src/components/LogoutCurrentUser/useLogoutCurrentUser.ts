@@ -15,3 +15,9 @@ export function useLogoutCurrentUser() {
 
   return { onClick };
 }
+
+export function useDemoLogoutCurrentUser(): ReturnType<typeof useLogoutCurrentUser> {
+  return {
+    onClick: () => undefined,
+  };
+}

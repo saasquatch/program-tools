@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PayoutStatusAlertView } from './PayoutStatusAlertView';
-import { usePayoutStatus } from './usePayoutStatus';
+import { useDemoPayoutStatus, usePayoutStatus } from './usePayoutStatus';
 
 export interface PayoutStatusAlertProps {
   pendingText: string;
@@ -31,7 +32,7 @@ export const PayoutStatusAlert = useComponent<PayoutStatusAlertProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = usePayoutStatus(props);
+    const hookProps = isDemo() ? useDemoPayoutStatus(props) : usePayoutStatus(props);
 
     return PayoutStatusAlertView({ ...props, ...hookProps });
   },

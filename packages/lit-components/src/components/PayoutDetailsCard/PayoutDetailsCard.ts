@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PayoutDetailsCardView } from './PayoutDetailsCardView';
-import { usePayoutDetailsCard } from './usePayoutDetailsCard';
+import { useDemoPayoutDetailsCard, usePayoutDetailsCard } from './usePayoutDetailsCard';
 
 export interface PayoutDetailsCardProps {
   headerText: string;
@@ -26,7 +27,7 @@ export const PayoutDetailsCard = useComponent<PayoutDetailsCardProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = usePayoutDetailsCard(props);
+    const hookProps = isDemo() ? useDemoPayoutDetailsCard(props) : usePayoutDetailsCard(props);
 
     return PayoutDetailsCardView({ ...props, ...hookProps });
   },

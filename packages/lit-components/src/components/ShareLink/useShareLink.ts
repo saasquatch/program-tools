@@ -56,3 +56,16 @@ export function useShareLink(props: ShareLinkProps) {
 
   return { onClick, open, disabled: loading, loading, copyString, error: '' };
 }
+
+export function useDemoShareLink(props: ShareLinkProps) {
+  const [open, setOpen] = useState(false);
+  const copyString = 'https://www.example.com/sharelink/abc';
+
+  function onClick() {
+    navigator.clipboard.writeText(copyString);
+    setOpen(true);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
+  }
+
+  return { onClick, open, disabled: false, loading: false, copyString, error: '' };
+}

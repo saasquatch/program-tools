@@ -82,3 +82,24 @@ export function useReferralCode(props: ReferralCodeProps) {
     isCopied: false,
   };
 }
+
+export function useDemoReferralCode(props: ReferralCodeProps) {
+  const [open, setOpen] = useState(false);
+  const copyString = 'REFERRALCODE001';
+
+  function onClick() {
+    navigator.clipboard.writeText(copyString);
+    setOpen(true);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
+  }
+
+  return {
+    onClick,
+    open,
+    disabled: false,
+    loading: false,
+    copyString,
+    error: '',
+    isCopied: props.showNotificationText,
+  };
+}

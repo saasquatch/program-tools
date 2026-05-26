@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { DocusignFormView } from './DocusignFormView';
-import { useDocusignForm } from './useDocusignForm';
+import { useDemoDocusignForm, useDocusignForm } from './useDocusignForm';
 
 export interface DocusignFormProps {
   headerText: string;
@@ -32,7 +33,7 @@ export const DocusignForm = useComponent<DocusignFormProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = useDocusignForm(props);
+    const hookProps = isDemo() ? useDemoDocusignForm(props) : useDocusignForm(props);
 
     return DocusignFormView({ ...props, ...hookProps });
   },

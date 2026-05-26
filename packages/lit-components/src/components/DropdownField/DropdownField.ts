@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { DropdownFieldView } from './DropdownFieldView';
-import { useDropdownField } from './useDropdownField';
+import { useDropdownField, useDemoDropdownField } from './useDropdownField';
 
 export interface DropdownFieldOption {
   label: string;
@@ -48,7 +49,7 @@ export const DropdownField = useComponent<DropdownFieldProps>(
       fieldOptions: rawProps.fieldOptions || undefined,
     };
 
-    const hookProps = useDropdownField(props);
+    const hookProps = isDemo() ? useDemoDropdownField(props) : useDropdownField(props);
 
     return DropdownFieldView({ ...props, ...hookProps });
   },

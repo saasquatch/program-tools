@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { RewardsTableView } from './RewardsTableView';
-import { useRewardsTable } from './useRewardsTable';
+import { useDemoRewardsTable, useRewardsTable } from './useRewardsTable';
 
 export interface RewardsTableProps {
   perPage: number;
@@ -50,7 +51,7 @@ export const RewardsTable = useComponent<RewardsTableProps>(
       emptyStateText: typeof rawProps.emptyStateText === 'string' ? rawProps.emptyStateText : 'No rewards yet',
     };
 
-    const hookProps = useRewardsTable(props);
+    const hookProps = isDemo() ? useDemoRewardsTable(props) : useRewardsTable(props);
 
     return RewardsTableView({ ...props, ...hookProps });
   },

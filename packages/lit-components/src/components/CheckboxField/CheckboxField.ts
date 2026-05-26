@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { CheckboxFieldView } from './CheckboxFieldView';
-import { useCheckboxField } from './useCheckboxField';
+import { useCheckboxField, useDemoCheckboxField } from './useCheckboxField';
 
 export interface CheckboxFieldProps {
   fieldLabel: string;
@@ -41,7 +42,7 @@ export const CheckboxField = useComponent<CheckboxFieldProps>(
       fieldSize: (rawProps.fieldSize as CheckboxFieldProps['fieldSize']) || 'medium',
     };
 
-    const hookProps = useCheckboxField(props);
+    const hookProps = isDemo() ? useDemoCheckboxField(props) : useCheckboxField(props);
 
     return CheckboxFieldView({ ...props, ...hookProps });
   },

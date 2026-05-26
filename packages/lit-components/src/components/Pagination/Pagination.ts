@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PaginationView } from './PaginationView';
-import { usePagination } from './usePagination';
+import { useDemoPagination, usePagination } from './usePagination';
 
 export interface PaginationProps {
   currentPage?: number;
@@ -33,7 +34,7 @@ export const Pagination = useComponent<PaginationProps>(
       showNextLabel: typeof rawProps.showNextLabel === 'string' ? rawProps.showNextLabel : 'Next',
     };
 
-    const hookProps = usePagination(props);
+    const hookProps = isDemo() ? useDemoPagination(props) : usePagination(props);
 
     return PaginationView({ ...props, ...hookProps });
   },

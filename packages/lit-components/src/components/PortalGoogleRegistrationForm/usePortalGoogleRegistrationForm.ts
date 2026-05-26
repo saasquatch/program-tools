@@ -232,3 +232,68 @@ export function usePortalGoogleRegistrationForm(
     onLogin,
   };
 }
+
+export function useDemoPortalGoogleRegistrationForm(
+  props: PortalGoogleRegistrationFormProps
+): PortalGoogleRegistrationFormHookResult {
+  const [mode, setMode] = useState<RegistrationMode>('manual');
+  const [baseEmail, setBaseEmail] = useState('jane@example.com');
+  const [firstName, setFirstName] = useState('Jane');
+  const [lastName, setLastName] = useState('Doe');
+  const [email, setEmail] = useState('jane@example.com');
+  const [password, setPassword] = useState('Password123!');
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('Password123!');
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+
+  const passwordHelpText = buildPasswordHelpText(props, password);
+
+  async function onBaseSubmit(event: Event) {
+    event.preventDefault();
+    setValidationErrors({});
+    setEmail(baseEmail);
+    setError('');
+    setMode('manual');
+  }
+
+  function onGoogleInit(_event: Event) {
+    setValidationErrors({});
+    setError('');
+    setMode('google');
+  }
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setValidationErrors({});
+    setError('');
+  }
+
+  function onLogin() {
+    setError('');
+  }
+
+  return {
+    mode,
+    baseEmail,
+    setBaseEmail,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPasswordValue: props.confirmPassword ? confirmPasswordValue : '',
+    setConfirmPasswordValue,
+    validationErrors,
+    loading,
+    error,
+    passwordHelpText,
+    onBaseSubmit,
+    onGoogleInit,
+    onSubmit,
+    onLogin,
+  };
+}

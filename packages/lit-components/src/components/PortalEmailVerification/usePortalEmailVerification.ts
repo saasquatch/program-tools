@@ -22,3 +22,19 @@ export function usePortalEmailVerification(_props: PortalEmailVerificationProps)
 
   return { verified, token, resent, loading, onResend };
 }
+
+export function useDemoPortalEmailVerification(
+  _props: PortalEmailVerificationProps
+): ReturnType<typeof usePortalEmailVerification> {
+  const [verified] = useState(false);
+  const [resent, setResent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function onResend() {
+    setLoading(true);
+    setResent(true);
+    setLoading(false);
+  }
+
+  return { verified, token: '', resent, loading, onResend };
+}

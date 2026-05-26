@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalChangePasswordView } from './PortalChangePasswordView';
-import { usePortalChangePassword } from './usePortalChangePassword';
+import { useDemoPortalChangePassword, usePortalChangePassword } from './usePortalChangePassword';
 
 export interface PortalChangePasswordProps {
   currentPasswordLabel: string;
@@ -41,7 +42,7 @@ export const PortalChangePassword = useComponent<PortalChangePasswordProps>(
       passwordMinLength: parseNumber(rawProps.passwordMinLength, 8),
     };
 
-    const hookProps = usePortalChangePassword(props);
+    const hookProps = isDemo() ? useDemoPortalChangePassword(props) : usePortalChangePassword(props);
 
     return PortalChangePasswordView({ ...props, ...hookProps });
   },

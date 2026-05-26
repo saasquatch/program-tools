@@ -21,3 +21,17 @@ export function useWidgetVerification(props: WidgetVerificationProps) {
 
   return { verified, step, onVerify };
 }
+
+export function useDemoWidgetVerification(
+  _props: WidgetVerificationProps
+): ReturnType<typeof useWidgetVerification> {
+  const [verified, setVerified] = useState(false);
+  const [step, setStep] = useState<'input' | 'verifying' | 'success' | 'error'>('input');
+
+  function onVerify(_code: string) {
+    setVerified(true);
+    setStep('success');
+  }
+
+  return { verified, step, onVerify };
+}

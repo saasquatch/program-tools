@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { InstantAccessRegistrationView } from './InstantAccessRegistrationView';
-import { useInstantAccessRegistration } from './useInstantAccessRegistration';
+import { useDemoInstantAccessRegistration, useInstantAccessRegistration } from './useInstantAccessRegistration';
 
 export interface InstantAccessRegistrationProps {
   headerText: string;
@@ -30,7 +31,7 @@ export const InstantAccessRegistration = useComponent<InstantAccessRegistrationP
       programId: rawProps.programId || undefined,
     };
 
-    const hookProps = useInstantAccessRegistration(props);
+    const hookProps = isDemo() ? useDemoInstantAccessRegistration(props) : useInstantAccessRegistration(props);
 
     return InstantAccessRegistrationView({ ...props, ...hookProps });
   },

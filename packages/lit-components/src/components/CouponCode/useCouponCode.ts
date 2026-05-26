@@ -65,3 +65,24 @@ export function useCouponCode(props: CouponCodeProps) {
     isCopied: false,
   };
 }
+
+export function useDemoCouponCode(props: CouponCodeProps) {
+  const [open, setOpen] = useState(false);
+  const copyString = 'THANKSJANE125uv125';
+
+  function onClick() {
+    navigator.clipboard.writeText(copyString);
+    setOpen(true);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
+  }
+
+  return {
+    onClick,
+    open,
+    disabled: false,
+    loading: false,
+    copyString,
+    error: '',
+    isCopied: false,
+  };
+}

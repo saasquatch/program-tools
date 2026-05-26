@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ProgramMenuView } from './ProgramMenuView';
-import { useProgramMenu } from './useProgramMenu';
+import { useDemoProgramMenu, useProgramMenu } from './useProgramMenu';
 
 export interface ProgramMenuItem {
   programId: string;
@@ -27,7 +28,7 @@ export const ProgramMenu = useComponent<ProgramMenuProps>(
       ...getProps(host),
     };
 
-    const hookProps = useProgramMenu(props);
+    const hookProps = isDemo() ? useDemoProgramMenu(props) : useProgramMenu(props);
 
     return ProgramMenuView({ ...props, ...hookProps });
   },

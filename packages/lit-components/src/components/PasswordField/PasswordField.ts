@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PasswordFieldView } from './PasswordFieldView';
-import { usePasswordField } from './usePasswordField';
+import { usePasswordField, useDemoPasswordField } from './usePasswordField';
 
 export interface PasswordFieldProps {
   fieldLabel: string;
@@ -52,7 +53,7 @@ export const PasswordField = useComponent<PasswordFieldProps>(
       showToggle: getBooleanAttribute(host, 'show-toggle', true),
     };
 
-    const hookProps = usePasswordField(props);
+    const hookProps = isDemo() ? useDemoPasswordField(props) : usePasswordField(props);
 
     return PasswordFieldView({ ...props, ...hookProps });
   },

@@ -12,3 +12,9 @@ export function usePortalLogout(props: PortalLogoutProps) {
   logout();
   return { logout };
 }
+
+export function useDemoPortalLogout(_props: PortalLogoutProps): ReturnType<typeof usePortalLogout> {
+  return {
+    logout: () => undefined,
+  };
+}

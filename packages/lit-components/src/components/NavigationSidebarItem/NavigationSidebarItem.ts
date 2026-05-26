@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { NavigationSidebarItemView } from './NavigationSidebarItemView';
-import { useNavigationSidebarItem } from './useNavigationSidebarItem';
+import { useDemoNavigationSidebarItem, useNavigationSidebarItem } from './useNavigationSidebarItem';
 
 export interface NavigationSidebarItemProps {
   label: string;
@@ -27,7 +28,7 @@ export const NavigationSidebarItem = useComponent<NavigationSidebarItemProps>(
       disabled: host.hasAttribute('disabled') && host.getAttribute('disabled') !== 'false',
     };
 
-    const hookProps = useNavigationSidebarItem(props);
+    const hookProps = isDemo() ? useDemoNavigationSidebarItem(props) : useNavigationSidebarItem(props);
 
     return NavigationSidebarItemView({ ...props, ...hookProps });
   },

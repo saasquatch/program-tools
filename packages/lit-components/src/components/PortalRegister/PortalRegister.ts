@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalRegisterView } from './PortalRegisterView';
-import { usePortalRegister } from './usePortalRegister';
+import { useDemoPortalRegister, usePortalRegister } from './usePortalRegister';
 
 export interface PortalRegisterProps {
   emailLabel: string;
@@ -48,7 +49,7 @@ export const PortalRegister = useComponent<PortalRegisterProps>(
       passwordMinLength: parseNumber(rawProps.passwordMinLength, 8),
     };
 
-    const hookProps = usePortalRegister(props);
+    const hookProps = isDemo() ? useDemoPortalRegister(props) : usePortalRegister(props);
 
     return PortalRegisterView({ ...props, ...hookProps });
   },

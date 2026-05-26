@@ -177,3 +177,16 @@ export function useGoogleSignIn(host: HTMLElement, props: GoogleSignInProps): Go
     onFallbackClick: () => emitInitComplete(host, { credential: null, clientId }),
   };
 }
+
+export function useDemoGoogleSignIn(
+  host: HTMLElement,
+  props: GoogleSignInProps
+): GoogleSignInHookResult {
+  const fallbackLabel = getFallbackLabel(props.text);
+
+  return {
+    showFallbackButton: true,
+    fallbackLabel,
+    onFallbackClick: () => emitInitComplete(host, { credential: null, clientId: props.clientId || 'demo-client-id' }),
+  };
+}

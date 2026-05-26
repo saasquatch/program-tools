@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { NameFieldsView } from './NameFieldsView';
-import { useNameFields } from './useNameFields';
+import { useNameFields, useDemoNameFields } from './useNameFields';
 
 export interface NameFieldsProps {
   firstNameLabel: string;
@@ -43,7 +44,7 @@ export const NameFields = useComponent<NameFieldsProps>(
       layout: (rawProps.layout as NameFieldsProps['layout']) || 'horizontal',
     };
 
-    const hookProps = useNameFields(props);
+    const hookProps = isDemo() ? useDemoNameFields(props) : useNameFields(props);
 
     return NameFieldsView({ ...props, ...hookProps });
   },

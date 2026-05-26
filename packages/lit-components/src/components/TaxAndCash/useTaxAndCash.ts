@@ -41,3 +41,17 @@ export function useTaxAndCash(props: TaxAndCashProps) {
     payoutStatus: publisher?.payoutStatus || 'NOT_STARTED',
   };
 }
+
+export function useDemoTaxAndCash(props: TaxAndCashProps): ReturnType<typeof useTaxAndCash> {
+  const [currentStep, setCurrentStep] = useState(props.step || 'dashboard');
+
+  return {
+    currentStep,
+    setCurrentStep,
+    loading: false,
+    status: 'IN_PROGRESS',
+    taxFormStatus: 'PENDING',
+    bankingInfoStatus: 'NOT_STARTED',
+    payoutStatus: 'NOT_STARTED',
+  };
+}

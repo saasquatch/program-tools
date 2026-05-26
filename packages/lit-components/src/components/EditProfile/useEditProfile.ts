@@ -62,3 +62,32 @@ export function useEditProfile(_props: EditProfileProps) {
     onSubmit,
   };
 }
+
+export function useDemoEditProfile(_props: EditProfileProps): ReturnType<typeof useEditProfile> {
+  const [firstName, setFirstName] = useState('Joe');
+  const [lastName, setLastName] = useState('Smith');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setSaving(true);
+    setError('');
+    setSuccess(true);
+    setSaving(false);
+  }
+
+  return {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email: 'jsmith@example.com',
+    error,
+    success,
+    loading: false,
+    saving,
+    onSubmit,
+  };
+}

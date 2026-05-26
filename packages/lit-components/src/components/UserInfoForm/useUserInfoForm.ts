@@ -45,3 +45,34 @@ export function useUserInfoForm(props: UserInfoFormProps) {
     onSubmit,
   };
 }
+
+export function useDemoUserInfoForm(_props: UserInfoFormProps): ReturnType<typeof useUserInfoForm> {
+  const [firstName, setFirstName] = useState('Jane');
+  const [lastName, setLastName] = useState('Doe');
+  const [email, setEmail] = useState('jane@example.com');
+  const [phone, setPhone] = useState('+1 555 123 4567');
+  const [country, setCountry] = useState('United States');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+  }
+
+  return {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    country,
+    setCountry,
+    error,
+    loading,
+    onSubmit,
+  };
+}

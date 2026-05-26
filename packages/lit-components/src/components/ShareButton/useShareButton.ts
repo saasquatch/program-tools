@@ -88,3 +88,51 @@ export function useShareButton(props: ShareButtonProps) {
 
   return { onClick, loading, disabled: loading, shareLink };
 }
+
+export function useDemoShareButton(props: ShareButtonProps) {
+  const medium = props.medium || 'facebook';
+  const shareLink = 'https://www.example.com/sharelink/abc';
+  const messageLink = shareLink;
+
+  function getShareUrl() {
+    const text = props.messageText || `Check this out: ${shareLink}`;
+    const subject = props.emailSubject || 'Check this out!';
+    const body = props.emailBody || text;
+
+    switch (medium) {
+      case 'facebook':
+        return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareLink)}`;
+      case 'twitter':
+        return `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareLink)}&text=${encodeURIComponent(text)}`;
+      case 'email':
+        return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      case 'sms':
+        return `sms:?&body=${encodeURIComponent(text)}`;
+      case 'linkedin':
+        return `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareLink)}`;
+      case 'pinterest':
+        return `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(shareLink)}&description=${encodeURIComponent(text)}`;
+      case 'whatsapp':
+        return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      case 'linemessenger':
+        return `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+      case 'fbmessenger':
+        return `fb-messenger://share/?link=${encodeURIComponent(shareLink)}`;
+      case 'reminder':
+        return messageLink;
+      default:
+        return shareLink;
+    }
+  }
+
+  function onClick() {
+    const url = getShareUrl();
+    if (medium === 'email' || medium === 'sms') {
+      window.location.href = url;
+    } else {
+      window.open(url, '_blank', 'width=600,height=400');
+    }
+  }
+
+  return { onClick, loading: false, disabled: false, shareLink };
+}

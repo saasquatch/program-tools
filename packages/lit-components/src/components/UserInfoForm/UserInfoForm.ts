@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { UserInfoFormView } from './UserInfoFormView';
-import { useUserInfoForm } from './useUserInfoForm';
+import { useDemoUserInfoForm, useUserInfoForm } from './useUserInfoForm';
 
 export interface UserInfoFormProps {
   headerText: string;
@@ -34,7 +35,7 @@ export const UserInfoForm = useComponent<UserInfoFormProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = useUserInfoForm(props);
+    const hookProps = isDemo() ? useDemoUserInfoForm(props) : useUserInfoForm(props);
 
     return UserInfoFormView({ ...props, ...hookProps });
   },

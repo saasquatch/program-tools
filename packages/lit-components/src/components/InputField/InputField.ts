@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { InputFieldView } from './InputFieldView';
-import { useInputField } from './useInputField';
+import { useInputField, useDemoInputField } from './useInputField';
 
 export interface InputFieldProps {
   fieldLabel: string;
@@ -58,7 +59,7 @@ export const InputField = useComponent<InputFieldProps>(
       fieldSize: (rawProps.fieldSize as InputFieldProps['fieldSize']) || 'medium',
     };
 
-    const hookProps = useInputField(props);
+    const hookProps = isDemo() ? useDemoInputField(props) : useInputField(props);
 
     return InputFieldView({ ...props, ...hookProps });
   },

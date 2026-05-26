@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { BankingInfoFormView } from './BankingInfoFormView';
-import { useBankingInfoForm } from './useBankingInfoForm';
+import { useDemoBankingInfoForm, useBankingInfoForm } from './useBankingInfoForm';
 
 export interface BankingInfoFormProps {
   headerText: string;
@@ -35,7 +36,7 @@ export const BankingInfoForm = useComponent<BankingInfoFormProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = useBankingInfoForm(props);
+    const hookProps = isDemo() ? useDemoBankingInfoForm(props) : useBankingInfoForm(props);
 
     return BankingInfoFormView({ ...props, ...hookProps });
   },

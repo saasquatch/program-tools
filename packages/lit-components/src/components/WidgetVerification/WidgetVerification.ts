@@ -1,6 +1,7 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
-import { useWidgetVerification } from './useWidgetVerification';
+import { useDemoWidgetVerification, useWidgetVerification } from './useWidgetVerification';
 import { WidgetVerificationView } from './WidgetVerificationView';
 
 export interface WidgetVerificationProps {
@@ -24,7 +25,7 @@ export const WidgetVerification = useComponent<WidgetVerificationProps>(
       descriptionText: rawProps.descriptionText || '',
     };
 
-    const hookProps = useWidgetVerification(props);
+    const hookProps = isDemo() ? useDemoWidgetVerification(props) : useWidgetVerification(props);
 
     return WidgetVerificationView({ ...props, ...hookProps });
   },

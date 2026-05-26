@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { QRCodeView } from './QRCodeView';
-import { useQRCode } from './useQRCode';
+import { useDemoQRCode, useQRCode } from './useQRCode';
 
 export interface QRCodeProps {
   size: number;
@@ -26,7 +27,7 @@ export const QRCode = useComponent<QRCodeProps>(
       foregroundColor: rawProps.foregroundColor || '#000000',
     };
 
-    const hookProps = useQRCode(props);
+    const hookProps = isDemo() ? useDemoQRCode(props) : useQRCode(props);
 
     return QRCodeView({ ...props, ...hookProps });
   },

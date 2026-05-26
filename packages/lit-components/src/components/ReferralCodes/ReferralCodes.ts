@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ReferralCodesView } from './ReferralCodesView';
-import { useReferralCodes } from './useReferralCodes';
+import { useDemoReferralCodes, useReferralCodes } from './useReferralCodes';
 
 export interface ReferralCodesProps {
   programId?: string;
@@ -19,7 +20,7 @@ export const ReferralCodes = useComponent<ReferralCodesProps>(
       ...getProps(host),
     };
 
-    const hookProps = useReferralCodes(props);
+    const hookProps = isDemo() ? useDemoReferralCodes(props) : useReferralCodes(props);
 
     return ReferralCodesView({ ...props, ...hookProps });
   },

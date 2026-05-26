@@ -52,3 +52,16 @@ export function useShareCode(props: ShareCodeProps) {
 
   return { onClick, open, disabled: loading, loading, copyString, error: '' };
 }
+
+export function useDemoShareCode(props: ShareCodeProps) {
+  const [open, setOpen] = useState(false);
+  const copyString = 'SHARECODE001';
+
+  function onClick() {
+    navigator.clipboard.writeText(copyString);
+    setOpen(true);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
+  }
+
+  return { onClick, open, disabled: false, loading: false, copyString, error: '' };
+}

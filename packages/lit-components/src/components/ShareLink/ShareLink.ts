@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ShareLinkView } from './ShareLinkView';
-import { useShareLink } from './useShareLink';
+import { useDemoShareLink, useShareLink } from './useShareLink';
 
 export interface ShareLinkProps {
   tooltipText: string;
@@ -35,7 +36,7 @@ export const ShareLink = useComponent<ShareLinkProps>(
       ...getProps(host),
     };
 
-    const hookProps = useShareLink(props);
+    const hookProps = isDemo() ? useDemoShareLink(props) : useShareLink(props);
 
     return ShareLinkView({ ...props, ...hookProps });
   },

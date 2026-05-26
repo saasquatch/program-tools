@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { LogoutCurrentUserView } from './LogoutCurrentUserView';
-import { useLogoutCurrentUser } from './useLogoutCurrentUser';
+import { useDemoLogoutCurrentUser, useLogoutCurrentUser } from './useLogoutCurrentUser';
 
 export interface LogoutCurrentUserProps {
   buttonText: string;
@@ -29,7 +30,7 @@ export const LogoutCurrentUser = useComponent<LogoutCurrentUserProps>(
       size: size === 'small' || size === 'large' ? size : 'medium',
     };
 
-    const hookProps = useLogoutCurrentUser();
+    const hookProps = isDemo() ? useDemoLogoutCurrentUser() : useLogoutCurrentUser();
 
     return LogoutCurrentUserView({ ...props, ...hookProps });
   },

@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalRegistrationFormView } from './PortalRegistrationFormView';
-import { usePortalRegistrationForm } from './usePortalRegistrationForm';
+import { useDemoPortalRegistrationForm, usePortalRegistrationForm } from './usePortalRegistrationForm';
 
 export interface PortalRegistrationFormProps {
   emailLabel: string;
@@ -52,7 +53,7 @@ export const PortalRegistrationForm = useComponent<PortalRegistrationFormProps>(
       termsUrl: rawProps.termsUrl || undefined,
     };
 
-    const hookProps = usePortalRegistrationForm(props);
+    const hookProps = isDemo() ? useDemoPortalRegistrationForm(props) : usePortalRegistrationForm(props);
 
     return PortalRegistrationFormView({ ...props, ...hookProps });
   },

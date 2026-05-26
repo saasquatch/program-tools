@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { InvoiceTableView } from './InvoiceTableView';
-import { useInvoiceTable } from './useInvoiceTable';
+import { useDemoInvoiceTable, useInvoiceTable } from './useInvoiceTable';
 
 export interface InvoiceTableProps {
   perPage: number;
@@ -41,7 +42,7 @@ export const InvoiceTable = useComponent<InvoiceTableProps>(
       emptyStateText: typeof rawProps.emptyStateText === 'string' ? rawProps.emptyStateText : 'No invoices yet',
     };
 
-    const hookProps = useInvoiceTable(props);
+    const hookProps = isDemo() ? useDemoInvoiceTable(props) : useInvoiceTable(props);
 
     return InvoiceTableView({ ...props, ...hookProps });
   },

@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { ShareButtonView } from './ShareButtonView';
-import { useShareButton } from './useShareButton';
+import { useDemoShareButton, useShareButton } from './useShareButton';
 
 export type ShareButtonMedium =
   | 'facebook'
@@ -50,7 +51,7 @@ export const ShareButton = useComponent<ShareButtonProps>(
       ...getProps(host),
     };
 
-    const hookProps = useShareButton(props);
+    const hookProps = isDemo() ? useDemoShareButton(props) : useShareButton(props);
 
     return ShareButtonView({ ...props, ...hookProps });
   },

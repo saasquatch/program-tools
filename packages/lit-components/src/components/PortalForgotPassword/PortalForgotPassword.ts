@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalForgotPasswordView } from './PortalForgotPasswordView';
-import { usePortalForgotPassword } from './usePortalForgotPassword';
+import { useDemoPortalForgotPassword, usePortalForgotPassword } from './usePortalForgotPassword';
 
 export interface PortalForgotPasswordProps {
   emailLabel: string;
@@ -36,7 +37,7 @@ export const PortalForgotPassword = useComponent<PortalForgotPasswordProps>(
           : 'Check your email for a reset link.',
     };
 
-    const hookProps = usePortalForgotPassword(props);
+    const hookProps = isDemo() ? useDemoPortalForgotPassword(props) : usePortalForgotPassword(props);
 
     return PortalForgotPasswordView({ ...props, ...hookProps });
   },

@@ -38,3 +38,26 @@ export function useLeadForm(props: LeadFormProps) {
 
   return { formData, updateField, error, loading, success, onSubmit };
 }
+
+export function useDemoLeadForm(_props: LeadFormProps): ReturnType<typeof useLeadForm> {
+  const [formData, setFormData] = useState<Record<string, string>>({
+    firstName: 'Jane',
+    lastName: 'Doe',
+    email: 'jane@example.com',
+  });
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  function updateField(name: string, value: string) {
+    setFormData({ ...formData, [name]: value });
+  }
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+    setSuccess(true);
+  }
+
+  return { formData, updateField, error, loading, success, onSubmit };
+}

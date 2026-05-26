@@ -63,3 +63,39 @@ export function usePortalRegistrationForm(props: PortalRegistrationFormProps) {
     onSubmit,
   };
 }
+
+export function useDemoPortalRegistrationForm(
+  props: PortalRegistrationFormProps
+): ReturnType<typeof usePortalRegistrationForm> {
+  const [firstName, setFirstName] = useState('Jane');
+  const [lastName, setLastName] = useState('Doe');
+  const [email, setEmail] = useState('jane@example.com');
+  const [password, setPassword] = useState('Password123!');
+  const [confirmPassword, setConfirmPassword] = useState('Password123!');
+  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(Boolean(props.termsText));
+
+  async function onSubmit(event: Event) {
+    event.preventDefault();
+    setError('');
+  }
+
+  return {
+    firstName: props.showNameFields ? firstName : '',
+    setFirstName,
+    lastName: props.showNameFields ? lastName : '',
+    setLastName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword: props.showConfirmPassword ? confirmPassword : '',
+    setConfirmPassword,
+    error,
+    loading,
+    termsAccepted,
+    setTermsAccepted,
+    onSubmit,
+  };
+}

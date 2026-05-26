@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalResetPasswordView } from './PortalResetPasswordView';
-import { usePortalResetPassword } from './usePortalResetPassword';
+import { useDemoPortalResetPassword, usePortalResetPassword } from './usePortalResetPassword';
 
 export interface PortalResetPasswordProps {
   passwordLabel: string;
@@ -40,7 +41,7 @@ export const PortalResetPassword = useComponent<PortalResetPasswordProps>(
       passwordMinLength: parseNumber(rawProps.passwordMinLength, 8),
     };
 
-    const hookProps = usePortalResetPassword(props);
+    const hookProps = isDemo() ? useDemoPortalResetPassword(props) : usePortalResetPassword(props);
 
     return PortalResetPasswordView({ ...props, ...hookProps });
   },

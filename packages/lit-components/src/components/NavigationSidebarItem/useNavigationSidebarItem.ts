@@ -15,3 +15,11 @@ export function useNavigationSidebarItem(props: NavigationSidebarItemProps) {
 
   return { onClick };
 }
+
+export function useDemoNavigationSidebarItem(
+  _props: NavigationSidebarItemProps
+): ReturnType<typeof useNavigationSidebarItem> {
+  return {
+    onClick: () => undefined,
+  };
+}

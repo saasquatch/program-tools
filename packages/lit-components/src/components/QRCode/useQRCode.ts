@@ -27,3 +27,13 @@ export function useQRCode(props: QRCodeProps) {
 
   return { qrUrl, shareLink, loading };
 }
+
+export function useDemoQRCode(props: QRCodeProps) {
+  const shareLink = 'https://www.example.com/sharelink/abc';
+  const size = Number(props.size) || 200;
+  const bg = (props.backgroundColor || '#ffffff').replace('#', '');
+  const fg = (props.foregroundColor || '#000000').replace('#', '');
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(shareLink)}&bgcolor=${bg}&color=${fg}`;
+
+  return { qrUrl, shareLink, loading: false };
+}

@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { IndirectTaxFormView } from './IndirectTaxFormView';
-import { useIndirectTaxForm } from './useIndirectTaxForm';
+import { useDemoIndirectTaxForm, useIndirectTaxForm } from './useIndirectTaxForm';
 
 export interface IndirectTaxFormProps {
   headerText: string;
@@ -28,7 +29,7 @@ export const IndirectTaxForm = useComponent<IndirectTaxFormProps>(
       programId: typeof rawProps.programId === 'string' ? rawProps.programId : undefined,
     };
 
-    const hookProps = useIndirectTaxForm(props);
+    const hookProps = isDemo() ? useDemoIndirectTaxForm(props) : useIndirectTaxForm(props);
 
     return IndirectTaxFormView({ ...props, ...hookProps });
   },

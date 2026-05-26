@@ -65,3 +65,53 @@ export function useReferralTable(props: ReferralTableProps) {
     empty: !loading && referrals.length === 0,
   };
 }
+
+export function useDemoReferralTable(props: ReferralTableProps): ReturnType<typeof useReferralTable> {
+  const perPage = Number(props.perPage) || 4;
+  const [currentPage, setCurrentPage] = useState(0);
+  const mockReferrals = [
+    {
+      dateReferralStarted: '2024-01-15',
+      dateConverted: '2024-01-20',
+      referredUser: { firstName: 'Jane', lastName: 'Doe' },
+      rewards: [{ prettyValue: '$10.00', type: 'CREDIT', statuses: ['AVAILABLE'] }],
+      dateModerated: null,
+    },
+    {
+      dateReferralStarted: '2024-02-10',
+      dateConverted: null,
+      referredUser: { firstName: 'Bob', lastName: 'Smith' },
+      rewards: [],
+      dateModerated: null,
+    },
+    {
+      dateReferralStarted: '2024-03-05',
+      dateConverted: '2024-03-10',
+      referredUser: { firstName: 'Alice', lastName: 'Jones' },
+      rewards: [{ prettyValue: '$5.00', type: 'CREDIT', statuses: ['AVAILABLE'] }],
+      dateModerated: null,
+    },
+  ];
+  const referrals = mockReferrals.slice(currentPage * perPage, (currentPage + 1) * perPage);
+  const totalCount = mockReferrals.length;
+  const totalPages = Math.ceil(totalCount / perPage);
+
+  function nextPage() {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  }
+
+  function prevPage() {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  }
+
+  return {
+    referrals,
+    loading: false,
+    totalCount,
+    totalPages,
+    currentPage,
+    nextPage,
+    prevPage,
+    empty: referrals.length === 0,
+  };
+}

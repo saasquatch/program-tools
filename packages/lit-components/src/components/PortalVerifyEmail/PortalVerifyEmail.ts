@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalVerifyEmailView } from './PortalVerifyEmailView';
-import { usePortalVerifyEmail } from './usePortalVerifyEmail';
+import { useDemoPortalVerifyEmail, usePortalVerifyEmail } from './usePortalVerifyEmail';
 
 export interface PortalVerifyEmailProps {
   verifyingText: string;
@@ -26,7 +27,7 @@ export const PortalVerifyEmail = useComponent<PortalVerifyEmailProps>(
       redirectUrl: rawProps.redirectUrl || '/',
     };
 
-    const hookProps = usePortalVerifyEmail(props);
+    const hookProps = isDemo() ? useDemoPortalVerifyEmail(props) : usePortalVerifyEmail(props);
 
     return PortalVerifyEmailView({ ...props, ...hookProps });
   },

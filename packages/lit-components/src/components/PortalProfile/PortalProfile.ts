@@ -1,7 +1,8 @@
+import { isDemo } from '@saasquatch/component-boilerplate';
 import { getProps } from '../../helpers';
 import { useComponent } from '../../hooks/useComponent';
 import { PortalProfileView } from './PortalProfileView';
-import { usePortalProfile } from './usePortalProfile';
+import { useDemoPortalProfile, usePortalProfile } from './usePortalProfile';
 
 export interface PortalProfileProps {
   firstNameLabel: string;
@@ -38,7 +39,7 @@ export const PortalProfile = useComponent<PortalProfileProps>(
       countryLabel: typeof rawProps.countryLabel === 'string' ? rawProps.countryLabel : 'Country',
     };
 
-    const hookProps = usePortalProfile(props);
+    const hookProps = isDemo() ? useDemoPortalProfile(props) : usePortalProfile(props);
 
     return PortalProfileView({ ...props, ...hookProps });
   },
