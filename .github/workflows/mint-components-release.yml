@@ -13,7 +13,6 @@ jobs:
       contents: write # Push commits to edit version numbers/changelogs
       id-token: write # GCP workload identity federation
       pull-requests: write # Open a PR
-      issues: read # ??
 
     defaults:
       run:

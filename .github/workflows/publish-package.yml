@@ -15,13 +15,16 @@ on:
         # type: choice isn't supported by workflow_call
         type: string
 
+permissions: {}
+
 jobs:
   publish:
+    name: "Publish package"
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
-      id-token: write
+      contents: write # Create commit & tag for edited version number in package.json etc
+      id-token: write # GCP workload identity federation
 
     env:
       PACKAGE: ${{ inputs.package }}
@@ -76,18 +79,20 @@ jobs:
               "publish-helper",
             ];
 
+            const allowedIncrementTypes = [
+              "major",
+              "minor",
+              "patch",
+              "prerelease",
+            ];
+
             const package = process.env.PACKAGE;
             if (!allowedPackages.includes(package)) {
-              throw new Error(`"${package}" is not in the list of allowed packages.`);
+              throw new Error(`"${package}" is not in the list of allowed packages`);
             }
 
             const incrementType = process.env.INCREMENT_TYPE;
-
-            if (
-              !["major", "minor", "patch", "prerelease"].some(
-                (kind) => incrementType === kind,
-              )
-            ) {
+            if (!allowedIncrementTypes.includes(incrementType)) {
               throw new Error(`Invalid semver increment type "${incrementType}" specified`);
             }
 
@@ -111,6 +116,7 @@ jobs:
 
             return newVersion;
 
+      # This can't be combined with the previous step because each one can only have one output
       - name: Extract package name
         id: extract-package-name
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
