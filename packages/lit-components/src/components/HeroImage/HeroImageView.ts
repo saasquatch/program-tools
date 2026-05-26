@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { HeroImageProps } from './HeroImage';
 
 function renderButton(props: HeroImageProps) {
@@ -6,16 +7,13 @@ function renderButton(props: HeroImageProps) {
     return '';
   }
 
-  return html`
-    <sl-button
-      variant="primary"
-      href="${props.buttonLink || ''}"
-      ?disabled="${!props.buttonLink}"
-      ?pill="${props.layout === 'overlay'}"
-    >
-      ${props.buttonText}
-    </sl-button>
-  `;
+  return UI.Button({
+    variant: 'primary',
+    href: props.buttonLink || '',
+    disabled: !props.buttonLink,
+    pill: props.layout === 'overlay',
+    children: props.buttonText,
+  });
 }
 
 export function HeroImageView(props: HeroImageProps) {

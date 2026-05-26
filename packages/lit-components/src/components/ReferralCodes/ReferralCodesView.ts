@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { ReferralCodesProps } from './ReferralCodes';
 import { useReferralCodes } from './useReferralCodes';
 
@@ -15,7 +16,7 @@ export function ReferralCodesView(props: ReferralCodesProps & ReturnType<typeof 
       }
     </style>
     <div class="referral-codes-container">
-      ${props.loading ? html`<sl-spinner></sl-spinner>` : html`<slot></slot>`}
+      ${props.loading ? html`${UI.Spinner({})}` : html`<slot></slot>`}
     </div>
   `;
 }

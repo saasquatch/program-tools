@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
+import type { ButtonVariant } from '../../ui/types';
 import { CouponCodeProps } from './CouponCode';
 import { useCouponCode } from './useCouponCode';
 
@@ -86,37 +88,31 @@ export function CouponCodeView(props: CouponCodeProps & ReturnType<typeof useCou
     : props.tooltipCopyText || props.copyButtonLabel;
 
   const copyButton = html`
-    <sl-tooltip
-      trigger="manual"
-      content="${tooltipContent}"
-      placement="${tooltipPlacement}"
-      ?disabled="${disabled}"
-      ?open="${props.open}"
-      skidding="${props.buttonStyle === 'icon' ? -5 : 0}"
-      slot="suffix"
-    >
-      ${buttonStyle === 'icon'
-        ? html`
-            <sl-icon-button
-              exportparts="base: icon-button-base"
-              @click="${() => props.onClick?.()}"
-              name="files"
-              ?disabled="${disabled}"
-            ></sl-icon-button>
-          `
-        : html`
-            <sl-button
-              exportparts="base: ${props.buttonType || 'primary'}button-base"
-              @click="${() => props.onClick?.()}"
-              size="medium"
-              style="${buttonStyle === 'button-below' ? 'width: 100%' : ''}"
-              ?disabled="${disabled}"
-              variant="${props.buttonType || 'primary'}"
-            >
-              ${props.copyButtonLabel || 'Copy Code'}
-            </sl-button>
-          `}
-    </sl-tooltip>
+    ${UI.Tooltip({
+      trigger: 'manual',
+      content: tooltipContent,
+      placement: tooltipPlacement,
+      disabled: disabled,
+      open: props.open,
+      skidding: props.buttonStyle === 'icon' ? -5 : 0,
+      slot: 'suffix',
+      children: buttonStyle === 'icon'
+        ? UI.IconButton({
+            exportparts: 'base: icon-button-base',
+            onClick: () => props.onClick?.(),
+            name: 'files',
+            disabled: disabled,
+          })
+        : UI.Button({
+            exportparts: `base: ${props.buttonType || 'primary'}button-base`,
+            onClick: () => props.onClick?.(),
+            size: 'medium',
+            style: buttonStyle === 'button-below' ? 'width: 100%' : '',
+            disabled: disabled,
+            variant: (props.buttonType || 'primary') as ButtonVariant,
+            children: props.copyButtonLabel || 'Copy Code',
+          }),
+    })}
   `;
 
   return html`
@@ -129,14 +125,13 @@ export function CouponCodeView(props: CouponCodeProps & ReturnType<typeof useCou
         class="container-style"
         style="flex-direction: ${buttonStyle === 'button-below' ? 'column' : 'row'}"
       >
-        <sl-input
-          value="${props.loading ? 'Loading...' : props.copyString}"
-          readonly
-          ?disabled="${disabled}"
-        >
-          ${buttonStyle === 'icon' ? copyButton : ''}
-          ${props.error ? html`<p slot="help-text" class="error-text">${props.error}</p>` : ''}
-        </sl-input>
+        ${UI.Input({
+          value: props.loading ? 'Loading...' : props.copyString,
+          readonly: true,
+          disabled: disabled,
+          suffix: buttonStyle === 'icon' ? copyButton : undefined,
+          error: props.error ? html`<p class="error-text">${props.error}</p>` : undefined,
+        })}
         ${buttonStyle === 'button-outside' || buttonStyle === 'button-below' ? copyButton : ''}
       </div>
     </div>

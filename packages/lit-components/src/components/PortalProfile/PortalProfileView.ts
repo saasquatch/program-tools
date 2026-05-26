@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PortalProfileProps } from './PortalProfile';
 import { usePortalProfile } from './usePortalProfile';
 
@@ -40,42 +41,19 @@ export function PortalProfileView(props: PortalProfileProps & ReturnType<typeof 
     </style>
     <div class="profile-container" part="sqm-base">
       <h2 class="profile-header">${props.headerText}</h2>
-      ${props.loading ? html`<sl-alert variant="primary" open>Loading profile...</sl-alert>` : ''}
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
-      ${props.success ? html`<sl-alert variant="success" open>Profile updated successfully.</sl-alert>` : ''}
+      ${props.loading ? html`${UI.Alert({ variant: 'primary', open: true, children: 'Loading profile...' })}` : ''}
+      ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
+      ${props.success ? html`${UI.Alert({ variant: 'success', open: true, children: 'Profile updated successfully.' })}` : ''}
       <form @submit="${props.onSubmit}">
         <div class="name-row">
-          <sl-input
-            label="${props.firstNameLabel}"
-            value="${props.firstName}"
-            @sl-input="${(event: Event) => props.setFirstName(getInputValue(event))}"
-            ?disabled="${props.loading || props.saving}"
-          ></sl-input>
-          <sl-input
-            label="${props.lastNameLabel}"
-            value="${props.lastName}"
-            @sl-input="${(event: Event) => props.setLastName(getInputValue(event))}"
-            ?disabled="${props.loading || props.saving}"
-          ></sl-input>
+          ${UI.Input({ label: props.firstNameLabel, value: props.firstName, onInput: (event: Event) => props.setFirstName(getInputValue(event)), disabled: props.loading || props.saving })}
+          ${UI.Input({ label: props.lastNameLabel, value: props.lastName, onInput: (event: Event) => props.setLastName(getInputValue(event)), disabled: props.loading || props.saving })}
         </div>
-        <sl-input
-          label="${props.emailLabel}"
-          type="email"
-          value="${props.email}"
-          @sl-input="${(event: Event) => props.setEmail(getInputValue(event))}"
-          ?disabled="${props.loading || props.saving}"
-        ></sl-input>
+        ${UI.Input({ label: props.emailLabel, type: 'email', value: props.email, onInput: (event: Event) => props.setEmail(getInputValue(event)), disabled: props.loading || props.saving })}
         ${props.showCountry
-          ? html`<sl-input
-              label="${props.countryLabel}"
-              value="${props.country}"
-              @sl-input="${(event: Event) => props.setCountry(getInputValue(event))}"
-              ?disabled="${props.loading || props.saving}"
-            ></sl-input>`
+          ? html`${UI.Input({ label: props.countryLabel, value: props.country, onInput: (event: Event) => props.setCountry(getInputValue(event)), disabled: props.loading || props.saving })}`
           : ''}
-        <sl-button type="submit" variant="primary" ?loading="${props.saving}" ?disabled="${props.loading}">
-          ${props.submitLabel}
-        </sl-button>
+        ${UI.Button({ type: 'submit', variant: 'primary', loading: props.saving, disabled: props.loading, children: props.submitLabel })}
       </form>
     </div>
   `;

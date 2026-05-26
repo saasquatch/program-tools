@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { UI } from '../../ui';
 import '../../index';
 
 const meta: Meta = {
@@ -15,8 +16,8 @@ const meta: Meta = {
       <div style="display: grid; gap: var(--sl-spacing-medium); padding: var(--sl-spacing-large);">
         <h2 style="margin: 0;">Brand your referral experience</h2>
         <p style="margin: 0;">Adjust the font family and primary brand color for slotted content.</p>
-        <sl-button variant="primary">Primary action</sl-button>
-        <sl-input label="Email address" placeholder="name@example.com"></sl-input>
+        ${UI.Button({ variant: 'primary', children: 'Primary action' })}
+        ${UI.Input({ label: 'Email address', placeholder: 'name@example.com' })}
       </div>
     </sql-brand>
   `,

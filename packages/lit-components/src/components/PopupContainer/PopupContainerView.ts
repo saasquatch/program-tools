@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PopupContainerProps } from './PopupContainer';
 import { usePopupContainer } from './usePopupContainer';
 
@@ -59,7 +60,7 @@ export function PopupContainerView(props: PopupContainerProps & ReturnType<typeo
               <div class="popup-header">
                 <span class="popup-title">${props.popupTitle || ''}</span>
                 ${props.showCloseButton
-                  ? html`<sl-icon-button name="x-lg" @click="${hookProps.close}"></sl-icon-button>`
+                  ? html`${UI.IconButton({ name: 'x-lg', onClick: hookProps.close })}`
                   : ''}
               </div>
             `

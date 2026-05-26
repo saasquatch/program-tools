@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
+import type { AlertVariant } from '../../ui/types';
 import { FormMessageProps } from './FormMessage';
 
 export function FormMessageView(props: FormMessageProps) {
@@ -10,14 +12,13 @@ export function FormMessageView(props: FormMessageProps) {
     </style>
     ${props.message
       ? html`
-          <sl-alert
-            variant="${props.type === 'error' ? 'danger' : props.type}"
-            ?closable="${props.closable}"
-            open
-          >
-            ${props.icon ? html`<sl-icon slot="icon" name="${props.icon}"></sl-icon>` : ''}
-            ${props.message}
-          </sl-alert>
+          ${UI.Alert({
+            variant: (props.type === 'error' ? 'danger' : props.type === 'info' ? 'neutral' : props.type) as AlertVariant,
+            closable: props.closable,
+            open: true,
+            icon: props.icon ? UI.Icon({ name: props.icon }) : undefined,
+            children: props.message,
+          })}
         `
       : ''}
   `;

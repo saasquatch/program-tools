@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PayoutButtonScrollProps } from './PayoutButtonScroll';
 import { usePayoutButton } from './usePayoutButtonScroll';
 
@@ -9,9 +10,12 @@ export function PayoutButtonScrollView(
     <style>
       :host { display: inline-block; }
     </style>
-    <sl-button variant="primary" ?disabled="${props.disabled}" @click="${props.onClick}">
-      <sl-icon slot="prefix" name="cash-stack"></sl-icon>
-      ${props.buttonText}
-    </sl-button>
+    ${UI.Button({
+      variant: 'primary',
+      disabled: props.disabled,
+      onClick: props.onClick,
+      prefix: UI.Icon({ name: 'cash-stack' }),
+      children: props.buttonText,
+    })}
   `;
 }

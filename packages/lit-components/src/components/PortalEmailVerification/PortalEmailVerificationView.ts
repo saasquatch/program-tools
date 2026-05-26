@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { PortalEmailVerificationProps } from './PortalEmailVerification';
 import { usePortalEmailVerification } from './usePortalEmailVerification';
 
@@ -44,18 +45,18 @@ export function PortalEmailVerificationView(
       <h2>${props.headerText}</h2>
       ${isVerified
         ? html`
-            <sl-icon class="success-icon" name="check-circle"></sl-icon>
+            ${UI.Icon({ className: 'success-icon', name: 'check-circle' })}
             <p>${props.successText}</p>
           `
         : html`
             <p>${props.descriptionText}</p>
             ${props.resent ? html`<p class="notice">Verification email resent.</p>` : ''}
-            <sl-button ?disabled="${props.loading}" @click="${() => props.onResend()}">
-              ${props.loading
-                ? html`<sl-spinner slot="prefix" style="font-size: 1rem;"></sl-spinner>`
-                : ''}
-              ${props.resendText}
-            </sl-button>
+            ${UI.Button({
+              disabled: props.loading,
+              onClick: () => props.onResend(),
+              prefix: props.loading ? UI.Spinner({ style: 'font-size: 1rem;' }) : undefined,
+              children: props.resendText,
+            })}
           `}
     </div>
   `;

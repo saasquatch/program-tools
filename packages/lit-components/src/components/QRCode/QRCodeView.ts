@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { QRCodeProps } from './QRCode';
 import { useQRCode } from './useQRCode';
 
@@ -25,16 +26,13 @@ export function QRCodeView(props: QRCodeProps & ReturnType<typeof useQRCode>) {
     </style>
     <div class="qr-container" part="sqm-base">
       ${props.loading
-        ? html`<sl-spinner style="font-size: 2rem;"></sl-spinner>`
+        ? html`${UI.Spinner({ style: 'font-size: 2rem;' })}`
         : props.qrUrl
           ? html`<img class="qr-image" src="${props.qrUrl}" alt="QR Code" />`
           : html`<div
               style="width: ${size}px; height: ${size}px; background: var(--sl-color-neutral-100); display: flex; align-items: center; justify-content: center; border-radius: var(--sl-border-radius-medium);"
             >
-              <sl-icon
-                name="qr-code"
-                style="font-size: 3rem; color: var(--sl-color-neutral-400);"
-              ></sl-icon>
+              ${UI.Icon({ name: 'qr-code', style: 'font-size: 3rem; color: var(--sl-color-neutral-400);' })}
             </div>`}
     </div>
   `;

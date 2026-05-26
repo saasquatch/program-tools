@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { CheckboxFieldProps } from './CheckboxField';
 import { useCheckboxField } from './useCheckboxField';
 
@@ -36,16 +37,15 @@ export function CheckboxFieldView(
       ${styles}
     </style>
     <div class="checkbox-container">
-      <sl-checkbox
-        name="${props.fieldName}"
-        ?required="${props.fieldRequired}"
-        ?disabled="${props.fieldDisabled}"
-        ?checked="${props.checked}"
-        size="${props.fieldSize}"
-        @sl-change="${props.onChange}"
-      >
-        ${props.fieldLabel}
-      </sl-checkbox>
+      ${UI.Checkbox({
+        name: props.fieldName,
+        required: props.fieldRequired,
+        disabled: props.fieldDisabled,
+        checked: props.checked,
+        size: props.fieldSize,
+        onChange: props.onChange,
+        children: props.fieldLabel,
+      })}
       ${props.error ? html`<p class="error-text">${props.error}</p>` : ''}
       ${props.fieldHelpText ? html`<p class="help-text">${props.fieldHelpText}</p>` : ''}
     </div>

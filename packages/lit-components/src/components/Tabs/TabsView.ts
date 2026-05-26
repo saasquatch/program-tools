@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { useTabs } from './useTabs';
 
 export function TabsView(_props: ReturnType<typeof useTabs>) {
@@ -8,8 +9,6 @@ export function TabsView(_props: ReturnType<typeof useTabs>) {
         display: block;
       }
     </style>
-    <sl-tab-group>
-      <slot></slot>
-    </sl-tab-group>
+    ${UI.TabGroup({ children: html`<slot></slot>` })}
   `;
 }

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { UI } from '../../ui';
 import '../../index';
 
 const meta: Meta = {
@@ -18,12 +19,8 @@ export const Default: Story = {
     return html`
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; gap: 8px;">
-          <sl-button @click="${() => document.dispatchEvent(new CustomEvent('sq:navigate', { detail: { path: '/overview' } }))}">
-            Overview
-          </sl-button>
-          <sl-button @click="${() => document.dispatchEvent(new CustomEvent('sq:navigate', { detail: { path: '/rewards' } }))}">
-            Rewards
-          </sl-button>
+          ${UI.Button({ onClick: () => document.dispatchEvent(new CustomEvent('sq:navigate', { detail: { path: '/overview' } })), children: 'Overview' })}
+          ${UI.Button({ onClick: () => document.dispatchEvent(new CustomEvent('sq:navigate', { detail: { path: '/rewards' } })), children: 'Rewards' })}
         </div>
         <sql-router>
           <sql-route path="/overview" exact>

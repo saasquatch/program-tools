@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { ProgramExplainerStepProps } from './ProgramExplainerStep';
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepProps) {
@@ -56,7 +57,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepProps) {
     </style>
     <div class="step" part="sqm-base">
       ${props.icon
-        ? html`<div class="step-icon"><sl-icon name="${props.icon}"></sl-icon></div>`
+        ? html`<div class="step-icon">${UI.Icon({ name: props.icon })}</div>`
         : props.stepNumber !== undefined
           ? html`<div class="step-number">${props.stepNumber}</div>`
           : null}

@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PortalChangePasswordProps } from './PortalChangePassword';
 import { usePortalChangePassword } from './usePortalChangePassword';
 
@@ -23,45 +24,46 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps & Retu
         gap: var(--sl-spacing-small);
       }
     </style>
-    <sl-button variant="primary" @click="${props.open}">${props.headerText}</sl-button>
-    <sl-dialog
-      label="${props.headerText}"
-      ?open="${props.isOpen}"
-      @sl-request-close="${props.close}"
-      @sl-after-hide="${props.close}"
-    >
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
-      ${props.success ? html`<sl-alert variant="success" open>${props.successMessage}</sl-alert>` : ''}
-      <form class="dialog-form" @submit="${props.onSubmit}" part="sqm-base">
-        <sl-input
-          label="${props.currentPasswordLabel}"
-          type="password"
-          value="${props.currentPassword}"
-          @sl-input="${(event: Event) => props.setCurrentPassword(getInputValue(event))}"
-          required
-          password-toggle
-        ></sl-input>
-        <sl-input
-          label="${props.newPasswordLabel}"
-          type="password"
-          value="${props.newPassword}"
-          @sl-input="${(event: Event) => props.setNewPassword(getInputValue(event))}"
-          required
-          password-toggle
-        ></sl-input>
-        <sl-input
-          label="${props.confirmPasswordLabel}"
-          type="password"
-          value="${props.confirmPassword}"
-          @sl-input="${(event: Event) => props.setConfirmPassword(getInputValue(event))}"
-          required
-          password-toggle
-        ></sl-input>
-        <div class="dialog-actions">
-          <sl-button type="button" variant="default" @click="${props.close}">Close</sl-button>
-          <sl-button type="submit" variant="primary" ?loading="${props.loading}">${props.submitLabel}</sl-button>
-        </div>
-      </form>
-    </sl-dialog>
+    ${UI.Button({ variant: 'primary', onClick: props.open, children: props.headerText })}
+    ${UI.Dialog({
+      label: props.headerText,
+      open: props.isOpen,
+      onRequestClose: props.close,
+      onAfterHide: props.close,
+      children: html`
+        ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
+        ${props.success ? html`${UI.Alert({ variant: 'success', open: true, children: props.successMessage })}` : ''}
+        <form class="dialog-form" @submit="${props.onSubmit}" part="sqm-base">
+          ${UI.Input({
+            label: props.currentPasswordLabel,
+            type: 'password',
+            value: props.currentPassword,
+            onInput: (event: Event) => props.setCurrentPassword(getInputValue(event)),
+            required: true,
+            passwordToggle: true,
+          })}
+          ${UI.Input({
+            label: props.newPasswordLabel,
+            type: 'password',
+            value: props.newPassword,
+            onInput: (event: Event) => props.setNewPassword(getInputValue(event)),
+            required: true,
+            passwordToggle: true,
+          })}
+          ${UI.Input({
+            label: props.confirmPasswordLabel,
+            type: 'password',
+            value: props.confirmPassword,
+            onInput: (event: Event) => props.setConfirmPassword(getInputValue(event)),
+            required: true,
+            passwordToggle: true,
+          })}
+          <div class="dialog-actions">
+            ${UI.Button({ type: 'button', variant: 'default', onClick: props.close, children: 'Close' })}
+            ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, children: props.submitLabel })}
+          </div>
+        </form>
+      `,
+    })}
   `;
 }

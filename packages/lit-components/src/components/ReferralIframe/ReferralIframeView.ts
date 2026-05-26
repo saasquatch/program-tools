@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { ReferralIframeProps } from './ReferralIframe';
 import { useReferralIframe } from './useReferralIframe';
 
@@ -23,7 +24,7 @@ export function ReferralIframeView(
     </style>
     <div class="iframe-container" part="sqm-base">
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : props.url
           ? html`<iframe
               src="${props.url}"

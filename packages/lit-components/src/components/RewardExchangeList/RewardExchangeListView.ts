@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { RewardExchangeItem, RewardExchangeListProps } from './RewardExchangeList';
 import { useRewardExchangeList } from './useRewardExchangeList';
 
@@ -79,7 +80,7 @@ export function RewardExchangeListView(
         <span class="balance">Balance: ${props.currentBalance}</span>
       </div>
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : props.empty
           ? html`<div class="empty-state">${props.emptyText}</div>`
           : html`<div class="exchange-list">
@@ -100,9 +101,7 @@ export function RewardExchangeListView(
                         : ''}
                     </div>
                     <div class="exchange-cost">${item.costPrettyValue}</div>
-                    <sl-button size="small" variant="primary" ?disabled=${!item.available}>
-                      Redeem
-                    </sl-button>
+                    ${UI.Button({ size: 'small', variant: 'primary', disabled: !item.available, children: 'Redeem' })}
                   </div>
                 `
               )}

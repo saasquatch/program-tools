@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { TaxAndCashProps } from './TaxAndCash';
 import { useTaxAndCash } from './useTaxAndCash';
 
@@ -16,7 +17,7 @@ export function TaxAndCashView(props: TaxAndCashProps & ReturnType<typeof useTax
     </style>
     <div class="tax-cash-container" part="sqm-base">
       ${props.loading
-        ? html`<sl-spinner style="font-size: 2rem;"></sl-spinner>`
+        ? html`${UI.Spinner({ style: 'font-size: 2rem;' })}`
         : html`<slot></slot>`}
     </div>
   `;

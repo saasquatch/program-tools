@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { PortalRegistrationFormProps } from './PortalRegistrationForm';
 import { usePortalRegistrationForm } from './usePortalRegistrationForm';
 
@@ -54,77 +55,41 @@ export function PortalRegistrationFormView(
       ${props.showNameFields
         ? html`
             <div class="name-grid">
-              <sl-input
-                name="firstName"
-                label="${props.firstNameLabel}"
-                .value="${props.firstName}"
-                ?disabled="${props.loading}"
-                @sl-input="${(event: Event) => props.setFirstName(getValue(event))}"
-              ></sl-input>
-              <sl-input
-                name="lastName"
-                label="${props.lastNameLabel}"
-                .value="${props.lastName}"
-                ?disabled="${props.loading}"
-                @sl-input="${(event: Event) => props.setLastName(getValue(event))}"
-              ></sl-input>
+              ${UI.Input({ name: 'firstName', label: props.firstNameLabel, value: props.firstName, disabled: props.loading, onInput: (event: Event) => props.setFirstName(getValue(event)) })}
+              ${UI.Input({ name: 'lastName', label: props.lastNameLabel, value: props.lastName, disabled: props.loading, onInput: (event: Event) => props.setLastName(getValue(event)) })}
             </div>
           `
         : ''}
-      <sl-input
-        name="email"
-        type="email"
-        label="${props.emailLabel}"
-        .value="${props.email}"
-        ?disabled="${props.loading}"
-        @sl-input="${(event: Event) => props.setEmail(getValue(event))}"
-      ></sl-input>
-      <sl-input
-        name="password"
-        type="password"
-        label="${props.passwordLabel}"
-        help-text="Minimum ${props.passwordMinLength} characters"
-        .value="${props.password}"
-        ?disabled="${props.loading}"
-        @sl-input="${(event: Event) => props.setPassword(getValue(event))}"
-      ></sl-input>
+      ${UI.Input({ name: 'email', type: 'email', label: props.emailLabel, value: props.email, disabled: props.loading, onInput: (event: Event) => props.setEmail(getValue(event)) })}
+      ${UI.Input({ name: 'password', type: 'password', label: props.passwordLabel, helpText: `Minimum ${props.passwordMinLength} characters`, value: props.password, disabled: props.loading, onInput: (event: Event) => props.setPassword(getValue(event)) })}
       ${props.showConfirmPassword
         ? html`
-            <sl-input
-              name="confirmPassword"
-              type="password"
-              label="${props.confirmPasswordLabel}"
-              .value="${props.confirmPassword}"
-              ?disabled="${props.loading}"
-              @sl-input="${(event: Event) => props.setConfirmPassword(getValue(event))}"
-            ></sl-input>
+            ${UI.Input({ name: 'confirmPassword', type: 'password', label: props.confirmPasswordLabel, value: props.confirmPassword, disabled: props.loading, onInput: (event: Event) => props.setConfirmPassword(getValue(event)) })}
           `
         : ''}
       ${props.termsText
         ? html`
-            <sl-checkbox
-              ?checked="${props.termsAccepted}"
-              ?disabled="${props.loading}"
-              @sl-change="${(event: Event) => props.setTermsAccepted(getChecked(event))}"
-            >
-              <span class="terms-copy">
+            ${UI.Checkbox({
+              checked: props.termsAccepted,
+              disabled: props.loading,
+              onChange: (event: Event) => props.setTermsAccepted(getChecked(event)),
+              children: html`<span class="terms-copy">
                 <span>${props.termsText}</span>
                 ${props.termsUrl
-                  ? html`<a href="${props.termsUrl}" target="_blank" rel="noopener noreferrer"
-                      >View terms</a
-                    >`
+                  ? html`<a href="${props.termsUrl}" target="_blank" rel="noopener noreferrer">View terms</a>`
                   : ''}
-              </span>
-            </sl-checkbox>
+              </span>`,
+            })}
           `
         : ''}
       ${props.error ? html`<p class="error-text">${props.error}</p>` : ''}
-      <sl-button type="submit" variant="primary" ?disabled="${props.loading}">
-        ${props.loading
-          ? html`<sl-spinner slot="prefix" style="font-size: 1rem;"></sl-spinner>`
-          : ''}
-        ${props.submitLabel}
-      </sl-button>
+      ${UI.Button({
+        type: 'submit',
+        variant: 'primary',
+        disabled: props.loading,
+        prefix: props.loading ? UI.Spinner({ style: 'font-size: 1rem;' }) : undefined,
+        children: props.submitLabel,
+      })}
     </form>
   `;
 }

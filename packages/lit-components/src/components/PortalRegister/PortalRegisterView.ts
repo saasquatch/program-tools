@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PortalRegisterProps } from './PortalRegister';
 import { usePortalRegister } from './usePortalRegister';
 
@@ -52,36 +53,14 @@ export function PortalRegisterView(props: PortalRegisterProps & ReturnType<typeo
     </style>
     <div class="register-container" part="sqm-base">
       <h2 class="register-header">${props.headerText}</h2>
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
+      ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
       <form @submit="${props.onSubmit}">
-        <sl-input
-          label="${props.emailLabel}"
-          type="email"
-          value="${props.email}"
-          @sl-input="${(event: Event) => props.setEmail(getInputValue(event))}"
-          required
-        ></sl-input>
-        <sl-input
-          label="${props.passwordLabel}"
-          type="password"
-          value="${props.password}"
-          @sl-input="${(event: Event) => props.setPassword(getInputValue(event))}"
-          required
-          password-toggle
-        ></sl-input>
+        ${UI.Input({ label: props.emailLabel, type: 'email', value: props.email, onInput: (event: Event) => props.setEmail(getInputValue(event)), required: true })}
+        ${UI.Input({ label: props.passwordLabel, type: 'password', value: props.password, onInput: (event: Event) => props.setPassword(getInputValue(event)), required: true, passwordToggle: true })}
         ${props.showConfirmPassword
-          ? html`<sl-input
-              label="${props.confirmPasswordLabel}"
-              type="password"
-              value="${props.confirmPassword}"
-              @sl-input="${(event: Event) => props.setConfirmPassword(getInputValue(event))}"
-              required
-              password-toggle
-            ></sl-input>`
+          ? html`${UI.Input({ label: props.confirmPasswordLabel, type: 'password', value: props.confirmPassword, onInput: (event: Event) => props.setConfirmPassword(getInputValue(event)), required: true, passwordToggle: true })}`
           : ''}
-        <sl-button type="submit" variant="primary" ?loading="${props.loading}" style="width: 100%;">
-          ${props.submitLabel}
-        </sl-button>
+        ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, style: 'width: 100%;', children: props.submitLabel })}
       </form>
       <div class="register-footer">
         <button class="link-button" @click="${props.onLogin}">${props.loginLabel}</button>

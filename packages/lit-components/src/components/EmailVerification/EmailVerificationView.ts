@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { EmailVerificationProps } from './EmailVerification';
 import { useEmailVerification } from './useEmailVerification';
 
@@ -27,13 +28,13 @@ export function EmailVerificationView(
       }
     </style>
     <div class="email-verify" part="sqm-base">
-      <sl-icon
-        name="envelope"
-        style="font-size: 3rem; color: var(--sl-color-primary-600); margin-bottom: var(--sl-spacing-medium);"
-      ></sl-icon>
+      ${UI.Icon({
+        name: 'envelope',
+        style: 'font-size: 3rem; color: var(--sl-color-primary-600); margin-bottom: var(--sl-spacing-medium);',
+      })}
       <h3>${props.headerText}</h3>
       <p style="color: var(--sl-color-neutral-600);">${props.descriptionText}</p>
-      ${props.resent ? html`<sl-alert variant="success" open>Email resent!</sl-alert>` : ''}
+      ${props.resent ? html`${UI.Alert({ variant: 'success', open: true, children: 'Email resent!' })}` : ''}
       <button class="resend-link" @click="${props.onResend}" ?disabled="${props.loading}">
         ${props.resendLabel}
       </button>

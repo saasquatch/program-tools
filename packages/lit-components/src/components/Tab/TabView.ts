@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { TabProps } from './Tab';
 
 export function TabView(props: TabProps) {
@@ -8,9 +9,7 @@ export function TabView(props: TabProps) {
         display: block;
       }
     </style>
-    <sl-tab slot="nav" panel="${props.header}" ?disabled="${props.disabled}">${props.header}</sl-tab>
-    <sl-tab-panel name="${props.header}">
-      <slot></slot>
-    </sl-tab-panel>
+    ${UI.Tab({ panel: props.header, disabled: props.disabled, children: props.header })}
+    ${UI.TabPanel({ name: props.header, children: html`<slot></slot>` })}
   `;
 }

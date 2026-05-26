@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PortalForgotPasswordProps } from './PortalForgotPassword';
 import { usePortalForgotPassword } from './usePortalForgotPassword';
 
@@ -59,21 +60,19 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordProps & Retu
     <div class="forgot-password-container" part="sqm-base">
       <h2 class="forgot-password-header">${props.headerText}</h2>
       <p class="forgot-password-description">${props.descriptionText}</p>
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
+      ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
       ${props.success
-        ? html`<sl-alert variant="success" open>${props.successMessage}</sl-alert>`
+        ? html`${UI.Alert({ variant: 'success', open: true, children: props.successMessage })}`
         : html`
             <form @submit="${props.onSubmit}">
-              <sl-input
-                label="${props.emailLabel}"
-                type="email"
-                value="${props.email}"
-                @sl-input="${(event: Event) => props.setEmail(getInputValue(event))}"
-                required
-              ></sl-input>
-              <sl-button type="submit" variant="primary" ?loading="${props.loading}" style="width: 100%;">
-                ${props.submitLabel}
-              </sl-button>
+              ${UI.Input({
+                label: props.emailLabel,
+                type: 'email',
+                value: props.email,
+                onInput: (event: Event) => props.setEmail(getInputValue(event)),
+                required: true,
+              })}
+              ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, style: 'width: 100%;', children: props.submitLabel })}
             </form>
           `}
       <div class="footer">

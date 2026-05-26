@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PortalLoginProps } from './PortalLogin';
 import { usePortalLogin } from './usePortalLogin';
 
@@ -57,26 +58,24 @@ export function PortalLoginView(props: PortalLoginProps & ReturnType<typeof useP
     </style>
     <div class="login-container" part="sqm-base">
       <h2 class="login-header">${props.headerText}</h2>
-      ${errorMessage ? html`<sl-alert variant="danger" open>${errorMessage}</sl-alert>` : ''}
+      ${errorMessage ? html`${UI.Alert({ variant: 'danger', open: true, children: errorMessage })}` : ''}
       <form @submit="${props.onSubmit}">
-        <sl-input
-          label="${props.emailLabel}"
-          type="email"
-          value="${props.email}"
-          @sl-input="${(event: Event) => props.setEmail(getInputValue(event))}"
-          required
-        ></sl-input>
-        <sl-input
-          label="${props.passwordLabel}"
-          type="password"
-          value="${props.password}"
-          @sl-input="${(event: Event) => props.setPassword(getInputValue(event))}"
-          required
-          password-toggle
-        ></sl-input>
-        <sl-button type="submit" variant="primary" ?loading="${props.loading}" style="width: 100%;">
-          ${props.submitLabel}
-        </sl-button>
+        ${UI.Input({
+          label: props.emailLabel,
+          type: 'email',
+          value: props.email,
+          onInput: (event: Event) => props.setEmail(getInputValue(event)),
+          required: true,
+        })}
+        ${UI.Input({
+          label: props.passwordLabel,
+          type: 'password',
+          value: props.password,
+          onInput: (event: Event) => props.setPassword(getInputValue(event)),
+          required: true,
+          passwordToggle: true,
+        })}
+        ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, style: 'width: 100%;', children: props.submitLabel })}
       </form>
       <div class="login-footer">
         ${!props.hideForgotPassword

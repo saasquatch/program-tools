@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { DocusignFormProps } from './DocusignForm';
 import { useDocusignForm } from './useDocusignForm';
 
@@ -27,13 +28,15 @@ export function DocusignFormView(props: DocusignFormProps & ReturnType<typeof us
     <div class="docusign-container" part="sqm-base">
       ${props.signed
         ? html`
-            <sl-alert variant="success" open>
-              <sl-icon slot="icon" name="check-circle"></sl-icon>
-              Document signed successfully!
-            </sl-alert>
+            ${UI.Alert({
+              variant: 'success',
+              open: true,
+              icon: UI.Icon({ name: 'check-circle' }),
+              children: 'Document signed successfully!',
+            })}
           `
         : props.loading
-          ? html`<sl-spinner style="font-size: 2rem;"></sl-spinner>`
+          ? html`${UI.Spinner({ style: 'font-size: 2rem;' })}`
           : html`
               <div class="docusign-header">
                 <h3>${props.headerText}</h3>
@@ -41,7 +44,7 @@ export function DocusignFormView(props: DocusignFormProps & ReturnType<typeof us
               </div>
               ${props.docusignUrl
                 ? html`<iframe src="${props.docusignUrl}"></iframe>`
-                : html`<sl-alert variant="warning" open>Document signing URL not available.</sl-alert>`}
+                : html`${UI.Alert({ variant: 'warning', open: true, children: 'Document signing URL not available.' })}`}
             `}
     </div>
   `;

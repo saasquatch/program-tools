@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { UI } from '../../ui';
 import '../../index';
 
 const meta: Meta = {
@@ -17,9 +18,9 @@ type Story = StoryObj;
 export const TabsStyle: Story = {
   render: () => html`
     <sql-navigation-menu menu-style="tabs">
-      <sl-button variant="text">Overview</sl-button>
-      <sl-button variant="text">Rewards</sl-button>
-      <sl-button variant="text">History</sl-button>
+      ${UI.Button({ variant: 'text', children: 'Overview' })}
+      ${UI.Button({ variant: 'text', children: 'Rewards' })}
+      ${UI.Button({ variant: 'text', children: 'History' })}
     </sql-navigation-menu>
   `,
 };
@@ -27,9 +28,9 @@ export const TabsStyle: Story = {
 export const DropdownStyle: Story = {
   render: () => html`
     <sql-navigation-menu menu-style="dropdown">
-      <sl-menu-item>Overview</sl-menu-item>
-      <sl-menu-item>Rewards</sl-menu-item>
-      <sl-menu-item>History</sl-menu-item>
+      ${UI.MenuItem({ children: 'Overview' })}
+      ${UI.MenuItem({ children: 'Rewards' })}
+      ${UI.MenuItem({ children: 'History' })}
     </sql-navigation-menu>
   `,
 };

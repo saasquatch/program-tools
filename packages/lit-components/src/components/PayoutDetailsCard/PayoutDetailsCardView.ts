@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PayoutDetailsCardProps } from './PayoutDetailsCard';
 import { usePayoutDetailsCard } from './usePayoutDetailsCard';
 
@@ -40,7 +41,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardProps & ReturnType
     <div class="payout-card" part="sqm-base">
       <h3 class="payout-header">${props.headerText}</h3>
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : html`
             <div class="payout-details">
               <div>

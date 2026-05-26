@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { PortalChangeMarketingProps } from './PortalChangeMarketing';
 import { usePortalChangeMarketing } from './usePortalChangeMarketing';
 
@@ -31,14 +32,14 @@ export function PortalChangeMarketingView(
       <h2>${props.headerText}</h2>
       <p>${props.description}</p>
       ${props.loading
-        ? html`<sl-spinner style="font-size: 1.5rem;"></sl-spinner>`
+        ? html`${UI.Spinner({ style: 'font-size: 1.5rem;' })}`
         : html`<p>${props.subscribed ? props.subscribedText : props.unsubscribedText}</p>`}
-      <sl-button ?disabled="${props.loading || props.saving}" @click="${() => props.onToggle()}">
-        ${props.saving
-          ? html`<sl-spinner slot="prefix" style="font-size: 1rem;"></sl-spinner>`
-          : ''}
-        ${props.subscribed ? props.unsubscribeLabel : props.subscribeLabel}
-      </sl-button>
+      ${UI.Button({
+        disabled: props.loading || props.saving,
+        onClick: () => props.onToggle(),
+        prefix: props.saving ? UI.Spinner({ style: 'font-size: 1rem;' }) : undefined,
+        children: props.subscribed ? props.unsubscribeLabel : props.subscribeLabel,
+      })}
     </div>
   `;
 }

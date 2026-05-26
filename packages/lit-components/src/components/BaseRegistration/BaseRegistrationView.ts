@@ -1,4 +1,5 @@
 import { html, nothing, type TemplateResult } from 'lit';
+import { UI } from '../../ui';
 import type { BaseRegistrationProps } from './BaseRegistration';
 import type { BaseRegistrationHookResult } from './useBaseRegistration';
 
@@ -77,23 +78,21 @@ export function BaseRegistrationView(props: BaseRegistrationViewProps) {
       <form class="form" @submit="${props.onSubmit}" novalidate>
         ${props.formData ?? html`<slot name="formData"></slot>`}
         <div>
-          <sl-input
-            type="email"
-            name="email"
-            label="${props.emailLabel}"
-            .value="${props.email}"
-            ?disabled="${props.loading}"
-            @sl-input="${(event: Event) => props.setEmail(getValue(event))}"
-          ></sl-input>
-          ${props.validationErrors.email
-            ? html`<p class="error-text">${props.validationErrors.email}</p>`
-            : nothing}
+        ${UI.Input({
+          type: 'email',
+          name: 'email',
+          label: props.emailLabel,
+          value: props.email,
+          disabled: props.loading,
+          onInput: (event: Event) => props.setEmail(getValue(event)),
+        })}
+        ${props.validationErrors.email
+          ? html`<p class="error-text">${props.validationErrors.email}</p>`
+          : nothing}
         </div>
         ${props.terms ?? html`<slot name="terms"></slot>`}
         <div class="button-stack">
-          <sl-button type="submit" variant="primary" ?loading="${props.loading}">
-            ${props.submitLabel}
-          </sl-button>
+        ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, children: props.submitLabel })}
           ${hasSecondaryActions
             ? html`<div class="divider">or</div>`
             : nothing}

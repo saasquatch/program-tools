@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { TaxAndCashDashboardProps } from './TaxAndCashDashboard';
 import { useTaxAndCashDashboard } from './useTaxAndCashDashboard';
 
@@ -44,7 +45,7 @@ export function TaxAndCashDashboardView(
     </style>
     <div class="dashboard" part="sqm-base">
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : props.steps.map(
             (step) => html`
               <div
@@ -60,10 +61,8 @@ export function TaxAndCashDashboardView(
               >
                 <span class="step-label">${step.label}</span>
                 <div class="step-status">
-                  <sl-badge variant="${props.getStatusVariant(step.status)}"
-                    >${props.getStatusText(step.status)}</sl-badge
-                  >
-                  <sl-icon name="chevron-right"></sl-icon>
+                  ${UI.Badge({ variant: props.getStatusVariant(step.status), children: props.getStatusText(step.status) })}
+                  ${UI.Icon({ name: 'chevron-right' })}
                 </div>
               </div>
             `

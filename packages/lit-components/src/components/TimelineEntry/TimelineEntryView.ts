@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { TimelineEntryProps } from './TimelineEntry';
 
 export function TimelineEntryView(props: TimelineEntryProps) {
@@ -63,7 +64,7 @@ export function TimelineEntryView(props: TimelineEntryProps) {
       }
     </style>
     <div class="entry" part="sqm-base">
-      <div class="entry-marker"><sl-icon name="${props.entryIcon}"></sl-icon></div>
+      <div class="entry-marker">${UI.Icon({ name: props.entryIcon })}</div>
       <div class="entry-content">
         <div class="entry-label">${props.entryLabel}</div>
         ${props.entryDescription

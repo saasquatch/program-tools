@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { NameFieldsProps } from './NameFields';
 import { useNameFields } from './useNameFields';
 
@@ -31,36 +32,30 @@ export function NameFieldsView(props: NameFieldsProps & ReturnType<typeof useNam
       style="flex-direction: ${props.layout === 'vertical' ? 'column' : 'row'};"
     >
       <div class="field">
-        <sl-input
-          label="${props.firstNameLabel}"
-          name="firstName"
-          placeholder="${props.firstNamePlaceholder || ''}"
-          ?required="${props.fieldRequired}"
-          ?disabled="${props.fieldDisabled}"
-          size="${props.fieldSize}"
-          value="${props.firstName}"
-          @sl-input="${props.onFirstNameInput}"
-        >
-          ${props.firstNameError
-            ? html`<span slot="help-text" style="color: var(--sl-color-danger-600)">${props.firstNameError}</span>`
-            : ''}
-        </sl-input>
+        ${UI.Input({
+          label: props.firstNameLabel,
+          name: 'firstName',
+          placeholder: props.firstNamePlaceholder || '',
+          required: props.fieldRequired,
+          disabled: props.fieldDisabled,
+          size: props.fieldSize,
+          value: props.firstName,
+          onInput: props.onFirstNameInput,
+          error: props.firstNameError,
+        })}
       </div>
       <div class="field">
-        <sl-input
-          label="${props.lastNameLabel}"
-          name="lastName"
-          placeholder="${props.lastNamePlaceholder || ''}"
-          ?required="${props.fieldRequired}"
-          ?disabled="${props.fieldDisabled}"
-          size="${props.fieldSize}"
-          value="${props.lastName}"
-          @sl-input="${props.onLastNameInput}"
-        >
-          ${props.lastNameError
-            ? html`<span slot="help-text" style="color: var(--sl-color-danger-600)">${props.lastNameError}</span>`
-            : ''}
-        </sl-input>
+        ${UI.Input({
+          label: props.lastNameLabel,
+          name: 'lastName',
+          placeholder: props.lastNamePlaceholder || '',
+          required: props.fieldRequired,
+          disabled: props.fieldDisabled,
+          size: props.fieldSize,
+          value: props.lastName,
+          onInput: props.onLastNameInput,
+          error: props.lastNameError,
+        })}
       </div>
     </div>
   `;

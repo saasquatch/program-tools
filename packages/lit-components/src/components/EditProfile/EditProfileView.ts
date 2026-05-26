@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { EditProfileProps } from './EditProfile';
 import { useEditProfile } from './useEditProfile';
 
@@ -24,40 +25,37 @@ export function EditProfileView(props: EditProfileProps & ReturnType<typeof useE
     </style>
     <div class="edit-profile" part="sqm-base">
       <h2 class="profile-header">${props.headerText}</h2>
-      ${props.success ? html`<sl-alert variant="success" open>${props.successMessage}</sl-alert>` : ''}
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
+      ${props.success ? html`${UI.Alert({ variant: 'success', open: true, children: props.successMessage })}` : ''}
+      ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : html`
             <form @submit="${props.onSubmit}">
               <div
                 style="display: flex; gap: var(--sl-spacing-medium); margin-bottom: var(--sl-spacing-medium);"
               >
-                <sl-input
-                  label="${props.firstNameLabel}"
-                  value="${props.firstName}"
-                  @sl-input="${(e: Event) =>
-                    props.setFirstName((e.target as HTMLInputElement).value)}"
-                  style="flex: 1;"
-                ></sl-input>
-                <sl-input
-                  label="${props.lastNameLabel}"
-                  value="${props.lastName}"
-                  @sl-input="${(e: Event) =>
-                    props.setLastName((e.target as HTMLInputElement).value)}"
-                  style="flex: 1;"
-                ></sl-input>
+                ${UI.Input({
+                  label: props.firstNameLabel,
+                  value: props.firstName,
+                  onInput: (e: Event) => props.setFirstName((e.target as HTMLInputElement).value),
+                  style: 'flex: 1;',
+                })}
+                ${UI.Input({
+                  label: props.lastNameLabel,
+                  value: props.lastName,
+                  onInput: (e: Event) => props.setLastName((e.target as HTMLInputElement).value),
+                  style: 'flex: 1;',
+                })}
               </div>
-              <sl-input label="Email" value="${props.email}" disabled></sl-input>
+              ${UI.Input({ label: 'Email', value: props.email, disabled: true })}
               <slot></slot>
-              <sl-button
-                type="submit"
-                variant="primary"
-                ?loading="${props.saving}"
-                style="margin-top: var(--sl-spacing-medium);"
-              >
-                ${props.submitLabel}
-              </sl-button>
+              ${UI.Button({
+                type: 'submit',
+                variant: 'primary',
+                loading: props.saving,
+                style: 'margin-top: var(--sl-spacing-medium);',
+                children: props.submitLabel,
+              })}
             </form>
           `}
     </div>

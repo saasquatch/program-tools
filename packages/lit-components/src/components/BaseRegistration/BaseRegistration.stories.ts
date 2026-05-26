@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { UI } from '../../ui';
 import '../../index';
 import { BaseRegistrationView } from './BaseRegistrationView';
 
@@ -26,10 +27,10 @@ const meta: Meta = {
       ?show-google-button="${args['show-google-button'] ?? true}"
       ?show-secondary-button="${args['show-secondary-button'] ?? true}"
     >
-      <sl-button slot="googleButton" variant="default">Register with Google</sl-button>
+      ${UI.Button({ slot: 'googleButton', variant: 'default', children: 'Register with Google' })}
       <div slot="secondaryButton" style="text-align: center;">
         Already have an account?
-        <sl-button variant="text">Sign in</sl-button>
+        ${UI.Button({ variant: 'text', children: 'Sign in' })}
       </div>
     </sql-base-registration>
   `,

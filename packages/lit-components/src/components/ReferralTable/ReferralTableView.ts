@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { ReferralTableProps } from './ReferralTable';
 import { useReferralTable } from './useReferralTable';
 
@@ -134,19 +135,21 @@ export function ReferralTableView(props: ReferralTableProps & ReturnType<typeof 
     ${props.totalPages > 1
       ? html`
           <div class="pagination">
-            <sl-button size="small" ?disabled="${props.currentPage === 0}" @click="${props.prevPage}">
-              <sl-icon slot="prefix" name="chevron-left"></sl-icon>
-              Previous
-            </sl-button>
+            ${UI.Button({
+              size: 'small',
+              disabled: props.currentPage === 0,
+              onClick: props.prevPage,
+              prefix: UI.Icon({ name: 'chevron-left' }),
+              children: 'Previous',
+            })}
             <span class="page-info">${props.currentPage + 1} / ${props.totalPages}</span>
-            <sl-button
-              size="small"
-              ?disabled="${props.currentPage >= props.totalPages - 1}"
-              @click="${props.nextPage}"
-            >
-              Next
-              <sl-icon slot="suffix" name="chevron-right"></sl-icon>
-            </sl-button>
+            ${UI.Button({
+              size: 'small',
+              disabled: props.currentPage >= props.totalPages - 1,
+              onClick: props.nextPage,
+              suffix: UI.Icon({ name: 'chevron-right' }),
+              children: 'Next',
+            })}
           </div>
         `
       : ''}

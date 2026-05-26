@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { PortalVerifyEmailProps } from './PortalVerifyEmail';
 import { usePortalVerifyEmail } from './usePortalVerifyEmail';
 
@@ -18,18 +19,12 @@ export function PortalVerifyEmailView(
     </style>
     <div class="verify-container" part="sqm-base">
       ${props.status === 'verifying'
-        ? html`<sl-spinner style="font-size: 2rem;"></sl-spinner>
+        ? html`${UI.Spinner({ style: 'font-size: 2rem;' })}
             <p>${props.verifyingText}</p>`
         : props.status === 'success'
-          ? html`<sl-icon
-                name="check-circle"
-                style="font-size: 3rem; color: var(--sl-color-success-600);"
-              ></sl-icon>
+          ? html`${UI.Icon({ name: 'check-circle', style: 'font-size: 3rem; color: var(--sl-color-success-600);' })}
               <p>${props.successText}</p>`
-          : html`<sl-icon
-                name="exclamation-circle"
-                style="font-size: 3rem; color: var(--sl-color-danger-600);"
-              ></sl-icon>
+          : html`${UI.Icon({ name: 'exclamation-circle', style: 'font-size: 3rem; color: var(--sl-color-danger-600);' })}
               <p>${props.errorText}</p>`}
     </div>
   `;

@@ -1,4 +1,5 @@
 import { html, nothing } from 'lit';
+import { UI } from '../../ui';
 import { ShareButtonMedium, ShareButtonProps } from './ShareButton';
 import { useShareButton } from './useShareButton';
 
@@ -88,24 +89,24 @@ export function ShareButtonView(props: ShareButtonProps & ReturnType<typeof useS
     }
   `;
 
-  const labelIconTemplate = props.hideIcon ? nothing : html`<sl-icon name="${iconName}"></sl-icon>`;
+  const labelIconTemplate = props.hideIcon ? nothing : UI.Icon({ name: iconName });
   const slottedIconTemplate = props.hideIcon
     ? nothing
-    : html`<sl-icon name="${iconName}" slot="${props.iconSlot}"></sl-icon>`;
+    : UI.Icon({ name: iconName, slot: props.iconSlot });
 
   return html`
     <style>
       ${styles}
     </style>
-    <sl-button
-      @click="${() => props.onClick?.()}"
-      size="${props.size || 'medium'}"
-      ?disabled="${props.disabled}"
-      aria-label="${buttonText}"
-    >
-      ${props.iconSlot === 'label' ? labelIconTemplate : nothing}
-      ${props.hideText ? nothing : buttonText}
-      ${props.iconSlot !== 'label' ? slottedIconTemplate : nothing}
-    </sl-button>
+    ${UI.Button({
+      onClick: () => props.onClick?.(),
+      size: props.size || 'medium',
+      disabled: props.disabled,
+      children: html`
+        ${props.iconSlot === 'label' ? labelIconTemplate : nothing}
+        ${props.hideText ? nothing : buttonText}
+        ${props.iconSlot !== 'label' ? slottedIconTemplate : nothing}
+      `,
+    })}
   `;
 }

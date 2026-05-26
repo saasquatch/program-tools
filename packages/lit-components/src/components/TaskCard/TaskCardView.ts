@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { TaskCardProps } from './TaskCard';
 import { TaskCardHookResult } from './useTaskCard';
 
@@ -88,7 +89,7 @@ export function TaskCardView(props: TaskCardProps & TaskCardHookResult) {
       }
     </style>
     <div class="${classes.join(' ')}" part="sqm-base">
-      ${props.cardIcon ? html`<sl-icon class="task-icon" name="${props.cardIcon}"></sl-icon>` : null}
+      ${props.cardIcon ? html`${UI.Icon({ className: 'task-icon', name: props.cardIcon })}` : null}
       <div class="task-content">
         <div class="task-title">${props.taskCardTitle}</div>
         ${props.taskCardDescription
@@ -114,9 +115,7 @@ export function TaskCardView(props: TaskCardProps & TaskCardHookResult) {
       <div class="task-reward">
         ${props.rewardAmount ? html`<div>${props.rewardAmount} ${props.rewardUnit}</div>` : null}
         ${!props.isComplete && !props.isExpired
-          ? html`
-              <sl-button size="small" variant="primary" @click=${props.onClick}>${props.buttonText}</sl-button>
-            `
+          ? html`${UI.Button({ size: 'small', variant: 'primary', onClick: props.onClick, children: props.buttonText })}`
           : null}
       </div>
     </div>

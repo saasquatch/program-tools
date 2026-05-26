@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { NavigationSidebarItemProps } from './NavigationSidebarItem';
 import { useNavigationSidebarItem } from './useNavigationSidebarItem';
 
@@ -45,7 +46,7 @@ export function NavigationSidebarItemView(
       @click="${props.onClick}"
       part="sqm-base"
     >
-      ${props.icon ? html`<sl-icon name="${props.icon}"></sl-icon>` : ''}
+      ${props.icon ? html`${UI.Icon({ name: props.icon })}` : ''}
       <span>${props.label}</span>
     </div>
   `;

@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { InstantAccessRegistrationProps } from './InstantAccessRegistration';
 import { useInstantAccessRegistration } from './useInstantAccessRegistration';
 
@@ -23,33 +24,32 @@ export function InstantAccessRegistrationView(
     <div class="instant-access" part="sqm-base">
       ${props.success
         ? html`
-            <sl-icon
-              name="check-circle"
-              style="font-size: 3rem; color: var(--sl-color-success-600);"
-            ></sl-icon>
+            ${UI.Icon({
+              name: 'check-circle',
+              style: 'font-size: 3rem; color: var(--sl-color-success-600);',
+            })}
             <p>${props.successMessage}</p>
           `
         : html`
             <h3>${props.headerText}</h3>
-            ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
+            ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
             <form @submit="${props.onSubmit}">
-              <sl-input
-                type="email"
-                label="${props.emailLabel}"
-                placeholder="${props.emailPlaceholder}"
-                value="${props.email}"
-                @sl-input="${(e: Event) => props.setEmail((e.target as HTMLInputElement).value)}"
-                required
-              ></sl-input>
+              ${UI.Input({
+                type: 'email',
+                label: props.emailLabel,
+                placeholder: props.emailPlaceholder,
+                value: props.email,
+                onInput: (e: Event) => props.setEmail((e.target as HTMLInputElement).value),
+                required: true,
+              })}
               <slot></slot>
-              <sl-button
-                type="submit"
-                variant="primary"
-                ?loading="${props.loading}"
-                style="width: 100%; margin-top: var(--sl-spacing-small);"
-              >
-                ${props.submitLabel}
-              </sl-button>
+              ${UI.Button({
+                type: 'submit',
+                variant: 'primary',
+                loading: props.loading,
+                style: 'width: 100%; margin-top: var(--sl-spacing-small);',
+                children: props.submitLabel,
+              })}
             </form>
           `}
     </div>

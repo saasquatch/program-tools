@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { MarketingEmailsCheckboxProps } from './MarketingEmailsCheckbox';
 
 export function MarketingEmailsCheckboxView(props: MarketingEmailsCheckboxProps) {
@@ -8,8 +9,6 @@ export function MarketingEmailsCheckboxView(props: MarketingEmailsCheckboxProps)
         display: block;
       }
     </style>
-    <sl-checkbox name="${props.fieldName}" ?checked="${props.defaultChecked}"
-      >${props.label}</sl-checkbox
-    >
+    ${UI.Checkbox({ name: props.fieldName, checked: props.defaultChecked, children: props.label })}
   `;
 }

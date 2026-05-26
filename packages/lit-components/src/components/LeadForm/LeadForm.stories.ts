@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { UI } from '../../ui';
 import '../../index';
 import { LeadFormView } from './LeadFormView';
 
@@ -20,9 +21,9 @@ const meta: Meta = {
       success-message="${args['success-message'] || 'Thank you for your submission!'}"
       program-id="${args['program-id'] || ''}"
     >
-      <sl-input label="First Name"></sl-input>
-      <sl-input label="Last Name"></sl-input>
-      <sl-input label="Email" type="email"></sl-input>
+      ${UI.Input({ label: 'First Name' })}
+      ${UI.Input({ label: 'Last Name' })}
+      ${UI.Input({ label: 'Email', type: 'email' })}
     </sql-lead-form>
   `,
 };

@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { LeaderboardRankProps } from './LeaderboardRank';
 import { LeaderboardRankHookResult } from './useLeaderboardRank';
 
@@ -36,7 +37,7 @@ export function LeaderboardRankView(props: LeaderboardRankProps & LeaderboardRan
     </style>
     <div class="rank-container" part="sqm-base">
       ${props.loading
-        ? html`<sl-spinner></sl-spinner>`
+        ? html`${UI.Spinner({})}`
         : props.rank
           ? html`
               <div class="rank-badge">${props.rank}</div>

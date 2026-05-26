@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { DropdownFieldProps } from './DropdownField';
 import { useDropdownField } from './useDropdownField';
 
@@ -19,24 +20,20 @@ export function DropdownFieldView(
     <style>
       ${styles}
     </style>
-    <sl-select
-      label="${props.fieldLabel}"
-      name="${props.fieldName}"
-      placeholder="${props.fieldPlaceholder}"
-      ?required="${props.fieldRequired}"
-      ?disabled="${props.fieldDisabled}"
-      size="${props.fieldSize}"
-      value="${props.value}"
-      @sl-change="${props.onChange}"
-    >
-      ${props.options.map(
-        (opt) => html`<sl-option value="${opt.value}">${opt.label}</sl-option>`
-      )}
-      ${props.error
-        ? html`<span slot="help-text" style="color: var(--sl-color-danger-600)">${props.error}</span>`
-        : props.fieldHelpText
-          ? html`<span slot="help-text">${props.fieldHelpText}</span>`
-          : ''}
-    </sl-select>
+    ${UI.Select({
+      label: props.fieldLabel,
+      name: props.fieldName,
+      placeholder: props.fieldPlaceholder,
+      required: props.fieldRequired,
+      disabled: props.fieldDisabled,
+      size: props.fieldSize,
+      value: props.value,
+      onChange: props.onChange,
+      error: props.error,
+      helpText: props.fieldHelpText,
+      children: html`${props.options.map(
+        (opt) => html`${UI.Option({ value: opt.value, children: opt.label })}`
+      )}`,
+    })}
   `;
 }

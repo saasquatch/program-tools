@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
+import type { AlertVariant } from '../../ui/types';
 import { PayoutStatusAlertProps } from './PayoutStatusAlert';
 import { usePayoutStatus } from './usePayoutStatus';
 
@@ -20,11 +22,12 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertProps & ReturnType
       ? html``
       : props.text
         ? html`
-            <sl-alert variant="${props.variant}" open>
-              <sl-icon slot="icon" name="${iconName}"></sl-icon>
-              ${props.text}
-            </sl-alert>
-          `
+            ${UI.Alert({
+              variant: props.variant as AlertVariant,
+              open: true,
+              icon: UI.Icon({ name: iconName }),
+              children: props.text,
+            })}`
         : html``}
   `;
 }

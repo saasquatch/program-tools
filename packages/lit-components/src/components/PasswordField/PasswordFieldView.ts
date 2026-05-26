@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PasswordFieldProps } from './PasswordField';
 import { usePasswordField } from './usePasswordField';
 
@@ -19,26 +20,22 @@ export function PasswordFieldView(
     <style>
       ${styles}
     </style>
-    <sl-input
-      label="${props.fieldLabel}"
-      name="${props.fieldName}"
-      type="password"
-      placeholder="${props.fieldPlaceholder || ''}"
-      ?required="${props.fieldRequired}"
-      ?disabled="${props.fieldDisabled}"
-      ?password-toggle="${props.showToggle}"
-      size="${props.fieldSize}"
-      minlength="${props.fieldMinLength}"
-      maxlength="${props.fieldMaxLength ?? ''}"
-      value="${props.value}"
-      @sl-input="${props.onInput}"
-      @sl-blur="${props.onBlur}"
-    >
-      ${props.error
-        ? html`<span slot="help-text" style="color: var(--sl-color-danger-600)">${props.error}</span>`
-        : props.fieldHelpText
-          ? html`<span slot="help-text">${props.fieldHelpText}</span>`
-          : ''}
-    </sl-input>
+    ${UI.Input({
+      label: props.fieldLabel,
+      name: props.fieldName,
+      type: 'password',
+      placeholder: props.fieldPlaceholder || '',
+      required: props.fieldRequired,
+      disabled: props.fieldDisabled,
+      passwordToggle: props.showToggle,
+      size: props.fieldSize,
+      minLength: props.fieldMinLength,
+      maxLength: props.fieldMaxLength,
+      value: props.value,
+      onInput: props.onInput,
+      onBlur: props.onBlur,
+      error: props.error,
+      helpText: props.fieldHelpText,
+    })}
   `;
 }

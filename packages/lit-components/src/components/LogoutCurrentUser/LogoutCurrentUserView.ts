@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
+import type { ButtonVariant } from '../../ui';
 import { LogoutCurrentUserProps } from './LogoutCurrentUser';
 import { useLogoutCurrentUser } from './useLogoutCurrentUser';
 
@@ -11,13 +13,12 @@ export function LogoutCurrentUserView(
         display: inline-block;
       }
     </style>
-    <sl-button
-      variant="${props.buttonType === 'text' ? 'text' : props.buttonType}"
-      size="${props.size}"
-      @click=${props.onClick}
-    >
-      <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
-      ${props.buttonText}
-    </sl-button>
+    ${UI.Button({
+      variant: (props.buttonType === 'text' ? 'text' : props.buttonType) as ButtonVariant,
+      size: props.size,
+      onClick: props.onClick,
+      prefix: UI.Icon({ name: 'box-arrow-right' }),
+      children: props.buttonText,
+    })}
   `;
 }

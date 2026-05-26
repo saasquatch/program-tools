@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { NavigationMenuProps } from './NavigationMenu';
 import { useNavigationMenu } from './useNavigationMenu';
 
@@ -20,12 +21,11 @@ export function NavigationMenuView(
     </style>
     ${props.menuStyle === 'dropdown'
       ? html`
-          <sl-dropdown ?open="${props.isOpen}">
-            <sl-button slot="trigger" caret @click="${props.toggleMenu}">Menu</sl-button>
-            <sl-menu data-selected-index="${props.selectedIndex}">
-              <slot></slot>
-            </sl-menu>
-          </sl-dropdown>
+          ${UI.Dropdown({
+            open: props.isOpen,
+            trigger: UI.Button({ caret: true, onClick: props.toggleMenu, children: 'Menu' }),
+            children: html`${UI.Menu({ children: html`<slot></slot>` })}`,
+          })}
         `
       : html`
           <div class="nav-menu-tabs" data-selected-index="${props.selectedIndex}">

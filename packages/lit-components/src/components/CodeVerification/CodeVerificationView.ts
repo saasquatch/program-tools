@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { CodeVerificationProps } from './CodeVerification';
 import { useCodeVerification } from './useCodeVerification';
 
@@ -33,23 +34,22 @@ export function CodeVerificationView(
       <p style="color: var(--sl-color-neutral-600); font-size: var(--sl-font-size-small);">
         ${props.descriptionText}
       </p>
-      ${props.error ? html`<sl-alert variant="danger" open>${props.error}</sl-alert>` : ''}
-      ${props.resent ? html`<sl-alert variant="success" open>Code resent!</sl-alert>` : ''}
+      ${props.error ? html`${UI.Alert({ variant: 'danger', open: true, children: props.error })}` : ''}
+      ${props.resent ? html`${UI.Alert({ variant: 'success', open: true, children: 'Code resent!' })}` : ''}
       <form @submit="${props.onSubmit}">
-        <sl-input
-          placeholder="Enter code"
-          value="${props.code}"
-          @sl-input="${(e: Event) => props.setCode((e.target as HTMLInputElement).value)}"
-          maxlength="${props.codeLength || 6}"
-        ></sl-input>
-        <sl-button
-          type="submit"
-          variant="primary"
-          ?loading="${props.loading}"
-          style="width: 100%; margin-top: var(--sl-spacing-small);"
-        >
-          ${props.submitLabel}
-        </sl-button>
+        ${UI.Input({
+          placeholder: 'Enter code',
+          value: props.code,
+          onInput: (e: Event) => props.setCode((e.target as HTMLInputElement).value),
+          maxLength: props.codeLength || 6,
+        })}
+        ${UI.Button({
+          type: 'submit',
+          variant: 'primary',
+          loading: props.loading,
+          style: 'width: 100%; margin-top: var(--sl-spacing-small);',
+          children: props.submitLabel,
+        })}
       </form>
       <button class="resend-link" @click="${props.onResend}">${props.resendLabel}</button>
     </div>

@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { PaginationProps } from './Pagination';
 import { usePagination } from './usePagination';
 
@@ -24,15 +25,21 @@ export function PaginationView(props: PaginationProps & ReturnType<typeof usePag
       }
     </style>
     <div class="pagination" part="sqm-base">
-      <sl-button size="small" ?disabled="${!hookProps.hasPrev}" @click="${hookProps.prevPage}">
-        <sl-icon name="chevron-left" slot="prefix"></sl-icon>
-        ${props.showPreviousLabel}
-      </sl-button>
+      ${UI.Button({
+        size: 'small',
+        disabled: !hookProps.hasPrev,
+        onClick: hookProps.prevPage,
+        prefix: UI.Icon({ name: 'chevron-left' }),
+        children: props.showPreviousLabel,
+      })}
       <span class="page-info">${hookProps.page} / ${hookProps.totalPages}</span>
-      <sl-button size="small" ?disabled="${!hookProps.hasNext}" @click="${hookProps.nextPage}">
-        ${props.showNextLabel}
-        <sl-icon name="chevron-right" slot="suffix"></sl-icon>
-      </sl-button>
+      ${UI.Button({
+        size: 'small',
+        disabled: !hookProps.hasNext,
+        onClick: hookProps.nextPage,
+        suffix: UI.Icon({ name: 'chevron-right' }),
+        children: props.showNextLabel,
+      })}
     </div>
   `;
 }

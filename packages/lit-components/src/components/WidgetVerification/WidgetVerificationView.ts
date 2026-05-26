@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { WidgetVerificationProps } from './WidgetVerification';
 import { useWidgetVerification } from './useWidgetVerification';
 
@@ -32,16 +33,13 @@ export function WidgetVerificationView(
     <div class="verification-container" part="sqm-base">
       ${props.step === 'success'
         ? html`
-            <sl-icon
-              name="check-circle"
-              style="font-size: 3rem; color: var(--sl-color-success-600);"
-            ></sl-icon>
+            ${UI.Icon({ name: 'check-circle', style: 'font-size: 3rem; color: var(--sl-color-success-600);' })}
             <p>Verified successfully!</p>
             <slot></slot>
           `
         : props.step === 'verifying'
           ? html`
-              <sl-spinner style="font-size: 2rem;"></sl-spinner>
+              ${UI.Spinner({ style: 'font-size: 2rem;' })}
               <p>Verifying...</p>
             `
           : html`

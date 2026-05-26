@@ -1,4 +1,6 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
+import type { ButtonVariant } from '../../ui/types';
 import { ReferralCodeProps } from './ReferralCode';
 import { useReferralCode } from './useReferralCode';
 
@@ -83,7 +85,7 @@ export function ReferralCodeView(props: ReferralCodeProps & ReturnType<typeof us
   const buttonStyle = props.buttonStyle || 'icon';
   const error = !props.loading && props.error;
   const inputText = error ? props.inputPlaceholderText : props.copyString;
-  const disabled = error || props.loading || props.disabled;
+  const disabled = !!(error || props.loading || props.disabled);
   const tooltipPlacement =
     props.buttonStyle === 'button-below'
       ? 'bottom'
@@ -92,37 +94,31 @@ export function ReferralCodeView(props: ReferralCodeProps & ReturnType<typeof us
         : 'top-end';
 
   const copyButton = html`
-    <sl-tooltip
-      trigger="manual"
-      content="${props.tooltipText}"
-      placement="${tooltipPlacement}"
-      ?disabled="${props.disabled}"
-      ?open="${props.open}"
-      skidding="${props.buttonStyle === 'icon' ? -5 : 0}"
-      slot="suffix"
-    >
-      ${buttonStyle === 'icon'
-        ? html`
-            <sl-icon-button
-              exportparts="base: icon-button-base"
-              @click="${() => props.onClick?.()}"
-              name="files"
-              ?disabled="${disabled}"
-            ></sl-icon-button>
-          `
-        : html`
-            <sl-button
-              exportparts="base: ${props.buttonType || 'primary'}button-base"
-              @click="${() => props.onClick?.()}"
-              size="medium"
-              style="${buttonStyle === 'button-below' ? 'width: 100%' : ''}"
-              ?disabled="${disabled}"
-              type="primary"
-            >
-              ${props.copyButtonLabel || 'Copy'}
-            </sl-button>
-          `}
-    </sl-tooltip>
+    ${UI.Tooltip({
+      trigger: 'manual',
+      content: props.tooltipText,
+      placement: tooltipPlacement,
+      disabled: !!props.disabled,
+      open: props.open,
+      skidding: props.buttonStyle === 'icon' ? -5 : 0,
+      slot: 'suffix',
+      children: buttonStyle === 'icon'
+        ? UI.IconButton({
+            exportparts: 'base: icon-button-base',
+            onClick: () => props.onClick?.(),
+            name: 'files',
+            disabled: disabled,
+          })
+        : UI.Button({
+            exportparts: `base: ${props.buttonType || 'primary'}button-base`,
+            onClick: () => props.onClick?.(),
+            size: 'medium',
+            style: buttonStyle === 'button-below' ? 'width: 100%' : '',
+            disabled: disabled,
+            variant: (props.buttonType || 'primary') as ButtonVariant,
+            children: props.copyButtonLabel || 'Copy',
+          }),
+    })}
   `;
 
   return html`
@@ -135,14 +131,13 @@ export function ReferralCodeView(props: ReferralCodeProps & ReturnType<typeof us
         class="container-style"
         style="flex-direction: ${buttonStyle === 'button-below' ? 'column' : 'row'}"
       >
-        <sl-input
-          value="${props.loading ? 'Loading...' : inputText}"
-          readonly
-          ?disabled="${disabled}"
-        >
-          ${buttonStyle === 'icon' ? copyButton : ''}
-          ${error ? html` <p slot="help-text" class="error-text">${props.errorText}</p> ` : ''}
-        </sl-input>
+        ${UI.Input({
+          value: props.loading ? 'Loading...' : inputText,
+          readonly: true,
+          disabled: disabled,
+          suffix: buttonStyle === 'icon' ? copyButton : undefined,
+          error: error ? html`<p class="error-text">${props.errorText}</p>` : undefined,
+        })}
         ${buttonStyle === 'button-outside' || buttonStyle === 'button-below' ? copyButton : ''}
       </div>
       ${props.isCopied && props.showNotificationText && props.notificationText

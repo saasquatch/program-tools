@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import type { PortalProtectedRouteProps } from './PortalProtectedRoute';
 import { usePortalProtectedRoute } from './usePortalProtectedRoute';
 
@@ -11,6 +12,6 @@ export function PortalProtectedRouteView(
         display: block;
       }
     </style>
-    ${_props.isAuthenticated ? html`<slot></slot>` : html`<sl-spinner></sl-spinner>`}
+    ${_props.isAuthenticated ? html`<slot></slot>` : html`${UI.Spinner({})}`}
   `;
 }

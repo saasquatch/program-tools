@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { UI } from '../../ui';
 import { RadioCardProps } from './RadioCard';
 import { useRadioCard } from './useRadioCard';
 
@@ -68,7 +69,7 @@ export function RadioCardView(props: RadioCardProps & ReturnType<typeof useRadio
         ?checked="${props.fieldChecked}"
         ?disabled="${props.fieldDisabled}"
       />
-      ${props.icon ? html`<sl-icon name="${props.icon}"></sl-icon>` : ''}
+      ${props.icon ? html`${UI.Icon({ name: props.icon })}` : ''}
       <div class="radio-card-content">
         <span class="radio-card-label">${props.fieldLabel || ''}</span>
         ${props.fieldDescription

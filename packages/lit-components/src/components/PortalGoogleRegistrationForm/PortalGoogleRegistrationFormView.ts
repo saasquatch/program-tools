@@ -1,4 +1,5 @@
 import { html, nothing } from 'lit';
+import { UI } from '../../ui';
 import { BaseRegistrationView } from '../BaseRegistration/BaseRegistrationView';
 import type { PortalGoogleRegistrationFormProps } from './PortalGoogleRegistrationForm';
 import type { PortalGoogleRegistrationFormHookResult } from './usePortalGoogleRegistrationForm';
@@ -34,7 +35,7 @@ export function PortalGoogleRegistrationFormView(
       secondaryButton: html`
         <div class="login-cta-inline">
           <span>${props.loginCTA}</span>
-          <sl-button variant="text" @click="${props.onLogin}">${props.loginLabel}</sl-button>
+          ${UI.Button({ variant: 'text', onClick: props.onLogin, children: props.loginLabel })}
         </div>
       `,
     });
@@ -102,64 +103,61 @@ export function PortalGoogleRegistrationFormView(
         ${showDefaultInputs
           ? html`
               <div class="name-grid">
-                <sl-input
-                  label="First Name"
-                  .value="${props.firstName}"
-                  ?disabled="${props.loading}"
-                  @sl-input="${(event: Event) => props.setFirstName(getValue(event))}"
-                ></sl-input>
-                <sl-input
-                  label="Last Name"
-                  .value="${props.lastName}"
-                  ?disabled="${props.loading}"
-                  @sl-input="${(event: Event) => props.setLastName(getValue(event))}"
-                ></sl-input>
+                ${UI.Input({
+                  label: 'First Name',
+                  value: props.firstName,
+                  disabled: props.loading,
+                  onInput: (event: Event) => props.setFirstName(getValue(event)),
+                })}
+                ${UI.Input({
+                  label: 'Last Name',
+                  value: props.lastName,
+                  disabled: props.loading,
+                  onInput: (event: Event) => props.setLastName(getValue(event)),
+                })}
               </div>
-              <sl-input
-                type="email"
-                label="${props.emailLabel}"
-                .value="${props.email}"
-                ?disabled="${props.loading || props.mode === 'google'}"
-                @sl-input="${(event: Event) => props.setEmail(getValue(event))}"
-              ></sl-input>
+              ${UI.Input({
+                type: 'email',
+                label: props.emailLabel,
+                value: props.email,
+                disabled: props.loading || props.mode === 'google',
+                onInput: (event: Event) => props.setEmail(getValue(event)),
+              })}
             `
           : nothing}
         <slot name="formData"></slot>
         ${showPasswordFields
           ? html`
-              <sl-input
-                type="password"
-                label="${props.passwordLabel}"
-                .value="${props.password}"
-                ?disabled="${props.loading}"
-                password-toggle
-                @sl-input="${(event: Event) => props.setPassword(getValue(event))}"
-                help-text="${props.passwordHelpText}"
-              ></sl-input>
+              ${UI.Input({
+                type: 'password',
+                label: props.passwordLabel,
+                value: props.password,
+                disabled: props.loading,
+                passwordToggle: true,
+                onInput: (event: Event) => props.setPassword(getValue(event)),
+                helpText: props.passwordHelpText,
+              })}
               ${props.confirmPassword
                 ? html`
-                    <sl-input
-                      type="password"
-                      label="${props.confirmPasswordLabel}"
-                      .value="${props.confirmPasswordValue}"
-                      ?disabled="${props.loading}"
-                      password-toggle
-                      @sl-input="${(event: Event) =>
-                        props.setConfirmPasswordValue(getValue(event))}"
-                    ></sl-input>
+                    ${UI.Input({
+                      type: 'password',
+                      label: props.confirmPasswordLabel,
+                      value: props.confirmPasswordValue,
+                      disabled: props.loading,
+                      passwordToggle: true,
+                      onInput: (event: Event) => props.setConfirmPasswordValue(getValue(event)),
+                    })}
                   `
                 : nothing}
             `
           : nothing}
         <slot name="terms"></slot>
         ${props.error ? html`<p class="error-text">${props.error}</p>` : nothing}
-        <sl-button type="submit" variant="primary" ?loading="${props.loading}">
-          ${props.submitLabel}
-        </sl-button>
+        ${UI.Button({ type: 'submit', variant: 'primary', loading: props.loading, children: props.submitLabel })}
       </form>
       <div class="login-cta">
         <span>${props.loginCTA}</span>
-        <sl-button variant="text" @click="${props.onLogin}">${props.loginLabel}</sl-button>
+        ${UI.Button({ variant: 'text', onClick: props.onLogin, children: props.loginLabel })}
       </div>
     </div>
   `;
