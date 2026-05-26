@@ -140,7 +140,10 @@ jobs:
       - name: Install dependencies
         id: npm-ci
         working-directory: ${{ env.WORKING_DIR }}
-        run: npm ci --ignore-scripts --allow-git=none
+        run: |
+          npm ci --ignore-scripts --allow-git=none
+          # Allow our own postinstall scripts but not for all packages
+          npm run postinstall --if-present
 
       - name: Write new version to file
         working-directory: ${{ env.WORKING_DIR }}

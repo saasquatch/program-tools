@@ -34,7 +34,7 @@ jobs:
         run: |
           npm ci --ignore-scripts --allow-git=none
           # allow post-install patching of packages without allowing all other (potentially malicious) scripts
-          npm x patch-packages
+          npm run postinstall --if-present
 
       - name: Create release pull request or publish to npm
         id: changesets
