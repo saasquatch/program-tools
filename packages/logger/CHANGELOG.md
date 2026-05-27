@@ -42,9 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[unreleased]: https://github.com/sasquatch/logger/compare/@saasquatch/logger@3.0.0...HEAD
-[3.0.0]: https://github.com/sasquatch/logger/releases/tag/@saasquatch/logger@3.0.0
-[2.0.1]: https://github.com/sasquatch/logger/releases/tag/@saasquatch/logger@2.0.1
-[2.0.0]: https://github.com/sasquatch/logger/releases/tag/@saasquatch/logger@2.0.0
-[1.0.1]: https://github.com/sasquatch/logger/releases/tag/@saasquatch/logger@1.0.1
-[1.0.0]: https://github.com/sasquatch/logger/releases/tag/@saasquatch/logger@1.0.0
+[unreleased]: https://github.com/saasquatch/program-tools/compare/master...%40saasquatch/logger%403.0.0
+[3.0.0]: https://github.com/saasquatch/program-tools/tree/%40saasquatch/logger%403.0.0
+[2.0.1]: https://github.com/saasquatch/program-tools/tree/%40saasquatch/logger%402.0.1
+[2.0.0]: https://github.com/saasquatch/program-tools/tree/%40saasquatch/logger%402.0.0
+[1.0.1]: https://github.com/saasquatch/program-tools/tree/%40saasquatch/logger%401.0.1
+[1.0.0]: https://github.com/saasquatch/program-tools/tree/%40saasquatch/logger%401.0.0
