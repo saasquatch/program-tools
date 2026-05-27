@@ -1,7 +1,7 @@
-import { Application } from "express";
+import type { Application } from "express";
 import { Server, createServer } from "http";
 import { Logger } from "winston";
-import { formatGenericError } from "./error";
+import { formatGenericError } from "./error.ts";
 
 const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {
   logger.error({

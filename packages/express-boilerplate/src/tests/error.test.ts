@@ -1,11 +1,15 @@
-import { formatGenericError } from "../error";
+import * as assert from "node:assert";
+import { test } from "node:test";
+import { formatGenericError } from "../error.ts";
+
+/* eslint-disable @typescript-eslint/no-floating-promises */
 
 test("formatGenericError", () => {
   const error = new Error("Error message");
   const formatted = formatGenericError(error);
 
-  expect(formatted.e).toBeInstanceOf(Error);
-  expect(typeof formatted.eStr).toBe("string");
-  expect(formatted.eStr).toBe("Error: Error message");
-  expect(typeof formatted.eJson).toBe("string");
+  assert.ok(formatted.e instanceof Error);
+  assert.strictEqual(typeof formatted.eStr, "string");
+  assert.strictEqual(formatted.eStr, "Error: Error message");
+  assert.strictEqual(typeof formatted.eJson, "string");
 });
