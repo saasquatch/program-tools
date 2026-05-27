@@ -27,7 +27,10 @@ test("requestIdAndLogger adds requestId and logger", async () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .end((err) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
         resolve();
       });
   });

@@ -22,7 +22,10 @@ test("returns 200 when not terminating", async () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(res.body.status, "OK");
         resolve();
@@ -43,7 +46,10 @@ test("returns 503 when terminating", async () => {
       .expect("Content-Type", /json/)
       .expect(503)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(res.body.status, "TERMINATING");
         resolve();

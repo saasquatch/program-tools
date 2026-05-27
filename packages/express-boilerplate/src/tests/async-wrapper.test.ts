@@ -29,7 +29,10 @@ test("wrapper with no rejected promise", async () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .end((err) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
         resolve();
       });
   });
@@ -55,7 +58,10 @@ test("wrapper with rejected promise", async () => {
       .expect("Content-Type", /json/)
       .expect(500)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(typeof res.body.message, "string");
         assert.strictEqual(res.body.message, "error message from the handler");
@@ -92,7 +98,10 @@ test("default error message", async () => {
       .expect("Content-Type", /json/)
       .expect(500)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(typeof res.body.message, "string");
         assert.strictEqual(res.body.message, "An internal error occurred");
@@ -128,7 +137,10 @@ test("rejection after headers sent", async () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(typeof res.body.status, "string");
         assert.strictEqual(res.body.status, "going to fail later");
@@ -159,7 +171,10 @@ test("custom html error page", async () => {
       .expect("Content-Type", /html/)
       .expect(500)
       .end((err) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
         resolve();
       });
   });
@@ -186,7 +201,10 @@ test("custom html error page, no HTML accept header", async () => {
       .expect("Content-Type", /json/)
       .expect(500)
       .end((err) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
         resolve();
       });
   });
@@ -215,7 +233,10 @@ test("error while rendering custom error page", async () => {
       .expect("Content-Type", /json/)
       .expect(500)
       .end((err, res) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
 
         assert.strictEqual(typeof res.body.message, "string");
         assert.strictEqual(res.body.message, "error message from the handler");
