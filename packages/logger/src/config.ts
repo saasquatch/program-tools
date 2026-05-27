@@ -1,4 +1,4 @@
-import { Writable } from "stream";
+import type { Writable } from "stream";
 import winston from "winston";
 
 /**
@@ -110,7 +110,7 @@ export function defaultConfig(): LoggerConfig {
 
   return {
     logLevel,
-    environment: process.env.NODE_ENV ?? "production",
+    environment: process.env["NODE_ENV"] ?? "production",
     transports,
   };
 }

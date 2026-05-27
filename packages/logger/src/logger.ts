@@ -1,6 +1,6 @@
 import winston from "winston";
-import { defaultConfig, LoggerConfig, Transport } from "./config";
-import { jsonFormat, prettyFormat } from "./format";
+import { defaultConfig, type LoggerConfig, type Transport } from "./config.ts";
+import { jsonFormat, prettyFormat } from "./format.ts";
 
 let _loggers: Record<string, winston.Logger> = {};
 
