@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/express-boilerplate",
-  "version": "1.1.2-1",
+  "version": "1.1.2-2",
   "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
   "main": "dist/index.js",
   "type": "module",
