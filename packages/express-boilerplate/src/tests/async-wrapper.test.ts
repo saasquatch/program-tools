@@ -1,10 +1,15 @@
 import express from "express";
+import { test } from "node:test";
 import request from "supertest";
-import { asyncHandlerWrapper } from "../async-wrapper";
-import { requestIdAndLogger } from "../middleware";
-import { jestLogger } from "./util";
+import { asyncHandlerWrapper } from "../async-wrapper.ts";
+import { requestIdAndLogger } from "../middleware.ts";
+import { jestLogger } from "./util.ts";
+import * as assert from "node:assert";
 
-test("wrapper with no rejected promise", (done) => {
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/prefer-promise-reject-errors */
+
+test("wrapper with no rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -18,17 +23,19 @@ test("wrapper with no rejected promise", (done) => {
     }),
   );
 
-  void request(app)
-    .get("/")
-    .expect("Content-Type", /json/)
-    .expect(200)
-    .end((err) => {
-      if (err) throw err;
-      done();
-    });
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .end((err) => {
+        if (err) reject(err);
+        resolve();
+      });
+  });
 });
 
-test("wrapper with rejected promise", (done) => {
+test("wrapper with rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -41,27 +48,29 @@ test("wrapper with rejected promise", (done) => {
     }),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "application/json")
-    .expect("Content-Type", /json/)
-    .expect(500)
-    .end((err, res) => {
-      if (err) throw err;
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(500)
+      .end((err, res) => {
+        if (err) reject(err);
 
-      expect(typeof res.body.message).toBe("string");
-      expect(res.body.message).toBe("error message from the handler");
+        assert.strictEqual(typeof res.body.message, "string");
+        assert.strictEqual(res.body.message, "error message from the handler");
 
-      expect(typeof res.body.debugId).toBe("string");
-      expect(typeof res.body.requestId).toBe("string");
-      expect(typeof res.body.eStr).toBe("string");
-      expect(typeof res.body.eJson).toBe("string");
+        assert.strictEqual(typeof res.body.debugId, "string");
+        assert.strictEqual(typeof res.body.requestId, "string");
+        assert.strictEqual(typeof res.body.eStr, "string");
+        assert.strictEqual(typeof res.body.eJson, "string");
 
-      done();
-    });
+        resolve();
+      });
+  });
 });
 
-test("default error message", (done) => {
+test("default error message", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -76,27 +85,29 @@ test("default error message", (done) => {
     }),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "application/json")
-    .expect("Content-Type", /json/)
-    .expect(500)
-    .end((err, res) => {
-      if (err) throw err;
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(500)
+      .end((err, res) => {
+        if (err) reject(err);
 
-      expect(typeof res.body.message).toBe("string");
-      expect(res.body.message).toBe("An internal error occurred");
+        assert.strictEqual(typeof res.body.message, "string");
+        assert.strictEqual(res.body.message, "An internal error occurred");
 
-      expect(typeof res.body.debugId).toBe("string");
-      expect(typeof res.body.requestId).toBe("string");
-      expect(typeof res.body.eStr).toBe("string");
-      expect(typeof res.body.eJson).toBe("string");
+        assert.strictEqual(typeof res.body.debugId, "string");
+        assert.strictEqual(typeof res.body.requestId, "string");
+        assert.strictEqual(typeof res.body.eStr, "string");
+        assert.strictEqual(typeof res.body.eJson, "string");
 
-      done();
-    });
+        resolve();
+      });
+  });
 });
 
-test("rejection after headers sent", (done) => {
+test("rejection after headers sent", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -110,22 +121,24 @@ test("rejection after headers sent", (done) => {
     }),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "application/json")
-    .expect("Content-Type", /json/)
-    .expect(200)
-    .end((err, res) => {
-      if (err) throw err;
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) reject(err);
 
-      expect(typeof res.body.status).toBe("string");
-      expect(res.body.status).toBe("going to fail later");
+        assert.strictEqual(typeof res.body.status, "string");
+        assert.strictEqual(res.body.status, "going to fail later");
 
-      done();
-    });
+        resolve();
+      });
+  });
 });
 
-test("custom html error page", (done) => {
+test("custom html error page", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -139,18 +152,20 @@ test("custom html error page", (done) => {
     }, renderErrorPage),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "text/html")
-    .expect("Content-Type", /html/)
-    .expect(500)
-    .end((err) => {
-      if (err) throw err;
-      done();
-    });
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "text/html")
+      .expect("Content-Type", /html/)
+      .expect(500)
+      .end((err) => {
+        if (err) reject(err);
+        resolve();
+      });
+  });
 });
 
-test("custom html error page, no HTML accept header", (done) => {
+test("custom html error page, no HTML accept header", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -164,18 +179,20 @@ test("custom html error page, no HTML accept header", (done) => {
     }, renderErrorPage),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "application/json")
-    .expect("Content-Type", /json/)
-    .expect(500)
-    .end((err) => {
-      if (err) throw err;
-      done();
-    });
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(500)
+      .end((err) => {
+        if (err) reject(err);
+        resolve();
+      });
+  });
 });
 
-test("error while rendering custom error page", (done) => {
+test("error while rendering custom error page", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -191,17 +208,19 @@ test("error while rendering custom error page", (done) => {
     }, renderErrorPage),
   );
 
-  void request(app)
-    .get("/")
-    .set("Accept", "text/html")
-    .expect("Content-Type", /json/)
-    .expect(500)
-    .end((err, res) => {
-      if (err) throw err;
+  await new Promise<void>((resolve, reject) => {
+    request(app)
+      .get("/")
+      .set("Accept", "text/html")
+      .expect("Content-Type", /json/)
+      .expect(500)
+      .end((err, res) => {
+        if (err) reject(err);
 
-      expect(typeof res.body.message).toBe("string");
-      expect(res.body.message).toBe("error message from the handler");
+        assert.strictEqual(typeof res.body.message, "string");
+        assert.strictEqual(res.body.message, "error message from the handler");
 
-      done();
-    });
+        resolve();
+      });
+  });
 });

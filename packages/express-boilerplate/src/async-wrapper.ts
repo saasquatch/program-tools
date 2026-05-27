@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { Logger } from "winston";
-import { formatGenericError } from "./error";
-import { nanoid } from "./nanoid";
+import { formatGenericError } from "./error.ts";
+import { nanoid } from "./nanoid.ts";
 
 export function asyncHandlerWrapper<T>(
   handler: (req: Request, res: Response) => Promise<T>,
@@ -12,9 +12,9 @@ export function asyncHandlerWrapper<T>(
   ) => Promise<string>,
 ): (req: Request, res: Response) => void {
   return (req, res) => {
-    handler(req, res).catch((e) => {
-      const logger = res.locals.logger as Logger | undefined;
-      const requestId = res.locals.requestId as string | undefined;
+    handler(req, res).catch((e: unknown) => {
+      const logger = res.locals["logger"] as Logger | undefined;
+      const requestId = res.locals["requestId"] as string | undefined;
 
       const debugId = nanoid(8);
 
@@ -45,7 +45,7 @@ export function asyncHandlerWrapper<T>(
           .then((html) => {
             res.status(status).contentType("text/html;charset=utf8").send(html);
           })
-          .catch((e) => {
+          .catch((e: unknown) => {
             logger?.error({
               message: "Error occurred while rendering error page!",
               ...formatGenericError(e),

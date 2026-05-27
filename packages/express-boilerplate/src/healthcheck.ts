@@ -1,7 +1,7 @@
-import { Application, Request, Response } from "express";
+import type { Application, Request, Response } from "express";
 import { Logger } from "winston";
-import { TERMINATION_APP_LOCAL_KEY } from "./shutdown";
-import { formatGenericError } from "./error";
+import { formatGenericError } from "./error.ts";
+import { TERMINATION_APP_LOCAL_KEY } from "./shutdown.ts";
 
 export type HealthCheckResult<T, E> =
   | {
@@ -38,7 +38,7 @@ export function healthCheck<T = undefined, E = undefined>(
           const code = result.status === "OK" ? 200 : 503;
           res.status(code).json(result);
         })
-        .catch((e) => {
+        .catch((e: unknown) => {
           const code = 503;
           const error = formatGenericError(e);
 
