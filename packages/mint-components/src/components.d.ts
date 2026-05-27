@@ -57,6 +57,7 @@ import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-bu
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UseTaxAndCashDashboardResult } from "./components/tax-and-cash/sqm-tax-and-cash-dashboard/useTaxAndCashDashboard";
+import { UserAttributeViewProps } from "./components/sqm-user-attribute/sqm-user-attribute-view";
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
@@ -6986,6 +6987,40 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
+    interface SqmUserAttribute {
+        /**
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "color"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserAttributeViewProps>;
+        /**
+          * Number in pixels.
+          * @uiName Font size
+          * @uiGroup Style
+         */
+        "fontSize"?: number;
+        /**
+          * Font weight
+          * @uiName Font weight
+          * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "fontWeight"?: number;
+        /**
+          * The custom field key to display.
+          * @uiName Custom field key
+          * @uiWidget customFieldSelector
+         */
+        "value": string | number;
+    }
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
@@ -8006,6 +8041,12 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    interface HTMLSqmUserAttributeElement extends Components.SqmUserAttribute, HTMLStencilElement {
+    }
+    var HTMLSqmUserAttributeElement: {
+        prototype: HTMLSqmUserAttributeElement;
+        new (): HTMLSqmUserAttributeElement;
+    };
     interface HTMLSqmUserInfoFormElement extends Components.SqmUserInfoForm, HTMLStencilElement {
     }
     var HTMLSqmUserInfoFormElement: {
@@ -8155,6 +8196,7 @@ declare global {
         "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-attribute": HTMLSqmUserAttributeElement;
         "sqm-user-info-form": HTMLSqmUserInfoFormElement;
         "sqm-user-name": HTMLSqmUserNameElement;
         "sqm-widget-verification": HTMLSqmWidgetVerificationElement;
@@ -15056,6 +15098,40 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    interface SqmUserAttribute {
+        /**
+          * @uiName Color
+          * @uiWidget color
+          * @format color
+          * @uiGroup Style
+         */
+        "color"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<UserAttributeViewProps>;
+        /**
+          * Number in pixels.
+          * @uiName Font size
+          * @uiGroup Style
+         */
+        "fontSize"?: number;
+        /**
+          * Font weight
+          * @uiName Font weight
+          * @uiGroup Style
+          * @uiEnum [100, 200, 300, 400, 500, 600, 700, 800, 900]
+          * @uiEnumNames ["Thin", "Extra Light", "Light", "Normal", "Medium", "Semi Bold", "Bold", "Extra Bold", "Heavy"]
+         */
+        "fontWeight"?: number;
+        /**
+          * The custom field key to display.
+          * @uiName Custom field key
+          * @uiWidget customFieldSelector
+         */
+        "value"?: string | number;
+    }
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
@@ -15455,6 +15531,7 @@ declare namespace LocalJSX {
         "sqm-timeline": SqmTimeline;
         "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-attribute": SqmUserAttribute;
         "sqm-user-info-form": SqmUserInfoForm;
         "sqm-user-name": SqmUserName;
         "sqm-widget-verification": SqmWidgetVerification;
@@ -15589,6 +15666,7 @@ declare module "@stencil/core" {
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-attribute": LocalJSX.SqmUserAttribute & JSXBase.HTMLAttributes<HTMLSqmUserAttributeElement>;
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
             "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
