@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Dependencies
 
 ### Depends on
@@ -106,8 +105,10 @@
 - [sqm-lead-form](../sqm-lead-form)
 - [sqm-partner-info-modal](../sqm-partner-info-modal)
 - [sqm-widget-verification](../sqm-widget-verification)
+- [sqm-user-attribute](../sqm-user-attribute)
 
 ### Graph
+
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-brand-selector
@@ -209,6 +210,7 @@ graph TD;
   sqm-stencilbook --> sqm-lead-form
   sqm-stencilbook --> sqm-partner-info-modal
   sqm-stencilbook --> sqm-widget-verification
+  sqm-stencilbook --> sqm-user-attribute
   sqm-form-message --> sqm-skeleton
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
@@ -292,9 +294,10 @@ graph TD;
   sqm-widget-verification --> sqm-partner-info-modal
   sqm-widget-verification --> sqm-code-verification
   sqm-widget-verification --> sqm-email-verification
+  sqm-user-attribute --> sqm-skeleton
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

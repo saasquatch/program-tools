@@ -176,10 +176,18 @@ export function usePartnerInfoModal(
 
   const countries = countriesData?.impactPayoutCountries?.data || [];
 
+  const isExistingPartner = !!user?.impactConnection?.publisher;
+
   const _currencies = useMemo(() => {
+    // if isExistingPartner, grab all currencies since select is disabled anyways
+    if (isExistingPartner) {
+      return currenciesData?.currencies?.data || [];
+    }
+
     const allValidCurrencies =
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
+          if (countryCode && settings.countryCode !== countryCode) return agg;
           const c = currenciesData?.currencies?.data?.find(
             (cur) => cur.currencyCode === settings.currency
           );
@@ -191,7 +199,7 @@ export function usePartnerInfoModal(
         []
       );
     return allValidCurrencies || [];
-  }, [financeNetworkData, currenciesData]);
+  }, [financeNetworkData, currenciesData, countryCode, isExistingPartner]);
 
   const currencies = useMemo(
     () =>
@@ -329,7 +337,7 @@ export function usePartnerInfoModal(
     }
   }
 
-  console.log(impactConnection, "impactconnect ion modal");
+  console.log(impactConnection, "impactConnection in partner modal");
 
   const showModal =
     !success &&
@@ -341,7 +349,7 @@ export function usePartnerInfoModal(
       open: showModal,
       loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
-      isExistingPartner: !!impactConnection?.publisher,
+      isExistingPartner,
       countryCode,
       currency,
       error,

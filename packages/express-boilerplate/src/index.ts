@@ -1,15 +1,15 @@
-import { asyncHandlerWrapper } from "./async-wrapper";
-import type { GenericError } from "./error";
-import { formatGenericError } from "./error";
-import type { HealthCheckResult } from "./healthcheck";
-import { healthCheck } from "./healthcheck";
-import { requestIdAndLogger } from "./middleware";
-import { nanoid } from "./nanoid";
-import type { ShutdownManagerConfig } from "./shutdown";
+import { asyncHandlerWrapper } from "./async-wrapper.ts";
+import type { GenericError } from "./error.ts";
+import { formatGenericError } from "./error.ts";
+import type { HealthCheckResult } from "./healthcheck.ts";
+import { healthCheck } from "./healthcheck.ts";
+import { requestIdAndLogger } from "./middleware.ts";
+import { nanoid } from "./nanoid.ts";
+import type { ShutdownManagerConfig } from "./shutdown.ts";
 import {
   installShutdownManager,
   shutdownManagerConfigFromEnv,
-} from "./shutdown";
+} from "./shutdown.ts";
 
 export {
   asyncHandlerWrapper,

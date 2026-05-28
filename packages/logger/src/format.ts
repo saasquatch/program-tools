@@ -1,5 +1,5 @@
 import winston from "winston";
-import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "./logger";
+import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "./logger.ts";
 
 type HTTPMessage = {
   method: string;
@@ -22,7 +22,7 @@ export function jsonFormat(name: string): winston.Logform.Format {
     cleanLogTypeMarker(),
     winston.format.uncolorize(),
     dataDogStatus(),
-    winston.format.json()
+    winston.format.json(),
   );
 }
 
@@ -40,7 +40,7 @@ export function prettyFormat(name: string): winston.Logform.Format {
     winston.format.colorize(),
     dataDogStatus(),
     winston.format.simple(),
-    prettyDevFormat
+    prettyDevFormat,
   );
 }
 

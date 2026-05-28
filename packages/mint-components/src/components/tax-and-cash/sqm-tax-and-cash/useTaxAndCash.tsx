@@ -2,6 +2,7 @@ import {
   getContextValueName,
   useHost,
   useLocale,
+  useMutation,
   useParentQuery,
   useParentState,
   useUserIdentity,
@@ -32,6 +33,11 @@ import {
   UserFormContext,
   UserQuery,
 } from "../data";
+import { ImpactConnection } from "../../../saasquatch";
+import {
+  COMPLETE_PARTNER,
+  CompletePartnerResult,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {
@@ -44,8 +50,24 @@ function getCurrentStep(user: UserQuery["user"]) {
     withdrawalSettings,
     brandedSignup,
     payoutsAccount,
+    billingAddress,
+    billingCity,
+    billingCountryCode,
+    billingPostalCode,
+    billingState,
+    phoneNumber,
+    phoneNumberCountryCode,
   } = user.impactConnection.publisher;
-  if (user.impactConnection.connectionStatus === "STARTED") {
+
+  const hasBillingInfo =
+    billingAddress &&
+    billingCity &&
+    billingCountryCode &&
+    billingPostalCode &&
+    phoneNumberCountryCode &&
+    phoneNumber;
+
+  if (!hasBillingInfo) {
     return "/1";
   }
 
@@ -70,6 +92,9 @@ export function useTaxAndCash() {
   const host = useHost();
   const user = useUserIdentity();
   const locale = useLocale();
+
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
 
   // State for current step of form
   const [step, setStep] = useParentState<string>({
@@ -100,7 +125,7 @@ export function useTaxAndCash() {
     {
       namespace: CURRENCIES_NAMESPACE,
       initialValue: [],
-    },
+    }
   );
 
   const [_countriesContext, _setCountriesContext] = useParentState<
@@ -161,7 +186,7 @@ export function useTaxAndCash() {
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
           const currency = currenciesData?.currencies?.data?.find(
-            (currency) => currency.currencyCode === settings.currency,
+            (currency) => currency.currencyCode === settings.currency
           );
           // Currency not in supported list
           if (!currency) return agg;
@@ -179,7 +204,7 @@ export function useTaxAndCash() {
 
           return [...agg, currency];
         },
-        [],
+        []
       );
     return allValidCurrencies;
   }, [financeNetworkData, countryCode]);
@@ -197,9 +222,9 @@ export function useTaxAndCash() {
       new Set(
         paymentOptions
           ?.map((option) => option.countryCode)
-          .filter((value) => value),
+          .filter((value) => value)
       ),
-    [paymentOptions],
+    [paymentOptions]
   );
 
   const _topCountries = ["CA", "GB", "US"];
@@ -208,7 +233,7 @@ export function useTaxAndCash() {
     () =>
       Array.from(availableCountries)
         .map((countryCode) =>
-          getCountryObj({ countryCode, locale: intlLocale }),
+          getCountryObj({ countryCode, locale: intlLocale })
         )
         .sort(sortByName)
         .reduce((prev, countryObj) => {
@@ -216,7 +241,7 @@ export function useTaxAndCash() {
             return [countryObj, ...prev];
           return [...prev, countryObj];
         }, []),
-    [availableCountries],
+    [availableCountries]
   );
 
   useEffect(() => {
@@ -234,11 +259,55 @@ export function useTaxAndCash() {
     }
     if (!host || !user) return;
 
+    async function completeConnection(user: UserQuery["user"]) {
+      const publisher = user?.impactConnection?.publisher;
+
+      const hasBillingInfo =
+        publisher.billingAddress &&
+        publisher.billingCity &&
+        publisher.billingCountryCode &&
+        publisher.billingPostalCode &&
+        publisher.phoneNumberCountryCode &&
+        publisher.phoneNumber;
+
+      if (
+        hasBillingInfo &&
+        user?.impactConnection?.connectionStatus === "STARTED"
+      ) {
+        const vars = {
+          user: {
+            id: data?.user?.id,
+            accountId: data?.user?.accountId,
+          },
+          firstName: data?.user?.firstName,
+          lastName: data?.user?.lastName,
+          countryCode: publisher.billingCountryCode,
+          currency: publisher.currency,
+          address: publisher.billingAddress,
+          city: publisher.billingCity,
+          state: publisher.billingState,
+          postalCode: publisher.billingPostalCode,
+          phoneNumber: publisher.phoneNumber,
+          phoneNumberCountryCode: publisher.phoneNumberCountryCode,
+        } as Partial<ImpactConnection>;
+        await completeImpactPartner({
+          vars,
+        });
+      }
+    }
+
     if (data) {
       const user = data?.user;
 
       if (!user || step !== "/loading") return;
 
+      if (
+        user?.impactConnection?.publisher &&
+        user?.impactConnection.connectionStatus === "STARTED"
+      ) {
+        completeConnection(user);
+        refetch();
+      }
       const currentStep = getCurrentStep(user);
       setStep(currentStep);
     }

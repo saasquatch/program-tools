@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- [#494](https://github.com/saasquatch/program-tools/pull/494) [`7981fe9`](https://github.com/saasquatch/program-tools/commit/7981fe95e953e342b0cd1a81f3b744218c612032) Thanks [@zachharrison](https://github.com/zachharrison)! - Add new user-attribute component used to display a user's custom fields in widgets and microsites
+
 ## 2.1.13
 
 ### Patch Changes
