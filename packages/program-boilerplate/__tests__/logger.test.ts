@@ -10,7 +10,7 @@ describe("#getLogger", () => {
   });
 
   test("logger is only initialized once", () => {
-    assert.deepStrictEqual(getLogger("warn"), logger);
+    assert.strictEqual(getLogger("warn"), logger);
   });
 });
 

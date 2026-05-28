@@ -1,5 +1,5 @@
 import type { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate/index.d.ts";
-import Transaction from "../transaction.ts";
+import type Transaction from "../transaction.ts";
 import type { Referral, RSJsonNode, User, UserEvent } from "./saasquatch.ts";
 
 /********************************************************/
