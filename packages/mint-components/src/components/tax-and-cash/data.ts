@@ -47,6 +47,7 @@ export const GET_USER = gql`
     user: viewer {
       ... on User {
         id
+        accountId
         firstName
         lastName
         email
@@ -171,6 +172,8 @@ export type ImpactUser = {
 };
 export type UserQuery = {
   user: {
+    id?: string;
+    accountId?: string;
     firstName?: string;
     lastName?: string;
     email?: string;

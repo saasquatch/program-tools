@@ -125,7 +125,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.supportLink}
         </a>
       ),
-    },
+    }
   );
 
   const description = states.isExistingPartner ? (
@@ -154,7 +154,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.termsAndConditionsLabel}
         </a>
       ),
-    },
+    }
   );
 
   return (
@@ -193,7 +193,9 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           exportparts="label: input-label, base: input-base"
           label={text.currencyLabel}
           value={states.currency}
-          disabled={states.submitting || !!states.currency}
+          disabled={
+            states.submitting || (!!states.currency && states.isExistingPartner)
+          }
           required
           hoist
           onSl-select={callbacks.onCurrencyChange}
