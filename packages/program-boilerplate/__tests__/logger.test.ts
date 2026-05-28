@@ -1,20 +1,22 @@
-import { getLogger, setLogLevel } from "../src/logger";
+import * as assert from "node:assert";
+import { describe, test } from "node:test";
+import { getLogger, setLogLevel } from "../src/logger.ts";
 
 const logger = getLogger("notice");
 describe("#getLogger", () => {
   test("first call initializes the logger at the given level", () => {
-    expect(logger);
-    expect(logger.level).toBe("notice");
+    assert.ok(logger);
+    assert.strictEqual(logger.level, "notice");
   });
 
   test("logger is only initialized once", () => {
-    expect(getLogger("warn")).toBe(logger);
+    assert.deepStrictEqual(getLogger("warn"), logger);
   });
 });
 
 describe("#setLogLevel", () => {
   test("sets the log level of an initialized logger", () => {
     setLogLevel("crit");
-    expect(logger.level).toBe("crit");
+    assert.strictEqual(logger.level, "crit");
   });
 });

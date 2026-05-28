@@ -1,6 +1,6 @@
 import { getLogger as ssqtLogger } from "@saasquatch/logger";
-import Transaction from "./transaction";
-import {
+import Transaction from "./transaction.ts";
+import type {
   Program,
   ProgramIntrospectionBody,
   ProgramTriggerBody,
@@ -8,11 +8,11 @@ import {
   ProgramValidationBody,
   ProgramVariableSchemaRequestBody,
   ValidationResult,
-} from "./types/rpc";
+} from "./types/rpc.ts";
 
 function handleTriggerError(
   triggerType: string,
-  e: unknown
+  e: unknown,
 ): { error: string; message?: unknown } {
   const stack =
     typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined;
@@ -43,8 +43,6 @@ function handleTriggerError(
  *
  * @param {Object} body The trigger body
  * @param {Program?} program The program trigger handlers
- * @param {Object?} query The context query
- * @param {Object?} headers The context HTTP headers
  *
  * @return {ProgramTriggerResult} The program trigger result
  *
@@ -61,7 +59,7 @@ export function triggerProgram(
     | ProgramIntrospectionBody
     | ProgramValidationBody
     | ProgramVariableSchemaRequestBody,
-  program: Program = {}
+  program: Program = {},
 ): ProgramTriggerResult {
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
@@ -97,7 +95,7 @@ export function triggerProgram(
  */
 function handleProgramTrigger(
   body: ProgramTriggerBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const transaction = new Transaction({ body });
 
@@ -129,7 +127,7 @@ function handleProgramTrigger(
  */
 function handleProgramIntrospection(
   body: ProgramIntrospectionBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const template = body.template;
   const rules = body.program.rules;
@@ -164,7 +162,7 @@ function handleProgramIntrospection(
  */
 function handleProgramValidation(
   body: ProgramValidationBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
@@ -199,7 +197,7 @@ function handleProgramValidation(
 
 function handleProgramVariableSchemaRequest(
   body: ProgramVariableSchemaRequestBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const schema = body.schema;
   const scheduleKey = body.scheduleKey;

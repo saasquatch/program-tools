@@ -1,23 +1,29 @@
 import jsonata from "jsonata";
-import { safeJsonata, timeboxExpression } from "../src/jsonata";
+import * as assert from "node:assert";
+import { describe, test } from "node:test";
+import { safeJsonata, timeboxExpression } from "../src/jsonata.ts";
 
 describe("#timeboxExpression", () => {
   const infExpr = jsonata("( $inf := function(){$inf()}; $inf())");
 
-  test("infinite loops throw error", () => {
+  test("infinite loops throw error", { timeout: 7000 }, () => {
     timeboxExpression(infExpr);
 
     let error: any;
-    expect(() => {
+    assert.throws(() => {
       try {
         infExpr.evaluate(undefined);
       } catch (e) {
         error = e;
         throw e;
       }
-    }).toThrow();
-    expect(error!.code === "U1001" || error!.code === "U1002").toBe(true);
-  }, 7000);
+    });
+
+    assert.strictEqual(
+      error!.code === "U1001" || error!.code === "U1002",
+      true,
+    );
+  });
 });
 
 describe("#safeJsonata", () => {
@@ -25,13 +31,13 @@ describe("#safeJsonata", () => {
 
   const expr = "( event.key = 'purchase' ? 111 )";
   const input = { event: { key: "purchase" } };
-  test("infinite loops do not throw, but still exit", () => {
-    expect(() => {
+  test("infinite loops do not throw, but still exit", { timeout: 7000 }, () => {
+    assert.doesNotThrow(() => {
       safeJsonata(infExpr, undefined);
-    }).not.toThrow();
-  }, 7000);
+    });
+  });
 
   test("jsonata is evaluated as normal", () => {
-    expect(safeJsonata(expr, input)).toBe(111);
+    assert.strictEqual(safeJsonata(expr, input), 111);
   });
 });

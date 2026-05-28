@@ -1,12 +1,15 @@
-import Transaction from "../src/transaction";
-import { triggerProgram } from "../src/trigger";
-import {
+import Transaction from "../src/transaction.ts";
+import { triggerProgram } from "../src/trigger.ts";
+import type {
   Program,
   ProgramTriggerBody,
+  ProgramTriggerHandler,
   ProgramVariableSchemaResult,
   RequirementValidationHandler,
   TriggerType,
-} from "../src/types/rpc";
+} from "../src/types/rpc.ts";
+import * as assert from "node:assert";
+import { describe, mock, test } from "node:test";
 
 describe("triggerProgram", () => {
   describe("body has invalid messageType", () => {
@@ -18,10 +21,10 @@ describe("triggerProgram", () => {
     };
     test("501 is returned", () => {
       const result = triggerProgram(
-        (testBody as unknown) as ProgramTriggerBody,
-        (program as unknown) as Program
+        testBody as unknown as ProgramTriggerBody,
+        program as unknown as Program,
       );
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {
           message: `Unrecognized messageType NOT_YET_ADDED_TO_BOILERPLATE`,
         },
@@ -65,25 +68,25 @@ describe("triggerProgram", () => {
     const newTemplate = { template: {} };
 
     test("PROGRAM_INTROSPECTION", () => {
-      const spy = jest.fn(() => newTemplate);
+      const spy = mock.fn(() => newTemplate);
       const spyingProgram = {
         PROGRAM_INTROSPECTION: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(spy.mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy.mock.calls[0].arguments, [
         testBody.template,
         testBody.program.rules,
         testBody.program,
         testBody.tenant,
       ]);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: newTemplate,
         code: 200,
       });
     });
 
     test("PROGRAM_INTROSPECTION errors", () => {
-      const spy = jest.fn(() => {
+      const spy = mock.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;
@@ -92,13 +95,13 @@ describe("triggerProgram", () => {
         PROGRAM_INTROSPECTION: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(spy.mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy.mock.calls[0].arguments, [
         testBody.template,
         testBody.program.rules,
         testBody.program,
         testBody.tenant,
       ]);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {
           error: "An error occurred in a webtask (PROGRAM_INTROSPECTION)",
           message: undefined,
@@ -135,14 +138,16 @@ describe("triggerProgram", () => {
     };
 
     test("PROGRAM_TRIGGER", () => {
-      const spy = jest.fn();
+      const spy = mock.fn<ProgramTriggerHandler>();
       const spyingProgram = {
         AFTER_USER_EVENT_PROCESSED: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(spy.mock.calls[0][0]).toBeInstanceOf(Transaction);
-      expect(spy.mock.calls[0][0].context).toStrictEqual({ body: testBody });
-      expect(result).toStrictEqual({
+      assert.ok(spy.mock.calls[0].arguments[0] instanceof Transaction);
+      assert.deepStrictEqual(spy.mock.calls[0].arguments[0]["context"], {
+        body: testBody,
+      });
+      assert.deepStrictEqual(result, {
         json: {
           mutations: [],
           analytics: [],
@@ -153,7 +158,7 @@ describe("triggerProgram", () => {
     });
 
     test("PROGRAM_TRIGGER errors", () => {
-      const spy = jest.fn(() => {
+      const spy = mock.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;
@@ -162,7 +167,7 @@ describe("triggerProgram", () => {
         AFTER_USER_EVENT_PROCESSED: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {
           error: "An error occurred in a webtask (AFTER_USER_EVENT_PROCESSED)",
           message: undefined,
@@ -213,15 +218,23 @@ describe("triggerProgram", () => {
     };
 
     test("PROGRAM_VALIDATION", () => {
-      const spy1 = (jest.fn(
-        () => 1
-      ) as unknown) as RequirementValidationHandler;
-      const spy2 = (jest.fn(
-        () => 2
-      ) as unknown) as RequirementValidationHandler;
-      const spy3 = (jest.fn(
-        () => 3
-      ) as unknown) as RequirementValidationHandler;
+      const validationResult = (num: number) => [
+        {
+          message: num.toString(),
+          longDescription: num.toString(),
+          status: "SUCCESS" as const,
+        },
+      ];
+
+      const spy1 = mock.fn<RequirementValidationHandler>(() =>
+        validationResult(1),
+      );
+      const spy2 = mock.fn<RequirementValidationHandler>(() =>
+        validationResult(2),
+      );
+      const spy3 = mock.fn<RequirementValidationHandler>(() =>
+        validationResult(3),
+      );
       const spyingProgram = {
         PROGRAM_VALIDATION: {
           rule1: spy1,
@@ -230,28 +243,28 @@ describe("triggerProgram", () => {
         },
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect((spy1 as jest.Mock).mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy1.mock.calls[0].arguments, [
         { test: "rule1" },
         testBody.program,
         testBody.time,
       ]);
-      expect((spy2 as jest.Mock).mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy2.mock.calls[0].arguments, [
         { test: "rule2" },
         testBody.program,
         testBody.time,
       ]);
-      expect((spy3 as jest.Mock).mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy3.mock.calls[0].arguments, [
         { test: "rule3" },
         testBody.program,
         testBody.time,
       ]);
 
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {
           validationResults: [
-            { key: "rule1", results: 1 },
-            { key: "rule2", results: 2 },
-            { key: "rule3", results: 3 },
+            { key: "rule1", results: validationResult(1) },
+            { key: "rule2", results: validationResult(2) },
+            { key: "rule3", results: validationResult(3) },
           ],
         },
         code: 200,
@@ -263,7 +276,8 @@ describe("triggerProgram", () => {
 
   describe("body has messageType PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST", () => {
     const testBody = {
-      messageType: "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST" as "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST",
+      messageType:
+        "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST" as "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST",
       triggerType: "AFTER_USER_EVENT_PROCESSED" as TriggerType,
       schema: "testSchema",
       scheduleKey: "testScheduleKey",
@@ -280,19 +294,19 @@ describe("triggerProgram", () => {
     const newSchema = "newSchema";
 
     test("PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST", () => {
-      const spy = jest.fn(
-        () => (newSchema as unknown) as ProgramVariableSchemaResult
+      const spy = mock.fn(
+        () => newSchema as unknown as ProgramVariableSchemaResult,
       );
       const spyingProgram = {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(spy.mock.calls[0]).toEqual([
+      assert.deepStrictEqual(spy.mock.calls[0].arguments, [
         testBody.schema,
         testBody.triggerType,
         testBody.scheduleKey,
       ]);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {
           schema: newSchema,
         },
@@ -301,7 +315,7 @@ describe("triggerProgram", () => {
     });
 
     test("PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST errors", () => {
-      const spy = jest.fn(() => {
+      const spy = mock.fn(() => {
         const error = new Error();
         error.stack = undefined;
         throw error;
@@ -310,7 +324,7 @@ describe("triggerProgram", () => {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: spy,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         code: 204,
         json: {},
       });
@@ -321,7 +335,7 @@ describe("triggerProgram", () => {
         PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST: undefined,
       };
       const result = triggerProgram(testBody, spyingProgram);
-      expect(result).toStrictEqual({
+      assert.deepStrictEqual(result, {
         json: {},
         code: 204,
       });

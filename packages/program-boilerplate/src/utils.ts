@@ -1,7 +1,7 @@
-import { rewardScheduleQuery } from "./queries";
-import { ProgramTriggerBody, TriggerSchemaObject } from "./types/rpc";
 import getJsonataPaths from "@saasquatch/jsonata-paths-extractor";
 import jsonata from "jsonata";
+import { rewardScheduleQuery } from "./queries.ts";
+import type { ProgramTriggerBody, TriggerSchemaObject } from "./types/rpc.ts";
 
 export type WebtaskConfig = {
   port: number;
@@ -194,7 +194,7 @@ export function numToEquality(num: number): string {
  * @return TriggerSchemaObject[] The transformed data that is relevant for the trigger type
  */
 export function getTriggerSchema(
-  body: ProgramTriggerBody
+  body: ProgramTriggerBody,
 ): TriggerSchemaObject[] {
   const activeTrigger = body.activeTrigger;
   const triggerType = activeTrigger.type;
@@ -249,7 +249,7 @@ export function getTriggerSchema(
  * @returns string[] a deduplicated list of user custom fields found in the input expression(s)
  */
 export function getUserCustomFieldsFromJsonata(
-  jsonataExpressions: string | string[]
+  jsonataExpressions: string | string[],
 ): string[] {
   let userCustomFields: string[] = [];
   if (typeof jsonataExpressions === "string") {
@@ -257,7 +257,7 @@ export function getUserCustomFieldsFromJsonata(
   }
   for (const expression of jsonataExpressions) {
     try {
-      const allPaths = getJsonataPaths(expression);
+      const allPaths = getJsonataPaths.default(expression);
       for (const path of allPaths) {
         if (path.startsWith("/user/customFields/")) {
           const key = path.split("/")[3];
@@ -283,7 +283,7 @@ export function getUserCustomFieldsFromJsonata(
 }
 
 export function getRewardUnitsFromJsonata(
-  expr: jsonata.ExprNode | undefined
+  expr: jsonata.ExprNode | undefined,
 ): string[] | undefined {
   if (expr === undefined) {
     return undefined;
@@ -296,12 +296,12 @@ export function getRewardUnitsFromJsonata(
   if (expr.type === "condition") {
     const lhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.then isn't present in the AST typedef for some reason
-      expr.then
+      expr.then,
     );
 
     const rhs = getRewardUnitsFromJsonata(
       // @ts-ignore: expr.else isn't present in the AST typedef for some reason
-      expr.else
+      expr.else,
     );
 
     if (lhs !== undefined || rhs !== undefined) {

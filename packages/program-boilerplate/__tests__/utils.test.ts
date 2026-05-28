@@ -1,6 +1,8 @@
 import jsonata from "jsonata";
-import { rewardScheduleQuery } from "../src/queries";
-import type { ProgramTriggerBody } from "../src/types/rpc";
+import * as assert from "node:assert";
+import { describe, test } from "node:test";
+import { rewardScheduleQuery } from "../src/queries.ts";
+import type { ProgramTriggerBody } from "../src/types/rpc.ts";
 import {
   getGoalAnalyticTimestamp,
   getRewardUnitsFromJsonata,
@@ -8,63 +10,63 @@ import {
   inferType,
   numToEquality,
   setRewardSchedule,
-} from "../src/utils";
+} from "../src/utils.ts";
 
 describe("#inferType", () => {
   test("Booleans are inferred", () => {
-    expect(inferType("true")).toBe(true);
-    expect(inferType("false")).toBe(false);
+    assert.deepStrictEqual(inferType("true"), true);
+    assert.deepStrictEqual(inferType("false"), false);
   });
 
   test("Numbers are inferred", () => {
-    expect(inferType("3.1415")).toBe(3.1415);
-    expect(inferType("29")).toBe(29);
-    expect(inferType("0")).toBe(0);
-    expect(inferType("NaN")).toBe(NaN);
-    expect(inferType("Infinity")).toBe(Infinity);
-    expect(inferType("-Infinity")).toBe(-Infinity);
+    assert.deepStrictEqual(inferType("3.1415"), 3.1415);
+    assert.deepStrictEqual(inferType("29"), 29);
+    assert.deepStrictEqual(inferType("0"), 0);
+    assert.deepStrictEqual(inferType("NaN"), NaN);
+    assert.deepStrictEqual(inferType("Infinity"), Infinity);
+    assert.deepStrictEqual(inferType("-Infinity"), -Infinity);
   });
 
   test("undefined and null are inferred", () => {
-    expect(inferType("undefined")).toBe(undefined);
-    expect(inferType("null")).toBe(null);
+    assert.deepStrictEqual(inferType("undefined"), undefined);
+    assert.deepStrictEqual(inferType("null"), null);
   });
 
   test("objects are inferred", () => {
-    expect(inferType("[true, false]")).toStrictEqual([true, false]);
-    expect(inferType('{"key1":true,"key2":false}')).toStrictEqual({
+    assert.deepStrictEqual(inferType("[true, false]"), [true, false]);
+    assert.deepStrictEqual(inferType('{"key1":true,"key2":false}'), {
       key1: true,
       key2: false,
     });
-    expect(inferType('{"key1": 3.14, "key2": "3.14" }')).toStrictEqual({
+    assert.deepStrictEqual(inferType('{"key1": 3.14, "key2": "3.14" }'), {
       key1: 3.14,
       key2: "3.14",
     });
   });
 
   test("strings that look like objects but that are invalid return undefined", () => {
-    expect(inferType("{:-)}")).toBe(undefined);
-    expect(inferType("[:-)]")).toBe(undefined);
+    assert.deepStrictEqual(inferType("{:-)}"), undefined);
+    assert.deepStrictEqual(inferType("[:-)]"), undefined);
   });
 
   test("otherwise input is inferred as a string", () => {
-    expect(inferType("UNDEFINED")).toBe("UNDEFINED");
-    expect(inferType("Null")).toBe("Null");
-    expect(inferType("yes")).toBe("yes");
-    expect(inferType(":D")).toBe(":D");
+    assert.deepStrictEqual(inferType("UNDEFINED"), "UNDEFINED");
+    assert.deepStrictEqual(inferType("Null"), "Null");
+    assert.deepStrictEqual(inferType("yes"), "yes");
+    assert.deepStrictEqual(inferType(":D"), ":D");
   });
 });
 
 describe("#numToEquality", () => {
   test("number is converted to equality string", () => {
-    expect(numToEquality(0)).toBe("eq");
-    expect(numToEquality(1)).toBe("gte");
-    expect(numToEquality(2)).toBe("lte");
+    assert.deepStrictEqual(numToEquality(0), "eq");
+    assert.deepStrictEqual(numToEquality(1), "gte");
+    assert.deepStrictEqual(numToEquality(2), "lte");
   });
   test("default return is 'eq'", () => {
-    expect(numToEquality(-1)).toBe("eq");
-    expect(numToEquality(666)).toBe("eq");
-    expect(numToEquality("testAString" as any)).toBe("eq");
+    assert.deepStrictEqual(numToEquality(-1), "eq");
+    assert.deepStrictEqual(numToEquality(666), "eq");
+    assert.deepStrictEqual(numToEquality("testAString" as any), "eq");
   });
 });
 
@@ -130,7 +132,10 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    assert.deepStrictEqual(
+      getTriggerSchema(programTriggerBody),
+      expectedOutput,
+    );
   });
 
   test("it converts REFERRAL triggers", () => {
@@ -179,7 +184,10 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    assert.deepStrictEqual(
+      getTriggerSchema(programTriggerBody),
+      expectedOutput,
+    );
   });
 
   test("it converts AFTER_USER_EVENT_PROCESSED triggers", () => {
@@ -307,7 +315,10 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    assert.deepStrictEqual(
+      getTriggerSchema(programTriggerBody),
+      expectedOutput,
+    );
   });
 
   test("it converts SCHEDULED triggers", () => {
@@ -355,7 +366,10 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    assert.deepStrictEqual(
+      getTriggerSchema(programTriggerBody),
+      expectedOutput,
+    );
   });
 
   test("it converts REWARD_SCHEDULED triggers", () => {
@@ -403,7 +417,10 @@ describe("#getTriggerSchema", () => {
       },
     ];
 
-    expect(getTriggerSchema(programTriggerBody)).toStrictEqual(expectedOutput);
+    assert.deepStrictEqual(
+      getTriggerSchema(programTriggerBody),
+      expectedOutput,
+    );
   });
 
   test("throw error on unexpected trigger type", () => {
@@ -437,9 +454,12 @@ describe("#getTriggerSchema", () => {
       },
     };
 
-    expect(() => {
-      getTriggerSchema(programTriggerBody);
-    }).toThrow("Trigger type did not match expected options");
+    assert.throws(
+      () => {
+        getTriggerSchema(programTriggerBody);
+      },
+      { message: "Trigger type did not match expected options" },
+    );
   });
 });
 
@@ -462,7 +482,7 @@ describe("#getGoalAnalyticTimestamp", () => {
         },
       ],
     };
-    expect(getGoalAnalyticTimestamp(trigger)).toBe(1619483037813);
+    assert.deepStrictEqual(getGoalAnalyticTimestamp(trigger), 1619483037813);
   });
 
   test("returns event timestamp - 1 ms if purchase event exists", () => {
@@ -483,7 +503,7 @@ describe("#getGoalAnalyticTimestamp", () => {
         },
       ],
     };
-    expect(getGoalAnalyticTimestamp(trigger)).toBe(1619482037652);
+    assert.deepStrictEqual(getGoalAnalyticTimestamp(trigger), 1619482037652);
   });
 });
 
@@ -491,39 +511,39 @@ describe("#getRewardUnitsFromJsonata", () => {
   test("returns nothing when jsonata expression doesn't have any reward units", () => {
     const expr = jsonata(`123`).ast();
     const result = getRewardUnitsFromJsonata(expr);
-    expect(result).toBeUndefined();
+    assert.deepStrictEqual(result, undefined);
   });
 
   test("returns reward unit when it is only a string literal", () => {
     const expr = jsonata(`"POINT"`).ast();
     const result = getRewardUnitsFromJsonata(expr);
-    expect(result).toBeDefined();
-    expect(result!.sort()).toEqual(["POINT"]);
+    assert.notStrictEqual(result, undefined);
+    assert.deepStrictEqual(result!.sort(), ["POINT"]);
   });
 
   test("returns reward unit from single branch ternary", () => {
     const expr = jsonata(`user.customFields.test = "test" ? "USD"`).ast();
     const result = getRewardUnitsFromJsonata(expr);
-    expect(result).toBeDefined();
-    expect(result!.sort()).toEqual(["USD"]);
+    assert.notStrictEqual(result, undefined);
+    assert.deepStrictEqual(result!.sort(), ["USD"]);
   });
 
   test("returns reward units from multi branch ternary", () => {
     const expr = jsonata(
-      `user.customFields.test = "test" ? "USD" : "CAD"`
+      `user.customFields.test = "test" ? "USD" : "CAD"`,
     ).ast();
     const result = getRewardUnitsFromJsonata(expr);
-    expect(result).toBeDefined();
-    expect(result!.sort()).toEqual(["CAD", "USD"]);
+    assert.notStrictEqual(result, undefined);
+    assert.deepStrictEqual(result!.sort(), ["CAD", "USD"]);
   });
 
   test("returns reward units from nested multi branch ternary statements", () => {
     const expr = jsonata(
-      `user.customFields.test = "test" ? "USD" : user.customFields.test = "test2" ? "CAD" : "GBP"`
+      `user.customFields.test = "test" ? "USD" : user.customFields.test = "test2" ? "CAD" : "GBP"`,
     ).ast();
     const result = getRewardUnitsFromJsonata(expr);
-    expect(result).toBeDefined();
-    expect(result!.sort()).toEqual(["CAD", "GBP", "USD"]);
+    assert.notStrictEqual(result, undefined);
+    assert.deepStrictEqual(result!.sort(), ["CAD", "GBP", "USD"]);
   });
 });
 
@@ -544,15 +564,16 @@ describe("#setRewardSchedule", () => {
       ],
     };
 
-    expect(
+    assert.deepStrictEqual(
       setRewardSchedule({
         template,
         expiryWarningDays: 0,
         key: "anotherKey",
         emailKey: "anotherEmailKey",
         periodInHours: 36,
-      })
-    ).toStrictEqual(template);
+      }),
+      template,
+    );
   });
 
   test("reward schedule is added to template schedules", () => {
@@ -595,15 +616,16 @@ describe("#setRewardSchedule", () => {
       ],
     };
 
-    expect(
+    assert.deepStrictEqual(
       setRewardSchedule({
         template,
         expiryWarningDays: 14,
         key: "anotherScheduleKey",
         emailKey: "anotherEmailKey",
         periodInHours: 36,
-      })
-    ).toStrictEqual(expectedOutput);
+      }),
+      expectedOutput,
+    );
   });
 
   test("reward schedule is added to template schedules if no current schedules exist", () => {
@@ -626,14 +648,15 @@ describe("#setRewardSchedule", () => {
       ],
     };
 
-    expect(
+    assert.deepStrictEqual(
       setRewardSchedule({
         template,
         expiryWarningDays: 14,
         key: "anotherScheduleKey",
         emailKey: "anotherEmailKey",
         periodInHours: 36,
-      })
-    ).toStrictEqual(expectedOutput);
+      }),
+      expectedOutput,
+    );
   });
 });
