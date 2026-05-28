@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import winston from "winston";
-import type { LogLevel } from "./config";
-import { LOG_TYPE_MARKER } from "./logger";
 import { URL } from "node:url";
+import winston from "winston";
+import type { LogLevel } from "./config.ts";
+import { LOG_TYPE_MARKER } from "./logger.ts";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
@@ -68,9 +68,9 @@ export function httpLogMiddleware(
       const endTimeNs = process.hrtime.bigint();
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const method = req.method;
-      const requestId = res.locals?.requestId;
+      const requestId = res.locals?.["requestId"];
 
-      const extraData = res.locals?.extraData as
+      const extraData = res.locals?.["extraData"] as
         | Record<string, any>
         | undefined;
 

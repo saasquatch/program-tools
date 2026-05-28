@@ -1,15 +1,15 @@
 import {
-  ConsoleTransport,
+  type ConsoleTransport,
   defaultConfig,
-  FileTransport,
-  HttpTransport,
-  LoggerConfig,
-  LogLevel,
+  type FileTransport,
+  type HttpTransport,
   LOG_LEVELS,
-  StreamTransport,
-  Transport,
-} from "./config";
-import { jsonFormat, prettyFormat } from "./format";
+  type LoggerConfig,
+  type LogLevel,
+  type StreamTransport,
+  type Transport,
+} from "./config.ts";
+import { jsonFormat, prettyFormat } from "./format.ts";
 import {
   error,
   getLogger,
@@ -20,20 +20,10 @@ import {
   SYSLOG_LOG_LEVELS,
   transportConfigToRealTransport,
   warn,
-} from "./logger";
-import { httpLogMiddleware } from "./plugins";
+} from "./logger.ts";
+import { httpLogMiddleware } from "./plugins.ts";
 
 export {
-  ConsoleTransport,
-  FileTransport,
-  HttpTransport,
-  LOG_LEVELS,
-  LOG_TYPE_MARKER,
-  LogLevel,
-  LoggerConfig,
-  SYSLOG_LOG_LEVELS,
-  StreamTransport,
-  Transport,
   defaultConfig,
   error,
   getLogger,
@@ -42,7 +32,17 @@ export {
   initializeLogger,
   isLoggerInitialized,
   jsonFormat,
+  LOG_LEVELS,
+  LOG_TYPE_MARKER,
   prettyFormat,
+  SYSLOG_LOG_LEVELS,
   transportConfigToRealTransport,
   warn,
+  type ConsoleTransport,
+  type FileTransport,
+  type HttpTransport,
+  type LoggerConfig,
+  type LogLevel,
+  type StreamTransport,
+  type Transport,
 };
