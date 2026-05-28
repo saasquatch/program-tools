@@ -20,6 +20,7 @@ import {
  * @exampleGroup Tax and Cash
  * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
  * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
+ * @hidden
  */
 @Component({
   tag: "sqm-partner-info-modal",
