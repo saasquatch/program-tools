@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Dependencies
 
 ### Depends on
@@ -108,7 +109,6 @@
 - [sqm-user-attribute](../sqm-user-attribute)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-brand-selector
@@ -298,6 +298,6 @@ graph TD;
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

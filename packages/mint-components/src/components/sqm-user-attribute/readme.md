@@ -13,7 +13,7 @@
 | `demoData`   | --            |                                  | `{ loading?: boolean; value?: string; fontSize?: number; color?: string; fontWeight?: number; }` | `undefined` |
 | `fontSize`   | `font-size`   | Number in pixels.                | `number`                                                                                         | `undefined` |
 | `fontWeight` | `font-weight` | Font weight                      | `number`                                                                                         | `undefined` |
-| `value`      | `value`       | The custom field key to display. | `string`                                                                                         | `undefined` |
+| `value`      | `value`       | The custom field key to display. | `number \| string`                                                                               | `undefined` |
 
 
 ## Dependencies
