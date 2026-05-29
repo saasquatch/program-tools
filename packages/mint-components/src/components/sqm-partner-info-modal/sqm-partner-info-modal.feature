@@ -136,10 +136,23 @@ Feature: Partner Info Modal — country, currency, and T&C collection
   Scenario: Country select has a search input that filters the displayed countries
     Given the "Country" select is open
     When the user types into the search input
-    Then the displayed `sl-menu-item` list is filtered to countries whose `displayName` contains the search text (case-insensitive)
+    Then the displayed countries is filtered to countries whose `displayName` contains the search text (case-insensitive)
 
   @minutia
   Scenario: Currency select has a search input that filters the displayed currencies
     Given the "Currency" select is open
     When the user types into the search input
-    Then the displayed `sl-menu-item` list is filtered to currencies whose `currencyCode` contains the search text (case-insensitive)
+    Then the displayed currencies is filtered to currencies whose `currencyCode` contains the search text (case-insensitive)
+
+  @motivating
+  Scenario Outline: A user is filling out the form and selects their currency
+    Given a user with countryCode <countryCode>
+    When they open the currency dropdown
+    Then only <currencies> are displayed
+    And USD, AUD, EUR, GBP are displayed regardless of country code
+
+    Examples:
+      | countryCode | currencies              |
+      | USA         | USD, AUD, EUR, GBP      |
+      | CAN         | USD, AUD, EUR, GBP, CAN |
+      | IND         | USD, AUD, EUR, GBP, INR |

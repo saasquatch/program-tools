@@ -1,8 +1,8 @@
 @owner:andy @author:andy
-Feature: Connected Partner Connection States and PFT Rules
+Feature: Partner Connection Status
 
   Background:
-    Given cash payouts use Impact connection functionality and flow
+    Given user is on the Microsite or a widget that contains the cash form
 
   Scenario: New participants with no publisher submits partner modal
     Given a participant with no linked Impact publisher
@@ -28,43 +28,3 @@ Feature: Connected Partner Connection States and PFT Rules
     Then the user info form is skipped
     And the data is unchanged
     And impactConnection.connectionStatus resolves to "COMPLETED"
-
-  Scenario: NOT_STARTED has no PFT
-    Given impactConnection.connectionStatus is "NOT_STARTED"
-    Then no PFT exists for the user
-
-  Scenario: STARTED creates a PFT once
-    Given impactConnection.connectionStatus is "NOT_STARTED"
-    And no PFT exists for the user
-    When the user calls startImpactConnection with basic required details
-    Then impactConnection.connectionStatus resolves to "STARTED"
-    And a PFT is created for the user
-
-  Scenario: STARTED with an existing PFT does not create another
-    Given impactConnection.connectionStatus is "STARTED"
-    And a PFT already exists for the user
-    When the user calls startImpactConnection again
-    Then no additional PFT is created
-
-  Scenario: COMPLETED reuses the existing PFT
-    Given impactConnection.connectionStatus is "STARTED"
-    And a PFT already exists for the user
-    When the user calls completeImpactConnection with full address and tax details
-    Then impactConnection.connectionStatus resolves to "COMPLETED"
-    And no additional PFT is created
-
-  Scenario: Reward earned in NOT_STARTED does not create PFT
-    Given impactConnection.connectionStatus is "NOT_STARTED"
-    When the user earns a reward
-    Then no PFT is created
-
-  Scenario Outline: Reward earned in STARTED or COMPLETED uses existing PFT
-    Given impactConnection.connectionStatus is "<connection_status>"
-    And a PFT already exists for the user
-    When the user earns a reward
-    Then no additional PFT is created
-
-    Examples:
-      | connection_status |
-      | STARTED           |
-      | COMPLETED         |
