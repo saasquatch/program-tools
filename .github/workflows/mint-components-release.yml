@@ -44,9 +44,29 @@ jobs:
           version: npm run version
           publish: npm run release
           title: "mint-components - Version Packages"
+          # Suppress changesets/action's built-in GitHub Release creation. We create a scoped tag + release ourselves in the next step.
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
+
+      - name: Create scoped GitHub Release
+        if: steps.changesets.outputs.published == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # ed597 = v8
+        env:
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
+        with:
+          script: |
+            const [{ name, version }] = JSON.parse(process.env.PUBLISHED_PACKAGES);
+            const tag = `${name}@${version}`;
+            await github.rest.repos.createRelease({
+              ...context.repo,
+              tag_name: tag,
+              name: tag,
+              target_commitish: context.sha,
+              body: "See packages/mint-components/CHANGELOG.md for details.",
+              prerelease: version.includes("-"),
+            });
 
       - name: Build docs site
         if: steps.changesets.outputs.published == 'true'
