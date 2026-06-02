@@ -88,7 +88,7 @@ export class PartnerInfoModal {
    * @uiName Terms and conditions checkbox
    */
   @Prop() allowBankingCollection: string =
-    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information";
+    "I have read the {termsAndConditionsLink} and allow impact.com to collect my tax and banking information.";
   /**
    * The link text that appears in the terms and conditions checkbox
    * @uiName Terms and conditions text
