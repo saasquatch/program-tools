@@ -110,6 +110,7 @@ const style = {
       color: "var(--sqm-primary-button-color)",
       backgroundColor: "var(--sqm-primary-button-background)",
       border: "var(--sqm-primary-button-color-border)",
+      borderRadius: "var(--sqm-primary-button-radius)",
     },
   },
 };
