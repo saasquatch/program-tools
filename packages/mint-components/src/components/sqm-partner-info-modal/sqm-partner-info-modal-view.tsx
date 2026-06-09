@@ -106,6 +106,11 @@ const style = {
   SubmitButton: {
     width: "100%",
     marginTop: "var(--sl-spacing-large)",
+    "&::part(base)": {
+      color: "var(--sqm-primary-button-color)",
+      backgroundColor: "var(--sqm-primary-button-background)",
+      border: "var(--sqm-primary-button-color-border)",
+    },
   },
 };
 
