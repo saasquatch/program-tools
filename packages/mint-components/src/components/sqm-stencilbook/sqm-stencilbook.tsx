@@ -97,6 +97,7 @@ import * as UserName from "../sqm-user-name/UserName.stories";
 import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
 import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
 import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
+import * as TaxAndCashDashboardView from "../tax-and-cash/sqm-tax-and-cash-dashboard/TaxAndCashDashboardView.stories";
 import * as TaxForm from "../tax-and-cash/TaxForm.stories";
 import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/PayoutDetailsCard.stories";
 import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
@@ -224,6 +225,7 @@ const stories = [
   TaxAndCashRewardsTable,
   TaxAndCashReferralTableRewardsCell,
   TaxAndCashReferralTable,
+  TaxAndCashDashboardView,
   PartnerInfoModal,
   WidgetVerification,
   UserAttribute,
