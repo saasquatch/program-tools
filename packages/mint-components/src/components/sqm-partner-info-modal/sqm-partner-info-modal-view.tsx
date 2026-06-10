@@ -25,6 +25,7 @@ export interface PartnerInfoModalViewProps {
     setCountrySearch: (c: any) => void;
     onSubmit: () => void;
     onClose: () => void;
+    onInitialFocus?: (e: any) => void;
   };
   text: {
     modalHeader: string;
@@ -292,6 +293,7 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
             e.preventDefault();
           }
         }}
+        onSl-initial-focus={callbacks.onInitialFocus}
       >
         <h2 class={sheet.classes.DialogTitle}>
           {states.isExistingPartner

@@ -195,7 +195,7 @@ export class PartnerInfoModal {
 }
 
 function useDemoPartnerInfoModal(
-  props: PartnerInfoModal
+  props: PartnerInfoModal,
 ): PartnerInfoModalViewProps {
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
@@ -247,6 +247,7 @@ function useDemoPartnerInfoModal(
           setError("");
         },
         onClose: () => {},
+        onInitialFocus: (e: any) => e.preventDefault(),
       },
       text: {
         modalHeader: props.modalHeader,
@@ -265,6 +266,6 @@ function useDemoPartnerInfoModal(
       },
     },
     props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }
