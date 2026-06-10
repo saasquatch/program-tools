@@ -63,33 +63,6 @@ export const GET_CURRENCIES = gql`
   }
 `;
 
-export const CONNECT_PARTNER = gql`
-  mutation createImpactConnection($vars: ImpactConnectionInput!) {
-    createImpactConnection(impactConnectionInput: $vars) {
-      success
-      validationErrors {
-        field
-        message
-      }
-      user {
-        id
-        accountId
-        impactConnection {
-          connected
-          publisher {
-            brandedSignup
-            requiredTaxDocumentType
-            currentTaxDocument {
-              type
-              status
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 const START_IMPACT_CONNECTION = gql`
   mutation startImpactConnection($vars: ImpactConnectionInput!) {
     startImpactConnection(impactConnectionInput: $vars) {
@@ -174,7 +147,15 @@ export function usePartnerInfoModal(
 
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
 
-  const countries = countriesData?.impactPayoutCountries?.data || [];
+  const countries = useMemo(() => {
+    const data = countriesData?.impactPayoutCountries?.data;
+    if (!data) return [];
+    return [...data].sort((a: TaxCountry, b: TaxCountry) => {
+      if (a.countryCode === "US") return -1;
+      if (b.countryCode === "US") return 1;
+      return a.displayName.localeCompare(b.displayName);
+    });
+  }, [countriesData]);
 
   const isExistingPartner = !!user?.impactConnection?.publisher;
 
@@ -211,9 +192,7 @@ export function usePartnerInfoModal(
 
   const [countrySearch, setCountrySearch] = useState("");
   const [currencySearch, setCurrencySearch] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState(
-    countriesData?.impactPayoutCountries?.data || []
-  );
+  const [filteredCountries, setFilteredCountries] = useState(countries || []);
   const [filteredCurrencies, setFilteredCurrencies] = useState(
     currencies || []
   );
@@ -336,8 +315,6 @@ export function usePartnerInfoModal(
       setError(props.networkErrorText);
     }
   }
-
-  console.log(impactConnection, "impactConnection in partner modal");
 
   const showModal =
     !success &&
