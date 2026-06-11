@@ -176,9 +176,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const _countries = useMemo(
     () =>
       _countriesRes?.impactPayoutCountries?.data?.map((country) =>
-        getCountryObj({ countryCode: country.countryCode, locale: intlLocale }),
+        getCountryObj({ countryCode: country.countryCode, locale: intlLocale })
       ),
-    [_countriesRes?.impactPayoutCountries?.data],
+    [_countriesRes?.impactPayoutCountries?.data]
   );
 
   const [loading, setLoading] = useState(false);
@@ -203,7 +203,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     const _option = getOption(
       _countries,
-      publisher.taxInformation.indirectTaxCountryCode,
+      publisher.taxInformation.indirectTaxCountryCode
     );
     setOption(_option);
   }, [publisher, _countries]);
@@ -214,8 +214,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     } else {
       setFilteredCountries(
         _countries?.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
-        ) || [],
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
       );
     }
   }, [countrySearch, _countries]);
@@ -281,6 +281,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     // If the partner has already been started call completeImpactConnection
     // to fill in the remaining details. Otherwise create from scratch.
+
     let result = null;
     let connectionResult;
     if (userData?.user?.impactConnection?.connectionStatus === "STARTED") {
@@ -302,7 +303,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       // Output backend errors to console for now
       console.error(
         "Failed to create Impact connection: ",
-        connectionResult?.validationErrors,
+        connectionResult?.validationErrors
       );
 
       throw new Error();
@@ -356,8 +357,9 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
     try {
-      const { resultPublisher, hasValidCurrentDocument } =
-        await connectPartner(formData);
+      const { resultPublisher, hasValidCurrentDocument } = await connectPartner(
+        formData
+      );
 
       if (
         resultPublisher?.requiredTaxDocumentType &&

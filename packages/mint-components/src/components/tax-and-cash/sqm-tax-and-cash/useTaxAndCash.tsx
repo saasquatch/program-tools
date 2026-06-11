@@ -8,7 +8,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { getCountryObj } from "../utils";
+import { getCountryObj, isValidI18nPhoneNumber } from "../utils";
 import {
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
@@ -54,7 +54,6 @@ function getCurrentStep(user: UserQuery["user"]) {
     billingCity,
     billingCountryCode,
     billingPostalCode,
-    billingState,
     phoneNumber,
     phoneNumberCountryCode,
   } = user.impactConnection.publisher;
@@ -65,7 +64,8 @@ function getCurrentStep(user: UserQuery["user"]) {
     billingCountryCode &&
     billingPostalCode &&
     phoneNumberCountryCode &&
-    phoneNumber;
+    phoneNumber &&
+    isValidI18nPhoneNumber(phoneNumberCountryCode, phoneNumber);
 
   if (!hasBillingInfo) {
     return "/1";
@@ -268,7 +268,11 @@ export function useTaxAndCash() {
         publisher.billingCountryCode &&
         publisher.billingPostalCode &&
         publisher.phoneNumberCountryCode &&
-        publisher.phoneNumber;
+        publisher.phoneNumber &&
+        isValidI18nPhoneNumber(
+          publisher.phoneNumberCountryCode,
+          publisher.phoneNumber
+        );
 
       if (
         hasBillingInfo &&
