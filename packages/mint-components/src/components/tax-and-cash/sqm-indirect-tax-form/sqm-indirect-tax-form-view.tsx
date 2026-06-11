@@ -271,7 +271,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             )}
           </sqm-form-message>
         )}
-        {states.isPartner && (
+        {/* {states.isPartner && (
           <sqm-form-message loading={states.loading} type="info">
             <p part="alert-title">{text.isPartnerAlertHeader}</p>
             {intl.formatMessage(
@@ -291,7 +291,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               }
             )}
           </sqm-form-message>
-        )}
+        )} */}
         <div>
           <h4>{text.indirectTaxDetails}</h4>
         </div>
@@ -309,7 +309,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="notRegistered"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled}
               >
                 <div class={classes.RadioContent}>
                   {text.notRegistered}
@@ -325,7 +325,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="otherRegion"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled}
               >
                 <div class={classes.RadioContent}>
                   {text.otherRegion}
