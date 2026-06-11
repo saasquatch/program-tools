@@ -371,3 +371,158 @@ Feature: Tax Form Step One
     Then the "Phone number" field is empty and enabled
     And the "Extension" (phoneNumberCountryCode) field is empty and enabled
     And the user must provide a real phone number before "Continue" will succeed
+
+  @motivating
+  Scenario: Phone number is validated against the selected country's rules
+    # Validation mirrors Impact's I18nPhoneNumberParams rules so the partner upsert
+    # request is not rejected by the backend after the user advances past step 1.
+    Given the "Phone number" field is not empty
+    And the "Extension" (phoneNumberCountryCode) field has a value selected
+    When the user clicks "Continue"
+    Then the phone number is validated against the rules of the selected country
+    And if it is invalid the error message "Phone number is invalid." is displayed under the "Phone number" field
+    And no save request is sent to the backend
+    And they are not sent to the next step
+
+  @motivating
+  Scenario: Empty phone number is handled by the required validator, not the phone-format validator
+    Given the "Phone number" field is empty or whitespace-only
+    When the user clicks "Continue"
+    Then the error message "Phone number is required" is displayed
+    And the "Phone number is invalid." error is NOT displayed
+
+  @motivating
+  Scenario Outline: Phone number validation per country (US / CA)
+    Given the "Extension" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then non-digit characters in the phone number are ignored
+    And a single leading "1" country-code digit is ignored
+    And the phone number is valid only when the digit count is exactly 10
+    And the phone validation result <isValid>
+
+    Examples:
+      | countryCode | phoneNumber    | isValid |
+      | US          |     4155551234 | passes  |
+      | US          | (415) 555-1234 | passes  |
+      | US          |   415-555-1234 | passes  |
+      | US          |    14155551234 | passes  |
+      | CA          |     6045551234 | passes  |
+      | CA          | 1-604-555-1234 | passes  |
+      | US          |      415555123 | fails   |
+      | US          |    41555512345 | fails   |
+      | US          | abc            | fails   |
+      | CA          |      604555123 | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (AU)
+    Given the "Extension" (phoneNumberCountryCode) field has value "AU"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then non-digit characters in the phone number are ignored
+    And no country-code stripping is performed
+    And the phone number is valid only when the digit count is exactly 9 or 10
+    And the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber  | isValid |
+      |    412345678 | passes  |
+      |   0412345678 | passes  |
+      | 04 1234 5678 | passes  |
+      |     12345678 | fails   |
+      |  04123456789 | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (NZ)
+    Given the "Extension" (phoneNumberCountryCode) field has value "NZ"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then non-digit characters in the phone number are ignored
+    And if the digit count is greater than 9 a leading "640" or a single leading "0" is stripped
+    And the phone number is valid only when the remaining digit count is between 8 and 10
+    And the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber | isValid |
+      |    21234567 | passes  |
+      |   212345678 | passes  |
+      |  0212345678 | passes  |
+      | 64021234567 | passes  |
+      |     1234567 | fails   |
+      | 02123456789 | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (GB)
+    Given the "Extension" (phoneNumberCountryCode) field has value "GB"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then non-digit characters in the phone number are ignored
+    And a single leading "0" is stripped
+    And the phone number is valid only when the remaining digit count is at least 6
+    And no dialing-code (+44) match is enforced
+    And the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber   | isValid |
+      |    2079460958 | passes  |
+      |   02079460958 | passes  |
+      | 020 7946 0958 | passes  |
+      |         12345 | fails   |
+      |        012345 | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation for all other countries
+    Given the "Extension" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then non-digit characters in the phone number are ignored
+    And a single leading "0" is stripped
+    And the phone number is valid only when the remaining digit count is at least 6
+    And if the raw input begins with "+" the first whitespace-delimited token after the "+" must exactly equal the selected country's dial code
+    And the phone validation result <isValid>
+
+    Examples:
+      | countryCode | phoneNumber       | isValid | note                                            |
+      | DE          |          30123456 | passes  | digits only, length >= 6                        |
+      | DE          |      030 12 34 56 | passes  | leading "0" stripped                            |
+      | DE          |   +49 30 12 34 56 | passes  | "+49" matches DE dial code                      |
+      | FR          | +33 1 42 68 53 00 | passes  | "+33" matches FR dial code                      |
+      | DE          |   +44 30 12 34 56 | fails   | "+44" does not match DE dial code               |
+      | FR          |             12345 | fails   | length < 6 after stripping leading "0"          |
+      | ES          |    +3491 123 4567 | fails   | "+3491" is not the ES dial code (must be "+34") |
+
+  @motivating
+  Scenario: Phone validation always runs on submit if editable
+    Given the "Phone number" and "Phone Number Country" fields are not disabled
+    When the user clicks "Continue"
+    Then phone validation runs as part of form submission
+    And if validation fails no save request is sent to the backend
+    And they are not sent to the next step
+
+  @motivating
+  Scenario: Phone validation is skipped for disabled fields
+    Given the user is an Impact partner
+    And the prefilled "Phone number" field is valid for the prefilled "Phone Number Country"
+    Then the "Phone number" and "Phone Number Country" fields are disabled
+    When the user clicks "Continue"
+    Then phone validation is not run for the disabled fields
+    And submission proceeds
+
+  @motivating
+  Scenario Outline: Phone number is sanitized to a domestic number before being sent to Impact
+    Given the "Phone Number Country" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <input>
+    When the user clicks "Continue"
+    And the form passes validation
+    Then the value submitted as phoneNumber is <submitted>
+    And the value submitted as phoneNumberCountryCode is <countryCode>
+
+    Examples:
+      | countryCode | input            | submitted     |
+      | US          |  +1 415 555 1234 |  415 555 1234 |
+      | US          |    0014155551234 |    4155551234 |
+      | US          |       4155551234 |    4155551234 |
+      | GB          | +44 20 7946 0958 |  20 7946 0958 |
+      | GB          |    020 7946 0958 | 020 7946 0958 |
+      | DE          |  +49 30 12 34 56 |   30 12 34 56 |
+      | DE          |     030 12 34 56 |  030 12 34 56 |

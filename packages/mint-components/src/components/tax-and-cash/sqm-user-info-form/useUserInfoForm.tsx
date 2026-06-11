@@ -393,6 +393,7 @@ export function useUserInfoForm(props: TaxForm) {
 
   const indirectTaxCountry =
     tenantData?.tenantSettings?.impactBrandIndirectTaxCountryCode;
+
   const hasIndirectTax = !!indirectTaxCountry;
 
   function getSkipNextStep(userData) {
