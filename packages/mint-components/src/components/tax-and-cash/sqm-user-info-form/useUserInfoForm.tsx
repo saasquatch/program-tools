@@ -27,7 +27,7 @@ import {
   UserQuery,
 } from "../data";
 import { ADDRESS_REGIONS, AddressRegions } from "../subregions";
-import { objectIsFull, validTaxDocument } from "../utils";
+import { objectIsFull, toDomesticNumber, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
 import { ImpactConnection } from "../../../saasquatch";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
@@ -253,13 +253,16 @@ export function useUserInfoForm(props: TaxForm) {
       city: formData.city,
       state: formData.state,
       postalCode: formData.postalCode,
-      phoneNumber: formData.phoneNumber,
+      phoneNumber: toDomesticNumber(
+        formData.phoneNumberCountryCode,
+        formData.phoneNumber
+      ),
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
 
     // If the partner has already been started call completeImpactPartner to
     // update the remaining details. Otherwise create a new connection.
-    const userData = data?.user;
+    // const userData = data?.user;
     let result = null;
     let connectionResult;
     result = await completeImpactPartner({
@@ -344,12 +347,17 @@ export function useUserInfoForm(props: TaxForm) {
 
     const { allowBankingCollection, ...userData } = formData;
 
+    const normalizedPhoneNumber = toDomesticNumber(
+      userData.phoneNumberCountryCode,
+      userData.phoneNumber
+    );
+
     setUserFormContext({
       ...userFormContext,
       firstName: userData.firstName,
       lastName: userData.lastName,
       phoneNumberCountryCode: userData.phoneNumberCountryCode,
-      phoneNumber: userData.phoneNumber,
+      phoneNumber: normalizedPhoneNumber,
       countryCode: userData.countryCode,
       address: userData.address,
       city: userData.city,
@@ -363,7 +371,10 @@ export function useUserInfoForm(props: TaxForm) {
     if (skipNextStep) {
       try {
         const { resultPublisher, hasValidCurrentDocument } =
-          await connectPartner(formData);
+          await connectPartner({
+            ...formData,
+            phoneNumber: normalizedPhoneNumber,
+          });
 
         if (
           resultPublisher?.requiredTaxDocumentType &&

@@ -58,17 +58,21 @@ function getCurrentStep(user: UserQuery["user"]) {
     phoneNumberCountryCode,
   } = user.impactConnection.publisher;
 
-  const hasBillingInfo =
-    billingAddress &&
-    billingCity &&
-    billingCountryCode &&
-    billingPostalCode &&
-    phoneNumberCountryCode &&
-    phoneNumber &&
-    isValidI18nPhoneNumber(phoneNumberCountryCode, phoneNumber);
+  const isCompleted = user.impactConnection.connectionStatus === "COMPLETED";
 
-  if (!hasBillingInfo) {
-    return "/1";
+  if (!isCompleted) {
+    const hasBillingInfo =
+      billingAddress &&
+      billingCity &&
+      billingCountryCode &&
+      billingPostalCode &&
+      phoneNumberCountryCode &&
+      phoneNumber &&
+      isValidI18nPhoneNumber(phoneNumberCountryCode, phoneNumber);
+
+    if (!hasBillingInfo) {
+      return "/1";
+    }
   }
 
   // If they do have a required document, look at current document

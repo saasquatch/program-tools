@@ -1,38 +1,54 @@
+import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 import { intl } from "../../global/global";
 import { TaxDocumentType } from "./data";
-import { PHONE_EXTENSIONS } from "./phoneExtensions";
 
-function stripLeadingZero(d: string) {
-  return d.startsWith("0") ? d.slice(1) : d;
+/**
+ * Normalize user input to the domestic form Impact stores: digits only,
+ * with the country dial code and trunk-zero prefix removed.
+ */
+export function toDomesticNumber(
+  phoneCountryCode: string | undefined,
+  input: string | undefined
+): string {
+  if (!input) return "";
+  const parsed = parsePhoneNumberFromString(
+    input,
+    phoneCountryCode?.toUpperCase() as CountryCode
+  );
+  return (parsed?.nationalNumber as string) ?? input.replace(/\D/g, "");
 }
 
 /**
- * Mirrors Impact's I18nPhoneNumberParams validation rules per country.
- * Returns true when the phone number is valid for the given the phoneNumberCountryCode country.
+ * Validates a phone number against both libphonenumber-js's per-country
+ * pattern rules AND Impact's I18nPhoneNumber length rules, applied to the
+ * sanitized value we'll submit.
  */
 export function isValidI18nPhoneNumber(
   phoneCountryCode: string | undefined,
   phoneNumber: string | undefined
 ): boolean {
-
   if (!phoneCountryCode || !phoneNumber?.trim()) return false;
+  const country = phoneCountryCode.toUpperCase() as CountryCode;
+  const parsed = parsePhoneNumberFromString(phoneNumber, country);
+  if (!parsed?.isValid()) return false;
+  return passesImpactBackendLengthCheck(country, toDomesticNumber(country, phoneNumber));
+}
 
-  const country = phoneCountryCode.toUpperCase();
-  const digits = phoneNumber.replace(/\D/g, "");
-
+/**
+ * Mirrors estalea.bucket.phone.I18nPhoneNumber.isValidI18nPhoneNumber()
+ * length rules on the already-sanitized (digits-only) submission value.
+ */
+function passesImpactBackendLengthCheck(country: string, digits: string): boolean {
+  if (!digits) return false;
   switch (country) {
     case "US":
     case "CA": {
-      // strip a single leading "1", then exactly 10 digits
       const n = digits.startsWith("1") ? digits.slice(1) : digits;
       return n.length === 10;
     }
     case "AU":
-      // 9 or 10 digits
       return digits.length === 9 || digits.length === 10;
     case "NZ": {
-      // trim "640" country prefix or leading "0" (only when >9 digits),
-      // then 8–10 digits
       let n = digits;
       if (n.length > 9) {
         if (n.startsWith("640")) n = n.slice(3);
@@ -40,26 +56,13 @@ export function isValidI18nPhoneNumber(
       }
       return n.length >= 8 && n.length <= 10;
     }
-    case "GB":
-      // >= 6 digits after stripping a single leading "0", no dialing-code check
+    default:
       return stripLeadingZero(digits).length >= 6;
-    default: {
-      // All other countries: strip a single leading "0", then >= 6 digits
-      if (stripLeadingZero(digits).length < 6) return false;
-      // If input starts with "+", the dialing code (first whitespace-split
-      // token) must match the selected country exactly. Splits on first
-      // whitespace, so "+4420 7946 0958" supplies "4420" (not "44") and fails.
-      if (phoneNumber.trim().startsWith("+")) {
-        const supplied = phoneNumber.trim().split(/\s/)[0].slice(1);
-        const expected = PHONE_EXTENSIONS[country]?.dial_code?.replace(
-          /^\+/,
-          ""
-        );
-        return expected === supplied;
-      }
-      return true;
-    }
   }
+}
+
+function stripLeadingZero(digits: string): string {
+  return digits.startsWith("0") ? digits.slice(1) : digits;
 }
 
 export function validTaxDocument(requiredType: TaxDocumentType | undefined) {

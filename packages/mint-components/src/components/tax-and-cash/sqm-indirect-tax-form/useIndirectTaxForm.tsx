@@ -126,6 +126,8 @@ export const COMPLETE_PARTNER = gql`
         impactConnection {
           connected
           publisher {
+            phoneNumber
+            phoneNumberCountryCode
             brandedSignup
             requiredTaxDocumentType
             currentTaxDocument {

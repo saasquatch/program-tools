@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { AsYouType, CountryCode } from "libphonenumber-js";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { FORM_STEPS, ImpactPublisher, ImpactUser } from "../data";
@@ -702,6 +703,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     id="phoneNumber"
                     name="/phoneNumber"
                     value={formState.phoneNumber}
+                    onSl-input={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      const country = ((refs.phoneCountryRef.current
+                        ?.value as string) || "US") as CountryCode;
+                      target.value = new AsYouType(country).input(target.value);
+                    }}
                     validationError={({ control, value, formData }) => {
                       // skip validation for values the user can't edit
                       if (control?.disabled) return undefined;
