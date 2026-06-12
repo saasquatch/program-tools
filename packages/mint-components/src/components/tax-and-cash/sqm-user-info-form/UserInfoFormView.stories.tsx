@@ -16,6 +16,8 @@ const mockCountries = [
   { countryCode: "DE", displayName: "Germany" },
   { countryCode: "FR", displayName: "France" },
   { countryCode: "ES", displayName: "Spain" },
+  // Show handling of long country names
+  { countryCode: "CD", displayName: "Congo, The Democratic Republic of the Congo"},
 ];
 
 const mockCurrencies = [

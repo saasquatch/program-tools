@@ -238,10 +238,6 @@ const vanillaStyle = `
       flex-direction: column;
     }
 
-    sl-select#phoneNumberCountryCode::part(menu) {
-      min-width: 250px;
-    }
-
     sl-button[type="primary"]::part(base){
         background-color: var(--sqm-primary-button-background);
         color: var(--sqm-primary-button-color);
@@ -335,6 +331,7 @@ const vanillaStyle = `
       background: var(--sqm-input-background, inherit);
       color: var(--sqm-input-color, inherit);
       border:none;
+      min-width: max-content;
     }
 
     sl-menu-item::part(base) {
