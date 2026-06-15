@@ -257,6 +257,8 @@ function useDemoUserInfoForm(props: TaxForm): UseUserInfoFormResult {
         loading: false,
         isPartner: false,
         isUser: false,
+        isPartnerLegacy: false,
+        isUserLegacy: false,
         loadingError: false,
         formState: {
           errors: {

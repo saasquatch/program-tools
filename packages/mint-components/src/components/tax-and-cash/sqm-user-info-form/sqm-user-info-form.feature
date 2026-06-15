@@ -311,6 +311,33 @@ Feature: Tax Form Step One
     Then the missing data is patched on the partner when they are upserted
 
   @motivating
+  Scenario: "Existing partner detected" banner only appears for legacy linked publishers
+    Given a user on the User Information form whose linked publisher exists
+    When the publisher's impactConnection.connectionStatus is null or undefined (legacy createImpactConnection)
+    Then the "existing partner detected" banner is shown
+    When instead the publisher's impactConnection.connectionStatus is "STARTED" (fresh sqm-partner-info-modal)
+    Then the "existing partner detected" banner is NOT shown
+    But the country and currency fields are still disabled because partnerData populated them
+
+  @motivating
+  Scenario: Legacy upgrade path - brand has not adopted sqm-partner-info-modal
+    Given the brand's template does not include <sqm-partner-info-modal>
+    And the user's impactConnection.connectionStatus is "NOT_STARTED" or null
+    When they fill out and submit the User Information form
+    Then the form calls the `createImpactConnection` mutation (legacy route)
+    And the form does NOT call `completeImpactConnection`
+    And a new publisher is created from the submitted form data
+
+  @motivating
+  Scenario: New upgrade path - brand has adopted sqm-partner-info-modal
+    Given the brand's template includes <sqm-partner-info-modal>
+    And the modal ran and the user's impactConnection.connectionStatus is "STARTED"
+    When they fill out and submit the User Information form
+    Then the form calls the `completeImpactConnection` mutation
+    And the form does NOT call `createImpactConnection`
+    And the existing started publisher is patched with the submitted form data
+
+  @motivating
   Scenario: Early partner creation pre-fills country and currency only
     Given the user had no Impact connection before opening sqm-partner-info-modal
     And they completed the modal and a new publisher was created
@@ -361,7 +388,7 @@ Feature: Tax Form Step One
     When they complete the missing fields and click "Continue"
     Then the missing data is patched onto the existing publisher (no new publisher is created)
 
-  @minutia
+  @minutia @landmine
   Scenario: The "0000000" / "DZ" placeholder phone values from publisher-creation are treated as empty
     # Impact API returns phoneNumber "0000000" and phoneNumberCountryCode "DZ" when we send null fields
     # during publisher creation  
@@ -499,7 +526,7 @@ Feature: Tax Form Step One
     And submission proceeds
 
   @motivating
-  Scenario Outline: Phone number is sanitized to a domestic number before being sent to Impact
+  Scenario Outline: Phone number is sanitized to a domestic number when being sent to Impact
     Given the "Phone Number Country" (phoneNumberCountryCode) field has value <countryCode>
     And the "Phone number" field has value <input>
     When the user clicks "Continue"

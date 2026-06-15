@@ -300,6 +300,7 @@ function useDemoIndirectTaxForm(
         disabled: false,
         loading: false,
         isPartner: false,
+        isPartnerLegacy: false,
         loadingError: false,
         errors: {},
         formState: {

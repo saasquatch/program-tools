@@ -30,6 +30,8 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     disabled: false,
     isPartner: false,
     isUser: false,
+    isPartnerLegacy: false,
+    isUserLegacy: false,
     loadingError: false,
     formState: {
       firstName: "Bob",

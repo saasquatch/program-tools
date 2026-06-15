@@ -260,29 +260,24 @@ export function useUserInfoForm(props: TaxForm) {
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
 
-    // If the partner has already been started call completeImpactPartner to
-    // update the remaining details. Otherwise create a new connection.
-    // const userData = data?.user;
+    // if user went through early partner creation, connectionStatus === "STARTED"
+    // otherwise trigger legacy partner creation
+    const userData = data?.user;
     let result = null;
     let connectionResult;
-    result = await completeImpactPartner({
-      vars,
-    });
-    connectionResult = (result as CompletePartnerResult)
-      ?.completeImpactConnection;
-    // if (userData?.impactConnection?.connectionStatus === "STARTED") {
-    //   result = await completeImpactPartner({
-    //     vars,
-    //   });
-    //   connectionResult = (result as CompletePartnerResult)
-    //     ?.completeImpactConnection;
-    // } else {
-    //   result = await connectImpactPartner({
-    //     vars,
-    //   });
-    //   connectionResult = (result as ConnectPartnerResult)
-    //     ?.createImpactConnection;
-    // }
+    if (userData?.impactConnection?.connectionStatus === "STARTED") {
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
 
     if (!result || (result as Error)?.message) throw new Error();
     if (!connectionResult?.success) {
@@ -457,7 +452,13 @@ export function useUserInfoForm(props: TaxForm) {
       loading: loading || connectLoading || completeLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
-
+      // Show banner when pre-existing partner is created with legacy mutation createImpactConnection
+      isUserLegacy:
+        !!data?.user?.impactConnection?.user &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
+      isPartnerLegacy:
+        !!data?.user?.impactConnection?.publisher &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
       formState: {
         ...userFormContext,
         errors: formErrors,

@@ -18,6 +18,8 @@ export interface UserInfoFormViewProps {
     disabled: boolean;
     isPartner: boolean;
     isUser: boolean;
+    isPartnerLegacy: boolean;
+    isUserLegacy: boolean;
     hideSteps: boolean;
     hideState: boolean;
     loadingError?: boolean;
@@ -527,6 +529,29 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   {
                     id: "generalDescription",
                     defaultMessage: text.error.generalDescription,
+                  },
+                  {
+                    supportLink: (
+                      <a
+                        target="_blank"
+                        href={`mailto:advocate-support@impact.com`}
+                      >
+                        {text.supportLink}
+                      </a>
+                    ),
+                  }
+                )}
+              </p>
+            </sqm-form-message>
+          )}
+          {(states.isPartnerLegacy || states.isUserLegacy) && (
+            <sqm-form-message loading={states.loading} type="info">
+              <p part="alert-title">{text.isPartnerAlertHeader}</p>
+              <p part="alert-description">
+                {intl.formatMessage(
+                  {
+                    id: "isPartnerAlertDescription",
+                    defaultMessage: text.isPartnerAlertDescription,
                   },
                   {
                     supportLink: (

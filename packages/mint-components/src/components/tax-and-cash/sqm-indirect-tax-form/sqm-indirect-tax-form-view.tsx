@@ -9,6 +9,7 @@ export interface IndirectTaxFormViewProps {
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
+    isPartnerLegacy: boolean;
     hideSteps: boolean;
     loadingError: boolean;
     formState: {
@@ -271,7 +272,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             )}
           </sqm-form-message>
         )}
-        {/* {states.isPartner && (
+        {states.isPartnerLegacy && (
           <sqm-form-message loading={states.loading} type="info">
             <p part="alert-title">{text.isPartnerAlertHeader}</p>
             {intl.formatMessage(
@@ -291,7 +292,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               }
             )}
           </sqm-form-message>
-        )} */}
+        )}
         <div>
           <h4>{text.indirectTaxDetails}</h4>
         </div>
