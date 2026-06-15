@@ -153,6 +153,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     disabled: false,
     loading: false,
     isPartner: false,
+    isPartnerLegacy: false,
     loadingError: false,
     formState: {
       checked: undefined,
