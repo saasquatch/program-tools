@@ -699,7 +699,11 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     exportparts="label: input-label, base: input-base"
                     id="phoneNumber"
                     name="/phoneNumber"
-                    value={formState.phoneNumber}
+                    value={
+                      formState.phoneNumber !== null
+                        ? formState.phoneNumber
+                        : ""
+                    }
                     onSl-input={(e) => {
                       const target = e.target as HTMLInputElement;
                       const country = ((refs.phoneCountryRef.current
