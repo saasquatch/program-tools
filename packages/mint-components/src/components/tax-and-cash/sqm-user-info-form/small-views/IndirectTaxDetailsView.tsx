@@ -160,7 +160,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         id: `tax-field-label${taxType}`,
         defaultMessage: text.indirectTaxNumber,
       },
-      { taxType }
+      { taxType },
     );
   };
 
@@ -170,7 +170,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         id: `tax-field-label${taxType}`,
         defaultMessage: text.error.indirectTaxNumber,
       },
-      { taxType }
+      { taxType },
     );
   };
 
@@ -215,7 +215,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             class: classes.ErrorInput,
             helpText: formatErrorMessage(
               text.subRegion,
-              text.error.fieldRequiredError
+              text.error.fieldRequiredError,
             ),
           })}
           id="subRegion"
@@ -251,7 +251,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               class: classes.ErrorInput,
               helpText: formatErrorMessage(
                 text.subRegionTaxNumberLabel,
-                text.error.fieldRequiredError
+                text.error.fieldRequiredError,
               ),
             })}
             id={"subRegionTaxNumber"}
@@ -266,7 +266,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     const { classes } = sheet;
 
     const currentTaxType = INDIRECT_TAX_PROVINCES?.find(
-      (p) => p.regionCode === formState.province
+      (p) => p.regionCode === formState.province,
     )?.taxType as TaxType | undefined;
 
     return (
@@ -283,7 +283,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             class: classes.ErrorInput,
             helpText: formatErrorMessage(
               text.province,
-              text.error.fieldRequiredError
+              text.error.fieldRequiredError,
             ),
           })}
           id="province"
@@ -324,7 +324,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
                 label={text.qstNumber}
                 error={formatErrorMessage(
                   text.qstNumber,
-                  text.error.fieldRequiredError
+                  text.error.fieldRequiredError,
                 )}
               />
             )}
@@ -352,7 +352,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
             {...(formState.errors?.indirectTaxNumber && {
               class: classes.ErrorInput,
               helpText: getTaxFieldError(
-                vatLabels[selectedRegion] || "GENERAL"
+                vatLabels[selectedRegion] || "GENERAL",
               ),
             })}
             id="indirectTaxNumber"
@@ -385,7 +385,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               class: classes.ErrorInput,
               helpText: formatErrorMessage(
                 text.selectedRegion,
-                text.error.fieldRequiredError
+                text.error.fieldRequiredError,
               ),
             })}
             id="selectedRegion"

@@ -53,7 +53,7 @@ export const UserLookupQuery = gql`
 export function useUpsertUserEmail() {
   const user = useUserIdentity();
   const [request, { loading: loading, data, errors }] = useMutation(
-    UpsertUserEmailMutation
+    UpsertUserEmailMutation,
   );
 
   const upsertUserEmail = async (email: string) => {
@@ -85,7 +85,7 @@ export function useUpsertUserEmail() {
 }
 
 export function useWidgetEmailVerification(
-  props: WidgetEmailVerification
+  props: WidgetEmailVerification,
 ): WidgetEmailVerificationViewProps {
   const [_, setShowCode] = useParent<boolean>(SHOW_CODE_NAMESPACE);
   const [_email, setEmail] = useParent<string>(VERIFICATION_EMAIL_NAMESPACE);
@@ -123,7 +123,6 @@ export function useWidgetEmailVerification(
     setLoading(true);
     setMutationError(false);
     setError(false);
-
 
     let toAddress = data.viewer.email;
     if (!toAddress) {

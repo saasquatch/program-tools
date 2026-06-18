@@ -132,7 +132,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.supportLink}
         </a>
       ),
-    }
+    },
   );
 
   const description = states.isExistingPartner ? (
@@ -161,7 +161,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.termsAndConditionsLabel}
         </a>
       ),
-    }
+    },
   );
 
   return (
@@ -273,6 +273,10 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
 
   if (!states.open) return <div></div>;
 
+  const modalHeader = states.isExistingPartner
+    ? text.modalHeaderExistingPartner
+    : text.modalHeader;
+
   return (
     <div>
       <style type="text/css"> {styleString}</style>
@@ -280,11 +284,7 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
         class={sheet.classes.Dialog}
         open={states.open}
         noHeader
-        label={
-          states.isExistingPartner
-            ? text.modalHeaderExistingPartner
-            : text.modalHeader
-        }
+        label={modalHeader}
         onSl-request-close={(e: any) => {
           e.preventDefault();
         }}
@@ -295,11 +295,7 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
         }}
         onSl-initial-focus={callbacks.onInitialFocus}
       >
-        <h2 class={sheet.classes.DialogTitle}>
-          {states.isExistingPartner
-            ? text.modalHeaderExistingPartner
-            : text.modalHeader}
-        </h2>
+        <h2 class={sheet.classes.DialogTitle}>{modalHeader}</h2>
         <PartnerInfoModalContentView {...props} />
       </sl-dialog>
     </div>

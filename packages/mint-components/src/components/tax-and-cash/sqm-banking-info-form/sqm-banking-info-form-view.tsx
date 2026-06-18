@@ -61,10 +61,10 @@ export interface BankingInfoFormViewProps {
   callbacks: {
     onVerificationHide: () => void;
     setPaymentMethodChecked: (
-      paymentMethodChecked: "toBankAccount" | "toPayPalAccount"
+      paymentMethodChecked: "toBankAccount" | "toPayPalAccount",
     ) => void;
     setPaymentScheduleChecked: (
-      paymentMethodChecked: "BALANCE_THRESHOLD" | "FIXED_DAY"
+      paymentMethodChecked: "BALANCE_THRESHOLD" | "FIXED_DAY",
     ) => void;
     onSubmit: (props: any) => Promise<void>;
     onBack: (props: any) => void;
@@ -295,7 +295,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
 
   const getLoadingSkeleton = (
     checkedValue: "toBankAccount" | "toPayPalAccount" | undefined,
-    inputNumber?: number
+    inputNumber?: number,
   ) => {
     let inputNumArray = Array(inputNumber).fill(0);
 
@@ -383,7 +383,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   id: "formStep",
                   defaultMessage: text.formStep,
                 },
-                { step: states.step, count: FORM_STEPS }
+                { step: states.step, count: FORM_STEPS },
               )}
             </p>
           )}
@@ -409,7 +409,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sqm-form-message>
         )}
@@ -431,7 +431,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sqm-form-message>
         )}
@@ -470,7 +470,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                   {states.loading
                     ? getLoadingSkeleton(
                         "toBankAccount",
-                        slots.formInputsSlot.length + 3
+                        slots.formInputsSlot.length + 3,
                       )
                     : [
                         slots.countryInputSlot,
@@ -496,7 +496,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
                       id: "paypal-input-label",
                       defaultMessage: text.toPayPalAccount,
                     },
-                    { feeCap: states.feeCap }
+                    { feeCap: states.feeCap },
                   )}
                 </sl-radio>
               )}

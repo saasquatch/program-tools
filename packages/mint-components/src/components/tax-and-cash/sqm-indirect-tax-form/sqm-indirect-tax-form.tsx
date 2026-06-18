@@ -287,7 +287,7 @@ export class IndirectTaxForm {
 }
 
 function useDemoIndirectTaxForm(
-  props: IndirectTaxForm
+  props: IndirectTaxForm,
 ): ReturnType<typeof useIndirectTaxForm> {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState("otherRegion");
@@ -373,6 +373,6 @@ function useDemoIndirectTaxForm(
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

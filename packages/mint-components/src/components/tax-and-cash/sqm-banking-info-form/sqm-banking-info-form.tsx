@@ -633,7 +633,7 @@ export class BankingInfoForm {
             {
               errorCode,
               fieldName: label,
-            }
+            },
           );
         }
       }
@@ -646,7 +646,7 @@ export class BankingInfoForm {
           },
           {
             fieldName: label,
-          }
+          },
         );
       }
       if (type === "invalid") {
@@ -657,7 +657,7 @@ export class BankingInfoForm {
           },
           {
             fieldName: label,
-          }
+          },
         );
       }
       return "";
@@ -716,7 +716,7 @@ export class BankingInfoForm {
       },
       {
         email: props.states.email,
-      }
+      },
     );
 
     const vanillaStyle = `
@@ -896,7 +896,7 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(
-  props: BankingInfoForm
+  props: BankingInfoForm,
 ): BankingInfoFormViewProps {
   const defaultPaymentMethodChecked =
     props.demoData?.states?.formState?.paymentMethodChecked;
@@ -920,7 +920,7 @@ function useDemoBankingInfoForm(
     (paymentOption) => {
       if (paymentOption.countryCode === bankCountry) return true;
       return false;
-    }
+    },
   );
 
   const bitset =
@@ -946,7 +946,7 @@ function useDemoBankingInfoForm(
       {
         currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || "0",
-      }
+      },
     ),
   };
 
@@ -1018,6 +1018,6 @@ function useDemoBankingInfoForm(
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

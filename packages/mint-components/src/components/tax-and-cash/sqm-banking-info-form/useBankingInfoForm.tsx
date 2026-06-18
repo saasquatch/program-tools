@@ -58,10 +58,10 @@ const API_FIELD_TO_FORM_FIELD: Record<string, string> = {
 };
 
 /**
- * Maps Impact API error code paths (from validationErrors[].errorPath) to short,
+ * Maps Impact API error codes (from validationErrors[].code) to short,
  * readable frontend error codes used in the ICU select props.
  */
-const API_ERROR_PATH_TO_FRONTEND: Record<string, string> = {
+const API_ERROR_CODE_TO_FRONTEND: Record<string, string> = {
   // Beneficiary account name
   "withdrawal.settings.error.empty_beneficiaryname": "empty",
   "withdrawal.settings.error.invalid_character_beneficiaryname":
@@ -215,7 +215,7 @@ type SetImpactPublisherWithdrawalSettingsResult = {
     validationErrors: {
       field: string;
       message: string;
-      errorPath: string;
+      code: string;
     }[];
   };
 };
@@ -238,7 +238,7 @@ type UpdateImpactPublisherWithdrawalSettingsResult = {
     validationErrors: {
       field: string;
       message: string;
-      errorPath: string;
+      code: string;
     }[];
   };
 };
@@ -514,7 +514,7 @@ export function useBankingInfoForm(
             const formField =
               API_FIELD_TO_FORM_FIELD[error.field] || error.field;
             const errorCode =
-              API_ERROR_PATH_TO_FRONTEND[error.errorPath] || error.errorPath;
+              API_ERROR_CODE_TO_FRONTEND[error.code] || error.code;
             return {
               ...agg,
               [formField]: {

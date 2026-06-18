@@ -44,7 +44,7 @@ export function useWidgetVerification() {
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: undefined,
   });
-  
+
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
   const [loading, setLoading] = useState(true);
   const [showPartnerModal, setShowPartnerModal] = useParentState<boolean>({
@@ -93,10 +93,12 @@ export function useWidgetVerification() {
 
   const onPartnerModalComplete = () => {
     setShowPartnerModal(false);
+    // Reset the latch so a later partner creation can re-trigger this effect
     setPartnerCreated(false);
     setContext(true);
   };
 
+  // The modal signals completion by flipping partnerCreated; advance the flow here
   useEffect(() => {
     if (partnerCreated) onPartnerModalComplete();
   }, [partnerCreated]);

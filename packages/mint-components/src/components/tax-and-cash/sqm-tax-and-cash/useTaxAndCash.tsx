@@ -129,7 +129,7 @@ export function useTaxAndCash() {
     {
       namespace: CURRENCIES_NAMESPACE,
       initialValue: [],
-    }
+    },
   );
 
   const [_countriesContext, _setCountriesContext] = useParentState<
@@ -190,7 +190,7 @@ export function useTaxAndCash() {
       financeNetworkData?.impactFinanceNetworkSettings?.data?.reduce(
         (agg, settings) => {
           const currency = currenciesData?.currencies?.data?.find(
-            (currency) => currency.currencyCode === settings.currency
+            (currency) => currency.currencyCode === settings.currency,
           );
           // Currency not in supported list
           if (!currency) return agg;
@@ -208,7 +208,7 @@ export function useTaxAndCash() {
 
           return [...agg, currency];
         },
-        []
+        [],
       );
     return allValidCurrencies;
   }, [financeNetworkData, countryCode]);
@@ -226,9 +226,9 @@ export function useTaxAndCash() {
       new Set(
         paymentOptions
           ?.map((option) => option.countryCode)
-          .filter((value) => value)
+          .filter((value) => value),
       ),
-    [paymentOptions]
+    [paymentOptions],
   );
 
   const _topCountries = ["CA", "GB", "US"];
@@ -237,7 +237,7 @@ export function useTaxAndCash() {
     () =>
       Array.from(availableCountries)
         .map((countryCode) =>
-          getCountryObj({ countryCode, locale: intlLocale })
+          getCountryObj({ countryCode, locale: intlLocale }),
         )
         .sort(sortByName)
         .reduce((prev, countryObj) => {
@@ -245,7 +245,7 @@ export function useTaxAndCash() {
             return [countryObj, ...prev];
           return [...prev, countryObj];
         }, []),
-    [availableCountries]
+    [availableCountries],
   );
 
   useEffect(() => {
@@ -275,7 +275,7 @@ export function useTaxAndCash() {
         publisher.phoneNumber &&
         isValidI18nPhoneNumber(
           publisher.phoneNumberCountryCode,
-          publisher.phoneNumber
+          publisher.phoneNumber,
         );
 
       if (
@@ -309,15 +309,21 @@ export function useTaxAndCash() {
 
       if (!user || step !== "/loading") return;
 
-      if (
-        user?.impactConnection?.publisher &&
-        user?.impactConnection.connectionStatus === "STARTED"
-      ) {
-        completeConnection(user);
-        refetch();
+      async function routeAfterMaybeCompleting() {
+        if (
+          user?.impactConnection?.publisher &&
+          user?.impactConnection.connectionStatus === "STARTED"
+        ) {
+          // Finish the early-created connection before routing so the next
+          // step sees the completed status
+          await completeConnection(user);
+          await refetch();
+        }
+        const currentStep = getCurrentStep(user);
+        setStep(currentStep);
       }
-      const currentStep = getCurrentStep(user);
-      setStep(currentStep);
+
+      routeAfterMaybeCompleting();
     }
   }, [host, user, data?.user?.email, errors]);
 

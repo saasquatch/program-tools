@@ -8,12 +8,12 @@ import { TaxDocumentType } from "./data";
  */
 export function toDomesticNumber(
   phoneCountryCode: string | undefined,
-  input: string | undefined
+  input: string | undefined,
 ): string {
   if (!input) return "";
   const parsed = parsePhoneNumberFromString(
     input,
-    phoneCountryCode?.toUpperCase() as CountryCode
+    phoneCountryCode?.toUpperCase() as CountryCode,
   );
   return (parsed?.nationalNumber as string) ?? input.replace(/\D/g, "");
 }
@@ -25,20 +25,26 @@ export function toDomesticNumber(
  */
 export function isValidI18nPhoneNumber(
   phoneCountryCode: string | undefined,
-  phoneNumber: string | undefined
+  phoneNumber: string | undefined,
 ): boolean {
   if (!phoneCountryCode || !phoneNumber?.trim()) return false;
   const country = phoneCountryCode.toUpperCase() as CountryCode;
   const parsed = parsePhoneNumberFromString(phoneNumber, country);
   if (!parsed?.isValid()) return false;
-  return passesImpactBackendLengthCheck(country, toDomesticNumber(country, phoneNumber));
+  return passesImpactBackendLengthCheck(
+    country,
+    toDomesticNumber(country, phoneNumber),
+  );
 }
 
 /**
  * Mirrors estalea.bucket.phone.I18nPhoneNumber.isValidI18nPhoneNumber()
  * length rules on the already-sanitized (digits-only) submission value.
  */
-function passesImpactBackendLengthCheck(country: string, digits: string): boolean {
+function passesImpactBackendLengthCheck(
+  country: string,
+  digits: string,
+): boolean {
   if (!digits) return false;
   switch (country) {
     case "US":
@@ -102,7 +108,7 @@ export const formatErrorMessage = (fieldName: string, errorMessage: string) => {
     },
     {
       fieldName,
-    }
+    },
   );
 };
 

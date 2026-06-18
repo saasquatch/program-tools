@@ -87,7 +87,7 @@ export function useUserInfoForm(props: TaxForm) {
   const countries = useParentValue<TaxCountry[]>(SORTED_COUNTRIES_NAMESPACE);
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
   const [userFormContext, setUserFormContext] = useParent<UserFormContext>(
-    USER_FORM_CONTEXT_NAMESPACE
+    USER_FORM_CONTEXT_NAMESPACE,
   );
 
   const user = useUserIdentity();
@@ -111,20 +111,20 @@ export function useUserInfoForm(props: TaxForm) {
   const currencies = useMemo(
     () =>
       [...(_currencies || [])].sort((a, b) =>
-        a.displayName.localeCompare(b.displayName)
+        a.displayName.localeCompare(b.displayName),
       ),
-    [_currencies]
+    [_currencies],
   );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [phoneCountrySearch, setPhoneCountrySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
   const [filteredPhoneCountries, setFilteredPhoneCountries] = useState(
-    countries || []
+    countries || [],
   );
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currencies || []
+    currencies || [],
   );
   const [formErrors, setErrors] = useState({});
 
@@ -207,8 +207,8 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
-        ) || []
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [countrySearch, countries]);
@@ -220,8 +220,10 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredPhoneCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(phoneCountrySearch.toLowerCase())
-        ) || []
+          c.displayName
+            .toLowerCase()
+            .includes(phoneCountrySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [phoneCountrySearch, countries]);
@@ -233,8 +235,8 @@ export function useUserInfoForm(props: TaxForm) {
     } else {
       setFilteredCurrencies(
         currencies.filter((c) =>
-          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase())
-        ) || []
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase()),
+        ) || [],
       );
     }
   }, [currencySearch, currencies]);
@@ -255,7 +257,7 @@ export function useUserInfoForm(props: TaxForm) {
       postalCode: formData.postalCode,
       phoneNumber: toDomesticNumber(
         formData.phoneNumberCountryCode,
-        formData.phoneNumber
+        formData.phoneNumber,
       ),
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
@@ -283,7 +285,7 @@ export function useUserInfoForm(props: TaxForm) {
     if (!connectionResult?.success) {
       console.error(
         "Failed to create Impact connection: ",
-        connectionResult?.validationErrors
+        connectionResult?.validationErrors,
       );
 
       throw new Error();
@@ -344,7 +346,7 @@ export function useUserInfoForm(props: TaxForm) {
 
     const normalizedPhoneNumber = toDomesticNumber(
       userData.phoneNumberCountryCode,
-      userData.phoneNumber
+      userData.phoneNumber,
     );
 
     setUserFormContext({
@@ -411,7 +413,7 @@ export function useUserInfoForm(props: TaxForm) {
   }
 
   const hasStates = ["ES", "AU", "US", "CA"].includes(
-    userFormContext.countryCode
+    userFormContext.countryCode,
   );
   const regionObj = hasStates
     ? ADDRESS_REGIONS[userFormContext?.countryCode]

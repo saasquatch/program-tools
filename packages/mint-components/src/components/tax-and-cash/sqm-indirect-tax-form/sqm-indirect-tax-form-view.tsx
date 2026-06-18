@@ -218,7 +218,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                   id: "formStep",
                   defaultMessage: text.formStep,
                 },
-                { step: states.step, count: FORM_STEPS }
+                { step: states.step, count: FORM_STEPS },
               )}
             </p>
           )}
@@ -246,7 +246,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </sqm-form-message>
           </div>
@@ -268,7 +268,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sqm-form-message>
         )}
@@ -289,7 +289,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sqm-form-message>
         )}
@@ -353,7 +353,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              }
+              },
             )}
           </sqm-form-message>
           <div class={classes.BtnContainer}>

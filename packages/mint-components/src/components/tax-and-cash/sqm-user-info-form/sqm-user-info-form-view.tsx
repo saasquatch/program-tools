@@ -416,7 +416,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
           {text.termsAndConditionsLabel}
         </a>
       ),
-    }
+    },
   );
 
   let regionLabel = undefined;
@@ -448,7 +448,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       states.isPartner &&
       !isValidI18nPhoneNumber(
         data.partnerData?.phoneNumberCountryCode,
-        data.partnerData?.phoneNumber
+        data.partnerData?.phoneNumber,
       )
     ) {
       return false;
@@ -490,7 +490,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                }
+                },
               )}
             </p>
           </sqm-form-message>
@@ -510,7 +510,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       id: "formStep",
                       defaultMessage: text.formStep,
                     },
-                    { step: states.step, count: FORM_STEPS }
+                    { step: states.step, count: FORM_STEPS },
                   )}
                 </p>
               )}
@@ -539,7 +539,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         {text.supportLink}
                       </a>
                     ),
-                  }
+                  },
                 )}
               </p>
             </sqm-form-message>
@@ -562,7 +562,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         {text.supportLink}
                       </a>
                     ),
-                  }
+                  },
                 )}
               </p>
             </sqm-form-message>
@@ -581,7 +581,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.firstName,
-                        formState.errors.firstName
+                        formState.errors.firstName,
                       ),
                     }
                   : {})}
@@ -599,7 +599,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.lastName,
-                        formState.errors.lastName
+                        formState.errors.lastName,
                       ),
                     }
                   : {})}
@@ -631,7 +631,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.country,
-                        formState.errors.countryCode
+                        formState.errors.countryCode,
                       ),
                     }
                   : {})}
@@ -741,12 +741,12 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       if (!value?.trim()) return undefined;
                       return isValidI18nPhoneNumber(
                         formData.phoneNumberCountryCode,
-                        value
+                        value,
                       )
                         ? undefined
                         : formatErrorMessage(
                             text.phoneNumber,
-                            text.error.fieldInvalidError
+                            text.error.fieldInvalidError,
                           );
                     }}
                     disabled={
@@ -757,7 +757,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                           class: classes.ErrorInput,
                           helpText: formatErrorMessage(
                             text.phoneNumber,
-                            formState.errors.phoneNumber
+                            formState.errors.phoneNumber,
                           ),
                         }
                       : {})}
@@ -776,7 +776,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !validateBillingField(/^[\x20-\xFF]+$/, value) &&
                   formatErrorMessage(
                     text.address,
-                    text.error.invalidCharacterError
+                    text.error.invalidCharacterError,
                   )
                 }
                 disabled={
@@ -787,7 +787,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.address,
-                        formState.errors.address
+                        formState.errors.address,
                       ),
                     }
                   : {})}
@@ -804,7 +804,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   !validateBillingField(/^[\x20-\xFF]+$/, value) &&
                   formatErrorMessage(
                     text.city,
-                    text.error.invalidCharacterError
+                    text.error.invalidCharacterError,
                   )
                 }
                 disabled={
@@ -815,7 +815,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.city,
-                        formState.errors.city
+                        formState.errors.city,
                       ),
                     }
                   : {})}
@@ -836,7 +836,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                         class: classes.ErrorInput,
                         helpText: formatErrorMessage(
                           text.state,
-                          formState.errors.state
+                          formState.errors.state,
                         ),
                       }
                     : {})}
@@ -861,7 +861,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.postalCode,
-                        formState.errors.postalCode
+                        formState.errors.postalCode,
                       ),
                     }
                   : {})}
@@ -880,7 +880,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                       class: classes.ErrorInput,
                       helpText: formatErrorMessage(
                         text.currency,
-                        formState.errors.currency
+                        formState.errors.currency,
                       ),
                     }
                   : {})}

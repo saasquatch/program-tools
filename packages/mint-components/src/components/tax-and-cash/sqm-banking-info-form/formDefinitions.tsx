@@ -145,7 +145,7 @@ export function getFormMap({
             },
             {
               bankCountry,
-            }
+            },
           )}
           name="/routingCode"
           id="routingCode"
@@ -162,7 +162,7 @@ export function getFormMap({
                 },
                 {
                   bankCountry,
-                }
+                },
               ),
               errorCode: errors?.inputErrors?.routingCode?.errorCode,
               fieldName: "routingCode",
@@ -205,7 +205,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationLabel,
-              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              errorCode:
+                errors?.inputErrors?.beneficiaryClassification?.errorCode,
               fieldName: "beneficiaryClassification",
             }),
           })}
@@ -229,7 +230,7 @@ export function getFormMap({
             },
             {
               bankCountry,
-            }
+            },
           )}
           type="text"
           name="/beneficiaryTaxPayerId"
@@ -260,7 +261,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationCPFLabel,
-              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              errorCode:
+                errors?.inputErrors?.beneficiaryClassification?.errorCode,
               fieldName: "beneficiaryClassification",
             }),
           })}
@@ -438,7 +440,8 @@ export function getFormMap({
             helpText: getValidationErrorMessage({
               type: errors?.inputErrors?.beneficiaryClassification?.type,
               label: props.text.classificationLabel,
-              errorCode: errors?.inputErrors?.beneficiaryClassification?.errorCode,
+              errorCode:
+                errors?.inputErrors?.beneficiaryClassification?.errorCode,
               fieldName: "beneficiaryClassification",
             }),
           })}

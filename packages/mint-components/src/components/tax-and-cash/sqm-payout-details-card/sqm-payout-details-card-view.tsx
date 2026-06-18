@@ -228,7 +228,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     },
     {
       thresholdBalance: states.thresholdBalance,
-    }
+    },
   );
 
   return (
