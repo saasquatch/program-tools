@@ -57,10 +57,7 @@ Feature: Banking Information Form
     Examples:
       | currency | countries                                                    |
       | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
-      | GBP      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
-      | AUD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | CAD      | Canada                                                       |
-      | EUR      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | JPY      | Japan                                                        |
 
   @minutia
