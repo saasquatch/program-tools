@@ -333,7 +333,7 @@ const vanillaStyle = `
       background: var(--sqm-input-background, inherit);
       color: var(--sqm-input-color, inherit);
       border:none;
-      min-width: max-content;
+      width: max-content;
     }
 
     sl-menu-item::part(base) {
