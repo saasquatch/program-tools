@@ -71,6 +71,7 @@ export type ProgramTriggerBody = {
     impactBrandId: string | undefined | null;
     settings: {
       suspectedFraudModerationState: string;
+      timeZone: string;
     };
   };
   ids: string[];
