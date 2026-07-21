@@ -79,8 +79,12 @@ export type ProgramTriggerBody = {
 
 type TenantInfo = {
   tenantAlias: string;
-  featureFlags?: string[] | null;
+  impactBrandId: string | undefined | null;
   isLiveMode: boolean;
+  featureFlags?: string[] | null;
+  settings: {
+    timeZone: string;
+  };
 };
 
 /**
