@@ -14,6 +14,8 @@ type TransactionContext = {
   body: ProgramTriggerBody;
 };
 
+type MutationExtraMetadata = Record<string, any>;
+
 type ReferralRewardInput = {
   rewardKey: string;
   user: User;
@@ -32,6 +34,7 @@ type ReferralRewardInput = {
     unit: string;
     assignedCredit: number;
   };
+  extraMetadata?: MutationExtraMetadata;
 };
 
 export default class Transaction {
@@ -191,6 +194,7 @@ export default class Transaction {
     const newMutation = {
       type: "CREATE_REWARD",
       data: updatedRewardData,
+      metadata: input.extraMetadata,
     };
 
     this.mutations = [...this.mutations, newMutation];
@@ -245,12 +249,14 @@ export default class Transaction {
     referralId,
     rewardId,
     eventId,
+    extraMetadata,
   }: {
     emailKey: string;
     user: User;
     referralId: string;
     rewardId?: string;
     eventId?: string;
+    extraMetadata?: MutationExtraMetadata;
   }) {
     const variables = {
       userId: user.id,
@@ -279,6 +285,7 @@ export default class Transaction {
           ? rewardEmailQuery
           : nonRewardEmailQueryForReferralPrograms,
       },
+      metadata: extraMetadata,
     };
     this.mutations = [...this.mutations, newMutation];
   }
