@@ -97,7 +97,7 @@ export function useTaxAndCash() {
   const user = useUserIdentity();
   const locale = useLocale();
 
-  const [completeImpactPartner, { loading: completeLoading }] =
+  const [completeImpactPartner] =
     useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
 
   // State for current step of form
