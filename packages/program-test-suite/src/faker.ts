@@ -43,6 +43,10 @@ export function getIntrospectionJson(
       tenantAlias: "test_UNITTESTTENANT",
       isLiveMode: false,
       featureFlags,
+      impactBrandId: "123456",
+      settings: {
+        timeZone: "America/Vancouver",
+      },
     },
   };
 }
@@ -72,7 +76,10 @@ export function getProgramTriggerJson(
     },
     tenant: {
       impactBrandId: flavor === "impact" ? "12345" : undefined,
-      settings: { suspectedFraudModerationState: "IGNORE" },
+      settings: {
+        suspectedFraudModerationState: "IGNORE",
+        timeZone: "America/Vancouver",
+      },
     },
     ids: [...Array(10).keys()].map((a) => `triggergivenid${a + 1}`),
   };
