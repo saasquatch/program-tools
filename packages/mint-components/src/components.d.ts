@@ -4795,13 +4795,6 @@ export namespace Components {
          */
         "dashboard_newFormButton": string;
         /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_noFormNeededSubtext": string;
-        /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties
           * @uiWidget textArea
@@ -11903,13 +11896,6 @@ declare namespace LocalJSX {
           * @uiGroup Dashboard Properties
          */
         "dashboard_newFormButton"?: string;
-        /**
-          * No other statuses or badges will be displayed in the tax form section in this case.
-          * @uiName Tax form not required text
-          * @uiGroup Dashboard Properties
-          * @uiWidget textArea
-         */
-        "dashboard_noFormNeededSubtext"?: string;
         /**
           * @uiName Not registered for indirect tax text
           * @uiGroup Dashboard Properties

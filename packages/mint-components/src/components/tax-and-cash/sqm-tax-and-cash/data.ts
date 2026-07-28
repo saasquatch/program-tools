@@ -170,13 +170,14 @@ export type UserQuery = {
     customFields?: {
       [key: string]: any;
     };
-    rewards: {
+    rewards?: {
       data: {
         statuses: string[];
-        partnerFundsTransfer: {
+        // Rewards that never resulted in a payout have no funds transfer
+        partnerFundsTransfer?: {
           id: string;
           status: string;
-        };
+        } | null;
       }[];
     };
     managedIdentity?: {

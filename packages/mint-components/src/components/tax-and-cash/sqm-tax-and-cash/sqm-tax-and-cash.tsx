@@ -762,15 +762,6 @@ export class TaxAndCashMonolith {
   @Prop() dashboard_taxDocumentSectionSubHeader: string =
     "{documentType} tax form";
   /**
-   * No other statuses or badges will be displayed in the tax form section in this case.
-   *
-   * @uiName Tax form not required text
-   * @uiGroup Dashboard Properties
-   * @uiWidget textArea
-   */
-  @Prop() dashboard_noFormNeededSubtext: string =
-    "Tax documents are only required if you are based in the US or joining the referral program of a US based brand.";
-  /**
    *
    * @uiName Indirect tax section header
    * @uiGroup Dashboard Properties

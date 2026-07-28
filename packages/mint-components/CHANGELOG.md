@@ -7,12 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- \<sqm-payout-status-alert>
+  - Fixed a crash when a redeemed reward has no `partnerFundsTransfer`, which is the
+    case for rewards that never resulted in a payout. This matches the documented
+    behaviour in `sqm-payout-status-alert.feature` and the optional `partnerFundsTransfer`
+    already declared in `saasquatch.d.ts`
+
+### Removed
+
+- \<sqm-tax-and-cash>
+  - Removed `dashboard_noFormNeededSubtext`, which has had no effect since 1.15.0 when
+    `noFormNeededSubtext` was removed from \<sqm-tax-and-cash-dashboard>
+
 ## [1.15.7] - 2025-11-3
 
 ### Changed
 
 - \<sqm-referred-registration>
-  - Changed the default text for `registerLabel` to "Choose Your Reward"
+  - Changed the default text for `registerLabel` to "Claim Your Reward"
 
 ## [1.15.6] - 2025-10-28
 
