@@ -52,6 +52,7 @@ export type ValidationErrorFunction = (input: {
   control;
   key: string;
   value;
+  formData?: FormState;
 }) => string | undefined;
 
 export type FormState = {
@@ -320,7 +321,7 @@ export function useUserInfoForm(props: TaxForm) {
       // custom validation
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
-        const validationError = validate({ control, key, value });
+        const validationError = validate({ control, key, value, formData });
         if (validationError) jsonpointer.set(errors, key, validationError);
       }
 
