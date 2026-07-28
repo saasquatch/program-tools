@@ -9,6 +9,7 @@ export interface IndirectTaxFormViewProps {
     loading: boolean;
     disabled: boolean;
     isPartner: boolean;
+    isPartnerLegacy: boolean;
     hideSteps: boolean;
     loadingError: boolean;
     formState: {
@@ -288,7 +289,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             )}
           </sl-alert>
         )}
-        {states.isPartner && (
+        {states.isPartnerLegacy && (
           <sl-alert
             type="primary"
             open
@@ -333,7 +334,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="notRegistered"
                 checked={formState.checked === "notRegistered"}
                 onInput={() => callbacks.onChange("notRegistered")}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled}
               >
                 <div class={classes.RadioContent}>
                   {text.notRegistered}
@@ -349,7 +350,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 id="otherRegion"
                 checked={formState.checked === "otherRegion"}
                 onInput={() => callbacks.onChange("otherRegion")}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled}
               >
                 <div class={classes.RadioContent}>
                   {text.otherRegion}

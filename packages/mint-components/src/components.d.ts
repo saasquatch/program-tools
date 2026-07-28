@@ -33,6 +33,7 @@ import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-field
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
+import { PartnerInfoModalResult } from "./components/sqm-partner-info-modal/usePartnerInfoModal";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
@@ -1928,6 +1929,103 @@ export namespace Components {
           * @uiName Pagination text
          */
         "paginationText": string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection": string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel": string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner": string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner": string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal": boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText": string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader": string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder": string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink": string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmPasswordField {
         /**
@@ -6262,6 +6360,78 @@ export namespace Components {
          */
         "codeStep_verifyText": string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel": string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel": string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner": string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner": string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText": string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader": string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder": string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel": string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner": string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -6292,15 +6462,10 @@ export namespace Components {
          */
         "emailStep_verifyEmailHeaderText": string;
         /**
-          * @uiName General verify widget description text
+          * @uiName General widget header text with partner creation
           * @uiGroup General Text
          */
-        "general_verifyEmailDescription": string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader": string;
+        "general_widgetHeaderWithPartnerCreation": string;
     }
     interface SqmWidgetVerificationController {
     }
@@ -6599,6 +6764,12 @@ declare global {
     var HTMLSqmPaginationElement: {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
+    };
+    interface HTMLSqmPartnerInfoModalElement extends Components.SqmPartnerInfoModal, HTMLStencilElement {
+    }
+    var HTMLSqmPartnerInfoModalElement: {
+        prototype: HTMLSqmPartnerInfoModalElement;
+        new (): HTMLSqmPartnerInfoModalElement;
     };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
@@ -7118,6 +7289,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-pagination": HTMLSqmPaginationElement;
+        "sqm-partner-info-modal": HTMLSqmPartnerInfoModalElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
@@ -9061,6 +9233,103 @@ declare namespace LocalJSX {
           * @uiName Pagination text
          */
         "paginationText"?: string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection"?: string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel"?: string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner"?: string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner"?: string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal"?: boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText"?: string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader"?: string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder"?: string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink"?: string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -13370,6 +13639,78 @@ declare namespace LocalJSX {
          */
         "codeStep_verifyText"?: string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel"?: string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel"?: string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner"?: string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner"?: string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText"?: string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader"?: string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder"?: string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel"?: string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner"?: string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -13400,15 +13741,10 @@ declare namespace LocalJSX {
          */
         "emailStep_verifyEmailHeaderText"?: string;
         /**
-          * @uiName General verify widget description text
+          * @uiName General widget header text with partner creation
           * @uiGroup General Text
          */
-        "general_verifyEmailDescription"?: string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader"?: string;
+        "general_widgetHeaderWithPartnerCreation"?: string;
     }
     interface SqmWidgetVerificationController {
     }
@@ -13462,6 +13798,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-pagination": SqmPagination;
+        "sqm-partner-info-modal": SqmPartnerInfoModal;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
@@ -13595,6 +13932,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
+            "sqm-partner-info-modal": LocalJSX.SqmPartnerInfoModal & JSXBase.HTMLAttributes<HTMLSqmPartnerInfoModalElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;

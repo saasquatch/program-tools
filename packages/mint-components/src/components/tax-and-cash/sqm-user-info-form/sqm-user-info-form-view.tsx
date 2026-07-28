@@ -1,9 +1,14 @@
 import { h } from "@stencil/core";
+import { AsYouType, CountryCode } from "libphonenumber-js";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { GeneralLoadingView } from "../TaxForm.stories";
-import { FORM_STEPS } from "../sqm-tax-and-cash/data";
-import { formatErrorMessage, validateBillingField } from "../utils";
+import { FORM_STEPS, ImpactPublisher, ImpactUser } from "../sqm-tax-and-cash/data";
+import {
+  formatErrorMessage,
+  isValidI18nPhoneNumber,
+  validateBillingField,
+} from "../utils";
 import { PHONE_EXTENSIONS } from "../phoneExtensions";
 
 export interface UserInfoFormViewProps {
@@ -13,6 +18,8 @@ export interface UserInfoFormViewProps {
     disabled: boolean;
     isPartner: boolean;
     isUser: boolean;
+    isPartnerLegacy: boolean;
+    isUserLegacy: boolean;
     hideSteps: boolean;
     hideState: boolean;
     loadingError?: boolean;
@@ -69,6 +76,8 @@ export interface UserInfoFormViewProps {
       currencyCode: string;
       displayName: string;
     }[];
+    partnerData?: ImpactPublisher;
+    userData?: ImpactUser;
   };
   callbacks: {
     setCurrencySearch: (c: any) => void;
@@ -266,19 +275,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   } = props;
   const { classes } = sheet;
 
-  const bankingCollectionText = intl.formatMessage(
-    {
-      id: "bankingCollectionText",
-      defaultMessage: text.allowBankingCollection,
-    },
-    {
-      termsAndConditionsLink: (
-        <a href={text.termsAndConditionsLink} target="_blank">
-          {text.termsAndConditionsLabel}
-        </a>
-      ),
-    }
-  );
+  // T&C / banking-collection checkbox lives on sqm-partner-info-modal now.
 
   let regionLabel = undefined;
   switch (data.regionLabelEnum) {
@@ -293,6 +290,32 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
       break;
     default:
       regionLabel = text.state;
+  }
+
+  // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "0000000" and the phoneNumberCountryCode to "DZ"
+  function isDisabledPartnerInput(field: string) {
+    if (
+      data.partnerData?.phoneNumber === "0000000" &&
+      (field === "phoneNumber" || field === "phoneNumberCountryCode")
+    ) {
+      return false;
+    }
+    // if bad phone number was previously saved, unlock the field so user can correct it
+    if (
+      (field === "phoneNumber" || field === "phoneNumberCountryCode") &&
+      states.isPartner &&
+      !isValidI18nPhoneNumber(
+        data.partnerData?.phoneNumberCountryCode,
+        data.partnerData?.phoneNumber
+      )
+    ) {
+      return false;
+    }
+    return states.isPartner && !!data.partnerData?.[field];
+  }
+
+  function isDisabledUserInput(field: string) {
+    return states.isUser && !!data.userData?.[field];
   }
 
   return (
@@ -388,7 +411,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
               )}
             </sl-alert>
           )}
-          {(states.isPartner || states.isUser) && (
+          {(states.isPartnerLegacy || states.isUserLegacy) && (
             <sl-alert
               type="primary"
               open
@@ -423,7 +446,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.firstName}
                 label={text.firstName}
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={states.disabled || isDisabledUserInput("firstName")}
                 {...(formState.errors?.firstName
                   ? {
                       class: classes.ErrorInput,
@@ -441,7 +464,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 exportparts="label: input-label, base: input-base"
                 value={formState.lastName}
                 label={text.lastName}
-                disabled={states.disabled || states.isUser || states.isPartner}
+                disabled={states.disabled || isDisabledUserInput("lastName")}
                 {...(formState.errors?.lastName
                   ? {
                       class: classes.ErrorInput,
@@ -471,7 +494,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 name="/countryCode"
                 label={text.country}
                 value={formState.countryCode}
-                disabled={states.disabled || states.isPartner}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("countryCode")
+                }
                 {...(formState.errors?.countryCode
                   ? {
                       class: classes.ErrorInput,
@@ -517,7 +542,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     exportparts="label: input-label, base: input-base"
                     name="/phoneNumberCountryCode"
                     value={formState.phoneNumberCountryCode}
-                    disabled={states.disabled || states.isPartner}
+                    disabled={
+                      states.disabled ||
+                      isDisabledPartnerInput("phoneNumberCountryCode")
+                    }
                     ref={(el: HTMLFormElement) =>
                       (refs.phoneCountryRef.current = el)
                     }
@@ -567,16 +595,36 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     exportparts="label: input-label, base: input-base"
                     id="phoneNumber"
                     name="/phoneNumber"
-                    value={formState.phoneNumber}
-                    validationError={({ value }) => {
-                      // Naive phone number validation
-                      validateBillingField(/[a-zA-Z]+/, value) &&
-                        formatErrorMessage(
-                          text.phoneNumber,
-                          text.error.fieldInvalidError
-                        );
+                    value={
+                      formState.phoneNumber !== null
+                        ? formState.phoneNumber
+                        : ""
+                    }
+                    onSl-input={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      const country = ((refs.phoneCountryRef.current
+                        ?.value as string) || "US") as CountryCode;
+                      target.value = new AsYouType(country).input(
+                        target.value
+                      );
                     }}
-                    disabled={states.disabled || states.isPartner}
+                    validationError={({ control, value, formData }) => {
+                      // skip validation for values the user can't edit
+                      if (control?.disabled) return undefined;
+                      if (!value?.trim()) return undefined;
+                      return isValidI18nPhoneNumber(
+                        formData.phoneNumberCountryCode,
+                        value
+                      )
+                        ? undefined
+                        : formatErrorMessage(
+                            text.phoneNumber,
+                            text.error.fieldInvalidError
+                          );
+                    }}
+                    disabled={
+                      states.disabled || isDisabledPartnerInput("phoneNumber")
+                    }
                     {...(formState.errors?.phoneNumber
                       ? {
                           class: classes.ErrorInput,
@@ -604,7 +652,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || states.isPartner}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("billingAddress")
+                }
                 {...(formState.errors?.address
                   ? {
                       class: classes.ErrorInput,
@@ -630,7 +680,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     text.error.invalidCharacterError
                   )
                 }
-                disabled={states.disabled || states.isPartner}
+                disabled={
+                  states.disabled || isDisabledPartnerInput("billingCity")
+                }
                 {...(formState.errors?.city
                   ? {
                       class: classes.ErrorInput,
@@ -649,7 +701,9 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   id="state"
                   name="/state"
                   value={formState.state}
-                  disabled={states.disabled || states.isPartner}
+                  disabled={
+                    states.disabled || isDisabledPartnerInput("billingState")
+                  }
                   {...(formState.errors?.state
                     ? {
                         class: classes.ErrorInput,
@@ -672,7 +726,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 id="postalCode"
                 name="/postalCode"
                 value={formState.postalCode}
-                disabled={states.disabled || states.isPartner}
+                disabled={
+                  states.disabled ||
+                  isDisabledPartnerInput("billingPostalCode")
+                }
                 {...(formState.errors?.postalCode
                   ? {
                       class: classes.ErrorInput,
@@ -691,7 +748,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                 label={text.currency}
                 menu
                 value={formState.currency}
-                disabled={states.disabled || states.isPartner}
+                disabled={states.disabled || isDisabledPartnerInput("currency")}
                 helpText={text.currencyHelpText}
                 {...(formState.errors?.currency
                   ? {
@@ -730,35 +787,10 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   </sl-menu-item>
                 ))}
               </sl-select>
-
-              <div class={classes.CheckboxWrapper}>
-                <sl-checkbox
-                  exportparts="label: input-label, base: input-base"
-                  checked={formState.allowBankingCollection === true}
-                  onSl-change={(e) => {
-                    e.target.value = e.target.checked;
-                  }}
-                  disabled={states.isPartner ? false : states.disabled}
-                  required
-                  value={formState.allowBankingCollection}
-                  id="allowBankingCollection"
-                  name="/allowBankingCollection"
-                >
-                  {bankingCollectionText}
-                </sl-checkbox>
-                {formState.errors?.allowBankingCollection && (
-                  <p class={classes.ErrorText}>
-                    {formatErrorMessage(
-                      text.termsAndConditionsLabel,
-                      formState.errors.allowBankingCollection
-                    )}
-                  </p>
-                )}
-              </div>
             </div>
             <sl-button
               type="primary"
-              disabled={states.isPartner ? false : states.disabled}
+              disabled={states.disabled}
               submit
               exportparts="base: primarybutton-base"
             >

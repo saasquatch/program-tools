@@ -219,6 +219,10 @@ export const PHONE_EXTENSIONS = {
     name: "Cuba",
     dial_code: "+53",
   },
+  CW: {
+    name: "Curaçao",
+    dial_code: "+599",
+  },
   CY: {
     name: "Cyprus",
     dial_code: "+357",
@@ -298,6 +302,10 @@ export const PHONE_EXTENSIONS = {
   PF: {
     name: "French Polynesia",
     dial_code: "+689",
+  },
+  TF: {
+    name: "French Southern Territories",
+    dial_code: "+262",
   },
   GA: {
     name: "Gabon",
@@ -954,6 +962,10 @@ export const PHONE_EXTENSIONS = {
   WF: {
     name: "Wallis and Futuna",
     dial_code: "+681",
+  },
+  EH: {
+    name: "Western Sahara",
+    dial_code: "+212",
   },
   YE: {
     name: "Yemen",

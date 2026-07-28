@@ -22,6 +22,7 @@
  - [sqm-edit-profile](../sqm-edit-profile)
  - [sqm-instant-access-registration](../sqm-instant-access-registration)
  - [sqm-lead-form](../sqm-lead-form)
+ - [sqm-partner-info-modal](../sqm-partner-info-modal)
  - [sqm-portal-change-marketing](../sqm-portal-change-marketing)
  - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
@@ -45,6 +46,7 @@ graph TD;
   sqm-edit-profile --> sqm-form-message
   sqm-instant-access-registration --> sqm-form-message
   sqm-lead-form --> sqm-form-message
+  sqm-partner-info-modal --> sqm-form-message
   sqm-portal-change-marketing --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message

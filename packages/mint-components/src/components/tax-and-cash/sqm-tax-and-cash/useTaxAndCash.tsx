@@ -2,12 +2,13 @@ import {
   getContextValueName,
   useHost,
   useLocale,
+  useMutation,
   useParentQuery,
   useParentState,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
-import { getCountryObj } from "../utils";
+import { getCountryObj, isValidI18nPhoneNumber } from "../utils";
 import {
   COUNTRIES_NAMESPACE,
   COUNTRIES_QUERY_NAMESPACE,
@@ -32,6 +33,10 @@ import {
   UserFormContext,
   UserQuery,
 } from "./data";
+import {
+  COMPLETE_PARTNER,
+  CompletePartnerResult,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
 
 function getCurrentStep(user: UserQuery["user"]) {
   if (!user.impactConnection?.connected || !user.impactConnection?.publisher) {
@@ -44,7 +49,30 @@ function getCurrentStep(user: UserQuery["user"]) {
     withdrawalSettings,
     brandedSignup,
     payoutsAccount,
+    billingAddress,
+    billingCity,
+    billingCountryCode,
+    billingPostalCode,
+    phoneNumber,
+    phoneNumberCountryCode,
   } = user.impactConnection.publisher;
+
+  const isCompleted = user.impactConnection.connectionStatus === "COMPLETED";
+
+  if (!isCompleted) {
+    const hasBillingInfo =
+      billingAddress &&
+      billingCity &&
+      billingCountryCode &&
+      billingPostalCode &&
+      phoneNumberCountryCode &&
+      phoneNumber &&
+      isValidI18nPhoneNumber(phoneNumberCountryCode, phoneNumber);
+
+    if (!hasBillingInfo) {
+      return "/1";
+    }
+  }
 
   // If they do have a required document, look at current document
   if (requiredTaxDocumentType && !currentTaxDocument) {
@@ -67,6 +95,9 @@ export function useTaxAndCash() {
   const host = useHost();
   const user = useUserIdentity();
   const locale = useLocale();
+
+  const [completeImpactPartner] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
 
   // State for current step of form
   const [step, setStep] = useParentState<string>({
@@ -114,7 +145,11 @@ export function useTaxAndCash() {
     initialValue: [],
   });
 
-  const { data, errors } = useParentQuery<UserQuery>({
+  const {
+    data,
+    errors,
+    refetch: refetchUser,
+  } = useParentQuery<UserQuery>({
     namespace: USER_QUERY_NAMESPACE,
     query: GET_USER,
     skip: !user,
@@ -133,7 +168,7 @@ export function useTaxAndCash() {
     skip: !user,
   });
 
-  const { data: financeNetworkData, refetch } =
+  const { data: financeNetworkData } =
     useParentQuery<FinanceNetworkSettingsQuery>({
       namespace: FINANCE_NETWORK_SETTINGS_NAMESPACE,
       query: GET_FINANCE_NETWORK_SETTINGS,
@@ -231,13 +266,92 @@ export function useTaxAndCash() {
     }
     if (!host || !user) return;
 
+    // Attempts to finish an early-created ("STARTED") Impact connection.
+    // Returns true only when the mutation reports success, so the caller
+    // can decide whether it's safe to route off the refreshed user data.
+    async function completeConnection(user: UserQuery["user"]) {
+      const publisher = user?.impactConnection?.publisher;
+
+      const hasBillingInfo =
+        publisher?.billingAddress &&
+        publisher?.billingCity &&
+        publisher?.billingCountryCode &&
+        publisher?.billingPostalCode &&
+        publisher?.phoneNumberCountryCode &&
+        publisher?.phoneNumber &&
+        isValidI18nPhoneNumber(
+          publisher.phoneNumberCountryCode,
+          publisher.phoneNumber
+        );
+
+      if (!hasBillingInfo) return false;
+
+      const vars = {
+        user: {
+          id: data?.user?.id,
+          accountId: data?.user?.accountId,
+        },
+        firstName: data?.user?.firstName,
+        lastName: data?.user?.lastName,
+        countryCode: publisher.billingCountryCode,
+        currency: publisher.currency,
+        address: publisher.billingAddress,
+        city: publisher.billingCity,
+        state: publisher.billingState,
+        postalCode: publisher.billingPostalCode,
+        phoneNumber: publisher.phoneNumber,
+        phoneNumberCountryCode: publisher.phoneNumberCountryCode,
+      } as Partial<ImpactConnection>;
+
+      try {
+        const result = await completeImpactPartner({ vars });
+        if (!result || (result as Error)?.message) return false;
+
+        const connectionResult = (result as CompletePartnerResult)
+          ?.completeImpactConnection;
+        if (!connectionResult?.success) {
+          console.error(
+            "Failed to complete Impact connection: ",
+            connectionResult?.validationErrors
+          );
+          return false;
+        }
+        return true;
+      } catch (e) {
+        console.error("Failed to complete Impact connection: ", e);
+        return false;
+      }
+    }
+
     if (data) {
       const user = data?.user;
 
       if (!user || step !== "/loading") return;
 
-      const currentStep = getCurrentStep(user);
-      setStep(currentStep);
+      async function routeAfterMaybeCompleting() {
+        let currentUser = user;
+
+        if (
+          user?.impactConnection?.publisher &&
+          user?.impactConnection.connectionStatus === "STARTED"
+        ) {
+          // Finish the early-created connection before routing so the next
+          // step sees the completed status. Only trust the refetched data
+          // if the completion mutation actually succeeded.
+          const completed = await completeConnection(user);
+          if (completed) {
+            const refreshed = await refetchUser();
+            if (refreshed && !(refreshed as Error)?.message) {
+              currentUser = (refreshed as UserQuery)?.user || currentUser;
+            }
+          }
+        }
+
+        const currentStep = getCurrentStep(currentUser);
+        setStep(currentStep);
+      }
+
+      routeAfterMaybeCompleting();
     }
   }, [host, user, data?.user?.email, errors]);
 

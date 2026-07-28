@@ -36,7 +36,7 @@ import { getCountryObj, validTaxDocument } from "../utils";
 import { IndirectTaxForm } from "./sqm-indirect-tax-form";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 
-type ConnectPartnerResult = {
+export type ConnectPartnerResult = {
   createImpactConnection: {
     success: boolean;
     validationErrors: { field: string; message: string }[];
@@ -53,6 +53,14 @@ type ConnectPartnerResult = {
       } | null;
     } | null;
   };
+};
+
+export type StartImpactConnectionResult = {
+  startImpactConnection: ConnectPartnerResult["createImpactConnection"];
+};
+
+export type CompletePartnerResult = {
+  completeImpactConnection: ConnectPartnerResult["createImpactConnection"];
 };
 type ImpactConnectionInput = {
   user: {
@@ -76,7 +84,7 @@ type ImpactConnectionInput = {
   withholdingTaxId?: string;
 };
 
-const CONNECT_PARTNER = gql`
+export const CONNECT_PARTNER = gql`
   mutation createImpactConnection($vars: ImpactConnectionInput!) {
     createImpactConnection(impactConnectionInput: $vars) {
       success
@@ -90,6 +98,35 @@ const CONNECT_PARTNER = gql`
         impactConnection {
           connected
           publisher {
+            brandedSignup
+            requiredTaxDocumentType
+            currentTaxDocument {
+              type
+              status
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const COMPLETE_PARTNER = gql`
+  mutation completeImpactConnection($vars: ImpactConnectionInput!) {
+    completeImpactConnection(impactConnectionInput: $vars) {
+      success
+      validationErrors {
+        field
+        message
+      }
+      user {
+        id
+        accountId
+        impactConnection {
+          connected
+          publisher {
+            phoneNumber
+            phoneNumberCountryCode
             brandedSignup
             requiredTaxDocumentType
             currentTaxDocument {
@@ -126,6 +163,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     connectImpactPartner,
     { loading: connectLoading, errors: connectErrors },
   ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
   const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
   const {
     data: userData,
@@ -220,6 +259,76 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     setFormState((p) => ({ ...p, [field]: value }));
   };
 
+  async function connectPartner(formData) {
+    const vars = {
+      user: {
+        id: user.id,
+        accountId: user.accountId,
+      },
+      firstName: userForm.firstName,
+      lastName: userForm.lastName,
+      countryCode: userForm.countryCode,
+      currency: userForm.currency,
+      address: userForm.address,
+      city: userForm.city,
+      state: userForm.state,
+      postalCode: userForm.postalCode,
+      phoneNumber: userForm.phoneNumber,
+      phoneNumberCountryCode: userForm.phoneNumberCountryCode,
+      indirectTaxCountryCode: formData.selectedRegion,
+      indirectTaxRegion: formData.province || formData.subRegion,
+      indirectTaxId: formData.indirectTaxNumber,
+      additionalTaxId: formData.qstNumber,
+      withholdingTaxId: formData.subRegionTaxNumber,
+    } as ImpactConnectionInput;
+
+    // If the partner has already been started call completeImpactConnection
+    // to fill in the remaining details. Otherwise create from scratch.
+
+    let result = null;
+    let connectionResult;
+    if (userData?.user?.impactConnection?.connectionStatus === "STARTED") {
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
+
+    if (!result || (result as Error)?.message) throw new Error();
+    if (!connectionResult?.success) {
+      // Output backend errors to console for now
+      console.error(
+        "Failed to create Impact connection: ",
+        connectionResult?.validationErrors
+      );
+
+      throw new Error();
+    }
+
+    await refetch();
+
+    const resultPublisher = connectionResult?.user?.impactConnection?.publisher;
+
+    const hasValidCurrentDocument =
+      validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+      resultPublisher?.currentTaxDocument;
+
+    // Fire form change event
+    window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+    return {
+      resultPublisher,
+      hasValidCurrentDocument,
+    };
+  }
+
   const onSubmit = async (event: any) => {
     if (!option) {
       setErrors({ taxDetails: true });
@@ -251,55 +360,8 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     setLoading(true);
     try {
-      const vars = {
-        user: {
-          id: user.id,
-          accountId: user.accountId,
-        },
-        firstName: userForm.firstName,
-        lastName: userForm.lastName,
-        countryCode: userForm.countryCode,
-        currency: userForm.currency,
-        address: userForm.address,
-        city: userForm.city,
-        state: userForm.state,
-        postalCode: userForm.postalCode,
-        phoneNumber: userForm.phoneNumber,
-        phoneNumberCountryCode: userForm.phoneNumberCountryCode,
-        indirectTaxCountryCode: formData.selectedRegion,
-        indirectTaxRegion: formData.province || formData.subRegion,
-        indirectTaxId: formData.indirectTaxNumber,
-        additionalTaxId: formData.qstNumber,
-        withholdingTaxId: formData.subRegionTaxNumber,
-      } as ImpactConnectionInput;
-
-      const result = await connectImpactPartner({
-        vars,
-      });
-
-      if (!result || (result as Error)?.message) throw new Error();
-      if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
-        // Output backend errors to console for now
-        console.error(
-          "Failed to create Impact connection: ",
-          (result as ConnectPartnerResult).createImpactConnection
-            .validationErrors
-        );
-
-        throw new Error();
-      }
-
-      await refetch();
-
-      const resultPublisher = (result as ConnectPartnerResult)
-        .createImpactConnection?.user?.impactConnection?.publisher;
-
-      const hasValidCurrentDocument =
-        validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
-        resultPublisher?.currentTaxDocument;
-
-      // Fire form change event
-      window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+      const { resultPublisher, hasValidCurrentDocument } =
+        await connectPartner(formData);
 
       if (
         resultPublisher?.requiredTaxDocumentType &&
@@ -331,9 +393,13 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     states: {
       step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
-      disabled: loading || countriesLoading || connectLoading,
-      loading: loading || connectLoading || countriesLoading,
+      disabled:
+        loading || countriesLoading || connectLoading || completeLoading,
+      loading: loading || connectLoading || countriesLoading || completeLoading,
       isPartner: !!userData?.user?.impactConnection?.publisher,
+      isPartnerLegacy:
+        !!userData?.user?.impactConnection?.publisher &&
+        userData?.user?.impactConnection?.connectionStatus !== "STARTED",
       loadingError: !!userError?.message,
       formState: {
         checked: option,

@@ -18,14 +18,34 @@ import {
   UserFormContext,
   UserQuery,
 } from "../sqm-tax-and-cash/data";
-import { objectIsFull } from "../utils";
+import { objectIsFull, toDomesticNumber, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
 import {
+  useMutation,
   useParent,
   useParentQueryValue,
   useParentValue,
+  useQuery,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { AddressRegions, ADDRESS_REGIONS } from "../subregions";
+import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
+import {
+  CompletePartnerResult,
+  ConnectPartnerResult,
+  COMPLETE_PARTNER,
+  CONNECT_PARTNER,
+} from "../sqm-indirect-tax-form/useIndirectTaxForm";
+import { gql } from "graphql-request";
+
+const GET_INDIRECT_TAX_COUNTRY_CODE = gql`
+  query getIndirectTaxCountryCode {
+    tenantSettings {
+      impactBrandCountryCode
+      impactBrandIndirectTaxCountryCode
+    }
+  }
+`;
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -68,9 +88,20 @@ export function useUserInfoForm(props: TaxForm) {
     USER_FORM_CONTEXT_NAMESPACE
   );
 
+  const user = useUserIdentity();
+
+  const [connectImpactPartner, { loading: connectLoading }] =
+    useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
+
+  const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
+
   const {
     data,
     loading,
+    refetch,
     errors: userError,
   } = useParentQueryValue<UserQuery>(USER_QUERY_NAMESPACE);
 
@@ -120,9 +151,15 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
+        // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "0000000" and the phoneNumberCountryCode to "DZ"
         phoneNumberCountryCode:
-          user.impactConnection.publisher.phoneNumberCountryCode,
-        phoneNumber: user.impactConnection.publisher.phoneNumber,
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumberCountryCode,
+        phoneNumber:
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumber,
         address: user.impactConnection.publisher.billingAddress,
         city: user.impactConnection.publisher.billingCity,
         state: user.impactConnection.publisher.billingState,
@@ -132,8 +169,8 @@ export function useUserInfoForm(props: TaxForm) {
       // Initialise with user information
       setUserFormContext({
         email,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user.impactConnection?.user?.firstName || user.firstName,
+        lastName: user.impactConnection?.user?.lastName || user.lastName,
         countryCode: user.countryCode || "US",
         currency: user.customFields?.currency,
         phoneNumberCountryCode:
@@ -200,6 +237,74 @@ export function useUserInfoForm(props: TaxForm) {
     }
   }, [currencySearch, currencies]);
 
+  async function connectPartner(formData) {
+    const vars = {
+      user: {
+        id: user.id,
+        accountId: user.accountId,
+      },
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      countryCode: formData.countryCode,
+      currency: formData.currency,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      postalCode: formData.postalCode,
+      phoneNumber: toDomesticNumber(
+        formData.phoneNumberCountryCode,
+        formData.phoneNumber
+      ),
+      phoneNumberCountryCode: formData.phoneNumberCountryCode,
+    } as Partial<ImpactConnection>;
+
+    // If the partner has already been started via early partner creation
+    // (connectionStatus === "STARTED"), complete it. Otherwise create from scratch.
+    const userData = data?.user;
+    let result = null;
+    let connectionResult;
+    if (userData?.impactConnection?.connectionStatus === "STARTED") {
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
+
+    if (!result || (result as Error)?.message) throw new Error();
+    if (!connectionResult?.success) {
+      // Output backend errors to console for now
+      console.error(
+        "Failed to create Impact connection: ",
+        connectionResult?.validationErrors
+      );
+
+      throw new Error();
+    }
+
+    await refetch();
+
+    const resultPublisher = connectionResult?.user?.impactConnection?.publisher;
+
+    const hasValidCurrentDocument =
+      validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
+      resultPublisher?.currentTaxDocument;
+
+    // Fire form change event
+    window.dispatchEvent(new Event(TAX_FORM_UPDATED_EVENT_KEY));
+
+    return {
+      resultPublisher,
+      hasValidCurrentDocument,
+    };
+  }
+
   async function onSubmit(event: any) {
     let formControls = event.target.getFormControls();
 
@@ -236,12 +341,17 @@ export function useUserInfoForm(props: TaxForm) {
 
     const { allowBankingCollection, ...userData } = formData;
 
+    const normalizedPhoneNumber = toDomesticNumber(
+      userData.phoneNumberCountryCode,
+      userData.phoneNumber
+    );
+
     setUserFormContext({
       ...userFormContext,
       firstName: userData.firstName,
       lastName: userData.lastName,
       phoneNumberCountryCode: userData.phoneNumberCountryCode,
-      phoneNumber: userData.phoneNumber,
+      phoneNumber: normalizedPhoneNumber,
       countryCode: userData.countryCode,
       address: userData.address,
       city: userData.city,
@@ -250,8 +360,53 @@ export function useUserInfoForm(props: TaxForm) {
       currency: userData.currency,
     });
 
-    const nextStep = context.overrideNextStep || "/2";
+    const skipNextStep = getSkipNextStep(userData);
+
+    if (skipNextStep) {
+      try {
+        const { resultPublisher, hasValidCurrentDocument } =
+          await connectPartner({
+            ...formData,
+            phoneNumber: normalizedPhoneNumber,
+          });
+
+        if (
+          resultPublisher?.requiredTaxDocumentType &&
+          !hasValidCurrentDocument
+        ) {
+          // Go to docusign form
+          setStep("/3");
+        } else {
+          if (resultPublisher?.brandedSignup) {
+            // Go to banking information form
+            setStep("/4");
+          } else {
+            // Go right to the dashboard
+            setStep("/dashboard");
+          }
+        }
+        return;
+      } catch (e) {
+        setErrors({ general: true });
+        return;
+      }
+    }
+
+    const nextStep = context.overrideNextStep || (skipNextStep ? "/3" : "/2");
     setStep(nextStep);
+  }
+
+  const indirectTaxCountry =
+    tenantData?.tenantSettings?.impactBrandIndirectTaxCountryCode;
+
+  const hasIndirectTax = !!indirectTaxCountry;
+
+  function getSkipNextStep(userData) {
+    if (!hasIndirectTax) return true;
+    if (userData.countryCode === "US") return true;
+    if (hasIndirectTax && userData.countryCode !== indirectTaxCountry)
+      return true;
+    return false;
   }
 
   const hasStates = ["ES", "AU", "US", "CA"].includes(
@@ -284,16 +439,25 @@ export function useUserInfoForm(props: TaxForm) {
       allCountries: countries,
       regionLabelEnum: regionObj?.labelEnum,
       regions: regionObj?.regions || [],
+      partnerData: data?.user?.impactConnection?.publisher,
+      userData: data?.user?.impactConnection?.user,
     },
     states: {
       step: step?.replace("/", ""),
       hideState: !hasStates,
       hideSteps: !!context.hideSteps,
-      disabled: loading,
+      disabled: loading || connectLoading || completeLoading,
       loadingError: !!userError?.message,
-      loading: loading,
+      loading: loading || connectLoading || completeLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
+      // Show banner when pre-existing partner/user was created with legacy mutation createImpactConnection
+      isPartnerLegacy:
+        !!data?.user?.impactConnection?.publisher &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
+      isUserLegacy:
+        !!data?.user?.impactConnection?.user &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
       formState: {
         ...userFormContext,
         errors: formErrors,

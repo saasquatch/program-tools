@@ -9,10 +9,42 @@ import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
 import {
   SHOW_CODE_NAMESPACE,
+  SHOW_PARTNER_MODAL_NAMESPACE,
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
 import { useWidgetVerification } from "./useWidgetVerification";
+import { createStyleSheet } from "../../styling/JSS";
+
+const style = {
+  Dialog: {
+    "&::part(panel)": {
+      maxWidth: "480px",
+    },
+    "&::part(body)": {
+      padding: "0 var(--sl-spacing-x-large)",
+      fontSize: "var(--sl-font-size-small)",
+      overflow: "visible",
+    },
+    "&::part(footer)": {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+    },
+    "&::part(overlay)": {
+      background: "rgba(0, 0, 0, 0.5)",
+    },
+  },
+  DialogTitle: {
+    fontSize: "var(--sl-font-size-x-large)",
+    fontWeight: "600",
+    padding: "var(--sl-spacing-x-large) 0 0 0",
+    margin: "0",
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 
 /**
  * @uiName Widget Verification Flow
@@ -24,23 +56,16 @@ import { useWidgetVerification } from "./useWidgetVerification";
   shadow: true,
 })
 export class WidgetVerification {
-  // ! Any updated must be reflected in sqm-widget-verification-internal AND sqm-email-verification AND sqm-code-verification
+  // ! Any updated must be reflected in sqm-widget-verification-internal AND sqm-email-verification AND sqm-code-verification AND sqm-partner-info-modal
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                   GENERAL PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
-   * @uiName General verify widget header text
+   * @uiName General widget header text with partner creation
    * @uiGroup General Text
    */
   @Prop()
-  general_verifyEmailHeader = "Verify your email";
-  /**
-   * @uiName General verify widget description text
-   * @uiGroup General Text
-   */
-  @Prop()
-  general_verifyEmailDescription =
-    "To get your cash paid out directly to your bank account, please complete your account setup";
+  general_widgetHeaderWithPartnerCreation = "Let's get you ready for rewards";
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                   EMAIL STEP PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -85,7 +110,7 @@ export class WidgetVerification {
   emailStep_emailValidationErrorText: string = "Please enter a valid email";
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                  EMAIL STEP PROPS
+                  CODE STEP PROPS
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   /**
    * @uiName Verify code widget header text
@@ -139,6 +164,101 @@ export class WidgetVerification {
   @Prop() codeStep_networkErrorMessage: string =
     "An error occurred while verifying your email. Please refresh the page and try again.";
 
+  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  PARTNER CREATION STEP PROPS
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  /**
+   * @uiName New partner header
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_modalHeader: string = "Let's get you ready for rewards";
+  /**
+   * @uiName Existing partner header
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_modalHeaderExistingPartner: string =
+    "We found an existing account";
+  /**
+   * @uiName New partner description
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_descriptionNewPartner: string =
+    "Confirm your country and currency now to get your future rewards faster.";
+  /**
+   * @uiName Existing partner description
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_descriptionExistingPartner: string =
+    "We found an account with this email on our referral program provider, impact.com. Please confirm your country and currency now to get your future rewards faster.";
+  /**
+   * @uiName Existing partner support description
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_supportDescriptionExistingPartner: string =
+    "If this is a mistake, please contact Support or sign up for this referral program with a different email.";
+  /**
+   * @uiName Country label
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_countryLabel: string = "Country";
+  /**
+   * @uiName Currency label
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_currencyLabel: string = "Currency";
+  /**
+   * @uiName Submit button label
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_submitButtonLabel: string = "Submit";
+  /**
+   * @uiName Confirm button label
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_confirmButtonLabel: string = "Confirm";
+  /**
+   * @uiName Search country placeholder
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_searchCountryPlaceholder: string = "Search for a country";
+  /**
+   * @uiName Search currency placeholder
+   * @uiGroup Partner Creation Step
+   */
+  @Prop()
+  createPartnerStep_searchCurrencyPlaceholder: string = "Search for a currency";
+  /**
+   * @uiName Network error text
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_networkErrorText: string =
+    "An error occurred. Please try again.";
+  /**
+   * @uiName Missing fields error text
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_missingFieldsErrorText: string =
+    "Please select both a country and currency.";
+
   constructor() {
     withHooks(this);
   }
@@ -150,49 +270,75 @@ export class WidgetVerification {
   }
 
   render() {
-    const { showCode, onVerification, loading } = isDemo()
+    const props = isDemo()
       ? useDemoWidgetVerificationInternal()
       : useWidgetVerification();
 
-    if (loading) return <sl-spinner></sl-spinner>;
+    if (props.loading) return <sl-spinner></sl-spinner>;
 
-    const generalText = this.getStepTextProps("general_");
+    const partnerText = this.getStepTextProps("createPartnerStep_");
+
+    const dialogLabel = this.general_widgetHeaderWithPartnerCreation;
+
+    const renderStepContent = () => {
+      if (props.showPartnerModal) {
+        return (
+          <sqm-partner-info-modal
+            inModal
+            {...partnerText}
+          ></sqm-partner-info-modal>
+        );
+      }
+      if (props.showCode) {
+        return (
+          <sqm-code-verification
+            onVerification={props.onVerification}
+            {...this.getStepTextProps("codeStep_")}
+          ></sqm-code-verification>
+        );
+      }
+      return (
+        <sqm-email-verification
+          {...this.getStepTextProps("emailStep_")}
+        ></sqm-email-verification>
+      );
+    };
 
     return (
       <div>
-        <h3 style={{ fontSize: "24px", margin: "0" }}>
-          {generalText.verifyEmailHeader}
-        </h3>
-        <p
-          style={{
-            color: "var(--sl-color-neutral-500)",
-            fontSize: "var(--sl-font-size-medium)",
-            margin: "0",
+        <style type="text/css">{styleString}</style>
+        <sl-dialog
+          class={sheet.classes.Dialog}
+          noHeader
+          open={true}
+          label={dialogLabel}
+          onSl-request-close={(e: any) => {
+            e.preventDefault();
+          }}
+          onSl-hide={(e: any) => {
+            if (e.target?.tagName === "SL-DIALOG") {
+              e.preventDefault();
+            }
           }}
         >
-          {generalText.verifyEmailDescription}
-        </p>
-        {showCode ? (
-          <sqm-code-verification
-            onVerification={onVerification}
-            {...this.getStepTextProps("codeStep_")}
-          ></sqm-code-verification>
-        ) : (
-          <sqm-email-verification
-            {...this.getStepTextProps("emailStep_")}
-          ></sqm-email-verification>
-        )}
+          <h2 class={sheet.classes.DialogTitle}>{dialogLabel}</h2>
+          {renderStepContent()}
+        </sl-dialog>
       </div>
     );
   }
 }
 
 function useDemoWidgetVerificationInternal() {
-  const [showCode, setShowCode] = useParentState<boolean>({
+  const [showCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
   });
-  const [email, setEmail] = useParentState<string | undefined>({
+  const [showPartnerModal] = useParentState<boolean>({
+    namespace: SHOW_PARTNER_MODAL_NAMESPACE,
+    initialValue: false,
+  });
+  useParentState<string | undefined>({
     namespace: VERIFICATION_EMAIL_NAMESPACE,
     initialValue: undefined,
   });
@@ -202,5 +348,11 @@ function useDemoWidgetVerificationInternal() {
     setContext(true);
   };
 
-  return { showCode, onVerification, loading: false };
+  return {
+    showCode,
+    showPartnerModal,
+    onVerification,
+    onPartnerModalComplete: () => {},
+    loading: false,
+  };
 }

@@ -220,7 +220,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           exportparts="label: input-label, base: input-base"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
-          disabled={states.disabled || states.isPartner}
+          disabled={states.disabled}
         >
           {text.isRegisteredSubRegionIncomeTax}
         </sl-checkbox>
@@ -299,7 +299,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
               exportparts="label: input-label, base: input-base"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
-              disabled={states.isPartner || states.disabled}
+              disabled={states.disabled}
             >
               {text.isRegisteredQST}
             </sl-checkbox>
