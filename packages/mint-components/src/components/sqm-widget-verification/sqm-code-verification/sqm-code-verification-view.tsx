@@ -189,6 +189,9 @@ export function WidgetCodeVerificationView(
           {states.verifyFailed && (
             <p class={sheet.classes.ErrorText}>{text.invalidCodeText}</p>
           )}
+          <div class={sheet.classes.FooterContainer}>
+            <TextSpanView type="p">{resendCodeText}</TextSpanView>
+          </div>
           <sl-button
             class={sheet.classes.ContinueButton}
             onClick={callbacks.submitCode}
@@ -199,9 +202,6 @@ export function WidgetCodeVerificationView(
           >
             {text.verifyText}
           </sl-button>
-        </div>
-        <div class={sheet.classes.FooterContainer}>
-          <TextSpanView type="p">{resendCodeText}</TextSpanView>
         </div>
       </div>
     </div>

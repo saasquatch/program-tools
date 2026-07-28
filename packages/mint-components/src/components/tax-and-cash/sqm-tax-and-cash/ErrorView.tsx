@@ -1,9 +1,9 @@
-import { Host, h } from "@stencil/core";
+import { Host, VNode, h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 
 interface ErrorProps {
   loadingErrorAlertHeader: string;
-  loadingErrorAlertDescription: string;
+  loadingErrorAlertDescription: string | (string | VNode)[];
 }
 
 const styles = {
