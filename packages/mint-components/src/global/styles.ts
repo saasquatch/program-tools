@@ -943,11 +943,6 @@ sl-button[type="primary"]::part(base):hover{
   color: var(--sqm-primary-button-color-hover);
 }
 
-.form-control--has-label .form-control--medium .form-control__label {
-  font-weight: 800;
-}
-
-
 *::part(primarybutton-base):focus,
 sl-button[type="primary"]::part(base):focus {
   box-shadow: none;
@@ -970,7 +965,6 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
-  border: 1px solid red;
   font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-bold);
@@ -978,7 +972,7 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 sl-input::part(label) {
-  font-weight: 800;
+  font-weight: var(--sl-font-weight-bold);
   font-size: var(--sl-input-font-size-small);
 }
 
