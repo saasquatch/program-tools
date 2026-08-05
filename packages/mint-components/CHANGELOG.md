@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1
+
+### Patch Changes
+
+- [#515](https://github.com/saasquatch/program-tools/pull/515) [`8b2d9ea`](https://github.com/saasquatch/program-tools/commit/8b2d9ea197ca84836edc56f38e4f910add0ce089) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update styles.ts with sl-input::part(label) font overrides. Update bold style tokens in sqm-dropdown-field, sqm-name-fields, sqm-email-verification, and sqm-lead-dropdown-field.
+
 ## 2.2.0
 
 ### Minor Changes
