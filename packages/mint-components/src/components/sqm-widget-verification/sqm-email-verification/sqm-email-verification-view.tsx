@@ -124,7 +124,7 @@ sl-button[type="secondary"]::part(base):hover {
 *::part(input-label), *::part(select-label), *::part(textarea-label){
   font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
-  font-weight: var(--sl-font-weight-semibold);
+  font-weight: var(--sl-font-weight-bold);
   color: var(--sqm-input-label-color, var(--sqm-text), black);
 }
 
