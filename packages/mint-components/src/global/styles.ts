@@ -543,7 +543,7 @@ html {
   --sl-input-spacing-medium: var(--sl-spacing-medium);
   --sl-input-spacing-large: var(--sl-spacing-large);
   --sl-input-label-font-size-small: var(--sl-font-size-small);
-  --sl-input-label-font-size-medium: var(--sl-font-size-small);
+  --sl-input-label-font-size-medium: var(--sl-font-size-medium);
   --sl-input-label-font-size-large: var(--sl-font-size-large);
   --sl-input-label-color: inherit;
   --sl-input-help-text-font-size-small: var(--sl-font-size-x-small);
@@ -745,7 +745,7 @@ html {
     config?.formFields?.hoverStateColor || "hsl(0, 0%, 91%)"
   };
 
-  --sqm-input-label-font-size: var(--sl-input-font-size-small);
+  --sqm-input-label-font-size: var(--sl-input-label-font-size-small);
   --sqm-input-disabled-color: var(--sqm-text-subdued);
   --sqm-input-disabled-background: ${
     config?.formFields?.disabledBackgroundColor || "#F4F4F5"
