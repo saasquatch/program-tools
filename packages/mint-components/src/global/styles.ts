@@ -543,7 +543,7 @@ html {
   --sl-input-spacing-medium: var(--sl-spacing-medium);
   --sl-input-spacing-large: var(--sl-spacing-large);
   --sl-input-label-font-size-small: var(--sl-font-size-small);
-  --sl-input-label-font-size-medium: var(--sl-font-size-medium);
+  --sl-input-label-font-size-medium: var(--sl-font-size-small);
   --sl-input-label-font-size-large: var(--sl-font-size-large);
   --sl-input-label-color: inherit;
   --sl-input-help-text-font-size-small: var(--sl-font-size-x-small);
@@ -943,6 +943,10 @@ sl-button[type="primary"]::part(base):hover{
   color: var(--sqm-primary-button-color-hover);
 }
 
+.form-control--has-label .form-control--medium .form-control__label {
+  font-weight: 800;
+}
+
 
 *::part(primarybutton-base):focus,
 sl-button[type="primary"]::part(base):focus {
@@ -966,10 +970,16 @@ sl-button[type="secondary"]::part(base):hover {
 }
 
 *::part(input-label), *::part(select-label), *::part(textarea-label){
+  border: 1px solid red;
   font-family: var(--sqm-primary-font);
   font-size: var(--sqm-input-label-font-size, var(--sl-input-font-size-small));
   font-weight: var(--sl-font-weight-bold);
   color: var(--sqm-input-label-color, var(--sqm-text), black);
+}
+
+sl-input::part(label) {
+  font-weight: 800;
+  font-size: var(--sl-input-font-size-small);
 }
 
 *::part(input-base), *::part(select-base), *::part(textarea-base){
