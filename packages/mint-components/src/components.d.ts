@@ -34,6 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
+import { PartnerInfoModalResult } from "./components/sqm-partner-info-modal/usePartnerInfoModal";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
@@ -2191,6 +2192,110 @@ export namespace Components {
           * @uiName Pagination text
          */
         "paginationText": string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection": string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel": string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner": string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner": string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal": boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText": string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader": string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder": string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Connected (hidden)", "default": true, "props": { "states": { "open": false } } }
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+         */
+        "stateController": string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink": string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmPasswordField {
         /**
@@ -7591,6 +7696,12 @@ declare global {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
     };
+    interface HTMLSqmPartnerInfoModalElement extends Components.SqmPartnerInfoModal, HTMLStencilElement {
+    }
+    var HTMLSqmPartnerInfoModalElement: {
+        prototype: HTMLSqmPartnerInfoModalElement;
+        new (): HTMLSqmPartnerInfoModalElement;
+    };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
     var HTMLSqmPasswordFieldElement: {
@@ -8121,6 +8232,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-pagination": HTMLSqmPaginationElement;
+        "sqm-partner-info-modal": HTMLSqmPartnerInfoModalElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
@@ -10327,6 +10439,110 @@ declare namespace LocalJSX {
           * @uiName Pagination text
          */
         "paginationText"?: string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection"?: string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel"?: string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner"?: string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner"?: string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal"?: boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText"?: string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader"?: string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Connected (hidden)", "default": true, "props": { "states": { "open": false } } }
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+         */
+        "stateController"?: string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink"?: string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -15456,6 +15672,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-pagination": SqmPagination;
+        "sqm-partner-info-modal": SqmPartnerInfoModal;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
@@ -15591,6 +15808,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
+            "sqm-partner-info-modal": LocalJSX.SqmPartnerInfoModal & JSXBase.HTMLAttributes<HTMLSqmPartnerInfoModalElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
