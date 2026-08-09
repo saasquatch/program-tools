@@ -2,6 +2,7 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
 import { PayPalIcon } from "../SVGs";
 import { intl } from "../../../global/global";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 
 export interface PayoutDetailsCardViewProps {
   states: {
@@ -168,6 +169,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   const { classes } = sheet;
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
 
   const { states, text } = props;
 
@@ -243,14 +245,14 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
           {states.payoutType === "PAYPAL" ? (
             <div class={classes.PaypalDetailsContainer}>
-              <span class={classes.PaypalEmail}>
+              <span class={classes.PaypalEmail} {...sensitiveAttrs}>
                 {states.paypalEmailAddress}
               </span>
               <PayPalIcon />
             </div>
           ) : (
             <div class={classes.AccountDetailsContainer}>
-              <span>
+              <span {...sensitiveAttrs}>
                 {states.cardNumberPreview
                   ? `${text.accountText} ${states.cardNumberPreview}`
                   : text.payoutMissingInformationText}

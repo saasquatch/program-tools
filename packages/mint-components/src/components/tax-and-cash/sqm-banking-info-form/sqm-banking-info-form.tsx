@@ -6,6 +6,7 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
 import { getFormMap } from "./formDefinitions";
@@ -381,6 +382,7 @@ export class BankingInfoForm {
       ? useDemoBankingInfoForm(this)
       : useBankingInfoForm(this);
 
+      const sensitiveAttrs = sensitiveMaskAttrs(true);
     const { errors } = props.states.formState;
 
     const fieldRequiredError = this.fieldRequiredError;
@@ -491,11 +493,13 @@ export class BankingInfoForm {
         {props.states.isPartner && props.states.showVerification ? (
           <sl-dialog
             class={sheet.classes.Dialog}
+            {...sensitiveAttrs}
             open={true}
             onSl-hide={props.callbacks.onVerificationHide}
             label={props.text.verifyEmailHeaderText}
           >
             <sqm-code-verification
+              {...sensitiveAttrs}
               verifyCodeHeaderText={verifyDescription}
               reverifyCodeHeaderText={verifyDescription}
               onVerification={props.callbacks.onVerification}
@@ -511,6 +515,7 @@ export class BankingInfoForm {
             formInputsSlot: inputFields?.map(({ input }) => input),
             countryInputSlot: (
               <sl-select
+                  {...sensitiveAttrs}
                 label={props.text.bankLocationLabel}
                 disabled={props.states.saveLoading}
                 required
@@ -529,6 +534,7 @@ export class BankingInfoForm {
                 })}
               >
                 <sl-input
+                  {...sensitiveAttrs}
                   disabled={props.states.saveLoading}
                   class={sheet.classes.SearchInput}
                   placeholder={this.searchForCountryText}
@@ -559,6 +565,7 @@ export class BankingInfoForm {
             ),
             paymentMethodSlot: (
               <sl-input
+                  {...sensitiveAttrs}
                 key="paymentMethod"
                 label={props.text.paymentMethod}
                 placeholder={props.states.paymentMethodFeeLabel}
@@ -567,6 +574,7 @@ export class BankingInfoForm {
             ),
             paymentThresholdSelectSlot: (
               <sl-select
+                  {...sensitiveAttrs}
                 required
                 disabled={props.states.saveLoading}
                 label={props.text.paymentThresholdSelectLabel}
@@ -590,6 +598,7 @@ export class BankingInfoForm {
             ),
             paymentFixedDaySelectSlot: (
               <sl-select
+                  {...sensitiveAttrs}
                 required
                 disabled={props.states.saveLoading}
                 label={props.text.paymentDaySelectLabel}
@@ -614,6 +623,7 @@ export class BankingInfoForm {
             ),
             paypalInputSlot: (
               <sl-input
+                  {...sensitiveAttrs}
                 required
                 disabled={props.states.saveLoading}
                 value={props.states?.formState?.paypalEmailAddress || ""}

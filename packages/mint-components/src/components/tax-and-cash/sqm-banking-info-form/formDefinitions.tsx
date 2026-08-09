@@ -1,5 +1,6 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../global/global";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 import { BankingInfoFormViewProps } from "./sqm-banking-info-form-view";
 
 export function getFormMap({
@@ -15,11 +16,13 @@ export function getFormMap({
   bankCountry?: string;
 }) {
   const { errors, ...formState } = props.states.formState;
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
 
   return {
     0: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.beneficiaryAccountNameLabel}
           name="/beneficiaryAccountName"
@@ -40,6 +43,7 @@ export function getFormMap({
     1: {
       input: (
         <sl-select
+          {...sensitiveAttrs}
           required
           label={props.text.bankAccountTypeLabel}
           name="/bankAccountType"
@@ -65,6 +69,7 @@ export function getFormMap({
     2: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankAccountNumberLabel}
           name="/bankAccountNumber"
@@ -85,6 +90,7 @@ export function getFormMap({
     3: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.ibanLabel}
           name="/bankAccountNumber"
@@ -106,6 +112,7 @@ export function getFormMap({
     4: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.swiftCodeLabel}
           name="/swiftCode"
@@ -125,6 +132,7 @@ export function getFormMap({
     5: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={intl.formatMessage(
             {
@@ -160,6 +168,7 @@ export function getFormMap({
     6: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankNameLabel}
           name="/bankName"
@@ -179,6 +188,7 @@ export function getFormMap({
     7: {
       input: [
         <sl-select
+          {...sensitiveAttrs}
           required
           label={props.text.classificationLabel}
           name="/beneficiaryClassification"
@@ -203,6 +213,7 @@ export function getFormMap({
           </sl-menu-item>
         </sl-select>,
         <sl-input
+          {...sensitiveAttrs}
           required
           label={intl.formatMessage(
             {
@@ -230,6 +241,7 @@ export function getFormMap({
     8: {
       input: (
         <sl-select
+          {...sensitiveAttrs}
           required
           label={props.text.classificationCPFLabel}
           name="/beneficiaryClassification"
@@ -251,6 +263,7 @@ export function getFormMap({
     9: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           key="patronymicName"
           required
           label={props.text.patronymicNameLabel}
@@ -270,6 +283,7 @@ export function getFormMap({
     10: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           key="voCode"
           label={props.text.voCodeLabel}
           name="/voCode"
@@ -288,6 +302,7 @@ export function getFormMap({
     11: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.agencyCodeLabel}
           name="/agencyCode"
@@ -307,6 +322,7 @@ export function getFormMap({
     12: {
       input: [
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankAddressLabel}
           name="/bankAddress"
@@ -322,6 +338,7 @@ export function getFormMap({
           })}
         ></sl-input>,
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankCityLabel}
           name="/bankCity"
@@ -337,6 +354,7 @@ export function getFormMap({
           })}
         ></sl-input>,
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankStateLabel}
           name="/bankState"
@@ -352,6 +370,7 @@ export function getFormMap({
           })}
         ></sl-input>,
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.bankPostalCodeLabel}
           name="/bankPostalCode"
@@ -371,6 +390,7 @@ export function getFormMap({
     13: {
       input: (
         <sl-input
+          {...sensitiveAttrs}
           required
           label={props.text.branchCodeLabel}
           name="/branchCode"
@@ -390,6 +410,7 @@ export function getFormMap({
     14: {
       input: (
         <sl-select
+          {...sensitiveAttrs}
           required
           label={props.text.classificationLabel}
           name="/beneficiaryClassification"

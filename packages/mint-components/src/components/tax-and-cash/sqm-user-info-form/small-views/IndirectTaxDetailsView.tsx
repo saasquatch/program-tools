@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { intl } from "../../../../global/global";
 import { createStyleSheet } from "../../../../styling/JSS";
+import { sensitiveMaskAttrs } from "../../../../utils/posthogMasking";
 import { vatLabels } from "../../countries";
 import { TaxCountry } from "../../data";
 import { INDIRECT_TAX_PROVINCES } from "../../subregions";
@@ -153,6 +154,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     text,
   } = props;
   const { classes } = sheet;
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
 
   const getTaxFieldLabel = (taxType: TaxType) => {
     return intl.formatMessage(
@@ -186,6 +188,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
     return (
       <sl-input
         required
+        {...sensitiveAttrs}
         exportparts="label: input-label, base: input-base"
         class={classes.Input}
         label={label}
@@ -206,6 +209,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
+          {...sensitiveAttrs}
           exportparts="label: input-label, base: input-base"
           class={classes.Input}
           value={formState.subRegion}
@@ -232,6 +236,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         />
         <sl-checkbox
           class={classes.Checkbox}
+          {...sensitiveAttrs}
           exportparts="label: input-label, base: input-base"
           checked={formState.hasSubRegionTaxNumber}
           onSl-change={callbacks.onSpainToggle}
@@ -242,6 +247,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         {formState.hasSubRegionTaxNumber && (
           <sl-input
             required
+            {...sensitiveAttrs}
             exportparts="label: input-label, base: input-base"
             class={classes.Input}
             label={text.subRegionTaxNumberLabel}
@@ -273,6 +279,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
       <div class={classes.ConditionalInputsContainer}>
         <sl-select
           required
+          {...sensitiveAttrs}
           value={formState.province}
           exportparts="label: input-label, base: input-base"
           class={classes.Input}
@@ -311,6 +318,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           <div class={classes.ConditionalInputsContainer}>
             <sl-checkbox
               class={classes.Checkbox}
+              {...sensitiveAttrs}
               exportparts="label: input-label, base: input-base"
               onSl-change={callbacks.onQstToggle}
               checked={formState.hasQst}
@@ -344,6 +352,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
         return (
           <sl-input
             required
+            {...sensitiveAttrs}
             exportparts="label: input-label, base: input-base"
             class={classes.Input}
             value={formState.indirectTaxNumber}
@@ -366,7 +375,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
 
   return (
     <div style={states.hide ? { display: "none" } : {}}>
-      <form class={classes.Container}>
+      <form class={classes.Container} {...sensitiveAttrs}>
         <style type="text/css">
           {styleString}
           {vanillaStyle}
@@ -376,6 +385,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           <sl-select
             required
             class={classes.Input}
+            {...sensitiveAttrs}
             value={formState.selectedRegion}
             exportparts="label: input-label, base: input-base"
             label={text.selectedRegion}
@@ -393,6 +403,7 @@ export const OtherRegionSlotView = (props: IndirectDetailsSlotViewProps) => {
           >
             <sl-input
               class={classes.SearchInput}
+              {...sensitiveAttrs}
               placeholder={text.searchForCountryText}
               onKeyDown={(e) => {
                 // Stop shoelace intercepting key presses

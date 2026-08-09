@@ -1,6 +1,7 @@
 import { VNode, h } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { sensitiveMaskAttrs } from "../../../utils/posthogMasking";
 import { FORM_STEPS } from "../data";
 
 export interface IndirectTaxFormViewProps {
@@ -195,10 +196,12 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
   } = props;
 
   const { classes } = sheet;
+  const sensitiveAttrs = sensitiveMaskAttrs(true);
 
   return (
     <sl-form
       class={classes.FormWrapper}
+      {...sensitiveAttrs}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
       novalidate
@@ -304,6 +307,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
             <div class={classes.InnerRadioContainer}>
               <sl-radio
                 exportparts="base: radio-base"
+                {...sensitiveAttrs}
                 name="/checked"
                 value="notRegistered"
                 id="notRegistered"
@@ -320,6 +324,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               </sl-radio>
               <sl-radio
                 exportparts="base: radio-base"
+                {...sensitiveAttrs}
                 name="/checked"
                 value="otherRegion"
                 id="otherRegion"
