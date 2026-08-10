@@ -48,7 +48,7 @@ const vanillaStyle = `
 }
 sl-select::part(label){
   font-size: var(--sl-input-label-font-size-small);
-  font-weight: var(--sl-font-weight-semibold);
+  font-weight: var(--sl-font-weight-bold);
 }
 sl-select::part(menu){
   max-height: 300px;
