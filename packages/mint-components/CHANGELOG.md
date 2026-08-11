@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- [#490](https://github.com/saasquatch/program-tools/pull/490) [`45764c6`](https://github.com/saasquatch/program-tools/commit/45764c67be7f288ea9fb2f0ee23ba652177a2cdc) Thanks [@00salmon](https://github.com/00salmon)! - Add cash reward redemption flow, including the partner info modal, banking info
+  form validation-error messaging, and widget verification steps for the
+  tax-and-cash experience.
+
 ## 2.2.1
 
 ### Patch Changes
