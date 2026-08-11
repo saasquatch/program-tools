@@ -13,7 +13,7 @@ Feature: Cash payout code verification widget
 
     Examples:
       | code    | result |
-      | 123456  | 123456 |
+      |  123456 | 123456 |
       | 1234567 | 123456 |
 
   @minutia
@@ -29,11 +29,11 @@ Feature: Cash payout code verification widget
 
     Examples:
       | number | next |
-      | 1      | 2    |
-      | 2      | 3    |
-      | 3      | 4    |
-      | 4      | 5    |
-      | 5      | 6    |
+      |      1 |    2 |
+      |      2 |    3 |
+      |      3 |    4 |
+      |      4 |    5 |
+      |      5 |    6 |
 
   @minutia
   Scenario: Clicking a code input highlights its contents
@@ -42,7 +42,7 @@ Feature: Cash payout code verification widget
     Then the character is highlighted
 
   @minutia
-  Scenario: Successful code verification fires an event
+  Scenario: Successful code verification fires an event and advances to the partner info modal
     Given a valid code is entered
     And the mutation `verifyUserEmail` is successful
     And an access key is recieved
@@ -51,15 +51,27 @@ Feature: Cash payout code verification widget
       """
       { token: <accessKey> }
       """
+    And the parent `sqm-widget-verification` advances to the partner info modal step
 
   @motivating
-  Scenario: User enters verification code and proceed to setup
-    Given they are viewing the code verification widget
+  Scenario: User enters verification code and proceeds to the partner info modal
+    Given they are viewing the code verification widget inside the `sqm-widget-verification` dialog
     And they received a code in their email from the first step
     When they enter the code provided in their email in to the code input
     And press "Verify"
-    Then they will gain access to the Cash payout settings form
-    And the Cash payout settings form appears
+    Then the parent `sqm-widget-verification` swaps to the partner info modal step inside the same dialog
+    And the dialog cannot be dismissed
+    When the user successfully submits the partner info modal
+    Then the widget verification dialog is hidden
+    And the verified slot of `sqm-widget-verification` is rendered
+
+  @motivating
+  Scenario: Standalone code verification still gains access without the partner modal
+    Given `sqm-code-verification` is rendered without a `sqm-widget-verification` parent
+    When the user submits a valid 2FA code
+    Then the "sq:code-verified" event is dispatched
+    And the parent provider (if any) is set to verified
+    But no partner info modal is shown by `sqm-code-verification` itself
 
   @minutia @ui
   Scenario: Code verification header text changes based on user email
@@ -95,7 +107,7 @@ Feature: Cash payout code verification widget
       """
       Please check your code and try again. If you’re still having trouble, try resending your code.
       """
-    And they will not gain access to the Cash payout settings form
+    And the partner info modal step is not shown
 
   @motivating
   Scenario: code-verification sends a 2FA email on first load if it's rendered by itself

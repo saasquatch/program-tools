@@ -16,6 +16,11 @@ const mockCountries = [
   { countryCode: "DE", displayName: "Germany" },
   { countryCode: "FR", displayName: "France" },
   { countryCode: "ES", displayName: "Spain" },
+  // Show handling of long country names
+  {
+    countryCode: "CD",
+    displayName: "Congo, The Democratic Republic of the Congo",
+  },
 ];
 
 const mockCurrencies = [
@@ -79,7 +84,6 @@ const defaultText = {
   region: "Region",
   postalCode: "Postal Code",
   currency: "Currency",
-  currencyHelpText: "Select your preferred currency for payouts",
   allowBankingCollection: "I agree to the {termsAndConditionsLink}",
   personalInformation: "Personal Information",
   continueButton: "Continue",
@@ -116,6 +120,8 @@ const baseProps: UserInfoFormViewProps = {
     loading: false,
     isPartner: false,
     isUser: false,
+    isPartnerLegacy: false,
+    isUserLegacy: false,
     formState: {
       firstName: "",
       lastName: "",
@@ -264,6 +270,7 @@ export const PartnerAccount = () => {
       states={{
         ...baseProps.states,
         isPartner: true,
+        isPartnerLegacy: true,
         formState: {
           ...baseProps.states.formState,
           firstName: "Jane",
@@ -287,6 +294,55 @@ export const PartnerAccount = () => {
   );
 };
 
+// Early partner created via <sqm-partner-info-modal>: connectionStatus is "STARTED",
+// publisher has only countryCode + currency populated. Banner must NOT show; only
+// country + currency disabled; firstName/lastName disabled via userData; everything
+// else (phone, address, city, state, postalCode) stays editable.
+export const EarlyPartnerFromModal = () => {
+  return (
+    <UserInfoFormView
+      {...baseProps}
+      states={{
+        ...baseProps.states,
+        isPartner: true,
+        isUser: true,
+        isPartnerLegacy: false,
+        isUserLegacy: false,
+        formState: {
+          ...baseProps.states.formState,
+          firstName: "Jane",
+          lastName: "Smith",
+          email: "jane.smith@example.com",
+          countryCode: "US",
+          currency: "USD",
+          phoneNumberCountryCode: undefined,
+          phoneNumber: undefined,
+          address: undefined,
+          city: undefined,
+          state: undefined,
+          postalCode: undefined,
+        },
+      }}
+      data={{
+        ...baseProps.data,
+        partnerData: {
+          ...mockPartnerData,
+          billingAddress: undefined,
+          billingCity: undefined,
+          billingState: undefined,
+          billingPostalCode: undefined,
+          phoneNumber: undefined,
+          phoneNumberCountryCode: undefined,
+        },
+        userData: {
+          firstName: "Jane",
+          lastName: "Smith",
+        },
+      }}
+    />
+  );
+};
+
 export const UserAccount = () => {
   return (
     <UserInfoFormView
@@ -294,6 +350,7 @@ export const UserAccount = () => {
       states={{
         ...baseProps.states,
         isUser: true,
+        isUserLegacy: true,
         formState: {
           ...baseProps.states.formState,
           firstName: "Bob",
@@ -319,6 +376,7 @@ export const UserAccountMissingLastName = () => {
       states={{
         ...baseProps.states,
         isUser: true,
+        isUserLegacy: true,
         formState: {
           ...baseProps.states.formState,
           firstName: "Bob",

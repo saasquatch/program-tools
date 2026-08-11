@@ -157,6 +157,15 @@ const style = {
     },
   },
 
+  DangerBadge: {
+    "&::part(base)": {
+      textAlign: "center",
+      whiteSpace: "pre-line",
+      background: "var(--sqm-danger-color-icon)",
+      color: "var(--sl-color-white)",
+    },
+  },
+
   Container: {
     display: "flex",
     flexDirection: "column",
@@ -189,9 +198,12 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
   };
 
   const renderStatusBadge = (status: string, statusBadgeText: string) => {
-    const badgeType = status === "nextPayout" ? "success" : "primary";
     const badgeClass =
-      badgeType === "success" ? classes.SuccessBadge : classes.PrimaryBadge;
+      status === "nextPayout"
+        ? classes.SuccessBadge
+        : status === "payoutToday"
+          ? classes.PrimaryBadge
+          : classes.DangerBadge;
     const statusText = intl.formatMessage(
       {
         id: "badgeText",
@@ -199,7 +211,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
       },
       {
         badgeText: status,
-      }
+      },
     );
 
     return (
@@ -216,7 +228,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     },
     {
       thresholdBalance: states.thresholdBalance,
-    }
+    },
   );
 
   return (

@@ -254,7 +254,7 @@ export class IndirectTaxForm {
       <OtherRegionSlotView
         states={{
           hide: props.states.formState.checked !== "otherRegion",
-          disabled: props.states.disabled || props.states.isPartner,
+          disabled: props.states.disabled,
           formState: props.slotProps.formState,
           loading: props.states.loading,
           isPartner: props.states.isPartner,
@@ -287,7 +287,7 @@ export class IndirectTaxForm {
 }
 
 function useDemoIndirectTaxForm(
-  props: IndirectTaxForm
+  props: IndirectTaxForm,
 ): ReturnType<typeof useIndirectTaxForm> {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState("otherRegion");
@@ -300,6 +300,7 @@ function useDemoIndirectTaxForm(
         disabled: false,
         loading: false,
         isPartner: false,
+        isPartnerLegacy: false,
         loadingError: false,
         errors: {},
         formState: {
@@ -372,6 +373,6 @@ function useDemoIndirectTaxForm(
       },
     },
     props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

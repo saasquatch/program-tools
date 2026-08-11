@@ -17,7 +17,7 @@
 | `payoutFailed`           | `payout-failed`            |             | `string`           | `"Payout failed due to a fulfillment issue and is currently being retried."`  |
 | `payoutProcessing`       | `payout-processing`        |             | `string`           | `"Processing until {date}. Payout is then scheduled based on your settings."` |
 | `pendingNewTaxForm`      | `pending-new-tax-form`     |             | `string`           | `"Invalid tax form. Submit a new form to receive your rewards."`              |
-| `pendingPartnerCreation` | `pending-partner-creation` |             | `string`           | `"Complete your tax and cash payout setup to receive your rewards."`          |
+| `pendingPartnerCreation` | `pending-partner-creation` |             | `string`           | `"Complete your cash payout setup to receive your rewards."`                  |
 | `pendingReviewText`      | `pending-review-text`      |             | `string`           | `"Awaiting review"`                                                           |
 | `pendingScheduled`       | `pending-scheduled`        |             | `string`           | `"Until"`                                                                     |
 | `pendingTaxReview`       | `pending-tax-review`       |             | `string`           | `"Awaiting tax form review."`                                                 |

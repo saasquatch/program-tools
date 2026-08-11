@@ -5,13 +5,13 @@ import {
   StatusCellPayoutSent,
   StatusCellPayoutFailed,
   StatusCellPendingNewTaxForm,
-  StatusCellPendingPartnerCreation,
   StatusCellPendingTaxReview,
   StatusCellPendingTaxSubmission,
   StatusCellPayoutProcessing,
   CashReward,
   StatusCellPendingW9,
   StatusCellPayoutCancelled,
+  StatusCellPartnerNotCreatedSetupNotStarted,
 } from "./TaxAndCashRewardsTableCell.stories";
 
 export default {
@@ -84,7 +84,7 @@ const r_pending_tax_review = [
 
 const r_pending_partner_creation = [
   <CashReward />,
-  <StatusCellPendingPartnerCreation />,
+  <StatusCellPartnerNotCreatedSetupNotStarted />,
   <SourceCellReferral />,
   <DateCell />,
 ];

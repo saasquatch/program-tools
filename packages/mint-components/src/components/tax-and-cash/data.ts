@@ -47,6 +47,7 @@ export const GET_USER = gql`
     user: viewer {
       ... on User {
         id
+        accountId
         firstName
         lastName
         email
@@ -71,6 +72,7 @@ export const GET_USER = gql`
         }
         impactConnection {
           connected
+          connectionStatus
           user {
             firstName
             lastName
@@ -170,6 +172,8 @@ export type ImpactUser = {
 };
 export type UserQuery = {
   user: {
+    id?: string;
+    accountId?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
@@ -194,6 +198,7 @@ export type UserQuery = {
     impactConnection: null | {
       connected: boolean;
       user: null | ImpactUser;
+      connectionStatus: "NOT_STARTED" | "STARTED" | "COMPLETED";
       publisher: null | ImpactPublisher;
     };
   };

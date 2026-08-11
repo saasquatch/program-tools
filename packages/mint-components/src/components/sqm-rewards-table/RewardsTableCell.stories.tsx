@@ -138,6 +138,7 @@ const cashReward = {
   },
   exchangedRewardRedemptionTransaction: null,
   pendingReasons: [],
+  rewardedCash: true,
 };
 
 const taxConnection: ImpactConnection = {

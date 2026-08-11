@@ -34,6 +34,7 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarViewProps } from "./components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { UsePagination } from "./components/sqm-pagination/usePagination";
+import { PartnerInfoModalResult } from "./components/sqm-partner-info-modal/usePartnerInfoModal";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/usePasswordField";
 import { PayoutButtonScrollViewProps } from "./components/sqm-payout-button-scroll/sqm-payout-button-scroll-view";
 import { PayoutStatusAlertViewProps } from "./components/tax-and-cash/sqm-payout-status-alert/sqm-payout-status-alert-view";
@@ -67,6 +68,12 @@ export namespace Components {
     }
     interface SqmBankingInfoForm {
         /**
+          * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
+          * @uiName Agency code error
+          * @uiWidget textArea
+         */
+        "agencyCodeError": string;
+        /**
           * @uiName Agency code field label
          */
         "agencyCodeLabel": string;
@@ -76,17 +83,41 @@ export namespace Components {
          */
         "backButton": string;
         /**
+          * Error messages for the bank account number / IBAN field. Supports error codes: empty, invalidUk, invalid, ibanEmpty, ibanAlphanumeric, ibanInvalid, ibanCountryMismatch
+          * @uiName Bank account number / IBAN error
+          * @uiWidget textArea
+         */
+        "bankAccountNumberError": string;
+        /**
           * @uiName Bank account number field label
          */
         "bankAccountNumberLabel": string;
+        /**
+          * Error messages for the bank account type field. Supports error codes: empty
+          * @uiName Bank account type error
+          * @uiWidget textArea
+         */
+        "bankAccountTypeError": string;
         /**
           * @uiName Bank account type field label
          */
         "bankAccountTypeLabel": string;
         /**
+          * Error messages for the bank address field. Supports error codes: empty
+          * @uiName Bank address error
+          * @uiWidget textArea
+         */
+        "bankAddressError": string;
+        /**
           * @uiName Bank address field label
          */
         "bankAddressLabel": string;
+        /**
+          * Error messages for the bank city field. Supports error codes: empty
+          * @uiName Bank city error
+          * @uiWidget textArea
+         */
+        "bankCityError": string;
         /**
           * @uiName Bank city field label
          */
@@ -96,13 +127,31 @@ export namespace Components {
          */
         "bankLocationLabel": string;
         /**
+          * Error messages for the bank name field. Supports error codes: empty
+          * @uiName Bank name error
+          * @uiWidget textArea
+         */
+        "bankNameError": string;
+        /**
           * @uiName Bank name field label
          */
         "bankNameLabel": string;
         /**
+          * Error messages for the bank postal code field. Supports error codes: empty
+          * @uiName Bank postal code error
+          * @uiWidget textArea
+         */
+        "bankPostalCodeError": string;
+        /**
           * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel": string;
+        /**
+          * Error messages for the bank province/state field. Supports error codes: empty
+          * @uiName Bank province/state error
+          * @uiWidget textArea
+         */
+        "bankStateError": string;
         /**
           * @uiName Bank province/state field label
          */
@@ -112,13 +161,35 @@ export namespace Components {
          */
         "beneficiaryAccountNameDescription": string;
         /**
+          * Error messages for the beneficiary / account holder name field. Supports error codes: empty, invalidCharacters, numeric, tooLong, nonEnglish, businessNameMismatch, nameMismatch, businessPayeeMismatch, payeeMismatch
+          * @uiName Beneficiary account name error
+          * @uiWidget textArea
+         */
+        "beneficiaryAccountNameError": string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel": string;
         /**
+          * Error messages for the branch code field. Supports error codes: invalid
+          * @uiName Branch code error
+          * @uiWidget textArea
+         */
+        "branchCodeError": string;
+        /**
           * @uiName Branch code field label
          */
         "branchCodeLabel": string;
+        /**
+          * Error messages for the branch name field. Supports error codes: empty
+          * @uiName Branch name error
+          * @uiWidget textArea
+         */
+        "branchNameError": string;
+        /**
+          * @uiName Branch name field label
+         */
+        "branchNameLabel": string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
@@ -132,6 +203,16 @@ export namespace Components {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel": string;
+        /**
+          * Error messages for the classification code field. Supports error codes: empty, invalidKzt
+          * @uiName Classification code error
+          * @uiWidget textArea
+         */
+        "classificationCodeError": string;
+        /**
+          * @uiName Classification code field label
+         */
+        "classificationCodeLabel": string;
         /**
           * @uiName Classification entity field label
          */
@@ -240,6 +321,12 @@ export namespace Components {
          */
         "modalTitle": string;
         /**
+          * Error messages for the patronymic name field. Supports error codes: empty, alphanumeric
+          * @uiName Patronymic name error
+          * @uiWidget textArea
+         */
+        "patronymicNameError": string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel": string;
@@ -248,6 +335,12 @@ export namespace Components {
           * @uiName PayPal email field label
          */
         "payPalInputLabel": string;
+        /**
+          * Error messages for the payment day field. Supports error codes: empty, invalid
+          * @uiName Payment day error
+          * @uiWidget textArea
+         */
+        "paymentDayError": string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
@@ -284,10 +377,28 @@ export namespace Components {
          */
         "paymentScheduleFixedDay": string;
         /**
+          * Error messages for the payment threshold field. Supports error codes: empty, invalid
+          * @uiName Payment threshold error
+          * @uiWidget textArea
+         */
+        "paymentThresholdError": string;
+        /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel": string;
+        /**
+          * Error messages for the PayPal email field. Supports error codes: empty, unsupportedCurrency, invalidEmail, verificationIncomplete
+          * @uiName PayPal email error
+          * @uiWidget textArea
+         */
+        "paypalEmailError": string;
+        /**
+          * Error messages for the routing code / sort code / BSB field. Supports error codes: invalidBsb, invalidSortCode, empty, invalid
+          * @uiName Routing code error
+          * @uiWidget textArea
+         */
+        "routingCodeError": string;
         /**
           * @uiName Routing code field label
          */
@@ -306,6 +417,12 @@ export namespace Components {
          */
         "supportLink": string;
         /**
+          * Error messages for the SWIFT / BIC code field. Supports error codes: empty, alphanumeric, invalid
+          * @uiName SWIFT code error
+          * @uiWidget textArea
+         */
+        "swiftCodeError": string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel": string;
@@ -318,6 +435,12 @@ export namespace Components {
           * @uiName Page description
          */
         "taxAndPayoutsDescription": string;
+        /**
+          * Error messages for the tax payer ID / classification entity field. Supports error codes: empty, emptyAr, emptyKr, alphanumeric, alphanumericAr, alphanumericKr, invalid, invalidAr, invalidKr, invalidKzt, cnpjTooShort, cpfTooShort
+          * @uiName Tax payer ID error
+          * @uiWidget textArea
+         */
+        "taxPayerIdError": string;
         /**
           * @uiName Taxpayer ID field label
          */
@@ -335,6 +458,12 @@ export namespace Components {
           * @uiName Verify email header
          */
         "verifyEmailHeaderText": string;
+        /**
+          * Error messages for the VO code field. Supports error codes: empty, alphanumeric
+          * @uiName VO code error
+          * @uiWidget textArea
+         */
+        "voCodeError": string;
         /**
           * @uiName VO code field label
          */
@@ -2191,6 +2320,110 @@ export namespace Components {
           * @uiName Pagination text
          */
         "paginationText": string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection": string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel": string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel": string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner": string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner": string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal": boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText": string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader": string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder": string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Connected (hidden)", "default": true, "props": { "states": { "open": false } } }
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+         */
+        "stateController": string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner": string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink": string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel": string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink": string;
     }
     interface SqmPasswordField {
         /**
@@ -5963,11 +6196,6 @@ export namespace Components {
          */
         "step1_currency": string;
         /**
-          * @uiName Currency field help text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyHelpText": string;
-        /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
@@ -6286,6 +6514,11 @@ export namespace Components {
          */
         "step4_branchCodeLabel": string;
         /**
+          * @uiName Branch name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchNameLabel": string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
@@ -6301,6 +6534,11 @@ export namespace Components {
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel": string;
+        /**
+          * @uiName Classification code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCodeLabel": string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
@@ -7048,10 +7286,6 @@ export namespace Components {
          */
         "currency": string;
         /**
-          * @uiName Currency field help text
-         */
-        "currencyHelpText": string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -7241,6 +7475,78 @@ export namespace Components {
          */
         "codeStep_verifyText": string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel": string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel": string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel": string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner": string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner": string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText": string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader": string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner": string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText": string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder": string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder": string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel": string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner": string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -7271,19 +7577,15 @@ export namespace Components {
          */
         "emailStep_verifyEmailHeaderText": string;
         /**
-          * @uiName General verify widget description text
+          * @uiName General widget header text with partner creation
           * @uiGroup General Text
          */
-        "general_verifyEmailDescription": string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader": string;
+        "general_widgetHeaderWithPartnerCreation": string;
         /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @componentState { "title": "Step 3: Create Partner", "props": { "showPartnerModal": true }, "dependencies": ["sqm-partner-info-modal"], "uiGroup": "Partner Creation Step" }
          */
         "stateController": string;
     }
@@ -7590,6 +7892,12 @@ declare global {
     var HTMLSqmPaginationElement: {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
+    };
+    interface HTMLSqmPartnerInfoModalElement extends Components.SqmPartnerInfoModal, HTMLStencilElement {
+    }
+    var HTMLSqmPartnerInfoModalElement: {
+        prototype: HTMLSqmPartnerInfoModalElement;
+        new (): HTMLSqmPartnerInfoModalElement;
     };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
@@ -8121,6 +8429,7 @@ declare global {
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
         "sqm-pagination": HTMLSqmPaginationElement;
+        "sqm-partner-info-modal": HTMLSqmPartnerInfoModalElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-payout-button-scroll": HTMLSqmPayoutButtonScrollElement;
         "sqm-payout-details-card": HTMLSqmPayoutDetailsCardElement;
@@ -8208,6 +8517,12 @@ declare namespace LocalJSX {
     }
     interface SqmBankingInfoForm {
         /**
+          * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
+          * @uiName Agency code error
+          * @uiWidget textArea
+         */
+        "agencyCodeError"?: string;
+        /**
           * @uiName Agency code field label
          */
         "agencyCodeLabel"?: string;
@@ -8217,17 +8532,41 @@ declare namespace LocalJSX {
          */
         "backButton"?: string;
         /**
+          * Error messages for the bank account number / IBAN field. Supports error codes: empty, invalidUk, invalid, ibanEmpty, ibanAlphanumeric, ibanInvalid, ibanCountryMismatch
+          * @uiName Bank account number / IBAN error
+          * @uiWidget textArea
+         */
+        "bankAccountNumberError"?: string;
+        /**
           * @uiName Bank account number field label
          */
         "bankAccountNumberLabel"?: string;
+        /**
+          * Error messages for the bank account type field. Supports error codes: empty
+          * @uiName Bank account type error
+          * @uiWidget textArea
+         */
+        "bankAccountTypeError"?: string;
         /**
           * @uiName Bank account type field label
          */
         "bankAccountTypeLabel"?: string;
         /**
+          * Error messages for the bank address field. Supports error codes: empty
+          * @uiName Bank address error
+          * @uiWidget textArea
+         */
+        "bankAddressError"?: string;
+        /**
           * @uiName Bank address field label
          */
         "bankAddressLabel"?: string;
+        /**
+          * Error messages for the bank city field. Supports error codes: empty
+          * @uiName Bank city error
+          * @uiWidget textArea
+         */
+        "bankCityError"?: string;
         /**
           * @uiName Bank city field label
          */
@@ -8237,13 +8576,31 @@ declare namespace LocalJSX {
          */
         "bankLocationLabel"?: string;
         /**
+          * Error messages for the bank name field. Supports error codes: empty
+          * @uiName Bank name error
+          * @uiWidget textArea
+         */
+        "bankNameError"?: string;
+        /**
           * @uiName Bank name field label
          */
         "bankNameLabel"?: string;
         /**
+          * Error messages for the bank postal code field. Supports error codes: empty
+          * @uiName Bank postal code error
+          * @uiWidget textArea
+         */
+        "bankPostalCodeError"?: string;
+        /**
           * @uiName Bank postal code field label
          */
         "bankPostalCodeLabel"?: string;
+        /**
+          * Error messages for the bank province/state field. Supports error codes: empty
+          * @uiName Bank province/state error
+          * @uiWidget textArea
+         */
+        "bankStateError"?: string;
         /**
           * @uiName Bank province/state field label
          */
@@ -8253,13 +8610,35 @@ declare namespace LocalJSX {
          */
         "beneficiaryAccountNameDescription"?: string;
         /**
+          * Error messages for the beneficiary / account holder name field. Supports error codes: empty, invalidCharacters, numeric, tooLong, nonEnglish, businessNameMismatch, nameMismatch, businessPayeeMismatch, payeeMismatch
+          * @uiName Beneficiary account name error
+          * @uiWidget textArea
+         */
+        "beneficiaryAccountNameError"?: string;
+        /**
           * @uiName Beneficiary account field label
          */
         "beneficiaryAccountNameLabel"?: string;
         /**
+          * Error messages for the branch code field. Supports error codes: invalid
+          * @uiName Branch code error
+          * @uiWidget textArea
+         */
+        "branchCodeError"?: string;
+        /**
           * @uiName Branch code field label
          */
         "branchCodeLabel"?: string;
+        /**
+          * Error messages for the branch name field. Supports error codes: empty
+          * @uiName Branch name error
+          * @uiWidget textArea
+         */
+        "branchNameError"?: string;
+        /**
+          * @uiName Branch name field label
+         */
+        "branchNameLabel"?: string;
         /**
           * One of three options listed for the classification field
           * @uiName Business classification option
@@ -8273,6 +8652,16 @@ declare namespace LocalJSX {
           * @uiName Classification CPF field label
          */
         "classificationCPFLabel"?: string;
+        /**
+          * Error messages for the classification code field. Supports error codes: empty, invalidKzt
+          * @uiName Classification code error
+          * @uiWidget textArea
+         */
+        "classificationCodeError"?: string;
+        /**
+          * @uiName Classification code field label
+         */
+        "classificationCodeLabel"?: string;
         /**
           * @uiName Classification entity field label
          */
@@ -8381,6 +8770,12 @@ declare namespace LocalJSX {
          */
         "modalTitle"?: string;
         /**
+          * Error messages for the patronymic name field. Supports error codes: empty, alphanumeric
+          * @uiName Patronymic name error
+          * @uiWidget textArea
+         */
+        "patronymicNameError"?: string;
+        /**
           * @uiName Patronymic name field label
          */
         "patronymicNameLabel"?: string;
@@ -8389,6 +8784,12 @@ declare namespace LocalJSX {
           * @uiName PayPal email field label
          */
         "payPalInputLabel"?: string;
+        /**
+          * Error messages for the payment day field. Supports error codes: empty, invalid
+          * @uiName Payment day error
+          * @uiWidget textArea
+         */
+        "paymentDayError"?: string;
         /**
           * Label text for the payment day select option for the fifteenth of the month
           * @uiName Fifteenth of month payday option
@@ -8425,10 +8826,28 @@ declare namespace LocalJSX {
          */
         "paymentScheduleFixedDay"?: string;
         /**
+          * Error messages for the payment threshold field. Supports error codes: empty, invalid
+          * @uiName Payment threshold error
+          * @uiWidget textArea
+         */
+        "paymentThresholdError"?: string;
+        /**
           * Participant use this field to select the balance at which they want to be paid
           * @uiName Payment threshold field label
          */
         "paymentThresholdSelectLabel"?: string;
+        /**
+          * Error messages for the PayPal email field. Supports error codes: empty, unsupportedCurrency, invalidEmail, verificationIncomplete
+          * @uiName PayPal email error
+          * @uiWidget textArea
+         */
+        "paypalEmailError"?: string;
+        /**
+          * Error messages for the routing code / sort code / BSB field. Supports error codes: invalidBsb, invalidSortCode, empty, invalid
+          * @uiName Routing code error
+          * @uiWidget textArea
+         */
+        "routingCodeError"?: string;
         /**
           * @uiName Routing code field label
          */
@@ -8447,6 +8866,12 @@ declare namespace LocalJSX {
          */
         "supportLink"?: string;
         /**
+          * Error messages for the SWIFT / BIC code field. Supports error codes: empty, alphanumeric, invalid
+          * @uiName SWIFT code error
+          * @uiWidget textArea
+         */
+        "swiftCodeError"?: string;
+        /**
           * @uiName SWIFT code field label
          */
         "swiftCodeLabel"?: string;
@@ -8459,6 +8884,12 @@ declare namespace LocalJSX {
           * @uiName Page description
          */
         "taxAndPayoutsDescription"?: string;
+        /**
+          * Error messages for the tax payer ID / classification entity field. Supports error codes: empty, emptyAr, emptyKr, alphanumeric, alphanumericAr, alphanumericKr, invalid, invalidAr, invalidKr, invalidKzt, cnpjTooShort, cpfTooShort
+          * @uiName Tax payer ID error
+          * @uiWidget textArea
+         */
+        "taxPayerIdError"?: string;
         /**
           * @uiName Taxpayer ID field label
          */
@@ -8476,6 +8907,12 @@ declare namespace LocalJSX {
           * @uiName Verify email header
          */
         "verifyEmailHeaderText"?: string;
+        /**
+          * Error messages for the VO code field. Supports error codes: empty, alphanumeric
+          * @uiName VO code error
+          * @uiWidget textArea
+         */
+        "voCodeError"?: string;
         /**
           * @uiName VO code field label
          */
@@ -10327,6 +10764,110 @@ declare namespace LocalJSX {
           * @uiName Pagination text
          */
         "paginationText"?: string;
+    }
+    interface SqmPartnerInfoModal {
+        /**
+          * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
+          * @uiName Terms and conditions checkbox
+         */
+        "allowBankingCollection"?: string;
+        /**
+          * @uiName Confirm button label
+         */
+        "confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+         */
+        "countryLabel"?: string;
+        /**
+          * @uiName Currency label
+         */
+        "currencyLabel"?: string;
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<PartnerInfoModalResult>;
+        /**
+          * Description for existing partner confirmation
+          * @uiName Existing partner description
+          * @uiWidget textArea
+         */
+        "descriptionExistingPartner"?: string;
+        /**
+          * Description for new partner setup
+          * @uiName New partner description
+          * @uiWidget textArea
+         */
+        "descriptionNewPartner"?: string;
+        /**
+          * Used to render in another modal.
+          * @undocumented
+         */
+        "inModal"?: boolean;
+        /**
+          * @uiName Missing fields error text
+          * @uiWidget textArea
+         */
+        "missingFieldsErrorText"?: string;
+        /**
+          * Header text when user has no existing partner
+          * @uiName New partner header
+          * @uiWidget textArea
+         */
+        "modalHeader"?: string;
+        /**
+          * Header text when user has an existing partner
+          * @uiName Existing partner header
+          * @uiWidget textArea
+         */
+        "modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiWidget textArea
+         */
+        "networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+         */
+        "searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+         */
+        "searchCurrencyPlaceholder"?: string;
+        /**
+          * @undocumented 
+          * @componentState { "title": "Connected (hidden)", "default": true, "props": { "states": { "open": false } } }
+          * @componentState { "title": "New partner", "props": { "states": { "open": true, "isExistingPartner": false } } }
+          * @componentState { "title": "Existing partner", "props": { "states": { "open": true, "isExistingPartner": true, "countryCode": "US", "currency": "USD" } } }
+         */
+        "stateController"?: string;
+        /**
+          * @uiName Submit button label
+         */
+        "submitButtonLabel"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+          * @uiWidget textArea
+         */
+        "supportDescriptionExistingPartner"?: string;
+        /**
+          * Support description for existing partner confirmation
+          * @uiName Existing partner support description
+         */
+        "supportLink"?: string;
+        /**
+          * The link text that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions text
+          * @uiWidget textArea
+         */
+        "termsAndConditionsLabel"?: string;
+        /**
+          * The link that appears in the terms and conditions checkbox
+          * @uiName Terms and conditions link
+         */
+        "termsAndConditionsLink"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -14075,11 +14616,6 @@ declare namespace LocalJSX {
          */
         "step1_currency"?: string;
         /**
-          * @uiName Currency field help text
-          * @uiGroup Step 1 Properties
-         */
-        "step1_currencyHelpText"?: string;
-        /**
           * @uiName Email field label
           * @uiGroup Step 1 Properties
          */
@@ -14398,6 +14934,11 @@ declare namespace LocalJSX {
          */
         "step4_branchCodeLabel"?: string;
         /**
+          * @uiName Branch name field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_branchNameLabel"?: string;
+        /**
           * One of three options listed for the classification field
           * @uiName Business classification option
           * @uiGroup Step 4 Properties
@@ -14413,6 +14954,11 @@ declare namespace LocalJSX {
           * @uiGroup Step 4 Properties
          */
         "step4_classificationCPFLabel"?: string;
+        /**
+          * @uiName Classification code field label
+          * @uiGroup Step 4 Properties
+         */
+        "step4_classificationCodeLabel"?: string;
         /**
           * @uiName Classification entity field label
           * @uiGroup Step 4 Properties
@@ -15159,10 +15705,6 @@ declare namespace LocalJSX {
          */
         "currency"?: string;
         /**
-          * @uiName Currency field help text
-         */
-        "currencyHelpText"?: string;
-        /**
           * @undocumented 
           * @uiType object
          */
@@ -15352,6 +15894,78 @@ declare namespace LocalJSX {
          */
         "codeStep_verifyText"?: string;
         /**
+          * @uiName Confirm button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_confirmButtonLabel"?: string;
+        /**
+          * @uiName Country label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_countryLabel"?: string;
+        /**
+          * @uiName Currency label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_currencyLabel"?: string;
+        /**
+          * @uiName Existing partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionExistingPartner"?: string;
+        /**
+          * @uiName New partner description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_descriptionNewPartner"?: string;
+        /**
+          * @uiName Missing fields error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_missingFieldsErrorText"?: string;
+        /**
+          * @uiName New partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeader"?: string;
+        /**
+          * @uiName Existing partner header
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_modalHeaderExistingPartner"?: string;
+        /**
+          * @uiName Network error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_networkErrorText"?: string;
+        /**
+          * @uiName Search country placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCountryPlaceholder"?: string;
+        /**
+          * @uiName Search currency placeholder
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_searchCurrencyPlaceholder"?: string;
+        /**
+          * @uiName Submit button label
+          * @uiGroup Partner Creation Step
+         */
+        "createPartnerStep_submitButtonLabel"?: string;
+        /**
+          * @uiName Existing partner support description
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_supportDescriptionExistingPartner"?: string;
+        /**
           * @uiName Email input label
           * @uiGroup Email Verification Step
          */
@@ -15382,19 +15996,15 @@ declare namespace LocalJSX {
          */
         "emailStep_verifyEmailHeaderText"?: string;
         /**
-          * @uiName General verify widget description text
+          * @uiName General widget header text with partner creation
           * @uiGroup General Text
          */
-        "general_verifyEmailDescription"?: string;
-        /**
-          * @uiName General verify widget header text
-          * @uiGroup General Text
-         */
-        "general_verifyEmailHeader"?: string;
+        "general_widgetHeaderWithPartnerCreation"?: string;
         /**
           * @undocumented 
           * @componentState { "title": "Step 1: Enter email", "props": { "showCode": false }, "dependencies": ["sqm-email-verification"], "uiGroup": "Email Verification Step" }
           * @componentState { "title": "Step 2: Enter code", "props": { "showCode": true }, "dependencies": ["sqm-code-verification"], "uiGroup": "Code Verification Step" }
+          * @componentState { "title": "Step 3: Create Partner", "props": { "showPartnerModal": true }, "dependencies": ["sqm-partner-info-modal"], "uiGroup": "Partner Creation Step" }
          */
         "stateController"?: string;
     }
@@ -15456,6 +16066,7 @@ declare namespace LocalJSX {
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
         "sqm-pagination": SqmPagination;
+        "sqm-partner-info-modal": SqmPartnerInfoModal;
         "sqm-password-field": SqmPasswordField;
         "sqm-payout-button-scroll": SqmPayoutButtonScroll;
         "sqm-payout-details-card": SqmPayoutDetailsCard;
@@ -15591,6 +16202,7 @@ declare module "@stencil/core" {
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
+            "sqm-partner-info-modal": LocalJSX.SqmPartnerInfoModal & JSXBase.HTMLAttributes<HTMLSqmPartnerInfoModalElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;

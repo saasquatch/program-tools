@@ -27,13 +27,15 @@ import {
   UserQuery,
 } from "../data";
 import { ADDRESS_REGIONS, AddressRegions } from "../subregions";
-import { objectIsFull, validTaxDocument } from "../utils";
+import { objectIsFull, toDomesticNumber, validTaxDocument } from "../utils";
 import { TaxForm } from "./sqm-user-info-form";
 import { ImpactConnection } from "../../../saasquatch";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import {
   ConnectPartnerResult,
+  CompletePartnerResult,
   CONNECT_PARTNER,
+  COMPLETE_PARTNER,
 } from "../sqm-indirect-tax-form/useIndirectTaxForm";
 import { gql } from "graphql-request";
 
@@ -51,6 +53,7 @@ export type ValidationErrorFunction = (input: {
   control;
   key: string;
   value;
+  formData?: FormState;
 }) => string | undefined;
 
 export type FormState = {
@@ -89,10 +92,11 @@ export function useUserInfoForm(props: TaxForm) {
 
   const user = useUserIdentity();
 
-  const [
-    connectImpactPartner,
-    { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [connectImpactPartner, { loading: connectLoading }] =
+    useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
 
   const { data: tenantData } = useQuery(GET_INDIRECT_TAX_COUNTRY_CODE, {});
 
@@ -149,9 +153,15 @@ export function useUserInfoForm(props: TaxForm) {
         lastName: user.impactConnection.user.lastName,
         countryCode: user.impactConnection.publisher.countryCode,
         currency: user.impactConnection.publisher.currency,
+        // when creating an impact connection without sending phoneNumber data, the impactAPI defaults the value to "0000000" and the phoneNumberCountryCode to "DZ"
         phoneNumberCountryCode:
-          user.impactConnection.publisher.phoneNumberCountryCode,
-        phoneNumber: user.impactConnection.publisher.phoneNumber,
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumberCountryCode,
+        phoneNumber:
+          user.impactConnection.publisher.phoneNumber === "0000000"
+            ? null
+            : user.impactConnection.publisher.phoneNumber,
         address: user.impactConnection.publisher.billingAddress,
         city: user.impactConnection.publisher.billingCity,
         state: user.impactConnection.publisher.billingState,
@@ -245,21 +255,37 @@ export function useUserInfoForm(props: TaxForm) {
       city: formData.city,
       state: formData.state,
       postalCode: formData.postalCode,
-      phoneNumber: formData.phoneNumber,
+      phoneNumber: toDomesticNumber(
+        formData.phoneNumberCountryCode,
+        formData.phoneNumber,
+      ),
       phoneNumberCountryCode: formData.phoneNumberCountryCode,
     } as Partial<ImpactConnection>;
 
-    const result = await connectImpactPartner({
-      vars,
-    });
+    // if user went through early partner creation, connectionStatus === "STARTED"
+    // otherwise trigger legacy partner creation
+    const userData = data?.user;
+    let result = null;
+    let connectionResult;
+    if (userData?.impactConnection?.connectionStatus === "STARTED") {
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
 
     if (!result || (result as Error)?.message) throw new Error();
-    if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
-      // Output backend errors to console for now
+    if (!connectionResult?.success) {
       console.error(
         "Failed to create Impact connection: ",
-        (result as ConnectPartnerResult).createImpactConnection
-          .validationErrors,
+        connectionResult?.validationErrors,
       );
 
       throw new Error();
@@ -267,8 +293,7 @@ export function useUserInfoForm(props: TaxForm) {
 
     await refetch();
 
-    const resultPublisher = (result as ConnectPartnerResult)
-      .createImpactConnection?.user?.impactConnection?.publisher;
+    const resultPublisher = connectionResult?.user?.impactConnection?.publisher;
 
     const hasValidCurrentDocument =
       validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
@@ -298,7 +323,7 @@ export function useUserInfoForm(props: TaxForm) {
       // custom validation
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
-        const validationError = validate({ control, key, value });
+        const validationError = validate({ control, key, value, formData });
         if (validationError) jsonpointer.set(errors, key, validationError);
       }
 
@@ -319,12 +344,17 @@ export function useUserInfoForm(props: TaxForm) {
 
     const { allowBankingCollection, ...userData } = formData;
 
+    const normalizedPhoneNumber = toDomesticNumber(
+      userData.phoneNumberCountryCode,
+      userData.phoneNumber,
+    );
+
     setUserFormContext({
       ...userFormContext,
       firstName: userData.firstName,
       lastName: userData.lastName,
       phoneNumberCountryCode: userData.phoneNumberCountryCode,
-      phoneNumber: userData.phoneNumber,
+      phoneNumber: normalizedPhoneNumber,
       countryCode: userData.countryCode,
       address: userData.address,
       city: userData.city,
@@ -338,7 +368,10 @@ export function useUserInfoForm(props: TaxForm) {
     if (skipNextStep) {
       try {
         const { resultPublisher, hasValidCurrentDocument } =
-          await connectPartner(formData);
+          await connectPartner({
+            ...formData,
+            phoneNumber: normalizedPhoneNumber,
+          });
 
         if (
           resultPublisher?.requiredTaxDocumentType &&
@@ -368,6 +401,7 @@ export function useUserInfoForm(props: TaxForm) {
 
   const indirectTaxCountry =
     tenantData?.tenantSettings?.impactBrandIndirectTaxCountryCode;
+
   const hasIndirectTax = !!indirectTaxCountry;
 
   function getSkipNextStep(userData) {
@@ -415,12 +449,18 @@ export function useUserInfoForm(props: TaxForm) {
       step: step?.replace("/", ""),
       hideState: !hasStates,
       hideSteps: !!context.hideSteps,
-      disabled: loading || connectLoading,
+      disabled: loading || connectLoading || completeLoading,
       loadingError: !!userError?.message,
-      loading: loading || connectLoading,
+      loading: loading || connectLoading || completeLoading,
       isPartner: !!data?.user?.impactConnection?.publisher,
       isUser: !!data?.user?.impactConnection?.user,
-
+      // Show banner when pre-existing partner is created with legacy mutation createImpactConnection
+      isUserLegacy:
+        !!data?.user?.impactConnection?.user &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
+      isPartnerLegacy:
+        !!data?.user?.impactConnection?.publisher &&
+        data?.user?.impactConnection?.connectionStatus !== "STARTED",
       formState: {
         ...userFormContext,
         errors: formErrors,

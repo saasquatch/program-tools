@@ -30,6 +30,8 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     disabled: false,
     isPartner: false,
     isUser: false,
+    isPartnerLegacy: false,
+    isUserLegacy: false,
     loadingError: false,
     formState: {
       firstName: "Bob",
@@ -151,6 +153,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     disabled: false,
     loading: false,
     isPartner: false,
+    isPartnerLegacy: false,
     loadingError: false,
     formState: {
       checked: undefined,
