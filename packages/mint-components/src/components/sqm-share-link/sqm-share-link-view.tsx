@@ -148,6 +148,8 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       lineHeight: "var(--sl-input-height-medium)",
     },
     EditInput: {
+      maxWidth: "248px",
+      width: "100%",
       "&::part(base)": {
         border: "none",
         borderRadius: "0",
@@ -219,14 +221,14 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   const errorMessageType =
     validationError?.code === "EXISTING_CODE_CONFLICT" ? "info" : "warning";
 
-  const showCharactersRemaining = charactersRemaining <= 14;
+  const showCharactersRemaining = charactersRemaining <= 29;
 
   const editLimitMessage = intl.formatMessage(
     {
       id: "editLimitText",
       defaultMessage: editLimitText,
     },
-    { editsRemaining },
+    { editsRemaining }
   );
 
   // Editing state
@@ -255,14 +257,14 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           />
         </div>
         <p class={sheet.classes.HelperText}>
-          {editLimitMessage} {charactersRemaining > 12 && minCharactersText}
+          {editLimitMessage} {charactersRemaining > 27 && minCharactersText}
           {showCharactersRemaining &&
             ` ${intl.formatMessage(
               {
                 id: "charactersRemainingText",
                 defaultMessage: charactersRemainingText,
               },
-              { charactersRemaining },
+              { charactersRemaining }
             )}`}
         </p>
         {validationError && (
@@ -351,7 +353,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
                         {supportLinkText}
                       </a>
                     ),
-                  },
+                  }
                 )}
               </p>
             )}

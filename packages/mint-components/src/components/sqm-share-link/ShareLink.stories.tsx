@@ -142,7 +142,7 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   validationError: null,
   isValidating: false,
   isSaving: false,
-  characterLimit: 15,
+  characterLimit: 30,
   minCharacters: 3,
   charactersRemaining: 15,
   editLimitText: "You can edit your link up to 5 times.",
