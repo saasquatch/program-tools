@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.1
+
+### Patch Changes
+
+- [#519](https://github.com/saasquatch/program-tools/pull/519) [`227477a`](https://github.com/saasquatch/program-tools/commit/227477aee3aaf9c7dbf47431540a57e9b7b2ec3a) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Increase character limit when editing sqm-share-link from 15 to 30
+
 ## 2.3.0
 
 ### Minor Changes
