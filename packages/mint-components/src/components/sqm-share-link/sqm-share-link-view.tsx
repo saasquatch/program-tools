@@ -148,7 +148,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       lineHeight: "var(--sl-input-height-medium)",
     },
     EditInput: {
-      maxWidth: "248px",
+      maxWidth: "260px",
       width: "100%",
       "&::part(base)": {
         border: "none",
