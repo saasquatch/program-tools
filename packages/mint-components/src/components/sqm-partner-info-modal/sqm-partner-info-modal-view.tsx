@@ -8,6 +8,7 @@ export interface PartnerInfoModalViewProps {
     loading: boolean;
     submitting: boolean;
     isExistingPartner: boolean;
+    shouldDisplayNameFields: boolean;
     firstName: string;
     lastName: string;
     countryCode: string;
@@ -180,7 +181,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.FormFields}>
         {description}
-        {(!states.firstName || !states.lastName) && (
+        {states.shouldDisplayNameFields && (
           <Fragment>
             <sl-input
               exportparts="label: input-label, base: input-base"

@@ -68,6 +68,7 @@ const defaultProps: PartnerInfoModalViewProps = {
     loading: false,
     submitting: false,
     isExistingPartner: false,
+    shouldDisplayNameFields: false,
     firstName: "",
     lastName: "",
     countryCode: "",
@@ -232,6 +233,7 @@ export const PartnerHasFirstNameOnly = () => {
       ...defaultProps.states,
       firstName: "John",
       lastName: "",
+      shouldDisplayNameFields: true,
     },
   };
   return <PartnerInfoModalView {...props} />;

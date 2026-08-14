@@ -126,6 +126,15 @@ export function usePartnerInfoModal(
     {}
   );
 
+  const [shouldDisplayNameFields, setShouldDisplayNameFields] = useState<
+    boolean | null
+  >(null);
+  useEffect(() => {
+    if (shouldDisplayNameFields === null && user) {
+      setShouldDisplayNameFields(!user.firstName || !user.lastName);
+    }
+  }, [user, shouldDisplayNameFields]);
+
   const [firstName, setFirstName] = useState(user?.firstName || "");
   const [lastName, setLastName] = useState(user?.lastName || "");
 
@@ -269,7 +278,13 @@ export function usePartnerInfoModal(
   }
 
   async function onSubmit() {
-    if (!allowBankingCollection || !countryCode || !currency || !firstName || !lastName) {
+    if (
+      !allowBankingCollection ||
+      !countryCode ||
+      !currency ||
+      !firstName ||
+      !lastName
+    ) {
       setError(props.missingFieldsErrorText);
       return;
     }
@@ -335,6 +350,7 @@ export function usePartnerInfoModal(
       open: showModal,
       loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
+      shouldDisplayNameFields,
       isExistingPartner,
       firstName,
       lastName,
