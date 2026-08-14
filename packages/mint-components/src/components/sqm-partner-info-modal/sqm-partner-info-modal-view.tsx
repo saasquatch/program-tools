@@ -175,6 +175,12 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
     }
   );
 
+  if (states.loading) {
+    return (
+      <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
+    );
+  }
+
   return (
     <div>
       <style type="text/css">{styleString}</style>
@@ -202,6 +208,26 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
             />
           </Fragment>
         )}
+        <Fragment>
+          <sl-input
+            exportparts="label: input-label, base: input-base"
+            class={sheet.classes.NameInput}
+            label="First Name"
+            value={states.firstName}
+            onSl-input={callbacks.onFirstNameChange}
+            disabled={states.submitting}
+            required
+          />
+          <sl-input
+            exportparts="label: input-label, base: input-base"
+            class={sheet.classes.NameInput}
+            label="Last Name"
+            value={states.lastName}
+            onSl-input={callbacks.onLastNameChange}
+            disabled={states.submitting}
+            required
+          />
+        </Fragment>
         <sl-select
           exportparts="label: input-label, base: input-base, menu: select-menu"
           label={text.countryLabel}

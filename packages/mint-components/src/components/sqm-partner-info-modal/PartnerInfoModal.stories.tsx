@@ -238,3 +238,14 @@ export const PartnerHasFirstNameOnly = () => {
   };
   return <PartnerInfoModalView {...props} />;
 };
+
+export const Loading = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      loading: true,
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
