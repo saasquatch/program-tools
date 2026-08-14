@@ -341,6 +341,7 @@ export function usePartnerInfoModal(
   const showModal =
     !success &&
     !userLoading &&
+    shouldDisplayNameFields !== null &&
     impactConnection?.connectionStatus === "NOT_STARTED";
 
   return {

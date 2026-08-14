@@ -331,11 +331,7 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
         onSl-initial-focus={callbacks.onInitialFocus}
       >
         <h2 class={sheet.classes.DialogTitle}>{modalHeader}</h2>
-        {states.loading ? (
-          <sl-spinner style={{ fontSize: "50px", margin: "40px" }}></sl-spinner>
-        ) : (
-          <PartnerInfoModalContentView {...props} />
-        )}
+        <PartnerInfoModalContentView {...props} />
       </sl-dialog>
     </div>
   );
