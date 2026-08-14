@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { Fragment, h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { intl } from "../../global/global";
 
@@ -8,6 +8,9 @@ export interface PartnerInfoModalViewProps {
     loading: boolean;
     submitting: boolean;
     isExistingPartner: boolean;
+    shouldDisplayNameFields: boolean;
+    firstName: string;
+    lastName: string;
     countryCode: string;
     currency: string;
     error: string;
@@ -18,6 +21,8 @@ export interface PartnerInfoModalViewProps {
     disabled: boolean;
   };
   callbacks: {
+    onFirstNameChange: (e: any) => void;
+    onLastNameChange: (e: any) => void;
     onCountryChange: (e: any) => void;
     onCurrencyChange: (e: any) => void;
     onCheckboxChange: (e: any) => void;
@@ -71,6 +76,12 @@ const style = {
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
     marginTop: "var(--sl-spacing-large)",
+  },
+  NameInput: {
+    "&::part(label)": {
+      fontWeight: "var(--sl-font-weight-normal)",
+      fontSize: "var(--sl-input-label-font-size-medium)",
+    },
   },
   ErrorMessage: {
     marginTop: "var(--sl-spacing-x-small)",
@@ -132,7 +143,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.supportLink}
         </a>
       ),
-    },
+    }
   );
 
   const description = states.isExistingPartner ? (
@@ -161,14 +172,36 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           {text.termsAndConditionsLabel}
         </a>
       ),
-    },
+    }
   );
 
   return (
     <div>
-      <style type="text/css"> {styleString}</style>
+      <style type="text/css">{styleString}</style>
       <div class={sheet.classes.FormFields}>
         {description}
+        {states.shouldDisplayNameFields && (
+          <Fragment>
+            <sl-input
+              exportparts="label: input-label, base: input-base"
+              class={sheet.classes.NameInput}
+              label="First Name"
+              value={states.firstName}
+              onSl-input={callbacks.onFirstNameChange}
+              disabled={states.submitting}
+              required
+            />
+            <sl-input
+              exportparts="label: input-label, base: input-base"
+              class={sheet.classes.NameInput}
+              label="Last Name"
+              value={states.lastName}
+              onSl-input={callbacks.onLastNameChange}
+              disabled={states.submitting}
+              required
+            />
+          </Fragment>
+        )}
         <sl-select
           exportparts="label: input-label, base: input-base, menu: select-menu"
           label={text.countryLabel}
@@ -254,7 +287,9 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           states.submitting ||
           !states.countryCode ||
           !states.currency ||
-          !states.allowBankingCollection
+          !states.allowBankingCollection ||
+          (states.shouldDisplayNameFields &&
+            (!states.firstName || !states.lastName))
         }
         onClick={callbacks.onSubmit}
         class={sheet.classes.SubmitButton}

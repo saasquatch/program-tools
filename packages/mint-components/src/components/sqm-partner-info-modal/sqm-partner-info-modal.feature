@@ -83,21 +83,70 @@ Feature: Partner Info Modal — country, currency, and T&C collection
     When the user checks the "Tax and banking" checkbox
     Then the primary button becomes enabled
 
+  @motivating
+  Scenario: User record has both firstName and lastName so the name inputs are hidden
+    Given the participant's user record has a non-empty `firstName` and `lastName`
+    When the partner-info modal opens
+    Then the "First name" input is not rendered
+    And the "Last name" input is not rendered
+
+  @motivating
+  Scenario Outline: User record is missing firstName or lastName so both name inputs are shown
+    Given the participant's user record has firstName=<firstName> and lastName=<lastName>
+    When the partner-info modal opens
+    Then the "First name" input is rendered and enabled
+    And the "Last name" input is rendered and enabled
+    And the "First name" input is prefilled with <firstName>
+    And the "Last name" input is prefilled with <lastName>
+
+    Examples:
+      | firstName | lastName |
+      |           | Doe      |
+      | Jane      |          |
+      |           |          |
+
+  @motivating
+  Scenario: Name inputs are required to submit when they are shown
+    Given the partner-info modal is open with the "First name" and "Last name" inputs rendered
+    And the "Country", "Currency", and "Tax and banking" fields are all valid
+    When either the "First name" or "Last name" input is empty
+    Then the primary button is disabled
+    When both inputs have a non-empty value
+    Then the primary button becomes enabled
+
   @minutia
   Scenario: Submit button is disabled
     Given the partner-info modal is open
-    When any one of (country, currency, allowBankingCollection) is missing
+    When any one of (country, currency, allowBankingCollection, firstName, lastName) is missing
     Then the submit button is disabled
 
   @motivating
   Scenario: Submitting the modal starts the Impact connection and closes the modal
-    Given the user has selected country "US", currency "USD", and checked the T&C checkbox
+    Given the participant's user record has a non-empty `firstName` and `lastName`
+    And the user has selected country "US", currency "USD", and checked the T&C checkbox
     When they click the primary button
     Then the modal calls the `startImpactConnection` mutation with
       | user.id        | the participant id        |
       | user.accountId | the participant accountId |
       | firstName      | from the user record      |
       | lastName       | from the user record      |
+      | countryCode    | "US"                      |
+      | currency       | "USD"                     |
+    And on success `impactConnection.connectionStatus` changes from "NOT_STARTED" to "STARTED"
+    And the modal closes
+
+  @motivating
+  Scenario: Submitting the modal sends the entered firstName and lastName when the name inputs are shown
+    Given the participant's user record is missing `firstName` and/or `lastName`
+    And the "First name" input value is "Jane"
+    And the "Last name" input value is "Doe"
+    And the user has selected country "US", currency "USD", and checked the T&C checkbox
+    When they click the primary button
+    Then the modal calls the `startImpactConnection` mutation with
+      | user.id        | the participant id        |
+      | user.accountId | the participant accountId |
+      | firstName      | "Jane"                    |
+      | lastName       | "Doe"                     |
       | countryCode    | "US"                      |
       | currency       | "USD"                     |
     And on success `impactConnection.connectionStatus` changes from "NOT_STARTED" to "STARTED"
@@ -130,6 +179,7 @@ Feature: Partner Info Modal — country, currency, and T&C collection
     Given the partner-info modal is open
     When the user clicks the primary button and the mutation is in flight
     Then the "Country", "Currency", and "Tax and banking" inputs are all disabled
+    And the "First name" and "Last name" inputs are disabled when they are rendered
     And the primary button shows a loading spinner
 
   @minutia

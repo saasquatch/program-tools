@@ -27,6 +27,8 @@ const demoCurrencies = [
 ];
 
 const noopCallbacks = {
+  onFirstNameChange: (e: any) => console.log("First name changed:", e),
+  onLastNameChange: (e: any) => console.log("Last name changed:", e),
   onCountryChange: (e: any) => console.log("Country changed:", e),
   onCurrencyChange: (e: any) => console.log("Currency changed:", e),
   onCheckboxChange: (e: any) => console.log("Checkbox changed:", e),
@@ -66,6 +68,9 @@ const defaultProps: PartnerInfoModalViewProps = {
     loading: false,
     submitting: false,
     isExistingPartner: false,
+    shouldDisplayNameFields: false,
+    firstName: "",
+    lastName: "",
     countryCode: "",
     currency: "",
     error: "",
@@ -207,4 +212,40 @@ export const SQMComponentNewPartner = () => {
       }}
     ></sqm-partner-info-modal>
   );
+};
+
+export const PartnerHasFirstAndLastName = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      firstName: "John",
+      lastName: "Doe",
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
+
+export const PartnerHasFirstNameOnly = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      firstName: "John",
+      lastName: "",
+      shouldDisplayNameFields: true,
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
+
+export const Loading = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      loading: true,
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
 };
