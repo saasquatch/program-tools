@@ -126,11 +126,9 @@ export function usePartnerInfoModal(
     {}
   );
 
-  const [shouldDisplayNameFields, setShouldDisplayNameFields] = useState<
-    boolean | null
-  >(null);
-  const [firstName, setFirstName] = useState(user?.firstName || "");
-  const [lastName, setLastName] = useState(user?.lastName || "");
+  const [shouldDisplayNameFields, setShouldDisplayNameFields] = useState(false);
+  const [firstName, setFirstName] = useState(user?.firstName ?? "");
+  const [lastName, setLastName] = useState(user?.lastName ?? "");
 
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
