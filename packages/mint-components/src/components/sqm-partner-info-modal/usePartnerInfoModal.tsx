@@ -205,9 +205,10 @@ export function usePartnerInfoModal(
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
+  const [initialized, setInitialized] = useState(false);
+  
   useEffect(() => {
-    if (shouldDisplayNameFields !== null || !user) return;
+    if (initialized || !user) return;
     setShouldDisplayNameFields(!user.firstName || !user.lastName);
     setFirstName(user.firstName || "");
     setLastName(user.lastName || "");
@@ -216,7 +217,8 @@ export function usePartnerInfoModal(
       setCountryCode(publisher.countryCode);
       setCurrency(publisher.currency);
     }
-  }, [user, shouldDisplayNameFields]);
+    setInitialized(true);
+  }, [user, initialized]);
 
   useEffect(() => {
     if (!countries?.length) return;
@@ -341,7 +343,6 @@ export function usePartnerInfoModal(
   const showModal =
     !success &&
     !userLoading &&
-    shouldDisplayNameFields !== null &&
     impactConnection?.connectionStatus === "NOT_STARTED";
 
   return {
