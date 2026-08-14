@@ -288,7 +288,9 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           states.submitting ||
           !states.countryCode ||
           !states.currency ||
-          !states.allowBankingCollection
+          !states.allowBankingCollection ||
+          !states.firstName ||
+          !states.lastName
         }
         onClick={callbacks.onSubmit}
         class={sheet.classes.SubmitButton}
