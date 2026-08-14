@@ -27,6 +27,8 @@ const demoCurrencies = [
 ];
 
 const noopCallbacks = {
+  onFirstNameChange: (e: any) => console.log("First name changed:", e),
+  onLastNameChange: (e: any) => console.log("Last name changed:", e),
   onCountryChange: (e: any) => console.log("Country changed:", e),
   onCurrencyChange: (e: any) => console.log("Currency changed:", e),
   onCheckboxChange: (e: any) => console.log("Checkbox changed:", e),
@@ -66,6 +68,8 @@ const defaultProps: PartnerInfoModalViewProps = {
     loading: false,
     submitting: false,
     isExistingPartner: false,
+    firstName: "",
+    lastName: "",
     countryCode: "",
     currency: "",
     error: "",

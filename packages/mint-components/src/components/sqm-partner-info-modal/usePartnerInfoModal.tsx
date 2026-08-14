@@ -102,7 +102,7 @@ export type CountriesQuery = {
 };
 
 export function usePartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const locale = useLocale();
 
@@ -118,29 +118,31 @@ export function usePartnerInfoModal(
 
   const { data: currenciesData, loading: currenciesLoading } = useQuery(
     GET_CURRENCIES,
-    { variables: { locale } },
+    { variables: { locale } }
   );
 
   const { data: countriesData, loading: countriesLoading } = useQuery(
     GET_COUNTRIES,
-    {},
+    {}
   );
+
+  const [firstName, setFirstName] = useState(user?.firstName || "");
+  const [lastName, setLastName] = useState(user?.lastName || "");
 
   // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode ||
-      locale.replace(/^.*_/, ""),
+    user?.impactConnection?.publisher?.countryCode || locale.replace(/^.*_/, "")
   );
 
   const [currency, setCurrency] = useState(
-    user?.impactConnection?.publisher?.currency || "",
+    user?.impactConnection?.publisher?.currency || ""
   );
 
   const { data: financeNetworkData } = useQuery<FinanceNetworkSettingsQuery>(
     GET_FINANCE_NETWORK_SETTINGS,
     {
       variables: { filter: countryCode ? { countryCode_eq: countryCode } : {} },
-    },
+    }
   );
 
   const [startImpactConnection, { loading: connectLoading }] =
@@ -171,14 +173,14 @@ export function usePartnerInfoModal(
         (agg, settings) => {
           if (countryCode && settings.countryCode !== countryCode) return agg;
           const c = currenciesData?.currencies?.data?.find(
-            (cur) => cur.currencyCode === settings.currency,
+            (cur) => cur.currencyCode === settings.currency
           );
           if (!c) return agg;
           if (agg.find((cur) => cur.currencyCode === settings.currency))
             return agg;
           return [...agg, c];
         },
-        [],
+        []
       );
     return allValidCurrencies || [];
   }, [financeNetworkData, currenciesData, countryCode, isExistingPartner]);
@@ -186,16 +188,16 @@ export function usePartnerInfoModal(
   const currencies = useMemo(
     () =>
       [..._currencies].sort((a, b) =>
-        a.displayName.localeCompare(b.displayName),
+        a.displayName.localeCompare(b.displayName)
       ),
-    [_currencies],
+    [_currencies]
   );
 
   const [countrySearch, setCountrySearch] = useState("");
   const [currencySearch, setCurrencySearch] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries || []);
   const [filteredCurrencies, setFilteredCurrencies] = useState(
-    currencies || [],
+    currencies || []
   );
 
   const [error, setError] = useState("");
@@ -215,8 +217,8 @@ export function usePartnerInfoModal(
     } else {
       setFilteredCountries(
         countries.filter((c) =>
-          c.displayName.toLowerCase().includes(countrySearch.toLowerCase()),
-        ) || [],
+          c.displayName.toLowerCase().includes(countrySearch.toLowerCase())
+        ) || []
       );
     }
   }, [countrySearch, countries]);
@@ -228,13 +230,23 @@ export function usePartnerInfoModal(
     } else {
       setFilteredCurrencies(
         currencies.filter((c) =>
-          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase()),
-        ) || [],
+          c.currencyCode.toLowerCase().includes(currencySearch.toLowerCase())
+        ) || []
       );
     }
   }, [currencySearch, currencies]);
 
   const impactConnection = user?.impactConnection;
+
+  function onFirstNameChange(e: any) {
+    const value = e.target.value;
+    setFirstName(value);
+  }
+
+  function onLastNameChange(e: any) {
+    const value = e.target.value;
+    setLastName(value);
+  }
 
   function onCountryChange(e: any) {
     const value = e.detail?.item?.__value;
@@ -257,7 +269,7 @@ export function usePartnerInfoModal(
   }
 
   async function onSubmit() {
-    if (!allowBankingCollection || !countryCode || !currency) {
+    if (!allowBankingCollection || !countryCode || !currency || !firstName || !lastName) {
       setError(props.missingFieldsErrorText);
       return;
     }
@@ -274,8 +286,8 @@ export function usePartnerInfoModal(
           id: user.id,
           accountId: user.accountId,
         },
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName,
+        lastName,
         countryCode,
         currency,
       };
@@ -297,7 +309,7 @@ export function usePartnerInfoModal(
         setError(validationMsg || props.networkErrorText);
         console.error(
           "Failed to create Impact connection:",
-          connectionResult?.validationErrors,
+          connectionResult?.validationErrors
         );
         return;
       }
@@ -324,6 +336,8 @@ export function usePartnerInfoModal(
       loading: userLoading || countriesLoading || currenciesLoading,
       submitting: connectLoading,
       isExistingPartner,
+      firstName,
+      lastName,
       countryCode,
       currency,
       error,
@@ -334,6 +348,8 @@ export function usePartnerInfoModal(
       disabled: userLoading || connectLoading,
     },
     callbacks: {
+      onFirstNameChange,
+      onLastNameChange,
       onCountryChange,
       onCurrencyChange,
       onCheckboxChange,
