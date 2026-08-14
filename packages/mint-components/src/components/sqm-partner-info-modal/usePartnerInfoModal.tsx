@@ -212,12 +212,18 @@ export function usePartnerInfoModal(
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
+  const [initialized, setInitialized] = useState(false);
   useEffect(() => {
+    if (initialized || !userData) return;
+    setFirstName(user?.firstName || "");
+    setLastName(user?.lastName || "");
     const publisher = user?.impactConnection?.publisher;
-    if (!userData || !publisher) return;
-    setCountryCode(publisher.countryCode);
-    setCurrency(publisher.currency);
-  }, [userData, user]);
+    if (publisher) {
+      setCountryCode(publisher.countryCode);
+      setCurrency(publisher.currency);
+    }
+    setInitialized(true);
+  }, [userData, user, initialized]);
 
   useEffect(() => {
     if (!countries?.length) return;
@@ -282,8 +288,7 @@ export function usePartnerInfoModal(
       !allowBankingCollection ||
       !countryCode ||
       !currency ||
-      !firstName ||
-      !lastName
+      (shouldDisplayNameFields && (!firstName || !lastName))
     ) {
       setError(props.missingFieldsErrorText);
       return;

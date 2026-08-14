@@ -80,8 +80,7 @@ const style = {
   NameInput: {
     "&::part(label)": {
       fontWeight: "var(--sl-font-weight-normal)",
-      fontSize:
-        "var(--sl-input-label-font-size-medium)",
+      fontSize: "var(--sl-input-label-font-size-medium)",
     },
   },
   ErrorMessage: {
@@ -289,8 +288,8 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           !states.countryCode ||
           !states.currency ||
           !states.allowBankingCollection ||
-          !states.firstName ||
-          !states.lastName
+          (states.shouldDisplayNameFields &&
+            (!states.firstName || !states.lastName))
         }
         onClick={callbacks.onSubmit}
         class={sheet.classes.SubmitButton}
