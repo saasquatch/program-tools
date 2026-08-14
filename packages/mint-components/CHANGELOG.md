@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- [#521](https://github.com/saasquatch/program-tools/pull/521) [`bae2e05`](https://github.com/saasquatch/program-tools/commit/bae2e05d45dfa31958d34d048d2c94dee60eb2e5) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Partner info modal now shows firstName and lastName inputs when either is missing from the user
+
 ## 2.3.1
 
 ### Patch Changes
