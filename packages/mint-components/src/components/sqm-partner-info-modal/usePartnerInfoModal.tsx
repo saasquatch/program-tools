@@ -129,12 +129,6 @@ export function usePartnerInfoModal(
   const [shouldDisplayNameFields, setShouldDisplayNameFields] = useState<
     boolean | null
   >(null);
-  useEffect(() => {
-    if (shouldDisplayNameFields === null && user) {
-      setShouldDisplayNameFields(!user.firstName || !user.lastName);
-    }
-  }, [user, shouldDisplayNameFields]);
-
   const [firstName, setFirstName] = useState(user?.firstName || "");
   const [lastName, setLastName] = useState(user?.lastName || "");
 
@@ -212,18 +206,17 @@ export function usePartnerInfoModal(
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const [initialized, setInitialized] = useState(false);
   useEffect(() => {
-    if (initialized || !userData) return;
-    setFirstName(user?.firstName || "");
-    setLastName(user?.lastName || "");
-    const publisher = user?.impactConnection?.publisher;
+    if (shouldDisplayNameFields !== null || !user) return;
+    setShouldDisplayNameFields(!user.firstName || !user.lastName);
+    setFirstName(user.firstName || "");
+    setLastName(user.lastName || "");
+    const publisher = user.impactConnection?.publisher;
     if (publisher) {
       setCountryCode(publisher.countryCode);
       setCurrency(publisher.currency);
     }
-    setInitialized(true);
-  }, [userData, user, initialized]);
+  }, [user, shouldDisplayNameFields]);
 
   useEffect(() => {
     if (!countries?.length) return;
