@@ -212,3 +212,27 @@ export const SQMComponentNewPartner = () => {
     ></sqm-partner-info-modal>
   );
 };
+
+export const PartnerHasFirstAndLastName = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      firstName: "John",
+      lastName: "Doe",
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
+
+export const PartnerHasFirstNameOnly = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      firstName: "John",
+      lastName: "",
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
