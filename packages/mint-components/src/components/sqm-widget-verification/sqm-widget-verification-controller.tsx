@@ -37,9 +37,9 @@ function useTemplateChildren({ parent, callback }) {
 
 /**
  * @uiName Widget Verification Controller
- * @slots [{"name":"verified","title":"Verified template"},{"name":"not-verified","title":"Not Verified template"}]
+ * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
  * @exampleGroup Tax and Cash
- * @example Widget Cash Payout Form - <sqm-widget-verification-controller state-controller='{"sqm-widget-verification-controller":{"isAuth":true}}'><template slot="verified"><sqm-tax-and-cash state-controller='{"sqm-tax-and-cash":{"step":"/1"}}'></sqm-tax-and-cash></template><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template></sqm-widget-verification-controller>
+ * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  * @canvasRenderer always-replace
  */
 @Component({
@@ -48,8 +48,8 @@ function useTemplateChildren({ parent, callback }) {
 export class WidgetVerificationController {
   /**
    * @undocumented
-   * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
    * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
+   * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
    */
   @Prop() stateController: string =
     '{"sqm-widget-verification-controller":{"isAuth":true}}';
