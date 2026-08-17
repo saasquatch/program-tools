@@ -52,7 +52,7 @@ export class WidgetVerificationController {
    * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    */
   @Prop() stateController: string =
-    '{"sqm-widget-verification-controller":{"isAuth":true}}';
+    '{"sqm-widget-verification-controller":{"isAuth":true},"sqm-tax-and-cash":{"step":"/1"}}';
 
   constructor() {
     withHooks(this);
