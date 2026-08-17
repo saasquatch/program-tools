@@ -49,7 +49,7 @@ export class WidgetVerificationController {
   /**
    * @undocumented
    * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": true }, "disabled": "true" }
-   * @componentState { "title": "Tax and cash", "slot": "verified", "props": {"default": true, "isAuth": true }, "disabled": "true" }
+   * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    */
   @Prop() stateController: string = "{}";
 
@@ -61,7 +61,7 @@ export class WidgetVerificationController {
   render() {
     const [context, setContext] = useParentState<boolean>({
       namespace: VERIFICATION_PARENT_NAMESPACE,
-      initialValue: false,
+      initialValue: true,
     });
 
     const props = JSON.parse(this.stateController);
