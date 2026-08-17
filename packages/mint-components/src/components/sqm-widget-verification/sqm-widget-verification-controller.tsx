@@ -61,7 +61,7 @@ export class WidgetVerificationController {
   render() {
     const [context, setContext] = useParentState<boolean>({
       namespace: VERIFICATION_PARENT_NAMESPACE,
-      initialValue: true,
+      initialValue: false,
     });
 
     const props = JSON.parse(this.stateController);
