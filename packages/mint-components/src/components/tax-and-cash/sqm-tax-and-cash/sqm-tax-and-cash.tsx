@@ -1281,7 +1281,7 @@ export class TaxAndCashMonolith {
    * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
    * @componentState { "title": "Dashboard", "props": { "step": "/dashboard" }, "dependencies": ["sqm-tax-and-cash-dashboard"], "uiGroup": "Dashboard Properties" }
    */
-  @Prop() stateController: string = "{}";
+  @Prop() stateController: string = '{"sqm-tax-and-cash":{"step":"/1"}}';
 
   /**
    * @undocumented

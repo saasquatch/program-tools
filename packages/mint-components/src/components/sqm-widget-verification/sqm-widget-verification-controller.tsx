@@ -37,7 +37,7 @@ function useTemplateChildren({ parent, callback }) {
 
 /**
  * @uiName Widget Verification Controller
- * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+ * @slots [{"name":"verified","title":"Verified template"},{"name":"not-verified","title":"Not Verified template"}]
  * @exampleGroup Tax and Cash
  * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
  * @canvasRenderer always-replace
