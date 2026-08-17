@@ -91,7 +91,7 @@ function useDemoWidgetEmailVerification(
         initialLoading: false,
         loading: false,
         email: "test@example.com",
-        sendCodeError: true,
+        sendCodeError: false,
       },
       callbacks: {
         submitEmail: async () => setShowCode(true),
