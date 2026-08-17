@@ -70,11 +70,6 @@ export class WidgetVerificationController {
     const stateOverride =
       props?.["sqm-widget-verification-controller"] || props || {};
     const demoIsAuth = isDemo() && stateOverride?.isAuth;
-    // When raisins cascades a nested substate, it appears here keyed by child tag.
-    // We use these to auto-switch slots so previewing a substate works from either group.
-    const cascadedChildTags = Object.keys(props || {}).filter(
-      (k) => k !== "sqm-widget-verification-controller"
-    );
 
     const [container, setContainer] = useState<HTMLDivElement>(undefined);
     const [slot, setSlot] = useState<HTMLDivElement>(undefined);
@@ -82,19 +77,7 @@ export class WidgetVerificationController {
     const updateTemplates = useCallback(() => {
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
 
-      // Infer the target slot from a cascaded substate whose tag lives in one of the templates
-      let inferredIsAuth: boolean | undefined;
-      for (const tag of cascadedChildTags) {
-        const owning = Array.from(templates).find((t) =>
-          t.content.querySelector(tag)
-        );
-        if (owning) {
-          inferredIsAuth = owning.slot === "verified";
-          break;
-        }
-      }
-
-      const isAuth = inferredIsAuth ?? (demoIsAuth || context);
+      const isAuth = demoIsAuth || context;
       const template = Array.from(templates).find(
         (t) => t.slot === (isAuth ? "verified" : "not-verified")
       );
