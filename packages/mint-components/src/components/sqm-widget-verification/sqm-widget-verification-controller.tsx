@@ -51,7 +51,8 @@ export class WidgetVerificationController {
    * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
    * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    */
-  @Prop() stateController: string = "{}";
+  @Prop() stateController: string =
+    '{"sqm-widget-verification-controller":{"isAuth":true}}';
 
   constructor() {
     withHooks(this);
@@ -65,15 +66,35 @@ export class WidgetVerificationController {
     });
 
     const props = JSON.parse(this.stateController);
-    const demoIsAuth =
-      isDemo() && props["sqm-widget-verification-controller"]?.isAuth;
+    // raisins sends state props flat; the @Prop default nests them under the tag
+    const stateOverride =
+      props?.["sqm-widget-verification-controller"] || props || {};
+    const demoIsAuth = isDemo() && stateOverride?.isAuth;
+    // When raisins cascades a nested substate, it appears here keyed by child tag.
+    // We use these to auto-switch slots so previewing a substate works from either group.
+    const cascadedChildTags = Object.keys(props || {}).filter(
+      (k) => k !== "sqm-widget-verification-controller"
+    );
 
     const [container, setContainer] = useState<HTMLDivElement>(undefined);
     const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
     const updateTemplates = useCallback(() => {
-      const isAuth = demoIsAuth || context;
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
+
+      // Infer the target slot from a cascaded substate whose tag lives in one of the templates
+      let inferredIsAuth: boolean | undefined;
+      for (const tag of cascadedChildTags) {
+        const owning = Array.from(templates).find((t) =>
+          t.content.querySelector(tag)
+        );
+        if (owning) {
+          inferredIsAuth = owning.slot === "verified";
+          break;
+        }
+      }
+
+      const isAuth = inferredIsAuth ?? (demoIsAuth || context);
       const template = Array.from(templates).find(
         (t) => t.slot === (isAuth ? "verified" : "not-verified")
       );
@@ -137,7 +158,7 @@ export class WidgetVerificationController {
           target.style.height = "25px";
         });
       }
-    }, [container, slot, context, demoIsAuth]);
+    }, [container, slot, context, demoIsAuth, this.stateController]);
 
     useEffect(() => {
       if (!container || !slot) {
@@ -149,7 +170,7 @@ export class WidgetVerificationController {
       updateTemplates();
 
       return useTemplateChildren({ parent: slot, callback: updateTemplates });
-    }, [slot, container, context, demoIsAuth]);
+    }, [slot, container, context, demoIsAuth, this.stateController]);
 
     return (
       <Host>
