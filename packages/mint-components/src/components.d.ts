@@ -6162,7 +6162,7 @@ export namespace Components {
         "searchForCountryText": string;
         /**
           * @undocumented 
-          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 1: Personal information", "default": true, "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
           * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
@@ -7592,8 +7592,8 @@ export namespace Components {
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
+          * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
-          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
          */
         "stateController": string;
     }
@@ -14582,7 +14582,7 @@ declare namespace LocalJSX {
         "searchForCountryText"?: string;
         /**
           * @undocumented 
-          * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+          * @componentState { "title": "Step 1: Personal information", "default": true, "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
           * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
           * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
           * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
@@ -16011,8 +16011,8 @@ declare namespace LocalJSX {
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
+          * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
           * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
-          * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
          */
         "stateController"?: string;
     }

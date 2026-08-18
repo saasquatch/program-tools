@@ -87,11 +87,11 @@ function useDemoWidgetEmailVerification(
   return deepmerge(
     {
       states: {
-        error: true,
+        error: false,
         initialLoading: false,
         loading: false,
         email: "test@example.com",
-        sendCodeError: true,
+        sendCodeError: false,
       },
       callbacks: {
         submitEmail: async () => setShowCode(true),
