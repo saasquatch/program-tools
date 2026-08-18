@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.1
+
+### Patch Changes
+
+- [#523](https://github.com/saasquatch/program-tools/pull/523) [`39be100`](https://github.com/saasquatch/program-tools/commit/39be100d3ddf6d5c81f9ca485f3bdbf4b47a84a6) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Fix sqm-email-verification defaulting to error state. Change sqm-widget-verification-controller to show tax form step one by default and flip state tree so tax and cash displays first rather than verify email.
+
 ## 2.4.0
 
 ### Minor Changes
