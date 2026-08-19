@@ -5,6 +5,20 @@ export type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
 
 export type RSJsonNode = any;
 
+/**
+ * Defined in core under ProgramTriggerQuery.graphql
+ */
+export type User = BaseUserFields & {
+  rewards: {
+    totalCount: number;
+    data: UserReward[];
+  };
+  referrals: {
+    totalCount: number;
+  };
+  referredByReferral?: Referral;
+};
+
 export type ProgramGoal = {
   goalId: string;
   programId?: string;
@@ -13,18 +27,39 @@ export type ProgramGoal = {
   lastDate: number;
 };
 
-/**
- * Defined in core under ProgramTriggerQuery.graphql
- */
-export type User = {
+export type BaseUserFields = {
   id: string;
   accountId: string;
   firstName?: string;
   lastName?: string;
-  referredByReferral?: Referral;
+  imageUrl?: string;
+  email?: string;
+  cookieId?: string;
+  locale?: string;
+  countryCode?: string;
+  localization: {
+    locale?: string;
+    language?: {
+      languageCode: string;
+    };
+    country?: {
+      countryCode: string;
+    };
+  };
+  referable?: boolean;
+  firstSeenIP?: string;
+  lastSeenIP?: string;
+  firstSeenGeoData?: any;
+  lastSeenGeoData?: any;
+  dateCreated?: number;
+  dateBlocked?: number;
+  customFields?: Record<string, any>;
+  segments: string[];
+  fraudFlags: {
+    type: string;
+    message: string;
+  }[];
   programGoals: ProgramGoal[];
-
-  [key: string]: any;
 };
 
 /**
@@ -35,10 +70,11 @@ export type UserEvent = {
   id: string;
   fields: RSJsonNode;
   isModification: boolean;
-  convertedTotalAmountPostDiscount?: number | null;
   dateTriggered?: number;
   dateReceived?: number;
   dateProcessed?: number;
+  convertedTotalAmountPostDiscount?: number | null;
+  convertedCurrency?: string;
 };
 
 /**

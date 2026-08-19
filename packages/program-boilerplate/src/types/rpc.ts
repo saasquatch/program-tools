@@ -50,18 +50,35 @@ export type Program = {
  */
 export type ProgramTriggerBody = {
   messageType: "PROGRAM_TRIGGER";
-  activeTrigger: {
-    type: ActiveTriggerType;
-    time: number;
-    user: User;
-    // present for AFTER_USER_CREATED_OR_UPDATED
-    previous?: User;
-    // present for AFTER_USER_CREATED_OR_UPDATED and AFTER_USER_EVENT_PROCESSED
-    events?: UserEvent[];
-    // present for REFERRAL
-    referral?: Referral;
-    [key: string]: any;
-  };
+  activeTrigger:
+    | {
+        type: Extract<ActiveTriggerType, "SCHEDULED" | "REWARD_SCHEDULED">;
+        time: number;
+        user: User;
+      }
+    | {
+        type: Extract<ActiveTriggerType, "AFTER_USER_CREATED_OR_UPDATED">;
+        time: number;
+        user: User;
+        previous: User;
+        events: UserEvent[];
+      }
+    | {
+        type: Extract<ActiveTriggerType, "AFTER_USER_EVENT_PROCESSED">;
+        time: number;
+        user: User;
+        events: UserEvent[];
+      }
+    | {
+        type: Extract<ActiveTriggerType, "REFERRAL">;
+        time: number;
+        user: User;
+        referralEventType:
+          | "STARTED"
+          | "MODERATION_ACTION_APPLIED"
+          | "AUTOMODERATION_COMPLETE";
+        referral: Referral;
+      };
   program: {
     id: string;
     rules: RSJsonNode;
