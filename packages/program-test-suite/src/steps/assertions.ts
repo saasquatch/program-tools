@@ -194,7 +194,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will be (\d+) "?([^"]+)"? reward(s) for the "?([^"]+)"? user$/,
+    /^there will be (\d+) "?([^"]+)"? rewards? for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
       const relevantRewards =
         getWorld().state.programTriggerResult.mutations.filter((m: any) => {
@@ -228,7 +228,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
+    /^there will be (\d+) "?([^"]+)"? emails? for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
       const relevantEmails =
         getWorld().state.programTriggerResult.mutations.filter((m: any) => {
