@@ -61,7 +61,9 @@ type ProgramTriggerInfo = {
 export function getProgramTriggerJson(
   info: ProgramTriggerInfo,
   flavor: TenantFlavor
-): ProgramTriggerBody {
+): Omit<ProgramTriggerBody, "activeTrigger"> & {
+  activeTrigger: Partial<ProgramTriggerBody["activeTrigger"]>;
+} {
   return {
     messageType: "PROGRAM_TRIGGER",
     activeTrigger: {
