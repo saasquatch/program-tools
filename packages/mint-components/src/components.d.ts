@@ -2169,6 +2169,10 @@ export namespace Components {
          */
         "checkboxName": string;
         /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -10612,6 +10616,10 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "checkboxName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "checkboxOptional"?: boolean;
         /**
           * @undocumented 
           * @uiType object
