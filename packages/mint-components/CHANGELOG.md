@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.2
+
+### Patch Changes
+
+- [#526](https://github.com/saasquatch/program-tools/pull/526) [`90a18b9`](https://github.com/saasquatch/program-tools/commit/90a18b964687fd9e769bfa597105989b307b6767) Thanks [@Locrian24](https://github.com/Locrian24)! - Add `checkboxOptional` prop to `sqm-marketing-emails-checkbox` so the marketing emails opt-in checkbox can be configured as optional instead of always required.
+
 ## 2.4.1
 
 ### Patch Changes
