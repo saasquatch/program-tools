@@ -41,6 +41,10 @@ export function GenericTableView(props: GenericTableViewProps) {
   const hiddenCols =
     data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
 
+  // Non-string columns are the editor's raisins plop targets, so the header has to stay rendered for them
+  const hasDropZones = !!columns?.some((column) => typeof column !== "string");
+  const showLabels = data.textOverrides.showLabels;
+
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet = `@media (min-width: ${
     Boolean(rows.length < 2) ? data.mdBreakpoint : data.smBreakpoint
@@ -66,6 +70,13 @@ export function GenericTableView(props: GenericTableViewProps) {
         fontWeight: "var(--sl-font-weight-semibold)",
         overflowWrap: "anywhere",
       },
+      "& th.collapsed": {
+        fontSize: "0",
+        padding: "14px 0",
+      },
+      "& th.drop-zone": {
+        width: "30px",
+      },
       "& td": {
         padding: "var(--sl-spacing-small)",
         paddingLeft: "0",
@@ -73,10 +84,35 @@ export function GenericTableView(props: GenericTableViewProps) {
         textOverflow: "ellipsis",
       },
       [mobile]: {
+        // Body rows become blocks here, so the header has to leave the table layout to stay full width
         "& thead": {
+          display: hasDropZones ? "block" : "none",
+        },
+        // Columns read top-to-bottom inside a card, so the drop zones between them stack the same way
+        "& thead tr": {
+          display: "flex",
+          flexDirection: "column",
+        },
+        "& thead th.label": {
+          padding: "0",
+          lineHeight: "20px",
+          fontSize: "var(--sl-font-size-small)",
+          color: "var(--sl-color-neutral-500)",
+        },
+        "& thead th.drop-zone": {
+          width: "auto",
+          padding: "14px 0",
+          lineHeight: "0",
+          position: "relative",
+        },
+        // The plop target is inline-styled position:absolute, so it needs the cell as its containing block to span it
+        "& thead th.drop-zone slot::slotted(raisins-plop-target)": {
+          width: "100%",
+        },
+        "& tbody td.drop-zone": {
           display: "none",
         },
-        "& tr": {
+        "& tbody tr": {
           display: "block",
           background: "inherit",
           border:
@@ -141,12 +177,15 @@ export function GenericTableView(props: GenericTableViewProps) {
     <div>
       <style type="text/css">{styleString}</style>
       <table class={sheet.classes.Table}>
-        {data.textOverrides.showLabels && (
+        {(showLabels || hasDropZones) && (
           <thead>
             <tr>
               {columns?.map((column: string | VNode) => {
-                if (typeof column === "string") return <th>{column}</th>;
-                return <th style={{ width: "30px" }}>{column}</th>;
+                if (typeof column === "string")
+                  return (
+                    <th class={showLabels ? "label" : "collapsed"}>{column}</th>
+                  );
+                return <th class="drop-zone">{column}</th>;
               })}
             </tr>
           </thead>
@@ -178,7 +217,7 @@ export function GenericTableView(props: GenericTableViewProps) {
                         {cell}
                       </td>
                     ) : (
-                      <td>{cell}</td>
+                      <td class="drop-zone">{cell}</td>
                     );
                   })}
                 </tr>
