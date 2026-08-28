@@ -25,6 +25,8 @@ export interface GenericTableViewProps {
   };
   elements: {
     columns: Array<VNode | string>;
+    /** Indexes into `columns` that are editor plop targets rather than data columns. */
+    dropZoneColumns?: number[];
     rows: VNode[][];
     loading?: boolean;
     emptyElement?: VNode;
@@ -41,8 +43,10 @@ export function GenericTableView(props: GenericTableViewProps) {
   const hiddenCols =
     data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
 
-  // Non-string columns are the editor's raisins plop targets, so the header has to stay rendered for them
-  const hasDropZones = !!columns?.some((column) => typeof column !== "string");
+  // Only the producer knows which columns are plop targets; a column can render a
+  // VNode label and still be real data (e.g. the invoice download column).
+  const dropZones = new Set(elements.dropZoneColumns);
+  const hasDropZones = dropZones.size > 0;
   const showLabels = data.textOverrides.showLabels;
 
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
@@ -180,12 +184,12 @@ export function GenericTableView(props: GenericTableViewProps) {
         {(showLabels || hasDropZones) && (
           <thead>
             <tr>
-              {columns?.map((column: string | VNode) => {
-                if (typeof column === "string")
-                  return (
-                    <th class={showLabels ? "label" : "collapsed"}>{column}</th>
-                  );
-                return <th class="drop-zone">{column}</th>;
+              {columns?.map((column: string | VNode, i: number) => {
+                if (dropZones.has(i))
+                  return <th class="drop-zone">{column}</th>;
+                return (
+                  <th class={showLabels ? "label" : "collapsed"}>{column}</th>
+                );
               })}
             </tr>
           </thead>
@@ -204,6 +208,8 @@ export function GenericTableView(props: GenericTableViewProps) {
                   part="table-row"
                 >
                   {row.map((cell, j) => {
+                    if (dropZones.has(j)) return <td class="drop-zone">{cell}</td>;
+                    // Only string labels can be echoed into the mobile card's :before
                     return typeof columns[j] === "string" ? (
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
@@ -217,7 +223,7 @@ export function GenericTableView(props: GenericTableViewProps) {
                         {cell}
                       </td>
                     ) : (
-                      <td class="drop-zone">{cell}</td>
+                      <td>{cell}</td>
                     );
                   })}
                 </tr>
