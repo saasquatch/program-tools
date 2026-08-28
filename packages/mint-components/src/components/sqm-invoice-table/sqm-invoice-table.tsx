@@ -277,8 +277,7 @@ function useInvoiceTableDemo(
         smBreakpoint: 599,
       },
       elements: {
-        columns: content.columns,
-        rows: content.rows,
+        ...content,
         emptyElement,
         loadingElement,
       },
