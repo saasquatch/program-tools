@@ -209,7 +209,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
       assert.strictEqual(
         relevantRewards.length,
         parseInt(count, 10),
-        `Expected to find ${count} "${key}" analytics for "${user}" but found ${relevantRewards.length}`
+        `Expected to find ${count} "${key}" rewards for "${user}" but found ${relevantRewards.length}`
       );
     }
   );
