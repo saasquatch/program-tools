@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.3
+
+### Patch Changes
+
+- [#525](https://github.com/saasquatch/program-tools/pull/525) [`66d681c`](https://github.com/saasquatch/program-tools/commit/66d681cd10190d1cb2c9204bd4297867ffc4d39f) Thanks [@00salmon](https://github.com/00salmon)! - Fixes drop targets in mobile view of referral / reward tables
+
 ## 2.4.2
 
 ### Patch Changes
