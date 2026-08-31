@@ -1,4 +1,8 @@
-import { initializeLogger, LogLevel, LOG_LEVELS } from "@saasquatch/logger";
+import {
+  initializeLogger,
+  LOG_LEVELS,
+  type LogLevel,
+} from "@saasquatch/logger";
 import { Logger } from "winston";
 
 // Lazily initialized logger instance

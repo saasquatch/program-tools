@@ -1,5 +1,7 @@
 import request from "supertest";
-import { webtask } from "../src/index";
+import { webtask } from "../src/index.ts";
+import * as assert from "node:assert";
+import { describe, mock, test, before, after } from "node:test";
 
 describe("webtask express wrapper functionality", () => {
   const testSuccessBody = {
@@ -39,8 +41,8 @@ describe("webtask express wrapper functionality", () => {
     },
   };
 
-  const successSpy = jest.fn(() => newTemplate);
-  const errorSpy = jest.fn(() => {
+  const successSpy = mock.fn(() => newTemplate);
+  const errorSpy = mock.fn(() => {
     const error = new Error();
     error.stack = "message";
     throw error;
@@ -59,30 +61,30 @@ describe("webtask express wrapper functionality", () => {
       const response = await request(app)
         .post("/test-endpoint")
         .send(testSuccessBody);
-      expect(response.body).toStrictEqual(newTemplate);
-      expect(response.status).toBe(200);
+      assert.deepStrictEqual(response.body, newTemplate);
+      assert.deepStrictEqual(response.status, 200);
     });
 
     test("error returns appropiate code and json", async () => {
       const response = await request(app)
         .post("/test-endpoint")
         .send(testErrorBody);
-      expect(response.body).toStrictEqual({
+      assert.deepStrictEqual(response.body, {
         error: "An error occurred in a webtask (AFTER_USER_EVENT_PROCESSED)",
         message: "message",
       });
-      expect(response.status).toBe(500);
+      assert.deepStrictEqual(response.status, 500);
     });
   });
 
   describe("HTTPS", () => {
-    const nodeEnv = process.env.NODE_ENV;
-    beforeAll(() => {
+    const nodeEnv = process.env["NODE_ENV"];
+    before(() => {
       // pretend its production for a second
-      process.env.NODE_ENV = "production";
+      process.env["NODE_ENV"] = "production";
     });
-    afterAll(() => {
-      process.env.NODE_ENV = nodeEnv;
+    after(() => {
+      process.env["NODE_ENV"] = nodeEnv;
     });
 
     test("is enforced", async () => {
@@ -91,15 +93,15 @@ describe("webtask express wrapper functionality", () => {
         .post("/")
         .send(testSuccessBody)
         .set("X-Forwarded-Proto", "https");
-      expect(res.status).toBe(200);
+      assert.deepStrictEqual(res.status, 200);
 
       const res2 = await request(app)
         .post("/")
         .send(testSuccessBody)
         .set("X-Forwarded-Proto", "http");
 
-      expect(res2.status).toBe(403);
-      expect(res2.body).toStrictEqual({ message: "SSL required" });
+      assert.deepStrictEqual(res2.status, 403);
+      assert.deepStrictEqual(res2.body, { message: "SSL required" });
     });
   });
 });

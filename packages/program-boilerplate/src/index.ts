@@ -1,69 +1,70 @@
-import express, { Response, Request } from "express";
+import express, { type Request, type Response } from "express";
 
+import compression from "compression";
+import { getLogger as ssqtLogger } from "@saasquatch/logger";
 import {
   meetCustomFieldRules,
-  meetEventTriggerRules,
   meetEdgeTriggerConditions,
-} from "./conversion";
-import { rewardEmailQuery } from "./queries";
-import Transaction from "./transaction";
-import { triggerProgram } from "./trigger";
-import { getLogger, setLogLevel } from "./logger";
-import { getLogger as ssqtLogger } from "@saasquatch/logger";
-import * as types from "./types";
+  meetEventTriggerRules,
+} from "./conversion.ts";
+import { getLogger, setLogLevel } from "./logger.ts";
+import { rewardEmailQuery } from "./queries.ts";
+import Transaction from "./transaction.ts";
+import { triggerProgram } from "./trigger.ts";
+import * as types from "./types/index.ts";
 
-import {
+import type {
   Program,
   ProgramRequirement,
+  ProgramTriggerBody,
   RequirementValidationResult,
   ValidationProgramField,
-  ProgramTriggerBody,
-} from "./types/rpc";
+} from "./types/rpc.ts";
 
-import { timeboxExpression, timeboxedJsonata, safeJsonata } from "./jsonata";
+import { safeJsonata, timeboxExpression, timeboxedJsonata } from "./jsonata.ts";
 
-import { ProgramType } from "./types/saasquatch";
+import { httpLogMiddleware } from "@saasquatch/logger";
+import { type ProgramType } from "./types/saasquatch.ts";
 import {
-  inferType,
   getGoalAnalyticTimestamp,
-  setRewardSchedule,
-  numToEquality,
+  getRewardUnitsFromJsonata,
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
-  getRewardUnitsFromJsonata,
+  inferType,
   loadStandardWebtaskConfig,
-  WebtaskConfig,
-} from "./utils";
-import { httpLogMiddleware } from "@saasquatch/logger";
+  numToEquality,
+  setRewardSchedule,
+  type WebtaskConfig,
+} from "./utils.ts";
 
 export { types };
 
 export {
   Transaction,
-  ProgramTriggerBody,
-  Program,
-  ProgramType,
-  RequirementValidationResult,
-  ProgramRequirement,
-  ValidationProgramField,
-  meetEventTriggerRules,
-  meetCustomFieldRules,
-  meetEdgeTriggerConditions,
-  rewardEmailQuery,
-  setRewardSchedule,
   getGoalAnalyticTimestamp,
-  triggerProgram,
-  inferType,
-  numToEquality,
+  getLogger,
+  getRewardUnitsFromJsonata,
   getTriggerSchema,
   getUserCustomFieldsFromJsonata,
-  getRewardUnitsFromJsonata,
+  inferType,
+  loadStandardWebtaskConfig,
+  meetCustomFieldRules,
+  meetEdgeTriggerConditions,
+  meetEventTriggerRules,
+  numToEquality,
+  rewardEmailQuery,
+  safeJsonata,
+  setLogLevel,
+  setRewardSchedule,
   timeboxExpression,
   timeboxedJsonata,
-  safeJsonata,
-  getLogger,
-  setLogLevel,
-  loadStandardWebtaskConfig,
+  triggerProgram,
+  type Program,
+  type ProgramRequirement,
+  type ProgramTriggerBody,
+  type ProgramType,
+  type RequirementValidationResult,
+  type ValidationProgramField,
 };
 
 /**
@@ -75,12 +76,10 @@ export {
  * @return {Object} The express server
  */
 export function webtask(program: Program = {}): express.Application {
-  const compression = require("compression");
-
   const app = express();
   const logger = ssqtLogger("program-boilerplate");
 
-  app.use(express.json({ limit: process.env.MAX_PAYLOAD_SIZE || "1mb" }));
+  app.use(express.json({ limit: process.env["MAX_PAYLOAD_SIZE"] || "1mb" }));
   app.use(compression());
   app.use(httpLogMiddleware(logger, { logNonErrorResponses: false }));
 
@@ -88,7 +87,7 @@ export function webtask(program: Program = {}): express.Application {
   // because OWASP advises not to
   app.use((req, res, next) => {
     if (
-      process.env.NODE_ENV === "production" &&
+      process.env["NODE_ENV"] === "production" &&
       req.header("X-Forwarded-Proto") !== "https" &&
       !["/healthz", "/livez", "/readyz"].includes(req.path)
     ) {
@@ -123,12 +122,12 @@ export function webtask(program: Program = {}): express.Application {
 
 export function runWebtask(
   webtask: express.Application,
-  config: WebtaskConfig
+  config: WebtaskConfig,
 ): void {
   const logger = ssqtLogger("program-boilerplate");
 
   const server = webtask.listen(config.port, () =>
-    logger.notice(`${config.webtaskName} running on port ${config.port}`)
+    logger.notice(`${config.webtaskName} running on port ${config.port}`),
   );
 
   if (config.keepAliveTimeoutSeconds !== undefined) {
@@ -143,7 +142,7 @@ export function runWebtask(
 
     if (typeof isTerminating === "boolean" && isTerminating) {
       logger.warn(
-        "Server is already in TERMINATING state, not starting shutdown procedure again"
+        "Server is already in TERMINATING state, not starting shutdown procedure again",
       );
       return;
     }
@@ -152,9 +151,12 @@ export function runWebtask(
 
     logger.notice(`Received ${signal} signal, starting shutdown procedure`);
 
-    setTimeout(() => {
-      server.close(() => logger.notice("Server closed"));
-    }, (config.terminationDelaySeconds ?? 1) * 1000);
+    setTimeout(
+      () => {
+        server.close(() => logger.notice("Server closed"));
+      },
+      (config.terminationDelaySeconds ?? 1) * 1000,
+    );
   };
 
   process.on("SIGTERM", gracefulShutdown("SIGTERM"));

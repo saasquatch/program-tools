@@ -2,8 +2,8 @@
  * @module conversion
  */
 
-import * as assert from "assert";
-import { timeboxedJsonata } from "./jsonata";
+import * as assert from "node:assert";
+import { timeboxedJsonata } from "./jsonata.ts";
 
 /**
  * A custom field based conversion rule
@@ -80,7 +80,7 @@ function parseValue(value: string): RuleValue {
  */
 export function meetEdgeTriggerConditions(
   fields: string[] | undefined,
-  activeTrigger: any
+  activeTrigger: any,
 ): boolean {
   if (fields === undefined || fields.length === 0) {
     return true;
@@ -100,13 +100,13 @@ export function meetEdgeTriggerConditions(
     const { success: prevSuccess, result: previousValue } = timeboxedJsonata(
       field.replace("user.", "previous."),
       activeTrigger,
-      jsonataTimeoutMs
+      jsonataTimeoutMs,
     );
 
     const { success: currentSuccess, result: currentValue } = timeboxedJsonata(
       field,
       activeTrigger,
-      jsonataTimeoutMs
+      jsonataTimeoutMs,
     );
 
     // one of the JSONata expressions failed to evaluate -- edge field is considered
@@ -137,7 +137,7 @@ export function meetEdgeTriggerConditions(
  */
 function meetCustomFieldCondition(
   user: UserQueryResult,
-  customConversionRule: CustomFieldConversionRule
+  customConversionRule: CustomFieldConversionRule,
 ): boolean {
   const ruleVal = parseValue(customConversionRule.value.toString());
   const val = user.customFields[customConversionRule.fieldName];
@@ -164,7 +164,7 @@ function meetCustomFieldCondition(
  */
 function meetEventCondition(
   events: Event[],
-  eventTriggerRule: EventTriggerRule
+  eventTriggerRule: EventTriggerRule,
 ): boolean {
   return events.some(function (event) {
     if (event.key !== eventTriggerRule.eventKey) return false;
@@ -172,11 +172,11 @@ function meetEventCondition(
     switch (eventTriggerRule.operator) {
       case "equal":
         // this should probably be strict equals if we are going to the trouble of parsing
-        return event.fields.value == ruleVal;
+        return event.fields["value"] == ruleVal;
       case "greater":
-        return event.fields.value > ruleVal;
+        return event.fields["value"] > ruleVal;
       case "smaller":
-        return event.fields.value < ruleVal;
+        return event.fields["value"] < ruleVal;
       default:
         break;
     }
@@ -194,7 +194,7 @@ function meetEventCondition(
  */
 export function meetCustomFieldRules(
   user: UserQueryResult,
-  customConversionRules: CustomFieldConversionRule[]
+  customConversionRules: CustomFieldConversionRule[],
 ): boolean {
   if (!user) {
     return false;
@@ -203,7 +203,7 @@ export function meetCustomFieldRules(
     return true;
   }
   return customConversionRules.every((rule) =>
-    meetCustomFieldCondition(user, rule)
+    meetCustomFieldCondition(user, rule),
   );
 }
 
@@ -217,7 +217,7 @@ export function meetCustomFieldRules(
  */
 export function meetEventTriggerRules(
   events: Event[],
-  eventTriggerRules: EventTriggerRule[]
+  eventTriggerRules: EventTriggerRule[],
 ): boolean {
   if (!eventTriggerRules || eventTriggerRules.length === 0) {
     return true;

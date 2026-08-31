@@ -1,11 +1,13 @@
+import * as assert from "node:assert";
+import { beforeEach, describe, test } from "node:test";
 import {
   nonRewardEmailQueryForNonReferralPrograms,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQuery,
   rewardEmailQueryForNonReferralPrograms,
-} from "../src/queries";
-import Transaction from "../src/transaction";
-import { Referral } from "../src/types/saasquatch";
+} from "../src/queries.ts";
+import Transaction from "../src/transaction.ts";
+import type { Referral } from "../src/types/saasquatch.ts";
 
 describe("Transaction class", () => {
   const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
@@ -53,7 +55,7 @@ describe("Transaction class", () => {
     id: "referrerID",
     accountId: "referrerACCOUNTID",
     programGoals: [],
-    referredByReferral: <Referral>{
+    referredByReferral: {
       id: "referralID",
       fraudFlags: [],
       isFraudExempt: false,
@@ -67,7 +69,7 @@ describe("Transaction class", () => {
         },
       },
       rewards: [],
-    },
+    } as Referral,
   };
 
   let transaction = new Transaction(testContext);
@@ -78,7 +80,7 @@ describe("Transaction class", () => {
   describe("#fireProgramEvalAnalytics", () => {
     test("evalAnalytic is pushed to analytics", () => {
       transaction.fireProgramEvalAnalytics(testUser, "ACQUISITION");
-      expect(transaction.analytics).toStrictEqual([
+      assert.deepStrictEqual(transaction.analytics, [
         {
           eventType: "PROGRAM_EVALUATED",
           data: {
@@ -102,10 +104,10 @@ describe("Transaction class", () => {
         "testAnalyticsKey",
         "testDedupKey",
         now,
-        false
+        false,
       );
 
-      expect(transaction.analytics).toStrictEqual([
+      assert.deepStrictEqual(transaction.analytics, [
         {
           eventType: "PROGRAM_GOAL",
           data: {
@@ -128,7 +130,7 @@ describe("Transaction class", () => {
     const rewardKey = "testRewardKey123";
     test("createReward mutation is pushed to mutations", () => {
       const { rewardId } = transaction.generateSimpleReward(rewardKey);
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "CREATE_REWARD",
           data: {
@@ -164,7 +166,7 @@ describe("Transaction class", () => {
           unit: "CAD",
         },
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "CREATE_REWARD",
           data: {
@@ -195,7 +197,7 @@ describe("Transaction class", () => {
     const emailKey = "testEmailKey2344";
     test("sendEmail mutation is pushed to mutations (with reward)", () => {
       transaction.generateSimpleEmail({ emailKey, user: testUser, rewardId });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -219,7 +221,7 @@ describe("Transaction class", () => {
 
     test("sendEmail mutation is pushed to mutations (without reward)", () => {
       transaction.generateSimpleEmail({ emailKey, user: testUser });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -252,7 +254,7 @@ describe("Transaction class", () => {
         referralId,
         rewardId,
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -284,7 +286,7 @@ describe("Transaction class", () => {
         user: testUser,
         referralId,
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -320,20 +322,20 @@ describe("Transaction class", () => {
         user: testUser,
       });
 
-      expect(transaction.mutations.length).toBe(2);
+      assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
-      expect(rewardMutation.type).toBe("CREATE_REWARD");
-      expect(rewardMutation.data.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");
+      assert.deepStrictEqual(rewardMutation.data.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(rewardMutation.data.key).toBe(rewardKey);
-      expect(rewardMutation.data.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.data.key, rewardKey);
+      assert.deepStrictEqual(rewardMutation.data.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(emailMutation).toStrictEqual({
+      assert.deepStrictEqual(emailMutation, {
         type: "SEND_EMAIL",
         data: {
           user: {
@@ -375,33 +377,33 @@ describe("Transaction class", () => {
         },
       });
 
-      expect(transaction.mutations.length).toBe(2);
+      assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
-      expect(rewardMutation.type).toBe("CREATE_REWARD");
-      expect(rewardMutation.data.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");
+      assert.deepStrictEqual(rewardMutation.data.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(rewardMutation.data.key).toBe(rewardKey);
-      expect(rewardMutation.data.referralId).toBe(referralId);
-      expect(rewardMutation.data.status).toBe(undefined);
-      expect(rewardMutation.data.rewardSource).toBe(undefined);
-      expect(rewardMutation.data.userEvent).toBe(undefined);
-      expect(rewardMutation.data.overrideProperties).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.data.key, rewardKey);
+      assert.deepStrictEqual(rewardMutation.data.referralId, referralId);
+      assert.deepStrictEqual(rewardMutation.data.status, undefined);
+      assert.deepStrictEqual(rewardMutation.data.rewardSource, undefined);
+      assert.deepStrictEqual(rewardMutation.data.userEvent, undefined);
+      assert.deepStrictEqual(rewardMutation.data.overrideProperties, {
         dateExpires: ts,
       });
-      expect(rewardMutation.data.dynamicProperties).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.data.dynamicProperties, {
         type: "testReward",
         assignedCredit: 2000,
         unit: "CAD",
       });
-      expect(rewardMutation.data.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.data.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
 
-      expect(emailMutation).toStrictEqual({
+      assert.deepStrictEqual(emailMutation, {
         type: "SEND_EMAIL",
         data: {
           user: {
@@ -456,7 +458,7 @@ describe("Transaction class", () => {
       ];
 
       transaction.generateRefunds();
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "MODERATE_GRAPH_NODES",
           data: {
@@ -531,7 +533,7 @@ describe("Transaction class", () => {
         },
       ];
 
-      expect(transaction.toJson()).toStrictEqual({
+      assert.deepStrictEqual(transaction.toJson(), {
         mutations: [
           {
             type: "MODERATE_GRAPH_NODES",

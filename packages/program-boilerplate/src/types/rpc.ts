@@ -1,6 +1,6 @@
-import { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate";
-import Transaction from "../transaction";
-import { Referral, RSJsonNode, User, UserEvent } from "./saasquatch";
+import type { ProgramTemplateBuilder } from "@saasquatch/schema/types/ProgramTemplate/index.d.ts";
+import type Transaction from "../transaction.ts";
+import type { Referral, RSJsonNode, User, UserEvent } from "./saasquatch.ts";
 
 /********************************************************/
 /*                          API                         */
@@ -159,7 +159,7 @@ export type ProgramIntrospectionHandler = (
   template: ProgramTemplateBuilder,
   rules: any,
   program: any,
-  tenant: TenantInfo
+  tenant: TenantInfo,
 ) => ProgramIntrospectionResponse;
 
 /**
@@ -173,13 +173,13 @@ export type ProgramIntrospectionHandler = (
 export type RequirementValidationHandler = (
   queryResult: any,
   program: ValidationProgramField,
-  time: number
+  time: number,
 ) => RequirementValidationResult[];
 
 export type ProgramVariableSchemaHandler = (
   schema: any,
   triggerType: TriggerType,
-  scheduleKey?: string
+  scheduleKey?: string,
 ) => ProgramVariableSchemaResult;
 
 /**
