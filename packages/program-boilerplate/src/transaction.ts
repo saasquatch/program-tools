@@ -183,7 +183,6 @@ export default class Transaction {
       status,
     } satisfies RewardData;
 
-    // this does nothing because { userEvent: undefined } will never === undefined, etc
     const validProperties = [
       { userEvent },
       { rewardSource },
@@ -197,7 +196,7 @@ export default class Transaction {
     const newMutation = {
       type: "CREATE_REWARD",
       data: updatedRewardData,
-      metadata: input.extraMetadata,
+      ...(input.extraMetadata ? { metadata: input.extraMetadata } : {}),
     } satisfies ProgramMutation;
 
     this.mutations = [...this.mutations, newMutation];
@@ -289,7 +288,7 @@ export default class Transaction {
           ? rewardEmailQuery
           : nonRewardEmailQueryForReferralPrograms,
       },
-      metadata: extraMetadata,
+      ...(extraMetadata ? { metadata: extraMetadata } : {}),
     } satisfies ProgramMutation;
 
     this.mutations = [...this.mutations, newMutation];

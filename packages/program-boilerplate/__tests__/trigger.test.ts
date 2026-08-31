@@ -60,6 +60,11 @@ describe("triggerProgram", () => {
       tenant: {
         tenantAlias: "tenantAlias",
         isLiveMode: true,
+        impactBrandId: null,
+        settings: {
+          suspectedFraudModerationState: "IGNORE",
+          timeZone: "America/Vancouver",
+        },
       },
     };
     const newTemplate = { template: {} };
@@ -119,7 +124,18 @@ describe("triggerProgram", () => {
           accountId: "accountId",
           id: "id",
           programGoals: [],
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
+        events: [],
       },
       program: {
         id: "programName",
@@ -130,6 +146,7 @@ describe("triggerProgram", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
     };
