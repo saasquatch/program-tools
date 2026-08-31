@@ -12,6 +12,7 @@ import {
   useRequestRerender,
   useRerenderListener,
 } from "../../tables/re-render";
+import { dropZoneColumnIndexes } from "../../tables/plopTargets";
 import { useChildElements } from "../../tables/useChildElements";
 import mockRewardData from "./mockRewardData";
 
@@ -214,7 +215,12 @@ function useRewardsTableDemo(
     const columns =
       columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
     // Set the content to render and finish loading components
-    setContent({ columns, loading: false, page: 0 });
+    setContent({
+      columns,
+      dropZoneColumns: dropZoneColumnIndexes(columnComponents),
+      loading: false,
+      page: 0,
+    });
   }
 
   useEffect(() => {
@@ -245,8 +251,7 @@ function useRewardsTableDemo(
         smBreakpoint: 599,
       },
       elements: {
-        columns: content.columns,
-        rows: content.rows,
+        ...content,
         emptyElement,
         loadingElement,
       },
