@@ -194,8 +194,8 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will be (\d+) "?([^"]+)"? reward(s) for the "?([^"]+)"? user$/,
-    (count: number, key: string, user: string) => {
+    /^there will be (\d+) "?([^"]+)"? rewards? for the "?([^"]+)"? user$/,
+    (count: string, key: string, user: string) => {
       const relevantRewards =
         getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           return (
@@ -208,8 +208,8 @@ const assertionSteps: StepDefinitions = ({ then }) => {
 
       assert.strictEqual(
         relevantRewards.length,
-        count,
-        `Expected to find ${count} "${key}" analytics for "${user}" but found ${relevantRewards.length}`
+        parseInt(count, 10),
+        `Expected to find ${count} "${key}" rewards for "${user}" but found ${relevantRewards.length}`
       );
     }
   );
@@ -228,8 +228,8 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
-    (count: number, key: string, user: string) => {
+    /^there will be (\d+) "?([^"]+)"? emails? for the "?([^"]+)"? user$/,
+    (count: string, key: string, user: string) => {
       const relevantEmails =
         getWorld().state.programTriggerResult.mutations.filter((m: any) => {
           return (
@@ -242,7 +242,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
 
       assert.strictEqual(
         relevantEmails.length,
-        count,
+        parseInt(count, 10),
         `Expected to find ${count} "${key}" emails for "${user}" but found ${relevantEmails.length}`
       );
     }

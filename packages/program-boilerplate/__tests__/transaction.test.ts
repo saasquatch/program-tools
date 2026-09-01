@@ -1,3 +1,4 @@
+import { RewardData } from "@saasquatch/schema/types/ProgramTransaction";
 import {
   nonRewardEmailQueryForNonReferralPrograms,
   nonRewardEmailQueryForReferralPrograms,
@@ -22,6 +23,7 @@ describe("Transaction class", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
@@ -34,6 +36,16 @@ describe("Transaction class", () => {
             test: 123,
           },
           programGoals: [],
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
         events: [
           {
@@ -53,7 +65,17 @@ describe("Transaction class", () => {
     id: "referrerID",
     accountId: "referrerACCOUNTID",
     programGoals: [],
-    referredByReferral: <Referral>{
+    rewards: {
+      totalCount: 0,
+      data: [],
+    },
+    referrals: {
+      totalCount: 0,
+    },
+    localization: {},
+    segments: [],
+    fraudFlags: [],
+    referredByReferral: {
       id: "referralID",
       fraudFlags: [],
       isFraudExempt: false,
@@ -65,9 +87,15 @@ describe("Transaction class", () => {
           totalCount: 0,
           data: [],
         },
+        referrals: {
+          totalCount: 0,
+        },
+        localization: {},
+        segments: [],
+        fraudFlags: [],
       },
       rewards: [],
-    },
+    } satisfies Referral,
   };
 
   let transaction = new Transaction(testContext);
@@ -155,11 +183,11 @@ describe("Transaction class", () => {
         user: testUser,
         referralId,
         userEvent: { key: "userEventValue" },
-        rewardSource: "testSource",
+        rewardSource: "FRIEND_SIGNUP",
         status: undefined,
         overrideProperties: { dateExpires: ts },
         dynamicProperties: {
-          type: "testReward",
+          type: "CREDIT",
           assignedCredit: 2000,
           unit: "CAD",
         },
@@ -178,12 +206,12 @@ describe("Transaction class", () => {
             status: undefined,
             overrideProperties: { dateExpires: ts },
             dynamicProperties: {
-              type: "testReward",
+              type: "CREDIT",
               assignedCredit: 2000,
               unit: "CAD",
             },
             userEvent: { key: "userEventValue" },
-            rewardSource: "testSource",
+            rewardSource: "FRIEND_SIGNUP",
           },
         },
       ]);
@@ -324,12 +352,15 @@ describe("Transaction class", () => {
 
       const [rewardMutation, emailMutation] = transaction.mutations;
       expect(rewardMutation.type).toBe("CREATE_REWARD");
-      expect(rewardMutation.data.user).toStrictEqual({
+
+      const mut = rewardMutation.data as RewardData;
+
+      expect(mut.user).toStrictEqual({
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(rewardMutation.data.key).toBe(rewardKey);
-      expect(rewardMutation.data.user).toStrictEqual({
+      expect(mut.key).toBe(rewardKey);
+      expect(mut.user).toStrictEqual({
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
@@ -341,11 +372,11 @@ describe("Transaction class", () => {
             accountId: "referrerACCOUNTID",
           },
           key: emailKey,
-          rewardId: rewardMutation.data.rewardId,
+          rewardId: mut.rewardId,
           queryVariables: {
             userId: "referrerID",
             accountId: "referrerACCOUNTID",
-            rewardId: rewardMutation.data.rewardId,
+            rewardId: mut.rewardId,
             programId: "testProgramId",
           },
           query: rewardEmailQueryForNonReferralPrograms,
@@ -369,7 +400,7 @@ describe("Transaction class", () => {
         status: undefined,
         overrideProperties: { dateExpires: ts },
         dynamicProperties: {
-          type: "testReward",
+          type: "CREDIT",
           assignedCredit: 2000,
           unit: "CAD",
         },
@@ -379,24 +410,27 @@ describe("Transaction class", () => {
 
       const [rewardMutation, emailMutation] = transaction.mutations;
       expect(rewardMutation.type).toBe("CREATE_REWARD");
-      expect(rewardMutation.data.user).toStrictEqual({
+
+      const mut = rewardMutation.data as RewardData;
+
+      expect(mut.user).toStrictEqual({
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(rewardMutation.data.key).toBe(rewardKey);
-      expect(rewardMutation.data.referralId).toBe(referralId);
-      expect(rewardMutation.data.status).toBe(undefined);
-      expect(rewardMutation.data.rewardSource).toBe(undefined);
-      expect(rewardMutation.data.userEvent).toBe(undefined);
-      expect(rewardMutation.data.overrideProperties).toStrictEqual({
+      expect(mut.key).toBe(rewardKey);
+      expect(mut.referralId).toBe(referralId);
+      expect(mut.status).toBe(undefined);
+      expect(mut.rewardSource).toBe(undefined);
+      expect(mut.userEvent).toBe(undefined);
+      expect(mut.overrideProperties).toStrictEqual({
         dateExpires: ts,
       });
-      expect(rewardMutation.data.dynamicProperties).toStrictEqual({
-        type: "testReward",
+      expect(mut.dynamicProperties).toStrictEqual({
+        type: "CREDIT",
         assignedCredit: 2000,
         unit: "CAD",
       });
-      expect(rewardMutation.data.user).toStrictEqual({
+      expect(mut.user).toStrictEqual({
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
@@ -409,7 +443,7 @@ describe("Transaction class", () => {
             accountId: "referrerACCOUNTID",
           },
           key: emailKey,
-          rewardId: rewardMutation.data.rewardId,
+          rewardId: mut.rewardId,
           referralId: undefined,
           queryVariables: {
             eventId: undefined,
@@ -418,7 +452,7 @@ describe("Transaction class", () => {
             accountId: "referrerACCOUNTID",
             referralId: referralId,
             programId: "testProgramId",
-            rewardId: rewardMutation.data.rewardId,
+            rewardId: mut.rewardId,
           },
           query: rewardEmailQuery,
         },
@@ -430,24 +464,32 @@ describe("Transaction class", () => {
     test("refund mutatations are pushed to the mutations", () => {
       transaction.events = [
         {
+          id: "1",
+          isModification: false,
           key: "refund",
           fields: {
             order_id: "orderId123",
           },
         },
         {
+          id: "2",
+          isModification: false,
           key: "purchase",
           fields: {
             order_id: "orderId125",
           },
         },
         {
+          id: "3",
+          isModification: false,
           key: "refund",
           fields: {
             key: "value",
           },
         },
         {
+          id: "4",
+          isModification: false,
           key: "refund",
           fields: {
             order_id: "orderId125",

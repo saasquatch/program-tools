@@ -1,45 +1,51 @@
-// @ts-check
 import {
-  rewardEmailQuery,
-  nonRewardEmailQueryForReferralPrograms,
-  rewardEmailQueryForNonReferralPrograms,
   nonRewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForReferralPrograms,
+  rewardEmailQuery,
+  rewardEmailQueryForNonReferralPrograms,
 } from "./queries";
 
-import { ProgramTriggerBody } from "./types/rpc";
-import { ProgramType, User } from "./types/saasquatch";
+import type {
+  Analytics,
+  DynamicProperties,
+  InitialRewardStatus,
+  Mutations,
+  ProgramAnalytic,
+  ProgramMutation,
+  RewardData,
+  RewardSource,
+} from "@saasquatch/schema/types/ProgramTransaction";
 import ObjectID from "bson-objectid";
+import { ProgramTriggerBody } from "./types/rpc";
+import { ProgramType, User, UserEvent } from "./types/saasquatch";
 
 type TransactionContext = {
   body: ProgramTriggerBody;
 };
+
+type MutationExtraMetadata = Record<string, any>;
 
 type ReferralRewardInput = {
   rewardKey: string;
   user: User;
   referralId: string;
   userEvent?: any;
-  rewardSource?: string;
-  status?: string;
+  rewardSource?: RewardSource;
+  status?: InitialRewardStatus;
   overrideProperties?: {
     dateScheduledFor?: number | null;
     dateExpires?: number | null;
   };
-  dynamicProperties?: {
-    dateScheduledFor?: number | null;
-    dateExpires?: number | null;
-    type: string;
-    unit: string;
-    assignedCredit: number;
-  };
+  dynamicProperties?: DynamicProperties;
+  extraMetadata?: MutationExtraMetadata;
 };
 
 export default class Transaction {
-  mutations: any[];
-  analytics: any[];
+  mutations: Mutations;
+  analytics: Analytics;
   context: TransactionContext;
   currentUser: User;
-  events?: any[];
+  events?: UserEvent[];
 
   /**
    * @classdesc A Transaction instance takes a context object from Express, generates mutations and analytics as the program requested.
@@ -51,8 +57,8 @@ export default class Transaction {
    */
   constructor(
     context: TransactionContext,
-    mutations: any = [],
-    analytics: any = []
+    mutations: Mutations = [],
+    analytics: Analytics = []
   ) {
     this.mutations = mutations;
     this.analytics = analytics;
@@ -61,7 +67,7 @@ export default class Transaction {
     const activeTrigger = context.body.activeTrigger;
 
     this.currentUser = activeTrigger.user;
-    this.events = activeTrigger.events;
+    this.events = "events" in activeTrigger ? activeTrigger.events : undefined;
   }
 
   /**
@@ -81,7 +87,7 @@ export default class Transaction {
         },
         programType: type,
       },
-    };
+    } satisfies ProgramAnalytic;
 
     this.analytics.push(evalAnalytic);
   }
@@ -118,7 +124,7 @@ export default class Transaction {
         },
         isConversion,
       },
-    };
+    } satisfies ProgramAnalytic;
 
     this.analytics.push(goalAnalytic);
   }
@@ -140,7 +146,7 @@ export default class Transaction {
         key: rewardKey,
         rewardId: rewardId,
       },
-    };
+    } satisfies ProgramMutation;
 
     this.mutations = [...this.mutations, newMutation];
     return { rewardId };
@@ -148,10 +154,6 @@ export default class Transaction {
 
   /**
    * Generates reward for a user of a referral.
-   *
-   * @param {string} rewardKey  Key of the reward (as defined in Contentful).
-   * @param {User}   user       The user to be given reward to (can be either referrer or referred user).
-   * @param {string} referralId id of the referral.
    */
   generateReferralReward(input: ReferralRewardInput) {
     const {
@@ -176,22 +178,26 @@ export default class Transaction {
       referralId: referralId,
       overrideProperties,
       dynamicProperties,
-    };
+      userEvent,
+      rewardSource,
+      status,
+    } satisfies RewardData;
 
-    // this does nothing because { userEvent: undefined } will never === undefined, etc
     const validProperties = [
       { userEvent },
       { rewardSource },
       { status },
-    ].filter((prop) => prop !== undefined);
-    const updatedRewardData = validProperties.reduce((currentData, prop) => {
+    ];
+
+    const updatedRewardData: RewardData = validProperties.reduce((currentData, prop) => {
       return { ...currentData, ...prop };
     }, rewardData);
 
     const newMutation = {
       type: "CREATE_REWARD",
       data: updatedRewardData,
-    };
+      ...(input.extraMetadata ? { metadata: input.extraMetadata } : {}),
+    } satisfies ProgramMutation;
 
     this.mutations = [...this.mutations, newMutation];
     return { rewardId };
@@ -234,7 +240,7 @@ export default class Transaction {
           ? rewardEmailQueryForNonReferralPrograms
           : nonRewardEmailQueryForNonReferralPrograms,
       },
-    };
+    } satisfies ProgramMutation;
 
     this.mutations = [...this.mutations, newMutation];
   }
@@ -245,12 +251,14 @@ export default class Transaction {
     referralId,
     rewardId,
     eventId,
+    extraMetadata,
   }: {
     emailKey: string;
     user: User;
     referralId: string;
     rewardId?: string;
     eventId?: string;
+    extraMetadata?: MutationExtraMetadata;
   }) {
     const variables = {
       userId: user.id,
@@ -262,6 +270,7 @@ export default class Transaction {
     };
 
     const queryVariables = rewardId ? { ...variables, rewardId } : variables;
+
     const newMutation = {
       type: "SEND_EMAIL",
       data: {
@@ -279,7 +288,9 @@ export default class Transaction {
           ? rewardEmailQuery
           : nonRewardEmailQueryForReferralPrograms,
       },
-    };
+      ...(extraMetadata ? { metadata: extraMetadata } : {}),
+    } satisfies ProgramMutation;
+
     this.mutations = [...this.mutations, newMutation];
   }
 
@@ -316,9 +327,9 @@ export default class Transaction {
     rewardKey: string;
     referralId: string;
     user: User;
-    status?: string;
+    status?: InitialRewardStatus;
     overrideProperties?: any;
-    dynamicProperties?: any;
+    dynamicProperties?: DynamicProperties;
     eventId?: string;
   }) {
     const { rewardId } = this.generateReferralReward({
@@ -365,7 +376,8 @@ export default class Transaction {
             maxDepth: 5,
           },
         },
-      };
+      } satisfies ProgramMutation;
+
       this.mutations = [...this.mutations, refundNode];
     });
   }
