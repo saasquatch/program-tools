@@ -241,7 +241,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                   supportLink: (
                     <a
                       target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
+                      href={`mailto:advocate-payment-support@impact.com`}
                     >
                       {text.supportLink}
                     </a>
@@ -263,7 +263,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -284,7 +284,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -348,7 +348,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>

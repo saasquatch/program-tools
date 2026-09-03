@@ -452,7 +452,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -475,7 +475,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -496,7 +496,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -516,7 +516,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -536,7 +536,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -556,7 +556,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -577,7 +577,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -598,7 +598,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -638,7 +638,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -678,7 +678,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -718,7 +718,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -748,7 +748,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -779,7 +779,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -1002,7 +1002,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   supportLink: (
                     <a
                       target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
+                      href={`mailto:advocate-payment-support@impact.com`}
                     >
                       {text.supportLink}
                     </a>
@@ -1031,7 +1031,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -1200,7 +1200,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         supportLink: (
                           <a
                             target="_blank"
-                            href={`mailto:advocate-support@impact.com`}
+                            href={`mailto:advocate-payment-support@impact.com`}
                             class={sheet.classes.DropdownLink}
                           >
                             {text.supportLink}
@@ -1224,7 +1224,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           supportLink: (
                             <a
                               target="_blank"
-                              href={`mailto:advocate-support@impact.com`}
+                              href={`mailto:advocate-payment-support@impact.com`}
                             >
                               {text.supportLink}
                             </a>

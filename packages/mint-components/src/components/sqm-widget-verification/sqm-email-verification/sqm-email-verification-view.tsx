@@ -253,7 +253,7 @@ export function WidgetEmailVerificationView(
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
