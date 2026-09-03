@@ -10,6 +10,8 @@ import { ProgramExplainerView } from "./sqm-program-explainer-view";
  * @exampleGroup Common Components
  * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
  * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
+ * @csspart sqm-header - The header element
+ * @csspart sqm-grid-container - The grid container element
  */
 @Component({
   tag: "sqm-program-explainer",
