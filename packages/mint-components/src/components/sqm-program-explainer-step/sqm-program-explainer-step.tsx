@@ -8,6 +8,9 @@ import { ProgramExplainerStepView } from "./sqm-program-explainer-step-view";
  * @exampleGroup Common Components
  * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
  * @validParents ["sqm-program-explainer"]
+ * @csspart sqm-media - The media element (icon or image)
+ * @csspart sqm-header - The header element
+ * @csspart sqm-description - The description element
  */
 @Component({
   tag: "sqm-program-explainer-step",
