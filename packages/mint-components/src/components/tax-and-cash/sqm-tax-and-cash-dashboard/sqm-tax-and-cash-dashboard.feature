@@ -131,6 +131,28 @@ Feature: Tax And Cash Dashboard
       | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
 
   @motivating
+  Scenario: An Info Alert is displayed when the balance is under the payout minimum
+    Given a participant with a payment threshold of "50.00" and a currency of "USD"
+    And a payout balance of "10.00"
+    Then a blue alert appears with heading "Your balance is under the payout minimum"
+    And description text:
+      """
+      Your total balance is under USD50.00, the minimum required for payout.
+      """
+
+  @minutia
+  Scenario Outline: A balance under the payout minimum takes priority over the 48 hour payment hold
+    Given a user has <holdReason> included in their holdReasons
+    And their payout balance is under their payment threshold
+    Then the alert has heading <heading>
+
+    Examples:
+      | holdReason               | heading                                               |
+      | PAYMENT_HOLD_ON_CHANGE   | Your balance is under the payout minimum              |
+      | BENEFICIARY_NAME_INVALID | Your payment information does not match your tax form |
+      | IDV_CHECK_REQUIRED       | Verify your identity                                  |
+
+  @motivating
   Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
       | impactConnection                                                   |

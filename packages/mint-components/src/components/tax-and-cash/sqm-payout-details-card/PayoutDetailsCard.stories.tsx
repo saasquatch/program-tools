@@ -53,6 +53,46 @@ export const ThresholdPayout = () => {
   );
 };
 
+export const BelowPayoutThresholdFixedDay = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          badgeStatus: "nextPayout",
+          belowPayoutThreshold: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const BelowPayoutThresholdPayoutToday = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          badgeStatus: "payoutToday",
+          belowPayoutThreshold: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
+export const BelowPayoutThresholdBalanceThreshold = () => {
+  return (
+    <sqm-payout-details-card
+      demoData={{
+        states: {
+          thresholdBalance: "50 USD",
+          badgeStatus: "thresholdPayout",
+          belowPayoutThreshold: true,
+        },
+      }}
+    ></sqm-payout-details-card>
+  );
+};
+
 export const PaypalPayout = () => {
   return (
     <sqm-payout-details-card

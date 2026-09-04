@@ -98,6 +98,16 @@ export class PayoutStatusAlert {
   @Prop() accountReviewDescription: string =
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
   /**
+   * @uiName Balance under payout minimum alert header
+   */
+  @Prop() balanceUnderThresholdHeader: string =
+    "Your balance is under the payout minimum";
+  /**
+   * @uiName Balance under payout minimum alert description
+   */
+  @Prop() balanceUnderThresholdDescription: string =
+    "Your total balance is under {minPayoutAmount}, the minimum required for payout.";
+  /**
    * @uiName Payment on hold alert header
    */
   @Prop() paymentHoldOnChangeHeader: string =

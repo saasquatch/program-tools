@@ -4,6 +4,10 @@ import { gql } from "graphql-request";
 import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+} from "../utils";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type EnforceUsTaxComplianceOption =
@@ -22,6 +26,7 @@ export type PayoutStatus =
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
   | "NEW_PAYEE_REVIEW"
+  | "BALANCE_UNDER_THRESHOLD"
   | "PAYMENT_HOLD_ON_CHANGE"
   | "BENEFICIARY_NAME_INVALID"
   | "BENEFICIARY_NAME_MISMATCH"
@@ -46,9 +51,14 @@ const GET_USER_STATUS = gql`
           connected
           publisher {
             id
+            currency
+            withdrawalSettings {
+              paymentThreshold
+            }
             payoutsAccount {
               hold
               holdReasons
+              balance
             }
           }
         }
@@ -105,6 +115,9 @@ export function getStatus(data: UserQuery): PayoutStatus {
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
     return "NEW_PAYEE_REVIEW";
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW")) return "DONE";
+  // A balance below the payout minimum explains the missing payout better than the transient 48h hold
+  if (isBalanceUnderPayoutThreshold(data.user.impactConnection?.publisher))
+    return "BALANCE_UNDER_THRESHOLD";
   if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
     return "PAYMENT_HOLD_ON_CHANGE";
   if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
@@ -197,6 +210,9 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       status,
       error: !!errors,
       enforceUsTaxComplianceOption,
+      minPayoutAmount: formatPayoutThreshold(
+        data?.user?.impactConnection?.publisher,
+      ),
     },
     data: { type },
     text: props.getTextProps(),

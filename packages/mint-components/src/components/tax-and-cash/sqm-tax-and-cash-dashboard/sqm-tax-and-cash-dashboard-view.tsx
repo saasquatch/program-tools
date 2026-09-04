@@ -27,6 +27,7 @@ export interface TaxAndCashDashboardProps {
     showNewFormDialog: boolean;
     hasHold: boolean;
     payoutStatus: PayoutStatus;
+    minPayoutAmount?: string;
     veriffLoading: boolean;
     errors?: {
       general?: boolean;
@@ -102,6 +103,8 @@ export interface TaxAndCashDashboardProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    balanceUnderThresholdHeader: string;
+    balanceUnderThresholdDescription: string;
     paymentHoldOnChangeHeader: string;
     paymentHoldOnChangeDescription: string;
     beneficiaryNameInvalidHeader: string;
@@ -129,6 +132,19 @@ export interface TaxAndCashDashboardProps {
   };
 }
 
+const holdAlertContainer = (iconColor: string) => ({
+  marginLeft: "-20px",
+  "&::part(base)": {
+    maxWidth: "850px",
+    border: "none",
+    backgroundColor: "transparent",
+    color: "var(--sqm-text)",
+  },
+  "& sl-icon::part(base)": {
+    color: iconColor,
+  },
+});
+
 const style = {
   ErrorAlertContainer: {
     "&::part(base)": {
@@ -143,30 +159,11 @@ const style = {
       maxWidth: "600px",
     },
   },
-  WarningHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-      color: "var(--sqm-text)",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-warning-color-icon)",
-    },
-  },
-  ErrorHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-      color: "var(--sqm-text)",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
+  WarningHoldAlertContainer: holdAlertContainer("var(--sqm-warning-color-icon)"),
+  ErrorHoldAlertContainer: holdAlertContainer("var(--sqm-danger-color-icon)"),
+  InfoHoldAlertContainer: holdAlertContainer(
+    "var(--sqm-informative-color-icon)",
+  ),
   ExpiringSoonAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-yellow-100)",
@@ -566,6 +563,21 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           alertType: "warning",
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
+        };
+      case "BALANCE_UNDER_THRESHOLD":
+        return {
+          header: text.balanceUnderThresholdHeader,
+          description: intl.formatMessage(
+            {
+              id: "balanceUnderThresholdDescription",
+              defaultMessage: text.balanceUnderThresholdDescription,
+            },
+            { minPayoutAmount: states.minPayoutAmount },
+          ),
+          buttonText: null,
+          alertType: "info",
+          icon: "info-circle",
+          class: sheet.classes.InfoHoldAlertContainer,
         };
       case "PAYMENT_HOLD_ON_CHANGE":
         return {

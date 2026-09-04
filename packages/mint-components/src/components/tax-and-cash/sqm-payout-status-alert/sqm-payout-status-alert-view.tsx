@@ -8,6 +8,7 @@ export interface PayoutStatusAlertViewProps {
     loading: boolean;
     status: PayoutStatus;
     veriffLoading: boolean;
+    minPayoutAmount?: string;
     enforceUsTaxComplianceOption?: EnforceUsTaxComplianceOption;
   };
   data: {
@@ -42,6 +43,8 @@ export interface PayoutStatusAlertViewProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    balanceUnderThresholdHeader: string;
+    balanceUnderThresholdDescription: string;
     paymentHoldOnChangeHeader: string;
     paymentHoldOnChangeDescription: string;
     beneficiaryNameInvalidHeader: string;
@@ -268,6 +271,20 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
+        };
+      case "BALANCE_UNDER_THRESHOLD":
+        return {
+          header: text.balanceUnderThresholdHeader,
+          description: intl.formatMessage(
+            {
+              id: "balanceUnderThresholdDescription",
+              defaultMessage: text.balanceUnderThresholdDescription,
+            },
+            { minPayoutAmount: states.minPayoutAmount }
+          ),
+          buttonText: null,
+          alertType: "info",
+          icon: "info-circle",
         };
       case "PAYMENT_HOLD_ON_CHANGE":
         return {

@@ -1,6 +1,6 @@
 import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 import { intl } from "../../global/global";
-import { TaxDocumentType } from "./data";
+import { ImpactPublisher, TaxDocumentType } from "./data";
 
 /**
  * Normalize user input to the domestic form Impact stores: digits only,
@@ -128,4 +128,27 @@ export function getCountryObj({
     countryCode,
     displayName,
   };
+}
+
+/** The minimum balance Impact requires before it will issue a payout, e.g. "USD50.00". */
+export function formatPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): string | undefined {
+  const threshold = publisher?.withdrawalSettings?.paymentThreshold;
+  if (!threshold) return undefined;
+
+  return `${publisher?.currency ?? ""}${threshold}`;
+}
+
+/** Impact reports balance and threshold as decimal strings; no threshold means no minimum applies. */
+export function isBalanceUnderPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): boolean {
+  if (!publisher?.withdrawalSettings?.paymentThreshold) return false;
+
+  const threshold = Number(publisher.withdrawalSettings.paymentThreshold);
+  const balance = Number(publisher.payoutsAccount?.balance);
+  if (!Number.isFinite(threshold) || !Number.isFinite(balance)) return false;
+
+  return balance < threshold;
 }
