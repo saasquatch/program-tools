@@ -101,7 +101,7 @@ export class PayoutStatusAlert {
    * @uiName Balance under payout minimum alert header
    */
   @Prop() balanceUnderThresholdHeader: string =
-    "Your balance is under the payout minimum";
+    "Your balance is under the minimum payout";
   /**
    * @uiName Balance under payout minimum alert description
    */

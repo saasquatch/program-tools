@@ -88,7 +88,7 @@ Feature: Cash payout status widget alert
     And a payout balance of "10.00"
     When they complete the payout and tax form flow
     Then a blue banner appears
-    And the alert has heading "Your balance is under the payout minimum"
+    And the alert has heading "Your balance is under the minimum payout"
     And the alert has description "Your total balance is under USD50.00, the minimum required for payout."
 
   @minutia
@@ -100,7 +100,7 @@ Feature: Cash payout status widget alert
 
     Examples:
       | holdReason               | heading                                               |
-      | PAYMENT_HOLD_ON_CHANGE   | Your balance is under the payout minimum              |
+      | PAYMENT_HOLD_ON_CHANGE   | Your balance is under the minimum payout              |
       | BENEFICIARY_NAME_INVALID | Your payment information does not match your tax form |
       | IDV_CHECK_REQUIRED       | Verify your identity                                  |
 

@@ -1080,7 +1080,7 @@ export class TaxAndCashMonolith {
    * @uiGroup Dashboard Properties
    */
   @Prop() dashboard_balanceUnderThresholdHeader: string =
-    "Your balance is under the payout minimum";
+    "Your balance is under the minimum payout";
   /**
    * @uiName Balance under payout minimum alert description
    * @uiGroup Dashboard Properties

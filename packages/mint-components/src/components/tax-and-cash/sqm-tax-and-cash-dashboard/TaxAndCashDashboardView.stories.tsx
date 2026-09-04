@@ -87,7 +87,7 @@ const defaultText: TaxAndCashDashboardProps["text"] = {
   accountReviewHeader: "Your account is under review",
   accountReviewDescription:
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.",
-  balanceUnderThresholdHeader: "Your balance is under the payout minimum",
+  balanceUnderThresholdHeader: "Your balance is under the minimum payout",
   balanceUnderThresholdDescription:
     "Your total balance is under {minPayoutAmount}, the minimum required for payout.",
   paymentHoldOnChangeHeader: "We are reviewing your new payout settings",
