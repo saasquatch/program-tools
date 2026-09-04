@@ -138,7 +138,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -157,7 +157,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -175,7 +175,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -193,7 +193,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -237,7 +237,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -259,7 +259,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -279,7 +279,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -299,7 +299,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -338,7 +338,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -377,7 +377,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -416,7 +416,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -447,7 +447,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -479,7 +479,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
