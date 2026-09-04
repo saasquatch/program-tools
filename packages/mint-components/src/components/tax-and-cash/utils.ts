@@ -140,18 +140,25 @@ export function formatPayoutThreshold(
   return `${publisher?.currency ?? ""}${threshold}`;
 }
 
-/** Impact reports balance and threshold as decimal strings; no threshold means no minimum applies. */
+/** `payoutsAccount.balance` is a formatted string; only `balanceAmount` (minor units) is comparable. */
 export function isBalanceUnderPayoutThreshold(
   publisher: ImpactPublisher | null | undefined,
 ): boolean {
-  const settings = publisher?.withdrawalSettings;
-  // FIXED_DAY accounts keep a stale paymentThreshold from any earlier balance schedule
-  if (settings?.paymentSchedulingType !== "BALANCE_THRESHOLD") return false;
-  if (!settings.paymentThreshold) return false;
+  const rawThreshold = publisher?.withdrawalSettings?.paymentThreshold;
+  const account = publisher?.payoutsAccount;
+  if (!rawThreshold || !account) return false;
 
-  const threshold = Number(settings.paymentThreshold);
-  const balance = Number(publisher.payoutsAccount?.balance);
-  if (!Number.isFinite(threshold) || !Number.isFinite(balance)) return false;
+  const threshold = Number(rawThreshold);
+  if (!Number.isFinite(threshold) || !Number.isFinite(account.balanceAmount))
+    return false;
 
-  return balance < threshold;
+  const currency = account.currencyCode || publisher?.currency;
+  if (!currency) return false;
+
+  const scale =
+    10 **
+    new Intl.NumberFormat("en-US", { style: "currency", currency })
+      .resolvedOptions().maximumFractionDigits;
+
+  return account.balanceAmount < Math.round(threshold * scale);
 }
