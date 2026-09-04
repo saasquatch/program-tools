@@ -4,6 +4,10 @@ import { gql } from "graphql-request";
 import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+} from "../utils";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type EnforceUsTaxComplianceOption =
@@ -22,6 +26,7 @@ export type PayoutStatus =
   | "VERIFICATION:REVIEW"
   | "VERIFICATION:FAILED"
   | "NEW_PAYEE_REVIEW"
+  | "BALANCE_UNDER_THRESHOLD"
   | "PAYMENT_HOLD_ON_CHANGE"
   | "BENEFICIARY_NAME_INVALID"
   | "BENEFICIARY_NAME_MISMATCH"
@@ -46,9 +51,14 @@ const GET_USER_STATUS = gql`
           connected
           publisher {
             id
+            currency
+            withdrawalSettings {
+              paymentThreshold
+            }
             payoutsAccount {
               hold
               holdReasons
+              balance
             }
           }
         }
@@ -78,6 +88,22 @@ const GET_TAX_SETTING = gql`
 `;
 
 export function getStatus(data: UserQuery): PayoutStatus {
+  const status = getHoldStatus(data);
+  const publisher = data.user.impactConnection?.publisher;
+
+  // A balance under the minimum explains the wait better than the transient 48h hold or silence,
+  // but must never hide an actionable hold
+  const displaceable =
+    status === "PAYMENT_HOLD_ON_CHANGE" ||
+    (status === "DONE" &&
+      !publisher?.payoutsAccount?.holdReasons?.includes("NEW_PAYEE_REVIEW"));
+
+  return displaceable && isBalanceUnderPayoutThreshold(publisher)
+    ? "BALANCE_UNDER_THRESHOLD"
+    : status;
+}
+
+function getHoldStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
   const hasTransferredReward = data?.user?.rewards?.data?.find(
@@ -197,6 +223,9 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       status,
       error: !!errors,
       enforceUsTaxComplianceOption,
+      minPayoutAmount: formatPayoutThreshold(
+        data?.user?.impactConnection?.publisher,
+      ),
     },
     data: { type },
     text: props.getTextProps(),

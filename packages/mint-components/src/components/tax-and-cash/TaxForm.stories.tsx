@@ -1551,6 +1551,30 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
   );
 };
 
+export const TaxAndCashDashboardBalanceUnderThreshold = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "BALANCE_UNDER_THRESHOLD",
+          minPayoutAmount: "USD50.00",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
 export const TaxAndCashDashboardNoTaxFormRequiredAndBeneficiaryNameInvalid =
   () => {
     return (

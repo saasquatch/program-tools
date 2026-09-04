@@ -83,6 +83,37 @@ Feature: Cash payout status widget alert
       | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
 
   @motivating
+  Scenario: Alert explains a balance under the payout minimum
+    Given a participant on a BALANCE_THRESHOLD payout schedule
+    And a payment threshold of "50.00" and a currency of "USD"
+    And a payout balance of "10.00"
+    When they complete the payout and tax form flow
+    Then a blue banner appears
+    And the alert has heading "Your balance is under the minimum payout"
+    And the alert has description "Your total balance is under USD50.00, the minimum required for payout."
+
+  @minutia
+  Scenario: No balance alert is shown on a FIXED_DAY schedule
+    Given a participant on a FIXED_DAY payout schedule
+    And a stale payment threshold of "50.00" carried over from a previous balance schedule
+    And a payout balance of "10.00"
+    When they complete the payout and tax form flow
+    Then no balance alert is shown
+
+  @minutia
+  Scenario Outline: A balance under the payout minimum takes priority over the 48 hour payment hold
+    Given a participant with <holdReason> included in their holdReasons
+    And they are on a BALANCE_THRESHOLD payout schedule with a balance under their payment threshold
+    When they complete the payout and tax form flow
+    Then the alert has heading <heading>
+
+    Examples:
+      | holdReason               | heading                                               |
+      | PAYMENT_HOLD_ON_CHANGE   | Your balance is under the minimum payout              |
+      | BENEFICIARY_NAME_INVALID | Your payment information does not match your tax form |
+      | IDV_CHECK_REQUIRED       | Verify your identity                                  |
+
+  @motivating
   Scenario Outline: Alert displays when a user has gone over the tax limit and we require one to pay them out on the "" tax setting
     Given a brand on the <type> tax setting
     And a participant that selected US as their payout country

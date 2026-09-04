@@ -131,6 +131,36 @@ Feature: Tax And Cash Dashboard
       | PAYMENT_RETURNED            | red    | Edit payout information                      | Payout unsuccessful                                   | Our recent payment attempt for your earnings was unsuccessful. Please review your payment information and make sure it is correct.                                                                                                                                                                         |
 
   @motivating
+  Scenario: An Info Alert is displayed when the balance is under the payout minimum
+    Given a participant on a BALANCE_THRESHOLD payout schedule
+    And a payment threshold of "50.00" and a currency of "USD"
+    And a payout balance of "10.00"
+    Then a blue alert appears with heading "Your balance is under the minimum payout"
+    And description text:
+      """
+      Your total balance is under USD50.00, the minimum required for payout.
+      """
+
+  @minutia
+  Scenario: No balance alert is shown on a FIXED_DAY schedule
+    Given a participant on a FIXED_DAY payout schedule
+    And a stale payment threshold of "50.00" carried over from a previous balance schedule
+    And a payout balance of "10.00"
+    Then no balance alert is shown
+
+  @minutia
+  Scenario Outline: A balance under the payout minimum takes priority over the 48 hour payment hold
+    Given a user has <holdReason> included in their holdReasons
+    And they are on a BALANCE_THRESHOLD payout schedule with a balance under their payment threshold
+    Then the alert has heading <heading>
+
+    Examples:
+      | holdReason               | heading                                               |
+      | PAYMENT_HOLD_ON_CHANGE   | Your balance is under the minimum payout              |
+      | BENEFICIARY_NAME_INVALID | Your payment information does not match your tax form |
+      | IDV_CHECK_REQUIRED       | Verify your identity                                  |
+
+  @motivating
   Scenario: User has general hold reasons
     Given they have impactConnection as one of the following
       | impactConnection                                                   |

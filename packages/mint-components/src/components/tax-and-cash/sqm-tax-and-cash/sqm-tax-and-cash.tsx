@@ -1076,6 +1076,20 @@ export class TaxAndCashMonolith {
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
 
   /**
+   * @uiName Balance under payout minimum alert header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_balanceUnderThresholdHeader: string =
+    "Your balance is under the minimum payout";
+  /**
+   * @uiName Balance under payout minimum alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_balanceUnderThresholdDescription: string =
+    "Your total balance is under {minPayoutAmount}, the minimum required for payout.";
+
+  /**
    * @uiName Payment on hold alert header
    */
   @Prop() dashboard_paymentOnHoldHeader: string =
