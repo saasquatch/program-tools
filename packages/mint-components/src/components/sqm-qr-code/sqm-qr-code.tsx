@@ -12,6 +12,9 @@ import { useQRCode } from "./useQRCode";
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
  * @exampleGroup Sharing
  * @example QR Code - <sqm-qr-code></sqm-qr-code>
+ * @csspart sqm-title - The QR code title
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-qr-code",

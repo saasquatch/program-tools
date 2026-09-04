@@ -11,6 +11,10 @@ import {
 } from "./sqm-code-verification-view";
 import { useWidgetCodeVerification } from "./useCodeVerification";
 
+/**
+ * @csspart successalert-icon - The success alert icon
+ * @csspart primarybutton-base - The primary button base
+ */
 @Component({
   tag: "sqm-code-verification",
   shadow: true,

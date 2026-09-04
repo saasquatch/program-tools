@@ -6,6 +6,9 @@ import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
  * @validParents ["sqm-rewards-table"]
+ * @csspart sqm-rewards-cell-value - The reward cell value
+ * @csspart sqm-rewards-cell-progress-bar - The reward progress bar
+ * @csspart sqm-rewards-cell-subtext - The reward cell subtext
  * @exampleGroup Rewards
  * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
  */

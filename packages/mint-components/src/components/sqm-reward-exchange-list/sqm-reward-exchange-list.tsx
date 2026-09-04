@@ -27,6 +27,10 @@ import {
  * @csspart confirmation-container - The confirmation container
  * @csspart success-container - The success container
  * @csspart loading-container - The loading container
+ * @csspart exchange-card-container - The exchange card container
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
+ * @csspart icon-button-base - The copy icon button base
  */
 @Component({
   tag: "sqm-reward-exchange-list",

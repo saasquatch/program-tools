@@ -12,6 +12,10 @@ import {
 
 /**
  * @uiName Tax and Cash Status Dashboard
+ * @csspart alert-base - The alert base
+ * @csspart alert-icon - The alert icon
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({ tag: "sqm-tax-and-cash-dashboard", shadow: true })
 export class TaxAndCashDashboard {

@@ -14,6 +14,10 @@ import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
  * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
  * @csspart erroralert-text - The error message element
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-portal-registration-form",

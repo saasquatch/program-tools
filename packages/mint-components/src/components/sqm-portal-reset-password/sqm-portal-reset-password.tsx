@@ -13,6 +13,11 @@ import { usePortalResetPassword } from "./usePortalResetPassword";
  * @uiName Microsite Reset Password
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
+ * @csspart success-icon - The success alert icon
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-portal-reset-password",

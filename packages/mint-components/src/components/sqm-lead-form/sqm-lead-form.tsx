@@ -13,6 +13,10 @@ import { useLeadForm } from "./useLeadForm";
  * @csspart successalert-text - The success message element
  * @csspart alert-title - The alert title
  * @csspart alert-description - The alert description
+ * @csspart success-icon - The success alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-lead-form",

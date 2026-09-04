@@ -15,6 +15,8 @@ import deepmerge from "deepmerge";
  * @requiredFeatures ["MARKETING_EMAILS"]
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart successalert-icon - The success alert icon
  */
 @Component({
   tag: "sqm-portal-change-marketing",

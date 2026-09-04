@@ -18,6 +18,8 @@ import { parseStates } from "../../../utils/parseStates";
  * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
  * @csspart alert-title - The alert title
  * @csspart alert-description - The alert description
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-payout-status-alert",

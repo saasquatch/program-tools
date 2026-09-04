@@ -16,6 +16,9 @@ import { HeroImageView } from "./sqm-hero-image-view";
  * @csspart sqm-columns-text-area - The text column
  * @csspart sqm-columns-header - The header in the text column
  * @csspart sqm-columns-description - The description in the text column
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
+ * @csspart sqm-hero-image-button - The hero image button
  */
 @Component({
   tag: "sqm-hero-image",

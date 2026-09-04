@@ -11,6 +11,11 @@ import { DemoData } from "../../global/demo";
  * @uiName Microsite Edit Profile
  * @csspart sqm-header - The profile form header
  * @csspart erroralert-text - The error message element
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-edit-profile",

@@ -19,6 +19,10 @@ import { useTaskCard } from "./useTaskCard";
  * @csspart sqm-value - The task value
  * @csspart sqm-unit - The task value unit
  * @csspart sqm-title - The task title
+ * @csspart task-card-icon - The task card icon
+ * @csspart chevron-icon - The details chevron icon
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-task-card",

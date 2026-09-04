@@ -19,6 +19,8 @@ import {
  * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
  * @exampleGroup Microsite Components
  * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
  */
 @Component({
   tag: "sqm-password-field",

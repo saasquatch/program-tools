@@ -22,6 +22,10 @@ import {
  * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
  * @hidden
  * @csspart alert-description - The error description
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart select-menu - The select menu
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-partner-info-modal",
