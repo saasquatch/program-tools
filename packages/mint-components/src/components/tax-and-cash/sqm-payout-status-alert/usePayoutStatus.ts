@@ -59,6 +59,8 @@ const GET_USER_STATUS = gql`
               hold
               holdReasons
               balance
+              balanceAmount
+              currencyCode
             }
           }
         }
@@ -87,18 +89,19 @@ const GET_TAX_SETTING = gql`
   }
 `;
 
+/** Transient holds that clear automatically, so a balance under the minimum explains the wait better. */
+const DISPLACEABLE_STATUSES: PayoutStatus[] = [
+  "DONE",
+  "NEW_PAYEE_REVIEW",
+  "PAYMENT_HOLD_ON_CHANGE",
+];
+
 export function getStatus(data: UserQuery): PayoutStatus {
   const status = getHoldStatus(data);
   const publisher = data.user.impactConnection?.publisher;
 
-  // A balance under the minimum explains the wait better than the transient 48h hold or silence,
-  // but must never hide an actionable hold
-  const displaceable =
-    status === "PAYMENT_HOLD_ON_CHANGE" ||
-    (status === "DONE" &&
-      !publisher?.payoutsAccount?.holdReasons?.includes("NEW_PAYEE_REVIEW"));
-
-  return displaceable && isBalanceUnderPayoutThreshold(publisher)
+  return DISPLACEABLE_STATUSES.includes(status) &&
+    isBalanceUnderPayoutThreshold(publisher)
     ? "BALANCE_UNDER_THRESHOLD"
     : status;
 }
