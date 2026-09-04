@@ -66,7 +66,9 @@ const mockPartnerData = {
   payoutsAccount: {
     hold: false,
     holdReasons: [],
-    balance: "0",
+    balance: "$0.00",
+    balanceAmount: 0,
+    currencyCode: "USD",
   },
 };
 
