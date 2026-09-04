@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.4
+
+### Patch Changes
+
+- [#531](https://github.com/saasquatch/program-tools/pull/531) [`cd1e74c`](https://github.com/saasquatch/program-tools/commit/cd1e74ca2caa8ae154705be48cb9761a337b8a53) Thanks [@00salmon](https://github.com/00salmon)! - Update cash support emails to a new support email
+
 ## 2.4.3
 
 ### Patch Changes
