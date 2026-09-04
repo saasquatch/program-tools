@@ -132,7 +132,8 @@ Feature: Tax And Cash Dashboard
 
   @motivating
   Scenario: An Info Alert is displayed when the balance is under the payout minimum
-    Given a participant with a payment threshold of "50.00" and a currency of "USD"
+    Given a participant on a BALANCE_THRESHOLD payout schedule
+    And a payment threshold of "50.00" and a currency of "USD"
     And a payout balance of "10.00"
     Then a blue alert appears with heading "Your balance is under the minimum payout"
     And description text:
@@ -141,9 +142,16 @@ Feature: Tax And Cash Dashboard
       """
 
   @minutia
+  Scenario: No balance alert is shown on a FIXED_DAY schedule
+    Given a participant on a FIXED_DAY payout schedule
+    And a stale payment threshold of "50.00" carried over from a previous balance schedule
+    And a payout balance of "10.00"
+    Then no balance alert is shown
+
+  @minutia
   Scenario Outline: A balance under the payout minimum takes priority over the 48 hour payment hold
     Given a user has <holdReason> included in their holdReasons
-    And their payout balance is under their payment threshold
+    And they are on a BALANCE_THRESHOLD payout schedule with a balance under their payment threshold
     Then the alert has heading <heading>
 
     Examples:
