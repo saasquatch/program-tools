@@ -144,9 +144,12 @@ export function formatPayoutThreshold(
 export function isBalanceUnderPayoutThreshold(
   publisher: ImpactPublisher | null | undefined,
 ): boolean {
-  if (!publisher?.withdrawalSettings?.paymentThreshold) return false;
+  const settings = publisher?.withdrawalSettings;
+  // FIXED_DAY accounts keep a stale paymentThreshold from any earlier balance schedule
+  if (settings?.paymentSchedulingType !== "BALANCE_THRESHOLD") return false;
+  if (!settings.paymentThreshold) return false;
 
-  const threshold = Number(publisher.withdrawalSettings.paymentThreshold);
+  const threshold = Number(settings.paymentThreshold);
   const balance = Number(publisher.payoutsAccount?.balance);
   if (!Number.isFinite(threshold) || !Number.isFinite(balance)) return false;
 

@@ -88,6 +88,22 @@ const GET_TAX_SETTING = gql`
 `;
 
 export function getStatus(data: UserQuery): PayoutStatus {
+  const status = getHoldStatus(data);
+  const publisher = data.user.impactConnection?.publisher;
+
+  // A balance under the minimum explains the wait better than the transient 48h hold or silence,
+  // but must never hide an actionable hold
+  const displaceable =
+    status === "PAYMENT_HOLD_ON_CHANGE" ||
+    (status === "DONE" &&
+      !publisher?.payoutsAccount?.holdReasons?.includes("NEW_PAYEE_REVIEW"));
+
+  return displaceable && isBalanceUnderPayoutThreshold(publisher)
+    ? "BALANCE_UNDER_THRESHOLD"
+    : status;
+}
+
+function getHoldStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
   const hasTransferredReward = data?.user?.rewards?.data?.find(
@@ -115,9 +131,6 @@ export function getStatus(data: UserQuery): PayoutStatus {
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
     return "NEW_PAYEE_REVIEW";
   if (account.holdReasons?.includes("NEW_PAYEE_REVIEW")) return "DONE";
-  // A balance below the payout minimum explains the missing payout better than the transient 48h hold
-  if (isBalanceUnderPayoutThreshold(data.user.impactConnection?.publisher))
-    return "BALANCE_UNDER_THRESHOLD";
   if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
     return "PAYMENT_HOLD_ON_CHANGE";
   if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
