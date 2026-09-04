@@ -13,6 +13,7 @@ import { usePortalRegister } from "./usePortalRegister";
  * @uiName Microsite Registration
  * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @csspart erroralert-text - The error message element
  */
 @Component({
   tag: "sqm-portal-register",

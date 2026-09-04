@@ -11,6 +11,8 @@ import { usePortalEmailVerification } from "./usePortalEmailVerification";
 
 /**
  * @uiName Microsite Email Verification
+ * @csspart erroralert-text - The error message element
+ * @csspart successalert-text - The success message element
  */
 @Component({
   tag: "sqm-portal-email-verification",

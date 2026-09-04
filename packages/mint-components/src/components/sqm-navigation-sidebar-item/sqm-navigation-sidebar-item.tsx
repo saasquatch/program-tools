@@ -16,6 +16,8 @@ import { Spacing } from "../../global/mixins";
  * @validParents ["sqm-navigation-sidebar"]
  * @exampleGroup Microsite Components
  * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
+ * @csspart sqm-link - The navigation link element
+ * @csspart sqm-label - The navigation label
  */
 @Component({
   tag: "sqm-navigation-sidebar-item",

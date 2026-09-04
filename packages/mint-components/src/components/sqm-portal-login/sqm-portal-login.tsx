@@ -10,6 +10,8 @@ import { createStyleSheet } from "../../styling/JSS";
 /**
  * @uiName Microsite Login
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
+ * @csspart forgot-password-link - The forgot password link
+ * @csspart erroralert-text - The error message element
  */
 @Component({
   tag: "sqm-portal-login",

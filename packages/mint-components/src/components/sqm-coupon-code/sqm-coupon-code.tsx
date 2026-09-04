@@ -13,6 +13,7 @@ import { useCouponCode } from "./useCouponCode";
  * @compatibility Built for instant access
  * @exampleGroup Instant Access
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
+ * @csspart erroralert-text - The error message element
  */
 @Component({
   tag: "sqm-coupon-code",

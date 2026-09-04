@@ -9,6 +9,10 @@ import { TimelineEntryView } from "./sqm-timeline-entry-view";
  * @validParents ["sqm-timeline"]
  * @exampleGroup Common Components
  * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
+ * @csspart sqm-entry-container - The timeline entry container
+ * @csspart sqm-reward - The reward value
+ * @csspart sqm-unit - The reward unit
+ * @csspart sqm-description - The reward description
  */
 @Component({
   tag: "sqm-timeline-entry",

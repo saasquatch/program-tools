@@ -11,6 +11,7 @@ import { UsePagination, usePagination } from "./usePagination";
 
 /**
  * @uiName Pagination
+ * @csspart sqm-pagination-button - A pagination button
  */
 @Component({
   tag: "sqm-pagination",

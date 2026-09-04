@@ -11,6 +11,11 @@ import { HeroImageView } from "./sqm-hero-image-view";
  * @exampleGroup Common Components
  * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
  * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+ * @csspart sqm-overlay - The image overlay
+ * @csspart sqm-columns-image - The image column
+ * @csspart sqm-columns-text-area - The text column
+ * @csspart sqm-columns-header - The header in the text column
+ * @csspart sqm-columns-description - The description in the text column
  */
 @Component({
   tag: "sqm-hero-image",

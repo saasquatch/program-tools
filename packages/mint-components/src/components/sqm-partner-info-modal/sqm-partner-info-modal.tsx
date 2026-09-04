@@ -21,6 +21,7 @@ import {
  * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
  * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
  * @hidden
+ * @csspart alert-description - The error description
  */
 @Component({
   tag: "sqm-partner-info-modal",

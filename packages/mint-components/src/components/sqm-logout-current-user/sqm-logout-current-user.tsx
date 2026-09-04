@@ -17,6 +17,7 @@ import { getProps } from "../../utils/utils";
  * @compatibility Built for instant access
  * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+ * @csspart sqm-link - The logout link element
  */
 @Component({
   tag: "sqm-logout-current-user",

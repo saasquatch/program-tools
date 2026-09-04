@@ -13,6 +13,7 @@ import { SHOW_CODE_NAMESPACE } from "../keys";
 
 /**
  * @uiName Widget Verification Gate
+ * @csspart alert-title - The alert title
  */
 @Component({
   tag: "sqm-email-verification",

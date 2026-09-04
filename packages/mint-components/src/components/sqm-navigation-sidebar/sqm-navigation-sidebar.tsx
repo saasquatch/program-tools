@@ -18,6 +18,7 @@ import { DemoData } from "../../global/demo";
  * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
  * @validChildren ["sqm-navigation-sidebar-item"]
  * @slots [{"name":"", "title":"Sidebar Content"}]
+ * @csspart sqm-items-container - The navigation items container
  */
 @Component({
   tag: "sqm-navigation-sidebar",

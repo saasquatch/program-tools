@@ -24,6 +24,7 @@ import {
  * @uiName Banking Information Form
  * @exampleGroup Common Components
  *
+ * @csspart alert-title - The alert title
  */
 @Component({
   tag: "sqm-banking-info-form",

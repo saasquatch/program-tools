@@ -20,6 +20,7 @@ import {
 /**
  * @uiName Indirect Tax Form
  * @exampleGroup Tax and Cash Components
+ * @csspart alert-title - The alert title
  */
 @Component({
   tag: "sqm-indirect-tax-form",

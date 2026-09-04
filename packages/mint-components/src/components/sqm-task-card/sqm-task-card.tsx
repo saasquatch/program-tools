@@ -14,6 +14,11 @@ import { useTaskCard } from "./useTaskCard";
  * @uiName Task Card
  * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
  * @validParents ["sqm-card-feed"]
+ * @csspart sqm-card-container - The task card container
+ * @csspart sqm-style-container - The task card style container
+ * @csspart sqm-value - The task value
+ * @csspart sqm-unit - The task value unit
+ * @csspart sqm-title - The task title
  */
 @Component({
   tag: "sqm-task-card",

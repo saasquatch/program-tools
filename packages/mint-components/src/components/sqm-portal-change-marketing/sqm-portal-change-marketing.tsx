@@ -13,6 +13,8 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Change Marketing Opt in Status
  * @requiredFeatures ["MARKETING_EMAILS"]
+ * @csspart erroralert-text - The error message element
+ * @csspart successalert-text - The success message element
  */
 @Component({
   tag: "sqm-portal-change-marketing",

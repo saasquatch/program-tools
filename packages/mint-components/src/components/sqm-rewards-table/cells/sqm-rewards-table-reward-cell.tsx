@@ -13,6 +13,11 @@ const style = {
     "flex-wrap": "wrap",
   },
 
+  /**
+   * @csspart sqm-reward-cell-value - The reward value
+   * @csspart sqm-reward-cell-progress - The reward progress
+   * @csspart sqm-reward-cell-subtext - The reward subtext
+   */
   Details: {
     "padding-bottom": "var(--sl-spacing-small)",
     "max-width": "500px",

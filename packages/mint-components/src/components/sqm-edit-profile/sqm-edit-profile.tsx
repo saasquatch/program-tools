@@ -9,6 +9,8 @@ import { DemoData } from "../../global/demo";
 
 /**
  * @uiName Microsite Edit Profile
+ * @csspart sqm-header - The profile form header
+ * @csspart erroralert-text - The error message element
  */
 @Component({
   tag: "sqm-edit-profile",

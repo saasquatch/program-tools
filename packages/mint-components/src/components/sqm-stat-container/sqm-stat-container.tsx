@@ -11,6 +11,8 @@ import { Spacing } from "../../global/mixins";
  * @slots [{"name":"", "title":"Stats"}]
  * @exampleGroup Statistics
  * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
+ * @csspart sqm-inner-container - The stat content container
+ * @csspart sqm-border - The stat border
  */
 @Component({
   tag: "sqm-stat-container",

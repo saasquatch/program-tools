@@ -8,6 +8,7 @@ import { getProps } from "../../utils/utils";
  * @uiName Popup Container
  * @slots [{"name":"","title":"Content"}]
  * @canvasRenderer always-replace
+ * @csspart sqm-close-button - The popup close button
  */
 @Component({
   tag: "sqm-popup-container",
