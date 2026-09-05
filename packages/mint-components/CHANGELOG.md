@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.5
+
+### Patch Changes
+
+- [#533](https://github.com/saasquatch/program-tools/pull/533) [`c0af652`](https://github.com/saasquatch/program-tools/commit/c0af6527349bf73de83e9596cc96cafd86902e7f) Thanks [@00salmon](https://github.com/00salmon)! - Add missing state for users below payout threshold
+
+- [#535](https://github.com/saasquatch/program-tools/pull/535) [`e4586bb`](https://github.com/saasquatch/program-tools/commit/e4586bb06f4b885e57c974e81e33fa077fe9e9e2) Thanks [@00salmon](https://github.com/00salmon)! - correctly override NEW_PAYEE_REVIEW
+
 ## 2.4.4
 
 ### Patch Changes
