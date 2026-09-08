@@ -13,6 +13,7 @@ export interface PayoutDetailsCardViewProps {
     hasW9Pending?: boolean;
     hasDatePending?: boolean;
     nextPayoutDate?: string;
+    belowPayoutThreshold?: boolean;
     paypalEmailAddress?: string;
     cardNumberPreview?: string;
     bankName?: string;
@@ -231,6 +232,18 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
     },
   );
 
+  // No payout is scheduled while the balance sits under the minimum
+  const scheduleText =
+    states.badgeStatus === "thresholdPayout"
+      ? states.thresholdBalance
+        ? thresholdText
+        : ""
+      : states.belowPayoutThreshold
+        ? ""
+        : states.nextPayoutDate;
+  const showBadge =
+    states.badgeStatus !== "thresholdPayout" && !states.belowPayoutThreshold;
+
   return (
     <div class={classes.Container}>
       <style type="text/css">{styleString}</style>
@@ -239,16 +252,9 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
       ) : (
         <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
-            <p class={classes.SubduedRegularText}>
-              {states.badgeStatus === "thresholdPayout"
-                ? states.thresholdBalance
-                  ? thresholdText
-                  : ""
-                : states.nextPayoutDate}
-            </p>
-            {states.badgeStatus === "thresholdPayout"
-              ? null
-              : renderStatusBadge(states.badgeStatus, text.statusBadgeText)}
+            <p class={classes.SubduedRegularText}>{scheduleText}</p>
+            {showBadge &&
+              renderStatusBadge(states.badgeStatus, text.statusBadgeText)}
           </div>
 
           <h1 class={classes.MainCurrency}>{states.balance}</h1>

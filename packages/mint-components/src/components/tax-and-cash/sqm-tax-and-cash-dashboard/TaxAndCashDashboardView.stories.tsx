@@ -87,6 +87,9 @@ const defaultText: TaxAndCashDashboardProps["text"] = {
   accountReviewHeader: "Your account is under review",
   accountReviewDescription:
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.",
+  balanceUnderThresholdHeader: "Your balance is under the minimum payout",
+  balanceUnderThresholdDescription:
+    "Your total balance is under {minPayoutAmount}, the minimum required for payout.",
   paymentHoldOnChangeHeader: "We are reviewing your new payout settings",
   paymentHoldOnChangeDescription:
     "Your payout is temporarily on hold while we review your new payment information, this process is usually resolved within 48 hours.",
@@ -128,13 +131,17 @@ const defaultCallbacks: TaxAndCashDashboardProps["callbacks"] = {
   onNewFormClick: () => {},
 };
 
-const defaultSlots: TaxAndCashDashboardProps["slots"] = {
+const buildSlots = (
+  cardStates: Record<string, unknown> = {},
+): TaxAndCashDashboardProps["slots"] => ({
   payoutDetailsCardSlot: (
     <sqm-payout-details-card
-      demoData={{ states: { badgeStatus: "nextPayout" } }}
+      demoData={{ states: { badgeStatus: "nextPayout", ...cardStates } }}
     ></sqm-payout-details-card>
   ),
-};
+});
+
+const defaultSlots = buildSlots();
 
 const baseStates: TaxAndCashDashboardProps["states"] = {
   payoutStatus: "DONE",
@@ -200,6 +207,19 @@ export const PaymentHoldOnChange = () => (
     text={defaultText}
     callbacks={defaultCallbacks}
     slots={defaultSlots}
+  />
+);
+
+export const BalanceUnderThreshold = () => (
+  <TaxAndCashDashboardView
+    states={{
+      ...baseStates,
+      payoutStatus: "BALANCE_UNDER_THRESHOLD",
+      minPayoutAmount: "USD50.00",
+    }}
+    text={defaultText}
+    callbacks={defaultCallbacks}
+    slots={buildSlots({ belowPayoutThreshold: true })}
   />
 );
 

@@ -2526,6 +2526,14 @@ export namespace Components {
          */
         "accountReviewHeader": string;
         /**
+          * @uiName Balance under payout minimum alert description
+         */
+        "balanceUnderThresholdDescription": string;
+        /**
+          * @uiName Balance under payout minimum alert header
+         */
+        "balanceUnderThresholdHeader": string;
+        /**
           * @uiName Bank name mismatch alert description
          */
         "bankTaxNameMismatchDescription": string;
@@ -5708,6 +5716,17 @@ export namespace Components {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Balance under payout minimum alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_balanceUnderThresholdDescription": string;
+        /**
+          * @uiName Balance under payout minimum alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_balanceUnderThresholdHeader": string;
+        /**
           * @uiName Bank name mismatch alert description
          */
         "dashboard_bankNameMismatchDescription": string;
@@ -6756,6 +6775,14 @@ export namespace Components {
           * @uiName Active W-8 description
          */
         "badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Balance under payout minimum alert description
+         */
+        "balanceUnderThresholdDescription": string;
+        /**
+          * @uiName Balance under payout minimum alert header
+         */
+        "balanceUnderThresholdHeader": string;
         /**
           * @uiName Bank name mismatch alert description
          */
@@ -10974,6 +11001,14 @@ declare namespace LocalJSX {
          */
         "accountReviewHeader"?: string;
         /**
+          * @uiName Balance under payout minimum alert description
+         */
+        "balanceUnderThresholdDescription"?: string;
+        /**
+          * @uiName Balance under payout minimum alert header
+         */
+        "balanceUnderThresholdHeader"?: string;
+        /**
           * @uiName Bank name mismatch alert description
          */
         "bankTaxNameMismatchDescription"?: string;
@@ -14132,6 +14167,17 @@ declare namespace LocalJSX {
          */
         "dashboard_badgeTextSubmittedOnW8"?: string;
         /**
+          * @uiName Balance under payout minimum alert description
+          * @uiGroup Dashboard Properties
+          * @uiWidget textArea
+         */
+        "dashboard_balanceUnderThresholdDescription"?: string;
+        /**
+          * @uiName Balance under payout minimum alert header
+          * @uiGroup Dashboard Properties
+         */
+        "dashboard_balanceUnderThresholdHeader"?: string;
+        /**
           * @uiName Bank name mismatch alert description
          */
         "dashboard_bankNameMismatchDescription"?: string;
@@ -15180,6 +15226,14 @@ declare namespace LocalJSX {
           * @uiName Active W-8 description
          */
         "badgeTextSubmittedOnW8"?: string;
+        /**
+          * @uiName Balance under payout minimum alert description
+         */
+        "balanceUnderThresholdDescription"?: string;
+        /**
+          * @uiName Balance under payout minimum alert header
+         */
+        "balanceUnderThresholdHeader"?: string;
         /**
           * @uiName Bank name mismatch alert description
          */

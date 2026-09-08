@@ -1,6 +1,6 @@
 import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 import { intl } from "../../global/global";
-import { TaxDocumentType } from "./data";
+import { ImpactPublisher, TaxDocumentType } from "./data";
 
 /**
  * Normalize user input to the domestic form Impact stores: digits only,
@@ -128,4 +128,37 @@ export function getCountryObj({
     countryCode,
     displayName,
   };
+}
+
+/** The minimum balance Impact requires before it will issue a payout, e.g. "USD50.00". */
+export function formatPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): string | undefined {
+  const threshold = publisher?.withdrawalSettings?.paymentThreshold;
+  if (!threshold) return undefined;
+
+  return `${publisher?.currency ?? ""}${threshold}`;
+}
+
+/** `payoutsAccount.balance` is a formatted string; only `balanceAmount` (minor units) is comparable. */
+export function isBalanceUnderPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): boolean {
+  const rawThreshold = publisher?.withdrawalSettings?.paymentThreshold;
+  const account = publisher?.payoutsAccount;
+  if (!rawThreshold || !account) return false;
+
+  const threshold = Number(rawThreshold);
+  if (!Number.isFinite(threshold) || !Number.isFinite(account.balanceAmount))
+    return false;
+
+  const currency = account.currencyCode || publisher?.currency;
+  if (!currency) return false;
+
+  const scale =
+    10 **
+    new Intl.NumberFormat("en-US", { style: "currency", currency })
+      .resolvedOptions().maximumFractionDigits;
+
+  return account.balanceAmount < Math.round(threshold * scale);
 }

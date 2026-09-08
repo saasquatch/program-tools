@@ -485,7 +485,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                   supportLink: (
                     <a
                       target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
+                      href={`mailto:advocate-payment-support@impact.com`}
                     >
                       {text.supportLink}
                     </a>
@@ -534,7 +534,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     supportLink: (
                       <a
                         target="_blank"
-                        href={`mailto:advocate-support@impact.com`}
+                        href={`mailto:advocate-payment-support@impact.com`}
                       >
                         {text.supportLink}
                       </a>
@@ -557,7 +557,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     supportLink: (
                       <a
                         target="_blank"
-                        href={`mailto:advocate-support@impact.com`}
+                        href={`mailto:advocate-payment-support@impact.com`}
                       >
                         {text.supportLink}
                       </a>

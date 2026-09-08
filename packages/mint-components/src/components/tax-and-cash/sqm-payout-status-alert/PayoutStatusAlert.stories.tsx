@@ -88,6 +88,18 @@ export const PaymentHoldOnChange = () => (
   ></sqm-payout-status-alert>
 );
 
+export const BalanceUnderThreshold = () => (
+  <sqm-payout-status-alert
+    demoData={{
+      states: {
+        ...defaultProps,
+        status: "BALANCE_UNDER_THRESHOLD",
+        minPayoutAmount: "USD50.00",
+      },
+    }}
+  ></sqm-payout-status-alert>
+);
+
 export const BeneficiaryNameInvalid = () => (
   <sqm-payout-status-alert
     demoData={{

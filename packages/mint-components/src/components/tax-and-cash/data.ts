@@ -116,6 +116,8 @@ export const GET_USER = gql`
               hold
               holdReasons
               balance
+              balanceAmount
+              currencyCode
             }
           }
         }
@@ -164,6 +166,8 @@ export type ImpactPublisher = {
     hold: boolean;
     holdReasons: string[];
     balance: string;
+    balanceAmount: number;
+    currencyCode: string;
   };
 };
 export type ImpactUser = {
