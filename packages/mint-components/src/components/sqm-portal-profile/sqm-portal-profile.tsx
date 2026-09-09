@@ -13,6 +13,7 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Microsite Participant Profile
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+ * @csspart sqm-base - The base container
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
  * @csspart success-icon - The success alert icon

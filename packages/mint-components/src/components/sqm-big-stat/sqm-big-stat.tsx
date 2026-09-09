@@ -19,6 +19,7 @@ import { useDemoBigStat } from "./useDemoBigStat";
  * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
  * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
  * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
+ * @csspart stat-wrapper - The stat wrapper element
  * @csspart stat-value - The stat value element
  * @csspart stat-description - The stat description element
  * @csspart stat-wrapper - The stat wrapper element

@@ -4,7 +4,8 @@ import { EmptyStateView } from "./sqm-empty-view";
 /**
  * @uiName Empty State Content
  * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
- * @csspart header-text - The empty state header
+ * @csspart sqm-base - The base container
+ *  @csspart header-text - The empty state header
  * @csspart description-text - The empty state description
  */
 @Component({

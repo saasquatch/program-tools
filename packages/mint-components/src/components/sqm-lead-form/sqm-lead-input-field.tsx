@@ -14,6 +14,7 @@ import { useLeadInputField } from "./useLeadInputField";
 /**
  * @uiName Lead Form Input Field
  * @validParents ["sqm-lead-form"]
+ * @csspart sqm-base - The base container
  */
 @Component({
   tag: "sqm-lead-input-field",

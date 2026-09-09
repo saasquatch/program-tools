@@ -12,6 +12,8 @@ import {
 import { useWidgetCodeVerification } from "./useCodeVerification";
 
 /**
+ * @uiName Widget Code Verification
+ * @csspart sqm-base - The base container
  * @csspart successalert-icon - The success alert icon
  * @csspart primarybutton-base - The primary button base
  */

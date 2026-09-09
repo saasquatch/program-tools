@@ -9,6 +9,7 @@ import { DemoData } from "../../global/demo";
 
 /**
  * @uiName Microsite Edit Profile
+ * @csspart sqm-base - The base container
  * @csspart sqm-header - The profile form header
  * @csspart erroralert-text - The error message element
  * @csspart erroralert-icon - The error alert icon

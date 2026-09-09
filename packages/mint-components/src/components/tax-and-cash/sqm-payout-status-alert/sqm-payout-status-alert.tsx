@@ -16,6 +16,7 @@ import { parseStates } from "../../../utils/parseStates";
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Tax and Cash
  * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+ * @csspart sqm-base - The base container
  * @csspart alert-title - The alert title
  * @csspart alert-description - The alert description
  * @csspart primarybutton-base - The primary button base

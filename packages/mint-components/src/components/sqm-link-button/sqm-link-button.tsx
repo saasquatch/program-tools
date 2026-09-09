@@ -7,6 +7,7 @@ import { LinkButtonView } from "./sqm-link-button-view";
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
  * @exampleGroup Common Components
  * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+ * @csspart sqm-base - The base container for the link button
  * @csspart primarybutton-base - The button element
  * @csspart sqm-link - The link element inside the button
  */

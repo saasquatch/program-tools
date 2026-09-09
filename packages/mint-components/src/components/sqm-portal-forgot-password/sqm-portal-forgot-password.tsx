@@ -11,6 +11,7 @@ import { usePortalForgotPassword } from "./usePortalForgotPassword";
 
 /**
  * @uiName Microsite Forgot Password
+ * @csspart sqm-base - The base container
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
  * @csspart erroralert-icon - The error alert icon
