@@ -283,3 +283,17 @@ export const CustomizeUrlSaving = () => {
     />
   );
 };
+
+export const CustomizeUrlEditingMobileNarrow = () => {
+  return (
+    <div style={{ width: "320px", border: "1px dashed red" }}>
+      <ShareLinkView
+        {...{
+          ...defaultCustomizeProps,
+          isEditing: true,
+          domainPrefix: "https://referral-marketing.mybrandname.com/",
+        }}
+      />
+    </div>
+  );
+};
