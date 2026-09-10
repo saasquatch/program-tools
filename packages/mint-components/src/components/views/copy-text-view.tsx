@@ -159,7 +159,7 @@ export function CopyTextView(props: CopyTextViewProps) {
   );
 
   return (
-    <div class={sheet.classes.ContainerDiv}>
+    <div class={sheet.classes.ContainerDiv} part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}

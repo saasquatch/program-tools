@@ -12,6 +12,7 @@ import { useShareLink } from "./useShareLink";
  * @exampleGroup Sharing
  * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
+ * @csspart sqm-base - The base container for the share link component
  * @csspart alert-title - The validation error title
  * @csspart icon-button-base - The copy icon button base
  * @csspart primarybutton-base - The primary button base

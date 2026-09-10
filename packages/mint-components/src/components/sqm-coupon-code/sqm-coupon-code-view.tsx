@@ -32,7 +32,7 @@ export function CouponCodeView(props: CouponCodeViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   return (
-    <div>
+    <div part="sqm-base">
       <style type="text/css">
         {styleString}
         {vanillaStyle}
@@ -41,6 +41,7 @@ export function CouponCodeView(props: CouponCodeViewProps) {
       <p
         class={sheet.classes.couponCodeLabel}
         style={{ textAlign: props.textAlign }}
+        part="label"
       >
         {props.couponCodeLabel}
       </p>

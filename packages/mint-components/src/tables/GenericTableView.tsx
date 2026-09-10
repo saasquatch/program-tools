@@ -178,7 +178,7 @@ export function GenericTableView(props: GenericTableViewProps) {
   if (show === "empty") return elements.emptyElement;
 
   return (
-    <div>
+    <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <table class={sheet.classes.Table}>
         {(showLabels || hasDropZones) && (

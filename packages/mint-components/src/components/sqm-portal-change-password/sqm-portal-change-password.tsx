@@ -13,6 +13,7 @@ import { useState } from "@saasquatch/universal-hooks";
 /**
  * @uiName Microsite Password Change
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
+ * @csspart sqm-base - The base container for the portal change password component
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
  * @csspart erroralert-icon - The error alert icon

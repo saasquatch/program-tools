@@ -234,7 +234,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   // Editing state
   if (isEditing) {
     return (
-      <div class={sheet.classes.Container}>
+      <div class={sheet.classes.Container} part="sqm-base">
         <style type="text/css">
           {styleString}
           {vanillaStyle}

@@ -22,7 +22,6 @@ import { useDemoBigStat } from "./useDemoBigStat";
  * @csspart stat-wrapper - The stat wrapper element
  * @csspart stat-value - The stat value element
  * @csspart stat-description - The stat description element
- * @csspart stat-wrapper - The stat wrapper element
  */
 @Component({
   tag: "sqm-big-stat",

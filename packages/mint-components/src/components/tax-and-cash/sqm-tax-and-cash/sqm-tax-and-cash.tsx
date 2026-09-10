@@ -17,6 +17,7 @@ import { intl } from "../../../global/global";
  * @exampleGroup Tax and Cash
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+ * @csspart container - The base container for the tax and cash component
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -1355,31 +1356,31 @@ export class TaxAndCashMonolith {
     switch (props.step) {
       case "/1":
         return (
-          <sqm-user-info-form
+          <sqm-user-info-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step1_")}
           ></sqm-user-info-form>
         );
       case "/2":
         return (
-          <sqm-indirect-tax-form
+          <sqm-indirect-tax-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step2_")}
           ></sqm-indirect-tax-form>
         );
       case "/3":
         return (
-          <sqm-docusign-form
+          <sqm-docusign-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step3_")}
           ></sqm-docusign-form>
         );
       case "/4":
         return (
-          <sqm-banking-info-form
+          <sqm-banking-info-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step4_")}
           ></sqm-banking-info-form>
         );
       case "/dashboard":
         return (
-          <sqm-tax-and-cash-dashboard
+          <sqm-tax-and-cash-dashboard exportparts="dashboard-container: container"
             {...this.getGeneralStepTextProps("dashboard_")}
             stateController={
               props["sqm-tax-and-cash-dashboard_stateController"] || "{}"

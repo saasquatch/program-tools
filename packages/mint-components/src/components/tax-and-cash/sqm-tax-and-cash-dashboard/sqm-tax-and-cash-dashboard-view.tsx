@@ -989,7 +989,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   return (
     <div>
-      <div>
+      <div part="dashboard-container">
         <style type="text/css">
           {styleString}
           {vanillaStyle}

@@ -11,6 +11,7 @@ import { usePortalResetPassword } from "./usePortalResetPassword";
 
 /**
  * @uiName Microsite Reset Password
+ * @csspart sqm-base - The base container for the portal reset password component
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
  * @csspart success-icon - The success alert icon

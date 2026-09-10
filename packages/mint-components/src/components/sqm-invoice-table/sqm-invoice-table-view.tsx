@@ -56,7 +56,7 @@ export function InvoiceTableView(
       display: block;
     }`;
   return (
-    <div class={sheet.classes.Container}>
+    <div class={sheet.classes.Container} part="sqm-table-container">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

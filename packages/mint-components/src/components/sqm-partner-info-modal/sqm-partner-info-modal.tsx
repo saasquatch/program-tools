@@ -21,6 +21,7 @@ import {
  * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
  * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
  * @hidden
+ * @csspart sqm-base - The base container for the partner info modal
  * @csspart alert-description - The error description
  * @csspart input-label - The input label
  * @csspart input-base - The input base

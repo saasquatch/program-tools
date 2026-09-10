@@ -112,7 +112,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
     <Host style={{ display: "none" }}></Host>
   ) : (
-    <div>
+    <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
       <sl-button
