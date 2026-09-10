@@ -146,10 +146,18 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       whiteSpace: "nowrap",
       userSelect: "none",
       lineHeight: "var(--sl-input-height-medium)",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      flexGrow: 0,
+      flexShrink: 1,
+      minWidth: 0,
+      direction: "rtl",
+      textAlign: "left",
     },
     EditInput: {
       maxWidth: "260px",
-      width: "100%",
+      flexShrink: 0,
+      flexGrow: 1,
       "&::part(base)": {
         border: "none",
         borderRadius: "0",
@@ -241,7 +249,9 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         </style>
         <p class={sheet.classes.EditLabel}>{editLabelText}</p>
         <div class={sheet.classes.EditInputWrapper}>
-          <span class={sheet.classes.DomainPrefix}>{domainPrefix}</span>
+          <span class={sheet.classes.DomainPrefix} title={domainPrefix}>
+            <span dir="ltr">{domainPrefix}</span>
+          </span>
           <sl-input
             class={sheet.classes.EditInput}
             type="text"
