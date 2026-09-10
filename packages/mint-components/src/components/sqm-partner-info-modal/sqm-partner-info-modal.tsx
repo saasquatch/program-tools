@@ -145,6 +145,21 @@ export class PartnerInfoModal {
   networkErrorText: string = "An error occurred. Please try again.";
 
   /**
+   * @uiName Email verification error text
+   * @uiWidget textArea
+   */
+  @Prop()
+  emailVerificationErrorText: string =
+    "We found a found a pre-existing partner to this account but the email is not verified. Please follow this link and {emailVerificationLink}";
+
+  /**
+   * @uiName Email verification error link text
+   * @uiWidget textArea
+   */
+  @Prop()
+  emailVerificationErrorLinkText: string = "verify your email";
+
+  /**
    * @uiName Missing fields error text
    * @uiWidget textArea
    */
@@ -195,7 +210,7 @@ export class PartnerInfoModal {
 }
 
 function useDemoPartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
@@ -263,9 +278,11 @@ function useDemoPartnerInfoModal(
           props.supportDescriptionExistingPartner,
         supportLink: props.supportLink,
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
+        emailVerificationErrorText: props.emailVerificationErrorText,
+        emailVerificationErrorLinkText: props.emailVerificationErrorLinkText,
       },
     },
     props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }

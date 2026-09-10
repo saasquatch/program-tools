@@ -14,6 +14,7 @@ export interface PartnerInfoModalViewProps {
     countryCode: string;
     currency: string;
     error: string;
+    errorCode: string;
     success: boolean;
     filteredCountries: { countryCode: string; displayName: string }[];
     filteredCurrencies: { currencyCode: string; displayName: string }[];
@@ -48,6 +49,8 @@ export interface PartnerInfoModalViewProps {
     allowBankingCollection: string;
     termsAndConditionsLabel: string;
     termsAndConditionsLink: string;
+    emailVerificationErrorText: string;
+    emailVerificationErrorLinkText: string;
   };
 }
 
@@ -271,14 +274,35 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           </sl-checkbox>
         </div>
       </div>
-      {states.error && (
+      {states.error && states.errorCode !== "MEMBER_PENDING" && (
         <div class={sheet.classes.ErrorMessage}>
           <sqm-form-message class={sheet.classes.ErrorMessage} type="error">
             <p part="alert-description">{states.error}</p>
           </sqm-form-message>
         </div>
       )}
-
+      {states.error && states.errorCode === "MEMBER_PENDING" && (
+        <sqm-form-message type="error">
+          <p part="alert-title">{text.emailVerificationErrorText}</p>
+          {intl.formatMessage(
+            {
+              id: "emailVerificationErrorText",
+              defaultMessage: text.emailVerificationErrorText,
+            },
+            {
+              emailVerificationErrorLinkText: (
+                <a
+                  //AL: TODO
+                  target="_blank"
+                  href={`https://verify-email-link`}
+                >
+                  {text.emailVerificationErrorLinkText}
+                </a>
+              ),
+            }
+          )}
+        </sqm-form-message>
+      )}
       <sl-button
         slot="footer"
         type="primary"
