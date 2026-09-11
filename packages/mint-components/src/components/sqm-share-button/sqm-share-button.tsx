@@ -24,6 +24,9 @@ import deepmerge from "deepmerge";
  * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
  * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
  * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
+ * @csspart icon - The share button icon
  */
 @Component({
   tag: "sqm-share-button",

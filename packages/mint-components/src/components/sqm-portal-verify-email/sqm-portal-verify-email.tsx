@@ -12,6 +12,12 @@ import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Microsite Verify Email
+ * @csspart sqm-base - The base container
+ * @csspart erroralert-text - The error message element
+ * @csspart successalert-text - The success message element
+ * @csspart successalert-icon - The success alert icon
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-portal-verify-email",

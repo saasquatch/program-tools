@@ -12,6 +12,7 @@ import { usePortalLogin } from "../sqm-portal-login/usePortalLogin";
 
 /**
  * @uiName Microsite Login
+ * @csspart forgot-password-link - The forgot password link
  */
 @Component({
   tag: "sqm-portal-google-login",

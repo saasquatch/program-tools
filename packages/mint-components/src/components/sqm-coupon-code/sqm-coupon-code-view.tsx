@@ -41,6 +41,7 @@ export function CouponCodeView(props: CouponCodeViewProps) {
       <p
         class={sheet.classes.couponCodeLabel}
         style={{ textAlign: props.textAlign }}
+        part="label"
       >
         {props.couponCodeLabel}
       </p>

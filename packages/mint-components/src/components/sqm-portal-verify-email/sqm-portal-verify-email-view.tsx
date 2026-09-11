@@ -57,7 +57,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           {styleString}
         </style>
         <TextSpanView type="h3">{content.verifyEmailText}</TextSpanView>
-        <sqm-form-message exportparts="success-icon">
+        <sqm-form-message exportparts="successalert-icon">
           <div part="successalert-text">{content.verifySuccessText}</div>
         </sqm-form-message>
         <sl-button

@@ -103,10 +103,10 @@ export class ReferralTable {
 
     return (
       <GenericTableView
-        states={states}
-        data={data}
-        callbacks={callbacks}
-        elements={elements}
+          states={states}
+          data={data}
+          callbacks={callbacks}
+          elements={elements}
       ></GenericTableView>
     );
   }

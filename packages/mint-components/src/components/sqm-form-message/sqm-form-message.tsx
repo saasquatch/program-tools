@@ -4,6 +4,14 @@ import { Component, h, Prop, State } from "@stencil/core";
 /**
  * @uiName Form Message
  * @slots [{"name":"","title":"Message Content"}]
+ * @csspart erroralert-base - The error alert base
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart infoalert-base - The info alert base
+ * @csspart infoalert-icon - The info alert icon
+ * @csspart warningalert-base - The warning alert base
+ * @csspart warningalert-icon - The warning alert icon
+ * @csspart successalert-base - The success alert base
+ * @csspart successalert-icon - The success alert icon
  */
 @Component({
   tag: "sqm-form-message",

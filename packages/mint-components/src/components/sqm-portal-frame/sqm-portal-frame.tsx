@@ -9,6 +9,9 @@ import { DemoData } from "../../global/demo";
 /**
  * @uiName Microsite Frame
  * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
+ * @csspart sqm-base - The base container
+ * @csspart sqm-header - The header container
+ * @csspart sqm-footer - The footer container
  */
 @Component({
   tag: "sqm-portal-frame",

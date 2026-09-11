@@ -12,6 +12,9 @@ import { useReferralCode } from "./useReferralCode";
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes"]
  * @exampleGroup Sharing
  * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
+ * @csspart icon-button-base - The copy icon button base
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-referral-code",
