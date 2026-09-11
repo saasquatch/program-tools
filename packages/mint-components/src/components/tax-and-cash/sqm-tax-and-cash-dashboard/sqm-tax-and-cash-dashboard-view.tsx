@@ -1055,7 +1055,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {alertInfo && (
           <sqm-form-message
             loading={states.loading}
-            exportparts="base: alert-base, icon:alert-icon"
+            exportparts="warningalert-base: alert-base, warningalert-icon: alert-icon, erroralert-base: alert-base, erroralert-icon: alert-icon, infoalert-base: alert-base, infoalert-icon: alert-icon"
             type={alertInfo?.alertType}
             class={alertInfo?.class}
             icon={alertInfo?.icon}
