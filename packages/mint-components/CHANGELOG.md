@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.6
+
+### Patch Changes
+
+- [#537](https://github.com/saasquatch/program-tools/pull/537) [`ef5ec67`](https://github.com/saasquatch/program-tools/commit/ef5ec67f965d28534c649a45924a89720c88390b) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - sqm-share-link: fixing customizable link input not being clickable/editable on small screens
+
 ## 2.4.5
 
 ### Patch Changes
