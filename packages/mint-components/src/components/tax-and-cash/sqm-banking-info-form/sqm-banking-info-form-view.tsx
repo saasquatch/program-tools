@@ -340,7 +340,7 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
   };
   return (
     <sl-form
-      part="form-container"
+      part="container"
       class={classes.FormWrapper}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
