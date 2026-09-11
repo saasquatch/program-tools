@@ -176,7 +176,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
   );
 
   return (
-    <div part="sqm-base">
+    <div>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.FormFields}>
         {description}

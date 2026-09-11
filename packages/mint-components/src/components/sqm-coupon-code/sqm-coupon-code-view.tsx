@@ -32,7 +32,7 @@ export function CouponCodeView(props: CouponCodeViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
   return (
-    <div part="sqm-base">
+    <div>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
