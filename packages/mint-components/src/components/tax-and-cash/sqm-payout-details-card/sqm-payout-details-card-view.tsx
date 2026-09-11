@@ -183,7 +183,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
 
   const renderLoadingSkeleton = () => {
     return (
-      <div class={classes.CardContainer} part="payout-details-card">
+      <div class={classes.CardContainer}>
         <div class={classes.StatusContainer} style={{ display: "block" }}>
           <sqm-skeleton
             style={{ marginBottom: "var(--sl-spacing-medium)" }}
@@ -250,7 +250,7 @@ export function PayoutDetailsCardView(props: PayoutDetailsCardViewProps) {
       {states.loading ? (
         renderLoadingSkeleton()
       ) : (
-        <div class={classes.CardContainer} part="payout-details-card">
+        <div class={classes.CardContainer}>
           <div class={classes.StatusContainer}>
             <p class={classes.SubduedRegularText}>{scheduleText}</p>
             {showBadge &&
