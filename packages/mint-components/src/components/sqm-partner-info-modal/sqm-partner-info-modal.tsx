@@ -145,6 +145,20 @@ export class PartnerInfoModal {
   networkErrorText: string = "An error occurred. Please try again.";
 
   /**
+   * @uiName Email verification error text
+   * @uiWidget textArea
+   */
+  @Prop()
+  emailVerificationErrorText: string =
+    "An account with this email already exists. Please log in to {loginLinkText} to verify your email.";
+
+  /**
+   * @uiName login link text
+   */
+  @Prop()
+  loginLinkText: string = "impact.com";
+
+  /**
    * @uiName Missing fields error text
    * @uiWidget textArea
    */
@@ -195,7 +209,7 @@ export class PartnerInfoModal {
 }
 
 function useDemoPartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
@@ -263,9 +277,11 @@ function useDemoPartnerInfoModal(
           props.supportDescriptionExistingPartner,
         supportLink: props.supportLink,
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
+        emailVerificationErrorText: props.emailVerificationErrorText,
+        loginLinkText: props.loginLinkText,
       },
     },
     props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }

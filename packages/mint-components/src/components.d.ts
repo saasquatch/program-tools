@@ -2361,10 +2361,19 @@ export namespace Components {
          */
         "descriptionNewPartner": string;
         /**
+          * @uiName Email verification error text
+          * @uiWidget textArea
+         */
+        "emailVerificationErrorText": string;
+        /**
           * Used to render in another modal.
           * @undocumented
          */
         "inModal": boolean;
+        /**
+          * @uiName login link text
+         */
+        "loginLinkText": string;
         /**
           * @uiName Missing fields error text
           * @uiWidget textArea
@@ -10836,10 +10845,19 @@ declare namespace LocalJSX {
          */
         "descriptionNewPartner"?: string;
         /**
+          * @uiName Email verification error text
+          * @uiWidget textArea
+         */
+        "emailVerificationErrorText"?: string;
+        /**
           * Used to render in another modal.
           * @undocumented
          */
         "inModal"?: boolean;
+        /**
+          * @uiName login link text
+         */
+        "loginLinkText"?: string;
         /**
           * @uiName Missing fields error text
           * @uiWidget textArea

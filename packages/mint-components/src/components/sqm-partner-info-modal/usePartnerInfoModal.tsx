@@ -30,6 +30,7 @@ export const GET_USER_PARTNER_INFO = gql`
         impactConnection {
           connected
           connectionStatus
+          emailCanBeUsed
           publisher {
             id
             countryCode
@@ -67,6 +68,7 @@ const START_IMPACT_CONNECTION = gql`
   mutation startImpactConnection($vars: ImpactConnectionInput!) {
     startImpactConnection(impactConnectionInput: $vars) {
       success
+      errorCode
       validationErrors {
         field
         message
@@ -204,7 +206,7 @@ export function usePartnerInfoModal(
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [initialized, setInitialized] = useState(false);
-  
+
   useEffect(() => {
     if (initialized || !user) return;
     setShouldDisplayNameFields(!user.firstName || !user.lastName);
@@ -261,14 +263,12 @@ export function usePartnerInfoModal(
     if (!value) return;
     setCountryCode(value);
     setCurrency("");
-    setError("");
   }
 
   function onCurrencyChange(e: any) {
     const value = e.detail?.item?.__value;
     if (!value) return;
     setCurrency(value);
-    setError("");
   }
 
   function onCheckboxChange(e: any) {
@@ -343,6 +343,8 @@ export function usePartnerInfoModal(
     !userLoading &&
     impactConnection?.connectionStatus === "NOT_STARTED";
 
+  const emailCanBeUsed = impactConnection?.emailCanBeUsed !== false;
+
   return {
     states: {
       open: showModal,
@@ -355,11 +357,12 @@ export function usePartnerInfoModal(
       countryCode,
       currency,
       error,
+      emailCanBeUsed,
       success,
       filteredCountries: filteredCountries || [],
       filteredCurrencies: filteredCurrencies || [],
       allowBankingCollection,
-      disabled: userLoading || connectLoading,
+      disabled: userLoading || connectLoading || !emailCanBeUsed,
     },
     callbacks: {
       onFirstNameChange,
