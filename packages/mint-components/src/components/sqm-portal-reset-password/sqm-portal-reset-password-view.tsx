@@ -94,7 +94,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         </TextSpanView>
         <sqm-form-message
           class={sheet.classes.CodeSuccess}
-          exportparts="success-icon"
+          exportparts="successalert-icon"
         >
           <div part="successalert-text">{states.content.resetSuccessText}</div>
         </sqm-form-message>

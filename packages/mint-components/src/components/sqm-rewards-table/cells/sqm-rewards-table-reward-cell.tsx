@@ -12,12 +12,6 @@ const style = {
     "margin-right": "var(--sl-spacing-small)",
     "flex-wrap": "wrap",
   },
-
-  /**
-   * @csspart sqm-reward-cell-value - The reward value
-   * @csspart sqm-reward-cell-progress - The reward progress
-   * @csspart sqm-reward-cell-subtext - The reward subtext
-   */
   Details: {
     "padding-bottom": "var(--sl-spacing-small)",
     "max-width": "500px",
@@ -87,6 +81,11 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
+/**
+ * @csspart sqm-reward-cell-value - The reward value
+ * @csspart sqm-reward-cell-progress - The reward progress
+ * @csspart sqm-reward-cell-subtext - The reward subtext
+ */
 @Component({
   tag: "sqm-rewards-table-reward-cell",
   shadow: true,

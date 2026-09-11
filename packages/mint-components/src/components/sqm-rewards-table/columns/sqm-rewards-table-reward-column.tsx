@@ -6,9 +6,9 @@ import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
  * @validParents ["sqm-rewards-table"]
- * @csspart sqm-rewards-cell-value - The reward cell value
- * @csspart sqm-rewards-cell-progress-bar - The reward progress bar
- * @csspart sqm-rewards-cell-subtext - The reward cell subtext
+ * @csspart sqm-reward-cell-value - The reward cell value
+ * @csspart sqm-reward-cell-progress - The reward progress
+ * @csspart sqm-reward-cell-subtext - The reward cell subtext
  * @exampleGroup Rewards
  * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
  */
@@ -51,7 +51,7 @@ export class RewardsTableColumn implements RewardTableColumn {
         availableText={this.availableText}
         copyText={this.copyText}
         locale={options?.locale}
-        exportparts="sqm-rewards-cell-value, sqm-rewards-cell-progress-bar, sqm-rewards-cell-subtext"
+        exportparts="sqm-reward-cell-value, sqm-reward-cell-progress, sqm-reward-cell-subtext"
       ></sqm-rewards-table-reward-cell>
     );
   }

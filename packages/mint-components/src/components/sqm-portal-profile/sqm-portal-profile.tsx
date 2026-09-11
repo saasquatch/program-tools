@@ -16,7 +16,7 @@ import deepmerge from "deepmerge";
  * @csspart sqm-base - The base container
  * @csspart erroralert-text - The error message element
  * @csspart successalert-text - The success message element
- * @csspart success-icon - The success alert icon
+ * @csspart successalert-icon - The success alert icon
  * @csspart erroralert-icon - The error alert icon
  * @csspart input-label - The input label
  * @csspart input-base - The input base
