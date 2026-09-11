@@ -12,6 +12,7 @@ import {
 
 /**
  * @uiName Tax and Cash Status Dashboard
+ * @csspart dashboard-container - The dashboard container
  * @csspart alert-base - The alert base
  * @csspart alert-icon - The alert icon
  * @csspart primarybutton-base - The primary button base

@@ -11,6 +11,7 @@ import { useUserInfoForm, UseUserInfoFormResult } from "./useUserInfoForm";
 /**
  * @uiName User Information Form
  * @exampleGroup Tax and Cash Components
+ * @csspart form-container - The form container
  * @csspart alert-title - The alert title
  * @csspart alert-description - The alert description
  * @csspart input-label - The input label

@@ -20,6 +20,7 @@ import {
 /**
  * @uiName Indirect Tax Form
  * @exampleGroup Tax and Cash Components
+ * @csspart form-container - The form container
  * @csspart alert-title - The alert title
  * @csspart primarybutton-base - The primary button base
  * @csspart secondarybutton-base - The secondary button base
