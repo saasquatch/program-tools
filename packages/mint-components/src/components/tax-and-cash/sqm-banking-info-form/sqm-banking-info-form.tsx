@@ -31,7 +31,7 @@ import {
  */
 @Component({
   tag: "sqm-banking-info-form",
-  shadow: true,
+  shadow: false,
 })
 export class BankingInfoForm {
   @State() ignored = true;

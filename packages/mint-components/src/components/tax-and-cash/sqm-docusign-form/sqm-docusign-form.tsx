@@ -21,7 +21,7 @@ import { UseDocusignFormResult, useDocusignForm } from "./useDocusignForm";
  */
 @Component({
   tag: "sqm-docusign-form",
-  shadow: true,
+  shadow: false,
 })
 export class DocusignForm {
   @Element() el;
