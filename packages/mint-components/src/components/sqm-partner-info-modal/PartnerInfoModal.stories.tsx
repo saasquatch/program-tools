@@ -60,6 +60,9 @@ const defaultText = {
   termsAndConditionsLabel: "terms and conditions",
   termsAndConditionsLink:
     "https://terms.advocate.impact.com/PayoutTermsAndConditions.html",
+  emailVerificationErrorText:
+    "We couldn't verify your email. Please {loginLinkText} to continue.",
+  loginLinkText: "log in to your Impact account",
 };
 
 const defaultProps: PartnerInfoModalViewProps = {
@@ -74,6 +77,7 @@ const defaultProps: PartnerInfoModalViewProps = {
     countryCode: "",
     currency: "",
     error: "",
+    emailCanBeUsed: true,
     success: false,
     filteredCountries: demoCountries,
     filteredCurrencies: demoCurrencies,
@@ -173,6 +177,19 @@ export const ValidationError = () => {
       countryCode: "",
       currency: "",
       error: "Please select both a country and currency.",
+    },
+  };
+  return <PartnerInfoModalView {...props} />;
+};
+
+export const EmailVerificationRequired = () => {
+  const props: PartnerInfoModalViewProps = {
+    ...defaultProps,
+    states: {
+      ...defaultProps.states,
+      countryCode: "US",
+      currency: "USD",
+      emailCanBeUsed: false,
     },
   };
   return <PartnerInfoModalView {...props} />;

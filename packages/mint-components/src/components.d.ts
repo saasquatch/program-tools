@@ -2361,11 +2361,6 @@ export namespace Components {
          */
         "descriptionNewPartner": string;
         /**
-          * @uiName Email verification error link text
-          * @uiWidget textArea
-         */
-        "emailVerificationErrorLinkText": string;
-        /**
           * @uiName Email verification error text
           * @uiWidget textArea
          */
@@ -2375,6 +2370,10 @@ export namespace Components {
           * @undocumented
          */
         "inModal": boolean;
+        /**
+          * @uiName login link text
+         */
+        "loginLinkText": string;
         /**
           * @uiName Missing fields error text
           * @uiWidget textArea
@@ -10846,11 +10845,6 @@ declare namespace LocalJSX {
          */
         "descriptionNewPartner"?: string;
         /**
-          * @uiName Email verification error link text
-          * @uiWidget textArea
-         */
-        "emailVerificationErrorLinkText"?: string;
-        /**
           * @uiName Email verification error text
           * @uiWidget textArea
          */
@@ -10860,6 +10854,10 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "inModal"?: boolean;
+        /**
+          * @uiName login link text
+         */
+        "loginLinkText"?: string;
         /**
           * @uiName Missing fields error text
           * @uiWidget textArea

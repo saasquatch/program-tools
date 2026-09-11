@@ -150,14 +150,13 @@ export class PartnerInfoModal {
    */
   @Prop()
   emailVerificationErrorText: string =
-    "We found a found a pre-existing partner to this account but the email is not verified. Please follow this link and {emailVerificationLink}";
+    "An account with this email already exists. Please log in to {loginLinkText} to verify your email.";
 
   /**
-   * @uiName Email verification error link text
-   * @uiWidget textArea
+   * @uiName login link text
    */
   @Prop()
-  emailVerificationErrorLinkText: string = "verify your email";
+  loginLinkText: string = "impact.com";
 
   /**
    * @uiName Missing fields error text
@@ -279,7 +278,7 @@ function useDemoPartnerInfoModal(
         supportLink: props.supportLink,
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
         emailVerificationErrorText: props.emailVerificationErrorText,
-        emailVerificationErrorLinkText: props.emailVerificationErrorLinkText,
+        loginLinkText: props.loginLinkText,
       },
     },
     props.demoData || stateOverride,

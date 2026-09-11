@@ -41,7 +41,6 @@ export type ConnectPartnerResult = {
   createImpactConnection: {
     success: boolean;
     validationErrors: { field: string; message: string }[];
-    errorCode?: "VALIDATION" | "MEMBER_PENDING" | "UNKNOWN";
     user: {
       id: string;
       accountId: string;

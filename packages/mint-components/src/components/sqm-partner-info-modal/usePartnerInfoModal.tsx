@@ -30,6 +30,7 @@ export const GET_USER_PARTNER_INFO = gql`
         impactConnection {
           connected
           connectionStatus
+          emailCanBeUsed
           publisher {
             id
             countryCode
@@ -203,7 +204,6 @@ export function usePartnerInfoModal(
   );
 
   const [error, setError] = useState("");
-  const [errorCode, setErrorCode] = useState("");
   const [success, setSuccess] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
@@ -284,15 +284,12 @@ export function usePartnerInfoModal(
       (shouldDisplayNameFields && (!firstName || !lastName))
     ) {
       setError(props.missingFieldsErrorText);
-      setErrorCode("");
       return;
     }
     setError("");
-    setErrorCode("");
 
     if (!user) {
       setError(props.networkErrorText);
-      setErrorCode("");
       return;
     }
 
@@ -312,7 +309,6 @@ export function usePartnerInfoModal(
 
       if (!result || (result as Error)?.message) {
         setError(props.networkErrorText);
-        setErrorCode("");
         return;
       }
 
@@ -320,16 +316,10 @@ export function usePartnerInfoModal(
         .startImpactConnection;
 
       if (!connectionResult?.success) {
-        if (connectionResult.errorCode === "MEMBER_PENDING") {
-          setError(props.emailVerificationErrorText);
-          setErrorCode(connectionResult.errorCode);
-          return;
-        }
         const validationMsg = connectionResult?.validationErrors
           ?.map((e) => e.message)
           .join(". ");
         setError(validationMsg || props.networkErrorText);
-        setErrorCode(connectionResult?.errorCode || "");
         console.error(
           "Failed to create Impact connection:",
           connectionResult?.validationErrors
@@ -345,7 +335,6 @@ export function usePartnerInfoModal(
     } catch (e) {
       console.error("Partner creation error:", e);
       setError(props.networkErrorText);
-      setErrorCode("");
     }
   }
 
@@ -353,6 +342,8 @@ export function usePartnerInfoModal(
     !success &&
     !userLoading &&
     impactConnection?.connectionStatus === "NOT_STARTED";
+
+  const emailCanBeUsed = impactConnection?.emailCanBeUsed !== false;
 
   return {
     states: {
@@ -366,12 +357,12 @@ export function usePartnerInfoModal(
       countryCode,
       currency,
       error,
-      errorCode,
+      emailCanBeUsed,
       success,
       filteredCountries: filteredCountries || [],
       filteredCurrencies: filteredCurrencies || [],
       allowBankingCollection,
-      disabled: userLoading || connectLoading,
+      disabled: userLoading || connectLoading || !emailCanBeUsed,
     },
     callbacks: {
       onFirstNameChange,
