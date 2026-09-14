@@ -44,7 +44,7 @@ const defaultText = {
   descriptionNewPartner:
     "Confirm your country and currency now to get your future rewards faster.",
   descriptionExistingPartner:
-    "We noticed you are already an Impact.com partner, please confirm your information.",
+    "We found an account with this email on our referral program provider, impact.com. Please confirm your country and currency now to get your future rewards faster.",
   supportDescriptionExistingPartner:
     "If this is a mistake, please contact Support or sign up for this referral program with a different email.",
   supportLink: "Support",
@@ -61,8 +61,8 @@ const defaultText = {
   termsAndConditionsLink:
     "https://terms.advocate.impact.com/PayoutTermsAndConditions.html",
   emailVerificationErrorText:
-    "We couldn't verify your email. Please {loginLinkText} to continue.",
-  loginLinkText: "log in to your Impact account",
+    "Please log in to {loginLinkText} to review your account status. You may need to complete email verification or other pending steps. Once resolved, refresh this page to proceed.",
+  loginLinkText: "impact.com",
 };
 
 const defaultProps: PartnerInfoModalViewProps = {

@@ -150,7 +150,7 @@ export class PartnerInfoModal {
    */
   @Prop()
   emailVerificationErrorText: string =
-    "An account with this email already exists. Please log in to {loginLinkText} to verify your email.";
+    "Please log in to {loginLinkText} to review your account status. You may need to complete email verification or other pending steps. Once resolved, refresh this page to proceed.";
 
   /**
    * @uiName login link text

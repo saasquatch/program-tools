@@ -163,16 +163,17 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
     }
   );
 
-  const description = states.isExistingPartner ? (
-    <span class={sheet.classes.DescriptionContainer}>
-      <p>{text.descriptionExistingPartner}</p>
-      <p>{supportMessage}</p>
-    </span>
-  ) : (
-    <p class={sheet.classes.DescriptionContainer}>
-      {text.descriptionNewPartner}
-    </p>
-  );
+  const description =
+    states.isExistingPartner || !states.emailCanBeUsed ? (
+      <span class={sheet.classes.DescriptionContainer}>
+        <p>{text.descriptionExistingPartner}</p>
+        <p>{supportMessage}</p>
+      </span>
+    ) : (
+      <p class={sheet.classes.DescriptionContainer}>
+        {text.descriptionNewPartner}
+      </p>
+    );
 
   const buttonLabel = states.isExistingPartner
     ? text.confirmButtonLabel
@@ -335,9 +336,10 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
 
   if (!states.open) return <div></div>;
 
-  const modalHeader = states.isExistingPartner
-    ? text.modalHeaderExistingPartner
-    : text.modalHeader;
+  const modalHeader =
+    states.isExistingPartner || !states.emailCanBeUsed
+      ? text.modalHeaderExistingPartner
+      : text.modalHeader;
 
   return (
     <div>

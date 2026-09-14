@@ -258,7 +258,7 @@ export class WidgetVerification {
    */
   @Prop()
   createPartnerStep_emailVerificationErrorText: string =
-    "An account with this email already exists. Please log in to {loginLinkText} to verify your email.";
+    "Please log in to {loginLinkText} to review your account status. You may need to complete email verification or other pending steps. Once resolved, refresh this page to proceed.";
   /**
    * @uiName Missing fields error text
    * @uiGroup Partner Creation Step
@@ -377,7 +377,7 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       key === "sqm-widget-verification"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {},
+    {}
   );
 
   const onVerification = () => {
@@ -393,6 +393,6 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       loading: false,
     },
     formatted || {},
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }
