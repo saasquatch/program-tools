@@ -2,4 +2,5 @@
 "@saasquatch/mint-components": patch
 ---
 
-Add error message to partner modal when partner exists but email is not verified. Add emailCanBeUsed to GET_USER_PARTNER_INFO query
+Add emailCanBeUsed to GET_USER_PARTNER_INFO query. Display existing partner state + email verification error message
+when email is not verified.
