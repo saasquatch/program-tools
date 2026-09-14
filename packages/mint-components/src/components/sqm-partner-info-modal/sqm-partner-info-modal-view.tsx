@@ -142,11 +142,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
     },
     {
       loginLinkText: (
-        <a
-          //AL: TODO
-          target="_blank"
-          href={`https://app.impact.com/login.user`}
-        >
+        <a target="_blank" href={`https://app.impact.com/login.user`}>
           {text.loginLinkText}
         </a>
       ),
