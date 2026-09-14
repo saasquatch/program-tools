@@ -68,7 +68,6 @@ const START_IMPACT_CONNECTION = gql`
   mutation startImpactConnection($vars: ImpactConnectionInput!) {
     startImpactConnection(impactConnectionInput: $vars) {
       success
-      errorCode
       validationErrors {
         field
         message
