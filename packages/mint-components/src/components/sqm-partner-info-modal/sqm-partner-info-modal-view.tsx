@@ -175,9 +175,10 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
       </p>
     );
 
-  const buttonLabel = states.isExistingPartner
-    ? text.confirmButtonLabel
-    : text.submitButtonLabel;
+  const buttonLabel =
+    states.isExistingPartner || !states.emailCanBeUsed
+      ? text.confirmButtonLabel
+      : text.submitButtonLabel;
 
   const bankingCollectionText = intl.formatMessage(
     {
