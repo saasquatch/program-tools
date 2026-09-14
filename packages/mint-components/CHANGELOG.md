@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.8
+
+### Patch Changes
+
+- [#541](https://github.com/saasquatch/program-tools/pull/541) [`f97be17`](https://github.com/saasquatch/program-tools/commit/f97be17b760d268e38b4db0cffb81a71b046e919) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Remove bad param errorCode from startImpactConnection mutation
+
 ## 2.4.7
 
 ### Patch Changes
