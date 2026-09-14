@@ -206,3 +206,11 @@ Feature: Partner Info Modal — country, currency, and T&C collection
       | USA         | USD, AUD, EUR, GBP      |
       | CAN         | USD, AUD, EUR, GBP, CAN |
       | IND         | USD, AUD, EUR, GBP, INR |
+
+  @motivating @landmine
+  Scenario: User is partnered but email has not been verified
+    Given a user with an existing partner
+    But their email is not verified
+    When they see the partner info modal
+    Then all the inputs are disabled
+    And an error message directs them to the impact login page to verify their email

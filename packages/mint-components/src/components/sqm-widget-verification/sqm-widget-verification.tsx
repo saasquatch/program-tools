@@ -252,6 +252,14 @@ export class WidgetVerification {
   createPartnerStep_networkErrorText: string =
     "An error occurred. Please try again.";
   /**
+   * @uiName Email verification error text
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_emailVerificationErrorText: string =
+    "Please log in to {loginLinkText} to review your account status. You may need to complete email verification or other pending steps. Once resolved, refresh this page to proceed.";
+  /**
    * @uiName Missing fields error text
    * @uiGroup Partner Creation Step
    * @uiWidget textArea
@@ -369,7 +377,7 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       key === "sqm-widget-verification"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {},
+    {}
   );
 
   const onVerification = () => {
@@ -385,6 +393,6 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       loading: false,
     },
     formatted || {},
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }

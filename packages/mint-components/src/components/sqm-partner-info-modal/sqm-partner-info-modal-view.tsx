@@ -14,6 +14,7 @@ export interface PartnerInfoModalViewProps {
     countryCode: string;
     currency: string;
     error: string;
+    emailCanBeUsed: boolean;
     success: boolean;
     filteredCountries: { countryCode: string; displayName: string }[];
     filteredCurrencies: { currencyCode: string; displayName: string }[];
@@ -44,10 +45,12 @@ export interface PartnerInfoModalViewProps {
     searchCurrencyPlaceholder: string;
     supportDescriptionExistingPartner: string;
     supportLink: string;
+    loginLinkText: string;
     modalHeaderExistingPartner: string;
     allowBankingCollection: string;
     termsAndConditionsLabel: string;
     termsAndConditionsLink: string;
+    emailVerificationErrorText: string;
   };
 }
 
@@ -132,6 +135,20 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
+  const emailVerificationMessage = intl.formatMessage(
+    {
+      id: "emailVerificationErrorText",
+      defaultMessage: text.emailVerificationErrorText,
+    },
+    {
+      loginLinkText: (
+        <a target="_blank" href={`https://app.impact.com/login.user`}>
+          {text.loginLinkText}
+        </a>
+      ),
+    }
+  );
+
   const supportMessage = intl.formatMessage(
     {
       id: "supportDescriptionExistingPartner",
@@ -146,20 +163,22 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
     }
   );
 
-  const description = states.isExistingPartner ? (
-    <span class={sheet.classes.DescriptionContainer}>
-      <p>{text.descriptionExistingPartner}</p>
-      <p>{supportMessage}</p>
-    </span>
-  ) : (
-    <p class={sheet.classes.DescriptionContainer}>
-      {text.descriptionNewPartner}
-    </p>
-  );
+  const description =
+    states.isExistingPartner || !states.emailCanBeUsed ? (
+      <span class={sheet.classes.DescriptionContainer}>
+        <p>{text.descriptionExistingPartner}</p>
+        <p>{supportMessage}</p>
+      </span>
+    ) : (
+      <p class={sheet.classes.DescriptionContainer}>
+        {text.descriptionNewPartner}
+      </p>
+    );
 
-  const buttonLabel = states.isExistingPartner
-    ? text.confirmButtonLabel
-    : text.submitButtonLabel;
+  const buttonLabel =
+    states.isExistingPartner || !states.emailCanBeUsed
+      ? text.confirmButtonLabel
+      : text.submitButtonLabel;
 
   const bankingCollectionText = intl.formatMessage(
     {
@@ -188,7 +207,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
               label="First Name"
               value={states.firstName}
               onSl-input={callbacks.onFirstNameChange}
-              disabled={states.submitting}
+              disabled={states.submitting || !states.emailCanBeUsed}
               required
             />
             <sl-input
@@ -197,7 +216,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
               label="Last Name"
               value={states.lastName}
               onSl-input={callbacks.onLastNameChange}
-              disabled={states.submitting}
+              disabled={states.submitting || !states.emailCanBeUsed}
               required
             />
           </Fragment>
@@ -208,6 +227,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           value={states.countryCode}
           disabled={
             states.submitting ||
+            !states.emailCanBeUsed ||
             (!!states.countryCode && states.isExistingPartner)
           }
           required
@@ -234,7 +254,9 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           label={text.currencyLabel}
           value={states.currency}
           disabled={
-            states.submitting || (!!states.currency && states.isExistingPartner)
+            states.submitting ||
+            !states.emailCanBeUsed ||
+            (!!states.currency && states.isExistingPartner)
           }
           required
           hoist
@@ -261,7 +283,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
             class={sheet.classes.Checkbox}
             checked={states.allowBankingCollection === true}
             onSl-change={callbacks.onCheckboxChange}
-            disabled={states.submitting}
+            disabled={states.submitting || !states.emailCanBeUsed}
             required
             value={states.allowBankingCollection}
             id="allowBankingCollection"
@@ -278,13 +300,20 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
           </sqm-form-message>
         </div>
       )}
-
+      {!states.emailCanBeUsed && (
+        <div class={sheet.classes.ErrorMessage}>
+          <sqm-form-message type="error">
+            <p part="alert-description">{emailVerificationMessage}</p>
+          </sqm-form-message>
+        </div>
+      )}
       <sl-button
         slot="footer"
         type="primary"
         loading={states.submitting}
         disabled={
           states.submitting ||
+          !states.emailCanBeUsed ||
           !states.countryCode ||
           !states.currency ||
           !states.allowBankingCollection ||
@@ -308,9 +337,10 @@ export function PartnerInfoModalView(props: PartnerInfoModalViewProps) {
 
   if (!states.open) return <div></div>;
 
-  const modalHeader = states.isExistingPartner
-    ? text.modalHeaderExistingPartner
-    : text.modalHeader;
+  const modalHeader =
+    states.isExistingPartner || !states.emailCanBeUsed
+      ? text.modalHeaderExistingPartner
+      : text.modalHeader;
 
   return (
     <div>
