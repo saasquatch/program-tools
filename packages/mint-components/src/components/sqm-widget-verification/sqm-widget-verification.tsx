@@ -252,6 +252,14 @@ export class WidgetVerification {
   createPartnerStep_networkErrorText: string =
     "An error occurred. Please try again.";
   /**
+   * @uiName Email verification error text
+   * @uiGroup Partner Creation Step
+   * @uiWidget textArea
+   */
+  @Prop()
+  createPartnerStep_emailVerificationErrorText: string =
+    "An account with this email already exists. Please log in to {loginLinkText} to verify your email.";
+  /**
    * @uiName Missing fields error text
    * @uiGroup Partner Creation Step
    * @uiWidget textArea

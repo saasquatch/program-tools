@@ -7542,6 +7542,12 @@ export namespace Components {
          */
         "createPartnerStep_descriptionNewPartner": string;
         /**
+          * @uiName Email verification error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_emailVerificationErrorText": string;
+        /**
           * @uiName Missing fields error text
           * @uiGroup Partner Creation Step
           * @uiWidget textArea
@@ -16000,6 +16006,12 @@ declare namespace LocalJSX {
           * @uiWidget textArea
          */
         "createPartnerStep_descriptionNewPartner"?: string;
+        /**
+          * @uiName Email verification error text
+          * @uiGroup Partner Creation Step
+          * @uiWidget textArea
+         */
+        "createPartnerStep_emailVerificationErrorText"?: string;
         /**
           * @uiName Missing fields error text
           * @uiGroup Partner Creation Step

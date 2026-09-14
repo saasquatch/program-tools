@@ -234,6 +234,7 @@ function useDemoPartnerInfoModal(
         filteredCountries: [],
         filteredCurrencies: [],
         allowBankingCollection,
+        emailCanBeUsed: true,
         disabled: false,
       },
       callbacks: {
