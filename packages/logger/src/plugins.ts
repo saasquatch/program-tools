@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { URL } from "node:url";
-import winston from "winston";
 import type { LogLevel } from "./config.ts";
+import type { Logger } from "./logger.ts";
 import { LOG_TYPE_MARKER } from "./logger.ts";
 
 export type HttpLogMiddlewareOptions = {
@@ -31,10 +31,10 @@ const STRIP_PARAMS = [
  * A simple Express.js middleware which logs the URL, method, response code,
  * and response time of all HTTP requests.
  *
- * @param {winston.Logger} logger - The logger to use
+ * @param {Logger} logger - The logger to use
  */
 export function httpLogMiddleware(
-  logger: winston.Logger,
+  logger: Logger,
   opts?: HttpLogMiddlewareOptions,
 ) {
   return (
@@ -78,10 +78,10 @@ export function httpLogMiddleware(
         status >= 500
           ? "error"
           : status >= 400
-          ? "warn"
-          : isHealthcheck
-          ? "debug"
-          : opts?.nonErrorLogLevel ?? "info";
+            ? "warn"
+            : isHealthcheck
+              ? "debug"
+              : (opts?.nonErrorLogLevel ?? "info");
 
       const message = { method, status, time, url: cleanUrl, requestId };
       logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message, extraData });

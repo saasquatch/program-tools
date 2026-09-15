@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { Logger } from "winston";
+import type { Logger } from "@saasquatch/logger";
 import { formatGenericError } from "./error.ts";
 import { nanoid } from "./nanoid.ts";
 

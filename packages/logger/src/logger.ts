@@ -1,145 +1,279 @@
-import winston from "winston";
-import { defaultConfig, type LoggerConfig, type Transport } from "./config.ts";
-import { jsonFormat, prettyFormat } from "./format.ts";
+import type { Writable } from "node:stream";
+import {
+  defaultConfig,
+  LOG_LEVEL_VALUES,
+  type LoggerConfig,
+  type LogLevel,
+  type Transport,
+} from "./config.ts";
+import { formatRecord, serializeRecord, type LogRecord } from "./format.ts";
 
-let _loggers: Record<string, winston.Logger> = {};
+export type LogCollectionOptions = {
+  /** Maximum number of records retained. The newest records are kept. */
+  maxEntries?: number;
+};
+
+export type GetCollectedLogsOptions = {
+  serialized?: boolean;
+};
+
+export const DEFAULT_LOG_COLLECTION_LIMIT = 1000;
 
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
-export const SYSLOG_LOG_LEVELS = {
-  emerg: 0,
-  alert: 1,
-  crit: 2,
-  error: 3,
-  warning: 4,
-  warn: 4,
-  notice: 5,
-  info: 6,
-  debug: 7,
-};
+/** Numeric values retained for callers that used the old syslog mapping. */
+export const SYSLOG_LOG_LEVELS = LOG_LEVEL_VALUES;
 
-/**
- * Return the initialized logger. If the logger has not
- * yet been initialized, it will be initialized with the
- * default configuration
- *
- * @param {string | undefined} logger - The label of the logger to get
- * @return {winston.Logger} The logger
- */
-export function getLogger(logger?: string): winston.Logger {
+export interface Logger {
+  readonly name: string;
+  level: LogLevel;
+  log(
+    level: LogLevel,
+    message: unknown,
+    fields?: Record<string, unknown>,
+  ): void;
+  emerg(message: unknown, fields?: Record<string, unknown>): void;
+  alert(message: unknown, fields?: Record<string, unknown>): void;
+  crit(message: unknown, fields?: Record<string, unknown>): void;
+  error(message: unknown, fields?: Record<string, unknown>): void;
+  warning(message: unknown, fields?: Record<string, unknown>): void;
+  warn(message: unknown, fields?: Record<string, unknown>): void;
+  notice(message: unknown, fields?: Record<string, unknown>): void;
+  info(message: unknown, fields?: Record<string, unknown>): void;
+  debug(message: unknown, fields?: Record<string, unknown>): void;
+  child(record: Record<string, unknown>): Logger;
+  startLogCollection(options?: LogCollectionOptions): void;
+  stopLogCollection(): void;
+  getCollectedLogs<T extends boolean = false>(
+    opts?: GetCollectedLogsOptions & { serialized?: T },
+  ): T extends true ? string : LogRecord[];
+  clearCollectedLogs(): void;
+}
+
+type Sink = (serializedRecord: string) => void;
+const _loggers = new Map<string, Logger>();
+
+export function getLogger(logger?: string): Logger {
   const name = logger ?? DEFAULT_LOGGER_NAME;
-  if (_loggers[name] === undefined) {
+  if (!_loggers.has(name)) {
     initializeLogger(name);
   }
-  return _loggers[name];
+  return _loggers.get(name)!;
 }
 
-/**
- * Check if the given logger has been initialized yet
- *
- * @param {string | undefined} logger - The name of the logger
- * @return {boolean} Whether the logger has been initialized
- */
 export function isLoggerInitialized(logger?: string): boolean {
-  const name = logger ?? DEFAULT_LOGGER_NAME;
-  return _loggers[name] !== undefined;
+  return _loggers.has(logger ?? DEFAULT_LOGGER_NAME);
 }
 
-/**
- * Convenience shorthand for getLogger().info
- */
-export const info: winston.LeveledLogMethod = (...args): winston.Logger => {
-  return getLogger().info(...args);
-};
-
-/**
- * Convenience shorthand for getLogger().warn
- */
-export const warn: winston.LeveledLogMethod = (...args): winston.Logger => {
-  return getLogger().warn(...args);
-};
-
-/**
- * Convenience shorthand for getLogger().error
- */
-export const error: winston.LeveledLogMethod = (...args): winston.Logger => {
-  return getLogger().error(...args);
-};
-
-/**
- * Initialize the logger, optionally with a custom configuration. Calling
- * this function when the logger has already been initialized will throw an error.
- *
- * @param {LoggerConfig | string | undefined} nameOrConfig - The logger config
- * to use, or the label of the logger to initialize
- * @param {LoggerConfig} config - The logger config to use, if the first parameter was the logger label
- * @return {winston.Logger} The initialized logger
- */
 export function initializeLogger(
   nameOrConfig?: Partial<LoggerConfig> | string,
   config?: Partial<LoggerConfig>,
-): winston.Logger {
+): Logger {
   const name =
     typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
 
-  if (_loggers[name] !== undefined) {
+  if (_loggers.has(name)) {
     throw new Error("Logger has already been initialized");
   }
 
-  let finalConfig: Partial<LoggerConfig> = defaultConfig();
-  if (config !== undefined) {
-    finalConfig = config;
-  } else if (nameOrConfig !== undefined && typeof nameOrConfig !== "string") {
-    finalConfig = nameOrConfig;
-  }
+  const supplied =
+    config ?? (typeof nameOrConfig === "string" ? {} : (nameOrConfig ?? {}));
 
-  const conf: LoggerConfig = {
-    ...defaultConfig(),
-    ...finalConfig,
-  };
+  const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
+  const sinks = conf.transports.map(transportToSink);
+  const level = { value: conf.logLevel };
+  const logger = createLogger(name, sinks, level, {});
 
-  _loggers[name] = winston.createLogger({
-    level: conf.logLevel,
-    levels: SYSLOG_LOG_LEVELS,
-    format:
-      conf.environment === "production" ? jsonFormat(name) : prettyFormat(name),
-    transports: conf.transports
-      // we need to put the console transports last because the colorize
-      // formatter actually mutates the info field...
-      .sort((a, b) => {
-        if (a.type === "console" && b.type !== "console") {
-          return 1;
-        }
-        return 0;
-      })
-      .map(transportConfigToRealTransport(name)),
-  });
-
-  return _loggers[name];
+  _loggers.set(name, logger);
+  return logger;
 }
 
-export const transportConfigToRealTransport = (name: string) => {
-  return (transport: Transport) => {
-    switch (transport.type) {
-      case "console":
-        return new winston.transports.Console(transport.options);
-      case "file":
-        return new winston.transports.File({
-          format: jsonFormat(name),
-          ...transport.options,
-        });
-      case "http":
-        return new winston.transports.Http({
-          format: jsonFormat(name),
-          ...transport.options,
-        });
-      case "stream":
-        return new winston.transports.Stream({
-          format: jsonFormat(name),
-          stream: transport.stream,
-          ...transport.options,
-        });
-    }
+function createLogger(
+  name: string,
+  sinks: Sink[],
+  level: { value: LogLevel },
+  baseFields: Record<string, unknown>,
+): Logger {
+  const collection: {
+    enabled: boolean;
+    maxEntries: number;
+    records: LogRecord[];
+    start: number;
+    size: number;
+  } = {
+    enabled: false,
+    maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
+    records: [],
+    start: 0,
+    size: 0,
   };
-};
+
+  const logger: Logger = {
+    name,
+
+    get level() {
+      return level.value;
+    },
+
+    set level(value: LogLevel) {
+      level.value = value;
+    },
+
+    log(messageLevel, message, fields) {
+      if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[level.value]) {
+        return;
+      }
+
+      let actualMessage = message;
+      let messageFields = fields ?? {};
+      if (fields === undefined && isRecord(message)) {
+        messageFields = message;
+        actualMessage = message["message"];
+      }
+
+      // Per-message fields take precedence over inherited child fields.
+      const record = formatRecord(name, messageLevel, actualMessage, {
+        ...baseFields,
+        ...messageFields,
+      });
+
+      if (collection.enabled) {
+        const index =
+          (collection.start + collection.size) % collection.maxEntries;
+
+        collection.records[index] = record;
+        if (collection.size < collection.maxEntries) {
+          collection.size += 1;
+        } else {
+          collection.start = (collection.start + 1) % collection.maxEntries;
+        }
+      }
+
+      // Do not serialize when there are no active sinks (for example, when
+      // this logger is only being used for collection). Serialization is also
+      // shared across all sinks.
+      if (sinks.length > 0) {
+        const serializedRecord = `${serializeRecord(record)}\n`;
+        for (const sink of sinks) {
+          sink(serializedRecord);
+        }
+      }
+    },
+
+    child(record) {
+      return createLogger(name, sinks, level, { ...baseFields, ...record });
+    },
+
+    startLogCollection(options) {
+      const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
+
+      if (!Number.isInteger(maxEntries) || maxEntries < 1) {
+        throw new Error("Log collection maxEntries must be a positive integer");
+      }
+
+      if (collection.maxEntries !== maxEntries) {
+        const retained = getCollectedRecords(collection);
+        const records = retained.slice(-maxEntries);
+        collection.records = records;
+        collection.start = 0;
+        collection.size = records.length;
+      }
+
+      collection.maxEntries = maxEntries;
+      collection.enabled = true;
+    },
+
+    stopLogCollection() {
+      collection.enabled = false;
+    },
+
+    getCollectedLogs<T extends boolean = false>(
+      opts?: GetCollectedLogsOptions & { serialized?: T },
+    ): T extends true ? string : LogRecord[] {
+      const records = getCollectedRecords(collection);
+      if (opts?.serialized) {
+        return records
+          .map((record) => `${serializeRecord(record)}\n`)
+          .join("") as T extends true ? string : LogRecord[];
+      }
+
+      return records as T extends true ? string : LogRecord[];
+    },
+
+    clearCollectedLogs() {
+      collection.records.length = 0;
+      collection.start = 0;
+      collection.size = 0;
+    },
+
+    emerg(message, fields) {
+      this.log("emerg", message, fields);
+    },
+
+    alert(message, fields) {
+      this.log("alert", message, fields);
+    },
+
+    crit(message, fields) {
+      this.log("crit", message, fields);
+    },
+
+    error(message, fields) {
+      this.log("error", message, fields);
+    },
+
+    warning(message, fields) {
+      this.log("warning", message, fields);
+    },
+
+    warn(message, fields) {
+      this.log("warn", message, fields);
+    },
+
+    notice(message, fields) {
+      this.log("notice", message, fields);
+    },
+
+    info(message, fields) {
+      this.log("info", message, fields);
+    },
+
+    debug(message, fields) {
+      this.log("debug", message, fields);
+    },
+  };
+  return logger;
+}
+
+function getCollectedRecords(collection: {
+  records: LogRecord[];
+  start: number;
+  size: number;
+  maxEntries: number;
+}): LogRecord[] {
+  const records = new Array<LogRecord>(collection.size);
+  for (let index = 0; index < collection.size; index += 1) {
+    records[index] =
+      collection.records[(collection.start + index) % collection.maxEntries];
+  }
+  return records;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
+}
+
+function transportToSink(transport: Transport): Sink {
+  const stream: Writable =
+    transport.type === "console" ? process.stdout : transport.stream;
+
+  return (serializedRecord) => {
+    stream.write(serializedRecord);
+  };
+}
