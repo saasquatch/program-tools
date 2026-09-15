@@ -1,6 +1,6 @@
+import type { Logger } from "@saasquatch/logger";
 import type { Application } from "express";
 import { Server, createServer } from "http";
-import { Logger } from "winston";
 import { formatGenericError } from "./error.ts";
 
 const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {

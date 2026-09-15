@@ -1,5 +1,5 @@
+import type { Logger } from "@saasquatch/logger";
 import type { Application, Request, Response } from "express";
-import { Logger } from "winston";
 import { formatGenericError } from "./error.ts";
 import { TERMINATION_APP_LOCAL_KEY } from "./shutdown.ts";
 
