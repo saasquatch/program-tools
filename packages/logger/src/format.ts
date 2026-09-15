@@ -31,6 +31,7 @@ export function formatRecord(
   if (name !== DEFAULT_LOGGER_NAME) {
     record["logger.name"] = name;
   }
+
   if (record["tenantAlias"] && typeof record["message"] === "string") {
     const alias = String(record["tenantAlias"]);
     if (!(record["message"] as string).startsWith(`[${alias}]`)) {
@@ -41,8 +42,10 @@ export function formatRecord(
   if (record[LOG_TYPE_MARKER] === "HTTP") {
     formatHttpRecord(record);
   }
+
   delete record[LOG_TYPE_MARKER];
   record["status"] = level;
+
   return record as LogRecord;
 }
 
@@ -51,6 +54,7 @@ function formatHttpRecord(record: Record<string, unknown>): void {
   if (value === null || typeof value !== "object") {
     return;
   }
+
   const message = value as unknown as HTTPMessage;
   const micros = Number(message.time);
   const displayTime =
@@ -62,10 +66,12 @@ function formatHttpRecord(record: Record<string, unknown>): void {
     displayTime.padStart(6, " "),
     message.url,
   ].join(" ");
+
   record["http.url"] = message.url;
   record["http.method"] = message.method;
   record["http.status_code"] = message.status;
   record["http.response_time"] = micros;
+
   if (message.requestId) {
     record["http.request_id"] = message.requestId;
   }
@@ -73,19 +79,29 @@ function formatHttpRecord(record: Record<string, unknown>): void {
 
 /** Safely serialize records, including Error and BigInt values. */
 export function serializeRecord(record: LogRecord): string {
-  const seen = new WeakSet<object>();
-  return JSON.stringify(record, (_key, value: unknown) => {
+  // Keep only the current ancestor chain. A WeakSet of every object seen in
+  // the record would incorrectly classify valid shared sibling references as
+  // circular.
+  const ancestors: object[] = [];
+  return JSON.stringify(record, function (_key, value: unknown) {
     if (typeof value === "bigint") {
       return value.toString();
     }
+
     if (value instanceof Error) {
       return { name: value.name, message: value.message, stack: value.stack };
     }
+
     if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
+      while (ancestors.length > 0 && ancestors[ancestors.length - 1] !== this) {
+        ancestors.pop();
+      }
+
+      if (ancestors.includes(value)) {
         return "[Circular]";
       }
-      seen.add(value);
+
+      ancestors.push(value);
     }
     return value;
   });

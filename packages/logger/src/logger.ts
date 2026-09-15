@@ -66,16 +66,16 @@ export function initializeLogger(
 ): Logger {
   const name =
     typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
+
   if (_loggers.has(name)) {
     throw new Error("Logger has already been initialized");
   }
 
   const supplied =
     config ?? (typeof nameOrConfig === "string" ? {} : (nameOrConfig ?? {}));
+
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
-
   const sinks = conf.transports.map(transportToSink);
-
   const level = { value: conf.logLevel };
   const logger = createLogger(name, sinks, level, {});
 
@@ -101,12 +101,15 @@ function createLogger(
 
   const logger: Logger = {
     name,
+
     get level() {
       return level.value;
     },
+
     set level(value: LogLevel) {
       level.value = value;
     },
+
     log(messageLevel, message, fields) {
       if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[level.value]) {
         return;
@@ -143,9 +146,11 @@ function createLogger(
         }
       }
     },
+
     child(record) {
       return createLogger(name, sinks, level, { ...baseFields, ...record });
     },
+
     startLogCollection(options) {
       const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
       if (!Number.isInteger(maxEntries) || maxEntries < 1) {
@@ -157,24 +162,54 @@ function createLogger(
         collection.records.splice(0, collection.records.length - maxEntries);
       }
     },
+
     stopLogCollection() {
       collection.enabled = false;
     },
+
     getCollectedLogs() {
       return [...collection.records];
     },
+
     clearCollectedLogs() {
       collection.records.length = 0;
     },
-    emerg(message, fields) { this.log("emerg", message, fields); },
-    alert(message, fields) { this.log("alert", message, fields); },
-    crit(message, fields) { this.log("crit", message, fields); },
-    error(message, fields) { this.log("error", message, fields); },
-    warning(message, fields) { this.log("warning", message, fields); },
-    warn(message, fields) { this.log("warn", message, fields); },
-    notice(message, fields) { this.log("notice", message, fields); },
-    info(message, fields) { this.log("info", message, fields); },
-    debug(message, fields) { this.log("debug", message, fields); },
+
+    emerg(message, fields) {
+      this.log("emerg", message, fields);
+    },
+
+    alert(message, fields) {
+      this.log("alert", message, fields);
+    },
+
+    crit(message, fields) {
+      this.log("crit", message, fields);
+    },
+
+    error(message, fields) {
+      this.log("error", message, fields);
+    },
+
+    warning(message, fields) {
+      this.log("warning", message, fields);
+    },
+
+    warn(message, fields) {
+      this.log("warn", message, fields);
+    },
+
+    notice(message, fields) {
+      this.log("notice", message, fields);
+    },
+
+    info(message, fields) {
+      this.log("info", message, fields);
+    },
+
+    debug(message, fields) {
+      this.log("debug", message, fields);
+    },
   };
   return logger;
 }
@@ -191,6 +226,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function transportToSink(transport: Transport): Sink {
   const stream: Writable =
     transport.type === "console" ? process.stdout : transport.stream;
+
   return (serializedRecord) => {
     stream.write(serializedRecord);
   };

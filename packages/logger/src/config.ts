@@ -52,6 +52,7 @@ export function defaultConfig(): LoggerConfig {
 
   const configuredLevel = process.env["SSQT_LOG_LEVEL"];
   let logLevel: LogLevel = "info";
+
   if (configuredLevel !== undefined) {
     if (!LOG_LEVELS.includes(configuredLevel as LogLevel)) {
       throw new Error(`Invalid log level "${configuredLevel}"`);
