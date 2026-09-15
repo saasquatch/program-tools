@@ -1,48 +1,63 @@
 <h1 align="center">@saasquatch/logger</h1>
-<p align="center">Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services</p>
-<p align="center">
-  <a href="https://www.npmjs.com/package/@saasquatch/logger"><img src="https://img.shields.io/npm/v/@saasquatch/logger/latest.svg?style=flat-square" alt="NPM version" /> </a>
-  <a href="https://www.npmjs.com/package/@saasquatch/logger"><img src="https://img.shields.io/npm/dm/@saasquatch/logger.svg?style=flat-square" alt="NPM downloads"/> </a>
-</p>
+<p align="center">Small structured JSON logger for SaaSquatch NodeJS services</p>
 
-The SaaSquatch logging package facilitates unified structured logging across all
-NodeJS-based SaaSquatch services. It wraps Winston and provides standard log formats for
-general logging, debugging, and HTTP services.
+The package provides a lightweight structured logger that writes newline-delimited JSON to stdout by default. It supports syslog-style levels, named loggers, custom writable stream sinks, and Express HTTP logging middleware.
 
-## Getting Started
-
-Install the package from NPM:
+## Getting started
 
 ```bash
 npm install @saasquatch/logger
 ```
 
-Basic usage:
-
 ```typescript
-import { initializeLogger, getLogger } from "@saasquatch/logger";
+import { initializeLogger } from "@saasquatch/logger";
 
-function main() {
-  const logger = initializeLogger();
+const logger = initializeLogger();
+logger.info("Hello", { service: "example" });
+logger.error(new Error("Something failed"));
 
-  logger.info("Hello");
-  otherFunction();
-}
+// Child fields are included in every record emitted by the child.
+const requestLogger = logger.child({ requestId: "req-123" });
+requestLogger.info("Request started");
 
-function otherFunction() {
-  getLogger()!.info("World!");
-}
-
-main();
+// Collect records for a response, while still writing them to the sink.
+requestLogger.startLogCollection({ maxEntries: 100 });
+requestLogger.info("Request finished");
+const logs = requestLogger.getCollectedLogs();
+requestLogger.stopLogCollection();
+requestLogger.clearCollectedLogs();
 ```
 
-Express HTTP logging middleware:
+Collection retains the newest 1,000 records by default. `maxEntries` can be set when
+starting collection; it must be a positive integer. Collection is independent for
+each logger and child logger.
+
+Each enabled call writes one JSON record. The default minimum level is `info`; it can also be configured with `SSQT_LOG_LEVEL`.
+
+### Custom stream sinks
+
+Use a writable Node stream in addition to, or instead of, stdout:
+
+```typescript
+import { createWriteStream } from "node:fs";
+import { initializeLogger } from "@saasquatch/logger";
+
+const logger = initializeLogger({
+  transports: [{ type: "stream", stream: createWriteStream("service.log") }],
+});
+```
+
+The supported transport types are `console` and `stream`. File, HTTP, and Winston transport configuration are not part of this API.
+
+### Express HTTP logging
 
 ```typescript
 import express from "express";
 import { httpLogMiddleware, initializeLogger } from "@saasquatch/logger";
 
-const server = express();
+const app = express();
 const logger = initializeLogger();
-server.use(httpLogMiddleware(logger));
+app.use(httpLogMiddleware(logger));
 ```
+
+HTTP records include normalized method, URL, status, response time, and request ID fields. Sensitive URL query parameters are removed by the middleware.

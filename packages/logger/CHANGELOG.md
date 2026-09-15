@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0]
+
+### BREAKING CHANGES
+
+- Removed Winston and its transport/format APIs.
+- Loggers now emit structured JSON directly and expose the package-owned `Logger` type.
+- The supported sinks are stdout and custom writable Node streams.
+
 ## [3.0.0] - 2026-05-27
 
 ### BREAKING CHANGES

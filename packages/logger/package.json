@@ -1,8 +1,8 @@
 {
   "name": "@saasquatch/logger",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
-  "description": "Thin wrapper around Winston to provide unified logging across SaaSquatch NodeJS services",
+  "description": "Small structured JSON logger for SaaSquatch NodeJS services",
   "private": false,
   "publishConfig": {
     "access": "public",
@@ -39,8 +39,7 @@
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "express": "^4",
-    "winston": "^3"
+    "express": "^4"
   },
   "peerDependenciesMeta": {
     "express": {
