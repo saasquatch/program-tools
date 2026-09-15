@@ -13,6 +13,10 @@ export type LogCollectionOptions = {
   maxEntries?: number;
 };
 
+export type GetCollectedLogsOptions = {
+  serialized?: boolean;
+};
+
 export const DEFAULT_LOG_COLLECTION_LIMIT = 1000;
 
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
@@ -41,7 +45,9 @@ export interface Logger {
   child(record: Record<string, unknown>): Logger;
   startLogCollection(options?: LogCollectionOptions): void;
   stopLogCollection(): void;
-  getCollectedLogs(): LogRecord[];
+  getCollectedLogs<T extends boolean = false>(
+    opts?: GetCollectedLogsOptions & { serialized?: T },
+  ): T extends true ? string : LogRecord[];
   clearCollectedLogs(): void;
 }
 
@@ -127,6 +133,7 @@ function createLogger(
         ...baseFields,
         ...messageFields,
       });
+
       if (collection.enabled) {
         collection.records.push(record);
         if (collection.records.length > collection.maxEntries) {
@@ -136,6 +143,7 @@ function createLogger(
           );
         }
       }
+
       // Do not serialize when there are no active sinks (for example, when
       // this logger is only being used for collection). Serialization is also
       // shared across all sinks.
@@ -167,8 +175,16 @@ function createLogger(
       collection.enabled = false;
     },
 
-    getCollectedLogs() {
-      return [...collection.records];
+    getCollectedLogs<T extends boolean = false>(
+      opts?: GetCollectedLogsOptions & { serialized?: T },
+    ): T extends true ? string : LogRecord[] {
+      if (opts?.serialized) {
+        return collection.records
+          .map((record) => `${serializeRecord(record)}\n`)
+          .join("") as T extends true ? string : LogRecord[];
+      }
+
+      return [...collection.records] as T extends true ? string : LogRecord[];
     },
 
     clearCollectedLogs() {
