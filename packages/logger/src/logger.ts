@@ -99,10 +99,14 @@ function createLogger(
     enabled: boolean;
     maxEntries: number;
     records: LogRecord[];
+    start: number;
+    size: number;
   } = {
     enabled: false,
     maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
     records: [],
+    start: 0,
+    size: 0,
   };
 
   const logger: Logger = {
@@ -135,12 +139,14 @@ function createLogger(
       });
 
       if (collection.enabled) {
-        collection.records.push(record);
-        if (collection.records.length > collection.maxEntries) {
-          collection.records.splice(
-            0,
-            collection.records.length - collection.maxEntries,
-          );
+        const index =
+          (collection.start + collection.size) % collection.maxEntries;
+
+        collection.records[index] = record;
+        if (collection.size < collection.maxEntries) {
+          collection.size += 1;
+        } else {
+          collection.start = (collection.start + 1) % collection.maxEntries;
         }
       }
 
@@ -161,14 +167,21 @@ function createLogger(
 
     startLogCollection(options) {
       const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
+
       if (!Number.isInteger(maxEntries) || maxEntries < 1) {
         throw new Error("Log collection maxEntries must be a positive integer");
       }
+
+      if (collection.maxEntries !== maxEntries) {
+        const retained = getCollectedRecords(collection);
+        const records = retained.slice(-maxEntries);
+        collection.records = records;
+        collection.start = 0;
+        collection.size = records.length;
+      }
+
       collection.maxEntries = maxEntries;
       collection.enabled = true;
-      if (collection.records.length > maxEntries) {
-        collection.records.splice(0, collection.records.length - maxEntries);
-      }
     },
 
     stopLogCollection() {
@@ -178,17 +191,20 @@ function createLogger(
     getCollectedLogs<T extends boolean = false>(
       opts?: GetCollectedLogsOptions & { serialized?: T },
     ): T extends true ? string : LogRecord[] {
+      const records = getCollectedRecords(collection);
       if (opts?.serialized) {
-        return collection.records
+        return records
           .map((record) => `${serializeRecord(record)}\n`)
           .join("") as T extends true ? string : LogRecord[];
       }
 
-      return [...collection.records] as T extends true ? string : LogRecord[];
+      return records as T extends true ? string : LogRecord[];
     },
 
     clearCollectedLogs() {
       collection.records.length = 0;
+      collection.start = 0;
+      collection.size = 0;
     },
 
     emerg(message, fields) {
@@ -230,13 +246,27 @@ function createLogger(
   return logger;
 }
 
+function getCollectedRecords(collection: {
+  records: LogRecord[];
+  start: number;
+  size: number;
+  maxEntries: number;
+}): LogRecord[] {
+  const records = new Array<LogRecord>(collection.size);
+  for (let index = 0; index < collection.size; index += 1) {
+    records[index] =
+      collection.records[(collection.start + index) % collection.maxEntries];
+  }
+  return records;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    !Array.isArray(value) &&
-    !(value instanceof Error)
-  );
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
 function transportToSink(transport: Transport): Sink {

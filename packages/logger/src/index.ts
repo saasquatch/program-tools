@@ -10,6 +10,7 @@ import {
 import type { LogRecord } from "./format.ts";
 import {
   DEFAULT_LOG_COLLECTION_LIMIT,
+  type GetCollectedLogsOptions,
   getLogger,
   initializeLogger,
   isLoggerInitialized,
@@ -31,6 +32,7 @@ export {
   LOG_TYPE_MARKER,
   SYSLOG_LOG_LEVELS,
   type ConsoleTransport,
+  type GetCollectedLogsOptions,
   type LogCollectionOptions,
   type Logger,
   type LoggerConfig,
