@@ -51,8 +51,8 @@
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "@saasquatch/logger": "^4.0.1-0",
-    "express": "4"
+    "@saasquatch/logger": "^4.0.0",
+    "express": "^4.0.0"
   },
   "prettier": {}
 }
