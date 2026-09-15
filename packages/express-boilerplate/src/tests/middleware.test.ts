@@ -14,7 +14,10 @@ test("requestIdAndLogger adds requestId and logger", async () => {
   app.use(requestIdAndLogger(logger));
   app.use((_req, res, next) => {
     assert.strictEqual(typeof res.locals["requestId"], "string");
-    assert.ok(res.locals["logger"]);
+    const requestLogger = res.locals["logger"] as typeof logger;
+    assert.notStrictEqual(requestLogger, logger);
+    assert.strictEqual(requestLogger.name, logger.name);
+    assert.strictEqual(typeof requestLogger.info, "function");
     next();
   });
 
