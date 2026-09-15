@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.9
+
+### Patch Changes
+
+- [#544](https://github.com/saasquatch/program-tools/pull/544) [`77040f8`](https://github.com/saasquatch/program-tools/commit/77040f8f9eae6a416c6a7fb27e5b0cd015b692a4) Thanks [@00salmon](https://github.com/00salmon)! - show no warnings if balance is currently zero
+
 ## 2.4.8
 
 ### Patch Changes
