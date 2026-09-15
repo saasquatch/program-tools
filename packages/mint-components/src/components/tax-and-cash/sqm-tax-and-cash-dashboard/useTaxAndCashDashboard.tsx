@@ -24,7 +24,11 @@ import {
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
-import { formatPayoutThreshold, taxTypeToName } from "../utils";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+  taxTypeToName,
+} from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 import { gql } from "graphql-request";
@@ -189,6 +193,7 @@ export const useTaxAndCashDashboard = (
       showNewFormDialog: showDialog,
       hasHold: !!publisher?.payoutsAccount?.hold,
       payoutStatus,
+      belowPayoutThreshold: isBalanceUnderPayoutThreshold(publisher),
       minPayoutAmount: formatPayoutThreshold(publisher),
       veriffLoading,
       enforceUsTaxComplianceOption,

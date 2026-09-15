@@ -140,7 +140,10 @@ export function formatPayoutThreshold(
   return `${publisher?.currency ?? ""}${threshold}`;
 }
 
-/** `payoutsAccount.balance` is a formatted string; only `balanceAmount` (minor units) is comparable. */
+/**
+ * `payoutsAccount.balance` is a formatted string; only `balanceAmount` (minor units) is comparable.
+ * A zero balance gets no notice — there is nothing waiting to pay out.
+ */
 export function isBalanceUnderPayoutThreshold(
   publisher: ImpactPublisher | null | undefined,
 ): boolean {
@@ -151,14 +154,15 @@ export function isBalanceUnderPayoutThreshold(
   const threshold = Number(rawThreshold);
   if (!Number.isFinite(threshold) || !Number.isFinite(account.balanceAmount))
     return false;
+  if (account.balanceAmount <= 0) return false;
 
   const currency = account.currencyCode || publisher?.currency;
   if (!currency) return false;
 
   const scale =
     10 **
-    new Intl.NumberFormat("en-US", { style: "currency", currency })
-      .resolvedOptions().maximumFractionDigits;
+    (new Intl.NumberFormat("en-US", { style: "currency", currency })
+      .resolvedOptions().maximumFractionDigits ?? 2);
 
   return account.balanceAmount < Math.round(threshold * scale);
 }

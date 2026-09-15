@@ -93,7 +93,21 @@ export const BalanceUnderThreshold = () => (
     demoData={{
       states: {
         ...defaultProps,
-        status: "BALANCE_UNDER_THRESHOLD",
+        status: "DONE",
+        belowPayoutThreshold: true,
+        minPayoutAmount: "USD50.00",
+      },
+    }}
+  ></sqm-payout-status-alert>
+);
+
+export const BalanceUnderThresholdWithHold = () => (
+  <sqm-payout-status-alert
+    demoData={{
+      states: {
+        ...defaultProps,
+        status: "NEW_PAYEE_REVIEW",
+        belowPayoutThreshold: true,
         minPayoutAmount: "USD50.00",
       },
     }}
