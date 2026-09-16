@@ -1,5 +1,5 @@
-import type { Request, Response } from "express";
 import { URL } from "node:url";
+import type { Request, Response } from "express";
 import type { LogLevel } from "./config.ts";
 import type { Logger } from "./logger.ts";
 import { LOG_TYPE_MARKER } from "./logger.ts";

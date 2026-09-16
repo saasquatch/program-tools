@@ -193,9 +193,9 @@ function createLogger(
     ): T extends true ? string : LogRecord[] {
       const records = getCollectedRecords(collection);
       if (opts?.serialized) {
-        return records
-          .map((record) => `${serializeRecord(record)}\n`)
-          .join("") as T extends true ? string : LogRecord[];
+        return records.map(serializeRecord).join("\n") as T extends true
+          ? string
+          : LogRecord[];
       }
 
       return records as T extends true ? string : LogRecord[];
@@ -252,12 +252,11 @@ function getCollectedRecords(collection: {
   size: number;
   maxEntries: number;
 }): LogRecord[] {
-  const records = new Array<LogRecord>(collection.size);
-  for (let index = 0; index < collection.size; index += 1) {
-    records[index] =
-      collection.records[(collection.start + index) % collection.maxEntries];
-  }
-  return records;
+  return Array.from({ length: collection.size }, (_unused, index) => {
+    return collection.records[
+      (collection.start + index) % collection.maxEntries
+    ];
+  });
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
