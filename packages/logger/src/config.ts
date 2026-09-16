@@ -54,9 +54,11 @@ export function defaultConfig(): LoggerConfig {
   let logLevel: LogLevel = "info";
 
   if (configuredLevel !== undefined) {
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     if (!LOG_LEVELS.includes(configuredLevel as LogLevel)) {
       throw new Error(`Invalid log level "${configuredLevel}"`);
     }
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     logLevel = configuredLevel as LogLevel;
   }
 

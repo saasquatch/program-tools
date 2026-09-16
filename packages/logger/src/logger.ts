@@ -52,18 +52,18 @@ export interface Logger {
 }
 
 type Sink = (serializedRecord: string) => void;
-const _loggers = new Map<string, Logger>();
+const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
   const name = logger ?? DEFAULT_LOGGER_NAME;
-  if (!_loggers.has(name)) {
+  if (!loggers.has(name)) {
     initializeLogger(name);
   }
-  return _loggers.get(name)!;
+  return loggers.get(name)!;
 }
 
 export function isLoggerInitialized(logger?: string): boolean {
-  return _loggers.has(logger ?? DEFAULT_LOGGER_NAME);
+  return loggers.has(logger ?? DEFAULT_LOGGER_NAME);
 }
 
 export function initializeLogger(
@@ -73,7 +73,7 @@ export function initializeLogger(
   const name =
     typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
 
-  if (_loggers.has(name)) {
+  if (loggers.has(name)) {
     throw new Error("Logger has already been initialized");
   }
 
@@ -85,7 +85,7 @@ export function initializeLogger(
   const level = { value: conf.logLevel };
   const logger = createLogger(name, sinks, level, {});
 
-  _loggers.set(name, logger);
+  loggers.set(name, logger);
   return logger;
 }
 
@@ -193,11 +193,13 @@ function createLogger(
     ): T extends true ? string : LogRecord[] {
       const records = getCollectedRecords(collection);
       if (opts?.serialized) {
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         return records.map(serializeRecord).join("\n") as T extends true
           ? string
           : LogRecord[];
       }
 
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       return records as T extends true ? string : LogRecord[];
     },
 

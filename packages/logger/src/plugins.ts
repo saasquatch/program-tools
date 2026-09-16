@@ -70,6 +70,7 @@ export function httpLogMiddleware(
       const method = req.method;
       const requestId = res.locals?.["requestId"];
 
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const extraData = res.locals?.["extraData"] as
         | Record<string, any>
         | undefined;

@@ -21,7 +21,7 @@ export function formatRecord(
   message: unknown,
   fields: Record<string, unknown> = {},
 ): LogRecord {
-  const record: Record<string, unknown> = {
+  const record: LogRecord = {
     ...fields,
     level,
     timestamp: new Date().toISOString(),
@@ -32,10 +32,13 @@ export function formatRecord(
     record["logger.name"] = name;
   }
 
-  if (record["tenantAlias"] && typeof record["message"] === "string") {
-    const alias = String(record["tenantAlias"]);
-    if (!(record["message"] as string).startsWith(`[${alias}]`)) {
-      record["message"] = `[${alias}] ${record["message"]}`;
+  if (
+    typeof record["tenantAlias"] === "string" &&
+    typeof record["message"] === "string"
+  ) {
+    const tenantAliasTag = `[${record["tenantAlias"]}]`;
+    if (!record["message"].startsWith(tenantAliasTag)) {
+      record["message"] = `${tenantAliasTag} ${record["message"]}`;
     }
   }
 
@@ -46,7 +49,7 @@ export function formatRecord(
   delete record[LOG_TYPE_MARKER];
   record["status"] = level;
 
-  return record as LogRecord;
+  return record;
 }
 
 function formatHttpRecord(record: Record<string, unknown>): void {
@@ -55,7 +58,8 @@ function formatHttpRecord(record: Record<string, unknown>): void {
     return;
   }
 
-  const message = value as unknown as HTTPMessage;
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  const message = value as HTTPMessage;
   const micros = Number(message.time);
   const displayTime =
     micros < 1000 ? `${micros} μs` : `${Math.round(micros / 1000)} ms`;
