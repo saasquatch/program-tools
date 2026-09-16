@@ -1,5 +1,8 @@
-import { initializeLogger, type LogLevel } from "@saasquatch/logger";
-import { Logger } from "winston";
+import {
+  initializeLogger,
+  type Logger,
+  type LogLevel,
+} from "@saasquatch/logger";
 
 // Lazily initialized logger instance
 let logger: Logger;
