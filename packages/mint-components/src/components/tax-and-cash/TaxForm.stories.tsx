@@ -30,6 +30,8 @@ const stepOneProps: StoryDemoData<UseUserInfoFormResult> = {
     disabled: false,
     isPartner: false,
     isUser: false,
+    isPartnerLegacy: false,
+    isUserLegacy: false,
     loadingError: false,
     formState: {
       firstName: "Bob",
@@ -151,6 +153,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     disabled: false,
     loading: false,
     isPartner: false,
+    isPartnerLegacy: false,
     loadingError: false,
     formState: {
       checked: undefined,
@@ -1540,6 +1543,31 @@ export const TaxAndCashDashboardPayoutsOnHold = () => {
           noFormNeeded: false,
           indirectTaxNumber: "123456",
           country: "Slovania",
+          showNewFormDialog: false,
+          hasHold: false,
+        },
+      }}
+    ></sqm-tax-and-cash-dashboard>
+  );
+};
+
+export const TaxAndCashDashboardBalanceUnderThreshold = () => {
+  return (
+    <sqm-tax-and-cash-dashboard
+      demoData={{
+        ...dashboardProps,
+        states: {
+          payoutStatus: "DONE",
+          belowPayoutThreshold: true,
+          minPayoutAmount: "USD50.00",
+          veriffLoading: false,
+          canEditPayoutInfo: true,
+          status: "ACTIVE",
+          documentType: "W8BEN",
+          documentTypeString: taxTypeToName("W8BEN"),
+          dateSubmitted: "Jan 18th, 2025",
+          noFormNeeded: false,
+          indirectTaxNumber: "123456",
           showNewFormDialog: false,
           hasHold: false,
         },

@@ -4,6 +4,10 @@ import { gql } from "graphql-request";
 import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+} from "../utils";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type EnforceUsTaxComplianceOption =
@@ -46,9 +50,16 @@ const GET_USER_STATUS = gql`
           connected
           publisher {
             id
+            currency
+            withdrawalSettings {
+              paymentThreshold
+            }
             payoutsAccount {
               hold
               holdReasons
+              balance
+              balanceAmount
+              currencyCode
             }
           }
         }
@@ -91,34 +102,40 @@ export function getStatus(data: UserQuery): PayoutStatus {
 
   const currentTaxDocument =
     data.user.impactConnection?.publisher?.currentTaxDocument;
-  if (account.holdReasons?.includes("NO_W9_DOCUMENT") && !currentTaxDocument)
-    return "OVER_W9_THRESHOLD";
-  if (account.holdReasons?.includes("IDV_CHECK_REQUIRED"))
-    return "VERIFICATION:REQUIRED";
-  if (account.holdReasons?.includes("IDV_CHECK_REQUIRED_INTERNAL"))
-    return "VERIFICATION:INTERNAL";
-  if (account.holdReasons?.includes("IDV_CHECK_REVIEW_INTERNAL"))
-    return "VERIFICATION:REVIEW";
-  if (account.holdReasons?.includes("IDV_CHECK_FAILED_INTERNAL"))
-    return "VERIFICATION:FAILED";
-  // only show banner for NEW_PAYEE_REVIEW if a PFT was created
-  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW") && hasTransferredReward)
-    return "NEW_PAYEE_REVIEW";
-  if (account.holdReasons?.includes("NEW_PAYEE_REVIEW")) return "DONE";
-  if (account.holdReasons?.includes("PAYMENT_HOLD_ON_CHANGE"))
-    return "PAYMENT_HOLD_ON_CHANGE";
-  if (account.holdReasons?.includes("BENEFICIARY_NAME_INVALID"))
-    return "BENEFICIARY_NAME_INVALID";
-  if (account.holdReasons?.includes("BENEFICIARY_NAME_MISMATCH"))
-    return "BENEFICIARY_NAME_MISMATCH";
-  if (account.holdReasons?.includes("BANK_TAX_NAME_MISMATCH"))
-    return "BANK_TAX_NAME_MISMATCH";
-  if (account.holdReasons?.includes("WITHDRAWAL_SETTINGS_INVALID"))
-    return "WITHDRAWAL_SETTINGS_INVALID";
-  if (account.holdReasons?.includes("PAYMENT_RETURNED"))
-    return "PAYMENT_RETURNED";
 
-  if (account.hold) return "HOLD";
+  // A new-payee review only starts once funds reach Impact, so until then nobody can act on it
+  const reviewIsLive = !!hasTransferredReward && account.balanceAmount > 0;
+  const holdReasons = (account.holdReasons ?? []).filter(
+    (reason) => reason !== "NEW_PAYEE_REVIEW" || reviewIsLive,
+  );
+
+  if (holdReasons.includes("NO_W9_DOCUMENT") && !currentTaxDocument)
+    return "OVER_W9_THRESHOLD";
+  if (holdReasons.includes("IDV_CHECK_REQUIRED"))
+    return "VERIFICATION:REQUIRED";
+  if (holdReasons.includes("IDV_CHECK_REQUIRED_INTERNAL"))
+    return "VERIFICATION:INTERNAL";
+  if (holdReasons.includes("IDV_CHECK_REVIEW_INTERNAL"))
+    return "VERIFICATION:REVIEW";
+  if (holdReasons.includes("IDV_CHECK_FAILED_INTERNAL"))
+    return "VERIFICATION:FAILED";
+  if (holdReasons.includes("NEW_PAYEE_REVIEW")) return "NEW_PAYEE_REVIEW";
+  if (holdReasons.includes("PAYMENT_HOLD_ON_CHANGE"))
+    return "PAYMENT_HOLD_ON_CHANGE";
+  if (holdReasons.includes("BENEFICIARY_NAME_INVALID"))
+    return "BENEFICIARY_NAME_INVALID";
+  if (holdReasons.includes("BENEFICIARY_NAME_MISMATCH"))
+    return "BENEFICIARY_NAME_MISMATCH";
+  if (holdReasons.includes("BANK_TAX_NAME_MISMATCH"))
+    return "BANK_TAX_NAME_MISMATCH";
+  if (holdReasons.includes("WITHDRAWAL_SETTINGS_INVALID"))
+    return "WITHDRAWAL_SETTINGS_INVALID";
+  if (holdReasons.includes("PAYMENT_RETURNED")) return "PAYMENT_RETURNED";
+
+  // A hold whose every reason was suppressed leaves nothing to report
+  const unattributedHold = !account.holdReasons?.length;
+  if (account.hold && (holdReasons.length > 0 || unattributedHold))
+    return "HOLD";
   return "DONE";
 }
 
@@ -197,6 +214,12 @@ export function usePayoutStatus(props: PayoutStatusAlert) {
       status,
       error: !!errors,
       enforceUsTaxComplianceOption,
+      belowPayoutThreshold: isBalanceUnderPayoutThreshold(
+        data?.user?.impactConnection?.publisher,
+      ),
+      minPayoutAmount: formatPayoutThreshold(
+        data?.user?.impactConnection?.publisher,
+      ),
     },
     data: { type },
     text: props.getTextProps(),

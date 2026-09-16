@@ -2,13 +2,14 @@ import {
   useLazyQuery,
   useParentState,
   useSetParent,
-  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import {
+  PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
+  SHOW_PARTNER_MODAL_NAMESPACE,
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
@@ -25,23 +26,36 @@ const USER_LOOKUP = gql`
           email
           emailVerified
         }
+        impactConnection {
+          connected
+        }
       }
     }
   }
 `;
 
 export function useWidgetVerification() {
-  const userIdentity = useUserIdentity();
-  const [showCode, setShowCode] = useParentState<boolean>({
+  const [showCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
   });
-  const [email, setEmail] = useParentState<string | undefined>({
+
+  useParentState<string | undefined>({
     namespace: VERIFICATION_EMAIL_NAMESPACE,
-    initialValue: userIdentity?.email,
+    initialValue: undefined,
   });
+
   const setContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
   const [loading, setLoading] = useState(true);
+  const [showPartnerModal, setShowPartnerModal] = useParentState<boolean>({
+    namespace: SHOW_PARTNER_MODAL_NAMESPACE,
+    initialValue: false,
+  });
+
+  const [partnerCreated, setPartnerCreated] = useParentState<boolean>({
+    namespace: PARTNER_CREATED_NAMESPACE,
+    initialValue: false,
+  });
   const [fetch] = useLazyQuery(USER_LOOKUP);
 
   useEffect(() => {
@@ -50,8 +64,19 @@ export function useWidgetVerification() {
         const res = await fetch({});
         if (!res || res instanceof Error) throw new Error();
 
-        if (res?.viewer?.emailVerified) setContext(true);
-        else if (res?.viewer?.managedIdentity?.emailVerified) setContext(true);
+        // Flow changed to send email -> verify code -> show early partner creation modal
+        const emailVerified =
+          res?.viewer?.emailVerified ||
+          res?.viewer?.managedIdentity?.emailVerified;
+        const isConnected = res?.viewer?.impactConnection?.connected;
+
+        if (isConnected) {
+          // Partner already created, show widget content
+          setContext(true);
+        } else if (emailVerified) {
+          // Email verified but no partner yet, show partner modal
+          setShowPartnerModal(true);
+        }
       } catch (e) {
         console.error("Could not fetch user information:", e);
       } finally {
@@ -63,8 +88,26 @@ export function useWidgetVerification() {
   }, []);
 
   const onVerification = () => {
+    setShowPartnerModal(true);
+  };
+
+  const onPartnerModalComplete = () => {
+    setShowPartnerModal(false);
+    // Reset the latch so a later partner creation can re-trigger this effect
+    setPartnerCreated(false);
     setContext(true);
   };
 
-  return { showCode, onVerification, loading };
+  // The modal signals completion by flipping partnerCreated; advance the flow here
+  useEffect(() => {
+    if (partnerCreated) onPartnerModalComplete();
+  }, [partnerCreated]);
+
+  return {
+    showCode,
+    showPartnerModal,
+    onVerification,
+    onPartnerModalComplete,
+    loading,
+  };
 }

@@ -13,6 +13,7 @@ Feature: Tax Form Step One
     And each field has label <label>
     And is input type <inputType>
     And they see a "Continue" button
+
     Examples:
       | label                        | inputType |
       | First name                   | text      |
@@ -114,7 +115,6 @@ Feature: Tax Form Step One
       | CAN         | USD, AUD, EUR, GBP, CAN |
       | IND         | USD, AUD, EUR, GBP, INR |
 
-
   @minutia
   Scenario: Currency select is searchable
     When they press the Currency select
@@ -201,19 +201,20 @@ Feature: Tax Form Step One
       {fieldName} contains invalid characters.
       """
     # Note: SPACE and NUL mean the characters. Both are for documentation purposes.
+
     Examples:
       | fieldName | string                                               | may      |
       | Address   | SPACE                                                | will not |
       | Address   | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
-      | Address   | 0123456789                                           | will not |
-      | Address   | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | Address   |                                           0123456789 | will not |
+      | Address   | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
       | Address   | æùíöêø                                               | will not |
       | Address   | ぁ ㍿ ・                                             | will     |
       | Address   | NUL                                                  | will     |
       | City      | SPACE                                                | will not |
       | City      | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will not |
-      | City      | 0123456789                                           | will not |
-      | City      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      | City      |                                           0123456789 | will not |
+      | City      | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
       | City      | æùíöêø                                               | will not |
       | City      | ぁ ㍿ ・                                             | will     |
       | City      | NUL                                                  | will     |
@@ -227,11 +228,12 @@ Feature: Tax Form Step One
       """
       Phone number is invalid.
       """
+
     Examples:
       | string                                               | may      |
       | abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ | will     |
-      | 0123456789                                           | will not |
-      | !"#$%&'()*+'-,/:;<=>?@[\]^_`~                        | will not |
+      |                                           0123456789 | will not |
+      | !"#$%&'()*+'-,/:;<=>?@[\\]^_`~                       | will not |
 
   @minutia
   Scenario Outline: "State" field changes based on country selected
@@ -239,6 +241,7 @@ Feature: Tax Form Step One
     When <country> is selected via the dropdown
     Then the "State" select menu updates to the valid states of that country
     And the "State" field's label changes to <label>
+
     Examples:
       | country       | label    |
       | Canada        | Province |
@@ -250,6 +253,7 @@ Feature: Tax Form Step One
   Scenario Outline: "State" field is hidden if there are no states for the selected country
     Given the "Country" field has value <country>
     Then the "State" select <isHidden>
+
     Examples:
       | country       | isHidden      |
       | Austria       | is hidden     |
@@ -264,6 +268,7 @@ Feature: Tax Form Step One
     And managed identity email <miEmail>
     And their managed identity is <verified>
     Then the prefilled email in the user info form is <email>
+
     Examples:
       | participantEmail | miEmail        | verified     | email          |
       | p@example.com    | null           | N/A          | p@example.com  |
@@ -279,6 +284,7 @@ Feature: Tax Form Step One
     When the user clicks the "Next" button
     Then the publisher <mayBe> created
     And step 2 <mayBe> skipped
+
     Examples:
       | userCountryCode | tenantCountryCode | indirectTaxCountryCode | mayBe  |
       | GB              | GB                | GB                     | is not |
@@ -303,3 +309,238 @@ Feature: Tax Form Step One
     When they complete the form with the missing data
     And click "Continue"
     Then the missing data is patched on the partner when they are upserted
+
+  @motivating
+  Scenario: "Existing partner detected" banner only appears for legacy linked publishers
+    Given a user on the User Information form whose linked publisher exists
+    When the publisher's impactConnection.connectionStatus is null or undefined (legacy createImpactConnection)
+    Then the "existing partner detected" banner is shown
+    When instead the publisher's impactConnection.connectionStatus is "STARTED" (fresh sqm-partner-info-modal)
+    Then the "existing partner detected" banner is NOT shown
+    But the country and currency fields are still disabled because partnerData populated them
+
+  @motivating
+  Scenario: Legacy upgrade path - brand has not adopted sqm-partner-info-modal
+    Given the brand's template does not include <sqm-partner-info-modal>
+    And the user's impactConnection.connectionStatus is "NOT_STARTED" or null
+    When they fill out and submit the User Information form
+    Then the form calls the `createImpactConnection` mutation (legacy route)
+    And the form does NOT call `completeImpactConnection`
+    And a new publisher is created from the submitted form data
+
+  @motivating
+  Scenario: New upgrade path - brand has adopted sqm-partner-info-modal
+    Given the brand's template includes <sqm-partner-info-modal>
+    And the modal ran and the user's impactConnection.connectionStatus is "STARTED"
+    When they fill out and submit the User Information form
+    Then the form calls the `completeImpactConnection` mutation
+    And the form does NOT call `createImpactConnection`
+    And the existing started publisher is patched with the submitted form data
+
+  @motivating
+  Scenario: Early partner creation pre-fills country and currency only
+    Given the user had no Impact connection before opening sqm-partner-info-modal
+    And they completed the modal and a new publisher was created
+    And the new publisher only has the following fields populated
+      | countryCode |
+      | currency    |
+    When they navigate to the User Information form
+    Then the "Country" field is autofilled with the publisher's countryCode
+    And the "Currency" field is autofilled with the publisher's currency
+    And the "Country" and "Currency" fields are disabled
+    And the firstName, lastName, and email fields are autofilled from the participant / managed identity
+    And the firstName, lastName, and email fields are disabled per existing rules
+    But all remaining publisher-derived fields (phoneNumberCountryCode, phoneNumber, billingAddress, billingCity, billingState, billingPostalCode) are empty and enabled
+    And the user can fill in the missing fields and click "Continue"
+    And on submit the missing fields are patched onto the existing publisher (no new publisher is created)
+
+  @motivating
+  Scenario: Linked existing partner whose user-info form is already complete skips the form entirely
+    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
+    And the pre-existing partner has already filled out and saved their User Information form
+    And the existing publisher therefore has every required field populated
+      | countryCode            |
+      | currency               |
+      | phoneNumberCountryCode |
+      | phoneNumber            |
+      | billingAddress         |
+      | billingCity            |
+      | billingState           |
+      | billingPostalCode      |
+    When the new user enters the tax-and-cash flow
+    Then the User Information form (step 1) is skipped entirely
+    And the user is taken directly to the next applicable step (tax form, or banking if tax form is not required)
+    And no fields from step 1 need to be re-entered or re-submitted
+    And no new publisher is created and no patch request is sent for step 1 data
+
+  @motivating
+  Scenario: Linked existing partner with only country and currency populated still requires the rest
+    Given the user confirmed an existing Impact partner via sqm-partner-info-modal
+    And the existing publisher only has the following fields populated
+      | countryCode |
+      | currency    |
+    When they navigate to the User Information form
+    Then the "Country" field is autofilled and disabled
+    And the "Currency" field is autofilled and disabled
+    But the phoneNumberCountryCode, phoneNumber, billingAddress, billingCity, billingState, and billingPostalCode fields are empty and enabled
+    When they try to submit without providing the missing fields
+    Then they see a field-level validation error for each missing required field
+    When they complete the missing fields and click "Continue"
+    Then the missing data is patched onto the existing publisher (no new publisher is created)
+
+  @minutia @landmine
+  Scenario: The "0000000" / "DZ" placeholder phone values from publisher-creation are treated as empty
+    # Impact API returns phoneNumber "0000000" and phoneNumberCountryCode "DZ" when we send null fields
+    # during publisher creation  
+    Given the user reaches the User Information form via either entry path (modal-created or linked existing)
+    And the linked publisher's phoneNumber is "0000000"
+    And the linked publisher's phoneNumberCountryCode is "DZ"
+    Then the "Phone number" field is empty and enabled
+    And the "Extension" (phoneNumberCountryCode) field is empty and enabled
+    And the user must provide a real phone number before "Continue" will succeed
+
+  @motivating
+  Scenario: Phone number is validated against the selected country's rules
+    Given the "Phone number" field is not empty
+    And the "Extension" (phoneNumberCountryCode) field has a value selected
+    When the user clicks "Continue"
+    Then the phone number is validated against the rules of the selected country
+    And if it is invalid the error message "Phone number is invalid." is displayed under the "Phone number" field
+    And no save request is sent to the backend
+    And they are not sent to the next step
+
+  @motivating
+  Scenario: Empty phone number is handled by the required validator, not the phone-format validator
+    Given the "Phone number" field is empty or whitespace-only
+    When the user clicks "Continue"
+    Then the error message "Phone number is required" is displayed
+    And the "Phone number is invalid." error is NOT displayed
+
+  @motivating
+  Scenario Outline: Phone number validation per country (US / CA)
+    Given the "Extension" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then the phone validation result <isValid>
+
+    Examples:
+      | countryCode | phoneNumber     | isValid |
+      | US          |      4155551234 | passes  |
+      | US          | (415) 555-1234  | passes  |
+      | US          | +1 415-555-1234 | passes  |
+      | CA          | +1 604 555 1234 | passes  |
+      | US          |       415555123 | fails   |
+      | US          | abc             | fails   |
+      | US          |   0014155551234 | fails   |
+      | US          | ""              | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (AU)
+    Given the "Extension" (phoneNumberCountryCode) field has value "AU"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber   | isValid |
+      |    0412345678 | passes  |
+      |  04 1234 5678 | passes  |
+      | +61 412345678 | passes  |
+      | +610412345678 | passes  |
+      |      12345678 | fails   |
+      |   04123456789 | fails   |
+      | abcdefghi     | fails   |
+      | ""            | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (NZ)
+    # Delegates to libphonenumber-js's per-country pattern check.
+    Given the "Extension" (phoneNumberCountryCode) field has value "NZ"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber     | isValid |
+      |        21234567 | passes  |
+      |      0212345678 | passes  |
+      |     02123456789 | passes  |
+      |     021 234 567 | passes  |
+      | +64 21 234 5678 | passes  |
+      |   +640212345678 | passes  |
+      |         1234567 | fails   |
+      | ""              | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation per country (GB)
+    # Delegates to libphonenumber-js's per-country pattern check.
+    Given the "Extension" (phoneNumberCountryCode) field has value "GB"
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then the phone validation result <isValid>
+
+    Examples:
+      | phoneNumber      | isValid |
+      |       2079460958 | passes  |
+      |      02079460958 | passes  |
+      |    020 7946 0958 | passes  |
+      | +44 20 7946 0958 | passes  |
+      | +99 20 7946 0958 | fails   |
+      |           012345 | fails   |
+      |              012 | fails   |
+      | ""               | fails   |
+
+  @motivating
+  Scenario Outline: Phone number validation for all other countries
+    Given the "Extension" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <phoneNumber>
+    When the user clicks "Continue"
+    Then the phone validation result <isValid>
+
+    Examples:
+      | countryCode | phoneNumber       | isValid | note                                         |
+      | DE          |   +49 30 12345678 | passes  | valid Berlin landline                        |
+      | FR          | +33 1 42 68 53 00 | passes  | valid Paris landline                         |
+      | ES          |    +34 911 234567 | passes  | valid Madrid landline                        |
+      | DE          |  +44 20 7946 0958 | passes  | re-resolved to GB by validator (still valid) |
+      | DE          |         +49 12345 | fails   | German short code; backend would NULL it     |
+      | DE          |       +49 0012345 | fails   | not a valid DE pattern                       |
+      | DE          |         +49 30 12 | fails   | too short for DE                             |
+      | DE          | ""                | fails   | empty input                                  |
+
+  @motivating
+  Scenario: Phone validation always runs on submit if editable
+    Given the "Phone number" and "Phone Number Country" fields are not disabled
+    When the user clicks "Continue"
+    Then phone validation runs as part of form submission
+    And if validation fails no save request is sent to the backend
+    And they are not sent to the next step
+
+  @motivating
+  Scenario: Phone validation is skipped for disabled fields
+    Given the user is an Impact partner
+    And the prefilled "Phone number" field is valid for the prefilled "Phone Number Country"
+    Then the "Phone number" and "Phone Number Country" fields are disabled
+    When the user clicks "Continue"
+    Then phone validation is not run for the disabled fields
+    And submission proceeds
+
+  @motivating
+  Scenario Outline: Phone number is sanitized to a domestic number when being sent to Impact
+    Given the "Phone Number Country" (phoneNumberCountryCode) field has value <countryCode>
+    And the "Phone number" field has value <input>
+    When the user clicks "Continue"
+    And the form passes validation
+    Then the value submitted as phoneNumber is <submitted>
+    And the value submitted as phoneNumberCountryCode is <countryCode>
+
+    Examples:
+      | countryCode | input            | submitted  |
+      | US          |  +1 415 555 1234 | 4155551234 |
+      | CA          |  +1 604 555 1234 | 6045551234 |
+      | AU          |       0412345678 |  412345678 |
+      | AU          |    +61 412345678 |  412345678 |
+      | NZ          |       0212345678 |  212345678 |
+      | NZ          |    +640212345678 |  212345678 |
+      | GB          | +44 20 7946 0958 | 2079460958 |
+      | DE          |  +49 30 12 34 56 |   30123456 |

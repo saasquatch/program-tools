@@ -24,25 +24,30 @@ export function getValidationJson(
   };
 }
 
-export function getIntrospectionJson(
-  template?: any,
-  rules?: any,
-  rewards?: any[],
-  featureFlags?: string[] | null | undefined
-): ProgramIntrospectionBody {
+export function getIntrospectionJson(input: {
+  template?: any;
+  rules?: any;
+  rewards?: any[];
+  featureFlags?: string[] | null | undefined;
+  timeZone?: string;
+}): ProgramIntrospectionBody {
   return {
     messageType: "PROGRAM_INTROSPECTION",
-    template,
-    rules,
+    template: input.template,
+    rules: input.rules,
     program: {
       id: "r1",
-      rules,
-      rewards,
+      rules: input.rules,
+      rewards: input.rewards,
     },
     tenant: {
       tenantAlias: "test_UNITTESTTENANT",
       isLiveMode: false,
-      featureFlags,
+      featureFlags: input.featureFlags,
+      impactBrandId: "123456",
+      settings: {
+        timeZone: input.timeZone ?? "America/Vancouver",
+      },
     },
   };
 }
@@ -54,25 +59,31 @@ type ProgramTriggerInfo = {
   rules: any;
 };
 
-export function getProgramTriggerJson(
-  info: ProgramTriggerInfo,
-  flavor: TenantFlavor
-): ProgramTriggerBody {
+export function getProgramTriggerJson(input: {
+  info: ProgramTriggerInfo;
+  flavor: TenantFlavor;
+  timeZone?: string;
+}): Omit<ProgramTriggerBody, "activeTrigger"> & {
+  activeTrigger: Partial<ProgramTriggerBody["activeTrigger"]>;
+} {
   return {
     messageType: "PROGRAM_TRIGGER",
     activeTrigger: {
-      type: info.type,
-      time: info.time ?? Date.now(),
-      user: info.user,
+      type: input.info.type,
+      time: input.info.time ?? Date.now(),
+      user: input.info.user,
     },
     program: {
       id: "r1",
-      rules: info.rules,
+      rules: input.info.rules,
       templateId: randomBytes(8).toString("hex"),
     },
     tenant: {
-      impactBrandId: flavor === "impact" ? "12345" : undefined,
-      settings: { suspectedFraudModerationState: "IGNORE" },
+      impactBrandId: input.flavor === "impact" ? "12345" : undefined,
+      settings: {
+        suspectedFraudModerationState: "IGNORE",
+        timeZone: input.timeZone ?? "America/Vancouver",
+      },
     },
     ids: [...Array(10).keys()].map((a) => `triggergivenid${a + 1}`),
   };

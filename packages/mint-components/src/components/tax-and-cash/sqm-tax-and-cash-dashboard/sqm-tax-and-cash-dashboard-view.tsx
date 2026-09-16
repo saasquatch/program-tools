@@ -27,6 +27,8 @@ export interface TaxAndCashDashboardProps {
     showNewFormDialog: boolean;
     hasHold: boolean;
     payoutStatus: PayoutStatus;
+    belowPayoutThreshold?: boolean;
+    minPayoutAmount?: string;
     veriffLoading: boolean;
     errors?: {
       general?: boolean;
@@ -102,6 +104,8 @@ export interface TaxAndCashDashboardProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    balanceUnderThresholdHeader: string;
+    balanceUnderThresholdDescription: string;
     paymentHoldOnChangeHeader: string;
     paymentHoldOnChangeDescription: string;
     beneficiaryNameInvalidHeader: string;
@@ -129,6 +133,19 @@ export interface TaxAndCashDashboardProps {
   };
 }
 
+const holdAlertContainer = (iconColor: string) => ({
+  marginLeft: "-20px",
+  "&::part(base)": {
+    maxWidth: "850px",
+    border: "none",
+    backgroundColor: "transparent",
+    color: "var(--sqm-text)",
+  },
+  "& sl-icon::part(base)": {
+    color: iconColor,
+  },
+});
+
 const style = {
   ErrorAlertContainer: {
     "&::part(base)": {
@@ -143,30 +160,11 @@ const style = {
       maxWidth: "600px",
     },
   },
-  WarningHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-      color: "var(--sqm-text)",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-warning-color-icon)",
-    },
-  },
-  ErrorHoldAlertContainer: {
-    marginLeft: "-20px",
-    "&::part(base)": {
-      maxWidth: "850px",
-      border: "none",
-      backgroundColor: "transparent",
-      color: "var(--sqm-text)",
-    },
-    "& sl-icon::part(base)": {
-      color: "var(--sqm-danger-color-icon)",
-    },
-  },
+  WarningHoldAlertContainer: holdAlertContainer("var(--sqm-warning-color-icon)"),
+  ErrorHoldAlertContainer: holdAlertContainer("var(--sqm-danger-color-icon)"),
+  InfoHoldAlertContainer: holdAlertContainer(
+    "var(--sqm-informative-color-icon)",
+  ),
   ExpiringSoonAlertContainer: {
     "&::part(base)": {
       backgroundColor: "var(--sl-color-yellow-100)",
@@ -452,7 +450,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -475,7 +473,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -496,7 +494,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -516,7 +514,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -536,7 +534,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -556,7 +554,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -577,7 +575,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -598,7 +596,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -638,7 +636,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -678,7 +676,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -718,7 +716,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -748,7 +746,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -779,7 +777,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -1002,7 +1000,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                   supportLink: (
                     <a
                       target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
+                      href={`mailto:advocate-payment-support@impact.com`}
                     >
                       {text.supportLink}
                     </a>
@@ -1031,7 +1029,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -1039,6 +1037,27 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               },
             )}
           </sl-alert>
+        )}
+        {states.belowPayoutThreshold && (
+          <sqm-form-message
+            loading={states.loading}
+            exportparts="base: alert-base, icon:alert-icon"
+            type="info"
+            class={sheet.classes.InfoHoldAlertContainer}
+            icon="info-circle"
+            transparent
+          >
+            <strong>{text.balanceUnderThresholdHeader}</strong>
+            <p style={{ margin: "0" }}>
+              {intl.formatMessage(
+                {
+                  id: "balanceUnderThresholdDescription",
+                  defaultMessage: text.balanceUnderThresholdDescription,
+                },
+                { minPayoutAmount: states.minPayoutAmount },
+              )}
+            </p>
+          </sqm-form-message>
         )}
         {alertInfo && (
           <sqm-form-message
@@ -1200,7 +1219,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                         supportLink: (
                           <a
                             target="_blank"
-                            href={`mailto:advocate-support@impact.com`}
+                            href={`mailto:advocate-payment-support@impact.com`}
                             class={sheet.classes.DropdownLink}
                           >
                             {text.supportLink}
@@ -1224,7 +1243,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
                           supportLink: (
                             <a
                               target="_blank"
-                              href={`mailto:advocate-support@impact.com`}
+                              href={`mailto:advocate-payment-support@impact.com`}
                             >
                               {text.supportLink}
                             </a>

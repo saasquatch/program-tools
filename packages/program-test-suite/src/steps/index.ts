@@ -1,6 +1,6 @@
 import assertionSteps from "./assertions";
 import eventSteps from "./events";
-import featureSteps from "./feature-flags";
+import miscSteps from "./misc";
 import referralSteps from "./referral";
 import rulesSteps from "./rules";
 import triggerSteps from "./trigger";
@@ -13,5 +13,5 @@ export default [
   userSteps,
   assertionSteps,
   referralSteps,
-  featureSteps,
+  miscSteps,
 ];

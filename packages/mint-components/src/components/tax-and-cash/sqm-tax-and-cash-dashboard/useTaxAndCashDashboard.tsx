@@ -24,7 +24,11 @@ import {
   INDIRECT_TAX_SPAIN_REGIONS,
 } from "../subregions";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
-import { taxTypeToName } from "../utils";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+  taxTypeToName,
+} from "../utils";
 import { TaxAndCashDashboard } from "./sqm-tax-and-cash-dashboard";
 import { TaxAndCashDashboardProps } from "./sqm-tax-and-cash-dashboard-view";
 import { gql } from "graphql-request";
@@ -62,7 +66,7 @@ function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
   if (taxInformation?.indirectTaxRegion) {
     const standardRegion = taxInformation.indirectTaxRegion.replace("_", "");
     const taxType = regions.find(
-      (r) => r.regionCode === standardRegion
+      (r) => r.regionCode === standardRegion,
     )?.taxType;
 
     if (taxType) return taxType;
@@ -78,7 +82,7 @@ function getIndirectTaxType(taxInformation: ImpactPublisher["taxInformation"]) {
 }
 
 export const useTaxAndCashDashboard = (
-  props: TaxAndCashDashboard
+  props: TaxAndCashDashboard,
 ): Omit<TaxAndCashDashboardProps, "slots"> => {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const setContext = useSetParent<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
@@ -91,7 +95,7 @@ export const useTaxAndCashDashboard = (
 
   const { data: taxSettingRes } = useQuery<TenantSettingsQuery>(
     GET_TAX_SETTING,
-    {}
+    {},
   );
 
   const locale = useLocale();
@@ -147,7 +151,7 @@ export const useTaxAndCashDashboard = (
   };
 
   const provinceName = INDIRECT_TAX_PROVINCES.find(
-    (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion
+    (p) => p.regionCode === publisher?.taxInformation?.indirectTaxRegion,
   )?.displayName;
 
   const payoutStatus = data ? getStatus(data) : null;
@@ -179,7 +183,7 @@ export const useTaxAndCashDashboard = (
       province: provinceName,
       country: getCountryName(
         publisher?.taxInformation?.indirectTaxCountryCode,
-        locale
+        locale,
       ),
       notRegistered: !publisher?.taxInformation?.indirectTaxId,
       noFormNeeded: !documentType,
@@ -189,6 +193,8 @@ export const useTaxAndCashDashboard = (
       showNewFormDialog: showDialog,
       hasHold: !!publisher?.payoutsAccount?.hold,
       payoutStatus,
+      belowPayoutThreshold: isBalanceUnderPayoutThreshold(publisher),
+      minPayoutAmount: formatPayoutThreshold(publisher),
       veriffLoading,
       enforceUsTaxComplianceOption,
     },

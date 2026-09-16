@@ -33,12 +33,13 @@ const triggerSteps: StepDefinitions = ({ when }) => {
 
     switch (triggerType) {
       case "PROGRAM_INTROSPECTION":
-        body = getIntrospectionJson(
+        body = getIntrospectionJson({
           template,
           rules,
-          programRewards,
-          currentState.featureFlags
-        );
+          rewards: programRewards,
+          featureFlags: currentState.featureFlags,
+          timeZone: currentState.tenantTimeZone,
+        });
         break;
 
       case "PROGRAM_VALIDATION":
@@ -55,15 +56,16 @@ const triggerSteps: StepDefinitions = ({ when }) => {
         );
 
       default:
-        body = getProgramTriggerJson(
-          {
+        body = getProgramTriggerJson({
+          info: {
             type: triggerType,
             user: getWorld().state.current.user,
             rules: getWorld().state.current.rules,
             time: getWorld().state.current.time,
           },
-          getWorld().state.current.flavor ?? "saasquatch"
-        );
+          flavor: getWorld().state.current.flavor ?? "saasquatch",
+          timeZone: getWorld().state.current.tenantTimeZone,
+        });
     }
 
     switch (triggerType) {

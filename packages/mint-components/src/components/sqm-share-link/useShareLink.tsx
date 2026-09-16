@@ -59,7 +59,7 @@ export interface ShareLinkProps {
 }
 
 const MAX_EDITS = 5;
-const CHARACTER_LIMIT = 15;
+const CHARACTER_LIMIT = 30;
 const MIN_CHARACTERS = 3;
 
 const MessageLinkQuery = gql`
@@ -145,13 +145,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const engagementMedium = useEngagementMedium();
 
   const contextData = useParentValue<ReferralCodeContext>(
-    REFERRAL_CODES_NAMESPACE,
+    REFERRAL_CODES_NAMESPACE
   );
 
   const { data, refetch } = useQuery(
     MessageLinkQuery,
     { programId },
-    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined,
+    !user?.jwt || !!props.linkOverride || contextData?.shareLink !== undefined
   );
   const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
   const [setCopied] = useMutation(SET_CODE_COPIED);
@@ -165,13 +165,13 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { data: linkDomainData } = useQuery(
     GET_LINK_DOMAIN,
     {},
-    !user?.jwt || !props.allowCustomization,
+    !user?.jwt || !props.allowCustomization
   );
 
   const { data: editCountData, refetch: refetchEditCount } = useQuery(
     SHARE_LINK_EDIT_COUNT,
     {},
-    !user?.jwt || !props.allowCustomization,
+    !user?.jwt || !props.allowCustomization
   );
 
   const {
@@ -181,7 +181,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   } = parseShareUrl(
     (contextData?.shareLink || data?.user?.shareLink) ??
       // Shown during loading
-      "...",
+      "..."
   );
 
   const [open, setOpen] = useState(false);
@@ -191,7 +191,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     useState<ValidationErrorInfo | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
+    undefined
   );
   const latestValidationValueRef = useRef<string>("");
 
@@ -202,14 +202,14 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const vanityCount =
     editCountData?.viewer?.shareLinkCodes?.data?.filter(
-      (code: { isVanity: boolean }) => code.isVanity,
+      (code: { isVanity: boolean }) => code.isVanity
     ).length ?? 0;
   const editCount = vanityCount;
   const editsRemaining = Math.max(0, MAX_EDITS - editCount);
   const limitReached = editsRemaining <= 0;
 
   function mapErrorCodeToInfo(
-    errorCode: ValidationErrorCode,
+    errorCode: ValidationErrorCode
   ): ValidationErrorInfo | null {
     if (!errorCode) return null;
     const errorMap: Record<
@@ -333,7 +333,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
           code: null,
           title: props.saveErrorTitle,
           description: e?.message || props.saveErrorDescription,
-        },
+        }
       );
     }
   }

@@ -81,7 +81,6 @@ const style = {
   },
   ContinueButton: {
     width: "100%",
-    maxWidth: "100px",
   },
   FooterContainer: {
     display: "flex",
@@ -116,7 +115,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function WidgetCodeVerificationView(
-  props: WidgetCodeVerificationViewProps
+  props: WidgetCodeVerificationViewProps,
 ) {
   const { states, refs, callbacks, text } = props;
 
@@ -142,7 +141,7 @@ export function WidgetCodeVerificationView(
           {text.resendCodeLabel}
         </a>
       ),
-    }
+    },
   );
 
   const codeResentSuccessfully = intl.formatMessage(
@@ -152,7 +151,7 @@ export function WidgetCodeVerificationView(
     },
     {
       email: states.email,
-    }
+    },
   );
 
   const inputClass = states.verifyFailed
@@ -175,7 +174,7 @@ export function WidgetCodeVerificationView(
                   ? text.reverifyCodeHeaderText
                   : text.verifyCodeHeaderText,
               },
-              { email: states.email }
+              { email: states.email },
             )}
           </TextSpanView>
         </div>
@@ -199,6 +198,9 @@ export function WidgetCodeVerificationView(
           {states.verifyFailed && (
             <p class={sheet.classes.ErrorText}>{text.invalidCodeText}</p>
           )}
+          <div class={sheet.classes.FooterContainer}>
+            <TextSpanView type="p">{resendCodeText}</TextSpanView>
+          </div>
           <sl-button
             class={sheet.classes.ContinueButton}
             onClick={callbacks.submitCode}
@@ -209,9 +211,6 @@ export function WidgetCodeVerificationView(
           >
             {text.verifyText}
           </sl-button>
-        </div>
-        <div class={sheet.classes.FooterContainer}>
-          <TextSpanView type="p">{resendCodeText}</TextSpanView>
         </div>
       </div>
     </div>

@@ -1,5 +1,88 @@
 # Changelog
 
+## 2.4.9
+
+### Patch Changes
+
+- [#544](https://github.com/saasquatch/program-tools/pull/544) [`77040f8`](https://github.com/saasquatch/program-tools/commit/77040f8f9eae6a416c6a7fb27e5b0cd015b692a4) Thanks [@00salmon](https://github.com/00salmon)! - show no warnings if balance is currently zero
+
+## 2.4.8
+
+### Patch Changes
+
+- [#541](https://github.com/saasquatch/program-tools/pull/541) [`f97be17`](https://github.com/saasquatch/program-tools/commit/f97be17b760d268e38b4db0cffb81a71b046e919) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Remove bad param errorCode from startImpactConnection mutation
+
+## 2.4.7
+
+### Patch Changes
+
+- [#539](https://github.com/saasquatch/program-tools/pull/539) [`d80d998`](https://github.com/saasquatch/program-tools/commit/d80d9985564552ac30ab631d7afa1d8c3a350fa1) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Add emailCanBeUsed to GET_USER_PARTNER_INFO query. Display existing partner state + email verification error message
+  when email is not verified.
+
+## 2.4.6
+
+### Patch Changes
+
+- [#537](https://github.com/saasquatch/program-tools/pull/537) [`ef5ec67`](https://github.com/saasquatch/program-tools/commit/ef5ec67f965d28534c649a45924a89720c88390b) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - sqm-share-link: fixing customizable link input not being clickable/editable on small screens
+
+## 2.4.5
+
+### Patch Changes
+
+- [#533](https://github.com/saasquatch/program-tools/pull/533) [`c0af652`](https://github.com/saasquatch/program-tools/commit/c0af6527349bf73de83e9596cc96cafd86902e7f) Thanks [@00salmon](https://github.com/00salmon)! - Add missing state for users below payout threshold
+
+- [#535](https://github.com/saasquatch/program-tools/pull/535) [`e4586bb`](https://github.com/saasquatch/program-tools/commit/e4586bb06f4b885e57c974e81e33fa077fe9e9e2) Thanks [@00salmon](https://github.com/00salmon)! - correctly override NEW_PAYEE_REVIEW
+
+## 2.4.4
+
+### Patch Changes
+
+- [#531](https://github.com/saasquatch/program-tools/pull/531) [`cd1e74c`](https://github.com/saasquatch/program-tools/commit/cd1e74ca2caa8ae154705be48cb9761a337b8a53) Thanks [@00salmon](https://github.com/00salmon)! - Update cash support emails to a new support email
+
+## 2.4.3
+
+### Patch Changes
+
+- [#525](https://github.com/saasquatch/program-tools/pull/525) [`66d681c`](https://github.com/saasquatch/program-tools/commit/66d681cd10190d1cb2c9204bd4297867ffc4d39f) Thanks [@00salmon](https://github.com/00salmon)! - Fixes drop targets in mobile view of referral / reward tables
+
+## 2.4.2
+
+### Patch Changes
+
+- [#526](https://github.com/saasquatch/program-tools/pull/526) [`90a18b9`](https://github.com/saasquatch/program-tools/commit/90a18b964687fd9e769bfa597105989b307b6767) Thanks [@Locrian24](https://github.com/Locrian24)! - Add `checkboxOptional` prop to `sqm-marketing-emails-checkbox` so the marketing emails opt-in checkbox can be configured as optional instead of always required.
+
+## 2.4.1
+
+### Patch Changes
+
+- [#523](https://github.com/saasquatch/program-tools/pull/523) [`39be100`](https://github.com/saasquatch/program-tools/commit/39be100d3ddf6d5c81f9ca485f3bdbf4b47a84a6) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Fix sqm-email-verification defaulting to error state. Change sqm-widget-verification-controller to show tax form step one by default and flip state tree so tax and cash displays first rather than verify email.
+
+## 2.4.0
+
+### Minor Changes
+
+- [#521](https://github.com/saasquatch/program-tools/pull/521) [`bae2e05`](https://github.com/saasquatch/program-tools/commit/bae2e05d45dfa31958d34d048d2c94dee60eb2e5) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Partner info modal now shows firstName and lastName inputs when either is missing from the user
+
+## 2.3.1
+
+### Patch Changes
+
+- [#519](https://github.com/saasquatch/program-tools/pull/519) [`227477a`](https://github.com/saasquatch/program-tools/commit/227477aee3aaf9c7dbf47431540a57e9b7b2ec3a) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Increase character limit when editing sqm-share-link from 15 to 30
+
+## 2.3.0
+
+### Minor Changes
+
+- [#490](https://github.com/saasquatch/program-tools/pull/490) [`45764c6`](https://github.com/saasquatch/program-tools/commit/45764c67be7f288ea9fb2f0ee23ba652177a2cdc) Thanks [@00salmon](https://github.com/00salmon)! - Add cash reward redemption flow, including the partner info modal, banking info
+  form validation-error messaging, and widget verification steps for the
+  tax-and-cash experience.
+
+## 2.2.1
+
+### Patch Changes
+
+- [#515](https://github.com/saasquatch/program-tools/pull/515) [`8b2d9ea`](https://github.com/saasquatch/program-tools/commit/8b2d9ea197ca84836edc56f38e4f910add0ce089) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update styles.ts with sl-input::part(label) font overrides. Update bold style tokens in sqm-dropdown-field, sqm-name-fields, sqm-email-verification, and sqm-lead-dropdown-field.
+
 ## 2.2.0
 
 ### Minor Changes

@@ -22,6 +22,23 @@ Feature: Payout Details Card
             | FIXED_DAY      | 15         | Feb 28, 2024 | Mar 15, 2024  | Next payout  |
 
     @motivating
+    Scenario Outline: No payout date or badge is shown while the balance is under the payout minimum
+        Given the user has created a valid partner
+        And the user has saved banking information with FIXED_DAY and <payoutDate>
+        And a payment threshold of <payoutThreshold>
+        And the current date is <currentDate>
+        And the payout balance is <payoutBalance>
+        Then no payout date is shown
+        And no status badge is shown
+        And the payout balance is shown
+        And the bank account number preview is shown
+        Examples:
+            | payoutDate | payoutThreshold | currentDate  | payoutBalance |
+            | 1          | 50.00           | Feb 2, 2024  | 0             |
+            | 1          | 50.00           | Feb 1, 2024  | 49            |
+            | 15         | 100.00          | Feb 28, 2024 | 99            |
+
+    @motivating
     Scenario Outline: Payout information is shown for users with banking information configured for balance threshold
         Given the user has created a valid partner
         And the user has saved banking information with <payoutSchedule> and <payoutThreshold>

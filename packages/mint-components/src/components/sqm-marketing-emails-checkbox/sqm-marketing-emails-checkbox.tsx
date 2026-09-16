@@ -35,6 +35,11 @@ export class MarketingEmailsCheckbox {
   @Prop() checkboxName: string = "marketingEmailOptIn";
 
   /**
+   * @uiName Optional
+   */
+  @Prop() checkboxOptional?: boolean = false;
+
+  /**
    * @undocumented
    * @uiType object
    */

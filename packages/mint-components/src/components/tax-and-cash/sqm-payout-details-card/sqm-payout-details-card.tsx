@@ -83,6 +83,7 @@ function useDemoPayoutDetailsCard(props: PayoutDetailsCard) {
         loading: false,
         error: false,
         thresholdBalance: "$50",
+        belowPayoutThreshold: false,
         mainCurrency: { currencyText: "USD", amountText: "100.00" },
         badgeStatus: "nextPayout",
         payoutType: "BANK_TRANSFER",

@@ -97,6 +97,7 @@ import * as UserName from "../sqm-user-name/UserName.stories";
 import * as WidgetCodeVerification from "../sqm-widget-verification/sqm-code-verification/WidgetCodeVerification.stories";
 import * as WidgetEmailVerification from "../sqm-widget-verification/sqm-email-verification/WidgetEmailVerification.stories";
 import * as BankingInfoForm from "../tax-and-cash/BankingForm.stories";
+import * as TaxAndCashDashboardView from "../tax-and-cash/sqm-tax-and-cash-dashboard/TaxAndCashDashboardView.stories";
 import * as TaxForm from "../tax-and-cash/TaxForm.stories";
 import * as PayoutDetailsCard from "../tax-and-cash/sqm-payout-details-card/PayoutDetailsCard.stories";
 import * as PayoutStatusAlert from "../tax-and-cash/sqm-payout-status-alert/PayoutStatusAlert.stories";
@@ -108,6 +109,8 @@ import * as LeadFormDropdownField from "../sqm-lead-form/LeadFormDropdownField.s
 import * as LeadCheckboxField from "../sqm-lead-form/LeadCheckboxField.stories";
 import * as Skeleton from "../sqm-skeleton/Skeleton.stories";
 import * as UserInfoFormView from "../tax-and-cash/sqm-user-info-form/UserInfoFormView.stories";
+import * as PartnerInfoModal from "../sqm-partner-info-modal/PartnerInfoModal.stories";
+import * as WidgetVerification from "../sqm-widget-verification/WidgetVerification.stories";
 import * as UserAttribute from "../sqm-user-attribute/UserAttribute.stories";
 
 import { ShadowViewAddon } from "../../ShadowViewAddon";
@@ -222,6 +225,9 @@ const stories = [
   TaxAndCashRewardsTable,
   TaxAndCashReferralTableRewardsCell,
   TaxAndCashReferralTable,
+  TaxAndCashDashboardView,
+  PartnerInfoModal,
+  WidgetVerification,
   UserAttribute,
 ];
 

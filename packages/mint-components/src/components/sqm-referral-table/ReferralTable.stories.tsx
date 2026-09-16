@@ -103,6 +103,7 @@ const baseReward: Reward = {
       },
     ],
   },
+  rewardedCash: false,
 };
 
 // Reward Status Cases

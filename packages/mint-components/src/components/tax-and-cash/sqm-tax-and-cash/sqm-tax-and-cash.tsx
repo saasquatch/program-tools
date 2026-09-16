@@ -92,12 +92,6 @@ export class TaxAndCashMonolith {
    */
   @Prop() step1_currency: string = "Currency";
   /**
-   * @uiName Currency field help text
-   * @uiGroup Step 1 Properties
-   */
-  @Prop() step1_currencyHelpText: string =
-    "Choose your preferred payout currency";
-  /**
    * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
    * @uiName Terms and conditions checkbox
    * @uiGroup Step 1 Properties
@@ -558,11 +552,23 @@ export class TaxAndCashMonolith {
   @Prop() step4_branchCodeLabel: string = "Branch code";
 
   /**
+   * @uiName Branch name field label
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_branchNameLabel: string = "Branch name";
+
+  /**
    * Label text for the classification input field
    * @uiName Classification field label
    * @uiGroup Step 4 Properties
    */
   @Prop() step4_classificationLabel: string = "Classification";
+
+  /**
+   * @uiName Classification code field label
+   * @uiGroup Step 4 Properties
+   */
+  @Prop() step4_classificationCodeLabel: string = "KBE code";
 
   /**
    * @uiName Taxpayer ID field label
@@ -1070,6 +1076,20 @@ export class TaxAndCashMonolith {
     "This process takes 48 hours, payouts are on hold until it's completed. You will receive an email from our referral provider, Impact.com, if any issues arise.  It contains details on how to resolve this issue. If you need further assistance, please reach out to our {supportLink}.";
 
   /**
+   * @uiName Balance under payout minimum alert header
+   * @uiGroup Dashboard Properties
+   */
+  @Prop() dashboard_balanceUnderThresholdHeader: string =
+    "Your balance is under the minimum payout";
+  /**
+   * @uiName Balance under payout minimum alert description
+   * @uiGroup Dashboard Properties
+   * @uiWidget textArea
+   */
+  @Prop() dashboard_balanceUnderThresholdDescription: string =
+    "Your total balance is under {minPayoutAmount}, the minimum required for payout.";
+
+  /**
    * @uiName Payment on hold alert header
    */
   @Prop() dashboard_paymentOnHoldHeader: string =
@@ -1269,7 +1289,7 @@ export class TaxAndCashMonolith {
   /**
    *
    * @undocumented
-   * @componentState { "title": "Step 1: Personal information", "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
+   * @componentState { "title": "Step 1: Personal information", "default": true, "props": { "step": "/1" }, "dependencies": ["sqm-user-info-form"], "uiGroup": "Step 1 Properties" }
    * @componentState { "title": "Step 2: Indirect tax", "props": { "step": "/2" }, "dependencies": ["sqm-indirect-tax-form"], "uiGroup": "Step 2 Properties" }
    * @componentState { "title": "Step 3: Tax form", "props": { "step": "/3" }, "dependencies": ["sqm-docusign-form"], "uiGroup": "Step 3 Properties" }
    * @componentState { "title": "Step 4: Payment method", "props": { "step": "/4" }, "dependencies": ["sqm-banking-info-form"], "uiGroup": "Step 4 Properties" }
@@ -1380,12 +1400,12 @@ export class TaxAndCashMonolith {
                   supportLink: (
                     <a
                       target="_blank"
-                      href={`mailto:advocate-support@impact.com`}
+                      href={`mailto:advocate-payment-support@impact.com`}
                     >
                       {this.supportLink}
                     </a>
                   ),
-                }
+                },
               ) as string
             }
           />
@@ -1408,7 +1428,7 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
       key === "sqm-tax-and-cash"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {}
+    {},
   );
 
   return deepmerge(
@@ -1417,6 +1437,6 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
       setStep,
     },
     props.demoData || formatted || {},
-    { arrayMerge: (_, a) => a }
+    { arrayMerge: (_, a) => a },
   );
 }

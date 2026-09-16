@@ -88,6 +88,32 @@ export const PaymentHoldOnChange = () => (
   ></sqm-payout-status-alert>
 );
 
+export const BalanceUnderThreshold = () => (
+  <sqm-payout-status-alert
+    demoData={{
+      states: {
+        ...defaultProps,
+        status: "DONE",
+        belowPayoutThreshold: true,
+        minPayoutAmount: "USD50.00",
+      },
+    }}
+  ></sqm-payout-status-alert>
+);
+
+export const BalanceUnderThresholdWithHold = () => (
+  <sqm-payout-status-alert
+    demoData={{
+      states: {
+        ...defaultProps,
+        status: "NEW_PAYEE_REVIEW",
+        belowPayoutThreshold: true,
+        minPayoutAmount: "USD50.00",
+      },
+    }}
+  ></sqm-payout-status-alert>
+);
+
 export const BeneficiaryNameInvalid = () => (
   <sqm-payout-status-alert
     demoData={{

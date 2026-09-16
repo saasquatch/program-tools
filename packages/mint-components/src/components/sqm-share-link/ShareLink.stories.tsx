@@ -142,9 +142,9 @@ const defaultCustomizeProps: ShareLinkViewProps = {
   validationError: null,
   isValidating: false,
   isSaving: false,
-  characterLimit: 15,
+  characterLimit: 30,
   minCharacters: 3,
-  charactersRemaining: 15,
+  charactersRemaining: 30,
   editLimitText: "You can edit your link up to 5 times.",
   editLimitReachedText:
     "5 edit limit reached. To make more changes, please contact {supportLink}.",
@@ -281,5 +281,19 @@ export const CustomizeUrlSaving = () => {
         isSaving: true,
       }}
     />
+  );
+};
+
+export const CustomizeUrlEditingMobileNarrow = () => {
+  return (
+    <div style={{ width: "320px", border: "1px dashed red" }}>
+      <ShareLinkView
+        {...{
+          ...defaultCustomizeProps,
+          isEditing: true,
+          domainPrefix: "https://referral-marketing.mybrandname.com/",
+        }}
+      />
+    </div>
   );
 };

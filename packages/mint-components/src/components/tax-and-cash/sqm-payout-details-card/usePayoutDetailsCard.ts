@@ -2,6 +2,10 @@ import { useParentQueryValue } from "@saasquatch/component-boilerplate";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
 import { USER_QUERY_NAMESPACE, UserQuery } from "../data";
+import {
+  formatPayoutThreshold,
+  isBalanceUnderPayoutThreshold,
+} from "../utils";
 import { PayoutDetailsCard } from "./sqm-payout-details-card";
 import { PayoutDetailsCardViewProps } from "./sqm-payout-details-card-view";
 
@@ -54,9 +58,8 @@ export function usePayoutDetailsCard(
   return {
     states: {
       loading,
-      thresholdBalance: publisher?.withdrawalSettings?.paymentThreshold
-        ? `${publisher?.currency}${publisher?.withdrawalSettings?.paymentThreshold}`
-        : undefined,
+      thresholdBalance: formatPayoutThreshold(publisher),
+      belowPayoutThreshold: isBalanceUnderPayoutThreshold(publisher),
       balance: publisher?.payoutsAccount?.balance,
       badgeStatus:
         publisher?.withdrawalSettings?.paymentSchedulingType !== "FIXED_DAY"

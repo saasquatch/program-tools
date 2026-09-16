@@ -1,5 +1,75 @@
+import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 import { intl } from "../../global/global";
-import { TaxDocumentType } from "./data";
+import { ImpactPublisher, TaxDocumentType } from "./data";
+
+/**
+ * Normalize user input to the domestic form Impact stores: digits only,
+ * with the country dial code and trunk-zero prefix removed.
+ */
+export function toDomesticNumber(
+  phoneCountryCode: string | undefined,
+  input: string | undefined,
+): string {
+  if (!input) return "";
+  const parsed = parsePhoneNumberFromString(
+    input,
+    phoneCountryCode?.toUpperCase() as CountryCode,
+  );
+  return (parsed?.nationalNumber as string) ?? input.replace(/\D/g, "");
+}
+
+/**
+ * Validates a phone number against both libphonenumber-js's per-country
+ * pattern rules AND Impact's I18nPhoneNumber length rules, applied to the
+ * sanitized value we'll submit.
+ */
+export function isValidI18nPhoneNumber(
+  phoneCountryCode: string | undefined,
+  phoneNumber: string | undefined,
+): boolean {
+  if (!phoneCountryCode || !phoneNumber?.trim()) return false;
+  const country = phoneCountryCode.toUpperCase() as CountryCode;
+  const parsed = parsePhoneNumberFromString(phoneNumber, country);
+  if (!parsed?.isValid()) return false;
+  return passesImpactBackendLengthCheck(
+    country,
+    toDomesticNumber(country, phoneNumber),
+  );
+}
+
+/**
+ * Mirrors estalea.bucket.phone.I18nPhoneNumber.isValidI18nPhoneNumber()
+ * length rules on the already-sanitized (digits-only) submission value.
+ */
+function passesImpactBackendLengthCheck(
+  country: string,
+  digits: string,
+): boolean {
+  if (!digits) return false;
+  switch (country) {
+    case "US":
+    case "CA": {
+      const n = digits.startsWith("1") ? digits.slice(1) : digits;
+      return n.length === 10;
+    }
+    case "AU":
+      return digits.length === 9 || digits.length === 10;
+    case "NZ": {
+      let n = digits;
+      if (n.length > 9) {
+        if (n.startsWith("640")) n = n.slice(3);
+        else if (n.startsWith("0")) n = n.slice(1);
+      }
+      return n.length >= 8 && n.length <= 10;
+    }
+    default:
+      return stripLeadingZero(digits).length >= 6;
+  }
+}
+
+function stripLeadingZero(digits: string): string {
+  return digits.startsWith("0") ? digits.slice(1) : digits;
+}
 
 export function validTaxDocument(requiredType: TaxDocumentType | undefined) {
   const validTypes = ["W9", "W8BENE", "W8BEN"];
@@ -38,7 +108,7 @@ export const formatErrorMessage = (fieldName: string, errorMessage: string) => {
     },
     {
       fieldName,
-    }
+    },
   );
 };
 
@@ -58,4 +128,41 @@ export function getCountryObj({
     countryCode,
     displayName,
   };
+}
+
+/** The minimum balance Impact requires before it will issue a payout, e.g. "USD50.00". */
+export function formatPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): string | undefined {
+  const threshold = publisher?.withdrawalSettings?.paymentThreshold;
+  if (!threshold) return undefined;
+
+  return `${publisher?.currency ?? ""}${threshold}`;
+}
+
+/**
+ * `payoutsAccount.balance` is a formatted string; only `balanceAmount` (minor units) is comparable.
+ * A zero balance gets no notice — there is nothing waiting to pay out.
+ */
+export function isBalanceUnderPayoutThreshold(
+  publisher: ImpactPublisher | null | undefined,
+): boolean {
+  const rawThreshold = publisher?.withdrawalSettings?.paymentThreshold;
+  const account = publisher?.payoutsAccount;
+  if (!rawThreshold || !account) return false;
+
+  const threshold = Number(rawThreshold);
+  if (!Number.isFinite(threshold) || !Number.isFinite(account.balanceAmount))
+    return false;
+  if (account.balanceAmount <= 0) return false;
+
+  const currency = account.currencyCode || publisher?.currency;
+  if (!currency) return false;
+
+  const scale =
+    10 **
+    (new Intl.NumberFormat("en-US", { style: "currency", currency })
+      .resolvedOptions().maximumFractionDigits ?? 2);
+
+  return account.balanceAmount < Math.round(threshold * scale);
 }

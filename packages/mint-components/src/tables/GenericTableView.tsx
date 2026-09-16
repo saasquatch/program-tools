@@ -25,6 +25,8 @@ export interface GenericTableViewProps {
   };
   elements: {
     columns: Array<VNode | string>;
+    /** Indexes into `columns` that are editor plop targets rather than data columns. */
+    dropZoneColumns?: number[];
     rows: VNode[][];
     loading?: boolean;
     emptyElement?: VNode;
@@ -40,6 +42,12 @@ export function GenericTableView(props: GenericTableViewProps) {
 
   const hiddenCols =
     data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
+
+  // Only the producer knows which columns are plop targets; a column can render a
+  // VNode label and still be real data (e.g. the invoice download column).
+  const dropZones = new Set(elements.dropZoneColumns);
+  const hasDropZones = dropZones.size > 0;
+  const showLabels = data.textOverrides.showLabels;
 
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet = `@media (min-width: ${
@@ -66,6 +74,13 @@ export function GenericTableView(props: GenericTableViewProps) {
         fontWeight: "var(--sl-font-weight-semibold)",
         overflowWrap: "anywhere",
       },
+      "& th.collapsed": {
+        fontSize: "0",
+        padding: "14px 0",
+      },
+      "& th.drop-zone": {
+        width: "30px",
+      },
       "& td": {
         padding: "var(--sl-spacing-small)",
         paddingLeft: "0",
@@ -73,10 +88,35 @@ export function GenericTableView(props: GenericTableViewProps) {
         textOverflow: "ellipsis",
       },
       [mobile]: {
+        // Body rows become blocks here, so the header has to leave the table layout to stay full width
         "& thead": {
+          display: hasDropZones ? "block" : "none",
+        },
+        // Columns read top-to-bottom inside a card, so the drop zones between them stack the same way
+        "& thead tr": {
+          display: "flex",
+          flexDirection: "column",
+        },
+        "& thead th.label": {
+          padding: "0",
+          lineHeight: "20px",
+          fontSize: "var(--sl-font-size-small)",
+          color: "var(--sl-color-neutral-500)",
+        },
+        "& thead th.drop-zone": {
+          width: "auto",
+          padding: "14px 0",
+          lineHeight: "0",
+          position: "relative",
+        },
+        // The plop target is inline-styled position:absolute, so it needs the cell as its containing block to span it
+        "& thead th.drop-zone slot::slotted(raisins-plop-target)": {
+          width: "100%",
+        },
+        "& tbody td.drop-zone": {
           display: "none",
         },
-        "& tr": {
+        "& tbody tr": {
           display: "block",
           background: "inherit",
           border:
@@ -141,12 +181,15 @@ export function GenericTableView(props: GenericTableViewProps) {
     <div>
       <style type="text/css">{styleString}</style>
       <table class={sheet.classes.Table}>
-        {data.textOverrides.showLabels && (
+        {(showLabels || hasDropZones) && (
           <thead>
             <tr>
-              {columns?.map((column: string | VNode) => {
-                if (typeof column === "string") return <th>{column}</th>;
-                return <th style={{ width: "30px" }}>{column}</th>;
+              {columns?.map((column: string | VNode, i: number) => {
+                if (dropZones.has(i))
+                  return <th class="drop-zone">{column}</th>;
+                return (
+                  <th class={showLabels ? "label" : "collapsed"}>{column}</th>
+                );
               })}
             </tr>
           </thead>
@@ -165,6 +208,8 @@ export function GenericTableView(props: GenericTableViewProps) {
                   part="table-row"
                 >
                   {row.map((cell, j) => {
+                    if (dropZones.has(j)) return <td class="drop-zone">{cell}</td>;
+                    // Only string labels can be echoed into the mobile card's :before
                     return typeof columns[j] === "string" ? (
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}

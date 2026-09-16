@@ -11,10 +11,13 @@ Feature: Widget verification flow
       </sqm-widget-verification>
       """
     When the html is loaded
-    Then the page displays the widget verification flow
+    Then the page displays the widget verification flow inside a non-dismissable sl-dialog
+    And the dialog title is "Let's get you ready for rewards"
     When an email is successfully verified
+    Then the partner info modal step is displayed inside the same dialog
+    When the partner info modal is completed successfully
     Then the html inside the "verified" template is displayed
-    And the widget verification flow is hidden
+    And the widget verification flow dialog is hidden
 
   @motivating @ui
   Scenario: Entering an email for verification
@@ -39,6 +42,36 @@ Feature: Widget verification flow
     When they click the submit button
     Then an email containing a 2FA is sent to the provided email address
     And the component displays the code verification step
+
+  @motivating
+  Scenario: Successful code verification opens the partner info modal step in the same dialog
+    Given a user on the code verification step
+    When they enter a valid 2FA code
+    And they click "Verify"
+    Then the partner creation step is displayed inside the same widget verification dialog
+    And the embedded `sqm-partner-info-modal` is rendered with the `inModal` prop
+    And the dialog title remains "Let's get you ready for rewards"
+    And the dialog cannot be dismissed by clicking the overlay or pressing Escape
+
+  @motivating
+  Scenario: Successful partner creation completes the verification flow
+    Given the partner info modal step is displayed
+    When the user successfully submits the partner info modal
+    Then the widget verification dialog is hidden
+    And the html inside the "verified" template slot is displayed
+
+  @motivating
+  Scenario Outline: Initial load skips ahead based on the user's verification and connection state
+    Given a user with `emailVerified` <emailVerified>
+    And `impactConnection.connected` <connected>
+    When the `sqm-widget-verification` component loads
+    Then the <step> is shown
+
+    Examples:
+      | emailVerified | connected | step                                         |
+      | false         | false     | email verification step                      |
+      | true          | false     | partner info modal step (email/code skipped) |
+      | true          | true      | verified slot (entire flow skipped)          |
 
   @motivating @ui
   Scenario: Code verification step
@@ -67,7 +100,7 @@ Feature: Widget verification flow
 
     Examples:
       | code   | time       |
-      | 234567 | 1 minute   |
+      | 234567 |   1 minute |
       | 123456 | 30 minutes |
       | 234567 | 30 minutes |
 
@@ -120,13 +153,16 @@ Feature: Widget verification flow
     And the html includes "<sqm-widget-verification></sqm-widget-verification>"
     When "sqm-widget-verification" is selected in the editor
     Then the following states are displayed
-      | state      |
-      | Email Step |
-      | Code Step  |
-    When "Email Step" is selected
+      | state                  |
+      | Step 1: Enter email    |
+      | Step 2: Enter code     |
+      | Step 3: Create Partner |
+    When "Step 1: Enter email" is selected
     Then "sqm-widget-verification" displays the email verification flow
-    When "Code Step" is selected
+    When "Step 2: Enter code" is selected
     Then "sqm-widget-verification" displays the 2FA verification flow
+    When "Step 3: Create Partner" is selected
+    Then "sqm-widget-verification" displays the embedded `sqm-partner-info-modal`
 
   @motivating
   Scenario: sqm-widget-verification-controller editor states

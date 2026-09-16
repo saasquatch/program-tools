@@ -48,10 +48,11 @@ function useTemplateChildren({ parent, callback }) {
 export class WidgetVerificationController {
   /**
    * @undocumented
+   * @componentState { "title": "Tax and cash", "default": true, "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    * @componentState { "title": "Verify email", "slot": "not-verified", "props": { "isAuth": false }, "disabled": "true" }
-   * @componentState { "title": "Tax and cash", "slot": "verified", "props": { "isAuth": true }, "disabled": "true" }
    */
-  @Prop() stateController: string = "{}";
+  @Prop() stateController: string =
+    '{"sqm-widget-verification-controller":{"isAuth":true}, "sqm-tax-and-cash":{"step":"/1"}}';
 
   constructor() {
     withHooks(this);
@@ -65,15 +66,18 @@ export class WidgetVerificationController {
     });
 
     const props = JSON.parse(this.stateController);
-    const demoIsAuth =
-      isDemo() && props["sqm-widget-verification-controller"]?.isAuth;
+    // raisins sends state props flat; the @Prop default nests them under the tag
+    const stateOverride =
+      props?.["sqm-widget-verification-controller"] || props || {};
+    const demoIsAuth = isDemo() && stateOverride?.isAuth;
 
     const [container, setContainer] = useState<HTMLDivElement>(undefined);
     const [slot, setSlot] = useState<HTMLDivElement>(undefined);
 
     const updateTemplates = useCallback(() => {
-      const isAuth = demoIsAuth || context;
       const templates = slot.querySelectorAll<HTMLTemplateElement>(`template`);
+
+      const isAuth = demoIsAuth || context;
       const template = Array.from(templates).find(
         (t) => t.slot === (isAuth ? "verified" : "not-verified")
       );
@@ -137,7 +141,7 @@ export class WidgetVerificationController {
           target.style.height = "25px";
         });
       }
-    }, [container, slot, context, demoIsAuth]);
+    }, [container, slot, context, demoIsAuth, this.stateController]);
 
     useEffect(() => {
       if (!container || !slot) {
@@ -149,7 +153,7 @@ export class WidgetVerificationController {
       updateTemplates();
 
       return useTemplateChildren({ parent: slot, callback: updateTemplates });
-    }, [slot, container, context, demoIsAuth]);
+    }, [slot, container, context, demoIsAuth, this.stateController]);
 
     return (
       <Host>

@@ -47,6 +47,7 @@ Feature: Banking Information Form
       | EUR      | Japan                                 | Beneficiary account name, Bank account number, SWIFT code                                            |
       | JPY      | Japan                                 | Beneficiary account name, Bank account type, Bank account number, SWIFT code, Bank name, Branch code |
       | MAD      | Western Sahara, Morocco               | Beneficiary account name, Bank account number, SWIFT code                                            |
+      | KZT      | Kazakhstan                            | Beneficiary account name, IBAN, SWIFT code, Classification, Beneficiary INN, KBE code                |
 
   @minutia
   Scenario Outline: Bank country dropdown list is dynamic depending on the partner's currency
@@ -56,10 +57,7 @@ Feature: Banking Information Form
     Examples:
       | currency | countries                                                    |
       | USD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
-      | GBP      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
-      | AUD      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | CAD      | Canada                                                       |
-      | EUR      | United States, Canada, Spain, Ireland, United Kingdom, Japan |
       | JPY      | Japan                                                        |
 
   @minutia

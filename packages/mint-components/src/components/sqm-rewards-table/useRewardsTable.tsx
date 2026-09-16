@@ -60,6 +60,7 @@ const GET_REWARDS = gql`
             fuelTankCode
             fuelTankType
             currency
+            rewardedCash
             prettyValue(locale: $locale)
             prettyValueNumber: prettyValue(
               formatType: NUMBER_FORMATTED

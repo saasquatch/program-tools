@@ -8,6 +8,8 @@ export interface PayoutStatusAlertViewProps {
     loading: boolean;
     status: PayoutStatus;
     veriffLoading: boolean;
+    belowPayoutThreshold?: boolean;
+    minPayoutAmount?: string;
     enforceUsTaxComplianceOption?: EnforceUsTaxComplianceOption;
   };
   data: {
@@ -42,6 +44,8 @@ export interface PayoutStatusAlertViewProps {
     verificationFailedInternalDescription: string;
     accountReviewHeader: string;
     accountReviewDescription: string;
+    balanceUnderThresholdHeader: string;
+    balanceUnderThresholdDescription: string;
     paymentHoldOnChangeHeader: string;
     paymentHoldOnChangeDescription: string;
     beneficiaryNameInvalidHeader: string;
@@ -138,7 +142,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -157,7 +161,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -175,7 +179,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -193,7 +197,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -237,7 +241,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
                 supportLink: (
                   <a
                     target="_blank"
-                    href={`mailto:advocate-support@impact.com`}
+                    href={`mailto:advocate-payment-support@impact.com`}
                   >
                     {text.supportLink}
                   </a>
@@ -259,7 +263,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -279,7 +283,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -299,7 +303,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -338,7 +342,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -377,7 +381,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -416,7 +420,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -447,7 +451,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -479,7 +483,7 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
             },
             {
               supportLink: (
-                <a target="_blank" href={`mailto:advocate-support@impact.com`}>
+                <a target="_blank" href={`mailto:advocate-payment-support@impact.com`}>
                   {text.supportLink}
                 </a>
               ),
@@ -568,8 +572,9 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   const alertDetails = getAlert(states.status);
+  const showHoldAlert = states.status !== "DONE" && !!alertDetails;
 
-  if (states.status === "DONE" || !alertDetails) {
+  if (!showHoldAlert && !states.belowPayoutThreshold) {
     return <div></div>;
   }
 
@@ -577,11 +582,27 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
-        <p part="alert-title">{alertDetails.header}</p>
-        <p part="alert-description">{alertDetails.description}</p>
-        {getButton(states.status)}
-      </sqm-form-message>
+      {states.belowPayoutThreshold && (
+        <sqm-form-message loading={states.loading} type="info">
+          <p part="alert-title">{text.balanceUnderThresholdHeader}</p>
+          <p part="alert-description">
+            {intl.formatMessage(
+              {
+                id: "balanceUnderThresholdDescription",
+                defaultMessage: text.balanceUnderThresholdDescription,
+              },
+              { minPayoutAmount: states.minPayoutAmount }
+            )}
+          </p>
+        </sqm-form-message>
+      )}
+      {showHoldAlert && (
+        <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
+          <p part="alert-title">{alertDetails.header}</p>
+          <p part="alert-description">{alertDetails.description}</p>
+          {getButton(states.status)}
+        </sqm-form-message>
+      )}
     </div>
   );
 }

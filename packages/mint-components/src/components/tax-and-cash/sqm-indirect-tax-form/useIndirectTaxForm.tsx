@@ -55,6 +55,14 @@ export type ConnectPartnerResult = {
     } | null;
   };
 };
+
+export type StartImpactConnectionResult = {
+  startImpactConnection: ConnectPartnerResult["createImpactConnection"];
+};
+
+export type CompletePartnerResult = {
+  completeImpactConnection: ConnectPartnerResult["createImpactConnection"];
+};
 type ImpactConnectionInput = {
   user: {
     id: string;
@@ -104,6 +112,35 @@ export const CONNECT_PARTNER = gql`
   }
 `;
 
+export const COMPLETE_PARTNER = gql`
+  mutation completeImpactConnection($vars: ImpactConnectionInput!) {
+    completeImpactConnection(impactConnectionInput: $vars) {
+      success
+      validationErrors {
+        field
+        message
+      }
+      user {
+        id
+        accountId
+        impactConnection {
+          connected
+          publisher {
+            phoneNumber
+            phoneNumberCountryCode
+            brandedSignup
+            requiredTaxDocumentType
+            currentTaxDocument {
+              type
+              status
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 function getOption(countries: TaxCountry[] | undefined, countryCode: string) {
   if (!countries) return;
 
@@ -123,10 +160,10 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
   const context = useParentValue<TaxContext>(TAX_FORM_CONTEXT_NAMESPACE);
   const [step, setStep] = useParent<string>(TAX_CONTEXT_NAMESPACE);
 
-  const [
-    connectImpactPartner,
-    { loading: connectLoading, errors: connectErrors },
-  ] = useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [connectImpactPartner, { loading: connectLoading }] =
+    useMutation<ConnectPartnerResult>(CONNECT_PARTNER);
+  const [completeImpactPartner, { loading: completeLoading }] =
+    useMutation<CompletePartnerResult>(COMPLETE_PARTNER);
   const userForm = useParentValue<UserFormContext>(USER_FORM_CONTEXT_NAMESPACE);
   const {
     data: userData,
@@ -244,16 +281,31 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       withholdingTaxId: formData.subRegionTaxNumber,
     } as ImpactConnectionInput;
 
-    const result = await connectImpactPartner({
-      vars,
-    });
+    // If the partner has already been started call completeImpactConnection
+    // to fill in the remaining details. Otherwise create from scratch.
+
+    let result = null;
+    let connectionResult;
+    if (userData?.user?.impactConnection?.connectionStatus === "STARTED") {
+      result = await completeImpactPartner({
+        vars,
+      });
+      connectionResult = (result as CompletePartnerResult)
+        ?.completeImpactConnection;
+    } else {
+      result = await connectImpactPartner({
+        vars,
+      });
+      connectionResult = (result as ConnectPartnerResult)
+        ?.createImpactConnection;
+    }
 
     if (!result || (result as Error)?.message) throw new Error();
-    if (!(result as ConnectPartnerResult).createImpactConnection?.success) {
+    if (!connectionResult?.success) {
       // Output backend errors to console for now
       console.error(
         "Failed to create Impact connection: ",
-        (result as ConnectPartnerResult).createImpactConnection.validationErrors
+        connectionResult?.validationErrors
       );
 
       throw new Error();
@@ -261,8 +313,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
 
     await refetch();
 
-    const resultPublisher = (result as ConnectPartnerResult)
-      .createImpactConnection?.user?.impactConnection?.publisher;
+    const resultPublisher = connectionResult?.user?.impactConnection?.publisher;
 
     const hasValidCurrentDocument =
       validTaxDocument(resultPublisher?.requiredTaxDocumentType) &&
@@ -342,9 +393,13 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
     states: {
       step: step?.replace("/", ""),
       hideSteps: context.hideSteps,
-      disabled: loading || countriesLoading || connectLoading,
-      loading: loading || connectLoading || countriesLoading,
+      disabled:
+        loading || countriesLoading || connectLoading || completeLoading,
+      loading: loading || connectLoading || countriesLoading || completeLoading,
       isPartner: !!userData?.user?.impactConnection?.publisher,
+      isPartnerLegacy:
+        !!userData?.user?.impactConnection?.publisher &&
+        userData?.user?.impactConnection?.connectionStatus !== "STARTED",
       loadingError: !!userError?.message,
       formState: {
         checked: option,

@@ -85,17 +85,29 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
         type: "AFTER_USER_CREATED_OR_UPDATED" as const,
         time: 1619483037813,
+        events: [],
         user: {
           id: "referrer",
           accountId: "referrer",
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
         previous: {
@@ -104,6 +116,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 321,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -120,6 +142,16 @@ describe("#getTriggerSchema", () => {
           customFields: {
             test: 123,
           },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
         previous: {
           id: "referrer",
@@ -127,6 +159,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 321,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -152,17 +194,53 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
         type: "REFERRAL",
         time: 1619483037813,
+        referralEventType: "STARTED",
+        referral: {
+          id: "abc123",
+          fraudFlags: [],
+          isFraudExempt: false,
+          rewards: [],
+          referrerUser: {
+            id: "referrer",
+            accountId: "referrer",
+            programGoals: [],
+            customFields: {
+              test: 123,
+            },
+            localization: {},
+            segments: [],
+            fraudFlags: [],
+            rewards: {
+              totalCount: 0,
+              data: [],
+            },
+            referrals: {
+              totalCount: 0,
+            },
+          },
+        },
         user: {
           id: "referrer",
           accountId: "referrer",
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -179,8 +257,41 @@ describe("#getTriggerSchema", () => {
           customFields: {
             test: 123,
           },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
-        referral: undefined,
+        referral: {
+          id: "abc123",
+          fraudFlags: [],
+          isFraudExempt: false,
+          rewards: [],
+          referrerUser: {
+            id: "referrer",
+            accountId: "referrer",
+            programGoals: [],
+            customFields: {
+              test: 123,
+            },
+            localization: {},
+            segments: [],
+            fraudFlags: [],
+            rewards: {
+              totalCount: 0,
+              data: [],
+            },
+            referrals: {
+              totalCount: 0,
+            },
+          },
+        },
       },
     ];
 
@@ -204,6 +315,7 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
@@ -215,6 +327,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
         events: [
@@ -260,6 +382,16 @@ describe("#getTriggerSchema", () => {
           customFields: {
             test: 123,
           },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
         event: {
           key: "subscription",
@@ -281,6 +413,16 @@ describe("#getTriggerSchema", () => {
           customFields: {
             test: 123,
           },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
+          },
         },
         event: {
           key: "purchase",
@@ -301,6 +443,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
         event: {
@@ -335,6 +487,7 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
@@ -346,6 +499,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -361,6 +524,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -386,6 +559,7 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
@@ -397,6 +571,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -412,6 +596,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },
@@ -437,6 +631,7 @@ describe("#getTriggerSchema", () => {
         impactBrandId: null,
         settings: {
           suspectedFraudModerationState: "OK",
+          timeZone: "America/Vancouver",
         },
       },
       activeTrigger: {
@@ -449,6 +644,16 @@ describe("#getTriggerSchema", () => {
           programGoals: [],
           customFields: {
             test: 123,
+          },
+          localization: {},
+          segments: [],
+          fraudFlags: [],
+          rewards: {
+            totalCount: 0,
+            data: [],
+          },
+          referrals: {
+            totalCount: 0,
           },
         },
       },

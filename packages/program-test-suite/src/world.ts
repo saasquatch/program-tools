@@ -21,6 +21,7 @@ interface State {
     template: any;
     featureFlags: string[] | null | undefined;
     flavor: TenantFlavor;
+    tenantTimeZone: string;
   }>;
 }
 

@@ -88,6 +88,7 @@ const cashPayoutSentReward: Reward = {
   statuses: ["AVAILABLE"],
   globalRewardKey: "Key",
   rewardRedemptionTransactions: null,
+  rewardedCash: true,
 };
 
 const nullExpiresIn = {
