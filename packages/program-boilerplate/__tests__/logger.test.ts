@@ -1,6 +1,6 @@
 import * as assert from "node:assert";
 import { describe, test } from "node:test";
-import { getLogger, setLogLevel } from "../src/logger.ts";
+import { getLogger } from "../src/logger.ts";
 
 // oxlint-disable typescript/no-floating-promises
 
@@ -13,12 +13,5 @@ describe("#getLogger", () => {
 
   test("logger is only initialized once", () => {
     assert.strictEqual(getLogger("warn"), logger);
-  });
-});
-
-describe("#setLogLevel", () => {
-  test("sets the log level of an initialized logger", () => {
-    setLogLevel("crit");
-    assert.strictEqual(logger.level, "crit");
   });
 });

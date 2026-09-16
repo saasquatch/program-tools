@@ -7,7 +7,7 @@ import {
   meetEdgeTriggerConditions,
   meetEventTriggerRules,
 } from "./conversion.ts";
-import { getLogger, setLogLevel } from "./logger.ts";
+import { getLogger } from "./logger.ts";
 import { rewardEmailQuery } from "./queries.ts";
 import Transaction from "./transaction.ts";
 import { triggerProgram } from "./trigger.ts";
@@ -54,7 +54,6 @@ export {
   numToEquality,
   rewardEmailQuery,
   safeJsonata,
-  setLogLevel,
   setRewardSchedule,
   timeboxExpression,
   timeboxedJsonata,

@@ -20,13 +20,3 @@ export function getLogger(level: LogLevel): Logger {
   logger = initializeLogger({ logLevel: level });
   return logger;
 }
-
-/**
- * Set the log level of the singleton logger.
- *
- * @param {string} logLevel The log level
- */
-export function setLogLevel(logLevel: string) {
-  if (!logger) return;
-  logger.level = logLevel;
-}
