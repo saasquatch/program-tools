@@ -214,7 +214,22 @@ export const BalanceUnderThreshold = () => (
   <TaxAndCashDashboardView
     states={{
       ...baseStates,
-      payoutStatus: "BALANCE_UNDER_THRESHOLD",
+      payoutStatus: "DONE",
+      belowPayoutThreshold: true,
+      minPayoutAmount: "USD50.00",
+    }}
+    text={defaultText}
+    callbacks={defaultCallbacks}
+    slots={buildSlots({ belowPayoutThreshold: true })}
+  />
+);
+
+export const BalanceUnderThresholdWithHold = () => (
+  <TaxAndCashDashboardView
+    states={{
+      ...baseStates,
+      payoutStatus: "NEW_PAYEE_REVIEW",
+      belowPayoutThreshold: true,
       minPayoutAmount: "USD50.00",
     }}
     text={defaultText}

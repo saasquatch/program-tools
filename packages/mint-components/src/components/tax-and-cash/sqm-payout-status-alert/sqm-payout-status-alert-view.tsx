@@ -8,6 +8,7 @@ export interface PayoutStatusAlertViewProps {
     loading: boolean;
     status: PayoutStatus;
     veriffLoading: boolean;
+    belowPayoutThreshold?: boolean;
     minPayoutAmount?: string;
     enforceUsTaxComplianceOption?: EnforceUsTaxComplianceOption;
   };
@@ -271,20 +272,6 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
           buttonText: null,
           alertType: "warning",
           icon: "exclamation-triangle",
-        };
-      case "BALANCE_UNDER_THRESHOLD":
-        return {
-          header: text.balanceUnderThresholdHeader,
-          description: intl.formatMessage(
-            {
-              id: "balanceUnderThresholdDescription",
-              defaultMessage: text.balanceUnderThresholdDescription,
-            },
-            { minPayoutAmount: states.minPayoutAmount }
-          ),
-          buttonText: null,
-          alertType: "info",
-          icon: "info-circle",
         };
       case "PAYMENT_HOLD_ON_CHANGE":
         return {
@@ -585,8 +572,9 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
   }
 
   const alertDetails = getAlert(states.status);
+  const showHoldAlert = states.status !== "DONE" && !!alertDetails;
 
-  if (states.status === "DONE" || !alertDetails) {
+  if (!showHoldAlert && !states.belowPayoutThreshold) {
     return <div></div>;
   }
 
@@ -594,11 +582,27 @@ export function PayoutStatusAlertView(props: PayoutStatusAlertViewProps) {
     <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <style type="text/css">{vanillaStyle}</style>
-      <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
-        <p part="alert-title">{alertDetails.header}</p>
-        <p part="alert-description">{alertDetails.description}</p>
-        {getButton(states.status)}
-      </sqm-form-message>
+      {states.belowPayoutThreshold && (
+        <sqm-form-message loading={states.loading} type="info">
+          <p part="alert-title">{text.balanceUnderThresholdHeader}</p>
+          <p part="alert-description">
+            {intl.formatMessage(
+              {
+                id: "balanceUnderThresholdDescription",
+                defaultMessage: text.balanceUnderThresholdDescription,
+              },
+              { minPayoutAmount: states.minPayoutAmount }
+            )}
+          </p>
+        </sqm-form-message>
+      )}
+      {showHoldAlert && (
+        <sqm-form-message loading={states.loading} type={alertDetails.alertType}>
+          <p part="alert-title">{alertDetails.header}</p>
+          <p part="alert-description">{alertDetails.description}</p>
+          {getButton(states.status)}
+        </sqm-form-message>
+      )}
     </div>
   );
 }

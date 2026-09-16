@@ -1557,7 +1557,8 @@ export const TaxAndCashDashboardBalanceUnderThreshold = () => {
       demoData={{
         ...dashboardProps,
         states: {
-          payoutStatus: "BALANCE_UNDER_THRESHOLD",
+          payoutStatus: "DONE",
+          belowPayoutThreshold: true,
           minPayoutAmount: "USD50.00",
           veriffLoading: false,
           canEditPayoutInfo: true,
