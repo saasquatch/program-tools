@@ -60,10 +60,10 @@ function parseValue(value: string): RuleValue {
   }
 
   if (value.toLowerCase() === "true" || value.toLowerCase() === "yes") {
-    return Boolean(true);
+    return true;
   }
   if (value.toLowerCase() === "false" || value.toLowerCase() === "no") {
-    return Boolean(false);
+    return false;
   }
 
   return value;
@@ -119,7 +119,7 @@ export function meetEdgeTriggerConditions(
       assert.deepStrictEqual(currentValue, previousValue);
       // assertion passed -- field did not change
       // continue on to other fields and see if any changed
-    } catch (_e) {
+    } catch {
       // assertion failed -- field must have changed
       return true;
     }

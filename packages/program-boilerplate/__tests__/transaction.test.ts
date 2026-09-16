@@ -10,8 +10,10 @@ import {
 import Transaction from "../src/transaction.ts";
 import type { Referral } from "../src/types/saasquatch.ts";
 
+// oxlint-disable typescript/no-floating-promises
+
 describe("Transaction class", () => {
-  const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+  const messageType = "PROGRAM_TRIGGER" as const;
   const testContext = {
     body: {
       messageType,
@@ -353,6 +355,7 @@ describe("Transaction class", () => {
       assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const mut = rewardMutation.data as RewardData;
 
       assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");
@@ -410,6 +413,7 @@ describe("Transaction class", () => {
       assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const mut = rewardMutation.data as RewardData;
 
       assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");

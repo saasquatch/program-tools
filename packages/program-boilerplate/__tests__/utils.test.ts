@@ -1,6 +1,6 @@
-import jsonata from "jsonata";
 import * as assert from "node:assert";
 import { describe, test } from "node:test";
+import jsonata from "jsonata";
 import { rewardScheduleQuery } from "../src/queries.ts";
 import type { ProgramTriggerBody } from "../src/types/rpc.ts";
 import {
@@ -12,6 +12,9 @@ import {
   setRewardSchedule,
 } from "../src/utils.ts";
 
+// oxlint-disable typescript/no-floating-promises
+// oxlint-disable unicorn/no-array-sort
+
 describe("#inferType", () => {
   test("Booleans are inferred", () => {
     assert.deepStrictEqual(inferType("true"), true);
@@ -19,7 +22,7 @@ describe("#inferType", () => {
   });
 
   test("Numbers are inferred", () => {
-    assert.deepStrictEqual(inferType("3.1415"), 3.1415);
+    assert.deepStrictEqual(inferType("1.2345"), 1.2345);
     assert.deepStrictEqual(inferType("29"), 29);
     assert.deepStrictEqual(inferType("0"), 0);
     assert.deepStrictEqual(inferType("NaN"), NaN);
@@ -66,13 +69,14 @@ describe("#numToEquality", () => {
   test("default return is 'eq'", () => {
     assert.deepStrictEqual(numToEquality(-1), "eq");
     assert.deepStrictEqual(numToEquality(666), "eq");
-    assert.deepStrictEqual(numToEquality("testAString" as any), "eq");
+    // @ts-ignore -- testing bad type on purpose
+    assert.deepStrictEqual(numToEquality("testAString"), "eq");
   });
 });
 
 describe("#getTriggerSchema", () => {
   test("it converts AFTER_USER_CREATED_OR_UPDATED triggers", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       ids: ["123", "345", "456"],
@@ -181,7 +185,7 @@ describe("#getTriggerSchema", () => {
   });
 
   test("it converts REFERRAL triggers", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       program: {
@@ -302,7 +306,7 @@ describe("#getTriggerSchema", () => {
   });
 
   test("it converts AFTER_USER_EVENT_PROCESSED triggers", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       program: {
@@ -474,7 +478,7 @@ describe("#getTriggerSchema", () => {
   });
 
   test("it converts SCHEDULED triggers", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       program: {
@@ -546,7 +550,7 @@ describe("#getTriggerSchema", () => {
   });
 
   test("it converts REWARD_SCHEDULED triggers", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       program: {
@@ -618,7 +622,7 @@ describe("#getTriggerSchema", () => {
   });
 
   test("throw error on unexpected trigger type", () => {
-    const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+    const messageType = "PROGRAM_TRIGGER" as const;
     const programTriggerBody: ProgramTriggerBody = {
       messageType,
       program: {
@@ -723,14 +727,14 @@ describe("#getRewardUnitsFromJsonata", () => {
     const expr = jsonata(`"POINT"`).ast();
     const result = getRewardUnitsFromJsonata(expr);
     assert.notStrictEqual(result, undefined);
-    assert.deepStrictEqual(result!.sort(), ["POINT"]);
+    assert.deepStrictEqual(result, ["POINT"]);
   });
 
   test("returns reward unit from single branch ternary", () => {
     const expr = jsonata(`user.customFields.test = "test" ? "USD"`).ast();
     const result = getRewardUnitsFromJsonata(expr);
     assert.notStrictEqual(result, undefined);
-    assert.deepStrictEqual(result!.sort(), ["USD"]);
+    assert.deepStrictEqual(result, ["USD"]);
   });
 
   test("returns reward units from multi branch ternary", () => {

@@ -61,20 +61,28 @@ export function triggerProgram(
     | ProgramVariableSchemaRequestBody,
   program: Program = {},
 ): ProgramTriggerResult {
+  // FIXME: all these oxlint warnings are real issues, we should technically
+  // have proper validation here
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
-      body = body as ProgramIntrospectionBody;
-      return handleProgramIntrospection(body, program);
+      return handleProgramIntrospection(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        body as ProgramIntrospectionBody,
+        program,
+      );
     case "PROGRAM_TRIGGER":
-      body = body as ProgramTriggerBody;
-      return handleProgramTrigger(body, program);
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      return handleProgramTrigger(body as ProgramTriggerBody, program);
+    // Make modifications to template based on rules here if necessary.
     case "PROGRAM_VALIDATION":
-      // Make modifications to template based on rules here if necessary.
-      body = body as ProgramValidationBody;
-      return handleProgramValidation(body, program);
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      return handleProgramValidation(body as ProgramValidationBody, program);
     case "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST":
-      body = body as ProgramVariableSchemaRequestBody;
-      return handleProgramVariableSchemaRequest(body, program);
+      return handleProgramVariableSchemaRequest(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        body as ProgramVariableSchemaRequestBody,
+        program,
+      );
     default:
       const message = `Unrecognized messageType ${body.messageType}`;
       ssqtLogger("program-boilerplate").warn(message);
@@ -100,7 +108,7 @@ function handleProgramTrigger(
   const transaction = new Transaction({ body });
 
   const triggerType = body.activeTrigger.type;
-  const handleTrigger: any = program[triggerType];
+  const handleTrigger = program[triggerType];
 
   try {
     if (handleTrigger) {
@@ -172,16 +180,8 @@ function handleProgramValidation(
       ? validationHandlers[r.key]
       : undefined;
 
-    if (!requirementHandler) {
-      // this return goes to no where
-      return {
-        json: {
-          message: `Requirement handler for key ${r.key} not implemented`,
-        },
-        code: 501,
-      };
-    } else {
-      // should maybe add error handling
+    if (requirementHandler) {
+      // FIXME: should maybe add error handling
       results.push({
         key: r.key,
         results: requirementHandler(r.queryResult, body.program, body.time),

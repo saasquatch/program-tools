@@ -1,3 +1,5 @@
+import * as assert from "node:assert";
+import { describe, mock, test } from "node:test";
 import Transaction from "../src/transaction.ts";
 import { triggerProgram } from "../src/trigger.ts";
 import type {
@@ -8,8 +10,8 @@ import type {
   RequirementValidationHandler,
   TriggerType,
 } from "../src/types/rpc.ts";
-import * as assert from "node:assert";
-import { describe, mock, test } from "node:test";
+
+// oxlint-disable typescript/no-floating-promises
 
 describe("triggerProgram", () => {
   describe("body has invalid messageType", () => {
@@ -21,7 +23,9 @@ describe("triggerProgram", () => {
     };
     test("501 is returned", () => {
       const result = triggerProgram(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         testBody as unknown as ProgramTriggerBody,
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         program as unknown as Program,
       );
       assert.deepStrictEqual(result, {
@@ -34,7 +38,7 @@ describe("triggerProgram", () => {
   });
   describe("body has messageType PROGRAM_INTROSPECTION", () => {
     const testBody = {
-      messageType: "PROGRAM_INTROSPECTION" as "PROGRAM_INTROSPECTION",
+      messageType: "PROGRAM_INTROSPECTION" as const,
       template: { test: "template" },
       rules: [
         {
@@ -196,7 +200,7 @@ describe("triggerProgram", () => {
 
   describe("body has messageType PROGRAM_VALIDATION", () => {
     const testBody = {
-      messageType: "PROGRAM_VALIDATION" as "PROGRAM_VALIDATION",
+      messageType: "PROGRAM_VALIDATION" as const,
       validationRequests: [
         {
           key: "rule1",
@@ -235,6 +239,7 @@ describe("triggerProgram", () => {
     };
 
     test("PROGRAM_VALIDATION", () => {
+      // oxlint-disable-next-line unicorn/consistent-function-scoping
       const validationResult = (num: number) => [
         {
           message: num.toString(),
@@ -293,8 +298,7 @@ describe("triggerProgram", () => {
 
   describe("body has messageType PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST", () => {
     const testBody = {
-      messageType:
-        "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST" as "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST",
+      messageType: "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST" as const,
       triggerType: "AFTER_USER_EVENT_PROCESSED" as TriggerType,
       schema: "testSchema",
       scheduleKey: "testScheduleKey",
@@ -312,6 +316,7 @@ describe("triggerProgram", () => {
 
     test("PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST", () => {
       const spy = mock.fn(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         () => newSchema as unknown as ProgramVariableSchemaResult,
       );
       const spyingProgram = {

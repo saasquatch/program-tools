@@ -1,11 +1,13 @@
-import request from "supertest";
-import { webtask } from "../src/index.ts";
 import * as assert from "node:assert";
 import { describe, mock, test, before, after } from "node:test";
+import request from "supertest";
+import { webtask } from "../src/index.ts";
+
+// oxlint-disable typescript/no-floating-promises
 
 describe("webtask express wrapper functionality", () => {
   const testSuccessBody = {
-    messageType: "PROGRAM_INTROSPECTION" as "PROGRAM_INTROSPECTION",
+    messageType: "PROGRAM_INTROSPECTION" as const,
     template: { test: "template" },
     rules: [
       {
@@ -27,7 +29,7 @@ describe("webtask express wrapper functionality", () => {
   const newTemplate = { template: {} };
 
   const testErrorBody = {
-    messageType: "PROGRAM_TRIGGER" as "PROGRAM_TRIGGER",
+    messageType: "PROGRAM_TRIGGER" as const,
     ids: ["123", "456"],
     activeTrigger: { type: "AFTER_USER_EVENT_PROCESSED" },
     program: {

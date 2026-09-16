@@ -1,7 +1,9 @@
-import jsonata from "jsonata";
 import * as assert from "node:assert";
 import { describe, test } from "node:test";
+import jsonata from "jsonata";
 import { safeJsonata, timeboxExpression } from "../src/jsonata.ts";
+
+// oxlint-disable typescript/no-floating-promises
 
 describe("#timeboxExpression", () => {
   const infExpr = jsonata("( $inf := function(){$inf()}; $inf())");

@@ -1,34 +1,24 @@
-import {
-  initializeLogger,
-  LOG_LEVELS,
-  type LogLevel,
-} from "@saasquatch/logger";
+import { initializeLogger, type LogLevel } from "@saasquatch/logger";
 import { Logger } from "winston";
 
 // Lazily initialized logger instance
-let _logger: Logger;
+let logger: Logger;
 
 /**
  * Returns a logger for the programs to use instead of
  * console.log
  *
- * @param {string} logLevel The log level
+ * @param {string} level The log level
  *
  * @return {Logger} The winston logger
  */
-export function getLogger(logLevel: string): Logger {
-  if (_logger) {
-    return _logger;
+export function getLogger(level: LogLevel): Logger {
+  if (logger) {
+    return logger;
   }
 
-  if (!LOG_LEVELS.includes(logLevel as LogLevel)) {
-    logLevel = "info";
-  }
-
-  _logger = initializeLogger({
-    logLevel: logLevel as LogLevel,
-  });
-  return _logger;
+  logger = initializeLogger({ logLevel: level });
+  return logger;
 }
 
 /**
@@ -37,7 +27,6 @@ export function getLogger(logLevel: string): Logger {
  * @param {string} logLevel The log level
  */
 export function setLogLevel(logLevel: string) {
-  if (!_logger) return;
-
-  _logger.level = logLevel;
+  if (!logger) return;
+  logger.level = logLevel;
 }

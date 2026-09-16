@@ -91,7 +91,8 @@ export function webtask(program: Program = {}): express.Application {
       req.header("X-Forwarded-Proto") !== "https" &&
       !["/healthz", "/livez", "/readyz"].includes(req.path)
     ) {
-      return res.status(403).send({ message: "SSL required" });
+      res.status(403).send({ message: "SSL required" });
+      return;
     }
 
     // allow the request to continue if https is used
@@ -121,12 +122,12 @@ export function webtask(program: Program = {}): express.Application {
 }
 
 export function runWebtask(
-  webtask: express.Application,
+  program: express.Application,
   config: WebtaskConfig,
 ): void {
   const logger = ssqtLogger("program-boilerplate");
 
-  const server = webtask.listen(config.port, () =>
+  const server = program.listen(config.port, () =>
     logger.notice(`${config.webtaskName} running on port ${config.port}`),
   );
 
@@ -138,7 +139,7 @@ export function runWebtask(
   }
 
   const gracefulShutdown = (signal: string) => () => {
-    const isTerminating = webtask.locals["terminating"];
+    const isTerminating = program.locals["terminating"];
 
     if (typeof isTerminating === "boolean" && isTerminating) {
       logger.warn(
@@ -147,7 +148,7 @@ export function runWebtask(
       return;
     }
 
-    webtask.locals["terminating"] = true;
+    program.locals["terminating"] = true;
 
     logger.notice(`Received ${signal} signal, starting shutdown procedure`);
 

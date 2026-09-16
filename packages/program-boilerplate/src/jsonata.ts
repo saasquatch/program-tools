@@ -57,15 +57,17 @@ export function timeboxExpression(
 /**
  * @deprecated Use timeboxedJsonata instead
  */
-export function safeJsonata(expression: string, inputData: any) {
+export function safeJsonata(expression: string, inputData: any): any {
   try {
     const jsonataQuery = jsonata(expression);
     timeboxExpression(jsonataQuery);
     return jsonataQuery.evaluate(inputData);
   } catch (e) {
     ssqtLogger("program-boilerplate").warn(
-      `Failed to evaluate JSONata expression: ${(e as any).message}`,
+      // oxlint-disable-next-line typescript/restrict-template-expressions
+      `Failed to evaluate JSONata expression: ${e instanceof Error ? e.message : `${e}`}`,
     );
+    return undefined;
   }
 }
 

@@ -10,20 +10,20 @@ export type WebtaskConfig = {
   terminationDelaySeconds: number;
 };
 
+const optionalInt = (key: string, defaultVal: number): number => {
+  const env = process.env[key];
+  if (!env) {
+    return defaultVal;
+  }
+
+  const parsedEnv = parseInt(env, 10);
+  if (Number.isNaN(parsedEnv)) {
+    throw new Error(`Environment variable "${key}" is not an integer`);
+  }
+  return parsedEnv;
+};
+
 export function loadStandardWebtaskConfig(): WebtaskConfig {
-  const optionalInt = (key: string, defaultVal: number): number => {
-    const env = process.env[key];
-    if (!env) {
-      return defaultVal;
-    }
-
-    const parsedEnv = parseInt(env, 10);
-    if (Number.isNaN(parsedEnv)) {
-      throw new Error(`Environment variable "${key}" is not an integer`);
-    }
-    return parsedEnv;
-  };
-
   const port = optionalInt("PORT", 3000);
   const keepAliveTimeoutSeconds = optionalInt("HTTP_KEEP_ALIVE_SECONDS", 60);
   const terminationDelaySeconds = optionalInt("TERMINATION_DELAY_SECONDS", 0);
@@ -138,13 +138,13 @@ export function inferType(val: string): any {
     }
   }
 
-  if (/(^[\[].*[\]]$)|(^[\{].*[\}]$)/.test(val)) {
+  if (/(^[[].*[\]]$)|(^[{].*[}]$)/.test(val)) {
     try {
       const asObject = JSON.parse(val);
       if (asObject instanceof Object) {
         return asObject;
       }
-    } catch (e) {
+    } catch {
       return undefined;
     }
   }
@@ -274,7 +274,7 @@ export function getUserCustomFieldsFromJsonata(
           if (key) userCustomFields.push(key);
         }
       }
-    } catch (e) {
+    } catch {
       continue;
     }
   }
@@ -308,4 +308,6 @@ export function getRewardUnitsFromJsonata(
       return [...(lhs ?? []), ...(rhs ?? [])];
     }
   }
+
+  return undefined;
 }

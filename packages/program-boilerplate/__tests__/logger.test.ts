@@ -2,6 +2,8 @@ import * as assert from "node:assert";
 import { describe, test } from "node:test";
 import { getLogger, setLogLevel } from "../src/logger.ts";
 
+// oxlint-disable typescript/no-floating-promises
+
 const logger = getLogger("notice");
 describe("#getLogger", () => {
   test("first call initializes the logger at the given level", () => {
