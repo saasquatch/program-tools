@@ -2,7 +2,7 @@ import * as assert from "node:assert";
 import { test } from "node:test";
 import { formatGenericError } from "../error.ts";
 
-/* eslint-disable @typescript-eslint/no-floating-promises */
+// oxlint-disable typescript/no-floating-promises
 
 test("formatGenericError", () => {
   const error = new Error("Error message");

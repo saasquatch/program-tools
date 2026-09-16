@@ -2,7 +2,7 @@ import * as assert from "node:assert";
 import { test } from "node:test";
 import { shutdownManagerConfigFromEnv } from "../shutdown.ts";
 
-/* eslint-disable @typescript-eslint/no-floating-promises */
+// oxlint-disable typescript/no-floating-promises
 
 test("env parser with env vars", () => {
   process.env["SSQT_HTTP_KEEP_ALIVE_SECONDS"] = "275";

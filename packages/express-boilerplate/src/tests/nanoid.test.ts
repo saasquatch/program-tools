@@ -2,7 +2,7 @@ import * as assert from "node:assert";
 import { test } from "node:test";
 import { nanoid } from "../nanoid.ts";
 
-/* eslint-disable @typescript-eslint/no-floating-promises */
+// oxlint-disable typescript/no-floating-promises
 
 test("nanoid", () => {
   assert.strictEqual(nanoid().length, 32);
