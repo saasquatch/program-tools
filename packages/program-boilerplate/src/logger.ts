@@ -1,7 +1,8 @@
 import {
+  LOG_LEVELS,
   initializeLogger,
-  type Logger,
   type LogLevel,
+  type Logger,
 } from "@saasquatch/logger";
 
 // Lazily initialized logger instance
@@ -15,9 +16,17 @@ let logger: Logger;
  *
  * @return {Logger} The winston logger
  */
-export function getLogger(level: LogLevel): Logger {
+export function getLogger(level: string): Logger {
   if (logger) {
     return logger;
+  }
+
+  const validLevel = ((l): l is LogLevel => {
+    return (LOG_LEVELS as readonly string[]).includes(l);
+  })(level);
+
+  if (!validLevel) {
+    throw new Error(`Invalid log level "${level}"`);
   }
 
   logger = initializeLogger({ logLevel: level });
