@@ -15,6 +15,8 @@ import { useLeadCheckboxField } from "./useCheckboxField";
  * @uiName Lead Form Checkbox Field
  * @validParents ["sqm-lead-form"]
  * @csspart sqm-base - The base container
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
  */
 @Component({
   tag: "sqm-lead-checkbox-field",
