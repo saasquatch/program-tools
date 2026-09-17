@@ -64,9 +64,10 @@ export function initializeLogger(
 }
 
 export class Logger {
-  private name: string;
+  public name: string;
+  public level: LogLevel;
+
   private sinks: Sink[];
-  private level: LogLevel;
   private baseFields: Record<string, unknown>;
 
   private collection: {
@@ -93,14 +94,6 @@ export class Logger {
     this.sinks = sinks;
     this.level = level;
     this.baseFields = baseFields;
-  }
-
-  public setLevel(level: LogLevel): void {
-    this.level = level;
-  }
-
-  public setName(name: string): void {
-    this.name = name;
   }
 
   public log(
