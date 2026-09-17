@@ -1,7 +1,19 @@
 import type { Writable } from "node:stream";
 
 /**
- * Syslog-compatible logging levels, from most to least severe.
+ * Numerical Code | Severity
+ *        0       | Emergency: system is unusable
+ *        1       | Alert: action must be taken immediately
+ *        2       | Critical: critical conditions
+ *        3       | Error: error conditions
+ *        4       | Warning: warning conditions
+ *        5       | Notice: normal but significant condition
+ *        6       | Informational: informational messages
+ *        7       | Debug: debug-level messages
+ *
+ * Table 2. Syslog Message Severities
+ * RFC 5424
+ * https://www.rfc-editor.org/rfc/rfc5424#section-6.2.1
  */
 export const LOG_LEVELS = [
   "emerg",
@@ -59,13 +71,15 @@ export function defaultConfig(): LoggerConfig {
   let logLevel: LogLevel = "info";
 
   if (configuredLevel !== undefined) {
-    if (!(LOG_LEVELS as readonly string[]).includes(configuredLevel)) {
+    const levelValid = ((l: string): l is LogLevel => {
+      return (LOG_LEVELS as readonly string[]).includes(l);
+    })(configuredLevel);
+
+    if (!levelValid) {
       throw new Error(`Invalid log level "${configuredLevel}"`);
     }
 
-    // this is safe since we just checked it against the allowed log levels
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    logLevel = configuredLevel as LogLevel;
+    logLevel = configuredLevel;
   }
 
   return { logLevel, transports };

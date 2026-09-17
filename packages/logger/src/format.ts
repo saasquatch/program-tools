@@ -32,7 +32,7 @@ export function formatRecord(
     record["logger.name"] = name;
   }
 
-  // Prepend a [<tenantAlias>] tag to the message
+  // prepend a [<tenantAlias>] tag to the message
   if (
     record["tenantAlias"] &&
     typeof record["tenantAlias"] === "string" &&
@@ -63,6 +63,10 @@ function formatHttpRecord(record: Record<string, unknown>): void {
     return;
   }
 
+  // NOTE: it would of course be safer to validate this using a real
+  // schema validator like zod, but for a logging library we just
+  // don't want that kind of overhead. The HTTP log messages are generated
+  // using middleware from our own package so it's unlikely to be invalid
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const message = value as HTTPMessage;
   const micros = Number(message.time);

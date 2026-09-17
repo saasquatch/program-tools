@@ -67,11 +67,7 @@ export function httpLogMiddleware(
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const method = req.method;
       const requestId = res.locals?.["requestId"];
-
-      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-      const extraData = res.locals?.["extraData"] as
-        | Record<string, any>
-        | undefined;
+      const extraData = res.locals?.["extraData"];
 
       const level =
         status >= 500

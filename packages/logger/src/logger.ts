@@ -112,7 +112,7 @@ export class Logger {
       actualMessage = message["message"];
     }
 
-    // Per-message fields take precedence over inherited child fields.
+    // per-message fields take precedence over inherited child fields
     const record = formatRecord(this.name, messageLevel, actualMessage, {
       ...this.baseFields,
       ...messageFields,
@@ -132,9 +132,6 @@ export class Logger {
       }
     }
 
-    // Do not serialize when there are no active sinks (for example, when
-    // this logger is only being used for collection). Serialization is also
-    // shared across all sinks.
     if (this.sinks.length > 0) {
       const serializedRecord = `${serializeRecord(record)}\n`;
       for (const sink of this.sinks) {
@@ -178,12 +175,16 @@ export class Logger {
   ): T extends true ? string : LogRecord[] {
     const records = this.getCollectedRecords();
     if (opts?.serialized) {
+      // this is just some type mucking to get the return type to change
+      // depending on whether `serialized` is set or not
       // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       return records.map(serializeRecord).join("\n") as T extends true
         ? string
         : LogRecord[];
     }
 
+    // this is just some type mucking to get the return type to change
+    // depending on whether `serialized` is set or not
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     return records as T extends true ? string : LogRecord[];
   }

@@ -26,9 +26,11 @@ function performRequest(
   const response = new FakeResponse(statusCode, locals);
   let nextCalls = 0;
   const middleware = httpLogMiddleware(logger, options);
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- only the request properties read by the middleware are needed
+  // only the request properties read by the middleware are needed
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const request = { method, originalUrl: url } as never;
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- FakeResponse implements the response properties used by the middleware
+  // FakeResponse implements the response properties used by the middleware
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const expressResponse = response as never;
   middleware(request, expressResponse, () => nextCalls++);
   assert.equal(nextCalls, 1);
