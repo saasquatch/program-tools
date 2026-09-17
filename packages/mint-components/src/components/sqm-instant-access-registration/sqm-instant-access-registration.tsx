@@ -17,6 +17,7 @@ import { useInstantAccessRegistration } from "./useInstantAccessRegistration";
  * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
  * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
  * @csspart sqm-base - The base container for the instant access registration component
+ * @csspart erroralert-text - The error message element
  * @csspart erroralert-icon - The error alert icon
  * @csspart input-label - The input label
  * @csspart input-base - The input base
