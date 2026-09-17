@@ -34,6 +34,7 @@ export function formatRecord(
 
   // Prepend a [<tenantAlias>] tag to the message
   if (
+    record["tenantAlias"] &&
     typeof record["tenantAlias"] === "string" &&
     typeof record["message"] === "string"
   ) {
