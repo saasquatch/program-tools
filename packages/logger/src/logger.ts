@@ -9,7 +9,9 @@ import {
 import { formatRecord, serializeRecord, type LogRecord } from "./format.ts";
 
 export type LogCollectionOptions = {
-  /** Maximum number of records retained. The newest records are kept. */
+  /**
+   * Maximum number of records retained. The newest records are kept.
+   */
   maxEntries?: number;
 };
 
@@ -17,48 +19,21 @@ export type GetCollectedLogsOptions = {
   serialized?: boolean;
 };
 
-export const DEFAULT_LOG_COLLECTION_LIMIT = 1000;
+export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
-
-/** Numeric values retained for callers that used the old syslog mapping. */
-export const SYSLOG_LOG_LEVELS = LOG_LEVEL_VALUES;
-
-export interface Logger {
-  readonly name: string;
-  level: LogLevel;
-  log(
-    level: LogLevel,
-    message: unknown,
-    fields?: Record<string, unknown>,
-  ): void;
-  emerg(message: unknown, fields?: Record<string, unknown>): void;
-  alert(message: unknown, fields?: Record<string, unknown>): void;
-  crit(message: unknown, fields?: Record<string, unknown>): void;
-  error(message: unknown, fields?: Record<string, unknown>): void;
-  warning(message: unknown, fields?: Record<string, unknown>): void;
-  warn(message: unknown, fields?: Record<string, unknown>): void;
-  notice(message: unknown, fields?: Record<string, unknown>): void;
-  info(message: unknown, fields?: Record<string, unknown>): void;
-  debug(message: unknown, fields?: Record<string, unknown>): void;
-  child(record: Record<string, unknown>): Logger;
-  startLogCollection(options?: LogCollectionOptions): void;
-  stopLogCollection(): void;
-  getCollectedLogs<T extends boolean = false>(
-    opts?: GetCollectedLogsOptions & { serialized?: T },
-  ): T extends true ? string : LogRecord[];
-  clearCollectedLogs(): void;
-}
 
 type Sink = (serializedRecord: string) => void;
 const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
   const name = logger ?? DEFAULT_LOGGER_NAME;
+
   if (!loggers.has(name)) {
     initializeLogger(name);
   }
+
   return loggers.get(name)!;
 }
 
@@ -74,7 +49,7 @@ export function initializeLogger(
     typeof nameOrConfig === "string" ? nameOrConfig : DEFAULT_LOGGER_NAME;
 
   if (loggers.has(name)) {
-    throw new Error("Logger has already been initialized");
+    throw new Error(`Logger "${name}" has already been initialized`);
   }
 
   const supplied =
@@ -82,20 +57,19 @@ export function initializeLogger(
 
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
   const sinks = conf.transports.map(transportToSink);
-  const level = { value: conf.logLevel };
-  const logger = createLogger(name, sinks, level, {});
+  const logger = new Logger(name, sinks, conf.logLevel, {});
 
   loggers.set(name, logger);
   return logger;
 }
 
-function createLogger(
-  name: string,
-  sinks: Sink[],
-  level: { value: LogLevel },
-  baseFields: Record<string, unknown>,
-): Logger {
-  const collection: {
+export class Logger {
+  private name: string;
+  private sinks: Sink[];
+  private level: LogLevel;
+  private baseFields: Record<string, unknown>;
+
+  private collection: {
     enabled: boolean;
     maxEntries: number;
     records: LogRecord[];
@@ -109,156 +83,167 @@ function createLogger(
     size: 0,
   };
 
-  const logger: Logger = {
-    name,
+  constructor(
+    name: string,
+    sinks: Sink[],
+    level: LogLevel,
+    baseFields: Record<string, unknown>,
+  ) {
+    this.name = name;
+    this.sinks = sinks;
+    this.level = level;
+    this.baseFields = baseFields;
+  }
 
-    get level() {
-      return level.value;
-    },
+  public setLevel(level: LogLevel): void {
+    this.level = level;
+  }
 
-    set level(value: LogLevel) {
-      level.value = value;
-    },
+  public setName(name: string): void {
+    this.name = name;
+  }
 
-    log(messageLevel, message, fields) {
-      if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[level.value]) {
-        return;
+  public log(
+    messageLevel: LogLevel,
+    message: unknown,
+    fields?: Record<string, unknown>,
+  ) {
+    if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[this.level]) {
+      return;
+    }
+
+    let actualMessage = message;
+    let messageFields = fields ?? {};
+    if (fields === undefined && isRecord(message)) {
+      messageFields = message;
+      actualMessage = message["message"];
+    }
+
+    // Per-message fields take precedence over inherited child fields.
+    const record = formatRecord(this.name, messageLevel, actualMessage, {
+      ...this.baseFields,
+      ...messageFields,
+    });
+
+    if (this.collection.enabled) {
+      const index =
+        (this.collection.start + this.collection.size) %
+        this.collection.maxEntries;
+
+      this.collection.records[index] = record;
+      if (this.collection.size < this.collection.maxEntries) {
+        this.collection.size += 1;
+      } else {
+        this.collection.start =
+          (this.collection.start + 1) % this.collection.maxEntries;
       }
+    }
 
-      let actualMessage = message;
-      let messageFields = fields ?? {};
-      if (fields === undefined && isRecord(message)) {
-        messageFields = message;
-        actualMessage = message["message"];
+    // Do not serialize when there are no active sinks (for example, when
+    // this logger is only being used for collection). Serialization is also
+    // shared across all sinks.
+    if (this.sinks.length > 0) {
+      const serializedRecord = `${serializeRecord(record)}\n`;
+      for (const sink of this.sinks) {
+        sink(serializedRecord);
       }
+    }
+  }
 
-      // Per-message fields take precedence over inherited child fields.
-      const record = formatRecord(name, messageLevel, actualMessage, {
-        ...baseFields,
-        ...messageFields,
-      });
+  public child(record: Record<string, unknown>) {
+    return new Logger(this.name, this.sinks, this.level, {
+      ...this.baseFields,
+      ...record,
+    });
+  }
 
-      if (collection.enabled) {
-        const index =
-          (collection.start + collection.size) % collection.maxEntries;
+  public startLogCollection(options?: LogCollectionOptions) {
+    const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
 
-        collection.records[index] = record;
-        if (collection.size < collection.maxEntries) {
-          collection.size += 1;
-        } else {
-          collection.start = (collection.start + 1) % collection.maxEntries;
-        }
-      }
+    if (!Number.isInteger(maxEntries) || maxEntries < 1) {
+      throw new Error("Log collection maxEntries must be a positive integer");
+    }
 
-      // Do not serialize when there are no active sinks (for example, when
-      // this logger is only being used for collection). Serialization is also
-      // shared across all sinks.
-      if (sinks.length > 0) {
-        const serializedRecord = `${serializeRecord(record)}\n`;
-        for (const sink of sinks) {
-          sink(serializedRecord);
-        }
-      }
-    },
+    if (this.collection.maxEntries !== maxEntries) {
+      const retained = this.getCollectedRecords();
+      const records = retained.slice(-maxEntries);
+      this.collection.records = records;
+      this.collection.start = 0;
+      this.collection.size = records.length;
+    }
 
-    child(record) {
-      return createLogger(name, sinks, level, { ...baseFields, ...record });
-    },
+    this.collection.maxEntries = maxEntries;
+    this.collection.enabled = true;
+  }
 
-    startLogCollection(options) {
-      const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
+  public stopLogCollection() {
+    this.collection.enabled = false;
+  }
 
-      if (!Number.isInteger(maxEntries) || maxEntries < 1) {
-        throw new Error("Log collection maxEntries must be a positive integer");
-      }
-
-      if (collection.maxEntries !== maxEntries) {
-        const retained = getCollectedRecords(collection);
-        const records = retained.slice(-maxEntries);
-        collection.records = records;
-        collection.start = 0;
-        collection.size = records.length;
-      }
-
-      collection.maxEntries = maxEntries;
-      collection.enabled = true;
-    },
-
-    stopLogCollection() {
-      collection.enabled = false;
-    },
-
-    getCollectedLogs<T extends boolean = false>(
-      opts?: GetCollectedLogsOptions & { serialized?: T },
-    ): T extends true ? string : LogRecord[] {
-      const records = getCollectedRecords(collection);
-      if (opts?.serialized) {
-        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-        return records.map(serializeRecord).join("\n") as T extends true
-          ? string
-          : LogRecord[];
-      }
-
+  public getCollectedLogs<T extends boolean = false>(
+    opts?: GetCollectedLogsOptions & { serialized?: T },
+  ): T extends true ? string : LogRecord[] {
+    const records = this.getCollectedRecords();
+    if (opts?.serialized) {
       // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-      return records as T extends true ? string : LogRecord[];
-    },
+      return records.map(serializeRecord).join("\n") as T extends true
+        ? string
+        : LogRecord[];
+    }
 
-    clearCollectedLogs() {
-      collection.records.length = 0;
-      collection.start = 0;
-      collection.size = 0;
-    },
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+    return records as T extends true ? string : LogRecord[];
+  }
 
-    emerg(message, fields) {
-      this.log("emerg", message, fields);
-    },
+  public clearCollectedLogs() {
+    this.collection.records.length = 0;
+    this.collection.start = 0;
+    this.collection.size = 0;
+  }
 
-    alert(message, fields) {
-      this.log("alert", message, fields);
-    },
+  public emerg(message: unknown, fields?: Record<string, unknown>) {
+    this.log("emerg", message, fields);
+  }
 
-    crit(message, fields) {
-      this.log("crit", message, fields);
-    },
+  public alert(message: unknown, fields?: Record<string, unknown>) {
+    this.log("alert", message, fields);
+  }
 
-    error(message, fields) {
-      this.log("error", message, fields);
-    },
+  public crit(message: unknown, fields?: Record<string, unknown>) {
+    this.log("crit", message, fields);
+  }
 
-    warning(message, fields) {
-      this.log("warning", message, fields);
-    },
+  public error(message: unknown, fields?: Record<string, unknown>) {
+    this.log("error", message, fields);
+  }
 
-    warn(message, fields) {
-      this.log("warn", message, fields);
-    },
+  public warning(message: unknown, fields?: Record<string, unknown>) {
+    this.log("warning", message, fields);
+  }
 
-    notice(message, fields) {
-      this.log("notice", message, fields);
-    },
+  public warn(message: unknown, fields?: Record<string, unknown>) {
+    this.log("warn", message, fields);
+  }
 
-    info(message, fields) {
-      this.log("info", message, fields);
-    },
+  public notice(message: unknown, fields?: Record<string, unknown>) {
+    this.log("notice", message, fields);
+  }
 
-    debug(message, fields) {
-      this.log("debug", message, fields);
-    },
-  };
-  return logger;
-}
+  public info(message: unknown, fields?: Record<string, unknown>) {
+    this.log("info", message, fields);
+  }
 
-function getCollectedRecords(collection: {
-  records: LogRecord[];
-  start: number;
-  size: number;
-  maxEntries: number;
-}): LogRecord[] {
-  return Array.from({ length: collection.size }, (_unused, index) => {
-    return collection.records[
-      (collection.start + index) % collection.maxEntries
-    ];
-  });
+  public debug(message: unknown, fields?: Record<string, unknown>) {
+    this.log("debug", message, fields);
+  }
+
+  private getCollectedRecords(): LogRecord[] {
+    return Array.from({ length: this.collection.size }, (_unused, index) => {
+      return this.collection.records[
+        (this.collection.start + index) % this.collection.maxEntries
+      ];
+    });
+  }
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

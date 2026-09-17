@@ -16,8 +16,7 @@ import {
   isLoggerInitialized,
   LOG_TYPE_MARKER,
   type LogCollectionOptions,
-  type Logger,
-  SYSLOG_LOG_LEVELS,
+  Logger,
 } from "./logger.ts";
 import { httpLogMiddleware } from "./plugins.ts";
 
@@ -30,11 +29,10 @@ export {
   isLoggerInitialized,
   LOG_LEVELS,
   LOG_TYPE_MARKER,
-  SYSLOG_LOG_LEVELS,
   type ConsoleTransport,
   type GetCollectedLogsOptions,
   type LogCollectionOptions,
-  type Logger,
+  Logger,
   type LoggerConfig,
   type LogLevel,
   type LogRecord,

@@ -1,6 +1,8 @@
 import type { Writable } from "node:stream";
 
-/** Syslog-compatible logging levels, from most to least severe. */
+/**
+ * Syslog-compatible logging levels, from most to least severe.
+ */
 export const LOG_LEVELS = [
   "emerg",
   "alert",
@@ -39,11 +41,14 @@ export type StreamTransport = {
 export type Transport = ConsoleTransport | StreamTransport;
 
 export type LoggerConfig = {
-  /** Minimum severity to emit. Defaults to `info`. */
+  /**
+   * Minimum severity to emit. Defaults to `info`
+   */
   logLevel: LogLevel;
-  /** Retained for compatibility and future output policies. */
-  environment: string;
-  /** Outputs for log records. Defaults to stdout. */
+
+  /**
+   * Outputs for log records. Defaults to stdout
+   */
   transports: Transport[];
 };
 
@@ -54,17 +59,14 @@ export function defaultConfig(): LoggerConfig {
   let logLevel: LogLevel = "info";
 
   if (configuredLevel !== undefined) {
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    if (!LOG_LEVELS.includes(configuredLevel as LogLevel)) {
+    if (!(LOG_LEVELS as readonly string[]).includes(configuredLevel)) {
       throw new Error(`Invalid log level "${configuredLevel}"`);
     }
+
+    // this is safe since we just checked it against the allowed log levels
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     logLevel = configuredLevel as LogLevel;
   }
 
-  return {
-    logLevel,
-    environment: process.env["NODE_ENV"] ?? "production",
-    transports,
-  };
+  return { logLevel, transports };
 }

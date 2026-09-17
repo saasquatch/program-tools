@@ -30,8 +30,6 @@ const STRIP_PARAMS = [
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
  * and response time of all HTTP requests.
- *
- * @param {Logger} logger - The logger to use
  */
 export function httpLogMiddleware(
   logger: Logger,

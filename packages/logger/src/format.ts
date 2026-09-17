@@ -14,7 +14,6 @@ export type LogRecord = Record<string, unknown> & {
   timestamp: string;
 };
 
-/** Build the JSON record emitted by the logger. */
 export function formatRecord(
   name: string,
   level: LogLevel,
@@ -28,10 +27,12 @@ export function formatRecord(
     message,
   };
 
+  // add the logger name field if it's non-default
   if (name !== DEFAULT_LOGGER_NAME) {
     record["logger.name"] = name;
   }
 
+  // Prepend a [<tenantAlias>] tag to the message
   if (
     typeof record["tenantAlias"] === "string" &&
     typeof record["message"] === "string"
@@ -47,6 +48,9 @@ export function formatRecord(
   }
 
   delete record[LOG_TYPE_MARKER];
+
+  // for Datadog
+  // https://docs.datadoghq.com/standard-attributes
   record["status"] = level;
 
   return record;
@@ -71,6 +75,8 @@ function formatHttpRecord(record: Record<string, unknown>): void {
     message.url,
   ].join(" ");
 
+  // for Datadog
+  // https://docs.datadoghq.com/standard-attributes?search=HTTP
   record["http.url"] = message.url;
   record["http.method"] = message.method;
   record["http.status_code"] = message.status;
@@ -81,11 +87,10 @@ function formatHttpRecord(record: Record<string, unknown>): void {
   }
 }
 
-/** Safely serialize records, including Error and BigInt values. */
+/**
+ * Safely serialize records, including Error and BigInt values.
+ */
 export function serializeRecord(record: LogRecord): string {
-  // Keep only the current ancestor chain. A WeakSet of every object seen in
-  // the record would incorrectly classify valid shared sibling references as
-  // circular.
   const ancestors: object[] = [];
   return JSON.stringify(record, function (_key, value: unknown) {
     if (typeof value === "bigint") {

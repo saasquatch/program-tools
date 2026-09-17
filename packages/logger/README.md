@@ -28,11 +28,11 @@ requestLogger.stopLogCollection();
 requestLogger.clearCollectedLogs();
 ```
 
-Collection retains the newest 1,000 records by default. `maxEntries` can be set when
+Collection retains the newest 500 records by default. `maxEntries` can be set when
 starting collection; it must be a positive integer. Collection is independent for
 each logger and child logger.
 
-Each enabled call writes one JSON record. The default minimum level is `info`; it can also be configured with `SSQT_LOG_LEVEL`.
+Each log call writes one JSON record to each enabled sink. The default minimum level is `info`; it can also be configured with `SSQT_LOG_LEVEL`.
 
 ### Custom stream sinks
 
@@ -47,7 +47,7 @@ const logger = initializeLogger({
 });
 ```
 
-The supported transport types are `console` and `stream`. File, HTTP, and Winston transport configuration are not part of this API.
+The supported transport types are `console` and `stream`.
 
 ### Express HTTP logging
 
