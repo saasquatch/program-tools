@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/express-boilerplate",
-  "version": "2.0.1-1",
+  "version": "2.0.1-2",
   "private": false,
   "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
   "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
