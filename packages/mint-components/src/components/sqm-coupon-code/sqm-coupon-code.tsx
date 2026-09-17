@@ -15,7 +15,7 @@ import { useCouponCode } from "./useCouponCode";
  * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
  * @csspart label - The coupon code label element
  * @csspart erroralert-text - The error message element
- * @csspart erroralert-icon - The error alert icon
+ * @csspart alert-icon - The status alert icon (error, warning, info, or success)
  * @csspart icon-button-base - The copy icon button base
  * @csspart primarybutton-base - The primary button base
  * @csspart secondarybutton-base - The secondary button base
