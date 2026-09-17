@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.4.9
+
+### Patch Changes
+
+- [#544](https://github.com/saasquatch/program-tools/pull/544) [`77040f8`](https://github.com/saasquatch/program-tools/commit/77040f8f9eae6a416c6a7fb27e5b0cd015b692a4) Thanks [@00salmon](https://github.com/00salmon)! - show no warnings if balance is currently zero
+
+## 2.4.8
+
+### Patch Changes
+
+- [#541](https://github.com/saasquatch/program-tools/pull/541) [`f97be17`](https://github.com/saasquatch/program-tools/commit/f97be17b760d268e38b4db0cffb81a71b046e919) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Remove bad param errorCode from startImpactConnection mutation
+
+## 2.4.7
+
+### Patch Changes
+
+- [#539](https://github.com/saasquatch/program-tools/pull/539) [`d80d998`](https://github.com/saasquatch/program-tools/commit/d80d9985564552ac30ab631d7afa1d8c3a350fa1) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Add emailCanBeUsed to GET_USER_PARTNER_INFO query. Display existing partner state + email verification error message
+  when email is not verified.
+
 ## 2.4.6
 
 ### Patch Changes

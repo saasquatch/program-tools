@@ -27,6 +27,7 @@ export interface TaxAndCashDashboardProps {
     showNewFormDialog: boolean;
     hasHold: boolean;
     payoutStatus: PayoutStatus;
+    belowPayoutThreshold?: boolean;
     minPayoutAmount?: string;
     veriffLoading: boolean;
     errors?: {
@@ -564,21 +565,6 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           icon: "exclamation-triangle",
           class: sheet.classes.WarningHoldAlertContainer,
         };
-      case "BALANCE_UNDER_THRESHOLD":
-        return {
-          header: text.balanceUnderThresholdHeader,
-          description: intl.formatMessage(
-            {
-              id: "balanceUnderThresholdDescription",
-              defaultMessage: text.balanceUnderThresholdDescription,
-            },
-            { minPayoutAmount: states.minPayoutAmount },
-          ),
-          buttonText: null,
-          alertType: "info",
-          icon: "info-circle",
-          class: sheet.classes.InfoHoldAlertContainer,
-        };
       case "PAYMENT_HOLD_ON_CHANGE":
         return {
           header: text.paymentHoldOnChangeHeader,
@@ -1051,6 +1037,27 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               },
             )}
           </sl-alert>
+        )}
+        {states.belowPayoutThreshold && (
+          <sqm-form-message
+            loading={states.loading}
+            exportparts="base: alert-base, icon:alert-icon"
+            type="info"
+            class={sheet.classes.InfoHoldAlertContainer}
+            icon="info-circle"
+            transparent
+          >
+            <strong>{text.balanceUnderThresholdHeader}</strong>
+            <p style={{ margin: "0" }}>
+              {intl.formatMessage(
+                {
+                  id: "balanceUnderThresholdDescription",
+                  defaultMessage: text.balanceUnderThresholdDescription,
+                },
+                { minPayoutAmount: states.minPayoutAmount },
+              )}
+            </p>
+          </sqm-form-message>
         )}
         {alertInfo && (
           <sqm-form-message

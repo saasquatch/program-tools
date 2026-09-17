@@ -150,6 +150,20 @@ export class PartnerInfoModal {
   networkErrorText: string = "An error occurred. Please try again.";
 
   /**
+   * @uiName Email verification error text
+   * @uiWidget textArea
+   */
+  @Prop()
+  emailVerificationErrorText: string =
+    "Please log in to {loginLinkText} to review your account status. You may need to complete email verification or other pending steps. Once resolved, refresh this page to proceed.";
+
+  /**
+   * @uiName login link text
+   */
+  @Prop()
+  loginLinkText: string = "impact.com";
+
+  /**
    * @uiName Missing fields error text
    * @uiWidget textArea
    */
@@ -200,7 +214,7 @@ export class PartnerInfoModal {
 }
 
 function useDemoPartnerInfoModal(
-  props: PartnerInfoModal,
+  props: PartnerInfoModal
 ): PartnerInfoModalViewProps {
   const [countryCode, setCountryCode] = useState("US");
   const [currency, setCurrency] = useState("");
@@ -225,6 +239,7 @@ function useDemoPartnerInfoModal(
         filteredCountries: [],
         filteredCurrencies: [],
         allowBankingCollection,
+        emailCanBeUsed: true,
         disabled: false,
       },
       callbacks: {
@@ -268,9 +283,11 @@ function useDemoPartnerInfoModal(
           props.supportDescriptionExistingPartner,
         supportLink: props.supportLink,
         modalHeaderExistingPartner: props.modalHeaderExistingPartner,
+        emailVerificationErrorText: props.emailVerificationErrorText,
+        loginLinkText: props.loginLinkText,
       },
     },
     props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a },
+    { arrayMerge: (_, a) => a }
   );
 }
