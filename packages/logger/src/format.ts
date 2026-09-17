@@ -92,26 +92,32 @@ function formatHttpRecord(record: Record<string, unknown>): void {
  */
 export function serializeRecord(record: LogRecord): string {
   const ancestors: object[] = [];
-  return JSON.stringify(record, function (_key, value: unknown) {
-    if (typeof value === "bigint") {
-      return value.toString();
-    }
-
-    if (value instanceof Error) {
-      return { name: value.name, message: value.message, stack: value.stack };
-    }
-
-    if (typeof value === "object" && value !== null) {
-      while (ancestors.length > 0 && ancestors[ancestors.length - 1] !== this) {
-        ancestors.pop();
+  return JSON.stringify(
+    { ...record, toJSON: undefined },
+    function (_key, value: unknown) {
+      if (typeof value === "bigint") {
+        return value.toString();
       }
 
-      if (ancestors.includes(value)) {
-        return "[Circular]";
+      if (value instanceof Error) {
+        return { name: value.name, message: value.message, stack: value.stack };
       }
 
-      ancestors.push(value);
-    }
-    return value;
-  });
+      if (typeof value === "object" && value !== null) {
+        while (
+          ancestors.length > 0 &&
+          ancestors[ancestors.length - 1] !== this
+        ) {
+          ancestors.pop();
+        }
+
+        if (ancestors.includes(value)) {
+          return "[Circular]";
+        }
+
+        ancestors.push(value);
+      }
+      return value;
+    },
+  );
 }
