@@ -3,9 +3,9 @@ import {
   LOG_LEVEL_VALUES,
   type LoggerConfig,
   type LogLevel,
+  type Sink,
 } from "./config.ts";
 import { formatRecord, serializeRecord, type LogRecord } from "./format.ts";
-import { createSinkWriter, type SinkWriter } from "./stream-sink.ts";
 
 export type LogCollectionOptions = {
   /**
@@ -19,9 +19,9 @@ export type GetCollectedLogsOptions = {
 };
 
 export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
-
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
+type SinkWriter = (serializedRecord: string) => void;
 const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
@@ -53,7 +53,7 @@ export function initializeLogger(
     config ?? (typeof nameOrConfig === "string" ? {} : (nameOrConfig ?? {}));
 
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
-  const sinks = conf.sinks.map((sink) => createSinkWriter(name, sink));
+  const sinks = conf.sinks.map(getSinkFn);
   const logger = new Logger(name, sinks, conf.level, {});
 
   loggers.set(name, logger);
@@ -132,15 +132,9 @@ export class Logger {
     if (this.sinks.length > 0) {
       const serializedRecord = `${serializeRecord(record)}\n`;
       for (const sink of this.sinks) {
-        sink(serializedRecord, messageLevel);
+        sink(serializedRecord);
       }
     }
-  }
-
-  public async flush(): Promise<void> {
-    await Promise.all(
-      this.sinks.map((sink) => sink.flush?.() ?? Promise.resolve()),
-    );
   }
 
   public child(record: Record<string, unknown>): Logger {
@@ -250,4 +244,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
+}
+
+function getSinkFn(sink: Sink): SinkWriter {
+  return (serializedRecord) => {
+    // FIXME: writing without checking whether the stream is applying
+    // backpressure is problematic, but the machinery needed to handle this
+    // case correctly is quite large and not really worth implementing.
+    // previous versions of the logger wrapped Winston, which does not handle
+    // backpressure correctly for any transport except the File transport. this
+    // means we aren't introducing any regression here and it's unlikely we'll
+    // encounter any issues in production considering we haven't seen any in
+    // the past 5+ years we've been using Winston
+    sink.stream.write(serializedRecord);
+  };
 }

@@ -1,5 +1,4 @@
 import {
-  DEFAULT_SINK_QUEUE_SIZE,
   LOG_LEVELS,
   defaultConfig,
   type LogLevel,
@@ -20,7 +19,6 @@ import { httpLogMiddleware } from "./plugins.ts";
 
 export {
   DEFAULT_LOG_COLLECTION_LIMIT,
-  DEFAULT_SINK_QUEUE_SIZE,
   LOG_LEVELS,
   Logger,
   defaultConfig,

@@ -41,20 +41,11 @@ export const LOG_LEVEL_VALUES: Record<LogLevel, number> = {
   debug: 7,
 };
 
-export const LOWEST_PRIO_LEVEL = Math.max(...Object.values(LOG_LEVEL_VALUES));
-
-export const DEFAULT_SINK_QUEUE_SIZE = 1000;
-
 export type Sink = {
   /**
    * The stream to write logs to
    */
   stream: Writable;
-
-  /**
-   * Maximum number of records retained while the stream applies backpressure
-   */
-  maxQueueSize?: number;
 };
 
 export type LoggerConfig = {
