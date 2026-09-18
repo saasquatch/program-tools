@@ -1,5 +1,5 @@
+import type { Logger } from "@saasquatch/logger";
 import type { Request, Response } from "express";
-import { Logger } from "winston";
 import { formatGenericError } from "./error.ts";
 import { nanoid } from "./nanoid.ts";
 
@@ -13,7 +13,9 @@ export function asyncHandlerWrapper<T>(
 ): (req: Request, res: Response) => void {
   return (req, res) => {
     handler(req, res).catch((e: unknown) => {
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const logger = res.locals["logger"] as Logger | undefined;
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const requestId = res.locals["requestId"] as string | undefined;
 
       const debugId = nanoid(8);
@@ -45,10 +47,10 @@ export function asyncHandlerWrapper<T>(
           .then((html) => {
             res.status(status).contentType("text/html;charset=utf8").send(html);
           })
-          .catch((e: unknown) => {
+          .catch((e2: unknown) => {
             logger?.error({
               message: "Error occurred while rendering error page!",
-              ...formatGenericError(e),
+              ...formatGenericError(e2),
             });
 
             res
