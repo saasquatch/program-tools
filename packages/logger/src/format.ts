@@ -1,13 +1,5 @@
 import type { LogLevel } from "./config.ts";
-import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "./logger.ts";
-
-type HTTPMessage = {
-  method: string;
-  status: string | number;
-  time: bigint | string | number;
-  url: string;
-  requestId?: string;
-};
+import { DEFAULT_LOGGER_NAME } from "./logger.ts";
 
 export type LogRecord = Record<string, unknown> & {
   level: LogLevel;
@@ -44,52 +36,11 @@ export function formatRecord(
     }
   }
 
-  if (record[LOG_TYPE_MARKER] === "HTTP") {
-    formatHttpRecord(record);
-  }
-
-  delete record[LOG_TYPE_MARKER];
-
   // for Datadog
   // https://docs.datadoghq.com/standard-attributes
   record["status"] = level;
 
   return record;
-}
-
-function formatHttpRecord(record: Record<string, unknown>): void {
-  const value = record["message"];
-  if (value === null || typeof value !== "object") {
-    return;
-  }
-
-  // NOTE: it would of course be safer to validate this using a real
-  // schema validator like zod, but for a logging library we just
-  // don't want that kind of overhead. The HTTP log messages are generated
-  // using middleware from our own package so it's unlikely to be invalid
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const message = value as HTTPMessage;
-  const micros = Number(message.time);
-  const displayTime =
-    micros < 1000 ? `${micros} μs` : `${Math.round(micros / 1000)} ms`;
-
-  record["message"] = [
-    message.status,
-    message.method,
-    displayTime.padStart(6, " "),
-    message.url,
-  ].join(" ");
-
-  // for Datadog
-  // https://docs.datadoghq.com/standard-attributes?search=HTTP
-  record["http.url"] = message.url;
-  record["http.method"] = message.method;
-  record["http.status_code"] = message.status;
-  record["http.response_time"] = micros;
-
-  if (message.requestId) {
-    record["http.request_id"] = message.requestId;
-  }
 }
 
 /**
@@ -99,7 +50,7 @@ export function serializeRecord(record: LogRecord): string {
   const ancestors: object[] = [];
   return JSON.stringify(
     { ...record, toJSON: undefined },
-    function (_key, value: unknown) {
+    function(_key, value: unknown) {
       if (typeof value === "bigint") {
         return value.toString();
       }

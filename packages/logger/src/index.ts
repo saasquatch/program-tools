@@ -10,7 +10,6 @@ import {
 import type { LogRecord } from "./format.ts";
 import {
   DEFAULT_LOG_COLLECTION_LIMIT,
-  LOG_TYPE_MARKER,
   Logger,
   getLogger,
   initializeLogger,
@@ -23,7 +22,6 @@ import { httpLogMiddleware } from "./plugins.ts";
 export {
   DEFAULT_LOG_COLLECTION_LIMIT,
   LOG_LEVELS,
-  LOG_TYPE_MARKER,
   Logger,
   defaultConfig,
   getLogger,

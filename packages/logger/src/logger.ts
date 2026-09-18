@@ -21,7 +21,6 @@ export type GetCollectedLogsOptions = {
 
 export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 
-export const LOG_TYPE_MARKER = "__ssqt_log_type";
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
 type SinkFn = (serializedRecord: string) => void;

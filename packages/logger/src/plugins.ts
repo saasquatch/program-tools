@@ -2,7 +2,6 @@ import { URL } from "node:url";
 import type { Request, Response } from "express";
 import type { LogLevel } from "./config.ts";
 import type { Logger } from "./logger.ts";
-import { LOG_TYPE_MARKER } from "./logger.ts";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
@@ -78,8 +77,26 @@ export function httpLogMiddleware(
               ? "debug"
               : (opts?.nonErrorLogLevel ?? "info");
 
-      const message = { method, status, time, url: cleanUrl, requestId };
-      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message, extraData });
+      const micros = Number(time);
+      const displayTime =
+        micros < 1000 ? `${micros} μs` : `${Math.round(micros / 1000)} ms`;
+
+      logger.log(level, {
+        message: [status, method, displayTime.padStart(6, " "), cleanUrl].join(
+          " ",
+        ),
+
+        // for Datadog
+        // https://docs.datadoghq.com/standard-attributes?search=HTTP
+        "http.url": cleanUrl,
+        "http.method": method,
+        "http.status_code": status,
+        "http.response_time": micros,
+
+        ...(requestId ? { "http.request_id": requestId } : {}),
+
+        extraData,
+      });
     });
 
     next();

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { afterEach, describe, test } from "node:test";
 import { defaultConfig, LOG_LEVELS, LOG_LEVEL_VALUES } from "../src/config.ts";
 import { formatRecord, serializeRecord } from "../src/format.ts";
-import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "../src/logger.ts";
+import { DEFAULT_LOGGER_NAME } from "../src/logger.ts";
 
 void describe("configuration", () => {
   const originalLevel = process.env.SSQT_LOG_LEVEL;
@@ -73,59 +73,6 @@ void describe("record formatting", () => {
     assert.equal(
       formatRecord("api", "info", "text", { tenantAlias: 12 }).message,
       "text",
-    );
-  });
-
-  void test("normalizes HTTP records in microseconds and milliseconds", () => {
-    const micro = formatRecord(
-      "web",
-      "info",
-      {
-        status: 201,
-        method: "POST",
-        time: 999n,
-        url: "/items",
-        requestId: "r1",
-      },
-      { [LOG_TYPE_MARKER]: "HTTP" },
-    );
-    assert.equal(micro.message, "201 POST 999 μs /items");
-    assert.equal(micro["http.url"], "/items");
-    assert.equal(micro["http.method"], "POST");
-    assert.equal(micro["http.status_code"], 201);
-    assert.equal(micro["http.response_time"], 999);
-    assert.equal(micro["http.request_id"], "r1");
-    assert.equal(LOG_TYPE_MARKER in micro, false);
-
-    const milli = formatRecord(
-      DEFAULT_LOGGER_NAME,
-      "error",
-      {
-        status: 500,
-        method: "GET",
-        time: "1501",
-        url: "/fail",
-      },
-      { [LOG_TYPE_MARKER]: "HTTP" },
-    );
-    assert.equal(milli.message, "500 GET   2 ms /fail");
-    assert.equal("http.request_id" in milli, false);
-  });
-
-  void test("leaves malformed HTTP messages alone and always removes the marker", () => {
-    for (const message of [null, "not an object"]) {
-      const record = formatRecord(DEFAULT_LOGGER_NAME, "info", message, {
-        [LOG_TYPE_MARKER]: "HTTP",
-      });
-      assert.equal(record.message, message);
-      assert.equal(LOG_TYPE_MARKER in record, false);
-    }
-
-    assert.equal(
-      formatRecord(DEFAULT_LOGGER_NAME, "info", "normal", {
-        [LOG_TYPE_MARKER]: "OTHER",
-      }).message,
-      "normal",
     );
   });
 });
