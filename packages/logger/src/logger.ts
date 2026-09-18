@@ -76,12 +76,12 @@ export class Logger {
     start: number;
     size: number;
   } = {
-      enabled: false,
-      maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
-      records: [],
-      start: 0,
-      size: 0,
-    };
+    enabled: false,
+    maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
+    records: [],
+    start: 0,
+    size: 0,
+  };
 
   constructor(
     name: string,

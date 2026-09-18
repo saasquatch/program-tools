@@ -50,7 +50,7 @@ export function serializeRecord(record: LogRecord): string {
   const ancestors: object[] = [];
   return JSON.stringify(
     { ...record, toJSON: undefined },
-    function(_key, value: unknown) {
+    function (_key, value: unknown) {
       if (typeof value === "bigint") {
         return value.toString();
       }
