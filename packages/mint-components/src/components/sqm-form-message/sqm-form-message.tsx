@@ -12,6 +12,8 @@ import { Component, h, Prop, State } from "@stencil/core";
  * @csspart warningalert-icon - The warning alert icon
  * @csspart successalert-base - The success alert base
  * @csspart successalert-icon - The success alert icon
+ * @csspart alert-base - The alert base, stable across all types
+ * @csspart alert-icon - The alert icon, stable across all types
  */
 @Component({
   tag: "sqm-form-message",
@@ -61,7 +63,7 @@ export class FormMessage {
     if (this.type === "error") {
       return (
         <sl-alert
-          exportparts="base: erroralert-base, icon:erroralert-icon"
+          exportparts="base: erroralert-base, icon:erroralert-icon, base: alert-base, icon: alert-icon"
           class={`Error ${this.transparent ? "Transparent" : ""}`}
           type="danger"
           open
@@ -78,7 +80,7 @@ export class FormMessage {
       return (
         <sl-alert
           id="icon"
-          exportparts="base: infoalert-base, icon:infoalert-icon"
+          exportparts="base: infoalert-base, icon:infoalert-icon, base: alert-base, icon: alert-icon"
           class={`Info ${this.transparent ? "Transparent" : ""}`}
           type="info"
           open
@@ -94,7 +96,7 @@ export class FormMessage {
     } else if (this.type === "warning") {
       return (
         <sl-alert
-          exportparts="base: warningalert-base, icon:warningalert-icon"
+          exportparts="base: warningalert-base, icon:warningalert-icon, base: alert-base, icon: alert-icon"
           class={`Warning ${this.transparent ? "Transparent" : ""}`}
           type="warning"
           open
@@ -110,7 +112,7 @@ export class FormMessage {
     } else {
       return (
         <sl-alert
-          exportparts="base: successalert-base, icon:successalert-icon"
+          exportparts="base: successalert-base, icon:successalert-icon, base: alert-base, icon: alert-icon"
           class={`Success ${this.transparent ? "Transparent" : ""}`}
           type="success"
           open

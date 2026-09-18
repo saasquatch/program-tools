@@ -1041,7 +1041,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {states.belowPayoutThreshold && (
           <sqm-form-message
             loading={states.loading}
-            exportparts="infoalert-base: alert-base, infoalert-icon: alert-icon"
+            exportparts="alert-base, alert-icon"
             type="info"
             class={sheet.classes.InfoHoldAlertContainer}
             icon="info-circle"
@@ -1062,7 +1062,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {alertInfo && (
           <sqm-form-message
             loading={states.loading}
-            exportparts="warningalert-base: alert-base, warningalert-icon: alert-icon, erroralert-base: alert-base, erroralert-icon: alert-icon, infoalert-base: alert-base, infoalert-icon: alert-icon"
+            exportparts="alert-base, alert-icon"
             type={alertInfo?.alertType}
             class={alertInfo?.class}
             icon={alertInfo?.icon}

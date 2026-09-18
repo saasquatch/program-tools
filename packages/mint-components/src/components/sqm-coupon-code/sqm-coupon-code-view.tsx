@@ -48,7 +48,7 @@ export function CouponCodeView(props: CouponCodeViewProps) {
       {error ? (
         <sqm-form-message
           type={props.errorType}
-          exportparts="erroralert-icon: alert-icon, erroralert-icon, warningalert-icon: alert-icon, infoalert-icon: alert-icon, successalert-icon: alert-icon"
+          exportparts="alert-icon, erroralert-icon"
         >
           <div part="erroralert-text">{props.errorText}</div>
         </sqm-form-message>
