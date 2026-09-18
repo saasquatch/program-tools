@@ -52,7 +52,8 @@ export function serializeRecord(record: LogRecord): string {
     { ...record, toJSON: undefined },
     function (_key, value: unknown) {
       if (typeof value === "bigint") {
-        return value > BigInt(Number.MAX_SAFE_INTEGER)
+        const maxSafeInteger = BigInt(Number.MAX_SAFE_INTEGER);
+        return value > maxSafeInteger || value < -maxSafeInteger
           ? value.toString()
           : Number(value);
       }
