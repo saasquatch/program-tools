@@ -6,9 +6,7 @@ import { asyncHandlerWrapper } from "../async-wrapper.ts";
 import { requestIdAndLogger } from "../middleware.ts";
 import { jestLogger } from "./util.ts";
 
-// oxlint-disable typescript/no-floating-promises
-
-test("wrapper with no rejected promise", async () => {
+void test("wrapper with no rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -37,7 +35,7 @@ test("wrapper with no rejected promise", async () => {
   });
 });
 
-test("wrapper with rejected promise", async () => {
+void test("wrapper with rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -75,7 +73,7 @@ test("wrapper with rejected promise", async () => {
   });
 });
 
-test("default error message", async () => {
+void test("default error message", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -113,7 +111,7 @@ test("default error message", async () => {
   });
 });
 
-test("rejection after headers sent", async () => {
+void test("rejection after headers sent", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -151,7 +149,7 @@ const renderErrorPage = () => Promise.resolve("");
 const rejectErrorPage = (): Promise<string> =>
   Promise.reject(new Error("failed to render html error page"));
 
-test("custom html error page", async () => {
+void test("custom html error page", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -180,7 +178,7 @@ test("custom html error page", async () => {
   });
 });
 
-test("custom html error page, no HTML accept header", async () => {
+void test("custom html error page, no HTML accept header", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -209,7 +207,7 @@ test("custom html error page, no HTML accept header", async () => {
   });
 });
 
-test("error while rendering custom error page", async () => {
+void test("error while rendering custom error page", async () => {
   const app = express();
   const logger = jestLogger();
 

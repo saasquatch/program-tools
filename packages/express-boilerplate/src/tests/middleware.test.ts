@@ -5,16 +5,13 @@ import request from "supertest";
 import { requestIdAndLogger } from "../middleware.ts";
 import { jestLogger } from "./util.ts";
 
-// oxlint-disable typescript/no-floating-promises
-
-test("requestIdAndLogger adds requestId and logger", async () => {
+void test("requestIdAndLogger adds requestId and logger", async () => {
   const app = express();
   const logger = jestLogger();
   app.use(requestIdAndLogger(logger));
   app.use((_req, res, next) => {
     assert.strictEqual(typeof res.locals["requestId"], "string");
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    const requestLogger = res.locals["logger"] as typeof logger;
+    const requestLogger = res.locals["logger"];
     assert.notStrictEqual(requestLogger, logger);
     assert.strictEqual(requestLogger.name, logger.name);
     assert.strictEqual(typeof requestLogger.info, "function");

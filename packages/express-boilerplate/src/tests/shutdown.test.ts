@@ -2,9 +2,7 @@ import * as assert from "node:assert";
 import { test } from "node:test";
 import { shutdownManagerConfigFromEnv } from "../shutdown.ts";
 
-// oxlint-disable typescript/no-floating-promises
-
-test("env parser with env vars", () => {
+void test("env parser with env vars", () => {
   process.env["SSQT_HTTP_KEEP_ALIVE_SECONDS"] = "275";
   process.env["SSQT_TERMINATION_DELAY_SECONDS"] = "18";
 
@@ -17,7 +15,7 @@ test("env parser with env vars", () => {
   assert.strictEqual(opts.terminationDelaySeconds, 18);
 });
 
-test("env parser with env vars and defaults", () => {
+void test("env parser with env vars and defaults", () => {
   process.env["SSQT_HTTP_KEEP_ALIVE_SECONDS"] = "";
   process.env["SSQT_TERMINATION_DELAY_SECONDS"] = "18";
 
@@ -34,7 +32,7 @@ test("env parser with env vars and defaults", () => {
   assert.strictEqual(opts.terminationDelaySeconds, 18);
 });
 
-test("env parser with no env vars and no defaults", () => {
+void test("env parser with no env vars and no defaults", () => {
   process.env["SSQT_HTTP_KEEP_ALIVE_SECONDS"] = "";
   process.env["SSQT_TERMINATION_DELAY_SECONDS"] = "";
 

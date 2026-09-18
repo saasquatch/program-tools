@@ -6,9 +6,7 @@ import { healthCheck } from "../healthcheck.ts";
 import { TERMINATION_APP_LOCAL_KEY } from "../shutdown.ts";
 import { jestLogger } from "./util.ts";
 
-// oxlint-disable typescript/no-floating-promises
-
-test("returns 200 when not terminating", async () => {
+void test("returns 200 when not terminating", async () => {
   const app = express();
   const logger = jestLogger();
   app.get("/healthz", healthCheck(app, logger));
@@ -32,7 +30,7 @@ test("returns 200 when not terminating", async () => {
   });
 });
 
-test("returns 503 when terminating", async () => {
+void test("returns 503 when terminating", async () => {
   const app = express();
   const logger = jestLogger();
   app.get("/healthz", healthCheck(app, logger));
