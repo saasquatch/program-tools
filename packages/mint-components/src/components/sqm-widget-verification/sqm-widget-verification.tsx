@@ -6,6 +6,7 @@ import {
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
+import { createStyleSheet } from "../../styling/JSS";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
@@ -14,8 +15,10 @@ import {
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
-import { useWidgetVerification } from "./useWidgetVerification";
-import { createStyleSheet } from "../../styling/JSS";
+import {
+  useWidgetVerification,
+  WidgetVerificationProps,
+} from "./useWidgetVerification";
 
 const style = {
   Dialog: {
@@ -356,6 +359,9 @@ export class WidgetVerification {
               e.preventDefault();
             }
           }}
+          onSl-initial-focus={(e: any) => {
+            props.onInitialFocus?.(e);
+          }}
         >
           <h2 class={sheet.classes.DialogTitle}>{dialogLabel}</h2>
           {renderStepContent()}
@@ -365,7 +371,9 @@ export class WidgetVerification {
   }
 }
 
-function useDemoWidgetVerificationInternal(props: WidgetVerification) {
+function useDemoWidgetVerificationInternal(
+  props: WidgetVerification
+): WidgetVerificationProps {
   const [showCode, setShowCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
@@ -395,6 +403,7 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       showPartnerModal: false,
       onVerification,
       onPartnerModalComplete: () => {},
+      onInitialFocus: (e: any) => e.preventDefault(),
       loading: false,
     },
     formatted || {},
