@@ -18,6 +18,8 @@ import { intl } from "../../../global/global";
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
  * @csspart container - The base container for the tax and cash component
+ * @csspart alert-title - The error alert title, shown on the error step
+ * @csspart alert-description - The error alert description, shown on the error step
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -1369,12 +1371,14 @@ export class TaxAndCashMonolith {
       case "/3":
         return (
           <sqm-docusign-form
+            exportparts="container"
             {...this.getGeneralStepTextProps("step3_")}
           ></sqm-docusign-form>
         );
       case "/4":
         return (
           <sqm-banking-info-form
+            exportparts="container"
             {...this.getGeneralStepTextProps("step4_")}
           ></sqm-banking-info-form>
         );
