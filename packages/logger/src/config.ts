@@ -41,16 +41,21 @@ export const LOG_LEVEL_VALUES: Record<LogLevel, number> = {
   debug: 7,
 };
 
-export type ConsoleSink = {
-  type: "console";
-};
+export const LOWEST_PRIO_LEVEL = Math.max(...Object.values(LOG_LEVEL_VALUES));
 
-export type StreamSink = {
-  type: "stream";
+export const DEFAULT_SINK_QUEUE_SIZE = 1000;
+
+export type Sink = {
+  /**
+   * The stream to write logs to
+   */
   stream: Writable;
-};
 
-export type Sink = ConsoleSink | StreamSink;
+  /**
+   * Maximum number of records retained while the stream applies backpressure
+   */
+  maxQueueSize?: number;
+};
 
 export type LoggerConfig = {
   /**
@@ -65,7 +70,7 @@ export type LoggerConfig = {
 };
 
 export function defaultConfig(): LoggerConfig {
-  const sinks: Sink[] = [{ type: "console" }];
+  const sinks: Sink[] = [{ stream: process.stdout }];
 
   const configuredLevel = process.env["SSQT_LOG_LEVEL"];
   let logLevel: LogLevel = "info";

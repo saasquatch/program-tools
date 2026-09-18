@@ -61,10 +61,7 @@ void describe("logging", () => {
     const two = new CaptureStream();
     const logger = initializeLogger(unique("output"), {
       logLevel: "info",
-      sinks: [
-        { type: "stream", stream: one },
-        { type: "stream", stream: two },
-      ],
+      sinks: [{ stream: one }, { stream: two }],
     });
 
     logger.debug("hidden");
@@ -128,7 +125,7 @@ void describe("logging", () => {
     try {
       initializeLogger(unique("console"), {
         logLevel: "info",
-        sinks: [{ type: "console" }],
+        sinks: [{ stream: process.stdout }],
       }).info("console message");
     } finally {
       process.stdout.write = originalWrite;

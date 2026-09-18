@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Removed Winston and its transport/format APIs.
 - Loggers now emit structured JSON directly and expose the package-owned `Logger` type.
-- The supported sinks are stdout and custom writable Node streams.
+- All sinks now use the Node.js `Writable` stream API. Use the `process.stdout` stream to
+  print to stdout.
 - Removed the top-level `info`, `warn`, and `error` exports.
 - Removed `SSQT_LOG_TRANSPORTS`; configure `console` or writable `stream` sink through `initializeLogger`.
 

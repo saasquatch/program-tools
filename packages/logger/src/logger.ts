@@ -1,12 +1,11 @@
-import type { Writable } from "node:stream";
 import {
   defaultConfig,
   LOG_LEVEL_VALUES,
   type LoggerConfig,
   type LogLevel,
-  type Sink,
 } from "./config.ts";
 import { formatRecord, serializeRecord, type LogRecord } from "./format.ts";
+import { createSinkWriter, type SinkWriter } from "./stream-sink.ts";
 
 export type LogCollectionOptions = {
   /**
@@ -23,7 +22,6 @@ export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
-type SinkFn = (serializedRecord: string) => void;
 const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
@@ -55,7 +53,7 @@ export function initializeLogger(
     config ?? (typeof nameOrConfig === "string" ? {} : (nameOrConfig ?? {}));
 
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
-  const sinks = conf.sinks.map(getSinkFn);
+  const sinks = conf.sinks.map((sink) => createSinkWriter(name, sink));
   const logger = new Logger(name, sinks, conf.logLevel, {});
 
   loggers.set(name, logger);
@@ -66,7 +64,7 @@ export class Logger {
   public name: string;
   public level: LogLevel;
 
-  private sinks: SinkFn[];
+  private sinks: SinkWriter[];
   private baseFields: Record<string, unknown>;
 
   private collection: {
@@ -85,7 +83,7 @@ export class Logger {
 
   constructor(
     name: string,
-    sinks: SinkFn[],
+    sinks: SinkWriter[],
     level: LogLevel,
     baseFields: Record<string, unknown>,
   ) {
@@ -99,7 +97,7 @@ export class Logger {
     messageLevel: LogLevel,
     message: unknown,
     fields?: Record<string, unknown>,
-  ) {
+  ): void {
     if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[this.level]) {
       return;
     }
@@ -134,19 +132,25 @@ export class Logger {
     if (this.sinks.length > 0) {
       const serializedRecord = `${serializeRecord(record)}\n`;
       for (const sink of this.sinks) {
-        sink(serializedRecord);
+        sink(serializedRecord, messageLevel);
       }
     }
   }
 
-  public child(record: Record<string, unknown>) {
+  public async flush(): Promise<void> {
+    await Promise.all(
+      this.sinks.map((sink) => sink.flush?.() ?? Promise.resolve()),
+    );
+  }
+
+  public child(record: Record<string, unknown>): Logger {
     return new Logger(this.name, this.sinks, this.level, {
       ...this.baseFields,
       ...record,
     });
   }
 
-  public startLogCollection(options?: LogCollectionOptions) {
+  public startLogCollection(options?: LogCollectionOptions): void {
     const maxEntries = options?.maxEntries ?? DEFAULT_LOG_COLLECTION_LIMIT;
 
     if (!Number.isInteger(maxEntries) || maxEntries < 1) {
@@ -165,7 +169,7 @@ export class Logger {
     this.collection.enabled = true;
   }
 
-  public stopLogCollection() {
+  public stopLogCollection(): void {
     this.collection.enabled = false;
   }
 
@@ -188,45 +192,45 @@ export class Logger {
     return records as T extends true ? string : LogRecord[];
   }
 
-  public clearCollectedLogs() {
+  public clearCollectedLogs(): void {
     this.collection.records.length = 0;
     this.collection.start = 0;
     this.collection.size = 0;
   }
 
-  public emerg(message: unknown, fields?: Record<string, unknown>) {
+  public emerg(message: unknown, fields?: Record<string, unknown>): void {
     this.log("emerg", message, fields);
   }
 
-  public alert(message: unknown, fields?: Record<string, unknown>) {
+  public alert(message: unknown, fields?: Record<string, unknown>): void {
     this.log("alert", message, fields);
   }
 
-  public crit(message: unknown, fields?: Record<string, unknown>) {
+  public crit(message: unknown, fields?: Record<string, unknown>): void {
     this.log("crit", message, fields);
   }
 
-  public error(message: unknown, fields?: Record<string, unknown>) {
+  public error(message: unknown, fields?: Record<string, unknown>): void {
     this.log("error", message, fields);
   }
 
-  public warning(message: unknown, fields?: Record<string, unknown>) {
+  public warning(message: unknown, fields?: Record<string, unknown>): void {
     this.log("warning", message, fields);
   }
 
-  public warn(message: unknown, fields?: Record<string, unknown>) {
+  public warn(message: unknown, fields?: Record<string, unknown>): void {
     this.log("warn", message, fields);
   }
 
-  public notice(message: unknown, fields?: Record<string, unknown>) {
+  public notice(message: unknown, fields?: Record<string, unknown>): void {
     this.log("notice", message, fields);
   }
 
-  public info(message: unknown, fields?: Record<string, unknown>) {
+  public info(message: unknown, fields?: Record<string, unknown>): void {
     this.log("info", message, fields);
   }
 
-  public debug(message: unknown, fields?: Record<string, unknown>) {
+  public debug(message: unknown, fields?: Record<string, unknown>): void {
     this.log("debug", message, fields);
   }
 
@@ -246,13 +250,4 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
-}
-
-function getSinkFn(sink: Sink): SinkFn {
-  const stream: Writable =
-    sink.type === "console" ? process.stdout : sink.stream;
-
-  return (serializedRecord) => {
-    stream.write(serializedRecord);
-  };
 }

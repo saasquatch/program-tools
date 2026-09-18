@@ -3,8 +3,8 @@
 
 This package provides a lightweight structured logger that writes newline-delimited JSON
 to stdout by default. It supports syslog-style levels, named loggers, custom writable
-stream sinks, temporary log collection to an internal buffer, and Express HTTP logging
-middleware.
+stream sinks, temporary log collection to an internal buffer, Express HTTP logging
+middleware, and correct backpressure handling.
 
 ## Getting started
 
@@ -37,9 +37,11 @@ const logger = initializeLogger("my-logger", {
   logLevel: "info",
   sinks: [
     // write to stdout (default)
-    { type: "console" },
+    { stream: process.stdout },
+    // write to stderr
+    { stream: process.stderr },
     // write to log file
-    { type: "stream", stream: createWriteStream("./service.log") },
+    { stream: createWriteStream("./service.log") },
   ],
 });
 ```
@@ -71,8 +73,8 @@ Collection mode retains the newest 500 records by default. The size of the colle
 buffer can be customized by passing `maxEntries` to the `startLogCollection` function.
 Collection is independent for each logger and child logger.
 
-The collected logs can be retrieved either in their raw or serialized form. Passing
-`{ serialized: true }` to the function options will use the logger's built-in
+The collected logs can be retrieved either in their raw or serialized form. Specifying
+`{ serialized: true }` in the function options will use the logger's built-in
 serialization machinery on each collected log, then join the results with newlines.
 
 ## Express HTTP logging
@@ -86,5 +88,44 @@ const logger = initializeLogger();
 app.use(httpLogMiddleware(logger));
 ```
 
-HTTP records include method, URL, status, response time, and request ID (if present)
-fields. Common sensitive URL query parameters are removed by the middleware.
+HTTP records include the method, URL, status, response time, and request ID (if present).
+Common sensitive URL query parameters are removed by the middleware.
+
+## Sink backpressure handling
+
+All log sinks are Node.js `Writable` streams, meaning they can exhibit backpressure
+behavior as described in the [`Writable.write`][1] documentation. Backpressure is handled
+by the logger to keep the log methods synchronous and prevent callers from having to
+implement their own backpressure handling strategies.
+
+Backpressure is handled per-sink. When a sink's stream becomes blocked (`write()` returns
+false), logs begin to collect in an internal FIFO queue. The size of the queue is bounded
+to prevent the memory exhaustion scenario described in the [`Writable.write`][1] docs.
+The logs in the queue will be written when the stream becomes available for writing
+again.
+
+If the queue becomes full before the stream is available for writing, logs will be
+dropped in order of ascending severity and receipt time (lowest severity logs are dropped
+first, and if all logs in the queue have the same severity, the oldest will be dropped
+first).
+
+The size of the queue defaults to 1,000 and is configurable:
+
+```typescript
+import { createWriteStream } from "node:fs";
+import { initializeLogger } from "@saasquatch/logger";
+
+const logger = initializeLogger({
+  logLevel: "info",
+  sinks: [{ stream: createWriteStream("./service.log"), maxQueueSize: 500 }],
+});
+```
+
+Each sink maintains its own queue, so the sum of all `maxQueueSize`s will be the maximum
+possible number of logs stored by the logger in the event that all streams are
+simultaneously blocked. This number does not include the internal buffers of the streams
+themselves, nor does it include any buffered writes that the Node.js runtime is holding
+onto from other writers who may have failed to stop writing when the stream became
+blocked.
+
+[1]: https://nodejs.org/api/stream.html#writablewritechunk-encoding-callback

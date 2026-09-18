@@ -1,11 +1,10 @@
 import {
+  DEFAULT_SINK_QUEUE_SIZE,
   LOG_LEVELS,
   defaultConfig,
-  type ConsoleSink,
   type LogLevel,
   type LoggerConfig,
   type Sink,
-  type StreamSink,
 } from "./config.ts";
 import type { LogRecord } from "./format.ts";
 import {
@@ -21,6 +20,7 @@ import { httpLogMiddleware } from "./plugins.ts";
 
 export {
   DEFAULT_LOG_COLLECTION_LIMIT,
+  DEFAULT_SINK_QUEUE_SIZE,
   LOG_LEVELS,
   Logger,
   defaultConfig,
@@ -28,12 +28,10 @@ export {
   httpLogMiddleware,
   initializeLogger,
   isLoggerInitialized,
-  type ConsoleSink,
   type GetCollectedLogsOptions,
   type LogCollectionOptions,
   type LogLevel,
   type LogRecord,
   type LoggerConfig,
   type Sink,
-  type StreamSink,
 };
