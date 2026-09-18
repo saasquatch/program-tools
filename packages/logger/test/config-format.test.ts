@@ -83,16 +83,19 @@ void describe("safe serialization", () => {
     const circular: Record<string, unknown> = { id: 1 };
     circular.self = circular;
     const shared = { value: 2n };
+    const tooBig = BigInt(Number.MAX_SAFE_INTEGER) + BigInt(500);
     const record = formatRecord(DEFAULT_LOGGER_NAME, "error", "failed", {
       error,
       circular,
       first: shared,
       second: shared,
+      tooBig,
     });
     const parsed = JSON.parse(serializeRecord(record));
     assert.equal(parsed.circular.self, "[Circular]");
-    assert.deepEqual(parsed.first, { value: "2" });
-    assert.deepEqual(parsed.second, { value: "2" });
+    assert.deepEqual(parsed.first, { value: 2 });
+    assert.deepEqual(parsed.second, { value: 2 });
+    assert.deepEqual(parsed.tooBig, "9007199254741491");
     assert.equal(parsed.error.name, "TypeError");
     assert.equal(parsed.error.message, "bad input");
     assert.match(parsed.error.stack, /TypeError: bad input/);
