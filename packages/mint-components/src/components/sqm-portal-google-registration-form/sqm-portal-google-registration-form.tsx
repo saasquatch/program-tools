@@ -16,6 +16,12 @@ import { usePortalGoogleRegistrationForm } from "./usePortalGoogleRegistrationFo
  * @uiName Google Registration
  * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+ * @csspart sqm-base - The base container
+ * @csspart erroralert-text - The error message element
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-portal-google-registration-form",

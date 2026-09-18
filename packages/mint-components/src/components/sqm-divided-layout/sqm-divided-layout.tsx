@@ -11,6 +11,7 @@ import { getProps } from "../../utils/utils";
  * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
  * @exampleGroup Layout
  * @slots [{"name":"", "title":"Layout Content"}]
+ * @csspart sqm-base - The base container
  */
 @Component({
   tag: "sqm-divided-layout",

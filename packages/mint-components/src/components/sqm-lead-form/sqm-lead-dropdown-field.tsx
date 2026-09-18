@@ -15,6 +15,9 @@ import { useLeadDropdownField } from "./useLeadDropdownField";
  * @uiName Lead Form Dropdown Field
  * @validParents ["sqm-lead-form"]
  * @slots [{"name":"", "title":"Dropdown Option"}]
+ * @csspart sqm-base - The base container
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
  */
 @Component({
   tag: "sqm-lead-dropdown-field",
