@@ -19,7 +19,7 @@ void describe("configuration", () => {
     delete process.env.SSQT_LOG_LEVEL;
     assert.deepEqual(defaultConfig(), {
       logLevel: "info",
-      transports: [{ type: "console" }],
+      sinks: [{ type: "console" }],
     });
     assert.deepEqual(LOG_LEVELS, [
       "emerg",

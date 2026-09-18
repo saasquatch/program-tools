@@ -1,11 +1,11 @@
 import {
   LOG_LEVELS,
   defaultConfig,
-  type ConsoleTransport,
+  type ConsoleSink,
   type LogLevel,
   type LoggerConfig,
-  type StreamTransport,
-  type Transport,
+  type Sink,
+  type StreamSink,
 } from "./config.ts";
 import type { LogRecord } from "./format.ts";
 import {
@@ -30,12 +30,12 @@ export {
   httpLogMiddleware,
   initializeLogger,
   isLoggerInitialized,
-  type ConsoleTransport,
+  type ConsoleSink,
   type GetCollectedLogsOptions,
   type LogCollectionOptions,
   type LogLevel,
   type LogRecord,
   type LoggerConfig,
-  type StreamTransport,
-  type Transport,
+  type Sink,
+  type StreamSink,
 };

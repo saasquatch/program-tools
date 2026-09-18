@@ -28,7 +28,7 @@ const unique = (prefix: string) => `${prefix}-${++sequence}`;
 void describe("logger initialization", () => {
   void test("accepts object-form configuration and reuses the default logger", () => {
     assert.equal(isLoggerInitialized(), false);
-    const logger = initializeLogger({ transports: [], logLevel: "debug" });
+    const logger = initializeLogger({ sinks: [], logLevel: "debug" });
     assert.equal(logger.name, DEFAULT_LOGGER_NAME);
     assert.equal(logger.level, "debug");
     assert.equal(isLoggerInitialized(), true);
@@ -44,12 +44,12 @@ void describe("logger initialization", () => {
     assert.equal(auto.name, named);
 
     const configured = initializeLogger(unique("configured"), {
-      transports: [],
+      sinks: [],
       logLevel: "debug",
     });
     assert.equal(configured.level, "debug");
     assert.throws(
-      () => initializeLogger({ transports: [], logLevel: "warning" }),
+      () => initializeLogger({ sinks: [], logLevel: "warning" }),
       /already been initialized/,
     );
   });
@@ -61,7 +61,7 @@ void describe("logging", () => {
     const two = new CaptureStream();
     const logger = initializeLogger(unique("output"), {
       logLevel: "info",
-      transports: [
+      sinks: [
         { type: "stream", stream: one },
         { type: "stream", stream: two },
       ],
@@ -118,7 +118,7 @@ void describe("logging", () => {
     );
   });
 
-  void test("uses the console transport", () => {
+  void test("uses the console sink", () => {
     const writes: string[] = [];
     const originalWrite = process.stdout.write.bind(process.stdout);
     process.stdout.write = (chunk: string | Uint8Array) => {
@@ -128,7 +128,7 @@ void describe("logging", () => {
     try {
       initializeLogger(unique("console"), {
         logLevel: "info",
-        transports: [{ type: "console" }],
+        sinks: [{ type: "console" }],
       }).info("console message");
     } finally {
       process.stdout.write = originalWrite;

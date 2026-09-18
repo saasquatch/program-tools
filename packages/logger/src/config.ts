@@ -41,16 +41,16 @@ export const LOG_LEVEL_VALUES: Record<LogLevel, number> = {
   debug: 7,
 };
 
-export type ConsoleTransport = {
+export type ConsoleSink = {
   type: "console";
 };
 
-export type StreamTransport = {
+export type StreamSink = {
   type: "stream";
   stream: Writable;
 };
 
-export type Transport = ConsoleTransport | StreamTransport;
+export type Sink = ConsoleSink | StreamSink;
 
 export type LoggerConfig = {
   /**
@@ -61,11 +61,11 @@ export type LoggerConfig = {
   /**
    * Outputs for log records. Defaults to stdout
    */
-  transports: Transport[];
+  sinks: Sink[];
 };
 
 export function defaultConfig(): LoggerConfig {
-  const transports: Transport[] = [{ type: "console" }];
+  const sinks: Sink[] = [{ type: "console" }];
 
   const configuredLevel = process.env["SSQT_LOG_LEVEL"];
   let logLevel: LogLevel = "info";
@@ -82,5 +82,5 @@ export function defaultConfig(): LoggerConfig {
     logLevel = configuredLevel;
   }
 
-  return { logLevel, transports };
+  return { logLevel, sinks: sinks };
 }

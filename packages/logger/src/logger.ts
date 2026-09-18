@@ -4,7 +4,7 @@ import {
   LOG_LEVEL_VALUES,
   type LoggerConfig,
   type LogLevel,
-  type Transport,
+  type Sink,
 } from "./config.ts";
 import { formatRecord, serializeRecord, type LogRecord } from "./format.ts";
 
@@ -24,7 +24,7 @@ export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 export const LOG_TYPE_MARKER = "__ssqt_log_type";
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
-type Sink = (serializedRecord: string) => void;
+type SinkFn = (serializedRecord: string) => void;
 const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
@@ -56,7 +56,7 @@ export function initializeLogger(
     config ?? (typeof nameOrConfig === "string" ? {} : (nameOrConfig ?? {}));
 
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
-  const sinks = conf.transports.map(transportToSink);
+  const sinks = conf.sinks.map(getSinkFn);
   const logger = new Logger(name, sinks, conf.logLevel, {});
 
   loggers.set(name, logger);
@@ -67,7 +67,7 @@ export class Logger {
   public name: string;
   public level: LogLevel;
 
-  private sinks: Sink[];
+  private sinks: SinkFn[];
   private baseFields: Record<string, unknown>;
 
   private collection: {
@@ -77,16 +77,16 @@ export class Logger {
     start: number;
     size: number;
   } = {
-    enabled: false,
-    maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
-    records: [],
-    start: 0,
-    size: 0,
-  };
+      enabled: false,
+      maxEntries: DEFAULT_LOG_COLLECTION_LIMIT,
+      records: [],
+      start: 0,
+      size: 0,
+    };
 
   constructor(
     name: string,
-    sinks: Sink[],
+    sinks: SinkFn[],
     level: LogLevel,
     baseFields: Record<string, unknown>,
   ) {
@@ -249,9 +249,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return prototype === Object.prototype || prototype === null;
 }
 
-function transportToSink(transport: Transport): Sink {
+function getSinkFn(sink: Sink): SinkFn {
   const stream: Writable =
-    transport.type === "console" ? process.stdout : transport.stream;
+    sink.type === "console" ? process.stdout : sink.stream;
 
   return (serializedRecord) => {
     stream.write(serializedRecord);
