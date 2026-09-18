@@ -1371,14 +1371,12 @@ export class TaxAndCashMonolith {
       case "/3":
         return (
           <sqm-docusign-form
-            exportparts="container"
             {...this.getGeneralStepTextProps("step3_")}
           ></sqm-docusign-form>
         );
       case "/4":
         return (
           <sqm-banking-info-form
-            exportparts="container"
             {...this.getGeneralStepTextProps("step4_")}
           ></sqm-banking-info-form>
         );
