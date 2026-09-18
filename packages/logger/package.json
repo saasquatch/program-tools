@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/logger",
-  "version": "3.0.1-7",
+  "version": "3.0.1-8",
   "private": false,
   "description": "Small structured JSON logger for SaaSquatch Node.js services",
   "homepage": "https://github.com/saasquatch/program-tools/packages/logger#readme",
