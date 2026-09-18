@@ -61,7 +61,7 @@ export type LoggerConfig = {
   /**
    * Minimum severity to emit. Defaults to `info`
    */
-  logLevel: LogLevel;
+  level: LogLevel;
 
   /**
    * Outputs for log records. Defaults to stdout
@@ -73,7 +73,7 @@ export function defaultConfig(): LoggerConfig {
   const sinks: Sink[] = [{ stream: process.stdout }];
 
   const configuredLevel = process.env["SSQT_LOG_LEVEL"];
-  let logLevel: LogLevel = "info";
+  let level: LogLevel = "info";
 
   if (configuredLevel !== undefined) {
     const levelValid = ((l: string): l is LogLevel => {
@@ -84,8 +84,8 @@ export function defaultConfig(): LoggerConfig {
       throw new Error(`Invalid log level "${configuredLevel}"`);
     }
 
-    logLevel = configuredLevel;
+    level = configuredLevel;
   }
 
-  return { logLevel, sinks: sinks };
+  return { level, sinks };
 }

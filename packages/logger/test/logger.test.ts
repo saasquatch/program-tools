@@ -28,7 +28,7 @@ const unique = (prefix: string) => `${prefix}-${++sequence}`;
 void describe("logger initialization", () => {
   void test("accepts object-form configuration and reuses the default logger", () => {
     assert.equal(isLoggerInitialized(), false);
-    const logger = initializeLogger({ sinks: [], logLevel: "debug" });
+    const logger = initializeLogger({ sinks: [], level: "debug" });
     assert.equal(logger.name, DEFAULT_LOGGER_NAME);
     assert.equal(logger.level, "debug");
     assert.equal(isLoggerInitialized(), true);
@@ -45,11 +45,11 @@ void describe("logger initialization", () => {
 
     const configured = initializeLogger(unique("configured"), {
       sinks: [],
-      logLevel: "debug",
+      level: "debug",
     });
     assert.equal(configured.level, "debug");
     assert.throws(
-      () => initializeLogger({ sinks: [], logLevel: "warning" }),
+      () => initializeLogger({ sinks: [], level: "warning" }),
       /already been initialized/,
     );
   });
@@ -60,7 +60,7 @@ void describe("logging", () => {
     const one = new CaptureStream();
     const two = new CaptureStream();
     const logger = initializeLogger(unique("output"), {
-      logLevel: "info",
+      level: "info",
       sinks: [{ stream: one }, { stream: two }],
     });
 
@@ -124,7 +124,7 @@ void describe("logging", () => {
     };
     try {
       initializeLogger(unique("console"), {
-        logLevel: "info",
+        level: "info",
         sinks: [{ stream: process.stdout }],
       }).info("console message");
     } finally {

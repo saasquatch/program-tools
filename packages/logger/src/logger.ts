@@ -54,7 +54,7 @@ export function initializeLogger(
 
   const conf: LoggerConfig = { ...defaultConfig(), ...supplied };
   const sinks = conf.sinks.map((sink) => createSinkWriter(name, sink));
-  const logger = new Logger(name, sinks, conf.logLevel, {});
+  const logger = new Logger(name, sinks, conf.level, {});
 
   loggers.set(name, logger);
   return logger;

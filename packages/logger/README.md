@@ -34,7 +34,7 @@ import { createWriteStream } from "node:fs";
 import { initializeLogger } from "@saasquatch/logger";
 
 const logger = initializeLogger("my-logger", {
-  logLevel: "info",
+  level: "info",
   sinks: [
     // write to stdout (default)
     { stream: process.stdout },
@@ -116,7 +116,7 @@ import { createWriteStream } from "node:fs";
 import { initializeLogger } from "@saasquatch/logger";
 
 const logger = initializeLogger({
-  logLevel: "info",
+  level: "info",
   sinks: [{ stream: createWriteStream("./service.log"), maxQueueSize: 500 }],
 });
 ```

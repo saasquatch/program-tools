@@ -18,7 +18,7 @@ void describe("configuration", () => {
   void test("uses stdout and info by default", () => {
     delete process.env.SSQT_LOG_LEVEL;
     assert.deepEqual(defaultConfig(), {
-      logLevel: "info",
+      level: "info",
       sinks: [{ stream: process.stdout }],
     });
     assert.deepEqual(LOG_LEVELS, [
@@ -37,7 +37,7 @@ void describe("configuration", () => {
 
   void test("accepts supported environment levels and rejects invalid ones", () => {
     process.env.SSQT_LOG_LEVEL = "debug";
-    assert.equal(defaultConfig().logLevel, "debug");
+    assert.equal(defaultConfig().level, "debug");
     process.env.SSQT_LOG_LEVEL = "verbose";
     assert.throws(() => defaultConfig(), /Invalid log level "verbose"/);
   });
