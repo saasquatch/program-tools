@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Loggers now emit structured JSON directly and expose the package-owned `Logger` type.
 - The supported sinks are stdout and custom writable Node streams.
 - Removed the top-level `info`, `warn`, and `error` exports.
-- Removed `SSQT_LOG_TRANSPORTS`; configure `console` or writable `stream` transports through `initializeLogger`.
+- Removed `SSQT_LOG_TRANSPORTS`; configure `console` or writable `stream` sink through `initializeLogger`.
 
 ## [3.0.0] - 2026-05-27
 

@@ -1,5 +1,5 @@
 <h1 align="center">@saasquatch/logger</h1>
-<p align="center">Small structured JSON logger for SaaSquatch NodeJS services</p>
+<p align="center">Small structured JSON logger for SaaSquatch Node.js services</p>
 
 This package provides a lightweight structured logger that writes newline-delimited JSON
 to stdout by default. It supports syslog-style levels, named loggers, custom writable
@@ -19,41 +19,63 @@ const logger = initializeLogger();
 logger.info("Hello", { service: "example" });
 logger.error(new Error("Something failed"));
 
+const myValue = { field1: "string", field2: 1.2345 };
+logger.debug({ message: "Trying to debug something here", myValue });
+
 // child fields are included in every record emitted by the child
 const requestLogger = logger.child({ requestId: "req-123" });
-requestLogger.info("Request started");
-
-// collect records for a response, while still writing them to the sink
-requestLogger.startLogCollection({ maxEntries: 100 });
-requestLogger.info("Request finished");
-const logs = requestLogger.getCollectedLogs();
-requestLogger.stopLogCollection();
-requestLogger.clearCollectedLogs();
+requestLogger.info("This log will include the above requestId field");
 ```
 
-Collection mode retains the newest 500 records by default. `maxEntries` can be set when
-enabling collection; it must be a positive integer. Collection is independent for each
-logger and child logger.
-
-Each log call writes one JSON record to each enabled sink. The default minimum level is
-`info`; it can also be configured with `SSQT_LOG_LEVEL`.
-
-### Custom stream sinks
-
-Use a writable Node stream in addition to, or instead of, stdout:
+## Customization of log sinks
 
 ```typescript
 import { createWriteStream } from "node:fs";
 import { initializeLogger } from "@saasquatch/logger";
 
-const logger = initializeLogger({
-  transports: [{ type: "stream", stream: createWriteStream("service.log") }],
+const logger = initializeLogger("my-logger", {
+  logLevel: "info",
+  sinks: [
+    // write to stdout (default)
+    { type: "console" },
+    // write to log file
+    { type: "stream", stream: createWriteStream("./service.log") },
+  ],
 });
 ```
 
-The supported transport types are `console` and `stream`.
+The supported sink types are `console` and `stream`.
 
-### Express HTTP logging
+## Temporary log collection
+
+```typescript
+import { initializeLogger } from "@saasquatch/logger";
+
+const logger = initializeLogger();
+
+// collect records for a response, while still writing them to the sink
+logger.startLogCollection({ maxEntries: 100 });
+logger.info("Request finished");
+
+// logs: LogRecord[]
+const logs = logger.getCollectedLogs();
+
+// serializedLogs: string
+const serializedLogs = logger.getCollectedLogs({ serialized: true });
+
+logger.stopLogCollection();
+logger.clearCollectedLogs();
+```
+
+Collection mode retains the newest 500 records by default. The size of the collection
+buffer can be customized by passing `maxEntries` to the `startLogCollection` function.
+Collection is independent for each logger and child logger.
+
+The collected logs can be retrieved either in their raw or serialized form. Passing
+`{ serialized: true }` to the function options will use the logger's built-in
+serialization machinery on each collected log, then join the results with newlines.
+
+## Express HTTP logging
 
 ```typescript
 import express from "express";
@@ -64,5 +86,5 @@ const logger = initializeLogger();
 app.use(httpLogMiddleware(logger));
 ```
 
-HTTP records include normalized method, URL, status, response time, and request ID
-fields. Sensitive URL query parameters are removed by the middleware.
+HTTP records include method, URL, status, response time, and request ID (if present)
+fields. Common sensitive URL query parameters are removed by the middleware.
