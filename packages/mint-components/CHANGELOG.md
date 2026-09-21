@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.0
+
+### Minor Changes
+
+- [#536](https://github.com/saasquatch/program-tools/pull/536) [`8bcc9bb`](https://github.com/saasquatch/program-tools/commit/8bcc9bb001e39c6f4be738787c2c1123c03298dc) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Adds @csspart metadata so Portal can expose editable parts for editing.
+
 ## 2.4.9
 
 ### Patch Changes
