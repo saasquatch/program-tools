@@ -12,6 +12,9 @@ import { useShareCode } from "./useShareCode";
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
  * @exampleGroup Sharing
  * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+ * @csspart icon-button-base - The copy icon button base
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-share-code",

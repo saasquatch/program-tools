@@ -13,6 +13,14 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Microsite Participant Profile
  * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+ * @csspart sqm-base - The base container
+ * @csspart erroralert-text - The error message element
+ * @csspart successalert-text - The success message element
+ * @csspart successalert-icon - The success alert icon
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-portal-profile",

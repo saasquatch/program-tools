@@ -17,6 +17,9 @@ import { intl } from "../../../global/global";
  * @exampleGroup Tax and Cash
  * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
  * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+ * @csspart container - The base container for the tax and cash component
+ * @csspart alert-title - The error alert title, shown on the error step
+ * @csspart alert-description - The error alert description, shown on the error step
  */
 @Component({
   tag: "sqm-tax-and-cash",
@@ -1355,13 +1358,13 @@ export class TaxAndCashMonolith {
     switch (props.step) {
       case "/1":
         return (
-          <sqm-user-info-form
+          <sqm-user-info-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step1_")}
           ></sqm-user-info-form>
         );
       case "/2":
         return (
-          <sqm-indirect-tax-form
+          <sqm-indirect-tax-form exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step2_")}
           ></sqm-indirect-tax-form>
         );
@@ -1379,7 +1382,7 @@ export class TaxAndCashMonolith {
         );
       case "/dashboard":
         return (
-          <sqm-tax-and-cash-dashboard
+          <sqm-tax-and-cash-dashboard exportparts="dashboard-container: container"
             {...this.getGeneralStepTextProps("dashboard_")}
             stateController={
               props["sqm-tax-and-cash-dashboard_stateController"] || "{}"

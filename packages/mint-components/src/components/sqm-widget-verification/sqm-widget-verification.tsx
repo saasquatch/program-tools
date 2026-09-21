@@ -51,6 +51,8 @@ const styleString = sheet.toString();
  * @uiName Widget Verification Flow
  * @exampleGroup Widget Verification
  * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+ * @csspart step-base - The base container of the currently rendered step
+ * @csspart primarybutton-base - The primary button base of the currently rendered step
  */
 @Component({
   tag: "sqm-widget-verification",
@@ -315,6 +317,7 @@ export class WidgetVerification {
             stateController={
               props["sqm-partner-info-modal_stateController"] || "{}"
             }
+            exportparts="sqm-base: step-base, primarybutton-base"
           ></sqm-partner-info-modal>
         );
       }
@@ -324,6 +327,7 @@ export class WidgetVerification {
             onVerification={props.onVerification}
             {...this.getStepTextProps("codeStep_")}
             {...extractProps(props, "sqm-code-verification_")}
+            exportparts="sqm-base: step-base, primarybutton-base"
           ></sqm-code-verification>
         );
       }
@@ -331,6 +335,7 @@ export class WidgetVerification {
         <sqm-email-verification
           {...this.getStepTextProps("emailStep_")}
           {...extractProps(props, "sqm-email-verification_")}
+          exportparts="sqm-base: step-base, primarybutton-base"
         ></sqm-email-verification>
       );
     };
