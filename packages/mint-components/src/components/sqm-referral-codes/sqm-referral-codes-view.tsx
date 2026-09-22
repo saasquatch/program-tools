@@ -90,9 +90,11 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
 
     if (states.loading) {
       return (
-        <div class={sheet.classes.SkeletonContainer}>
-          <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-        </div>
+        <slot name="loading">
+          <div class={sheet.classes.SkeletonContainer}>
+            <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+          </div>
+        </slot>
       );
     }
 
