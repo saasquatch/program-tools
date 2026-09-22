@@ -7,7 +7,6 @@ export interface ReferralCodesViewProps {
     shareCodes: VNode;
     pagination: VNode;
     empty: VNode;
-    loading: VNode;
   };
   states: {
     noCodes: boolean;
@@ -56,7 +55,16 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       justifyContent: "center",
       flexDirection: "column",
     },
-
+    SkeletonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "var(--sl-spacing-small)",
+      width: "100%",
+    },
+    SkeletonOne: {
+      height: "36px",
+      width: "100%",
+    },
     TitleText: {
       fontSize: "var(--sl-font-size-large)",
       margin: "0",
@@ -81,7 +89,13 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
     }
 
     if (states.loading) {
-      return slots.loading;
+      return (
+        <slot name="loading">
+          <div class={sheet.classes.SkeletonContainer}>
+            <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
+          </div>
+        </slot>
+      );
     }
 
     return (
@@ -102,7 +116,7 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       </style>
       <div class={sheet.classes.HeaderContainer}>
         <h2 class={sheet.classes.TitleText}>{titleText}</h2>
-        {!states.noCodes && !states.loading && slots.pagination}
+        {!states.noCodes && slots.pagination}
       </div>
       {getSlotContent(states)}
     </div>
