@@ -1,5 +1,7 @@
 import { h } from "@stencil/core";
+import { useState } from "@saasquatch/stencil-hooks";
 import scenario from "./ReferralCodes.feature";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Components/Referral Codes",
@@ -119,3 +121,70 @@ export const Loading = () => {
     </sqm-referral-codes>
   );
 };
+
+const loadingPagination = (slot) => {
+  return (
+    <sqm-pagination
+      slot={slot}
+      demoData={{ states: { loading: true } }}
+    ></sqm-pagination>
+  );
+};
+
+export const WithLoadingPagination = () => {
+  return (
+    <sqm-referral-codes>
+      {loadingPagination("pagination")}
+      {shareCodes("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+const TOTAL_PAGES = 5;
+const LOADING_MS = 800;
+
+const FunctionalPaginationDemo = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const goTo = (nextPage: number) => {
+    setLoading(true);
+    setTimeout(() => {
+      setCurrentPage(nextPage);
+      setLoading(false);
+    }, LOADING_MS);
+  };
+
+  const paginationSlot = (
+    <sqm-pagination
+      slot="pagination"
+      demoData={{
+        states: {
+          currentPage,
+          totalPages: TOTAL_PAGES,
+          loading,
+        },
+        callbacks: {
+          onNext: () => goTo(currentPage + 1),
+          onPrev: () => goTo(currentPage - 1),
+        },
+        text: {
+          paginationText: `${currentPage} of ${TOTAL_PAGES}`,
+        },
+      }}
+    ></sqm-pagination>
+  );
+
+  return (
+    <sqm-referral-codes
+      demoData={{ states: { noCodes: false, loading } }}
+    >
+      {paginationSlot}
+      {shareCodes("shareCodes")}
+      {shareButtons("shareButtons")}
+    </sqm-referral-codes>
+  );
+};
+
+export const FunctionalPagination = createHookStory(FunctionalPaginationDemo);

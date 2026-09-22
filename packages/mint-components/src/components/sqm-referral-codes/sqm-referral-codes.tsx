@@ -87,7 +87,6 @@ export class ReferralCodes {
           imageUrl={this.emptyStateImageUrl}
         />
       ),
-      loading: <LoadingSlot />,
     };
 
     const viewProps = {
@@ -119,20 +118,6 @@ function EmptySlot({
       ></sqm-empty>
     </slot>
   );
-}
-
-function LoadingSlot() {
-  return (
-    <slot name="loading">
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-    </slot>
-  );
-}
-function LoadingRow() {
-  return <sqm-skeleton></sqm-skeleton>;
 }
 
 function useDemoReferralCodes(props: ReferralCodes) {
