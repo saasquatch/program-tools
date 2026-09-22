@@ -59,11 +59,11 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       display: "flex",
       flexDirection: "column",
       gap: "var(--sl-spacing-small)",
-      width: "50%",
+      width: "100%",
     },
     SkeletonOne: {
-      height: "16px",
-      width: "50%",
+      height: "36px",
+      width: "100%",
     },
     TitleText: {
       fontSize: "var(--sl-font-size-large)",
@@ -92,7 +92,6 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       return (
         <div class={sheet.classes.SkeletonContainer}>
           <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
-          <sl-skeleton class={sheet.classes.SkeletonOne}></sl-skeleton>
         </div>
       );
     }
@@ -115,7 +114,7 @@ export function ReferralCodesView(props: ReferralCodesViewProps) {
       </style>
       <div class={sheet.classes.HeaderContainer}>
         <h2 class={sheet.classes.TitleText}>{titleText}</h2>
-        {!states.noCodes && !states.loading && slots.pagination}
+        {!states.noCodes && slots.pagination}
       </div>
       {getSlotContent(states)}
     </div>

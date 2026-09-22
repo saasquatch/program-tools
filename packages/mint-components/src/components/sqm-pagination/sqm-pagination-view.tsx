@@ -26,7 +26,7 @@ const style = {
     width: "100%",
   },
   SkeletonContainer: {
-    width: "100px",
+    width: "40px",
   },
   TextContainer: {
     display: "flex",
@@ -47,33 +47,33 @@ export function PaginationView(props: PaginationViewProps) {
   return (
     <span class={sheet.classes.Container} part="sqm-base">
       <style type="text/css">{styleString}</style>
+      <sl-button
+        exportparts={`base: ${buttonType}button-base`}
+        onClick={onPrev}
+        part="sqm-pagination-button"
+        circle
+        disabled={currentPage === 1}
+      >
+        <sl-icon name="chevron-left" label="Previous Page"></sl-icon>
+      </sl-button>
       {!loading ? (
         <Fragment>
-          <sl-button
-            exportparts={`base: ${buttonType}button-base`}
-            onClick={onPrev}
-            part="sqm-pagination-button"
-            circle
-            disabled={currentPage === 1}
-          >
-            <sl-icon name="chevron-left" label="Previous Page"></sl-icon>
-          </sl-button>
           <div class={sheet.classes.TextContainer}>{text.paginationText}</div>
-          <sl-button
-            exportparts={`base: ${buttonType}button-base`}
-            onClick={onNext}
-            part="sqm-pagination-button"
-            circle
-            disabled={currentPage === totalPages}
-          >
-            <sl-icon name="chevron-right" label="Previous Page"></sl-icon>
-          </sl-button>
         </Fragment>
       ) : (
         <div class={sheet.classes.SkeletonContainer}>
-          <sl-skeleton width="100px" height="16px"></sl-skeleton>
+          <sl-skeleton height="16px" width="50%"></sl-skeleton>
         </div>
       )}
+      <sl-button
+        exportparts={`base: ${buttonType}button-base`}
+        onClick={onNext}
+        part="sqm-pagination-button"
+        circle
+        disabled={currentPage === totalPages}
+      >
+        <sl-icon name="chevron-right" label="Previous Page"></sl-icon>
+      </sl-button>
     </span>
   );
 }
