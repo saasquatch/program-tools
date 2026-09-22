@@ -206,6 +206,8 @@ export function useReferralCodes(props: ReferralCodes) {
       ...states,
       noCodes: referralData?.totalCount === 0,
     },
+    titleText: props.titleText,
+    textColor: props.textColor,
     data: referralCodesContext,
     callbacks: {},
   };
