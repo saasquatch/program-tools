@@ -29,6 +29,6 @@ export function getLogger(level: string): Logger {
     throw new Error(`Invalid log level "${level}"`);
   }
 
-  logger = initializeLogger({ logLevel: level });
+  logger = initializeLogger({ level });
   return logger;
 }

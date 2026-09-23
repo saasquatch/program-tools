@@ -1,11 +1,3 @@
-import {
-  nonRewardEmailQueryForNonReferralPrograms,
-  nonRewardEmailQueryForReferralPrograms,
-  rewardEmailQuery,
-  rewardEmailQueryForNonReferralPrograms,
-} from "./queries.ts";
-import type { ProgramTriggerBody } from "./types/rpc.ts";
-import type { ProgramType, User, UserEvent } from "./types/saasquatch.ts";
 import type {
   Analytics,
   DynamicProperties,
@@ -17,6 +9,14 @@ import type {
   RewardSource,
 } from "@saasquatch/schema/types/ProgramTransaction/index.d.ts";
 import ObjectID from "bson-objectid";
+import {
+  nonRewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForReferralPrograms,
+  rewardEmailQuery,
+  rewardEmailQueryForNonReferralPrograms,
+} from "./queries.ts";
+import type { ProgramTriggerBody } from "./types/rpc.ts";
+import type { ProgramType, User, UserEvent } from "./types/saasquatch.ts";
 
 type TransactionContext = {
   body: ProgramTriggerBody;
@@ -57,7 +57,7 @@ export default class Transaction {
   constructor(
     context: TransactionContext,
     mutations: Mutations = [],
-    analytics: Analytics = []
+    analytics: Analytics = [],
   ) {
     this.mutations = mutations;
     this.analytics = analytics;
@@ -182,15 +182,14 @@ export default class Transaction {
       status,
     } satisfies RewardData;
 
-    const validProperties = [
-      { userEvent },
-      { rewardSource },
-      { status },
-    ];
+    const validProperties = [{ userEvent }, { rewardSource }, { status }];
 
-    const updatedRewardData: RewardData = validProperties.reduce((currentData, prop) => {
-      return { ...currentData, ...prop };
-    }, rewardData);
+    const updatedRewardData: RewardData = validProperties.reduce(
+      (currentData, prop) => {
+        return { ...currentData, ...prop };
+      },
+      rewardData,
+    );
 
     const newMutation = {
       type: "CREATE_REWARD",

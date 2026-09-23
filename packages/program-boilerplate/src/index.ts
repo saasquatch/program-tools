@@ -1,18 +1,18 @@
-import express, { type Request, type Response } from "express";
-
-import compression from "compression";
 import { getLogger as ssqtLogger } from "@saasquatch/logger";
+import { httpLogMiddleware } from "@saasquatch/logger";
+import compression from "compression";
+import express, { type Request, type Response } from "express";
 import {
   meetCustomFieldRules,
   meetEdgeTriggerConditions,
   meetEventTriggerRules,
 } from "./conversion.ts";
+import { safeJsonata, timeboxExpression, timeboxedJsonata } from "./jsonata.ts";
 import { getLogger } from "./logger.ts";
 import { rewardEmailQuery } from "./queries.ts";
 import Transaction from "./transaction.ts";
 import { triggerProgram } from "./trigger.ts";
 import * as types from "./types/index.ts";
-
 import type {
   Program,
   ProgramRequirement,
@@ -20,10 +20,6 @@ import type {
   RequirementValidationResult,
   ValidationProgramField,
 } from "./types/rpc.ts";
-
-import { safeJsonata, timeboxExpression, timeboxedJsonata } from "./jsonata.ts";
-
-import { httpLogMiddleware } from "@saasquatch/logger";
 import { type ProgramType } from "./types/saasquatch.ts";
 import {
   getGoalAnalyticTimestamp,
