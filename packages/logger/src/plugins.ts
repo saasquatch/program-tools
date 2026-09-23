@@ -1,8 +1,7 @@
-import type { Request, Response } from "express";
 import { URL } from "node:url";
-import winston from "winston";
+import type { Request, Response } from "express";
 import type { LogLevel } from "./config.ts";
-import { LOG_TYPE_MARKER } from "./logger.ts";
+import type { Logger } from "./logger.ts";
 
 export type HttpLogMiddlewareOptions = {
   nonErrorLogLevel?: LogLevel;
@@ -30,11 +29,9 @@ const STRIP_PARAMS = [
 /**
  * A simple Express.js middleware which logs the URL, method, response code,
  * and response time of all HTTP requests.
- *
- * @param {winston.Logger} logger - The logger to use
  */
 export function httpLogMiddleware(
-  logger: winston.Logger,
+  logger: Logger,
   opts?: HttpLogMiddlewareOptions,
 ) {
   return (
@@ -69,22 +66,37 @@ export function httpLogMiddleware(
       const time = (endTimeNs - startTimeNs) / BigInt(1000);
       const method = req.method;
       const requestId = res.locals?.["requestId"];
-
-      const extraData = res.locals?.["extraData"] as
-        | Record<string, any>
-        | undefined;
+      const extraData = res.locals?.["extraData"];
 
       const level =
         status >= 500
           ? "error"
           : status >= 400
-          ? "warn"
-          : isHealthcheck
-          ? "debug"
-          : opts?.nonErrorLogLevel ?? "info";
+            ? "warn"
+            : isHealthcheck
+              ? "debug"
+              : (opts?.nonErrorLogLevel ?? "info");
 
-      const message = { method, status, time, url: cleanUrl, requestId };
-      logger.log(level, { [LOG_TYPE_MARKER]: "HTTP", message, extraData });
+      const micros = Number(time);
+      const displayTime =
+        micros < 1000 ? `${micros} μs` : `${Math.round(micros / 1000)} ms`;
+
+      logger.log(level, {
+        message: [status, method, displayTime.padStart(6, " "), cleanUrl].join(
+          " ",
+        ),
+
+        // for Datadog
+        // https://docs.datadoghq.com/standard-attributes?search=HTTP
+        "http.url": cleanUrl,
+        "http.method": method,
+        "http.status_code": status,
+        "http.response_time": micros,
+
+        ...(requestId ? { "http.request_id": requestId } : {}),
+
+        extraData,
+      });
     });
 
     next();

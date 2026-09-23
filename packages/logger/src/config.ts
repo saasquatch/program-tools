@@ -1,5 +1,4 @@
 import type { Writable } from "node:stream";
-import winston from "winston";
 
 /**
  * Numerical Code | Severity
@@ -30,87 +29,54 @@ export const LOG_LEVELS = [
 
 export type LogLevel = (typeof LOG_LEVELS)[number];
 
-export type ConsoleTransport = {
-  type: "console";
-  options?: winston.transports.ConsoleTransportOptions;
+export const LOG_LEVEL_VALUES: Record<LogLevel, number> = {
+  emerg: 0,
+  alert: 1,
+  crit: 2,
+  error: 3,
+  warning: 4,
+  warn: 4,
+  notice: 5,
+  info: 6,
+  debug: 7,
 };
 
-export type FileTransport = {
-  type: "file";
-  options?: winston.transports.FileTransportOptions;
-};
-
-export type HttpTransport = {
-  type: "http";
-  options?: winston.transports.HttpTransportOptions;
-};
-
-export type StreamTransport = {
-  type: "stream";
+export type Sink = {
+  /**
+   * The stream to write logs to
+   */
   stream: Writable;
-  options?: Omit<winston.transports.StreamTransportOptions, "stream">;
 };
-
-export type Transport =
-  | ConsoleTransport
-  | FileTransport
-  | HttpTransport
-  | StreamTransport;
 
 export type LoggerConfig = {
   /**
-   * The log level. Defaults to "info"
+   * Minimum severity to emit. Defaults to `info`
    */
-  logLevel: LogLevel;
+  level: LogLevel;
 
   /**
-   * The NodeJS environment. Defaults to `process.env.NODE_ENV`
+   * Outputs for log records. Defaults to stdout
    */
-  environment: string;
-
-  /**
-   * The list of transports to log to. Defaults to a single Console
-   * transport.
-   */
-  transports: Transport[];
+  sinks: Sink[];
 };
 
-/**
- * Retrieve the default configuration based on sane defaults
- * and optional environment variables
- *
- * @return {LoggerConfig} The default logging configuration
- */
 export function defaultConfig(): LoggerConfig {
-  let transports: Transport[] = [{ type: "console" }];
+  const sinks: Sink[] = [{ stream: process.stdout }];
 
-  if (process.env["SSQT_LOG_TRANSPORTS"] !== undefined) {
-    try {
-      transports = JSON.parse(process.env["SSQT_LOG_TRANSPORTS"]);
-    } catch (e) {
-      if (e instanceof Error) {
-        console.error(e.message);
-      }
+  const configuredLevel = process.env["SSQT_LOG_LEVEL"];
+  let level: LogLevel = "info";
 
-      throw new Error(
-        "Failed to parse log transports from environment variable",
-      );
+  if (configuredLevel !== undefined) {
+    const levelValid = ((l: string): l is LogLevel => {
+      return (LOG_LEVELS as readonly string[]).includes(l);
+    })(configuredLevel);
+
+    if (!levelValid) {
+      throw new Error(`Invalid log level "${configuredLevel}"`);
     }
+
+    level = configuredLevel;
   }
 
-  let logLevel: LogLevel = "info";
-  const logEnv = process.env["SSQT_LOG_LEVEL"];
-  if (logEnv !== undefined) {
-    if (LOG_LEVELS.includes(logEnv as LogLevel)) {
-      logLevel = logEnv as LogLevel;
-    } else {
-      throw new Error(`Invalid log level "${logEnv}"`);
-    }
-  }
-
-  return {
-    logLevel,
-    environment: process.env["NODE_ENV"] ?? "production",
-    transports,
-  };
+  return { level, sinks };
 }

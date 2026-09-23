@@ -1,143 +1,82 @@
-import winston from "winston";
-import { DEFAULT_LOGGER_NAME, LOG_TYPE_MARKER } from "./logger.ts";
+import type { LogLevel } from "./config.ts";
+import { DEFAULT_LOGGER_NAME } from "./logger.ts";
 
-type HTTPMessage = {
-  method: string;
-  status: string;
-  time: BigInt | string;
-  url: string;
-  requestId?: string;
+export type LogRecord = Record<string, unknown> & {
+  level: LogLevel;
+  timestamp: string;
 };
 
-/**
- * JSON format logs to be consumed by upstream log processors
- */
-export function jsonFormat(name: string): winston.Logform.Format {
-  return winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.splat(),
-    addLoggerName(name)(),
-    prefixTenantAlias(),
-    formatHttpLog(),
-    cleanLogTypeMarker(),
-    winston.format.uncolorize(),
-    dataDogStatus(),
-    winston.format.json(),
-  );
-}
+export function formatRecord(
+  name: string,
+  level: LogLevel,
+  message: unknown,
+  fields: Record<string, unknown> = {},
+): LogRecord {
+  const record: LogRecord = {
+    ...fields,
+    level,
+    timestamp: new Date().toISOString(),
+    message,
+  };
 
-/**
- * Human-readable log format for consoles
- */
-export function prettyFormat(name: string): winston.Logform.Format {
-  return winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.splat(),
-    addLoggerName(name)(),
-    prefixTenantAlias(),
-    formatHttpLog(),
-    cleanLogTypeMarker(),
-    winston.format.colorize(),
-    dataDogStatus(),
-    winston.format.simple(),
-    prettyDevFormat,
-  );
-}
-
-/**
- * Human-readable HTTP information to be placed in the
- * `message` field of the log
- */
-const friendlyHttpFormat = (message: HTTPMessage): string => {
-  return [
-    message.status,
-    message.method,
-    message.time.toString().padStart(6, " "),
-    message.url,
-  ].join(" ");
-};
-
-/**
- * Place the HTTP information in the correct
- * fields for Datadog to consume
- */
-const formatHttpLog = winston.format((info) => {
-  const newInfo = { ...info };
-  if (newInfo[LOG_TYPE_MARKER] === "HTTP") {
-    // NOTE: it would of course be safer to validate this using a real
-    // schema validator like zod, but for a logging library we just
-    // don't want that kind of overhead. The HTTP log messages are generated
-    // using middleware from our own package so it's unlikely to be invalid
-    const message = newInfo.message as any as HTTPMessage;
-
-    const micros = Number(message.time);
-    if (micros < 1000) {
-      message.time = `${micros} μs`;
-    } else {
-      message.time = `${Math.round(micros / 1000)} ms`;
-    }
-
-    newInfo.message = friendlyHttpFormat(message);
-    newInfo["http.url"] = message.url;
-    newInfo["http.method"] = message.method;
-    newInfo["http.status_code"] = message.status;
-    newInfo["http.response_time"] = micros;
-
-    if (message.requestId) {
-      newInfo["http.request_id"] = message.requestId;
-    }
+  // add the logger name field if it's non-default
+  if (name !== DEFAULT_LOGGER_NAME) {
+    record["logger.name"] = name;
   }
 
-  return newInfo;
-});
-
-/**
- * The `status` field of the JSON is reserved in Datadog for the severity
- * level of the log.
- */
-const dataDogStatus = winston.format((info) => {
-  return { ...info, status: info.level };
-});
-
-/**
- * Simple human-readable log format
- */
-const prettyDevFormat = winston.format.printf((info) => {
-  const newInfo = { ...info };
-  const message = newInfo.message;
-  if (typeof message === "object") {
-    newInfo.message = JSON.stringify(newInfo.message);
-  }
-
-  return `[${newInfo.level}] ${newInfo.message}`;
-});
-
-/**
- * If the logger has a custom non-default name, populate the
- * `logger.name` field
- */
-const addLoggerName = (name: string) =>
-  name !== DEFAULT_LOGGER_NAME
-    ? winston.format((info) => ({ ...info, "logger.name": name }))
-    : winston.format((info) => info);
-
-const prefixTenantAlias = winston.format((info) => {
+  // prepend a [<tenantAlias>] tag to the message
   if (
-    info["tenantAlias"] &&
-    typeof info.message === "string" &&
-    !info.message.startsWith(`[${info["tenantAlias"]}]`)
+    record["tenantAlias"] &&
+    typeof record["tenantAlias"] === "string" &&
+    typeof record["message"] === "string"
   ) {
-    return { ...info, message: `[${info["tenantAlias"]}] ${info.message}` };
+    const tenantAliasTag = `[${record["tenantAlias"]}]`;
+    if (!record["message"].startsWith(tenantAliasTag)) {
+      record["message"] = `${tenantAliasTag} ${record["message"]}`;
+    }
   }
 
-  return info;
-});
+  // for Datadog
+  // https://docs.datadoghq.com/standard-attributes
+  record["status"] = level;
+
+  return record;
+}
 
 /**
- * Clean up the log type marker which is only used for some of the other
- * formatting middleware
+ * Safely serialize records, including Error and BigInt values.
  */
-const cleanLogTypeMarker = winston.format((info) => {
-  delete info[LOG_TYPE_MARKER];
-  return info;
-});
+export function serializeRecord(record: LogRecord): string {
+  const ancestors: object[] = [];
+  return JSON.stringify(
+    { ...record, toJSON: undefined },
+    function (_key, value: unknown) {
+      if (typeof value === "bigint") {
+        const maxSafeInteger = BigInt(Number.MAX_SAFE_INTEGER);
+        return value > maxSafeInteger || value < -maxSafeInteger
+          ? value.toString()
+          : Number(value);
+      }
+
+      if (value instanceof Error) {
+        return { name: value.name, message: value.message, stack: value.stack };
+      }
+
+      if (typeof value === "object" && value !== null) {
+        while (
+          ancestors.length > 0 &&
+          ancestors[ancestors.length - 1] !== this
+        ) {
+          ancestors.pop();
+        }
+
+        if (ancestors.includes(value)) {
+          return "[Circular]";
+        }
+
+        ancestors.push(value);
+      }
+      return value;
+    },
+  );
+}
