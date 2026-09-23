@@ -1,22 +1,18 @@
-import { StepDefinitions } from "jest-cucumber";
-import { getWorld } from "../world";
+import { Given } from "../registry.ts";
+import { getWorld } from "../world.ts";
 
-const eventSteps: StepDefinitions = ({ given }) => {
-  given("there are no events", () => {
-    getWorld().setState({
-      current: {
-        events: [],
-      },
-    });
+Given("there are no events", () => {
+  getWorld().setState({
+    current: {
+      events: [],
+    },
   });
+});
 
-  given("the following event exists:", (data: any) => {
-    getWorld().setState({
-      current: {
-        events: [...(getWorld().state.current.events || []), JSON.parse(data)],
-      },
-    });
+Given("the following event exists:", (data: string) => {
+  getWorld().setState({
+    current: {
+      events: [...(getWorld().state.current.events ?? []), JSON.parse(data)],
+    },
   });
-};
-
-export default eventSteps;
+});
