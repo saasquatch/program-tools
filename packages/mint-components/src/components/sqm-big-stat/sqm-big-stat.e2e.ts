@@ -11,7 +11,7 @@ function statFunctions(page: Readonly<E2EPage>) {
       expect(stat.innerHTML).not.toEqual("!!!");
     },
     hasInvalidStat: async (stat: E2EElement) => {
-      expect(stat.innerHTML).toEqual("!!!");
+      expect(stat.innerHTML).toEqual("-");
     },
   };
 }
