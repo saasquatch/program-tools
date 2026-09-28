@@ -71,7 +71,7 @@ const styleString = sheet.toString();
 export function BaseRegistrationFormView(props: BaseRegistrationFormViewProps) {
   const { states, content, callbacks } = props;
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

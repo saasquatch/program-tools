@@ -461,6 +461,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
   }
   return (
     <sl-form
+      part="form-container"
       class={classes.FormWrapper}
       onSl-submit={callbacks.onSubmit}
       ref={(el: HTMLFormElement) => (refs.formRef.current = el)}

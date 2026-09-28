@@ -429,6 +429,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 style={{ marginTop: "var(--sl-spacing-x-small)" }}
                 type="default"
+                exportparts="base: primarybutton-base"
                 onClick={callbacks.onNewFormClick}
               >
                 {text.w9RequiredButtonText}
@@ -607,6 +608,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -615,6 +617,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="default"
+                exportparts="base: secondarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onNewFormClick}
               >
@@ -647,6 +650,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -655,6 +659,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="default"
+                exportparts="base: secondarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onNewFormClick}
               >
@@ -687,6 +692,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="primary"
+                exportparts="base: primarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onEditPayoutInfo}
               >
@@ -695,6 +701,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 disabled={states.disabled || states.loading}
                 type="default"
+                exportparts="base: secondarybutton-base"
                 class={sheet.classes.EditBankDetailsButton}
                 onClick={callbacks.onNewFormClick}
               >
@@ -726,6 +733,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <sl-button
               disabled={states.disabled || states.loading}
               type="default"
+              exportparts="base: primarybutton-base"
               class={sheet.classes.EditBankDetailsButton}
               onClick={callbacks.onEditPayoutInfo}
             >
@@ -756,6 +764,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
             <sl-button
               disabled={states.disabled || states.loading}
               type="primary"
+              exportparts="base: primarybutton-base"
               class={sheet.classes.EditBankDetailsButton}
               onClick={callbacks.onEditPayoutInfo}
             >
@@ -975,7 +984,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
 
   return (
     <div>
-      <div>
+      <div part="dashboard-container">
         <style type="text/css">
           {styleString}
           {vanillaStyle}
@@ -1041,7 +1050,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {states.belowPayoutThreshold && (
           <sqm-form-message
             loading={states.loading}
-            exportparts="base: alert-base, icon:alert-icon"
+            exportparts="alert-base, alert-icon"
             type="info"
             class={sheet.classes.InfoHoldAlertContainer}
             icon="info-circle"
@@ -1062,7 +1071,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
         {alertInfo && (
           <sqm-form-message
             loading={states.loading}
-            exportparts="base: alert-base, icon:alert-icon"
+            exportparts="alert-base, alert-icon"
             type={alertInfo?.alertType}
             class={alertInfo?.class}
             icon={alertInfo?.icon}
@@ -1074,6 +1083,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
               <sl-button
                 style={{ marginTop: "var(--sl-spacing-x-small)" }}
                 type="default"
+                exportparts="base: primarybutton-base"
                 loading={states.veriffLoading}
                 onClick={() => callbacks.onVerifyClick()}
               >
@@ -1097,6 +1107,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <sl-button
             slot="footer"
             type="primary"
+            exportparts="base: primarybutton-base"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormClick}
           >
@@ -1105,6 +1116,7 @@ export const TaxAndCashDashboardView = (props: TaxAndCashDashboardProps) => {
           <sl-button
             slot="footer"
             type="default"
+            exportparts="base: secondarybutton-base"
             class={sheet.classes.DialogButton}
             onClick={callbacks.onNewFormCancel}
           >

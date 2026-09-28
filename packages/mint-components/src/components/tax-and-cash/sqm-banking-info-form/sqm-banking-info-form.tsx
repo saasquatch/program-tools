@@ -23,7 +23,6 @@ import {
 /**
  * @uiName Banking Information Form
  * @exampleGroup Common Components
- *
  */
 @Component({
   tag: "sqm-banking-info-form",

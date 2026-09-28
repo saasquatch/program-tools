@@ -13,6 +13,7 @@ import { useUserAttribute } from "./useUserAttribute";
  * @uiName User Attribute
  * @exampleGroup Advanced
  * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
+ * @csspart sqm-base - The base container
  */
 @Component({
   tag: "sqm-user-attribute",
