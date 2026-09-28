@@ -70,6 +70,7 @@ const getMockData = () => {
       Math.floor(Math.random() * 10) >= 5
         ? DateTime.now().minus({ days: 6 }).toMillis()
         : null,
+    dateConversionRetracted: null,
     dateFraudChecksCompleted: null,
     dateModerated: 1558730033306,
     dateModified: 1554934543447,

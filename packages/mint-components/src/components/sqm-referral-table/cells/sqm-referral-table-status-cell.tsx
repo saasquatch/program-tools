@@ -1,6 +1,17 @@
 import { Component, h, Prop } from "@stencil/core";
 import { FraudStatus } from "../../../saasquatch";
 import { createStyleSheet } from "../../../styling/JSS";
+import { ReferralStatus } from "../referralStatus";
+
+type ShoeLaceBadgeType = "primary" | "danger" | "warning" | "success" | "info";
+
+const badgeTypeMap: Record<ReferralStatus, ShoeLaceBadgeType> = {
+  DENIED: "danger",
+  RETRACTED: "danger",
+  PENDING_REVIEW: "warning",
+  CONVERTED: "success",
+  IN_PROGRESS: "warning",
+};
 
 const style = {
   SubText: {
@@ -63,6 +74,7 @@ const styleString = sheet.toString();
 })
 export class ReferralTableStatusCell {
   @Prop() statusText: string;
+  @Prop() status?: ReferralStatus;
   @Prop() fraudStatus?: FraudStatus;
   @Prop() converted: boolean;
   @Prop() statusSubText: string;
@@ -71,20 +83,15 @@ export class ReferralTableStatusCell {
     const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
-    const getBadgeType = (fraudStatus) => {
-      if (fraudStatus === "PENDING") return "warning";
-      if (fraudStatus === "DENIED") return "danger";
+    const getBadgeType = (): ShoeLaceBadgeType => {
+      if (this.status) return badgeTypeMap[this.status];
 
+      // Callers that predate the status prop still set fraudStatus/converted
+      if (this.fraudStatus === "PENDING") return "warning";
+      if (this.fraudStatus === "DENIED") return "danger";
       if (this.converted) return "success";
       return "warning";
     };
-
-    type ShoeLaceBadgeType =
-      | "primary"
-      | "danger"
-      | "warning"
-      | "success"
-      | "info";
 
     const getBadgeCSSClass = (badgeType: ShoeLaceBadgeType): string => {
       switch (badgeType) {
@@ -111,8 +118,8 @@ export class ReferralTableStatusCell {
         <style type="text/css">{styleString}</style>
         <sl-badge
           pill
-          type={getBadgeType(this.fraudStatus)}
-          class={getBadgeCSSClass(getBadgeType(this.fraudStatus))}
+          type={getBadgeType()}
+          class={getBadgeCSSClass(getBadgeType())}
         >
           {this.statusText}
         </sl-badge>
