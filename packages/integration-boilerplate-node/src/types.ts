@@ -43,6 +43,8 @@ export interface FormRequestContext<IntegrationConfig, FormConfig> {
     key: string;
     integrationConfig?: FormConfig;
     globalConfig?: Record<string, any>;
+    successSegments?: string[];
+    failureSegments?: string[];
   };
   integrationConfig?: IntegrationConfig;
   user?: {
