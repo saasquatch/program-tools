@@ -1,4 +1,4 @@
-import * as rpc from "./rpc";
-import * as saasquatch from "./saasquatch";
+import * as rpc from "./rpc.ts";
+import * as saasquatch from "./saasquatch.ts";
 
 export { rpc, saasquatch };
