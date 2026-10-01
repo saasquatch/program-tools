@@ -1,58 +1,55 @@
 {
   "name": "@saasquatch/express-boilerplate",
-  "version": "2.0.0",
-  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
-  "main": "dist/index.js",
-  "type": "module",
+  "version": "2.0.1-4",
   "private": false,
-  "publishConfig": {
-    "provenance": true,
-    "access": "public"
+  "description": "Boilerplate middleware and functions for building Express apps on Kubernetes",
+  "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
   },
-  "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
-  "engines": {
-    "node": "^24 || ^26"
+  "author": "ReferralSaaSquatch.com, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
   },
   "files": [
     "dist/*.js",
     "dist/*.d.ts"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saasquatch/program-tools.git"
+  "type": "module",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
-  "bugs": {
-    "url": "https://github.com/saasquatch/program-tools/issues"
-  },
-  "homepage": "https://github.com/saasquatch/program-tools/packages/express-boilerplate#readme",
   "scripts": {
     "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout src/tests/**/*.ts",
     "build": "tsc -b",
-    "check": "tsc --noEmit && npm run lint",
+    "check": "tsc --noEmit && oxlint",
+    "format": "oxfmt",
     "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
-    "prepack": "npm run build",
-    "lint": "eslint ./src --report-unused-disable-directives"
+    "prepack": "npm run build"
   },
   "dependencies": {
-    "nanoid": "^3.3.7"
+    "nanoid": "^6.0.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^10.0.1",
-    "@saasquatch/logger": "^3.0.0",
+    "@saasquatch/logger": "^3.0.1-8",
     "@types/express": "4",
     "@types/node": "^24.12.4",
     "@types/supertest": "^7.2.0",
-    "@typescript-eslint/eslint-plugin": "^8.59.4",
-    "@typescript-eslint/parser": "^8.59.4",
-    "eslint": "^10.4.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "supertest": "^7.2.2",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
-    "express": "4",
-    "winston": "3"
+    "@saasquatch/logger": "^3.0.1-8",
+    "express": "^4.0.0"
   },
-  "prettier": {}
+  "engines": {
+    "node": "^24 || ^26"
+  }
 }

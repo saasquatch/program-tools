@@ -1,5 +1,5 @@
+import type { Logger } from "@saasquatch/logger";
 import type { NextFunction, Request, Response } from "express";
-import { Logger } from "winston";
 import { nanoid } from "./nanoid.ts";
 
 /**
