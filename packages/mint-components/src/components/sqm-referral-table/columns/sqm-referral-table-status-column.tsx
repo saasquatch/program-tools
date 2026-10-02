@@ -1,14 +1,15 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
-import { FraudStatus, Referral, Referrer } from "../../../saasquatch";
+import { Referral, Referrer } from "../../../saasquatch";
 import { useRequestRerender } from "../../../tables/re-render";
+import { getReferralStatus, ReferralStatus } from "../referralStatus";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
 /**
  * @uiName Referral Table Status Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup Referrals
- * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
+ * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" retracted-status-text="Cancelled" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" retracted-status-sub-text="This purchase was cancelled or refunded"></sqm-referral-table-status-column>
  */
 @Component({
   tag: "sqm-referral-table-status-column",
@@ -41,6 +42,11 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   @Prop() deniedStatusText: string = "Denied";
 
   /**
+   * @uiName Retracted status text
+   */
+  @Prop() retractedStatusText: string = "Cancelled";
+
+  /**
    * @uiName Pending review status sub-text
    */
   @Prop() pendingReviewStatusSubText: string = "Awaiting review";
@@ -50,36 +56,50 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
    */
   @Prop() deniedStatusSubText: string = "Detected self-referral";
 
+  /**
+   * @uiName Retracted status sub-text
+   */
+  @Prop() retractedStatusSubText: string =
+    "This purchase was cancelled or refunded";
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
+  private getStatusCopy(status: ReferralStatus): {
+    text: string;
+    subText?: string;
+  } {
+    return {
+      DENIED: {
+        text: this.deniedStatusText,
+        subText: this.deniedStatusSubText,
+      },
+      PENDING_REVIEW: {
+        text: this.pendingReviewStatusText,
+        subText: this.pendingReviewStatusSubText,
+      },
+      RETRACTED: {
+        text: this.retractedStatusText,
+        subText: this.retractedStatusSubText,
+      },
+      CONVERTED: { text: this.convertedStatusText },
+      IN_PROGRESS: { text: this.inProgressStatusText },
+    }[status];
+  }
+
   @Method()
   async renderCell(data: Referral) {
-    // TODO: Make ICU and more complete
-    let statusText: string;
-    let statusSubText: string;
-
-    const fraudStatus: FraudStatus = data?.fraudData?.moderationStatus;
-
-    if (fraudStatus === "DENIED") {
-      statusText = this.deniedStatusText;
-      statusSubText = this.deniedStatusSubText;
-    } else if (fraudStatus === "PENDING") {
-      statusText = this.pendingReviewStatusText;
-      statusSubText = this.pendingReviewStatusSubText;
-    } else {
-      statusText = data.dateConverted
-        ? this.convertedStatusText
-        : this.inProgressStatusText;
-    }
+    const status = getReferralStatus(data);
+    const { text, subText } = this.getStatusCopy(status);
 
     return (
       <sqm-referral-table-status-cell
-        status-text={statusText}
-        status-sub-text={statusSubText}
-        fraud-status={fraudStatus}
+        status={status}
+        status-text={text}
+        status-sub-text={subText}
+        fraud-status={data?.fraudData?.moderationStatus}
         converted={data.dateConverted ? true : false}
       ></sqm-referral-table-status-cell>
     );
@@ -92,13 +112,14 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
 
   @Method()
   async renderReferrerCell(data: Referrer) {
-    // TODO: Make ICU and more complete
-    const statusText = data.dateConverted
-      ? this.convertedStatusText
-      : this.inProgressStatusText;
+    const status = getReferralStatus(data);
+    const { text, subText } = this.getStatusCopy(status);
+
     return (
       <sqm-referral-table-status-cell
-        status-text={statusText}
+        status={status}
+        status-text={text}
+        status-sub-text={subText}
         converted={data.dateConverted ? true : false}
       ></sqm-referral-table-status-cell>
     );
@@ -109,6 +130,12 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
       this.columnTitle,
       this.convertedStatusText,
       this.inProgressStatusText,
+      this.pendingReviewStatusText,
+      this.deniedStatusText,
+      this.retractedStatusText,
+      this.pendingReviewStatusSubText,
+      this.deniedStatusSubText,
+      this.retractedStatusSubText,
     ]);
     return <Host style={{ display: "none" }} />;
   }

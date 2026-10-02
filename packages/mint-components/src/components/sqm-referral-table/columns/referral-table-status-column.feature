@@ -30,3 +30,21 @@ Feature: Referral Table Status Column
       | Converted   | convertedStatusText     | Green      |
       | Pending     | pendingReviewStatusText | Orange     |
       | Denied      | deniedStatusText        | Red        |
+      | Cancelled   | retractedStatusText     | Red        |
+
+  @motivating
+  Scenario: A referral whose conversion was retracted is not shown as converted
+    Given a referral with both `dateConverted` and `dateConversionRetracted` set
+    Then the status is displayed as text from retractedStatusText in a Red pill
+    And the sub-text from retractedStatusSubText is displayed
+
+  @minutia
+  Scenario Outline: Fraud moderation takes precedence over the conversion state
+    Given a referral with `dateConverted` and `dateConversionRetracted` set
+    And the referral `fraudData.moderationStatus` is <moderationStatus>
+    Then the status is displayed as text from <statusTextProp>
+
+    Examples:
+      | moderationStatus | statusTextProp          |
+      | "DENIED"         | deniedStatusText        |
+      | "PENDING"        | pendingReviewStatusText |

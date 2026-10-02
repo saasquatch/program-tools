@@ -53,6 +53,7 @@ import { QRCodeViewProps } from "./components/sqm-qr-code/sqm-qr-code-view";
 import { ReferralCodesViewProps } from "./components/sqm-referral-codes/sqm-referral-codes-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
+import { ReferralStatus } from "./components/sqm-referral-table/referralStatus";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
@@ -4311,6 +4312,7 @@ export namespace Components {
     interface SqmReferralTableStatusCell {
         "converted": boolean;
         "fraudStatus"?: FraudStatus;
+        "status"?: ReferralStatus;
         "statusSubText": string;
         "statusText": string;
     }
@@ -4346,6 +4348,14 @@ export namespace Components {
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
+        /**
+          * @uiName Retracted status sub-text
+         */
+        "retractedStatusSubText": string;
+        /**
+          * @uiName Retracted status text
+         */
+        "retractedStatusText": string;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -12793,6 +12803,7 @@ declare namespace LocalJSX {
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
         "fraudStatus"?: FraudStatus;
+        "status"?: ReferralStatus;
         "statusSubText"?: string;
         "statusText"?: string;
     }
@@ -12825,6 +12836,14 @@ declare namespace LocalJSX {
           * @uiName Pending review status text
          */
         "pendingReviewStatusText"?: string;
+        /**
+          * @uiName Retracted status sub-text
+         */
+        "retractedStatusSubText"?: string;
+        /**
+          * @uiName Retracted status text
+         */
+        "retractedStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;
