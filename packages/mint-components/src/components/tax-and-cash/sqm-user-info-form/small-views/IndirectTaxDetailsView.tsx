@@ -119,6 +119,9 @@ const vanillaStyle = `
        padding: 0;
        box-sizing: border-box;
     }
+    sl-select::part(base) {
+      color: var(--sqm-input-color);
+    }
     sl-menu-item::part(base) {
       color: var(--sqm-input-color);
     }

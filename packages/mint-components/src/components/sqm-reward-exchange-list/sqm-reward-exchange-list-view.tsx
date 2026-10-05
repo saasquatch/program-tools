@@ -82,6 +82,7 @@ const style = {
   Select: {
     "&::part(base)": {
       borderRadius: "var(--sqm-input-border-radius)",
+      color: "var(--sqm-input-color)",
     },
     "&::part(label)": {
       color: "var(--sqm-input-label-color)",

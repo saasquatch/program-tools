@@ -318,7 +318,7 @@ const vanillaStyle = `
 
     /* Corrected: Target sl-input, sl-select, sl-textarea base elements */
     sl-input::part(base),
-    sl-dropdown::part(base),
+    sl-select::part(base),
     sl-textarea::part(base){
       background-color: var(--sqm-input-background, #fff);
       border-radius: var(--sqm-input-border-radius, var(--sl-input-border-radius-large), 0.25rem);

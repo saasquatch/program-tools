@@ -719,6 +719,9 @@ export class BankingInfoForm {
     );
 
     const vanillaStyle = `
+      sl-select::part(base) {
+        color: var(--sqm-input-color);
+      }
       sl-menu-item::part(base) {
       color: var(--sqm-input-color);
     }

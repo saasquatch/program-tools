@@ -50,6 +50,9 @@ sl-select::part(label){
   font-size: var(--sl-input-label-font-size-small);
   font-weight: var(--sl-font-weight-bold);
 }
+sl-select::part(base){
+  color: var(--sqm-input-color);
+}
 sl-select::part(menu){
   max-height: 300px;
 }

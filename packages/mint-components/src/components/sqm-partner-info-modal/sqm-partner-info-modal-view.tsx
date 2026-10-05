@@ -79,6 +79,9 @@ const style = {
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
     marginTop: "var(--sl-spacing-large)",
+    "& sl-select::part(base)": {
+      color: "var(--sqm-input-color)",
+    },
   },
   NameInput: {
     "&::part(label)": {
