@@ -1,0 +1,125 @@
+name: Trigger Component Meta Sync
+
+# Asks portalv2 (saasquatch/saasquatch) to re-extract its content-editor label
+# catalog from a newly published component package. portalv2 owns the
+# extraction; this repo only says "version X of package Y is on npm".
+
+on:
+  workflow_call:
+    inputs:
+      package-name:
+        description: npm name of the published package
+        required: true
+        type: string
+      version:
+        description: The published version
+        required: true
+        type: string
+      portalv2-branch:
+        description: saasquatch branch to sync into (defaults to this branch's name)
+        required: false
+        type: string
+        default: ""
+    secrets:
+      COMPONENT_META_SYNC_APP_ID:
+        required: false
+      COMPONENT_META_SYNC_APP_PRIVATE_KEY:
+        required: false
+
+  workflow_dispatch:
+    inputs:
+      package-name:
+        description: npm name of the published package
+        required: true
+        type: choice
+        options:
+          - "@saasquatch/mint-components"
+      version:
+        description: The published version (e.g. 2.5.1-4)
+        required: true
+        type: string
+      portalv2-branch:
+        description: saasquatch branch to sync into (defaults to this branch's name)
+        required: false
+        type: string
+        default: ""
+
+permissions: {}
+
+jobs:
+  trigger:
+    name: Trigger portalv2 component meta sync
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      PACKAGE_NAME: ${{ inputs.package-name }}
+      VERSION: ${{ inputs.version }}
+      TARGET_BRANCH: ${{ inputs.portalv2-branch || github.ref_name }}
+      TARGET_REPO: saasquatch/saasquatch
+      SYNC_WORKFLOW: component-meta-sync.yml
+      HAS_APP: ${{ secrets.COMPONENT_META_SYNC_APP_ID != '' && secrets.COMPONENT_META_SYNC_APP_PRIVATE_KEY != '' }}
+
+    steps:
+      - name: Validate inputs
+        run: |
+          [[ "$PACKAGE_NAME" =~ ^@saasquatch/[a-z0-9-]+$ ]] || { echo "::error::Invalid package name: $PACKAGE_NAME"; exit 1; }
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]] || { echo "::error::Invalid version: $VERSION"; exit 1; }
+          [[ "$TARGET_BRANCH" =~ ^[A-Za-z0-9._/-]+$ ]] || { echo "::error::Invalid branch name: $TARGET_BRANCH"; exit 1; }
+          if [[ "$HAS_APP" != "true" ]]; then
+            echo "::warning::COMPONENT_META_SYNC_APP_ID / _PRIVATE_KEY aren't configured; skipping the portalv2 sync."
+            echo "SKIP=true" >> "$GITHUB_ENV"
+          fi
+          # production only takes stable releases, via portalv2's nightly sync.
+          if [[ "$TARGET_BRANCH" == "production" ]]; then
+            echo "::notice::Not syncing into production; the nightly job there tracks stable releases."
+            echo "SKIP=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Wait for the version on npm
+        if: env.SKIP != 'true'
+        run: |
+          for attempt in $(seq 1 30); do
+            if npm view "${PACKAGE_NAME}@${VERSION}" version >/dev/null 2>&1; then
+              echo "${PACKAGE_NAME}@${VERSION} is available"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::${PACKAGE_NAME}@${VERSION} never became resolvable on npm"
+          exit 1
+
+      - name: Create app token
+        id: app-token
+        if: env.SKIP != 'true'
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # bcd2b = v3.2.0
+        with:
+          app-id: ${{ secrets.COMPONENT_META_SYNC_APP_ID }}
+          private-key: ${{ secrets.COMPONENT_META_SYNC_APP_PRIVATE_KEY }}
+          owner: saasquatch
+          repositories: saasquatch
+          permission-actions: write
+          permission-contents: read
+
+      - name: Check the target branch has the sync workflow
+        if: env.SKIP != 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          if ! gh api "repos/${TARGET_REPO}/contents/.github/workflows/${SYNC_WORKFLOW}?ref=${TARGET_BRANCH}" --silent 2>/dev/null; then
+            echo "::notice::${TARGET_REPO}@${TARGET_BRANCH} doesn't exist or has no ${SYNC_WORKFLOW}; nothing to sync."
+            echo "SKIP=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Dispatch the sync
+        if: env.SKIP != 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh workflow run "$SYNC_WORKFLOW" \
+            --repo "$TARGET_REPO" \
+            --ref "$TARGET_BRANCH" \
+            -f package="$PACKAGE_NAME" \
+            -f version="$VERSION" \
+            -f portalv2-branch="$TARGET_BRANCH"
+          echo "::notice::Requested ${SYNC_WORKFLOW} on ${TARGET_REPO}@${TARGET_BRANCH} for ${PACKAGE_NAME}@${VERSION}"

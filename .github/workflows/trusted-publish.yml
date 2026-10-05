@@ -43,6 +43,18 @@ jobs:
       contents: write # Create commit & tag for edited version number in package.json etc
       id-token: write # GCP workload identity federation
 
+  component-meta-sync:
+    needs: publish-package
+    if: inputs.package == 'mint-components' && inputs.increment-type == 'prerelease'
+    uses: ./.github/workflows/trigger-component-meta-sync.yml
+    with:
+      package-name: ${{ needs.publish-package.outputs.package-name }}
+      version: ${{ needs.publish-package.outputs.version }}
+    secrets:
+      COMPONENT_META_SYNC_APP_ID: ${{ secrets.COMPONENT_META_SYNC_APP_ID }}
+      COMPONENT_META_SYNC_APP_PRIVATE_KEY: ${{ secrets.COMPONENT_META_SYNC_APP_PRIVATE_KEY }}
+    permissions: {}
+
   mint-components-release:
     if: github.event_name == 'push'
     uses: ./.github/workflows/mint-components-release.yml

@@ -15,12 +15,24 @@ on:
         # type: choice isn't supported by workflow_call
         type: string
 
+    outputs:
+      package-name:
+        description: The npm name of the published package
+        value: ${{ jobs.publish.outputs.package-name }}
+      version:
+        description: The version that was published
+        value: ${{ jobs.publish.outputs.version }}
+
 permissions: {}
 
 jobs:
   publish:
     name: "Publish package"
     runs-on: ubuntu-latest
+
+    outputs:
+      package-name: ${{ steps.extract-package-name.outputs.result }}
+      version: ${{ steps.compute-version.outputs.result }}
 
     permissions:
       contents: write # Create commit & tag for edited version number in package.json etc
