@@ -18,6 +18,7 @@ export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
 type SinkWriter = (serializedRecord: string) => void;
+const sinkWriters = new WeakMap<Sink["stream"], SinkWriter>();
 const loggers = new Map<string, Logger>();
 
 export function getLogger(logger?: string): Logger {
@@ -258,6 +259,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function getSinkFn(sink: Sink): SinkWriter {
   const stream = sink.stream;
+  const existingWriter = sinkWriters.get(stream);
+  if (existingWriter !== undefined) {
+    return existingWriter;
+  }
+
   let failed = false;
 
   const onError = (error?: Error | null): void => {
@@ -268,7 +274,7 @@ function getSinkFn(sink: Sink): SinkWriter {
 
   stream.on("error", onError);
 
-  return (serializedRecord) => {
+  const writer: SinkWriter = (serializedRecord) => {
     if (failed || stream.destroyed || stream.writableEnded) {
       return;
     }
@@ -287,4 +293,7 @@ function getSinkFn(sink: Sink): SinkWriter {
       failed = true;
     }
   };
+
+  sinkWriters.set(stream, writer);
+  return writer;
 }
