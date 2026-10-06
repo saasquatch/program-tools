@@ -14,10 +14,6 @@ export type LogCollectionOptions = {
   maxEntries?: number;
 };
 
-export type GetCollectedLogsOptions = {
-  serialized?: boolean;
-};
-
 export const DEFAULT_LOG_COLLECTION_LIMIT = 500;
 export const DEFAULT_LOGGER_NAME = "_ssqt_default_logger";
 
@@ -167,23 +163,17 @@ export class Logger {
     this.collection.enabled = false;
   }
 
-  public getCollectedLogs<T extends boolean = false>(
-    opts?: GetCollectedLogsOptions & { serialized?: T },
-  ): T extends true ? string : LogRecord[] {
+  public getCollectedLogs(opts: { serialized: true }): string;
+  public getCollectedLogs(opts?: { serialized?: false }): LogRecord[];
+  public getCollectedLogs(opts?: {
+    serialized?: boolean;
+  }): string | LogRecord[] {
     const records = this.getCollectedRecords();
     if (opts?.serialized) {
-      // this is just some type mucking to get the return type to change
-      // depending on whether `serialized` is set or not
-      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-      return records.map(serializeRecord).join("\n") as T extends true
-        ? string
-        : LogRecord[];
+      return records.map(serializeRecord).join("\n");
     }
 
-    // this is just some type mucking to get the return type to change
-    // depending on whether `serialized` is set or not
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    return records as T extends true ? string : LogRecord[];
+    return records;
   }
 
   public clearCollectedLogs(): void {

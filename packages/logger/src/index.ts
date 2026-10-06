@@ -12,7 +12,6 @@ import {
   getLogger,
   initializeLogger,
   isLoggerInitialized,
-  type GetCollectedLogsOptions,
   type LogCollectionOptions,
 } from "./logger.ts";
 import { httpLogMiddleware } from "./plugins.ts";
@@ -26,7 +25,6 @@ export {
   httpLogMiddleware,
   initializeLogger,
   isLoggerInitialized,
-  type GetCollectedLogsOptions,
   type LogCollectionOptions,
   type LogLevel,
   type LogRecord,
