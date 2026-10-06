@@ -41,11 +41,15 @@ export function CouponCodeView(props: CouponCodeViewProps) {
       <p
         class={sheet.classes.couponCodeLabel}
         style={{ textAlign: props.textAlign }}
+        part="label"
       >
         {props.couponCodeLabel}
       </p>
       {error ? (
-        <sqm-form-message type={props.errorType} exportparts="erroralert-icon">
+        <sqm-form-message
+          type={props.errorType}
+          exportparts="alert-icon, erroralert-icon"
+        >
           <div part="erroralert-text">{props.errorText}</div>
         </sqm-form-message>
       ) : (

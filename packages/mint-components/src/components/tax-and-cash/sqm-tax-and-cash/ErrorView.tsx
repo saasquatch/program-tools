@@ -7,7 +7,7 @@ interface ErrorProps {
 
 export const ErrorView = (props: ErrorProps) => {
   return (
-    <sqm-form-message type="error">
+    <sqm-form-message type="error" part="container">
       <p part="alert-title">{props.loadingErrorAlertHeader}</p>
       <p part="alert-description">{props.loadingErrorAlertDescription}</p>
     </sqm-form-message>

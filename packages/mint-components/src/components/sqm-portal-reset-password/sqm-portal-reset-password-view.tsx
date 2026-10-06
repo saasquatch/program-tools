@@ -87,14 +87,14 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
 
   if (states.reset) {
     return (
-      <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`}>
+      <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`} part="sqm-base">
         <style type="text/css">{styleString}</style>
         <TextSpanView type="h3">
           {states.content.resetPasswordHeader}
         </TextSpanView>
         <sqm-form-message
           class={sheet.classes.CodeSuccess}
-          exportparts="success-icon"
+          exportparts="successalert-icon"
         >
           <div part="successalert-text">{states.content.resetSuccessText}</div>
         </sqm-form-message>
@@ -119,7 +119,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
 
   if (!states.oobCodeValid) {
     return (
-      <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`}>
+      <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`} part="sqm-base">
         <style type="text/css">{styleString}</style>
         <sqm-form-message
           class={sheet.classes.CodeError}
@@ -143,7 +143,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
   }
 
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

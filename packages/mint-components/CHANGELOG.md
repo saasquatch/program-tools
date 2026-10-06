@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.5.1
+
+### Patch Changes
+
+- [#549](https://github.com/saasquatch/program-tools/pull/549) [`63526cf`](https://github.com/saasquatch/program-tools/commit/63526cfab1a9cd1993bc67ff3682bdf8153ca196) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Fixes
+
+  - Promo Codes title not rendering in production microsites.
+  - Widget verification modal controls unfocusing in the content editors.
+  - Add loading skeleton state to sqm-referral-codes-view
+  - Add loading skeleton state to sqm-pagination-view
+
+## 2.5.0
+
+### Minor Changes
+
+- [#536](https://github.com/saasquatch/program-tools/pull/536) [`8bcc9bb`](https://github.com/saasquatch/program-tools/commit/8bcc9bb001e39c6f4be738787c2c1123c03298dc) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Adds @csspart metadata so Portal can expose editable parts for editing.
+
 ## 2.4.9
 
 ### Patch Changes

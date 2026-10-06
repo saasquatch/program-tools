@@ -80,7 +80,7 @@ export function PortalEmailVerificationView(
     },
   } = props;
   return (
-    <div class={sheet.classes.Wrapper}>
+    <div class={sheet.classes.Wrapper} part="sqm-base">
       <style type="text/css">
         {vanillaStyle}
         {styleString}

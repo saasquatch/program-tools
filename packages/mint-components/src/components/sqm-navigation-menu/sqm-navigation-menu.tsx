@@ -13,6 +13,7 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Navigation Menu
  * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
+ * @csspart dropdownbutton-base - The dropdown button base
  */
 @Component({
   tag: "sqm-navigation-menu",

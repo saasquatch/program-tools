@@ -202,6 +202,8 @@ export function useReferralCodes(props: ReferralCodes) {
   }, [referralData]);
 
   return {
+    titleText: props.titleText,
+    textColor: props.textColor,
     states: {
       ...states,
       noCodes: referralData?.totalCount === 0,

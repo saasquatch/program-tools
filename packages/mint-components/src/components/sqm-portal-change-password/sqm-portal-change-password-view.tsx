@@ -90,7 +90,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const styleString = sheet.toString();
 
   return (
-    <div>
+    <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <sl-dialog
         class={sheet.classes.Dialog}

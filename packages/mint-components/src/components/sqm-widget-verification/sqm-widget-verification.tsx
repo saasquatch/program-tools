@@ -6,6 +6,7 @@ import {
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
+import { createStyleSheet } from "../../styling/JSS";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
 import { extractProps } from "../tax-and-cash/sqm-tax-and-cash/extractProps";
@@ -14,8 +15,10 @@ import {
   VERIFICATION_EMAIL_NAMESPACE,
   VERIFICATION_PARENT_NAMESPACE,
 } from "./keys";
-import { useWidgetVerification } from "./useWidgetVerification";
-import { createStyleSheet } from "../../styling/JSS";
+import {
+  useWidgetVerification,
+  WidgetVerificationProps,
+} from "./useWidgetVerification";
 
 const style = {
   Dialog: {
@@ -51,6 +54,8 @@ const styleString = sheet.toString();
  * @uiName Widget Verification Flow
  * @exampleGroup Widget Verification
  * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+ * @csspart step-base - The base container of the currently rendered step
+ * @csspart primarybutton-base - The primary button base of the currently rendered step
  */
 @Component({
   tag: "sqm-widget-verification",
@@ -315,6 +320,7 @@ export class WidgetVerification {
             stateController={
               props["sqm-partner-info-modal_stateController"] || "{}"
             }
+            exportparts="sqm-base: step-base, primarybutton-base"
           ></sqm-partner-info-modal>
         );
       }
@@ -324,6 +330,7 @@ export class WidgetVerification {
             onVerification={props.onVerification}
             {...this.getStepTextProps("codeStep_")}
             {...extractProps(props, "sqm-code-verification_")}
+            exportparts="sqm-base: step-base, primarybutton-base"
           ></sqm-code-verification>
         );
       }
@@ -331,6 +338,7 @@ export class WidgetVerification {
         <sqm-email-verification
           {...this.getStepTextProps("emailStep_")}
           {...extractProps(props, "sqm-email-verification_")}
+          exportparts="sqm-base: step-base, primarybutton-base"
         ></sqm-email-verification>
       );
     };
@@ -351,6 +359,9 @@ export class WidgetVerification {
               e.preventDefault();
             }
           }}
+          onSl-initial-focus={(e: any) => {
+            props.onInitialFocus?.(e);
+          }}
         >
           <h2 class={sheet.classes.DialogTitle}>{dialogLabel}</h2>
           {renderStepContent()}
@@ -360,7 +371,9 @@ export class WidgetVerification {
   }
 }
 
-function useDemoWidgetVerificationInternal(props: WidgetVerification) {
+function useDemoWidgetVerificationInternal(
+  props: WidgetVerification
+): WidgetVerificationProps {
   const [showCode, setShowCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,
@@ -390,6 +403,7 @@ function useDemoWidgetVerificationInternal(props: WidgetVerification) {
       showPartnerModal: false,
       onVerification,
       onPartnerModalComplete: () => {},
+      onInitialFocus: (e: any) => e.preventDefault(),
       loading: false,
     },
     formatted || {},

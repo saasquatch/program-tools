@@ -11,6 +11,15 @@ import { usePortalForgotPassword } from "./usePortalForgotPassword";
 
 /**
  * @uiName Microsite Forgot Password
+ * @csspart sqm-base - The base container
+ * @csspart erroralert-text - The error message element
+ * @csspart successalert-text - The success message element
+ * @csspart erroralert-icon - The error alert icon
+ * @csspart successalert-icon - The success alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-portal-forgot-password",
