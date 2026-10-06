@@ -247,15 +247,34 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function getSinkFn(sink: Sink): SinkWriter {
+  const stream = sink.stream;
+  let failed = false;
+
+  const onError = (error?: Error | null): void => {
+    if (error) {
+      failed = true;
+    }
+  };
+
+  stream.on("error", onError);
+
   return (serializedRecord) => {
-    // FIXME: writing without checking whether the stream is applying
-    // backpressure is problematic, but the machinery needed to handle this
-    // case correctly is quite large and not really worth implementing.
-    // previous versions of the logger wrapped Winston, which does not handle
-    // backpressure correctly for any transport except the File transport. this
-    // means we aren't introducing any regression here and it's unlikely we'll
-    // encounter any issues in production considering we haven't seen any in
-    // the past 5+ years we've been using Winston
-    sink.stream.write(serializedRecord);
+    if (failed || stream.destroyed || stream.writableEnded) {
+      return;
+    }
+
+    try {
+      // FIXME: writing without checking whether the stream is applying
+      // backpressure is problematic, but the machinery needed to handle this
+      // case correctly is quite large and not really worth implementing.
+      // previous versions of the logger wrapped Winston, which does not handle
+      // backpressure correctly for any transport except the File transport. this
+      // means we aren't introducing any regression here and it's unlikely we'll
+      // encounter any issues in production considering we haven't seen any in
+      // the past 5+ years we've been using Winston
+      stream.write(serializedRecord, onError);
+    } catch {
+      failed = true;
+    }
   };
 }
