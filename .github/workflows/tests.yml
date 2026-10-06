@@ -17,12 +17,13 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - program-boilerplate
           - component-boilerplate
-          - stencil-grapes-plugin
-          - mint-components
-          - integration-boilerplate-node
           - express-boilerplate
+          - integration-boilerplate-node
+          - logger
+          - mint-components
+          - program-boilerplate
+          - stencil-grapes-plugin
 
     steps:
       - name: Checkout

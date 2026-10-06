@@ -1,5 +1,5 @@
+import type { Logger } from "@saasquatch/logger";
 import type { Application, Request, Response } from "express";
-import { Logger } from "winston";
 import { formatGenericError } from "./error.ts";
 import { TERMINATION_APP_LOCAL_KEY } from "./shutdown.ts";
 
@@ -25,11 +25,11 @@ export function healthCheck<T = undefined, E = undefined>(
   customCheck?: () => Promise<HealthCheckResult<T, E>>,
 ): (req: Request, res: Response) => void {
   return (_req, res) => {
-    // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
     const terminating = app.locals[TERMINATION_APP_LOCAL_KEY];
     if (typeof terminating === "boolean" && terminating) {
       logger.info("App is in TERMINATING state, sending health check failure");
-      return res.status(503).json({ status: "TERMINATING" });
+      res.status(503).json({ status: "TERMINATING" });
+      return;
     }
 
     if (customCheck) {
@@ -51,7 +51,8 @@ export function healthCheck<T = undefined, E = undefined>(
         });
       return;
     } else {
-      return res.status(200).json({ status: "OK" });
+      res.status(200).json({ status: "OK" });
+      return;
     }
   };
 }

@@ -1,6 +1,6 @@
 <h1 align="center">@saasquatch/express-boilerplate</h1>
 
-The SaaSquatch exporess boilerplate package provides a number of middleware and utility
+The SaaSquatch express boilerplate package provides a number of middleware and utility
 functions that are useful in Express apps, particularly those running in Kubernetes
 environments.
 
@@ -44,7 +44,7 @@ server.listen(3000, () => baseLogger.notice("App listening on port 3000"));
 ## Graceful Shutdown Manager
 
 The `installShutdownManager` function installs the OS signal handlers for `SIGINT` and
-`SIGTERM` to shutdown the server in a graceful way that is compatible with Kubernetes
+`SIGTERM` to shut down the server in a graceful way that is compatible with Kubernetes
 best practices. It is also used to configure the TCP Keep-Alive timeouts for the server,
 which may be necessary for certain cloud load balancers.
 
@@ -85,11 +85,11 @@ const server = installShutdownManager(app, logger, {
 server.listen(3000, () => logger.notice("App listening on port 3000"));
 ```
 
-## RequestId and Logger Middleware
+## Request ID and Logger Middleware
 
 The `requestIdAndLogger` middleware function generates a random request ID using `nanoid`
 and sets the `res.locals.requestId` and `res.locals.logger` variables. These can be used
-in the subsequent request handlers to generate log events with the requestId
+in the subsequent request handlers to generate log events with the request ID
 automatically attached.
 
 ```typescript
@@ -111,7 +111,7 @@ app.get("/testing", (req, res) => {
 
 The `asyncHandlerWrapper` function wraps an async request handler to automatically catch
 any rejected promises, log the error, and return an appropriate response. Without this
-function the default behavior is for unhandled promise rejections to crash the
+function, the default behavior is for unhandled promise rejections to crash the
 application, which is obviously unwanted.
 
 This function requires that the `requestIdAndLogger` middleware function is installed.

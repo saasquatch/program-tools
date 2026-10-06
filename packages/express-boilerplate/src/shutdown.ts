@@ -1,6 +1,6 @@
-import type { Application } from "express";
 import { Server, createServer } from "http";
-import { Logger } from "winston";
+import type { Logger } from "@saasquatch/logger";
+import type { Application } from "express";
 import { formatGenericError } from "./error.ts";
 
 const handleHookError = (hook: string, logger: Logger) => (err: unknown) => {
@@ -23,22 +23,22 @@ export type ShutdownManagerConfig = {
   afterShutdown?: () => Promise<void>;
 };
 
+const optionalInt = (key: string, defaultVal: number): number => {
+  const env = process.env[key];
+  if (!env) {
+    return defaultVal;
+  }
+
+  const parsedEnv = parseInt(env, 10);
+  if (Number.isNaN(parsedEnv)) {
+    throw new Error(`Environment variable "${key}" is not an integer`);
+  }
+  return parsedEnv;
+};
+
 export function shutdownManagerConfigFromEnv(
   defaults?: Partial<ShutdownManagerConfig>,
 ): ShutdownManagerConfig {
-  const optionalInt = (key: string, defaultVal: number): number => {
-    const env = process.env[key];
-    if (!env) {
-      return defaultVal;
-    }
-
-    const parsedEnv = parseInt(env, 10);
-    if (Number.isNaN(parsedEnv)) {
-      throw new Error(`Environment variable "${key}" is not an integer`);
-    }
-    return parsedEnv;
-  };
-
   const keepAliveTimeoutSeconds = optionalInt(
     "SSQT_HTTP_KEEP_ALIVE_SECONDS",
     defaults?.keepAliveTimeoutSeconds ?? 60,
@@ -67,7 +67,6 @@ export function installShutdownManager(
   app.disable("x-powered-by");
   const server = createServer(app);
 
-  // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
   const shutdownManagerInstalled = app.locals[INSTALLATION_APP_LOCAL_KEY];
 
   if (
@@ -85,7 +84,6 @@ export function installShutdownManager(
   server.headersTimeout = (config.keepAliveTimeoutSeconds + 1) * 1000;
 
   const gracefulShutdown = (signal: string) => () => {
-    // eslint-disable-next-line -- @typescript-eslint/no-unsafe-assignment
     const isTerminating = app.locals[TERMINATION_APP_LOCAL_KEY];
 
     if (typeof isTerminating === "boolean" && isTerminating) {
