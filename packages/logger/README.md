@@ -46,8 +46,6 @@ const logger = initializeLogger("my-logger", {
 });
 ```
 
-The supported sink types are `console` and `stream`.
-
 ## Temporary log collection
 
 ```typescript
