@@ -79,7 +79,7 @@ jobs:
       - name: Wait for the version on npm
         if: env.SKIP != 'true'
         run: |
-          for attempt in $(seq 1 30); do
+          for _ in $(seq 1 30); do
             if npm view "${PACKAGE_NAME}@${VERSION}" version >/dev/null 2>&1; then
               echo "${PACKAGE_NAME}@${VERSION} is available"
               exit 0
