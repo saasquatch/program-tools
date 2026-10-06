@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.2
+
+### Patch Changes
+
+- [#553](https://github.com/saasquatch/program-tools/pull/553) [`b67b2fe`](https://github.com/saasquatch/program-tools/commit/b67b2fecdd002f0b24fbc6a2ee18b06f30192221) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update components using sl-select to use sqm-input-color as input text
+
 ## 2.5.1
 
 ### Patch Changes
