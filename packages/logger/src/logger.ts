@@ -89,50 +89,6 @@ export class Logger {
     this.baseFields = baseFields;
   }
 
-  public log(
-    messageLevel: LogLevel,
-    message: unknown,
-    fields?: Record<string, unknown>,
-  ): void {
-    if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[this.level]) {
-      return;
-    }
-
-    let actualMessage = message;
-    let messageFields = fields ?? {};
-    if (fields === undefined && isRecord(message)) {
-      messageFields = message;
-      actualMessage = message["message"];
-    }
-
-    // per-message fields take precedence over inherited child fields
-    const record = formatRecord(this.name, messageLevel, actualMessage, {
-      ...this.baseFields,
-      ...messageFields,
-    });
-
-    if (this.collection.enabled) {
-      const index =
-        (this.collection.start + this.collection.size) %
-        this.collection.maxEntries;
-
-      this.collection.records[index] = record;
-      if (this.collection.size < this.collection.maxEntries) {
-        this.collection.size += 1;
-      } else {
-        this.collection.start =
-          (this.collection.start + 1) % this.collection.maxEntries;
-      }
-    }
-
-    if (this.sinks.length > 0) {
-      const serializedRecord = `${serializeRecord(record)}\n`;
-      for (const sink of this.sinks) {
-        sink(serializedRecord);
-      }
-    }
-  }
-
   public child(record: Record<string, unknown>): Logger {
     return new Logger(this.name, this.sinks, this.level, {
       ...this.baseFields,
@@ -182,6 +138,26 @@ export class Logger {
     this.collection.size = 0;
   }
 
+  public log(
+    messageLevel: LogLevel,
+    message: unknown,
+    fields?: Record<string, unknown>,
+  ): void {
+    try {
+      this.logUnsafe(messageLevel, message, fields);
+    } catch (e1) {
+      try {
+        // try to log an error message in case the exception was thrown
+        // due to something in the user-provided input
+        const errorMessage = e1 instanceof Error ? e1.message : typeof e1;
+        this.logUnsafe("error", `Logging failed: ${errorMessage}`);
+      } catch {
+        // if the second attempt at logging failed there's really not much
+        // we can do, it's probably an issue with a sink
+      }
+    }
+  }
+
   public emerg(message: unknown, fields?: Record<string, unknown>): void {
     this.log("emerg", message, fields);
   }
@@ -224,6 +200,50 @@ export class Logger {
         (this.collection.start + index) % this.collection.maxEntries
       ];
     });
+  }
+
+  private logUnsafe(
+    messageLevel: LogLevel,
+    message: unknown,
+    fields?: Record<string, unknown>,
+  ): void {
+    if (LOG_LEVEL_VALUES[messageLevel] > LOG_LEVEL_VALUES[this.level]) {
+      return;
+    }
+
+    let actualMessage = message;
+    let messageFields = fields ?? {};
+    if (fields === undefined && isRecord(message)) {
+      messageFields = message;
+      actualMessage = message["message"];
+    }
+
+    // per-message fields take precedence over inherited child fields
+    const record = formatRecord(this.name, messageLevel, actualMessage, {
+      ...this.baseFields,
+      ...messageFields,
+    });
+
+    if (this.collection.enabled) {
+      const index =
+        (this.collection.start + this.collection.size) %
+        this.collection.maxEntries;
+
+      this.collection.records[index] = record;
+      if (this.collection.size < this.collection.maxEntries) {
+        this.collection.size += 1;
+      } else {
+        this.collection.start =
+          (this.collection.start + 1) % this.collection.maxEntries;
+      }
+    }
+
+    if (this.sinks.length > 0) {
+      const serializedRecord = `${serializeRecord(record)}\n`;
+      for (const sink of this.sinks) {
+        sink(serializedRecord);
+      }
+    }
   }
 }
 

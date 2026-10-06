@@ -47,6 +47,14 @@ export function formatRecord(
  * Safely serialize records, including Error and BigInt values.
  */
 export function serializeRecord(record: LogRecord): string {
+  try {
+    return serializeRecordUnchecked(record);
+  } catch {
+    return '{"level":"error","message":"Log serialization failed"}';
+  }
+}
+
+function serializeRecordUnchecked(record: LogRecord): string {
   const ancestors: object[] = [];
   return JSON.stringify(
     { ...record, toJSON: undefined },
