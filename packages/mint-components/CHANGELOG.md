@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.3
+
+### Patch Changes
+
+- [#555](https://github.com/saasquatch/program-tools/pull/555) [`1aa3676`](https://github.com/saasquatch/program-tools/commit/1aa36760d1094615eb25e6d012d0492908acb0bf) Thanks [@00salmon](https://github.com/00salmon)! - allow `sqm-referral-codes` to be placed in `sqm-titled-section`
+
 ## 2.5.2
 
 ### Patch Changes
