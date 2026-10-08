@@ -1,6 +1,6 @@
 import { getLogger as ssqtLogger } from "@saasquatch/logger";
-import Transaction from "./transaction";
-import {
+import Transaction from "./transaction.ts";
+import type {
   Program,
   ProgramIntrospectionBody,
   ProgramTriggerBody,
@@ -8,11 +8,11 @@ import {
   ProgramValidationBody,
   ProgramVariableSchemaRequestBody,
   ValidationResult,
-} from "./types/rpc";
+} from "./types/rpc.ts";
 
 function handleTriggerError(
   triggerType: string,
-  e: unknown
+  e: unknown,
 ): { error: string; message?: unknown } {
   const stack =
     typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined;
@@ -43,8 +43,6 @@ function handleTriggerError(
  *
  * @param {Object} body The trigger body
  * @param {Program?} program The program trigger handlers
- * @param {Object?} query The context query
- * @param {Object?} headers The context HTTP headers
  *
  * @return {ProgramTriggerResult} The program trigger result
  *
@@ -61,22 +59,30 @@ export function triggerProgram(
     | ProgramIntrospectionBody
     | ProgramValidationBody
     | ProgramVariableSchemaRequestBody,
-  program: Program = {}
+  program: Program = {},
 ): ProgramTriggerResult {
+  // FIXME: all these oxlint warnings are real issues, we should technically
+  // have proper validation here
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
-      body = body as ProgramIntrospectionBody;
-      return handleProgramIntrospection(body, program);
+      return handleProgramIntrospection(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        body as ProgramIntrospectionBody,
+        program,
+      );
     case "PROGRAM_TRIGGER":
-      body = body as ProgramTriggerBody;
-      return handleProgramTrigger(body, program);
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      return handleProgramTrigger(body as ProgramTriggerBody, program);
+    // Make modifications to template based on rules here if necessary.
     case "PROGRAM_VALIDATION":
-      // Make modifications to template based on rules here if necessary.
-      body = body as ProgramValidationBody;
-      return handleProgramValidation(body, program);
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      return handleProgramValidation(body as ProgramValidationBody, program);
     case "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST":
-      body = body as ProgramVariableSchemaRequestBody;
-      return handleProgramVariableSchemaRequest(body, program);
+      return handleProgramVariableSchemaRequest(
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        body as ProgramVariableSchemaRequestBody,
+        program,
+      );
     default:
       const message = `Unrecognized messageType ${body.messageType}`;
       ssqtLogger("program-boilerplate").warn(message);
@@ -97,12 +103,12 @@ export function triggerProgram(
  */
 function handleProgramTrigger(
   body: ProgramTriggerBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const transaction = new Transaction({ body });
 
   const triggerType = body.activeTrigger.type;
-  const handleTrigger: any = program[triggerType];
+  const handleTrigger = program[triggerType];
 
   try {
     if (handleTrigger) {
@@ -129,7 +135,7 @@ function handleProgramTrigger(
  */
 function handleProgramIntrospection(
   body: ProgramIntrospectionBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const template = body.template;
   const rules = body.program.rules;
@@ -164,7 +170,7 @@ function handleProgramIntrospection(
  */
 function handleProgramValidation(
   body: ProgramValidationBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
@@ -174,16 +180,8 @@ function handleProgramValidation(
       ? validationHandlers[r.key]
       : undefined;
 
-    if (!requirementHandler) {
-      // this return goes to no where
-      return {
-        json: {
-          message: `Requirement handler for key ${r.key} not implemented`,
-        },
-        code: 501,
-      };
-    } else {
-      // should maybe add error handling
+    if (requirementHandler) {
+      // FIXME: should maybe add error handling
       results.push({
         key: r.key,
         results: requirementHandler(r.queryResult, body.program, body.time),
@@ -199,7 +197,7 @@ function handleProgramValidation(
 
 function handleProgramVariableSchemaRequest(
   body: ProgramVariableSchemaRequestBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const schema = body.schema;
   const scheduleKey = body.scheduleKey;
