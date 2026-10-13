@@ -63,6 +63,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
       "font-size": "var(--sl-font-size-small)",
       display: "flex",
       alignItems: "center",
+      columnGap: "var(--sl-spacing-xx-small)",
       svg: {
         marginTop: "2px",
         shapeRendering: "geometricprecision",
