@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.4
+
+### Patch Changes
+
+- [#557](https://github.com/saasquatch/program-tools/pull/557) [`f388745`](https://github.com/saasquatch/program-tools/commit/f388745e16f40971d9ecc4ac268f4fe9e889141e) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Update `sqm-portal-footer` "Powered by" logo to the new impact.com wordmark
+
 ## 2.5.3
 
 ### Patch Changes
