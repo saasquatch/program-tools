@@ -31,10 +31,6 @@ export {
   GRAPHQL_CONTEXT,
 } from "./hooks/graphql/useGraphQLClient";
 export { useRefreshDispatcher } from "./hooks/graphql/Refresh";
-export {
-  useParentQuery,
-  useParentQueryValue,
-} from "./hooks/graphql/useParentQuery";
 
 //      Navigation
 export { navigation, useCurrentPage } from "./hooks/useNavigation";
@@ -54,14 +50,6 @@ export {
   useHost,
   setImplementation as setUseHostImplementation,
 } from "./hooks/useHost";
-export {
-  useParentState,
-  useParent,
-  useParentValue,
-  useSetParent,
-  getContextName,
-  getContextValueName,
-} from "./hooks/useParentState";
 
 //
 //      Common higher-level functionality
