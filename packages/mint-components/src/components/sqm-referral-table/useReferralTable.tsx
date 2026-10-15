@@ -28,6 +28,7 @@ const GET_REFERRER_DATA = gql`
       ... on User {
         referredByReferral(programId: $programId) {
           dateConverted
+          dateConversionRetracted
           dateFraudChecksCompleted
           dateModerated
           dateModified
@@ -132,6 +133,7 @@ const GET_REFERRAL_DATA = gql`
             referralCodeUsed
             moderationStatus
             dateConverted
+            dateConversionRetracted
             dateFraudChecksCompleted
             dateModerated
             dateModified

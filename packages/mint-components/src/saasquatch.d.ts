@@ -1,6 +1,7 @@
 interface Referral {
   id: string;
   dateConverted: number;
+  dateConversionRetracted?: number | null;
   dateReferralStarted: number;
   dateReferralPaid: number;
   dateReferralEnded: number;
@@ -33,6 +34,7 @@ interface Referral {
 interface Referrer {
   dateReferralStarted: number;
   dateConverted: number;
+  dateConversionRetracted?: number | null;
   referrerUser: {
     firstName: string;
     lastName: string;

@@ -33,6 +33,7 @@ export const EmptyCell = () => (
 
 export const Converted = () => (
   <sqm-referral-table-status-cell
+    status="CONVERTED"
     status-text="Converted"
     fraud-status="APPROVED"
     converted={true}
@@ -40,27 +41,40 @@ export const Converted = () => (
 );
 export const InProgress = () => (
   <sqm-referral-table-status-cell
+    status="IN_PROGRESS"
     status-text="In Progress"
     converted={false}
   ></sqm-referral-table-status-cell>
 );
+export const Retracted = () => (
+  <sqm-referral-table-status-cell
+    status="RETRACTED"
+    status-text="Cancelled"
+    status-sub-text="This purchase was cancelled or refunded"
+    converted={true}
+  ></sqm-referral-table-status-cell>
+);
 export const PendingReview = () => (
   <sqm-referral-table-status-cell
+    status="PENDING_REVIEW"
     status-text="Pending"
-    fraud-status="PENDING_REVIEW"
+    status-sub-text="Awaiting review"
+    fraud-status="PENDING"
     converted={false}
   ></sqm-referral-table-status-cell>
 );
 export const Pending = () => (
   <sqm-referral-table-status-cell
+    status="PENDING_REVIEW"
     status-text="Pending"
-    // fraud-status="PENDING_REVIEW"
     converted={false}
   ></sqm-referral-table-status-cell>
 );
 export const Denied = () => (
   <sqm-referral-table-status-cell
+    status="DENIED"
     status-text="Denied"
+    status-sub-text="Detected self-referral"
     fraud-status="DENIED"
     converted={false}
   ></sqm-referral-table-status-cell>
