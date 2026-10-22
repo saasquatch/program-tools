@@ -100,7 +100,7 @@ export async function introspectionHandler<
       res.status(500).json({ errorCode: "INTERNAL_ERROR" });
     }
   } catch (e) {
-    handleError(e, service.logger, res);
+    handleError(e as Error, service.logger, res);
     return;
   }
 }

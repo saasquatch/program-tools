@@ -1,7 +1,6 @@
 import http from "http";
 import { Router, Application } from "express";
 import { StepDefinitions } from "jest-cucumber";
-import fetch, { Response, RequestInit } from "node-fetch";
 
 import { BaseConfig, createIntegrationService } from "../../src";
 import { graphqlShouldError } from "../../mocks/graphql";
@@ -50,8 +49,8 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   let app: Application | null;
   let port: number;
   let url: string = "";
-  let requestInit: RequestInit = {};
-  let response: Response;
+  let requestInit: any = {};
+  let response: Awaited<ReturnType<typeof fetch>>;
   let config: BaseConfig;
 
   function setupService(service: any) {

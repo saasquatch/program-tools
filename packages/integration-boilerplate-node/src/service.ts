@@ -11,7 +11,6 @@ import express, { Express, Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
-import fetch from "node-fetch";
 import { hostname } from "os";
 import path from "path";
 import { Logger } from "winston";
@@ -341,7 +340,7 @@ export class IntegrationService<
         },
       });
 
-      const json = await response.json();
+      const json = (await response.json()) as any;
 
       if (response.status !== 200) {
         throw new GraphQLError(JSON.stringify(json), json);
@@ -499,6 +498,7 @@ export class IntegrationService<
       app.get("/*", (_req, res, next) => {
         res.sendFile(
           path.join(frontendPath, this.config.staticFrontendIndex),
+          // @ts-expect-error -- typedef seems to just be wrong here
           undefined,
           (err) => {
             if (err) next();

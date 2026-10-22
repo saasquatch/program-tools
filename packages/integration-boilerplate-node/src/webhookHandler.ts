@@ -42,7 +42,7 @@ export async function webhookHandler<
       res.sendStatus(200);
     }
   } catch (e) {
-    handleError(e, service.logger, res);
+    handleError(e as Error, service.logger, res);
     return;
   }
 }

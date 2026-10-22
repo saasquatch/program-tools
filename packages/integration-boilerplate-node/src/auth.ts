@@ -1,7 +1,6 @@
 import { Base64 } from "js-base64";
 import jwksRsa from "jwks-rsa";
 import jwt from "jsonwebtoken";
-import fetch from "node-fetch";
 import { Logger } from "winston";
 import { URLSearchParams } from "url";
 import NodeCache from "node-cache";
@@ -140,7 +139,7 @@ export class Auth {
         body: body.toString(),
       });
 
-      const json = await response.json();
+      const json = (await response.json()) as any;
 
       if (response.status !== 200) {
         throw new Error(`Invalid response from Auth0: ${JSON.stringify(json)}`);
