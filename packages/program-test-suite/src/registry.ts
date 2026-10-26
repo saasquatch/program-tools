@@ -46,11 +46,14 @@ export function findMatch(text: string): StepMatch {
       });
     }
   }
+
   if (matches.length === 0) {
     throw new Error(`No step definition matches: "${text}"`);
   }
+
   if (matches.length > 1) {
     throw new Error(`Multiple step definitions match: "${text}"`);
   }
+
   return matches[0];
 }

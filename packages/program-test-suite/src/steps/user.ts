@@ -90,6 +90,31 @@ Given(
   },
 );
 
+Given(
+  /^the referrer user belongs to segment "?([^"]+)"?$/,
+  (segment: string) => {
+    const segments =
+      getWorld().state.current.user.referredByReferral?.referrerUser
+        ?.segments ?? [];
+
+    if (!segments.includes(segment)) {
+      segments.push(segment);
+    }
+
+    getWorld().setState({
+      current: {
+        user: {
+          referredByReferral: {
+            referrerUser: {
+              segments,
+            },
+          },
+        },
+      },
+    });
+  },
+);
+
 Given(/^the (?:referred )?user has the following reward:$/, (data: string) => {
   const rewards = getWorld().state.current.user.rewards || {
     totalCount: 0,
