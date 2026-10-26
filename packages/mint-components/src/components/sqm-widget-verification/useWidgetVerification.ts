@@ -6,6 +6,7 @@ import {
 import { useState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
+import { getVerificationStep, VerificationViewer } from "./getVerificationStep";
 import {
   PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
@@ -28,6 +29,15 @@ const USER_LOOKUP = gql`
         }
         impactConnection {
           connected
+        }
+        cashRewards: rewards(
+          limit: 1
+          filter: {
+            rewardedCash_eq: true
+            statuses_nin: [{ status: CANCELLED }, { status: EXPIRED }]
+          }
+        ) {
+          totalCount
         }
       }
     }
@@ -66,6 +76,9 @@ export function useWidgetVerification(): WidgetVerificationProps {
     initialValue: false,
   });
   const [fetch] = useLazyQuery(USER_LOOKUP);
+  const [viewer, setViewer] = useState<VerificationViewer | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const checkUser = async () => {
@@ -73,19 +86,10 @@ export function useWidgetVerification(): WidgetVerificationProps {
         const res = await fetch({});
         if (!res || res instanceof Error) throw new Error();
 
-        // Flow changed to send email -> verify code -> show early partner creation modal
-        const emailVerified =
-          res?.viewer?.emailVerified ||
-          res?.viewer?.managedIdentity?.emailVerified;
-        const isConnected = res?.viewer?.impactConnection?.connected;
-
-        if (isConnected) {
-          // Partner already created, show widget content
-          setContext(true);
-        } else if (emailVerified) {
-          // Email verified but no partner yet, show partner modal
-          setShowPartnerModal(true);
-        }
+        setViewer(res.viewer);
+        const step = getVerificationStep(res.viewer);
+        if (step === "content") setContext(true);
+        else if (step === "partner") setShowPartnerModal(true);
       } catch (e) {
         console.error("Could not fetch user information:", e);
       } finally {
@@ -97,7 +101,9 @@ export function useWidgetVerification(): WidgetVerificationProps {
   }, []);
 
   const onVerification = () => {
-    setShowPartnerModal(true);
+    const step = getVerificationStep({ ...viewer, emailVerified: true });
+    if (step === "partner") setShowPartnerModal(true);
+    else setContext(true);
   };
 
   const onPartnerModalComplete = () => {
