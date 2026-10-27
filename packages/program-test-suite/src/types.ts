@@ -25,6 +25,17 @@ export type IntrospectionRow = {
   type: string;
 };
 
+export type IntrospectionError = {
+  key: string;
+  jsonPointer: string;
+  description: string;
+};
+
+export type IntrospectionErrorRow = Pick<
+  IntrospectionError,
+  "key" | "jsonPointer"
+>;
+
 export type FieldValueRow = {
   field: string;
   value: string;

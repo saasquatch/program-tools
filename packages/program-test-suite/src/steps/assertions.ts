@@ -1,27 +1,62 @@
 import assert from "node:assert";
 import { inferType } from "@saasquatch/program-boilerplate";
 import delve from "dlv";
+import {
+  assertIntrospectionErrors,
+  getIntrospectionTemplate,
+} from "../assertions.ts";
 import { Then } from "../registry.ts";
 import type { DataTable } from "../runner.ts";
 import type {
   AnalyticsStepRow,
   FieldValueRow,
   IntrospectionRow,
+  IntrospectionErrorRow,
   MutationStepRow,
   ValidationStepRow,
 } from "../types.ts";
 import { getWorld } from "../world.ts";
 
+Then("the introspection will return no errors", () => {
+  assertIntrospectionErrors([]);
+});
+
+Then(
+  /^the following introspection errors will be returned( in order)?:$/,
+  (order: string | undefined, table: DataTable<IntrospectionErrorRow>) => {
+    assertIntrospectionErrors(table.hashes(), { ordered: Boolean(order) });
+  },
+);
+
+Then(
+  /^the program trigger will fail with message containing "([^"]+)"$/,
+  (message: string) => {
+    const result: { error?: string; message?: string; mutations?: unknown[] } =
+      getWorld().state.programTriggerResult;
+
+    assert.strictEqual(
+      typeof result.error,
+      "string",
+      "The program trigger must fail",
+    );
+
+    assert.strictEqual(typeof result.message, "string");
+    assert.ok(
+      result.message?.includes(message),
+      `Expected error message to contain ${message}`,
+    );
+
+    assert.strictEqual(result.mutations, undefined);
+  },
+);
+
 Then(
   /^the output template will include a "?([^"]+)"? requirement$/,
   (key: string) => {
-    const output =
-      "template" in getWorld().state.programTriggerResult
-        ? getWorld().state.programTriggerResult.template
-        : getWorld().state.programTriggerResult;
-
+    const output = getIntrospectionTemplate();
     const reqs = output.requirements;
     const reqFound = reqs.find((r: any) => r.key === key);
+
     getWorld().setState({ assertionResults: { foundRequirement: reqFound } });
     assert(reqFound, `"${key}" requirement was not found in the requirements`);
   },
@@ -271,12 +306,9 @@ Then(/^the programId will be "?([^"]+)"?$/, (k: string) => {
 Then(
   /^the output will include a "?([^"]+)"? event key trigger$/,
   (key: string) => {
-    const output =
-      "template" in getWorld().state.programTriggerResult
-        ? getWorld().state.programTriggerResult.template
-        : getWorld().state.programTriggerResult;
-
+    const output = getIntrospectionTemplate();
     const trigger = output.trigger;
+
     assert(
       trigger.eventKeys.includes(key),
       `Output didn't include a "${key}" event key trigger`,
@@ -285,11 +317,7 @@ Then(
 );
 
 Then(/^the output will not include a "?([^"]+)"? email$/, (key: string) => {
-  const output =
-    "template" in getWorld().state.programTriggerResult
-      ? getWorld().state.programTriggerResult.template
-      : getWorld().state.programTriggerResult;
-
+  const output = getIntrospectionTemplate();
   const relevantEmails = output.emails.filter((e: any) => e.key === key);
 
   assert.deepStrictEqual(
@@ -300,12 +328,9 @@ Then(/^the output will not include a "?([^"]+)"? email$/, (key: string) => {
 });
 
 Then(/^the output will include a "?([^"]+)"? email$/, (key: string) => {
-  const output =
-    "template" in getWorld().state.programTriggerResult
-      ? getWorld().state.programTriggerResult.template
-      : getWorld().state.programTriggerResult;
-
+  const output = getIntrospectionTemplate();
   const relevantEmails = output.emails.filter((e: any) => e.key === key);
+
   assert(
     relevantEmails.length > 0,
     `Expected to find "${key}" email but found none`,
@@ -313,12 +338,9 @@ Then(/^the output will include a "?([^"]+)"? email$/, (key: string) => {
 });
 
 Then(/^the output will include a "?([^"]+)"? reward key$/, (key: string) => {
-  const output =
-    "template" in getWorld().state.programTriggerResult
-      ? getWorld().state.programTriggerResult.template
-      : getWorld().state.programTriggerResult;
-
+  const output = getIntrospectionTemplate();
   const relevantRewards = output.rewards.filter((e: any) => e.key === key);
+
   assert(
     relevantRewards.length > 0,
     `Expected to find "${key}" reward but found none`,
@@ -328,11 +350,7 @@ Then(/^the output will include a "?([^"]+)"? reward key$/, (key: string) => {
 Then(
   /^the output will not include a "?([^"]+)"? reward key$/,
   (key: string) => {
-    const output =
-      "template" in getWorld().state.programTriggerResult
-        ? getWorld().state.programTriggerResult.template
-        : getWorld().state.programTriggerResult;
-
+    const output = getIntrospectionTemplate();
     const relevantRewards = output.rewards.filter((e: any) => e.key === key);
 
     assert.deepStrictEqual(
@@ -346,13 +364,10 @@ Then(
 Then(
   "the output will include the following rewards and emails:",
   (data: DataTable<IntrospectionRow>) => {
-    const output =
-      "template" in getWorld().state.programTriggerResult
-        ? getWorld().state.programTriggerResult.template
-        : getWorld().state.programTriggerResult;
-
+    const output = getIntrospectionTemplate();
     const emails = output.emails;
     const rewards = output.rewards;
+
     data.hashes().forEach((row) => {
       if (row.type === "reward") {
         assert(rewards.some((e: any) => e.key === row.key));
@@ -393,11 +408,7 @@ Then(
 );
 
 Then("the output template will be unchanged", () => {
-  const output =
-    "template" in getWorld().state.programTriggerResult
-      ? getWorld().state.programTriggerResult.template
-      : getWorld().state.programTriggerResult;
-
+  const output = getIntrospectionTemplate();
   assert.deepStrictEqual(output, getWorld().getDefaultTemplate());
 });
 

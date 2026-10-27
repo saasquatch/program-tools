@@ -20,7 +20,7 @@
     "check": "tsc --noEmit && oxlint",
     "format": "oxfmt",
     "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
-    "prepack": "npm run build",
+    "prepack": "npm run check && npm run build",
     "test": "SSQT_LOG_LEVEL=emerg node --test __tests__/**/*.ts"
   },
   "dependencies": {
@@ -28,7 +28,7 @@
     "@cucumber/gherkin": "^42.0.1",
     "@cucumber/messages": "^34.2.1",
     "@faker-js/faker": "^10.6.0",
-    "@saasquatch/program-boilerplate": "^4.2.2-2",
+    "@saasquatch/program-boilerplate": "^4.2.2-4",
     "@saasquatch/schema": "^2.2.0",
     "deepmerge": "^4.3.1",
     "dlv": "^1.1.3"
