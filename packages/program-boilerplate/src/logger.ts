@@ -32,3 +32,23 @@ export function getLogger(level: string): Logger {
   logger = initializeLogger({ level });
   return logger;
 }
+
+let bpLogger: Logger;
+
+export function boilerplateLogger(): Logger {
+  if (bpLogger) {
+    return bpLogger;
+  }
+
+  const level = process.env["PROGRAM_LOG_LEVEL"] ?? "info";
+  const validLevel = ((l): l is LogLevel => {
+    return (LOG_LEVELS as readonly string[]).includes(l);
+  })(level);
+
+  if (!validLevel) {
+    throw new Error(`Invalid log level "${level}"`);
+  }
+
+  bpLogger = initializeLogger("program-boilerplate", { level });
+  return bpLogger;
+}

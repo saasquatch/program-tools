@@ -1,4 +1,4 @@
-import { getLogger as ssqtLogger } from "@saasquatch/logger";
+import { boilerplateLogger } from "./logger.ts";
 import Transaction from "./transaction.ts";
 import type {
   Program,
@@ -29,7 +29,7 @@ function handleTriggerError(
       typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined,
   };
 
-  ssqtLogger("program-boilerplate").error({
+  boilerplateLogger().error({
     message: errorMes.error,
     ["error.message"]: message,
     ["error.stack"]: stack,
@@ -85,7 +85,7 @@ export function triggerProgram(
       );
     default:
       const message = `Unrecognized messageType ${body.messageType}`;
-      ssqtLogger("program-boilerplate").warn(message);
+      boilerplateLogger().warn(message);
       return {
         json: { message },
         code: 501,

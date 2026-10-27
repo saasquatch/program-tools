@@ -1,5 +1,5 @@
-import { getLogger as ssqtLogger } from "@saasquatch/logger";
 import jsonata from "jsonata";
+import { boilerplateLogger } from "./logger.ts";
 
 const TIMEOUT = 5000;
 const MAXDEPTH = 1000;
@@ -63,7 +63,7 @@ export function safeJsonata(expression: string, inputData: any): any {
     timeboxExpression(jsonataQuery);
     return jsonataQuery.evaluate(inputData);
   } catch (e) {
-    ssqtLogger("program-boilerplate").warn(
+    boilerplateLogger().warn(
       // oxlint-disable-next-line typescript/restrict-template-expressions
       `Failed to evaluate JSONata expression: ${e instanceof Error ? e.message : `${e}`}`,
     );
@@ -87,7 +87,7 @@ export function timeboxedJsonata(
     return { success: true, result };
   } catch (e) {
     if (e instanceof Error) {
-      ssqtLogger("program-boilerplate").warn(
+      boilerplateLogger().warn(
         `Failed to evaluate JSONata expression: ${e.message}`,
       );
     }

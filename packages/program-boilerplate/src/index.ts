@@ -1,9 +1,3 @@
-import {
-  initializeLogger,
-  LOG_LEVELS,
-  getLogger as ssqtLogger,
-  type LogLevel,
-} from "@saasquatch/logger";
 import { httpLogMiddleware } from "@saasquatch/logger";
 import compression from "compression";
 import express, { type Request, type Response } from "express";
@@ -13,7 +7,7 @@ import {
   meetEventTriggerRules,
 } from "./conversion.ts";
 import { safeJsonata, timeboxExpression, timeboxedJsonata } from "./jsonata.ts";
-import { getLogger } from "./logger.ts";
+import { boilerplateLogger, getLogger } from "./logger.ts";
 import { rewardEmailQuery } from "./queries.ts";
 import Transaction from "./transaction.ts";
 import { triggerProgram } from "./trigger.ts";
@@ -77,17 +71,7 @@ export {
  */
 export function webtask(program: Program = {}): express.Application {
   const app = express();
-
-  const level = process.env["PROGRAM_LOG_LEVEL"] ?? "info";
-  const validLevel = ((l): l is LogLevel => {
-    return (LOG_LEVELS as readonly string[]).includes(l);
-  })(level);
-
-  if (!validLevel) {
-    throw new Error(`Invalid log level "${level}"`);
-  }
-
-  const logger = initializeLogger("program-boilerplate", { level });
+  const logger = boilerplateLogger();
 
   app.use(express.json({ limit: process.env["MAX_PAYLOAD_SIZE"] || "1mb" }));
   app.use(compression());
@@ -135,7 +119,7 @@ export function runWebtask(
   program: express.Application,
   config: WebtaskConfig,
 ): void {
-  const logger = ssqtLogger("program-boilerplate");
+  const logger = boilerplateLogger();
 
   const server = program.listen(config.port, () =>
     logger.notice(`${config.webtaskName} running on port ${config.port}`),
