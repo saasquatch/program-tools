@@ -71,14 +71,42 @@ Feature: Widget verification flow
     Then the partner info modal step is shown
 
   @minutia
-  Scenario: The partner info modal step is shown if the user's rewards cannot be loaded after verifying
+  Scenario: Verification is not skipped if the user lookup fails when the widget loads
+    Given a user whose email is already verified
+    And they have a reward where `reward.rewardedCash` is true and status is "AVAILABLE"
+    And the `checkUserVerification` request fails when the widget loads
+    When the `sqm-widget-verification` component loads
+    Then the email verification step is shown
+    And the html inside the "verified" template slot is not displayed
+
+  @minutia
+  Scenario Outline: The partner info modal step is shown if the user lookup fails after verifying
     Given a user on the code verification step
-    And the user lookup request will fail
+    And they have <cashRewards>
+    And the `checkUserVerification` request fails after they verify their code
     When they enter a valid 2FA code
     And they click "Verify"
     Then the partner info modal step is shown
-    When they submit the partner info modal
-    Then they see the default network error text "An error occurred. Please try again."
+    And the html inside the "verified" template slot is not displayed
+
+    Examples:
+      | cashRewards                                                            |
+      | a reward where `reward.rewardedCash` is true and status is "AVAILABLE" |
+      | no rewards where `reward.rewardedCash` is true                         |
+
+  @minutia
+  Scenario Outline: Submitting the partner info modal after a failed user lookup
+    Given the partner info modal step is shown because the `checkUserVerification` request failed
+    And the `getUserPartnerInfo` request <partnerInfoRequest>
+    When they select a country and currency
+    And they check the banking collection checkbox
+    And they click "Submit"
+    Then <result>
+
+    Examples:
+      | partnerInfoRequest | result                                                                         |
+      | succeeds           | the html inside the "verified" template slot is displayed                      |
+      | fails              | they see the default network error text "An error occurred. Please try again." |
 
   @motivating
   Scenario: Partner info modal step is displayed inside the widget verification dialog
@@ -113,14 +141,14 @@ Feature: Widget verification flow
     Then the <step> is shown
 
     Examples:
-      | emailVerified | connected | cashRewardStatus     | step                                         |
-      | false         | false     | AVAILABLE            | email verification step                      |
-      | true          | false     | AVAILABLE            | partner info modal step (email/code skipped) |
-      | true          | false     | PENDING              | partner info modal step (email/code skipped) |
-      | true          | false     | CANCELLED            | verified slot (entire flow skipped)          |
-      | true          | false     | EXPIRED              | verified slot (entire flow skipped)          |
-      | true          | false     | N/A (user has none)  | verified slot (entire flow skipped)          |
-      | true          | true      | AVAILABLE            | verified slot (entire flow skipped)          |
+      | emailVerified | connected | cashRewardStatus    | step                                         |
+      | false         | false     | AVAILABLE           | email verification step                      |
+      | true          | false     | AVAILABLE           | partner info modal step (email/code skipped) |
+      | true          | false     | PENDING             | partner info modal step (email/code skipped) |
+      | true          | false     | CANCELLED           | verified slot (entire flow skipped)          |
+      | true          | false     | EXPIRED             | verified slot (entire flow skipped)          |
+      | true          | false     | N/A (user has none) | verified slot (entire flow skipped)          |
+      | true          | true      | AVAILABLE           | verified slot (entire flow skipped)          |
 
   @motivating @ui
   Scenario: Code verification step

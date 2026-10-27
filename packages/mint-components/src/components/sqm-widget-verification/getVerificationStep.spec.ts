@@ -7,11 +7,14 @@ const verified = { emailVerified: true };
 const cash = (totalCount: number) => ({ cashRewards: { totalCount } });
 
 describe("getVerificationStep", () => {
-  it("does not prompt partner creation for a verified user without cash rewards", () => {
+  it("does not prompt partner creation for a verified user whose cash reward count is zero", () => {
     expect(getVerificationStep({ ...verified, ...cash(0) })).toBe("content");
-    expect(getVerificationStep({ ...verified })).toBe("content");
+  });
+
+  it("does not skip the partner step when the cash reward count is missing", () => {
+    expect(getVerificationStep({ ...verified })).toBe("partner");
     expect(getVerificationStep({ ...verified, cashRewards: null })).toBe(
-      "content"
+      "partner"
     );
   });
 
@@ -47,6 +50,11 @@ describe("getVerificationStep", () => {
 describe("getStepAfterVerification", () => {
   it("does not skip the partner step when the user lookup failed", () => {
     expect(getStepAfterVerification(undefined)).toBe("partner");
+  });
+
+  it("does not skip the partner step when the fresh lookup has no cash reward count", () => {
+    expect(getStepAfterVerification({ cashRewards: null })).toBe("partner");
+    expect(getStepAfterVerification({})).toBe("partner");
   });
 
   it("does not prompt partner creation when the fresh lookup finds no cash rewards", () => {

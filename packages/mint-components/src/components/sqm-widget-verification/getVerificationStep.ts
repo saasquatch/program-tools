@@ -15,14 +15,14 @@ export function getVerificationStep(
   const emailVerified =
     viewer?.emailVerified || viewer?.managedIdentity?.emailVerified;
   if (!emailVerified) return "verify";
-  return viewer?.cashRewards?.totalCount > 0 ? "partner" : "content";
+  // A missing count is unknown, not zero, so fail closed to the partner step
+  const cashRewardCount = viewer?.cashRewards?.totalCount;
+  return cashRewardCount == null || cashRewardCount > 0 ? "partner" : "content";
 }
 
-// Unknown reward state still prompts; the partner form shows its own retryable error
 export function getStepAfterVerification(
   viewer: VerificationViewer | undefined
 ): "partner" | "content" {
-  if (!viewer) return "partner";
   return getVerificationStep({ ...viewer, emailVerified: true }) === "partner"
     ? "partner"
     : "content";
