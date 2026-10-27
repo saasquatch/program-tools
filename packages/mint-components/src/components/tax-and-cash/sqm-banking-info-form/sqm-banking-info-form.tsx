@@ -23,7 +23,6 @@ import {
 /**
  * @uiName Banking Information Form
  * @exampleGroup Common Components
- *
  */
 @Component({
   tag: "sqm-banking-info-form",
@@ -720,6 +719,9 @@ export class BankingInfoForm {
     );
 
     const vanillaStyle = `
+      sl-select::part(base) {
+        color: var(--sqm-input-color);
+      }
       sl-menu-item::part(base) {
       color: var(--sqm-input-color);
     }

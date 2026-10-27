@@ -6,6 +6,9 @@ import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
+/**
+ * @csspart sqm-cell-value - The reward cell value
+ */
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,

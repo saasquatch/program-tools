@@ -115,7 +115,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         {states.success && (
           <sqm-form-message
             class={sheet.classes.Success}
-            exportparts="success-icon"
+            exportparts="successalert-icon"
           >
             <div part="successalert-text">{text.submissionSuccessText}</div>
           </sqm-form-message>

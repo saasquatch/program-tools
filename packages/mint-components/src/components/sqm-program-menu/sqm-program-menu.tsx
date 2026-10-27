@@ -26,6 +26,11 @@ export class ProgramMenu {
     const { data, ref } = useProgramMenu(getProps(this));
     return (
       <Host style={{ display: "contents" }}>
+        <style>{`
+          sqm-program-menu sl-select::part(base) {
+            color: var(--sqm-input-color);
+          }
+        `}</style>
         <sl-select
           style={{ paddingBottom: "var(--sl-spacing-large)" }}
           value={data.programId}

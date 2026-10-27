@@ -10,6 +10,14 @@ import { useLeadForm } from "./useLeadForm";
  * @uiName Lead Form
  * @canvasRenderer always-replace
  * @slots [{"name":"formData","title":"Additional Fields"}]
+ * @csspart sqm-base - The base container
+ * @csspart successalert-text - The success message element
+ * @csspart alert-title - The alert title
+ * @csspart alert-description - The alert description
+ * @csspart successalert-icon - The success alert icon
+ * @csspart input-label - The input label
+ * @csspart input-base - The input base
+ * @csspart primarybutton-base - The primary button base
  */
 @Component({
   tag: "sqm-lead-form",

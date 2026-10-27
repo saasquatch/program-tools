@@ -137,7 +137,10 @@ export function LeadFormView(props: LeadFormViewProps) {
             {styleString}
           </style>
           <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-          <sqm-form-message loading={states.loading} exportparts="success-icon">
+          <sqm-form-message
+            loading={states.loading}
+            exportparts="successalert-icon"
+          >
             <b>{content.submitSuccessHeader}</b>
             <br />
             <div part="successalert-text">
