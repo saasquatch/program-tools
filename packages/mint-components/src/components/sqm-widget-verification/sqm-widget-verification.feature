@@ -70,6 +70,16 @@ Feature: Widget verification flow
     When they successfully verify their email
     Then the partner info modal step is shown
 
+  @minutia
+  Scenario: The partner info modal step is shown if the user's rewards cannot be loaded after verifying
+    Given a user on the code verification step
+    And the user lookup request will fail
+    When they enter a valid 2FA code
+    And they click "Verify"
+    Then the partner info modal step is shown
+    When they submit the partner info modal
+    Then they see the default network error text "An error occurred. Please try again."
+
   @motivating
   Scenario: Partner info modal step is displayed inside the widget verification dialog
     Given a user with a reward where `reward.rewardedCash` is true and status is "AVAILABLE"

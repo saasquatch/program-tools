@@ -1,4 +1,7 @@
-import { getVerificationStep } from "./getVerificationStep";
+import {
+  getStepAfterVerification,
+  getVerificationStep,
+} from "./getVerificationStep";
 
 const verified = { emailVerified: true };
 const cash = (totalCount: number) => ({ cashRewards: { totalCount } });
@@ -38,5 +41,30 @@ describe("getVerificationStep", () => {
         ...cash(1),
       })
     ).toBe("partner");
+  });
+});
+
+describe("getStepAfterVerification", () => {
+  it("does not skip the partner step when the user lookup failed", () => {
+    expect(getStepAfterVerification(undefined)).toBe("partner");
+  });
+
+  it("does not prompt partner creation when the fresh lookup finds no cash rewards", () => {
+    expect(getStepAfterVerification({ ...cash(0) })).toBe("content");
+  });
+
+  it("does not prompt partner creation for an already-connected user", () => {
+    expect(
+      getStepAfterVerification({
+        ...cash(1),
+        impactConnection: { connected: true },
+      })
+    ).toBe("content");
+  });
+
+  it("prompts partner creation when the fresh lookup finds a cash reward, even if emailVerified has not propagated", () => {
+    expect(getStepAfterVerification({ emailVerified: false, ...cash(1) })).toBe(
+      "partner"
+    );
   });
 });

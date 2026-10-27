@@ -6,7 +6,10 @@ import {
 import { useState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { getVerificationStep, VerificationViewer } from "./getVerificationStep";
+import {
+  getStepAfterVerification,
+  getVerificationStep,
+} from "./getVerificationStep";
 import {
   PARTNER_CREATED_NAMESPACE,
   SHOW_CODE_NAMESPACE,
@@ -76,9 +79,6 @@ export function useWidgetVerification(): WidgetVerificationProps {
     initialValue: false,
   });
   const [fetch] = useLazyQuery(USER_LOOKUP);
-  const [viewer, setViewer] = useState<VerificationViewer | undefined>(
-    undefined
-  );
 
   useEffect(() => {
     const checkUser = async () => {
@@ -86,7 +86,6 @@ export function useWidgetVerification(): WidgetVerificationProps {
         const res = await fetch({});
         if (!res || res instanceof Error) throw new Error();
 
-        setViewer(res.viewer);
         const step = getVerificationStep(res.viewer);
         if (step === "content") setContext(true);
         else if (step === "partner") setShowPartnerModal(true);
@@ -100,9 +99,12 @@ export function useWidgetVerification(): WidgetVerificationProps {
     checkUser();
   }, []);
 
-  const onVerification = () => {
-    const step = getVerificationStep({ ...viewer, emailVerified: true });
-    if (step === "partner") setShowPartnerModal(true);
+  // Re-query so a failed or stale mount lookup can't decide the partner step
+  const onVerification = async () => {
+    const res = await fetch({});
+    const viewer = res && !(res instanceof Error) ? res.viewer : undefined;
+    if (getStepAfterVerification(viewer) === "partner")
+      setShowPartnerModal(true);
     else setContext(true);
   };
 
