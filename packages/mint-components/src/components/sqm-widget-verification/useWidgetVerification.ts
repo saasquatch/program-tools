@@ -34,7 +34,16 @@ const USER_LOOKUP = gql`
   }
 `;
 
-export function useWidgetVerification() {
+export interface WidgetVerificationProps {
+  showCode: boolean;
+  showPartnerModal: boolean;
+  onVerification: () => void;
+  onPartnerModalComplete: () => void;
+  onInitialFocus?: (e: any) => void;
+  loading: boolean;
+}
+
+export function useWidgetVerification(): WidgetVerificationProps {
   const [showCode] = useParentState<boolean>({
     namespace: SHOW_CODE_NAMESPACE,
     initialValue: false,

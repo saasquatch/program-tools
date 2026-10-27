@@ -1,15 +1,12 @@
-import express from "express";
+import * as assert from "node:assert";
 import { test } from "node:test";
+import express from "express";
 import request from "supertest";
 import { asyncHandlerWrapper } from "../async-wrapper.ts";
 import { requestIdAndLogger } from "../middleware.ts";
 import { jestLogger } from "./util.ts";
-import * as assert from "node:assert";
 
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/prefer-promise-reject-errors */
-
-test("wrapper with no rejected promise", async () => {
+void test("wrapper with no rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -38,7 +35,7 @@ test("wrapper with no rejected promise", async () => {
   });
 });
 
-test("wrapper with rejected promise", async () => {
+void test("wrapper with rejected promise", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -76,7 +73,7 @@ test("wrapper with rejected promise", async () => {
   });
 });
 
-test("default error message", async () => {
+void test("default error message", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -85,9 +82,7 @@ test("default error message", async () => {
   app.get(
     "/",
     asyncHandlerWrapper(async () => {
-      // eslint-disable-next-line -- @typescript-eslint/no-throw-literal
       throw { random: "object" };
-      return Promise.resolve();
     }),
   );
 
@@ -116,7 +111,7 @@ test("default error message", async () => {
   });
 });
 
-test("rejection after headers sent", async () => {
+void test("rejection after headers sent", async () => {
   const app = express();
   const logger = jestLogger();
 
@@ -150,12 +145,15 @@ test("rejection after headers sent", async () => {
   });
 });
 
-test("custom html error page", async () => {
+const renderErrorPage = () => Promise.resolve("");
+const rejectErrorPage = (): Promise<string> =>
+  Promise.reject(new Error("failed to render html error page"));
+
+void test("custom html error page", async () => {
   const app = express();
   const logger = jestLogger();
 
   app.use(requestIdAndLogger(logger));
-  const renderErrorPage = () => Promise.resolve("");
 
   app.get(
     "/",
@@ -180,12 +178,11 @@ test("custom html error page", async () => {
   });
 });
 
-test("custom html error page, no HTML accept header", async () => {
+void test("custom html error page, no HTML accept header", async () => {
   const app = express();
   const logger = jestLogger();
 
   app.use(requestIdAndLogger(logger));
-  const renderErrorPage = () => Promise.resolve("");
 
   app.get(
     "/",
@@ -210,20 +207,17 @@ test("custom html error page, no HTML accept header", async () => {
   });
 });
 
-test("error while rendering custom error page", async () => {
+void test("error while rendering custom error page", async () => {
   const app = express();
   const logger = jestLogger();
 
   app.use(requestIdAndLogger(logger));
 
-  const renderErrorPage = (): Promise<string> =>
-    Promise.reject(new Error("failed to render html error page"));
-
   app.get(
     "/",
     asyncHandlerWrapper(async () => {
       return Promise.reject(new Error("error message from the handler"));
-    }, renderErrorPage),
+    }, rejectErrorPage),
   );
 
   await new Promise<void>((resolve, reject) => {

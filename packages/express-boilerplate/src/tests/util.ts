@@ -10,6 +10,6 @@ export const jestLogger = () => {
   }
 
   return initializeLogger("jest-express-boilerplate", {
-    logLevel: "crit",
+    level: "crit",
   });
 };

@@ -82,6 +82,7 @@ const style = {
   Select: {
     "&::part(base)": {
       borderRadius: "var(--sqm-input-border-radius)",
+      color: "var(--sqm-input-color)",
     },
     "&::part(label)": {
       color: "var(--sqm-input-label-color)",
@@ -773,6 +774,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
           <div class={sheet.classes.Button}>
             <sl-button
+              exportparts="base: secondarybutton-base"
               class="cancel"
               type="secondary"
               size="large"
@@ -781,6 +783,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               {states.content.text.backText}
             </sl-button>
             <sl-button
+              exportparts="base: primarybutton-base"
               class="continue"
               size="large"
               type="primary"
@@ -831,6 +834,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         )}
         <div class={sheet.classes.Button}>
           <sl-button
+            exportparts="base: primarybutton-base"
             class="continue center"
             type="primary"
             size="large"

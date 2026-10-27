@@ -79,6 +79,9 @@ const style = {
     flexDirection: "column",
     gap: "var(--sl-spacing-medium)",
     marginTop: "var(--sl-spacing-large)",
+    "& sl-select::part(base)": {
+      color: "var(--sqm-input-color)",
+    },
   },
   NameInput: {
     "&::part(label)": {
@@ -195,7 +198,7 @@ export function PartnerInfoModalContentView(props: PartnerInfoModalViewProps) {
   );
 
   return (
-    <div>
+    <div part="sqm-base">
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.FormFields}>
         {description}

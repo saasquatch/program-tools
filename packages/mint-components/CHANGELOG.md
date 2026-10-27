@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.5.4
+
+### Patch Changes
+
+- [#557](https://github.com/saasquatch/program-tools/pull/557) [`f388745`](https://github.com/saasquatch/program-tools/commit/f388745e16f40971d9ecc4ac268f4fe9e889141e) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Update `sqm-portal-footer` "Powered by" logo to the new impact.com wordmark
+
+## 2.5.3
+
+### Patch Changes
+
+- [#555](https://github.com/saasquatch/program-tools/pull/555) [`1aa3676`](https://github.com/saasquatch/program-tools/commit/1aa36760d1094615eb25e6d012d0492908acb0bf) Thanks [@00salmon](https://github.com/00salmon)! - allow `sqm-referral-codes` to be placed in `sqm-titled-section`
+
+## 2.5.2
+
+### Patch Changes
+
+- [#553](https://github.com/saasquatch/program-tools/pull/553) [`b67b2fe`](https://github.com/saasquatch/program-tools/commit/b67b2fecdd002f0b24fbc6a2ee18b06f30192221) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update components using sl-select to use sqm-input-color as input text
+
+## 2.5.1
+
+### Patch Changes
+
+- [#549](https://github.com/saasquatch/program-tools/pull/549) [`63526cf`](https://github.com/saasquatch/program-tools/commit/63526cfab1a9cd1993bc67ff3682bdf8153ca196) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Fixes
+
+  - Promo Codes title not rendering in production microsites.
+  - Widget verification modal controls unfocusing in the content editors.
+  - Add loading skeleton state to sqm-referral-codes-view
+  - Add loading skeleton state to sqm-pagination-view
+
+## 2.5.0
+
+### Minor Changes
+
+- [#536](https://github.com/saasquatch/program-tools/pull/536) [`8bcc9bb`](https://github.com/saasquatch/program-tools/commit/8bcc9bb001e39c6f4be738787c2c1123c03298dc) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Adds @csspart metadata so Portal can expose editable parts for editing.
+
 ## 2.4.9
 
 ### Patch Changes
