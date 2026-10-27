@@ -7,8 +7,8 @@ import {
   GherkinClassicTokenMatcher,
   Parser,
 } from "@cucumber/gherkin";
-import { IdGenerator } from "@cucumber/messages";
-import { findMatch } from "./registry.ts";
+import { IdGenerator, type PickleStep } from "@cucumber/messages";
+import { findMatches, type StepMatch } from "./registry.ts";
 import { getWorld } from "./world.ts";
 
 /**
@@ -131,8 +131,32 @@ export async function runProgramTests(opts: RunProgramTestsOptions) {
             console.debug(`===== Before "${pickle.name}" =====`);
           }
 
+          const steps: [PickleStep, StepMatch][] = [];
+          const stepErrors: Error[] = [];
+
           for (const step of pickle.steps ?? []) {
-            const match = findMatch(step.text);
+            const matches = findMatches(step.text);
+
+            if (matches.length === 0) {
+              stepErrors.push(
+                new Error(`No step definition matches: "${step.text}"`),
+              );
+            } else if (matches.length > 1) {
+              stepErrors.push(
+                new Error(`Multiple step definitions match: "${step.text}"`),
+              );
+            } else {
+              steps.push([step, matches[0]]);
+            }
+          }
+
+          if (stepErrors.length > 0) {
+            throw new Error(
+              `Step failed with errors:\n  ${stepErrors.map((e) => e.message).join("\n  ")}`,
+            );
+          }
+
+          for (const [step, match] of steps) {
             await match.handler(...match.args, ...stepArgument(step.argument));
           }
 
