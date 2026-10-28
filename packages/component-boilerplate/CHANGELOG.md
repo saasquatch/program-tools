@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.11] - 2026-10-28
+
+### Fixed
+
+- Batched queries no longer resolve with `null` data when the server lists GraphQL errors in a different order from the response data; every query with an error now rejects with that error
+
 ## [1.6.10] - 2026-02-26
 
 ### Changed
@@ -222,7 +228,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - useShareEvent
       useForm
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.10...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.11...HEAD
+[1.6.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.11
 [1.6.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.10
 [1.6.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.9
 [1.6.8]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.8
