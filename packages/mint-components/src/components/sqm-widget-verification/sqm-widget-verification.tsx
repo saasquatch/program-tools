@@ -22,8 +22,13 @@ import {
 
 const style = {
   Dialog: {
+    // Embed iframes grow to the widget's full height, so a centred dialog lands mid-widget
+    "&::part(base)": {
+      alignItems: "flex-start",
+    },
     "&::part(panel)": {
       maxWidth: "480px",
+      marginTop: "var(--sl-spacing-x-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large)",

@@ -14,6 +14,7 @@ Feature: Widget verification flow
     Then the page displays the widget verification flow inside a non-dismissable sl-dialog
     And the dialog title is "Let's get you ready for rewards"
     When an email is successfully verified
+    And the user has a reward where `reward.rewardedCash` is true and status is "AVAILABLE"
     Then the partner info modal step is displayed inside the same dialog
     When the partner info modal is completed successfully
     Then the html inside the "verified" template is displayed
@@ -44,14 +45,85 @@ Feature: Widget verification flow
     And the component displays the code verification step
 
   @motivating
-  Scenario: Successful code verification opens the partner info modal step in the same dialog
+  Scenario Outline: Successful code verification only shows the partner info modal step if the user has a cash reward that is not cancelled or expired
     Given a user on the code verification step
+    And the user has a reward where `reward.rewardedCash` is <rewardedCash>
+    And the reward has status <status>
     When they enter a valid 2FA code
     And they click "Verify"
+    Then the <step> is shown
+
+    Examples:
+      | rewardedCash        | status    | step                                     |
+      | true                | AVAILABLE | partner info modal step                  |
+      | true                | PENDING   | partner info modal step                  |
+      | true                | REDEEMED  | partner info modal step                  |
+      | true                | CANCELLED | html inside the "verified" template slot |
+      | true                | EXPIRED   | html inside the "verified" template slot |
+      | false               | AVAILABLE | html inside the "verified" template slot |
+      | N/A (user has none) | N/A       | html inside the "verified" template slot |
+
+  @minutia
+  Scenario: One qualifying cash reward is enough to show the partner info modal step
+    Given a user has a reward where `reward.rewardedCash` is true and status is "CANCELLED"
+    And they have another reward where `reward.rewardedCash` is true and status is "PENDING"
+    When they successfully verify their email
+    Then the partner info modal step is shown
+
+  @minutia
+  Scenario: Verification is not skipped if the user lookup fails when the widget loads
+    Given a user whose email is already verified
+    And they have a reward where `reward.rewardedCash` is true and status is "AVAILABLE"
+    And the `checkUserVerification` request fails when the widget loads
+    When the `sqm-widget-verification` component loads
+    Then the email verification step is shown
+    And the html inside the "verified" template slot is not displayed
+
+  @minutia
+  Scenario Outline: The partner info modal step is shown if the user lookup fails after verifying
+    Given a user on the code verification step
+    And they have <cashRewards>
+    And the `checkUserVerification` request fails after they verify their code
+    When they enter a valid 2FA code
+    And they click "Verify"
+    Then the partner info modal step is shown
+    And the html inside the "verified" template slot is not displayed
+
+    Examples:
+      | cashRewards                                                            |
+      | a reward where `reward.rewardedCash` is true and status is "AVAILABLE" |
+      | no rewards where `reward.rewardedCash` is true                         |
+
+  @minutia
+  Scenario Outline: Submitting the partner info modal after a failed user lookup
+    Given the partner info modal step is shown because the `checkUserVerification` request failed
+    And the `getUserPartnerInfo` request <partnerInfoRequest>
+    When they select a country and currency
+    And they check the banking collection checkbox
+    And they click "Submit"
+    Then <result>
+
+    Examples:
+      | partnerInfoRequest | result                                                                         |
+      | succeeds           | the html inside the "verified" template slot is displayed                      |
+      | fails              | they see the default network error text "An error occurred. Please try again." |
+
+  @motivating
+  Scenario: Partner info modal step is displayed inside the widget verification dialog
+    Given a user with a reward where `reward.rewardedCash` is true and status is "AVAILABLE"
+    When they successfully verify their email
     Then the partner creation step is displayed inside the same widget verification dialog
     And the embedded `sqm-partner-info-modal` is rendered with the `inModal` prop
     And the dialog title remains "Let's get you ready for rewards"
     And the dialog cannot be dismissed by clicking the overlay or pressing Escape
+
+  @motivating
+  Scenario: Users who skip the partner info modal step can still set up payouts
+    Given a user with no rewards where `reward.rewardedCash` is true
+    When they successfully verify their email
+    Then the widget verification dialog is hidden
+    And the html inside the "verified" template slot is displayed
+    And they can create their partner from step 1 of the tax-and-cash flow
 
   @motivating
   Scenario: Successful partner creation completes the verification flow
@@ -61,17 +133,22 @@ Feature: Widget verification flow
     And the html inside the "verified" template slot is displayed
 
   @motivating
-  Scenario Outline: Initial load skips ahead based on the user's verification and connection state
+  Scenario Outline: Initial load skips ahead based on the user's verification, connection and cash reward status
     Given a user with `emailVerified` <emailVerified>
     And `impactConnection.connected` <connected>
+    And the user has a reward where `reward.rewardedCash` is true with status <cashRewardStatus>
     When the `sqm-widget-verification` component loads
     Then the <step> is shown
 
     Examples:
-      | emailVerified | connected | step                                         |
-      | false         | false     | email verification step                      |
-      | true          | false     | partner info modal step (email/code skipped) |
-      | true          | true      | verified slot (entire flow skipped)          |
+      | emailVerified | connected | cashRewardStatus    | step                                         |
+      | false         | false     | AVAILABLE           | email verification step                      |
+      | true          | false     | AVAILABLE           | partner info modal step (email/code skipped) |
+      | true          | false     | PENDING             | partner info modal step (email/code skipped) |
+      | true          | false     | CANCELLED           | verified slot (entire flow skipped)          |
+      | true          | false     | EXPIRED             | verified slot (entire flow skipped)          |
+      | true          | false     | N/A (user has none) | verified slot (entire flow skipped)          |
+      | true          | true      | AVAILABLE           | verified slot (entire flow skipped)          |
 
   @motivating @ui
   Scenario: Code verification step
