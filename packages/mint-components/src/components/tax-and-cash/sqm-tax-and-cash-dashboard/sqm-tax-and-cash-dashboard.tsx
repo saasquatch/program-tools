@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { TaxAndCashDashboardView } from "./sqm-tax-and-cash-dashboard-view";
@@ -533,10 +533,10 @@ export class TaxAndCashDashboard {
   }
 }
 function useDemoTaxAndCashDashboard(
-  props: TaxAndCashDashboard,
+  props: TaxAndCashDashboard
 ): UseTaxAndCashDashboardResult {
   // @ts-ignore
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         dateSubmitted: "today",
@@ -584,7 +584,6 @@ function useDemoTaxAndCashDashboard(
         ),
       },
     },
-    props.demoData || props.stateController || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || props.stateController || {}
   );
 }

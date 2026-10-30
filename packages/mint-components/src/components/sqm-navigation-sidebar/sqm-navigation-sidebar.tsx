@@ -10,7 +10,7 @@ import {
   NavigationSidebarView,
   NavigationSidebarViewProps,
 } from "./sqm-navigation-sidebar-view";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 
 /**
@@ -88,11 +88,10 @@ function useNavigationSidebar(
 function useDemoNavigationSidebar(
   props: NavigationSidebar
 ): NavigationSidebarViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       mobileMenuColor: props.mobileMenuColor,
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

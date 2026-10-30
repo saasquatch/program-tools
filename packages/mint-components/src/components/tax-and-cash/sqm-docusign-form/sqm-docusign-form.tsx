@@ -1,7 +1,7 @@
 import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Element, Host, Prop, State, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
@@ -227,7 +227,7 @@ export class DocusignForm {
 function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
 
-  return deepmerge(
+  return demoMerge(
     {
       text: props.getTextProps(),
       states: {
@@ -262,8 +262,7 @@ function useDocusignFormDemo(props: DocusignForm): UseDocusignFormResult {
         setDocusignStatus: (status: DocusignStatus) => console.log(status),
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }
 

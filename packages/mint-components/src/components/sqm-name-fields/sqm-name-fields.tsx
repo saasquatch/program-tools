@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { NameFieldsView, NameFieldsViewProps } from "./sqm-name-fields-view";
 import { useNameFields } from "./useNameFields";
@@ -55,7 +55,7 @@ export class NameFields {
   }
 }
 function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         optional: props.optional,
@@ -66,7 +66,6 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
         },
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

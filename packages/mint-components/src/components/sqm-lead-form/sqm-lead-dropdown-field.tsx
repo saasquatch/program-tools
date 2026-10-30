@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 import { getMissingProps, getProps } from "../../utils/utils";
@@ -118,7 +118,7 @@ export class LeadDropdownField {
 function useLeadDropdownFieldDemo(
   props: LeadDropdownField
 ): Partial<DropdownFieldViewProps> {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         leadFormState: {},
@@ -130,7 +130,6 @@ function useLeadDropdownFieldDemo(
         dropdownOptional: props.dropdownOptional,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

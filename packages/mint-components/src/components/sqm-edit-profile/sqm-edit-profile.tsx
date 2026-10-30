@@ -4,7 +4,7 @@ import EditProfileView, { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { useEditProfile } from "./useEditProfile";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { getProps } from "../../utils/utils";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 
 /**
@@ -99,7 +99,7 @@ export class EditProfile {
 }
 
 function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         loading: false,
@@ -152,7 +152,6 @@ function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
         },
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

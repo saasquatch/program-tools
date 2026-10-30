@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { createStyleSheet } from "../../styling/JSS";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
@@ -397,7 +397,7 @@ function useDemoWidgetVerificationInternal(
     setContext(true);
   };
 
-  return deepmerge(
+  return demoMerge(
     {
       showCode,
       showPartnerModal: false,
@@ -406,7 +406,6 @@ function useDemoWidgetVerificationInternal(
       onInitialFocus: (e: any) => e.preventDefault(),
       loading: false,
     },
-    formatted || {},
-    { arrayMerge: (_, a) => a }
+    formatted || {}
   );
 }

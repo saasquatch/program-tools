@@ -8,7 +8,7 @@ import {
 } from "./sqm-email-verification-view";
 import { getProps } from "../../../utils/utils";
 import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { SHOW_CODE_NAMESPACE } from "../keys";
 
 /**
@@ -89,7 +89,7 @@ function useDemoWidgetEmailVerification(
 ): WidgetEmailVerificationViewProps {
   const setShowCode = useSetParent(SHOW_CODE_NAMESPACE);
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: false,
@@ -103,7 +103,6 @@ function useDemoWidgetEmailVerification(
       },
       text: props.getTextProps(),
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

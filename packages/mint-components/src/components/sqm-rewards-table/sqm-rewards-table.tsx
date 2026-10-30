@@ -2,7 +2,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import {
   GenericTableView,
@@ -231,7 +231,7 @@ function useRewardsTableDemo(
     data && getComponentData(components);
   }, [data, components, tick]);
 
-  const demoProps = deepmerge(
+  const demoProps = demoMerge(
     {
       states: {
         hasPrev: false,
@@ -259,8 +259,7 @@ function useRewardsTableDemo(
         loadingElement,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
   return demoProps;
 }

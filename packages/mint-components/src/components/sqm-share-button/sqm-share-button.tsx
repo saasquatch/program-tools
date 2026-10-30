@@ -5,7 +5,7 @@ import { ShareButtonView, ShareButtonViewProps } from "./sqm-share-button-view";
 import { useShareButton } from "./useShareButton";
 import { getProps } from "../../utils/utils";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 
 /**
  * @uiName Share Button
@@ -200,7 +200,7 @@ export class ShareButton {
 }
 
 function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       ...props,
       loading: false,
@@ -209,7 +209,6 @@ function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
         // TODO: Provide visual feedback
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

@@ -7,7 +7,7 @@ import {
   PayoutButtonScrollView,
   PayoutButtonScrollViewProps,
 } from "./sqm-payout-button-scroll-view";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { usePayoutButton } from "./usePayoutButton";
 
 /**
@@ -58,14 +58,13 @@ export class PayoutButtonScroll {
 function useDemoPayoutButtonScroll(
   props: PayoutButtonScroll
 ): PayoutButtonScrollViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         payoutSettingsComplete: false,
       },
       text: props.getTextProps(),
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

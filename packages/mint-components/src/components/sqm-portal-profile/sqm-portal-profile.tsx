@@ -8,7 +8,7 @@ import { usePortalProfile } from "./usePortalProfile";
 import { getProps } from "../../utils/utils";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 
 /**
  * @uiName Microsite Participant Profile
@@ -114,7 +114,7 @@ export class PortalProfile {
 }
 
 function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         success: false,
@@ -153,7 +153,6 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
         onChange: (e) => console.log(e),
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

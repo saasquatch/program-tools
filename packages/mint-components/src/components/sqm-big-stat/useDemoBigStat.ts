@@ -1,5 +1,5 @@
 import { useMemo } from "@saasquatch/universal-hooks";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { useChildElements } from "../../tables/useChildElements";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatHook, queries, StatPatterns } from "./useBigStat";
@@ -35,7 +35,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
   const label = queries[queryName].label;
 
   return {
-    props: deepmerge(
+    props: demoMerge(
       {
         statvalue: "12345",
         value: 0,
@@ -47,8 +47,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
         descriptionFontSize: props.descriptionFontSize,
         statFontWeight: props.statFontWeight,
       },
-      props.demoData || {},
-      { arrayMerge: (_, a) => a }
+      props.demoData || {}
     ),
     label: label ?? "Demo Label",
   };

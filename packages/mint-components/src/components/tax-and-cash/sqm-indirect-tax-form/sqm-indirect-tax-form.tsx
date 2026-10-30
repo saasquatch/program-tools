@@ -2,7 +2,7 @@ import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { TAX_CONTEXT_NAMESPACE } from "../data";
@@ -292,13 +292,13 @@ export class IndirectTaxForm {
 }
 
 function useDemoIndirectTaxForm(
-  props: IndirectTaxForm,
+  props: IndirectTaxForm
 ): ReturnType<typeof useIndirectTaxForm> {
   const setStep = useSetParent(TAX_CONTEXT_NAMESPACE);
   const [option, setOption] = useState("otherRegion");
   const [demoFormState, setDemoFormState] = useState<any>({});
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         step: "2",
@@ -377,7 +377,6 @@ function useDemoIndirectTaxForm(
         },
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || {}
   );
 }
