@@ -3,23 +3,31 @@
   "version": "1.6.10",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
-  "source": "src/index.ts",
+  "source": [
+    "src/index.ts",
+    "src/canned.ts"
+  ],
   "main": "dist/index.js",
-  "exports": "./dist/index.modern.js",
+  "exports": {
+    ".": "./dist/index.modern.js",
+    "./canned": "./dist/canned.modern.js",
+    "./package.json": "./package.json"
+  },
   "module": "dist/index.module.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "canned"
   ],
   "scripts": {
     "build": "microbundle",
     "test": "jest --forceExit",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "sync-canned-schema": "node scripts/sync-canned-schema.js"
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
   "devDependencies": {
-    "@graphql-tools/mock": "^7.0.0",
     "@saasquatch/universal-hooks-testing-library": "^0.1.0",
     "@testing-library/react-hooks": "^5.1.0",
     "@types/debounce": "^1.2.0",
@@ -40,6 +48,8 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
+    "@graphql-tools/mock": "^7.0.0",
+    "@graphql-tools/schema": "^7.1.5",
     "@saasquatch/component-environment": "^1.0.11",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/stencil-hooks": "^2.0.2",
