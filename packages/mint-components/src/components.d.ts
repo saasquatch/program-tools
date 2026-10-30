@@ -889,7 +889,7 @@ export namespace Components {
         "tooltiptext": string;
     }
     /**
-     * Shows it's children as either a row or a column, with a division in between them.
+     * Shows its children as either a row or a column, with a division in between them.
      * Spacing is left up to the child
      * @uiName Divided Layout
      * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
@@ -8727,7 +8727,7 @@ declare global {
         new (): HTMLSqmCouponCodeElement;
     };
     /**
-     * Shows it's children as either a row or a column, with a division in between them.
+     * Shows its children as either a row or a column, with a division in between them.
      * Spacing is left up to the child
      * @uiName Divided Layout
      * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
@@ -11270,7 +11270,7 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     /**
-     * Shows it's children as either a row or a column, with a division in between them.
+     * Shows its children as either a row or a column, with a division in between them.
      * Spacing is left up to the child
      * @uiName Divided Layout
      * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
@@ -19154,7 +19154,7 @@ declare module "@stencil/core" {
              */
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
             /**
-             * Shows it's children as either a row or a column, with a division in between them.
+             * Shows its children as either a row or a column, with a division in between them.
              * Spacing is left up to the child
              * @uiName Divided Layout
              * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
