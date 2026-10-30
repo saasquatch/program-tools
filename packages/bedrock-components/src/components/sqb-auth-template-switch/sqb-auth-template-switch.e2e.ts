@@ -1,5 +1,11 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
+// Unsigned: the component only decodes the token, so it needs no real credential.
+const FAKE_JWT =
+  [{ alg: 'none', typ: 'JWT' }, { user: { id: 'testuser', accountId: 'testuser' } }]
+    .map(part => Buffer.from(JSON.stringify(part)).toString('base64url'))
+    .join('.') + '.';
+
 function newTemplate(slot: string) {
   return /*html*/ `
   <template slot="${slot}">
@@ -69,14 +75,14 @@ describe('sqb-auth-template-switch', () => {
     await expectTemplate('logged-out');
     await dontExpectTemplate('logged-in');
 
-    await page.evaluate(() => {
+    await page.evaluate(jwt => {
       window.squatchUserIdentity.context = {
-        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs',
+        jwt,
         accountId: 'testuser',
         id: 'testuser',
       };
       return true;
-    });
+    }, FAKE_JWT);
 
     await page.waitForChanges();
 
@@ -101,14 +107,14 @@ describe('sqb-auth-template-switch', () => {
 
     await expectElement('sqb-auth-template-switch');
 
-    await page.evaluate(() => {
+    await page.evaluate(jwt => {
       window.squatchUserIdentity.context = {
-        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs',
+        jwt,
         accountId: 'testuser',
         id: 'testuser',
       };
       return true;
-    });
+    }, FAKE_JWT);
 
     await page.waitForChanges();
 

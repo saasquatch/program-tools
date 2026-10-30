@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `@saasquatch/component-boilerplate/canned`, a separate entry for stories and tests: `useCannedEnvironment`, `createCannedGraphQLClient`, `provideCannedGraphQL` and `interceptCannedFetch` answer any query valid against a snapshot of the SaaSquatch schema with realistic, deterministic data, so stories need no real tenant or credentials. Refresh the snapshot with `npm run sync-canned-schema -- <path to saasquatch repo>`.
+- `fakeJwt`, an unsigned token for demos and stories (exported from both entries).
+
+### Changed
+
+- `GRAPHQL_CONTEXT` moved to `hooks/graphql/context.ts`; it is still exported from the main entry.
+
 ## [1.6.10] - 2026-02-26
 
 ### Changed

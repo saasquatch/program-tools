@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Removed signed user JWTs from stories and e2e tests. They were bundled into the lazy chunk customer pages load for `sqb-widget`; stories now use canned GraphQL data.
+
+### Changed
+
+- Stencilbook and hook stories are bundled separately, so the `sqb-widget`, `sqb-auth-template-switch` and `sqb-program-*` chunks no longer include story code (170 KB → under 7 KB each).
+
 ## [1.5.3] - 2026-04-01
 
 ### Changed

@@ -1,8 +1,9 @@
 import { setUserIdentity } from '@saasquatch/component-boilerplate';
-import { useEffect } from '@saasquatch/universal-hooks';
+import { useCannedEnvironment } from '@saasquatch/component-boilerplate/canned';
 import { h } from '@stencil/core';
 import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
 import scenario from './sqb-widget.feature';
+import { cannedWidgetMocks } from './cannedWidgetTemplates';
 export default {
   title: 'Widget',
   parameters: {
@@ -10,34 +11,19 @@ export default {
   },
 };
 
-function useGraphQL(user) {
-  window.widgetIdent = {
-    tenantAlias: 'test_agvu4yg8zrkxt',
-    appDomain: 'https://app.referralsaasquatch.com',
-    programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
-    ...user,
-  };
-
-  useEffect(() => {
-    setUserIdentity({
-      accountId: user?.accountId,
-      id: user?.id,
-      jwt: user?.token,
-    });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
-  }, []);
+function useGraphQL(user: { id: string; accountId: string; programId?: string; locale?: string }) {
+  useCannedEnvironment({
+    programId: user.programId ?? 'Vacay-referral',
+    user: { id: user.id, accountId: user.accountId },
+    widgetIdent: { engagementMedium: 'EMBED', locale: user.locale },
+    mocks: cannedWidgetMocks,
+  });
 }
 
 export const Widget = createHookStory(() => {
   const user = {
     id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
   };
   useGraphQL(user);
   return (
@@ -51,8 +37,6 @@ export const WidgetWithAnalytics = createHookStory(() => {
   const user = {
     id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
   };
   useGraphQL(user);
   return (
@@ -66,10 +50,8 @@ export const WidgetWithLocaleEn = createHookStory(() => {
   const user = {
     id: 'samenglish',
     accountId: 'samenglish',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZW5nbGlzaCIsImFjY291bnRJZCI6InNhbWVuZ2xpc2gifX0.sqnbhq5piBZkTpWi5cwadqF11lVbghrn1fiIXJ6iUU0',
-    tenantAlias: 'test_a74miwdpofztj',
+    locale: 'en',
     programId: 'klip-referral-program',
-    appDomain: 'https://staging.referralsaasquatch.com',
   };
   useGraphQL(user);
 
@@ -84,10 +66,8 @@ export const WidgetWithLocaleTr = createHookStory(() => {
   const user = {
     id: 'samturkey',
     accountId: 'samturkey',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtdHVya2V5IiwiYWNjb3VudElkIjoic2FtdHVya2V5In19.3Ayf3k1Mg5pntjRgEdPE-PqARBX5uNTc1mnX3wlbHaw',
-    tenantAlias: 'test_a74miwdpofztj',
+    locale: 'tr',
     programId: 'klip-referral-program',
-    appDomain: 'https://staging.referralsaasquatch.com',
   };
   useGraphQL(user);
   return (
@@ -101,10 +81,8 @@ export const WidgetWithLocaleFr = createHookStory(() => {
   const user = {
     id: 'samfrench',
     accountId: 'samfrench',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZnJlbmNoIiwiYWNjb3VudElkIjoic2FtZnJlbmNoIn19.-25oxP2cH5iOaR6UZCr9GDmEfg-Sqo8dlVIGUYTuHYM',
-    tenantAlias: 'test_a74miwdpofztj',
+    locale: 'fr',
     programId: 'klip-referral-program',
-    appDomain: 'https://staging.referralsaasquatch.com',
   };
   useGraphQL(user);
   return (
@@ -118,10 +96,7 @@ export const WidgetWithNoLocale = createHookStory(() => {
   const user = {
     id: 'nolocale',
     accountId: 'nolocale',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibm9sb2NhbGUiLCJhY2NvdW50SWQiOiJub2xvY2FsZSJ9fQ.ACri_gO_eIdNfh3ifMmbbDp7gZz3yjT_8mfiQ96T-BY',
-    tenantAlias: 'test_a74miwdpofztj',
     programId: 'klip-referral-program',
-    appDomain: 'https://staging.referralsaasquatch.com',
   };
   useGraphQL(user);
   return (
@@ -132,12 +107,7 @@ export const WidgetWithNoLocale = createHookStory(() => {
 });
 
 export const WidgetWithNoAuth = createHookStory(() => {
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: 'test_a74miwdpofztj',
-    programId: 'klip-referral-program',
-    appDomain: 'https://staging.referralsaasquatch.com',
-  };
+  useCannedEnvironment({ programId: 'klip-referral-program', mocks: cannedWidgetMocks });
   setUserIdentity(undefined);
   return (
     <div>
