@@ -62,10 +62,17 @@ import { UserAttributeViewProps } from "./components/sqm-user-attribute/sqm-user
 import { UseUserInfoFormResult } from "./components/tax-and-cash/sqm-user-info-form/useUserInfoForm";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
+    /**
+     * @undocumented 
+     */
     interface RaisinsPlopTarget {
         "renderCell": () => Promise<any>;
         "renderLabel": (idx: any) => Promise<any>;
     }
+    /**
+     * @uiName Banking Information Form
+     * @exampleGroup Common Components
+     */
     interface SqmBankingInfoForm {
         /**
           * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
@@ -469,6 +476,22 @@ export namespace Components {
          */
         "voCodeLabel": string;
     }
+    /**
+     * @uiName User Stat
+     * @validParents ["sqm-stat-container"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"","title":"Stat Text"}]
+     * @uiOrder ["statType", "programId", "*"]
+     * @slotEditor richText
+     * @exampleGroup Statistics
+     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
+     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
+     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
+     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
+     * @csspart stat-wrapper - The stat wrapper element
+     * @csspart stat-value - The stat value element
+     * @csspart stat-description - The stat description element
+     */
     interface SqmBigStat {
         /**
           * Controls the alignment of the flexbox
@@ -546,6 +569,12 @@ export namespace Components {
          */
         "statType": string;
     }
+    /**
+     * @uiName Brand Container
+     * @slots [{"name":"","title":"Branded Content"}]
+     * @exampleGroup Common Components
+     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
+     */
     interface SqmBrand {
         /**
           * Controls the primary brand color used in the Mint Components library.
@@ -563,6 +592,15 @@ export namespace Components {
     }
     interface SqmBrandSelector {
     }
+    /**
+     * @uiName Card Feed
+     * @slots [{"name":"","title":"Cards"}]
+     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-task-card"]
+     * @exampleGroup Rewards
+     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
+     * @csspart sqm-base - The base container
+     */
     interface SqmCardFeed {
         /**
           * @uiName Column gap
@@ -574,6 +612,12 @@ export namespace Components {
          */
         "width": number;
     }
+    /**
+     * @uiName Form Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+     */
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
@@ -609,6 +653,9 @@ export namespace Components {
          */
         "errorMessage"?: string;
     }
+    /**
+     * @uiName Popup Widget Close Button
+     */
     interface SqmCloseButton {
         /**
           * @uiName Color
@@ -617,6 +664,12 @@ export namespace Components {
          */
         "color": string;
     }
+    /**
+     * @uiName Widget Code Verification
+     * @csspart sqm-base - The base container
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmCodeVerification {
         /**
           * Link text displayed under verify button
@@ -665,9 +718,26 @@ export namespace Components {
          */
         "verifyText": string;
     }
+    /**
+     * @uiName Context Router
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface SqmContextRouter {
         "contextName": string;
     }
+    /**
+     * @uiName Coupon Code
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
+     * @csspart label - The coupon code label element
+     * @csspart erroralert-text - The error message element
+     * @csspart alert-icon - The status alert icon (error, warning, info, or success)
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmCouponCode {
         /**
           * Background color of share link container
@@ -818,6 +888,15 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    /**
+     * Shows it's children as either a row or a column, with a division in between them.
+     * Spacing is left up to the child
+     * @uiName Divided Layout
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
+     * @exampleGroup Layout
+     * @slots [{"name":"", "title":"Layout Content"}]
+     * @csspart sqm-base - The base container
+     */
     interface SqmDividedLayout {
         /**
           * Background color of the divider
@@ -850,6 +929,11 @@ export namespace Components {
          */
         "dividerStyle": string;
     }
+    /**
+     * @uiName DocuSign Document Submission
+     * @exampleGroup Tax and Cash Components
+     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
+     */
     interface SqmDocusignForm {
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
@@ -974,6 +1058,16 @@ export namespace Components {
          */
         "taxFormLabel": string;
     }
+    /**
+     * @uiName Form Dropdown Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @slots [{"name":"", "title":"Drop Down Option"}]
+     * @exampleGroup Microsite Components
+     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -1000,6 +1094,17 @@ export namespace Components {
          */
         "errorMessage": string;
     }
+    /**
+     * @uiName Microsite Edit Profile
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The profile form header
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmEditProfile {
         /**
           * @uiName Cancel button text
@@ -1053,6 +1158,14 @@ export namespace Components {
          */
         "updatetext": string;
     }
+    /**
+     * @uiName Widget Verification Gate
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmEmailVerification {
         /**
           * @undocumented 
@@ -1088,6 +1201,13 @@ export namespace Components {
          */
         "verifyEmailHeaderText": string;
     }
+    /**
+     * @uiName Empty State Content
+     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
+     * @csspart sqm-base - The base container
+     * @csspart header-text - The empty state header
+     * @csspart description-text - The empty state description
+     */
     interface SqmEmpty {
         /**
           * @uiName Title
@@ -1110,6 +1230,20 @@ export namespace Components {
          */
         "supportText"?: string;
     }
+    /**
+     * @uiName Form Message
+     * @slots [{"name":"","title":"Message Content"}]
+     * @csspart erroralert-base - The error alert base
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart infoalert-base - The info alert base
+     * @csspart infoalert-icon - The info alert icon
+     * @csspart warningalert-base - The warning alert base
+     * @csspart warningalert-icon - The warning alert icon
+     * @csspart successalert-base - The success alert base
+     * @csspart successalert-icon - The success alert icon
+     * @csspart alert-base - The alert base, stable across all types
+     * @csspart alert-icon - The alert icon, stable across all types
+     */
     interface SqmFormMessage {
         /**
           * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
@@ -1131,6 +1265,11 @@ export namespace Components {
          */
         "type": string;
     }
+    /**
+     * @uiName Google Sign-In Button
+     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
+     * @undocumented 
+     */
     interface SqmGoogleSignIn {
         "googleButtonDiv": HTMLElement | null;
         /**
@@ -1138,12 +1277,21 @@ export namespace Components {
          */
         "text": string;
     }
+    /**
+     * @uiName GraphQL Client Provider
+     * @canvasRenderer always-replace
+     * @slots [{"name":"","title":"Provider Content"}]
+     */
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
          */
         "domain": string;
     }
+    /**
+     * @uiName Header Logo
+     * @validParents ["sqm-portal-frame","div","sqm-brand"]
+     */
     interface SqmHeaderLogo {
         /**
           * @uiName Logo height (in px)
@@ -1177,6 +1325,18 @@ export namespace Components {
          */
         "nextPage": string;
     }
+    /**
+     * @uiName Hero Layout
+     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
+     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
+     * @exampleGroup Layout
+     * @csspart sqm-base - The base container
+     * @csspart sqm-single-col - The single-column container
+     * @csspart sqm-two-col-container - The two-column container
+     * @csspart sqm-two-col-primary-col - The primary column
+     * @csspart sqm-two-col-secondary-col - The secondary column
+     */
     interface SqmHero {
         /**
           * Splash image or background color (for use in the left column)
@@ -1222,6 +1382,23 @@ export namespace Components {
          */
         "wrapDirection": "wrap" | "wrap-reverse";
     }
+    /**
+     * @uiName Hero Image
+     * @uiOrder ["image-url", "image-alt", "min-height", "layout", "header", "description", "button-text", "button-link", "button-new-tab", "*"]
+     * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
+     * @exampleGroup Common Components
+     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
+     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+     * @csspart sqm-base - The base container for the hero image
+     * @csspart sqm-overlay - The image overlay
+     * @csspart sqm-columns-image - The image column
+     * @csspart sqm-columns-text-area - The text column
+     * @csspart sqm-columns-header - The header in the text column
+     * @csspart sqm-columns-description - The description in the text column
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart sqm-hero-image-button - The hero image button
+     */
     interface SqmHeroImage {
         /**
           * @uiName Background color
@@ -1343,9 +1520,20 @@ export namespace Components {
          */
         "textColor"?: string;
     }
+    /**
+     * @undocumented 
+     */
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
+    /**
+     * @uiName Image
+     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section", "sqm-tab"]
+     * @exampleGroup Common Components
+     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+     * @csspart sqm-base - The base container for the image
+     * @csspart sqm-image - The image element
+     */
     interface SqmImage {
         /**
           * @uiName Position alignment
@@ -1378,6 +1566,15 @@ export namespace Components {
          */
         "width"?: string;
     }
+    /**
+     * @uiName Indirect Tax Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart radio-base - The radio base
+     */
     interface SqmIndirectTaxForm {
         /**
           * @uiName Back button label
@@ -1533,6 +1730,15 @@ export namespace Components {
          */
         "taxAndPayoutsDescription": string;
     }
+    /**
+     * @uiName Form Input Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmInputField {
         /**
           * @undocumented 
@@ -1566,6 +1772,20 @@ export namespace Components {
          */
         "fieldType": "text" | "date" | "tel";
     }
+    /**
+     * @uiName Instant Access Registration
+     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
@@ -1660,6 +1880,14 @@ export namespace Components {
          */
         "requiredFieldErrorMessage": string;
     }
+    /**
+     * @uiName Invoice Table
+     * @exampleGroup Invoices
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
+     */
     interface SqmInvoiceTable {
         /**
           * @undocumented 
@@ -1724,6 +1952,10 @@ export namespace Components {
     interface SqmInvoiceTableDataCell {
         "data": string;
     }
+    /**
+     * @uiName Invoice Table Data Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
@@ -1740,6 +1972,12 @@ export namespace Components {
         "date": number;
         "locale": string;
     }
+    /**
+     * @uiName Invoice Table Date Column
+     * @validParents ["sqm-invoice-table"]
+     * @exampleGroup Invoices
+     * @example Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
+     */
     interface SqmInvoiceTableDateColumn {
         /**
           * @uiName Column title
@@ -1751,10 +1989,21 @@ export namespace Components {
     interface SqmInvoiceTableDownloadCell {
         "downloadUrl": string;
     }
+    /**
+     * @uiName Invoice Table Download Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface SqmInvoiceTableDownloadColumn {
         "renderCell": (data: Invoice) => Promise<any>;
         "renderLabel": () => Promise<any>;
     }
+    /**
+     * @uiName Lead Form Checkbox Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadCheckboxField {
         /**
           * @uiName Checkbox label
@@ -1790,12 +2039,20 @@ export namespace Components {
          */
         "errorMessage"?: string;
     }
+    /**
+     * @uiName Lead Form Dropdown Field
+     * @validParents ["sqm-lead-form"]
+     * @slots [{"name":"", "title":"Dropdown Option"}]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadDropdownField {
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DropdownFieldViewProps>;
+        "demoData"?: DemoData<DropdownFieldViewProps1>;
         /**
           * @uiName Dropdown label
          */
@@ -1827,6 +2084,19 @@ export namespace Components {
          */
         "requiredFieldErrorMessage": string;
     }
+    /**
+     * @uiName Lead Form
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart successalert-text - The success message element
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmLeadForm {
         /**
           * @undocumented 
@@ -1906,6 +2176,13 @@ export namespace Components {
          */
         "supportLinkText": string;
     }
+    /**
+     * @uiName Lead Form Input Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadInputField {
         /**
           * @undocumented 
@@ -1945,6 +2222,20 @@ export namespace Components {
          */
         "requiredFieldErrorMessage": string;
     }
+    /**
+     * @uiName Leaderboard
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @requiredFeatures ["LEADERBOARDS"]
+     * @exampleGroup Leaderboard
+     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
+     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-table - The leaderboard table
+     */
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -2074,6 +2365,9 @@ export namespace Components {
          */
         "width": string;
     }
+    /**
+     * @uiName Leaderboard Rank
+     */
     interface SqmLeaderboardRank {
         /**
           * @undocumented 
@@ -2119,6 +2413,14 @@ export namespace Components {
          */
         "unrankedText": string;
     }
+    /**
+     * @uiName Link Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Common Components
+     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+     * @csspart primarybutton-base - The button element
+     * @csspart sqm-link - The link element inside the button
+     */
     interface SqmLinkButton {
         /**
           * @uiName Button text
@@ -2136,6 +2438,15 @@ export namespace Components {
          */
         "openInNewTab": boolean;
     }
+    /**
+     * @uiName Sign out current user
+     * @exampleGroup Instant Access
+     * @compatibility Built for instant access
+     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-link - The logout link element
+     */
     interface SqmLogoutCurrentUser {
         /**
           * @required 
@@ -2158,6 +2469,11 @@ export namespace Components {
          */
         "userIdentificationText": string;
     }
+    /**
+     * @uiName Marketing Emails Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     */
     interface SqmMarketingEmailsCheckbox {
         /**
           * @uiName Checkbox label
@@ -2178,6 +2494,14 @@ export namespace Components {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
+    /**
+     * @uiName Form Name Fields
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -2198,6 +2522,11 @@ export namespace Components {
          */
         "optional": boolean;
     }
+    /**
+     * @uiName Navigation Menu
+     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
+     * @csspart dropdownbutton-base - The dropdown button base
+     */
     interface SqmNavigationMenu {
         /**
           * @undocumented 
@@ -2214,6 +2543,14 @@ export namespace Components {
          */
         "menuLabel": string;
     }
+    /**
+     * @uiName Microsite Sidebar
+     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
+     * @validChildren ["sqm-navigation-sidebar-item"]
+     * @slots [{"name":"", "title":"Sidebar Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-items-container - The navigation items container
+     */
     interface SqmNavigationSidebar {
         /**
           * @undocumented 
@@ -2228,6 +2565,14 @@ export namespace Components {
          */
         "mobileMenuColor"?: string;
     }
+    /**
+     * @uiName Microsite Sidebar Item
+     * @validParents ["sqm-navigation-sidebar"]
+     * @exampleGroup Microsite Components
+     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
+     * @csspart sqm-link - The navigation link element
+     * @csspart sqm-label - The navigation label
+     */
     interface SqmNavigationSidebarItem {
         /**
           * Background color of the nav item
@@ -2305,6 +2650,13 @@ export namespace Components {
          */
         "textHoverColor"?: string;
     }
+    /**
+     * @uiName Pagination
+     * @csspart sqm-base - The base container
+     * @csspart sqm-pagination-button - A pagination button
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPagination {
         /**
           * The type of the button that is used (primary or secondary).
@@ -2325,6 +2677,19 @@ export namespace Components {
          */
         "paginationText": string;
     }
+    /**
+     * @uiName Partner Info Modal
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
+     * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
+     * @hidden 
+     * @csspart sqm-base - The base container
+     * @csspart alert-description - The error description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart select-menu - The select menu
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPartnerInfoModal {
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
@@ -2438,6 +2803,15 @@ export namespace Components {
          */
         "termsAndConditionsLink": string;
     }
+    /**
+     * @uiName Form Password Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -2479,6 +2853,9 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Payout Button Scroll
+     */
     interface SqmPayoutButtonScroll {
         /**
           * @undocumented 
@@ -2495,6 +2872,10 @@ export namespace Components {
          */
         "payoutButtonText": string;
     }
+    /**
+     * @uiName Payout Details Card
+     * @exampleGroup Tax and Cash Components
+     */
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
@@ -2525,6 +2906,17 @@ export namespace Components {
          */
         "thresholdPayoutText": string;
     }
+    /**
+     * @uiName Payout Status Alert
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Tax and Cash
+     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPayoutStatusAlert {
         /**
           * @uiName Account review alert description
@@ -2700,6 +3092,13 @@ export namespace Components {
          */
         "withdrawalSettingsInvalidHeader": string;
     }
+    /**
+     * @uiName Popup Container
+     * @slots [{"name":"","title":"Content"}]
+     * @canvasRenderer always-replace
+     * @csspart sqm-base - The base container
+     * @csspart sqm-close-button - The popup close button
+     */
     interface SqmPopupContainer {
         /**
           * Display a close button on the popup
@@ -2740,6 +3139,15 @@ export namespace Components {
          */
         "poweredByText": string;
     }
+    /**
+     * @uiName Change Marketing Opt in Status
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     */
     interface SqmPortalChangeMarketing {
         /**
           * @undocumented 
@@ -2768,6 +3176,19 @@ export namespace Components {
          */
         "successMessage": string;
     }
+    /**
+     * @uiName Microsite Password Change
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
+     * @csspart sqm-base - The base container for the portal change password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalChangePassword {
         /**
           * Found in modal
@@ -2846,6 +3267,14 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Container
+     * @slots [{"name":"", "title":"Widget Content"}]
+     * @exampleGroup Layout
+     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
+     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
+     * @csspart sqm-base - The base container for the portal container component
+     */
     interface SqmPortalContainer {
         /**
           * @uiName Background color
@@ -2914,6 +3343,15 @@ export namespace Components {
          */
         "padding": Spacing;
     }
+    /**
+     * @uiName Microsite Email Verification
+     * @csspart sqm-base - The base container for the portal email verification component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalEmailVerification {
         /**
           * @undocumented 
@@ -2960,6 +3398,11 @@ export namespace Components {
          */
         "verifyMessage": string;
     }
+    /**
+     * @uiName Footer
+     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
+     * @csspart sqm-base - The base container
+     */
     interface SqmPortalFooter {
         /**
           * @uiName FAQ link
@@ -3029,6 +3472,18 @@ export namespace Components {
          */
         "termsText"?: string;
     }
+    /**
+     * @uiName Microsite Forgot Password
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalForgotPassword {
         /**
           * @uiName Background color
@@ -3088,6 +3543,13 @@ export namespace Components {
          */
         "successAlertText": string;
     }
+    /**
+     * @uiName Microsite Frame
+     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The header container
+     * @csspart sqm-footer - The footer container
+     */
     interface SqmPortalFrame {
         /**
           * @uiName Background color
@@ -3118,6 +3580,16 @@ export namespace Components {
          */
         "notFullScreen"?: boolean;
     }
+    /**
+     * @uiName Microsite Login
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalGoogleLogin {
         /**
           * @undocumented 
@@ -3180,6 +3652,17 @@ export namespace Components {
          */
         "submitLabel": string;
     }
+    /**
+     * @uiName Google Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -3317,6 +3800,18 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Microsite Login
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -3372,6 +3867,11 @@ export namespace Components {
          */
         "submitLabel": string;
     }
+    /**
+     * @uiName Microsite Logout
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @compatibility Built for instant access
+     */
     interface SqmPortalLogout {
         /**
           * Redirect participants to this page when they log out.
@@ -3380,6 +3880,18 @@ export namespace Components {
          */
         "nextPage": string;
     }
+    /**
+     * @uiName Microsite Participant Profile
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalProfile {
         /**
           * @uiName Country field label
@@ -3435,6 +3947,11 @@ export namespace Components {
          */
         "submitChangeButtonText": string;
     }
+    /**
+     * @uiName Microsite Protected Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
+     * @slots [{"name":"","title":"Route Content"}]
+     */
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
@@ -3451,6 +3968,11 @@ export namespace Components {
          */
         "requireEmailVerification": boolean;
     }
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     */
     interface SqmPortalRegister {
         /**
           * @uiName Show confirm password field
@@ -3561,6 +4083,17 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -3683,6 +4216,17 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Microsite Reset Password
+     * @csspart sqm-base - The base container for the portal reset password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalResetPassword {
         /**
           * @uiName Reset code invalid error message
@@ -3774,6 +4318,15 @@ export namespace Components {
          */
         "uppercaseErrorText": string;
     }
+    /**
+     * @uiName Microsite Verify Email
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalVerifyEmail {
         /**
           * @uiName Continue text
@@ -3817,6 +4370,17 @@ export namespace Components {
          */
         "verifySuccessText": string;
     }
+    /**
+     * @uiName Program Explainer
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-program-explainer-step"]
+     * @exampleGroup Common Components
+     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
+     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
+     * @csspart sqm-base - The base container for the program explainer
+     * @csspart sqm-header - The header element
+     * @csspart sqm-grid-container - The grid container element
+     */
     interface SqmProgramExplainer {
         /**
           * @uiName Header background color
@@ -3835,6 +4399,16 @@ export namespace Components {
          */
         "textColor": string;
     }
+    /**
+     * @uiName Program Explainer Step
+     * @exampleGroup Common Components
+     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
+     * @validParents ["sqm-program-explainer"]
+     * @csspart sqm-base - The base container for the program explainer step
+     * @csspart sqm-media - The media element (icon or image)
+     * @csspart sqm-header - The header element
+     * @csspart sqm-description - The description element
+     */
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background color
@@ -3888,8 +4462,24 @@ export namespace Components {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Microsite Program Menu
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @slots [{"name":"","title":"Menu Content"}]
+     * @canvasRenderer always-replace
+     */
     interface SqmProgramMenu {
     }
+    /**
+     * @uiName QR Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
+     * @exampleGroup Sharing
+     * @example QR Code - <sqm-qr-code></sqm-qr-code>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-title - The QR code title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmQrCode {
         /**
           * @uiName QR code alignment
@@ -3932,6 +4522,15 @@ export namespace Components {
          */
         "viewCodeText"?: string;
     }
+    /**
+     * @uiName Referral Card
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
+     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
+     * @csspart sqm-base - The base container
+     */
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -4005,6 +4604,15 @@ export namespace Components {
          */
         "verticalAlignment": "start" | "center" | "end";
     }
+    /**
+     * @uiName Referral Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmReferralCode {
         /**
           * Background color of share link container
@@ -4100,6 +4708,14 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    /**
+     * @uiName Promo Codes
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Promo Codes Content"}]
+     * @exampleGroup Sharing
+     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
+     * @csspart sqm-base - The base container
+     */
     interface SqmReferralCodes {
         /**
           * @undocumented 
@@ -4134,6 +4750,9 @@ export namespace Components {
          */
         "titleText"?: string;
     }
+    /**
+     * @uiName Referral IFrame
+     */
     interface SqmReferralIframe {
         /**
           * Override the default parameter name used in the iframe
@@ -4162,6 +4781,15 @@ export namespace Components {
          */
         "iframeWidth": string;
     }
+    /**
+     * @uiName Referral Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
+     * @csspart sqm-cell-value - The reward cell value, rendered by the rewards column's cell
+     */
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -4216,6 +4844,10 @@ export namespace Components {
     interface SqmReferralTableCell {
         "innerTemplate": string;
     }
+    /**
+     * @uiName Referral Table Generic Column
+     * @validParents ["sqm-referral-table"]
+     */
     interface SqmReferralTableColumn {
         /**
           * @uiName Column title
@@ -4228,6 +4860,12 @@ export namespace Components {
         "date": number;
         "locale": string;
     }
+    /**
+     * @uiName Referral Table Date Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
+     */
     interface SqmReferralTableDateColumn {
         /**
           * @uiName Date column title
@@ -4244,6 +4882,9 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
+    /**
+     * @csspart sqm-cell-value - The reward cell value
+     */
     interface SqmReferralTableRewardsCell {
         "deniedHelpText": string;
         "expiringText": string;
@@ -4257,6 +4898,12 @@ export namespace Components {
         "statusText": string;
         "taxConnection": ImpactConnection;
     }
+    /**
+     * @uiName Referral Table Rewards Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
+     */
     interface SqmReferralTableRewardsColumn {
         /**
           * @uiName Reward column title
@@ -4314,6 +4961,12 @@ export namespace Components {
         "statusSubText": string;
         "statusText": string;
     }
+    /**
+     * @uiName Referral Table Status Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
+     */
     interface SqmReferralTableStatusColumn {
         /**
           * @uiName Column title
@@ -4350,6 +5003,12 @@ export namespace Components {
     interface SqmReferralTableUserCell {
         "name": string;
     }
+    /**
+     * @uiName Referral Table User Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User"></sqm-referral-table-user-column>
+     */
     interface SqmReferralTableUserColumn {
         /**
           * Name displayed for unknown users
@@ -4369,6 +5028,20 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
+    /**
+     * @uiName Instant Access Friend Registration
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
@@ -4477,6 +5150,24 @@ export namespace Components {
          */
         "requiredFieldErrorMessage": string;
     }
+    /**
+     * @uiName Reward Exchange
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-empty"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @exampleGroup Rewards
+     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
+     * @csspart sqm-base - The base container
+     * @csspart choose-reward-container - The choose reward container
+     * @csspart choose-amount-container - The choose amount container
+     * @csspart confirmation-container - The confirmation container
+     * @csspart success-container - The success container
+     * @csspart loading-container - The loading container
+     * @csspart exchange-card-container - The exchange card container
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart icon-button-base - The copy icon button base
+     */
     interface SqmRewardExchangeList {
         /**
           * @uiName Back button text
@@ -4610,6 +5301,16 @@ export namespace Components {
          */
         "tooltipText": string;
     }
+    /**
+     * @uiName Reward Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Rewards
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
+     * @csspart sqm-reward-cell-value - The reward cell value, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-progress - The reward progress, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-subtext - The reward cell subtext, rendered by the reward column's cell
+     */
     interface SqmRewardsTable {
         /**
           * @undocumented 
@@ -4658,6 +5359,12 @@ export namespace Components {
         "locale": string;
         "note": string;
     }
+    /**
+     * @uiName Rewards Table Customer Note Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
+     */
     interface SqmRewardsTableCustomerNoteColumn {
         /**
           * @uiName Column title
@@ -4670,6 +5377,12 @@ export namespace Components {
         "date": number;
         "locale": string;
     }
+    /**
+     * @uiName Reward Table Date Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
+     */
     interface SqmRewardsTableDateColumn {
         /**
           * @uiName Date column title
@@ -4685,6 +5398,11 @@ export namespace Components {
         "renderCell": (data: Reward, options?: { locale: string; }) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
+    /**
+     * @csspart sqm-reward-cell-value - The reward value
+     * @csspart sqm-reward-cell-progress - The reward progress
+     * @csspart sqm-reward-cell-subtext - The reward subtext
+     */
     interface SqmRewardsTableRewardCell {
         "availableText": string;
         "copyText": string;
@@ -4692,6 +5410,12 @@ export namespace Components {
         "redeemedText": string;
         "reward": Reward;
     }
+    /**
+     * @uiName Rewards Table Reward Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
+     */
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Remaining amount text
@@ -4722,6 +5446,12 @@ export namespace Components {
         "rewardExchangeText": string;
         "rewardSourceText": string;
     }
+    /**
+     * @uiName Rewards Table Source Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+     */
     interface SqmRewardsTableSourceColumn {
         /**
           * Name displayed for unknown users
@@ -4776,6 +5506,12 @@ export namespace Components {
         "statusText": string;
         "taxConnection": ImpactConnection;
     }
+    /**
+     * @uiName Reward Table Status Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
+     */
     interface SqmRewardsTableStatusColumn {
         /**
           * @uiName Column title
@@ -4859,6 +5595,11 @@ export namespace Components {
          */
         "statusText": string;
     }
+    /**
+     * @uiName Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
+     * @slots [{"name":"","title":"Content"}]
+     */
     interface SqmRoute {
         /**
           * Page Path URL for this route.
@@ -4866,8 +5607,21 @@ export namespace Components {
          */
         "path": string;
     }
+    /**
+     * @uiName Router
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-route"]
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface SqmRouter {
     }
+    /**
+     * @uiName Scroll Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmScroll {
         /**
           * @uiName Button text
@@ -4930,6 +5684,26 @@ export namespace Components {
          */
         "size": string;
     }
+    /**
+     * @uiName Share Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+     * @exampleGroup Sharing
+     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
+     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
+     * @csspart button-base - The button base, stable across all button style variants
+     * @csspart icon - The share button icon
+     */
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -5063,6 +5837,15 @@ export namespace Components {
          */
         "unsupportedPlatformText"?: string;
     }
+    /**
+     * @uiName Share Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmShareCode {
         /**
           * Background color of share link container
@@ -5148,6 +5931,16 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    /**
+     * @uiName Share Link
+     * @exampleGroup Sharing
+     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
+     * @csspart alert-title - The validation error title
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmShareLink {
         /**
           * Let advocates customize their share links up to 5 times.
@@ -5416,6 +6209,17 @@ export namespace Components {
          */
         "width"?: string;
     }
+    /**
+     * @uiName Stat Container
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-big-stat"]
+     * @slots [{"name":"", "title":"Stats"}]
+     * @exampleGroup Statistics
+     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
+     * @csspart sqm-base - The base container for the stat container
+     * @csspart sqm-inner-container - The stat content container
+     * @csspart sqm-border - The stat border
+     */
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -5454,14 +6258,29 @@ export namespace Components {
          */
         "space": Spacing;
     }
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface SqmStencilbook {
     }
+    /**
+     * @uiName Tab
+     * @slots [{"name":"", "title":"Tab Content"}]
+     * @validParents ["sqm-tabs"]
+     * @exampleGroup Layout
+     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
+     */
     interface SqmTab {
         /**
           * @uiName Tab title
          */
         "header": string;
     }
+    /**
+     * @uiName Table Cell
+     * @slots [{"name":"", "title":"Cell Content"}]
+     */
     interface SqmTableCell {
         /**
           * @uiName Column span
@@ -5472,12 +6291,26 @@ export namespace Components {
          */
         "padding": string;
     }
+    /**
+     * @uiName Table Row
+     * @slots [{"name":"", "title":"Row Content"}]
+     */
     interface SqmTableRow {
         /**
           * @uiName Border
          */
         "border": string;
     }
+    /**
+     * @uiName Tab Group
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-tab"]
+     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
+     * @exampleGroup Layout
+     * @canvasRenderer always-replace
+     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
+     * @csspart tab - A tab button
+     */
     interface SqmTabs {
         /**
           * Used to specify the placement of the tabs
@@ -5495,6 +6328,21 @@ export namespace Components {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Task Card
+     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
+     * @validParents ["sqm-card-feed"]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-card-container - The task card container
+     * @csspart sqm-style-container - The task card style container
+     * @csspart sqm-value - The task value
+     * @csspart sqm-unit - The task value unit
+     * @csspart sqm-title - The task title
+     * @csspart task-card-icon - The task card icon
+     * @csspart chevron-icon - The details chevron icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmTaskCard {
         /**
           * @uiName Card Background color
@@ -5676,6 +6524,15 @@ export namespace Components {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Tax and Cash
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+     * @csspart container - The base container for the tax and cash component
+     * @csspart alert-title - The error alert title, shown on the error step
+     * @csspart alert-description - The error alert description, shown on the error step
+     */
     interface SqmTaxAndCash {
         /**
           * @uiName Back button label
@@ -6755,6 +7612,14 @@ export namespace Components {
          */
         "termsAndConditions": string;
     }
+    /**
+     * @uiName Tax and Cash Status Dashboard
+     * @csspart dashboard-container - The dashboard container
+     * @csspart alert-base - The alert base
+     * @csspart alert-icon - The alert icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmTaxAndCashDashboard {
         /**
           * @uiName Account review alert description
@@ -7150,6 +8015,13 @@ export namespace Components {
          */
         "withdrawalSettingsInvalidHeader": string;
     }
+    /**
+     * @uiName Text
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @slots [{"name":"", "title":"Text"}]
+     * @slotEditor richText
+     * @canvasRenderer always-replace
+     */
     interface SqmText {
         /**
           * Font size in pixels
@@ -7164,6 +8036,11 @@ export namespace Components {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Text Span
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
+     * @canvasRenderer always-replace
+     */
     interface SqmTextSpan {
         /**
           * Font size in pixels
@@ -7189,6 +8066,14 @@ export namespace Components {
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    /**
+     * @uiName Program Timeline
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-timeline-entry"]
+     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
+     * @exampleGroup Common Components
+     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
+     */
     interface SqmTimeline {
         /**
           * @uiName Icon
@@ -7198,6 +8083,17 @@ export namespace Components {
          */
         "icon": "gift" | "circle";
     }
+    /**
+     * @uiName Program Timeline Entry
+     * @validParents ["sqm-timeline"]
+     * @exampleGroup Common Components
+     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
+     * @csspart sqm-base - The base container for the timeline entry
+     * @csspart sqm-entry-container - The timeline entry container
+     * @csspart sqm-reward - The reward value
+     * @csspart sqm-unit - The reward unit
+     * @csspart sqm-description - The reward description
+     */
     interface SqmTimelineEntry {
         /**
           * @uiName Description
@@ -7234,6 +8130,16 @@ export namespace Components {
          */
         "unit": string;
     }
+    /**
+     * @uiName Titled Section
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
+     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
+     * @exampleGroup Layout
+     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
+     * @csspart sqm-base - The section base container
+     * @csspart sqm-label - The section label
+     */
     interface SqmTitledSection {
         /**
           * Text value shown when there is no label slot declared.
@@ -7265,6 +8171,12 @@ export namespace Components {
          */
         "textAlign": "left" | "center" | "right";
     }
+    /**
+     * @uiName User Attribute
+     * @exampleGroup Advanced
+     * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
+     * @csspart sqm-base - The base container
+     */
     interface SqmUserAttribute {
         /**
           * @uiName Color
@@ -7299,6 +8211,16 @@ export namespace Components {
          */
         "value": string | number;
     }
+    /**
+     * @uiName User Information Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
@@ -7452,6 +8374,11 @@ export namespace Components {
          */
         "termsAndConditionsLink": string;
     }
+    /**
+     * @uiName User Name
+     * @exampleGroup Common Components
+     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+     */
     interface SqmUserName {
         /**
           * @undocumented 
@@ -7468,6 +8395,13 @@ export namespace Components {
          */
         "loadingText": string;
     }
+    /**
+     * @uiName Widget Verification Flow
+     * @exampleGroup Widget Verification
+     * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+     * @csspart step-base - The base container of the currently rendered step
+     * @csspart primarybutton-base - The primary button base of the currently rendered step
+     */
     interface SqmWidgetVerification {
         /**
           * Link text displayed under verify button
@@ -7635,6 +8569,13 @@ export namespace Components {
          */
         "stateController": string;
     }
+    /**
+     * @uiName Widget Verification Controller
+     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+     * @exampleGroup Tax and Cash
+     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
+     * @canvasRenderer always-replace
+     */
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
@@ -7644,25 +8585,58 @@ export namespace Components {
         "stateController": string;
     }
 }
+export interface SqmGoogleSignInCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSqmGoogleSignInElement;
+}
 declare global {
+    /**
+     * @undocumented 
+     */
     interface HTMLRaisinsPlopTargetElement extends Components.RaisinsPlopTarget, HTMLStencilElement {
     }
     var HTMLRaisinsPlopTargetElement: {
         prototype: HTMLRaisinsPlopTargetElement;
         new (): HTMLRaisinsPlopTargetElement;
     };
+    /**
+     * @uiName Banking Information Form
+     * @exampleGroup Common Components
+     */
     interface HTMLSqmBankingInfoFormElement extends Components.SqmBankingInfoForm, HTMLStencilElement {
     }
     var HTMLSqmBankingInfoFormElement: {
         prototype: HTMLSqmBankingInfoFormElement;
         new (): HTMLSqmBankingInfoFormElement;
     };
+    /**
+     * @uiName User Stat
+     * @validParents ["sqm-stat-container"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"","title":"Stat Text"}]
+     * @uiOrder ["statType", "programId", "*"]
+     * @slotEditor richText
+     * @exampleGroup Statistics
+     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
+     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
+     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
+     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
+     * @csspart stat-wrapper - The stat wrapper element
+     * @csspart stat-value - The stat value element
+     * @csspart stat-description - The stat description element
+     */
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
+    /**
+     * @uiName Brand Container
+     * @slots [{"name":"","title":"Branded Content"}]
+     * @exampleGroup Common Components
+     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
+     */
     interface HTMLSqmBrandElement extends Components.SqmBrand, HTMLStencilElement {
     }
     var HTMLSqmBrandElement: {
@@ -7675,144 +8649,343 @@ declare global {
         prototype: HTMLSqmBrandSelectorElement;
         new (): HTMLSqmBrandSelectorElement;
     };
+    /**
+     * @uiName Card Feed
+     * @slots [{"name":"","title":"Cards"}]
+     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-task-card"]
+     * @exampleGroup Rewards
+     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
     }
     var HTMLSqmCardFeedElement: {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
+    /**
+     * @uiName Form Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+     */
     interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmCheckboxFieldElement: {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
     };
+    /**
+     * @uiName Popup Widget Close Button
+     */
     interface HTMLSqmCloseButtonElement extends Components.SqmCloseButton, HTMLStencilElement {
     }
     var HTMLSqmCloseButtonElement: {
         prototype: HTMLSqmCloseButtonElement;
         new (): HTMLSqmCloseButtonElement;
     };
+    /**
+     * @uiName Widget Code Verification
+     * @csspart sqm-base - The base container
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmCodeVerificationElement extends Components.SqmCodeVerification, HTMLStencilElement {
     }
     var HTMLSqmCodeVerificationElement: {
         prototype: HTMLSqmCodeVerificationElement;
         new (): HTMLSqmCodeVerificationElement;
     };
+    /**
+     * @uiName Context Router
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface HTMLSqmContextRouterElement extends Components.SqmContextRouter, HTMLStencilElement {
     }
     var HTMLSqmContextRouterElement: {
         prototype: HTMLSqmContextRouterElement;
         new (): HTMLSqmContextRouterElement;
     };
+    /**
+     * @uiName Coupon Code
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
+     * @csspart label - The coupon code label element
+     * @csspart erroralert-text - The error message element
+     * @csspart alert-icon - The status alert icon (error, warning, info, or success)
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmCouponCodeElement extends Components.SqmCouponCode, HTMLStencilElement {
     }
     var HTMLSqmCouponCodeElement: {
         prototype: HTMLSqmCouponCodeElement;
         new (): HTMLSqmCouponCodeElement;
     };
+    /**
+     * Shows it's children as either a row or a column, with a division in between them.
+     * Spacing is left up to the child
+     * @uiName Divided Layout
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
+     * @exampleGroup Layout
+     * @slots [{"name":"", "title":"Layout Content"}]
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
     };
+    /**
+     * @uiName DocuSign Document Submission
+     * @exampleGroup Tax and Cash Components
+     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
+     */
     interface HTMLSqmDocusignFormElement extends Components.SqmDocusignForm, HTMLStencilElement {
     }
     var HTMLSqmDocusignFormElement: {
         prototype: HTMLSqmDocusignFormElement;
         new (): HTMLSqmDocusignFormElement;
     };
+    /**
+     * @uiName Form Dropdown Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @slots [{"name":"", "title":"Drop Down Option"}]
+     * @exampleGroup Microsite Components
+     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
     }
     var HTMLSqmDropdownFieldElement: {
         prototype: HTMLSqmDropdownFieldElement;
         new (): HTMLSqmDropdownFieldElement;
     };
+    /**
+     * @uiName Microsite Edit Profile
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The profile form header
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmEditProfileElement extends Components.SqmEditProfile, HTMLStencilElement {
     }
     var HTMLSqmEditProfileElement: {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
+    /**
+     * @uiName Widget Verification Gate
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmEmailVerificationElement extends Components.SqmEmailVerification, HTMLStencilElement {
     }
     var HTMLSqmEmailVerificationElement: {
         prototype: HTMLSqmEmailVerificationElement;
         new (): HTMLSqmEmailVerificationElement;
     };
+    /**
+     * @uiName Empty State Content
+     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
+     * @csspart sqm-base - The base container
+     * @csspart header-text - The empty state header
+     * @csspart description-text - The empty state description
+     */
     interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
     }
     var HTMLSqmEmptyElement: {
         prototype: HTMLSqmEmptyElement;
         new (): HTMLSqmEmptyElement;
     };
+    /**
+     * @uiName Form Message
+     * @slots [{"name":"","title":"Message Content"}]
+     * @csspart erroralert-base - The error alert base
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart infoalert-base - The info alert base
+     * @csspart infoalert-icon - The info alert icon
+     * @csspart warningalert-base - The warning alert base
+     * @csspart warningalert-icon - The warning alert icon
+     * @csspart successalert-base - The success alert base
+     * @csspart successalert-icon - The success alert icon
+     * @csspart alert-base - The alert base, stable across all types
+     * @csspart alert-icon - The alert icon, stable across all types
+     */
     interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
     }
     var HTMLSqmFormMessageElement: {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
+    /**
+     * @uiName Google Sign-In Button
+     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
+     * @undocumented 
+     */
     interface HTMLSqmGoogleSignInElement extends Components.SqmGoogleSignIn, HTMLStencilElement {
     }
     var HTMLSqmGoogleSignInElement: {
         prototype: HTMLSqmGoogleSignInElement;
         new (): HTMLSqmGoogleSignInElement;
     };
+    /**
+     * @uiName GraphQL Client Provider
+     * @canvasRenderer always-replace
+     * @slots [{"name":"","title":"Provider Content"}]
+     */
     interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
     }
     var HTMLSqmGraphqlClientProviderElement: {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
+    /**
+     * @uiName Header Logo
+     * @validParents ["sqm-portal-frame","div","sqm-brand"]
+     */
     interface HTMLSqmHeaderLogoElement extends Components.SqmHeaderLogo, HTMLStencilElement {
     }
     var HTMLSqmHeaderLogoElement: {
         prototype: HTMLSqmHeaderLogoElement;
         new (): HTMLSqmHeaderLogoElement;
     };
+    /**
+     * @uiName Hero Layout
+     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
+     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
+     * @exampleGroup Layout
+     * @csspart sqm-base - The base container
+     * @csspart sqm-single-col - The single-column container
+     * @csspart sqm-two-col-container - The two-column container
+     * @csspart sqm-two-col-primary-col - The primary column
+     * @csspart sqm-two-col-secondary-col - The secondary column
+     */
     interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
     }
     var HTMLSqmHeroElement: {
         prototype: HTMLSqmHeroElement;
         new (): HTMLSqmHeroElement;
     };
+    /**
+     * @uiName Hero Image
+     * @uiOrder ["image-url", "image-alt", "min-height", "layout", "header", "description", "button-text", "button-link", "button-new-tab", "*"]
+     * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
+     * @exampleGroup Common Components
+     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
+     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+     * @csspart sqm-base - The base container for the hero image
+     * @csspart sqm-overlay - The image overlay
+     * @csspart sqm-columns-image - The image column
+     * @csspart sqm-columns-text-area - The text column
+     * @csspart sqm-columns-header - The header in the text column
+     * @csspart sqm-columns-description - The description in the text column
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart sqm-hero-image-button - The hero image button
+     */
     interface HTMLSqmHeroImageElement extends Components.SqmHeroImage, HTMLStencilElement {
     }
     var HTMLSqmHeroImageElement: {
         prototype: HTMLSqmHeroImageElement;
         new (): HTMLSqmHeroImageElement;
     };
+    /**
+     * @undocumented 
+     */
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
         prototype: HTMLSqmHookStoryContainerElement;
         new (): HTMLSqmHookStoryContainerElement;
     };
+    /**
+     * @uiName Image
+     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section", "sqm-tab"]
+     * @exampleGroup Common Components
+     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+     * @csspart sqm-base - The base container for the image
+     * @csspart sqm-image - The image element
+     */
     interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
     }
     var HTMLSqmImageElement: {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
     };
+    /**
+     * @uiName Indirect Tax Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart radio-base - The radio base
+     */
     interface HTMLSqmIndirectTaxFormElement extends Components.SqmIndirectTaxForm, HTMLStencilElement {
     }
     var HTMLSqmIndirectTaxFormElement: {
         prototype: HTMLSqmIndirectTaxFormElement;
         new (): HTMLSqmIndirectTaxFormElement;
     };
+    /**
+     * @uiName Form Input Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
     }
     var HTMLSqmInputFieldElement: {
         prototype: HTMLSqmInputFieldElement;
         new (): HTMLSqmInputFieldElement;
     };
+    /**
+     * @uiName Instant Access Registration
+     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmInstantAccessRegistrationElement extends Components.SqmInstantAccessRegistration, HTMLStencilElement {
     }
     var HTMLSqmInstantAccessRegistrationElement: {
         prototype: HTMLSqmInstantAccessRegistrationElement;
         new (): HTMLSqmInstantAccessRegistrationElement;
     };
+    /**
+     * @uiName Invoice Table
+     * @exampleGroup Invoices
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
+     */
     interface HTMLSqmInvoiceTableElement extends Components.SqmInvoiceTable, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableElement: {
@@ -7825,6 +8998,10 @@ declare global {
         prototype: HTMLSqmInvoiceTableDataCellElement;
         new (): HTMLSqmInvoiceTableDataCellElement;
     };
+    /**
+     * @uiName Invoice Table Data Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface HTMLSqmInvoiceTableDataColumnElement extends Components.SqmInvoiceTableDataColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDataColumnElement: {
@@ -7837,6 +9014,12 @@ declare global {
         prototype: HTMLSqmInvoiceTableDateCellElement;
         new (): HTMLSqmInvoiceTableDateCellElement;
     };
+    /**
+     * @uiName Invoice Table Date Column
+     * @validParents ["sqm-invoice-table"]
+     * @exampleGroup Invoices
+     * @example Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
+     */
     interface HTMLSqmInvoiceTableDateColumnElement extends Components.SqmInvoiceTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDateColumnElement: {
@@ -7849,282 +9032,672 @@ declare global {
         prototype: HTMLSqmInvoiceTableDownloadCellElement;
         new (): HTMLSqmInvoiceTableDownloadCellElement;
     };
+    /**
+     * @uiName Invoice Table Download Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface HTMLSqmInvoiceTableDownloadColumnElement extends Components.SqmInvoiceTableDownloadColumn, HTMLStencilElement {
     }
     var HTMLSqmInvoiceTableDownloadColumnElement: {
         prototype: HTMLSqmInvoiceTableDownloadColumnElement;
         new (): HTMLSqmInvoiceTableDownloadColumnElement;
     };
+    /**
+     * @uiName Lead Form Checkbox Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmLeadCheckboxFieldElement extends Components.SqmLeadCheckboxField, HTMLStencilElement {
     }
     var HTMLSqmLeadCheckboxFieldElement: {
         prototype: HTMLSqmLeadCheckboxFieldElement;
         new (): HTMLSqmLeadCheckboxFieldElement;
     };
+    /**
+     * @uiName Lead Form Dropdown Field
+     * @validParents ["sqm-lead-form"]
+     * @slots [{"name":"", "title":"Dropdown Option"}]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmLeadDropdownFieldElement extends Components.SqmLeadDropdownField, HTMLStencilElement {
     }
     var HTMLSqmLeadDropdownFieldElement: {
         prototype: HTMLSqmLeadDropdownFieldElement;
         new (): HTMLSqmLeadDropdownFieldElement;
     };
+    /**
+     * @uiName Lead Form
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart successalert-text - The success message element
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmLeadFormElement extends Components.SqmLeadForm, HTMLStencilElement {
     }
     var HTMLSqmLeadFormElement: {
         prototype: HTMLSqmLeadFormElement;
         new (): HTMLSqmLeadFormElement;
     };
+    /**
+     * @uiName Lead Form Input Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmLeadInputFieldElement extends Components.SqmLeadInputField, HTMLStencilElement {
     }
     var HTMLSqmLeadInputFieldElement: {
         prototype: HTMLSqmLeadInputFieldElement;
         new (): HTMLSqmLeadInputFieldElement;
     };
+    /**
+     * @uiName Leaderboard
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @requiredFeatures ["LEADERBOARDS"]
+     * @exampleGroup Leaderboard
+     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
+     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-table - The leaderboard table
+     */
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
         prototype: HTMLSqmLeaderboardElement;
         new (): HTMLSqmLeaderboardElement;
     };
+    /**
+     * @uiName Leaderboard Rank
+     */
     interface HTMLSqmLeaderboardRankElement extends Components.SqmLeaderboardRank, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
+    /**
+     * @uiName Link Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Common Components
+     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+     * @csspart primarybutton-base - The button element
+     * @csspart sqm-link - The link element inside the button
+     */
     interface HTMLSqmLinkButtonElement extends Components.SqmLinkButton, HTMLStencilElement {
     }
     var HTMLSqmLinkButtonElement: {
         prototype: HTMLSqmLinkButtonElement;
         new (): HTMLSqmLinkButtonElement;
     };
+    /**
+     * @uiName Sign out current user
+     * @exampleGroup Instant Access
+     * @compatibility Built for instant access
+     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-link - The logout link element
+     */
     interface HTMLSqmLogoutCurrentUserElement extends Components.SqmLogoutCurrentUser, HTMLStencilElement {
     }
     var HTMLSqmLogoutCurrentUserElement: {
         prototype: HTMLSqmLogoutCurrentUserElement;
         new (): HTMLSqmLogoutCurrentUserElement;
     };
+    /**
+     * @uiName Marketing Emails Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     */
     interface HTMLSqmMarketingEmailsCheckboxElement extends Components.SqmMarketingEmailsCheckbox, HTMLStencilElement {
     }
     var HTMLSqmMarketingEmailsCheckboxElement: {
         prototype: HTMLSqmMarketingEmailsCheckboxElement;
         new (): HTMLSqmMarketingEmailsCheckboxElement;
     };
+    /**
+     * @uiName Form Name Fields
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
     var HTMLSqmNameFieldsElement: {
         prototype: HTMLSqmNameFieldsElement;
         new (): HTMLSqmNameFieldsElement;
     };
+    /**
+     * @uiName Navigation Menu
+     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
+     * @csspart dropdownbutton-base - The dropdown button base
+     */
     interface HTMLSqmNavigationMenuElement extends Components.SqmNavigationMenu, HTMLStencilElement {
     }
     var HTMLSqmNavigationMenuElement: {
         prototype: HTMLSqmNavigationMenuElement;
         new (): HTMLSqmNavigationMenuElement;
     };
+    /**
+     * @uiName Microsite Sidebar
+     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
+     * @validChildren ["sqm-navigation-sidebar-item"]
+     * @slots [{"name":"", "title":"Sidebar Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-items-container - The navigation items container
+     */
     interface HTMLSqmNavigationSidebarElement extends Components.SqmNavigationSidebar, HTMLStencilElement {
     }
     var HTMLSqmNavigationSidebarElement: {
         prototype: HTMLSqmNavigationSidebarElement;
         new (): HTMLSqmNavigationSidebarElement;
     };
+    /**
+     * @uiName Microsite Sidebar Item
+     * @validParents ["sqm-navigation-sidebar"]
+     * @exampleGroup Microsite Components
+     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
+     * @csspart sqm-link - The navigation link element
+     * @csspart sqm-label - The navigation label
+     */
     interface HTMLSqmNavigationSidebarItemElement extends Components.SqmNavigationSidebarItem, HTMLStencilElement {
     }
     var HTMLSqmNavigationSidebarItemElement: {
         prototype: HTMLSqmNavigationSidebarItemElement;
         new (): HTMLSqmNavigationSidebarItemElement;
     };
+    /**
+     * @uiName Pagination
+     * @csspart sqm-base - The base container
+     * @csspart sqm-pagination-button - A pagination button
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmPaginationElement extends Components.SqmPagination, HTMLStencilElement {
     }
     var HTMLSqmPaginationElement: {
         prototype: HTMLSqmPaginationElement;
         new (): HTMLSqmPaginationElement;
     };
+    /**
+     * @uiName Partner Info Modal
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
+     * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
+     * @hidden 
+     * @csspart sqm-base - The base container
+     * @csspart alert-description - The error description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart select-menu - The select menu
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPartnerInfoModalElement extends Components.SqmPartnerInfoModal, HTMLStencilElement {
     }
     var HTMLSqmPartnerInfoModalElement: {
         prototype: HTMLSqmPartnerInfoModalElement;
         new (): HTMLSqmPartnerInfoModalElement;
     };
+    /**
+     * @uiName Form Password Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
     var HTMLSqmPasswordFieldElement: {
         prototype: HTMLSqmPasswordFieldElement;
         new (): HTMLSqmPasswordFieldElement;
     };
+    /**
+     * @uiName Payout Button Scroll
+     */
     interface HTMLSqmPayoutButtonScrollElement extends Components.SqmPayoutButtonScroll, HTMLStencilElement {
     }
     var HTMLSqmPayoutButtonScrollElement: {
         prototype: HTMLSqmPayoutButtonScrollElement;
         new (): HTMLSqmPayoutButtonScrollElement;
     };
+    /**
+     * @uiName Payout Details Card
+     * @exampleGroup Tax and Cash Components
+     */
     interface HTMLSqmPayoutDetailsCardElement extends Components.SqmPayoutDetailsCard, HTMLStencilElement {
     }
     var HTMLSqmPayoutDetailsCardElement: {
         prototype: HTMLSqmPayoutDetailsCardElement;
         new (): HTMLSqmPayoutDetailsCardElement;
     };
+    /**
+     * @uiName Payout Status Alert
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Tax and Cash
+     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmPayoutStatusAlertElement extends Components.SqmPayoutStatusAlert, HTMLStencilElement {
     }
     var HTMLSqmPayoutStatusAlertElement: {
         prototype: HTMLSqmPayoutStatusAlertElement;
         new (): HTMLSqmPayoutStatusAlertElement;
     };
+    /**
+     * @uiName Popup Container
+     * @slots [{"name":"","title":"Content"}]
+     * @canvasRenderer always-replace
+     * @csspart sqm-base - The base container
+     * @csspart sqm-close-button - The popup close button
+     */
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
     var HTMLSqmPopupContainerElement: {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    /**
+     * @uiName Change Marketing Opt in Status
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     */
     interface HTMLSqmPortalChangeMarketingElement extends Components.SqmPortalChangeMarketing, HTMLStencilElement {
     }
     var HTMLSqmPortalChangeMarketingElement: {
         prototype: HTMLSqmPortalChangeMarketingElement;
         new (): HTMLSqmPortalChangeMarketingElement;
     };
+    /**
+     * @uiName Microsite Password Change
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
+     * @csspart sqm-base - The base container for the portal change password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
     }
     var HTMLSqmPortalChangePasswordElement: {
         prototype: HTMLSqmPortalChangePasswordElement;
         new (): HTMLSqmPortalChangePasswordElement;
     };
+    /**
+     * @uiName Container
+     * @slots [{"name":"", "title":"Widget Content"}]
+     * @exampleGroup Layout
+     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
+     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
+     * @csspart sqm-base - The base container for the portal container component
+     */
     interface HTMLSqmPortalContainerElement extends Components.SqmPortalContainer, HTMLStencilElement {
     }
     var HTMLSqmPortalContainerElement: {
         prototype: HTMLSqmPortalContainerElement;
         new (): HTMLSqmPortalContainerElement;
     };
+    /**
+     * @uiName Microsite Email Verification
+     * @csspart sqm-base - The base container for the portal email verification component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalEmailVerificationElement extends Components.SqmPortalEmailVerification, HTMLStencilElement {
     }
     var HTMLSqmPortalEmailVerificationElement: {
         prototype: HTMLSqmPortalEmailVerificationElement;
         new (): HTMLSqmPortalEmailVerificationElement;
     };
+    /**
+     * @uiName Footer
+     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmPortalFooterElement extends Components.SqmPortalFooter, HTMLStencilElement {
     }
     var HTMLSqmPortalFooterElement: {
         prototype: HTMLSqmPortalFooterElement;
         new (): HTMLSqmPortalFooterElement;
     };
+    /**
+     * @uiName Microsite Forgot Password
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalForgotPasswordElement: {
         prototype: HTMLSqmPortalForgotPasswordElement;
         new (): HTMLSqmPortalForgotPasswordElement;
     };
+    /**
+     * @uiName Microsite Frame
+     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The header container
+     * @csspart sqm-footer - The footer container
+     */
     interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
     }
     var HTMLSqmPortalFrameElement: {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
     };
+    /**
+     * @uiName Microsite Login
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalGoogleLoginElement extends Components.SqmPortalGoogleLogin, HTMLStencilElement {
     }
     var HTMLSqmPortalGoogleLoginElement: {
         prototype: HTMLSqmPortalGoogleLoginElement;
         new (): HTMLSqmPortalGoogleLoginElement;
     };
+    /**
+     * @uiName Google Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalGoogleRegistrationFormElement extends Components.SqmPortalGoogleRegistrationForm, HTMLStencilElement {
     }
     var HTMLSqmPortalGoogleRegistrationFormElement: {
         prototype: HTMLSqmPortalGoogleRegistrationFormElement;
         new (): HTMLSqmPortalGoogleRegistrationFormElement;
     };
+    /**
+     * @uiName Microsite Login
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
     }
     var HTMLSqmPortalLoginElement: {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
     };
+    /**
+     * @uiName Microsite Logout
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @compatibility Built for instant access
+     */
     interface HTMLSqmPortalLogoutElement extends Components.SqmPortalLogout, HTMLStencilElement {
     }
     var HTMLSqmPortalLogoutElement: {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
     };
+    /**
+     * @uiName Microsite Participant Profile
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
     }
     var HTMLSqmPortalProfileElement: {
         prototype: HTMLSqmPortalProfileElement;
         new (): HTMLSqmPortalProfileElement;
     };
+    /**
+     * @uiName Microsite Protected Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
+     * @slots [{"name":"","title":"Route Content"}]
+     */
     interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
     }
     var HTMLSqmPortalProtectedRouteElement: {
         prototype: HTMLSqmPortalProtectedRouteElement;
         new (): HTMLSqmPortalProtectedRouteElement;
     };
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     */
     interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
     }
     var HTMLSqmPortalRegisterElement: {
         prototype: HTMLSqmPortalRegisterElement;
         new (): HTMLSqmPortalRegisterElement;
     };
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalRegistrationFormElement extends Components.SqmPortalRegistrationForm, HTMLStencilElement {
     }
     var HTMLSqmPortalRegistrationFormElement: {
         prototype: HTMLSqmPortalRegistrationFormElement;
         new (): HTMLSqmPortalRegistrationFormElement;
     };
+    /**
+     * @uiName Microsite Reset Password
+     * @csspart sqm-base - The base container for the portal reset password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalResetPasswordElement: {
         prototype: HTMLSqmPortalResetPasswordElement;
         new (): HTMLSqmPortalResetPasswordElement;
     };
+    /**
+     * @uiName Microsite Verify Email
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
     }
     var HTMLSqmPortalVerifyEmailElement: {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
+    /**
+     * @uiName Program Explainer
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-program-explainer-step"]
+     * @exampleGroup Common Components
+     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
+     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
+     * @csspart sqm-base - The base container for the program explainer
+     * @csspart sqm-header - The header element
+     * @csspart sqm-grid-container - The grid container element
+     */
     interface HTMLSqmProgramExplainerElement extends Components.SqmProgramExplainer, HTMLStencilElement {
     }
     var HTMLSqmProgramExplainerElement: {
         prototype: HTMLSqmProgramExplainerElement;
         new (): HTMLSqmProgramExplainerElement;
     };
+    /**
+     * @uiName Program Explainer Step
+     * @exampleGroup Common Components
+     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
+     * @validParents ["sqm-program-explainer"]
+     * @csspart sqm-base - The base container for the program explainer step
+     * @csspart sqm-media - The media element (icon or image)
+     * @csspart sqm-header - The header element
+     * @csspart sqm-description - The description element
+     */
     interface HTMLSqmProgramExplainerStepElement extends Components.SqmProgramExplainerStep, HTMLStencilElement {
     }
     var HTMLSqmProgramExplainerStepElement: {
         prototype: HTMLSqmProgramExplainerStepElement;
         new (): HTMLSqmProgramExplainerStepElement;
     };
+    /**
+     * @uiName Microsite Program Menu
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @slots [{"name":"","title":"Menu Content"}]
+     * @canvasRenderer always-replace
+     */
     interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
     }
     var HTMLSqmProgramMenuElement: {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    /**
+     * @uiName QR Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
+     * @exampleGroup Sharing
+     * @example QR Code - <sqm-qr-code></sqm-qr-code>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-title - The QR code title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmQrCodeElement extends Components.SqmQrCode, HTMLStencilElement {
     }
     var HTMLSqmQrCodeElement: {
         prototype: HTMLSqmQrCodeElement;
         new (): HTMLSqmQrCodeElement;
     };
+    /**
+     * @uiName Referral Card
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
+     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
     }
     var HTMLSqmReferralCardElement: {
         prototype: HTMLSqmReferralCardElement;
         new (): HTMLSqmReferralCardElement;
     };
+    /**
+     * @uiName Referral Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmReferralCodeElement extends Components.SqmReferralCode, HTMLStencilElement {
     }
     var HTMLSqmReferralCodeElement: {
         prototype: HTMLSqmReferralCodeElement;
         new (): HTMLSqmReferralCodeElement;
     };
+    /**
+     * @uiName Promo Codes
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Promo Codes Content"}]
+     * @exampleGroup Sharing
+     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmReferralCodesElement extends Components.SqmReferralCodes, HTMLStencilElement {
     }
     var HTMLSqmReferralCodesElement: {
         prototype: HTMLSqmReferralCodesElement;
         new (): HTMLSqmReferralCodesElement;
     };
+    /**
+     * @uiName Referral IFrame
+     */
     interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
     }
     var HTMLSqmReferralIframeElement: {
         prototype: HTMLSqmReferralIframeElement;
         new (): HTMLSqmReferralIframeElement;
     };
+    /**
+     * @uiName Referral Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
+     * @csspart sqm-cell-value - The reward cell value, rendered by the rewards column's cell
+     */
     interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
     }
     var HTMLSqmReferralTableElement: {
@@ -8137,6 +9710,10 @@ declare global {
         prototype: HTMLSqmReferralTableCellElement;
         new (): HTMLSqmReferralTableCellElement;
     };
+    /**
+     * @uiName Referral Table Generic Column
+     * @validParents ["sqm-referral-table"]
+     */
     interface HTMLSqmReferralTableColumnElement extends Components.SqmReferralTableColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableColumnElement: {
@@ -8149,18 +9726,33 @@ declare global {
         prototype: HTMLSqmReferralTableDateCellElement;
         new (): HTMLSqmReferralTableDateCellElement;
     };
+    /**
+     * @uiName Referral Table Date Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
+     */
     interface HTMLSqmReferralTableDateColumnElement extends Components.SqmReferralTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableDateColumnElement: {
         prototype: HTMLSqmReferralTableDateColumnElement;
         new (): HTMLSqmReferralTableDateColumnElement;
     };
+    /**
+     * @csspart sqm-cell-value - The reward cell value
+     */
     interface HTMLSqmReferralTableRewardsCellElement extends Components.SqmReferralTableRewardsCell, HTMLStencilElement {
     }
     var HTMLSqmReferralTableRewardsCellElement: {
         prototype: HTMLSqmReferralTableRewardsCellElement;
         new (): HTMLSqmReferralTableRewardsCellElement;
     };
+    /**
+     * @uiName Referral Table Rewards Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
+     */
     interface HTMLSqmReferralTableRewardsColumnElement extends Components.SqmReferralTableRewardsColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableRewardsColumnElement: {
@@ -8173,6 +9765,12 @@ declare global {
         prototype: HTMLSqmReferralTableStatusCellElement;
         new (): HTMLSqmReferralTableStatusCellElement;
     };
+    /**
+     * @uiName Referral Table Status Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
+     */
     interface HTMLSqmReferralTableStatusColumnElement extends Components.SqmReferralTableStatusColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableStatusColumnElement: {
@@ -8185,24 +9783,72 @@ declare global {
         prototype: HTMLSqmReferralTableUserCellElement;
         new (): HTMLSqmReferralTableUserCellElement;
     };
+    /**
+     * @uiName Referral Table User Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User"></sqm-referral-table-user-column>
+     */
     interface HTMLSqmReferralTableUserColumnElement extends Components.SqmReferralTableUserColumn, HTMLStencilElement {
     }
     var HTMLSqmReferralTableUserColumnElement: {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    /**
+     * @uiName Instant Access Friend Registration
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmReferredRegistrationElement extends Components.SqmReferredRegistration, HTMLStencilElement {
     }
     var HTMLSqmReferredRegistrationElement: {
         prototype: HTMLSqmReferredRegistrationElement;
         new (): HTMLSqmReferredRegistrationElement;
     };
+    /**
+     * @uiName Reward Exchange
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-empty"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @exampleGroup Rewards
+     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
+     * @csspart sqm-base - The base container
+     * @csspart choose-reward-container - The choose reward container
+     * @csspart choose-amount-container - The choose amount container
+     * @csspart confirmation-container - The confirmation container
+     * @csspart success-container - The success container
+     * @csspart loading-container - The loading container
+     * @csspart exchange-card-container - The exchange card container
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart icon-button-base - The copy icon button base
+     */
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
         prototype: HTMLSqmRewardExchangeListElement;
         new (): HTMLSqmRewardExchangeListElement;
     };
+    /**
+     * @uiName Reward Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Rewards
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
+     * @csspart sqm-reward-cell-value - The reward cell value, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-progress - The reward progress, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-subtext - The reward cell subtext, rendered by the reward column's cell
+     */
     interface HTMLSqmRewardsTableElement extends Components.SqmRewardsTable, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableElement: {
@@ -8215,6 +9861,12 @@ declare global {
         prototype: HTMLSqmRewardsTableCustomerNoteCellElement;
         new (): HTMLSqmRewardsTableCustomerNoteCellElement;
     };
+    /**
+     * @uiName Rewards Table Customer Note Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
+     */
     interface HTMLSqmRewardsTableCustomerNoteColumnElement extends Components.SqmRewardsTableCustomerNoteColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableCustomerNoteColumnElement: {
@@ -8227,18 +9879,35 @@ declare global {
         prototype: HTMLSqmRewardsTableDateCellElement;
         new (): HTMLSqmRewardsTableDateCellElement;
     };
+    /**
+     * @uiName Reward Table Date Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
+     */
     interface HTMLSqmRewardsTableDateColumnElement extends Components.SqmRewardsTableDateColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableDateColumnElement: {
         prototype: HTMLSqmRewardsTableDateColumnElement;
         new (): HTMLSqmRewardsTableDateColumnElement;
     };
+    /**
+     * @csspart sqm-reward-cell-value - The reward value
+     * @csspart sqm-reward-cell-progress - The reward progress
+     * @csspart sqm-reward-cell-subtext - The reward subtext
+     */
     interface HTMLSqmRewardsTableRewardCellElement extends Components.SqmRewardsTableRewardCell, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableRewardCellElement: {
         prototype: HTMLSqmRewardsTableRewardCellElement;
         new (): HTMLSqmRewardsTableRewardCellElement;
     };
+    /**
+     * @uiName Rewards Table Reward Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
+     */
     interface HTMLSqmRewardsTableRewardColumnElement extends Components.SqmRewardsTableRewardColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableRewardColumnElement: {
@@ -8251,6 +9920,12 @@ declare global {
         prototype: HTMLSqmRewardsTableSourceCellElement;
         new (): HTMLSqmRewardsTableSourceCellElement;
     };
+    /**
+     * @uiName Rewards Table Source Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+     */
     interface HTMLSqmRewardsTableSourceColumnElement extends Components.SqmRewardsTableSourceColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableSourceColumnElement: {
@@ -8263,42 +9938,105 @@ declare global {
         prototype: HTMLSqmRewardsTableStatusCellElement;
         new (): HTMLSqmRewardsTableStatusCellElement;
     };
+    /**
+     * @uiName Reward Table Status Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
+     */
     interface HTMLSqmRewardsTableStatusColumnElement extends Components.SqmRewardsTableStatusColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableStatusColumnElement: {
         prototype: HTMLSqmRewardsTableStatusColumnElement;
         new (): HTMLSqmRewardsTableStatusColumnElement;
     };
+    /**
+     * @uiName Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
+     * @slots [{"name":"","title":"Content"}]
+     */
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
         prototype: HTMLSqmRouteElement;
         new (): HTMLSqmRouteElement;
     };
+    /**
+     * @uiName Router
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-route"]
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface HTMLSqmRouterElement extends Components.SqmRouter, HTMLStencilElement {
     }
     var HTMLSqmRouterElement: {
         prototype: HTMLSqmRouterElement;
         new (): HTMLSqmRouterElement;
     };
+    /**
+     * @uiName Scroll Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
     }
     var HTMLSqmScrollElement: {
         prototype: HTMLSqmScrollElement;
         new (): HTMLSqmScrollElement;
     };
+    /**
+     * @uiName Share Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+     * @exampleGroup Sharing
+     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
+     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
+     * @csspart button-base - The button base, stable across all button style variants
+     * @csspart icon - The share button icon
+     */
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
         prototype: HTMLSqmShareButtonElement;
         new (): HTMLSqmShareButtonElement;
     };
+    /**
+     * @uiName Share Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmShareCodeElement extends Components.SqmShareCode, HTMLStencilElement {
     }
     var HTMLSqmShareCodeElement: {
         prototype: HTMLSqmShareCodeElement;
         new (): HTMLSqmShareCodeElement;
     };
+    /**
+     * @uiName Share Link
+     * @exampleGroup Sharing
+     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
+     * @csspart alert-title - The validation error title
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
     }
     var HTMLSqmShareLinkElement: {
@@ -8311,114 +10049,262 @@ declare global {
         prototype: HTMLSqmSkeletonElement;
         new (): HTMLSqmSkeletonElement;
     };
+    /**
+     * @uiName Stat Container
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-big-stat"]
+     * @slots [{"name":"", "title":"Stats"}]
+     * @exampleGroup Statistics
+     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
+     * @csspart sqm-base - The base container for the stat container
+     * @csspart sqm-inner-container - The stat content container
+     * @csspart sqm-border - The stat border
+     */
     interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
     }
     var HTMLSqmStatContainerElement: {
         prototype: HTMLSqmStatContainerElement;
         new (): HTMLSqmStatContainerElement;
     };
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
     }
     var HTMLSqmStencilbookElement: {
         prototype: HTMLSqmStencilbookElement;
         new (): HTMLSqmStencilbookElement;
     };
+    /**
+     * @uiName Tab
+     * @slots [{"name":"", "title":"Tab Content"}]
+     * @validParents ["sqm-tabs"]
+     * @exampleGroup Layout
+     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
+     */
     interface HTMLSqmTabElement extends Components.SqmTab, HTMLStencilElement {
     }
     var HTMLSqmTabElement: {
         prototype: HTMLSqmTabElement;
         new (): HTMLSqmTabElement;
     };
+    /**
+     * @uiName Table Cell
+     * @slots [{"name":"", "title":"Cell Content"}]
+     */
     interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
     }
     var HTMLSqmTableCellElement: {
         prototype: HTMLSqmTableCellElement;
         new (): HTMLSqmTableCellElement;
     };
+    /**
+     * @uiName Table Row
+     * @slots [{"name":"", "title":"Row Content"}]
+     */
     interface HTMLSqmTableRowElement extends Components.SqmTableRow, HTMLStencilElement {
     }
     var HTMLSqmTableRowElement: {
         prototype: HTMLSqmTableRowElement;
         new (): HTMLSqmTableRowElement;
     };
+    /**
+     * @uiName Tab Group
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-tab"]
+     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
+     * @exampleGroup Layout
+     * @canvasRenderer always-replace
+     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
+     * @csspart tab - A tab button
+     */
     interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {
     }
     var HTMLSqmTabsElement: {
         prototype: HTMLSqmTabsElement;
         new (): HTMLSqmTabsElement;
     };
+    /**
+     * @uiName Task Card
+     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
+     * @validParents ["sqm-card-feed"]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-card-container - The task card container
+     * @csspart sqm-style-container - The task card style container
+     * @csspart sqm-value - The task value
+     * @csspart sqm-unit - The task value unit
+     * @csspart sqm-title - The task title
+     * @csspart task-card-icon - The task card icon
+     * @csspart chevron-icon - The details chevron icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
     }
     var HTMLSqmTaskCardElement: {
         prototype: HTMLSqmTaskCardElement;
         new (): HTMLSqmTaskCardElement;
     };
+    /**
+     * @uiName Tax and Cash
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+     * @csspart container - The base container for the tax and cash component
+     * @csspart alert-title - The error alert title, shown on the error step
+     * @csspart alert-description - The error alert description, shown on the error step
+     */
     interface HTMLSqmTaxAndCashElement extends Components.SqmTaxAndCash, HTMLStencilElement {
     }
     var HTMLSqmTaxAndCashElement: {
         prototype: HTMLSqmTaxAndCashElement;
         new (): HTMLSqmTaxAndCashElement;
     };
+    /**
+     * @uiName Tax and Cash Status Dashboard
+     * @csspart dashboard-container - The dashboard container
+     * @csspart alert-base - The alert base
+     * @csspart alert-icon - The alert icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface HTMLSqmTaxAndCashDashboardElement extends Components.SqmTaxAndCashDashboard, HTMLStencilElement {
     }
     var HTMLSqmTaxAndCashDashboardElement: {
         prototype: HTMLSqmTaxAndCashDashboardElement;
         new (): HTMLSqmTaxAndCashDashboardElement;
     };
+    /**
+     * @uiName Text
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @slots [{"name":"", "title":"Text"}]
+     * @slotEditor richText
+     * @canvasRenderer always-replace
+     */
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
         prototype: HTMLSqmTextElement;
         new (): HTMLSqmTextElement;
     };
+    /**
+     * @uiName Text Span
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
+     * @canvasRenderer always-replace
+     */
     interface HTMLSqmTextSpanElement extends Components.SqmTextSpan, HTMLStencilElement {
     }
     var HTMLSqmTextSpanElement: {
         prototype: HTMLSqmTextSpanElement;
         new (): HTMLSqmTextSpanElement;
     };
+    /**
+     * @uiName Program Timeline
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-timeline-entry"]
+     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
+     * @exampleGroup Common Components
+     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
+     */
     interface HTMLSqmTimelineElement extends Components.SqmTimeline, HTMLStencilElement {
     }
     var HTMLSqmTimelineElement: {
         prototype: HTMLSqmTimelineElement;
         new (): HTMLSqmTimelineElement;
     };
+    /**
+     * @uiName Program Timeline Entry
+     * @validParents ["sqm-timeline"]
+     * @exampleGroup Common Components
+     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
+     * @csspart sqm-base - The base container for the timeline entry
+     * @csspart sqm-entry-container - The timeline entry container
+     * @csspart sqm-reward - The reward value
+     * @csspart sqm-unit - The reward unit
+     * @csspart sqm-description - The reward description
+     */
     interface HTMLSqmTimelineEntryElement extends Components.SqmTimelineEntry, HTMLStencilElement {
     }
     var HTMLSqmTimelineEntryElement: {
         prototype: HTMLSqmTimelineEntryElement;
         new (): HTMLSqmTimelineEntryElement;
     };
+    /**
+     * @uiName Titled Section
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
+     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
+     * @exampleGroup Layout
+     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
+     * @csspart sqm-base - The section base container
+     * @csspart sqm-label - The section label
+     */
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
     var HTMLSqmTitledSectionElement: {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    /**
+     * @uiName User Attribute
+     * @exampleGroup Advanced
+     * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
+     * @csspart sqm-base - The base container
+     */
     interface HTMLSqmUserAttributeElement extends Components.SqmUserAttribute, HTMLStencilElement {
     }
     var HTMLSqmUserAttributeElement: {
         prototype: HTMLSqmUserAttributeElement;
         new (): HTMLSqmUserAttributeElement;
     };
+    /**
+     * @uiName User Information Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface HTMLSqmUserInfoFormElement extends Components.SqmUserInfoForm, HTMLStencilElement {
     }
     var HTMLSqmUserInfoFormElement: {
         prototype: HTMLSqmUserInfoFormElement;
         new (): HTMLSqmUserInfoFormElement;
     };
+    /**
+     * @uiName User Name
+     * @exampleGroup Common Components
+     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+     */
     interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
     }
     var HTMLSqmUserNameElement: {
         prototype: HTMLSqmUserNameElement;
         new (): HTMLSqmUserNameElement;
     };
+    /**
+     * @uiName Widget Verification Flow
+     * @exampleGroup Widget Verification
+     * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+     * @csspart step-base - The base container of the currently rendered step
+     * @csspart primarybutton-base - The primary button base of the currently rendered step
+     */
     interface HTMLSqmWidgetVerificationElement extends Components.SqmWidgetVerification, HTMLStencilElement {
     }
     var HTMLSqmWidgetVerificationElement: {
         prototype: HTMLSqmWidgetVerificationElement;
         new (): HTMLSqmWidgetVerificationElement;
     };
+    /**
+     * @uiName Widget Verification Controller
+     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+     * @exampleGroup Tax and Cash
+     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
+     * @canvasRenderer always-replace
+     */
     interface HTMLSqmWidgetVerificationControllerElement extends Components.SqmWidgetVerificationController, HTMLStencilElement {
     }
     var HTMLSqmWidgetVerificationControllerElement: {
@@ -8559,8 +10445,15 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * @undocumented 
+     */
     interface RaisinsPlopTarget {
     }
+    /**
+     * @uiName Banking Information Form
+     * @exampleGroup Common Components
+     */
     interface SqmBankingInfoForm {
         /**
           * Error messages for the agency code field. Supports error codes: empty, alphanumeric, tooShort
@@ -8964,6 +10857,22 @@ declare namespace LocalJSX {
          */
         "voCodeLabel"?: string;
     }
+    /**
+     * @uiName User Stat
+     * @validParents ["sqm-stat-container"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"","title":"Stat Text"}]
+     * @uiOrder ["statType", "programId", "*"]
+     * @slotEditor richText
+     * @exampleGroup Statistics
+     * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
+     * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
+     * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
+     * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
+     * @csspart stat-wrapper - The stat wrapper element
+     * @csspart stat-value - The stat value element
+     * @csspart stat-description - The stat description element
+     */
     interface SqmBigStat {
         /**
           * Controls the alignment of the flexbox
@@ -9041,6 +10950,12 @@ declare namespace LocalJSX {
          */
         "statType"?: string;
     }
+    /**
+     * @uiName Brand Container
+     * @slots [{"name":"","title":"Branded Content"}]
+     * @exampleGroup Common Components
+     * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
+     */
     interface SqmBrand {
         /**
           * Controls the primary brand color used in the Mint Components library.
@@ -9058,6 +10973,15 @@ declare namespace LocalJSX {
     }
     interface SqmBrandSelector {
     }
+    /**
+     * @uiName Card Feed
+     * @slots [{"name":"","title":"Cards"}]
+     * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-task-card"]
+     * @exampleGroup Rewards
+     * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
+     * @csspart sqm-base - The base container
+     */
     interface SqmCardFeed {
         /**
           * @uiName Column gap
@@ -9069,6 +10993,12 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    /**
+     * @uiName Form Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+     */
     interface SqmCheckboxField {
         /**
           * @uiName Checkbox label
@@ -9104,6 +11034,9 @@ declare namespace LocalJSX {
          */
         "errorMessage"?: string;
     }
+    /**
+     * @uiName Popup Widget Close Button
+     */
     interface SqmCloseButton {
         /**
           * @uiName Color
@@ -9112,6 +11045,12 @@ declare namespace LocalJSX {
          */
         "color"?: string;
     }
+    /**
+     * @uiName Widget Code Verification
+     * @csspart sqm-base - The base container
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmCodeVerification {
         /**
           * Link text displayed under verify button
@@ -9160,9 +11099,26 @@ declare namespace LocalJSX {
          */
         "verifyText"?: string;
     }
+    /**
+     * @uiName Context Router
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface SqmContextRouter {
         "contextName"?: string;
     }
+    /**
+     * @uiName Coupon Code
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
+     * @csspart label - The coupon code label element
+     * @csspart erroralert-text - The error message element
+     * @csspart alert-icon - The status alert icon (error, warning, info, or success)
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmCouponCode {
         /**
           * Background color of share link container
@@ -9313,6 +11269,15 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    /**
+     * Shows it's children as either a row or a column, with a division in between them.
+     * Spacing is left up to the child
+     * @uiName Divided Layout
+     * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
+     * @exampleGroup Layout
+     * @slots [{"name":"", "title":"Layout Content"}]
+     * @csspart sqm-base - The base container
+     */
     interface SqmDividedLayout {
         /**
           * Background color of the divider
@@ -9345,6 +11310,11 @@ declare namespace LocalJSX {
          */
         "dividerStyle"?: string;
     }
+    /**
+     * @uiName DocuSign Document Submission
+     * @exampleGroup Tax and Cash Components
+     * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
+     */
     interface SqmDocusignForm {
         /**
           * An option for the participant type field. Used to determine which W-8 form is required.
@@ -9469,6 +11439,16 @@ declare namespace LocalJSX {
          */
         "taxFormLabel"?: string;
     }
+    /**
+     * @uiName Form Dropdown Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @slots [{"name":"", "title":"Drop Down Option"}]
+     * @exampleGroup Microsite Components
+     * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmDropdownField {
         /**
           * @undocumented 
@@ -9495,6 +11475,17 @@ declare namespace LocalJSX {
          */
         "errorMessage"?: string;
     }
+    /**
+     * @uiName Microsite Edit Profile
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The profile form header
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmEditProfile {
         /**
           * @uiName Cancel button text
@@ -9548,6 +11539,14 @@ declare namespace LocalJSX {
          */
         "updatetext"?: string;
     }
+    /**
+     * @uiName Widget Verification Gate
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmEmailVerification {
         /**
           * @undocumented 
@@ -9583,6 +11582,13 @@ declare namespace LocalJSX {
          */
         "verifyEmailHeaderText"?: string;
     }
+    /**
+     * @uiName Empty State Content
+     * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
+     * @csspart sqm-base - The base container
+     * @csspart header-text - The empty state header
+     * @csspart description-text - The empty state description
+     */
     interface SqmEmpty {
         /**
           * @uiName Title
@@ -9605,6 +11611,20 @@ declare namespace LocalJSX {
          */
         "supportText"?: string;
     }
+    /**
+     * @uiName Form Message
+     * @slots [{"name":"","title":"Message Content"}]
+     * @csspart erroralert-base - The error alert base
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart infoalert-base - The info alert base
+     * @csspart infoalert-icon - The info alert icon
+     * @csspart warningalert-base - The warning alert base
+     * @csspart warningalert-icon - The warning alert icon
+     * @csspart successalert-base - The success alert base
+     * @csspart successalert-icon - The success alert icon
+     * @csspart alert-base - The alert base, stable across all types
+     * @csspart alert-icon - The alert icon, stable across all types
+     */
     interface SqmFormMessage {
         /**
           * Icon to use in alert. Use icon values from Shoelace (e.g. "star" or "heart") at https://shoelace.style/components/icon
@@ -9626,20 +11646,34 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
+    /**
+     * @uiName Google Sign-In Button
+     * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
+     * @undocumented 
+     */
     interface SqmGoogleSignIn {
         "googleButtonDiv"?: HTMLElement | null;
-        "onInitComplete"?: (event: CustomEvent<any>) => void;
+        "onInitComplete"?: (event: SqmGoogleSignInCustomEvent<any>) => void;
         /**
           * @uiName Button text
          */
         "text"?: string;
     }
+    /**
+     * @uiName GraphQL Client Provider
+     * @canvasRenderer always-replace
+     * @slots [{"name":"","title":"Provider Content"}]
+     */
     interface SqmGraphqlClientProvider {
         /**
           * @uiName Domain
          */
         "domain"?: string;
     }
+    /**
+     * @uiName Header Logo
+     * @validParents ["sqm-portal-frame","div","sqm-brand"]
+     */
     interface SqmHeaderLogo {
         /**
           * @uiName Logo height (in px)
@@ -9673,6 +11707,18 @@ declare namespace LocalJSX {
          */
         "nextPage"?: string;
     }
+    /**
+     * @uiName Hero Layout
+     * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
+     * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
+     * @exampleGroup Layout
+     * @csspart sqm-base - The base container
+     * @csspart sqm-single-col - The single-column container
+     * @csspart sqm-two-col-container - The two-column container
+     * @csspart sqm-two-col-primary-col - The primary column
+     * @csspart sqm-two-col-secondary-col - The secondary column
+     */
     interface SqmHero {
         /**
           * Splash image or background color (for use in the left column)
@@ -9718,6 +11764,23 @@ declare namespace LocalJSX {
          */
         "wrapDirection"?: "wrap" | "wrap-reverse";
     }
+    /**
+     * @uiName Hero Image
+     * @uiOrder ["image-url", "image-alt", "min-height", "layout", "header", "description", "button-text", "button-link", "button-new-tab", "*"]
+     * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
+     * @exampleGroup Common Components
+     * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
+     * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+     * @csspart sqm-base - The base container for the hero image
+     * @csspart sqm-overlay - The image overlay
+     * @csspart sqm-columns-image - The image column
+     * @csspart sqm-columns-text-area - The text column
+     * @csspart sqm-columns-header - The header in the text column
+     * @csspart sqm-columns-description - The description in the text column
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart sqm-hero-image-button - The hero image button
+     */
     interface SqmHeroImage {
         /**
           * @uiName Background color
@@ -9839,9 +11902,20 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @undocumented 
+     */
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
+    /**
+     * @uiName Image
+     * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section", "sqm-tab"]
+     * @exampleGroup Common Components
+     * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+     * @csspart sqm-base - The base container for the image
+     * @csspart sqm-image - The image element
+     */
     interface SqmImage {
         /**
           * @uiName Position alignment
@@ -9874,6 +11948,15 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
+    /**
+     * @uiName Indirect Tax Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart radio-base - The radio base
+     */
     interface SqmIndirectTaxForm {
         /**
           * @uiName Back button label
@@ -10029,6 +12112,15 @@ declare namespace LocalJSX {
          */
         "taxAndPayoutsDescription"?: string;
     }
+    /**
+     * @uiName Form Input Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmInputField {
         /**
           * @undocumented 
@@ -10062,6 +12154,20 @@ declare namespace LocalJSX {
          */
         "fieldType"?: "text" | "date" | "tel";
     }
+    /**
+     * @uiName Instant Access Registration
+     * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmInstantAccessRegistration {
         /**
           * @uiName Background color
@@ -10156,6 +12262,14 @@ declare namespace LocalJSX {
          */
         "requiredFieldErrorMessage"?: string;
     }
+    /**
+     * @uiName Invoice Table
+     * @exampleGroup Invoices
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
+     */
     interface SqmInvoiceTable {
         /**
           * @undocumented 
@@ -10220,6 +12334,10 @@ declare namespace LocalJSX {
     interface SqmInvoiceTableDataCell {
         "data"?: string;
     }
+    /**
+     * @uiName Invoice Table Data Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface SqmInvoiceTableDataColumn {
         /**
           * @uiName Column title
@@ -10234,6 +12352,12 @@ declare namespace LocalJSX {
         "date"?: number;
         "locale"?: string;
     }
+    /**
+     * @uiName Invoice Table Date Column
+     * @validParents ["sqm-invoice-table"]
+     * @exampleGroup Invoices
+     * @example Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
+     */
     interface SqmInvoiceTableDateColumn {
         /**
           * @uiName Column title
@@ -10243,8 +12367,19 @@ declare namespace LocalJSX {
     interface SqmInvoiceTableDownloadCell {
         "downloadUrl"?: string;
     }
+    /**
+     * @uiName Invoice Table Download Column
+     * @validParents ["sqm-invoice-table"]
+     */
     interface SqmInvoiceTableDownloadColumn {
     }
+    /**
+     * @uiName Lead Form Checkbox Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadCheckboxField {
         /**
           * @uiName Checkbox label
@@ -10280,12 +12415,20 @@ declare namespace LocalJSX {
          */
         "errorMessage"?: string;
     }
+    /**
+     * @uiName Lead Form Dropdown Field
+     * @validParents ["sqm-lead-form"]
+     * @slots [{"name":"", "title":"Dropdown Option"}]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadDropdownField {
         /**
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<DropdownFieldViewProps>;
+        "demoData"?: DemoData<DropdownFieldViewProps1>;
         /**
           * @uiName Dropdown label
          */
@@ -10317,6 +12460,19 @@ declare namespace LocalJSX {
          */
         "requiredFieldErrorMessage"?: string;
     }
+    /**
+     * @uiName Lead Form
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart successalert-text - The success message element
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmLeadForm {
         /**
           * @undocumented 
@@ -10396,6 +12552,13 @@ declare namespace LocalJSX {
          */
         "supportLinkText"?: string;
     }
+    /**
+     * @uiName Lead Form Input Field
+     * @validParents ["sqm-lead-form"]
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmLeadInputField {
         /**
           * @undocumented 
@@ -10435,6 +12598,20 @@ declare namespace LocalJSX {
          */
         "requiredFieldErrorMessage"?: string;
     }
+    /**
+     * @uiName Leaderboard
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @requiredFeatures ["LEADERBOARDS"]
+     * @exampleGroup Leaderboard
+     * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+     * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
+     * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-table - The leaderboard table
+     */
     interface SqmLeaderboard {
         /**
           * Title displayed for users without names
@@ -10564,6 +12741,9 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
+    /**
+     * @uiName Leaderboard Rank
+     */
     interface SqmLeaderboardRank {
         /**
           * @undocumented 
@@ -10609,6 +12789,14 @@ declare namespace LocalJSX {
          */
         "unrankedText"?: string;
     }
+    /**
+     * @uiName Link Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Common Components
+     * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+     * @csspart primarybutton-base - The button element
+     * @csspart sqm-link - The link element inside the button
+     */
     interface SqmLinkButton {
         /**
           * @uiName Button text
@@ -10626,6 +12814,15 @@ declare namespace LocalJSX {
          */
         "openInNewTab"?: boolean;
     }
+    /**
+     * @uiName Sign out current user
+     * @exampleGroup Instant Access
+     * @compatibility Built for instant access
+     * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-link - The logout link element
+     */
     interface SqmLogoutCurrentUser {
         /**
           * @required 
@@ -10648,6 +12845,11 @@ declare namespace LocalJSX {
          */
         "userIdentificationText"?: string;
     }
+    /**
+     * @uiName Marketing Emails Checkbox Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     */
     interface SqmMarketingEmailsCheckbox {
         /**
           * @uiName Checkbox label
@@ -10668,6 +12870,14 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
     }
+    /**
+     * @uiName Form Name Fields
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmNameFields {
         /**
           * @undocumented 
@@ -10688,6 +12898,11 @@ declare namespace LocalJSX {
          */
         "optional"?: boolean;
     }
+    /**
+     * @uiName Navigation Menu
+     * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
+     * @csspart dropdownbutton-base - The dropdown button base
+     */
     interface SqmNavigationMenu {
         /**
           * @undocumented 
@@ -10704,6 +12919,14 @@ declare namespace LocalJSX {
          */
         "menuLabel"?: string;
     }
+    /**
+     * @uiName Microsite Sidebar
+     * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
+     * @validChildren ["sqm-navigation-sidebar-item"]
+     * @slots [{"name":"", "title":"Sidebar Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-items-container - The navigation items container
+     */
     interface SqmNavigationSidebar {
         /**
           * @undocumented 
@@ -10718,6 +12941,14 @@ declare namespace LocalJSX {
          */
         "mobileMenuColor"?: string;
     }
+    /**
+     * @uiName Microsite Sidebar Item
+     * @validParents ["sqm-navigation-sidebar"]
+     * @exampleGroup Microsite Components
+     * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
+     * @csspart sqm-link - The navigation link element
+     * @csspart sqm-label - The navigation label
+     */
     interface SqmNavigationSidebarItem {
         /**
           * Background color of the nav item
@@ -10795,6 +13026,13 @@ declare namespace LocalJSX {
          */
         "textHoverColor"?: string;
     }
+    /**
+     * @uiName Pagination
+     * @csspart sqm-base - The base container
+     * @csspart sqm-pagination-button - A pagination button
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPagination {
         /**
           * The type of the button that is used (primary or secondary).
@@ -10815,6 +13053,19 @@ declare namespace LocalJSX {
          */
         "paginationText"?: string;
     }
+    /**
+     * @uiName Partner Info Modal
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
+     * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
+     * @hidden 
+     * @csspart sqm-base - The base container
+     * @csspart alert-description - The error description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart select-menu - The select menu
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPartnerInfoModal {
         /**
           * Edit the property called terms and conditions text to change what's displayed for {termsAndConditionsLink}.
@@ -10928,6 +13179,15 @@ declare namespace LocalJSX {
          */
         "termsAndConditionsLink"?: string;
     }
+    /**
+     * @uiName Form Password Field
+     * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+     * @exampleGroup Microsite Components
+     * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
+     * @csspart sqm-base - The base container
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     */
     interface SqmPasswordField {
         /**
           * @undocumented 
@@ -10969,6 +13229,9 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Payout Button Scroll
+     */
     interface SqmPayoutButtonScroll {
         /**
           * @undocumented 
@@ -10985,6 +13248,10 @@ declare namespace LocalJSX {
          */
         "payoutButtonText"?: string;
     }
+    /**
+     * @uiName Payout Details Card
+     * @exampleGroup Tax and Cash Components
+     */
     interface SqmPayoutDetailsCard {
         /**
           * Shown before the participant’s bank account information.
@@ -11015,6 +13282,17 @@ declare namespace LocalJSX {
          */
         "thresholdPayoutText"?: string;
     }
+    /**
+     * @uiName Payout Status Alert
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Tax and Cash
+     * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+     * @csspart sqm-base - The base container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPayoutStatusAlert {
         /**
           * @uiName Account review alert description
@@ -11190,6 +13468,13 @@ declare namespace LocalJSX {
          */
         "withdrawalSettingsInvalidHeader"?: string;
     }
+    /**
+     * @uiName Popup Container
+     * @slots [{"name":"","title":"Content"}]
+     * @canvasRenderer always-replace
+     * @csspart sqm-base - The base container
+     * @csspart sqm-close-button - The popup close button
+     */
     interface SqmPopupContainer {
         /**
           * Display a close button on the popup
@@ -11230,6 +13515,15 @@ declare namespace LocalJSX {
          */
         "poweredByText"?: string;
     }
+    /**
+     * @uiName Change Marketing Opt in Status
+     * @requiredFeatures ["MARKETING_EMAILS"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     */
     interface SqmPortalChangeMarketing {
         /**
           * @undocumented 
@@ -11258,6 +13552,19 @@ declare namespace LocalJSX {
          */
         "successMessage"?: string;
     }
+    /**
+     * @uiName Microsite Password Change
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
+     * @csspart sqm-base - The base container for the portal change password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalChangePassword {
         /**
           * Found in modal
@@ -11336,6 +13643,14 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Container
+     * @slots [{"name":"", "title":"Widget Content"}]
+     * @exampleGroup Layout
+     * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
+     * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
+     * @csspart sqm-base - The base container for the portal container component
+     */
     interface SqmPortalContainer {
         /**
           * @uiName Background color
@@ -11404,6 +13719,15 @@ declare namespace LocalJSX {
          */
         "padding"?: Spacing;
     }
+    /**
+     * @uiName Microsite Email Verification
+     * @csspart sqm-base - The base container for the portal email verification component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalEmailVerification {
         /**
           * @undocumented 
@@ -11450,6 +13774,11 @@ declare namespace LocalJSX {
          */
         "verifyMessage"?: string;
     }
+    /**
+     * @uiName Footer
+     * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
+     * @csspart sqm-base - The base container
+     */
     interface SqmPortalFooter {
         /**
           * @uiName FAQ link
@@ -11519,6 +13848,18 @@ declare namespace LocalJSX {
          */
         "termsText"?: string;
     }
+    /**
+     * @uiName Microsite Forgot Password
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart successalert-icon - The success alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalForgotPassword {
         /**
           * @uiName Background color
@@ -11578,6 +13919,13 @@ declare namespace LocalJSX {
          */
         "successAlertText"?: string;
     }
+    /**
+     * @uiName Microsite Frame
+     * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-header - The header container
+     * @csspart sqm-footer - The footer container
+     */
     interface SqmPortalFrame {
         /**
           * @uiName Background color
@@ -11608,6 +13956,16 @@ declare namespace LocalJSX {
          */
         "notFullScreen"?: boolean;
     }
+    /**
+     * @uiName Microsite Login
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalGoogleLogin {
         /**
           * @undocumented 
@@ -11670,6 +14028,17 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
     }
+    /**
+     * @uiName Google Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalGoogleRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -11807,6 +14176,18 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Microsite Login
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
+     * @csspart sqm-base - The base container
+     * @csspart forgot-password-link - The forgot password link
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmPortalLogin {
         /**
           * @undocumented 
@@ -11862,6 +14243,11 @@ declare namespace LocalJSX {
          */
         "submitLabel"?: string;
     }
+    /**
+     * @uiName Microsite Logout
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @compatibility Built for instant access
+     */
     interface SqmPortalLogout {
         /**
           * Redirect participants to this page when they log out.
@@ -11870,6 +14256,18 @@ declare namespace LocalJSX {
          */
         "nextPage"?: string;
     }
+    /**
+     * @uiName Microsite Participant Profile
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalProfile {
         /**
           * @uiName Country field label
@@ -11925,6 +14323,11 @@ declare namespace LocalJSX {
          */
         "submitChangeButtonText"?: string;
     }
+    /**
+     * @uiName Microsite Protected Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
+     * @slots [{"name":"","title":"Route Content"}]
+     */
     interface SqmPortalProtectedRoute {
         /**
           * Redirect participants to this page they are not logged in.
@@ -11941,6 +14344,11 @@ declare namespace LocalJSX {
          */
         "requireEmailVerification"?: boolean;
     }
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+     */
     interface SqmPortalRegister {
         /**
           * @uiName Show confirm password field
@@ -12051,6 +14459,17 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Microsite Registration
+     * @canvasRenderer always-replace
+     * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalRegistrationForm {
         /**
           * @uiName Show confirm password field
@@ -12173,6 +14592,17 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Microsite Reset Password
+     * @csspart sqm-base - The base container for the portal reset password component
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalResetPassword {
         /**
           * @uiName Reset code invalid error message
@@ -12264,6 +14694,15 @@ declare namespace LocalJSX {
          */
         "uppercaseErrorText"?: string;
     }
+    /**
+     * @uiName Microsite Verify Email
+     * @csspart sqm-base - The base container
+     * @csspart erroralert-text - The error message element
+     * @csspart successalert-text - The success message element
+     * @csspart successalert-icon - The success alert icon
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmPortalVerifyEmail {
         /**
           * @uiName Continue text
@@ -12307,6 +14746,17 @@ declare namespace LocalJSX {
          */
         "verifySuccessText"?: string;
     }
+    /**
+     * @uiName Program Explainer
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-program-explainer-step"]
+     * @exampleGroup Common Components
+     * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
+     * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
+     * @csspart sqm-base - The base container for the program explainer
+     * @csspart sqm-header - The header element
+     * @csspart sqm-grid-container - The grid container element
+     */
     interface SqmProgramExplainer {
         /**
           * @uiName Header background color
@@ -12325,6 +14775,16 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Program Explainer Step
+     * @exampleGroup Common Components
+     * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
+     * @validParents ["sqm-program-explainer"]
+     * @csspart sqm-base - The base container for the program explainer step
+     * @csspart sqm-media - The media element (icon or image)
+     * @csspart sqm-header - The header element
+     * @csspart sqm-description - The description element
+     */
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background color
@@ -12378,8 +14838,24 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Microsite Program Menu
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+     * @slots [{"name":"","title":"Menu Content"}]
+     * @canvasRenderer always-replace
+     */
     interface SqmProgramMenu {
     }
+    /**
+     * @uiName QR Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
+     * @exampleGroup Sharing
+     * @example QR Code - <sqm-qr-code></sqm-qr-code>
+     * @csspart sqm-base - The base container
+     * @csspart sqm-title - The QR code title
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmQrCode {
         /**
           * @uiName QR code alignment
@@ -12422,6 +14898,15 @@ declare namespace LocalJSX {
          */
         "viewCodeText"?: string;
     }
+    /**
+     * @uiName Referral Card
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
+     * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
+     * @csspart sqm-base - The base container
+     */
     interface SqmReferralCard {
         /**
           * @uiName Background color
@@ -12495,6 +14980,15 @@ declare namespace LocalJSX {
          */
         "verticalAlignment"?: "start" | "center" | "end";
     }
+    /**
+     * @uiName Referral Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmReferralCode {
         /**
           * Background color of share link container
@@ -12590,6 +15084,14 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    /**
+     * @uiName Promo Codes
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Promo Codes Content"}]
+     * @exampleGroup Sharing
+     * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
+     * @csspart sqm-base - The base container
+     */
     interface SqmReferralCodes {
         /**
           * @undocumented 
@@ -12624,6 +15126,9 @@ declare namespace LocalJSX {
          */
         "titleText"?: string;
     }
+    /**
+     * @uiName Referral IFrame
+     */
     interface SqmReferralIframe {
         /**
           * Override the default parameter name used in the iframe
@@ -12652,6 +15157,15 @@ declare namespace LocalJSX {
          */
         "iframeWidth"?: string;
     }
+    /**
+     * @uiName Referral Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
+     * @exampleGroup Referrals
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
+     * @csspart sqm-cell-value - The reward cell value, rendered by the rewards column's cell
+     */
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -12706,6 +15220,10 @@ declare namespace LocalJSX {
     interface SqmReferralTableCell {
         "innerTemplate"?: string;
     }
+    /**
+     * @uiName Referral Table Generic Column
+     * @validParents ["sqm-referral-table"]
+     */
     interface SqmReferralTableColumn {
         /**
           * @uiName Column title
@@ -12716,6 +15234,12 @@ declare namespace LocalJSX {
         "date"?: number;
         "locale"?: string;
     }
+    /**
+     * @uiName Referral Table Date Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
+     */
     interface SqmReferralTableDateColumn {
         /**
           * @uiName Date column title
@@ -12729,6 +15253,9 @@ declare namespace LocalJSX {
          */
         "dateShown"?: ReferralDates;
     }
+    /**
+     * @csspart sqm-cell-value - The reward cell value
+     */
     interface SqmReferralTableRewardsCell {
         "deniedHelpText"?: string;
         "expiringText"?: string;
@@ -12742,6 +15269,12 @@ declare namespace LocalJSX {
         "statusText"?: string;
         "taxConnection"?: ImpactConnection;
     }
+    /**
+     * @uiName Referral Table Rewards Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
+     */
     interface SqmReferralTableRewardsColumn {
         /**
           * @uiName Reward column title
@@ -12796,6 +15329,12 @@ declare namespace LocalJSX {
         "statusSubText"?: string;
         "statusText"?: string;
     }
+    /**
+     * @uiName Referral Table Status Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
+     */
     interface SqmReferralTableStatusColumn {
         /**
           * @uiName Column title
@@ -12829,6 +15368,12 @@ declare namespace LocalJSX {
     interface SqmReferralTableUserCell {
         "name"?: string;
     }
+    /**
+     * @uiName Referral Table User Column
+     * @validParents ["sqm-referral-table"]
+     * @exampleGroup Referrals
+     * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User"></sqm-referral-table-user-column>
+     */
     interface SqmReferralTableUserColumn {
         /**
           * Name displayed for unknown users
@@ -12845,6 +15390,20 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    /**
+     * @uiName Instant Access Friend Registration
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @compatibility Built for instant access
+     * @exampleGroup Instant Access
+     * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
+     * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+     * @csspart sqm-base - The base container for the instant access registration component
+     * @csspart erroralert-text - The error message element
+     * @csspart erroralert-icon - The error alert icon
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmReferredRegistration {
         /**
           * @uiName Background color
@@ -12953,6 +15512,24 @@ declare namespace LocalJSX {
          */
         "requiredFieldErrorMessage"?: string;
     }
+    /**
+     * @uiName Reward Exchange
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-empty"]
+     * @slots [{"name":"empty", "title":"Empty State"}]
+     * @exampleGroup Rewards
+     * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
+     * @csspart sqm-base - The base container
+     * @csspart choose-reward-container - The choose reward container
+     * @csspart choose-amount-container - The choose amount container
+     * @csspart confirmation-container - The confirmation container
+     * @csspart success-container - The success container
+     * @csspart loading-container - The loading container
+     * @csspart exchange-card-container - The exchange card container
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     * @csspart icon-button-base - The copy icon button base
+     */
     interface SqmRewardExchangeList {
         /**
           * @uiName Back button text
@@ -13086,6 +15663,16 @@ declare namespace LocalJSX {
          */
         "tooltipText"?: string;
     }
+    /**
+     * @uiName Reward Table
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @exampleGroup Rewards
+     * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+     * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
+     * @csspart sqm-reward-cell-value - The reward cell value, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-progress - The reward progress, rendered by the reward column's cell
+     * @csspart sqm-reward-cell-subtext - The reward cell subtext, rendered by the reward column's cell
+     */
     interface SqmRewardsTable {
         /**
           * @undocumented 
@@ -13134,6 +15721,12 @@ declare namespace LocalJSX {
         "locale"?: string;
         "note"?: string;
     }
+    /**
+     * @uiName Rewards Table Customer Note Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
+     */
     interface SqmRewardsTableCustomerNoteColumn {
         /**
           * @uiName Column title
@@ -13144,6 +15737,12 @@ declare namespace LocalJSX {
         "date"?: number;
         "locale"?: string;
     }
+    /**
+     * @uiName Reward Table Date Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
+     */
     interface SqmRewardsTableDateColumn {
         /**
           * @uiName Date column title
@@ -13157,6 +15756,11 @@ declare namespace LocalJSX {
          */
         "dateShown"?: string;
     }
+    /**
+     * @csspart sqm-reward-cell-value - The reward value
+     * @csspart sqm-reward-cell-progress - The reward progress
+     * @csspart sqm-reward-cell-subtext - The reward subtext
+     */
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
         "copyText"?: string;
@@ -13164,6 +15768,12 @@ declare namespace LocalJSX {
         "redeemedText"?: string;
         "reward"?: Reward;
     }
+    /**
+     * @uiName Rewards Table Reward Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
+     */
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Remaining amount text
@@ -13192,6 +15802,12 @@ declare namespace LocalJSX {
         "rewardExchangeText"?: string;
         "rewardSourceText"?: string;
     }
+    /**
+     * @uiName Rewards Table Source Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+     */
     interface SqmRewardsTableSourceColumn {
         /**
           * Name displayed for unknown users
@@ -13244,6 +15860,12 @@ declare namespace LocalJSX {
         "statusText"?: string;
         "taxConnection"?: ImpactConnection;
     }
+    /**
+     * @uiName Reward Table Status Column
+     * @validParents ["sqm-rewards-table"]
+     * @exampleGroup Rewards
+     * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
+     */
     interface SqmRewardsTableStatusColumn {
         /**
           * @uiName Column title
@@ -13325,6 +15947,11 @@ declare namespace LocalJSX {
          */
         "statusText"?: string;
     }
+    /**
+     * @uiName Route
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
+     * @slots [{"name":"","title":"Content"}]
+     */
     interface SqmRoute {
         /**
           * Page Path URL for this route.
@@ -13332,8 +15959,21 @@ declare namespace LocalJSX {
          */
         "path"?: string;
     }
+    /**
+     * @uiName Router
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-route"]
+     * @slots [{"name":"","title":"Routes"}]
+     */
     interface SqmRouter {
     }
+    /**
+     * @uiName Scroll Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmScroll {
         /**
           * @uiName Button text
@@ -13396,6 +16036,26 @@ declare namespace LocalJSX {
          */
         "size"?: string;
     }
+    /**
+     * @uiName Share Button
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+     * @slots [{"name":"", "title":"Button Content"}]
+     * @slotEditor richText
+     * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+     * @exampleGroup Sharing
+     * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+     * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
+     * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+     * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+     * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+     * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+     * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+     * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+     * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+     * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
+     * @csspart button-base - The button base, stable across all button style variants
+     * @csspart icon - The share button icon
+     */
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -13529,6 +16189,15 @@ declare namespace LocalJSX {
          */
         "unsupportedPlatformText"?: string;
     }
+    /**
+     * @uiName Share Code
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @exampleGroup Sharing
+     * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmShareCode {
         /**
           * Background color of share link container
@@ -13614,6 +16283,16 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    /**
+     * @uiName Share Link
+     * @exampleGroup Sharing
+     * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+     * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
+     * @csspart alert-title - The validation error title
+     * @csspart icon-button-base - The copy icon button base
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmShareLink {
         /**
           * Let advocates customize their share links up to 5 times.
@@ -13882,6 +16561,17 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
+    /**
+     * @uiName Stat Container
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
+     * @validChildren ["sqm-big-stat"]
+     * @slots [{"name":"", "title":"Stats"}]
+     * @exampleGroup Statistics
+     * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
+     * @csspart sqm-base - The base container for the stat container
+     * @csspart sqm-inner-container - The stat content container
+     * @csspart sqm-border - The stat border
+     */
     interface SqmStatContainer {
         /**
           * Controls the alignment of the flexbox
@@ -13920,14 +16610,29 @@ declare namespace LocalJSX {
          */
         "space"?: Spacing;
     }
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface SqmStencilbook {
     }
+    /**
+     * @uiName Tab
+     * @slots [{"name":"", "title":"Tab Content"}]
+     * @validParents ["sqm-tabs"]
+     * @exampleGroup Layout
+     * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
+     */
     interface SqmTab {
         /**
           * @uiName Tab title
          */
         "header"?: string;
     }
+    /**
+     * @uiName Table Cell
+     * @slots [{"name":"", "title":"Cell Content"}]
+     */
     interface SqmTableCell {
         /**
           * @uiName Column span
@@ -13938,12 +16643,26 @@ declare namespace LocalJSX {
          */
         "padding"?: string;
     }
+    /**
+     * @uiName Table Row
+     * @slots [{"name":"", "title":"Row Content"}]
+     */
     interface SqmTableRow {
         /**
           * @uiName Border
          */
         "border"?: string;
     }
+    /**
+     * @uiName Tab Group
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-tab"]
+     * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
+     * @exampleGroup Layout
+     * @canvasRenderer always-replace
+     * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
+     * @csspart tab - A tab button
+     */
     interface SqmTabs {
         /**
           * Used to specify the placement of the tabs
@@ -13961,6 +16680,21 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Task Card
+     * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
+     * @validParents ["sqm-card-feed"]
+     * @csspart sqm-base - The base container
+     * @csspart sqm-card-container - The task card container
+     * @csspart sqm-style-container - The task card style container
+     * @csspart sqm-value - The task value
+     * @csspart sqm-unit - The task value unit
+     * @csspart sqm-title - The task title
+     * @csspart task-card-icon - The task card icon
+     * @csspart chevron-icon - The details chevron icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmTaskCard {
         /**
           * @uiName Card Background color
@@ -14142,6 +16876,15 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Tax and Cash
+     * @exampleGroup Tax and Cash
+     * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+     * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+     * @csspart container - The base container for the tax and cash component
+     * @csspart alert-title - The error alert title, shown on the error step
+     * @csspart alert-description - The error alert description, shown on the error step
+     */
     interface SqmTaxAndCash {
         /**
           * @uiName Back button label
@@ -15221,6 +17964,14 @@ declare namespace LocalJSX {
          */
         "termsAndConditions"?: string;
     }
+    /**
+     * @uiName Tax and Cash Status Dashboard
+     * @csspart dashboard-container - The dashboard container
+     * @csspart alert-base - The alert base
+     * @csspart alert-icon - The alert icon
+     * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
+     */
     interface SqmTaxAndCashDashboard {
         /**
           * @uiName Account review alert description
@@ -15616,6 +18367,13 @@ declare namespace LocalJSX {
          */
         "withdrawalSettingsInvalidHeader"?: string;
     }
+    /**
+     * @uiName Text
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+     * @slots [{"name":"", "title":"Text"}]
+     * @slotEditor richText
+     * @canvasRenderer always-replace
+     */
     interface SqmText {
         /**
           * Font size in pixels
@@ -15630,6 +18388,11 @@ declare namespace LocalJSX {
          */
         "textColor"?: string;
     }
+    /**
+     * @uiName Text Span
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
+     * @canvasRenderer always-replace
+     */
     interface SqmTextSpan {
         /**
           * Font size in pixels
@@ -15655,6 +18418,14 @@ declare namespace LocalJSX {
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    /**
+     * @uiName Program Timeline
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+     * @validChildren ["sqm-timeline-entry"]
+     * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
+     * @exampleGroup Common Components
+     * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
+     */
     interface SqmTimeline {
         /**
           * @uiName Icon
@@ -15664,6 +18435,17 @@ declare namespace LocalJSX {
          */
         "icon"?: "gift" | "circle";
     }
+    /**
+     * @uiName Program Timeline Entry
+     * @validParents ["sqm-timeline"]
+     * @exampleGroup Common Components
+     * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
+     * @csspart sqm-base - The base container for the timeline entry
+     * @csspart sqm-entry-container - The timeline entry container
+     * @csspart sqm-reward - The reward value
+     * @csspart sqm-unit - The reward unit
+     * @csspart sqm-description - The reward description
+     */
     interface SqmTimelineEntry {
         /**
           * @uiName Description
@@ -15699,6 +18481,16 @@ declare namespace LocalJSX {
          */
         "unit"?: string;
     }
+    /**
+     * @uiName Titled Section
+     * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
+     * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
+     * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
+     * @exampleGroup Layout
+     * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
+     * @csspart sqm-base - The section base container
+     * @csspart sqm-label - The section label
+     */
     interface SqmTitledSection {
         /**
           * Text value shown when there is no label slot declared.
@@ -15730,6 +18522,12 @@ declare namespace LocalJSX {
          */
         "textAlign"?: "left" | "center" | "right";
     }
+    /**
+     * @uiName User Attribute
+     * @exampleGroup Advanced
+     * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
+     * @csspart sqm-base - The base container
+     */
     interface SqmUserAttribute {
         /**
           * @uiName Color
@@ -15764,6 +18562,16 @@ declare namespace LocalJSX {
          */
         "value"?: string | number;
     }
+    /**
+     * @uiName User Information Form
+     * @exampleGroup Tax and Cash Components
+     * @csspart form-container - The form container
+     * @csspart alert-title - The alert title
+     * @csspart alert-description - The alert description
+     * @csspart input-label - The input label
+     * @csspart input-base - The input base
+     * @csspart primarybutton-base - The primary button base
+     */
     interface SqmUserInfoForm {
         /**
           * @uiName Address field label
@@ -15917,6 +18725,11 @@ declare namespace LocalJSX {
          */
         "termsAndConditionsLink"?: string;
     }
+    /**
+     * @uiName User Name
+     * @exampleGroup Common Components
+     * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+     */
     interface SqmUserName {
         /**
           * @undocumented 
@@ -15933,6 +18746,13 @@ declare namespace LocalJSX {
          */
         "loadingText"?: string;
     }
+    /**
+     * @uiName Widget Verification Flow
+     * @exampleGroup Widget Verification
+     * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+     * @csspart step-base - The base container of the currently rendered step
+     * @csspart primarybutton-base - The primary button base of the currently rendered step
+     */
     interface SqmWidgetVerification {
         /**
           * Link text displayed under verify button
@@ -16100,6 +18920,13 @@ declare namespace LocalJSX {
          */
         "stateController"?: string;
     }
+    /**
+     * @uiName Widget Verification Controller
+     * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+     * @exampleGroup Tax and Cash
+     * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
+     * @canvasRenderer always-replace
+     */
     interface SqmWidgetVerificationController {
         /**
           * @undocumented 
@@ -16245,135 +19072,1076 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @undocumented 
+             */
             "raisins-plop-target": LocalJSX.RaisinsPlopTarget & JSXBase.HTMLAttributes<HTMLRaisinsPlopTargetElement>;
+            /**
+             * @uiName Banking Information Form
+             * @exampleGroup Common Components
+             */
             "sqm-banking-info-form": LocalJSX.SqmBankingInfoForm & JSXBase.HTMLAttributes<HTMLSqmBankingInfoFormElement>;
+            /**
+             * @uiName User Stat
+             * @validParents ["sqm-stat-container"]
+             * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+             * @slots [{"name":"","title":"Stat Text"}]
+             * @uiOrder ["statType", "programId", "*"]
+             * @slotEditor richText
+             * @exampleGroup Statistics
+             * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat>
+             * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat>
+             * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat>
+             * @example Other Stat - <sqm-big-stat flex-reverse="true" alignment="left" stat-type=""><p>Label</p></sqm-big-stat>
+             * @csspart stat-wrapper - The stat wrapper element
+             * @csspart stat-value - The stat value element
+             * @csspart stat-description - The stat description element
+             */
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+            /**
+             * @uiName Brand Container
+             * @slots [{"name":"","title":"Branded Content"}]
+             * @exampleGroup Common Components
+             * @example Brand Container - <sqm-brand brand="Nunito Sans"><p>Add your branded content here!</p></sqm-brand>
+             */
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-brand-selector": LocalJSX.SqmBrandSelector & JSXBase.HTMLAttributes<HTMLSqmBrandSelectorElement>;
+            /**
+             * @uiName Card Feed
+             * @slots [{"name":"","title":"Cards"}]
+             * @validParents ["sqm-brand","sqm-portal-container", "sqm-popup-container", "sqm-titled-section", "div", "sqm-divided-layout", "template", "sqb-program-section", "sqb-conditional-section"]
+             * @validChildren ["sqm-task-card"]
+             * @exampleGroup Rewards
+             * @example Task Card Feed - <sqm-card-feed gap="24" width="347"> <sqm-task-card reward-amount="20" goal="1" card-title="Complete a Survey" description="Fill out our NPS survey and get 20 points for giving us honest feedback." button-text="Take survey" reward-unit="Points" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="250" goal="500" show-progress-bar card-title="Spend $500" description="Earn 250 points when you spend $500 or more." button-text="See plans" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" progress-bar-unit="$" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card goal="1" reward-amount="50" card-title="Follow Us on X" description="Earn 50 points when you Follow Us on X!" button-text="Follow" button-link="https://twitter.com/" open-new-tab="true" event-key="socialFollow" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" finite="0" reward-unit="Points" starts-on-message="Starts {startDate}" > </sqm-task-card> <sqm-task-card reward-amount="1" reward-unit="Free Month" goal="1" card-title="Upgrade Your Plan" description="Receive one free month for being a committed customer when you upgrade your plan." button-text="Upgrade" completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}" ended-message="Ended {endDate}" expiry-message="Ends {endDate}" open-new-tab="false" finite="0" starts-on-message="Starts {startDate}" > </sqm-task-card> </sqm-card-feed>
+             * @csspart sqm-base - The base container
+             */
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
+            /**
+             * @uiName Form Checkbox Field
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @exampleGroup Microsite Components
+             * @example Form Checkbox Field - <sqm-checkbox-field checkbox-name="terms" checkbox-label="By signing up you agree to the {labelLink}" checkbox-label-link="https://example.com" checkbox-label-link-text="Terms and Conditions" error-message="Must be checked" ></sqm-checkbox-field>
+             */
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+            /**
+             * @uiName Popup Widget Close Button
+             */
             "sqm-close-button": LocalJSX.SqmCloseButton & JSXBase.HTMLAttributes<HTMLSqmCloseButtonElement>;
+            /**
+             * @uiName Widget Code Verification
+             * @csspart sqm-base - The base container
+             * @csspart successalert-icon - The success alert icon
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-code-verification": LocalJSX.SqmCodeVerification & JSXBase.HTMLAttributes<HTMLSqmCodeVerificationElement>;
+            /**
+             * @uiName Context Router
+             * @slots [{"name":"","title":"Routes"}]
+             */
             "sqm-context-router": LocalJSX.SqmContextRouter & JSXBase.HTMLAttributes<HTMLSqmContextRouterElement>;
+            /**
+             * @uiName Coupon Code
+             * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section", "sqb-program-section", "sqb-conditional-section"]
+             * @compatibility Built for instant access
+             * @exampleGroup Instant Access
+             * @example Coupon Code - <sqm-coupon-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-coupon-code>
+             * @csspart label - The coupon code label element
+             * @csspart erroralert-text - The error message element
+             * @csspart alert-icon - The status alert icon (error, warning, info, or success)
+             * @csspart icon-button-base - The copy icon button base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-coupon-code": LocalJSX.SqmCouponCode & JSXBase.HTMLAttributes<HTMLSqmCouponCodeElement>;
+            /**
+             * Shows it's children as either a row or a column, with a division in between them.
+             * Spacing is left up to the child
+             * @uiName Divided Layout
+             * @validParents ["sqm-brand","sqm-portal-container","div","sqm-popup-container","sqm-hero","sqm-referral-card","sqm-titled-section","sqb-program-section","sqb-conditional-section", "sqm-divided-layout"]
+             * @exampleGroup Layout
+             * @slots [{"name":"", "title":"Layout Content"}]
+             * @csspart sqm-base - The base container
+             */
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+            /**
+             * @uiName DocuSign Document Submission
+             * @exampleGroup Tax and Cash Components
+             * @slots [{"name": "docusign-iframe", "title": "DocuSign IFrame Slot"}]
+             */
             "sqm-docusign-form": LocalJSX.SqmDocusignForm & JSXBase.HTMLAttributes<HTMLSqmDocusignFormElement>;
+            /**
+             * @uiName Form Dropdown Field
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @slots [{"name":"", "title":"Drop Down Option"}]
+             * @exampleGroup Microsite Components
+             * @example Form Dropdown Field - <sqm-dropdown-field dropdown-label="Select an option" error-message="Select an option"><sl-menu-item value="option-1">Option 1</sl-menu-item><sl-menu-item value="option-2">Option 2</sl-menu-item><sl-menu-item value="option-3">Option 3</sl-menu-item></sqm-dropdown-field>
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
+            /**
+             * @uiName Microsite Edit Profile
+             * @csspart sqm-base - The base container
+             * @csspart sqm-header - The profile form header
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            /**
+             * @uiName Widget Verification Gate
+             * @csspart sqm-base - The base container
+             * @csspart alert-title - The alert title
+             * @csspart primarybutton-base - The primary button base
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-email-verification": LocalJSX.SqmEmailVerification & JSXBase.HTMLAttributes<HTMLSqmEmailVerificationElement>;
+            /**
+             * @uiName Empty State Content
+             * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard","sqm-reward-exchange-list"]
+             * @csspart sqm-base - The base container
+             * @csspart header-text - The empty state header
+             * @csspart description-text - The empty state description
+             */
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
+            /**
+             * @uiName Form Message
+             * @slots [{"name":"","title":"Message Content"}]
+             * @csspart erroralert-base - The error alert base
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart infoalert-base - The info alert base
+             * @csspart infoalert-icon - The info alert icon
+             * @csspart warningalert-base - The warning alert base
+             * @csspart warningalert-icon - The warning alert icon
+             * @csspart successalert-base - The success alert base
+             * @csspart successalert-icon - The success alert icon
+             * @csspart alert-base - The alert base, stable across all types
+             * @csspart alert-icon - The alert icon, stable across all types
+             */
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+            /**
+             * @uiName Google Sign-In Button
+             * @description Requires <script src="https://accounts.google.com/gsi/client" async></script> be added to the <head> section.
+             * @undocumented 
+             */
             "sqm-google-sign-in": LocalJSX.SqmGoogleSignIn & JSXBase.HTMLAttributes<HTMLSqmGoogleSignInElement>;
+            /**
+             * @uiName GraphQL Client Provider
+             * @canvasRenderer always-replace
+             * @slots [{"name":"","title":"Provider Content"}]
+             */
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            /**
+             * @uiName Header Logo
+             * @validParents ["sqm-portal-frame","div","sqm-brand"]
+             */
             "sqm-header-logo": LocalJSX.SqmHeaderLogo & JSXBase.HTMLAttributes<HTMLSqmHeaderLogoElement>;
+            /**
+             * @uiName Hero Layout
+             * @validParents ["sqm-portal-container","sqm-brand","div", "template", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @slots [{"name":"","title":"Primary Column Content"},{"name":"secondary-column","title":"Secondary Column Content"}]
+             * @example Two Column Hero Layout - <sqm-hero background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1939&amp;q=80" min-height="0" columns="2" padding-size="large" wrap-direction="wrap" secondary-background="lightgrey"><h1>Primary Column Content</h1><h1 slot="secondary-column">Secondary Column Content</h1></sqm-hero>
+             * @exampleGroup Layout
+             * @csspart sqm-base - The base container
+             * @csspart sqm-single-col - The single-column container
+             * @csspart sqm-two-col-container - The two-column container
+             * @csspart sqm-two-col-primary-col - The primary column
+             * @csspart sqm-two-col-secondary-col - The secondary column
+             */
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
+            /**
+             * @uiName Hero Image
+             * @uiOrder ["image-url", "image-alt", "min-height", "layout", "header", "description", "button-text", "button-link", "button-new-tab", "*"]
+             * @validParents ["sqm-portal-container","sqm-brand", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section", "sqm-titled-section", "sqm-tab", "template"]
+             * @exampleGroup Common Components
+             * @example Two Column Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="columns" image-pos="right"></sqm-hero-image>
+             * @example Overlay Hero Image - <sqm-hero-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png" header="MyCompany Rewards" description="Refer a friend and earn up to $1200 in rewards" layout="overlay" image-pos="center" button-link="https://www.example.com" button-new-tab button-text="Earn!" image-percentage="45" overlay-opacity=".5" padding-image="small" padding-text="xxxx-large"></sqm-hero-image>
+             * @csspart sqm-base - The base container for the hero image
+             * @csspart sqm-overlay - The image overlay
+             * @csspart sqm-columns-image - The image column
+             * @csspart sqm-columns-text-area - The text column
+             * @csspart sqm-columns-header - The header in the text column
+             * @csspart sqm-columns-description - The description in the text column
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             * @csspart sqm-hero-image-button - The hero image button
+             */
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
+            /**
+             * @undocumented 
+             */
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
+            /**
+             * @uiName Image
+             * @validParents ["sqm-brand","div","sqm-portal-container","sqm-divided-layout","sqm-titled-section", "sqb-program-section", "sqb-conditional-section", "sqm-tab"]
+             * @exampleGroup Common Components
+             * @example Image - <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" alignment="center"></sqm-image>
+             * @csspart sqm-base - The base container for the image
+             * @csspart sqm-image - The image element
+             */
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            /**
+             * @uiName Indirect Tax Form
+             * @exampleGroup Tax and Cash Components
+             * @csspart form-container - The form container
+             * @csspart alert-title - The alert title
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             * @csspart radio-base - The radio base
+             */
             "sqm-indirect-tax-form": LocalJSX.SqmIndirectTaxForm & JSXBase.HTMLAttributes<HTMLSqmIndirectTaxFormElement>;
+            /**
+             * @uiName Form Input Field
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @exampleGroup Microsite Components
+             * @example Form Input Field - <sqm-input-field input-label="Field Label" field-type="text" error-message="Cannot be empty"></sqm-input-field>
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
+            /**
+             * @uiName Instant Access Registration
+             * @validParents ["sqm-portal-container","div","sqm-hero","template", "sqb-program-section", "sqb-conditional-section"]
+             * @compatibility Built for instant access
+             * @exampleGroup Instant Access
+             * @example Advocate Registration - <sqm-instant-access-registration></sqm-instant-access-registration>
+             * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+             * @csspart sqm-base - The base container for the instant access registration component
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-instant-access-registration": LocalJSX.SqmInstantAccessRegistration & JSXBase.HTMLAttributes<HTMLSqmInstantAccessRegistrationElement>;
+            /**
+             * @uiName Invoice Table
+             * @exampleGroup Invoices
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["p","div","h1","h2","h3","h4","h5","span"]
+             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+             * @example Invoice Table - <sqm-invoice-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" ><sqm-invoice-table-download-column></sqm-invoice-table-download-column><sqm-invoice-table-date-column column-title="Date"></sqm-invoice-table-date-column><sqm-invoice-table-data-column column-title="Invoice" property="invoiceId"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings" property="earnings"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Indirect tax" property="indirectTax"></sqm-invoice-table-data-column><sqm-invoice-table-data-column column-title="Earnings after tax" property="netEarnings"></sqm-invoice-table-data-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1710363322/squatch-assets/invoice-table-empty.png" empty-state-header="View your invoice details" empty-state-text="Refer a friend to view the status of your invoices and rewards earned" slot="empty" ></sqm-empty ></sqm-invoice-table>
+             */
             "sqm-invoice-table": LocalJSX.SqmInvoiceTable & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableElement>;
             "sqm-invoice-table-data-cell": LocalJSX.SqmInvoiceTableDataCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataCellElement>;
+            /**
+             * @uiName Invoice Table Data Column
+             * @validParents ["sqm-invoice-table"]
+             */
             "sqm-invoice-table-data-column": LocalJSX.SqmInvoiceTableDataColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDataColumnElement>;
             "sqm-invoice-table-date-cell": LocalJSX.SqmInvoiceTableDateCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateCellElement>;
+            /**
+             * @uiName Invoice Table Date Column
+             * @validParents ["sqm-invoice-table"]
+             * @exampleGroup Invoices
+             * @example Date Column - <sqm-invoice-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-invoice-table-date-column>
+             */
             "sqm-invoice-table-date-column": LocalJSX.SqmInvoiceTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDateColumnElement>;
             "sqm-invoice-table-download-cell": LocalJSX.SqmInvoiceTableDownloadCell & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadCellElement>;
+            /**
+             * @uiName Invoice Table Download Column
+             * @validParents ["sqm-invoice-table"]
+             */
             "sqm-invoice-table-download-column": LocalJSX.SqmInvoiceTableDownloadColumn & JSXBase.HTMLAttributes<HTMLSqmInvoiceTableDownloadColumnElement>;
+            /**
+             * @uiName Lead Form Checkbox Field
+             * @validParents ["sqm-lead-form"]
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-lead-checkbox-field": LocalJSX.SqmLeadCheckboxField & JSXBase.HTMLAttributes<HTMLSqmLeadCheckboxFieldElement>;
+            /**
+             * @uiName Lead Form Dropdown Field
+             * @validParents ["sqm-lead-form"]
+             * @slots [{"name":"", "title":"Dropdown Option"}]
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-lead-dropdown-field": LocalJSX.SqmLeadDropdownField & JSXBase.HTMLAttributes<HTMLSqmLeadDropdownFieldElement>;
+            /**
+             * @uiName Lead Form
+             * @canvasRenderer always-replace
+             * @slots [{"name":"formData","title":"Additional Fields"}]
+             * @csspart sqm-base - The base container
+             * @csspart successalert-text - The success message element
+             * @csspart alert-title - The alert title
+             * @csspart alert-description - The alert description
+             * @csspart successalert-icon - The success alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-lead-form": LocalJSX.SqmLeadForm & JSXBase.HTMLAttributes<HTMLSqmLeadFormElement>;
+            /**
+             * @uiName Lead Form Input Field
+             * @validParents ["sqm-lead-form"]
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-lead-input-field": LocalJSX.SqmLeadInputField & JSXBase.HTMLAttributes<HTMLSqmLeadInputFieldElement>;
+            /**
+             * @uiName Leaderboard
+             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+             * @slots [{"name":"empty", "title":"Empty State"}]
+             * @requiredFeatures ["LEADERBOARDS"]
+             * @exampleGroup Leaderboard
+             * @example Referral Started - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+             * @example Referral Converted - <sqm-leaderboard usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topConvertedReferrers" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+             * @example Points Earned - <sqm-leaderboard usersheading="Name" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Points" rank-type="rank" leaderboard-type="topPointEarners" rankheading="Rank" show-rank="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" ></sqm-empty></sqm-leaderboard>
+             * @example Anonymous Leaderboard - <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; gap: 50px;"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; max-width: 30%;"><sqm-image width="70%" alignment="center" image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1729728469/Leaderboard_image_z87lsm.png"></sqm-image><h2 style="margin: auto;">Top Performers</h2><p style="margin: 0; text-align: center;">The leaderboard highlights the top performers in real-time. Stay motivated, stay competitive!</p></div><sqm-leaderboard width="300px" usersheading="Referrer" rank-suffix="{rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}" statsheading="Referrals" rank-type="rank" leaderboard-type="topStartedReferrers" rankheading="Rank" show-rank="true" hide-names="true" hide-viewer="true"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"></sqm-empty></sqm-leaderboard></div>
+             * @featureTooltip <div>Motivate your participants by gamifying your program. Contact <a href="mailto:saasquatch-support%40impact.com?subject=Next steps for Leaderboards feature&body=Hi Support Team, %0D%0A%0D%0A I am interested in learning more about how Leaderboards can support the growth of our referral program. Please connect me with a program strategy manager to discuss this feature further, and determine the next steps.%0D%0A%0D%0A%0D%0AThank you,%0D%0A[Add your name here]">Support</a> to upgrade your plan and add a leaderboard.</div>
+             * @csspart sqm-base - The base container
+             * @csspart sqm-table - The leaderboard table
+             */
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
+            /**
+             * @uiName Leaderboard Rank
+             */
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            /**
+             * @uiName Link Button
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @exampleGroup Common Components
+             * @example Link Button - <sqm-link-button link="https://www.example.com" open-in-new-tab="true">Click here</sqm-link-button>
+             * @csspart primarybutton-base - The button element
+             * @csspart sqm-link - The link element inside the button
+             */
             "sqm-link-button": LocalJSX.SqmLinkButton & JSXBase.HTMLAttributes<HTMLSqmLinkButtonElement>;
+            /**
+             * @uiName Sign out current user
+             * @exampleGroup Instant Access
+             * @compatibility Built for instant access
+             * @validParents ["sqm-portal-container","template", "sqm-referred-registration", "sqb-auth-template-switch", "div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @example Sign out current user - <sqm-logout-current-user user-identification-text="{email}" switch-user-link="#" switch-user-text="not you?"></sqm-logout-current-user>
+             * @csspart sqm-base - The base container
+             * @csspart sqm-link - The logout link element
+             */
             "sqm-logout-current-user": LocalJSX.SqmLogoutCurrentUser & JSXBase.HTMLAttributes<HTMLSqmLogoutCurrentUserElement>;
+            /**
+             * @uiName Marketing Emails Checkbox Field
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @requiredFeatures ["MARKETING_EMAILS"]
+             */
             "sqm-marketing-emails-checkbox": LocalJSX.SqmMarketingEmailsCheckbox & JSXBase.HTMLAttributes<HTMLSqmMarketingEmailsCheckboxElement>;
+            /**
+             * @uiName Form Name Fields
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @exampleGroup Microsite Components
+             * @example Form Name Fields - <sqm-name-fields first-name-label="First Name" last-name-label="Last Name"></sqm-name-fields>
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
+            /**
+             * @uiName Navigation Menu
+             * @validParents ["sqm-portal-container","div","sqm-brand","sqm-divided-layout"]
+             * @csspart dropdownbutton-base - The dropdown button base
+             */
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
+            /**
+             * @uiName Microsite Sidebar
+             * @validParents ["div","sqm-divided-layout","template","sqm-portal-container","sqm-brand"]
+             * @validChildren ["sqm-navigation-sidebar-item"]
+             * @slots [{"name":"", "title":"Sidebar Content"}]
+             * @csspart sqm-base - The base container
+             * @csspart sqm-items-container - The navigation items container
+             */
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
+            /**
+             * @uiName Microsite Sidebar Item
+             * @validParents ["sqm-navigation-sidebar"]
+             * @exampleGroup Microsite Components
+             * @example Sidebar Item - <sqm-navigation-sidebar-item label="Sidebar Item" icon="house"></sqm-navigation-sidebar-item>
+             * @csspart sqm-link - The navigation link element
+             * @csspart sqm-label - The navigation label
+             */
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
+            /**
+             * @uiName Pagination
+             * @csspart sqm-base - The base container
+             * @csspart sqm-pagination-button - A pagination button
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-pagination": LocalJSX.SqmPagination & JSXBase.HTMLAttributes<HTMLSqmPaginationElement>;
+            /**
+             * @uiName Partner Info Modal
+             * @exampleGroup Tax and Cash
+             * @validParents ["sqm-portal-container", "sqm-portal-frame", "div", "sqm-divided-layout", "sqb-program-section", "sqb-conditional-section"]
+             * @example Partner Info Modal - <sqm-partner-info-modal></sqm-partner-info-modal>
+             * @hidden 
+             * @csspart sqm-base - The base container
+             * @csspart alert-description - The error description
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart select-menu - The select menu
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-partner-info-modal": LocalJSX.SqmPartnerInfoModal & JSXBase.HTMLAttributes<HTMLSqmPartnerInfoModalElement>;
+            /**
+             * @uiName Form Password Field
+             * @validParents ["sqm-portal-register","sqm-portal-registration-form", "sqm-portal-google-registration-form"]
+             * @exampleGroup Microsite Components
+             * @example Form Password Field - <sqm-password-field field-label="Password"></sqm-password-field>
+             * @csspart sqm-base - The base container
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             */
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
+            /**
+             * @uiName Payout Button Scroll
+             */
             "sqm-payout-button-scroll": LocalJSX.SqmPayoutButtonScroll & JSXBase.HTMLAttributes<HTMLSqmPayoutButtonScrollElement>;
+            /**
+             * @uiName Payout Details Card
+             * @exampleGroup Tax and Cash Components
+             */
             "sqm-payout-details-card": LocalJSX.SqmPayoutDetailsCard & JSXBase.HTMLAttributes<HTMLSqmPayoutDetailsCardElement>;
+            /**
+             * @uiName Payout Status Alert
+             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqm-brand","sqb-program-section","sqb-conditional-section"]
+             * @exampleGroup Tax and Cash
+             * @example Payout Status Alert - <sqm-payout-status-alert></sqm-payout-status-alert>
+             * @csspart sqm-base - The base container
+             * @csspart alert-title - The alert title
+             * @csspart alert-description - The alert description
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-payout-status-alert": LocalJSX.SqmPayoutStatusAlert & JSXBase.HTMLAttributes<HTMLSqmPayoutStatusAlertElement>;
+            /**
+             * @uiName Popup Container
+             * @slots [{"name":"","title":"Content"}]
+             * @canvasRenderer always-replace
+             * @csspart sqm-base - The base container
+             * @csspart sqm-close-button - The popup close button
+             */
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            /**
+             * @uiName Change Marketing Opt in Status
+             * @requiredFeatures ["MARKETING_EMAILS"]
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart successalert-icon - The success alert icon
+             */
             "sqm-portal-change-marketing": LocalJSX.SqmPortalChangeMarketing & JSXBase.HTMLAttributes<HTMLSqmPortalChangeMarketingElement>;
+            /**
+             * @uiName Microsite Password Change
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand"]
+             * @csspart sqm-base - The base container for the portal change password component
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart successalert-icon - The success alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
+            /**
+             * @uiName Container
+             * @slots [{"name":"", "title":"Widget Content"}]
+             * @exampleGroup Layout
+             * @example Row Layout Container - <sqm-portal-container direction="row" padding="none" gap="xxx-large" display="flex" max-width="100%"><p>Add your row content!</p></sqm-portal-container>
+             * @example Column Layout Container - <sqm-portal-container direction="column" padding="none" gap="xxx-large" display="grid" max-width="100%"><p>Add your column content!</p></sqm-portal-container>
+             * @csspart sqm-base - The base container for the portal container component
+             */
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
+            /**
+             * @uiName Microsite Email Verification
+             * @csspart sqm-base - The base container for the portal email verification component
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart successalert-icon - The success alert icon
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
+            /**
+             * @uiName Footer
+             * @validParents ["div","sqm-brand","sqm-portal-container", "sqm-divided-layout", "sqm-referral-card", "sqm-instant-access-registration", "sqm-portal-frame", "sqm-referred-registration"]
+             * @csspart sqm-base - The base container
+             */
             "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
+            /**
+             * @uiName Microsite Forgot Password
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart successalert-icon - The success alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
+            /**
+             * @uiName Microsite Frame
+             * @slots [{"name":"header","title":"Header Content"},{"name":"footer","title":"Footer Content"},{"name":"","title":"Body Content"}]
+             * @csspart sqm-base - The base container
+             * @csspart sqm-header - The header container
+             * @csspart sqm-footer - The footer container
+             */
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+            /**
+             * @uiName Microsite Login
+             * @csspart sqm-base - The base container
+             * @csspart forgot-password-link - The forgot password link
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-google-login": LocalJSX.SqmPortalGoogleLogin & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleLoginElement>;
+            /**
+             * @uiName Google Registration
+             * @canvasRenderer always-replace
+             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-google-registration-form": LocalJSX.SqmPortalGoogleRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalGoogleRegistrationFormElement>;
+            /**
+             * @uiName Microsite Login
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "template"]
+             * @csspart sqm-base - The base container
+             * @csspart forgot-password-link - The forgot password link
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            /**
+             * @uiName Microsite Logout
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+             * @compatibility Built for instant access
+             */
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            /**
+             * @uiName Microsite Participant Profile
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart successalert-icon - The success alert icon
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
+            /**
+             * @uiName Microsite Protected Route
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template", "sqb-program-section", "sqb-conditional-section"]
+             * @slots [{"name":"","title":"Route Content"}]
+             */
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
+            /**
+             * @uiName Microsite Registration
+             * @canvasRenderer always-replace
+             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"}]
+             */
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
+            /**
+             * @uiName Microsite Registration
+             * @canvasRenderer always-replace
+             * @slots [{"name":"formData","title":"Additional Fields"},{"name":"terms","title":"Terms And Conditions Fields"},{"name":"emailOptIn","title":"Email Opt-in Fields"}]
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-registration-form": LocalJSX.SqmPortalRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalRegistrationFormElement>;
+            /**
+             * @uiName Microsite Reset Password
+             * @csspart sqm-base - The base container for the portal reset password component
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart successalert-icon - The success alert icon
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
+            /**
+             * @uiName Microsite Verify Email
+             * @csspart sqm-base - The base container
+             * @csspart erroralert-text - The error message element
+             * @csspart successalert-text - The success message element
+             * @csspart successalert-icon - The success alert icon
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+            /**
+             * @uiName Program Explainer
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["sqm-program-explainer-step"]
+             * @exampleGroup Common Components
+             * @slots [{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]
+             * @example Program Explainer - <sqm-program-explainer header="How it works"><sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step><sqm-program-explainer-step description="Use your points and redeem rewards like one free month of Enterprise or a visa giftcard" header="Redeem rewards" icon="people"></sqm-program-explainer-step></sqm-program-explainer>
+             * @csspart sqm-base - The base container for the program explainer
+             * @csspart sqm-header - The header element
+             * @csspart sqm-grid-container - The grid container element
+             */
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
+            /**
+             * @uiName Program Explainer Step
+             * @exampleGroup Common Components
+             * @example Program Explainer Step - <sqm-program-explainer-step description="Explore and use our product while earning points in the process!" header="Earn points" icon="cash-stack"></sqm-program-explainer-step>
+             * @validParents ["sqm-program-explainer"]
+             * @csspart sqm-base - The base container for the program explainer step
+             * @csspart sqm-media - The media element (icon or image)
+             * @csspart sqm-header - The header element
+             * @csspart sqm-description - The description element
+             */
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
+            /**
+             * @uiName Microsite Program Menu
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template"]
+             * @slots [{"name":"","title":"Menu Content"}]
+             * @canvasRenderer always-replace
+             */
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            /**
+             * @uiName QR Code
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand", "sqb-program-section", "sqb-conditional-section"]
+             * @exampleGroup Sharing
+             * @example QR Code - <sqm-qr-code></sqm-qr-code>
+             * @csspart sqm-base - The base container
+             * @csspart sqm-title - The QR code title
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-qr-code": LocalJSX.SqmQrCode & JSXBase.HTMLAttributes<HTMLSqmQrCodeElement>;
+            /**
+             * @uiName Referral Card
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-hero"]
+             * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-pagination","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-portal-footer", "sqm-titled-section"]
+             * @exampleGroup Referrals
+             * @slots [{"name":"left", "title":"Left Content"},{"name":"right", "title":"Right Content"},{"name":"header", "title":"Header Content"},{"name":"footer", "title":"Footer Content"}]
+             * @example Referral Card - <sqm-referral-card vertical-alignment="start"> <sqm-portal-container gap="large" slot="left" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text >They’ll get a $50 credit towards a new account and you’ll get: </sqm-text> <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="Your friend purchases a Business plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry> </sqm-timeline> </sqm-portal-container> <sqm-portal-container gap="large" slot="right" direction="column" display="grid" max-width="100%" padding="none" > <sqm-text>Choose how you want to share: </sqm-text> <sqm-text> <sub>Your unique referral link:</sub> <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" > </sqm-share-link> </sqm-text> <sqm-portal-container gap="x-small" direction="column" display="grid" max-width="100%" padding="none" > <sqm-share-button medium="email" icon-slot="prefix" size="medium" type="default" > Share via email </sqm-share-button> <sqm-share-button medium="linkedin" icon-slot="prefix" size="medium" type="default" > Share on LinkedIn </sqm-share-button> <sqm-share-button medium="twitter" icon-slot="prefix" size="medium" type="default" > Share on Twitter </sqm-share-button> </sqm-portal-container> </sqm-portal-container> </sqm-referral-card>
+             * @csspart sqm-base - The base container
+             */
             "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
+            /**
+             * @uiName Referral Code
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span", "sqm-referral-codes", "sqm-titled-section"]
+             * @exampleGroup Sharing
+             * @example Referral Code - <sqm-referral-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000" show-notification-text="true"></sqm-referral-code>
+             * @csspart icon-button-base - The copy icon button base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-referral-code": LocalJSX.SqmReferralCode & JSXBase.HTMLAttributes<HTMLSqmReferralCodeElement>;
+            /**
+             * @uiName Promo Codes
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-referral-card","span","sqb-program-section","sqb-conditional-section"]
+             * @slots [{"name":"", "title":"Promo Codes Content"}]
+             * @exampleGroup Sharing
+             * @example Promo Codes - <sqm-referral-codes><sqm-pagination slot="pagination"></sqm-pagination><sqm-referral-code slot="shareCodes" show-notification-text="true"></sqm-referral-code><sqm-portal-container gap="small" slot="shareButtons"><sqm-share-button medium="email">Share via email</sqm-share-button><sqm-share-button medium="fbmessenger">Share on Facebook</sqm-share-button><sqm-share-button medium="whatsapp">Share on WhatsApp</sqm-share-button></sqm-portal-container></sqm-referral-codes>
+             * @csspart sqm-base - The base container
+             */
             "sqm-referral-codes": LocalJSX.SqmReferralCodes & JSXBase.HTMLAttributes<HTMLSqmReferralCodesElement>;
+            /**
+             * @uiName Referral IFrame
+             */
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
+            /**
+             * @uiName Referral Table
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["sqm-referral-table-column","sqm-referral-table-date-column","sqm-referral-table-rewards-column","sqm-referral-table-status-column","sqm-referral-table-user-column","sqm-empty"]
+             * @exampleGroup Referrals
+             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+             * @example Referral Table - <sqm-referral-table per-page="4" hidden-columns="2" more-label="Next" prev-label="Prev" sm-breakpoint="599" md-breakpoint="799" > <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User" ></sqm-referral-table-user-column> <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column> <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted" ></sqm-referral-table-date-column> <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral" ></sqm-referral-table-status-column> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned" slot="empty" ></sqm-empty> </sqm-referral-table>
+             * @csspart sqm-cell-value - The reward cell value, rendered by the rewards column's cell
+             */
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
+            /**
+             * @uiName Referral Table Generic Column
+             * @validParents ["sqm-referral-table"]
+             */
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
             "sqm-referral-table-date-cell": LocalJSX.SqmReferralTableDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateCellElement>;
+            /**
+             * @uiName Referral Table Date Column
+             * @validParents ["sqm-referral-table"]
+             * @exampleGroup Referrals
+             * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
+             */
             "sqm-referral-table-date-column": LocalJSX.SqmReferralTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateColumnElement>;
+            /**
+             * @csspart sqm-cell-value - The reward cell value
+             */
             "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
+            /**
+             * @uiName Referral Table Rewards Column
+             * @validParents ["sqm-referral-table"]
+             * @exampleGroup Referrals
+             * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_FAILED {Payout Failed} PAYOUT_CANCELLED {Payout Cancelled} PENDING_TAX_REVIEW {Pending} PENDING_NEW_TAX_FORM {Pending} PENDING_TAX_SUBMISSION {Pending} PENDING_PARTNER_CREATION {Pending} DENIED {Denied} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} PENDING_REVIEW {Pending since} PAYOUT_APPROVED {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PAYOUT_FAILED {Payout failed due to a fulfillment issue and is currently being retried.} PAYOUT_CANCELLED {If you think this is a mistake, contact our Support team.} PENDING_TAX_REVIEW {Awaiting tax form review} PENDING_NEW_TAX_FORM {Invalid tax form. Submit a new form to receive your rewards.} PROCESSING {Processing until {scheduledPayoutDate}. Payout is then scheduled based on your settings.} PENDING_TAX_SUBMISSION {Submit your tax documents to receive your rewards} PENDING_PARTNER_CREATION {Complete your tax and cash payout setup to receive your rewards} DENIED {Denied on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}" denied-help-text="Contact support if you think this is a mistake." ></sqm-referral-table-rewards-column>
+             */
             "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
             "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;
+            /**
+             * @uiName Referral Table Status Column
+             * @validParents ["sqm-referral-table"]
+             * @exampleGroup Referrals
+             * @example Referral Table Status Column - <sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress" pending-review-status-text="Pending" denied-status-text="Denied" pending-review-status-sub-text="Awaiting review" denied-status-sub-text="Detected self-referral"></sqm-referral-table-status-column>
+             */
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
+            /**
+             * @uiName Referral Table User Column
+             * @validParents ["sqm-referral-table"]
+             * @exampleGroup Referrals
+             * @example Referral Table User Column - <sqm-referral-table-user-column column-title="Customer" anonymous-user="Your Friend" deleted-user="Deleted User"></sqm-referral-table-user-column>
+             */
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            /**
+             * @uiName Instant Access Friend Registration
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+             * @compatibility Built for instant access
+             * @exampleGroup Instant Access
+             * @example Friend Registration - <sqm-referred-registration></sqm-referred-registration>
+             * @slots [{"name":"top","title":"Top Content"},{"name":"bottom","title":"Bottom Content"}]
+             * @csspart sqm-base - The base container for the instant access registration component
+             * @csspart erroralert-text - The error message element
+             * @csspart erroralert-icon - The error alert icon
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-referred-registration": LocalJSX.SqmReferredRegistration & JSXBase.HTMLAttributes<HTMLSqmReferredRegistrationElement>;
+            /**
+             * @uiName Reward Exchange
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["sqm-empty"]
+             * @slots [{"name":"empty", "title":"Empty State"}]
+             * @exampleGroup Rewards
+             * @example Reward Exchange - <sqm-reward-exchange-list not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }" choose-reward-title="Rewards" choose-amount-title="Select" confirmation-title="Confirm" reward-title="Choose a reward" cancel-text="Cancel" back-text="Back" continue-text="Continue" continue-to-confirmation-text="Continue to confirmation" redeem-text="Redeem" redeem-title="Confirm and redeem" redemption-success-text="Redeemed {sourceValue} for {destinationValue}" source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}" tooltip-text="Copied" done-text="Done" select-text="Select amount to receive" query-error="Unable to load reward exchange list. Please try again" redemption-error="An error occured trying to redeem this reward. Please try again" not-enough-error="Not enough {sourceUnit} to redeem for this reward" reward-redeemed-text="Reward redeemed" promo-code="Promo Code" skeleton-card-num=8 reward-name-title="Reward" reward-amount-title="Reward Amount" cost-title="Cost to Redeem"><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png" empty-state-header="Redeem rewards" empty-state-text="Use your points to redeem rewards once they become available" slot="empty"></sqm-empty></sqm-reward-exchange-list>
+             * @csspart sqm-base - The base container
+             * @csspart choose-reward-container - The choose reward container
+             * @csspart choose-amount-container - The choose amount container
+             * @csspart confirmation-container - The confirmation container
+             * @csspart success-container - The success container
+             * @csspart loading-container - The loading container
+             * @csspart exchange-card-container - The exchange card container
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             * @csspart icon-button-base - The copy icon button base
+             */
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
+            /**
+             * @uiName Reward Table
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @exampleGroup Rewards
+             * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+             * @example Reward Table - <sqm-rewards-table per-page="4" prev-label="Prev" more-label="Next" hidden-columns="0" sm-breakpoint="599" md-breakpoint="799" ><sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column> <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}" ></sqm-rewards-table-source-column ><sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!" ></sqm-rewards-table-reward-column ><sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven" ></sqm-rewards-table-date-column ><sqm-rewards-table-customer-note-column column-title="Note" ></sqm-rewards-table-customer-note-column ><sqm-empty slot="empty" empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png" empty-state-header="View your rewards" empty-state-text="Complete program tasks to view the details of your rewards" ></sqm-empty ></sqm-rewards-table>
+             * @csspart sqm-reward-cell-value - The reward cell value, rendered by the reward column's cell
+             * @csspart sqm-reward-cell-progress - The reward progress, rendered by the reward column's cell
+             * @csspart sqm-reward-cell-subtext - The reward cell subtext, rendered by the reward column's cell
+             */
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
+            /**
+             * @uiName Rewards Table Customer Note Column
+             * @validParents ["sqm-rewards-table"]
+             * @exampleGroup Rewards
+             * @example Customer Note Column - <sqm-rewards-table-customer-note-column column-title="Note"></sqm-rewards-table-customer-note-column>
+             */
             "sqm-rewards-table-customer-note-column": LocalJSX.SqmRewardsTableCustomerNoteColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteColumnElement>;
             "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
+            /**
+             * @uiName Reward Table Date Column
+             * @validParents ["sqm-rewards-table"]
+             * @exampleGroup Rewards
+             * @example Date Column - <sqm-rewards-table-date-column column-title="Date received" date-shown="dateGiven"></sqm-rewards-table-date-column>
+             */
             "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
+            /**
+             * @csspart sqm-reward-cell-value - The reward value
+             * @csspart sqm-reward-cell-progress - The reward progress
+             * @csspart sqm-reward-cell-subtext - The reward subtext
+             */
             "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;
+            /**
+             * @uiName Rewards Table Reward Column
+             * @validParents ["sqm-rewards-table"]
+             * @exampleGroup Rewards
+             * @example Reward Column - <sqm-rewards-table-reward-column column-title="Reward" redeemed-text="{redeemedAmount} redeemed" available-text="{availableAmount} remaining" copy-text="Copied!"></sqm-rewards-table-reward-column>
+             */
             "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
             "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
+            /**
+             * @uiName Rewards Table Source Column
+             * @validParents ["sqm-rewards-table"]
+             * @exampleGroup Rewards
+             * @example Reward Table Source Column - <sqm-rewards-table-source-column column-title="Source" anonymous-user="Your Friend" deleted-user="Deleted User" reward-exchange-text="Reward Exchange" referral-text="{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}" reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"></sqm-rewards-table-source-column>
+             */
             "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
             "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;
+            /**
+             * @uiName Reward Table Status Column
+             * @validParents ["sqm-rewards-table"]
+             * @exampleGroup Rewards
+             * @example Reward Table Status Column - <sqm-rewards-table-status-column column-title="Status" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} PENDING_REVIEW {Pending} PAYOUT_APPROVED {Payout Approved} PROCESSING {Payment Processing} PAYOUT_CANCELLED {Payout Cancelled} PAYOUT_FAILED {Payout Failed} EXPIRED {Expired} REDEEMED {Redeemed} DENIED {Denied} other {Not available} }" expiry-text="Expires on " pending-us-tax="W-9 required" pending-scheduled="Until" pending-unhandled="Fulfillment error" pending-review-text="Awaiting review" denied-text="Detected self-referral" pending-tax-review="Awaiting tax form review." pending-new-tax-form="Invalid tax form. Submit a new form to receive your rewards." pending-tax-submission="Submit your tax documents to receive your rewards." pending-partner-creation="Complete your tax and cash payout setup to receive your rewards." payout-failed="Payout failed due to a fulfillment issue and is currently being retried." payout-cancelled="If you think this is a mistake, contact our Support team." payout-approved="Reward was scheduled for payment based on your settings, barring any account holds." ></sqm-rewards-table-status-column>
+             */
             "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
+            /**
+             * @uiName Route
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab"]
+             * @slots [{"name":"","title":"Content"}]
+             */
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
+            /**
+             * @uiName Router
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab", "sqb-program-section", "sqb-conditional-section"]
+             * @validChildren ["sqm-route"]
+             * @slots [{"name":"","title":"Routes"}]
+             */
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
+            /**
+             * @uiName Scroll Button
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @slots [{"name":"", "title":"Button Content"}]
+             * @slotEditor richText
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
+            /**
+             * @uiName Share Button
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqb-program-section","sqb-conditional-section"]
+             * @slots [{"name":"", "title":"Button Content"}]
+             * @slotEditor richText
+             * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+             * @exampleGroup Sharing
+             * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+             * @example X Share Button - <sqm-share-button medium="twitter">Share via X</sqm-share-button>
+             * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+             * @example Mobile Share Sheet Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+             * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+             * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+             * @example Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+             * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+             * @example LINE Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+             * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
+             * @csspart button-base - The button base, stable across all button style variants
+             * @csspart icon - The share button icon
+             */
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
+            /**
+             * @uiName Share Code
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+             * @exampleGroup Sharing
+             * @example Share Code - <sqm-share-code tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-code>
+             * @csspart icon-button-base - The copy icon button base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
+            /**
+             * @uiName Share Link
+             * @exampleGroup Sharing
+             * @validParents ["sqm-portal-container", "sqm-titled-section", "div","sqm-hero","sqm-referral-card","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section"]
+             * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
+             * @csspart alert-title - The validation error title
+             * @csspart icon-button-base - The copy icon button base
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-skeleton": LocalJSX.SqmSkeleton & JSXBase.HTMLAttributes<HTMLSqmSkeletonElement>;
+            /**
+             * @uiName Stat Container
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero", "sqb-program-section", "sqb-conditional-section"]
+             * @validChildren ["sqm-big-stat"]
+             * @slots [{"name":"", "title":"Stats"}]
+             * @exampleGroup Statistics
+             * @example Container with Three Stats - <sqm-stat-container space="xxx-large" display="flex"><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global"><p>Points Balance</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"><p>Giftcards Earned</p></sqm-big-stat><sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount"><p>Referrals</p></sqm-big-stat></sqm-stat-container>
+             * @csspart sqm-base - The base container for the stat container
+             * @csspart sqm-inner-container - The stat content container
+             * @csspart sqm-border - The stat border
+             */
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
+            /**
+             * For internal documentation
+             * @undocumented 
+             */
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
+            /**
+             * @uiName Tab
+             * @slots [{"name":"", "title":"Tab Content"}]
+             * @validParents ["sqm-tabs"]
+             * @exampleGroup Layout
+             * @example Tab - <sqm-tab header="Example"><p>This is an example tab. Add your own content here.</p></sqm-tab>
+             */
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
+            /**
+             * @uiName Table Cell
+             * @slots [{"name":"", "title":"Cell Content"}]
+             */
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
+            /**
+             * @uiName Table Row
+             * @slots [{"name":"", "title":"Row Content"}]
+             */
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
+            /**
+             * @uiName Tab Group
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["sqm-tab"]
+             * @slots [{"name":"", "title":"Tabs","validChildren":["sqm-tab"]}]
+             * @exampleGroup Layout
+             * @canvasRenderer always-replace
+             * @example Generic Tab Group - <sqm-tabs><sqm-tab header="Tab 1"><p>This is the first tab</p></sqm-tab><sqm-tab header="Tab 2"><p>This is the second tab</p></sqm-tab><sqm-tab header="Tab 3"><p>This is the third tab</p></sqm-tab></sqm-tabs>
+             * @csspart tab - A tab button
+             */
             "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
+            /**
+             * @uiName Task Card
+             * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
+             * @validParents ["sqm-card-feed"]
+             * @csspart sqm-base - The base container
+             * @csspart sqm-card-container - The task card container
+             * @csspart sqm-style-container - The task card style container
+             * @csspart sqm-value - The task value
+             * @csspart sqm-unit - The task value unit
+             * @csspart sqm-title - The task title
+             * @csspart task-card-icon - The task card icon
+             * @csspart chevron-icon - The details chevron icon
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
+            /**
+             * @uiName Tax and Cash
+             * @exampleGroup Tax and Cash
+             * @validParents ["sqm-portal-container","div","sqm-hero","sqm-instant-access-registration","sqb-program-section","sqb-conditional-section", "template"]
+             * @example Microsite Cash Payout Form - <sqm-tax-and-cash></sqm-tax-and-cash>
+             * @csspart container - The base container for the tax and cash component
+             * @csspart alert-title - The error alert title, shown on the error step
+             * @csspart alert-description - The error alert description, shown on the error step
+             */
             "sqm-tax-and-cash": LocalJSX.SqmTaxAndCash & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashElement>;
+            /**
+             * @uiName Tax and Cash Status Dashboard
+             * @csspart dashboard-container - The dashboard container
+             * @csspart alert-base - The alert base
+             * @csspart alert-icon - The alert icon
+             * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
+             */
             "sqm-tax-and-cash-dashboard": LocalJSX.SqmTaxAndCashDashboard & JSXBase.HTMLAttributes<HTMLSqmTaxAndCashDashboardElement>;
+            /**
+             * @uiName Text
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section", "sqm-titled-section"]
+             * @slots [{"name":"", "title":"Text"}]
+             * @slotEditor richText
+             * @canvasRenderer always-replace
+             */
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
+            /**
+             * @uiName Text Span
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-big-stat","span","sqm-text-span","sqb-program-section","sqb-conditional-section"]
+             * @canvasRenderer always-replace
+             */
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
+            /**
+             * @uiName Program Timeline
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","sqm-brand","template","sqm-hero","sqm-tab","sqb-program-section","sqb-conditional-section"]
+             * @validChildren ["sqm-timeline-entry"]
+             * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
+             * @exampleGroup Common Components
+             * @example Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
+             */
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
+            /**
+             * @uiName Program Timeline Entry
+             * @validParents ["sqm-timeline"]
+             * @exampleGroup Common Components
+             * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
+             * @csspart sqm-base - The base container for the timeline entry
+             * @csspart sqm-entry-container - The timeline entry container
+             * @csspart sqm-reward - The reward value
+             * @csspart sqm-unit - The reward unit
+             * @csspart sqm-description - The reward description
+             */
             "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
+            /**
+             * @uiName Titled Section
+             * @validParents ["sqm-portal-container","div","sqm-divided-layout","template","sqm-hero","sqm-tab", "sqm-referred-registration", "sqb-program-section","sqb-conditional-section", "sqm-instant-access-registration", "sqm-referral-card", "sqm-referred-registration"]
+             * @validChildren ["div","sqm-portal-container","p","sqm-timeline","h1","h2","h3","h5","h4","sqm-qr-code","sqm-referral-code","sqm-referral-codes","sqm-share-code","sqm-share-link","sqm-text","span", "sqm-user-name"]
+             * @slots [{"name":"label", "title":"Label"},{"name":"content", "title":"Content"}]
+             * @exampleGroup Layout
+             * @example Titled Section - <sqm-titled-section text-align="center" label-margin="small" padding="none"><div slot="label"><h2>Section Label</h2></div><div slot="content"><p>Add your section content here!</p></div></sqm-titled-section>
+             * @csspart sqm-base - The section base container
+             * @csspart sqm-label - The section label
+             */
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            /**
+             * @uiName User Attribute
+             * @exampleGroup Advanced
+             * @example User Attribute - <sqm-user-attribute value="lastSeenDate"></sqm-user-attribute>
+             * @csspart sqm-base - The base container
+             */
             "sqm-user-attribute": LocalJSX.SqmUserAttribute & JSXBase.HTMLAttributes<HTMLSqmUserAttributeElement>;
+            /**
+             * @uiName User Information Form
+             * @exampleGroup Tax and Cash Components
+             * @csspart form-container - The form container
+             * @csspart alert-title - The alert title
+             * @csspart alert-description - The alert description
+             * @csspart input-label - The input label
+             * @csspart input-base - The input base
+             * @csspart primarybutton-base - The primary button base
+             */
             "sqm-user-info-form": LocalJSX.SqmUserInfoForm & JSXBase.HTMLAttributes<HTMLSqmUserInfoFormElement>;
+            /**
+             * @uiName User Name
+             * @exampleGroup Common Components
+             * @example User Name Display - <sqm-user-name fallback="Anonymous User" loading-text="..."></sqm-user-name>
+             */
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
+            /**
+             * @uiName Widget Verification Flow
+             * @exampleGroup Widget Verification
+             * @example Widget Verification - <sqm-widget-verification></sqm-widget-verification>
+             * @csspart step-base - The base container of the currently rendered step
+             * @csspart primarybutton-base - The primary button base of the currently rendered step
+             */
             "sqm-widget-verification": LocalJSX.SqmWidgetVerification & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationElement>;
+            /**
+             * @uiName Widget Verification Controller
+             * @slots [{"name":"not-verified","title":"Not Verified template"},{"name":"verified","title":"Verified template"}]
+             * @exampleGroup Tax and Cash
+             * @example Widget Cash Payout Form - <sqm-widget-verification-controller><template slot="not-verified"><sqm-widget-verification></sqm-widget-verification></template><template slot="verified"><sqm-tax-and-cash></sqm-tax-and-cash></template></sqm-widget-verification-controller>
+             * @canvasRenderer always-replace
+             */
             "sqm-widget-verification-controller": LocalJSX.SqmWidgetVerificationController & JSXBase.HTMLAttributes<HTMLSqmWidgetVerificationControllerElement>;
         }
     }
