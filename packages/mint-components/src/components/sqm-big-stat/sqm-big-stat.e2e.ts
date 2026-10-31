@@ -8,10 +8,10 @@ function statFunctions(page: Readonly<E2EPage>) {
     dontExpectElement: async (selector: string) =>
       expect((await page.find(selector))?.id).toBeUndefined(),
     hasStat: async (stat: E2EElement) => {
-      expect(stat.innerHTML).not.toEqual("!!!");
+      expect(stat.innerHTML).not.toEqual("-");
     },
     hasInvalidStat: async (stat: E2EElement) => {
-      expect(stat.innerHTML).toEqual("!!!");
+      expect(stat.innerHTML).toEqual("-");
     },
   };
 }
