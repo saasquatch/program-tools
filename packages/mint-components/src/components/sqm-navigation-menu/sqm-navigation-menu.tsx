@@ -8,7 +8,7 @@ import {
 import { useNavigationMenu } from "./useNavigationMenu";
 import { getProps } from "../../utils/utils";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 
 /**
  * @uiName Navigation Menu
@@ -59,7 +59,7 @@ export class NavigationMenu {
 }
 
 function useNavigationMenuDemo(props: NavigationMenu): NavigationMenuViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         includeDropdown: true,
@@ -73,7 +73,6 @@ function useNavigationMenuDemo(props: NavigationMenu): NavigationMenuViewProps {
       },
       ref: { current: undefined },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

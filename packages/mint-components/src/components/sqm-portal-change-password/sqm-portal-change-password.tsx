@@ -7,7 +7,7 @@ import {
 import { usePortalChangePassword } from "./usePortalChangePassword";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { useState } from "@saasquatch/universal-hooks";
 
 /**
@@ -150,7 +150,7 @@ export class PortalChangePassword {
 function usePortalChangePasswordDemo(props: PortalChangePassword) {
   const [open, setOpen] = useState(false);
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         open,
@@ -177,7 +177,6 @@ function usePortalChangePasswordDemo(props: PortalChangePassword) {
         submit: (e) => console.log("Submit", e),
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

@@ -1,7 +1,7 @@
 import { isDemo, useParentState } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { parseStates } from "../../../utils/parseStates";
 import { getProps } from "../../../utils/utils";
@@ -1358,13 +1358,15 @@ export class TaxAndCashMonolith {
     switch (props.step) {
       case "/1":
         return (
-          <sqm-user-info-form exportparts="form-container: container"
+          <sqm-user-info-form
+            exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step1_")}
           ></sqm-user-info-form>
         );
       case "/2":
         return (
-          <sqm-indirect-tax-form exportparts="form-container: container"
+          <sqm-indirect-tax-form
+            exportparts="form-container: container"
             {...this.getGeneralStepTextProps("step2_")}
           ></sqm-indirect-tax-form>
         );
@@ -1382,7 +1384,8 @@ export class TaxAndCashMonolith {
         );
       case "/dashboard":
         return (
-          <sqm-tax-and-cash-dashboard exportparts="dashboard-container: container"
+          <sqm-tax-and-cash-dashboard
+            exportparts="dashboard-container: container"
             {...this.getGeneralStepTextProps("dashboard_")}
             stateController={
               props["sqm-tax-and-cash-dashboard_stateController"] || "{}"
@@ -1408,7 +1411,7 @@ export class TaxAndCashMonolith {
                       {this.supportLink}
                     </a>
                   ),
-                },
+                }
               ) as string
             }
           />
@@ -1431,15 +1434,14 @@ function useDemoTaxAndCash(props: TaxAndCashMonolith) {
       key === "sqm-tax-and-cash"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {},
+    {}
   );
 
-  return deepmerge(
+  return demoMerge(
     {
       step,
       setStep,
     },
-    props.demoData || formatted || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || formatted || {}
   );
 }

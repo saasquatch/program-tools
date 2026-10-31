@@ -5,14 +5,21 @@
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
   "main": "dist/index.js",
-  "exports": "./dist/index.modern.js",
-  "module": "dist/index.module.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/*": "./dist/*"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "microbundle",
+    "build": "tsup && tsc -p tsconfig.build.json",
     "test": "jest --forceExit",
     "test-watch": "jest --watch"
   },
@@ -20,41 +27,38 @@
   "license": "MIT",
   "devDependencies": {
     "@graphql-tools/mock": "^7.0.0",
-    "@saasquatch/universal-hooks-testing-library": "^0.1.0",
-    "@testing-library/react-hooks": "^5.1.0",
-    "@types/debounce": "^1.2.0",
-    "@types/debug": "^4.1.5",
-    "@types/jest": "^26.0.20",
+    "@testing-library/react-hooks": "^5.1.3",
+    "@types/debounce": "^1.2.4",
+    "@types/debug": "^4.1.13",
+    "@types/jest": "^26.0.24",
+    "@types/node": "22.9.3",
     "axios": "^0.21.1",
-    "esbuild-jest": "^0.5.0",
-    "graphql-tools": "^7.0.5",
+    "graphql-tag": "^2.12.7",
     "jest": "^26.6.3",
-    "jest-cucumber": "^3.0.1",
-    "microbundle": "^0.13.0",
-    "msw": "^0.28.1",
+    "msw": "^0.28.2",
     "react": "^17.0.1",
-    "react-test-renderer": "^17.0.1",
-    "ts-jest": "^26.5.4",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "react-test-renderer": "^17.0.2",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@formatjs/intl": "^1.8.2",
     "@saasquatch/component-environment": "^1.0.11",
     "@saasquatch/dom-context-hooks": "^1.0.5",
-    "@saasquatch/stencil-hooks": "^2.0.2",
-    "@saasquatch/universal-hooks": "^1.0.0",
-    "@wry/equality": "^0.5.2",
-    "debounce": "^1.2.0",
+    "@saasquatch/stencil-hooks": "^2.0.4",
+    "@saasquatch/universal-hooks": "^1.0.1",
+    "@wry/equality": "^0.5.7",
+    "debounce": "^1.2.1",
     "dom-context": "^1.3.1",
-    "fast-equals": "^5.0.1",
+    "fast-equals": "^5.4.5",
     "fast-memoize": "^2.5.2",
-    "graphql": "^15.5.0",
-    "graphql-combine-query": "^1.2.3",
-    "graphql-request": "^3.4.0",
-    "jsonpointer": "^4.1.0",
+    "graphql": "^15.10.3",
+    "graphql-combine-query": "^1.2.4",
+    "graphql-request": "^3.7.0",
+    "jsonpointer": "^5.0.1",
     "jwt-decode": "^3.1.2",
-    "nanoid": "^3.1.23",
+    "nanoid": "^3.3.20",
     "rxjs": "^6.6.7"
   }
 }

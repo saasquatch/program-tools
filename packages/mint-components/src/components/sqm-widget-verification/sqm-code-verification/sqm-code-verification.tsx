@@ -1,7 +1,7 @@
 import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import { VERIFICATION_PARENT_NAMESPACE } from "../keys";
@@ -102,7 +102,7 @@ function useDemoWidgetCodeVerification(
   const [emailResent, setEmailResent] = useState(false);
   const setVerifiedContext = useSetParent(VERIFICATION_PARENT_NAMESPACE);
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         initialiseLoading: false,
@@ -120,7 +120,6 @@ function useDemoWidgetCodeVerification(
       },
       text: props.getTextProps(),
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

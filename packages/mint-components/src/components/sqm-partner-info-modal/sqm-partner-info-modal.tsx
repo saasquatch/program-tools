@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
@@ -226,7 +226,7 @@ function useDemoPartnerInfoModal(
   const stateOverride = parsed?.["sqm-partner-info-modal"] || parsed || {};
 
   // @ts-ignore
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         open: false,
@@ -288,7 +288,6 @@ function useDemoPartnerInfoModal(
         loginLinkText: props.loginLinkText,
       },
     },
-    props.demoData || stateOverride,
-    { arrayMerge: (_, a) => a }
+    props.demoData || stateOverride
   );
 }

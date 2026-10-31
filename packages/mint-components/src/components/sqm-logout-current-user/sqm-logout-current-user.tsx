@@ -1,6 +1,6 @@
 import { isDemo, setUserIdentity } from "@saasquatch/component-boilerplate";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { CopyTextViewProps } from "../views/copy-text-view";
 import {
@@ -69,7 +69,7 @@ export class LogoutCurrentUser {
 function useDemoLogoutCurrentUser(
   props: LogoutCurrentUser
 ): LogoutCurrentUserViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       onSwitchClick: () => setUserIdentity(undefined),
       filledInEmailText: "john@example.com",
@@ -77,7 +77,6 @@ function useDemoLogoutCurrentUser(
       emailErrorText: props.emailErrorText,
       loading: false,
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

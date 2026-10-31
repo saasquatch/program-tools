@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
@@ -465,7 +465,5 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
     },
   };
 
-  return deepmerge(baseProps, props.demoData || {}, {
-    arrayMerge: (_, a) => a,
-  });
+  return demoMerge(baseProps, props.demoData || {});
 }

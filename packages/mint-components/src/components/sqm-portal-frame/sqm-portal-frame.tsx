@@ -3,7 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { PortalFrameView, PortalFrameViewProps } from "./sqm-portal-frame-view";
 import { usePortalFrame } from "./usePortalFrame";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 
 /**
@@ -80,7 +80,7 @@ function usePortalFrameDemo(
   headerContent: VNode,
   props: PortalFrame
 ): PortalFrameViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       notFullScreen: true,
       backgroundColor: props.backgroundColor,
@@ -114,7 +114,6 @@ function usePortalFrameDemo(
         rerender: () => {},
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

@@ -12,7 +12,10 @@ const passwordSchema = new PasswordValidator()
 // Taken from combining https://github.com/tarunbatra/password-validator/blob/40184970e4f65efa8aed7a64185a011a3b5d0e54/src/constants.js#L9
 
 export const validateNewPassword = (password: string, validationText) => {
-  const errors = passwordSchema.validate(password, { list: true });
+  const result = passwordSchema.validate(password, { list: true });
+  // With `list: true` validate() always returns an array of failed rule
+  // names, but its typings declare `boolean | any[]`, so narrow it.
+  const errors = Array.isArray(result) ? result : [];
   const message = getErrorMessage(errors, password, validationText);
   return message;
 };

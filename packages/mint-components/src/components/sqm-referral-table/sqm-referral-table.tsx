@@ -2,7 +2,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { Referral } from "../../saasquatch";
 import {
@@ -148,7 +148,7 @@ function LoadingRow() {
 function useReferralTableDemo(
   props: ReferralTable,
   emptyElement: VNode,
-  loadingElement: VNode,
+  loadingElement: VNode
 ): GenericTableViewProps {
   const [content, setContent] = useReducer<
     GenericTableViewProps["elements"],
@@ -163,14 +163,14 @@ function useReferralTableDemo(
       rows: [],
       loading: false,
       page: 0,
-    },
+    }
   );
 
   const tick = useRerenderListener();
 
   const mockData = useMemo(
     () => props.demoData?.mockData || mockReferralData(props.perPage),
-    [props.perPage],
+    [props.perPage]
   );
 
   const components = useChildElements<Element>();
@@ -195,7 +195,7 @@ function useReferralTableDemo(
         component.slot !== "loading" &&
         component.slot !== "empty" &&
         component?.firstElementChild?.getAttribute("slot") !== "loading" &&
-        component?.firstElementChild?.getAttribute("slot") !== "empty",
+        component?.firstElementChild?.getAttribute("slot") !== "empty"
     );
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = columnComponents?.map(
@@ -216,7 +216,7 @@ function useReferralTableDemo(
           return tryMethod(c, () => c.renderLabel(idx));
         }
         return tryMethod(c, () => c.renderLabel());
-      },
+      }
     );
 
     // show the referrer row before any other rows (renderReferrerCell is asynchronous)
@@ -225,7 +225,7 @@ function useReferralTableDemo(
       const referrerPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, function renderCell() {
           return c.renderCell(referrerData, c);
-        }),
+        })
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -233,7 +233,7 @@ function useReferralTableDemo(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = componentData?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, undefined)),
+        tryMethod(c, () => c.renderCell(r, undefined))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
@@ -242,7 +242,7 @@ function useReferralTableDemo(
     const rows =
       cellsPromise &&
       [referrerRow, ...(await Promise.all(cellsPromise))].filter(
-        (value) => value,
+        (value) => value
       );
 
     setContent({ rows });
@@ -262,7 +262,7 @@ function useReferralTableDemo(
     mockData?.data && getComponentData(components);
   }, [mockData?.data, components, tick]);
 
-  const demoProps = deepmerge(
+  const demoProps = demoMerge(
     {
       states: {
         hasPrev: false,
@@ -291,8 +291,7 @@ function useReferralTableDemo(
         loadingElement,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || {}
   );
 
   return demoProps;
