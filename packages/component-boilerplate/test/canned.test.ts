@@ -1,6 +1,10 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { ContextListener } from "dom-context";
+import { getUserIdentity, setUserIdentity } from "@saasquatch/component-environment";
+import { setImplementation } from "@saasquatch/universal-hooks";
+import { cleanup, renderHook } from "@testing-library/react-hooks";
+import * as React from "react";
 import {
   buildSchema,
   GraphQLInputType,
@@ -19,10 +23,12 @@ import {
   CANNED_NOW,
   CANNED_TENANT_ALIAS,
   CannedGraphQLClient,
+  CannedEnvironmentOptions,
   createCannedGraphQLClient,
   fakeJwt,
   interceptCannedFetch,
   provideCannedGraphQL,
+  useCannedEnvironment,
 } from "../src/canned";
 import { SAASQUATCH_SCHEMA_SDL } from "../src/canned/schema";
 import { GRAPHQL_CONTEXT } from "../src/hooks/graphql/context";
@@ -208,6 +214,39 @@ describe("CannedGraphQLClient", () => {
     });
   });
 
+  // Story mocks like bedrock's cannedWidgetMocks depend on this order.
+  it("passes query arguments first to root field mocks", async () => {
+    const seen: unknown[] = [];
+    const custom = createCannedGraphQLClient({
+      mocks: {
+        Query: () => ({
+          renderWidget: (args: { widgetType: string }) => {
+            seen.push(args);
+            return {
+              widgetConfig: { values: { htmlTemplate: `for ${args.widgetType}` } },
+            };
+          },
+        }),
+      },
+    });
+    const res = await custom.request(
+      gql`
+        query getWidget($widgetType: WidgetType!) {
+          renderWidget(widgetType: $widgetType) {
+            widgetConfig {
+              values
+            }
+          }
+        }
+      `,
+      { widgetType: "p/partner-program/w/partnerWidget" }
+    );
+    expect(seen).toEqual([{ widgetType: "p/partner-program/w/partnerWidget" }]);
+    expect(res.renderWidget.widgetConfig.values.htmlTemplate).toBe(
+      "for p/partner-program/w/partnerWidget"
+    );
+  });
+
   it("leaves Math.random untouched", async () => {
     const original = Math.random;
     await client.request(VIEWER);
@@ -251,6 +290,40 @@ describe("interceptCannedFetch", () => {
     expect(window.fetch).toBe(real);
   });
 
+  it("reads the query from a Request body, as fetch(new Request(...)) sends it", async () => {
+    window.fetch = jest.fn() as any;
+    const restore = interceptCannedFetch(
+      createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
+    );
+    // jsdom (Jest 26) has no Request; this is the part of its API fetch reads.
+    const request = {
+      url: ENDPOINT,
+      clone: () => ({ text: async () => JSON.stringify({ query: LOCALE }) }),
+    };
+    const res = await window.fetch(request as any);
+    const body = await res.json();
+    expect(body.errors).toBeUndefined();
+    expect(body.data.viewer.locale).toBe("fr");
+    restore();
+  });
+
+  it("prefers init.body over the Request's own body, like fetch", async () => {
+    window.fetch = jest.fn() as any;
+    const restore = interceptCannedFetch(
+      createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
+    );
+    const request = {
+      url: ENDPOINT,
+      clone: () => ({ text: async () => JSON.stringify({ query: "query { notAField }" }) }),
+    };
+    const res = await window.fetch(request as any, {
+      method: "POST",
+      body: JSON.stringify({ query: LOCALE }),
+    });
+    expect((await res.json()).data.viewer.locale).toBe("tr");
+    restore();
+  });
+
   it("passes every other URL to the real fetch", async () => {
     const real = jest.fn().mockResolvedValue("network");
     window.fetch = real as any;
@@ -274,6 +347,51 @@ describe("interceptCannedFetch", () => {
     const body = await res.json();
     expect(body.errors[0].message).toContain("notAField");
     restore();
+  });
+});
+
+// Stencilbook mounts and unmounts stories as you navigate; the global identity
+// provider outlives them, so each mount must set (or clear) identity itself.
+describe("useCannedEnvironment identity", () => {
+  const WIDGET_IDENT_USER = {
+    userId: "widget-user",
+    accountId: "widget-account",
+    token: fakeJwt({ user: { id: "widget-user", accountId: "widget-account" } }),
+  };
+  const story = (options: CannedEnvironmentOptions) =>
+    renderHook(() => useCannedEnvironment(options));
+
+  beforeAll(() => setImplementation(React));
+  afterEach(() => cleanup());
+
+  it("restores widgetIdent credentials every time the story mounts", () => {
+    const first = story({ widgetIdent: WIDGET_IDENT_USER });
+    expect(getUserIdentity()).toMatchObject({ id: "widget-user", accountId: "widget-account" });
+    first.unmount();
+    expect(getUserIdentity()).toBeUndefined();
+
+    story({}).unmount();
+
+    story({ widgetIdent: WIDGET_IDENT_USER });
+    expect(getUserIdentity()).toMatchObject({
+      id: "widget-user",
+      accountId: "widget-account",
+      jwt: WIDGET_IDENT_USER.token,
+    });
+  });
+
+  it("logs out a story without credentials, even after a logged-in one", () => {
+    story({ user: { id: "jane", accountId: "jane" } }).unmount();
+    // a logged-in story whose cleanup never ran, e.g. after a hot reload
+    setUserIdentity({ id: "stale", accountId: "stale", jwt: fakeJwt({}) });
+
+    story({ widgetIdent: { engagementMedium: "EMBED" } });
+    expect(getUserIdentity()).toBeUndefined();
+  });
+
+  it("prefers an explicit user over widgetIdent credentials", () => {
+    story({ user: { id: "jane", accountId: "jane" }, widgetIdent: WIDGET_IDENT_USER });
+    expect(getUserIdentity()).toMatchObject({ id: "jane", accountId: "jane" });
   });
 });
 

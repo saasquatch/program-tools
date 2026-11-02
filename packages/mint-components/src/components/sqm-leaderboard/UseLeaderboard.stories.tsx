@@ -21,7 +21,12 @@ function setupOtherGraphQL() {
   const accountId = id;
   const programId = "klip-referral-program";
 
-  useCannedEnvironment({ programId, user: { id, accountId } });
+  // No one referred anyone in the stories' 2021 interval.
+  useCannedEnvironment({
+    programId,
+    user: { id, accountId },
+    mocks: { Query: () => ({ userLeaderboard: () => ({ rows: [] }) }) },
+  });
 
   return { id, accountId };
 }

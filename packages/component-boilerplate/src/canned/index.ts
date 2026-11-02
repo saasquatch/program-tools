@@ -4,6 +4,7 @@ import { ClientError } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
 import { ContextProvider } from "dom-context";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
+import type { UserIdentity } from "@saasquatch/component-environment";
 import { setUserIdentity } from "../hooks/environment";
 import { GRAPHQL_CONTEXT } from "../hooks/graphql/context";
 import { fakeJwt } from "../fakeJwt";
@@ -117,7 +118,13 @@ export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
     const url =
       typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
     if (url !== endpoint) return original.call(this, input, init);
-    const { query, variables } = JSON.parse(String(init?.body ?? "{}"));
+    // Like fetch: init.body wins, otherwise the body is the Request's own.
+    const body =
+      init?.body ??
+      (typeof input === "string" || input instanceof URL
+        ? undefined
+        : await input.clone().text());
+    const { query, variables } = JSON.parse(String(body ?? "{}"));
     try {
       return json({ data: await client.request(query, variables) });
     } catch (e) {
@@ -186,18 +193,39 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      setUserIdentity({
-        id: user.id,
-        accountId: user.accountId,
-        email: user.email,
-        jwt: fakeJwt({ user }),
-      });
-    }
+    // The global identity provider outlives each story and reads widgetIdent
+    // only once, so every mount sets (or clears) identity explicitly.
+    setUserIdentity(identityFor(user, widgetIdent));
     return () => {
       stop();
       window.widgetIdent = undefined;
       setUserIdentity(undefined);
     };
   }, []);
+}
+
+/**
+ * An explicit `user` wins; otherwise the credentials squatch.js and the mobile
+ * SDKs put on `widgetIdent`; otherwise logged out.
+ */
+function identityFor(
+  user: CannedUser | undefined,
+  widgetIdent: Record<string, unknown> | undefined
+): UserIdentity | undefined {
+  if (user) {
+    return {
+      id: user.id,
+      accountId: user.accountId,
+      email: user.email,
+      jwt: fakeJwt({ user }),
+    };
+  }
+  const { userId, accountId, token, email } = (widgetIdent ?? {}) as Record<
+    string,
+    string | undefined
+  >;
+  if (userId && accountId && token) {
+    return { id: userId, accountId, email, jwt: token };
+  }
+  return undefined;
 }
