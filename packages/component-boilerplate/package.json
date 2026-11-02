@@ -21,7 +21,8 @@
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
     "test": "jest --forceExit",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "prepack": "npm run build"
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",
