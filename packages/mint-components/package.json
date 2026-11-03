@@ -78,7 +78,7 @@
   "dependencies": {
     "@fastify/deepmerge": "^3.2.4",
     "@raisins/stencil-docs-target": "^1.4.0",
-    "@saasquatch/component-boilerplate": "^1.6.12",
+    "@saasquatch/component-boilerplate": "^1.6.13-0",
     "@saasquatch/dom-context-hooks": "^1.0.5",
     "@saasquatch/shoelace": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.4",
