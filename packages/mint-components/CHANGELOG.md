@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.6
+
+### Patch Changes
+
+- [#565](https://github.com/saasquatch/program-tools/pull/565) [`48d4b71`](https://github.com/saasquatch/program-tools/commit/48d4b711c1d6839aed205a99c299f111606475ce) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Export secondaryButton parts in sqm-portal-register
+
 ## 2.5.5
 
 ### Patch Changes
