@@ -65,6 +65,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
   const [codeRef, setCodeRef] = useState<HTMLDivElement>(null);
   const [validationError, setValidationError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [routing, setRouting] = useState(false);
 
   const {
     initialized,
@@ -157,7 +158,13 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
     const res = await verifyEmail(code);
 
     if (res?.success) {
-      props.onVerification(res.accessKey);
+      // Keep this step (and its spinner) up until the parent has picked the next step
+      setRouting(true);
+      try {
+        await props.onVerification(res.accessKey);
+      } finally {
+        setRouting(false);
+      }
       reset();
     } else {
       setValidationError(true);
@@ -182,7 +189,7 @@ export function useWidgetCodeVerification(props: WidgetCodeVerification) {
       emailResent,
       resendError: sendErrors || verifyErrors,
       initialiseLoading: !initialized,
-      loading: sendLoading || verifyLoading,
+      loading: sendLoading || verifyLoading || routing,
       verifyFailed: !!validationError,
     },
     callbacks: {
