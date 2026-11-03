@@ -19,6 +19,7 @@ import { usePortalRegistrationForm } from "./usePortalRegistrationForm";
  * @csspart input-label - The input label
  * @csspart input-base - The input base
  * @csspart primarybutton-base - The primary button base
+ * @csspart secondarybutton-base - The secondary button base
  */
 @Component({
   tag: "sqm-portal-registration-form",
@@ -210,6 +211,7 @@ export class PortalRegistrationForm {
       secondaryButton: (
         <slot name="secondaryButton">
           <sl-button
+            exportparts="base: secondarybutton-base"
             type="text"
             disabled={states.loading}
             onClick={() => navigation.push(states.loginPath)}
