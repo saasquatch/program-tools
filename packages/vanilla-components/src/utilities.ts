@@ -89,6 +89,20 @@ const uuid = function b(a = undefined) {
     : (([1e7] as any) + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
 };
 
+/**
+ * Decides whether a background value should be treated as an image URL
+ * (as opposed to a CSS color). The check is anchored to the start of the
+ * value and runs in linear time: an unanchored pattern would rescan the
+ * remaining suffix at every word boundary, freezing the widget on long
+ * non-URL values (e.g. "a.".repeat(32000) + "!") since it runs
+ * synchronously in render(). Embedded URLs are intentionally unsupported.
+ */
+const isUrl = (value: string): boolean => {
+  return /^(?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}\.|[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,4}\/)/i.test(
+    value.trim()
+  );
+};
+
 export {
   shadeColor,
   addClass,
@@ -96,4 +110,5 @@ export {
   detectMobileSafari,
   detectMobileChrome,
   uuid,
+  isUrl,
 };

@@ -1,6 +1,7 @@
 import { h, Component, Prop, Element } from "@stencil/core";
 import { css } from "emotion";
 import marked from "marked";
+import { isUrl } from "../../utilities";
 
 /**
  * @uiName Text Component
@@ -82,9 +83,6 @@ export class TextComponent {
   @Element() textEl: HTMLElement;
 
   render() {
-    const urlRegex =
-      /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]|\((?:[^\s()<>]|\([^\s()<>]+\))*\))+(?:\((?:[^\s()<>]|\([^\s()<>]+\))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
-
     const textStyle = css`
       font-family: ${this.fontfamily || "inherit"};
       font-size: ${this.fontsize ? this.fontsize + "px" : "inherit"};
@@ -100,7 +98,7 @@ export class TextComponent {
 
     const divStyle = css`
       background: ${this.background
-        ? this.background.match(urlRegex)
+        ? isUrl(this.background)
           ? `url(${this.background}) no-repeat center center;`
           : this.background
         : "inherit"};
