@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
@@ -272,10 +272,9 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
     {}
   );
 
-  const finalProps = deepmerge(
+  const finalProps = demoMerge(
     { ...demoRewardExchange, content: { text: props } },
-    props.demoData || formatted || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || formatted || {}
   );
   return finalProps;
 }

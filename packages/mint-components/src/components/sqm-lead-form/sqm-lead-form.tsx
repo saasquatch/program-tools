@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { LeadFormView, LeadFormViewProps } from "./sqm-lead-form-view";
 import { useLeadForm } from "./useLeadForm";
@@ -167,7 +167,7 @@ export class LeadForm {
 function useRegisterDemo(
   props: LeadForm
 ): Pick<LeadFormViewProps, "states" | "callbacks" | "content" | "refs"> {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: "",
@@ -185,7 +185,6 @@ function useRegisterDemo(
         formRef: {},
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

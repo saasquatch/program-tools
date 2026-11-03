@@ -5,6 +5,11 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Shows its children as either a row or a column, with a division in between them.
+Spacing is left up to the child
+
 ## Properties
 
 | Property           | Attribute            | Description                                                          | Type                | Default                                                       |

@@ -23,7 +23,6 @@
  - [sqm-leaderboard](../sqm-leaderboard)
  - [sqm-payout-details-card](../tax-and-cash/sqm-payout-details-card)
  - [sqm-qr-code](../sqm-qr-code)
- - [sqm-referral-codes](../sqm-referral-codes)
  - [sqm-referral-table](../sqm-referral-table)
  - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
  - [sqm-rewards-table](../sqm-rewards-table)
@@ -43,7 +42,6 @@ graph TD;
   sqm-leaderboard --> sqm-skeleton
   sqm-payout-details-card --> sqm-skeleton
   sqm-qr-code --> sqm-skeleton
-  sqm-referral-codes --> sqm-skeleton
   sqm-referral-table --> sqm-skeleton
   sqm-reward-exchange-list --> sqm-skeleton
   sqm-rewards-table --> sqm-skeleton

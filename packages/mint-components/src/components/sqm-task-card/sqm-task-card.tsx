@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { BigStatViewProps } from "../sqm-big-stat/sqm-big-stat-view";
@@ -303,7 +303,7 @@ export class TaskCard {
 }
 
 function useTaskCardDemo(props: TaskCard) {
-  return deepmerge(
+  return demoMerge(
     {
       content: { ...props },
       states: { loadingEvent: false, locale: "en" },
@@ -312,7 +312,6 @@ function useTaskCardDemo(props: TaskCard) {
         onClick: () => console.log("clicked"),
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

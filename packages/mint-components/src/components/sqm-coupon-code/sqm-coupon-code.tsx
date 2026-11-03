@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { CouponCodeView, CouponCodeViewProps } from "./sqm-coupon-code-view";
@@ -279,7 +279,7 @@ export class CouponCode {
 function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "THANKSJANE125uv125";
-  return deepmerge(
+  return demoMerge(
     {
       copyString,
       tooltiptext: props.tooltiptext,
@@ -305,7 +305,6 @@ function useDemoCouponCode(props: CouponCode): CouponCodeViewProps {
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

@@ -19,6 +19,8 @@ on:
           - program-boilerplate
           - program-test-suite
           - publish-helper
+          - component-boilerplate
+          - stencilbook
 
       increment-type:
         description: The version number to increment

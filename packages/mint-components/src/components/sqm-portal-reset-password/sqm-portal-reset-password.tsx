@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import {
   PortalResetPasswordView,
@@ -165,7 +165,7 @@ export class PortalResetPassword {
 function usePortalResetPasswordDemo(
   props: PortalResetPassword
 ): PortalResetPasswordViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: "",
@@ -200,7 +200,6 @@ function usePortalResetPasswordDemo(
         gotoNextPage: () => {},
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

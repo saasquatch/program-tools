@@ -2,7 +2,7 @@ import { isDemo, useSetParent } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
@@ -632,7 +632,7 @@ export class BankingInfoForm {
             {
               errorCode,
               fieldName: label,
-            },
+            }
           );
         }
       }
@@ -645,7 +645,7 @@ export class BankingInfoForm {
           },
           {
             fieldName: label,
-          },
+          }
         );
       }
       if (type === "invalid") {
@@ -656,7 +656,7 @@ export class BankingInfoForm {
           },
           {
             fieldName: label,
-          },
+          }
         );
       }
       return "";
@@ -715,7 +715,7 @@ export class BankingInfoForm {
       },
       {
         email: props.states.email,
-      },
+      }
     );
 
     const vanillaStyle = `
@@ -898,7 +898,7 @@ export class BankingInfoForm {
 }
 
 function useDemoBankingInfoForm(
-  props: BankingInfoForm,
+  props: BankingInfoForm
 ): BankingInfoFormViewProps {
   const defaultPaymentMethodChecked =
     props.demoData?.states?.formState?.paymentMethodChecked;
@@ -922,7 +922,7 @@ function useDemoBankingInfoForm(
     (paymentOption) => {
       if (paymentOption.countryCode === bankCountry) return true;
       return false;
-    },
+    }
   );
 
   const bitset =
@@ -948,14 +948,14 @@ function useDemoBankingInfoForm(
       {
         currency,
         defaultFxFee: currentPaymentOption?.defaultFxFee || "0",
-      },
+      }
     ),
   };
 
   const paymentMethodFeeLabel =
     paymentMethodFeeMap[currentPaymentOption?.defaultFinancePaymentMethodId];
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         step: "4",
@@ -1019,7 +1019,6 @@ function useDemoBankingInfoForm(
         formRef: { current: null },
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || {}
   );
 }

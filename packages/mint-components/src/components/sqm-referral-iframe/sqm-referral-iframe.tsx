@@ -6,7 +6,7 @@ import {
   ReferralIframeViewProps,
 } from "./sqm-referral-iframe-view";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getMissingProps, getProps } from "../../utils/utils";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
@@ -88,7 +88,7 @@ export class SqmReferralIframe {
 }
 
 function useReferralIframeDemo(props: SqmReferralIframe) {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         content: {
@@ -100,7 +100,6 @@ function useReferralIframeDemo(props: SqmReferralIframe) {
         shareCode: "SHARECODE123",
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || {}
   );
 }

@@ -2,7 +2,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { intl } from "../../global/global";
 import { getProps } from "../../utils/utils";
@@ -66,7 +66,7 @@ function useDemoPagination(
 ): ReturnType<typeof usePagination> {
   const [currentPage, setCurrentPage] = useState(1);
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         currentPage,
@@ -92,7 +92,6 @@ function useDemoPagination(
         ),
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   ) as ReturnType<typeof usePagination>;
 }

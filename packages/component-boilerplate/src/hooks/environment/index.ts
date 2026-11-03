@@ -14,8 +14,8 @@ export {
   setUserIdentity,
   setProgramId,
   isDemo,
-  DecodedSquatchJWT,
 } from "@saasquatch/component-environment";
+export type { DecodedSquatchJWT } from "@saasquatch/component-environment";
 
 export * from "./useLocale";
 export * from "./useProgramId";

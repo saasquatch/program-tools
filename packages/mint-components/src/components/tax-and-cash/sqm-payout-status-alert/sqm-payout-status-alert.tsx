@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../../utils/demoMerge";
 import { DemoData } from "../../../global/demo";
 import { getProps } from "../../../utils/utils";
 import {
@@ -254,7 +254,7 @@ export class PayoutStatusAlert {
 }
 
 function useDemoPayoutStatusAlert(
-  props: PayoutStatusAlert,
+  props: PayoutStatusAlert
 ): PayoutStatusAlertViewProps {
   const states = parseStates(props.stateController);
   const formatted = Object.keys(states).reduce(
@@ -262,10 +262,10 @@ function useDemoPayoutStatusAlert(
       key === "sqm-payout-status-alert"
         ? { ...prev, ...states[key] }
         : { ...prev, [`${key}_stateController`]: states[key] },
-    {},
+    {}
   );
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: false,
@@ -282,7 +282,6 @@ function useDemoPayoutStatusAlert(
         onNewFormClick: () => {},
       },
     },
-    props.demoData || formatted || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || formatted || {}
   );
 }

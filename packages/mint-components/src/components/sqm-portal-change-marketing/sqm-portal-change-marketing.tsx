@@ -8,7 +8,7 @@ import { usePortalProfile } from "./usePortalChangeMarketing";
 import { getProps } from "../../utils/utils";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 
 /**
  * @uiName Change Marketing Opt in Status
@@ -78,7 +78,7 @@ export class PortalChangeMarketing {
 function usePortalProfileDemo(
   props: PortalChangeMarketing
 ): ChangeMarketingViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         success: false,
@@ -106,7 +106,6 @@ function usePortalProfileDemo(
         setChecked: () => {},
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

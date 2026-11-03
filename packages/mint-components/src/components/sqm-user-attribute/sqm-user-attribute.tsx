@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import {
   UserAttributeView,
@@ -72,7 +72,7 @@ export class UserAttribute {
 }
 
 function useCustomFieldsDemo(props: UserAttribute): UserAttributeViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       loading: false,
       value: "Custom Field Value",
@@ -80,7 +80,6 @@ function useCustomFieldsDemo(props: UserAttribute): UserAttributeViewProps {
       color: props.color,
       fontWeight: props.fontWeight,
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }
