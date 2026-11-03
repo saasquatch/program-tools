@@ -98,7 +98,7 @@ const uuid = function b(a = undefined) {
  * synchronously in render(). Embedded URLs are intentionally unsupported.
  */
 const isUrl = (value: string): boolean => {
-  return /^(?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}\.|[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,4}\/)/i.test(
+  return /^(?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|(?:\/\/)?(?:www\d{0,3}\.|[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,4}\/))/i.test(
     value.trim()
   );
 };

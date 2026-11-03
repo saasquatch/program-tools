@@ -6,6 +6,8 @@ describe("isUrl", () => {
     expect(isUrl("http://example.com/image.png")).toBe(true);
     expect(isUrl("www.example.com/image.png")).toBe(true);
     expect(isUrl("example.com/image.png")).toBe(true);
+    expect(isUrl("//example.com/image.png")).toBe(true);
+    expect(isUrl("//www.example.com/image.png")).toBe(true);
     expect(isUrl("  https://example.com/image.png  ")).toBe(true);
   });
 
@@ -27,6 +29,7 @@ describe("isUrl", () => {
     const pathological = "a.".repeat(32000) + "!";
     const start = Date.now();
     expect(isUrl(pathological)).toBe(false);
+    expect(isUrl("//" + pathological)).toBe(false);
     expect(Date.now() - start).toBeLessThan(200);
   });
 });
