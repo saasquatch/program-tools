@@ -8,7 +8,7 @@ import {
 } from "./sqm-leaderboard-rank-view";
 import { useLeaderboardRank } from "./useLeaderboardRank";
 import { DemoData } from "../../global/demo";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { intl } from "../../global/global";
 
 /**
@@ -99,13 +99,12 @@ function useLeaderboardRankDemo(
         rank: 1,
       }
     ) || "1st";
-  return deepmerge(
+  return demoMerge(
     {
       data: {
         rank,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

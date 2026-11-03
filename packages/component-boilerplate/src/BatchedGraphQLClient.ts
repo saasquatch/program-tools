@@ -72,7 +72,6 @@ export class BatchedGraphQLClient extends GraphQLClient {
           // reject all that errored:
           for (const error of errors) {
             let erroredEvent: QueryAddedEvent;
-            // todo: this needs testing, is path going to work??
             error.path.find((key, index, path) => {
               if (aliases.includes(key)) {
                 const erroredId = getIdFromAliasedField(key);
@@ -80,8 +79,8 @@ export class BatchedGraphQLClient extends GraphQLClient {
                   (event) => event.id === erroredId
                 );
                 if (indexOfErroredEvent === -1) return false;
-                // remove from aliases
-                aliases.splice(index, 1);
+                // `index` is the position in the error path, not in `aliases`
+                aliases.splice(aliases.indexOf(key), 1);
                 // remove from events
                 erroredEvent = eventsToResolve.splice(
                   indexOfErroredEvent,

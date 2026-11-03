@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import {
@@ -121,7 +121,7 @@ function EmptySlot({
 }
 
 function useDemoReferralCodes(props: ReferralCodes) {
-  return deepmerge(
+  return demoMerge(
     {
       titleText: props.titleText,
       textColor: props.textColor,
@@ -130,7 +130,6 @@ function useDemoReferralCodes(props: ReferralCodes) {
         loading: false,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

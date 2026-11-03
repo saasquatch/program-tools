@@ -4,7 +4,7 @@ import { DividedLayoutView } from "./sqm-divided-layout-view";
 import { getProps } from "../../utils/utils";
 
 /**
- * Shows it's children as either a row or a column, with a division in between them.
+ * Shows its children as either a row or a column, with a division in between them.
  * Spacing is left up to the child
  *
  * @uiName Divided Layout

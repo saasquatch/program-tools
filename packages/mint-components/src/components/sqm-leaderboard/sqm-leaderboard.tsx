@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { withShadowView } from "../../ShadowViewAddon";
 import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
@@ -267,7 +267,7 @@ function useLeaderboardDemo(
     },
   ];
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         loading: false,
@@ -306,7 +306,6 @@ function useLeaderboardDemo(
         empty: <EmptySlot />,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

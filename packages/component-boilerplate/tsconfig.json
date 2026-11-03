@@ -4,6 +4,9 @@
     "lib": ["es2017", "DOM"],
     "esModuleInterop": true,
     "strictNullChecks": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    // tsup (esbuild) compiles one file at a time, so type-only re-exports must
+    // say `export type` or they ship as runtime exports that don't exist.
+    "isolatedModules": true
   }
 }

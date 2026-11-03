@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, State, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { useInstantAccessRegistration } from "../sqm-instant-access-registration/useInstantAccessRegistration";
 import {
@@ -221,7 +221,7 @@ function useRegistrationDemo(
     });
   };
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: "",
@@ -233,7 +233,6 @@ function useRegistrationDemo(
         },
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

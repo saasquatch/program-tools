@@ -1,7 +1,7 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import {
   PortalForgotPasswordView,
@@ -140,7 +140,7 @@ export class PortalForgotPassword {
 function usePortalForgotPasswordDemo(
   props: PortalForgotPassword
 ): Partial<PortalForgotPasswordViewProps> {
-  return deepmerge(
+  return demoMerge(
     {
       states: { error: "", loading: false, success: false },
       callbacks: {
@@ -167,7 +167,6 @@ function usePortalForgotPasswordDemo(
         border: props.border,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

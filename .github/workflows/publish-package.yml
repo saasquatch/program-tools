@@ -77,6 +77,8 @@ jobs:
               "program-boilerplate",
               "program-test-suite",
               "publish-helper",
+              "component-boilerplate",
+              "stencilbook"
             ];
 
             const allowedIncrementTypes = [

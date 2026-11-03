@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { QrCodeView, QRCodeViewProps } from "./sqm-qr-code-view";
@@ -85,7 +85,7 @@ export class QrCode {
 function useDemoQRCode(props: QrCode): QRCodeViewProps {
   const [dialogIsOpen, setDialog] = useState(false);
 
-  return deepmerge(
+  return demoMerge(
     {
       dialogIsOpen,
       hideTitle: props.hideTitle,
@@ -109,7 +109,6 @@ function useDemoQRCode(props: QrCode): QRCodeViewProps {
         console.log("Print QR Code clicked");
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

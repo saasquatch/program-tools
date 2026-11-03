@@ -38,6 +38,13 @@ export const config: Config = {
   devServer: {
     // startupTimeout: 0,
   },
+  testing: {
+    // GitHub's Ubuntu 24.04 runners block the user namespaces Chrome's sandbox
+    // needs. Stencil only adds these when run with `--ci`, not from the CI env var.
+    browserArgs: process.env.CI
+      ? ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+      : [],
+  },
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
   buildEs5: true,

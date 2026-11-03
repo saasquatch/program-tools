@@ -1,0 +1,58 @@
+diff --git a/node_modules/@stencil/core/testing/index.js b/node_modules/@stencil/core/testing/index.js
+index 83c217e..27c7f4d 100644
+--- a/node_modules/@stencil/core/testing/index.js
++++ b/node_modules/@stencil/core/testing/index.js
+@@ -816,7 +816,7 @@ async function addE2EListener(e, t, r, s) {
+   eventName: r,
+   callback: s
+  });
+- const o = t.executionContext();
++ const o = t.frame;
+  await o.evaluate(((e, t, r) => {
+   e.addEventListener(r, (e => {
+    window.stencilOnEvent(t, window.stencilSerializeEvent(e));
+@@ -910,7 +910,7 @@ async function findAll(e, t, r) {
+  const s = [], {lightSelector: n, shadowSelector: o} = getSelector(r), i = await t.$$(n);
+  if (0 === i.length) return s;
+  if (o) for (let t = 0; t < i.length; t++) {
+-  const r = i[t].executionContext(), n = await r.evaluateHandle(((e, t) => {
++  const r = i[t].frame, n = await r.evaluateHandle(((e, t) => {
+    if (!e.shadowRoot) throw new Error(`shadow root does not exist for element: ${e.tagName.toLowerCase()}`);
+    return e.shadowRoot.querySelectorAll(t);
+   }), i[t], o);
+@@ -3351,7 +3351,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+   this._validate();
+   let e = !1;
+   try {
+-   const t = this._elmHandle.executionContext();
++   const t = this._elmHandle.frame;
+    e = await t.evaluate((e => new Promise((t => {
+     window.requestAnimationFrame((() => {
+      if (e.isConnected) {
+@@ -3400,7 +3400,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+  }
+  async getProperty(e) {
+   this._validate();
+-  const t = this._elmHandle.executionContext();
++  const t = this._elmHandle.frame;
+   return await t.evaluate(((e, t) => e[t]), this._elmHandle, e);
+  }
+  setProperty(e, t) {
+@@ -3557,7 +3557,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+  }
+  async e2eRunActions() {
+   if (0 === this._queuedActions.length) return;
+-  const e = this._elmHandle.executionContext(), t = await e.evaluate(((e, t) => e.componentOnReady().then((() => {
++  const e = this._elmHandle.frame, t = await e.evaluate(((e, t) => e.componentOnReady().then((() => {
+    let r = null;
+    return t.forEach((t => {
+     if (t.methodName) r = e[t.methodName].apply(e, t.methodArgs); else if (t.setPropertyName) e[t.setPropertyName] = t.setPropertyValue; else if (t.setAttributeName) e.setAttribute(t.setAttributeName, t.setAttributeValue); else if (t.removeAttribute) e.removeAttribute(t.removeAttribute); else if (t.toggleAttributeName) "boolean" == typeof t.toggleAttributeForce ? e.toggleAttribute(t.toggleAttributeName, t.toggleAttributeForce) : e.toggleAttribute(t.toggleAttributeName); else if (t.classAdd) e.classList.add(t.classAdd); else if (t.classRemove) e.classList.remove(t.classRemove); else if (t.classToggle) e.classList.toggle(t.classToggle); else if (t.eventName) {
+@@ -3572,7 +3572,7 @@ class E2EElement extends index_cjs.MockHTMLElement {
+   return this._queuedActions.length = 0, t;
+  }
+  async e2eSync() {
+-  const e = this._elmHandle.executionContext(), {outerHTML: t, shadowRootHTML: r} = await e.evaluate((e => ({
++  const e = this._elmHandle.frame, {outerHTML: t, shadowRootHTML: r} = await e.evaluate((e => ({
+    outerHTML: e.outerHTML,
+    shadowRootHTML: e.shadowRoot ? e.shadowRoot.innerHTML : null
+   })), this._elmHandle);

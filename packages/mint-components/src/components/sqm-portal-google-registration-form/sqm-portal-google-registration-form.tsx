@@ -1,7 +1,7 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { createStyleSheet } from "../../styling/JSS";
 import { BaseRegistrationFormView } from "../sqm-base-registration/sqm-base-registration-form-view";
@@ -320,7 +320,7 @@ function useRegisterDemo(
   props: PortalGoogleRegistrationForm
 ): Pick<PortalRegistrationFormViewProps, "states" | "callbacks" | "refs"> &
   any {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         error: "",
@@ -347,8 +347,7 @@ function useRegisterDemo(
         formRef: {},
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }
 
@@ -366,14 +365,13 @@ function useGoogleDemo(
     mode: "base",
   });
 
-  return deepmerge(
+  return demoMerge(
     {
       validationErrors: {},
       handleEmailSubmit: () => setShowRegistrationForm({ mode: "manual" }),
       showRegistrationForm,
       handleGoogleInit: () => setShowRegistrationForm({ mode: "google" }),
     },
-    props.demoGoogleData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoGoogleData || {}
   );
 }

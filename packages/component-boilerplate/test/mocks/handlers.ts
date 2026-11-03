@@ -10,6 +10,9 @@ const lock = {
   unlock: null as null | (() => void),
 };
 
+// Servers may list errors in any order; this reverses them for the next GraphQL response
+let reverseNextErrors = false;
+
 // block requests on demand
 async function maybeLock() {
   if (!lock.locked) return;
@@ -46,6 +49,11 @@ export const handlers = [
       return res(ctx.status(500, "Already unlocked"));
     }
     lock.unlock();
+    return res(ctx.status(200));
+  }),
+
+  rest.post("/reverse-errors", (req, res, ctx) => {
+    reverseNextErrors = true;
     return res(ctx.status(200));
   }),
 
@@ -142,6 +150,11 @@ export const handlers = [
         source: query,
         variableValues: variables,
       });
+
+      if (reverseNextErrors) {
+        reverseNextErrors = false;
+        response.errors = response.errors && [...response.errors].reverse();
+      }
 
       prevReq = req;
       // with batching we need to look back at the previous few requests

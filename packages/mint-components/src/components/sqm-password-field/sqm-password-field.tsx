@@ -2,7 +2,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { getProps } from "../../utils/utils";
 import { validateNewPassword } from "./passwordValidation";
 import {
@@ -97,17 +97,17 @@ export class PortalPasswordField {
 }
 
 function usePasswordFieldDemo(
-  props: PortalPasswordField,
+  props: PortalPasswordField
 ): PortalPasswordFieldViewProps {
   const [dynamicValidation, setDynamicValidation] = useState<VNode | string>(
-    "",
+    ""
   );
   const [lastValidated, setLastValidated] = useState<string>("");
 
   if (props.demoData && lastValidated != props?.demoData?.initValue) {
     const validation = validateNewPassword(
       props?.demoData?.initValue || "",
-      props,
+      props
     );
     setDynamicValidation(props?.demoData?.initValue === "" ? "" : validation);
     setLastValidated(props?.demoData?.initValue);
@@ -116,12 +116,12 @@ function usePasswordFieldDemo(
   function onInput(input: Event) {
     const validation = validateNewPassword(
       (input.target as HTMLInputElement).value,
-      props,
+      props
     );
     setDynamicValidation(validation);
   }
 
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         enableValidation: !props.disableValidation,
@@ -136,7 +136,6 @@ function usePasswordFieldDemo(
         onInput,
       },
     },
-    props?.demoData?.states || {},
-    { arrayMerge: (_, a) => a },
+    props?.demoData?.states || {}
   );
 }

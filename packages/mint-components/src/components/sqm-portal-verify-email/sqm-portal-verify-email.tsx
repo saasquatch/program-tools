@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import {
   PortalVerifyEmailView,
@@ -108,7 +108,7 @@ export class PortalVerifyEmail {
 function usePortalVerifyEmailDemo(
   props: PortalVerifyEmail
 ): PortalVerifyEmailViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: { error: "", loading: false, success: true },
       data: {
@@ -127,7 +127,6 @@ function usePortalVerifyEmailDemo(
         continueText: props.continueText,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

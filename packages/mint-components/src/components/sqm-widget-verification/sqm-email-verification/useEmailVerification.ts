@@ -169,7 +169,7 @@ export function useWidgetEmailVerification(
       loading,
       initialLoading: initialLoading && !initialized,
       error,
-      email: data?.viewer.email,
+      email: data?.viewer?.email,
       sendCodeError: mutationError,
     },
     text: props.getTextProps(),

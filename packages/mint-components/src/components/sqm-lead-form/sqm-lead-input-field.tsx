@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 import { getMissingProps, getProps } from "../../utils/utils";
@@ -115,7 +115,7 @@ export class LeadInputField {
 function useLeadInputFieldDemo(
   props: LeadInputField
 ): Partial<LeadInputFieldViewProps> {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         leadForState: {},
@@ -127,7 +127,6 @@ function useLeadInputFieldDemo(
         requiredFieldErrorMessage: props.requiredFieldErrorMessage,
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

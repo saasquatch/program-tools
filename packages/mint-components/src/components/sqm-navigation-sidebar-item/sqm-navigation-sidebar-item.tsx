@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import {
@@ -126,7 +126,7 @@ export class NavigationSidebarItem {
 function useSidebarItemDemo(
   props: NavigationSidebarItem
 ): NavigationSidebarItemViewProps {
-  return deepmerge(
+  return demoMerge(
     {
       states: {
         active: false,
@@ -144,7 +144,6 @@ function useSidebarItemDemo(
       textFocusedColor: props.textFocusedColor,
       padding: props.padding,
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
+    props.demoData || {}
   );
 }

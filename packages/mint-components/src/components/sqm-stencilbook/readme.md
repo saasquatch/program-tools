@@ -3,6 +3,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+For internal documentation
+
 ## Dependencies
 
 ### Depends on
@@ -242,7 +246,6 @@ graph TD;
   sqm-portal-google-login --> sqm-form-message
   sqm-share-link --> sqm-form-message
   sqm-referral-codes --> sqm-empty
-  sqm-referral-codes --> sqm-skeleton
   sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell

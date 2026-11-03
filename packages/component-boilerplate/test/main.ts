@@ -756,6 +756,43 @@ describe("useQuery", () => {
       ).toEqual(2);
     });
 
+    test("every errored query rejects when errors are not in data order", async () => {
+      await axios.post("/reverse-errors");
+
+      const hooks = [
+        () => useQuery<any>(ERRORS, {}),
+        () => useQuery<any>(ERRORS, {}),
+        () => useQuery<any>(MOCK_TEST, { id: 66 }),
+      ];
+      let results: { current: ReturnType<typeof hooks[number]> }[];
+      await act(async () => {
+        const rendered = hooks.map((hook) => renderHook(hook));
+        await rendered[0].waitForNextUpdate();
+        for (const r of rendered) {
+          await r.waitFor(() => r.result.current?.loading === false);
+        }
+        results = rendered.map((r) => r.result);
+      });
+
+      const [errored1, errored2, succeeded] = results.map((r) => r.current);
+      for (const errored of [errored1, errored2]) {
+        expect(errored.data).toEqual(undefined);
+        expect(errored.errors).toBeDefined();
+        expect(errored.errors.response.errors[0].message).toEqual(
+          "Intentional Testing Error"
+        );
+      }
+      expect(succeeded.errors).toEqual(undefined);
+      expect(typeof succeeded.data.post.title).toEqual("string");
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      expect(
+        (parse(body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(3);
+    });
+
     test("batching with fragments", async () => {
       const FRAGMENT_QUERY = gql`
         fragment NameParts on Author {

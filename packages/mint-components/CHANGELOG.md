@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.5.5
+
+### Patch Changes
+
+- [#560](https://github.com/saasquatch/program-tools/pull/560) [`857a1b8`](https://github.com/saasquatch/program-tools/commit/857a1b8777766797d8489323ba7785b6c0970bbf) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - Dependency and security update. Component APIs are unchanged.
+
+  - Built with `@stencil/core` 2.22 (was 2.4), which regenerates the compiled output and loader.
+  - `@saasquatch/component-boilerplate` ^1.6.12.
+  - Editor demo previews merge `demoData` with `@fastify/deepmerge` instead of `deepmerge`, which has an unfixed advisory. Merging is unchanged: `demoData` arrays still replace defaults. `__proto__`, `constructor` and `prototype` keys are now ignored.
+  - `jsonpointer` 5 for form field names: `__proto__`, `constructor` and `prototype` path segments are ignored at any depth.
+  - `@saasquatch/stencilbook`, `deepmerge`, `dom-context` and `fast-equals` are no longer installed as runtime dependencies.
+
+- [#560](https://github.com/saasquatch/program-tools/pull/560) [`857a1b8`](https://github.com/saasquatch/program-tools/commit/857a1b8777766797d8489323ba7785b6c0970bbf) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - `sqm-email-verification` no longer throws `Cannot read properties of null (reading 'email')` when the user lookup returns no viewer
+
+- [#560](https://github.com/saasquatch/program-tools/pull/560) [`857a1b8`](https://github.com/saasquatch/program-tools/commit/857a1b8777766797d8489323ba7785b6c0970bbf) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - `sqm-widget-verification` only shows the partner info step once the participant has a cash reward that is not cancelled or expired; otherwise verified participants go straight to the verified content
+
+- [#560](https://github.com/saasquatch/program-tools/pull/560) [`857a1b8`](https://github.com/saasquatch/program-tools/commit/857a1b8777766797d8489323ba7785b6c0970bbf) Thanks [@ashley-osuna](https://github.com/ashley-osuna)! - `sqm-widget-verification` dialog is aligned to the top of the widget instead of its vertical centre, so participants no longer scroll through tall embedded widgets to find it
+
 ## 2.5.4
 
 ### Patch Changes

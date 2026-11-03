@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { createStyleSheet } from "../../styling/JSS";
 import { parseStates } from "../../utils/parseStates";
 import { getProps } from "../../utils/utils";
@@ -22,8 +22,13 @@ import {
 
 const style = {
   Dialog: {
+    // Embed iframes grow to the widget's full height, so a centred dialog lands mid-widget
+    "&::part(base)": {
+      alignItems: "flex-start",
+    },
     "&::part(panel)": {
       maxWidth: "480px",
+      marginTop: "var(--sl-spacing-x-large)",
     },
     "&::part(body)": {
       padding: "0 var(--sl-spacing-x-large)",
@@ -397,7 +402,7 @@ function useDemoWidgetVerificationInternal(
     setContext(true);
   };
 
-  return deepmerge(
+  return demoMerge(
     {
       showCode,
       showPartnerModal: false,
@@ -406,7 +411,6 @@ function useDemoWidgetVerificationInternal(
       onInitialFocus: (e: any) => e.preventDefault(),
       loading: false,
     },
-    formatted || {},
-    { arrayMerge: (_, a) => a }
+    formatted || {}
   );
 }

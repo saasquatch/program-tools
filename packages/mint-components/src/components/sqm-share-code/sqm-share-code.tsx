@@ -1,7 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import deepmerge from "deepmerge";
+import { demoMerge } from "../../utils/demoMerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import { CopyTextView, CopyTextViewProps } from "../views/copy-text-view";
@@ -151,7 +151,7 @@ export class ShareCode {
 function useDemoShareCode(props: ShareCode): CopyTextViewProps {
   const [open, setOpen] = useState(false);
   const copyString = "SHARECODE001";
-  return deepmerge(
+  return demoMerge(
     {
       copyString: copyString,
       tooltiptext: props.tooltiptext,
@@ -172,7 +172,6 @@ function useDemoShareCode(props: ShareCode): CopyTextViewProps {
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
+    props.demoData || {}
   );
 }
