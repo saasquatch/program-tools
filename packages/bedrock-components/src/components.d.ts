@@ -8,6 +8,12 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
 import { DemoData } from "./global/demo";
 export namespace Components {
+    /**
+     * Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
+     * @uiName Auth Template Switcher
+     * @slots [{"name":"logged-out","title":"Logged out template"},{"name":"logged-in","title":"Logged in template"}]
+     * @canvasRenderer always-replace
+     */
     interface SqbAuthTemplateSwitch {
         /**
           * @componentState { "title": "Sign up form", "slot": "logged-out", "props": { "overrideToken": false } }
@@ -15,6 +21,15 @@ export namespace Components {
          */
         "stateController": string;
     }
+    /**
+     * Only displayed for certain users. Hides content if not available.
+     * @uiName Conditional Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-auth-template-switch", "sqb-conditional-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
+     * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+     * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
+     */
     interface SqbConditionalSection {
         /**
           * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
@@ -25,9 +40,20 @@ export namespace Components {
          */
         "condition": string;
     }
+    /**
+     * @undocumented 
+     */
     interface SqbHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
+    /**
+     * Use this with other components like share buttons, referral lists
+     * @uiName Program Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-program-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
+     * @example Program Section - <sqb-program-section>Add your program specific content here!</sqb-program-section>
+     */
     interface SqbProgramSection {
         /**
           * Overwrite the program context used by child components with the selected program.
@@ -36,8 +62,15 @@ export namespace Components {
          */
         "programId": string;
     }
+    /**
+     * @uiName Program Switch
+     * @slots [{"name":"","title":"Switch Content"}]
+     */
     interface SqbProgramSwitch {
     }
+    /**
+     * @uiName Redirect Component
+     */
     interface SqbRedirect {
         /**
           * @uiName Redirect Path
@@ -45,8 +78,17 @@ export namespace Components {
          */
         "redirectTo": string;
     }
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface SqbStencilbook {
     }
+    /**
+     * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
+     * a single widget per page.
+     * @uiName Widget
+     */
     interface SqbWidget {
         /**
           * @undocumented 
@@ -71,48 +113,90 @@ export namespace Components {
     }
 }
 declare global {
+    /**
+     * Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
+     * @uiName Auth Template Switcher
+     * @slots [{"name":"logged-out","title":"Logged out template"},{"name":"logged-in","title":"Logged in template"}]
+     * @canvasRenderer always-replace
+     */
     interface HTMLSqbAuthTemplateSwitchElement extends Components.SqbAuthTemplateSwitch, HTMLStencilElement {
     }
     var HTMLSqbAuthTemplateSwitchElement: {
         prototype: HTMLSqbAuthTemplateSwitchElement;
         new (): HTMLSqbAuthTemplateSwitchElement;
     };
+    /**
+     * Only displayed for certain users. Hides content if not available.
+     * @uiName Conditional Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-auth-template-switch", "sqb-conditional-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
+     * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+     * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
+     */
     interface HTMLSqbConditionalSectionElement extends Components.SqbConditionalSection, HTMLStencilElement {
     }
     var HTMLSqbConditionalSectionElement: {
         prototype: HTMLSqbConditionalSectionElement;
         new (): HTMLSqbConditionalSectionElement;
     };
+    /**
+     * @undocumented 
+     */
     interface HTMLSqbHookStoryContainerElement extends Components.SqbHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqbHookStoryContainerElement: {
         prototype: HTMLSqbHookStoryContainerElement;
         new (): HTMLSqbHookStoryContainerElement;
     };
+    /**
+     * Use this with other components like share buttons, referral lists
+     * @uiName Program Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-program-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
+     * @example Program Section - <sqb-program-section>Add your program specific content here!</sqb-program-section>
+     */
     interface HTMLSqbProgramSectionElement extends Components.SqbProgramSection, HTMLStencilElement {
     }
     var HTMLSqbProgramSectionElement: {
         prototype: HTMLSqbProgramSectionElement;
         new (): HTMLSqbProgramSectionElement;
     };
+    /**
+     * @uiName Program Switch
+     * @slots [{"name":"","title":"Switch Content"}]
+     */
     interface HTMLSqbProgramSwitchElement extends Components.SqbProgramSwitch, HTMLStencilElement {
     }
     var HTMLSqbProgramSwitchElement: {
         prototype: HTMLSqbProgramSwitchElement;
         new (): HTMLSqbProgramSwitchElement;
     };
+    /**
+     * @uiName Redirect Component
+     */
     interface HTMLSqbRedirectElement extends Components.SqbRedirect, HTMLStencilElement {
     }
     var HTMLSqbRedirectElement: {
         prototype: HTMLSqbRedirectElement;
         new (): HTMLSqbRedirectElement;
     };
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface HTMLSqbStencilbookElement extends Components.SqbStencilbook, HTMLStencilElement {
     }
     var HTMLSqbStencilbookElement: {
         prototype: HTMLSqbStencilbookElement;
         new (): HTMLSqbStencilbookElement;
     };
+    /**
+     * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
+     * a single widget per page.
+     * @uiName Widget
+     */
     interface HTMLSqbWidgetElement extends Components.SqbWidget, HTMLStencilElement {
     }
     var HTMLSqbWidgetElement: {
@@ -131,6 +215,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
+     * @uiName Auth Template Switcher
+     * @slots [{"name":"logged-out","title":"Logged out template"},{"name":"logged-in","title":"Logged in template"}]
+     * @canvasRenderer always-replace
+     */
     interface SqbAuthTemplateSwitch {
         /**
           * @componentState { "title": "Sign up form", "slot": "logged-out", "props": { "overrideToken": false } }
@@ -138,6 +228,15 @@ declare namespace LocalJSX {
          */
         "stateController"?: string;
     }
+    /**
+     * Only displayed for certain users. Hides content if not available.
+     * @uiName Conditional Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-auth-template-switch", "sqb-conditional-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
+     * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+     * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
+     */
     interface SqbConditionalSection {
         /**
           * Show child content when a user meets specified criteria. <a href="http://docs.jsonata.org/overview.html" target="_blank">JSONata expression</a> is used to define this logic. A participant’s segments, country code, custom fields and email can be used.
@@ -148,9 +247,20 @@ declare namespace LocalJSX {
          */
         "condition"?: string;
     }
+    /**
+     * @undocumented 
+     */
     interface SqbHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
+    /**
+     * Use this with other components like share buttons, referral lists
+     * @uiName Program Section
+     * @exampleGroup Advanced
+     * @slots [{"name":"","title":"Section Content"}]
+     * @validParents ["sqb-program-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
+     * @example Program Section - <sqb-program-section>Add your program specific content here!</sqb-program-section>
+     */
     interface SqbProgramSection {
         /**
           * Overwrite the program context used by child components with the selected program.
@@ -159,8 +269,15 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
     }
+    /**
+     * @uiName Program Switch
+     * @slots [{"name":"","title":"Switch Content"}]
+     */
     interface SqbProgramSwitch {
     }
+    /**
+     * @uiName Redirect Component
+     */
     interface SqbRedirect {
         /**
           * @uiName Redirect Path
@@ -168,8 +285,17 @@ declare namespace LocalJSX {
          */
         "redirectTo"?: string;
     }
+    /**
+     * For internal documentation
+     * @undocumented 
+     */
     interface SqbStencilbook {
     }
+    /**
+     * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
+     * a single widget per page.
+     * @uiName Widget
+     */
     interface SqbWidget {
         /**
           * @undocumented 
@@ -207,13 +333,55 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
+             * @uiName Auth Template Switcher
+             * @slots [{"name":"logged-out","title":"Logged out template"},{"name":"logged-in","title":"Logged in template"}]
+             * @canvasRenderer always-replace
+             */
             "sqb-auth-template-switch": LocalJSX.SqbAuthTemplateSwitch & JSXBase.HTMLAttributes<HTMLSqbAuthTemplateSwitchElement>;
+            /**
+             * Only displayed for certain users. Hides content if not available.
+             * @uiName Conditional Section
+             * @exampleGroup Advanced
+             * @slots [{"name":"","title":"Section Content"}]
+             * @validParents ["sqb-auth-template-switch", "sqb-conditional-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section"]
+             * @example Conditional Area / Segment - <sqb-conditional-section condition="'vip' in user.segments"><p>Add your conditional content here!</p></sqb-conditional-section>
+             * @example Conditional Area / Field - <sqb-conditional-section condition="user.customFields.foo = true"><p>Add your conditional content here!</p></sqb-conditional-section>
+             */
             "sqb-conditional-section": LocalJSX.SqbConditionalSection & JSXBase.HTMLAttributes<HTMLSqbConditionalSectionElement>;
+            /**
+             * @undocumented 
+             */
             "sqb-hook-story-container": LocalJSX.SqbHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqbHookStoryContainerElement>;
+            /**
+             * Use this with other components like share buttons, referral lists
+             * @uiName Program Section
+             * @exampleGroup Advanced
+             * @slots [{"name":"","title":"Section Content"}]
+             * @validParents ["sqb-program-section", "sqm-portal-container","div","template","sqm-instant-access-registration","sqb-program-section", "sqm-portal-frame"]
+             * @example Program Section - <sqb-program-section>Add your program specific content here!</sqb-program-section>
+             */
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;
+            /**
+             * @uiName Program Switch
+             * @slots [{"name":"","title":"Switch Content"}]
+             */
             "sqb-program-switch": LocalJSX.SqbProgramSwitch & JSXBase.HTMLAttributes<HTMLSqbProgramSwitchElement>;
+            /**
+             * @uiName Redirect Component
+             */
             "sqb-redirect": LocalJSX.SqbRedirect & JSXBase.HTMLAttributes<HTMLSqbRedirectElement>;
+            /**
+             * For internal documentation
+             * @undocumented 
+             */
             "sqb-stencilbook": LocalJSX.SqbStencilbook & JSXBase.HTMLAttributes<HTMLSqbStencilbookElement>;
+            /**
+             * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
+             * a single widget per page.
+             * @uiName Widget
+             */
             "sqb-widget": LocalJSX.SqbWidget & JSXBase.HTMLAttributes<HTMLSqbWidgetElement>;
         }
     }

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `sqb-widget` demo previews merge `demoData` with `@fastify/deepmerge` instead of `deepmerge`, which has an unfixed advisory. Merging is unchanged: `demoData` arrays still replace defaults. `__proto__`, `constructor` and `prototype` keys are now ignored.
+- `deepmerge` is no longer installed as a runtime dependency.
+
 ## [1.5.3] - 2026-04-01
 
 ### Changed

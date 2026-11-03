@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Use this with other components like share buttons, referral lists
+
 ## Properties
 
 | Property    | Attribute    | Description                                                                       | Type     | Default     |

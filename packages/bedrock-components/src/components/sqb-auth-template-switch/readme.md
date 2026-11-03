@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Displays "logged-out" content if no valid user is set, otherwise displays "logged-in" content
+
 ## Properties
 
 | Property          | Attribute          | Description | Type     | Default |

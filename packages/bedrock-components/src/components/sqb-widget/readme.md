@@ -5,6 +5,11 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
+a single widget per page.
+
 ## Properties
 
 | Property      | Attribute      | Description                                                                                                                                  | Type                            | Default     |

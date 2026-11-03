@@ -3,7 +3,7 @@ import { withHooks } from '@saasquatch/stencil-hooks';
 import { useWidget } from './useWidget';
 import { isDemo } from '@saasquatch/component-boilerplate';
 import { DemoData } from '../../global/demo';
-import deepmerge from 'deepmerge';
+import { demoMerge } from '../../utils/demoMerge';
 
 /**
  * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
@@ -65,5 +65,5 @@ type WidgetProps = {
 };
 
 function useWidgetDemo(props: SqbWidget) {
-  return deepmerge({ data: {} }, props.demoData || {}, { arrayMerge: (_, a) => a });
+  return demoMerge({ data: {} }, props.demoData || {});
 }
