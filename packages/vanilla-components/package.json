@@ -20,8 +20,8 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "cross-env NODE_ENV=dev stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
+    "test": "stencil test --spec",
+    "test.watch": "stencil test --spec --watchAll",
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "build-storybook": "build-storybook -o docs -c .storybook-prod",
@@ -36,13 +36,11 @@
     "@types/jest": "^25.2.1",
     "@types/marked": "^4.3.2",
     "@types/node": "^13.13.15",
-    "@types/puppeteer": "2.0.1",
     "cross-env": "^7.0.2",
-    "html-minifier": "^4.0.0",
     "jest": "^26.2.2",
     "jest-cli": "^26.2.2",
-    "puppeteer": "3.0.3",
-    "ts-node": "^8.10.1"
+    "jest-config": "^26.6.3",
+    "ts-node": "^10.9.2"
   },
   "resolutions": {
     "apollo-link": "^1.2.14"
