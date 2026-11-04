@@ -1,6 +1,6 @@
 import { h, Component, Prop, Element } from "@stencil/core";
 import { css } from "emotion";
-import marked from "marked";
+import { marked } from "marked";
 import { isUrl } from "../../utilities";
 
 /**
@@ -107,7 +107,7 @@ export class TextComponent {
     `;
 
     const content = this.ismarkdown ? (
-      <div innerHTML={marked(this.text)} />
+      <div innerHTML={marked.parse(this.text)} />
     ) : (
       this.text
     );
