@@ -1,36 +1,32 @@
-import { StepDefinitions } from "jest-cucumber";
-import { getWorld } from "../world";
+import { Given } from "../registry.ts";
+import { getWorld } from "../world.ts";
 
-const rulesSteps: StepDefinitions = ({ given }) => {
-  given("there are no program rules", () => {
-    getWorld().setState({
-      current: {
-        rules: undefined,
+Given("there are no program rules", () => {
+  getWorld().setState({
+    current: {
+      rules: undefined,
+    },
+  });
+});
+
+Given("the program rules are:", (rules: string) => {
+  getWorld().setState({ current: { rules: JSON.parse(rules) } });
+});
+
+Given("there are no reward rules", () => {
+  getWorld().setState({
+    current: {
+      rules: {
+        rewardRules: undefined,
       },
-    });
+    },
   });
+});
 
-  given("the program rules are:", (rules: any) => {
-    getWorld().setState({ current: { rules: JSON.parse(rules) } });
+Given(/^the current time is (\d+)$/, (time: string) => {
+  getWorld().setState({
+    current: {
+      time: Number(time),
+    },
   });
-
-  given("there are no reward rules", () => {
-    getWorld().setState({
-      current: {
-        rules: {
-          rewardRules: undefined,
-        },
-      },
-    });
-  });
-
-  given(/^the current time is (\d+)$/, (time: string) => {
-    getWorld().setState({
-      current: {
-        time: Number(time),
-      },
-    });
-  });
-};
-
-export default rulesSteps;
+});
