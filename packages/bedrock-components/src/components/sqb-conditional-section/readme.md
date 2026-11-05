@@ -5,6 +5,10 @@
 <!-- Auto Generated Below -->
 
 
+## Overview
+
+Only displayed for certain users. Hides content if not available.
+
 ## Properties
 
 | Property    | Attribute   | Description                                                                                                                                                                                                                                                | Type     | Default     |
