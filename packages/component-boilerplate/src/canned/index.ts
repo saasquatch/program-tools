@@ -109,6 +109,9 @@ export function provideCannedGraphQL(
   return () => provider.stop();
 }
 
+/** Interceptors that were stopped while wrapped, mapped to the `fetch` each one wraps. */
+const standingDown = new WeakMap<typeof fetch, typeof fetch>();
+
 /**
  * Answers `fetch` calls to the canned GraphQL endpoint from `client`. Some
  * code (e.g. component-environment's locale lookup) calls `fetch` directly
@@ -119,6 +122,7 @@ export function provideCannedGraphQL(
  */
 export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
   const original = window.fetch;
+  let active = true;
   const endpoint = `${CANNED_APP_DOMAIN}/api/v1/${CANNED_TENANT_ALIAS}/graphql`;
   const json = (body: unknown) =>
     new Response(JSON.stringify(body), {
@@ -126,10 +130,10 @@ export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
       headers: { "Content-Type": "application/json" },
     });
 
-  window.fetch = async function (input: RequestInfo | URL, init?: RequestInit) {
+  window.fetch = async function cannedFetch(input: RequestInfo | URL, init?: RequestInit) {
     const url =
       typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
-    if (url !== endpoint) return original.call(this, input, init);
+    if (!active || url !== endpoint) return original.call(this, input, init);
     // Like fetch: init.body wins, otherwise the body is the Request's own.
     const body =
       init?.body ??
@@ -146,8 +150,17 @@ export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
       });
     }
   };
+  const intercepting = window.fetch;
   return () => {
-    window.fetch = original;
+    // If another interceptor has since wrapped this one, restoring `original`
+    // would remove it too, so this one just passes everything through.
+    active = false;
+    standingDown.set(intercepting, original);
+    if (window.fetch !== intercepting) return;
+    // Skip interceptors that stood down while this one was on top.
+    let restored = original;
+    while (standingDown.has(restored)) restored = standingDown.get(restored);
+    window.fetch = restored;
   };
 }
 
@@ -188,11 +201,13 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
     ...widgetIdent,
   };
 
-  const stop = useMemo(() => {
+  const { story, stop } = useMemo(() => {
+    // The story mounted last owns the globals; see the cleanup below.
+    const story = {};
+    globalsOwner = story;
     // Like identity, the global program provider outlives each story and reads
     // widgetIdent only once, so every mount sets it. This runs during render,
-    // so a story's own setProgramId call after this one still wins; it is not
-    // reset on cleanup, which can run after the next story has rendered.
+    // so a story's own setProgramId call after this one still wins.
     setProgramId((window as any).widgetIdent.programId);
     const locale = widgetIdent?.locale;
     const client = createCannedGraphQLClient({
@@ -204,9 +219,12 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
     });
     const stopProviding = provideCannedGraphQL(document.body, client);
     const stopIntercepting = interceptCannedFetch(client);
-    return () => {
-      stopProviding();
-      stopIntercepting();
+    return {
+      story,
+      stop: () => {
+        stopProviding();
+        stopIntercepting();
+      },
     };
   }, []);
 
@@ -216,11 +234,17 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
     setUserIdentity(identityFor(user, widgetIdent));
     return () => {
       stop();
+      // The next story can render before this cleanup runs. Its widgetIdent,
+      // identity and program are then already set and must survive.
+      if (globalsOwner !== story) return;
+      globalsOwner = undefined;
       window.widgetIdent = undefined;
       setUserIdentity(undefined);
     };
   }, []);
 }
+
+let globalsOwner: object | undefined;
 
 /**
  * An explicit `user` wins; otherwise the credentials squatch.js and the mobile

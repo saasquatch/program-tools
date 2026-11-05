@@ -1,5 +1,6 @@
 import { MockList } from "@graphql-tools/mock";
 import {
+  getNamedType,
   GraphQLObjectType,
   GraphQLResolveInfo,
   GraphQLSchema,
@@ -259,31 +260,65 @@ const abstractMocks: Mocks = {
   WidgetConfig: () => ({ __typename: "ProgramWidgetConfig" }),
 };
 
+/** The user an auth mutation signs in when its input has no email, e.g. Google login. */
+const CANNED_AUTH_EMAIL = "jane@example.com";
+
+/**
+ * Login and registration hooks decode the returned token to set the user
+ * identity, so every mutation returning a session gets a token for the email it
+ * was given. Derived from the input rather than generated: nothing random
+ * reaches a token.
+ */
+function authMocks(schema: GraphQLSchema): Mocks {
+  const fields = Object.values(schema.getMutationType()?.getFields() ?? {}).filter(
+    (field) => getNamedType(field.type).name === "ManagedIdentityAuthenticationResult"
+  );
+  if (!fields.length) return {};
+  const session = (email: string) => ({
+    email,
+    token: fakeJwt({ user: { id: email, accountId: email, email } }),
+  });
+  const mutations: Record<string, unknown> = {};
+  for (const field of fields) {
+    mutations[field.name] = (args: Record<string, { email?: unknown }>) => {
+      const email = Object.values(args ?? {})
+        .map((input) => input?.email)
+        .find((value): value is string => typeof value === "string");
+      return session(email ?? CANNED_AUTH_EMAIL);
+    };
+  }
+  return {
+    ManagedIdentityAuthenticationResult: () => session(CANNED_AUTH_EMAIL),
+    Mutation: () => mutations,
+  };
+}
+
 /** Responses whose shape the calling hook relies on, not just their types. */
 const responseMocks: Mocks = {
-  // Login and registration hooks decode this token to set the user identity.
-  ManagedIdentityAuthenticationResult: () => {
-    const { email } = persona();
-    const id = hexId();
-    return { email, token: fakeJwt({ user: { id, accountId: id, email } }) };
-  },
   Mutation: () => ({
     // Saving a user returns what was saved, as the API does.
-    upsertUser: ({ userInput }: { userInput: Record<string, unknown> }) =>
-      Object.fromEntries(
-        Object.entries(userInput).filter(([, v]) => v === null || typeof v !== "object")
-      ),
+    upsertUser: ({ userInput }: { userInput: Record<string, unknown> }) => {
+      const saved: Record<string, unknown> = {};
+      for (const key of Object.keys(userInput)) {
+        const value = userInput[key];
+        if (value === null || typeof value !== "object") saved[key] = value;
+      }
+      return saved;
+    },
   }),
 };
 
 export function defaultMocks(schema: GraphQLSchema): Mocks {
-  return {
-    ...scalarMocks,
-    ...personMocks(schema),
-    ...listMocks(schema),
-    ...abstractMocks,
-    ...responseMocks,
-  };
+  return mergeMocks(
+    {
+      ...scalarMocks,
+      ...personMocks(schema),
+      ...listMocks(schema),
+      ...abstractMocks,
+      ...authMocks(schema),
+    },
+    responseMocks
+  );
 }
 
 /** Story mocks are merged over the defaults for the same type. */

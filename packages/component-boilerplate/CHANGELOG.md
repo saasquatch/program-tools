@@ -12,10 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `@saasquatch/component-boilerplate/canned`, a separate entry for stories and tests: `useCannedEnvironment`, `createCannedGraphQLClient`, `provideCannedGraphQL` and `interceptCannedFetch` answer any query valid against a snapshot of the SaaSquatch schema with realistic, deterministic data, so stories need no real tenant or credentials. Refresh the snapshot with `npm run sync-canned-schema -- <path to saasquatch repo>`.
-  - Login and registration mutations return a decodable fake token, and saving a user returns what was saved, so form stories can complete.
+  - Login and registration mutations return a decodable fake token for the submitted email, and saving a user returns what was saved, so form stories can complete.
   - Lists keep the same `totalCount` on every page and honour `offset` and `limit`, so tables paginate.
   - Responses take 100ms in stories (`latency`), so loading states render and hooks that act when loading finishes (e.g. closing an edit form after saving) work.
-  - Each story sets its own user and program, even after another story ran.
+  - Each story sets its own user and program, even after another story ran. A story that cleans up after the next one has rendered leaves the next story's environment, user and `fetch` interception in place.
 - `fakeJwt`, an unsigned token for demos and stories (exported from both entries).
 
 ### Changed

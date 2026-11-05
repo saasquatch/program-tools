@@ -40,6 +40,17 @@ import { GRAPHQL_CONTEXT } from "../src/hooks/graphql/context";
 
 const SIGNED_JWT = /eyJ[\w-]{10,}\.eyJ[\w-]{10,}\.[\w-]{10,}/;
 
+beforeAll(() => {
+  // jsdom (Jest 26) has no fetch Response; a minimal one is enough here.
+  if (typeof (global as any).Response === "undefined") {
+    (global as any).Response = class {
+      constructor(private body: string, public init: any) {}
+      get ok() { return this.init.status < 300; }
+      async json() { return JSON.parse(this.body); }
+    };
+  }
+});
+
 describe("fakeJwt", () => {
   it("decodes like a real token but carries no signature", () => {
     const token = fakeJwt({ user: { id: "jane", accountId: "jane" } });
@@ -194,28 +205,46 @@ describe("CannedGraphQLClient", () => {
     }
   });
 
-  it("returns a decodable user token from login and registration", async () => {
-    const res = await client.request(
-      gql`
-        mutation RegisterWithEmailAndPassword($email: String!, $password: String!) {
-          registerManagedIdentityWithEmailAndPassword(
-            registerManagedIdentityWithEmailAndPasswordInput: {
-              email: $email
-              password: $password
-            }
-          ) {
-            token
-            email
+  it("returns a token for the submitted email from login and registration", async () => {
+    const REGISTER = gql`
+      mutation RegisterWithEmailAndPassword($email: String!, $password: String!) {
+        registerManagedIdentityWithEmailAndPassword(
+          registerManagedIdentityWithEmailAndPasswordInput: {
+            email: $email
+            password: $password
           }
+        ) {
+          token
+          email
         }
-      `,
-      { email: "jane@example.com", password: "hunter2" }
-    );
+      }
+    `;
+    const variables = { email: "janet@example.com", password: "hunter2" };
+    const res = await client.request(REGISTER, variables);
     const { token, email } = res.registerManagedIdentityWithEmailAndPassword;
-    const { user } = jwtDecode<{ user: Record<string, string> }>(token);
-    expect(user.id).toMatch(/^[0-9a-f]{12}$/);
-    expect(user).toMatchObject({ accountId: user.id, email });
+    expect(email).toBe("janet@example.com");
+    expect(jwtDecode<{ user: unknown }>(token).user).toEqual({
+      id: "janet@example.com",
+      accountId: "janet@example.com",
+      email: "janet@example.com",
+    });
     expect(SIGNED_JWT.test(token)).toBe(false);
+    // Nothing random reaches the token.
+    const reseeded = await createCannedGraphQLClient({ seed: "other" }).request(REGISTER, variables);
+    expect(reseeded.registerManagedIdentityWithEmailAndPassword.token).toBe(token);
+
+    const google = await client.request(gql`
+      mutation {
+        authenticateManagedIdentityWithGoogle(
+          authenticateManagedIdentityWithGoogleInput: { idToken: "google-id-token" }
+        ) {
+          token
+        }
+      }
+    `);
+    expect(
+      jwtDecode<{ user: { id: string } }>(google.authenticateManagedIdentityWithGoogle.token).user.id
+    ).toBe("jane@example.com");
   });
 
   it("returns a saved user as submitted, as edit profile displays it", async () => {
@@ -375,15 +404,27 @@ describe("interceptCannedFetch", () => {
   const ENDPOINT = `${CANNED_APP_DOMAIN}/api/v1/${CANNED_TENANT_ALIAS}/graphql`;
   const LOCALE = `query { viewer { ... on User { locale firstName } } }`;
 
-  beforeAll(() => {
-    // jsdom (Jest 26) has no fetch Response; a minimal one is enough here.
-    if (typeof (global as any).Response === "undefined") {
-      (global as any).Response = class {
-        constructor(private body: string, public init: any) {}
-        get ok() { return this.init.status < 300; }
-        async json() { return JSON.parse(this.body); }
-      };
-    }
+  it("hands over cleanly when interceptors stop out of order", async () => {
+    const real = jest.fn();
+    window.fetch = real as any;
+    const stopFirst = interceptCannedFetch(
+      createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
+    );
+    const stopSecond = interceptCannedFetch(
+      createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
+    );
+    const locale = async () => {
+      const res = await window.fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify({ query: LOCALE }),
+      });
+      return (await res.json()).data.viewer.locale;
+    };
+
+    stopFirst();
+    expect(await locale()).toBe("tr");
+    stopSecond();
+    expect(window.fetch).toBe(real);
   });
 
   it("answers the canned endpoint, as raw-fetch callers like fetchLocale need", async () => {
@@ -509,6 +550,27 @@ describe("useCannedEnvironment identity", () => {
   it("prefers an explicit user over widgetIdent credentials", () => {
     story({ user: { id: "jane", accountId: "jane" }, widgetIdent: WIDGET_IDENT_USER });
     expect(getUserIdentity()).toMatchObject({ id: "jane", accountId: "jane" });
+  });
+
+  it("keeps the next story's environment when the previous story cleans up after it renders", async () => {
+    const previous = story({ user: { id: "jane", accountId: "jane" }, programId: "previous" });
+    const next = story({ user: { id: "jane", accountId: "jane" }, programId: "next" });
+    const nextWidgetIdent = window.widgetIdent;
+
+    previous.unmount();
+    expect(window.widgetIdent).toBe(nextWidgetIdent);
+    expect(getUserIdentity()).toMatchObject({ id: "jane", accountId: "jane" });
+    expect(getProgramId()).toBe("next");
+    // The next story's fetch interceptor is still installed and answering.
+    const res = await window.fetch(`${CANNED_APP_DOMAIN}/api/v1/${CANNED_TENANT_ALIAS}/graphql`, {
+      method: "POST",
+      body: JSON.stringify({ query: "query { viewer { ... on User { id } } }" }),
+    });
+    expect((await res.json()).data.viewer.id).toEqual(expect.any(String));
+
+    next.unmount();
+    expect(window.widgetIdent).toBeUndefined();
+    expect(getUserIdentity()).toBeUndefined();
   });
 
   it("sets each story's program, which the story's own setProgramId still overrides", () => {
