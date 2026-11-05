@@ -3,15 +3,16 @@ const fs = require("fs");
 // @ts-ignore
 const path = require("path");
 // @ts-ignore
-const htmlminify = require("html-minifier")
+const htmlminify = require("html-minifier-terser")
 
 
 
-const done = ["default-referred-widget-contentful", "default-referrer-widget-contentful"].forEach(filename => {
+const files = ["default-referred-widget-contentful", "default-referrer-widget-contentful"];
+files.forEach(async filename => {
   // @ts-ignore
   const file = fs.readFileSync(path.resolve(__dirname, `../src/${filename}.html`), { encoding: "utf8" })
 
-  const result = htmlminify.minify(file, {
+  const result = await htmlminify.minify(file, {
     // TODO: there are still a few line breaks in output
     collapseWhitespace: true,
     removeComments: true

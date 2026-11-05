@@ -4093,6 +4093,7 @@ export namespace Components {
      * @csspart input-label - The input label
      * @csspart input-base - The input base
      * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
      */
     interface SqmPortalRegistrationForm {
         /**
@@ -9536,6 +9537,7 @@ declare global {
      * @csspart input-label - The input label
      * @csspart input-base - The input base
      * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
      */
     interface HTMLSqmPortalRegistrationFormElement extends Components.SqmPortalRegistrationForm, HTMLStencilElement {
     }
@@ -14469,6 +14471,7 @@ declare namespace LocalJSX {
      * @csspart input-label - The input label
      * @csspart input-base - The input base
      * @csspart primarybutton-base - The primary button base
+     * @csspart secondarybutton-base - The secondary button base
      */
     interface SqmPortalRegistrationForm {
         /**
@@ -19673,6 +19676,7 @@ declare module "@stencil/core" {
              * @csspart input-label - The input label
              * @csspart input-base - The input base
              * @csspart primarybutton-base - The primary button base
+             * @csspart secondarybutton-base - The secondary button base
              */
             "sqm-portal-registration-form": LocalJSX.SqmPortalRegistrationForm & JSXBase.HTMLAttributes<HTMLSqmPortalRegistrationFormElement>;
             /**
