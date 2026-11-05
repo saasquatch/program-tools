@@ -1,7 +1,7 @@
-import { getAppDomain, getTenantAlias } from "./environment";
-import { getUserIdentity } from "./contexts/UserIdentityContext";
-import { LOCALE_CONTEXT_NAME } from "./types";
-import { debug as _debug } from "./debug";
+import { getAppDomain, getTenantAlias } from "./environment.ts";
+import { getUserIdentity } from "./contexts/UserIdentityContext.ts";
+import { LOCALE_CONTEXT_NAME } from "./types.ts";
+import { debug as _debug } from "./debug.ts";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 

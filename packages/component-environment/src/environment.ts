@@ -1,9 +1,9 @@
 import {
-  Environment,
-  EnvironmentSDK,
-  EngagementMedium,
+  type Environment,
+  type EnvironmentSDK,
+  type EngagementMedium,
   DEFAULT_MEDIUM,
-} from "./types";
+} from "./types.ts";
 
 /**
  * Get the type of environment that this widget is being rendered in

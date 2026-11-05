@@ -1,15 +1,15 @@
 import decode from "jwt-decode";
 import { ContextProvider } from "dom-context";
 import { equal } from "@wry/equality";
-import { getEnvironmentSDK } from "../environment";
+import { getEnvironmentSDK } from "../environment.ts";
 import {
   USER_CONTEXT_NAME,
   UserIdentity,
   DecodedSquatchJWT,
   DecodedWidgetAPIJWT,
-} from "../types";
-import { startUserContextListenerForLocale } from "../listeners";
-import { debug as _debug } from "../debug";
+} from "../types.ts";
+import { startUserContextListenerForLocale } from "../listeners.ts";
+import { debug as _debug } from "../debug.ts";
 
 const debug = (...args: any[]) => _debug(USER_CONTEXT_NAME, ...args);
 

@@ -1,6 +1,6 @@
 import { ContextProvider } from "dom-context";
-import { LOCALE_CONTEXT_NAME } from "../types";
-import { debug as _debug } from "../debug";
+import { LOCALE_CONTEXT_NAME } from "../types.ts";
+import { debug as _debug } from "../debug.ts";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 
