@@ -1,15 +1,15 @@
 import decode from "jwt-decode";
 import { ContextProvider } from "dom-context";
 import { equal } from "@wry/equality";
-import { getEnvironmentSDK } from "../environment";
+import { getEnvironmentSDK } from "../environment.ts";
 import {
   USER_CONTEXT_NAME,
-  UserIdentity,
-  DecodedSquatchJWT,
-  DecodedWidgetAPIJWT,
-} from "../types";
-import { startUserContextListenerForLocale } from "../listeners";
-import { debug as _debug } from "../debug";
+  type UserIdentity,
+  type DecodedSquatchJWT,
+  type DecodedWidgetAPIJWT,
+} from "../types.ts";
+import { startUserContextListenerForLocale } from "../listeners.ts";
+import { debug as _debug } from "../debug.ts";
 
 const debug = (...args: any[]) => _debug(USER_CONTEXT_NAME, ...args);
 
@@ -44,7 +44,7 @@ function isDecodedSquatchJWT(decoded: any): decoded is DecodedSquatchJWT {
 }
 
 function isDecodedWidgetAPIJWT(decoded: any): decoded is DecodedWidgetAPIJWT {
-  return decoded.sub && /.*:.*@.*:users/.test(decoded.sub);
+  return decoded.sub && /^[A-Za-z0-9+/=_-]*:[A-Za-z0-9+/=_-]*@[^@]*:users$/.test(decoded.sub);
 }
 
 /**
@@ -67,7 +67,9 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     if (isDecodedWidgetAPIJWT(decoded)) {
       // Pull the accountId and userId from the subject and Base64-decode them
       // NOTE: This is to support classic theme engine widget token generation
-      const matches = decoded.sub.match(/(.*):(.*)@(.*):users/);
+      const matches = decoded.sub.match(
+        /^([A-Za-z0-9+/=_-]*):([A-Za-z0-9+/=_-]*)@([^@]*):users$/
+      );
       if (matches?.[1]) accountId = atob(matches[1]);
       if (matches?.[2]) userId = atob(matches[2]);
     } else if (isDecodedSquatchJWT(decoded)) {
