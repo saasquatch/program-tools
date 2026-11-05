@@ -1,15 +1,19 @@
-import { RewardData } from "@saasquatch/schema/types/ProgramTransaction";
+import * as assert from "node:assert";
+import { beforeEach, describe, test } from "node:test";
+import type { RewardData } from "@saasquatch/schema/types/ProgramTransaction/index.d.ts";
 import {
   nonRewardEmailQueryForNonReferralPrograms,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQuery,
   rewardEmailQueryForNonReferralPrograms,
-} from "../src/queries";
-import Transaction from "../src/transaction";
-import { Referral } from "../src/types/saasquatch";
+} from "../src/queries.ts";
+import Transaction from "../src/transaction.ts";
+import type { Referral } from "../src/types/saasquatch.ts";
+
+// oxlint-disable typescript/no-floating-promises
 
 describe("Transaction class", () => {
-  const messageType: "PROGRAM_TRIGGER" = "PROGRAM_TRIGGER";
+  const messageType = "PROGRAM_TRIGGER" as const;
   const testContext = {
     body: {
       messageType,
@@ -106,7 +110,7 @@ describe("Transaction class", () => {
   describe("#fireProgramEvalAnalytics", () => {
     test("evalAnalytic is pushed to analytics", () => {
       transaction.fireProgramEvalAnalytics(testUser, "ACQUISITION");
-      expect(transaction.analytics).toStrictEqual([
+      assert.deepStrictEqual(transaction.analytics, [
         {
           eventType: "PROGRAM_EVALUATED",
           data: {
@@ -130,10 +134,10 @@ describe("Transaction class", () => {
         "testAnalyticsKey",
         "testDedupKey",
         now,
-        false
+        false,
       );
 
-      expect(transaction.analytics).toStrictEqual([
+      assert.deepStrictEqual(transaction.analytics, [
         {
           eventType: "PROGRAM_GOAL",
           data: {
@@ -156,7 +160,7 @@ describe("Transaction class", () => {
     const rewardKey = "testRewardKey123";
     test("createReward mutation is pushed to mutations", () => {
       const { rewardId } = transaction.generateSimpleReward(rewardKey);
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "CREATE_REWARD",
           data: {
@@ -192,7 +196,7 @@ describe("Transaction class", () => {
           unit: "CAD",
         },
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "CREATE_REWARD",
           data: {
@@ -223,7 +227,7 @@ describe("Transaction class", () => {
     const emailKey = "testEmailKey2344";
     test("sendEmail mutation is pushed to mutations (with reward)", () => {
       transaction.generateSimpleEmail({ emailKey, user: testUser, rewardId });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -247,7 +251,7 @@ describe("Transaction class", () => {
 
     test("sendEmail mutation is pushed to mutations (without reward)", () => {
       transaction.generateSimpleEmail({ emailKey, user: testUser });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -280,7 +284,7 @@ describe("Transaction class", () => {
         referralId,
         rewardId,
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -312,7 +316,7 @@ describe("Transaction class", () => {
         user: testUser,
         referralId,
       });
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "SEND_EMAIL",
           data: {
@@ -348,23 +352,23 @@ describe("Transaction class", () => {
         user: testUser,
       });
 
-      expect(transaction.mutations.length).toBe(2);
+      assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
-      expect(rewardMutation.type).toBe("CREATE_REWARD");
-
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const mut = rewardMutation.data as RewardData;
 
-      expect(mut.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");
+      assert.deepStrictEqual(mut.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(mut.key).toBe(rewardKey);
-      expect(mut.user).toStrictEqual({
+      assert.deepStrictEqual(mut.key, rewardKey);
+      assert.deepStrictEqual(mut.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(emailMutation).toStrictEqual({
+      assert.deepStrictEqual(emailMutation, {
         type: "SEND_EMAIL",
         data: {
           user: {
@@ -406,36 +410,36 @@ describe("Transaction class", () => {
         },
       });
 
-      expect(transaction.mutations.length).toBe(2);
+      assert.deepStrictEqual(transaction.mutations.length, 2);
 
       const [rewardMutation, emailMutation] = transaction.mutations;
-      expect(rewardMutation.type).toBe("CREATE_REWARD");
-
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       const mut = rewardMutation.data as RewardData;
 
-      expect(mut.user).toStrictEqual({
+      assert.deepStrictEqual(rewardMutation.type, "CREATE_REWARD");
+      assert.deepStrictEqual(mut.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
-      expect(mut.key).toBe(rewardKey);
-      expect(mut.referralId).toBe(referralId);
-      expect(mut.status).toBe(undefined);
-      expect(mut.rewardSource).toBe(undefined);
-      expect(mut.userEvent).toBe(undefined);
-      expect(mut.overrideProperties).toStrictEqual({
+      assert.deepStrictEqual(mut.key, rewardKey);
+      assert.deepStrictEqual(mut.referralId, referralId);
+      assert.deepStrictEqual(mut.status, undefined);
+      assert.deepStrictEqual(mut.rewardSource, undefined);
+      assert.deepStrictEqual(mut.userEvent, undefined);
+      assert.deepStrictEqual(mut.overrideProperties, {
         dateExpires: ts,
       });
-      expect(mut.dynamicProperties).toStrictEqual({
+      assert.deepStrictEqual(mut.dynamicProperties, {
         type: "CREDIT",
         assignedCredit: 2000,
         unit: "CAD",
       });
-      expect(mut.user).toStrictEqual({
+      assert.deepStrictEqual(mut.user, {
         id: "referrerID",
         accountId: "referrerACCOUNTID",
       });
 
-      expect(emailMutation).toStrictEqual({
+      assert.deepStrictEqual(emailMutation, {
         type: "SEND_EMAIL",
         data: {
           user: {
@@ -498,7 +502,7 @@ describe("Transaction class", () => {
       ];
 
       transaction.generateRefunds();
-      expect(transaction.mutations).toStrictEqual([
+      assert.deepStrictEqual(transaction.mutations, [
         {
           type: "MODERATE_GRAPH_NODES",
           data: {
@@ -573,7 +577,7 @@ describe("Transaction class", () => {
         },
       ];
 
-      expect(transaction.toJson()).toStrictEqual({
+      assert.deepStrictEqual(transaction.toJson(), {
         mutations: [
           {
             type: "MODERATE_GRAPH_NODES",
