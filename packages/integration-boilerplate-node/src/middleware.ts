@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { Logger } from "winston";
+import { Logger } from "@saasquatch/logger";
 import jwt from "jsonwebtoken";
 
 import { Auth } from "./auth";
@@ -71,7 +71,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
     }
 
     const decoded: any = jwt.decode(tenantScopedToken);
-    logger.debug("%o", decoded);
+    logger.debug(decoded);
     req.tenantAlias = decoded.sub.split("@")[0];
     req.impactBrandId = decoded["impactBrandId"];
 

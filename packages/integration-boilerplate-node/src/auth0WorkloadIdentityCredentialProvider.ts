@@ -1,7 +1,7 @@
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import { AuthenticationClient } from "auth0";
-import { Logger } from "winston";
+import { Logger } from "@saasquatch/logger";
 
 export interface Auth0WorkloadIdentityCredentialProviderOptions {
   auth0Domain: string;
@@ -21,7 +21,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
 
   constructor(
     private logger: Logger,
-    private options: Auth0WorkloadIdentityCredentialProviderOptions
+    private options: Auth0WorkloadIdentityCredentialProviderOptions,
   ) {
     this.tokenFile = options.tokenFile ?? "token.json";
     this.workloadIdentityFile =
@@ -53,7 +53,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
     process.env["GOOGLE_APPLICATION_CREDENTIALS"] = this.workloadIdentityFile;
 
     this.logger.debug(
-      "Wrote workload identity configuration file and configured GOOGLE_APPLICATION_CREDENTIALS."
+      "Wrote workload identity configuration file and configured GOOGLE_APPLICATION_CREDENTIALS.",
     );
   }
 
@@ -90,8 +90,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
         const refreshInSeconds = Math.max(10, expiresInSeconds * 0.75);
 
         this.logger.debug(
-          "Refreshed workload identity token, expires in %d seconds.",
-          expiresInSeconds
+          `Refreshed workload identity token, expires in ${expiresInSeconds} seconds.`
         );
 
         reschedule(refreshInSeconds);
@@ -99,10 +98,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
         throw new Error("Did not get a valid JWT payload from Auth0");
       }
     } catch (e) {
-      this.logger.error(
-        "Failed to refresh workload identity token: %s",
-        (e as Error).message
-      );
+      this.logger.error("Failed to refresh workload identity token: %s", { e });
 
       // If we fail to get a new token from Auth0, let's hope we already have a token that hasn't
       // expired yet. Schedule a refresh in 5 seconds to try again.
@@ -114,7 +110,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
 }
 
 function isValidJwtPayload(
-  token: ReturnType<typeof jwt.decode>
+  token: ReturnType<typeof jwt.decode>,
 ): token is jwt.JwtPayload & { iat: number; exp: number } {
   return (
     token != undefined &&

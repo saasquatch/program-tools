@@ -8,21 +8,20 @@ import { IntegrationService } from "./service";
 export async function webhookHandler<
   ServiceConfig extends BaseConfig,
   IntegrationConfig,
-  FormConfig
+  FormConfig,
 >(
   req: Request,
   res: Response,
   service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
-  graphql: TenantScopedGraphQLFn
+  graphql: TenantScopedGraphQLFn,
 ) {
   const webhook = req.body as Webhook;
 
-  service.logger.debug(
-    "SaaSquatch webhook received: [%s] [%s] [%s]",
-    webhook.id,
-    webhook.type,
-    webhook.tenantAlias
-  );
+  service.logger.debug("SaaSquatch webhook received", {
+    id: webhook.id,
+    type: webhook.type,
+    tenantAlias: webhook.tenantAlias,
+  });
 
   try {
     const config = await service.getIntegrationConfig(webhook.tenantAlias);
@@ -33,7 +32,7 @@ export async function webhookHandler<
           webhook,
           config,
           graphql,
-          res
+          res,
         );
       } catch (e) {
         throw new UnhandledWebhookError(errorToString(e));

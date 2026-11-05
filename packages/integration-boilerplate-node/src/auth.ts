@@ -2,7 +2,7 @@ import { Base64 } from "js-base64";
 import jwksRsa from "jwks-rsa";
 import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
-import { Logger } from "winston";
+import { Logger } from "@saasquatch/logger";
 import { URLSearchParams } from "url";
 import NodeCache from "node-cache";
 

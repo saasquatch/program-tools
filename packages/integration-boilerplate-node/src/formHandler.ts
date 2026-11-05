@@ -6,7 +6,7 @@ import { BaseConfig } from "./config";
 import { IntegrationService } from "./service";
 
 export function isFormErrorResponse(
-  response: any
+  response: any,
 ): response is types.FormErrorResponse {
   return response.errorCode && response.error;
 }
@@ -14,18 +14,20 @@ export function isFormErrorResponse(
 export async function formHandler<
   ServiceConfig extends BaseConfig,
   IntegrationConfig,
-  FormConfig
+  FormConfig,
 >(
   req: Request,
   res: Response,
   service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
-  graphql: types.TenantScopedGraphQLFn
+  graphql: types.TenantScopedGraphQLFn,
 ) {
   service.logger.debug(
-    "SaaSquatch form handler request received: [%s] [%s] [%s]",
-    req.body.type,
-    req.body.tenantAlias,
-    req.body.form?.key
+    "SaaSquatch form handler request received",
+    {
+      type: req.body.type,
+      tenantAlias: req.body.tenantAlias,
+      formKey: req.body.form?.key,
+    },
   );
 
   const {
@@ -62,7 +64,7 @@ export async function formHandler<
               IntegrationConfig,
               FormConfig
             >,
-            graphql
+            graphql,
           );
         } else {
           const emptySubmissionResponse: types.FormSubmissionResponse = {
@@ -79,7 +81,7 @@ export async function formHandler<
               IntegrationConfig,
               FormConfig
             >,
-            graphql
+            graphql,
           );
         } else {
           const emptyValidationResponse: types.FormValidationResponse = {
@@ -97,7 +99,7 @@ export async function formHandler<
               IntegrationConfig,
               FormConfig
             >,
-            graphql
+            graphql,
           );
         } else {
           const emptyIntrospectionResponse: types.FormIntrospectionResponse = {
@@ -116,7 +118,7 @@ export async function formHandler<
               IntegrationConfig,
               FormConfig
             >,
-            graphql
+            graphql,
           );
         } else {
           const emptyInitialDataResponse: types.FormInitialDataResponse = {
@@ -135,7 +137,7 @@ export async function formHandler<
 
     res.send(response);
 
-    service.logger.debug("Form handler returned: %o", response);
+    service.logger.debug("Form handler returned", { response });
   } catch (e) {
     handleError(new UnhandledFormError(errorToString(e)), service.logger, res);
   }

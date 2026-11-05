@@ -14,7 +14,7 @@ import NodeCache from "node-cache";
 import fetch from "node-fetch";
 import { hostname } from "os";
 import path from "path";
-import { Logger } from "winston";
+import { Logger } from "@saasquatch/logger";
 import { gql } from ".";
 import { Auth } from "./auth";
 import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
@@ -499,7 +499,6 @@ export class IntegrationService<
       app.get("/*", (_req, res, next) => {
         res.sendFile(
           path.join(frontendPath, this.config.staticFrontendIndex),
-          undefined,
           (err) => {
             if (err) next();
           },
