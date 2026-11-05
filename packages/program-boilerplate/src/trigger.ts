@@ -12,7 +12,7 @@ import {
 
 function handleTriggerError(
   triggerType: string,
-  e: unknown
+  e: unknown,
 ): { error: string; message?: unknown } {
   const stack =
     typeof e === "object" && e !== null && "stack" in e ? e.stack : undefined;
@@ -61,7 +61,7 @@ export function triggerProgram(
     | ProgramIntrospectionBody
     | ProgramValidationBody
     | ProgramVariableSchemaRequestBody,
-  program: Program = {}
+  program: Program = {},
 ): ProgramTriggerResult {
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
@@ -97,7 +97,7 @@ export function triggerProgram(
  */
 function handleProgramTrigger(
   body: ProgramTriggerBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const transaction = new Transaction({ body });
 
@@ -129,7 +129,7 @@ function handleProgramTrigger(
  */
 function handleProgramIntrospection(
   body: ProgramIntrospectionBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const template = body.template;
   const rules = body.program.rules;
@@ -164,15 +164,18 @@ function handleProgramIntrospection(
  */
 function handleProgramValidation(
   body: ProgramValidationBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
   body.validationRequests.forEach((r) => {
     const validationHandlers = program["PROGRAM_VALIDATION"];
-    const requirementHandler = validationHandlers
-      ? validationHandlers[r.key]
-      : undefined;
+    const requirementHandler =
+      validationHandlers &&
+      Object.prototype.hasOwnProperty.call(validationHandlers, r.key) &&
+      typeof validationHandlers[r.key] === "function"
+        ? validationHandlers[r.key]
+        : undefined;
 
     if (!requirementHandler) {
       // this return goes to no where
@@ -199,7 +202,7 @@ function handleProgramValidation(
 
 function handleProgramVariableSchemaRequest(
   body: ProgramVariableSchemaRequestBody,
-  program: Program
+  program: Program,
 ): ProgramTriggerResult {
   const schema = body.schema;
   const scheduleKey = body.scheduleKey;
