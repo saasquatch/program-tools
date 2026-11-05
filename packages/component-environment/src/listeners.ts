@@ -1,6 +1,6 @@
 import { ContextListener } from "dom-context";
 import { USER_CONTEXT_NAME, LOCALE_CONTEXT_NAME } from "./types.ts";
-import { UserIdentity } from "./types.ts";
+import { type UserIdentity } from "./types.ts";
 import {
   lazilyStartLocaleContext,
   validateLocale,

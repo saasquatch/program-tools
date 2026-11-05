@@ -4,9 +4,9 @@ import { equal } from "@wry/equality";
 import { getEnvironmentSDK } from "../environment.ts";
 import {
   USER_CONTEXT_NAME,
-  UserIdentity,
-  DecodedSquatchJWT,
-  DecodedWidgetAPIJWT,
+  type UserIdentity,
+  type DecodedSquatchJWT,
+  type DecodedWidgetAPIJWT,
 } from "../types.ts";
 import { startUserContextListenerForLocale } from "../listeners.ts";
 import { debug as _debug } from "../debug.ts";
