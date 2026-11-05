@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.4] - 2026-11-05
+
 ### Security
 
 - Removed signed user JWTs from stories and e2e tests. They were bundled into the lazy chunk customer pages load for `sqb-widget`; stories now use canned GraphQL data.
@@ -14,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Stencilbook and hook stories are bundled separately, so the `sqb-widget`, `sqb-auth-template-switch` and `sqb-program-*` chunks no longer include story code (170 KB → under 7 KB each).
+
+### Updated
+
+- Bumped `@saasquatch/component-boilerplate` to ^1.6.13-1
 
 ## [1.5.3] - 2026-04-01
 
@@ -244,7 +250,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.5.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.5.4...HEAD
+[1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.5.1
