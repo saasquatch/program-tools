@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/vanilla-components",
   "title": "Vanilla Components",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A minimal design library with components for referral and loyalty experiences.",
   "icon": "https://res.cloudinary.com/saasquatch/image/upload/v1652219900/squatch-assets/For_Vanilla.svg",
   "raisins": "docs/raisins.json",
@@ -20,8 +20,8 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "cross-env NODE_ENV=dev stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
+    "test": "stencil test --spec",
+    "test.watch": "stencil test --spec --watchAll",
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "build-storybook": "build-storybook -o docs -c .storybook-prod",
@@ -30,39 +30,18 @@
     "start:raisins": "run-p start serve:package"
   },
   "devDependencies": {
-    "@formatjs/intl-relativetimeformat": "^4.5.15",
-    "@formatjs/intl-utils": "^2.2.5",
     "@raisins/stencil-docs-target": "^1.1.1",
     "@stencil/core": "^1.17.0",
     "@stencil/sass": "^1.3.2",
-    "@stencil/utils": "latest",
-    "@types/clipboard": "^2.0.1",
-    "@types/faker": "^4.1.11",
     "@types/jest": "^25.2.1",
+    "@types/marked": "^4.3.2",
     "@types/node": "^13.13.15",
-    "@types/puppeteer": "2.0.1",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link-http": "^1.5.17",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
-    "clipboard": "^2.0.6",
     "cross-env": "^7.0.2",
-    "emotion": "^10.0.27",
-    "faker": "^4.1.0",
-    "graphql": "^14.7.0",
-    "graphql-tag": "^2.11.0",
-    "html-minifier": "^4.0.0",
-    "intl-messageformat": "^8.3.10",
-    "intl-relativeformat": "^6.4.3",
+    "html-minifier-terser": "^7.2.0",
     "jest": "^26.2.2",
     "jest-cli": "^26.2.2",
-    "marked": "^1.1.1",
-    "path-to-regexp": "^6.1.0",
-    "puppeteer": "3.0.3",
-    "ts-node": "^8.10.1",
-    "uuid": "^8.3.0",
-    "workbox-build": "4.3.1"
+    "jest-config": "^26.6.3",
+    "ts-node": "^10.9.2"
   },
   "resolutions": {
     "apollo-link": "^1.2.14"
@@ -79,7 +58,19 @@
   "homepage": "https://github.com/saasquatch/program-tools",
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
-    "@formatjs/intl-pluralrules": "^1.5.8"
+    "@formatjs/intl-pluralrules": "^1.5.8",
+    "@formatjs/intl-relativetimeformat": "^4.5.15",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-http": "^1.5.17",
+    "clipboard": "^2.0.6",
+    "emotion": "^10.0.27",
+    "graphql": "^14.7.0",
+    "graphql-tag": "^2.11.0",
+    "intl-messageformat": "^8.3.10",
+    "intl-relativeformat": "^6.4.3",
+    "marked": "^4.3.0",
+    "path-to-regexp": "^6.3.0"
   },
   "jest": {
     "transform": {
