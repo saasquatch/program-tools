@@ -275,6 +275,82 @@ describe("triggerProgram", () => {
       });
     });
 
+    test("PROGRAM_VALIDATION ignores inherited handler keys (prototype access guard)", () => {
+      const ownSpy = (jest.fn(
+        () => "own"
+      ) as unknown) as RequirementValidationHandler;
+      const inheritedSpy = jest.fn(() => "inherited");
+
+      // Handlers object with a callable key on its prototype chain
+      const handlers = Object.create({ inheritedRule: inheritedSpy });
+      handlers.rule1 = ownSpy;
+
+      const bodyWithPrototypeKeys = {
+        ...testBody,
+        validationRequests: [
+          { key: "rule1", queryResult: { test: "rule1" } },
+          // Inherited from the custom prototype — callable but not an own property
+          { key: "inheritedRule", queryResult: { test: "evil" } },
+          // Inherited from Object.prototype — callable but not own properties
+          { key: "toString", queryResult: { test: "evil" } },
+          { key: "constructor", queryResult: { test: "evil" } },
+          { key: "hasOwnProperty", queryResult: { test: "evil" } },
+        ],
+      };
+
+      const result = triggerProgram(bodyWithPrototypeKeys, {
+        PROGRAM_VALIDATION: handlers,
+      });
+
+      expect((ownSpy as jest.Mock).mock.calls[0]).toEqual([
+        { test: "rule1" },
+        testBody.program,
+        testBody.time,
+      ]);
+      expect(inheritedSpy).not.toHaveBeenCalled();
+
+      // Only the own, callable handler contributes a validation result
+      expect(result).toStrictEqual({
+        json: {
+          validationResults: [{ key: "rule1", results: "own" }],
+        },
+        code: 200,
+      });
+    });
+
+    test("PROGRAM_VALIDATION ignores own non-function handler values", () => {
+      const ownSpy = (jest.fn(
+        () => "own"
+      ) as unknown) as RequirementValidationHandler;
+
+      const result = triggerProgram(
+        {
+          ...testBody,
+          validationRequests: [
+            { key: "rule1", queryResult: { test: "rule1" } },
+            { key: "rule2", queryResult: { test: "rule2" } },
+            { key: "rule3", queryResult: { test: "rule3" } },
+          ],
+        },
+        {
+          PROGRAM_VALIDATION: {
+            rule1: ownSpy,
+            rule2: ("not-a-function" as unknown) as RequirementValidationHandler,
+            rule3: (42 as unknown) as RequirementValidationHandler,
+          },
+        }
+      );
+
+      // Non-function values must not be invoked (would throw a TypeError)
+      // and must not appear in validationResults
+      expect(result).toStrictEqual({
+        json: {
+          validationResults: [{ key: "rule1", results: "own" }],
+        },
+        code: 200,
+      });
+    });
+
     test.skip("PROGRAM_VALIDATION errors - NEEDS IMPLEMENTATION", () => {});
   });
 
