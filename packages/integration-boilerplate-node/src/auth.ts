@@ -91,10 +91,11 @@ export class Auth {
     jwsNoPayloadHeader: string
   ) {
     const requestBodyBase64 = Base64.encodeURI(requestBody);
-    const token = jwsNoPayloadHeader.replace(
-      "..",
-      "." + requestBodyBase64 + "."
-    );
+    // The RFC 7797 header is a detached-payload JWS of the form
+    // "<protectedHeader>..<signature>" — re-insert the encoded payload
+    // between the two separator dots.
+    const [protectedHeader, , signature] = jwsNoPayloadHeader.split(".");
+    const token = `${protectedHeader}.${requestBodyBase64}.${signature}`;
 
     return await validateWithJwks(token, this.getJwksClient());
   }
