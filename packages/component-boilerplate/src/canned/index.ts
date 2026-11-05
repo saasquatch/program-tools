@@ -5,7 +5,7 @@ import { RequestDocument } from "graphql-request/dist/types";
 import { ContextProvider } from "dom-context";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
 import type { UserIdentity } from "@saasquatch/component-environment";
-import { setUserIdentity } from "../hooks/environment";
+import { setProgramId, setUserIdentity } from "../hooks/environment";
 import { GRAPHQL_CONTEXT } from "../hooks/graphql/context";
 import { fakeJwt } from "../fakeJwt";
 import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, withSeed } from "./mocks";
@@ -21,6 +21,9 @@ export type { Mocks };
 export const CANNED_TENANT_ALIAS = "test_canned";
 export const CANNED_APP_DOMAIN = "https://canned.invalid";
 
+/** Long enough for loading states to render, short enough not to slow stories down. */
+const STORY_LATENCY = 100;
+
 let schema: GraphQLSchema | undefined;
 function getSchema(): GraphQLSchema {
   if (!schema) schema = buildSchema(SAASQUATCH_SCHEMA_SDL);
@@ -32,6 +35,12 @@ export interface CannedOptions {
   mocks?: Mocks;
   /** Changes every generated value while keeping each response deterministic. */
   seed?: string;
+  /**
+   * Milliseconds each response takes, like a network round trip. Hooks that
+   * act when `loading` goes from true to false (e.g. closing a form after a
+   * save) never see it change if a response arrives within the same render.
+   */
+  latency?: number;
 }
 
 /**
@@ -60,6 +69,9 @@ export class CannedGraphQLClient {
     const result = withSeed(seed, () =>
       graphqlSync({ schema: this.schema, source: query, variableValues: variables })
     );
+    if (this.options.latency) {
+      await new Promise((resolve) => setTimeout(resolve, this.options.latency));
+    }
     if (result.errors?.length) {
       throw new ClientError(
         // The wire format, which is what a network ClientError carries.
@@ -177,8 +189,14 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
   };
 
   const stop = useMemo(() => {
+    // Like identity, the global program provider outlives each story and reads
+    // widgetIdent only once, so every mount sets it. This runs during render,
+    // so a story's own setProgramId call after this one still wins; it is not
+    // reset on cleanup, which can run after the next story has rendered.
+    setProgramId((window as any).widgetIdent.programId);
     const locale = widgetIdent?.locale;
     const client = createCannedGraphQLClient({
+      latency: STORY_LATENCY,
       ...canned,
       mocks: locale
         ? mergeMocks({ User: () => ({ locale }) }, canned.mocks)

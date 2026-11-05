@@ -34,5 +34,9 @@ export const ReferralTable = createHookStory(() => {
   (`https://canned.invalid`) can never resolve, so anything that escapes fails
   instead of reaching a real server.
 - `fakeJwt(payload)` makes an unsigned token for code that only decodes it.
+- Lists keep the same `totalCount` on every page and honour `offset` and `limit`,
+  so tables paginate.
+- Responses take 100ms in stories (`latency`, 0 for `createCannedGraphQLClient`),
+  like a network round trip, so loading states render.
 
 Refresh the schema snapshot with `npm run sync-canned-schema -- <path to the saasquatch repo>`.

@@ -16,7 +16,8 @@ function useGraphQL(user: { id: string; accountId: string; programId?: string; l
     programId: user.programId ?? 'Vacay-referral',
     user: { id: user.id, accountId: user.accountId },
     widgetIdent: { engagementMedium: 'EMBED', locale: user.locale },
-    mocks: cannedWidgetMocks,
+    // A fixture without a locale is a user with no stored locale, not the canned en_US default.
+    mocks: user.locale ? cannedWidgetMocks : { ...cannedWidgetMocks, User: () => ({ locale: null }) },
   });
 }
 

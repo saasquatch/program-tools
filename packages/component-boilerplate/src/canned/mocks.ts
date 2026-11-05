@@ -6,6 +6,7 @@ import {
   isListType,
   isNonNullType,
 } from "graphql";
+import { fakeJwt } from "../fakeJwt";
 
 export type Mocks = Record<string, (...args: any[]) => unknown>;
 
@@ -145,6 +146,8 @@ const fieldInfo = (info?: GraphQLResolveInfo) => ({
 const scalarMocks: Mocks = {
   String: (_r, _a, _c, info) => {
     const { fieldName, parentType } = fieldInfo(info);
+    // Views treat any reason code as "unavailable"; the API sends none for available items.
+    if (/reasoncode$/i.test(fieldName)) return null;
     return stringFor(fieldName, parentType);
   },
   ID: () => hexId(),
@@ -159,8 +162,8 @@ const scalarMocks: Mocks = {
   Int: () => int(1, 25),
   Float: (_r, _a, _c, info) => {
     const f = fieldInfo(info).fieldName.toLowerCase();
-    // Taxes and fees stay a small fraction of amounts, so "after tax" is positive.
-    if (/vat|tax|fee/.test(f)) return int(100, 2500) / 100;
+    // Taxes and fees stay below the smallest amount, so "after tax" is always positive.
+    if (/vat|tax|fee/.test(f)) return int(100, 1500) / 100;
     return int(2000, 40000) / 100;
   },
   Long: (_r, _a, _c, info) => {
@@ -219,8 +222,9 @@ function personMocks(schema: GraphQLSchema): Mocks {
 }
 
 /**
- * Paginated `*List` types (`{ data, totalCount, count }`) return a few rows
- * whose count agrees with `totalCount`, honouring a `limit` argument.
+ * Paginated `*List` types (`{ data, totalCount, count }`) page through a
+ * collection whose size depends only on the type, so `totalCount` stays the
+ * same on every page and `offset`/`limit` slice it like the API does.
  */
 function listMocks(schema: GraphQLSchema): Mocks {
   const mocks: Mocks = {};
@@ -231,11 +235,14 @@ function listMocks(schema: GraphQLSchema): Mocks {
     if (!data || !isListType(isNonNullType(data.type) ? data.type.ofType : data.type)) {
       continue;
     }
+    // 6–12 items: more than one page for tables showing 4 or 5 per page.
+    const total = 6 + (fnv1a(type.name) % 7);
     mocks[type.name] = (_root, args) => {
-      const limit = typeof args?.limit === "number" ? args.limit : 5;
-      const rows = Math.min(limit, int(3, 5));
+      const offset = typeof args?.offset === "number" ? Math.max(0, args.offset) : 0;
+      const limit = typeof args?.limit === "number" ? args.limit : total;
+      const rows = Math.max(0, Math.min(limit, total - offset));
       const result: Record<string, unknown> = { data: () => new MockList(rows) };
-      if ("totalCount" in fields) result.totalCount = rows;
+      if ("totalCount" in fields) result.totalCount = total;
       if ("count" in fields) result.count = rows;
       return result;
     };
@@ -252,12 +259,30 @@ const abstractMocks: Mocks = {
   WidgetConfig: () => ({ __typename: "ProgramWidgetConfig" }),
 };
 
+/** Responses whose shape the calling hook relies on, not just their types. */
+const responseMocks: Mocks = {
+  // Login and registration hooks decode this token to set the user identity.
+  ManagedIdentityAuthenticationResult: () => {
+    const { email } = persona();
+    const id = hexId();
+    return { email, token: fakeJwt({ user: { id, accountId: id, email } }) };
+  },
+  Mutation: () => ({
+    // Saving a user returns what was saved, as the API does.
+    upsertUser: ({ userInput }: { userInput: Record<string, unknown> }) =>
+      Object.fromEntries(
+        Object.entries(userInput).filter(([, v]) => v === null || typeof v !== "object")
+      ),
+  }),
+};
+
 export function defaultMocks(schema: GraphQLSchema): Mocks {
   return {
     ...scalarMocks,
     ...personMocks(schema),
     ...listMocks(schema),
     ...abstractMocks,
+    ...responseMocks,
   };
 }
 

@@ -1,7 +1,12 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { ContextListener } from "dom-context";
-import { getUserIdentity, setUserIdentity } from "@saasquatch/component-environment";
+import {
+  getProgramId,
+  getUserIdentity,
+  setProgramId,
+  setUserIdentity,
+} from "@saasquatch/component-environment";
 import { setImplementation } from "@saasquatch/universal-hooks";
 import { cleanup, renderHook } from "@testing-library/react-hooks";
 import * as React from "react";
@@ -86,10 +91,35 @@ describe("CannedGraphQLClient", () => {
     expect(viewer.referralCode).toBe(handle.toUpperCase());
   });
 
-  it("returns as many rows as totalCount says, within the limit", async () => {
-    const { viewer } = await client.request(VIEWER);
-    expect(viewer.referrals.data).toHaveLength(viewer.referrals.totalCount);
-    expect(viewer.referrals.totalCount).toBeLessThanOrEqual(3);
+  it("pages through a collection whose totalCount is the same on every page", async () => {
+    const PAGE = gql`
+      query ($limit: Int!, $offset: Int!) {
+        viewer {
+          ... on User {
+            referrals(limit: $limit, offset: $offset) {
+              totalCount
+              count
+              data {
+                id
+              }
+            }
+          }
+        }
+      }
+    `;
+    const page = async (limit: number, offset: number) =>
+      (await client.request(PAGE, { limit, offset })).viewer.referrals;
+
+    const first = await page(4, 0);
+    expect(first.totalCount).toBeGreaterThan(4);
+    expect(first.data).toHaveLength(4);
+    expect(first.count).toBe(4);
+
+    const last = await page(4, 4);
+    expect(last.totalCount).toBe(first.totalCount);
+    expect(last.data).toHaveLength(Math.min(4, first.totalCount - 4));
+
+    expect((await page(4, first.totalCount)).data).toHaveLength(0);
   });
 
   it("returns dates as epoch millis in the 90 days before CANNED_NOW", async () => {
@@ -102,7 +132,7 @@ describe("CannedGraphQLClient", () => {
   });
 
   it("keeps invoice taxes below earnings, as the invoice table assumes", async () => {
-    const res = await client.request(gql`
+    const query = gql`
       query {
         viewer {
           ... on User {
@@ -121,14 +151,90 @@ describe("CannedGraphQLClient", () => {
           }
         }
       }
-    `);
-    const invoices = res.viewer.impactConnection.publisher.invoices.data;
-    expect(invoices.length).toBeGreaterThan(0);
-    for (const invoice of invoices) {
-      expect(invoice.totalAmount - invoice.totalVatAmount).toBeGreaterThan(0);
-      expect(invoice.id).toMatch(/^[0-9a-f]{12}$/);
-      expect(invoice.downloadUrl).toMatch(/^https:\/\//);
+    `;
+    // Many seeds, so overlapping amount ranges can't pass by luck.
+    for (let seed = 0; seed < 200; seed++) {
+      const res = await createCannedGraphQLClient({ seed: String(seed) }).request(query);
+      const invoices = res.viewer.impactConnection.publisher.invoices.data;
+      expect(invoices.length).toBeGreaterThan(0);
+      for (const invoice of invoices) {
+        expect(invoice.totalAmount - invoice.totalVatAmount).toBeGreaterThan(0);
+        expect(invoice.id).toMatch(/^[0-9a-f]{12}$/);
+        expect(invoice.downloadUrl).toMatch(/^https:\/\//);
+      }
     }
+  });
+
+  it("offers available rewards without an unavailable reason", async () => {
+    const res = await client.request(gql`
+      query {
+        viewer {
+          ... on User {
+            visibleRewardExchangeItems(limit: 5) {
+              data {
+                available
+                unavailableReasonCode
+                steps {
+                  available
+                  unavailableReasonCode
+                }
+              }
+            }
+          }
+        }
+      }
+    `);
+    const items = res.viewer.visibleRewardExchangeItems.data;
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      expect(item).toMatchObject({ available: true, unavailableReasonCode: null });
+      for (const step of item.steps) {
+        expect(step).toMatchObject({ available: true, unavailableReasonCode: null });
+      }
+    }
+  });
+
+  it("returns a decodable user token from login and registration", async () => {
+    const res = await client.request(
+      gql`
+        mutation RegisterWithEmailAndPassword($email: String!, $password: String!) {
+          registerManagedIdentityWithEmailAndPassword(
+            registerManagedIdentityWithEmailAndPasswordInput: {
+              email: $email
+              password: $password
+            }
+          ) {
+            token
+            email
+          }
+        }
+      `,
+      { email: "jane@example.com", password: "hunter2" }
+    );
+    const { token, email } = res.registerManagedIdentityWithEmailAndPassword;
+    const { user } = jwtDecode<{ user: Record<string, string> }>(token);
+    expect(user.id).toMatch(/^[0-9a-f]{12}$/);
+    expect(user).toMatchObject({ accountId: user.id, email });
+    expect(SIGNED_JWT.test(token)).toBe(false);
+  });
+
+  it("returns a saved user as submitted, as edit profile displays it", async () => {
+    const res = await client.request(
+      gql`
+        mutation ($id: String!, $accountId: String!, $firstName: String!, $lastName: String!) {
+          upsertUser(
+            userInput: { id: $id, accountId: $accountId, firstName: $firstName, lastName: $lastName }
+          ) {
+            firstName
+            lastName
+            email
+          }
+        }
+      `,
+      { id: "jane", accountId: "jane", firstName: "Janet", lastName: "Smith" }
+    );
+    expect(res.upsertUser).toMatchObject({ firstName: "Janet", lastName: "Smith" });
+    expect(res.upsertUser.email).toMatch(/@example\.com$/);
   });
 
   it("serves images inline so stories make no network requests", async () => {
@@ -251,6 +357,17 @@ describe("CannedGraphQLClient", () => {
     const original = Math.random;
     await client.request(VIEWER);
     expect(Math.random).toBe(original);
+  });
+
+  it("can take a round trip, so hooks see loading go from true to false", async () => {
+    let settled = false;
+    const request = createCannedGraphQLClient({ latency: 20 })
+      .request(VIEWER)
+      .then(() => (settled = true));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(settled).toBe(false);
+    await request;
+    expect(settled).toBe(true);
   });
 });
 
@@ -392,6 +509,25 @@ describe("useCannedEnvironment identity", () => {
   it("prefers an explicit user over widgetIdent credentials", () => {
     story({ user: { id: "jane", accountId: "jane" }, widgetIdent: WIDGET_IDENT_USER });
     expect(getUserIdentity()).toMatchObject({ id: "jane", accountId: "jane" });
+  });
+
+  it("sets each story's program, which the story's own setProgramId still overrides", () => {
+    story({ programId: "first-program" }).unmount();
+    expect(getProgramId()).toBe("first-program");
+
+    story({ programId: "second-program" });
+    expect(getProgramId()).toBe("second-program");
+    cleanup();
+
+    story({});
+    expect(getProgramId()).toBeUndefined();
+    cleanup();
+
+    renderHook(() => {
+      useCannedEnvironment({ programId: "canned-program" });
+      setProgramId("story-program");
+    });
+    expect(getProgramId()).toBe("story-program");
   });
 });
 
