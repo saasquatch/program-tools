@@ -1,6 +1,6 @@
 import fs from "fs";
 import jwt from "jsonwebtoken";
-import { AuthenticationClient } from "auth0";
+import { AuthClient } from "@auth0/auth0-auth-js";
 import { Logger } from "@saasquatch/logger";
 
 export interface Auth0WorkloadIdentityCredentialProviderOptions {
@@ -58,7 +58,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
   }
 
   async getWorkloadIdentityAccessToken() {
-    const auth0 = new AuthenticationClient({
+    const auth0 = new AuthClient({
       domain: this.options.auth0Domain,
       clientId: this.options.auth0ClientId,
       clientSecret: this.options.auth0ClientSecret,
@@ -66,9 +66,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
 
     const audience = `https://iam.googleapis.com/projects/${this.options.googleWorkloadProjectId}/locations/global/workloadIdentityPools/${this.options.googleWorkloadIdentityPool}/providers/${this.options.googleWorkloadIdentityProvider}`;
 
-    const response = await auth0.clientCredentialsGrant({
-      audience,
-    });
+    const response = await auth0.getTokenByClientCredentials({ audience });
 
     return response;
   }
@@ -80,10 +78,10 @@ export class Auth0WorkloadIdentityCredentialProvider {
 
     try {
       const token = await this.getWorkloadIdentityAccessToken();
-      const decoded = jwt.decode(token.access_token);
+      const decoded = jwt.decode(token.accessToken);
 
       if (isValidJwtPayload(decoded)) {
-        fs.writeFileSync(this.tokenFile, JSON.stringify(token));
+        fs.writeFileSync(this.tokenFile, JSON.stringify({ access_token: token.accessToken }));
 
         // Reschedule token refresh in 75% of the expiry time of the new token
         const expiresInSeconds = decoded.exp - decoded.iat;
@@ -98,7 +96,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
         throw new Error("Did not get a valid JWT payload from Auth0");
       }
     } catch (e) {
-      this.logger.error("Failed to refresh workload identity token: %s", { e });
+      this.logger.error("Failed to refresh workload identity token", { e });
 
       // If we fail to get a new token from Auth0, let's hope we already have a token that hasn't
       // expired yet. Schedule a refresh in 5 seconds to try again.
