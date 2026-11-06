@@ -1,3 +1,7 @@
+import integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json" with { type: "json" };
+import { Ajv } from "ajv";
+import addFormatsImport, { type FormatsPlugin } from "ajv-formats";
+import draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json" with { type: "json" };
 import type { Request, Response } from "express";
 import { BaseConfig } from "./config.ts";
 import {
@@ -7,13 +11,10 @@ import {
 } from "./errors.ts";
 import { IntegrationService } from "./service.ts";
 import type { IntrospectionBody } from "./types.ts";
-import { Ajv } from "ajv";
-import addFormatsImport, { type FormatsPlugin } from "ajv-formats";
-import draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json" with { type: "json" };
-import integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json" with { type: "json" };
 
 // CJS/ESM interop: at runtime the default import of this CommonJS module *is*
 // the plugin function, but nodenext typing resolves it to the module namespace
+// oxlint-disable-next-line typescript/no-unsafe-type-assertion
 const addFormats = addFormatsImport as unknown as FormatsPlugin;
 
 const additionalPropertiesTrue = (input: any): void => {
@@ -58,11 +59,11 @@ const validateIntrospectionBody = ajv.compile(introspectionBodySchema);
 export async function introspectionHandler<
   ServiceConfig extends BaseConfig,
   IntegrationConfig,
-  FormConfig
+  FormConfig,
 >(
   req: Request,
   res: Response,
-  service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>
+  service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
 ) {
   const introspectionBody: IntrospectionBody<IntegrationConfig> = req.body;
   const validationResult = validateIntrospectionBody(introspectionBody);
@@ -90,8 +91,13 @@ export async function introspectionHandler<
   try {
     if (service.options?.handlers?.introspectionHandler) {
       try {
-        const introspectionResult = await service.options.handlers
-          .introspectionHandler!(service, config, template, tenantAlias);
+        const introspectionResult =
+          await service.options.handlers.introspectionHandler(
+            service,
+            config,
+            template,
+            tenantAlias,
+          );
         res.status(200).json(introspectionResult);
       } catch (e) {
         throw new UnhandledIntrospectionError(errorToString(e));
@@ -99,7 +105,7 @@ export async function introspectionHandler<
     } else {
       // should be unreachable, the call site for this function has a check for the introspectionHandler
       service.logger.crit(
-        "Error: attempted to run introspectionHandler without an introspection handler in the options. This is a logic error"
+        "Error: attempted to run introspectionHandler without an introspection handler in the options. This is a logic error",
       );
       res.status(500).json({ errorCode: "INTERNAL_ERROR" });
     }

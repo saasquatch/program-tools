@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
-
-import type { Webhook, TenantScopedGraphQLFn } from "./types.ts";
-import { handleError, errorToString, UnhandledWebhookError } from "./errors.ts";
 import { BaseConfig } from "./config.ts";
+import { handleError, errorToString, UnhandledWebhookError } from "./errors.ts";
 import { IntegrationService } from "./service.ts";
+import type { Webhook, TenantScopedGraphQLFn } from "./types.ts";
 
 export async function webhookHandler<
   ServiceConfig extends BaseConfig,
@@ -15,7 +14,7 @@ export async function webhookHandler<
   service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
   graphql: TenantScopedGraphQLFn,
 ) {
-  const webhook = req.body as Webhook;
+  const webhook: Webhook = req.body;
 
   service.logger.debug({
     message: "SaaSquatch webhook received",
@@ -28,7 +27,7 @@ export async function webhookHandler<
     const config = await service.getIntegrationConfig(webhook.tenantAlias);
     if (service.options?.handlers?.webhookHandler) {
       try {
-        await service.options.handlers.webhookHandler!(
+        await service.options.handlers.webhookHandler(
           service,
           webhook,
           config,

@@ -7,11 +7,12 @@ import {
   BeforeAll,
   AfterAll,
 } from "@cucumber/cucumber";
-import FakeTimers, { type InstalledClock } from "@sinonjs/fake-timers";
+import FakeTimers from "@sinonjs/fake-timers";
 import type { Application } from "express";
 
-import { server as mswServer } from "../../mocks/server.ts";
+type InstalledClock = ReturnType<typeof FakeTimers.install>;
 import { graphqlShouldError } from "../../mocks/graphql.ts";
+import { server as mswServer } from "../../mocks/server.ts";
 import type { BaseConfig } from "../../src/index.ts";
 import { resetAllMocks } from "./mocks.ts";
 
@@ -40,7 +41,9 @@ export class TestWorld extends World {
       this.app = service.server;
       this.config = service.config;
       this.server = service.server.listen(() => {
-        this.port = (this.server!.address() as any).port;
+        const address = this.server!.address();
+        this.port =
+          typeof address === "object" && address !== null ? address.port : 0;
         resolve();
       });
     });

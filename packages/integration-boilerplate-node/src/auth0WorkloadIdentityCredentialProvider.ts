@@ -1,7 +1,7 @@
 import fs from "fs";
-import jwt from "jsonwebtoken";
 import { AuthClient } from "@auth0/auth0-auth-js";
 import { Logger } from "@saasquatch/logger";
+import jwt from "jsonwebtoken";
 
 export interface Auth0WorkloadIdentityCredentialProviderOptions {
   auth0Domain: string;
@@ -31,7 +31,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
     this.workloadIdentityFile =
       options.workloadIdentityFile ?? "workload-identity.json";
     this.prepareGoogleCredentials();
-    this.refreshAccessToken();
+    void this.refreshAccessToken();
   }
 
   prepareGoogleCredentials() {
@@ -85,14 +85,17 @@ export class Auth0WorkloadIdentityCredentialProvider {
       const decoded = jwt.decode(token.accessToken);
 
       if (isValidJwtPayload(decoded)) {
-        fs.writeFileSync(this.tokenFile, JSON.stringify({ access_token: token.accessToken }));
+        fs.writeFileSync(
+          this.tokenFile,
+          JSON.stringify({ access_token: token.accessToken }),
+        );
 
         // Reschedule token refresh in 75% of the expiry time of the new token
         const expiresInSeconds = decoded.exp - decoded.iat;
         const refreshInSeconds = Math.max(10, expiresInSeconds * 0.75);
 
         this.logger.debug(
-          `Refreshed workload identity token, expires in ${expiresInSeconds} seconds.`
+          `Refreshed workload identity token, expires in ${expiresInSeconds} seconds.`,
         );
 
         reschedule(refreshInSeconds);

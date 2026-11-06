@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
-
-import * as types from "./types.ts";
-import { handleError, errorToString, UnhandledFormError } from "./errors.ts";
 import { BaseConfig } from "./config.ts";
+import { handleError, errorToString, UnhandledFormError } from "./errors.ts";
 import { IntegrationService } from "./service.ts";
+import * as types from "./types.ts";
 
 export function isFormErrorResponse(
   response: any,
@@ -21,14 +20,11 @@ export async function formHandler<
   service: IntegrationService<ServiceConfig, IntegrationConfig, FormConfig>,
   graphql: types.TenantScopedGraphQLFn,
 ) {
-  service.logger.debug(
-    "SaaSquatch form handler request received",
-    {
-      type: req.body.type,
-      tenantAlias: req.body.tenantAlias,
-      formKey: req.body.form?.key,
-    },
-  );
+  service.logger.debug("SaaSquatch form handler request received", {
+    type: req.body.type,
+    tenantAlias: req.body.tenantAlias,
+    formKey: req.body.form?.key,
+  });
 
   const {
     type,
@@ -60,6 +56,7 @@ export async function formHandler<
         if (service.options?.handlers?.formSubmitHandler) {
           response = await service.options.handlers.formSubmitHandler(
             service,
+            // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- narrowed by the discriminant switch
             context as types.FormSubmitRequestContext<
               IntegrationConfig,
               FormConfig
@@ -77,6 +74,7 @@ export async function formHandler<
         if (service.options?.handlers?.formValidateHandler) {
           response = await service.options.handlers.formValidateHandler(
             service,
+            // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- narrowed by the discriminant switch
             context as types.FormValidateRequestContext<
               IntegrationConfig,
               FormConfig
@@ -95,6 +93,7 @@ export async function formHandler<
         if (service.options?.handlers?.formIntrospectionHandler) {
           response = await service.options.handlers.formIntrospectionHandler(
             service,
+            // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- narrowed by the discriminant switch
             context as types.FormIntrospectionRequestContext<
               IntegrationConfig,
               FormConfig
@@ -114,6 +113,7 @@ export async function formHandler<
         if (service.options?.handlers?.formInitialDataHandler) {
           response = await service.options.handlers.formInitialDataHandler(
             service,
+            // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- narrowed by the discriminant switch
             context as types.FormInitialDataRequestContext<
               IntegrationConfig,
               FormConfig
@@ -128,7 +128,7 @@ export async function formHandler<
         }
         break;
       default:
-        throw new Error(`Unknown form handler \`${context.type}\``);
+        throw new Error(`Unknown form handler \`${String(context.type)}\``);
     }
 
     if (isFormErrorResponse(response)) {

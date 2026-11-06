@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import { Given, When, Then } from "@cucumber/cucumber";
-
 import {
   type ConfigProvider,
   setting,
@@ -37,7 +36,7 @@ class MapConfigProvider implements ConfigProvider {
 /** A misbehaving provider whose get() silently returns undefined. */
 class SilentMapConfigProvider extends MapConfigProvider {
   override get(key: string): string {
-    return this.values[key] as string;
+    return this.values[key];
   }
 }
 
@@ -211,6 +210,7 @@ Then(
   "the nested config value will be {string}",
   function (this: SettingsWorld, expected: string) {
     assert.equal(this.settingsError, undefined);
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- test inspects a known nested config shape
     const nestedConfig = configObject(this)["nestedConfig"] as Record<
       string,
       unknown

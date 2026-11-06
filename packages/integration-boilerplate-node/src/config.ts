@@ -11,7 +11,7 @@ class EnvironmentConfigProvider implements ConfigProvider {
     if (!process.env[key]) {
       throw new Error(`Missing environment variable - ${key}`);
     }
-    return process.env[key] as string;
+    return process.env[key];
   }
 
   has(key: string): boolean {
@@ -26,7 +26,10 @@ export class BaseConfig {
 
   serverLogFile = setting("SERVER_LOG_FILE", { default: "" });
 
-  enforceHttps = setting("ENFORCE_HTTPS", { transform: asBoolean, default: true });
+  enforceHttps = setting("ENFORCE_HTTPS", {
+    transform: asBoolean,
+    default: true,
+  });
 
   proxyFrontend = setting("PROXY_FRONTEND", { default: "" });
 
@@ -68,9 +71,12 @@ export class BaseConfig {
     default: "",
   });
 
-  googleWorkloadIdentityProvider = setting("GOOGLE_WORKLOAD_IDENTITY_PROVIDER", {
-    default: "",
-  });
+  googleWorkloadIdentityProvider = setting(
+    "GOOGLE_WORKLOAD_IDENTITY_PROVIDER",
+    {
+      default: "",
+    },
+  );
 
   googleWorkloadIdentityServiceAccountEmail = setting(
     "GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL",
@@ -78,10 +84,14 @@ export class BaseConfig {
   );
 }
 
+export async function loadConfig(): Promise<BaseConfig>;
 export async function loadConfig<T extends BaseConfig>(
-  Config?: new () => T,
-): Promise<T> {
+  Config: new () => T,
+): Promise<T>;
+export async function loadConfig(
+  Config?: new () => BaseConfig,
+): Promise<BaseConfig> {
   const config = Config ? new Config() : new BaseConfig();
   await loadConfiguration(config, new EnvironmentConfigProvider());
-  return config as T;
+  return config;
 }

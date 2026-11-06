@@ -1,14 +1,13 @@
 import assert from "node:assert/strict";
 import { Given, When, Then } from "@cucumber/cucumber";
-import { Router, type Application } from "express";
-
-import { createIntegrationService } from "../../src/index.ts";
+import { Router } from "express";
 import { graphqlShouldError } from "../../mocks/graphql.ts";
+import { createIntegrationService } from "../../src/index.ts";
 import { makeMock } from "../support/mocks.ts";
 import type { TestWorld } from "../support/world.ts";
 
-const mockWebhookHandler = makeMock((_s: any, _w: any, _c: any, _g: any, r: any) =>
-  r.sendStatus(200),
+const mockWebhookHandler = makeMock(
+  (_s: any, _w: any, _c: any, _g: any, r: any) => r.sendStatus(200),
 );
 
 const mockIntrospectionHandler = makeMock(
@@ -19,23 +18,26 @@ const mockBrokenWebhookHandler = makeMock(() => {
   throw new Error("broken webhook handler");
 });
 
-const mockFormSubmitHandler = makeMock(() => ({ results: [] }));
+const mockFormSubmitHandler = makeMock(async () => ({ results: [] }));
 
-const mockFormValidateHandler = makeMock(() => ({ valid: true, errors: [] }));
+const mockFormValidateHandler = makeMock(async () => ({
+  valid: true,
+  errors: [],
+}));
 
-const mockFormIntrospectionHandler = makeMock(() => ({
+const mockFormIntrospectionHandler = makeMock(async () => ({
   actions: [],
   inputData: [],
   inputDataSchema: {},
 }));
 
-const mockFormInitialDataHandler = makeMock(() => ({ inputData: {} }));
+const mockFormInitialDataHandler = makeMock(async () => ({ inputData: {} }));
 
 const mockBrokenFormHandler = makeMock(() => {
   throw new Error("broken form handler");
 });
 
-const mockErrorFormHandler = makeMock(() => ({
+const mockErrorFormHandler = makeMock(async () => ({
   errorCode: "NOT_HAPPY",
   error: "form handler failed",
 }));
@@ -135,6 +137,7 @@ Given(
     router.get(
       "/test",
       service.tenantScopedTokenMiddleware,
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- test-only route
       async (req, res) => {
         const { config: _config, graphql: _graphql } = await service.getTenant(
           req.tenantAlias!,
@@ -160,6 +163,7 @@ Given(
     router.get(
       "/test",
       service.tenantScopedTokenMiddleware,
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- test-only route
       async (req, res) => {
         const { config: _config, graphql } = await service.getTenant(
           req.tenantAlias!,
@@ -202,6 +206,7 @@ Given(
     this.requestInit = {
       ...this.requestInit,
       headers: {
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- tests only ever set plain-object headers
         ...(this.requestInit.headers as Record<string, string>),
         [header]: value,
       },
@@ -224,7 +229,7 @@ Then(
   /^there is no "(.*)" route configured$/,
   function (this: TestWorld, route: string) {
     assert.notStrictEqual(this.app, null);
-    const routeIsConfigured = !!(this.app as Application)["_router"].stack.find(
+    const routeIsConfigured = !!this.app!["_router"].stack.find(
       (layer: any) => {
         return layer?.route?.path === route;
       },

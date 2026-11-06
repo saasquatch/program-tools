@@ -275,7 +275,7 @@ router.get(
     const response = await graphql(gql`query { ... }`);
 
     res.sendStatus(200);
-  }
+  },
 );
 ```
 

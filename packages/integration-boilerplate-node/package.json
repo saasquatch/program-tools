@@ -2,51 +2,30 @@
   "name": "@saasquatch/integration-boilerplate-node",
   "version": "3.0.0-0",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
-  "engines": {
-    "node": "^24 || ^26"
-  },
-  "files": [
-    "dist/"
-  ],
-  "type": "module",
-  "prettier": {},
+  "license": "MIT",
+  "author": "ReferralSaaSquatch.com, Inc.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
   "source": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "build": "tsc",
     "test": "cucumber-js",
     "test:coverage": "c8 cucumber-js",
+    "check": "tsc --noEmit && oxlint",
+    "format": "oxfmt",
     "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
     "prepack": "npm run build"
-  },
-  "author": "ReferralSaaSquatch.com, Inc.",
-  "license": "MIT",
-  "publishConfig": {
-    "provenance": true
-  },
-  "overrides": {
-    "c8": {
-      "glob": "^14.0.2",
-      "minimatch": "^11.0.1"
-    }
-  },
-  "devDependencies": {
-    "@cucumber/cucumber": "^13.3.0",
-    "@sinonjs/fake-timers": "^15.4.0",
-    "@types/compression": "^1.8.1",
-    "@types/express": "^4.17.25",
-    "@types/express-sslify": "^1.2.5",
-    "@types/json-schema": "^7.0.15",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^26.6.6",
-    "c8": "^12.0.0",
-    "msw": "^2.15.0",
-    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@auth0/auth0-auth-js": "^1.18.0",
@@ -71,5 +50,30 @@
     "node-cache": "^5.1.2",
     "noop-tag": "^1.0.2",
     "ts-custom-error": "^3.3.1"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "@sinonjs/fake-timers": "^15.4.0",
+    "@types/compression": "^1.8.1",
+    "@types/express": "^4.17.25",
+    "@types/express-sslify": "^1.2.5",
+    "@types/json-schema": "^7.0.15",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.6.6",
+    "c8": "^12.0.0",
+    "msw": "^2.15.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "c8": {
+      "glob": "^14.0.2",
+      "minimatch": "^11.0.1"
+    }
+  },
+  "engines": {
+    "node": "^24 || ^26"
   }
 }

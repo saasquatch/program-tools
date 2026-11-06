@@ -42,19 +42,11 @@ interface NestedDescriptor {
 }
 
 function isSetting(value: unknown): value is SettingDescriptor {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    (value as SettingDescriptor)[SettingBrand] === true
-  );
+  return typeof value === "object" && value !== null && SettingBrand in value;
 }
 
 function isNested(value: unknown): value is NestedDescriptor {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    (value as NestedDescriptor)[NestedBrand] === true
-  );
+  return typeof value === "object" && value !== null && NestedBrand in value;
 }
 
 /** Required string setting. Loading throws if the key is absent. */
@@ -104,9 +96,10 @@ export function setting(
  * A nested config object loaded from the same provider, e.g.
  * `database = nested(DatabaseConfig);`
  */
-export function nested<T extends object>(Nested: new () => T): T {
+export function nested<T extends object>(Nested: new () => T): T;
+export function nested(Nested: new () => object): unknown {
   const descriptor: NestedDescriptor = { [NestedBrand]: true, Nested };
-  return descriptor as unknown as T;
+  return descriptor;
 }
 
 //
@@ -144,14 +137,11 @@ export async function loadConfiguration(
 ): Promise<void> {
   for (const [property, value] of Object.entries(obj)) {
     if (isSetting(value)) {
-      (obj as Record<string, unknown>)[property] = resolveSetting(
-        value,
-        configProvider,
-      );
+      Reflect.set(obj, property, resolveSetting(value, configProvider));
     } else if (isNested(value)) {
       const nestedObject = new value.Nested();
       await loadConfiguration(nestedObject, configProvider);
-      (obj as Record<string, unknown>)[property] = nestedObject;
+      Reflect.set(obj, property, nestedObject);
     }
   }
 }

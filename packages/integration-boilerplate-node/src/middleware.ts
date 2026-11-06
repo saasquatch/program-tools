@@ -1,7 +1,6 @@
-import type { Request, Response, NextFunction } from "express";
 import { Logger } from "@saasquatch/logger";
+import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-
 import { Auth } from "./auth.ts";
 import type { TenantAlias } from "./types.ts";
 
@@ -11,7 +10,7 @@ export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
     try {
       await auth.validateSaaSquatchRequest(
         req.rawBody,
-        req.header("x-hook-jws-rfc-7797")!
+        req.header("x-hook-jws-rfc-7797")!,
       );
     } catch (e: any) {
       const error = `Permission denied - JWT validation failed: ${e.message}`;
@@ -58,7 +57,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
       return;
     }
 
-    const tenantScopedToken = headerParts[1]!;
+    const tenantScopedToken = headerParts[1];
 
     try {
       await auth.validateSaaSquatchToken(tenantScopedToken);
