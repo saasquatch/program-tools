@@ -20,7 +20,6 @@
   "scripts": {
     "build": "tsc",
     "test": "cucumber-js",
-    "test:watch": "cucumber-js --fail-fast",
     "test:coverage": "c8 cucumber-js",
     "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
     "prepack": "npm run build"
