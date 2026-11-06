@@ -5,11 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.6.13] - 2026-11-05
+
+### Added
+
+- `@saasquatch/component-boilerplate/canned`, a separate entry for stories and tests: `useCannedEnvironment`, `createCannedGraphQLClient`, `provideCannedGraphQL` and `interceptCannedFetch` answer any query valid against a snapshot of the SaaSquatch schema with realistic, deterministic data, so stories need no real tenant or credentials. Refresh the snapshot with `npm run sync-canned-schema -- <path to saasquatch repo>`.
+  - Login and registration mutations return a decodable fake token for the submitted email, and saving a user returns what was saved, so form stories can complete.
+  - Lists keep the same `totalCount` on every page and honour `offset` and `limit`, so tables paginate.
+  - Responses take 100ms in stories (`latency`), so loading states render and hooks that act when loading finishes (e.g. closing an edit form after saving) work.
+  - Each story sets its own user and program, even after another story ran. A story that cleans up after the next one has rendered leaves the next story's environment, user and `fetch` interception in place.
+- `fakeJwt`, an unsigned token for demos and stories (exported from both entries).
+
+### Changed
+
+- `GRAPHQL_CONTEXT` moved to `hooks/graphql/context.ts`; it is still exported from the main entry.
+
+## [1.6.12] - 2026-11-03
+
+### Fixed
+
+- 1.6.11 failed to build in Stencil and other ES module bundlers with `'DecodedSquatchJWT' is not exported by @saasquatch/component-environment`. The type is now re-exported as a type only.
+
 ## [1.6.11] - 2026-10-28
 
 ### Fixed
 
 - Batched queries no longer resolve with `null` data when the server lists GraphQL errors in a different order from the response data; every query with an error now rejects with that error
+
+### Changed
+
+- Built with tsup instead of microbundle. The package now has an `exports` map (`dist/index.mjs` for `import`, `dist/index.js` for `require`, `dist/index.d.ts` types) in place of `dist/index.modern.js` and `dist/index.module.js`. Deep imports from `dist/*` still resolve.
 
 ## [1.6.10] - 2026-02-26
 
@@ -228,7 +255,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - useShareEvent
       useForm
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.11...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch%2Fcomponent-boilerplate@1.6.13...HEAD
+[1.6.13]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.13
+[1.6.12]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.12
 [1.6.11]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.11
 [1.6.10]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.10
 [1.6.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fcomponent-boilerplate%401.6.9
