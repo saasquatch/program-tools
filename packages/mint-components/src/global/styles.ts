@@ -1073,4 +1073,5 @@ sl-icon::part(base):hover {
 
 `,
   font: config?.main?.brandFont,
+  customFontUrl: config?.main?.customFontUrl,
 });
