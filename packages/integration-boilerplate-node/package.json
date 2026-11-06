@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "2.4.2-0",
+  "version": "3.0.0-0",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
     "node": "^24 || ^26"
@@ -22,7 +22,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
-    "prepare": "npm run build"
+    "prepack": "npm run build"
   },
   "author": "ReferralSaaSquatch.com, Inc.",
   "license": "MIT",

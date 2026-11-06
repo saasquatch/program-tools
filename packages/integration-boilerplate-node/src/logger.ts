@@ -17,16 +17,20 @@ export function createLogger<Config extends BaseConfig>(config: Config): Logger 
     throw new Error(`Invalid value for server log level: "${config.serverLogLevel}"`);
   }
 
-  const sinks: Sink[] =
-    config.serverLogLevel === "none" ? [] : [{ stream: process.stdout }];
-
-  if (config.serverLogFile !== "") {
-    sinks.push({ stream: createWriteStream(config.serverLogFile, { flags: "a" }) });
+  // "none" silences all logging: no sinks, and the log file is never opened
+  const sinks: Sink[] = [];
+  if (config.serverLogLevel !== "none") {
+    sinks.push({ stream: process.stdout });
+    if (config.serverLogFile !== "") {
+      sinks.push({
+        stream: createWriteStream(config.serverLogFile, { flags: "a" }),
+      });
+    }
   }
 
   return initializeLogger(LOGGER_NAME, {
     level: config.serverLogLevel === "none"
-      ? "info" // irrelevant with no console sink — see decision below
+      ? "info" // unreachable by any sink — "none" produces an empty sink list
       : (config.serverLogLevel as LogLevel),
     sinks,
   });
