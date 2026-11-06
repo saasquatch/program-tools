@@ -6,4 +6,5 @@ export * from "./auth0WorkloadIdentityCredentialProvider.ts";
 export * from "./config.ts";
 export * from "./metrics.ts";
 export * from "./service.ts";
+export * from "./settings.ts";
 export * from "./types.ts";

@@ -6,20 +6,6 @@ import {
   asBoolean,
 } from "./settings.ts";
 
-// Re-export the config API so consumers can declare settings on their
-// BaseConfig subclasses without any extra dependency.
-export {
-  setting,
-  nested,
-  asNumber,
-  asBoolean,
-  split,
-  trim,
-  loadConfiguration,
-  type ConfigProvider,
-  type ValueTransform,
-} from "./settings.ts";
-
 class EnvironmentConfigProvider implements ConfigProvider {
   get(key: string): string {
     if (!process.env[key]) {
@@ -68,8 +54,6 @@ export class BaseConfig {
     default: "/introspection",
   });
 
-  // Note: previously declared boolean but loaded without a transform, so any
-  // non-empty value (including "false") enabled metrics. Now parsed properly.
   metricsEnabled = setting("METRICS_ENABLED", {
     transform: asBoolean,
     default: false,
