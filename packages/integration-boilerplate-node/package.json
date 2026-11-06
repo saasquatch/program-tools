@@ -58,7 +58,7 @@
     "@opentelemetry/semantic-conventions": "^1.44.0",
     "@saasquatch/express-boilerplate": "^3.0.0",
     "@saasquatch/logger": "^4.0.0",
-    "@saasquatch/schema": "^1.28.10",
+    "@saasquatch/schema": "^2.2.1",
     "ajv": "^8.20.0",
     "ajv-formats": "^2.1.1",
     "compression": "^1.8.2",
