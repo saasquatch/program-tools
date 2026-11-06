@@ -43,7 +43,6 @@
     "@types/json-schema": "^7.0.15",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.6",
-    "@types/node-fetch": "^2.6.13",
     "@vitest/coverage-v8": "^5.1.0",
     "jest-cucumber": "^4.5.0",
     "msw": "^2.15.0",
@@ -71,7 +70,6 @@
     "jsonwebtoken": "^9.0.3",
     "jwks-rsa": "^2.1.5",
     "node-cache": "^5.1.2",
-    "node-fetch": "^2.7.0",
     "noop-tag": "^1.0.2",
     "ts-custom-error": "^3.3.1",
     "typed-config": "^1.0.0"

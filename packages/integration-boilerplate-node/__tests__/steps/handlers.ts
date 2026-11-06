@@ -1,7 +1,6 @@
 import http from "http";
 import { Router, Application } from "express";
 import { StepDefinitions } from "jest-cucumber";
-import fetch, { Response, RequestInit } from "node-fetch";
 import { vi } from "vitest";
 
 import { BaseConfig, createIntegrationService } from "../../src";
