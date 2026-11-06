@@ -17,7 +17,8 @@ export async function webhookHandler<
 ) {
   const webhook = req.body as Webhook;
 
-  service.logger.debug("SaaSquatch webhook received", {
+  service.logger.debug({
+    message: "SaaSquatch webhook received",
     id: webhook.id,
     type: webhook.type,
     tenantAlias: webhook.tenantAlias,

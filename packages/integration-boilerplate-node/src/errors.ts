@@ -43,7 +43,7 @@ export function handleError(e: unknown, logger: Logger, res: Response) {
   }
 
   const error = { errorCode, error: e instanceof Error ? e.message : undefined };
-  logger.error("Request failed", error);
+  logger.error({ message: "Request failed", error });
 
   res.status(status).send(error);
 }

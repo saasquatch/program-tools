@@ -137,7 +137,7 @@ export async function formHandler<
 
     res.send(response);
 
-    service.logger.debug("Form handler returned", { response });
+    service.logger.debug({ message: "Form handler returned", response });
   } catch (e) {
     handleError(new UnhandledFormError(errorToString(e)), service.logger, res);
   }

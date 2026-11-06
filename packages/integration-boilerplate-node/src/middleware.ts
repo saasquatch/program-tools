@@ -63,7 +63,8 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
     try {
       await auth.validateSaaSquatchToken(tenantScopedToken);
     } catch (e) {
-      logger.error("Tenant-scoped token JWT validation failed", {
+      logger.error({
+        message: "Tenant-scoped token JWT validation failed",
         error: e instanceof Error ? e.message : e,
       });
       res
@@ -73,7 +74,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
     }
 
     const decoded: any = jwt.decode(tenantScopedToken);
-    logger.debug(decoded);
+    logger.debug({ message: "Decoded tenant-scoped token", decoded });
     req.tenantAlias = decoded.sub.split("@")[0];
     req.impactBrandId = decoded["impactBrandId"];
 
