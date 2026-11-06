@@ -492,11 +492,15 @@ export class IntegrationService<
         }),
       );
     } else if (this.config.staticFrontendPath) {
+      // `require` only exists when loaded as CJS; under ESM fall back to the
+      // entry script's directory, then the working directory
+      const entryDir =
+        (typeof require !== "undefined" ? require.main?.path : undefined) ??
+        (process.argv[1]
+          ? path.dirname(path.resolve(process.argv[1]))
+          : process.cwd());
       const frontendPath = path.join(
-        require.main?.path ??
-          (process.argv[1]
-            ? path.dirname(path.resolve(process.argv[1]))
-            : process.cwd()),
+        entryDir,
         this.config.staticFrontendPath,
       );
       app.use(express.static(frontendPath));

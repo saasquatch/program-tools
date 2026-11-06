@@ -28,11 +28,7 @@
 
     // Best practices
     "allowJs": false,
-    
-    // TODO: revert to true once legacy decorators are removed in src/config
-    "erasableSyntaxOnly": false,
-    // TODO: remove once legacy decorators are removed in src/config
-    "experimentalDecorators": true,
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
