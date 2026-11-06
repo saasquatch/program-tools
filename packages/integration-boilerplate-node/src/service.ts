@@ -492,7 +492,10 @@ export class IntegrationService<
       );
     } else if (this.config.staticFrontendPath) {
       const frontendPath = path.join(
-        require.main?.path ?? process.cwd(),
+        require.main?.path ??
+          (process.argv[1]
+            ? path.dirname(path.resolve(process.argv[1]))
+            : process.cwd()),
         this.config.staticFrontendPath,
       );
       app.use(express.static(frontendPath));
