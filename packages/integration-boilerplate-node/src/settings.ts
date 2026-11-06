@@ -1,10 +1,8 @@
 /*
  * Environment-driven configuration settings.
  *
- * Successor to the decorator-based typed-config API (originally vendored from
- * typed-config@1.0.0, MIT, https://github.com/christav/typed-config). Legacy
- * decorators are not erasable syntax, so they cannot be type-stripped by
- * Node.js natively and conflict with `erasableSyntaxOnly`. Settings are now
+ * Successor to the decorator-based typed-config API (typed-config@1.0.0, MIT,
+ * https://github.com/christav/typed-config). Settings are now
  * declared as class field initializers:
  *
  *   class MyConfig extends BaseConfig {
@@ -169,11 +167,9 @@ function resolveSetting(
     if (descriptor.optional) {
       return undefined;
     }
-    // Required and absent: let the provider report it (throws)
+    throw new Error(`Missing required configuration key "${descriptor.key}"`);
   }
 
   const raw = configProvider.get(descriptor.key);
-  return descriptor.transform
-    ? descriptor.transform(raw, descriptor.key)
-    : raw;
+  return descriptor.transform ? descriptor.transform(raw, descriptor.key) : raw;
 }

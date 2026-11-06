@@ -63,9 +63,9 @@ createIntegrationService<ServiceConfig, IntegrationConfig, FormConfig>();
 
 #### Service configuration
 
-Service configuration parameters are configured with environment variables, which are typed through the use of the
-[`typed-config`](https://github.com/christav/typed-config) package. There are a number of built-in service configuration
-parameters common to all integrations. These are:
+Service configuration parameters are configured with environment variables, which are typed through the built-in
+settings API (`setting`, `nested`, and the transform helpers `asNumber`, `asBoolean`, `trim` and `split`). There are a
+number of built-in service configuration parameters common to all integrations. These are:
 
 | Environment Variable                           | Property                                  | Default                    | Description                                                                                                  |
 | ---------------------------------------------- | ----------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -85,27 +85,35 @@ parameters common to all integrations. These are:
 | GOOGLE_WORKLOAD_IDENTITY_POOL                  | googleWorkloadIdentityPool                | <none>                     | The Google Workload Identity Federation pool                                                                 |
 | GOOGLE_WORKLOAD_IDENTITY_PROVIDER              | googleWorkloadIdentityProvider            | <none>                     | The Google Workload Identity Federation proivder                                                             |
 | GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL | googleWorkloadIdentityServiceAccountEmail | <none>                     | The email address of the Google service account to request credentials for via Workload Identity Federation  |
+| INTROSPECTION_ENDPOINT_PATH                    | introspectionEndpointPath                 | /introspection             | The path on which the introspection endpoint is served                                                       |
+| METRICS_ENABLED                                | metricsEnabled                            | false                      | Enable OpenTelemetry metrics collection and export                                                           |
 
 The authentication parameters `SAASQUATCH_AUTH0_*` are required, and do not have defaults. Your service will not start
 without them.
 
-Service configuration can be customized by extending `BaseConfig` using the primitives of `typed-config`:
+Service configuration can be customized by extending `BaseConfig` and declaring settings as class field initializers
+with `setting`:
 
 ```ts
-import { key, optional } from "typed-config";
 import {
   createIntegrationService,
   BaseConfig,
+  setting,
   asBoolean,
 } from "@saasquatch/integration-boilerplate-node";
 
 class MyCustomConfig extends BaseConfig {
-  @key("REQUIRED_CUSTOM_SETTING")
-  public requiredCustomSetting!: string;
+  // Required: loading fails if REQUIRED_CUSTOM_SETTING is not set
+  requiredCustomSetting = setting("REQUIRED_CUSTOM_SETTING");
 
-  @key("OPTIONAL_CUSTOM_SETTING", asBoolean)
-  @optional("default_value")
-  public optionalCustomSetting!: asBoolean;
+  // Transformed, with a default used when the variable is not set
+  optionalCustomSetting = setting("OPTIONAL_CUSTOM_SETTING", {
+    transform: asBoolean,
+    default: false,
+  });
+
+  // Optional: resolves to undefined when the variable is not set
+  maybeSetting = setting("MAYBE_SETTING", { optional: true });
 }
 
 async function main() {
@@ -120,8 +128,13 @@ async function main() {
 main();
 ```
 
-_NOTE_: At the the time of writing the `asBoolean` and `asNumber` transformers from `typed-config` were broken, so this
-package exports versions that work correctly. See [this issue](https://github.com/christav/typed-config/issues/1).
+The type of each config field is inferred from the `setting()` call: `string` by default, the transform's return type
+when a `transform` is given, and `T | undefined` when `optional: true` is set. Custom transforms are functions of the
+form `(value: string, key: string) => T`.
+
+_NOTE_: Prior to v3, configuration used the `@key`/`@optional` decorators from
+[`typed-config`](https://github.com/christav/typed-config). Those decorators are no longer supported — see the
+[CHANGELOG](./CHANGELOG.md) for migration details.
 
 #### Integration configuration
 
