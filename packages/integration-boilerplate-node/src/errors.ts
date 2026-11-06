@@ -1,6 +1,6 @@
+import { Logger } from "@saasquatch/logger";
+import type { Response } from "express";
 import { CustomError } from "ts-custom-error";
-import { Response } from "express";
-import { Logger } from "winston";
 
 export class PermissionDeniedError extends CustomError {}
 export class UnhandledWebhookError extends CustomError {}
@@ -8,12 +8,15 @@ export class UnhandledIntrospectionError extends CustomError {}
 export class UnhandledFormError extends CustomError {}
 export class IntegrationConfigError extends CustomError {}
 export class GraphQLError extends CustomError {
-  constructor(message: string, public response: any = undefined) {
+  public response: any;
+
+  constructor(message: string, response?: any) {
     super(message);
+    this.response = response;
   }
 }
 
-export function handleError(e: Error, logger: Logger, res: Response) {
+export function handleError(e: unknown, logger: Logger, res: Response) {
   let status = 500;
   let errorCode = "UNKNOWN_ERROR";
 
@@ -42,8 +45,11 @@ export function handleError(e: Error, logger: Logger, res: Response) {
     errorCode = "GRAPHQL_ERROR";
   }
 
-  const error = { errorCode, error: e.message };
-  logger.error("%o", error);
+  const error = {
+    errorCode,
+    error: e instanceof Error ? e.message : undefined,
+  };
+  logger.error({ message: "Request failed", error });
 
   res.status(status).send(error);
 }

@@ -1,7 +1,7 @@
 import fs from "fs";
+import { AuthClient } from "@auth0/auth0-auth-js";
+import { Logger } from "@saasquatch/logger";
 import jwt from "jsonwebtoken";
-import { AuthenticationClient } from "auth0";
-import { Logger } from "winston";
 
 export interface Auth0WorkloadIdentityCredentialProviderOptions {
   auth0Domain: string;
@@ -18,16 +18,20 @@ export interface Auth0WorkloadIdentityCredentialProviderOptions {
 export class Auth0WorkloadIdentityCredentialProvider {
   private tokenFile: string;
   private workloadIdentityFile: string;
+  private logger: Logger;
+  private options: Auth0WorkloadIdentityCredentialProviderOptions;
 
   constructor(
-    private logger: Logger,
-    private options: Auth0WorkloadIdentityCredentialProviderOptions
+    logger: Logger,
+    options: Auth0WorkloadIdentityCredentialProviderOptions,
   ) {
+    this.logger = logger;
+    this.options = options;
     this.tokenFile = options.tokenFile ?? "token.json";
     this.workloadIdentityFile =
       options.workloadIdentityFile ?? "workload-identity.json";
     this.prepareGoogleCredentials();
-    this.refreshAccessToken();
+    void this.refreshAccessToken();
   }
 
   prepareGoogleCredentials() {
@@ -53,12 +57,12 @@ export class Auth0WorkloadIdentityCredentialProvider {
     process.env["GOOGLE_APPLICATION_CREDENTIALS"] = this.workloadIdentityFile;
 
     this.logger.debug(
-      "Wrote workload identity configuration file and configured GOOGLE_APPLICATION_CREDENTIALS."
+      "Wrote workload identity configuration file and configured GOOGLE_APPLICATION_CREDENTIALS.",
     );
   }
 
   async getWorkloadIdentityAccessToken() {
-    const auth0 = new AuthenticationClient({
+    const auth0 = new AuthClient({
       domain: this.options.auth0Domain,
       clientId: this.options.auth0ClientId,
       clientSecret: this.options.auth0ClientSecret,
@@ -66,9 +70,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
 
     const audience = `https://iam.googleapis.com/projects/${this.options.googleWorkloadProjectId}/locations/global/workloadIdentityPools/${this.options.googleWorkloadIdentityPool}/providers/${this.options.googleWorkloadIdentityProvider}`;
 
-    const response = await auth0.clientCredentialsGrant({
-      audience,
-    });
+    const response = await auth0.getTokenByClientCredentials({ audience });
 
     return response;
   }
@@ -80,18 +82,20 @@ export class Auth0WorkloadIdentityCredentialProvider {
 
     try {
       const token = await this.getWorkloadIdentityAccessToken();
-      const decoded = jwt.decode(token.access_token);
+      const decoded = jwt.decode(token.accessToken);
 
       if (isValidJwtPayload(decoded)) {
-        fs.writeFileSync(this.tokenFile, JSON.stringify(token));
+        fs.writeFileSync(
+          this.tokenFile,
+          JSON.stringify({ access_token: token.accessToken }),
+        );
 
         // Reschedule token refresh in 75% of the expiry time of the new token
         const expiresInSeconds = decoded.exp - decoded.iat;
         const refreshInSeconds = Math.max(10, expiresInSeconds * 0.75);
 
         this.logger.debug(
-          "Refreshed workload identity token, expires in %d seconds.",
-          expiresInSeconds
+          `Refreshed workload identity token, expires in ${expiresInSeconds} seconds.`,
         );
 
         reschedule(refreshInSeconds);
@@ -99,10 +103,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
         throw new Error("Did not get a valid JWT payload from Auth0");
       }
     } catch (e) {
-      this.logger.error(
-        "Failed to refresh workload identity token: %s",
-        (e as Error).message
-      );
+      this.logger.error("Failed to refresh workload identity token", { e });
 
       // If we fail to get a new token from Auth0, let's hope we already have a token that hasn't
       // expired yet. Schedule a refresh in 5 seconds to try again.
@@ -114,7 +115,7 @@ export class Auth0WorkloadIdentityCredentialProvider {
 }
 
 function isValidJwtPayload(
-  token: ReturnType<typeof jwt.decode>
+  token: ReturnType<typeof jwt.decode>,
 ): token is jwt.JwtPayload & { iat: number; exp: number } {
   return (
     token != undefined &&

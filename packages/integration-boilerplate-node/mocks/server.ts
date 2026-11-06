@@ -1,5 +1,5 @@
 import { setupServer } from "msw/node";
-import restHandlers from "./rest";
-import graphqlHandlers from "./graphql";
+import graphqlHandlers from "./graphql.ts";
+import restHandlers from "./rest.ts";
 
 export const server = setupServer(...restHandlers, ...graphqlHandlers);

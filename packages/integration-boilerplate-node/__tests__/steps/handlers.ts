@@ -1,88 +1,65 @@
-import http from "http";
-import { Router, Application } from "express";
-import { StepDefinitions } from "jest-cucumber";
-import fetch, { Response, RequestInit } from "node-fetch";
+import assert from "node:assert/strict";
+import { Given, When, Then } from "@cucumber/cucumber";
+import { Router } from "express";
+import { graphqlShouldError } from "../../mocks/graphql.ts";
+import { createIntegrationService } from "../../src/index.ts";
+import { makeMock } from "../support/mocks.ts";
+import type { TestWorld } from "../support/world.ts";
 
-import { BaseConfig, createIntegrationService } from "../../src";
-import { graphqlShouldError } from "../../mocks/graphql";
+const mockWebhookHandler = makeMock(
+  (_s: any, _w: any, _c: any, _g: any, r: any) => r.sendStatus(200),
+);
 
-const mockWebhookHandler = jest
-  .fn()
-  .mockImplementation((_s, _w, _c, _g, r) => r.sendStatus(200));
+const mockIntrospectionHandler = makeMock(
+  (_s: any, _c: any, t: any, _ta: any) => t,
+);
 
-const mockIntrospectionHandler = jest
-  .fn()
-  .mockImplementation((_s, _c, t, _ta) => t);
-
-const mockBrokenWebhookHandler = jest.fn().mockImplementation(() => {
+const mockBrokenWebhookHandler = makeMock(() => {
   throw new Error("broken webhook handler");
 });
 
-const mockFormSubmitHandler = jest
-  .fn()
-  .mockImplementation(() => ({ results: [] }));
+const mockFormSubmitHandler = makeMock(async () => ({ results: [] }));
 
-const mockFormValidateHandler = jest
-  .fn()
-  .mockImplementation(() => ({ valid: true, errors: [] }));
+const mockFormValidateHandler = makeMock(async () => ({
+  valid: true,
+  errors: [],
+}));
 
-const mockFormIntrospectionHandler = jest.fn().mockImplementation(() => ({
+const mockFormIntrospectionHandler = makeMock(async () => ({
   actions: [],
   inputData: [],
   inputDataSchema: {},
 }));
 
-const mockFormInitialDataHandler = jest
-  .fn()
-  .mockImplementation(() => ({ inputData: {} }));
+const mockFormInitialDataHandler = makeMock(async () => ({ inputData: {} }));
 
-const mockBrokenFormHandler = jest.fn().mockImplementation(() => {
+const mockBrokenFormHandler = makeMock(() => {
   throw new Error("broken form handler");
 });
 
-const mockErrorFormHandler = jest.fn().mockImplementation(() => ({
+const mockErrorFormHandler = makeMock(async () => ({
   errorCode: "NOT_HAPPY",
   error: "form handler failed",
 }));
 
-const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
-  let server: http.Server;
-  let app: Application | null;
-  let port: number;
-  let url: string = "";
-  let requestInit: RequestInit = {};
-  let response: Response;
-  let config: BaseConfig;
-
-  function setupService(service: any) {
-    return new Promise<void>((resolve, _reject) => {
-      app = service.server;
-      config = service.config;
-      server = service.server.listen(() => {
-        port = (server.address() as any).port;
-        resolve();
-      });
-    });
-  }
-
-  afterEach((done) => {
-    app = null;
-    url = "";
-    requestInit = {};
-    graphqlShouldError.flag = false;
-    server.close(done);
-  });
-
-  given("a default integration service with no custom handlers", async () => {
+Given(
+  "a default integration service with no custom handlers",
+  async function (this: TestWorld) {
     const service = await createIntegrationService();
-    return setupService(service);
-  });
+    return this.setupService(service);
+  },
+);
 
-  given(/the introspection path is (\S+)/, async (path: string) => {
-    config.introspectionEndpointPath = path;
-  });
+Given(
+  /the introspection path is (\S+)/,
+  function (this: TestWorld, path: string) {
+    this.config!.introspectionEndpointPath = path;
+  },
+);
 
-  given("an integration service with custom handlers", async () => {
+Given(
+  "an integration service with custom handlers",
+  async function (this: TestWorld) {
     const service = await createIntegrationService({
       handlers: {
         webhookHandler: mockWebhookHandler,
@@ -93,46 +70,49 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
         formInitialDataHandler: mockFormInitialDataHandler,
       },
     });
-    return setupService(service);
-  });
+    return this.setupService(service);
+  },
+);
 
-  given(
-    "an integration service with a webhook handler that throws an exception",
-    async () => {
-      const service = await createIntegrationService({
-        handlers: {
-          webhookHandler: mockBrokenWebhookHandler,
-        },
-      });
-      return setupService(service);
-    }
-  );
+Given(
+  "an integration service with a webhook handler that throws an exception",
+  async function (this: TestWorld) {
+    const service = await createIntegrationService({
+      handlers: {
+        webhookHandler: mockBrokenWebhookHandler,
+      },
+    });
+    return this.setupService(service);
+  },
+);
 
-  given(
-    "an integration service with a form handler that throws an exception",
-    async () => {
-      const service = await createIntegrationService({
-        handlers: {
-          formSubmitHandler: mockBrokenFormHandler,
-        },
-      });
-      return setupService(service);
-    }
-  );
+Given(
+  "an integration service with a form handler that throws an exception",
+  async function (this: TestWorld) {
+    const service = await createIntegrationService({
+      handlers: {
+        formSubmitHandler: mockBrokenFormHandler,
+      },
+    });
+    return this.setupService(service);
+  },
+);
 
-  given(
-    "an integration service with a form handler that returns a form error",
-    async () => {
-      const service = await createIntegrationService({
-        handlers: {
-          formSubmitHandler: mockErrorFormHandler,
-        },
-      });
-      return setupService(service);
-    }
-  );
+Given(
+  "an integration service with a form handler that returns a form error",
+  async function (this: TestWorld) {
+    const service = await createIntegrationService({
+      handlers: {
+        formSubmitHandler: mockErrorFormHandler,
+      },
+    });
+    return this.setupService(service);
+  },
+);
 
-  given("an integration service with a custom router", async () => {
+Given(
+  "an integration service with a custom router",
+  async function (this: TestWorld) {
     const router = Router();
     const service = await createIntegrationService({
       handlers: {},
@@ -141,140 +121,160 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
 
     router.get("/test", (_req, res) => res.send({ custom: "result" }));
 
-    return setupService(service);
-  });
+    return this.setupService(service);
+  },
+);
 
-  given(
-    "an integration service with a custom router that requires a tenant-scoped token",
-    async () => {
-      const router = Router();
-      const service = await createIntegrationService({
-        handlers: {},
-        customRouter: router,
-      });
+Given(
+  "an integration service with a custom router that requires a tenant-scoped token",
+  async function (this: TestWorld) {
+    const router = Router();
+    const service = await createIntegrationService({
+      handlers: {},
+      customRouter: router,
+    });
 
-      router.get(
-        "/test",
-        service.tenantScopedTokenMiddleware,
-        async (req, res) => {
-          const { config: _config, graphql: _graphql } =
-            await service.getTenant(req.tenantAlias!);
+    router.get(
+      "/test",
+      service.tenantScopedTokenMiddleware,
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- test-only route
+      async (req, res) => {
+        const { config: _config, graphql: _graphql } = await service.getTenant(
+          req.tenantAlias!,
+        );
 
-          res.send({ tenantAlias: req.tenantAlias! });
+        res.send({ tenantAlias: req.tenantAlias! });
+      },
+    );
+
+    return this.setupService(service);
+  },
+);
+
+Given(
+  "an integration service with a custom router that makes a GraphQL query",
+  async function (this: TestWorld) {
+    const router = Router();
+    const service = await createIntegrationService({
+      handlers: {},
+      customRouter: router,
+    });
+
+    router.get(
+      "/test",
+      service.tenantScopedTokenMiddleware,
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- test-only route
+      async (req, res) => {
+        const { config: _config, graphql } = await service.getTenant(
+          req.tenantAlias!,
+        );
+
+        let response;
+        try {
+          response = await graphql("query tenantAlias { tenantAlias }");
+        } catch (e: any) {
+          res.send(e.response);
         }
-      );
 
-      return setupService(service);
-    }
-  );
+        res.send(response);
+      },
+    );
 
-  given(
-    "an integration service with a custom router that makes a GraphQL query",
-    async () => {
-      const router = Router();
-      const service = await createIntegrationService({
-        handlers: {},
-        customRouter: router,
-      });
+    return this.setupService(service);
+  },
+);
 
-      router.get(
-        "/test",
-        service.tenantScopedTokenMiddleware,
-        async (req, res) => {
-          const { config: _config, graphql } = await service.getTenant(
-            req.tenantAlias!
-          );
+Given("the GraphQL query returns an error", function () {
+  graphqlShouldError.flag = true;
+});
 
-          let response;
-          try {
-            response = await graphql("query tenantAlias { tenantAlias }");
-          } catch (e) {
-            res.send(e.response);
-          }
-
-          res.send(response);
-        }
-      );
-
-      return setupService(service);
-    }
-  );
-
-  and("the GraphQL query returns an error", () => {
-    graphqlShouldError.flag = true;
-  });
-
-  and(/there is a (.*) request to (.*)/, async (method, route) => {
-    requestInit = {
-      ...requestInit,
+Given(
+  /there is a (.*) request to (.*)/,
+  function (this: TestWorld, method: string, route: string) {
+    this.requestInit = {
+      ...this.requestInit,
       method: method,
       headers: { "Content-Type": "application/json" },
     };
-    url = `http://localhost:${port}${route}`;
-  });
+    this.url = `http://localhost:${this.port}${route}`;
+  },
+);
 
-  and(/the (.*) header is:/, (header, value) => {
-    requestInit = {
-      ...requestInit,
-      headers: { ...requestInit.headers, [header]: value },
+Given(
+  /the (.*) header is:/,
+  function (this: TestWorld, header: string, value: string) {
+    this.requestInit = {
+      ...this.requestInit,
+      headers: {
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- tests only ever set plain-object headers
+        ...(this.requestInit.headers as Record<string, string>),
+        [header]: value,
+      },
     };
-  });
+  },
+);
 
-  and("the body is:", (body) => {
-    requestInit = { ...requestInit, body: JSON.stringify(JSON.parse(body)) };
-  });
+Given("the body is:", function (this: TestWorld, body: string) {
+  this.requestInit = {
+    ...this.requestInit,
+    body: JSON.stringify(JSON.parse(body)),
+  };
+});
 
-  when("the request is sent", async () => {
-    response = await fetch(url, requestInit);
-  });
+When("the request is sent", async function (this: TestWorld) {
+  this.response = await fetch(this.url, this.requestInit);
+});
 
-  then(/^there is no "(.*)" route configured$/, async (route) => {
-    expect(app).not.toBeNull();
-    const routeIsConfigured = !!(app as Application)["_router"].stack.find(
+Then(
+  /^there is no "(.*)" route configured$/,
+  function (this: TestWorld, route: string) {
+    assert.notStrictEqual(this.app, null);
+    const routeIsConfigured = !!this.app!["_router"].stack.find(
       (layer: any) => {
         return layer?.route?.path === route;
-      }
+      },
     );
-    expect(routeIsConfigured).toEqual(false);
-  });
+    assert.strictEqual(routeIsConfigured, false);
+  },
+);
 
-  then(/the response status will be (\d+)/, (status) => {
-    const statusNumber = Number(status);
-    expect(response.status).toBe(statusNumber);
-  });
+Then(
+  /the response status will be (\d+)/,
+  function (this: TestWorld, status: string) {
+    assert.strictEqual(this.response!.status, Number(status));
+  },
+);
 
-  then("the response will be:", async (body) => {
-    expect(JSON.parse(body)).toStrictEqual(await response.json());
-  });
+Then("the response will be:", async function (this: TestWorld, body: string) {
+  assert.deepStrictEqual(await this.response!.json(), JSON.parse(body));
+});
 
-  then("the custom webhook handler will be called", () => {
-    expect(mockWebhookHandler.mock.calls.length).toBe(1);
-  });
+Then("the custom webhook handler will be called", function () {
+  assert.strictEqual(mockWebhookHandler.mock.callCount(), 1);
+});
 
-  then(
-    /the custom introspection handler (will|will not) be called/,
-    (willWillNot: string) => {
-      expect(mockIntrospectionHandler.mock.calls.length).toBe(
-        willWillNot === "will" ? 1 : 0
-      );
-    }
-  );
+Then(
+  /the custom introspection handler (will|will not) be called/,
+  function (willWillNot: string) {
+    assert.strictEqual(
+      mockIntrospectionHandler.mock.callCount(),
+      willWillNot === "will" ? 1 : 0,
+    );
+  },
+);
 
-  then("the custom form submit handler will be called", () => {
-    expect(mockFormSubmitHandler.mock.calls.length).toBe(1);
-  });
+Then("the custom form submit handler will be called", function () {
+  assert.strictEqual(mockFormSubmitHandler.mock.callCount(), 1);
+});
 
-  then("the custom form validation handler will be called", () => {
-    expect(mockFormValidateHandler.mock.calls.length).toBe(1);
-  });
+Then("the custom form validation handler will be called", function () {
+  assert.strictEqual(mockFormValidateHandler.mock.callCount(), 1);
+});
 
-  then("the custom form introspection handler will be called", () => {
-    expect(mockFormIntrospectionHandler.mock.calls.length).toBe(1);
-  });
+Then("the custom form introspection handler will be called", function () {
+  assert.strictEqual(mockFormIntrospectionHandler.mock.callCount(), 1);
+});
 
-  then("the custom form initial data handler will be called", () => {
-    expect(mockFormInitialDataHandler.mock.calls.length).toBe(1);
-  });
-};
-
-export default handlerSteps;
+Then("the custom form initial data handler will be called", function () {
+  assert.strictEqual(mockFormInitialDataHandler.mock.callCount(), 1);
+});

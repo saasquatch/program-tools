@@ -1,5 +1,5 @@
-import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
-import { JSONSchema6 } from "json-schema";
+import type { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig/index.js";
+import type { JSONSchema6 } from "json-schema";
 
 export type TenantAlias = string;
 export interface Webhook {
@@ -52,23 +52,31 @@ export interface FormRequestContext<IntegrationConfig, FormConfig> {
   };
 }
 
-export interface FormSubmitRequestContext<IntegrationConfig, FormConfig>
-  extends FormRequestContext<IntegrationConfig, FormConfig> {
+export interface FormSubmitRequestContext<
+  IntegrationConfig,
+  FormConfig,
+> extends FormRequestContext<IntegrationConfig, FormConfig> {
   type: "SUBMIT";
 }
 
-export interface FormValidateRequestContext<IntegrationConfig, FormConfig>
-  extends FormRequestContext<IntegrationConfig, FormConfig> {
+export interface FormValidateRequestContext<
+  IntegrationConfig,
+  FormConfig,
+> extends FormRequestContext<IntegrationConfig, FormConfig> {
   type: "VALIDATE";
 }
 
-export interface FormIntrospectionRequestContext<IntegrationConfig, FormConfig>
-  extends FormRequestContext<IntegrationConfig, FormConfig> {
+export interface FormIntrospectionRequestContext<
+  IntegrationConfig,
+  FormConfig,
+> extends FormRequestContext<IntegrationConfig, FormConfig> {
   type: "INTROSPECTION";
 }
 
-export interface FormInitialDataRequestContext<IntegrationConfig, FormConfig>
-  extends FormRequestContext<IntegrationConfig, FormConfig> {
+export interface FormInitialDataRequestContext<
+  IntegrationConfig,
+  FormConfig,
+> extends FormRequestContext<IntegrationConfig, FormConfig> {
   type: "INITIAL_DATA";
 }
 
@@ -122,5 +130,5 @@ export type FormHandlerResponse =
 export type TenantScopedGraphQLFn = <QueryResponseShape>(
   query: string,
   variables?: Record<string, any>,
-  operationName?: string
+  operationName?: string,
 ) => Promise<QueryResponseShape>;

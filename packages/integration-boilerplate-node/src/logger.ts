@@ -1,48 +1,44 @@
+import { createWriteStream, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import {
   initializeLogger,
-  LogLevel,
+  getLogger,
+  isLoggerInitialized,
+  Logger,
   LOG_LEVELS,
-  Transport,
+  type LogLevel,
+  type Sink,
 } from "@saasquatch/logger";
-import { getLogger, isLoggerInitialized } from "@saasquatch/logger";
-import winston from "winston";
-import { BaseConfig } from "./config";
+import { BaseConfig } from "./config.ts";
 
 const LOGGER_NAME = "integration-boilerplate";
 
-export function createLogger<Config extends BaseConfig>(
-  config: Config
-): winston.Logger {
-  if (isLoggerInitialized(LOGGER_NAME)) {
-    return getLogger(LOGGER_NAME);
+function isLogLevel(value: string): value is LogLevel {
+  return (LOG_LEVELS as readonly string[]).includes(value);
+}
+
+export function createLogger(config: BaseConfig): Logger {
+  if (isLoggerInitialized(LOGGER_NAME)) return getLogger(LOGGER_NAME);
+
+  // "none" silences all logging: no sinks, and the log file is never opened.
+  // The "info" level is then unreachable by any sink — empty sink list.
+  const sinks: Sink[] = [];
+  let level: LogLevel = "info";
+  if (config.serverLogLevel !== "none") {
+    if (!isLogLevel(config.serverLogLevel)) {
+      throw new Error(
+        `Invalid value for server log level: "${config.serverLogLevel}"`,
+      );
+    }
+    level = config.serverLogLevel;
+    sinks.push({ stream: process.stdout });
+    if (config.serverLogFile !== "") {
+      mkdirSync(dirname(config.serverLogFile), { recursive: true });
+      sinks.push({
+        stream: createWriteStream(config.serverLogFile, { flags: "a" }),
+      });
+    }
   }
 
-  const transports: Transport[] = [
-    { type: "console", options: { silent: config.serverLogLevel === "none" } },
-  ];
-
-  if (config.serverLogFile !== "") {
-    transports.push({
-      type: "file",
-      options: {
-        filename: config.serverLogFile,
-      },
-    });
-  }
-
-  if (
-    config.serverLogLevel !== "none" &&
-    !LOG_LEVELS.includes(config.serverLogLevel as LogLevel)
-  ) {
-    throw new Error(
-      `Invalid value for server log level: "${config.serverLogLevel}"`
-    );
-  }
-
-  const logger = initializeLogger(LOGGER_NAME, {
-    logLevel: config.serverLogLevel as LogLevel,
-    transports,
-  });
-
-  return logger;
+  return initializeLogger(LOGGER_NAME, { level, sinks });
 }

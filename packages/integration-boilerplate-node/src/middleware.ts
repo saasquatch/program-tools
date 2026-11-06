@@ -1,9 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import { Logger } from "winston";
+import { Logger } from "@saasquatch/logger";
+import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-
-import { Auth } from "./auth";
-import { TenantAlias } from "./types";
+import { Auth } from "./auth.ts";
+import type { TenantAlias } from "./types.ts";
 
 export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
   return async function (req: Request, res: Response, next: NextFunction) {
@@ -11,7 +10,7 @@ export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
     try {
       await auth.validateSaaSquatchRequest(
         req.rawBody,
-        req.header("x-hook-jws-rfc-7797")!
+        req.header("x-hook-jws-rfc-7797")!,
       );
     } catch (e: any) {
       const error = `Permission denied - JWT validation failed: ${e.message}`;
@@ -58,12 +57,15 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
       return;
     }
 
-    const tenantScopedToken = headerParts[1]!;
+    const tenantScopedToken = headerParts[1];
 
     try {
       await auth.validateSaaSquatchToken(tenantScopedToken);
-    } catch (e: any) {
-      logger.error("Tenant-scoped token JWT validation failed: %s", e.message);
+    } catch (e) {
+      logger.error({
+        message: "Tenant-scoped token JWT validation failed",
+        error: e instanceof Error ? e.message : e,
+      });
       res
         .status(403)
         .send({ errorCode: "PERMISSION_DENIED", error: "Permission denied" });
@@ -71,7 +73,7 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
     }
 
     const decoded: any = jwt.decode(tenantScopedToken);
-    logger.debug("%o", decoded);
+    logger.debug({ message: "Decoded tenant-scoped token", decoded });
     req.tenantAlias = decoded.sub.split("@")[0];
     req.impactBrandId = decoded["impactBrandId"];
 

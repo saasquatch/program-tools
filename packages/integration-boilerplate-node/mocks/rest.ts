@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 
 /*
  
@@ -67,45 +67,34 @@ Ucu7VKEXVqM6XySHxG5Slymf2bxQ2uGWgO13yygi+wgBK1NqNzJ4MrWy5y4Aatla
 
 export default [
   // Mocked JWKS
-  rest.get(
-    "https://mocked_saasquatch/.well-known/jwks.json",
-    (_req, res, ctx) =>
-      res(
-        ctx.status(200),
-        ctx.json({
-          keys: [
-            {
-              kty: "RSA",
-              e: "AQAB",
-              use: "sig",
-              kid: "hLX/ydWw4C0mwdrvyPhUYmdCkD8=",
-              alg: "RS256",
-              n: "wsuldetgekeGWyoEOyu0RiKGJNN3MWOlbW95UcGjMS6ObhXXhpDzylvwHk-IB16GQENnmOofFFsL4b7UkC8FrOrr3D0QRWoglg5qjOcXQbdtubTkK-DGd3WYt4JZ5Z8xBKZukr5hphQz-1WX4t4wlBARu1LCZL5plHA04QbfZCWEUjG2H4xE9aODQlvW_8mckFIhAA4amixrbtZjAuLbjSgIe3N6w8F0EwtwdFBbRdkV5F8PB9GSpo_sBnZK4-xv27QRIHhz85sR1bdY_74vUcu7VKEXVqM6XySHxG5Slymf2bxQ2uGWgO13yygi-wgBK1NqNzJ4MrWy5y4Aatla4w",
-            },
-          ],
-        })
-      )
+  http.get("https://mocked_saasquatch/.well-known/jwks.json", () =>
+    HttpResponse.json({
+      keys: [
+        {
+          kty: "RSA",
+          e: "AQAB",
+          use: "sig",
+          kid: "hLX/ydWw4C0mwdrvyPhUYmdCkD8=",
+          alg: "RS256",
+          n: "wsuldetgekeGWyoEOyu0RiKGJNN3MWOlbW95UcGjMS6ObhXXhpDzylvwHk-IB16GQENnmOofFFsL4b7UkC8FrOrr3D0QRWoglg5qjOcXQbdtubTkK-DGd3WYt4JZ5Z8xBKZukr5hphQz-1WX4t4wlBARu1LCZL5plHA04QbfZCWEUjG2H4xE9aODQlvW_8mckFIhAA4amixrbtZjAuLbjSgIe3N6w8F0EwtwdFBbRdkV5F8PB9GSpo_sBnZK4-xv27QRIHhz85sR1bdY_74vUcu7VKEXVqM6XySHxG5Slymf2bxQ2uGWgO13yygi-wgBK1NqNzJ4MrWy5y4Aatla4w",
+        },
+      ],
+    }),
   ),
 
   // Mocked Auth0 token endpoint
-  rest.post("https://saasquatch_auth0_domain/oauth/token", (_req, res, ctx) =>
-    res(
-      ctx.status(200),
-      ctx.json({
-        access_token: "access_token",
-      })
-    )
+  http.post("https://saasquatch_auth0_domain/oauth/token", () =>
+    HttpResponse.json({
+      access_token: "access_token",
+    }),
   ),
 
   // Mocked integration config endpoint
-  rest.get(
+  http.get(
     "https://mocked_saasquatch/api/v1/testing/integration/SAASQUATCH_AUTH0_CLIENT_ID",
-    (_req, res, ctx) =>
-      res(
-        ctx.status(200),
-        ctx.json({
-          config: {},
-        })
-      )
+    () =>
+      HttpResponse.json({
+        config: {},
+      }),
   ),
 ];

@@ -1,9 +1,9 @@
 import otel, {
-  Counter,
-  Histogram,
-  Meter,
-  MetricOptions,
-  UpDownCounter,
+  type Counter,
+  type Histogram,
+  type Meter,
+  type MetricOptions,
+  type UpDownCounter,
   ValueType,
 } from "@opentelemetry/api";
 
@@ -25,7 +25,7 @@ export class MetricsManager {
     const integrationName = rawIntegrationName.replace(/-/g, "_");
     if ((integrationName ?? "").length === 0) {
       throw new Error(
-        "Cannot initialize metrics manager without an integration name"
+        "Cannot initialize metrics manager without an integration name",
       );
     }
 
@@ -76,7 +76,7 @@ export class MetricsManager {
 
     this.counters[name] = this.meter.createCounter(
       `${this.metricsPrefix}.${name}`,
-      options
+      options,
     );
   }
 
@@ -92,15 +92,15 @@ export class MetricsManager {
 
     this.updownCounters[name] = this.meter.createCounter(
       `${this.metricsPrefix}.${name}`,
-      options
+      options,
     );
   }
 
   public increment(name: string): void {
     if (this.counters[name] !== undefined) {
-      this.counters[name]!.add(1);
+      this.counters[name].add(1);
     } else if (this.updownCounters[name] !== undefined) {
-      this.updownCounters[name]!.add(1);
+      this.updownCounters[name].add(1);
     }
   }
 
@@ -115,7 +115,7 @@ export class MetricsManager {
 
     this.histograms[name] = this.meter.createHistogram(
       `${this.metricsPrefix}.${name}`,
-      options
+      options,
     );
   }
 
