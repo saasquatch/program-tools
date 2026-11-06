@@ -1,5 +1,5 @@
 import { CustomError } from "ts-custom-error";
-import { Response } from "express";
+import type { Response } from "express";
 import { Logger } from "@saasquatch/logger";
 
 export class PermissionDeniedError extends CustomError {}
@@ -8,8 +8,11 @@ export class UnhandledIntrospectionError extends CustomError {}
 export class UnhandledFormError extends CustomError {}
 export class IntegrationConfigError extends CustomError {}
 export class GraphQLError extends CustomError {
-  constructor(message: string, public response: any = undefined) {
+  public response: any;
+
+  constructor(message: string, response: any = undefined) {
     super(message);
+    this.response = response;
   }
 }
 

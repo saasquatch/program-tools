@@ -18,11 +18,15 @@ export interface Auth0WorkloadIdentityCredentialProviderOptions {
 export class Auth0WorkloadIdentityCredentialProvider {
   private tokenFile: string;
   private workloadIdentityFile: string;
+  private logger: Logger;
+  private options: Auth0WorkloadIdentityCredentialProviderOptions;
 
   constructor(
-    private logger: Logger,
-    private options: Auth0WorkloadIdentityCredentialProviderOptions,
+    logger: Logger,
+    options: Auth0WorkloadIdentityCredentialProviderOptions,
   ) {
+    this.logger = logger;
+    this.options = options;
     this.tokenFile = options.tokenFile ?? "token.json";
     this.workloadIdentityFile =
       options.workloadIdentityFile ?? "workload-identity.json";

@@ -1,16 +1,20 @@
-import { Request, Response } from "express";
-import { BaseConfig } from "./config";
+import type { Request, Response } from "express";
+import { BaseConfig } from "./config.ts";
 import {
   errorToString,
   handleError,
   UnhandledIntrospectionError,
-} from "./errors";
-import { IntegrationService } from "./service";
-import { IntrospectionBody } from "./types";
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
-import * as draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json";
-import * as integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json";
+} from "./errors.ts";
+import { IntegrationService } from "./service.ts";
+import type { IntrospectionBody } from "./types.ts";
+import { Ajv } from "ajv";
+import addFormatsImport, { type FormatsPlugin } from "ajv-formats";
+import draft6MetaSchema from "ajv/dist/refs/json-schema-draft-06.json" with { type: "json" };
+import integrationTemplateSchema_import from "@saasquatch/schema/json/IntegrationConfig.schema.json" with { type: "json" };
+
+// CJS/ESM interop: at runtime the default import of this CommonJS module *is*
+// the plugin function, but nodenext typing resolves it to the module namespace
+const addFormats = addFormatsImport as unknown as FormatsPlugin;
 
 const additionalPropertiesTrue = (input: any): void => {
   Object.entries(input).forEach(([key, val]) => {

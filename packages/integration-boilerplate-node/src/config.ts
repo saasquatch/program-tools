@@ -5,7 +5,7 @@ import {
   loadConfiguration,
   asNumber,
   asBoolean,
-} from "./typed-config";
+} from "./typed-config.ts";
 
 // Re-export the full config API so consumers no longer need to depend on the
 // (vendored, previously external) typed-config package to extend BaseConfig.
@@ -22,7 +22,7 @@ export {
   type ConfigProvider,
   type ValueTransform,
   type OptionalPredicate,
-} from "./typed-config";
+} from "./typed-config.ts";
 
 class EnvironmentConfigProvider implements ConfigProvider {
   get(key: string): string {

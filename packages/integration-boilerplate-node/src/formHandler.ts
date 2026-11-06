@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 
-import * as types from "./types";
-import { handleError, errorToString, UnhandledFormError } from "./errors";
-import { BaseConfig } from "./config";
-import { IntegrationService } from "./service";
+import * as types from "./types.ts";
+import { handleError, errorToString, UnhandledFormError } from "./errors.ts";
+import { BaseConfig } from "./config.ts";
+import { IntegrationService } from "./service.ts";
 
 export function isFormErrorResponse(
   response: any,

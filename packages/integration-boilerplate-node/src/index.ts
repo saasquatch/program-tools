@@ -1,9 +1,9 @@
 // Convenient re-export for the noop gql tag
 export { default as gql } from "noop-tag";
 
-export * from "./auth";
-export * from "./auth0WorkloadIdentityCredentialProvider";
-export * from "./config";
-export * from "./metrics";
-export * from "./service";
-export * from "./types";
+export * from "./auth.ts";
+export * from "./auth0WorkloadIdentityCredentialProvider.ts";
+export * from "./config.ts";
+export * from "./metrics.ts";
+export * from "./service.ts";
+export * from "./types.ts";

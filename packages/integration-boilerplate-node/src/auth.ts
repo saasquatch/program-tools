@@ -5,7 +5,7 @@ import { Logger } from "@saasquatch/logger";
 import { URLSearchParams } from "url";
 import NodeCache from "node-cache";
 
-import { PermissionDeniedError } from "./errors";
+import { PermissionDeniedError } from "./errors.ts";
 
 function createSaasquatchJwksClient(appDomain: string) {
   return jwksRsa({
@@ -51,14 +51,24 @@ function validateWithJwks(
 export class Auth {
   private jwksClientCache: NodeCache;
   private saasquatchTokenCache: NodeCache;
+  private appDomain: string;
+  private auth0ClientId: string;
+  private auth0ClientSecret: string;
+  private auth0Domain: string;
+  private logger: Logger;
 
   constructor(
-    private appDomain: string,
-    private auth0ClientId: string,
-    private auth0ClientSecret: string,
-    private auth0Domain: string,
-    private logger: Logger
+    appDomain: string,
+    auth0ClientId: string,
+    auth0ClientSecret: string,
+    auth0Domain: string,
+    logger: Logger
   ) {
+    this.appDomain = appDomain;
+    this.auth0ClientId = auth0ClientId;
+    this.auth0ClientSecret = auth0ClientSecret;
+    this.auth0Domain = auth0Domain;
+    this.logger = logger;
     this.jwksClientCache = new NodeCache({
       stdTTL: 86400, // 1 day
       useClones: false,

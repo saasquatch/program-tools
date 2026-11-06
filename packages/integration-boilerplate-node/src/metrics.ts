@@ -1,9 +1,9 @@
 import otel, {
-  Counter,
-  Histogram,
-  Meter,
-  MetricOptions,
-  UpDownCounter,
+  type Counter,
+  type Histogram,
+  type Meter,
+  type MetricOptions,
+  type UpDownCounter,
   ValueType,
 } from "@opentelemetry/api";
 

@@ -4,7 +4,7 @@ import { StepDefinitions } from "jest-cucumber";
 import { vi } from "vitest";
 
 import { BaseConfig, createIntegrationService } from "../../src";
-import { graphqlShouldError } from "../../mocks/graphql";
+import { graphqlShouldError } from "../../mocks/graphql.ts";
 
 const mockWebhookHandler = vi
   .fn()

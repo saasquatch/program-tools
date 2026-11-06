@@ -4,7 +4,7 @@ import {
 } from "@saasquatch/logger";
 import { createWriteStream, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
-import { BaseConfig } from "./config";
+import { BaseConfig } from "./config.ts";
 
 const LOGGER_NAME = "integration-boilerplate";
 

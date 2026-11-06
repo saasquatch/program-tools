@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 
-import { Webhook, TenantScopedGraphQLFn } from "./types";
-import { handleError, errorToString, UnhandledWebhookError } from "./errors";
-import { BaseConfig } from "./config";
-import { IntegrationService } from "./service";
+import type { Webhook, TenantScopedGraphQLFn } from "./types.ts";
+import { handleError, errorToString, UnhandledWebhookError } from "./errors.ts";
+import { BaseConfig } from "./config.ts";
+import { IntegrationService } from "./service.ts";
 
 export async function webhookHandler<
   ServiceConfig extends BaseConfig,

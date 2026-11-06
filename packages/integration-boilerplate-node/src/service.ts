@@ -5,37 +5,37 @@ import {
   shutdownManagerConfigFromEnv,
 } from "@saasquatch/express-boilerplate";
 import { httpLogMiddleware } from "@saasquatch/logger";
-import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
+import type { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig/index.js";
 import compression from "compression";
-import express, { Express, Response, Router } from "express";
+import express, { type Express, type Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
 import { hostname } from "os";
 import path from "path";
 import { Logger } from "@saasquatch/logger";
-import { gql } from ".";
-import { Auth } from "./auth";
-import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
-import { BaseConfig, loadConfig } from "./config";
-import { GraphQLError, IntegrationConfigError } from "./errors";
-import { formHandler } from "./formHandler";
-import { installInstrumentation } from "./instrumentation";
-import { introspectionHandler } from "./introspectionHandler";
-import { createLogger } from "./logger";
+import { gql } from "./index.ts";
+import { Auth } from "./auth.ts";
+import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider.ts";
+import { BaseConfig, loadConfig } from "./config.ts";
+import { GraphQLError, IntegrationConfigError } from "./errors.ts";
+import { formHandler } from "./formHandler.ts";
+import { installInstrumentation } from "./instrumentation.ts";
+import { introspectionHandler } from "./introspectionHandler.ts";
+import { createLogger } from "./logger.ts";
 import {
   MetricsManager,
   METRIC_FORM_COUNT,
   METRIC_INTROSPECTION_COUNT,
   METRIC_REQUEST_PROCESSING_COUNT,
   METRIC_WEBHOOK_COUNT,
-} from "./metrics";
+} from "./metrics.ts";
 import {
   createSaasquatchRequestMiddleware,
   createSaasquatchTokenMiddleware,
-} from "./middleware";
-import * as types from "./types";
-import { webhookHandler } from "./webhookHandler";
+} from "./middleware.ts";
+import * as types from "./types.ts";
+import { webhookHandler } from "./webhookHandler.ts";
 
 declare module "http" {
   interface IncomingMessage {

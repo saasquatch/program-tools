@@ -1,3 +1,3 @@
-import handlerSteps from "./handlers";
+import handlerSteps from "./handlers.ts";
 
 export default [handlerSteps];

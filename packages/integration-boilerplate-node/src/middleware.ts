@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { Logger } from "@saasquatch/logger";
 import jwt from "jsonwebtoken";
 
-import { Auth } from "./auth";
-import { TenantAlias } from "./types";
+import { Auth } from "./auth.ts";
+import type { TenantAlias } from "./types.ts";
 
 export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
   return async function (req: Request, res: Response, next: NextFunction) {

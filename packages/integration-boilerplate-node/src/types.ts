@@ -1,5 +1,5 @@
-import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
-import { JSONSchema6 } from "json-schema";
+import type { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig/index.js";
+import type { JSONSchema6 } from "json-schema";
 
 export type TenantAlias = string;
 export interface Webhook {
