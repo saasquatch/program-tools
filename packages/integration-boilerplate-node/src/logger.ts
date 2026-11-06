@@ -2,7 +2,8 @@ import {
   initializeLogger, getLogger, isLoggerInitialized,
   Logger, LOG_LEVELS, type LogLevel, type Sink,
 } from "@saasquatch/logger";
-import { createWriteStream } from "node:fs";
+import { createWriteStream, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import { BaseConfig } from "./config";
 
 const LOGGER_NAME = "integration-boilerplate";
@@ -22,6 +23,7 @@ export function createLogger<Config extends BaseConfig>(config: Config): Logger 
   if (config.serverLogLevel !== "none") {
     sinks.push({ stream: process.stdout });
     if (config.serverLogFile !== "") {
+      mkdirSync(dirname(config.serverLogFile), { recursive: true });
       sinks.push({
         stream: createWriteStream(config.serverLogFile, { flags: "a" }),
       });
