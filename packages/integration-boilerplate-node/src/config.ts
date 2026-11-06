@@ -1,14 +1,28 @@
-import { ConfigProvider, key, optional, loadConfiguration } from "typed-config";
+import {
+  type ConfigProvider,
+  key,
+  optional,
+  loadConfiguration,
+  asNumber,
+  asBoolean,
+} from "./typed-config";
 
-// FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-export function asNumber(_obj: any, _name: string, val: any) {
-  return +val;
-}
-
-// FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-export function asBoolean(_obj: any, _name: string, val: any): boolean {
-  return (val as string).toLowerCase() === "true";
-}
+// Re-export the full config API so consumers no longer need to depend on the
+// (vendored, previously external) typed-config package to extend BaseConfig.
+export {
+  key,
+  optional,
+  nested,
+  asNumber,
+  asBoolean,
+  split,
+  map,
+  trim,
+  loadConfiguration,
+  type ConfigProvider,
+  type ValueTransform,
+  type OptionalPredicate,
+} from "./typed-config";
 
 class EnvironmentConfigProvider implements ConfigProvider {
   get(key: string): string {

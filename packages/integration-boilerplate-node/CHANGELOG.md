@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING CHANGES
 
 - Minimum supported Node.js version is now 24 (`engines: ^24 || ^26`, was `>=18`).
+- The typed-config dependency has been vendored. Consumers extending BaseConfig should now import key, optional, nested, and the transform helpers from @saasquatch/integration-boilerplate-node instead of typed-config.
 - Updated `@saasquatch/logger` from 1.x to 4.x and removed Winston entirely.
 - Updated `@saasquatch/express-boilerplate` from 1.x to 3.x.
 
