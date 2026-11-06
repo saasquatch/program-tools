@@ -62,8 +62,10 @@ export function createSaasquatchTokenMiddleware(auth: Auth, logger: Logger) {
 
     try {
       await auth.validateSaaSquatchToken(tenantScopedToken);
-    } catch (e: any) {
-      logger.error("Tenant-scoped token JWT validation failed: %s", e.message);
+    } catch (e) {
+      logger.error("Tenant-scoped token JWT validation failed", {
+        error: e instanceof Error ? e.message : e,
+      });
       res
         .status(403)
         .send({ errorCode: "PERMISSION_DENIED", error: "Permission denied" });

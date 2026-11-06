@@ -2,45 +2,46 @@ import http from "http";
 import { Router, Application } from "express";
 import { StepDefinitions } from "jest-cucumber";
 import fetch, { Response, RequestInit } from "node-fetch";
+import { vi } from "vitest";
 
 import { BaseConfig, createIntegrationService } from "../../src";
 import { graphqlShouldError } from "../../mocks/graphql";
 
-const mockWebhookHandler = jest
+const mockWebhookHandler = vi
   .fn()
   .mockImplementation((_s, _w, _c, _g, r) => r.sendStatus(200));
 
-const mockIntrospectionHandler = jest
+const mockIntrospectionHandler = vi
   .fn()
   .mockImplementation((_s, _c, t, _ta) => t);
 
-const mockBrokenWebhookHandler = jest.fn().mockImplementation(() => {
+const mockBrokenWebhookHandler = vi.fn().mockImplementation(() => {
   throw new Error("broken webhook handler");
 });
 
-const mockFormSubmitHandler = jest
+const mockFormSubmitHandler = vi
   .fn()
   .mockImplementation(() => ({ results: [] }));
 
-const mockFormValidateHandler = jest
+const mockFormValidateHandler = vi
   .fn()
   .mockImplementation(() => ({ valid: true, errors: [] }));
 
-const mockFormIntrospectionHandler = jest.fn().mockImplementation(() => ({
+const mockFormIntrospectionHandler = vi.fn().mockImplementation(() => ({
   actions: [],
   inputData: [],
   inputDataSchema: {},
 }));
 
-const mockFormInitialDataHandler = jest
+const mockFormInitialDataHandler = vi
   .fn()
   .mockImplementation(() => ({ inputData: {} }));
 
-const mockBrokenFormHandler = jest.fn().mockImplementation(() => {
+const mockBrokenFormHandler = vi.fn().mockImplementation(() => {
   throw new Error("broken form handler");
 });
 
-const mockErrorFormHandler = jest.fn().mockImplementation(() => ({
+const mockErrorFormHandler = vi.fn().mockImplementation(() => ({
   errorCode: "NOT_HAPPY",
   error: "form handler failed",
 }));
@@ -65,12 +66,16 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
     });
   }
 
-  afterEach((done) => {
+  afterEach(() => {
     app = null;
     url = "";
     requestInit = {};
     graphqlShouldError.flag = false;
-    server.close(done);
+    return new Promise<void>((resolve, reject) => {
+      server.close((err) => (err ? reject(err) : resolve()));
+      // Don't let lingering keep-alive sockets stall the close
+      server.closeAllConnections();
+    });
   });
 
   given("a default integration service with no custom handlers", async () => {

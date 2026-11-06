@@ -1,21 +1,21 @@
-import { graphql } from "msw";
+import { graphql, HttpResponse } from "msw";
 export const graphqlShouldError = { flag: false };
 
 export default [
-  graphql.query("tenantAlias", (req, res, ctx) => {
+  graphql.query("tenantAlias", ({ request }) => {
     if (graphqlShouldError.flag) {
-      return res(
-        ctx.errors([{ message: "an error", extensions: { code: "BAD_CODE" } }])
-      );
+      return HttpResponse.json({
+        errors: [{ message: "an error", extensions: { code: "BAD_CODE" } }],
+      });
     }
-    const tenantAlias = req.url.href.match(
-      /https:\/\/mocked_saasquatch\/api\/v1\/(.*)\/graphql/
-    )[1];
+    const tenantAlias = request.url.match(
+      /https:\/\/mocked_saasquatch\/api\/v1\/(.*)\/graphql/,
+    )![1];
 
-    return res(
-      ctx.data({
+    return HttpResponse.json({
+      data: {
         tenantAlias,
-      })
-    );
+      },
+    });
   }),
 ];

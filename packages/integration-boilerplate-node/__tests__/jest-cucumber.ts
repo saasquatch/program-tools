@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { loadFeatures, autoBindSteps } from "jest-cucumber";
 
 import steps from "./steps";
@@ -6,7 +7,11 @@ import steps from "./steps";
 // descriptors for stdout, stderr and stdin (discovered by using the leaked-handles package and lsof), but weirdly
 // using fake timers fixes the issue and Jest exits without issue. Initially I suspected Winston was leaking given
 // the file descriptors, but I pulled it out with no change.  Maybe come back to this at some point to figure it out.
-jest.useFakeTimers();
+// Note: only setTimeout/setInterval are faked (to neutralize periodic reschedule loops in the service) — faking
+// setImmediate or Date breaks the HTTP server/socket lifecycle under vitest.
+vi.useFakeTimers({
+  toFake: ["setTimeout", "clearTimeout", "setInterval", "clearInterval"],
+});
 
 // Mock environment for tests
 [
