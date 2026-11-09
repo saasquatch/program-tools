@@ -61,10 +61,10 @@ export function setting<T>(
   key: string,
   options: { transform: ValueTransform<T>; optional: true },
 ): T | undefined;
-/** Required transformed setting. Loading throws if the key is absent. */
+/** Required transformed setting; optional must be false or absent. Loading throws if the key is absent. */
 export function setting<T>(
   key: string,
-  options: { transform: ValueTransform<T> },
+  options: { transform: ValueTransform<T>; optional?: false },
 ): T;
 /** String setting with a default used when the key is absent. */
 export function setting(key: string, options: { default: string }): string;

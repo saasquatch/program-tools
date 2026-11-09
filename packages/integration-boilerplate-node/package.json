@@ -19,7 +19,7 @@
     "provenance": true
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "test": "cucumber-js",
     "test:coverage": "c8 cucumber-js",
     "check": "tsc --noEmit && oxlint",
@@ -59,7 +59,7 @@
     "@types/express-sslify": "^1.2.5",
     "@types/json-schema": "^7.0.15",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^26.6.6",
+    "@types/node": "^24.19.2",
     "c8": "^12.0.0",
     "msw": "^2.15.0",
     "oxfmt": "^0.67.0",
