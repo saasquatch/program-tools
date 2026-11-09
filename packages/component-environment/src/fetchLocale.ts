@@ -73,7 +73,7 @@ export async function fetchLocale(): Promise<string | undefined> {
     }
 
     return isGetLocaleResponse(json)
-      ? (json.data.viewer.locale || undefined)
+      ? json.data.viewer.locale || undefined
       : undefined;
   } catch (e) {
     debug(

@@ -21,6 +21,7 @@ on:
           - publish-helper
           - component-boilerplate
           - stencilbook
+          - component-environment
 
       increment-type:
         description: The version number to increment

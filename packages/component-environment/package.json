@@ -28,11 +28,16 @@
       }
     }
   },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsdown",
     "check": "tsc --noEmit && oxlint",
     "format": "oxfmt",
     "prepack": "npm run build",
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
     "test": "node --import ./__tests__/setup/dom.ts --test '__tests__/**/*.spec.ts'"
   },
   "dependencies": {
