@@ -1,4 +1,4 @@
-import decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { ContextProvider } from "dom-context";
 import { equal } from "@wry/equality";
 import { getEnvironmentSDK } from "../environment.ts";
@@ -57,7 +57,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
   if (!jwt) return undefined;
 
   try {
-    const decoded = decode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
+    const decoded = jwtDecode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
     const exp = decoded.exp;
 
     let userId: string | undefined = undefined;

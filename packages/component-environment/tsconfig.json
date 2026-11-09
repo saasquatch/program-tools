@@ -1,16 +1,41 @@
 {
+  "$schema": "https://www.schemastore.org/tsconfig",
+  "display": "Node 24",
+  "_version": "24.0.0",
+
+  "include": ["src/**/*.ts"],
+
   "compilerOptions": {
-    "target": "ES2021",
-    "lib": ["ES2021", "DOM"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "./dist",
+    "lib": [
+      "DOM",
+      "es2024",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "ESNext.Error",
+      "ESNext.Iterator",
+      "ESNext.Promise"
+    ],
+
+    "rootDir": "./src",
+    "noEmit": true,
+
+    "module": "nodenext",
+    "moduleResolution": "node16",
+    "target": "esnext",
+    "types": ["node"],
+
+    // Best practices
+    "allowJs": false,
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
-    "declaration": true,
-    "rewriteRelativeImportExtensions": true
-  },
-  "include": ["src/**/*"]
+    "strict": true,
+    "verbatimModuleSyntax": true
+  }
 }
