@@ -8,6 +8,7 @@ export function validateLocale(locale?: string) {
   if (locale && /^[a-z]{2}(_(?:[A-Z]{2}|[0-9]{3}))?$/.test(locale)) {
     return locale;
   }
+  return undefined;
 }
 
 /**

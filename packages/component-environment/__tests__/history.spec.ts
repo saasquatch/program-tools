@@ -1,3 +1,4 @@
+/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert";
 import { describe, it, before, mock } from "node:test";
 import history, { BrowserHistory, MemoryHistory } from "../src/history.ts";
@@ -18,7 +19,7 @@ describe("Lazy History", () => {
 
 describe("Memory History", () => {
   before(() => {
-    (window.squatchHistory as any) = undefined;
+    window.squatchHistory = undefined;
   });
 
   it("creates an instance of MemoryHistory in the absence of SquatchPortal", () => {
@@ -101,10 +102,11 @@ describe("Memory History", () => {
 
 describe("Browser History", () => {
   before(() => {
-    (window.squatchHistory as any) = undefined;
+    window.squatchHistory = undefined;
     window.SquatchPortal = {
       appDomain: "https://app.referralsaasquatch.com",
       tenantAlias: "demo",
+      googleClientId: undefined,
     };
   });
 

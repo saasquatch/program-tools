@@ -1,3 +1,4 @@
+/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert";
 import { describe, it } from "node:test";
 import { validateLocale } from "../src/contexts/LocaleContext.ts";
@@ -25,7 +26,7 @@ describe("Validate locale", () => {
 
     Object.entries(testCases).forEach(([key, shouldPass]) => {
       const result = validateLocale(key);
-      shouldPass
+      return shouldPass
         ? assert.strictEqual(result, key)
         : assert.strictEqual(result, undefined);
     });

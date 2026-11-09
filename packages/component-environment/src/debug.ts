@@ -1,7 +1,7 @@
 const debugEnabled = (() => {
   try {
     return window?.localStorage?.getItem("debug");
-  } catch (e) {
+  } catch {
     return false;
   }
 })();

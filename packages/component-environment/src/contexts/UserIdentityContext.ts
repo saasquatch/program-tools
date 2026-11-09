@@ -28,7 +28,7 @@ export function lazilyStartUserContext() {
     // Lazily creates a global provider
     globalProvider = new ContextProvider<UserIdentity | undefined>({
       element: document.documentElement,
-      initialState: _getInitialValue(),
+      initialState: getInitialValue(),
       contextName: USER_CONTEXT_NAME,
     }).start();
 
@@ -98,14 +98,50 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
       email,
       jwt,
     };
-  } catch (e) {
+  } catch {
     debug("Invalid JWT");
     // Invalid JWT
     return undefined;
   }
 }
 
-function _getInitialValue(): UserIdentity | undefined {
+function isUserIdentity(value: unknown): value is UserIdentity {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("id" in value) ||
+    typeof value.id !== "string" ||
+    !("accountId" in value) ||
+    typeof value.accountId !== "string" ||
+    ("email" in value &&
+      value.email !== undefined &&
+      typeof value.email !== "string") ||
+    ("jwt" in value && value.jwt !== undefined && typeof value.jwt !== "string")
+  ) {
+    return false;
+  }
+
+  if (!("managedIdentity" in value) || value.managedIdentity === undefined) {
+    return true;
+  }
+
+  const managed = value.managedIdentity;
+  return (
+    typeof managed === "object" &&
+    managed !== null &&
+    "email" in managed &&
+    typeof managed.email === "string" &&
+    "emailVerified" in managed &&
+    typeof managed.emailVerified === "boolean" &&
+    (!("sessionData" in managed) ||
+      managed.sessionData === undefined ||
+      (typeof managed.sessionData === "object" &&
+        managed.sessionData !== null &&
+        !Array.isArray(managed.sessionData)))
+  );
+}
+
+function getInitialValue(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
     case "SquatchIOS":
@@ -136,7 +172,11 @@ function _getInitialValue(): UserIdentity | undefined {
       const stored = localStorage.getItem(USER_CONTEXT_NAME);
       if (!stored) return undefined;
       try {
-        const potentialUserIdent = JSON.parse(stored) as UserIdentity;
+        const potentialUserIdent: unknown = JSON.parse(stored);
+        if (!isUserIdentity(potentialUserIdent)) {
+          debug("Invalid stored user identity");
+          return undefined;
+        }
         const identity = userIdentityFromJwt(potentialUserIdent.jwt);
         if (identity) {
           return {
@@ -145,12 +185,13 @@ function _getInitialValue(): UserIdentity | undefined {
           };
         }
         return undefined;
-      } catch (e) {
-        // Not valid JSON
+      } catch {
+        debug("Invalid stored user identity JSON");
         return undefined;
       }
     case "SquatchAdmin":
     case "None":
+    default:
       // Not logged in for admin portal / none default case
       return undefined;
   }
