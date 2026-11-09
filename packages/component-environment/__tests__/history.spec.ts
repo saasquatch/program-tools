@@ -1,6 +1,6 @@
-import history, { BrowserHistory, MemoryHistory } from "../src/history.ts";
 import assert from "node:assert";
-import { describe, it, before, mock } from "node:test"
+import { describe, it, before, mock } from "node:test";
+import history, { BrowserHistory, MemoryHistory } from "../src/history.ts";
 
 const memoryHistoryListener = mock.fn();
 const browserHistoryListener = mock.fn();
@@ -89,7 +89,10 @@ describe("Memory History", () => {
     history.push({ pathname: "/test1", search: "?foo=bar" });
     assert.strictEqual(history.location.pathname, "/test1");
     assert.strictEqual(history.location.search, "?foo=bar");
-    assert.strictEqual(new URLSearchParams(history.location.search).get("foo"), "bar");
+    assert.strictEqual(
+      new URLSearchParams(history.location.search).get("foo"),
+      "bar",
+    );
   });
 });
 
@@ -139,6 +142,9 @@ describe("Browser History", () => {
     history.push({ pathname: "/test1", search: "?foo=bar" });
     assert.strictEqual(history.location.pathname, "/test1");
     assert.strictEqual(history.location.search, "?foo=bar");
-    assert.strictEqual(new URLSearchParams(history.location.search).get("foo"), "bar");
+    assert.strictEqual(
+      new URLSearchParams(history.location.search).get("foo"),
+      "bar",
+    );
   });
 });

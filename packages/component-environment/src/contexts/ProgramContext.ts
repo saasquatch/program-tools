@@ -1,6 +1,6 @@
 import { ContextProvider } from "dom-context";
-import { PROGRAM_CONTEXT_NAME } from "../types.ts";
 import { debug as _debug } from "../debug.ts";
+import { PROGRAM_CONTEXT_NAME } from "../types.ts";
 
 const debug = (...args: any[]) => _debug(PROGRAM_CONTEXT_NAME, ...args);
 

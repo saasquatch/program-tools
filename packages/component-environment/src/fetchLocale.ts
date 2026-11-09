@@ -1,7 +1,7 @@
-import { getAppDomain, getTenantAlias } from "./environment.ts";
 import { getUserIdentity } from "./contexts/UserIdentityContext.ts";
-import { LOCALE_CONTEXT_NAME } from "./types.ts";
 import { debug as _debug } from "./debug.ts";
+import { getAppDomain, getTenantAlias } from "./environment.ts";
+import { LOCALE_CONTEXT_NAME } from "./types.ts";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 
@@ -38,7 +38,7 @@ export async function fetchLocale(): Promise<string | undefined> {
         body: JSON.stringify({
           query: GET_LOCALE,
         }),
-      }
+      },
     );
 
     if (!result.ok) {

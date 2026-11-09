@@ -1,5 +1,5 @@
-import { getEnvironment } from "./environment.ts";
 import { debug as _debug } from "./debug.ts";
+import { getEnvironment } from "./environment.ts";
 
 const debug = (...args: any[]) => _debug("history", ...args);
 
