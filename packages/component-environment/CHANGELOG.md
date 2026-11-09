@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-11-10
+
 ### Breaking changes
+
+- Supported engines are Node 24 (minimum 24.15.0) and Node 26.
 
 ### Changed
 
