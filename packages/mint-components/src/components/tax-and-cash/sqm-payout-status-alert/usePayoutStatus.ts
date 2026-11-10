@@ -1,7 +1,7 @@
 import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { UserQuery } from "../data";
+import { ImpactPublisher, ImpactUser } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import {
@@ -80,6 +80,27 @@ const GET_USER_STATUS = gql`
   }
 `;
 
+ type UserStatusQuery = {
+  user: {
+    id?: string;
+    rewards: {
+      data: {
+        statuses: string[];
+        partnerFundsTransfer: {
+          id: string;
+          status: string;
+        };
+      }[];
+    };
+    impactConnection: null | {
+      connected: boolean;
+      user: null | ImpactUser;
+      connectionStatus: "NOT_STARTED" | "STARTED" | "COMPLETED";
+      publisher: null | ImpactPublisher;
+    };
+  };
+};
+
 const GET_TAX_SETTING = gql`
   query getTenantSettings {
     tenantSettings {
@@ -88,7 +109,7 @@ const GET_TAX_SETTING = gql`
   }
 `;
 
-export function getStatus(data: UserQuery): PayoutStatus {
+export function getStatus(data: UserStatusQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
 
   const hasTransferredReward = data?.user?.rewards?.data?.find(
@@ -141,7 +162,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
   const { type } = getEnvironmentSDK();
-  const { loading, data, errors, refetch } = useQuery<UserQuery>(
+  const { loading, data, errors, refetch } = useQuery<UserStatusQuery>(
     GET_USER_STATUS,
     {},
   );
