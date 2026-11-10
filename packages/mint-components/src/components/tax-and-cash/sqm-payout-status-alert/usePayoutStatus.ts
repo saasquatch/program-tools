@@ -1,7 +1,7 @@
 import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { ImpactPublisher, ImpactUser } from "../data";
+import { UserQuery } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import {
@@ -63,43 +63,10 @@ const GET_USER_STATUS = gql`
             }
           }
         }
-        rewards(limit: 1000) {
-          data {
-            statuses
-            partnerFundsTransfer {
-              id
-              status
-              dateScheduled
-              dateCreated
-              dateTransferred
-            }
-          }
-        }
       }
     }
   }
 `;
-
- type UserStatusQuery = {
-  user: {
-    id?: string;
-    rewards: {
-      data: {
-        statuses: string[];
-        partnerFundsTransfer: {
-          id: string;
-          status: string;
-        };
-      }[];
-    };
-    impactConnection: null | {
-      connected: boolean;
-      user: null | ImpactUser;
-      connectionStatus: "NOT_STARTED" | "STARTED" | "COMPLETED";
-      publisher: null | ImpactPublisher;
-    };
-  };
-};
 
 const GET_TAX_SETTING = gql`
   query getTenantSettings {
@@ -109,14 +76,8 @@ const GET_TAX_SETTING = gql`
   }
 `;
 
-export function getStatus(data: UserStatusQuery): PayoutStatus {
+export function getStatus(data: UserQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
-
-  const hasTransferredReward = data?.user?.rewards?.data?.find(
-    (reward) =>
-      reward.statuses.includes("REDEEMED") &&
-      reward.partnerFundsTransfer?.status === "TRANSFERRED",
-  );
 
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
@@ -125,7 +86,7 @@ export function getStatus(data: UserStatusQuery): PayoutStatus {
     data.user.impactConnection?.publisher?.currentTaxDocument;
 
   // A new-payee review only starts once funds reach Impact, so until then nobody can act on it
-  const reviewIsLive = !!hasTransferredReward && account.balanceAmount > 0;
+  const reviewIsLive = account.balanceAmount > 0;
   const holdReasons = (account.holdReasons ?? []).filter(
     (reason) => reason !== "NEW_PAYEE_REVIEW" || reviewIsLive,
   );
@@ -162,7 +123,7 @@ export function getStatus(data: UserStatusQuery): PayoutStatus {
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
   const { type } = getEnvironmentSDK();
-  const { loading, data, errors, refetch } = useQuery<UserStatusQuery>(
+  const { loading, data, errors, refetch } = useQuery<UserQuery>(
     GET_USER_STATUS,
     {},
   );
