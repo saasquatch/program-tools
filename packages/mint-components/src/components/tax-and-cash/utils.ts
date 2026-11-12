@@ -132,7 +132,7 @@ export function getCountryObj({
 
 /** The minimum balance Impact requires before it will issue a payout, e.g. "USD50.00". */
 export function formatPayoutThreshold(
-  publisher: ImpactPublisher | null | undefined,
+  publisher: Pick<ImpactPublisher, "withdrawalSettings" | "currency"> | null | undefined,
 ): string | undefined {
   const threshold = publisher?.withdrawalSettings?.paymentThreshold;
   if (!threshold) return undefined;
@@ -145,7 +145,7 @@ export function formatPayoutThreshold(
  * A zero balance gets no notice — there is nothing waiting to pay out.
  */
 export function isBalanceUnderPayoutThreshold(
-  publisher: ImpactPublisher | null | undefined,
+  publisher: Pick<ImpactPublisher, "withdrawalSettings" | "payoutsAccount" | "currency"> | null | undefined,
 ): boolean {
   const rawThreshold = publisher?.withdrawalSettings?.paymentThreshold;
   const account = publisher?.payoutsAccount;
