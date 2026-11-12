@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.7
+
+### Patch Changes
+
+- [#570](https://github.com/saasquatch/program-tools/pull/570) [`b294005`](https://github.com/saasquatch/program-tools/commit/b294005896bac21e10f46288e47ea55e90caed47) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Fix unneeded params being queried which resulted in very long load times from usePayoutStatus.ts
+
 ## 2.5.6
 
 ### Patch Changes
