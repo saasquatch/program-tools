@@ -1,7 +1,7 @@
 import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { ImpactPublisher, UserQuery } from "../data";
+import { ImpactPublisher } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
 import { formatPayoutThreshold, isBalanceUnderPayoutThreshold } from "../utils";
