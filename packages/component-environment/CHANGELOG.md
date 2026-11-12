@@ -12,12 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking changes
 
 - Supported engines are Node 24 (minimum 24.15.0) and Node 26.
+- Publish ESM-only bundles and type declarations. CommonJS `require()` entry points
+  are no longer provided.
 
 ### Changed
 
 - Replace tsup with tsdown and upgrade TypeScript to 7.
-- Map CommonJS and ESM entry points and type declarations to their corresponding
-  bundles, targeting ES2017 browser syntax instead of Node 24.
+- Target ES2017 browser syntax instead of Node 24.
 - Upgrade jwt-decode to 4 for its ESM-compatible named export.
 - Build automatically before packing and provide a `check` script.
 
