@@ -6,7 +6,7 @@
 
 - [#561](https://github.com/saasquatch/program-tools/pull/561) [`99f5ecc`](https://github.com/saasquatch/program-tools/commit/99f5eccd4c5cc073d7fefa9016c247e65dbc6721) Thanks [@00salmon](https://github.com/00salmon)! - Remove signed user JWTs from stories and demo registration flows. Stories now render from canned GraphQL data (`@saasquatch/component-boilerplate/canned`) instead of live staging tenants, and the instant-access and referred registration demos use an unsigned token.
 
-  - `@saasquatch/component-boilerplate` ^1.6.13-1. Component behaviour is unchanged.
+  - `@saasquatch/component-boilerplate` ^1.6.13. Component behaviour is unchanged.
 
 ## 2.5.7
 
