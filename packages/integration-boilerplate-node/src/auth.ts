@@ -1,12 +1,10 @@
-import { Base64 } from "js-base64";
-import jwksRsa from "jwks-rsa";
-import jwt from "jsonwebtoken";
-import fetch from "node-fetch";
-import { Logger } from "winston";
 import { URLSearchParams } from "url";
+import { Logger } from "@saasquatch/logger";
+import { Base64 } from "js-base64";
+import jwt from "jsonwebtoken";
+import jwksRsa from "jwks-rsa";
 import NodeCache from "node-cache";
-
-import { PermissionDeniedError } from "./errors";
+import { PermissionDeniedError } from "./errors.ts";
 
 function createSaasquatchJwksClient(appDomain: string) {
   return jwksRsa({
@@ -23,13 +21,13 @@ function createSaasquatchJwksClient(appDomain: string) {
 function validateWithJwks(
   token: string,
   jwksClient: jwksRsa.JwksClient,
-  options?: jwt.VerifyOptions
+  options?: jwt.VerifyOptions,
 ): Promise<object> {
   return new Promise((resolve, reject) => {
     jwt.verify(
       token,
       (header, callback) => {
-        jwksClient.getSigningKey(header.kid!, (err, key) => {
+        jwksClient.getSigningKey(header.kid, (err, key) => {
           callback(err, key ? key.getPublicKey() : undefined);
         });
       },
@@ -44,7 +42,7 @@ function validateWithJwks(
             resolve(decoded);
           }
         }
-      }
+      },
     );
   });
 }
@@ -52,14 +50,24 @@ function validateWithJwks(
 export class Auth {
   private jwksClientCache: NodeCache;
   private saasquatchTokenCache: NodeCache;
+  private appDomain: string;
+  private auth0ClientId: string;
+  private auth0ClientSecret: string;
+  private auth0Domain: string;
+  private logger: Logger;
 
   constructor(
-    private appDomain: string,
-    private auth0ClientId: string,
-    private auth0ClientSecret: string,
-    private auth0Domain: string,
-    private logger: Logger
+    appDomain: string,
+    auth0ClientId: string,
+    auth0ClientSecret: string,
+    auth0Domain: string,
+    logger: Logger,
   ) {
+    this.appDomain = appDomain;
+    this.auth0ClientId = auth0ClientId;
+    this.auth0ClientSecret = auth0ClientSecret;
+    this.auth0Domain = auth0Domain;
+    this.logger = logger;
     this.jwksClientCache = new NodeCache({
       stdTTL: 86400, // 1 day
       useClones: false,
@@ -70,9 +78,10 @@ export class Auth {
   }
 
   private getJwksClient() {
-    if (this.jwksClientCache.has("the")) {
+    const cached = this.jwksClientCache.get<jwksRsa.JwksClient>("the");
+    if (cached) {
       this.logger.debug(`Retrieving JWKS client from from cache`);
-      return this.jwksClientCache.get("the") as jwksRsa.JwksClient;
+      return cached;
     }
 
     const client = createSaasquatchJwksClient(this.appDomain);
@@ -88,13 +97,18 @@ export class Auth {
    */
   async validateSaaSquatchRequest(
     requestBody: string,
-    jwsNoPayloadHeader: string
+    jwsNoPayloadHeader: string,
   ) {
     const requestBodyBase64 = Base64.encodeURI(requestBody);
-    const token = jwsNoPayloadHeader.replace(
-      "..",
-      "." + requestBodyBase64 + "."
-    );
+    // The RFC 7797 header is a detached-payload JWS of the form
+    // "<protectedHeader>..<signature>" — re-insert the encoded payload
+    // between the two separator dots. Headers not in detached form are
+    // passed through unchanged so jwt.verify reports the appropriate error.
+    const parts = jwsNoPayloadHeader.split(".");
+    const token =
+      parts.length === 3 && parts[1] === ""
+        ? `${parts[0]}.${requestBodyBase64}.${parts[2]}`
+        : jwsNoPayloadHeader;
 
     return await validateWithJwks(token, this.getJwksClient());
   }
@@ -115,9 +129,10 @@ export class Auth {
    * Get a SaaSquatch API access token from Auth0.
    */
   async getSaasquatchApiToken(): Promise<string> {
-    if (this.saasquatchTokenCache.has("the")) {
+    const cached = this.saasquatchTokenCache.get<string>("the");
+    if (cached !== undefined) {
       this.logger.debug(`Retrieving SaaSquatch API token from cache`);
-      return this.saasquatchTokenCache.get("the") as string;
+      return cached;
     }
 
     try {
@@ -130,7 +145,7 @@ export class Auth {
         "audience",
         `https://${this.appDomain}${
           this.appDomain === "app.referralsaasquatch.com" ? "/" : ""
-        }`
+        }`,
       );
       body.append("grant_type", "client_credentials");
 
@@ -140,7 +155,8 @@ export class Auth {
         body: body.toString(),
       });
 
-      const json = await response.json();
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- external Auth0 API response
+      const json = (await response.json()) as { access_token?: string };
 
       if (response.status !== 200) {
         throw new Error(`Invalid response from Auth0: ${JSON.stringify(json)}`);

@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-11-06
+
+### BREAKING CHANGES
+
+- Minimum supported Node.js version is now 24 (`engines: ^24 || ^26`, was `>=18`).
+- The `typed-config` dependency has been removed and replaced with an in-house
+  settings API. The `@key`/`@optional` decorators no longer exist; settings are now declared as class field initializers using `setting()` (plus `nested()` and the
+  transform helpers `asNumber`, `asBoolean`, `trim`, and `split`), all
+  exported from `@saasquatch/integration-boilerplate-node`. Consumers
+  extending `BaseConfig` must be updated:
+
+  ```ts
+  // Before
+  @key("HUBSPOT_APP_ID", asNumber)
+  public hubspotAppId!: number;
+
+  @key("DEPLOYMENT_ENVIRONMENT")
+  @optional("dev")
+  public deploymentEnvironment!: string;
+
+  // After
+  hubspotAppId = setting("HUBSPOT_APP_ID", { transform: asNumber });
+  deploymentEnvironment = setting("DEPLOYMENT_ENVIRONMENT", { default: "dev" });
+  ```
+
+  Custom transform functions change signature from
+  `(obj, propertyName, value)` to `(value, key)`.
+
+- A required setting that is missing from the environment now fails loading
+  with `Missing required configuration key "<KEY>"` (previously
+  `Missing environment variable - <KEY>`).
+- `METRICS_ENABLED` is now parsed as a boolean. Previously it had no
+  transform, so `METRICS_ENABLED=false` resolved to the truthy string
+  `"false"` and enabled metrics.
+- Updated `@saasquatch/logger` from 1.x to 4.x and removed Winston entirely.
+- Updated `@saasquatch/express-boilerplate` from 1.x to 3.x.
+
+### Changed
+
+- Replaced the `auth0` SDK with `@auth0/auth0-auth-js` for the workload
+  identity client credentials flow. The token file written for Google
+  Workload Identity Federation keeps the same format.
+- `handleError` now accepts `unknown` instead of `Error`. Throwing `null` or
+  `undefined` no longer causes a secondary error inside the error handler and
+  instead produces a clean `UNKNOWN_ERROR` response.
+- Updated the OpenTelemetry metrics stack
+  (`@opentelemetry/exporter-metrics-otlp-http` 0.219.x,
+  `@opentelemetry/resources` and `@opentelemetry/sdk-metrics` 2.8.x).
+- Updated dependencies: `express` 4.22.x, `compression` 1.8.x, `ajv` 8.20.x,
+  `json-schema` 0.4.x.
+
+### Removed
+
+- Removed unused dependencies: `body-parser`,
+  `@opentelemetry/exporter-trace-otlp-http`, `@opentelemetry/instrumentation`,
+  `@opentelemetry/sdk-trace-base`, `@types/auth0`,
+  `@types/http-proxy-middleware`, `@types/lodash`, `@types/node-cache`.
+
 ## [2.4.1] - 2025-03-20
 
 ### Changed

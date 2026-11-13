@@ -1,21 +1,17 @@
-import { ConfigProvider, key, optional, loadConfiguration } from "typed-config";
-
-// FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-export function asNumber(_obj: any, _name: string, val: any) {
-  return +val;
-}
-
-// FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-export function asBoolean(_obj: any, _name: string, val: any): boolean {
-  return (val as string).toLowerCase() === "true";
-}
+import {
+  type ConfigProvider,
+  setting,
+  loadConfiguration,
+  asNumber,
+  asBoolean,
+} from "./settings.ts";
 
 class EnvironmentConfigProvider implements ConfigProvider {
   get(key: string): string {
     if (!process.env[key]) {
       throw new Error(`Missing environment variable - ${key}`);
     }
-    return process.env[key] as string;
+    return process.env[key];
   }
 
   has(key: string): boolean {
@@ -24,79 +20,78 @@ class EnvironmentConfigProvider implements ConfigProvider {
 }
 
 export class BaseConfig {
-  @key("PORT", asNumber)
-  @optional(10000)
-  public port!: number;
+  port = setting("PORT", { transform: asNumber, default: 10000 });
 
-  @key("SERVER_LOG_LEVEL")
-  @optional("info")
-  public serverLogLevel!: string;
+  serverLogLevel = setting("SERVER_LOG_LEVEL", { default: "info" });
 
-  @key("SERVER_LOG_FILE")
-  @optional("")
-  public serverLogFile!: string;
+  serverLogFile = setting("SERVER_LOG_FILE", { default: "" });
 
-  @key("ENFORCE_HTTPS", asBoolean)
-  @optional(true)
-  public enforceHttps!: boolean;
+  enforceHttps = setting("ENFORCE_HTTPS", {
+    transform: asBoolean,
+    default: true,
+  });
 
-  @key("PROXY_FRONTEND")
-  @optional("")
-  public proxyFrontend!: string;
+  proxyFrontend = setting("PROXY_FRONTEND", { default: "" });
 
-  @key("SERVICE_NAME")
-  public serviceName!: string;
+  serviceName = setting("SERVICE_NAME");
 
-  @key("SAASQUATCH_APP_DOMAIN")
-  @optional("app.referralsaasquatch.com")
-  public saasquatchAppDomain!: string;
+  saasquatchAppDomain = setting("SAASQUATCH_APP_DOMAIN", {
+    default: "app.referralsaasquatch.com",
+  });
 
-  @key("SAASQUATCH_AUTH0_CLIENT_ID")
-  public saasquatchAuth0ClientId!: string;
+  saasquatchAuth0ClientId = setting("SAASQUATCH_AUTH0_CLIENT_ID");
 
-  @key("SAASQUATCH_AUTH0_DOMAIN")
-  public saasquatchAuth0Domain!: string;
+  saasquatchAuth0Domain = setting("SAASQUATCH_AUTH0_DOMAIN");
 
-  @key("SAASQUATCH_AUTH0_SECRET")
-  public saasquatchAuth0Secret!: string;
+  saasquatchAuth0Secret = setting("SAASQUATCH_AUTH0_SECRET");
 
-  @key("STATIC_FRONTEND_PATH")
-  @optional("../../frontend/build")
-  public staticFrontendPath!: string;
+  staticFrontendPath = setting("STATIC_FRONTEND_PATH", {
+    default: "../../frontend/build",
+  });
 
-  @key("STATIC_FRONTEND_INDEX")
-  @optional("index.html")
-  public staticFrontendIndex!: string;
+  staticFrontendIndex = setting("STATIC_FRONTEND_INDEX", {
+    default: "index.html",
+  });
 
-  @key("INTROSPECTION_ENDPOINT_PATH")
-  @optional("/introspection")
-  public introspectionEndpointPath!: string;
+  introspectionEndpointPath = setting("INTROSPECTION_ENDPOINT_PATH", {
+    default: "/introspection",
+  });
 
-  @key("METRICS_ENABLED")
-  @optional(false)
-  public metricsEnabled!: boolean;
+  metricsEnabled = setting("METRICS_ENABLED", {
+    transform: asBoolean,
+    default: false,
+  });
 
-  @key("GOOGLE_WORKLOAD_IDENTITY_PROJECT_ID")
-  @optional("")
-  public googleWorkloadIdentityProjectId!: string;
+  googleWorkloadIdentityProjectId = setting(
+    "GOOGLE_WORKLOAD_IDENTITY_PROJECT_ID",
+    { default: "" },
+  );
 
-  @key("GOOGLE_WORKLOAD_IDENTITY_POOL")
-  @optional("")
-  public googleWorkloadIdentityPool!: string;
+  googleWorkloadIdentityPool = setting("GOOGLE_WORKLOAD_IDENTITY_POOL", {
+    default: "",
+  });
 
-  @key("GOOGLE_WORKLOAD_IDENTITY_PROVIDER")
-  @optional("")
-  public googleWorkloadIdentityProvider!: string;
+  googleWorkloadIdentityProvider = setting(
+    "GOOGLE_WORKLOAD_IDENTITY_PROVIDER",
+    {
+      default: "",
+    },
+  );
 
-  @key("GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL")
-  @optional("")
-  public googleWorkloadIdentityServiceAccountEmail!: string;
+  googleWorkloadIdentityServiceAccountEmail = setting(
+    "GOOGLE_WORKLOAD_IDENTITY_SERVICE_ACCOUNT_EMAIL",
+    { default: "" },
+  );
 }
 
+export async function loadConfig(): Promise<BaseConfig>;
 export async function loadConfig<T extends BaseConfig>(
-  Config?: new () => T
-): Promise<T> {
+  Config: new () => T,
+): Promise<T>;
+export async function loadConfig(
+  Config?: new () => BaseConfig,
+): Promise<BaseConfig> {
   const config = Config ? new Config() : new BaseConfig();
   await loadConfiguration(config, new EnvironmentConfigProvider());
-  return config as T;
+  return config;
 }

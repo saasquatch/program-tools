@@ -1,3 +1,5 @@
+import { hostname } from "os";
+import path from "path";
 import {
   healthCheck,
   installShutdownManager,
@@ -5,38 +7,39 @@ import {
   shutdownManagerConfigFromEnv,
 } from "@saasquatch/express-boilerplate";
 import { httpLogMiddleware } from "@saasquatch/logger";
-import { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig";
+import { Logger } from "@saasquatch/logger";
+import type { IntegrationConfiguration } from "@saasquatch/schema/types/IntegrationConfig/index.js";
 import compression from "compression";
-import express, { Express, Response, Router } from "express";
+import express, { type Express, type Response, Router } from "express";
 import enforce from "express-sslify";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import NodeCache from "node-cache";
-import fetch from "node-fetch";
-import { hostname } from "os";
-import path from "path";
-import { Logger } from "winston";
-import { gql } from ".";
-import { Auth } from "./auth";
-import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider";
-import { BaseConfig, loadConfig } from "./config";
-import { GraphQLError, IntegrationConfigError } from "./errors";
-import { formHandler } from "./formHandler";
-import { installInstrumentation } from "./instrumentation";
-import { introspectionHandler } from "./introspectionHandler";
-import { createLogger } from "./logger";
+import { Auth } from "./auth.ts";
+import { Auth0WorkloadIdentityCredentialProvider } from "./auth0WorkloadIdentityCredentialProvider.ts";
+import { BaseConfig, loadConfig } from "./config.ts";
+import {
+  errorToString,
+  GraphQLError,
+  IntegrationConfigError,
+} from "./errors.ts";
+import { formHandler } from "./formHandler.ts";
+import { gql } from "./index.ts";
+import { installInstrumentation } from "./instrumentation.ts";
+import { introspectionHandler } from "./introspectionHandler.ts";
+import { createLogger } from "./logger.ts";
 import {
   MetricsManager,
   METRIC_FORM_COUNT,
   METRIC_INTROSPECTION_COUNT,
   METRIC_REQUEST_PROCESSING_COUNT,
   METRIC_WEBHOOK_COUNT,
-} from "./metrics";
+} from "./metrics.ts";
 import {
   createSaasquatchRequestMiddleware,
   createSaasquatchTokenMiddleware,
-} from "./middleware";
-import * as types from "./types";
-import { webhookHandler } from "./webhookHandler";
+} from "./middleware.ts";
+import * as types from "./types.ts";
+import { webhookHandler } from "./webhookHandler.ts";
 
 declare module "http" {
   interface IncomingMessage {
@@ -210,48 +213,49 @@ export class IntegrationService<
   async getIntegrationConfig(
     tenantAlias: types.TenantAlias,
   ): Promise<IntegrationConfig> {
-    if (this.tenantIntegrationConfigCache.has(tenantAlias)) {
+    const cached =
+      this.tenantIntegrationConfigCache.get<IntegrationConfig>(tenantAlias);
+    if (cached !== undefined) {
       this.logger.debug(
         `Retrieving integration config for tenant [${tenantAlias}] from cache`,
       );
-      return this.tenantIntegrationConfigCache.get(
-        tenantAlias,
-      ) as IntegrationConfig;
+      return cached;
     }
 
     try {
       const tenantAliasParam = encodeURIComponent(tenantAlias);
       const clientId = encodeURIComponent(this.config.saasquatchAuth0ClientId);
-      const path = `/api/v1/${tenantAliasParam}/integration/${clientId}`;
+      const requestPath = `/api/v1/${tenantAliasParam}/integration/${clientId}`;
 
-      const response = await this.authenticatedHttpRequest("GET", path);
+      const response = await this.authenticatedHttpRequest("GET", requestPath);
 
       if (response.status !== 200) {
         throw new Error(JSON.stringify(response.json));
       }
 
-      const config = response.json.config as IntegrationConfig;
+      // External API response trusted to have this shape
+      const config: IntegrationConfig = response.json.config;
       this.tenantIntegrationConfigCache.set(tenantAlias, config);
 
       return config;
     } catch (e) {
       throw new IntegrationConfigError(
-        `Failed to get integration config: ${(e as Error).message}`,
+        `Failed to get integration config: ${errorToString(e)}`,
       );
     }
   }
 
   public async authenticatedHttpRequest(
     method: "GET" | "POST",
-    path: string,
+    urlPath: string,
     body?: any,
   ): Promise<{ status: number; json: any }> {
     const apiToken = await this.auth.getSaasquatchApiToken();
     const appDomain = this.config.saasquatchAppDomain;
-    const realPath = path.startsWith("/") ? path : `/${path}`;
+    const realPath = urlPath.startsWith("/") ? urlPath : `/${urlPath}`;
     const response = await fetch(`https://${appDomain}${realPath}`, {
       method,
-      body,
+      ...(body === undefined ? {} : { body }),
       headers: {
         Authorization: `Bearer ${apiToken}`,
       },
@@ -341,21 +345,24 @@ export class IntegrationService<
         },
       });
 
-      const json = await response.json();
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- external GraphQL response
+      const json = (await response.json()) as QueryResponseShape & {
+        errors?: Array<{ message: string }>;
+      };
 
       if (response.status !== 200) {
         throw new GraphQLError(JSON.stringify(json), json);
       }
 
       if (json.errors) {
-        const errors = json.errors.map((e: any) => e.message).join("\n");
+        const errors = json.errors.map((e) => e.message).join("\n");
         throw new GraphQLError(errors, json);
       }
 
       return json;
     } catch (e) {
       if (e instanceof GraphQLError) throw e;
-      throw new GraphQLError((e as Error).message);
+      throw new GraphQLError(errorToString(e));
     }
   }
 
@@ -382,10 +389,7 @@ export class IntegrationService<
           const time = Number((endTimeNs - startTimeNs) / BigInt(1000));
 
           if (!Number.isNaN(time) && Number.isFinite(time) && time > 0) {
-            this.metricsManager!.recordHistogramVal(
-              "response_time",
-              Number(time),
-            );
+            this.metricsManager!.recordHistogramVal("response_time", time);
           }
 
           this.metricsManager!.decrement(METRIC_REQUEST_PROCESSING_COUNT);
@@ -432,6 +436,7 @@ export class IntegrationService<
     );
 
     if (this.options?.handlers?.webhookHandler) {
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- webhookHandler catches all errors internally
       app.post("/webhook", requireSaaSquatchSignature, async (req, res) => {
         await webhookHandler(
           req,
@@ -450,6 +455,7 @@ export class IntegrationService<
       app.post(
         this.config.introspectionEndpointPath,
         requireSaaSquatchSignature,
+        // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- introspectionHandler catches all errors internally
         async (req, res) => {
           await introspectionHandler(req, res, this);
           if (this.config.metricsEnabled) {
@@ -465,6 +471,7 @@ export class IntegrationService<
       this.options?.handlers?.formSubmitHandler ||
       this.options?.handlers?.formValidateHandler
     ) {
+      // oxlint-disable-next-line oxc/no-async-endpoint-handlers -- formHandler catches all errors internally
       app.post("/form", requireSaaSquatchSignature, async (req, res) => {
         await formHandler(
           req,
@@ -491,15 +498,18 @@ export class IntegrationService<
         }),
       );
     } else if (this.config.staticFrontendPath) {
-      const frontendPath = path.join(
-        require.main!.path,
-        this.config.staticFrontendPath,
-      );
+      // `require` only exists when loaded as CJS; under ESM fall back to the
+      // entry script's directory, then the working directory
+      const entryDir =
+        (typeof require !== "undefined" ? require.main?.path : undefined) ??
+        (process.argv[1]
+          ? path.dirname(path.resolve(process.argv[1]))
+          : process.cwd());
+      const frontendPath = path.join(entryDir, this.config.staticFrontendPath);
       app.use(express.static(frontendPath));
       app.get("/*", (_req, res, next) => {
         res.sendFile(
           path.join(frontendPath, this.config.staticFrontendIndex),
-          undefined,
           (err) => {
             if (err) next();
           },
@@ -526,7 +536,8 @@ export async function createIntegrationService<
 }) {
   const config: ServiceConfig = options?.configClass
     ? await loadConfig(options.configClass)
-    : await loadConfig();
+    : // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- without a configClass, ServiceConfig is BaseConfig (the type parameter default)
+      ((await loadConfig()) as ServiceConfig);
 
   if (config.metricsEnabled) {
     const deploymentEnv = process.env["DEPLOYMENT_ENVIRONMENT"] ?? "staging";
@@ -546,6 +557,7 @@ export async function createIntegrationService<
     config.googleWorkloadIdentityProvider &&
     config.googleWorkloadIdentityServiceAccountEmail
   ) {
+    // oxlint-disable-next-line no-new -- the constructor registers itself and starts a background token refresh loop
     new Auth0WorkloadIdentityCredentialProvider(createLogger(config), {
       auth0Domain: config.saasquatchAuth0Domain,
       auth0ClientId: config.saasquatchAuth0ClientId,
