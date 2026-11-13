@@ -1,10 +1,9 @@
-import { setUserIdentity } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { ShareLinkView } from "./sqm-share-link-view";
 import { useShareLink } from "./useShareLink";
 
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import { useCannedEnvironment } from "@saasquatch/component-boilerplate/canned";
 
 export default {
   title: "Hooks / useShareLink",
@@ -15,24 +14,7 @@ function setupGraphQL() {
   const accountId = id;
   const programId = "klip-referral-program";
 
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_a74miwdpofztj",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
-
-  useEffect(() => {
-    setUserIdentity({
-      accountId,
-      id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIiwiYWNjb3VudElkIjoiemFjaC5oYXJyaXNvbkByZWZlcnJhbHNhYXNxdWF0Y2guY29tIn19.Wi8Vd5r64g5n8VNhiY-v5cqFcLwGxPG3Wi3dVSfkFZI",
-    });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
-  }, []);
+  useCannedEnvironment({ programId, user: { id, accountId } });
 }
 export const BareBonesView = createHookStory(() => {
   setupGraphQL();

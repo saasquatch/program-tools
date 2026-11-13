@@ -2,6 +2,9 @@ import { useEffect } from '@saasquatch/universal-hooks';
 import { h } from '@stencil/core';
 import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
 import scenario from './sqb-program-switch.feature';
+import { fakeJwt } from '@saasquatch/component-boilerplate';
+import { useCannedEnvironment } from '@saasquatch/component-boilerplate/canned';
+import { cannedWidgetMocks } from '../sqb-widget/cannedWidgetTemplates';
 
 export default {
   title: 'Program Switch',
@@ -11,26 +14,25 @@ export default {
 };
 
 function useGraphQL() {
-  window.widgetIdent = {
-    tenantAlias: 'test_agvu4yg8zrkxt',
-    appDomain: 'https://app.referralsaasquatch.com',
-    userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
+  // Identity comes from widgetIdent here, as it does in a squatch.js embed.
+  useCannedEnvironment({
     programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
-  };
+    widgetIdent: {
+      userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+      accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+      token: fakeJwt({ user: { id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1', accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1' } }),
+      engagementMedium: 'EMBED',
+    },
+    mocks: cannedWidgetMocks,
+  });
 }
 
 function useNoAuthGraphQL() {
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: 'test_agvu4yg8zrkxt',
-    appDomain: 'https://app.referralsaasquatch.com',
+  useCannedEnvironment({
     programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
-  };
+    widgetIdent: { engagementMedium: 'EMBED' },
+    mocks: cannedWidgetMocks,
+  });
 }
 
 export const ProgramSwitch = createHookStory(() => {

@@ -1,6 +1,12 @@
-import { navigation, useCurrentPage } from "@saasquatch/component-boilerplate";
+import {
+  fakeJwt,
+  navigation,
+  useCurrentPage,
+} from "@saasquatch/component-boilerplate";
+import { useCannedEnvironment } from "@saasquatch/component-boilerplate/canned";
 import { h } from "@stencil/core";
 import { PortalFrameView } from "./sqm-portal-frame-view";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 function setupGraphQL() {
   const id = "worried-camera@uexwltgh.mailosaur.net";
@@ -9,17 +15,15 @@ function setupGraphQL() {
 
   //@ts-ignore
   window.SquatchAndroid = true;
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_as36zjtpfy7oo",
-    appDomain: "https://staging.referralsaasquatch.com",
-    token:
-      // you have to change this if you change the id or accountId
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY",
-    userId: id,
-    accountId,
+  // The Android SDK reads identity from widgetIdent rather than setUserIdentity.
+  useCannedEnvironment({
     programId,
-  };
+    widgetIdent: {
+      token: fakeJwt({ user: { id, accountId } }),
+      userId: id,
+      accountId,
+    },
+  });
   return { id, accountId };
 }
 
@@ -28,12 +32,7 @@ function setupLoggedOut() {
 
   //@ts-ignore
   window.SquatchAndroid = true;
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_as36zjtpfy7oo",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
+  useCannedEnvironment({ programId });
 }
 
 export default {
@@ -94,7 +93,7 @@ export const FrameWithoutMenu = () => {
   return <PortalFrameView {...props} />;
 };
 
-export const FullStackFrame = () => {
+export const FullStackFrame = createHookStory(() => {
   setupGraphQL();
   return (
     <div>
@@ -142,9 +141,9 @@ export const FullStackFrame = () => {
       <button onClick={navigation.back}>Go Back</button>
     </div>
   );
-};
+});
 
-export const FullStackFrameLoggedOut = () => {
+export const FullStackFrameLoggedOut = createHookStory(() => {
   setupLoggedOut();
   return (
     <div>
@@ -186,4 +185,4 @@ export const FullStackFrameLoggedOut = () => {
       <button onClick={navigation.back}>Go Back</button>
     </div>
   );
-};
+});

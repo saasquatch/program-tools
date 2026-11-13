@@ -32,6 +32,10 @@ export const config: Config = {
     }),
   ],
   plugins: [string({ include: "**/*.feature" })],
+  // Story code (stencilbook, hook stories and their canned data) gets its own
+  // lazy chunk. Without this, Stencil merged it into the chunk that customer
+  // pages load for sqb-widget.
+  bundles: [{ components: ["sqb-stencilbook", "sqb-hook-story-container"] }],
   rollupPlugins: {
     before: [
       alias({

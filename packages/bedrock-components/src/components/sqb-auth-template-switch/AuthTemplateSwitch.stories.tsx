@@ -1,33 +1,32 @@
 import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
 import { h } from '@stencil/core';
 import { useEffect } from '@saasquatch/universal-hooks';
+import { fakeJwt } from '@saasquatch/component-boilerplate';
+import { useCannedEnvironment } from '@saasquatch/component-boilerplate/canned';
 
 export default {
   title: 'Auth Template Switch',
 };
 
 function useAuth() {
-  window.widgetIdent = {
-    tenantAlias: 'test_agvu4yg8zrkxt',
-    appDomain: 'https://app.referralsaasquatch.com',
-    userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
+  // Identity comes from widgetIdent here, as it does in a squatch.js embed.
+  useCannedEnvironment({
     programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
-  };
+    widgetIdent: {
+      userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+      accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+      token: fakeJwt({ user: { id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1', accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1' } }),
+      engagementMedium: 'EMBED',
+    },
+  });
 }
 
 //@ts-ignore
 function useNoAuth() {
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: 'test_agvu4yg8zrkxt',
-    appDomain: 'https://app.referralsaasquatch.com',
+  useCannedEnvironment({
     programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
-  };
+    widgetIdent: { engagementMedium: 'EMBED' },
+  });
 }
 
 export const AuthTemplateSwitch = createHookStory(() => {
