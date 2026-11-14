@@ -1,15 +1,15 @@
-import decode from "jwt-decode";
-import { ContextProvider } from "dom-context";
 import { equal } from "@wry/equality";
-import { getEnvironmentSDK } from "../environment";
+import { ContextProvider } from "dom-context";
+import { jwtDecode } from "jwt-decode";
+import { debug as _debug } from "../debug.ts";
+import { getEnvironmentSDK } from "../environment.ts";
+import { startUserContextListenerForLocale } from "../listeners.ts";
 import {
   USER_CONTEXT_NAME,
-  UserIdentity,
-  DecodedSquatchJWT,
-  DecodedWidgetAPIJWT,
-} from "../types";
-import { startUserContextListenerForLocale } from "../listeners";
-import { debug as _debug } from "../debug";
+  type UserIdentity,
+  type DecodedSquatchJWT,
+  type DecodedWidgetAPIJWT,
+} from "../types.ts";
 
 const debug = (...args: any[]) => _debug(USER_CONTEXT_NAME, ...args);
 
@@ -28,7 +28,7 @@ export function lazilyStartUserContext() {
     // Lazily creates a global provider
     globalProvider = new ContextProvider<UserIdentity | undefined>({
       element: document.documentElement,
-      initialState: _getInitialValue(),
+      initialState: getInitialValue(),
       contextName: USER_CONTEXT_NAME,
     }).start();
 
@@ -44,7 +44,10 @@ function isDecodedSquatchJWT(decoded: any): decoded is DecodedSquatchJWT {
 }
 
 function isDecodedWidgetAPIJWT(decoded: any): decoded is DecodedWidgetAPIJWT {
-  return decoded.sub && /.*:.*@.*:users/.test(decoded.sub);
+  return (
+    decoded.sub &&
+    /^[A-Za-z0-9+/=_-]*:[A-Za-z0-9+/=_-]*@[^@]*:users$/.test(decoded.sub)
+  );
 }
 
 /**
@@ -57,7 +60,7 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
   if (!jwt) return undefined;
 
   try {
-    const decoded = decode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
+    const decoded = jwtDecode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
     const exp = decoded.exp;
 
     let userId: string | undefined = undefined;
@@ -67,7 +70,9 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     if (isDecodedWidgetAPIJWT(decoded)) {
       // Pull the accountId and userId from the subject and Base64-decode them
       // NOTE: This is to support classic theme engine widget token generation
-      const matches = decoded.sub.match(/(.*):(.*)@(.*):users/);
+      const matches = decoded.sub.match(
+        /^([A-Za-z0-9+/=_-]*):([A-Za-z0-9+/=_-]*)@([^@]*):users$/,
+      );
       if (matches?.[1]) accountId = atob(matches[1]);
       if (matches?.[2]) userId = atob(matches[2]);
     } else if (isDecodedSquatchJWT(decoded)) {
@@ -93,14 +98,50 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
       email,
       jwt,
     };
-  } catch (e) {
+  } catch {
     debug("Invalid JWT");
     // Invalid JWT
     return undefined;
   }
 }
 
-function _getInitialValue(): UserIdentity | undefined {
+function isUserIdentity(value: unknown): value is UserIdentity {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("id" in value) ||
+    typeof value.id !== "string" ||
+    !("accountId" in value) ||
+    typeof value.accountId !== "string" ||
+    ("email" in value &&
+      value.email !== undefined &&
+      typeof value.email !== "string") ||
+    ("jwt" in value && value.jwt !== undefined && typeof value.jwt !== "string")
+  ) {
+    return false;
+  }
+
+  if (!("managedIdentity" in value) || value.managedIdentity === undefined) {
+    return true;
+  }
+
+  const managed = value.managedIdentity;
+  return (
+    typeof managed === "object" &&
+    managed !== null &&
+    "email" in managed &&
+    typeof managed.email === "string" &&
+    "emailVerified" in managed &&
+    typeof managed.emailVerified === "boolean" &&
+    (!("sessionData" in managed) ||
+      managed.sessionData === undefined ||
+      (typeof managed.sessionData === "object" &&
+        managed.sessionData !== null &&
+        !Array.isArray(managed.sessionData)))
+  );
+}
+
+function getInitialValue(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
     case "SquatchIOS":
@@ -131,7 +172,11 @@ function _getInitialValue(): UserIdentity | undefined {
       const stored = localStorage.getItem(USER_CONTEXT_NAME);
       if (!stored) return undefined;
       try {
-        const potentialUserIdent = JSON.parse(stored) as UserIdentity;
+        const potentialUserIdent: unknown = JSON.parse(stored);
+        if (!isUserIdentity(potentialUserIdent)) {
+          debug("Invalid stored user identity");
+          return undefined;
+        }
         const identity = userIdentityFromJwt(potentialUserIdent.jwt);
         if (identity) {
           return {
@@ -140,12 +185,13 @@ function _getInitialValue(): UserIdentity | undefined {
           };
         }
         return undefined;
-      } catch (e) {
-        // Not valid JSON
+      } catch {
+        debug("Invalid stored user identity JSON");
         return undefined;
       }
     case "SquatchAdmin":
     case "None":
+    default:
       // Not logged in for admin portal / none default case
       return undefined;
   }

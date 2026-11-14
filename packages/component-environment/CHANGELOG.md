@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [2.0.0] - 2026-11-10
+
+### Breaking changes
+
+- Supported engines are Node 24 (minimum 24.15.0) and Node 26.
+- Publish ESM-only bundles and type declarations. CommonJS `require()` entry points
+  are no longer provided.
+
+### Changed
+
+- Replace tsup with tsdown and upgrade TypeScript to 7.
+- Target ES2017 browser syntax instead of Node 24.
+- Upgrade jwt-decode to 4 for its ESM-compatible named export.
+- Build automatically before packing and provide a `check` script.
+
 ## [1.0.11] - 2026-02-26
 
 ### Fixed

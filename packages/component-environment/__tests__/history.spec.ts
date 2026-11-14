@@ -1,72 +1,75 @@
-import history, { BrowserHistory, MemoryHistory } from "../src/history";
+/* oxlint-disable typescript/no-floating-promises */
+import assert from "node:assert";
+import { describe, it, before, mock } from "node:test";
+import history, { BrowserHistory, MemoryHistory } from "../src/history.ts";
 
-const memoryHistoryListener = jest.fn();
-const browserHistoryListener = jest.fn();
+const memoryHistoryListener = mock.fn();
+const browserHistoryListener = mock.fn();
 
 describe("Lazy History", () => {
   it("does not instantiate a history object at startup", () => {
-    expect(window.squatchHistory).toBeUndefined();
+    assert.strictEqual(window.squatchHistory, undefined);
   });
 
   it("creates history lazily", () => {
     history.push("/");
-    expect(window.squatchHistory).not.toBeUndefined();
+    assert.notEqual(window.squatchHistory, undefined);
   });
 });
 
 describe("Memory History", () => {
-  beforeAll(() => {
-    (window.squatchHistory as any) = undefined;
+  before(() => {
+    window.squatchHistory = undefined;
   });
 
   it("creates an instance of MemoryHistory in the absence of SquatchPortal", () => {
-    expect(history.location.pathname).toBe("/");
-    expect(window.squatchHistory).toBeInstanceOf(MemoryHistory);
+    assert.strictEqual(history.location.pathname, "/");
+    assert.ok(window.squatchHistory instanceof MemoryHistory);
   });
 
   it("has an initial entry of /", () => {
-    expect(history.location.pathname).toBe("/");
+    assert.strictEqual(history.location.pathname, "/");
   });
 
   it("calls listeners on route changes", () => {
     const cleanup = history.listen(memoryHistoryListener);
     history.push("/test");
-    expect(memoryHistoryListener).toHaveBeenCalledTimes(1);
+    assert.strictEqual(memoryHistoryListener.mock.calls.length, 1);
     cleanup();
   });
 
   it("pushes history entries", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.push("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
   });
 
   it("replaces history entries", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.replace("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
   });
 
   it("can go back", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.push("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
     history.back();
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
   });
 
   it("can go forward", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.push("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
     history.back();
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.forward();
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
   });
 
   it("can go to an arbitrary delta", () => {
@@ -77,17 +80,20 @@ describe("Memory History", () => {
     history.push("/test5");
 
     history.go(-2);
-    expect(history.location.pathname).toBe("/test3");
+    assert.strictEqual(history.location.pathname, "/test3");
 
     history.go(2);
-    expect(history.location.pathname).toBe("/test5");
+    assert.strictEqual(history.location.pathname, "/test5");
   });
 
   it("supports query params", () => {
     history.push({ pathname: "/test1", search: "?foo=bar" });
-    expect(history.location.pathname).toBe("/test1");
-    expect(history.location.search).toBe("?foo=bar");
-    expect(new URLSearchParams(history.location.search).get("foo")).toBe("bar");
+    assert.strictEqual(history.location.pathname, "/test1");
+    assert.strictEqual(history.location.search, "?foo=bar");
+    assert.strictEqual(
+      new URLSearchParams(history.location.search).get("foo"),
+      "bar",
+    );
   });
 });
 
@@ -95,48 +101,52 @@ describe("Memory History", () => {
 //       so we can't write natural tests for those.
 
 describe("Browser History", () => {
-  beforeAll(() => {
-    (window.squatchHistory as any) = undefined;
+  before(() => {
+    window.squatchHistory = undefined;
     window.SquatchPortal = {
       appDomain: "https://app.referralsaasquatch.com",
       tenantAlias: "demo",
+      googleClientId: undefined,
     };
   });
 
   it("creates an instance of BrowserHistory when in a SquatchPortal", () => {
-    expect(history.location.pathname).toBe(window.location.pathname);
-    expect(window.squatchHistory).toBeInstanceOf(BrowserHistory);
+    assert.strictEqual(history.location.pathname, window.location.pathname);
+    assert.ok(window.squatchHistory instanceof BrowserHistory);
   });
 
   it("has an initial entry that matches the window location", () => {
-    expect(history.location.pathname).toBe(window.location.pathname);
+    assert.strictEqual(history.location.pathname, window.location.pathname);
   });
 
   it("calls listeners on route changes", () => {
     const cleanup = history.listen(browserHistoryListener);
     history.push("/test");
-    expect(browserHistoryListener).toHaveBeenCalledTimes(1);
+    assert.strictEqual(browserHistoryListener.mock.calls.length, 1);
     cleanup();
   });
 
   it("pushes history entries", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.push("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
   });
 
   it("replaces history entries", () => {
     history.push("/test1");
-    expect(history.location.pathname).toBe("/test1");
+    assert.strictEqual(history.location.pathname, "/test1");
     history.replace("/test2");
-    expect(history.location.pathname).toBe("/test2");
+    assert.strictEqual(history.location.pathname, "/test2");
   });
 
   it("supports query params", () => {
     history.push({ pathname: "/test1", search: "?foo=bar" });
-    expect(history.location.pathname).toBe("/test1");
-    expect(history.location.search).toBe("?foo=bar");
-    expect(new URLSearchParams(history.location.search).get("foo")).toBe("bar");
+    assert.strictEqual(history.location.pathname, "/test1");
+    assert.strictEqual(history.location.search, "?foo=bar");
+    assert.strictEqual(
+      new URLSearchParams(history.location.search).get("foo"),
+      "bar",
+    );
   });
 });

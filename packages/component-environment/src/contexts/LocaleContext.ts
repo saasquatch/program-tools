@@ -1,6 +1,6 @@
 import { ContextProvider } from "dom-context";
-import { LOCALE_CONTEXT_NAME } from "../types";
-import { debug as _debug } from "../debug";
+import { debug as _debug } from "../debug.ts";
+import { LOCALE_CONTEXT_NAME } from "../types.ts";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 
@@ -8,6 +8,7 @@ export function validateLocale(locale?: string) {
   if (locale && /^[a-z]{2}(_(?:[A-Z]{2}|[0-9]{3}))?$/.test(locale)) {
     return locale;
   }
+  return undefined;
 }
 
 /**

@@ -1,8 +1,11 @@
-import { validateLocale } from "../src/contexts/LocaleContext";
+/* oxlint-disable typescript/no-floating-promises */
+import assert from "node:assert";
+import { describe, it } from "node:test";
+import { validateLocale } from "../src/contexts/LocaleContext.ts";
 
 describe("Validate locale", () => {
   it("returns undefined when locale is undefined", () => {
-    expect(validateLocale(undefined)).toBeUndefined();
+    assert.strictEqual(validateLocale(undefined), undefined);
   });
 
   it("expects the locale to be in the format xx_XX", () => {
@@ -23,7 +26,9 @@ describe("Validate locale", () => {
 
     Object.entries(testCases).forEach(([key, shouldPass]) => {
       const result = validateLocale(key);
-      shouldPass ? expect(result).toEqual(key) : expect(result).toBeUndefined();
+      return shouldPass
+        ? assert.strictEqual(result, key)
+        : assert.strictEqual(result, undefined);
     });
   });
 });

@@ -147,7 +147,7 @@ export interface SquatchJS2 {
    */
   reload(
     userDetails: { email: string; firstName: string; lastName: string },
-    jwt: string
+    jwt: string,
   ): void;
 }
 
