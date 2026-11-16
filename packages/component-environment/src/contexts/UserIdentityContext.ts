@@ -105,17 +105,13 @@ export function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
   }
 }
 
-function isUserIdentity(value: unknown): value is UserIdentity {
+type StoredIdentity = Pick<UserIdentity, "jwt" | "managedIdentity">;
+
+// Only these fields are read back from storage; the rest come from the JWT.
+function isStoredIdentity(value: unknown): value is StoredIdentity {
   if (
     typeof value !== "object" ||
     value === null ||
-    !("id" in value) ||
-    typeof value.id !== "string" ||
-    !("accountId" in value) ||
-    typeof value.accountId !== "string" ||
-    ("email" in value &&
-      value.email !== undefined &&
-      typeof value.email !== "string") ||
     ("jwt" in value && value.jwt !== undefined && typeof value.jwt !== "string")
   ) {
     return false;
@@ -173,7 +169,7 @@ function getInitialValue(): UserIdentity | undefined {
       if (!stored) return undefined;
       try {
         const potentialUserIdent: unknown = JSON.parse(stored);
-        if (!isUserIdentity(potentialUserIdent)) {
+        if (!isStoredIdentity(potentialUserIdent)) {
           debug("Invalid stored user identity");
           return undefined;
         }

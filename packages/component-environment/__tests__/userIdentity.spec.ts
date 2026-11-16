@@ -1,23 +1,24 @@
-/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert/strict";
 import { afterEach, beforeEach, describe, it, mock } from "node:test";
 import { ContextListener } from "dom-context";
-import { lazilyStartUserContext } from "../src/contexts/UserIdentityContext.ts";
+import {
+  lazilyStartUserContext,
+  userIdentityFromJwt,
+} from "../src/contexts/UserIdentityContext.ts";
 import { USER_CONTEXT_NAME } from "../src/types.ts";
 
-const jwt = [
-  Buffer.from(JSON.stringify({ alg: "HS256" })).toString("base64url"),
-  Buffer.from(
-    JSON.stringify({
-      user: {
-        id: "token-user",
-        accountId: "token-account",
-        email: "token@example.com",
-      },
-    }),
-  ).toString("base64url"),
-  "signature",
-].join(".");
+const base64url = (value: unknown) =>
+  Buffer.from(JSON.stringify(value)).toString("base64url");
+const jwtFor = (payload: unknown) =>
+  [base64url({ alg: "HS256" }), base64url(payload), "signature"].join(".");
+
+const jwt = jwtFor({
+  user: {
+    id: "token-user",
+    accountId: "token-account",
+    email: "token@example.com",
+  },
+});
 
 const storedIdentity = { id: "stored-user", accountId: "stored-account", jwt };
 const managedIdentity = {
@@ -81,13 +82,21 @@ describe("Stored user identity", () => {
     });
   }
 
+  it("takes identity fields from the JWT, not storage", () => {
+    localStorage.setItem(
+      USER_CONTEXT_NAME,
+      JSON.stringify({ jwt, id: 1, accountId: null, email: false }),
+    );
+    const identity = lazilyStartUserContext().context;
+    assert.equal(identity?.id, "token-user");
+    assert.equal(identity?.accountId, "token-account");
+    assert.equal(identity?.email, "token@example.com");
+  });
+
   for (const invalid of [
     null,
     [],
     {},
-    { ...storedIdentity, id: 1 },
-    { ...storedIdentity, accountId: null },
-    { ...storedIdentity, email: false },
     { ...storedIdentity, jwt: 1 },
     { ...storedIdentity, managedIdentity: null },
     { ...storedIdentity, managedIdentity: {} },
@@ -110,5 +119,21 @@ describe("Stored user identity", () => {
   it("handles malformed JSON", () => {
     localStorage.setItem(USER_CONTEXT_NAME, "{");
     assert.equal(lazilyStartUserContext().context, undefined);
+  });
+});
+
+describe("Widget API JWT", () => {
+  const sub = `${btoa("widget-account")}:${btoa("widget-user")}@demo:users`;
+
+  for (const invalid of [`${sub}-x`, `junk ${sub}`]) {
+    it(`rejects a malformed subject: ${invalid}`, () => {
+      assert.equal(userIdentityFromJwt(jwtFor({ sub: invalid })), undefined);
+    });
+  }
+
+  it("decodes the account and user from the subject", () => {
+    const identity = userIdentityFromJwt(jwtFor({ sub }));
+    assert.equal(identity?.accountId, "widget-account");
+    assert.equal(identity?.id, "widget-user");
   });
 });

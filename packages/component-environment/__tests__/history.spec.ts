@@ -1,4 +1,3 @@
-/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert";
 import { describe, it, before, mock } from "node:test";
 import history, { BrowserHistory, MemoryHistory } from "../src/history.ts";

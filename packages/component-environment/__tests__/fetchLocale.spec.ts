@@ -1,4 +1,3 @@
-/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert/strict";
 import { afterEach, describe, it, mock } from "node:test";
 import { fetchLocale } from "../src/fetchLocale.ts";

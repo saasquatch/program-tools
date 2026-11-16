@@ -10,6 +10,12 @@
     "typeCheck": true
   },
   "rules": {},
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.ts"],
+      "rules": { "typescript/no-floating-promises": "off" }
+    }
+  ],
   "env": {
     "builtin": true
   }

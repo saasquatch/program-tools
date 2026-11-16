@@ -1,4 +1,3 @@
-/* oxlint-disable typescript/no-floating-promises */
 import assert from "node:assert";
 import { describe, it } from "node:test";
 import { validateLocale } from "../src/contexts/LocaleContext.ts";
