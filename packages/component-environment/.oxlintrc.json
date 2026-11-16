@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "options": {
+    "typeAware": true,
+    "typeCheck": true
+  },
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.ts"],
+      "rules": { "typescript/no-floating-promises": "off" }
+    }
+  ],
+  "env": {
+    "builtin": true
+  }
+}

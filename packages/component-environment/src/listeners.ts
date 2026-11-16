@@ -1,12 +1,12 @@
 import { ContextListener } from "dom-context";
-import { USER_CONTEXT_NAME, LOCALE_CONTEXT_NAME } from "./types";
-import { UserIdentity } from "./types";
 import {
   lazilyStartLocaleContext,
   validateLocale,
-} from "./contexts/LocaleContext";
-import { fetchLocale } from "./fetchLocale";
-import { debug as _debug } from "./debug";
+} from "./contexts/LocaleContext.ts";
+import { debug as _debug } from "./debug.ts";
+import { fetchLocale } from "./fetchLocale.ts";
+import { USER_CONTEXT_NAME, LOCALE_CONTEXT_NAME } from "./types.ts";
+import { type UserIdentity } from "./types.ts";
 
 const debug = (...args: any[]) => _debug(LOCALE_CONTEXT_NAME, ...args);
 

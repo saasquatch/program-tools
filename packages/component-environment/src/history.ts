@@ -1,5 +1,5 @@
-import { getEnvironment } from "./environment";
-import { debug as _debug } from "./debug";
+import { debug as _debug } from "./debug.ts";
+import { getEnvironment } from "./environment.ts";
 
 const debug = (...args: any[]) => _debug("history", ...args);
 
@@ -27,7 +27,7 @@ interface ListenableHistory {
 
 declare global {
   interface Window {
-    squatchHistory: ListenableHistory;
+    squatchHistory?: ListenableHistory;
   }
 }
 
@@ -176,18 +176,18 @@ export class MemoryHistory implements ListenableHistory {
   }
 }
 
+function wrapHistoryFunction(functionName: "pushState" | "replaceState") {
+  const orig = window.history[functionName];
+  return function (...args: Parameters<History["pushState"]>) {
+    const returnValue = orig.apply(window.history, args);
+    const event = new Event(functionName);
+    window.dispatchEvent(event);
+    return returnValue;
+  };
+}
+
 function createHistory() {
   if (getEnvironment() === "SquatchPortal") {
-    function wrapHistoryFunction(functionName: string) {
-      const orig = (window.history as any)[functionName];
-      return function (...args: any[]) {
-        const returnValue = orig.apply(window.history, args);
-        const event = new Event(functionName);
-        window.dispatchEvent(event);
-        return returnValue;
-      };
-    }
-
     window.history.pushState = wrapHistoryFunction("pushState");
     window.history.replaceState = wrapHistoryFunction("replaceState");
 

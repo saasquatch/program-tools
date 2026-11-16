@@ -1,7 +1,7 @@
-export * from "./types";
-export * from "./environment";
-export { default as history } from "./history";
-export * from "./history";
-export * from "./contexts/UserIdentityContext";
-export * from "./contexts/LocaleContext";
-export * from "./contexts/ProgramContext";
+export * from "./types.ts";
+export * from "./environment.ts";
+export { default as history } from "./history.ts";
+export * from "./history.ts";
+export * from "./contexts/UserIdentityContext.ts";
+export * from "./contexts/LocaleContext.ts";
+export * from "./contexts/ProgramContext.ts";
