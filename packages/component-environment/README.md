@@ -44,3 +44,7 @@ The locale context name is exported in a constnat `LOCALE_CONTEXT_NAME`. The cur
 ## Program ID
 
 The program ID context name is exported in a constant `PROGRAM_CONTEXT_NAME`. The current value can be retrieved with `getProgramId()` and set with `setProgramId(programId)`.
+
+## Releasing
+
+See the [Changesets release guide](.changeset/README.md).

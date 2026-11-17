@@ -5,3 +5,7 @@ This is a collection of essential universal hooks for use in building web compon
 ## Documentation
 
 See [index.ts](src/index.ts) for API documentation directly in Typescript.
+
+## Releasing
+
+See the [Changesets release guide](.changeset/README.md).

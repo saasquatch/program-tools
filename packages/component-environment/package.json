@@ -31,7 +31,10 @@
     "check": "tsc --noEmit && oxlint",
     "format": "oxfmt",
     "prepack": "npm run build",
-    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo Error: Publishing manually is not supported. Please use the GitHub action. && exit 1; fi",
+    "prepublishOnly": "if [ \"$CI\" != \"true\" ]; then echo 'Error: Publish through the Changesets release PR or the prerelease GitHub Actions workflow.'; exit 1; fi",
+    "changeset": "changeset",
+    "version": "changeset version && npm install --package-lock-only --ignore-scripts --allow-git=none",
+    "release": "changeset publish --no-git-tag",
     "test": "node --import ./__tests__/setup/dom.ts --test '__tests__/**/*.spec.ts'"
   },
   "dependencies": {
@@ -40,6 +43,8 @@
     "jwt-decode": "^4.0.0"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.31.1",
     "@types/jsdom": "^30.0.0",
     "@types/node": "^24.19.2",
     "jsdom": "^31.0.0",

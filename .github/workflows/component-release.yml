@@ -1,0 +1,111 @@
+name: Component Release
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        description: The component package to release
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  release:
+    name: Release ${{ inputs.package }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: component-release-${{ inputs.package }}-${{ github.ref }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: packages/${{ inputs.package }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # 3d3c4 = v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # 82076 = v7.0.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Install packages
+        run: |
+          npm ci --ignore-scripts --allow-git=none
+          npm run postinstall --if-present
+
+      - name: Check for changesets
+        id: status
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync, readdirSync } from "node:fs";
+          const files = readdirSync(".changeset");
+          const hasChangesets = files.some((file) => file.endsWith(".md") && file !== "README.md");
+          appendFileSync(process.env.GITHUB_OUTPUT, `hasChangesets=${hasChangesets}\n`);
+          NODE
+
+      - name: Version package
+        if: steps.status.outputs.hasChangesets == 'true'
+        run: npm run version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release pull request
+        if: steps.status.outputs.hasChangesets == 'true'
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          branch: changeset-release/${{ inputs.package }}
+          add-paths: packages/${{ inputs.package }}
+          commit-message: "${{ inputs.package }} - Version Packages"
+          title: "${{ inputs.package }} - Version Packages"
+          body: |
+            This PR updates the package version, lockfile, and changelog using Changesets.
+            Merge it into master to publish to npm and create a scoped GitHub release.
+
+      - name: Publish unpublished version to npm
+        if: steps.status.outputs.hasChangesets == 'false'
+        id: publish
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync, readFileSync } from "node:fs";
+          import { execFileSync } from "node:child_process";
+          const { name, version } = JSON.parse(readFileSync("package.json", "utf8"));
+          let published = false;
+          try {
+            execFileSync("npm", ["view", `${name}@${version}`, "version", "--json", "--registry=https://registry.npmjs.org"], { stdio: ["ignore", "pipe", "pipe"] });
+          } catch (error) {
+            const result = JSON.parse(error.stdout.toString());
+            if (result.error?.code !== "E404") throw error;
+            execFileSync("npm", ["run", "release"], { stdio: "inherit" });
+            published = true;
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT, `published=${published}\n`);
+          NODE
+        env:
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Create scoped GitHub Release
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # 3a284 = v9.0.0
+        env:
+          PACKAGE: ${{ inputs.package }}
+        with:
+          script: |
+            const { readFileSync } = require("node:fs");
+            const { name, version } = JSON.parse(readFileSync(`packages/${process.env.PACKAGE}/package.json`, "utf8"));
+            const tag = `${name}@${version}`;
+            await github.rest.repos.createRelease({
+              ...context.repo,
+              tag_name: tag,
+              name: tag,
+              target_commitish: context.sha,
+              body: `See packages/${process.env.PACKAGE}/CHANGELOG.md for details.`,
+              prerelease: version.includes("-"),
+            });

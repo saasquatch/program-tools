@@ -5,6 +5,11 @@ on:
     branches: [master]
     paths:
       - "packages/mint-components/**"
+      - "packages/component-boilerplate/**"
+      - "packages/component-environment/**"
+      - "packages/bedrock-components/**"
+      - ".github/workflows/trusted-publish.yml"
+      - ".github/workflows/component-release.yml"
   workflow_dispatch:
     inputs:
       package:
@@ -12,6 +17,7 @@ on:
         required: true
         type: choice
         options:
+          - bedrock-components
           - express-boilerplate
           - integration-boilerplate-node
           - logger
@@ -47,9 +53,80 @@ jobs:
       id-token: write # GCP workload identity federation
 
   mint-components-release:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && needs.changes.outputs.mint-components == 'true'
+    needs: changes
     uses: ./.github/workflows/mint-components-release.yml
     permissions:
       contents: write # Push commits to edit version numbers/changelogs
       id-token: write # GCP workload identity federation
       pull-requests: write # Open a PR
+
+  changes:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      mint-components: ${{ steps.filter.outputs.mint-components }}
+      component-boilerplate: ${{ steps.filter.outputs.component-boilerplate }}
+      component-environment: ${{ steps.filter.outputs.component-environment }}
+      bedrock-components: ${{ steps.filter.outputs.bedrock-components }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Find changed packages
+        id: filter
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          for package in mint-components component-boilerplate component-environment bedrock-components; do
+            paths=("packages/$package" ".github/workflows/trusted-publish.yml")
+            if [[ "$package" != "mint-components" ]]; then
+              paths+=(".github/workflows/component-release.yml")
+            fi
+            if git diff --quiet "$BEFORE" "$AFTER" -- "${paths[@]}"; then
+              echo "$package=false" >> "$GITHUB_OUTPUT"
+            else
+              exit_code=$?
+              if [[ "$exit_code" -ne 1 ]]; then
+                exit "$exit_code"
+              fi
+              echo "$package=true" >> "$GITHUB_OUTPUT"
+            fi
+          done
+
+  component-boilerplate-release:
+    needs: changes
+    if: needs.changes.outputs.component-boilerplate == 'true'
+    uses: ./.github/workflows/component-release.yml
+    with:
+      package: component-boilerplate
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+
+  component-environment-release:
+    needs: changes
+    if: needs.changes.outputs.component-environment == 'true'
+    uses: ./.github/workflows/component-release.yml
+    with:
+      package: component-environment
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+
+  bedrock-components-release:
+    needs: changes
+    if: needs.changes.outputs.bedrock-components == 'true'
+    uses: ./.github/workflows/component-release.yml
+    with:
+      package: bedrock-components
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
