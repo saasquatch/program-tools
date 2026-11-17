@@ -83,6 +83,10 @@ jobs:
           } catch (error) {
             const result = JSON.parse(error.stdout.toString());
             if (result.error?.code !== "E404") throw error;
+            // Without Changesets pre mode this would publish under "latest".
+            if (version.includes("-")) {
+              throw new Error(`Refusing to publish prerelease ${name}@${version} as latest; use the prerelease workflow instead`);
+            }
             execFileSync("npm", ["run", "release"], { stdio: "inherit" });
             published = true;
           }
