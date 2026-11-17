@@ -33,10 +33,10 @@ jobs:
       WORKING_DIR: packages/${{ inputs.package }}
 
     steps:
-      - name: Enforce mint-components prerelease-only policy
-        if: inputs.package == 'mint-components' && inputs.increment-type != 'prerelease'
+      - name: Enforce Changesets prerelease-only policy
+        if: contains(fromJSON('["mint-components", "component-boilerplate", "component-environment", "bedrock-components", "stencilbook"]'), inputs.package) && inputs.increment-type != 'prerelease'
         run: |
-          echo "::error::Stable releases of @saasquatch/mint-components must go through the 'Mint Components Release' workflow (Changesets). This workflow only supports 'prerelease' for mint-components."
+          echo "::error::Stable releases of $PACKAGE must go through a Changesets release PR. This workflow only supports prerelease for this package."
           exit 1
 
       - name: Checkout
@@ -70,6 +70,7 @@ jobs:
             const { join } = require("node:path");
 
             const allowedPackages = [
+              "bedrock-components",
               "express-boilerplate",
               "integration-boilerplate-node",
               "logger",

@@ -31,3 +31,7 @@ export class Component {
   }
 }
 ```
+
+## Releasing
+
+See the [Changesets release guide](.changeset/README.md).

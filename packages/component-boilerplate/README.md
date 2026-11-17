@@ -40,3 +40,7 @@ export const ReferralTable = createHookStory(() => {
   like a network round trip, so loading states render.
 
 Refresh the schema snapshot with `npm run sync-canned-schema -- <path to the saasquatch repo>`.
+
+## Releasing
+
+See the [Changesets release guide](.changeset/README.md).

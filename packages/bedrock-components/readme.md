@@ -9,3 +9,7 @@ Bedrock components can be used with other component collections, such as vanilla
 ## Using these components
 
 To use these components, add them as a depencency in your SaaSquatch widget editor.
+
+## Releasing
+
+See the [Changesets release guide](.changeset/README.md).
