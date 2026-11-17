@@ -1,9 +1,8 @@
-import { setUserIdentity } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { useShareButton } from "./useShareButton";
 
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import { useCannedEnvironment } from "@saasquatch/component-boilerplate/canned";
 
 export default {
   title: "Hooks / useShareButton",
@@ -14,23 +13,7 @@ function setupGraphQL() {
   const accountId = id;
   const programId = "sam-partner-test-2";
 
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_a8b41jotf8a1v",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
-  useEffect(() => {
-    setUserIdentity({
-      accountId,
-      id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
-    });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
-  }, []);
+  useCannedEnvironment({ programId, user: { id, accountId } });
 }
 export const BareBonesView = createHookStory(() => {
   setupGraphQL();

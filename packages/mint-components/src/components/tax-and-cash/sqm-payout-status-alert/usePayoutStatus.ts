@@ -1,13 +1,10 @@
 import { getEnvironmentSDK, useQuery } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
-import { UserQuery } from "../data";
+import { ImpactPublisher } from "../data";
 import { TAX_FORM_UPDATED_EVENT_KEY } from "../eventKeys";
 import { useVeriffApp, VERIFF_COMPLETE_EVENT_KEY } from "../useVeriffApp";
-import {
-  formatPayoutThreshold,
-  isBalanceUnderPayoutThreshold,
-} from "../utils";
+import { formatPayoutThreshold, isBalanceUnderPayoutThreshold } from "../utils";
 import { PayoutStatusAlert } from "./sqm-payout-status-alert";
 
 export type EnforceUsTaxComplianceOption =
@@ -51,8 +48,19 @@ const GET_USER_STATUS = gql`
           publisher {
             id
             currency
+            currentTaxDocument {
+              status
+              type
+              dateCreated
+            }
             withdrawalSettings {
+              paymentMethod
+              paypalEmailAddress
+              bankCountry
+              bankAccountNumber
+              paymentSchedulingType
               paymentThreshold
+              paymentDay
             }
             payoutsAccount {
               hold
@@ -63,22 +71,26 @@ const GET_USER_STATUS = gql`
             }
           }
         }
-        rewards(limit: 1000) {
-          data {
-            statuses
-            partnerFundsTransfer {
-              id
-              status
-              dateScheduled
-              dateCreated
-              dateTransferred
-            }
-          }
-        }
       }
     }
   }
 `;
+
+export type UserStatusQuery = {
+  user: {
+    impactConnection: null | {
+      connected: boolean;
+      publisher: null | Pick<
+        ImpactPublisher,
+        | "id"
+        | "currency"
+        | "payoutsAccount"
+        | "withdrawalSettings"
+        | "currentTaxDocument"
+      >;
+    };
+  };
+};
 
 const GET_TAX_SETTING = gql`
   query getTenantSettings {
@@ -88,14 +100,8 @@ const GET_TAX_SETTING = gql`
   }
 `;
 
-export function getStatus(data: UserQuery): PayoutStatus {
+export function getStatus(data: UserStatusQuery): PayoutStatus {
   const account = data.user.impactConnection?.publisher?.payoutsAccount;
-
-  const hasTransferredReward = data?.user?.rewards?.data?.find(
-    (reward) =>
-      reward.statuses.includes("REDEEMED") &&
-      reward.partnerFundsTransfer?.status === "TRANSFERRED",
-  );
 
   if (!data.user?.impactConnection?.connected || !account)
     return "INFORMATION_REQUIRED";
@@ -104,7 +110,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
     data.user.impactConnection?.publisher?.currentTaxDocument;
 
   // A new-payee review only starts once funds reach Impact, so until then nobody can act on it
-  const reviewIsLive = !!hasTransferredReward && account.balanceAmount > 0;
+  const reviewIsLive = account.balanceAmount > 0;
   const holdReasons = (account.holdReasons ?? []).filter(
     (reason) => reason !== "NEW_PAYEE_REVIEW" || reviewIsLive,
   );
@@ -141,7 +147,7 @@ export function getStatus(data: UserQuery): PayoutStatus {
 
 export function usePayoutStatus(props: PayoutStatusAlert) {
   const { type } = getEnvironmentSDK();
-  const { loading, data, errors, refetch } = useQuery<UserQuery>(
+  const { loading, data, errors, refetch } = useQuery<UserStatusQuery>(
     GET_USER_STATUS,
     {},
   );

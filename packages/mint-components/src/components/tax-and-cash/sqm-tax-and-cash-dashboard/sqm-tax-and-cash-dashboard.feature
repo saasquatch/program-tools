@@ -164,6 +164,21 @@ Feature: Tax And Cash Dashboard
       | BENEFICIARY_NAME_INVALID | Your payment information does not match your tax form |
       | IDV_CHECK_REQUIRED       | Verify your identity                                  |
 
+  @minutia
+  Scenario Outline: The NEW_PAYEE_REVIEW alert is only shown while the partner has a balance
+    # impact.com only starts a new payee review during a payout attempt, so a balance means the review is live
+    Given a user has "NEW_PAYEE_REVIEW" included in their holdReasons
+    And the user does not have other holdReasons
+    And a payment threshold of "50.00"
+    And a payout balance of <balance>
+    Then the alert <isShown>
+
+    Examples:
+      | balance | isShown                                                                                                   |
+      | "60.00" | is shown with heading "Your account is under review"                                                      |
+      | "10.00" | is shown with heading "Your account is under review" alongside "Your balance is under the minimum payout" |
+      | "0.00"  | is not shown                                                                                              |
+
   @motivating
   Scenario: User has general hold reasons
     Given they have impactConnection as one of the following

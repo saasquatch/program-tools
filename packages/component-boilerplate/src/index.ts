@@ -23,6 +23,7 @@ export { useAuthenticateWithGoogle } from "./hooks/managedIdentity/useAuthentica
 //      GraphQL API
 //
 export { BatchedGraphQLClient } from "./BatchedGraphQLClient";
+export { fakeJwt } from "./fakeJwt";
 export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";

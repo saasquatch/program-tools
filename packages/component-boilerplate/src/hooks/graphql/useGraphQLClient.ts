@@ -3,8 +3,9 @@ import memoize from "fast-memoize";
 import { BatchedGraphQLClient } from "../../BatchedGraphQLClient";
 import { useAppDomain, useTenantAlias, useToken } from "../environment";
 import { useHost } from "../useHost";
+import { GRAPHQL_CONTEXT } from "./context";
 
-export const GRAPHQL_CONTEXT = "sq:graphql-client";
+export { GRAPHQL_CONTEXT };
 
 function createGraphQlClient(
   appDomain: string,

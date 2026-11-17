@@ -6,7 +6,7 @@ import type { Config } from "@jest/types";
 // const esModules = ["haunted", "lit-html"].join("|");
 
 const config: Config.InitialOptions = {
-  testMatch: ["**/test/main.ts"],
+  testMatch: ["**/test/main.ts", "**/test/canned.test.ts"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
     // "^.+\\.(ts|tsx|js|jsx)$": "esbuild-jest",
