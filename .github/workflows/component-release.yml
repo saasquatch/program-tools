@@ -92,20 +92,34 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
 
       - name: Create scoped GitHub Release
-        if: steps.publish.outputs.published == 'true'
+        if: steps.status.outputs.hasChangesets == 'false'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # 3a284 = v9.0.0
         env:
           PACKAGE: ${{ inputs.package }}
+          PUBLISHED: ${{ steps.publish.outputs.published }}
         with:
           script: |
+            const { execFileSync } = require("node:child_process");
             const { readFileSync } = require("node:fs");
             const { name, version } = JSON.parse(readFileSync(`packages/${process.env.PACKAGE}/package.json`, "utf8"));
             const tag = `${name}@${version}`;
+            try {
+              await github.rest.git.getRef({ ...context.repo, ref: `tags/${tag}` });
+              core.info(`${tag} is already tagged`);
+              return;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            // A missing tag on an earlier publish means a previous run stopped before releasing.
+            const target = process.env.PUBLISHED === "true"
+              ? context.sha
+              : execFileSync("npm", ["view", tag, "gitHead", "--registry=https://registry.npmjs.org"], { encoding: "utf8" }).trim();
+            if (!target) throw new Error(`npm has no gitHead for ${tag}; tag it manually`);
             await github.rest.repos.createRelease({
               ...context.repo,
               tag_name: tag,
               name: tag,
-              target_commitish: context.sha,
+              target_commitish: target,
               body: `See packages/${process.env.PACKAGE}/CHANGELOG.md for details.`,
               prerelease: version.includes("-"),
             });
