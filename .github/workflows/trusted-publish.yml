@@ -8,6 +8,7 @@ on:
       - "packages/component-boilerplate/**"
       - "packages/component-environment/**"
       - "packages/bedrock-components/**"
+      - "packages/stencilbook/**"
       - ".github/workflows/trusted-publish.yml"
       - ".github/workflows/component-release.yml"
   workflow_dispatch:
@@ -71,6 +72,7 @@ jobs:
       component-boilerplate: ${{ steps.filter.outputs.component-boilerplate }}
       component-environment: ${{ steps.filter.outputs.component-environment }}
       bedrock-components: ${{ steps.filter.outputs.bedrock-components }}
+      stencilbook: ${{ steps.filter.outputs.stencilbook }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -82,7 +84,7 @@ jobs:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
-          for package in mint-components component-boilerplate component-environment bedrock-components; do
+          for package in mint-components component-boilerplate component-environment bedrock-components stencilbook; do
             paths=("packages/$package" ".github/workflows/trusted-publish.yml")
             if [[ "$package" != "mint-components" ]]; then
               paths+=(".github/workflows/component-release.yml")
@@ -126,6 +128,17 @@ jobs:
     uses: ./.github/workflows/component-release.yml
     with:
       package: bedrock-components
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+
+  stencilbook-release:
+    needs: changes
+    if: needs.changes.outputs.stencilbook == 'true'
+    uses: ./.github/workflows/component-release.yml
+    with:
+      package: stencilbook
     permissions:
       contents: write
       id-token: write

@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Enforce Changesets prerelease-only policy
-        if: contains(fromJSON('["mint-components", "component-boilerplate", "component-environment", "bedrock-components"]'), inputs.package) && inputs.increment-type != 'prerelease'
+        if: contains(fromJSON('["mint-components", "component-boilerplate", "component-environment", "bedrock-components", "stencilbook"]'), inputs.package) && inputs.increment-type != 'prerelease'
         run: |
           echo "::error::Stable releases of $PACKAGE must go through a Changesets release PR. This workflow only supports prerelease for this package."
           exit 1
