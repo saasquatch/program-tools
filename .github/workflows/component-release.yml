@@ -107,15 +107,17 @@ jobs:
             const { readFileSync } = require("node:fs");
             const { name, version } = JSON.parse(readFileSync(`packages/${process.env.PACKAGE}/package.json`, "utf8"));
             const tag = `${name}@${version}`;
-            try {
-              await github.rest.git.getRef({ ...context.repo, ref: `tags/${tag}` });
-              core.info(`${tag} is already tagged`);
-              return;
-            } catch (error) {
+            const isMissing = (request) => request.then(() => false, (error) => {
               if (error.status !== 404) throw error;
+              return true;
+            });
+            if (!(await isMissing(github.rest.repos.getReleaseByTag({ ...context.repo, tag })))) {
+              core.info(`${tag} already has a GitHub release`);
+              return;
             }
-            // A missing tag on an earlier publish means a previous run stopped before releasing.
-            const target = process.env.PUBLISHED === "true"
+            const hasTag = !(await isMissing(github.rest.git.getRef({ ...context.repo, ref: `tags/${tag}` })));
+            // An untagged earlier publish means a previous run stopped before releasing.
+            const target = hasTag || process.env.PUBLISHED === "true"
               ? context.sha
               : execFileSync("npm", ["view", tag, "gitHead", "--registry=https://registry.npmjs.org"], { encoding: "utf8" }).trim();
             if (!target) throw new Error(`npm has no gitHead for ${tag}; tag it manually`);
