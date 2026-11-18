@@ -151,7 +151,7 @@ export function usePartnerInfoModal(
 
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
 
-  const localeCountry = locale.replace(/^.*_/, "");
+  const localeCountry = locale?.replace(/^.*_/, "") || "";
 
   const countries = useMemo(() => {
     const data = countriesData?.impactPayoutCountries?.data;
