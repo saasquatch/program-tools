@@ -40,6 +40,6 @@ runProgramTests(
   "src/schema/birthday-program_schema.json",
   // Default program template and program rules to use while testing
   "__tests__/defaults/template.json",
-  "__tests__/defaults/rules.json"
+  "__tests__/defaults/rules.json",
 );
 ```
