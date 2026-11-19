@@ -266,20 +266,20 @@ export class BankingInfoForm {
   @Prop() searchForCountryText: string = "Search for country..";
 
   /**
-   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-   * @uiName Participant is a partner alert title
+   * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+   * @uiName Existing account alert title
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertHeader: string =
-    "An account with this email already exists with our referral program provider, impact.com";
+    "Your email {emailAddress} already has an impact.com account";
 
   /**
-   * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-   * @uiName Participant is a partner alert description
+   * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+   * @uiName Existing account alert description
    * @uiWidget textArea
    */
   @Prop() isPartnerAlertDescription: string =
-    "If you don’t recognize this referral program provider or believe this is a mistake, please contact our {supportLink} or sign up for this referral program with a different email.";
+    "This is normal if you’ve used impact.com before or participated in another referral program provided by them. Fill in any missing fields to continue.";
   /**
    * Text for verify email dialog
    * @uiName Verify email header
@@ -304,7 +304,7 @@ export class BankingInfoForm {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
+    "This is usually temporary. Please review your information and try again in a few minutes. If the problem continues, contact our {supportLink}.";
   /**
    * Displayed under a field that is missing required information.
    * @uiName Empty form field error message

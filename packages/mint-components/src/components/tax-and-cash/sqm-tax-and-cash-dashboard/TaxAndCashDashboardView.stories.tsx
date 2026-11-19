@@ -116,7 +116,7 @@ const defaultText: TaxAndCashDashboardProps["text"] = {
   error: {
     generalTitle: "There was a problem submitting your information",
     generalDescription:
-      "Please review your information and try again. If this problem continues, contact our {supportLink}.",
+      "This is usually temporary. Please review your information and try again in a few minutes. If the problem continues, contact our {supportLink}.",
     loadingErrorAlertHeader: "There was a problem loading your form",
     loadingErrorAlertDescription:
       "Please refresh the page and try again. If this problem continues, contact our {supportLink}.",

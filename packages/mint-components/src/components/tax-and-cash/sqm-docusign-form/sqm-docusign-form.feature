@@ -107,7 +107,7 @@ Feature: Comply Exchange Form
       """
     And the banner has description
       """
-      Please review your information and try again. If this problem continues, contact Support.
+      This is usually temporary. Please review your information and try again in a few minutes. If the problem continues, contact Support.
       """
 
   @minutia

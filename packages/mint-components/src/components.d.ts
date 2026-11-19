@@ -292,14 +292,14 @@ export namespace Components {
          */
         "individualSelectItemLabel": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
@@ -1639,14 +1639,14 @@ export namespace Components {
          */
         "indirectTaxNumberError": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
@@ -7017,15 +7017,15 @@ export namespace Components {
          */
         "invalidCharacterError": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiGroup General Form Properties
           * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiGroup General Form Properties
           * @uiWidget textArea
          */
@@ -8293,14 +8293,14 @@ export namespace Components {
          */
         "invalidCharacterError": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription": string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader": string;
@@ -10675,14 +10675,14 @@ declare namespace LocalJSX {
          */
         "individualSelectItemLabel"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
@@ -12023,14 +12023,14 @@ declare namespace LocalJSX {
          */
         "indirectTaxNumberError"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;
@@ -17371,15 +17371,15 @@ declare namespace LocalJSX {
          */
         "invalidCharacterError"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiGroup General Form Properties
           * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiGroup General Form Properties
           * @uiWidget textArea
          */
@@ -18646,14 +18646,14 @@ declare namespace LocalJSX {
          */
         "invalidCharacterError"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert description
+          * Part of the info message displayed at the top of the form if the participant already has an impact.com account.
+          * @uiName Existing account alert description
           * @uiWidget textArea
          */
         "isPartnerAlertDescription"?: string;
         /**
-          * Part of the alert displayed at the top of the page if the participant is already a registered partner on impact.com.
-          * @uiName Participant is a partner alert title
+          * Title of the info message displayed at the top of the form if the participant already has an impact.com account. Use {emailAddress} to show the participant's email.
+          * @uiName Existing account alert title
           * @uiWidget textArea
          */
         "isPartnerAlertHeader"?: string;

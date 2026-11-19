@@ -13,12 +13,12 @@ Feature: Banking Information Form
     Then the form shows skeletons for the expected number of input fields
 
   @minutia
-  Scenario: A banner is shown at the top of the page if the partner already exists
+  Scenario: An info message is shown at the top of the page if the partner already exists
     Given the participant is already a partner with impact
     And the user is not editing existing payout settings
     Then the payment method option will be selected automatically
     And the form fields with be pre filled with the participants data
-    And there will be banner to explain that the account is linked to their referral profile in impact.com
+    And an info message explains that an impact.com account already exists for their email
 
   @motivating
   Scenario Outline: Bank account form fields are dynamically shown

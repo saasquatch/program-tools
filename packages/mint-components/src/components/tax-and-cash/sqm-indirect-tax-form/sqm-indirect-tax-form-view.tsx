@@ -10,6 +10,7 @@ export interface IndirectTaxFormViewProps {
     disabled: boolean;
     isPartner: boolean;
     isPartnerLegacy: boolean;
+    email?: string;
     hideSteps: boolean;
     loadingError: boolean;
     formState: {
@@ -219,7 +220,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                   id: "formStep",
                   defaultMessage: text.formStep,
                 },
-                { step: states.step, count: FORM_STEPS },
+                { step: states.step, count: FORM_STEPS }
               )}
             </p>
           )}
@@ -247,7 +248,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                       {text.supportLink}
                     </a>
                   ),
-                },
+                }
               )}
             </sqm-form-message>
           </div>
@@ -269,29 +270,40 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              },
+              }
             )}
           </sqm-form-message>
         )}
         {states.isPartnerLegacy && (
-          <sqm-form-message loading={states.loading} type="info">
-            <p part="alert-title">{text.isPartnerAlertHeader}</p>
-            {intl.formatMessage(
-              {
-                id: "isPartnerAlertDescription",
-                defaultMessage: text.isPartnerAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-payment-support@impact.com`}
-                  >
-                    {text.supportLink}
-                  </a>
-                ),
-              },
-            )}
+          <sqm-form-message type="info" transparent>
+            <p part="alert-title">
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertHeader",
+                  defaultMessage: text.isPartnerAlertHeader,
+                },
+                { emailAddress: states.email || "" }
+              )}
+            </p>
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertDescription",
+                  defaultMessage: text.isPartnerAlertDescription,
+                },
+                {
+                  emailAddress: states.email || "",
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-payment-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                }
+              )}
+            </p>
           </sqm-form-message>
         )}
         <div>
@@ -339,7 +351,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
               {slots.registeredInDifferentCountryDetailsSlot}
             </div>
           </div>
-          <sqm-form-message type="info">
+          <sqm-form-message type="info" transparent>
             {intl.formatMessage(
               {
                 id: "cannotChangeInfoAlert",
@@ -354,7 +366,7 @@ export const IndirectTaxFormView = (props: IndirectTaxFormViewProps) => {
                     {text.supportLink}
                   </a>
                 ),
-              },
+              }
             )}
           </sqm-form-message>
           <div class={classes.BtnContainer}>
