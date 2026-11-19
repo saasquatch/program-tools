@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.9
+
+### Patch Changes
+
+- [#574](https://github.com/saasquatch/program-tools/pull/574) [`122d610`](https://github.com/saasquatch/program-tools/commit/122d6104019c48ed079a21790fc81e5aa0728fda) Thanks [@AndiLuo](https://github.com/AndiLuo)! - Update sqm-partner-info-modal to not prefill country and throw locale country to the top of the select
+
 ## 2.5.8
 
 ### Patch Changes
