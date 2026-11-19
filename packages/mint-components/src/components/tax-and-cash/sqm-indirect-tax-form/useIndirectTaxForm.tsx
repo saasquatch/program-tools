@@ -400,6 +400,7 @@ export function useIndirectTaxForm(props: IndirectTaxForm) {
       isPartnerLegacy:
         !!userData?.user?.impactConnection?.publisher &&
         userData?.user?.impactConnection?.connectionStatus !== "STARTED",
+      email: userForm?.email || userData?.user?.email,
       loadingError: !!userError?.message,
       formState: {
         checked: option,

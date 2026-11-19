@@ -393,7 +393,7 @@ export class TaxAndCashDashboard {
    * @uiWidget textArea
    */
   @Prop() generalErrorDescription: string =
-    "Please review your information and try again. If this problem continues, contact our {supportLink}.";
+    "This is usually temporary. Please review your information and try again in a few minutes. If the problem continues, contact our {supportLink}.";
   /**
    * Displayed under the payout details card.
    * @uiName Payout from impact text

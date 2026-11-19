@@ -546,8 +546,16 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
             </sqm-form-message>
           )}
           {(states.isPartnerLegacy || states.isUserLegacy) && (
-            <sqm-form-message loading={states.loading} type="info">
-              <p part="alert-title">{text.isPartnerAlertHeader}</p>
+            <sqm-form-message loading={states.loading} type="info" transparent>
+              <p part="alert-title">
+                {intl.formatMessage(
+                  {
+                    id: "isPartnerAlertHeader",
+                    defaultMessage: text.isPartnerAlertHeader,
+                  },
+                  { emailAddress: formState.email || "" },
+                )}
+              </p>
               <p part="alert-description">
                 {intl.formatMessage(
                   {
@@ -555,6 +563,7 @@ export const UserInfoFormView = (props: UserInfoFormViewProps) => {
                     defaultMessage: text.isPartnerAlertDescription,
                   },
                   {
+                    emailAddress: formState.email || "",
                     supportLink: (
                       <a
                         target="_blank"

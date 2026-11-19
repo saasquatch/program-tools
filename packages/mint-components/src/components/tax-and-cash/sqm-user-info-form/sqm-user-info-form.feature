@@ -311,12 +311,13 @@ Feature: Tax Form Step One
     Then the missing data is patched on the partner when they are upserted
 
   @motivating
-  Scenario: "Existing partner detected" banner only appears for legacy linked publishers
-    Given a user on the User Information form whose linked publisher exists
-    When the publisher's impactConnection.connectionStatus is null or undefined (legacy createImpactConnection)
-    Then the "existing partner detected" banner is shown
+  Scenario: "Existing account" info message only appears for legacy linked users and publishers
+    Given a user on the User Information form whose linked Impact user or publisher exists
+    When the impactConnection.connectionStatus is not "STARTED" (legacy createImpactConnection)
+    Then the "existing account" info message is shown
+    And it includes the participant's verified email address
     When instead the publisher's impactConnection.connectionStatus is "STARTED" (fresh sqm-partner-info-modal)
-    Then the "existing partner detected" banner is NOT shown
+    Then the "existing account" info message is NOT shown
     But the country and currency fields are still disabled because partnerData populated them
 
   @motivating

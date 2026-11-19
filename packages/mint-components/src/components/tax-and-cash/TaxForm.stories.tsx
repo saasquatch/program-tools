@@ -154,6 +154,7 @@ const stepTwoProps: StoryDemoData<UseIndirectTaxFormResult> = {
     loading: false,
     isPartner: false,
     isPartnerLegacy: false,
+    email: "test@example.com",
     loadingError: false,
     formState: {
       checked: undefined,
@@ -355,7 +356,7 @@ export const StepOneIsUser = () => {
   return (
     <sqm-user-info-form
       demoData={{
-        states: { ...stepOneProps.states, isUser: true },
+        states: { ...stepOneProps.states, isUser: true, isUserLegacy: true },
       }}
     ></sqm-user-info-form>
   );
@@ -365,7 +366,12 @@ export const StepOneIsPartner = () => {
   return (
     <sqm-user-info-form
       demoData={{
-        states: { ...stepOneProps.states, disabled: true, isPartner: true },
+        states: {
+          ...stepOneProps.states,
+          disabled: true,
+          isPartner: true,
+          isPartnerLegacy: true,
+        },
       }}
     ></sqm-user-info-form>
   );
@@ -401,6 +407,27 @@ export const StepOneWithGeneralError = () => {
       demoData={{
         states: {
           ...stepOneProps.states,
+          formState: {
+            ...stepOneProps.states.formState,
+            errors: {
+              general: true,
+            },
+          },
+        },
+      }}
+    ></sqm-user-info-form>
+  );
+};
+
+export const StepOneIsPartnerWithGeneralError = () => {
+  return (
+    <sqm-user-info-form
+      demoData={{
+        states: {
+          ...stepOneProps.states,
+          disabled: true,
+          isPartner: true,
+          isPartnerLegacy: true,
           formState: {
             ...stepOneProps.states.formState,
             errors: {
@@ -478,6 +505,7 @@ export const StepTwoIsPartner = () => {
         states: {
           ...stepTwoProps.states,
           isPartner: true,
+          isPartnerLegacy: true,
         },
       }}
     ></sqm-indirect-tax-form>
@@ -490,6 +518,26 @@ export const StepTwoWithGeneralError = () => {
       demoData={{
         states: {
           ...stepTwoProps.states,
+          formState: {
+            ...stepTwoProps.states.formState,
+            errors: {
+              general: true,
+            },
+          },
+        },
+      }}
+    ></sqm-indirect-tax-form>
+  );
+};
+
+export const StepTwoIsPartnerWithGeneralError = () => {
+  return (
+    <sqm-indirect-tax-form
+      demoData={{
+        states: {
+          ...stepTwoProps.states,
+          isPartner: true,
+          isPartnerLegacy: true,
           formState: {
             ...stepTwoProps.states.formState,
             errors: {
@@ -965,6 +1013,26 @@ export const StepFourIsPartner = () => {
           isPartner: true,
           formState: {
             ...stepFourProps.states.formState,
+          },
+        },
+      }}
+    ></sqm-banking-info-form>
+  );
+};
+
+export const StepFourIsPartnerWithGeneralError = () => {
+  return (
+    <sqm-banking-info-form
+      demoData={{
+        ...stepFourProps,
+        states: {
+          ...stepFourProps.states,
+          isPartner: true,
+          formState: {
+            ...stepFourProps.states.formState,
+            errors: {
+              general: true,
+            },
           },
         },
       }}

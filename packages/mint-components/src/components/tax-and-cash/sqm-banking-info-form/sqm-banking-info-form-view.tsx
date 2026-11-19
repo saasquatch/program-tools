@@ -416,24 +416,35 @@ export const BankingInfoFormView = (props: BankingInfoFormViewProps) => {
         )}
         {/* Don't show the warning if returning to edit */}
         {states.isPartner && !states.hideSteps && (
-          <sqm-form-message type="info">
-            <p part="alert-title">{text.isPartnerAlertHeader}</p>
-            {intl.formatMessage(
-              {
-                id: "isPartnerAlertDescription",
-                defaultMessage: text.isPartnerAlertDescription,
-              },
-              {
-                supportLink: (
-                  <a
-                    target="_blank"
-                    href={`mailto:advocate-payment-support@impact.com`}
-                  >
-                    {text.supportLink}
-                  </a>
-                ),
-              },
-            )}
+          <sqm-form-message type="info" transparent>
+            <p part="alert-title">
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertHeader",
+                  defaultMessage: text.isPartnerAlertHeader,
+                },
+                { emailAddress: states.email || "" },
+              )}
+            </p>
+            <p>
+              {intl.formatMessage(
+                {
+                  id: "isPartnerAlertDescription",
+                  defaultMessage: text.isPartnerAlertDescription,
+                },
+                {
+                  emailAddress: states.email || "",
+                  supportLink: (
+                    <a
+                      target="_blank"
+                      href={`mailto:advocate-payment-support@impact.com`}
+                    >
+                      {text.supportLink}
+                    </a>
+                  ),
+                },
+              )}
+            </p>
           </sqm-form-message>
         )}
         <div>

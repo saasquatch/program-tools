@@ -71,7 +71,7 @@ Feature: Tax Form Flow
   @minutia
   Scenario Outline: Participant is already registered as partner, provides indirect tax information, and submit their tax forms
     Given the they are already registered as a partner
-    Then step 1 displays a banner with "An account with this email already exists with our referral program provider, impact.com" notifying that they are a partner
+    Then step 1 displays an info message "Your email {emailAddress} already has an impact.com account" notifying that they already have an impact.com account
     And the following fields are pre-filled:
       | First name   |
       | Last name    |
@@ -176,7 +176,7 @@ Feature: Tax Form Flow
       """
     And the banner has the following description
       """
-      Please review your information and try again. If this problem continues, contact Support.
+      This is usually temporary. Please review your information and try again in a few minutes. If the problem continues, contact Support.
       """
 
   @minutia
