@@ -32,18 +32,19 @@ Feature: Partner Info Modal — country, currency, and T&C collection
     And the modal stays open until a successful submission
 
   @motivating
-  Scenario Outline: Country defaults to the locale-derived country code for a new participant
+  Scenario Outline: Locale-derived country is listed first for a new participant
     Given the participant has no linked Impact publisher
     And the resolved locale is <locale>
-    Then the "Country" select is prefilled with <countryCode>
-    And the "Country" select is enabled
+    Then the "Country" select starts empty and is enabled
     And the "Currency" select starts empty and is enabled
+    When they open the "Country" select
+    Then the countries are ordered <order>
 
     Examples:
-      | locale | countryCode |
-      | en_US  | US          |
-      | fr_CA  | CA          |
-      | en_GB  | GB          |
+      | locale | order                                               |
+      | en_US  | United States first, then alphabetically            |
+      | fr_CA  | Canada first, then United States, then alphabetical |
+      | es_419 | United States first, then alphabetically            |
 
   @motivating
   Scenario: New participant with no connection
@@ -69,9 +70,9 @@ Feature: Partner Info Modal — country, currency, and T&C collection
   Scenario: Existing-partner with linked publisher missing country/currency falls back to the new-partner defaults
     Given the participant is linked to an existing publisher
     But the publisher has no `countryCode` or `currency`
-    Then the "Country" select defaults to the locale-derived country code (and is enabled)
+    Then the "Country" select starts empty (and is enabled)
     And the "Currency" select starts empty (and is enabled)
-    And the "Confirm" button submits the locale/user selections via `startImpactConnection`
+    And the "Confirm" button submits the user's selections via `startImpactConnection`
 
   @motivating
   Scenario: Tax-and-banking checkbox is required to submit

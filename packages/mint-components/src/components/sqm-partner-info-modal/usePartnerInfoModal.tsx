@@ -131,9 +131,8 @@ export function usePartnerInfoModal(
   const [firstName, setFirstName] = useState(user?.firstName ?? "");
   const [lastName, setLastName] = useState(user?.lastName ?? "");
 
-  // No pre-filled country, use locale to determine countryCode instead
   const [countryCode, setCountryCode] = useState(
-    user?.impactConnection?.publisher?.countryCode || locale.replace(/^.*_/, "")
+    user?.impactConnection?.publisher?.countryCode || ""
   );
 
   const [currency, setCurrency] = useState(
@@ -152,15 +151,19 @@ export function usePartnerInfoModal(
 
   const [allowBankingCollection, setAllowBankingCollection] = useState(false);
 
+  const localeCountry = locale?.replace(/^.*_/, "") || "";
+
   const countries = useMemo(() => {
     const data = countriesData?.impactPayoutCountries?.data;
     if (!data) return [];
     return [...data].sort((a: TaxCountry, b: TaxCountry) => {
+      if (a.countryCode === localeCountry) return -1;
+      if (b.countryCode === localeCountry) return 1;
       if (a.countryCode === "US") return -1;
       if (b.countryCode === "US") return 1;
       return a.displayName.localeCompare(b.displayName);
     });
-  }, [countriesData]);
+  }, [countriesData, localeCountry]);
 
   const isExistingPartner = !!user?.impactConnection?.publisher;
 
