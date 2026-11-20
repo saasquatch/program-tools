@@ -1,5 +1,6 @@
-// src/setupTests.js
+import { afterAll, afterEach, beforeAll } from "vitest";
 import { server } from "./test/mocks/server";
+
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
 

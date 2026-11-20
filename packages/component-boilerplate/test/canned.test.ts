@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { ContextListener } from "dom-context";
 import {
   getProgramId,
@@ -327,7 +328,11 @@ describe("CannedGraphQLClient", () => {
       mocks: {
         Query: () => ({
           renderWidget: () => ({
-            widgetConfig: { values: { htmlTemplate: "<sqm-portal-container />" } },
+            // WidgetConfig is an interface, so the store needs to know which implementation
+            widgetConfig: {
+              __typename: "ProgramWidgetConfig",
+              values: { htmlTemplate: "<sqm-portal-container />" },
+            },
           }),
         }),
       },
@@ -349,7 +354,29 @@ describe("CannedGraphQLClient", () => {
     });
   });
 
-  // Story mocks like bedrock's cannedWidgetMocks depend on this order.
+  // The store saves fields by their arguments; rows has a default limit.
+  it("overrides a field that takes arguments, nested or in its own type's mock", async () => {
+    const LEADERBOARD = gql`
+      query {
+        userLeaderboard(type: "topConvertedReferrers") {
+          rows {
+            firstName
+          }
+        }
+      }
+    `;
+    const nested = createCannedGraphQLClient({
+      mocks: { Query: () => ({ userLeaderboard: () => ({ rows: [] }) }) },
+    });
+    expect((await nested.request(LEADERBOARD)).userLeaderboard.rows).toEqual([]);
+
+    const own = createCannedGraphQLClient({
+      mocks: { UserLeaderboard: () => ({ rows: () => [] }) },
+    });
+    expect((await own.request(LEADERBOARD)).userLeaderboard.rows).toEqual([]);
+  });
+
+  // Story mocks like bedrock's cannedWidgetMocks read the field's arguments.
   it("passes query arguments first to root field mocks", async () => {
     const seen: unknown[] = [];
     const custom = createCannedGraphQLClient({
@@ -358,7 +385,10 @@ describe("CannedGraphQLClient", () => {
           renderWidget: (args: { widgetType: string }) => {
             seen.push(args);
             return {
-              widgetConfig: { values: { htmlTemplate: `for ${args.widgetType}` } },
+              widgetConfig: {
+                __typename: "ProgramWidgetConfig",
+                values: { htmlTemplate: `for ${args.widgetType}` },
+              },
             };
           },
         }),
@@ -377,6 +407,36 @@ describe("CannedGraphQLClient", () => {
       { widgetType: "p/partner-program/w/partnerWidget" }
     );
     expect(seen).toEqual([{ widgetType: "p/partner-program/w/partnerWidget" }]);
+    expect(res.renderWidget.widgetConfig.values.htmlTemplate).toBe(
+      "for p/partner-program/w/partnerWidget"
+    );
+  });
+
+  it("passes a root field's arguments to the Query mock itself", async () => {
+    const custom = createCannedGraphQLClient({
+      mocks: {
+        Query: (args: { widgetType?: string }) => ({
+          renderWidget: {
+            widgetConfig: {
+              __typename: "ProgramWidgetConfig",
+              values: { htmlTemplate: `for ${args?.widgetType}` },
+            },
+          },
+        }),
+      },
+    });
+    const res = await custom.request(
+      gql`
+        query getWidget($widgetType: WidgetType!) {
+          renderWidget(widgetType: $widgetType) {
+            widgetConfig {
+              values
+            }
+          }
+        }
+      `,
+      { widgetType: "p/partner-program/w/partnerWidget" }
+    );
     expect(res.renderWidget.widgetConfig.values.htmlTemplate).toBe(
       "for p/partner-program/w/partnerWidget"
     );
@@ -405,7 +465,7 @@ describe("interceptCannedFetch", () => {
   const LOCALE = `query { viewer { ... on User { locale firstName } } }`;
 
   it("hands over cleanly when interceptors stop out of order", async () => {
-    const real = jest.fn();
+    const real = vi.fn();
     window.fetch = real as any;
     const stopFirst = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
@@ -428,7 +488,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("answers the canned endpoint, as raw-fetch callers like fetchLocale need", async () => {
-    const real = jest.fn();
+    const real = vi.fn();
     window.fetch = real as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
@@ -449,7 +509,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("reads the query from a Request body, as fetch(new Request(...)) sends it", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
     );
@@ -466,7 +526,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("prefers init.body over the Request's own body, like fetch", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
     );
@@ -483,7 +543,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("passes every other URL to the real fetch", async () => {
-    const real = jest.fn().mockResolvedValue("network");
+    const real = vi.fn().mockResolvedValue("network");
     window.fetch = real as any;
     const restore = interceptCannedFetch(createCannedGraphQLClient());
 
@@ -496,7 +556,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("returns GraphQL errors in the body, like the API", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(createCannedGraphQLClient());
     const res = await window.fetch(ENDPOINT, {
       method: "POST",

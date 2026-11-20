@@ -5,6 +5,8 @@
     "esModuleInterop": true,
     "strictNullChecks": false,
     "allowSyntheticDefaultImports": true,
+    // msw's declarations assume strictNullChecks, which this package disables
+    "skipLibCheck": true,
     // tsup (esbuild) compiles one file at a time, so type-only re-exports must
     // say `export type` or they ship as runtime exports that don't exist.
     "isolatedModules": true

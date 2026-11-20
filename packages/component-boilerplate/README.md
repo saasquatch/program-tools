@@ -38,6 +38,11 @@ export const ReferralTable = createHookStory(() => {
   so tables paginate.
 - Responses take 100ms in stories (`latency`, 0 for `createCannedGraphQLClient`),
   like a network round trip, so loading states render.
+- `mocks` are [@graphql-tools/mock](https://the-guild.dev/graphql/tools/docs/mocking)
+  store mocks: `Query` and `Mutation` mocks get the requested field's arguments,
+  other types' mocks get none, and function-valued fields get that field's
+  arguments (`Query: () => ({ renderWidget: (args) => ... })`).
+  Values for interfaces and unions need a `__typename`.
 
 Refresh the schema snapshot with `npm run sync-canned-schema -- <path to the saasquatch repo>`.
 

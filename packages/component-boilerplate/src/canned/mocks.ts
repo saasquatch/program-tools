@@ -1,15 +1,25 @@
-import { MockList } from "@graphql-tools/mock";
+import { IMockStore, isMockList, isRef } from "@graphql-tools/mock";
 import {
+  defaultFieldResolver,
   getNamedType,
+  getNullableType,
+  GraphQLFieldResolver,
   GraphQLObjectType,
-  GraphQLResolveInfo,
   GraphQLSchema,
   isListType,
   isNonNullType,
+  isObjectType,
+  isScalarType,
 } from "graphql";
 import { fakeJwt } from "../fakeJwt";
 
-export type Mocks = Record<string, (...args: any[]) => unknown>;
+/**
+ * Per-type mocks, as @graphql-tools/mock's store calls them: `Query`, `Mutation`
+ * and `Subscription` mocks get the requested field's arguments, other types get
+ * none. Function-valued fields in the returned object are called with that
+ * field's arguments. Values for abstract types must include `__typename`.
+ */
+export type Mocks = Record<string, (args?: any) => unknown>;
 
 /**
  * A fixed "now" so canned dates (and anything rendered from them, like
@@ -138,40 +148,46 @@ const lowerKeys = (o: Record<string, string>) => {
   return out;
 };
 
-const fieldInfo = (info?: GraphQLResolveInfo) => ({
-  fieldName: info?.fieldName ?? "",
-  parentType: info?.parentType?.name ?? "",
-});
+/**
+ * A generator for scalar fields whose realistic value depends on the field's
+ * name. The store doesn't tell scalar mocks which field they're for, so these
+ * are attached to each object type in `fieldMocks`.
+ */
+function fieldValue(
+  scalar: string,
+  fieldName: string,
+  parentType: string,
+  nullable: boolean
+): (() => unknown) | undefined {
+  const f = fieldName.toLowerCase();
+  switch (scalar) {
+    case "String":
+      return () =>
+        // Views treat any reason code as "unavailable"; the API sends none for available items.
+        nullable && /reasoncode$/.test(f) ? null : stringFor(fieldName, parentType);
+    case "Boolean":
+      if (/^(is)?enabled$|^valid$|^success$|^available$|^connected$/.test(f)) return () => true;
+      if (/hold|error|fraud/.test(f)) return () => false;
+      return undefined;
+    case "Float":
+      // Taxes and fees stay below the smallest amount, so "after tax" is always positive.
+      if (/vat|tax|fee/.test(f)) return () => int(100, 1500) / 100;
+      return undefined;
+    case "Long":
+      if (f.startsWith("date")) return () => CANNED_NOW - int(1, 90) * DAY;
+      return undefined;
+  }
+  return undefined;
+}
 
 /** Scalars get values that match how the real API serializes them. */
 const scalarMocks: Mocks = {
-  String: (_r, _a, _c, info) => {
-    const { fieldName, parentType } = fieldInfo(info);
-    // Views treat any reason code as "unavailable"; the API sends none for available items.
-    if (/reasoncode$/i.test(fieldName)) return null;
-    return stringFor(fieldName, parentType);
-  },
+  String: () => "Example",
   ID: () => hexId(),
-  Boolean: (_r, _a, _c, info) => {
-    const f = fieldInfo(info).fieldName.toLowerCase();
-    if (/^(is)?enabled$|^valid$|^success$|^available$|^connected$/.test(f)) {
-      return true;
-    }
-    if (/hold|error|fraud/.test(f)) return false;
-    return random() < 0.5;
-  },
+  Boolean: () => random() < 0.5,
   Int: () => int(1, 25),
-  Float: (_r, _a, _c, info) => {
-    const f = fieldInfo(info).fieldName.toLowerCase();
-    // Taxes and fees stay below the smallest amount, so "after tax" is always positive.
-    if (/vat|tax|fee/.test(f)) return int(100, 1500) / 100;
-    return int(2000, 40000) / 100;
-  },
-  Long: (_r, _a, _c, info) => {
-    const f = fieldInfo(info).fieldName.toLowerCase();
-    if (f.startsWith("date")) return CANNED_NOW - int(1, 90) * DAY;
-    return int(1, 25);
-  },
+  Float: () => int(2000, 40000) / 100,
+  Long: () => int(1, 25),
   RSDate: () => CANNED_NOW - int(1, 90) * DAY,
   RSCountryCode: () => "US",
   RSCurrencyCode: () => "USD",
@@ -200,55 +216,124 @@ const scalarMocks: Mocks = {
   WidgetType: () => "p/referral-program/w/referrerWidget",
 };
 
+const objectTypes = (schema: GraphQLSchema) =>
+  Object.values(schema.getTypeMap()).filter(
+    (type): type is GraphQLObjectType => isObjectType(type) && !type.name.startsWith("__")
+  );
+
+/** Field-name-aware scalar values for every object type, generated lazily per field. */
+function fieldMocks(schema: GraphQLSchema): Mocks {
+  const mocks: Mocks = {};
+  for (const type of objectTypes(schema)) {
+    const values: Record<string, () => unknown> = {};
+    for (const field of Object.values(type.getFields())) {
+      const scalar = getNullableType(field.type);
+      if (!isScalarType(scalar)) continue;
+      const value = fieldValue(scalar.name, field.name, type.name, !isNonNullType(field.type));
+      if (value) values[field.name] = value;
+    }
+    if (Object.keys(values).length) mocks[type.name] = () => ({ ...values });
+  }
+  return mocks;
+}
+
 /**
  * Object types that look like a person get one consistent persona, so a row's
- * name, email, code and share link agree with each other.
+ * name, email, code and share link agree with each other. These are plain
+ * values, not functions, so the store saves them together with the first field
+ * it generates.
  */
 function personMocks(schema: GraphQLSchema): Mocks {
   const mocks: Mocks = {};
-  for (const type of Object.values(schema.getTypeMap())) {
-    if (!(type instanceof GraphQLObjectType) || type.name.startsWith("__")) {
-      continue;
-    }
+  for (const type of objectTypes(schema)) {
     const fields = type.getFields();
     if (!("firstName" in fields) && !("email" in fields)) continue;
+    const stringFields = Object.keys(fields).filter(
+      (name) => getNullableType(fields[name].type).toString() === "String"
+    );
     mocks[type.name] = () => {
       const p = persona();
       const out: Record<string, string> = {};
-      for (const k of Object.keys(p)) if (k in fields) out[k] = p[k];
+      for (const k of stringFields) if (k in p) out[k] = p[k];
       return out;
     };
   }
   return mocks;
 }
 
+/** Paginated `*List` types: `{ data, totalCount, count }`, keyed by type name. */
+function listTypes(schema: GraphQLSchema): Map<string, GraphQLObjectType> {
+  const lists = new Map<string, GraphQLObjectType>();
+  for (const type of objectTypes(schema)) {
+    const data = type.getFields().data;
+    if (data && isListType(getNullableType(data.type))) lists.set(type.name, type);
+  }
+  return lists;
+}
+
+/** 6–12 items: more than one page for tables showing 4 or 5 per page. */
+const listTotal = (typeName: string) => 6 + (fnv1a(typeName) % 7);
+
 /**
- * Paginated `*List` types (`{ data, totalCount, count }`) page through a
- * collection whose size depends only on the type, so `totalCount` stays the
- * same on every page and `offset`/`limit` slice it like the API does.
+ * Paginated `*List` types page through a collection whose size depends only on
+ * the type, so `totalCount` stays the same on every page.
  */
 function listMocks(schema: GraphQLSchema): Mocks {
   const mocks: Mocks = {};
-  for (const type of Object.values(schema.getTypeMap())) {
-    if (!(type instanceof GraphQLObjectType)) continue;
-    const fields = type.getFields();
-    const data = fields.data;
-    if (!data || !isListType(isNonNullType(data.type) ? data.type.ofType : data.type)) {
-      continue;
-    }
-    // 6–12 items: more than one page for tables showing 4 or 5 per page.
-    const total = 6 + (fnv1a(type.name) % 7);
-    mocks[type.name] = (_root, args) => {
-      const offset = typeof args?.offset === "number" ? Math.max(0, args.offset) : 0;
-      const limit = typeof args?.limit === "number" ? args.limit : total;
-      const rows = Math.max(0, Math.min(limit, total - offset));
-      const result: Record<string, unknown> = { data: () => new MockList(rows) };
-      if ("totalCount" in fields) result.totalCount = total;
-      if ("count" in fields) result.count = rows;
-      return result;
-    };
+  for (const [name, type] of listTypes(schema)) {
+    if (!("totalCount" in type.getFields())) continue;
+    const total = listTotal(name);
+    mocks[name] = () => ({ totalCount: total });
   }
   return mocks;
+}
+
+/**
+ * The store doesn't give type mocks the arguments of the field that returned
+ * them, so fields returning a `*List` slice it here with `offset`/`limit`, like
+ * the API does. Data or counts set by a mock take priority.
+ */
+export function paginationResolvers(schema: GraphQLSchema, mocks: Mocks) {
+  return (store: IMockStore) => {
+    const lists = listTypes(schema);
+    const resolvers: Record<string, Record<string, GraphQLFieldResolver<unknown, unknown>>> = {};
+    const isRoot = (type: GraphQLObjectType) =>
+      [schema.getQueryType(), schema.getMutationType(), schema.getSubscriptionType()].includes(type);
+
+    for (const type of objectTypes(schema)) {
+      for (const field of Object.values(type.getFields())) {
+        const list = lists.get(getNullableType(field.type).toString());
+        if (!list) continue;
+        const listFields = list.getFields();
+        const total = listTotal(list.name);
+
+        (resolvers[type.name] ??= {})[field.name] = (source, args, context, info) => {
+          if (!isRef(source) && !isRoot(type)) {
+            return defaultFieldResolver(source, args, context, info);
+          }
+          const ref = store.get({
+            typeName: type.name,
+            key: isRef(source) ? source.$ref.key : "ROOT",
+            fieldName: field.name,
+            fieldArgs: args,
+          });
+          if (!isRef(ref)) return ref;
+
+          const offset = typeof args.offset === "number" ? Math.max(0, args.offset) : 0;
+          const limit = typeof args.limit === "number" ? args.limit : total;
+          const rows = Math.max(0, Math.min(limit, total - offset));
+          const mocked = (mocks[list.name]?.() ?? {}) as Record<string, unknown>;
+          const set = (fieldName: string, value: unknown) =>
+            store.set({ typeName: list.name, key: ref.$ref.key, fieldName, value, noOverride: true });
+          // The store generates each undefined item, as it does for an unmocked list.
+          if (!("data" in mocked)) set("data", Array.from({ length: rows }));
+          if ("count" in listFields && !("count" in mocked)) set("count", rows);
+          return ref;
+        };
+      }
+    }
+    return resolvers;
+  };
 }
 
 /**
@@ -312,8 +397,7 @@ export function defaultMocks(schema: GraphQLSchema): Mocks {
   return mergeMocks(
     {
       ...scalarMocks,
-      ...personMocks(schema),
-      ...listMocks(schema),
+      ...mergeMocks(mergeMocks(fieldMocks(schema), personMocks(schema)), listMocks(schema)),
       ...abstractMocks,
       ...authMocks(schema),
     },
@@ -327,9 +411,9 @@ export function mergeMocks(base: Mocks, overrides: Mocks = {}): Mocks {
   for (const [typeName, override] of Object.entries(overrides)) {
     const fallback = base[typeName];
     merged[typeName] = fallback
-      ? (...args: any[]) => {
-          const a = fallback(...args);
-          const b = override(...args);
+      ? (args?: any) => {
+          const a = fallback(args);
+          const b = override(args);
           return isPlainObject(a) && isPlainObject(b) ? { ...a, ...b } : b;
         }
       : override;
@@ -338,5 +422,5 @@ export function mergeMocks(base: Mocks, overrides: Mocks = {}): Mocks {
 }
 
 const isPlainObject = (v: unknown): v is Record<string, unknown> =>
-  typeof v === "object" && v !== null && !Array.isArray(v) && !(v instanceof MockList);
+  typeof v === "object" && v !== null && !Array.isArray(v) && !isMockList(v);
 
