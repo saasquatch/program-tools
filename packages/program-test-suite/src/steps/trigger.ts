@@ -122,7 +122,16 @@ async function triggerLiveProgram(
     responseBody = responseText;
   }
 
-  if (!response.ok) {
+  const isProgramError =
+    response.status === 500 &&
+    responseBody !== null &&
+    typeof responseBody === "object" &&
+    "error" in responseBody &&
+    typeof responseBody.error === "string" &&
+    "message" in responseBody &&
+    typeof responseBody.message === "string";
+
+  if (!response.ok && !isProgramError) {
     throw new Error(
       `Live program request failed with HTTP ${response.status}: ${responseText}`,
     );

@@ -74,6 +74,19 @@ async function loadFeatures(featurePath: string) {
   });
 }
 
+function printState() {
+  const state = getWorld().state;
+
+  return JSON.stringify(
+    {
+      ...state,
+      current: { ...state.current, template: "REMOVED FOR CLARITY" },
+    },
+    null,
+    2,
+  );
+}
+
 export interface RunProgramTestsOptions {
   program: import("@saasquatch/program-boilerplate").types.rpc.Program;
   featurePath: string;
@@ -94,9 +107,6 @@ export async function runProgramTests(opts: RunProgramTestsOptions) {
       `Running program test suite against live program at ${liveUrl}`,
     );
   }
-
-  getWorld().setProgram(opts.program);
-  getWorld().loadDefaults(opts.templateFile, opts.schema, opts.rulesFile);
 
   // Import the built-in steps for their side effect (registration). Consumers
   // are expected to import their own custom step modules before calling this
@@ -126,9 +136,20 @@ export async function runProgramTests(opts: RunProgramTestsOptions) {
         const isDebug = tags.includes("@debug");
 
         void it(pickle.name, async () => {
+          // The world is shared by every suite in the process, so apply this
+          // suite's program and defaults instead of whichever suite was
+          // registered last.
+          getWorld().setProgram(opts.program);
+          getWorld().loadDefaults(
+            opts.templateFile,
+            opts.schema,
+            opts.rulesFile,
+          );
           getWorld().reset();
           if (isDebug) {
-            console.debug(`===== Before "${pickle.name}" =====`);
+            console.debug(
+              `===== State before "${pickle.name}" =====\n${printState()}`,
+            );
           }
 
           const steps: [PickleStep, StepMatch][] = [];
@@ -156,12 +177,19 @@ export async function runProgramTests(opts: RunProgramTestsOptions) {
             );
           }
 
-          for (const [step, match] of steps) {
-            await match.handler(...match.args, ...stepArgument(step.argument));
-          }
-
-          if (isDebug) {
-            console.debug(`===== After "${pickle.name}" =====`);
+          try {
+            for (const [step, match] of steps) {
+              await match.handler(
+                ...match.args,
+                ...stepArgument(step.argument),
+              );
+            }
+          } finally {
+            if (isDebug) {
+              console.debug(
+                `===== State after "${pickle.name}" =====\n${printState()}`,
+              );
+            }
           }
         });
       }
