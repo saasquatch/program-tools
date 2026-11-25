@@ -128,8 +128,8 @@ async function triggerLiveProgram(
     typeof responseBody === "object" &&
     "error" in responseBody &&
     typeof responseBody.error === "string" &&
-    "message" in responseBody &&
-    typeof responseBody.message === "string";
+    // program-boilerplate omits `message` when the thrown value has no stack
+    (!("message" in responseBody) || typeof responseBody.message === "string");
 
   if (!response.ok && !isProgramError) {
     throw new Error(
