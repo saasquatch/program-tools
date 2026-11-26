@@ -1,10 +1,3 @@
-import {
-  nonRewardEmailQueryForNonReferralPrograms,
-  nonRewardEmailQueryForReferralPrograms,
-  rewardEmailQuery,
-  rewardEmailQueryForNonReferralPrograms,
-} from "./queries";
-
 import type {
   Analytics,
   DynamicProperties,
@@ -14,10 +7,16 @@ import type {
   ProgramMutation,
   RewardData,
   RewardSource,
-} from "@saasquatch/schema/types/ProgramTransaction";
+} from "@saasquatch/schema/types/ProgramTransaction/index.d.ts";
 import ObjectID from "bson-objectid";
-import { ProgramTriggerBody } from "./types/rpc";
-import { ProgramType, User, UserEvent } from "./types/saasquatch";
+import {
+  nonRewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForReferralPrograms,
+  rewardEmailQuery,
+  rewardEmailQueryForNonReferralPrograms,
+} from "./queries.ts";
+import type { ProgramTriggerBody } from "./types/rpc.ts";
+import type { ProgramType, User, UserEvent } from "./types/saasquatch.ts";
 
 type TransactionContext = {
   body: ProgramTriggerBody;
@@ -58,7 +57,7 @@ export default class Transaction {
   constructor(
     context: TransactionContext,
     mutations: Mutations = [],
-    analytics: Analytics = []
+    analytics: Analytics = [],
   ) {
     this.mutations = mutations;
     this.analytics = analytics;
@@ -109,7 +108,7 @@ export default class Transaction {
     analyticsKey: string,
     analyticsDedupeId: string | null,
     timestamp: number,
-    isConversion: boolean = true
+    isConversion: boolean = true,
   ) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
@@ -135,7 +134,7 @@ export default class Transaction {
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
   generateSimpleReward(rewardKey: string) {
-    const rewardId = ObjectID.generate();
+    const rewardId = ObjectID.default().toHexString();
     const newMutation = {
       type: "CREATE_REWARD",
       data: {
@@ -167,7 +166,7 @@ export default class Transaction {
       dynamicProperties,
     } = input;
 
-    const rewardId = ObjectID.generate();
+    const rewardId = ObjectID.default().toHexString();
     const rewardData = {
       user: {
         id: user.id,
@@ -183,15 +182,14 @@ export default class Transaction {
       status,
     } satisfies RewardData;
 
-    const validProperties = [
-      { userEvent },
-      { rewardSource },
-      { status },
-    ];
+    const validProperties = [{ userEvent }, { rewardSource }, { status }];
 
-    const updatedRewardData: RewardData = validProperties.reduce((currentData, prop) => {
-      return { ...currentData, ...prop };
-    }, rewardData);
+    const updatedRewardData: RewardData = validProperties.reduce(
+      (currentData, prop) => {
+        return { ...currentData, ...prop };
+      },
+      rewardData,
+    );
 
     const newMutation = {
       type: "CREATE_REWARD",
@@ -358,7 +356,7 @@ export default class Transaction {
         e.key === "refund" &&
         e.fields &&
         // we can't do much if there's no order_id
-        e.fields.order_id
+        e.fields.order_id,
     );
     refundEvents.forEach((refundEvent) => {
       const refundNode = {
