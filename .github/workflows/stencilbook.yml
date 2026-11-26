@@ -14,7 +14,6 @@ jobs:
   deploy:
     name: Deploy to static site bucket
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'push' || matrix.package != 'mint-components' }}
 
     permissions:
       contents: read
@@ -27,6 +26,9 @@ jobs:
           - mint-components
           - bedrock-components
           - paypal-components
+        # mint-components production is deployed by mint-components-release.yml
+        exclude:
+          - package: ${{ github.event_name == 'push' && 'mint-components' || '' }}
 
     steps:
       - name: Checkout
@@ -37,7 +39,7 @@ jobs:
         id: setup-node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # 82076 = v7.0.0
         with:
-          node-version: 22.x
+          node-version: 24
 
       - name: Install npm dependencies
         id: install-deps
