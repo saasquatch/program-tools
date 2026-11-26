@@ -1,8 +1,8 @@
+import { readFileSync } from "node:fs";
 import { types } from "@saasquatch/program-boilerplate";
 import deepmerge from "deepmerge";
-import { readFileSync } from "fs";
-import { getRandomUser } from "./faker";
-import { TenantFlavor } from "./types";
+import { getRandomUser } from "./faker.ts";
+import type { TenantFlavor } from "./types.ts";
 
 interface State {
   programTriggerResult: any;
@@ -42,10 +42,10 @@ export class World {
   loadDefaults(
     templateFile: string,
     schema: string | object,
-    rulesFile: string
+    rulesFile: string,
   ) {
     this.defaultIntrospection = JSON.parse(
-      readFileSync(templateFile).toString()
+      readFileSync(templateFile).toString(),
     );
 
     const schemaFinal =
@@ -62,7 +62,9 @@ export class World {
   }
 
   getProgram() {
-    if (!this.program) throw new Error("The program has to be set");
+    if (!this.program) {
+      throw new Error("The program has to be set");
+    }
     return this.program;
   }
 
@@ -103,5 +105,5 @@ export function getWorld() {
     world = new World();
   }
 
-  return world as World;
+  return world;
 }

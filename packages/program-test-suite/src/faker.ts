@@ -1,7 +1,7 @@
+import { randomBytes } from "node:crypto";
+import { faker } from "@faker-js/faker";
 import { types } from "@saasquatch/program-boilerplate";
-import * as faker from "faker";
-import { TenantFlavor } from "./types";
-import { randomBytes } from "crypto";
+import type { TenantFlavor } from "./types.ts";
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
@@ -11,7 +11,7 @@ type ValidationRequest = types.rpc.ValidationRequest;
 export function getValidationJson(
   reqs: ValidationRequest[],
   id: string,
-  rules: any
+  rules: any,
 ): ProgramValidationBody {
   return {
     messageType: "PROGRAM_VALIDATION",
@@ -98,7 +98,7 @@ export function getAUCOUTJson(previous?: any, events?: any[]): any {
   };
 }
 
-export function getReferralJson(referralEventType: any, referral: any): any {
+export function getReferralJson(referral: any): any {
   return {
     activeTrigger: {
       referral,
@@ -118,9 +118,9 @@ export function getRandomUser(name: string): any {
   return {
     id: `${name}ID`,
     accountId: `${name}ACCOUNTID`,
-    firstName: faker.fake("{{name.firstName}}"),
-    lastName: faker.fake("{{name.lastName}}"),
-    email: faker.fake("{{internet.email}}"),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: faker.internet.email(),
     dateCreated: Date.now(),
     customFields: {},
     segments: [],
