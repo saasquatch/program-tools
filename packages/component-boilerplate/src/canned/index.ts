@@ -1,5 +1,5 @@
 import { addMocksToSchema } from "@graphql-tools/mock";
-import { buildSchema, graphqlSync, GraphQLSchema, print } from "graphql";
+import { buildSchema, formatError, graphqlSync, GraphQLSchema, print } from "graphql";
 import { ClientError } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
 import { ContextProvider } from "dom-context";
@@ -8,7 +8,7 @@ import type { UserIdentity } from "@saasquatch/component-environment";
 import { setProgramId, setUserIdentity } from "../hooks/environment";
 import { GRAPHQL_CONTEXT } from "../hooks/graphql/context";
 import { fakeJwt } from "../fakeJwt";
-import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, paginationResolvers, withSeed } from "./mocks";
+import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, withSeed } from "./mocks";
 import { SAASQUATCH_SCHEMA_SDL, SAASQUATCH_SCHEMA_SOURCE } from "./schema";
 
 export { CANNED_NOW, fakeJwt, SAASQUATCH_SCHEMA_SOURCE };
@@ -53,11 +53,9 @@ export class CannedGraphQLClient {
 
   constructor(private readonly options: CannedOptions = {}) {
     const base = getSchema();
-    const mocks = mergeMocks(defaultMocks(base), options.mocks);
     this.schema = addMocksToSchema({
       schema: base,
-      mocks,
-      resolvers: paginationResolvers(base, mocks),
+      mocks: mergeMocks(defaultMocks(base), options.mocks),
     });
   }
 
@@ -77,7 +75,7 @@ export class CannedGraphQLClient {
     if (result.errors?.length) {
       throw new ClientError(
         // The wire format, which is what a network ClientError carries.
-        { data: result.data, errors: result.errors.map((error) => error.toJSON()) as any, status: 200 },
+        { data: result.data, errors: result.errors.map(formatError) as any, status: 200 },
         { query, variables }
       );
     }

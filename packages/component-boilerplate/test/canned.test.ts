@@ -328,11 +328,7 @@ describe("CannedGraphQLClient", () => {
       mocks: {
         Query: () => ({
           renderWidget: () => ({
-            // WidgetConfig is an interface, so the store needs to know which implementation
-            widgetConfig: {
-              __typename: "ProgramWidgetConfig",
-              values: { htmlTemplate: "<sqm-portal-container />" },
-            },
+            widgetConfig: { values: { htmlTemplate: "<sqm-portal-container />" } },
           }),
         }),
       },
@@ -354,29 +350,7 @@ describe("CannedGraphQLClient", () => {
     });
   });
 
-  // The store saves fields by their arguments; rows has a default limit.
-  it("overrides a field that takes arguments, nested or in its own type's mock", async () => {
-    const LEADERBOARD = gql`
-      query {
-        userLeaderboard(type: "topConvertedReferrers") {
-          rows {
-            firstName
-          }
-        }
-      }
-    `;
-    const nested = createCannedGraphQLClient({
-      mocks: { Query: () => ({ userLeaderboard: () => ({ rows: [] }) }) },
-    });
-    expect((await nested.request(LEADERBOARD)).userLeaderboard.rows).toEqual([]);
-
-    const own = createCannedGraphQLClient({
-      mocks: { UserLeaderboard: () => ({ rows: () => [] }) },
-    });
-    expect((await own.request(LEADERBOARD)).userLeaderboard.rows).toEqual([]);
-  });
-
-  // Story mocks like bedrock's cannedWidgetMocks read the field's arguments.
+  // Story mocks like bedrock's cannedWidgetMocks depend on this order.
   it("passes query arguments first to root field mocks", async () => {
     const seen: unknown[] = [];
     const custom = createCannedGraphQLClient({
@@ -385,10 +359,7 @@ describe("CannedGraphQLClient", () => {
           renderWidget: (args: { widgetType: string }) => {
             seen.push(args);
             return {
-              widgetConfig: {
-                __typename: "ProgramWidgetConfig",
-                values: { htmlTemplate: `for ${args.widgetType}` },
-              },
+              widgetConfig: { values: { htmlTemplate: `for ${args.widgetType}` } },
             };
           },
         }),
@@ -407,36 +378,6 @@ describe("CannedGraphQLClient", () => {
       { widgetType: "p/partner-program/w/partnerWidget" }
     );
     expect(seen).toEqual([{ widgetType: "p/partner-program/w/partnerWidget" }]);
-    expect(res.renderWidget.widgetConfig.values.htmlTemplate).toBe(
-      "for p/partner-program/w/partnerWidget"
-    );
-  });
-
-  it("passes a root field's arguments to the Query mock itself", async () => {
-    const custom = createCannedGraphQLClient({
-      mocks: {
-        Query: (args: { widgetType?: string }) => ({
-          renderWidget: {
-            widgetConfig: {
-              __typename: "ProgramWidgetConfig",
-              values: { htmlTemplate: `for ${args?.widgetType}` },
-            },
-          },
-        }),
-      },
-    });
-    const res = await custom.request(
-      gql`
-        query getWidget($widgetType: WidgetType!) {
-          renderWidget(widgetType: $widgetType) {
-            widgetConfig {
-              values
-            }
-          }
-        }
-      `,
-      { widgetType: "p/partner-program/w/partnerWidget" }
-    );
     expect(res.renderWidget.widgetConfig.values.htmlTemplate).toBe(
       "for p/partner-program/w/partnerWidget"
     );
