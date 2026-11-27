@@ -1,8 +1,8 @@
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
-import { BaseQueryData } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
-import { useManagedIdentitySessionQuery } from "./useManagedIdentitySessionQuery";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
+import { useManagedIdentitySessionQuery } from "./useManagedIdentitySessionQuery.ts";
 
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($oobCode: String!) {

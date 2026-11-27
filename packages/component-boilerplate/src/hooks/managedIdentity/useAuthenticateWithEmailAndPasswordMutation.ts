@@ -1,10 +1,9 @@
-import gql from "graphql-tag";
-import decode from "jwt-decode";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { gql } from "graphql-tag";
+import { jwtDecode as decode } from "jwt-decode";
 
-import { BaseQueryData } from "../graphql/useBaseQuery";
-import { setUserIdentity, DecodedSquatchJWT } from "../environment";
-import { useMutation } from "../graphql/useMutation";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { setUserIdentity, type DecodedSquatchJWT } from "../environment/index.ts";
+import { useMutation } from "../graphql/useMutation.ts";
 
 const AuthenticateWithEmailAndPasswordMutation = gql`
   mutation AuthenticateWithEmailAndPassword(

@@ -1,8 +1,9 @@
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
+import type { UserIdentity } from "@saasquatch/component-environment";
 
-import { QueryData } from "../graphql/useBaseQuery";
-import { useUserIdentity, setUserIdentity } from "../environment";
-import { useLazyQuery } from "../graphql/useLazyQuery";
+import type { QueryData } from "../graphql/useBaseQuery.ts";
+import { useUserIdentity, setUserIdentity } from "../environment/index.ts";
+import { useLazyQuery } from "../graphql/useLazyQuery.ts";
 
 const ManagedIdentitySessionQuery = gql`
   query ManagedIdentitySession {
@@ -32,10 +33,11 @@ export function useManagedIdentitySessionQuery(): [
 
   const updateUserIdentity = (result: ManagedIdentitySessionResult | Error) => {
     if (!(result instanceof Error) && result.managedIdentitySession) {
+      // Without a current identity this sets one with no id/accountId, as it always has.
       setUserIdentity({
         ...userIdentity,
         managedIdentity: result.managedIdentitySession,
-      });
+      } as UserIdentity);
     }
   };
 

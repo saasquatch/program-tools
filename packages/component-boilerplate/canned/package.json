@@ -1,6 +1,6 @@
 {
   "private": true,
-  "main": "../dist/canned.js",
+  "main": "../dist/canned.mjs",
   "module": "../dist/canned.mjs",
-  "types": "../dist/canned.d.ts"
+  "types": "../dist/canned.d.mts"
 }

@@ -1,10 +1,10 @@
 import { useEffect } from "@saasquatch/universal-hooks";
 import {
   history,
-  HistoryEntry,
+  type HistoryEntry,
   LazyHistory,
 } from "@saasquatch/component-environment";
-import { useTick } from "./useTick";
+import { useTick } from "./useTick.ts";
 
 /**
  * Returns the current location. Similar to `window.location` but works with SPA page changes and virtual pages in Squatch.js

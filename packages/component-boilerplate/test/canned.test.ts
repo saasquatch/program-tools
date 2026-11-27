@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { ContextListener } from "dom-context";
 import {
   getProgramId,
@@ -22,7 +23,7 @@ import {
   typeFromAST,
 } from "graphql";
 import { gql } from "graphql-request";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import {
   CANNED_APP_DOMAIN,
   CANNED_NOW,
@@ -405,7 +406,7 @@ describe("interceptCannedFetch", () => {
   const LOCALE = `query { viewer { ... on User { locale firstName } } }`;
 
   it("hands over cleanly when interceptors stop out of order", async () => {
-    const real = jest.fn();
+    const real = vi.fn();
     window.fetch = real as any;
     const stopFirst = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
@@ -428,7 +429,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("answers the canned endpoint, as raw-fetch callers like fetchLocale need", async () => {
-    const real = jest.fn();
+    const real = vi.fn();
     window.fetch = real as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
@@ -449,7 +450,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("reads the query from a Request body, as fetch(new Request(...)) sends it", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "fr" }) } })
     );
@@ -466,7 +467,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("prefers init.body over the Request's own body, like fetch", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(
       createCannedGraphQLClient({ mocks: { User: () => ({ locale: "tr" }) } })
     );
@@ -483,7 +484,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("passes every other URL to the real fetch", async () => {
-    const real = jest.fn().mockResolvedValue("network");
+    const real = vi.fn().mockResolvedValue("network");
     window.fetch = real as any;
     const restore = interceptCannedFetch(createCannedGraphQLClient());
 
@@ -496,7 +497,7 @@ describe("interceptCannedFetch", () => {
   });
 
   it("returns GraphQL errors in the body, like the API", async () => {
-    window.fetch = jest.fn() as any;
+    window.fetch = vi.fn() as any;
     const restore = interceptCannedFetch(createCannedGraphQLClient());
     const res = await window.fetch(ENDPOINT, {
       method: "POST",

@@ -6,31 +6,37 @@ import { setImplementation } from "@saasquatch/universal-hooks";
 //   renderHook,
 //   setTestImplementation,
 // } from "@saasquatch/universal-hooks-testing-library";
-import * as React from "react";
-// import * as ReactTestLib from "@testing-library/react-hooks";
 import { act, renderHook } from "@testing-library/react-hooks";
-import { useQuery } from "../src/hooks/graphql/useQuery";
 import { gql } from "graphql-request";
-import axios from "axios";
-
-import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
-import { RequestDocument } from "graphql-request/dist/types";
-import { BatchedGraphQLClient } from "../src/BatchedGraphQLClient";
+import * as React from "react";
+import { useQuery } from "../src/hooks/graphql/useQuery";
 import {
   FragmentDefinitionNode,
-  FragmentSpreadNode,
   OperationDefinitionNode,
-  parse,
+  parse
 } from "graphql";
+import { RequestDocument } from "graphql-request/dist/types";
+import { BatchedGraphQLClient } from "../src/BatchedGraphQLClient";
+import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
+import { describe, test, expect, vi } from "vitest";
 
-jest.mock("../src/hooks/graphql/useGraphQLClient");
+vi.mock("../src/hooks/graphql/useGraphQLClient");
 const client = new BatchedGraphQLClient(
-  "https://app.referralsaasquatch.com/api/v1/test_faketenant/graphql"
+  "https://app.referralsaasquatch.com/api/v1/test_faketenant/graphql",
 );
-// @ts-ignore -- typescript doesn't know that Jest has mocked this function in the above `jest.mock` function
+// @ts-ignore -- typescript doesn't know that Vitest has mocked this function in the above `vi.mock` function
 useGraphQLClient.mockImplementation(() => client);
 
 setImplementation(React);
+
+// Node's fetch rejects relative URLs, so resolve mock-server paths against jsdom's location
+function mockServerFetch(path: string, init?: RequestInit) {
+  return fetch(new URL(path, window.location.href), init);
+}
+
+async function getMockJSON(path: string) {
+  return (await mockServerFetch(path)).json();
+}
 
 const MOCK_TEST = gql`
   query MockTest($id: ID!) {
@@ -86,7 +92,7 @@ describe("Mock Service Workers", () => {
       const rendered = renderHook(hook);
       await rendered.waitForNextUpdate();
       await rendered.waitForValueToChange(
-        () => rendered.result.current.loading
+        () => rendered.result.current.loading,
       );
       result = rendered.result;
     });
@@ -109,7 +115,7 @@ describe("Mock Service Workers", () => {
       const rendered = renderHook(hook);
       await rendered.waitForNextUpdate();
       await rendered.waitForValueToChange(
-        () => rendered.result.current.loading
+        () => rendered.result.current.loading,
       );
       result = rendered.result;
     });
@@ -156,7 +162,7 @@ describe("useQuery", () => {
       const rendered = renderHook(hook);
       await rendered.waitForNextUpdate();
       await rendered.waitForValueToChange(
-        () => rendered.result.current.loading
+        () => rendered.result.current.loading,
       );
       result = rendered.result;
     });
@@ -176,7 +182,7 @@ describe("useQuery", () => {
       const rendered = renderHook(hook);
       await rendered.waitForNextUpdate();
       await rendered.waitForValueToChange(
-        () => rendered.result.current.loading
+        () => rendered.result.current.loading,
       );
       result = rendered.result;
     });
@@ -240,7 +246,7 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedA = await axios.get("/lastquery");
+    const recievedA = await getMockJSON("/lastquery");
 
     await act(async () => {
       rerender({ q: query, v: variables });
@@ -251,9 +257,9 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedB = await axios.get("/lastquery");
+    const recievedB = await getMockJSON("/lastquery");
 
-    expect(recievedB.data.id).toBe(recievedA.data.id);
+    expect(recievedB.id).toBe(recievedA.id);
   });
 
   test("cache miss on new query", async () => {
@@ -284,7 +290,7 @@ describe("useQuery", () => {
     expect(result.current.data.post).not.toHaveProperty("id");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedA = await axios.get("/lastquery");
+    const recievedA = await getMockJSON("/lastquery");
 
     await act(async () => {
       rerender({ q: queryB, v: variables });
@@ -299,9 +305,9 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
     expect(typeof result.current.data.post.id).toEqual("string");
 
-    const recievedB = await axios.get("/lastquery");
+    const recievedB = await getMockJSON("/lastquery");
 
-    expect(recievedB.data.id).not.toBe(recievedA.data.id);
+    expect(recievedB.id).not.toBe(recievedA.id);
   });
 
   test("cache miss on new variables", async () => {
@@ -332,7 +338,7 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
     expect(typeof result.current.data.post.id).toEqual("string");
 
-    const recievedA = await axios.get("/lastquery");
+    const recievedA = await getMockJSON("/lastquery");
 
     await act(async () => {
       rerender({ q: query, v: variablesB });
@@ -347,9 +353,9 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
     expect(typeof result.current.data.post.id).toEqual("string");
 
-    const recievedB = await axios.get("/lastquery");
+    const recievedB = await getMockJSON("/lastquery");
 
-    expect(recievedB.data.id).not.toBe(recievedA.data.id);
+    expect(recievedB.id).not.toBe(recievedA.id);
   });
 
   test("cache miss on new query and variables", async () => {
@@ -379,7 +385,7 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedA = await axios.get("/lastquery");
+    const recievedA = await getMockJSON("/lastquery");
 
     await act(async () => {
       rerender({ q: queryB, v: variablesB });
@@ -394,9 +400,9 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
     expect(typeof result.current.data.post.id).toEqual("string");
 
-    const recievedB = await axios.get("/lastquery");
+    const recievedB = await getMockJSON("/lastquery");
 
-    expect(recievedB.data.id).not.toBe(recievedA.data.id);
+    expect(recievedB.id).not.toBe(recievedA.id);
   });
 
   test("cache only stores 1 entry", async () => {
@@ -426,7 +432,7 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedA = await axios.get("/lastquery");
+    const recievedA = await getMockJSON("/lastquery");
 
     await act(async () => {
       rerender({ q: queryB, v: variablesB });
@@ -441,9 +447,9 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
     expect(typeof result.current.data.post.id).toEqual("string");
 
-    const recievedB = await axios.get("/lastquery");
+    const recievedB = await getMockJSON("/lastquery");
 
-    expect(recievedB.data.id).not.toBe(recievedA.data.id);
+    expect(recievedB.id).not.toBe(recievedA.id);
 
     await act(async () => {
       rerender({ q: queryA, v: variablesA });
@@ -456,10 +462,10 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(typeof result.current.data.post.title).toEqual("string");
 
-    const recievedC = await axios.get("/lastquery");
+    const recievedC = await getMockJSON("/lastquery");
 
-    expect(recievedC.data.id).not.toBe(recievedB.data.id);
-    expect(recievedC.data.id).not.toBe(recievedA.data.id);
+    expect(recievedC.id).not.toBe(recievedB.id);
+    expect(recievedC.id).not.toBe(recievedA.id);
   });
 
   test("loading while query hasn't returned", async () => {
@@ -475,7 +481,7 @@ describe("useQuery", () => {
     let waitForNextUpdate: () => Promise<void>;
     let waitFor: (
       f: () => boolean | void,
-      opts?: { interval?: number; timeout?: number }
+      opts?: { interval?: number; timeout?: number },
     ) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
@@ -515,7 +521,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -533,12 +539,12 @@ describe("useQuery", () => {
       expect(typeof result2.current.data.post.title).toEqual("string");
       expect(typeof result2.current.data.post.id).toEqual("string");
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
       expect(Object.keys(body.variables).length).toEqual(2);
       expect(
         (parse(body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(2);
     });
 
@@ -565,7 +571,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -580,8 +586,8 @@ describe("useQuery", () => {
       expect(result2.current.errors).toBeDefined();
       expect(result2.current.errors.response.errors.length).toEqual(1);
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query2);
       expect(res1.body.variables).toStrictEqual(query2Vars);
@@ -589,7 +595,7 @@ describe("useQuery", () => {
       //batched query only has one entry
       expect(
         (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(1);
       expect(Object.values(res2.body.variables)[0]).toEqual(queryid);
     });
@@ -611,7 +617,7 @@ describe("useQuery", () => {
         const rendered2 = renderHook(hook2);
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -624,7 +630,7 @@ describe("useQuery", () => {
         willthrowerror: null,
       });
       expect(result.current.errors.response.errors[0].message).toEqual(
-        "Intentional Testing Error"
+        "Intentional Testing Error",
       );
       expect(result.current.errors.response.errors.length).toEqual(1);
 
@@ -635,16 +641,16 @@ describe("useQuery", () => {
         willthrowerror: null,
       });
       expect(result2.current.errors.response.errors[0].message).toEqual(
-        "Intentional Testing Error"
+        "Intentional Testing Error",
       );
       expect(result2.current.errors.response.errors.length).toEqual(1);
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
       // query still should have been batched properly
       expect(
         (parse(body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(2);
     });
 
@@ -667,7 +673,7 @@ describe("useQuery", () => {
         const rendered2 = renderHook(hook2);
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -682,7 +688,7 @@ describe("useQuery", () => {
       });
       expect(result.current.errors.response.errors.length).toEqual(1);
       expect(result.current.errors.response.errors[0].message).toEqual(
-        "Intentional Testing Error"
+        "Intentional Testing Error",
       );
 
       expect(result2.current.data).toEqual(undefined);
@@ -694,15 +700,15 @@ describe("useQuery", () => {
       });
       expect(result2.current.errors.response.errors.length).toEqual(1);
       expect(result2.current.errors.response.errors[0].message).toEqual(
-        "Intentional Testing Error"
+        "Intentional Testing Error",
       );
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
       // query still should have been batched properly
       expect(
         (parse(body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(2);
     });
 
@@ -724,7 +730,7 @@ describe("useQuery", () => {
         const rendered2 = renderHook(hook2);
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -743,28 +749,28 @@ describe("useQuery", () => {
         willthrowerror: null,
       });
       expect(result2.current.errors.response.errors[0].message).toEqual(
-        "Intentional Testing Error"
+        "Intentional Testing Error",
       );
       expect(result2.current.errors.response.errors.length).toEqual(1);
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
       // query still should have been batched properly
       expect(
         (parse(body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(2);
     });
 
     test("every errored query rejects when errors are not in data order", async () => {
-      await axios.post("/reverse-errors");
+      await mockServerFetch("/reverse-errors", { method: "POST" });
 
       const hooks = [
         () => useQuery<any>(ERRORS, {}),
         () => useQuery<any>(ERRORS, {}),
         () => useQuery<any>(MOCK_TEST, { id: 66 }),
       ];
-      let results: { current: ReturnType<typeof hooks[number]> }[];
+      let results: { current: ReturnType<(typeof hooks)[number]> }[];
       await act(async () => {
         const rendered = hooks.map((hook) => renderHook(hook));
         await rendered[0].waitForNextUpdate();
@@ -779,17 +785,17 @@ describe("useQuery", () => {
         expect(errored.data).toEqual(undefined);
         expect(errored.errors).toBeDefined();
         expect(errored.errors.response.errors[0].message).toEqual(
-          "Intentional Testing Error"
+          "Intentional Testing Error",
         );
       }
       expect(succeeded.errors).toEqual(undefined);
       expect(typeof succeeded.data.post.title).toEqual("string");
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
       expect(
         (parse(body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(3);
     });
 
@@ -823,7 +829,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -841,8 +847,8 @@ describe("useQuery", () => {
       expect(typeof result2.current.data.author.firstName).toEqual("string");
       expect(typeof result2.current.data.author.lastName).toEqual("string");
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query2);
       expect(res1.body.variables).toStrictEqual(variables2);
@@ -850,7 +856,7 @@ describe("useQuery", () => {
       //batched query only has one entry
       expect(
         (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(1);
       expect(Object.values(res2.body.variables)[0]).toEqual("testMockId");
     });
@@ -896,7 +902,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -915,8 +921,8 @@ describe("useQuery", () => {
       expect(result2.current.data.author).not.toHaveProperty("lastName");
       expect(typeof result2.current.data.author.firstName).toEqual("string");
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query);
       expect(res1.body.variables).toStrictEqual(variables);
@@ -955,14 +961,14 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
       });
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
+      const recieved = await getMockJSON("/lastquery");
+      const body = recieved.body;
 
       expect(result.current.data).not.toEqual(undefined);
       expect(result.current.data).toHaveProperty("author");
@@ -979,7 +985,7 @@ describe("useQuery", () => {
       const operationDefinition = parse(body.query).definitions.find(
         (op: OperationDefinitionNode | FragmentDefinitionNode) => {
           return op.kind === "OperationDefinition";
-        }
+        },
       ) as OperationDefinitionNode;
       expect(operationDefinition).toBeDefined();
       expect(operationDefinition.selectionSet.selections.length).toEqual(2);
@@ -1011,7 +1017,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -1029,8 +1035,8 @@ describe("useQuery", () => {
       expect(typeof result2.current.data.upvotePost.title).toEqual("string");
       expect(typeof result2.current.data.upvotePost.votes).toEqual("number");
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query2);
       expect(res1.body.variables).toStrictEqual(variables2);
@@ -1038,7 +1044,7 @@ describe("useQuery", () => {
       //batched query only has one entry
       expect(
         (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
-          .selectionSet.selections.length
+          .selectionSet.selections.length,
       ).toEqual(1);
       expect(Object.values(res2.body.variables)[0]).toEqual(33333);
     });
@@ -1067,7 +1073,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
 
         result = rendered.result;
@@ -1083,8 +1089,8 @@ describe("useQuery", () => {
       expect(result2.current.data).toHaveProperty("post");
       expect(result2.current.data.post).not.toHaveProperty("title");
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query);
       expect(res1.body.variables).toStrictEqual(variables);
@@ -1118,7 +1124,7 @@ describe("useQuery", () => {
 
         await rendered.waitForNextUpdate();
         await rendered.waitForValueToChange(
-          () => rendered2.result.current.loading
+          () => rendered2.result.current.loading,
         );
         result = rendered.result;
         result2 = rendered2.result;
@@ -1134,8 +1140,8 @@ describe("useQuery", () => {
       expect(result.current.data.post).toHaveProperty("title");
       expect(typeof result.current.data.post.title).toEqual("string");
 
-      const recieved = await axios.get("/lastquery?n=2");
-      const [res1, res2] = recieved.data;
+      const recieved = await getMockJSON("/lastquery?n=2");
+      const [res1, res2] = recieved;
       // unbatchable query is sent by itself without batching
       expect(res1.body.query).toEqual(query);
       expect(res1.body.variables).toStrictEqual(variables);

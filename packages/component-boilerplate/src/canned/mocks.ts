@@ -2,12 +2,12 @@ import { MockList } from "@graphql-tools/mock";
 import {
   getNamedType,
   GraphQLObjectType,
-  GraphQLResolveInfo,
+  type GraphQLResolveInfo,
   GraphQLSchema,
   isListType,
   isNonNullType,
 } from "graphql";
-import { fakeJwt } from "../fakeJwt";
+import { fakeJwt } from "../fakeJwt.ts";
 
 export type Mocks = Record<string, (...args: any[]) => unknown>;
 
@@ -215,7 +215,7 @@ function personMocks(schema: GraphQLSchema): Mocks {
     mocks[type.name] = () => {
       const p = persona();
       const out: Record<string, string> = {};
-      for (const k of Object.keys(p)) if (k in fields) out[k] = p[k];
+      for (const k of Object.keys(p) as (keyof typeof p)[]) if (k in fields) out[k] = p[k];
       return out;
     };
   }
@@ -232,7 +232,7 @@ function listMocks(schema: GraphQLSchema): Mocks {
   for (const type of Object.values(schema.getTypeMap())) {
     if (!(type instanceof GraphQLObjectType)) continue;
     const fields = type.getFields();
-    const data = fields.data;
+    const data = fields["data"];
     if (!data || !isListType(isNonNullType(data.type) ? data.type.ofType : data.type)) {
       continue;
     }
@@ -243,8 +243,8 @@ function listMocks(schema: GraphQLSchema): Mocks {
       const limit = typeof args?.limit === "number" ? args.limit : total;
       const rows = Math.max(0, Math.min(limit, total - offset));
       const result: Record<string, unknown> = { data: () => new MockList(rows) };
-      if ("totalCount" in fields) result.totalCount = total;
-      if ("count" in fields) result.count = rows;
+      if ("totalCount" in fields) result["totalCount"] = total;
+      if ("count" in fields) result["count"] = rows;
       return result;
     };
   }

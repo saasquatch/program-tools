@@ -2,9 +2,9 @@ import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import debugFn from "debug";
 import jsonpointer from "jsonpointer";
-import { useMutation } from "./graphql/useMutation";
-import { useLazyQuery } from "./graphql/useLazyQuery";
-import { useDeepMemo } from "./useDeepMemo";
+import { useMutation } from "./graphql/useMutation.ts";
+import { useLazyQuery } from "./graphql/useLazyQuery.ts";
+import { useDeepMemo } from "./useDeepMemo.ts";
 export const debug = debugFn("sq:useForm");
 
 const GET_FORM = gql`
@@ -145,7 +145,7 @@ export function useForm(props: UseFormProps) {
 
   // load initial data into form
   useEffect(() => {
-    async function setInitialData(htmlForm, initialData) {
+    async function setInitialData(htmlForm: HTMLFormElement, initialData?: any) {
       const inputs = htmlForm.elements;
 
       const formContent = new FormData(htmlForm);
@@ -209,23 +209,23 @@ export function useForm(props: UseFormProps) {
     const submissionResults = formState.submitData.data?.submitForm.results;
 
     return (
-      submissionResults?.map((error) => {
+      submissionResults?.map((error: any) => {
         // salesforce errors
         const messages = error.result?.results
-          ?.flatMap((res) => !res.success && res.message)
-          .filter((message) => message);
+          ?.flatMap((res: any) => !res.success && res.message)
+          .filter((message: unknown) => message);
 
         // fatal errors
         const errors = error.result?.results
           ?.flatMap(
-            (res) =>
+            (res: any) =>
               !res.success && {
                 error: res.error,
                 errorType: res.errorType,
                 errorCode: res.errorCode,
               }
           )
-          .filter(({ error }) => error);
+          .filter(({ error }: any) => error);
 
         return {
           integration: error.formHandler?.integration?.name,
@@ -248,7 +248,7 @@ export function useForm(props: UseFormProps) {
      * Provide a JSON path and receive any errors at that path
      */
     function getErrorAtPath(path: string) {
-      return validationErrors?.filter((result) => {
+      return validationErrors?.filter((result: ValidationError) => {
         const instanceLocation = result.instanceLocation.substring(1);
         return instanceLocation === path;
       });
@@ -272,7 +272,7 @@ export function useForm(props: UseFormProps) {
     };
   }
 
-  async function validateForm(formData) {
+  async function validateForm(formData: Record<string, any>) {
     await validate({
       formValidationInput: {
         key: formKey,
@@ -281,7 +281,7 @@ export function useForm(props: UseFormProps) {
     });
   }
 
-  async function submitForm(formData) {
+  async function submitForm(formData: Record<string, any>) {
     await submit({
       formSubmissionInput: {
         key: formKey,

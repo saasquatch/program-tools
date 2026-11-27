@@ -1,13 +1,22 @@
-import { DocumentNode, parse, print } from "graphql";
-import combineQuery, {
-  CombinedQueryBuilder,
-  NewCombinedQueryBuilder,
+import { type DocumentNode, parse, print } from "graphql";
+import combineQueryModule, {
+  type CombinedQueryBuilder,
+  type NewCombinedQueryBuilder,
 } from "graphql-combine-query";
 import { GraphQLClient } from "graphql-request";
-import { ClientError, RequestDocument } from "graphql-request/dist/types";
+import {
+  ClientError,
+  type RequestDocument,
+  type Variables,
+} from "graphql-request/dist/types.js";
 import { nanoid } from "nanoid";
 import { Subject } from "rxjs";
 import { bufferTime } from "rxjs/operators";
+
+// graphql-combine-query is CommonJS with `exports.default`: Node's ESM import
+// yields the exports object, while bundlers unwrap it to the function.
+const combineQuery: typeof combineQueryModule.default =
+  (combineQueryModule as any).default ?? combineQueryModule;
 
 /*************
  * constants *
@@ -16,12 +25,12 @@ const MAX_REQUESTS = 10;
 const REQUEST_INTERVAL = 200; //ms
 
 export class BatchedGraphQLClient extends GraphQLClient {
-  subject = new Subject();
+  subject = new Subject<QueryAddedEvent>();
 
   constructor(url: string, opts?: any) {
     super(url, opts);
 
-    const unmergable = new Subject();
+    const unmergable = new Subject<QueryAddedEvent>();
     const buffer = this.subject.pipe(
       bufferTime(REQUEST_INTERVAL, undefined, MAX_REQUESTS)
     );
@@ -50,9 +59,9 @@ export class BatchedGraphQLClient extends GraphQLClient {
       }
 
       try {
-        // make the request
+        // make the request (mergedQuery is always set once at least one event merged)
         const mergedQueryResult = await this.superRequest(
-          mergedQuery,
+          mergedQuery!,
           mergedVariables
         );
         //resolve the results
@@ -70,9 +79,9 @@ export class BatchedGraphQLClient extends GraphQLClient {
           const aliases = Object.keys(data);
           let eventsToResolve = [...mergedQueryAddedEvents];
           // reject all that errored:
-          for (const error of errors) {
+          for (const error of errors ?? []) {
             let erroredEvent: QueryAddedEvent;
-            error.path.find((key, index, path) => {
+            error.path?.find((key, index, path) => {
               if (aliases.includes(key)) {
                 const erroredId = getIdFromAliasedField(key);
                 const indexOfErroredEvent = eventsToResolve.findIndex(
@@ -113,7 +122,8 @@ export class BatchedGraphQLClient extends GraphQLClient {
           }
           // resolve the rest:
           resolveMergedQueryResult(data, eventsToResolve);
-        } else rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e);
+        } else
+          rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e as Error);
       }
     });
 
@@ -124,7 +134,7 @@ export class BatchedGraphQLClient extends GraphQLClient {
         const result = await this.superRequest(query, variables);
         resolveSingleQueryResult(result, event);
       } catch (e) {
-        rejectQueryAddedEventWithError(event, e);
+        rejectQueryAddedEventWithError(event, e as Error);
       }
     });
   }
@@ -133,13 +143,19 @@ export class BatchedGraphQLClient extends GraphQLClient {
     return super.request<T>(query, variables);
   }
 
-  request<T>(query, variables, options) {
+  // GraphQLClient takes request headers as the third argument; this client
+  // repurposes it for batching options and never forwards headers.
+  override request<T = any, V = Variables>(
+    query: RequestDocument,
+    variables?: V,
+    options?: BatchOptions | Parameters<GraphQLClient["request"]>[2]
+  ) {
     return new Promise<T>((resolve, reject) => {
       const queryAddedEvent: QueryAddedEvent = {
         query,
         variables,
         id: generateQueryAddedEventId(),
-        options,
+        options: options as BatchOptions | undefined,
         resolve,
         reject,
       };
@@ -152,13 +168,15 @@ export class BatchedGraphQLClient extends GraphQLClient {
  *   types   *
  *************/
 
+interface BatchOptions {
+  batch?: boolean;
+}
+
 interface QueryAddedEvent {
   query: RequestDocument;
-  variables: { [key: string]: unknown };
+  variables?: any;
   id: string; // nanoid with '-'s removed
-  options: {
-    batch: boolean;
-  };
+  options?: BatchOptions;
   resolve: (data: any) => void;
   reject: (err: any) => void;
 }
@@ -177,7 +195,7 @@ interface MergedQueryAddedEvents {
 const generateQueryAddedEventId = () => nanoid().replace(/[-_]/g, "");
 
 // Numbers not allowed in graphQL alias, so ID must be added to the end
-const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
+const aliasFieldOrVariableFn = (name: string, id: string) => `${name}_${id}`;
 
 // ID will always be at the end of the alias separated by a single "_"
 const removeAliasFromField = (field: string, id: string) =>
@@ -191,8 +209,8 @@ const getIdFromAliasedField = (field: string): string => {
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
 ): MergedQueryAddedEvents => {
-  const mergedQueryAddedEvents = [];
-  const unmergedQueryAddedEvents = [];
+  const mergedQueryAddedEvents: QueryAddedEvent[] = [];
+  const unmergedQueryAddedEvents: QueryAddedEvent[] = [];
   const { document, variables } = events.reduce(
     (
       acc: NewCombinedQueryBuilder | CombinedQueryBuilder,
@@ -219,7 +237,7 @@ const mergeQueryAddedEvents = (
           return acc;
         }
 
-        const renameFn = (name) => aliasFieldOrVariableFn(name, id);
+        const renameFn = (name: string) => aliasFieldOrVariableFn(name, id);
         // if this fails, event will be added to unmergedQueryAddedEvents
         acc = acc.addN(parsedQuery, [variables], renameFn, renameFn);
         mergedQueryAddedEvents.push(curr);

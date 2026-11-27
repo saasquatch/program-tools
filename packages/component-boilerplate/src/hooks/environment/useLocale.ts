@@ -3,7 +3,7 @@ import {
   LOCALE_CONTEXT_NAME,
   lazilyStartLocaleContext,
 } from "@saasquatch/component-environment";
-import { useHost } from "../useHost";
+import { useHost } from "../useHost.ts";
 
 export function useLocale(): string | undefined {
   lazilyStartLocaleContext();

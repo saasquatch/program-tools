@@ -1,12 +1,41 @@
 {
+  "$schema": "https://www.schemastore.org/tsconfig",
+  "display": "Node 24",
+  "_version": "24.0.0",
+
+  "include": ["src/**/*.ts"],
+
   "compilerOptions": {
-    "strict": false,
-    "lib": ["es2017", "DOM"],
+    "lib": [
+      "DOM",
+      "es2024",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "ESNext.Error",
+      "ESNext.Iterator",
+      "ESNext.Promise"
+    ],
+
+    "rootDir": "./src",
+    "noEmit": true,
+
+    "module": "nodenext",
+    "moduleResolution": "node16",
+    "target": "esnext",
+    "types": ["node"],
+
+    // Best practices
+    "allowJs": false,
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
-    "strictNullChecks": false,
-    "allowSyntheticDefaultImports": true,
-    // tsup (esbuild) compiles one file at a time, so type-only re-exports must
-    // say `export type` or they ship as runtime exports that don't exist.
-    "isolatedModules": true
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rewriteRelativeImportExtensions": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "verbatimModuleSyntax": true
   }
 }

@@ -1,22 +1,22 @@
-import { useDeepMemo } from "../useDeepMemo";
-import { useTick } from "../useTick";
-import { useRefreshListener } from "./Refresh";
+import { useDeepMemo } from "../useDeepMemo.ts";
+import { useTick } from "../useTick.ts";
+import { useRefreshListener } from "./Refresh.ts";
 import {
-  BaseQueryData,
-  GqlType,
-  QueryData,
+  type BaseQueryData,
+  type GqlType,
+  type QueryData,
   useBaseQuery,
-} from "./useBaseQuery";
+} from "./useBaseQuery.ts";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
-function deepFreeze(object) {
+function deepFreeze<T extends object>(object: T): Readonly<T> {
   // Retrieve the property names defined on object
   const propNames = Object.getOwnPropertyNames(object);
 
   // Freeze properties before freezing self
 
   for (const name of propNames) {
-    const value = object[name];
+    const value = (object as Record<string, unknown>)[name];
 
     if (value && typeof value === "object") {
       deepFreeze(value);
@@ -58,6 +58,7 @@ export function useQuery<T = any>(
   return deepFreeze({
     ...state,
     // can override props when refetching for new pagination, offset, etc
-    refetch: forceUpdate,
+    // NOTE: forceUpdate re-runs the query but resolves to nothing, despite the QueryData type
+    refetch: forceUpdate as QueryData<T>["refetch"],
   });
 }

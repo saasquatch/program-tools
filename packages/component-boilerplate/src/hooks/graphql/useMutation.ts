@@ -1,4 +1,4 @@
-import { BaseQueryData, GqlType, useBaseQuery } from "./useBaseQuery";
+import { type BaseQueryData, type GqlType, useBaseQuery } from "./useBaseQuery.ts";
 
 const initialMutationState: BaseQueryData = {
   loading: false,

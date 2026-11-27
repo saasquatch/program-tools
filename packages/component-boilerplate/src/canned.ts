@@ -1,1 +1,1 @@
-export * from "./canned/index";
+export * from "./canned/index.ts";

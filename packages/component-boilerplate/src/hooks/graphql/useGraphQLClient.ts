@@ -1,9 +1,14 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
-import memoize from "fast-memoize";
-import { BatchedGraphQLClient } from "../../BatchedGraphQLClient";
-import { useAppDomain, useTenantAlias, useToken } from "../environment";
-import { useHost } from "../useHost";
-import { GRAPHQL_CONTEXT } from "./context";
+import memoizeModule from "fast-memoize";
+import { BatchedGraphQLClient } from "../../BatchedGraphQLClient.ts";
+import { useAppDomain, useTenantAlias, useToken } from "../environment/index.ts";
+import { useHost } from "../useHost.ts";
+import { GRAPHQL_CONTEXT } from "./context.ts";
+
+// fast-memoize is CommonJS (`module.exports = memoize`) but its types declare
+// `export default`, so under ESM TypeScript types the import as the exports object.
+const memoize: typeof memoizeModule.default =
+  (memoizeModule as any).default ?? memoizeModule;
 
 export { GRAPHQL_CONTEXT };
 

@@ -1,4 +1,6 @@
-const ref = { current: undefined };
+const ref: { current: (() => HTMLElement) | undefined } = {
+  current: undefined,
+};
 
 export function useHost(): HTMLElement {
   if (ref.current === undefined) {

@@ -1,10 +1,12 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { graphql } from "graphql";
 
-let prevReq: Object = {};
-let prevReqs: Object[] = [];
+type RecordedRequest = { id: string; body: any };
+
+let prevReq: RecordedRequest | {} = {};
+let prevReqs: RecordedRequest[] = [];
 const lock = {
   locked: false,
   unlock: null as null | (() => void),
@@ -27,40 +29,40 @@ async function maybeLock() {
 }
 
 export const handlers = [
-  rest.get("/lastquery", (req, res, ctx) => {
-    const count = req.url.searchParams.get("n");
+  http.get("/lastquery", ({ request }) => {
+    const count = new URL(request.url).searchParams.get("n");
     if (count) {
-      const lastN = prevReqs.slice(-1 * Number(count));
-      return res(ctx.body(JSON.stringify(lastN)));
+      return HttpResponse.json(prevReqs.slice(-1 * Number(count)));
     }
-    return res(ctx.body(JSON.stringify(prevReq)));
+    return HttpResponse.json(prevReq);
   }),
 
-  rest.post("/lock", (req, res, ctx) => {
+  http.post("/lock", () => {
     if (lock.locked) {
-      return res(ctx.status(500, "Already locked"));
+      return new HttpResponse(null, { status: 500, statusText: "Already locked" });
     }
     lock.locked = true;
-    return res(ctx.status(200));
+    return new HttpResponse(null, { status: 200 });
   }),
 
-  rest.post("/unlock", (req, res, ctx) => {
+  http.post("/unlock", () => {
     if (!lock.unlock) {
-      return res(ctx.status(500, "Already unlocked"));
+      return new HttpResponse(null, { status: 500, statusText: "Already unlocked" });
     }
     lock.unlock();
-    return res(ctx.status(200));
+    return new HttpResponse(null, { status: 200 });
   }),
 
-  rest.post("/reverse-errors", (req, res, ctx) => {
+  http.post("/reverse-errors", () => {
     reverseNextErrors = true;
-    return res(ctx.status(200));
+    return new HttpResponse(null, { status: 200 });
   }),
 
   // todo: replace with proper graphql mock
-  rest.post(
+  http.post(
     "https://app.referralsaasquatch.com/api/v1/test_faketenant/graphql",
-    async (req, res, ctx) => {
+    async ({ request, requestId }) => {
+      const body = (await request.json()) as any;
       await maybeLock();
       // Example taken from graphql-tools docs
       const typeDefs = `
@@ -142,8 +144,8 @@ export const handlers = [
         preserveResolvers: true,
       });
 
-      const query = (req.body as any).query;
-      const variables = (req.body as any).variables;
+      const query = body.query;
+      const variables = body.variables;
 
       const response = await graphql({
         schema: schemaWithMocks,
@@ -156,10 +158,12 @@ export const handlers = [
         response.errors = response.errors && [...response.errors].reverse();
       }
 
-      prevReq = req;
+      // Request objects don't serialize, so record what the tests inspect
+      const recorded = { id: requestId, body };
+      prevReq = recorded;
       // with batching we need to look back at the previous few requests
-      prevReqs.push(req);
-      return res(ctx.json(response));
+      prevReqs.push(recorded);
+      return HttpResponse.json(response);
     }
   ),
 ];

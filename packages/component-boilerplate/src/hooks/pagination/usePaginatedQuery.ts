@@ -1,5 +1,5 @@
-import { useQuery } from "../graphql/useQuery";
-import { usePagination } from "./usePagination";
+import { useQuery } from "../graphql/useQuery.ts";
+import { usePagination } from "./usePagination.ts";
 
 export type Envelope<T = unknown> = {
   data: T[];

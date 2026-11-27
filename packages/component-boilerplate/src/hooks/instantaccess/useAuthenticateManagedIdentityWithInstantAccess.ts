@@ -4,10 +4,10 @@ import {
   getTenantAlias,
   setUserIdentity,
 } from "@saasquatch/component-environment";
-import gql from "graphql-tag";
-import { BaseQueryData, useBaseQuery } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
-import { useProgramId } from "../environment";
+import { gql } from "graphql-tag";
+import { useProgramId } from "../environment/index.ts";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
 
 interface AuthenticateManagedIdentityWithInstantAccessVariables {
   email: string;
@@ -71,7 +71,7 @@ const CheckReferralFraudStatusQuery = `
   }
 `;
 
-async function fetchFraud(programId: string, jwt: string) {
+async function fetchFraud(programId: string | undefined, jwt: string) {
   try {
     const result = await fetch(
       `${getAppDomain()}/api/v1/${getTenantAlias()}/graphql`,
@@ -87,7 +87,7 @@ async function fetchFraud(programId: string, jwt: string) {
             programId,
           },
         }),
-      }
+      },
     );
 
     if (!result.ok) {
@@ -100,9 +100,9 @@ async function fetchFraud(programId: string, jwt: string) {
     }
 
     const results = (json as any).data.viewer.instantAccessRewards?.data || [];
-    if (results.some((r) => r.cancelledReason === "SUSPECTED_FRAUD"))
+    if (results.some((r: any) => r.cancelledReason === "SUSPECTED_FRAUD"))
       return "DENIED";
-    else if (results.some((r) => r.pendingReasons?.includes("SUSPECTED_FRAUD")))
+    else if (results.some((r: any) => r.pendingReasons?.includes("SUSPECTED_FRAUD")))
       return "PENDING_REVIEW";
     else return "APPROVED";
   } catch (e) {
@@ -113,20 +113,20 @@ async function fetchFraud(programId: string, jwt: string) {
 
 export function useAuthenticateManagedIdentityWithInstantAccess(): [
   (
-    e: unknown
+    e: AuthenticateManagedIdentityWithInstantAccessVariables,
   ) => Promise<AuthenticateManagedIdentityWithInstantAccessResult | Error>,
-  BaseQueryData<AuthenticateManagedIdentityWithInstantAccessResult>
+  BaseQueryData<AuthenticateManagedIdentityWithInstantAccessResult>,
 ] {
   const programId = useProgramId();
   const env = getEnvironment();
 
   const [request, { loading, data, errors }] =
     useMutation<AuthenticateManagedIdentityWithInstantAccessResult>(
-      AuthenticateManagedIdentityWithInstantAccessMutation
+      AuthenticateManagedIdentityWithInstantAccessMutation,
     );
 
   const requestAndSetUserIdentity = async (
-    variables: AuthenticateManagedIdentityWithInstantAccessVariables
+    variables: AuthenticateManagedIdentityWithInstantAccessVariables,
   ) => {
     const result = await request(variables);
 
@@ -136,7 +136,7 @@ export function useAuthenticateManagedIdentityWithInstantAccess(): [
     ) {
       const fraudStatus = await fetchFraud(
         programId,
-        result.authenticateManagedIdentityWithInstantAccess.token
+        result.authenticateManagedIdentityWithInstantAccess.token,
       );
 
       if (fraudStatus === "APPROVED") {

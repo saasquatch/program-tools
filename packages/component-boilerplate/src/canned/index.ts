@@ -1,15 +1,15 @@
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { buildSchema, formatError, graphqlSync, GraphQLSchema, print } from "graphql";
 import { ClientError } from "graphql-request";
-import { RequestDocument } from "graphql-request/dist/types";
+import type { RequestDocument } from "graphql-request/dist/types.js";
 import { ContextProvider } from "dom-context";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
 import type { UserIdentity } from "@saasquatch/component-environment";
-import { setProgramId, setUserIdentity } from "../hooks/environment";
-import { GRAPHQL_CONTEXT } from "../hooks/graphql/context";
-import { fakeJwt } from "../fakeJwt";
-import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, withSeed } from "./mocks";
-import { SAASQUATCH_SCHEMA_SDL, SAASQUATCH_SCHEMA_SOURCE } from "./schema";
+import { setProgramId, setUserIdentity } from "../hooks/environment/index.ts";
+import { GRAPHQL_CONTEXT } from "../hooks/graphql/context.ts";
+import { fakeJwt } from "../fakeJwt.ts";
+import { CANNED_NOW, defaultMocks, mergeMocks, type Mocks, withSeed } from "./mocks.ts";
+import { SAASQUATCH_SCHEMA_SDL, SAASQUATCH_SCHEMA_SOURCE } from "./schema.ts";
 
 export { CANNED_NOW, fakeJwt, SAASQUATCH_SCHEMA_SOURCE };
 export type { Mocks };
@@ -50,13 +50,15 @@ export interface CannedOptions {
  */
 export class CannedGraphQLClient {
   private readonly schema: GraphQLSchema;
+  private readonly options: CannedOptions;
 
-  constructor(private readonly options: CannedOptions = {}) {
+  constructor(options: CannedOptions = {}) {
     const base = getSchema();
     this.schema = addMocksToSchema({
       schema: base,
       mocks: mergeMocks(defaultMocks(base), options.mocks),
     });
+    this.options = options;
   }
 
   async request<T = any>(
@@ -144,9 +146,11 @@ export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
     try {
       return json({ data: await client.request(query, variables) });
     } catch (e) {
+      const response = (e as { response?: { data?: unknown; errors?: unknown } } | null)
+        ?.response;
       return json({
-        data: e?.response?.data ?? null,
-        errors: e?.response?.errors ?? [{ message: String(e) }],
+        data: response?.data ?? null,
+        errors: response?.errors ?? [{ message: String(e) }],
       });
     }
   };
@@ -159,7 +163,7 @@ export function interceptCannedFetch(client: CannedGraphQLClient): () => void {
     if (window.fetch !== intercepting) return;
     // Skip interceptors that stood down while this one was on top.
     let restored = original;
-    while (standingDown.has(restored)) restored = standingDown.get(restored);
+    while (standingDown.has(restored)) restored = standingDown.get(restored)!;
     window.fetch = restored;
   };
 }
@@ -209,7 +213,7 @@ export function useCannedEnvironment(options: CannedEnvironmentOptions = {}) {
     // widgetIdent only once, so every mount sets it. This runs during render,
     // so a story's own setProgramId call after this one still wins.
     setProgramId((window as any).widgetIdent.programId);
-    const locale = widgetIdent?.locale;
+    const locale = widgetIdent?.["locale"];
     const client = createCannedGraphQLClient({
       latency: STORY_LATENCY,
       ...canned,

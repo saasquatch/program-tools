@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from "@saasquatch/universal-hooks";
-import { RequestDocument } from "graphql-request/dist/types";
-import useGraphQLClient from "./useGraphQLClient";
+import type { RequestDocument } from "graphql-request/dist/types.d.ts";
+import useGraphQLClient from "./useGraphQLClient.ts";
 
 export type GqlType = RequestDocument;
 
@@ -37,7 +37,7 @@ export type GraphQlRequestError<T> = {
           message?: string;
           code?: string;
         };
-      }
+      },
     ];
     data: Partial<T>;
     status: number;
@@ -65,7 +65,7 @@ type Action<T> =
 function reducer<T>(
   // @ts-ignore = unused
   state: BaseQueryData<T>,
-  action: Action<T>
+  action: Action<T>,
 ): BaseQueryData<T> {
   switch (action.type) {
     case "loading":
@@ -80,15 +80,15 @@ function reducer<T>(
 export function useBaseQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>,
-  options = { batch: true }
+  options = { batch: true },
 ): [
   BaseQueryData<T>,
-  (variables: unknown, skipLoading?: boolean) => Promise<T | Error>
+  (variables: unknown, skipLoading?: boolean) => Promise<T | Error>,
 ] {
   const client = useGraphQLClient();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
-    initialState
+    initialState,
   );
   const update = useCallback(
     async function (variables: unknown, skipLoading = false) {
@@ -106,15 +106,15 @@ export function useBaseQuery<T = any>(
         // Skips showing a "loading" state before the data appears
         if (!skipLoading) dispatch({ type: "loading" });
 
-        const res = await client.request<T>(query, variables, options);
+        const res = await client.request<T, unknown>(query, variables, options);
         dispatch({ type: "data", payload: res });
         return res;
       } catch (error) {
-        dispatch({ type: "errors", payload: error });
-        return error;
+        dispatch({ type: "errors", payload: error as GraphQlRequestError<T> });
+        return error as Error;
       }
     },
-    [client, query, dispatch]
+    [client, query, dispatch],
   );
 
   return [state, update];
