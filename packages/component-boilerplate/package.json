@@ -8,21 +8,18 @@
     "src/canned.ts"
   ],
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     },
     "./canned": {
-      "types": "./dist/canned.d.ts",
-      "import": "./dist/canned.mjs",
-      "require": "./dist/canned.js"
+      "types": "./dist/canned.d.mts",
+      "import": "./dist/canned.mjs"
     },
-    "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
   "files": [
@@ -39,7 +36,7 @@
     "directory": "packages/component-boilerplate"
   },
   "scripts": {
-    "build": "tsdown && tsc -p tsconfig.build.json",
+    "build": "tsc --noEmit && tsdown",
     "test": "vitest run",
     "test-watch": "vitest",
     "prepack": "npm run build",

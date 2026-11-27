@@ -1,7 +1,7 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ["./src/index.ts"],
+  entry: ["./src/index.ts", "./src/canned.ts"],
   format: ["esm"],
   platform: "browser",
   inputOptions: { platform: "browser" },

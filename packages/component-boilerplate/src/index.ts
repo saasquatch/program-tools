@@ -25,6 +25,11 @@ export { useAuthenticateWithGoogle } from "./hooks/managedIdentity/useAuthentica
 export { BatchedGraphQLClient } from "./BatchedGraphQLClient.ts";
 export { fakeJwt } from "./fakeJwt.ts";
 export { useQuery } from "./hooks/graphql/useQuery.ts";
+export type {
+  BaseQueryData,
+  GraphQlRequestError,
+  QueryData,
+} from "./hooks/graphql/useBaseQuery.ts";
 export { useMutation } from "./hooks/graphql/useMutation.ts";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery.ts";
 export {
