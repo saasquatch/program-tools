@@ -7,7 +7,7 @@ import {
   isListType,
   isNonNullType,
 } from "graphql";
-import { fakeJwt } from "../fakeJwt";
+import { fakeJwt } from "../fakeJwt.ts";
 
 export type Mocks = Record<string, (...args: any[]) => unknown>;
 

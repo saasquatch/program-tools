@@ -3,8 +3,8 @@ import {
   useEngagementMedium,
   useProgramId,
   useUserIdentity,
-} from "../hooks/environment";
-import { useMutation } from "./graphql/useMutation";
+} from "../hooks/environment/index.ts";
+import { useMutation } from "./graphql/useMutation.ts";
 
 const FIRE_EVENT = gql`
   mutation ($eventMeta: UserAnalyticsEvent!) {

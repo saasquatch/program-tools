@@ -1,5 +1,5 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
-import { useHost } from "../useHost";
+import { useHost } from "../useHost.ts";
 import {
   UserIdentity,
   USER_CONTEXT_NAME,

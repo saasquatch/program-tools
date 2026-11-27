@@ -1,6 +1,6 @@
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
 import { useDomContext } from "@saasquatch/stencil-hooks";
-import { useHost } from "./useHost";
+import { useHost } from "./useHost.ts";
 
 export type StateType<T> = [value?: T, setValue?: (value: T) => void];
 
@@ -40,7 +40,7 @@ export function useParent<T>(namespace: string): StateType<T | undefined> {
 
 export function useSetParent<T>(
   namespace: string
-): (value: T) => void | undefined {
+): ((value: T) => void) | undefined {
   const parent = useDomContext<StateType<T | undefined>>(
     getContextName(namespace)
   );

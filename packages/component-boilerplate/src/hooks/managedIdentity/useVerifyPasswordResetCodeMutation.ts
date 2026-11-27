@@ -1,7 +1,7 @@
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
-import { BaseQueryData } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
 
 const VerifyPasswordResetCodeMutation = gql`
   mutation VerifyPasswordResetCode($oobCode: String!) {

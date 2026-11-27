@@ -1,4 +1,4 @@
-import { UserIdentity } from "@saasquatch/component-environment";
+import { type UserIdentity } from "@saasquatch/component-environment";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { equal as deepEqual } from "@wry/equality";
 import debugFn from "debug";
@@ -8,9 +8,9 @@ import {
   useEngagementMedium,
   useProgramId,
   useUserIdentity,
-} from "./environment";
-import { useMutation } from "./graphql/useMutation";
-import { useHost } from "./useHost";
+} from "./environment/index.ts";
+import { useMutation } from "./graphql/useMutation.ts";
+import { useHost } from "./useHost.ts";
 
 const LOAD_EVENT_CONTEXT_NAME = "sq:load-event";
 export const debug = debugFn(LOAD_EVENT_CONTEXT_NAME);

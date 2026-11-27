@@ -4,10 +4,10 @@ import {
   getTenantAlias,
   setUserIdentity,
 } from "@saasquatch/component-environment";
-import gql from "graphql-tag";
-import { BaseQueryData, useBaseQuery } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
-import { useProgramId } from "../environment";
+import { gql } from "graphql-tag";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
+import { useProgramId } from "../environment/index.ts";
 
 interface AuthenticateManagedIdentityWithInstantAccessVariables {
   email: string;

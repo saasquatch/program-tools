@@ -23,7 +23,7 @@ import {
   typeFromAST,
 } from "graphql";
 import { gql } from "graphql-request";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import {
   CANNED_APP_DOMAIN,
   CANNED_NOW,

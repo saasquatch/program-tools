@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { BaseQueryData } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
+import { gql } from "graphql-tag";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
 
 const ChangePasswordMutation = gql`
   mutation ChangePassword($password: String!) {

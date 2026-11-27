@@ -1,11 +1,11 @@
 import { useRef, useCallback } from "@saasquatch/universal-hooks";
-import { useRefreshListener } from "./Refresh";
+import { useRefreshListener } from "./Refresh.ts";
 import {
-  BaseQueryData,
-  GqlType,
-  QueryData,
+  type BaseQueryData,
+  type GqlType,
+  type QueryData,
   useBaseQuery,
-} from "./useBaseQuery";
+} from "./useBaseQuery.ts";
 
 const initialLazyQueryState: BaseQueryData = {
   loading: false,

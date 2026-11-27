@@ -1,9 +1,9 @@
 import { gql } from "graphql-request";
-import { BaseQueryData } from "../graphql/useBaseQuery";
-import { useMutation } from "../graphql/useMutation";
-import jwtDecode from "jwt-decode";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
+import { useMutation } from "../graphql/useMutation.ts";
+import { jwtDecode } from "jwt-decode";
 import {
-  DecodedSquatchJWT,
+  type DecodedSquatchJWT,
   setUserIdentity,
 } from "@saasquatch/component-environment";
 

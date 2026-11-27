@@ -1,10 +1,10 @@
-import { DocumentNode, parse, print } from "graphql";
+import { type DocumentNode, parse, print } from "graphql";
 import combineQuery, {
-  CombinedQueryBuilder,
-  NewCombinedQueryBuilder,
+  type CombinedQueryBuilder,
+  type NewCombinedQueryBuilder,
 } from "graphql-combine-query";
 import { GraphQLClient } from "graphql-request";
-import { ClientError, RequestDocument } from "graphql-request/dist/types";
+import { ClientError, type RequestDocument } from "graphql-request/dist/types.js";
 import { nanoid } from "nanoid";
 import { Subject } from "rxjs";
 import { bufferTime } from "rxjs/operators";

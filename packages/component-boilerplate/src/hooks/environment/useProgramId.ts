@@ -3,7 +3,7 @@ import {
   PROGRAM_CONTEXT_NAME,
   lazilyStartProgramContext,
 } from "@saasquatch/component-environment";
-import { useHost } from "../useHost";
+import { useHost } from "../useHost.ts";
 
 export function useProgramId(): string | undefined {
   lazilyStartProgramContext();

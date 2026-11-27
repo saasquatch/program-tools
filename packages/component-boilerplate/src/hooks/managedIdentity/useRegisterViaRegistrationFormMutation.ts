@@ -1,13 +1,13 @@
-import gql from "graphql-tag";
-import decode from "jwt-decode";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { gql } from "graphql-tag";
+import { jwtDecode as decode } from "jwt-decode";
+import { useState } from "@saasquatch/universal-hooks";
 
-import { BaseQueryData } from "../graphql/useBaseQuery";
+import type { BaseQueryData } from "../graphql/useBaseQuery.ts";
 import {
   setUserIdentity,
-  DecodedSquatchJWT,
+  type DecodedSquatchJWT,
 } from "@saasquatch/component-environment";
-import { useMutation } from "../graphql/useMutation";
+import { useMutation } from "../graphql/useMutation.ts";
 
 const RegisterViaRegistrationFormMutation = gql`
   mutation RegisterViaRegistrationForm($key: String!, $formData: RSJsonNode!) {

@@ -1,9 +1,9 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
 import memoize from "fast-memoize";
-import { BatchedGraphQLClient } from "../../BatchedGraphQLClient";
-import { useAppDomain, useTenantAlias, useToken } from "../environment";
-import { useHost } from "../useHost";
-import { GRAPHQL_CONTEXT } from "./context";
+import { BatchedGraphQLClient } from "../../BatchedGraphQLClient.ts";
+import { useAppDomain, useTenantAlias, useToken } from "../environment/index.ts";
+import { useHost } from "../useHost.ts";
+import { GRAPHQL_CONTEXT } from "./context.ts";
 
 export { GRAPHQL_CONTEXT };
 

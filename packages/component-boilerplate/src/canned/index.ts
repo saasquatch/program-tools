@@ -1,15 +1,15 @@
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { buildSchema, formatError, graphqlSync, GraphQLSchema, print } from "graphql";
 import { ClientError } from "graphql-request";
-import { RequestDocument } from "graphql-request/dist/types";
+import { RequestDocument } from "graphql-request/dist/types.js";
 import { ContextProvider } from "dom-context";
 import { useEffect, useMemo } from "@saasquatch/universal-hooks";
 import type { UserIdentity } from "@saasquatch/component-environment";
-import { setProgramId, setUserIdentity } from "../hooks/environment";
-import { GRAPHQL_CONTEXT } from "../hooks/graphql/context";
-import { fakeJwt } from "../fakeJwt";
-import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, withSeed } from "./mocks";
-import { SAASQUATCH_SCHEMA_SDL, SAASQUATCH_SCHEMA_SOURCE } from "./schema";
+import { setProgramId, setUserIdentity } from "../hooks/environment/index.ts";
+import { GRAPHQL_CONTEXT } from "../hooks/graphql/context.ts";
+import { fakeJwt } from "../fakeJwt.ts";
+import { CANNED_NOW, defaultMocks, mergeMocks, Mocks, withSeed } from "./mocks.ts";
+import { SAASQUATCH_SCHEMA_SDL, SAASQUATCH_SCHEMA_SOURCE } from "./schema.ts";
 
 export { CANNED_NOW, fakeJwt, SAASQUATCH_SCHEMA_SOURCE };
 export type { Mocks };

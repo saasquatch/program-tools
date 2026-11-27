@@ -1,6 +1,6 @@
 import { useCallback } from "@saasquatch/universal-hooks";
-import { useDeepCompareEffect } from "../useDeepEffect";
-import { useHost } from "../useHost";
+import { useDeepCompareEffect } from "../useDeepEffect.ts";
+import { useHost } from "../useHost.ts";
 
 export const REFRESH_EVENT_NAME = "sq:refresh";
 

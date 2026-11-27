@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from "@saasquatch/universal-hooks";
-import { RequestDocument } from "graphql-request/dist/types";
-import useGraphQLClient from "./useGraphQLClient";
+import type { RequestDocument } from "graphql-request/dist/types.d.ts";
+import useGraphQLClient from "./useGraphQLClient.ts";
 
 export type GqlType = RequestDocument;
 

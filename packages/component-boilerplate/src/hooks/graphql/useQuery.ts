@@ -1,12 +1,12 @@
-import { useDeepMemo } from "../useDeepMemo";
-import { useTick } from "../useTick";
-import { useRefreshListener } from "./Refresh";
+import { useDeepMemo } from "../useDeepMemo.ts";
+import { useTick } from "../useTick.ts";
+import { useRefreshListener } from "./Refresh.ts";
 import {
-  BaseQueryData,
-  GqlType,
-  QueryData,
+  type BaseQueryData,
+  type GqlType,
+  type QueryData,
   useBaseQuery,
-} from "./useBaseQuery";
+} from "./useBaseQuery.ts";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 function deepFreeze(object) {

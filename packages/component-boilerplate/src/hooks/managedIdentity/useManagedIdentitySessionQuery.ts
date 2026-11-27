@@ -1,8 +1,8 @@
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
-import { QueryData } from "../graphql/useBaseQuery";
-import { useUserIdentity, setUserIdentity } from "../environment";
-import { useLazyQuery } from "../graphql/useLazyQuery";
+import type { QueryData } from "../graphql/useBaseQuery.ts";
+import { useUserIdentity, setUserIdentity } from "../environment/index.ts";
+import { useLazyQuery } from "../graphql/useLazyQuery.ts";
 
 const ManagedIdentitySessionQuery = gql`
   query ManagedIdentitySession {

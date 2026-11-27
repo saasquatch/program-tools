@@ -2,10 +2,10 @@ import { useDomContextState } from "@saasquatch/dom-context-hooks";
 import { useDomContext } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { deepEqual } from "fast-equals";
-import { getContextValueName } from "../useParentState";
-import { useHost } from "../useHost";
-import { useQuery } from "./useQuery";
-import { QueryData } from "./useBaseQuery";
+import { getContextValueName } from "../useParentState.ts";
+import { useHost } from "../useHost.ts";
+import { useQuery } from "./useQuery.ts";
+import type { QueryData } from "./useBaseQuery.ts";
 
 type ParentQueryProps = {
   namespace: string;

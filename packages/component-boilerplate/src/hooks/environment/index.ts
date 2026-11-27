@@ -17,6 +17,6 @@ export {
 } from "@saasquatch/component-environment";
 export type { DecodedSquatchJWT } from "@saasquatch/component-environment";
 
-export * from "./useLocale";
-export * from "./useProgramId";
-export * from "./useUserIdentity";
+export * from "./useLocale.ts";
+export * from "./useProgramId.ts";
+export * from "./useUserIdentity.ts";
