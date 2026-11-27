@@ -33,7 +33,7 @@ export function useRefreshListener({
   variables: unknown;
 }) {
   useDeepCompareEffect(() => {
-    const listener = (e: CustomEvent) => {
+    const listener = () => {
       !skip && update(variables, true);
     };
     document.addEventListener(REFRESH_EVENT_NAME, listener);

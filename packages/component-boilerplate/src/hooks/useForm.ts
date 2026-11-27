@@ -209,23 +209,23 @@ export function useForm(props: UseFormProps) {
     const submissionResults = formState.submitData.data?.submitForm.results;
 
     return (
-      submissionResults?.map((error) => {
+      submissionResults?.map((error: any) => {
         // salesforce errors
         const messages = error.result?.results
-          ?.flatMap((res) => !res.success && res.message)
-          .filter((message) => message);
+          ?.flatMap((res: any) => !res.success && res.message)
+          .filter((message: unknown) => message);
 
         // fatal errors
         const errors = error.result?.results
           ?.flatMap(
-            (res) =>
+            (res: any) =>
               !res.success && {
                 error: res.error,
                 errorType: res.errorType,
                 errorCode: res.errorCode,
               }
           )
-          .filter(({ error }) => error);
+          .filter(({ error }: any) => error);
 
         return {
           integration: error.formHandler?.integration?.name,

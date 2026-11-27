@@ -54,7 +54,7 @@ export function lazilyStartLoadEventContext() {
 }
 
 export function useLoadEvent() {
-  const host = useHost();
+  useHost();
   const globalProvider = lazilyStartLoadEventContext();
 
   const engagementMedium = useEngagementMedium();

@@ -33,7 +33,7 @@ export function useLazyQuery<T = any>(
 
   // can override props when refetching for new pagination, offset, etc
   const refetch = useCallback(
-    (variables) => {
+    (variables?: unknown) => {
       variablesRef.current = variables;
       return update(variables);
     },

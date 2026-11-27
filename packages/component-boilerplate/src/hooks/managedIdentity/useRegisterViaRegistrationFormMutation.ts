@@ -81,7 +81,7 @@ export function useRegisterViaRegistrationFormMutation(): [
     useMutation<RegisterViaRegistrationFormResult>(
       RegisterViaRegistrationFormMutation
     );
-  const [formError, setFormError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | undefined>(undefined);
 
   const requestAndSetUserIdentityOrFormError = async (v: {
     key: string;
@@ -92,7 +92,7 @@ export function useRegisterViaRegistrationFormMutation(): [
       [field: string]: any;
     };
   }) => {
-    setFormError(null);
+    setFormError(undefined);
     const result = await request(v);
     if (result instanceof Error) {
       return result;
